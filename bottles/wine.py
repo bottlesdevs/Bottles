@@ -20,6 +20,7 @@
 
 import os
 import gi
+import re
 import threading
 import subprocess
 import shutil
@@ -32,9 +33,11 @@ from gi.repository import Gtk, Gdk, Granite, GObject, GLib, GdkPixbuf
 try:
     import constants as cn
     import helper as hl
+    import alert as al
 except ImportError:
     import bottles.constants as cn
     import bottles.helper as hl
+    import bottles.alert as al
 
 GLib.threads_init()
 
@@ -152,27 +155,39 @@ class Wine:
     def run_wineboot(self, working_dir):
         T_Wineboot(working_dir).start()
 
-    # FIXME: I need to include check for special character and clones
+    def check_special_chars(self, string):
+        if not re.match(r'^\w+$', string):
+            alert = al.Alert(self.parent.parent,
+                "BOTTLE_NAME_ERROR: Bottle name can not contain special characters",
+                600, 90
+            )
+            response = alert.run()
+            if response == Gtk.ResponseType.OK:
+                alert.destroy()
+            return False
+        else:
+            return True
+
     def create_bottle(self, name, arch):
-        # log
-        print("Creating a bottle with name: "+name+" and arch: "+arch)
+        if self.check_special_chars(name):
+            print("Creating a bottle with name: "+name+" and arch: "+arch)
 
-        # create dir
-        self.working_prefix_dir = self.working_dir+"prefix_"+name
-        if not os.path.exists(self.working_prefix_dir):
-            os.mkdir(self.working_prefix_dir)
-            version_bottle = self.working_prefix_dir+"/version.bottle"
-            with open(version_bottle, "w") as f:
-                f.write(arch)
+            # create dir
+            self.working_prefix_dir = self.working_dir+"prefix_"+name
+            if not os.path.exists(self.working_prefix_dir):
+                os.mkdir(self.working_prefix_dir)
+                version_bottle = self.working_prefix_dir+"/version.bottle"
+                with open(version_bottle, "w") as f:
+                    f.write(arch)
 
-            # start winecfg
-            self.run_winecfg(self.working_prefix_dir)
+                # start winecfg
+                self.run_winecfg(self.working_prefix_dir)
 
-        self.detail_bottle(name)
-        
-        # re-fill list
-        lt = self.parent.parent.stack.list_all
-        lt.generate_entries(True)
+            self.detail_bottle(name)
+            
+            # re-fill list
+            lt = self.parent.parent.stack.list_all
+            lt.generate_entries(True)
 
     def list_bottles(self):
         bottles = []
@@ -181,13 +196,13 @@ class Wine:
             bottles.append(w)
         return bottles
 
-    # FIXME: I need to include check for special character
     def remove(self, bottle_name):
-        shutil.rmtree(self.working_dir+bottle_name, ignore_errors=True)
+        if self.check_special_chars(name):
+            shutil.rmtree(self.working_dir+bottle_name, ignore_errors=True)
 
-        # re-fill list
-        lt = self.parent.parent.stack.list_all
-        lt.generate_entries(True)
+            # re-fill list
+            lt = self.parent.parent.stack.list_all
+            lt.generate_entries(True)
 
     def detail_bottle(self, name):
         # populate detail data
