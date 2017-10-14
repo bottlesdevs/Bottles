@@ -22,6 +22,7 @@
 
 
 ## Problems/New Features?
+Read the [Wiki](https://github.com/mirkobrombin/Bottles/wiki).  
 In any case, ask for support [here](https://github.com/mirkobrombin/Bottles/issues).
 
 ## Requirements
