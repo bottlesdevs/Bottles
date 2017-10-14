@@ -20,15 +20,11 @@
 
 import os
 import gi
-import apt
 import threading
 import subprocess
-import urllib
 import shutil
-import tarfile
 import time
 from pathlib import Path
-from softwareproperties.SoftwareProperties import SoftwareProperties
 import webbrowser
 gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
@@ -43,7 +39,6 @@ except ImportError:
 GLib.threads_init()
 
 class T_Winecfg(threading.Thread):
-    cache = apt.Cache()
 
     def __init__(self, working_prefix_dir):
         threading.Thread.__init__(self)
@@ -53,7 +48,6 @@ class T_Winecfg(threading.Thread):
         subprocess.call("WINEPREFIX="+self.working_prefix_dir+" winecfg", shell=True)
 
 class T_Wintricks(threading.Thread):
-    cache = apt.Cache()
 
     def __init__(self, working_prefix_dir):
         threading.Thread.__init__(self)
@@ -63,7 +57,6 @@ class T_Wintricks(threading.Thread):
         subprocess.call("WINEPREFIX="+self.working_prefix_dir+" winetricks", shell=True)
 
 class T_Console(threading.Thread):
-    cache = apt.Cache()
 
     def __init__(self, working_prefix_dir):
         threading.Thread.__init__(self)
@@ -74,7 +67,6 @@ class T_Console(threading.Thread):
         subprocess.call("WINEPREFIX="+self.working_prefix_dir+" wineconsole cmd", shell=True)
 
 class T_Monitor(threading.Thread):
-    cache = apt.Cache()
 
     def __init__(self, working_prefix_dir):
         threading.Thread.__init__(self)
@@ -85,7 +77,6 @@ class T_Monitor(threading.Thread):
         subprocess.call("WINEPREFIX="+self.working_prefix_dir+" wine taskmgr", shell=True)
 
 class T_Control(threading.Thread):
-    cache = apt.Cache()
 
     def __init__(self, working_prefix_dir):
         threading.Thread.__init__(self)
@@ -96,7 +87,6 @@ class T_Control(threading.Thread):
         subprocess.call("WINEPREFIX="+self.working_prefix_dir+" wine control", shell=True)
 
 class T_Regedit(threading.Thread):
-    cache = apt.Cache()
 
     def __init__(self, working_prefix_dir):
         threading.Thread.__init__(self)
@@ -107,7 +97,6 @@ class T_Regedit(threading.Thread):
         subprocess.call("WINEPREFIX="+self.working_prefix_dir+" wine regedit", shell=True)
 
 class T_Uninstaller(threading.Thread):
-    cache = apt.Cache()
 
     def __init__(self, working_prefix_dir):
         threading.Thread.__init__(self)
@@ -118,7 +107,6 @@ class T_Uninstaller(threading.Thread):
         subprocess.call("WINEPREFIX="+self.working_prefix_dir+" wine uninstaller", shell=True)
 
 class T_Wineboot(threading.Thread):
-    cache = apt.Cache()
 
     def __init__(self, working_prefix_dir):
         threading.Thread.__init__(self)
