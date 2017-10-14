@@ -30,14 +30,12 @@ try:
     import create as cr
     import list as ls
     import detail as dt
-    import manage as mn
 except ImportError:
     import bottles.constants as cn
     import bottles.welcome as wl
     import bottles.create as cr
     import bottles.list as ls
     import bottles.detail as dt
-    import bottles.manage as mn
 
 class Stack(Gtk.Box):
 
@@ -53,12 +51,10 @@ class Stack(Gtk.Box):
         self.create = cr.Create(self)
         self.detail = dt.Detail(self)
         self.list_all = ls.List(self)
-        self.manage = mn.Manage(self)
 
         self.stack.add_titled(self.welcome, "welcome", "Welcome")
         self.stack.add_titled(self.create, "create", "Create")
         self.stack.add_titled(self.detail, "detail", "Detail")
         self.stack.add_titled(self.list_all, "list", "List")
-        self.stack.add_titled(self.manage, "manage", "Manage")
 
         self.pack_start(self.stack, True, True, 0)

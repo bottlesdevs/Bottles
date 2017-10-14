@@ -41,9 +41,8 @@ class Welcome(Gtk.Box):
         self.welcome = self.welcome.new(cn.App.application_name, cn.App.application_description)
 
         # Welcome voices
-        self.welcome.append("insert-object", "New bottle", "Create a new wineprefix")
+        self.welcome.append("wine", "New bottle", "Create a new wineprefix")
         self.welcome.append("gnome-mime-application-x-archive", "List bottles", "List all wineprefix")
-        self.welcome.append("wine", "Manage wine", "Manage the wine installation")
         
         self.welcome.connect("activated", self.on_welcome_activated)
 
@@ -55,11 +54,8 @@ class Welcome(Gtk.Box):
             # Add wineprefix
             self.parent.parent.hbar.save.show()
             self.parent.stack.set_visible_child_name("create")
-        elif index == 1:
+        else:
             self.parent.parent.hbar.trash.show()
             self.parent.parent.hbar.properties.show()
             # List wineprefix
             self.parent.stack.set_visible_child_name("list")
-        else:
-            # List wineprefix
-            self.parent.stack.set_visible_child_name("manage")
