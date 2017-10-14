@@ -1,0 +1,18 @@
+Source: com.github.mirkobrombin.ppaextender
+Section: x11
+Priority: extra
+Maintainer: Mirko Brombin <brombinmirko@gmail.com>
+Build-Depends: debhelper (>= 10),
+               libgtk-3-dev,
+               libgranite-dev,
+               dh-python,
+               python-all,
+               python-setuptools,
+               software-properties-common
+Standards-Version: 3.9.3
+
+Package: com.github.mirkobrombin.ppaextender
+Architecture: any
+Depends: python3, python-requests, ${misc:Depends}, ${shlibs:Depends}
+Description: PPA Extender
+ Easily manage PPA
