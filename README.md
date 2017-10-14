@@ -1,6 +1,6 @@
 <div align="center">
   <p align="center">
-    <img src="https://github.com/mirkobrombin/Bottles/blob/master/data/com.github.mirkobrombin.ppaextender.svg" width="64">
+    <img src="https://github.com/mirkobrombin/Bottles/blob/master/data/com.github.mirkobrombin.bottles.svg" width="64">
   </p>
   <h1 align="center">Bottles</h1>
   <p align="center">Easily manage wineprefix</p>
@@ -22,7 +22,7 @@
 
 
 ## Problems/New Features?
-In any case, ask for support [here](https://github.com/mirkobrombin/PPAExtender/issues).
+In any case, ask for support [here](https://github.com/mirkobrombin/Bottles/issues).
 
 ## Requirements
 - wine
