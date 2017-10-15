@@ -32,7 +32,7 @@ else:
 sys.path.insert(0, modules_path)
 
 try:
-    from ppaextender import main
+    from bottles import main
 except ImportError:
     print("Failed to import module main.py!")
     print("Installation was assumed to be at:", modules_path)

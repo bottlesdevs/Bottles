@@ -34,12 +34,17 @@ In any case, ask for support [here](https://github.com/mirkobrombin/Bottles/issu
 - libgranite-dev 
 
 ## How to run
+```bash
+com.github.mirkobrombin.bottles
+```
+
+## Installation
 Grab an updated release [here](https://github.com/mirkobrombin/bottles/archive/master.zip) or use **git**:
 
 ```bash
-git clone https://github.com/mirkobrombin/Bottles.git
-cd Bottles/bottles
-python3 main.py
+git clone https://github.com/mirkobrombin/bottles.git
+cd Bottles
+sudo python3 setup.py install
 ```
 
 
