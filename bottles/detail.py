@@ -172,6 +172,43 @@ class Detail(Gtk.Box):
         label_reboot = Gtk.Label("Reboot")
         HGtk.add_class(self, label_reboot, "label_cell")
         grid_6.add(label_reboot)
+        
+        self.grid_7 = Gtk.Grid()
+        self.grid_7.set_column_spacing(20)
+        self.grid_7.set_column_homogeneous(True)
+        self.vbox.add(self.grid_7)
+        
+        # Clone
+        self.button_clone = Gtk.Button.new_from_icon_name("edit-copy", Gtk.IconSize.DIALOG)
+        self.button_clone.connect("clicked", self.on_button_clone_clicked)
+        self.grid_7.add(self.button_clone)
+        
+        # Run
+        self.button_run = Gtk.Button.new_from_icon_name("list-add", Gtk.IconSize.DIALOG)
+        self.button_run.connect("clicked", self.on_button_run_clicked)
+        self.grid_7.add(self.button_run)
+        
+        # Debug
+        self.button_debug = Gtk.Button.new_from_icon_name("system-run", Gtk.IconSize.DIALOG)
+        self.button_debug.connect("clicked", self.on_button_debug_clicked)
+        self.grid_7.add(self.button_debug)
+
+        grid_8 = Gtk.Grid()
+        grid_8.set_column_spacing(20)
+        grid_8.set_column_homogeneous(True)
+        self.vbox.add(grid_8)
+
+        label_clone = Gtk.Label("Clone")
+        HGtk.add_class(self, label_clone, "label_cell")
+        grid_8.add(label_clone)
+
+        label_run = Gtk.Label("Run")
+        HGtk.add_class(self, label_run, "label_cell")
+        grid_8.add(label_run)
+
+        label_debug = Gtk.Label("Debug")
+        HGtk.add_class(self, label_run, "label_cell")
+        grid_8.add(label_debug)
 
     def on_button_drive_c_clicked(self, button):
         os.system('xdg-open "%s"' % self.working_dir)
@@ -199,3 +236,22 @@ class Detail(Gtk.Box):
 
     def on_button_reboot_clicked(self, button):
         self.wine.run_wineboot(self.working_dir)
+
+    def on_button_clone_clicked(self, button):
+        self.wine.run_clone(self.working_dir)
+
+    def on_button_run_clicked(self, button):
+        file_chooser = Gtk.FileChooserDialog(
+            "Please choose a .exe", self.parent.parent,
+            Gtk.FileChooserAction.OPEN,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        response = file_chooser.run()
+        if response == Gtk.ResponseType.OK:
+            self.wine.run_software(self.working_dir, file_chooser.get_filename())
+            file_chooser.destroy()
+        else:
+            file_chooser.destroy()
+
+    def on_button_debug_clicked(self, button):
+        self.wine.run_debug(self.working_dir)

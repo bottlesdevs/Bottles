@@ -24,7 +24,9 @@ import re
 import threading
 import subprocess
 import shutil
+import random
 import time
+from time import gmtime, strftime
 from pathlib import Path
 import webbrowser
 gi.require_version('Gtk', '3.0')
@@ -119,6 +121,40 @@ class T_Wineboot(threading.Thread):
         os.chdir(self.working_prefix_dir)
         subprocess.call("WINEPREFIX="+self.working_prefix_dir+" wineboot", shell=True)
 
+class T_Clone(threading.Thread):
+
+    def __init__(self, working_prefix_dir, parent):
+        threading.Thread.__init__(self)
+        self.working_prefix_dir = working_prefix_dir
+        self.parent = parent
+        
+    def run(self):
+        clone_dir = self.working_prefix_dir+"_"+strftime("%Y_%m_%d__%H_%M_%S", gmtime())
+        subprocess.call("cp -a "+self.working_prefix_dir+" "+clone_dir, shell=True)
+        self.parent.parent.parent.hbar.spinner.stop()
+        self.parent.parent.list_all.generate_entries(True)
+
+class T_Software(threading.Thread):
+
+    def __init__(self, working_prefix_dir, file_src):
+        threading.Thread.__init__(self)
+        self.working_prefix_dir = working_prefix_dir
+        self.file_src = file_src
+        
+    def run(self):
+        os.chdir(self.working_prefix_dir)
+        subprocess.call("WINEPREFIX="+self.working_prefix_dir+" wine "+self.file_src, shell=True)
+
+class T_Debug(threading.Thread):
+
+    def __init__(self, working_prefix_dir):
+        threading.Thread.__init__(self)
+        self.working_prefix_dir = working_prefix_dir
+        
+    def run(self):
+        os.chdir(self.working_prefix_dir)
+        subprocess.call("xterm -e 'WINEPREFIX="+self.working_prefix_dir+" winedbg'", shell=True)
+
 class Wine:
     HGtk = hl.HGtk()
     working_dir = str(Path.home())+"/.Bottles/"
@@ -154,6 +190,16 @@ class Wine:
     
     def run_wineboot(self, working_dir):
         T_Wineboot(working_dir).start()
+    
+    def run_debug(self, working_dir):
+        T_Debug(working_dir).start()
+    
+    def run_clone(self, working_dir):
+        self.parent.parent.parent.hbar.spinner.start()
+        T_Clone(working_dir, self.parent).start()
+    
+    def run_software(self, working_dir, file_src):
+        T_Software(working_dir, file_src).start()
 
     def check_special_chars(self, string):
         if not re.match(r'^\w+$', string):
