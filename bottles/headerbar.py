@@ -44,9 +44,9 @@ class Headerbar(Gtk.HeaderBar):
         self.props.title = cn.App.application_name
 
         # help button
-        #self.help = Gtk.Button.new_from_icon_name("help-contents", Gtk.IconSize.LARGE_TOOLBAR)
-        #self.help.connect("clicked", self.on_help_clicked)
-        #self.pack_end(self.help)
+        self.help = Gtk.Button.new_from_icon_name("help-contents", Gtk.IconSize.LARGE_TOOLBAR)
+        self.help.connect("clicked", self.on_help_clicked)
+        self.pack_end(self.help)
 
         # trash button
         self.trash = Gtk.Button()
@@ -77,7 +77,7 @@ class Headerbar(Gtk.HeaderBar):
         self.pack_start(self.back)
     
     def on_help_clicked(self, widget):
-        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles")
+        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/wiki")
     
     def on_trash_clicked(self, widget):
         self.wine.remove(self.bottle_name)
