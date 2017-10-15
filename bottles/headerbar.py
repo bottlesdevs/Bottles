@@ -80,7 +80,7 @@ class Headerbar(Gtk.HeaderBar):
         webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/wiki")
     
     def on_trash_clicked(self, widget):
-        self.wine.remove(self.bottle_name)
+        self.wine.remove_bottle(self.bottle_name)
     
     def on_properties_clicked(self, widget):
         self.wine.detail_bottle(self.bottle_name)

@@ -242,7 +242,7 @@ class Wine:
             bottles.append(w)
         return bottles
 
-    def remove(self, bottle_name):
+    def remove_bottle(self, bottle_name):
         if self.check_special_chars(bottle_name):
             shutil.rmtree(self.working_dir+bottle_name, ignore_errors=True)
 
