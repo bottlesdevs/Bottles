@@ -251,7 +251,7 @@ class Wine:
             lt.generate_entries(True)
 
     def detail_bottle(self, name):
-        # populate detail data
+        # get detail data
         dt = self.parent.parent.stack.detail
         self.parent.properties.hide()
         self.parent.trash.hide()
@@ -259,7 +259,6 @@ class Wine:
             dt.working_dir = self.working_dir+"prefix_"+name
         else:
             dt.working_dir = self.working_dir+name
-        dt.title.set_text(name)
         with open(dt.working_dir+"/version.bottle",'r') as arch_f:
             arch=arch_f.read().replace('\n', '')
         if arch == "32 Bit":
@@ -269,6 +268,12 @@ class Wine:
         version = str(version)
         version = version.replace("b'", "")
         version = version.replace("\\n'", "")
+
+        # remove prefix_ from bottle name
+        name = name.replace("prefix_", "")
+
+        # set detail title and description
+        dt.title.set_text(name)
         dt.description.set_text(version+" ("+arch+")")
 
         # change stack to detail
