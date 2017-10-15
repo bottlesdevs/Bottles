@@ -207,9 +207,12 @@ class Wine:
     def detail_bottle(self, name):
         # populate detail data
         dt = self.parent.parent.stack.detail
-        dt.working_dir = self.working_prefix_dir
+        if name.find("prefix_") == -1:
+            dt.working_dir = self.working_dir+"prefix_"+name
+        else:
+            dt.working_dir = self.working_dir+name
         dt.title.set_text(name)
-        with open(self.working_prefix_dir+"/version.bottle",'r') as arch_f:
+        with open(dt.working_dir+"/version.bottle",'r') as arch_f:
             arch=arch_f.read().replace('\n', '')
         if arch == "32 Bit":
             version = subprocess.check_output(["wine", "--version"])
