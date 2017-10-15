@@ -207,6 +207,8 @@ class Wine:
     def detail_bottle(self, name):
         # populate detail data
         dt = self.parent.parent.stack.detail
+        self.parent.properties.hide()
+        self.parent.trash.hide()
         if name.find("prefix_") == -1:
             dt.working_dir = self.working_dir+"prefix_"+name
         else:
