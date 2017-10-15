@@ -41,7 +41,7 @@ class Welcome(Gtk.Box):
         self.welcome = self.welcome.new(cn.App.application_name, cn.App.application_description)
 
         # Welcome voices
-        self.welcome.append("wine", "New bottle", "Create a new wineprefix")
+        self.welcome.append("wine", "New bottle", "Create a new bottle")
         self.welcome.append("gnome-mime-application-x-archive", "List bottles", "List all wineprefix")
         
         self.welcome.connect("activated", self.on_welcome_activated)
