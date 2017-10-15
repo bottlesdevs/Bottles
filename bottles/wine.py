@@ -197,7 +197,7 @@ class Wine:
         return bottles
 
     def remove(self, bottle_name):
-        if self.check_special_chars(name):
+        if self.check_special_chars(bottle_name):
             shutil.rmtree(self.working_dir+bottle_name, ignore_errors=True)
 
             # re-fill list
