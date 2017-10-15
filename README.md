@@ -17,7 +17,8 @@
 <p align="center">
     <img  src="https://github.com/mirkobrombin/Bottles/blob/master/screenshot.png"> <br>
     <img  src="https://github.com/mirkobrombin/Bottles/blob/master/screenshot-2.png"> <br>
-    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/screenshot-3.png"> 
+    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/screenshot-3.png"> <br>
+    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/screenshot-4.png"> 
 </p>
 
 
