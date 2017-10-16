@@ -29,6 +29,7 @@ In any case, ask for support [here](https://github.com/mirkobrombin/Bottles/issu
 ## Requirements
 - wine
 - wine64
+- xterm
 - python3
 - libgtk-3-dev
 - libgranite-dev 
