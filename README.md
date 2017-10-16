@@ -15,11 +15,10 @@
 </p>
 
 <p align="center">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/bottles/master/data/screenshot-1.png"> <br>
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/bottles/master/data/screenshot-2.png"> <br>
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/bottles/master/data/screenshot-3.png"> <br>
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/bottles/master/data/screenshot-4.png">
-</p>
+    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-1.png?raw=true"> <br>
+    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-2.png?raw=true"> <br>
+    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-3.png?raw=true"> <br>
+    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-4.png?raw=true">
 
 
 ## Problems/New Features?
