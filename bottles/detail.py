@@ -184,7 +184,7 @@ class Detail(Gtk.Box):
         self.grid_7.add(self.button_clone)
         
         # Run
-        self.button_run = Gtk.Button.new_from_icon_name("list-add", Gtk.IconSize.DIALOG)
+        self.button_run = Gtk.Button.new_from_icon_name("application-x-msi", Gtk.IconSize.DIALOG)
         self.button_run.connect("clicked", self.on_button_run_clicked)
         self.grid_7.add(self.button_run)
         
@@ -202,13 +202,50 @@ class Detail(Gtk.Box):
         HGtk.add_class(self, label_clone, "label_cell")
         grid_8.add(label_clone)
 
-        label_run = Gtk.Label("Run")
+        label_run = Gtk.Label("Run .exe here")
         HGtk.add_class(self, label_run, "label_cell")
         grid_8.add(label_run)
 
         label_debug = Gtk.Label("Debug")
         HGtk.add_class(self, label_run, "label_cell")
         grid_8.add(label_debug)
+
+        self.grid_9 = Gtk.Grid()
+        self.grid_9.set_column_spacing(20)
+        self.grid_9.set_column_homogeneous(True)
+        self.vbox.add(self.grid_9)
+        
+        # Bug
+        self.button_bug = Gtk.Button.new_from_icon_name("bug", Gtk.IconSize.DIALOG)
+        self.button_bug.connect("clicked", self.on_button_bug_clicked)
+        self.grid_9.add(self.button_bug)
+        
+        # Forums
+        self.button_forums = Gtk.Button.new_from_icon_name("internet-chat", Gtk.IconSize.DIALOG)
+        self.button_forums.connect("clicked", self.on_button_forums_clicked)
+        self.grid_9.add(self.button_forums)
+        
+        # AppDB
+        self.button_appdb = Gtk.Button.new_from_icon_name("office-database", Gtk.IconSize.DIALOG)
+        self.button_appdb.connect("clicked", self.on_button_appdb_clicked)
+        self.grid_9.add(self.button_appdb)
+
+        grid_10 = Gtk.Grid()
+        grid_10.set_column_spacing(20)
+        grid_10.set_column_homogeneous(True)
+        self.vbox.add(grid_10)
+
+        label_bug = Gtk.Label("Report bug")
+        HGtk.add_class(self, label_bug, "label_cell")
+        grid_10.add(label_bug)
+
+        label_forums = Gtk.Label("Forums")
+        HGtk.add_class(self, label_forums, "label_cell")
+        grid_10.add(label_forums)
+
+        label_appdb = Gtk.Label("Wine Application Database")
+        HGtk.add_class(self, label_appdb, "label_cell")
+        grid_10.add(label_appdb)
 
     def on_button_drive_c_clicked(self, button):
         os.system('xdg-open "%s"' % self.working_dir)
@@ -255,3 +292,12 @@ class Detail(Gtk.Box):
 
     def on_button_debug_clicked(self, button):
         self.wine.run_debug(self.working_dir)
+
+    def on_button_bug_clicked(self, button):
+        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/issues")
+
+    def on_button_forums_clicked(self, button):
+        webbrowser.open_new_tab("https://forum.winehq.org/")
+
+    def on_button_appdb_clicked(self, button):
+        webbrowser.open_new_tab("https://appdb.winehq.org/")
