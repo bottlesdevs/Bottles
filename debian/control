@@ -9,13 +9,11 @@ Build-Depends: debhelper (>= 10),
                python3,
                python-all,
                python-setuptools,
-               software-properties-common,
-               wine,
-               xterm
+               software-properties-common
 Standards-Version: 3.9.3
 
 Package: com.github.mirkobrombin.bottles
 Architecture: any
-Depends: python3, ${misc:Depends}, ${shlibs:Depends}
+Depends: python3, wine, xterm, ${misc:Depends}, ${shlibs:Depends}
 Description: Bottles
  Easily manage your Wine bottles
