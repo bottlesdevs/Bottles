@@ -237,9 +237,12 @@ class Wine:
 
     def list_bottles(self):
         bottles = []
-        walk = next(os.walk(self.working_dir))[1]
-        for w in walk:
-            bottles.append(w)
+        try:
+            walk = next(os.walk(self.working_dir))[1]
+            for w in walk:
+                bottles.append(w)
+        except StopIteration:
+            pass
         return bottles
 
     def remove_bottle(self, bottle_name):
