@@ -27,8 +27,7 @@ Read the [Wiki](https://github.com/mirkobrombin/Bottles/wiki).
 In any case, ask for support [here](https://github.com/mirkobrombin/Bottles/issues).
 
 ## Requirements
-- wine
-- wine64
+- wine (with wine64)
 - xterm
 - python3
 - libgtk-3-dev
