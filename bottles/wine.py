@@ -158,6 +158,7 @@ class T_Debug(threading.Thread):
 class Wine:
     HGtk = hl.HGtk()
     working_dir = str(Path.home())+"/.Bottles/"
+    working_dir_link = str(Path.home())+"/My Bottles"
     wine_icon = Gtk.IconTheme.get_default().load_icon("wine", 16, 0)
 
     def __init__(self, parent):
@@ -166,6 +167,8 @@ class Wine:
     def check_work_dir(self):
         if not os.path.exists(self.working_dir):
             os.mkdir(self.working_dir)
+            os.symlink(self.working_dir, self.working_dir_link)
+			
     
     def run_winecfg(self, working_dir):
         T_Winecfg(working_dir).start()
