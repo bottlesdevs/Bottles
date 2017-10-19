@@ -18,8 +18,10 @@
     along with Bottles.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import os
 import gi
+import os
+import locale
+import gettext
 import webbrowser
 gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
@@ -33,16 +35,23 @@ class Welcome(Gtk.Box):
 
     def __init__(self, parent):
         Gtk.Box.__init__(self, False, 0)
-        
         self.parent = parent
+
+        try:
+            current_locale, encoding = locale.getdefaultlocale()
+            locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+            translate = gettext.translation ('bottles', locale_path, [current_locale] )
+            _ = translate.gettext
+        except FileNotFoundError:
+            _ = str
 
         # Create welcome widget
         self.welcome = Granite.WidgetsWelcome()
         self.welcome = self.welcome.new(cn.App.application_name, cn.App.application_description)
 
         # Welcome voices
-        self.welcome.append("wine", "New bottle", "Create a new bottle")
-        self.welcome.append("gnome-mime-application-x-archive", "List bottles", "List all wineprefix")
+        self.welcome.append("wine", _('New bottle'), _('Create a new bottle'))
+        self.welcome.append("gnome-mime-application-x-archive", _('List bottles'), _('List all wineprefix'))
         
         self.welcome.connect("activated", self.on_welcome_activated)
 

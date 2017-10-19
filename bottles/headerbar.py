@@ -19,6 +19,9 @@
 '''
 
 import gi
+import os
+import locale
+import gettext
 import webbrowser
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
@@ -39,6 +42,14 @@ class Headerbar(Gtk.HeaderBar):
         self.parent = parent
         self.wine = w.Wine(self)
         self.HGtk = hl.HGtk()
+
+        try:
+            current_locale, encoding = locale.getdefaultlocale()
+            locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+            translate = gettext.translation ('bottles', locale_path, [current_locale] )
+            _ = translate.gettext
+        except FileNotFoundError:
+            _ = str
         
         self.set_show_close_button(True)
         self.props.title = cn.App.application_name
@@ -61,7 +72,7 @@ class Headerbar(Gtk.HeaderBar):
         self.pack_end(self.properties)
 
         # save button
-        self.save = Gtk.Button("Save")
+        self.save = Gtk.Button(_('Save'))
         self.save.connect("clicked", self.on_save_clicked)
         self.HGtk.add_class(self.save, "suggested-action")
         self.pack_end(self.save)
@@ -71,13 +82,10 @@ class Headerbar(Gtk.HeaderBar):
         self.pack_end(self.spinner)
 
         # back button
-        self.back = Gtk.Button("Return")
+        self.back = Gtk.Button(_('Return'))
         self.back.connect("clicked", self.on_back_clicked)
         Gtk.StyleContext.add_class(self.back.get_style_context(), "back-button")
         self.pack_start(self.back)
-    
-    def on_help_clicked(self, widget):
-        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/wiki")
     
     def on_trash_clicked(self, widget):
         self.wine.remove_bottle(self.bottle_name)

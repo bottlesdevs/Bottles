@@ -18,8 +18,10 @@
     along with Bottles.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import os
 import gi
+import os
+import locale
+import gettext
 import webbrowser
 gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
@@ -39,16 +41,24 @@ class Create(Gtk.Box):
         self.wine = w.Wine(self)
         self.parent = parent
 
+        try:
+            current_locale, encoding = locale.getdefaultlocale()
+            locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+            translate = gettext.translation ('bottles', locale_path, [current_locale] )
+            _ = translate.gettext
+        except FileNotFoundError:
+            _ = str
+
         self.set_border_width(80)
         #win.resize(800,400)
         self.set_orientation(Gtk.Orientation.VERTICAL)
 
-        title = Gtk.Label("New bottle")
+        title = Gtk.Label(_('New bottle'))
         title.set_name('WineTitle')
         title.set_justify(Gtk.Justification.CENTER)
         self.add(title)
 
-        description = Gtk.Label("Here you can create a new bottle")
+        description = Gtk.Label(_('Here you can create a new bottle'))
         description.set_name('WineDescription')
         description.set_justify(Gtk.Justification.CENTER)
         self.add(description)
@@ -58,8 +68,8 @@ class Create(Gtk.Box):
         self.grid.set_row_spacing(4)
         self.add(self.grid)
         
-        prefix_name = Gtk.Label("Bottle name")
-        prefix_arch = Gtk.Label("Type (32/64)")
+        prefix_name = Gtk.Label(_('Bottle name'))
+        prefix_arch = Gtk.Label(_('Type (32/64)'))
         #prefix_wine = Gtk.Label("Wine version")
 
         self.entry_name = Gtk.Entry()

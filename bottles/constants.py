@@ -18,13 +18,24 @@
     along with Bottles.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import gi
+import os
+import locale
+import gettext
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
+try:
+    current_locale, encoding = locale.getdefaultlocale()
+    locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+    translate = gettext.translation ('bottles', locale_path, [current_locale] )
+    _ = translate.gettext
+except FileNotFoundError:
+    _ = str
+
 class App:
     application_id = "com.github.mirkobrombin.bottles"
-    application_name = "Bottles"
-    application_description = "Easily manage your Wine bottles"
+    application_name = _('Bottles')
+    application_description = _('Easily manage your Wine bottles')
     application_version ="0.0.6"
     app_years = "2017-2018"
     main_url = "https://github.com/mirkobrombin/bottles"

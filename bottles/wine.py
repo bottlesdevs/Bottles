@@ -20,6 +20,9 @@
 
 import os
 import gi
+import os
+import locale
+import gettext
 import re
 import threading
 import subprocess
@@ -160,6 +163,14 @@ class Wine:
     working_dir = str(Path.home())+"/.Bottles/"
     working_dir_link = str(Path.home())+"/My Bottles"
 
+    try:
+        current_locale, encoding = locale.getdefaultlocale()
+        locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+        translate = gettext.translation ('bottles', locale_path, [current_locale] )
+        _ = translate.gettext
+    except FileNotFoundError:
+        _ = str
+
     def __init__(self, parent):
         self.parent = parent
 
@@ -206,7 +217,7 @@ class Wine:
     def check_special_chars(self, string):
         if not re.match(r'^\w+$', string):
             alert = al.Alert(self.parent.parent,
-                "BOTTLE_NAME_ERROR: Bottle name can not contain special characters",
+                "BOTTLE_NAME_ERROR: "+self._('Bottle name can not contain special characters'),
                 600, 90
             )
             response = alert.run()
@@ -218,7 +229,7 @@ class Wine:
 
     def create_bottle(self, name, arch):
         if self.check_special_chars(name):
-            print("Creating a bottle with name: "+name+" and arch: "+arch)
+            print(self._('Creating a bottle with name:')+name+" and arch: "+arch)
 
             # create dir
             self.working_prefix_dir = self.working_dir+"prefix_"+name

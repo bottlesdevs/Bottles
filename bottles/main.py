@@ -19,6 +19,8 @@
 '''
 
 import gi
+import locale
+import gettext
 import argparse
 gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')

@@ -20,6 +20,9 @@
 
 import os
 import gi
+import os
+import locale
+import gettext
 import subprocess
 import webbrowser
 gi.require_version('Gtk', '3.0')
@@ -43,6 +46,14 @@ class Detail(Gtk.Box):
         self.wine = w.Wine(self)
         self.parent = parent
         HGtk = hl.HGtk
+
+        try:
+            current_locale, encoding = locale.getdefaultlocale()
+            locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+            translate = gettext.translation ('bottles', locale_path, [current_locale] )
+            _ = translate.gettext
+        except FileNotFoundError:
+            _ = str
 
         self.set_border_width(20)
         self.set_orientation(Gtk.Orientation.VERTICAL)
@@ -87,15 +98,15 @@ class Detail(Gtk.Box):
         grid_2.set_column_homogeneous(True)
         self.vbox.add(grid_2)
 
-        label_drive_c = Gtk.Label("Browse C:")
+        label_drive_c = Gtk.Label(_('Browse C:'))
         HGtk.add_class(self, label_drive_c, "label_cell")
         grid_2.add(label_drive_c)
 
-        label_wine_cfg = Gtk.Label("Configure")
+        label_wine_cfg = Gtk.Label(_('Configure'))
         HGtk.add_class(self, label_wine_cfg, "label_cell")
         grid_2.add(label_wine_cfg)
 
-        label_winetricks = Gtk.Label("Winetricks")
+        label_winetricks = Gtk.Label(_('Winetricks'))
         HGtk.add_class(self, label_winetricks, "label_cell")
         grid_2.add(label_winetricks)
         
@@ -124,15 +135,15 @@ class Detail(Gtk.Box):
         grid_4.set_column_homogeneous(True)
         self.vbox.add(grid_4)
 
-        label_terminal = Gtk.Label("Terminal")
+        label_terminal = Gtk.Label(_('Terminal'))
         HGtk.add_class(self, label_terminal, "label_cell")
         grid_4.add(label_terminal)
 
-        label_monitor = Gtk.Label("Task manager")
+        label_monitor = Gtk.Label(_('Task manager'))
         HGtk.add_class(self, label_monitor, "label_cell")
         grid_4.add(label_monitor)
 
-        label_settings = Gtk.Label("Control panel")
+        label_settings = Gtk.Label(_('Control panel'))
         HGtk.add_class(self, label_settings, "label_cell")
         grid_4.add(label_settings)
         
@@ -161,15 +172,15 @@ class Detail(Gtk.Box):
         grid_6.set_column_homogeneous(True)
         self.vbox.add(grid_6)
 
-        label_regedit = Gtk.Label("Regedit")
+        label_regedit = Gtk.Label(_('Regedit'))
         HGtk.add_class(self, label_regedit, "label_cell")
         grid_6.add(label_regedit)
 
-        label_uninstaller = Gtk.Label("Uninstaller")
+        label_uninstaller = Gtk.Label(_('Uninstaller'))
         HGtk.add_class(self, label_uninstaller, "label_cell")
         grid_6.add(label_uninstaller)
 
-        label_reboot = Gtk.Label("Reboot")
+        label_reboot = Gtk.Label(_('Reboot'))
         HGtk.add_class(self, label_reboot, "label_cell")
         grid_6.add(label_reboot)
         
@@ -198,15 +209,15 @@ class Detail(Gtk.Box):
         grid_8.set_column_homogeneous(True)
         self.vbox.add(grid_8)
 
-        label_clone = Gtk.Label("Clone")
+        label_clone = Gtk.Label(_('Clone'))
         HGtk.add_class(self, label_clone, "label_cell")
         grid_8.add(label_clone)
 
-        label_run = Gtk.Label("Run .exe here")
+        label_run = Gtk.Label(_('Run .exe here'))
         HGtk.add_class(self, label_run, "label_cell")
         grid_8.add(label_run)
 
-        label_debug = Gtk.Label("Debug")
+        label_debug = Gtk.Label(_('Debug'))
         HGtk.add_class(self, label_run, "label_cell")
         grid_8.add(label_debug)
 
@@ -235,15 +246,15 @@ class Detail(Gtk.Box):
         grid_10.set_column_homogeneous(True)
         self.vbox.add(grid_10)
 
-        label_bug = Gtk.Label("Report bug")
+        label_bug = Gtk.Label(_('Report bug'))
         HGtk.add_class(self, label_bug, "label_cell")
         grid_10.add(label_bug)
 
-        label_forums = Gtk.Label("Forums")
+        label_forums = Gtk.Label(_('Forums'))
         HGtk.add_class(self, label_forums, "label_cell")
         grid_10.add(label_forums)
 
-        label_appdb = Gtk.Label("Wine Database")
+        label_appdb = Gtk.Label(_('Wine Database'))
         HGtk.add_class(self, label_appdb, "label_cell")
         grid_10.add(label_appdb)
 
@@ -279,7 +290,7 @@ class Detail(Gtk.Box):
 
     def on_button_run_clicked(self, button):
         file_chooser = Gtk.FileChooserDialog(
-            "Please choose a .exe", self.parent.parent,
+            _('Please choose a .exe'), self.parent.parent,
             Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
@@ -294,7 +305,8 @@ class Detail(Gtk.Box):
         self.wine.run_debug(self.working_dir)
 
     def on_button_bug_clicked(self, button):
-        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/issues")
+        # First read the documentation, then open an issue
+        webbrowser.open_new_tab(cn.App.help_url)
 
     def on_button_forums_clicked(self, button):
         webbrowser.open_new_tab("https://forum.winehq.org/")
