@@ -38,12 +38,15 @@ com.github.mirkobrombin.bottles
 ```
 
 ## Installation
-Grab an updated release [here](https://github.com/mirkobrombin/bottles/archive/master.zip) or use **git**:
+
+### From AppCenter
+<a href="https://appcenter.elementary.io/com.github.mirkobrombin.bottles"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on the AppCenter"></a>
+
+### From .deb package
+Grab an updated release [here](https://github.com/mirkobrombin/Bottles/releases), then install:
 
 ```bash
-git clone https://github.com/mirkobrombin/bottles.git
-cd Bottles
-sudo python3 setup.py install
+sudo dpkg -i com.github.mirkobrombin.bottles_*.deb
 ```
 
 
