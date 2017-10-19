@@ -19,7 +19,9 @@ install_data = [('share/metainfo', ['data/com.github.mirkobrombin.bottles.appdat
                 ('bin/bottles',['bottles/welcome.py']),
                 ('bin/bottles',['bottles/window.py']),
                 ('bin/bottles',['bottles/wine.py']),
-                ('bin/bottles',['bottles/__init__.py'])]
+                ('bin/bottles',['bottles/__init__.py']),
+                ('bin/bottles/locale/it_IT/LC_MESSAGES',['bottles/locale/it_IT/LC_MESSAGES/bottles.po']),
+                ('bin/bottles/locale/it_IT/LC_MESSAGES',['bottles/locale/it_IT/LC_MESSAGES/bottles.mo'])]
 
 setup(  name='Bottles',
         version='0.0.1',
