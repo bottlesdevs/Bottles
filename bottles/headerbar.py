@@ -103,6 +103,7 @@ class Headerbar(Gtk.HeaderBar):
         self.wine.create_bottle(name, arch)
 
     def on_back_clicked(self, widget):
+        self.props.title = cn.App.application_name
         self.back.hide()
         self.save.hide()
         self.trash.hide()
