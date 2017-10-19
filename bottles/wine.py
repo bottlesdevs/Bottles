@@ -278,8 +278,7 @@ class Wine:
         name = name.replace("prefix_", "")
 
         # set detail title and description
-        dt.title.set_text(name)
-        dt.description.set_text(version+" ("+arch+")")
+        self.parent.props.title = name+" "+version+" ("+arch+")"
 
         # change stack to detail
         self.parent.save.hide()

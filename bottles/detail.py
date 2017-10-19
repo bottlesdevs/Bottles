@@ -44,20 +44,20 @@ class Detail(Gtk.Box):
         self.parent = parent
         HGtk = hl.HGtk
 
-        self.set_border_width(15)
-        #win.resize(800,400)
+        self.set_border_width(20)
         self.set_orientation(Gtk.Orientation.VERTICAL)
+        self.set_name("WineDetail")
 
-        self.title = Gtk.Label("New prefix")
-        self.title.set_name('Title')
-        HGtk.add_class(self, self.title, "detail_title")
-        self.title.set_justify(Gtk.Justification.CENTER)
-        self.add(self.title)
+        #self.title = Gtk.Label("New prefix")
+        #self.title.set_name('WineTitle')
+        #HGtk.add_class(self, self.title, "detail_title")
+        #self.title.set_justify(Gtk.Justification.CENTER)
+        #self.add(self.title)
 
-        self.description = Gtk.Label("Here you can create a new Wine prefix")
-        self.description.set_name('Description')
-        self.description.set_justify(Gtk.Justification.CENTER)
-        self.add(self.description)
+        #self.description = Gtk.Label("Here you can create a new Wine prefix")
+        #self.description.set_name('WineDescription')
+        #self.description.set_justify(Gtk.Justification.CENTER)
+        #self.add(self.description)
 
         self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(self.vbox)
@@ -243,7 +243,7 @@ class Detail(Gtk.Box):
         HGtk.add_class(self, label_forums, "label_cell")
         grid_10.add(label_forums)
 
-        label_appdb = Gtk.Label("Wine Application Database")
+        label_appdb = Gtk.Label("Wine Database")
         HGtk.add_class(self, label_appdb, "label_cell")
         grid_10.add(label_appdb)
 

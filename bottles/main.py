@@ -41,7 +41,8 @@ class Application(Granite.Application):
         self.wine = w.Wine(self.win)
         self.wine.check_work_dir()
 
-        self.win.set_default_size(750, 650) 
+        self.win.set_default_size(550, 600) 
+        self.win.set_resizable(False)
         self.win.connect("delete-event", Gtk.main_quit)
 
         parser = argparse.ArgumentParser(description = cn.App.application_description)

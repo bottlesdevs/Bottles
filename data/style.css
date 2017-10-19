@@ -1,15 +1,24 @@
-#Title {
+#WineTitle {
 	padding-top: 50px;
 	font-size: 18px;
 	padding-bottom: 5px;
 }
-#Description {
+#WineDescription {
 	font-size: 10px;	
 	padding-bottom: 25px;
 }
 .label_cell {
 	padding: 4px 0px 10px 0px;
 }
-#Title.detail_title {
+#WineTitle.detail_title {
 	padding-top: 10px;
+}
+#WineDetail GtkButton {
+	border: 0;
+	background-color: transparent;
+	background-image: none;
+	box-shadow: none;
+}
+#WineDetail GtkButton:hover {
+	opacity: 0.7;
 }

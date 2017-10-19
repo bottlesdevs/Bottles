@@ -44,12 +44,12 @@ class Create(Gtk.Box):
         self.set_orientation(Gtk.Orientation.VERTICAL)
 
         title = Gtk.Label("New bottle")
-        title.set_name('Title')
+        title.set_name('WineTitle')
         title.set_justify(Gtk.Justification.CENTER)
         self.add(title)
 
         description = Gtk.Label("Here you can create a new bottle")
-        description.set_name('Description')
+        description.set_name('WineDescription')
         description.set_justify(Gtk.Justification.CENTER)
         self.add(description)
 
