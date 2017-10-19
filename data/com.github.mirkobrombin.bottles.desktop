@@ -9,3 +9,8 @@ Terminal=false
 Type=Application
 X-GNOME-Gettext-Domain=com.github.mirkobrombin.bottles
 Keywords=Wine;
+Actions=AboutDialog;
+
+[Desktop Action AboutDialog]
+Exec=com.github.mirkobrombin.bottles --about
+Name=About Bottles

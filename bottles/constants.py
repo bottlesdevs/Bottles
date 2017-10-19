@@ -25,11 +25,14 @@ class App:
     application_id = "com.github.mirkobrombin.bottles"
     application_name = "Bottles"
     application_description = "Easily manage your Wine bottles"
-    application_version ="1.0"
+    application_version ="0.0.6"
+    app_years = "2017-2018"
     main_url = "https://github.com/mirkobrombin/bottles"
     bug_url = "https://github.com/mirkobrombin/bottles/issues/labels/bug"
-    help_url = "https://github.com/mirkobrombin/bottles/issues"
-    about_authors = {"Mirko Brombin <brombinmirko@gmail.com>"}
+    help_url = "https://github.com/mirkobrombin/Bottles/wiki"
+    translate_url = None
+    about_authors = None
+    about_documenters = None
     about_comments = application_description
     about_license_type = Gtk.License.GPL_3_0
 

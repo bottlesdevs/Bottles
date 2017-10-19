@@ -159,7 +159,6 @@ class Wine:
     HGtk = hl.HGtk()
     working_dir = str(Path.home())+"/.Bottles/"
     working_dir_link = str(Path.home())+"/My Bottles"
-    wine_icon = Gtk.IconTheme.get_default().load_icon("wine", 16, 0)
 
     def __init__(self, parent):
         self.parent = parent
