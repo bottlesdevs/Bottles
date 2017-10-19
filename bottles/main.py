@@ -60,6 +60,19 @@ class Application(Granite.Application):
 
 app = Application()
 
+stylesheet = """
+    @define-color colorPrimary """+cn.Colors.primary_color+""";
+    @define-color textColorPrimary """+cn.Colors.primary_text_color+""";
+    @define-color textColorPrimaryShadow """+cn.Colors.primary_text_shadow_color+""";
+""";
+
+style_provider = Gtk.CssProvider()
+style_provider.load_from_data(bytes(stylesheet.encode()))
+Gtk.StyleContext.add_provider_for_screen(
+    Gdk.Screen.get_default(), style_provider,
+    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+)
+
 app.application_id = cn.App.application_id
 app.flags = Gio.ApplicationFlags.FLAGS_NONE
 app.program_name = cn.App.application_name
