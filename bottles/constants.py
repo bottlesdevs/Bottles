@@ -31,7 +31,7 @@ class App:
     bug_url = "https://github.com/mirkobrombin/bottles/issues/labels/bug"
     help_url = "https://github.com/mirkobrombin/Bottles/wiki"
     translate_url = None
-    about_authors = None
+    about_authors = None # Mirko Brombin <brombinmirko@gmail>
     about_documenters = None
     about_comments = application_description
     about_license_type = Gtk.License.GPL_3_0
