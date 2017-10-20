@@ -1,17 +1,34 @@
 # Contributing to Bottles
 First off, thanks for taking the time to contribute :heart: !
 
-### **Did you find a bug?**
+### Did you find a bug?
 Make sure the bug has not been reported [here](https://github.com/mirkobrombin/Bottles/issues?utf8=%E2%9C%93&q=) yet
 If not, please report it [here](https://github.com/mirkobrombin/Bottles/issues/new).
 
-### Did you write a patch that fixes a bug?
+### Did you have problems?
+Check the [Wiki](https://github.com/mirkobrombin/Bottles/wiki), inside there some of frequently asked questions and guides.
+Can not find the solution?
+Find out if someone has already has [already asked](https://github.com/mirkobrombin/Bottles/issues?utf8=%E2%9C%93&q=) for it, if not, open a new issue [here](https://github.com/mirkobrombin/Bottles/issues/new).
 
-- Open a new GitHub pull request with the patch.
-- Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
+### Did you write a patch that fixes a bug?
+- Open a new GitHub pull request with the patch
+- Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable
 
 ### Do you have a tip for the user interface?
 - Open a issue [here](https://github.com/mirkobrombin/Bottles/issues/new), if possible,  attach an image that helps understand what you are talking about.
+
+### Do you want to translate?
+#### Update languages
+- Fork the repository
+- Edit a ```bottles.po``` file in ```bottles/locale/```
+- Open a new GitHub pull request
+
+#### Add new language
+- Fork the repository on your GitHub account
+- Create directory for new language in ```bottles/locale/``` with language code as the name ex.```it_IT```, create the subdirectory ```LC_MESSAGES``` inside it, final result: ```bottles/locale/it_IT/LC_MESSAGES/``` 
+- Copy the [bottles.po](https://github.com/mirkobrombin/Bottles/blob/master/bottles/locale/it_IT/LC_MESSAGES/bottles.po) inside the new directory
+- Translate it
+- Open a new GitHub pull request
 
 ### Do you have questions about the source code?
 Open a new issue [here](https://github.com/mirkobrombin/Bottles/issues/new), otherwise add a [comment directly in the code](https://github.com/gitlabhq/gitlabhq/issues/3152) from GitHub.
