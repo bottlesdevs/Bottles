@@ -43,14 +43,15 @@ class Headerbar(Gtk.HeaderBar):
         self.wine = w.Wine(self)
         self.HGtk = hl.HGtk()
 
+        locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+
         try:
             current_locale, encoding = locale.getdefaultlocale()
-            locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
             translate = gettext.translation ('bottles', locale_path, [current_locale] )
             _ = translate.gettext
         except FileNotFoundError:
             _ = str
-        
+
         self.set_show_close_button(True)
         self.props.title = cn.App.application_name
 
