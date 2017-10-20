@@ -50,7 +50,7 @@ sudo dpkg -i com.github.mirkobrombin.bottles_*.deb
 ```
 
 ### From .setup.py
-Grab the updated source [here](https://github.com/mirkobrombin/Bottles/archive/master.zip), or use git:
+Download the updated source [here](https://github.com/mirkobrombin/Bottles/archive/master.zip), or use git:
 
 ```bash
 git clone https://github.com/mirkobrombin/Bottles.github
