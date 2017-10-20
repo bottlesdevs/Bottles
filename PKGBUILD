@@ -1,4 +1,4 @@
-# Maintainers: Mirko Brombin <youremail@goes.here>, Gabriele Musco <emaildigabry@gmail.com>
+# Maintainers: Mirko Brombin <brombinmirko@gmail.com>, Gabriele Musco <emaildigabry@gmail.com>
 # Upstream URL: https://github.com/mirkobrombin/Bottles/
 
 pkgname=bottles-git
