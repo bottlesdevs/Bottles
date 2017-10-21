@@ -1,12 +1,20 @@
 @define-color base_color #3a3336;
 @define-color text_color #c6c0c4;
 @define-color selection_color #4C4649;
-@define-color selected_bg_color @selection_color;
-@define-color selected_fg_color @text_color;
 @define-color text_shadow_color alpha (@BLACK_900, 0.4);
 @define-color titlebar_color shade (@base_color, 0.9);
 @define-color title_color shade (@text_color, 0.9);
 @define-color title_shadow_color alpha (@BLACK_900, 0.6);
+
+#WineList GtkTreeView:selected {
+	background-color: @selection_color;
+	color: @text_color;
+}
+
+GtkDialog GtkButton {
+	box-shadow: none;
+	border-color: shade (@base_color, 0.7);
+}
 
 #WineTitle {
 	padding-top: 50px;

@@ -42,6 +42,7 @@ class Headerbar(Gtk.HeaderBar):
         self.parent = parent
         self.wine = w.Wine(self)
         self.HGtk = hl.HGtk()
+        self.set_name("WineHeaderbar")
 
         locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
 
