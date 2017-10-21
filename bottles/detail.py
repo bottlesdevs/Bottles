@@ -218,7 +218,7 @@ class Detail(Gtk.Box):
         grid_8.add(label_run)
 
         label_debug = Gtk.Label(_('Debug'))
-        HGtk.add_class(self, label_run, "label_cell")
+        HGtk.add_class(self, label_debug, "label_cell")
         grid_8.add(label_debug)
 
         self.grid_9 = Gtk.Grid()

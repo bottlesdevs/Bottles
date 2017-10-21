@@ -49,19 +49,17 @@ class Window(Gtk.Window):
 
         self.screen = Gdk.Screen.get_default()
         self.css_provider = Gtk.CssProvider()
+
         try:
             self.css_provider.load_from_path('../data/style.css')
         except GLib.Error:
-            pass
-        try:
             self.css_provider.load_from_path('/usr/local/bin/bottles/style.css')
         except GLib.Error:
-            pass
-        try:
             self.css_provider.load_from_path('/usr/bin/bottles/style.css')
         except GLib.Error:
             print('Couldn\'t load style.css')
             exit(1)
+
         self.context = Gtk.StyleContext()
         self.context.add_provider_for_screen(self.screen, self.css_provider,
           Gtk.STYLE_PROVIDER_PRIORITY_USER)

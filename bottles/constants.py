@@ -48,6 +48,6 @@ class App:
     about_license_type = Gtk.License.GPL_3_0
 
 class Colors:
-    primary_color = "#3a3336"
+    primary_color = "#302a2d"
     primary_text_color = "#f0e7e7"
     primary_text_shadow_color = "#160404"

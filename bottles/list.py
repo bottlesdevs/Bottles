@@ -38,6 +38,7 @@ class List(Gtk.ScrolledWindow):
         self.parent = parent
         self.wine = w.Wine(self)
         self.generate_entries()
+        self.set_name("WineList")
         
     def generate_entries(self, update=False):
         bottles = self.wine.list_bottles()
