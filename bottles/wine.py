@@ -166,7 +166,7 @@ class Wine:
     try:
         current_locale, encoding = locale.getdefaultlocale()
         locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
-        translate = gettext.translation ('bottles', locale_path, [current_locale] )
+        translate = gettext.translation (cn.App.application_shortname, locale_path, [current_locale] )
         _ = translate.gettext
     except FileNotFoundError:
         _ = str

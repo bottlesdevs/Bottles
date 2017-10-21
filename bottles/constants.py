@@ -33,6 +33,7 @@ except FileNotFoundError:
     _ = str
 
 class App:
+    application_shortname = "bottles"
     application_id = "com.github.mirkobrombin.bottles"
     application_name = _('Bottles')
     application_description = _('Easily manage your Wine bottles')

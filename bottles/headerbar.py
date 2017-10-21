@@ -48,7 +48,7 @@ class Headerbar(Gtk.HeaderBar):
 
         try:
             current_locale, encoding = locale.getdefaultlocale()
-            translate = gettext.translation ('bottles', locale_path, [current_locale] )
+            translate = gettext.translation (cn.App.application_shortname, locale_path, [current_locale] )
             _ = translate.gettext
         except FileNotFoundError:
             _ = str
