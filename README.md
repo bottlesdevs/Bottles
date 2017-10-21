@@ -40,7 +40,8 @@ com.github.mirkobrombin.bottles
 ## Installation
 
 ### From AppCenter
-<a href="https://appcenter.elementary.io/com.github.mirkobrombin.bottles"><img src="https://appcenter.elementary.io/badge.svg" alt="Get it on the AppCenter"></a>
+[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.mirkobrombin.bottles)
+
 
 ### From .deb package
 Grab an updated release [here](https://github.com/mirkobrombin/Bottles/releases), then install:
