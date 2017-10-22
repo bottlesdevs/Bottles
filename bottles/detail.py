@@ -55,6 +55,8 @@ class Detail(Gtk.Box):
         except FileNotFoundError:
             _ = str
 
+        self._ = _
+
         self.set_border_width(20)
         self.set_orientation(Gtk.Orientation.VERTICAL)
         self.set_name("WineDetail")
@@ -290,7 +292,7 @@ class Detail(Gtk.Box):
 
     def on_button_run_clicked(self, button):
         file_chooser = Gtk.FileChooserDialog(
-            _('Please choose a .exe'), self.parent.parent,
+            self._('Please choose a .exe'), self.parent.parent,
             Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
