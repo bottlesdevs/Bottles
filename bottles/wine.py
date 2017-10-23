@@ -142,7 +142,7 @@ class T_Software(threading.Thread):
     def __init__(self, working_prefix_dir, file_src):
         threading.Thread.__init__(self)
         self.working_prefix_dir = working_prefix_dir
-        self.file_src = file_src.replace(" ", "\\ ")
+        self.file_src = re.escape(file_src)
 
     def run(self):
         os.chdir(self.working_prefix_dir)
