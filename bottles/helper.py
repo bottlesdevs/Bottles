@@ -20,7 +20,6 @@
 
 import os
 import gi
-import webbrowser
 gi.require_version('Gtk', '3.0')
 gi.require_version('Granite', '1.0')
 from gi.repository import Gtk, Gdk, Granite
@@ -41,3 +40,35 @@ class HGtk:
 
     def set_dark_mode(self, status=0):
         self.settings.set_property("gtk-application-prefer-dark-theme", status)
+
+class shell_colors:
+    HEADER = '\033[95m'
+    INFO = '\033[94m'
+    SUCCESS = '\033[92m'
+    NORMAL = '\033[98m'
+    WARNING = '\033[93m'
+    ERROR = '\033[91m'
+    END = '\033[0m'
+    BOLD = '\033[1m'
+
+class HLog:
+    def title(str):
+        print (shell_colors.HEADER + shell_colors.BOLD + "=== " + str + " ===" + shell_colors.END)
+
+    def text(str):
+        print (shell_colors.NORMAL + str + shell_colors.END)
+
+    def info(str):
+        print (shell_colors.INFO + shell_colors.BOLD + str + shell_colors.END)
+
+    def bold(str):
+        print (shell_colors.NORMAL + shell_colors.BOLD + str + shell_colors.END)
+
+    def success(str):
+        print (shell_colors.SUCCESS + shell_colors.BOLD + str + shell_colors.END)
+
+    def error(str):
+        print (shell_colors.ERROR + shell_colors.BOLD + "Error: " + str + shell_colors.END)
+
+    def warning(str):
+        print (shell_colors.WARNING + shell_colors.BOLD + str + shell_colors.END)

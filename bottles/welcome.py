@@ -51,7 +51,8 @@ class Welcome(Gtk.Box):
 
         # Welcome voices
         self.welcome.append("wine", _('New bottle'), _('Create a new bottle'))
-        self.welcome.append("gnome-mime-application-x-archive", _('List bottles'), _('List all wineprefix'))
+        self.welcome.append("document-import", _('Import and convert'), _('Import a third-party wineprefix'))
+        self.welcome.append("gnome-mime-application-x-archive", _('List bottles'), _('List all bottles'))
         
         self.welcome.connect("activated", self.on_welcome_activated)
 
@@ -63,8 +64,14 @@ class Welcome(Gtk.Box):
             # Add wineprefix
             self.parent.parent.hbar.save.show()
             self.parent.stack.set_visible_child_name("create")
+        elif index == 1:
+            # Import wineprefix
+            self.parent.parent.hbar.convert.show()
+            self.parent.stack.set_visible_child_name("importer")
         else:
             self.parent.parent.hbar.trash.show()
             self.parent.parent.hbar.properties.show()
+            self.parent.parent.hbar.refresh.show()
             # List wineprefix
             self.parent.stack.set_visible_child_name("list")
+

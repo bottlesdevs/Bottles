@@ -24,15 +24,16 @@ GtkDialog GtkButton {
 
 #WineDescription {
 	font-size: 10px;	
+	padding-top: 10px;
 	padding-bottom: 25px;
+}
+
+#WineImporter #WineDescription {
+	padding-bottom: 8px;
 }
 
 .label_cell {
 	padding: 4px 0px 10px 0px;
-}
-
-#WineTitle.detail_title {
-	padding-top: 10px;
 }
 
 #WineDetail GtkButton {

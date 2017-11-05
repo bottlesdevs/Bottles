@@ -32,12 +32,14 @@ try:
     import create as cr
     import list as ls
     import detail as dt
+    import importer as im
 except ImportError:
     import bottles.constants as cn
     import bottles.welcome as wl
     import bottles.create as cr
     import bottles.list as ls
     import bottles.detail as dt
+    import bottles.importer as im
 
 class Stack(Gtk.Box):
 
@@ -59,11 +61,13 @@ class Stack(Gtk.Box):
         
         self.welcome = wl.Welcome(self)
         self.create = cr.Create(self)
+        self.importer = im.Importer(self)
         self.detail = dt.Detail(self)
         self.list_all = ls.List(self)
 
         self.stack.add_titled(self.welcome, "welcome", _('Welcome'))
         self.stack.add_titled(self.create, "create", _('Create'))
+        self.stack.add_titled(self.importer, "importer", _('Importer'))
         self.stack.add_titled(self.detail, "detail", _('Detail'))
         self.stack.add_titled(self.list_all, "list", _('List'))
 

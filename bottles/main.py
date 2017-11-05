@@ -18,6 +18,7 @@
     along with Bottles.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+import os
 import gi
 import locale
 import gettext
@@ -29,10 +30,27 @@ try:
     import constants as cn
     import window as wn
     import wine as w
+    import helper as hl
 except ImportError:
     import bottles.constants as cn
     import bottles.window as wn
     import bottles.wine as w
+    import bottles.helper as hl
+
+HLog = hl.HLog
+
+try:
+    current_locale, encoding = locale.getdefaultlocale()
+    locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+    translate = gettext.translation (cn.App.application_shortname, locale_path, [current_locale] )
+    _ = translate.gettext
+except FileNotFoundError:
+    _ = str
+
+HLog.title(_('Starting Bottles'))
+HLog.bold(_('Build Version: %s' % cn.App.application_version))
+HLog.bold(_('Wine Version: %s' % w.Wine.get_wine_version()))
+HLog.bold(_('Wiki: %s' % cn.App.help_url))
 
 class Application(Granite.Application):
 
@@ -58,6 +76,8 @@ class Application(Granite.Application):
             self.win.hbar.save.hide()
             self.win.hbar.trash.hide()
             self.win.hbar.properties.hide()
+            self.win.hbar.convert.hide()
+            self.win.hbar.refresh.hide()
 
         Gtk.main()
 

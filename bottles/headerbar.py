@@ -24,7 +24,7 @@ import locale
 import gettext
 import webbrowser
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Gio
 try:
     import constants as cn
     import wine as w
@@ -36,6 +36,8 @@ except ImportError:
 
 class Headerbar(Gtk.HeaderBar):
     bottle_name = ""
+    POL_name = ""
+    POL_arch = ""
 
     def __init__(self, parent):
         Gtk.HeaderBar.__init__(self)
@@ -79,6 +81,24 @@ class Headerbar(Gtk.HeaderBar):
         self.HGtk.add_class(self.save, "suggested-action")
         self.pack_end(self.save)
 
+        # start button
+        # self.start = Gtk.Button()
+        # self.start = Gtk.Button.new_from_icon_name("applications-other", Gtk.IconSize.LARGE_TOOLBAR)
+        # self.start.connect("clicked", self.on_start_clicked)
+        # self.pack_end(self.start)
+
+        # convert button
+        self.convert = Gtk.Button()
+        self.convert = Gtk.Button.new_from_icon_name("document-import", Gtk.IconSize.LARGE_TOOLBAR)
+        self.convert.connect("clicked", self.on_convert_clicked)
+        self.pack_end(self.convert)
+
+        # refresh button
+        self.refresh = Gtk.Button()
+        self.refresh = Gtk.Button.new_from_icon_name("view-refresh", Gtk.IconSize.LARGE_TOOLBAR)
+        self.refresh.connect("clicked", self.on_refresh_clicked)
+        self.pack_end(self.refresh)
+
         # spinner button
         self.spinner = Gtk.Spinner()
         self.pack_end(self.spinner)
@@ -93,6 +113,7 @@ class Headerbar(Gtk.HeaderBar):
         self.wine.remove_bottle(self.bottle_name)
     
     def on_properties_clicked(self, widget):
+        self.refresh.hide()
         self.wine.detail_bottle(self.bottle_name)
     
     def on_save_clicked(self, widget):
@@ -109,5 +130,17 @@ class Headerbar(Gtk.HeaderBar):
         self.back.hide()
         self.save.hide()
         self.trash.hide()
-        self.properties.hide()
+        self.properties.hide() 
+        self.convert.hide()
+        self.refresh.hide()
         self.parent.stack.stack.set_visible_child_name("welcome")
+
+    def on_start_clicked(self, widget):
+        pass
+
+    def on_convert_clicked(self, widget):
+        self.wine.convert_POL(self.POL_name, self.POL_arch)
+    
+    def on_refresh_clicked(self, widget):
+        self.parent.stack.list_all.generate_entries(True)
+
