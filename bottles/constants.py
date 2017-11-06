@@ -27,6 +27,7 @@ from gi.repository import Gtk
 try:
     current_locale, encoding = locale.getdefaultlocale()
     locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+    print(locale_path)
     translate = gettext.translation ('bottles', locale_path, [current_locale] )
     _ = translate.gettext
 except FileNotFoundError:
@@ -37,7 +38,7 @@ class App:
     application_id = "com.github.mirkobrombin.bottles"
     application_name = _('Bottles')
     application_description = _('Easily manage your Wine bottles')
-    application_version ="0.1.2"
+    application_version ="0.1.3"
     app_years = "2017-2018"
     main_url = "https://github.com/mirkobrombin/bottles"
     bug_url = "https://github.com/mirkobrombin/bottles/issues/labels/bug"
