@@ -36,7 +36,7 @@ install_data = [('/usr/share/metainfo', ['data/com.github.mirkobrombin.bottles.a
                 (inst_path+'/locale/de_DE/LC_MESSAGES',['bottles/locale/de_DE/LC_MESSAGES/bottles.po']),]
 
 setup(  name='Bottles',
-        version='0.1.3',
+        version='0.1.4',
         author='Mirko Brombin',
         description='Easily manage your Wine bottles',
         url='https://github.com/mirkobrombin/bottles',
