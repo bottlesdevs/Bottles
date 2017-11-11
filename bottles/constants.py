@@ -38,7 +38,7 @@ class App:
     application_id = "com.github.mirkobrombin.bottles"
     application_name = _('Bottles')
     application_description = _('Easily manage your Wine bottles')
-    application_version ="0.1.4"
+    application_version ="0.1.5"
     app_years = "2017-2018"
     main_url = "https://github.com/mirkobrombin/bottles"
     bug_url = "https://github.com/mirkobrombin/bottles/issues/labels/bug"
