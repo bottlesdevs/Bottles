@@ -53,7 +53,7 @@ class Window(Gtk.Window):
         try:
             self.css_provider.load_from_path('../data/style.css')
         except GLib.Error:
-            self.css_provider.load_from_path('/usr/local/bin/bottles/style.css')
+            self.css_provider.load_from_path('/usr/share/com.github.mirkobrombin.bottles/bottles/style.css')
         except GLib.Error:
             self.css_provider.load_from_path('/usr/bin/bottles/style.css')
         except GLib.Error:
