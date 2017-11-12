@@ -7,11 +7,12 @@ inst_path = '/usr/share/com.github.mirkobrombin.bottles/bottles'
 
 install_data = [('/usr/share/metainfo', ['data/com.github.mirkobrombin.bottles.appdata.xml']),
                 ('/usr/share/applications', ['data/com.github.mirkobrombin.bottles.desktop']),
-                ('/usr/share/icons/hicolor/128x128/apps',['data/com.github.mirkobrombin.bottles.svg']),
-                ('/usr/share/icons/hicolor/128x128/apps',['data/notepad.svg']),
-                ('/usr/share/icons/hicolor/128x128/apps',['data/wine.svg']),
-                ('/usr/share/icons/hicolor/128x128/apps',['data/winetricks.svg']),
-                ('/usr/share/icons/hicolor/128x128/apps',['data/wine-uninstaller.svg']),
+                ('/usr/share/icons/hicolor/scalable/apps',['data/com.github.mirkobrombin.bottles.svg']),
+                ('/usr/share/icons/hicolor/scalable/apps',['data/notepad.svg']),
+                ('/usr/share/icons/hicolor/scalable/apps',['data/wine.svg']),
+                ('/usr/share/icons/hicolor/scalable/apps',['data/winetricks.svg']),
+                ('/usr/share/icons/hicolor/scalable/apps',['data/wine-uninstaller.svg']),
+                ('/usr/share/icons/hicolor/scalable/apps',['data/wine-winecfg.svg']),
                 (inst_path,['data/style.css']),
                 (inst_path,['bottles/constants.py']),
                 (inst_path,['bottles/create.py']),
@@ -36,7 +37,7 @@ install_data = [('/usr/share/metainfo', ['data/com.github.mirkobrombin.bottles.a
                 (inst_path+'/locale/de_DE/LC_MESSAGES',['bottles/locale/de_DE/LC_MESSAGES/bottles.po']),]
 
 setup(  name='Bottles',
-        version='0.1.5',
+        version='0.1.6',
         author='Mirko Brombin',
         description='Easily manage your Wine bottles',
         url='https://github.com/mirkobrombin/bottles',
