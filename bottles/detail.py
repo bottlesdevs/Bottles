@@ -261,7 +261,7 @@ class Detail(Gtk.Box):
         grid_10.add(label_appdb)
 
     def on_button_drive_c_clicked(self, button):
-        os.system('xdg-open "%s"' % self.working_dir)
+        os.system('xdg-open "%s"' % self.working_dir+"/drive_c")
 
     def on_button_wine_cfg_clicked(self, button):
         self.wine.run_winecfg(self.working_dir)
