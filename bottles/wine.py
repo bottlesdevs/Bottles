@@ -244,6 +244,7 @@ class Wine:
         T_Debug(working_dir).start()
     
     def run_clone(self, working_dir):
+        self.parent.parent.parent.hbar.spinner.set_tooltip_text(_('Cloning the bottle..'))
         self.parent.parent.parent.hbar.spinner.start()
         T_Clone(working_dir, self.parent).start()
     
@@ -369,6 +370,7 @@ class Wine:
         message_dialog.set_flags = Gtk.DialogFlags.MODAL
         message_dialog.connect("response", self.md_ok)
         message_dialog.show_all()
+        self.parent.spinner.set_tooltip_text(_('Converting POL to bottle..'))
         self.parent.spinner.start()
         T_POL_Convert(self.working_dir, self.POL_working_dir, POL_name, arch, self.parent).start()
 
