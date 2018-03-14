@@ -3,16 +3,18 @@
 import glob, os
 from distutils.core import setup
 
-inst_path = '/usr/share/com.github.mirkobrombin.bottles/bottles'
+share_path = '/usr/share'
+inst_path = share_path+'/com.github.mirkobrombin.bottles/bottles'
+icons_path = share_path+'/icons/hicolor/scalable/apps'
 
-install_data = [('/usr/share/metainfo', ['data/com.github.mirkobrombin.bottles.appdata.xml']),
-                ('/usr/share/applications', ['data/com.github.mirkobrombin.bottles.desktop']),
-                ('/usr/share/icons/hicolor/scalable/apps',['data/com.github.mirkobrombin.bottles.svg']),
-                ('/usr/share/icons/hicolor/scalable/apps',['data/notepad.svg']),
-                ('/usr/share/icons/hicolor/scalable/apps',['data/wine.svg']),
-                ('/usr/share/icons/hicolor/scalable/apps',['data/winetricks.svg']),
-                ('/usr/share/icons/hicolor/scalable/apps',['data/wine-uninstaller.svg']),
-                ('/usr/share/icons/hicolor/scalable/apps',['data/wine-winecfg.svg']),
+install_data = [(share_path+'/metainfo', ['data/com.github.mirkobrombin.bottles.appdata.xml']),
+                (share_path+'/applications', ['data/com.github.mirkobrombin.bottles.desktop']),
+                (icons_path,['data/com.github.mirkobrombin.bottles.svg']),
+                (icons_path,['data/notepad.svg']),
+                (icons_path,['data/wine.svg']),
+                (icons_path,['data/winetricks.svg']),
+                (icons_path,['data/wine-uninstaller.svg']),
+                (icons_path,['data/wine-winecfg.svg']),
                 (inst_path,['data/style.css']),
                 (inst_path,['bottles/constants.py']),
                 (inst_path,['bottles/create.py']),
@@ -37,7 +39,7 @@ install_data = [('/usr/share/metainfo', ['data/com.github.mirkobrombin.bottles.a
                 (inst_path+'/locale/de_DE/LC_MESSAGES',['bottles/locale/de_DE/LC_MESSAGES/bottles.po']),]
 
 setup(  name='Bottles',
-        version='0.1.6',
+        version='0.1.7',
         author='Mirko Brombin',
         description='Easily manage your Wine bottles',
         url='https://github.com/mirkobrombin/bottles',
