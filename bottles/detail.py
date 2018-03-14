@@ -61,17 +61,6 @@ class Detail(Gtk.Box):
         self.set_orientation(Gtk.Orientation.VERTICAL)
         self.set_name("WineDetail")
 
-        #self.title = Gtk.Label("New prefix")
-        #self.title.set_name('WineTitle')
-        #HGtk.add_class(self, self.title, "detail_title")
-        #self.title.set_justify(Gtk.Justification.CENTER)
-        #self.add(self.title)
-
-        #self.description = Gtk.Label("Here you can create a new Wine prefix")
-        #self.description.set_name('WineDescription')
-        #self.description.set_justify(Gtk.Justification.CENTER)
-        #self.add(self.description)
-
         self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(self.vbox)
         
