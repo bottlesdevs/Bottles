@@ -51,10 +51,13 @@ class Window(Gtk.Window):
         self.css_provider = Gtk.CssProvider()
 
         try:
+            # development css
             self.css_provider.load_from_path('../data/style.css')
         except GLib.Error:
+            # production css
             self.css_provider.load_from_path('/usr/share/com.github.mirkobrombin.bottles/bottles/style.css')
         except GLib.Error:
+            # different python version css
             self.css_provider.load_from_path('/usr/bin/bottles/style.css')
         except GLib.Error:
             print('Couldn\'t load style.css')
