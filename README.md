@@ -37,6 +37,13 @@ In any case, ask for support [here](https://github.com/mirkobrombin/Bottles/issu
 com.github.mirkobrombin.bottles
 ```
 
+## Known bugs
+- Console logs are not translated
+
+## Languages coming soon
+- Chinese
+- Indian
+
 ## Installation
 
 ### From AppCenter
