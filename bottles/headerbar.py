@@ -82,6 +82,7 @@ class Headerbar(Gtk.HeaderBar):
         self.pack_end(self.save)
 
         # start button
+        # [INFO] This button shows the applications installed in the selected bottle
         # self.start = Gtk.Button()
         # self.start = Gtk.Button.new_from_icon_name("applications-other", Gtk.IconSize.LARGE_TOOLBAR)
         # self.start.connect("clicked", self.on_start_clicked)
@@ -120,9 +121,7 @@ class Headerbar(Gtk.HeaderBar):
         d = self.parent.stack.create
         name = d.entry_name.get_text()
         arch = d.entry_arch.get_active_iter()
-        #wine = d.entry_wine.get_active_iter()
         arch = d.arch_store[arch][1]
-        #wine = d.wine_store[wine][2]
         self.wine.create_bottle(name, arch)
 
     def on_back_clicked(self, widget):
