@@ -46,6 +46,8 @@ GLib.threads_init()
 
 HLog = hl.HLog
 
+# [BUG] Translations doesn't work on HLog
+# [INFO] POL is PlayOnLinux
 try:
     current_locale, encoding = locale.getdefaultlocale()
     locale_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
