@@ -75,12 +75,12 @@ class Detail(Gtk.Box):
         self.grid_1.add(self.button_drive_c)
         
         # Winecfg
-        self.button_wine_cfg = Gtk.Button.new_from_icon_name("wine-winecfg", Gtk.IconSize.DIALOG)
+        self.button_wine_cfg = Gtk.Button.new_from_icon_name("bottles_wine-winecfg", Gtk.IconSize.DIALOG)
         self.button_wine_cfg.connect("clicked", self.on_button_wine_cfg_clicked)
         self.grid_1.add(self.button_wine_cfg)
         
         # Winetricks
-        self.button_winetricks = Gtk.Button.new_from_icon_name("winetricks", Gtk.IconSize.DIALOG)
+        self.button_winetricks = Gtk.Button.new_from_icon_name("bottles_winetricks", Gtk.IconSize.DIALOG)
         self.button_winetricks.connect("clicked", self.on_button_winetricks_clicked)
         self.grid_1.add(self.button_winetricks)
         
@@ -149,7 +149,7 @@ class Detail(Gtk.Box):
         self.grid_5.add(self.button_regedit)
         
         # Uninstaller
-        self.button_uninstaller = Gtk.Button.new_from_icon_name("wine-uninstaller", Gtk.IconSize.DIALOG)
+        self.button_uninstaller = Gtk.Button.new_from_icon_name("bottles_wine-uninstaller", Gtk.IconSize.DIALOG)
         self.button_uninstaller.connect("clicked", self.on_button_uninstaller_clicked)
         self.grid_5.add(self.button_uninstaller)
         
