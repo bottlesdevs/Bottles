@@ -1,69 +1,14 @@
-<div align="center">
-  <p align="center">
-    <img src="https://github.com/mirkobrombin/Bottles/blob/master/data/com.github.mirkobrombin.bottles.svg" width="64">
-  </p>
-  <h1 align="center">Bottles</h1>
-  <p align="center">Easily manage wineprefix</p>
-</div>
+# Bottles
+![](https://i.imgur.com/8d190ld.png)
 
-<br/>
+Sorry, I moved the project to GitLab because of the Microsoft's acquisition of GitHub.
 
-<p align="center">
-   <a href="https://github.com/mirkobrombin/Bottles/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
-   </a>
-</p>
+## New location
+https://gitlab.com/brombinmirko/Bottles
 
-<p align="center">
-    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-1.png?raw=true"> <br>
-    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-2.png?raw=true"> <br>
-    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-3.png?raw=true"> <br>
-    <img  src="https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-4.png?raw=true">
+![Moved to GitLab](https://i.imgur.com/wGgvnPq.png)
 
-
-## Problems/New Features?
-Read the [Wiki](https://github.com/mirkobrombin/Bottles/wiki).  
-In any case, ask for support [here](https://github.com/mirkobrombin/Bottles/issues).
-
-## Requirements
-- wine (with wine64)
-- xterm
-- python3
-- libgtk-3-dev
-- libgranite-dev 
-
-## How to run
-```bash
-com.github.mirkobrombin.bottles
-```
-
-## Known bugs
-- Console logs are not translated
-
-## Languages coming soon
-- Chinese
-- Indian
-
-## Installation
-
-### From AppCenter
-[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.mirkobrombin.bottles)
-
-
-### From .deb package
-Grab an updated release [here](https://github.com/mirkobrombin/Bottles/releases), then install:
-
-```bash
-sudo dpkg -i com.github.mirkobrombin.bottles_*.deb
-```
-
-### From .setup.py
-Download the updated source [here](https://github.com/mirkobrombin/Bottles/archive/master.zip), or use git:
-
-```bash
-git clone https://github.com/mirkobrombin/Bottles.github
-cd Bottles
-sudo python3 setup.py install
-```
-
-
+## More info for Microsoft+GitHub?
+- https://blogs.microsoft.com/blog/2018/06/04/microsoft-github-empowering-developers/
+- https://blog.github.com/2018-06-04-github-microsoft/
+- Italians only: https://linuxhub.it/pausacaffe-lopen-source-non-e-in-vendita/
