@@ -1,0 +1,41 @@
+@define-color base_color #3a3336;
+@define-color text_color #c6c0c4;
+@define-color selection_color #4C4649;
+@define-color text_shadow_color alpha (@BLACK_900, 0.4);
+@define-color titlebar_color shade (@base_color, 0.9);
+@define-color title_color shade (@text_color, 0.9);
+@define-color title_shadow_color alpha (@BLACK_900, 0.6);
+
+GtkDialog GtkButton {
+	box-shadow: none;
+	border-color: shade (@base_color, 0.7);
+}
+.label_cell {
+	padding: 4px 0px 10px 0px;
+}
+#WineList GtkTreeView:selected {
+	background-color: @selection_color;
+	color: @text_color;
+}
+#WineTitle {
+	padding-top: 50px;
+	font-size: 19px;
+	padding-bottom: 5px;
+}
+#WineDescription {
+	font-size: 11px;	
+	padding-top: 10px;
+	padding-bottom: 25px;
+}
+#WineImporter #WineDescription {
+	padding-bottom: 8px;
+}
+#WineDetail GtkButton {
+	border: 0;
+	background-color: transparent;
+	background-image: none;
+	box-shadow: none;
+}
+#WineDetail GtkButton:hover {
+	opacity: 0.7;
+}

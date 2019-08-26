@@ -1,0 +1,321 @@
+# Bottles
+# Copyright (C) 2017-2018
+# This file is distributed under the GNU General Public License
+# Mirko Brombin <brombinmirko@gmail.com>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: constants.py:38
+msgid "Bottles"
+msgstr "Botellas"
+
+#: constants.py:39
+msgid "Easily manage your Wine bottles"
+msgstr "Administre sus Wine botellas"
+
+#: create.py:56 welcome.py:53
+msgid "New bottle"
+msgstr "Nueva botella"
+
+#: create.py:61
+msgid "Here you can create a new bottle"
+msgstr "Aquí puedes crear una nueva botella"
+
+#: create.py:71
+msgid "Bottle name"
+msgstr "Nombre de la botella"
+
+#: create.py:72
+msgid "Type (32/64)"
+msgstr "Tipo (32/64)"
+
+#: detail.py:103
+msgid "Browse C:"
+msgstr "Explorar C:"
+
+#: detail.py:107
+msgid "Configure"
+msgstr "Configurar"
+
+#: detail.py:111
+msgid "Winetricks"
+msgstr "Winetricks"
+
+#: detail.py:140
+msgid "Terminal"
+msgstr "Terminal"
+
+#: detail.py:144
+msgid "Task manager"
+msgstr "Administrador de procesos"
+
+#: detail.py:148
+msgid "Control panel"
+msgstr "Panel de control"
+
+#: detail.py:177
+msgid "Regedit"
+msgstr "Regedit"
+
+#: detail.py:181
+msgid "Uninstaller"
+msgstr "Desinstalación"
+
+#: detail.py:185
+msgid "Reboot"
+msgstr "Reanudar"
+
+#: detail.py:214
+msgid "Clone"
+msgstr "Abertura"
+
+#: detail.py:218
+msgid "Run .exe here"
+msgstr "Comience .exe aquí"
+
+#: detail.py:222
+msgid "Debug"
+msgstr "Debug"
+
+#: detail.py:251
+msgid "Report bug"
+msgstr "Informe bug"
+
+#: detail.py:255
+msgid "Forums"
+msgstr "Discusiones"
+
+#: detail.py:259
+msgid "Wine Database"
+msgstr "WineDB"
+
+#: detail.py:295
+msgid "Please choose a .exe"
+msgstr "Seleccione un archivo .exe"
+
+#: headerbar.py:79
+msgid "Save"
+msgstr "Guardar"
+
+#: headerbar.py:107
+msgid "Return"
+msgstr "Regresar"
+
+#: importer.py:64
+#, python-format
+msgid "I found %d wineprefixes from PlayOnLinux"
+msgstr "Encontré %d wineprefix de PlayOnLinux"
+
+#: main.py:50
+msgid "Starting Bottles"
+msgstr "A partir de botellas"
+
+#: main.py:51
+#, python-format
+msgid "Build Version: %s"
+msgstr "Versión de compilación: %s"
+
+#: main.py:52
+#, python-format
+msgid "Wine Version: %s"
+msgstr "Versión de Wine: %s"
+
+#: main.py:53
+#, python-format
+msgid "Wiki: %s"
+msgstr "Documentación: %s"
+
+#: stack.py:68
+msgid "Welcome"
+msgstr "Bienvenido"
+
+#: stack.py:69
+msgid "Create"
+msgstr "Crear"
+
+#: stack.py:70
+msgid "Importer"
+msgstr "Importación"
+
+#: stack.py:71
+msgid "Detail"
+msgstr "Detalles"
+
+#: stack.py:72
+msgid "List"
+msgstr "Lista"
+
+#: welcome.py:53
+msgid "Create a new bottle"
+msgstr "Crea una nueva botella"
+
+#: welcome.py:54
+msgid "Import and convert"
+msgstr "Importar y convertir"
+
+#: welcome.py:54
+msgid "Import a third-party wineprefix"
+msgstr "Importar un wineprefix de terceros"
+
+#: welcome.py:55
+msgid "List bottles"
+msgstr "Lista de tus botellas"
+
+#: welcome.py:55
+msgid "List all bottles"
+msgstr "Lista de todas las botellas"
+
+#: wine.py:64
+#, python-format
+msgid "Running Winecfg on bottle: %s"
+msgstr "Iniciando Winecfg en la botella: %s"
+
+#: wine.py:74
+#, python-format
+msgid "Running Winetricks on bottle: %s"
+msgstr "Comenzando Winetricks en la botella: %s"
+
+#: wine.py:85
+#, python-format
+msgid "Starting a console for bottle: %s"
+msgstr "Abro una consola de botella: %s"
+
+#: wine.py:95
+#, python-format
+msgid "Running System Monitor on bottle: %s"
+msgstr "Abra el Administrador de Procesos de la botella: %s"
+
+#: wine.py:106
+#, python-format
+msgid "Running Control Panel on bottle: %s"
+msgstr "Abro el panel de control de la botella: %s"
+
+#: wine.py:117
+#, python-format
+msgid "Opening Regedit for bottle: %s"
+msgstr "Abro Regedit por la botella: %s"
+
+#: wine.py:128
+#, python-format
+msgid "Starting Uninstaller for bottle: %s"
+msgstr "Abra el Desinstalador de la botella: %s"
+
+#: wine.py:139
+#, python-format
+msgid "Restarting bottle: %s"
+msgstr "Reinicia la botella: %s"
+
+#: wine.py:153
+#, python-format
+msgid "Converting the POL wineprefix: %s"
+msgstr "Estoy convirtiendo el wineprefix POL: %s"
+
+#: wine.py:167
+#, python-format
+msgid "Cloning the bottle: %s"
+msgstr "Clonando la botella: %s"
+
+#: wine.py:181
+#, python-format
+msgid "Running .exe in bottle: %s"
+msgstr "Iniciando el archivo .exe de la botella: %s"
+
+#: wine.py:192
+#, python-format
+msgid "Opening a debug shell for bottle: %s"
+msgstr "Apertura de una debug shell de la botella: %s"
+
+#: wine.py:210
+#, python-format
+msgid "Checking for .Bottles directory on: %s"
+msgstr "Estoy comprobando la presencia de la carpeta .Bottles en: %s"
+
+#: wine.py:212
+#, python-format
+msgid "I did not find the Bottles directory, creating in: %s"
+msgstr "No encontré la carpeta Bottles, la creé en: %s"
+
+#: wine.py:214
+#, python-format
+msgid "Directory created, now creating the symlink: %s"
+msgstr "Ruta creada, ahora creo el enlace: %s"
+
+#: wine.py:217
+msgid "Bottles directory founded!"
+msgstr "¡Bolsas para botellas encontradas!"
+
+#: wine.py:247
+msgid "Cloning the bottle.."
+msgstr "Clonando la botella ..."
+
+#: wine.py:255 wine.py:258
+msgid "Bottle name can not contain special characters"
+msgstr "El nombre de la botella no puede contener caracteres especiales"
+
+#: wine.py:276
+#, python-format
+msgid "Creating new bottle with arch: %s"
+msgstr "Creando una nueva botella con arco: %s"
+
+#: wine.py:287
+#, python-format
+msgid "There is already a bottle named: %s, redirecting to it."
+msgstr "Ya hay una botella llamada: %s, te llevaré allí."
+
+#: wine.py:295
+msgid "Generating the bottles list.."
+msgstr "Generando la lista de botellas .."
+
+#: wine.py:305
+#, python-format
+msgid "I can not find the version file for %s, I assume it is a 32 Bit."
+msgstr "No puedo encontrar el archivo de versión para %s, sección como 32 bits."
+
+#: wine.py:316
+msgid "Generating the POL wineprefix list.."
+msgstr "Generación de la lista de vinos wineprefix"
+
+#: wine.py:346
+#, python-format
+msgid "The POL wineprefix: %s does not contain the configuration file. Ignoring"
+msgstr "El wineprefix POL: %s no contiene el archivo de configuración. No se."
+
+#: wine.py:353
+#, python-format
+msgid "Removing bottle: %s"
+msgstr "Quitando la botella: %s"
+
+#: wine.py:364
+msgid ""
+"This process converts the POL wineprefix into a bottle. \n"
+"\n"
+"Note that Bottles uses the Wine version installed on the system. After the "
+"conversion, the programs installed in the bottle may not work properly.\n"
+"\n"
+"The original version of the POL wineprefix will remain intact."
+msgstr ""
+"Este proceso convierte el wineprefix POL en una botella. \n"
+"\n"
+"Tenga en cuenta que Bottles usa la versión Wine instalada en el sistema.\n"
+"\nDespués de la conversión, los programas instalados en esta botella podrían"
+"no funciona correctamente\n\n"
+"La versión original del wineprefix POL permanecerá intacta."
+
+#: wine.py:373
+#, python-format
+msgid "Converting POL to bottle.."
+msgstr "Convirtiendo POL en botella ..."
+
+#: wine.py:376
+#, python-format
+msgid "Loading details for bottle: %s"
+msgstr "Cargando detalles de la botella: %s"
+
+#: wine.py:387
+#, python-format
+msgid "This is a %s bottle"
+msgstr "Esta es una botella %s"

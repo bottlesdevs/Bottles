@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+'''
+   Copyright 2017 Mirko Brombin (brombinmirko@gmail.com)
+
+   This file is part of Bottles.
+
+    Bottles is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Bottles is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Bottles.  If not, see <http://www.gnu.org/licenses/>.
+'''
+import os
+import sys
+
+# Update sys.path to include modules
+modules_path = "/usr/share/com.github.mirkobrombin.bottles/bottles"
+
+sys.path.insert(0, modules_path)
+
+import main

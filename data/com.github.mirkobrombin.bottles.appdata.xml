@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Mirko Brombin <brombinmirko@gmail.com> -->
+<component type="desktop">
+  <id>com.github.mirkobrombin.bottles.desktop</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>Bottles</name>
+  <summary>Easily manage your Wine bottles</summary>
+  <developer_name>Mirko Brombin</developer_name>
+  <description>
+    <p>Easily manage your Wine bottles (wineprefix)</p>
+    <ul>
+        <li>Create new bottles</li>
+        <li>Simple and functional management</li>
+        <li>Clone your bottles to save you in case of mistakes</li>
+        <li>Debugging running programs</li>
+        <li>Create both 32bit and 64bit bottles</li>
+        <li>Available documentation</li>
+        <li>Convert existing third-party wineprefixes</li>
+    </ul>
+  </description>
+  <provides>
+      <binary>com.github.mirkobrombin.bottles</binary>
+  </provides>
+  <screenshots>
+      <screenshot type="default">
+          <caption>Easy start manage your bottles</caption>
+          <image>https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-1.png?raw=true</image>
+      </screenshot>
+      <screenshot>
+          <caption>Create a new bottle</caption>
+          <image>https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-2.png?raw=true</image>
+      </screenshot>
+      <screenshot>
+          <caption>Manage your bottles</caption>
+          <image>https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-3.png?raw=true</image>
+      </screenshot>
+      <screenshot>
+          <caption>List and delete bottles</caption>
+          <image>https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-4.png?raw=true</image>
+      </screenshot>
+      <screenshot>
+          <caption>Convert wineprefixs in bottles</caption>
+          <image>https://github.com/mirkobrombin/Bottles/blob/master/data/screenshot-5.png?raw=true</image>
+      </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/mirkobrombin/bottles</url>
+  <url type="bugtracker">https://github.com/mirkobrombin/bottles/issues/labels/bug</url>
+  <url type="help">https://github.com/mirkobrombin/Bottles/wiki</url>
+  <custom>
+     <value key="x-appcenter-color-primary">#F0E5F2</value>
+     <value key="x-appcenter-color-primary-text">#95005D</value>
+  </custom>
+​  <releases>
+​    <release version="0.1.8" date="2018-03-14">
+​      <description>
+​        <ul>
+            <li>Various code improvements</li>
+        </ul>
+​      </description>
+​    </release>
+​  </releases>
+</component>

@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Bottles
+GenericName=Bottles
+Comment=Easily manage your Wine bottles
+Categories=System;
+Exec=com.github.mirkobrombin.bottles
+Icon=com.github.mirkobrombin.bottles
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=com.github.mirkobrombin.bottles
+Keywords=Wine;
+Actions=AboutDialog;
+
+[Desktop Action AboutDialog]
+Exec=com.github.mirkobrombin.bottles --about
+Name=About Bottles
