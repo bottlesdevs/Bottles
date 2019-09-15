@@ -24,11 +24,9 @@ Read the [Wiki](https://github.com/brombinmirko/Bottles/wikis).
 In any case, ask for support [here](https://github.com/brombinmirko/Bottles/issues).
 
 ## Requirements
-- wine (with wine64)
+- wine-stable
 - xterm
 - python3
-- libgtk-3-dev
-- libgranite-dev 
 
 ## How to run
 ```bash
@@ -43,10 +41,6 @@ com.github.mirkobrombin.bottles
 - Indian
 
 ## Installation
-
-### From AppCenter
-[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.mirkobrombin.bottles)
-
 
 ### From .deb package
 Grab an updated release [here](https://github.com/brombinmirko/Bottles/releases), then install:

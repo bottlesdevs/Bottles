@@ -149,7 +149,7 @@ class Detail(Gtk.Box):
         self.grid_5.add(self.button_regedit)
         
         # Uninstaller
-        self.button_uninstaller = Gtk.Button.new_from_icon_name("bottles_wine-uninstaller", Gtk.IconSize.DIALOG)
+        self.button_uninstaller = Gtk.Button.new_from_icon_name("edittrash", Gtk.IconSize.DIALOG)
         self.button_uninstaller.connect("clicked", self.on_button_uninstaller_clicked)
         self.grid_5.add(self.button_uninstaller)
         

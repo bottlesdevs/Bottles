@@ -1,17 +1,13 @@
 Source: com.github.mirkobrombin.bottles
 Section: utils
 Priority: optional
-Maintainer: Mirko Brombin <brombinmirko@gmail.com>
-Build-Depends: debhelper (>= 10),
-               libgtk-3-dev,
-               libgranite-dev,
-               dh-python,
-               python3-all,
-               python3-setuptools
+Maintainer: Mirko Brombin <send@mirko.pm>
+Build-Depends: debhelper (>= 10.5.1),
+               python3
 Standards-Version: 3.9.3
 
 Package: com.github.mirkobrombin.bottles
 Architecture: any
-Depends: python3, wine, libgranite-dev, ${misc:Depends}
+Depends: python3, wine-stable, ${misc:Depends}
 Description: Bottles
  Easily manage your Wine bottles

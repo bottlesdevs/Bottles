@@ -256,7 +256,7 @@ class Wine:
     def check_special_chars(self, string):
         if not re.match(r'^\w+$', string):
             HLog.error('[BOTTLE_NAME_ERROR] '+_('Bottle name can not contain special characters'))
-            message_dialog = Granite.MessageDialog.new_with_image_from_icon_name(
+            message_dialog = Gtk.MessageDialog.new_with_image_from_icon_name(
                 "BOTTLE_NAME_ERROR",
                 _('Bottle name can not contain special characters'),
                 "dialog-warning",

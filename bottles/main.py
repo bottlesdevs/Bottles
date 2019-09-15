@@ -52,7 +52,7 @@ HLog.bold(_('Build Version: %s' % cn.App.application_version))
 HLog.bold(_('Wine Version: %s' % w.Wine.get_wine_version()))
 HLog.bold(_('Wiki: %s' % cn.App.help_url))
 
-class Application(Granite.Application):
+class Application(Gtk.Application):
 
     def do_activate(self):
 
@@ -111,4 +111,4 @@ app.bug_url = cn.App.bug_url
 app.help_url = cn.App.help_url
 app.translate_url = cn.App.translate_url
 
-app.run("", Gio.ApplicationFlags.FLAGS_NONE)
+app.run("")
