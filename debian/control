@@ -2,13 +2,18 @@ Source: com.github.mirkobrombin.bottles
 Section: utils
 Priority: optional
 Maintainer: Mirko Brombin <send@mirko.pm>
-Build-Depends: debhelper (>= 10.5.1),
-               python3
-               config-package-dev
-Standards-Version: 3.9.3
+Build-Depends: debhelper-compat (= 12),
+               dh-python,
+               python-gi-dev,
+               python3,
+               python3-distutils-extra
+
+Standards-Version: 4.4.1
 
 Package: com.github.mirkobrombin.bottles
 Architecture: any
-Depends: python3, wine-stable, ${misc:Depends}
+Depends: ${python3:Depends}
+         wine-stable
+         ${misc:Depends}
 Description: Bottles
  Easily manage your Wine bottles
