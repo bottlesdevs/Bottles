@@ -9,7 +9,8 @@ Build-Depends: debhelper,
                python3-setuptools,
                python3-requests,
                python3-pil,
-               python3-gi
+               python3-gi,
+               libgranite-dev
 
 Standards-Version: 4.4.1
 Package: com.github.mirkobrombin.bottles
@@ -21,6 +22,7 @@ Depends: ${python3:Depends},
          python3-requests,
          python3-pil,
          python3-gi,
+         libgranite-dev
          wine-stable,
          ${misc:Depends}
 Recommends: python3-evdev,
