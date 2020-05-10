@@ -42,6 +42,18 @@ com.github.mirkobrombin.bottles
 
 ## Installation
 
+### From PPA
+Configure PPA:
+```bash
+curl -s --compressed "https://linuxhubit.github.io/ppa/KEY.gpg" | sudo apt-key add -
+sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://linuxhubit.github.io/ppa/my_list_file.list"
+sudo apt update
+```
+then install:
+```bash
+sudo apt install com.github.mirkobrombin.bottles
+```
+
 ### From .deb package
 Grab an updated release [here](https://github.com/brombinmirko/Bottles/releases), then install:
 
