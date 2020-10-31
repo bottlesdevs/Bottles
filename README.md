@@ -55,7 +55,7 @@ sudo apt install com.github.mirkobrombin.bottles
 ```
 
 ### From .deb package
-Grab an updated release [here](https://git.mirko.pm/brombinmirko/Bottles/releases), then install:
+Grab an updated release [here](https://github.com/mirkobrombin/Bottles/releases), then install:
 
 ```bash
 sudo dpkg -i com.github.mirkobrombin.bottles_*.deb
