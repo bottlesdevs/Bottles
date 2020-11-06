@@ -7,7 +7,7 @@
 <br/>
 
 <p align="center">
-  <a href="https://appcenter.elementary.io/com.github.brombinmirko.bottles">
+  <a href="https://appcenter.elementary.io/com.github.mirkobrombin.bottles">
     <img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
   </a>
 </p>
