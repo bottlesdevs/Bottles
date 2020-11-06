@@ -6,6 +6,14 @@
 
 <br/>
 
+<p align="center">
+  <a href="https://appcenter.elementary.io/com.github.brombinmirko.bottles">
+    <img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
+  </a>
+</p>
+
+<br/>
+
 <div align="center">
    <a href="https://git.mirko.pm/brombinmirko/Bottles/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
