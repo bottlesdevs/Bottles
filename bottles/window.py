@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 '''
-   Copyright 2017 Mirko Brombin (brombinmirko@gmail.com)
+    Copyright 2017 Mirko Brombin (send@mirko.pm)
 
-   This file is part of Bottles.
+    This file is part of Bottles.
 
     Bottles is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

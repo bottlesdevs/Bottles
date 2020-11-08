@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 '''
-   Copyright 2017 Mirko Brombin (brombinmirko@gmail.com)
+    Copyright 2017 Mirko Brombin (send@mirko.pm)
 
-   This file is part of Bottles.
+    This file is part of Bottles.
 
     Bottles is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -65,13 +65,13 @@ class Headerbar(Gtk.HeaderBar):
 
         # trash button
         self.trash = Gtk.Button()
-        self.trash = Gtk.Button.new_from_icon_name("edit-delete", Gtk.IconSize.LARGE_TOOLBAR)
+        self.trash = Gtk.Button.new_from_icon_name("user-trash-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
         self.trash.connect("clicked", self.on_trash_clicked)
         self.pack_end(self.trash)
 
         # properties button
         self.properties = Gtk.Button()
-        self.properties = Gtk.Button.new_from_icon_name("document-properties", Gtk.IconSize.LARGE_TOOLBAR)
+        self.properties = Gtk.Button.new_from_icon_name("document-properties-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
         self.properties.connect("clicked", self.on_properties_clicked)
         self.pack_end(self.properties)
 
@@ -90,13 +90,13 @@ class Headerbar(Gtk.HeaderBar):
 
         # convert button
         self.convert = Gtk.Button()
-        self.convert = Gtk.Button.new_from_icon_name("document-import", Gtk.IconSize.LARGE_TOOLBAR)
+        self.convert = Gtk.Button.new_from_icon_name("rotate-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
         self.convert.connect("clicked", self.on_convert_clicked)
         self.pack_end(self.convert)
 
         # refresh button
         self.refresh = Gtk.Button()
-        self.refresh = Gtk.Button.new_from_icon_name("view-refresh", Gtk.IconSize.LARGE_TOOLBAR)
+        self.refresh = Gtk.Button.new_from_icon_name("view-refresh-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
         self.refresh.connect("clicked", self.on_refresh_clicked)
         self.pack_end(self.refresh)
 
@@ -105,7 +105,7 @@ class Headerbar(Gtk.HeaderBar):
         self.pack_end(self.spinner)
 
         # back button
-        self.back = Gtk.Button(_('Return'))
+        self.back = Gtk.Button.new_from_icon_name("go-previous-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
         self.back.connect("clicked", self.on_back_clicked)
         Gtk.StyleContext.add_class(self.back.get_style_context(), "back-button")
         self.pack_start(self.back)

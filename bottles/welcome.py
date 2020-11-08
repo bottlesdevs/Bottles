@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 '''
-   Copyright 2017 Mirko Brombin (brombinmirko@gmail.com)
+    Copyright 2017 Mirko Brombin (send@mirko.pm)
 
-   This file is part of Bottles.
+    This file is part of Bottles.
 
     Bottles is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,9 +50,9 @@ class Welcome(Gtk.Box):
         self.welcome = self.welcome.new(cn.App.application_name, cn.App.application_description)
 
         # Welcome voices
-        self.welcome.append("bottles_wine", _('New bottle'), _('Create a new bottle'))
-        self.welcome.append("document-import", _('Import and convert'), _('Import a third-party wineprefix'))
-        self.welcome.append("gnome-mime-application-x-archive", _('List bottles'), _('List all bottles'))
+        self.welcome.append("list-add-symbolic", _('New bottle'), _('Create a new bottle'))
+        self.welcome.append("folder-download-symbolic", _('Import and convert'), _('Import a third-party wineprefix'))
+        self.welcome.append("preferences-desktop-apps-symbolic", _('List bottles'), _('List all bottles'))
         
         self.welcome.connect("activated", self.on_welcome_activated)
 

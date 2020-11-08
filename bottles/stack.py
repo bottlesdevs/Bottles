@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 '''
-   Copyright 2017 Mirko Brombin (brombinmirko@gmail.com)
+    Copyright 2017 Mirko Brombin (send@mirko.pm)
 
-   This file is part of Bottles.
+    This file is part of Bottles.
 
     Bottles is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -57,7 +57,7 @@ class Stack(Gtk.Box):
 
         self.stack = Gtk.Stack()
         self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
-        self.stack.set_transition_duration(1000)
+        self.stack.set_transition_duration(300)
         
         self.welcome = wl.Welcome(self)
         self.create = cr.Create(self)
