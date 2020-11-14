@@ -27,6 +27,9 @@ class BottlesWindow(Gtk.ApplicationWindow):
     template childs
     '''
     main_stack = Gtk.Template.Child()
+    btn_add = Gtk.Template.Child()
+    btn_list = Gtk.Template.Child()
+    btn_preferences = Gtk.Template.Child()
 
     settings = Gtk.Settings.get_default()
 
@@ -40,3 +43,16 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.settings.set_property("gtk-application-prefer-dark-theme", True)
 
         self.add(self.main_stack)
+
+        self.btn_add.connect('pressed', self.show_add_view)
+        self.btn_list.connect('pressed', self.show_list_view)
+        self.btn_preferences.connect('pressed', self.show_preferences_view)
+
+    def show_add_view(self, widget):
+        self.main_stack.set_visible_child_name("page_add")
+
+    def show_list_view(self, widget):
+        self.main_stack.set_visible_child_name("page_list")
+
+    def show_preferences_view(self, widget):
+        self.main_stack.set_visible_child_name("page_preferences")
