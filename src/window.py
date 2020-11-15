@@ -17,6 +17,7 @@
 
 from gi.repository import Gtk
 from .constants import *
+from .pages.add import BottlesAdd
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/window.ui')
 class BottlesWindow(Gtk.ApplicationWindow):
@@ -31,6 +32,14 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_list = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
 
+    '''
+    Get and assign pages to variable
+    '''
+    page_add = BottlesAdd()
+
+    '''
+    Common variables
+    '''
     settings = Gtk.Settings.get_default()
 
     def __init__(self, **kwargs):
@@ -42,8 +51,17 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.init_template()
         self.settings.set_property("gtk-application-prefer-dark-theme", True)
 
+        '''
+        Add pages to stack and set options
+        '''
+        self.main_stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
+        self.main_stack.set_transition_duration(ANIM_DURATION)
+        self.main_stack.add_titled(self.page_add, "page_add", "New Bottle")
         self.add(self.main_stack)
 
+        '''
+        Connect signals to widgets
+        '''
         self.btn_add.connect('pressed', self.show_add_view)
         self.btn_list.connect('pressed', self.show_list_view)
         self.btn_preferences.connect('pressed', self.show_preferences_view)

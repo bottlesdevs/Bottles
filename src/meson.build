@@ -25,6 +25,8 @@ configure_file(
   install_dir: get_option('bindir')
 )
 
+subdir('pages')
+
 bottles_sources = [
   '__init__.py',
   'main.py',
