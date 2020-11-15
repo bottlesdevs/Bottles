@@ -15,9 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 from .constants import *
 from .pages.add import BottlesAdd
+from .pages.list import BottlesList
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/window.ui')
 class BottlesWindow(Gtk.ApplicationWindow):
@@ -36,6 +37,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     Get and assign pages to variable
     '''
     page_add = BottlesAdd()
+    page_list = BottlesList()
 
     '''
     Common variables
@@ -57,6 +59,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.main_stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
         self.main_stack.set_transition_duration(ANIM_DURATION)
         self.main_stack.add_titled(self.page_add, "page_add", "New Bottle")
+        self.main_stack.add_titled(self.page_list, "page_list", "Bottles")
         self.add(self.main_stack)
 
         '''
