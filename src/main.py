@@ -41,7 +41,9 @@ class Application(Gtk.Application):
                                                  provider,
                                                  Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
-
+        '''
+        Window
+        '''
         win = self.props.active_window
         if not win:
             win = BottlesWindow(application=self)

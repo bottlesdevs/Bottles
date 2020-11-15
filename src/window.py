@@ -28,7 +28,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
     Get and assign widgets to variables from
     template childs
     '''
-    main_stack = Gtk.Template.Child()
+    grid_main = Gtk.Template.Child()
+    stack_main = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_list = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
@@ -56,11 +57,15 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         Add pages to stack and set options
         '''
-        self.main_stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
-        self.main_stack.set_transition_duration(ANIM_DURATION)
-        self.main_stack.add_titled(self.page_add, "page_add", "New Bottle")
-        self.main_stack.add_titled(self.page_list, "page_list", "Bottles")
-        self.add(self.main_stack)
+        self.stack_main.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
+        self.stack_main.set_transition_duration(ANIM_DURATION)
+        self.stack_main.add_titled(self.page_add, "page_add", "New Bottle")
+        self.stack_main.add_titled(self.page_list, "page_list", "Bottles")
+
+        '''
+        Add widgets to main grid
+        '''
+        self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
 
         '''
         Connect signals to widgets
