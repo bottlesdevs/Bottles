@@ -33,6 +33,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_add = Gtk.Template.Child()
     btn_list = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
+    switch_dark = Gtk.Template.Child()
 
     '''
     Get and assign pages to variable
@@ -52,7 +53,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Initialize template
         '''
         self.init_template()
-        self.settings.set_property("gtk-application-prefer-dark-theme", True)
+        self.settings.set_property("gtk-application-prefer-dark-theme", THEME_DARK)
 
         '''
         Add pages to stack and set options
@@ -73,12 +74,16 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_add.connect('pressed', self.show_add_view)
         self.btn_list.connect('pressed', self.show_list_view)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
+        self.switch_dark.connect('state-set', self.toggle_dark)
 
     def show_add_view(self, widget):
-        self.main_stack.set_visible_child_name("page_add")
+        self.stack_main.set_visible_child_name("page_add")
 
     def show_list_view(self, widget):
-        self.main_stack.set_visible_child_name("page_list")
+        self.stack_main.set_visible_child_name("page_list")
 
-    def show_preferences_view(self, widget):
-        self.main_stack.set_visible_child_name("page_preferences")
+    def show_preferences_view(self):
+        self.stack_main.set_visible_child_name("page_preferences")
+
+    def toggle_dark(self, widget, state):
+        self.settings.set_property("gtk-application-prefer-dark-theme", state)
