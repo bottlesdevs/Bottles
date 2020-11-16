@@ -63,6 +63,9 @@ class BottlesAdd(Gtk.Box):
     Get and assign widgets to variables from
     template childs
     '''
+    btn_env_gaming = Gtk.Template.Child()
+    btn_env_software = Gtk.Template.Child()
+    btn_env_custom = Gtk.Template.Child()
     btn_add_details = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
@@ -79,9 +82,27 @@ class BottlesAdd(Gtk.Box):
         self.window = window
 
         '''
+        Set default environment
+        '''
+        self.set_active_env(self.btn_env_gaming)
+
+        '''
         Connect signals to widgets
         '''
         self.btn_add_details.connect('pressed', self.show_add_details_view)
+        self.btn_env_gaming.connect('pressed', self.set_active_env)
+        self.btn_env_software.connect('pressed', self.set_active_env)
+        self.btn_env_custom.connect('pressed', self.set_active_env)
+
+    def set_active_env(self, widget):
+        for w in [self.btn_env_gaming,
+                  self.btn_env_software,
+                  self.btn_env_custom]:
+            w_context = w.get_style_context()
+            w_context.remove_class("btn_env_active")
+
+        context = widget.get_style_context()
+        context.add_class("btn_env_active")
 
     def show_add_details_view(self, widget):
         self.window.stack_main.set_visible_child_name("page_add_details")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.1 -->
+<!-- Generated with glade 3.39.0 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="BottlesAdd" parent="GtkBox">
@@ -59,7 +59,7 @@
         <property name="spacing">10</property>
         <property name="homogeneous">True</property>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="btn_env_gaming">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -104,6 +104,9 @@
                 </child>
               </object>
             </child>
+            <style>
+              <class name="btn_env_gaming"/>
+            </style>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -112,7 +115,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="btn_env_software">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -157,6 +160,9 @@
                 </child>
               </object>
             </child>
+            <style>
+              <class name="btn_env_software"/>
+            </style>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -165,7 +171,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="btn_env_custom">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -210,6 +216,9 @@
                 </child>
               </object>
             </child>
+            <style>
+              <class name="btn_env_custom"/>
+            </style>
           </object>
           <packing>
             <property name="expand">True</property>
