@@ -17,9 +17,9 @@
 
 from gi.repository import Gtk
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/add.ui')
-class BottlesAdd(Gtk.Box):
-    __gtype_name__ = 'BottlesAdd'
+@Gtk.Template(resource_path='/pm/mirko/bottles/add-details.ui')
+class BottlesAddDetails(Gtk.Box):
+    __gtype_name__ = 'BottlesAddDetails'
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -28,3 +28,30 @@ class BottlesAdd(Gtk.Box):
         Initialize template
         '''
         self.init_template()
+
+@Gtk.Template(resource_path='/pm/mirko/bottles/add.ui')
+class BottlesAdd(Gtk.Box):
+    __gtype_name__ = 'BottlesAdd'
+
+    btn_add_details = Gtk.Template.Child()
+
+    def __init__(self, window, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Initialize template
+        '''
+        self.init_template()
+
+        '''
+        Common variables
+        '''
+        self.window = window
+
+        '''
+        Connect signals to widgets
+        '''
+        self.btn_add_details.connect('pressed', self.show_add_details_view)
+
+    def show_add_details_view(self, widget):
+        self.window.stack_main.set_visible_child_name("page_add_details")

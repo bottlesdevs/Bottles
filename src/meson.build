@@ -31,7 +31,7 @@ bottles_sources = [
   '__init__.py',
   'main.py',
   'window.py',
-  'constants.py',
+  'params.py',
 ]
 
 install_data(bottles_sources, install_dir: moduledir)

@@ -16,8 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gio
-from .constants import *
-from .pages.add import BottlesAdd
+from .params import *
+from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.list import BottlesList
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/window.ui')
@@ -36,12 +36,6 @@ class BottlesWindow(Gtk.ApplicationWindow):
     switch_dark = Gtk.Template.Child()
 
     '''
-    Get and assign pages to variable
-    '''
-    page_add = BottlesAdd()
-    page_list = BottlesList()
-
-    '''
     Common variables
     '''
     settings = Gtk.Settings.get_default()
@@ -56,12 +50,20 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.settings.set_property("gtk-application-prefer-dark-theme", THEME_DARK)
 
         '''
+        Get and assign pages to variable
+        '''
+        page_add = BottlesAdd(self)
+        page_add_details = BottlesAddDetails()
+        page_list = BottlesList()
+
+        '''
         Add pages to stack and set options
         '''
         self.stack_main.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
         self.stack_main.set_transition_duration(ANIM_DURATION)
-        self.stack_main.add_titled(self.page_add, "page_add", "New Bottle")
-        self.stack_main.add_titled(self.page_list, "page_list", "Bottles")
+        self.stack_main.add_titled(page_add, "page_add", "New Bottle")
+        self.stack_main.add_titled(page_add_details, "page_add_details", "New Bottle details")
+        self.stack_main.add_titled(page_list, "page_list", "Bottles")
 
         '''
         Add widgets to main grid

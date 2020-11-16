@@ -1,3 +1,0 @@
-ANIM_DURATION = 200
-
-THEME_DARK = False

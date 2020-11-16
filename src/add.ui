@@ -234,11 +234,14 @@ there is more than one GPU, the dedicated one is selected by default.</property>
         <property name="row-homogeneous">True</property>
         <property name="column-homogeneous">True</property>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="btn_add_details">
             <property name="label" translatable="yes">Create new bottle</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
+            <style>
+              <class name="suggested-action"/>
+            </style>
           </object>
           <packing>
             <property name="left-attach">2</property>
