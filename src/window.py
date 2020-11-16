@@ -54,7 +54,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Get and assign pages to variable
         '''
         page_add = BottlesAdd(self)
-        page_add_details = BottlesAddDetails()
+        page_add_details = BottlesAddDetails(self)
         page_details = BottlesDetails()
         page_list = BottlesList(self)
 

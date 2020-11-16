@@ -257,6 +257,7 @@ there is more than one GPU, the dedicated one is selected by default.</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
+            <property name="margin-start">5</property>
             <style>
               <class name="suggested-action"/>
             </style>
@@ -278,10 +279,11 @@ there is more than one GPU, the dedicated one is selected by default.</property>
           </packing>
         </child>
         <child>
-          <object class="GtkSeparator">
+          <object class="GtkButton" id="btn_import">
+            <property name="label" translatable="yes">Import from backup</property>
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="opacity">0</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
           </object>
           <packing>
             <property name="left-attach">1</property>

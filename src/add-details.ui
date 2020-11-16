@@ -95,7 +95,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="btn_cancel">
             <property name="label" translatable="yes">Cancel</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
@@ -107,7 +107,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton">
+          <object class="GtkButton" id="btn_save">
             <property name="label" translatable="yes">Save bottle</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
