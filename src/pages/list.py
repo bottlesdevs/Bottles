@@ -21,13 +21,33 @@ from gi.repository import Gtk
 class BottlesListEntry(Gtk.Box):
     __gtype_name__ = 'BottlesListEntry'
 
-    def __init__(self, **kwargs):
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    btn_details = Gtk.Template.Child()
+
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
         '''
         Initialize template
         '''
         self.init_template()
+
+        '''
+        Common variables
+        '''
+        self.window = window
+
+        '''
+        Connect signals to widgets
+        '''
+        self.btn_details.connect('pressed', self.show_details)
+
+    def show_details(self, widget):
+        print(self.window.stack_main.get_visible_child_name())
+        self.window.stack_main.set_visible_child_name("page_details")
 
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/list.ui')
@@ -40,7 +60,7 @@ class BottlesList(Gtk.Box):
     '''
     list_scrolled_window = Gtk.Template.Child()
 
-    def __init__(self, **kwargs):
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -48,4 +68,9 @@ class BottlesList(Gtk.Box):
         '''
         self.init_template()
 
-        self.list_scrolled_window.add(BottlesListEntry())
+        '''
+        Common variables
+        '''
+        self.window = window
+
+        self.list_scrolled_window.add(BottlesListEntry(self.window))

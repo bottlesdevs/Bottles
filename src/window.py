@@ -18,6 +18,7 @@
 from gi.repository import Gtk, Gio
 from .params import *
 from .pages.add import BottlesAdd, BottlesAddDetails
+from .pages.details import BottlesDetails
 from .pages.list import BottlesList
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/window.ui')
@@ -54,7 +55,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         page_add = BottlesAdd(self)
         page_add_details = BottlesAddDetails()
-        page_list = BottlesList()
+        page_details = BottlesDetails()
+        page_list = BottlesList(self)
 
         '''
         Add pages to stack and set options
@@ -63,6 +65,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.stack_main.set_transition_duration(ANIM_DURATION)
         self.stack_main.add_titled(page_add, "page_add", "New Bottle")
         self.stack_main.add_titled(page_add_details, "page_add_details", "New Bottle details")
+        self.stack_main.add_titled(page_details, "page_details", "Bottle details")
         self.stack_main.add_titled(page_list, "page_list", "Bottles")
 
         '''

@@ -33,6 +33,10 @@ class BottlesAddDetails(Gtk.Box):
 class BottlesAdd(Gtk.Box):
     __gtype_name__ = 'BottlesAdd'
 
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
     btn_add_details = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
