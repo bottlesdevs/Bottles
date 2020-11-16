@@ -25,6 +25,9 @@ class BottlesAddDetails(Gtk.Box):
     Get and assign widgets to variables from
     template childs
     '''
+    entry_name = Gtk.Template.Child()
+    entry_path = Gtk.Template.Child()
+    check_path = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
@@ -44,9 +47,13 @@ class BottlesAddDetails(Gtk.Box):
         Connect signals to widgets
         '''
         self.btn_cancel.connect('pressed', self.show_add_view)
+        self.check_path.connect('toggled', self.toggle_entry_path)
 
     def show_add_view(self, widget):
         self.window.stack_main.set_visible_child_name("page_add")
+
+    def toggle_entry_path(self, widget):
+        self.entry_path.set_sensitive(widget.get_active())
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/add.ui')
 class BottlesAdd(Gtk.Box):
