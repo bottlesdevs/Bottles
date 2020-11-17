@@ -1,16 +1,9 @@
 <div align="center">
   <img src="https://i.imgur.com/hFokdsQ.png" width="64">
-  <h1 align="center">Bottles</h1>
-  <p align="center">Easily manage wineprefix</p>
+  <h1 align="center">Bottles (v.2)</h1>
+  <p align="center">Easily manage wineprefix using environments</p>
+  <small>⚠️ This version is under development.</small>
 </div>
-
-<br/>
-
-<p align="center">
-  <a href="https://appcenter.elementary.io/com.github.mirkobrombin.bottles">
-    <img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
-  </a>
-</p>
 
 <br/>
 
@@ -21,64 +14,54 @@
 </div>
 
 <div align="center">
-    <img  src="https://git.mirko.pm/brombinmirko/Bottles/raw/master/data/screenshot-1.png"> <br>
-    <img  src="https://git.mirko.pm/brombinmirko/Bottles/raw/master/data/screenshot-2.png"> <br>
-    <img  src="https://git.mirko.pm/brombinmirko/Bottles/raw/master/data/screenshot-3.png"> <br>
-    <img  src="https://git.mirko.pm/brombinmirko/Bottles/raw/master/data/screenshot-4.png">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-0.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-1.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-2.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-3.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-4.png" width="300">
 </div>
 
-## Problems/New Features?
-Read the [Wiki](https://git.mirko.pm/brombinmirko/Bottles/wikis).  
-In any case, ask for support [here](https://git.mirko.pm/brombinmirko/Bottles/issues).
+## Why a new application?
+Bottles was born in 2017 as a personal need. I needed a practical way to manage my wineprefixes. 
+I hate the idea of using applications that install me a version of wine for each application and 
+I decided to create this application, based on the concept of using one or more wine prefixes as 
+a "container" for all my applications.
 
-## Requirements
-- wine-stable
-- xterm
-- python3
+In 2020 thanks to Valve, we have access to Proton. An optimized version of Wine for gaming. 
+Thanks also to other projects like DXVK/VKD3D/Esync/Fsync/Shader compiler and others, we can run 
+a large set of video games designed for Windows, on Linux.
 
-## How to run
-```bash
-com.github.mirkobrombin.bottles
-```
+The idea of creating an environment-based wineprefix manager comes from the standardization of 
+dependencies and parameters necessary to run a game. On the other hand, we have software (often 
+not up to date) that require environments and configurations different from those used in gaming. 
+Hence the idea of managing separate environments.
 
-## Known bugs
-- Console logs are not translated
+## Why not just POL or Lutris?
+Because they are similar but different applications. I want to create environments that contain 
+more applications and games and where the wine version can be updated.
 
-## Languages coming soon
-- Chinese
-- Indian
+I also want to be able to export my bottles allowing easy sharing, with or without applications. 
+In POL/Lutris we have the concept of "with this version of wine and these changes it works". In 
+Bottles the concept is "this is my wine bottle, I want to install this software".
 
-## Installation
+The goal with this version is also to integrate with the system in the best possible way. Being 
+able to decide in a few bottles to run an .exe/.msi file and have control over it without having 
+to open Bottles for each operation.
 
-### From AppCenter (elementary OS users)
-Go to the [AppCenter](https://appcenter.elementary.io/com.github.mirkobrombin.bottles") page.
+Bottles is close to what wineprefix means, since v.2 it provides a simplified method to generate 
+environment-based bottles and thanks to other tools it simplifies the management but nothing more.
 
-### From .deb package
-Grab an updated release [here](https://github.com/mirkobrombin/Bottles/releases), then install:
+## When?
+Idk. Really. Keep an eye on the develop branch, sooner or later there will be an almost stable 
+release
 
-```bash
-sudo dpkg -i com.github.mirkobrombin.bottles_*.deb
-```
+## Older versions will be deprecated?
+Maybe in the future, not now.
+I will keep both branches updated for a long time.
 
-### From .setup.py
-Download the updated source [here](https://git.mirko.pm/brombinmirko/Bottles/archive/master.zip), or use git:
+## Backward compatibility
+Probably yes. I would like to allow the conversion of the old wine prefixes in v.2. 
 
-```bash
-git clone https://git.mirko.pm/brombinmirko/Bottles.git
-cd Bottles
-sudo python3 setup.py install
-```
-
-### From PPA (may be out of date)
-Configure PPA:
-```bash
-curl -s --compressed "https://linuxhubit.github.io/ppa/KEY.gpg" | sudo apt-key add -
-sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://linuxhubit.github.io/ppa/my_list_file.list"
-sudo apt update
-```
-then install:
-```bash
-sudo apt install com.github.mirkobrombin.bottles
-```
-
-
+Unlike the previous versions, now the bottles are saved with JSON sheets containing all the 
+instructions and settings, such as the version of wine/proton in use, the various active flags 
+etc.
