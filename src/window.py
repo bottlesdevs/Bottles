@@ -39,7 +39,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     Common variables
     '''
-    settings = Gtk.Settings.get_default()
+    default_settings = Gtk.Settings.get_default()
+    settings = Gio.Settings.new("pm.mirko.bottles")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -48,7 +49,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Initialize template
         '''
         self.init_template()
-        self.settings.set_property("gtk-application-prefer-dark-theme", THEME_DARK)
+        self.default_settings.set_property("gtk-application-prefer-dark-theme", THEME_DARK)
 
         '''
         Get and assign pages to variable
@@ -81,6 +82,15 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_preferences.connect('pressed', self.show_preferences_view)
         self.switch_dark.connect('state-set', self.toggle_dark)
 
+        '''
+        Set widgets status from user settings
+        '''
+        self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
+        self.settings.connect("changed::dark-theme", self.set_dark_theme, self.switch_dark)
+
+    def set_dark_theme(self, settings, key, switch_dark):
+        switch_dark.set_active(settings.get_boolean("dark-theme"))
+
     def show_add_view(self, widget):
         self.stack_main.set_visible_child_name("page_add")
 
@@ -91,4 +101,5 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_preferences")
 
     def toggle_dark(self, widget, state):
-        self.settings.set_property("gtk-application-prefer-dark-theme", state)
+        self.settings.set_boolean("dark-theme", state)
+        self.default_settings.set_property("gtk-application-prefer-dark-theme", state)
