@@ -1,25 +1,28 @@
 .list-entry {
   padding: 10px;
-  border-bottom: 1px solid rgba(145, 145, 145, 0.1);
+  border-bottom: 1px solid rgba(145, 145, 145, 0.1)
 }
 
 /* buttons env */
-.btn_env_gaming,
 .img_env_gaming,
 .label_env_gaming {
   color: #e8106e
 }
 
-.btn_env_software,
 .img_env_software,
 .label_env_software {
   color: #057eff
 }
 
-.btn_env_custom,
 .img_env_custom,
 .label_env_custom {
   color: #8fa1a1
+}
+
+.btn_env_gaming,
+.btn_env_software,
+.btn_env_custom {
+  border: 2px solid rgba(145, 145, 145, 0.2)
 }
 
 .btn_env_gaming.btn_env_active {

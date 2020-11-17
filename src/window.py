@@ -86,10 +86,6 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Set widgets status from user settings
         '''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
-        self.settings.connect("changed::dark-theme", self.set_dark_theme, self.switch_dark)
-
-    def set_dark_theme(self, settings, key, switch_dark):
-        switch_dark.set_active(settings.get_boolean("dark-theme"))
 
     def show_add_view(self, widget):
         self.stack_main.set_visible_child_name("page_add")
