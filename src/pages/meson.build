@@ -6,6 +6,7 @@ bottles_sources = [
   'add.py',
   'list.py',
   'details.py',
+  'preferences.py',
 ]
 
 install_data(bottles_sources, install_dir: pagesdir)

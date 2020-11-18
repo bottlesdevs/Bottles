@@ -20,6 +20,7 @@ from .params import *
 from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
+from .pages.preferences import BottlesPreferences
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/window.ui')
 class BottlesWindow(Gtk.ApplicationWindow):
@@ -58,6 +59,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         page_add_details = BottlesAddDetails(self)
         page_details = BottlesDetails()
         page_list = BottlesList(self)
+        page_preferences = BottlesPreferences()
 
         '''
         Add pages to stack and set options
@@ -68,6 +70,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.stack_main.add_titled(page_add_details, "page_add_details", "New Bottle details")
         self.stack_main.add_titled(page_details, "page_details", "Bottle details")
         self.stack_main.add_titled(page_list, "page_list", "Bottles")
+        self.stack_main.add_titled(page_preferences, "page_preferences", "Preferences")
 
         '''
         Add widgets to main grid
@@ -93,7 +96,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     def show_list_view(self, widget):
         self.stack_main.set_visible_child_name("page_list")
 
-    def show_preferences_view(self):
+    def show_preferences_view(self, widget):
         self.stack_main.set_visible_child_name("page_preferences")
 
     def toggle_dark(self, widget, state):
