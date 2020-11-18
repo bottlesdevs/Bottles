@@ -39,3 +39,8 @@ if compile_schemas.found()
     args: ['--strict', '--dry-run', meson.current_source_dir()]
   )
 endif
+
+install_data(
+    join_paths('icons/hicolor/scalable/apps/pm.mirko.bottles.svg'),
+    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps')
+)
