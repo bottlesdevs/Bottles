@@ -28,8 +28,8 @@
 </div>
 
 ## Problems/New Features?
-Read the [Wiki](https://git.mirko.pm/brombinmirko/Bottles/wikis).  
-In any case, ask for support [here](https://git.mirko.pm/brombinmirko/Bottles/issues).
+Read the [Wiki](https://git.mirko.pm/brombinmirko/Bottles/wiki).  
+In any case, ask for support [here](https://github.com/mirkobrombin/Bottles/issues).
 
 ## Requirements
 - wine-stable
