@@ -16,7 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Gio
+
 from .params import *
+from .download import BottlesDownloadEntry
+
 from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
@@ -37,6 +40,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_list = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
+    box_downloads = Gtk.Template.Child()
 
     '''
     Common variables
@@ -62,6 +66,13 @@ class BottlesWindow(Gtk.ApplicationWindow):
         page_details = BottlesDetails()
         page_list = BottlesList(self)
         page_preferences = BottlesPreferences()
+
+        '''
+        Add download entry sample. This is just for example and should be
+        replaced with future `add` method in download.py
+        '''
+        sample_download_entry = BottlesDownloadEntry()
+        self.box_downloads.add(sample_download_entry)
 
         '''
         Add pages to stack and set options

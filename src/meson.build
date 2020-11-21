@@ -25,6 +25,7 @@ bottles_sources = [
   'main.py',
   'window.py',
   'params.py',
+  'download.py',
 ]
 
 install_data(bottles_sources, install_dir: moduledir)
