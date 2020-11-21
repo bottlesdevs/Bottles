@@ -270,6 +270,20 @@
         <property name="title" translatable="yes">Bottles</property>
         <property name="show-close-button">True</property>
         <child>
+          <object class="GtkButton" id="btn_back">
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">New bottle</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">go-next-symbolic-rtl.symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
           <object class="GtkButton" id="btn_add">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
@@ -283,6 +297,9 @@
               </object>
             </child>
           </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
         </child>
         <child>
           <object class="GtkButton" id="btn_list">
@@ -299,7 +316,7 @@
             </child>
           </object>
           <packing>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
@@ -319,7 +336,7 @@
           </object>
           <packing>
             <property name="pack-type">end</property>
-            <property name="position">2</property>
+            <property name="position">3</property>
           </packing>
         </child>
         <child>
@@ -339,7 +356,7 @@
           </object>
           <packing>
             <property name="pack-type">end</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </object>

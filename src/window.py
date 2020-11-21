@@ -32,6 +32,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     grid_main = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
+    btn_back = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_list = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
@@ -40,6 +41,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     Common variables
     '''
+    previous_page = ""
     default_settings = Gtk.Settings.get_default()
     settings = Gio.Settings.new("pm.mirko.bottles")
 
@@ -80,6 +82,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         Connect signals to widgets
         '''
+        self.btn_back.connect('pressed', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view)
         self.btn_list.connect('pressed', self.show_list_view)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
@@ -90,6 +93,23 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
 
+    '''
+    Save the previous page to allow the user to go back
+    '''
+    def set_previous_page_status(self):
+        current_page = self.stack_main.get_visible_child_name()
+
+        if self.previous_page != current_page:
+            self.previous_page = current_page
+            self.btn_back.set_visible(True)
+
+    '''
+    Return to previous page
+    '''
+    def go_back(self, widget):
+        self.btn_back.set_visible(False)
+        self.stack_main.set_visible_child_name(self.previous_page)
+
     def show_add_view(self, widget):
         self.stack_main.set_visible_child_name("page_add")
 
@@ -97,8 +117,12 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_list")
 
     def show_preferences_view(self, widget):
+        self.set_previous_page_status()
         self.stack_main.set_visible_child_name("page_preferences")
 
+    '''
+    Toggle dark mode and store status in settings
+    '''
     def toggle_dark(self, widget, state):
         self.settings.set_boolean("dark-theme", state)
         self.default_settings.set_property("gtk-application-prefer-dark-theme", state)
