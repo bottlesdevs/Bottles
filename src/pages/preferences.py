@@ -1,4 +1,4 @@
-# window.py
+# preferences.py
 #
 # Copyright 2020 mirkobrombin
 #

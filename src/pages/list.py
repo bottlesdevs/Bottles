@@ -1,4 +1,4 @@
-# window.py
+# list.py
 #
 # Copyright 2020 mirkobrombin
 #

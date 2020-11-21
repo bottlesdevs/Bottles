@@ -1,4 +1,4 @@
-# window.py
+# add.py
 #
 # Copyright 2020 mirkobrombin
 #
