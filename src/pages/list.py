@@ -46,7 +46,6 @@ class BottlesListEntry(Gtk.Box):
         self.btn_details.connect('pressed', self.show_details)
 
     def show_details(self, widget):
-        print(self.window.stack_main.get_visible_child_name())
         self.window.stack_main.set_visible_child_name("page_details")
 
 
