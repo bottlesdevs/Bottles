@@ -22,6 +22,12 @@ from gi.repository import Gtk
 class BottlesPreferences(Gtk.Box):
     __gtype_name__ = 'BottlesPreferences'
 
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    notebook_preferences = Gtk.Template.Child()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 

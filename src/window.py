@@ -39,6 +39,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_add = Gtk.Template.Child()
     btn_list = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
+    btn_download_preferences = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
 
@@ -66,6 +67,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
         page_details = BottlesDetails()
         page_list = BottlesList(self)
         page_preferences = BottlesPreferences()
+
+        '''
+        Set reusable variables
+        '''
+        self.page_preferences = page_preferences
 
         '''
         Add download entry sample. This is just for example and should be
@@ -98,7 +104,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_list.connect('pressed', self.show_list_view)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
         self.switch_dark.connect('state-set', self.toggle_dark)
-
+        self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
         '''
         Set widgets status from user settings
         '''
@@ -127,9 +133,13 @@ class BottlesWindow(Gtk.ApplicationWindow):
     def show_list_view(self, widget):
         self.stack_main.set_visible_child_name("page_list")
 
-    def show_preferences_view(self, widget):
+    def show_preferences_view(self, widget, view=0):
         self.set_previous_page_status()
+        self.page_preferences.notebook_preferences.set_current_page(view)
         self.stack_main.set_visible_child_name("page_preferences")
+
+    def show_download_preferences_view(self, widget):
+        self.show_preferences_view(widget, view=1)
 
     '''
     Toggle dark mode and store status in settings
