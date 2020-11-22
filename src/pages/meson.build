@@ -7,6 +7,7 @@ bottles_sources = [
   'list.py',
   'details.py',
   'preferences.py',
+  'dialog.py',
 ]
 
 install_data(bottles_sources, install_dir: pagesdir)

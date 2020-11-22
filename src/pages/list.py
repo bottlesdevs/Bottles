@@ -17,6 +17,8 @@
 
 from gi.repository import Gtk
 
+from .dialog import BottlesDialog
+
 @Gtk.Template(resource_path='/pm/mirko/bottles/list-entry.ui')
 class BottlesListEntry(Gtk.Box):
     __gtype_name__ = 'BottlesListEntry'
@@ -26,6 +28,7 @@ class BottlesListEntry(Gtk.Box):
     template childs
     '''
     btn_details = Gtk.Template.Child()
+    btn_delete = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -41,12 +44,21 @@ class BottlesListEntry(Gtk.Box):
         self.window = window
 
         '''
+        Dialogs
+        '''
+        self.dialog_delete = BottlesDialog(self.window)
+
+        '''
         Connect signals to widgets
         '''
         self.btn_details.connect('pressed', self.show_details)
+        self.btn_delete.connect('pressed', self.confirm_delete)
 
     def show_details(self, widget):
         self.window.stack_main.set_visible_child_name("page_details")
+
+    def confirm_delete(self, widget):
+        self.dialog_delete.show_all()
 
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/list.ui')
