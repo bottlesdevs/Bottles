@@ -67,6 +67,7 @@ class BottlesAdd(Gtk.Box):
     btn_env_software = Gtk.Template.Child()
     btn_env_custom = Gtk.Template.Child()
     btn_add_details = Gtk.Template.Child()
+    btn_import = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -89,10 +90,39 @@ class BottlesAdd(Gtk.Box):
         '''
         Connect signals to widgets
         '''
+        self.btn_import.connect('pressed', self.choose_backup)
         self.btn_add_details.connect('pressed', self.show_add_details_view)
         self.btn_env_gaming.connect('pressed', self.set_active_env)
         self.btn_env_software.connect('pressed', self.set_active_env)
         self.btn_env_custom.connect('pressed', self.set_active_env)
+
+    def choose_backup(self, widget):
+        file_dialog = Gtk.FileChooserDialog("Choose a backup",
+                                            self.window,
+                                            Gtk.FileChooserAction.OPEN,
+                                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+
+        '''
+        Create filter for each allowed backup extension
+        '''
+        filter_json = Gtk.FileFilter()
+        filter_json.set_name(".json backup")
+        filter_json.add_pattern("*.json")
+
+        filter_gz = Gtk.FileFilter()
+        filter_gz.set_name(".tar.gz backup")
+        filter_gz.add_pattern("*.tag.gz")
+
+        file_dialog.add_filter(filter_json)
+        file_dialog.add_filter(filter_gz)
+
+        response = file_dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            print("Backup selected")
+
+        file_dialog.destroy()
 
     def set_active_env(self, widget):
         for w in [self.btn_env_gaming,

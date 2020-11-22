@@ -56,7 +56,13 @@ class BottlesListEntry(Gtk.Box):
         dialog_delete = BottlesDialog(parent=self.window,
                                       title="Confirm deletion",
                                       message="Are you sure you want to delete this Bottle and all files?")
-        dialog_delete.run()
+        response = dialog_delete.run()
+
+        if response == Gtk.ResponseType.OK:
+            print("OK")
+        else:
+            print("Cancel")
+
         dialog_delete.destroy()
 
 
