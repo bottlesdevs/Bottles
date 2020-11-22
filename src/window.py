@@ -83,7 +83,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         Add pages to stack and set options
         '''
-        self.stack_main.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
+        self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
         self.stack_main.add_titled(page_add, "page_add", "New Bottle")
         self.stack_main.add_titled(page_add_details, "page_add_details", "New Bottle details")
