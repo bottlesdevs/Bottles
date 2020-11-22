@@ -56,4 +56,5 @@ class BottlesDialog(Gtk.MessageDialog):
             box.add(message_scroll)
 
         content.add(box)
+        self.show_all()
 

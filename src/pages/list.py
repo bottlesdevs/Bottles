@@ -44,11 +44,6 @@ class BottlesListEntry(Gtk.Box):
         self.window = window
 
         '''
-        Dialogs
-        '''
-        self.dialog_delete = BottlesDialog(self.window)
-
-        '''
         Connect signals to widgets
         '''
         self.btn_details.connect('pressed', self.show_details)
@@ -58,7 +53,11 @@ class BottlesListEntry(Gtk.Box):
         self.window.stack_main.set_visible_child_name("page_details")
 
     def confirm_delete(self, widget):
-        self.dialog_delete.show_all()
+        dialog_delete = BottlesDialog(parent=self.window,
+                                      title="Confirm deletion",
+                                      message="Are you sure you want to delete this Bottle and all files?")
+        dialog_delete.run()
+        dialog_delete.destroy()
 
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/list.ui')
