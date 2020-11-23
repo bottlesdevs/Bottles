@@ -1,4 +1,4 @@
-# window.py
+	# window.py
 #
 # Copyright 2020 mirkobrombin
 #
@@ -103,8 +103,9 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_add.connect('pressed', self.show_add_view)
         self.btn_list.connect('pressed', self.show_list_view)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
-        self.switch_dark.connect('state-set', self.toggle_dark)
         self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
+        self.switch_dark.connect('state-set', self.toggle_dark)
+
         '''
         Set widgets status from user settings
         '''
