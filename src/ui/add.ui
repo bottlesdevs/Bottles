@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 -->
+<!-- Generated with glade 3.38.1 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="BottlesAdd" parent="GtkBox">
@@ -238,14 +238,11 @@
       </packing>
     </child>
     <child>
-      <object class="GtkLabel">
+      <object class="GtkLabel" id="label_env_description">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="ypad">15</property>
-        <property name="label" translatable="yes">The gaming environment has everything needed to run modern Windows games on Linux.
-
-Enable DXVK/VKD3D and Esync by default. GL_SHADER cache is preconfigured and if
-there is more than one GPU, the dedicated one is selected by default.</property>
+        <property name="label" translatable="yes">Environment description</property>
         <property name="wrap">True</property>
         <property name="selectable">True</property>
       </object>

@@ -81,6 +81,7 @@ class BottlesAdd(Gtk.Box):
     btn_env_custom = Gtk.Template.Child()
     btn_add_details = Gtk.Template.Child()
     btn_import = Gtk.Template.Child()
+    label_env_description = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -98,7 +99,7 @@ class BottlesAdd(Gtk.Box):
         '''
         Set default environment
         '''
-        self.set_active_env(self.btn_env_gaming)
+        self.set_software_env(self.btn_env_software)
 
         '''
         Connect signals to widgets
@@ -138,14 +139,17 @@ class BottlesAdd(Gtk.Box):
         file_dialog.destroy()
 
     def set_gaming_env(self, widget):
+        self.label_env_description.set_text("The gaming environment has everything needed to run modern Windows games on Linux")
         self.window.env_active = self.window.envs[0]
         self.set_active_env(widget)
 
     def set_software_env(self, widget):
+        self.label_env_description.set_text("The software environment includes dependencies commonly used by modern software.")
         self.window.env_active = self.window.envs[1]
         self.set_active_env(widget)
 
     def set_custom_env(self, widget):
+        self.label_env_description.set_text("A clean environment, without any optimization.")
         self.window.env_active = self.window.envs[2]
         self.set_active_env(widget)
 
