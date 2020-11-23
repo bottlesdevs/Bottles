@@ -1,6 +1,6 @@
 # dialog.py
 #
-# Copyright 2020 mirkobrombin
+# Copyright 2020 brombinmirko <send@mirko.pm>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
