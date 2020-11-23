@@ -74,14 +74,14 @@ class BottlesListEntry(Gtk.Box):
 
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/list.ui')
-class BottlesList(Gtk.Box):
+class BottlesList(Gtk.ScrolledWindow):
     __gtype_name__ = 'BottlesList'
 
     '''
     Get and assign widgets to variables from
     template childs
     '''
-    list_scrolled_window = Gtk.Template.Child()
+    list_bottles = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -96,4 +96,4 @@ class BottlesList(Gtk.Box):
         '''
         self.window = window
 
-        self.list_scrolled_window.add(BottlesListEntry(self.window))
+        self.list_bottles.add(BottlesListEntry(self.window))
