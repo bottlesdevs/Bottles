@@ -17,6 +17,13 @@
 
 from gi.repository import Gtk
 
+import logging
+
+'''
+Set the default logging level
+'''
+logging.basicConfig(level=logging.DEBUG)
+
 from .dialog import BottlesDialog
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/list-entry.ui')
@@ -59,9 +66,9 @@ class BottlesListEntry(Gtk.Box):
         response = dialog_delete.run()
 
         if response == Gtk.ResponseType.OK:
-            print("OK")
+            logging.info("OK status received")
         else:
-            print("Cancel")
+            logging.info("Cancel status received")
 
         dialog_delete.destroy()
 

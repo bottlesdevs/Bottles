@@ -17,6 +17,13 @@
 
 from gi.repository import Gtk
 
+import logging
+
+'''
+Set the default logging level
+'''
+logging.basicConfig(level=logging.DEBUG)
+
 @Gtk.Template(resource_path='/pm/mirko/bottles/add-details.ui')
 class BottlesAddDetails(Gtk.Box):
     __gtype_name__ = 'BottlesAddDetails'
@@ -69,6 +76,17 @@ class BottlesAdd(Gtk.Box):
     btn_add_details = Gtk.Template.Child()
     btn_import = Gtk.Template.Child()
 
+    '''
+    Define environments and select the first
+    by default
+    '''
+    envs = [
+        'Gaming',
+        'Software',
+        'Custom'
+    ]
+    env_active = envs[0]
+
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
@@ -92,9 +110,9 @@ class BottlesAdd(Gtk.Box):
         '''
         self.btn_import.connect('pressed', self.choose_backup)
         self.btn_add_details.connect('pressed', self.show_add_details_view)
-        self.btn_env_gaming.connect('pressed', self.set_active_env)
-        self.btn_env_software.connect('pressed', self.set_active_env)
-        self.btn_env_custom.connect('pressed', self.set_active_env)
+        self.btn_env_gaming.connect('pressed', self.set_gaming_env)
+        self.btn_env_software.connect('pressed', self.set_software_env)
+        self.btn_env_custom.connect('pressed', self.set_custom_env)
 
     def choose_backup(self, widget):
         file_dialog = Gtk.FileChooserDialog("Choose a backup",
@@ -124,7 +142,28 @@ class BottlesAdd(Gtk.Box):
 
         file_dialog.destroy()
 
+    def set_gaming_env(self, widget):
+        self.env_active = self.envs[0]
+        self.set_active_env(widget)
+
+    def set_software_env(self, widget):
+        self.env_active = self.envs[1]
+        self.set_active_env(widget)
+
+    def set_custom_env(self, widget):
+        self.env_active = self.envs[2]
+        self.set_active_env(widget)
+
     def set_active_env(self, widget):
+        '''
+        Log the selected environment
+        '''
+        logging.info("Selected env is: %s" % self.env_active)
+
+        '''
+        For each environment button, remove the active class and
+        set only to the last pressed
+        '''
         for w in [self.btn_env_gaming,
                   self.btn_env_software,
                   self.btn_env_custom]:
