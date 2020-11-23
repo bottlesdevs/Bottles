@@ -32,10 +32,12 @@ class BottlesAddDetails(Gtk.Box):
     Get and assign widgets to variables from
     template childs
     '''
+    label_env_name = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     entry_path = Gtk.Template.Child()
     check_path = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
+    btn_save = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -54,10 +56,14 @@ class BottlesAddDetails(Gtk.Box):
         Connect signals to widgets
         '''
         self.btn_cancel.connect('pressed', self.show_add_view)
+        self.btn_save.connect('pressed', self.create_bottle)
         self.check_path.connect('toggled', self.toggle_entry_path)
 
     def show_add_view(self, widget):
         self.window.stack_main.set_visible_child_name("page_add")
+
+    def create_bottle(self, widget):
+        logging.info("Create a new %s bottle" % self.window.env_active)
 
     def toggle_entry_path(self, widget):
         self.entry_path.set_sensitive(widget.get_active())
@@ -75,17 +81,6 @@ class BottlesAdd(Gtk.Box):
     btn_env_custom = Gtk.Template.Child()
     btn_add_details = Gtk.Template.Child()
     btn_import = Gtk.Template.Child()
-
-    '''
-    Define environments and select the first
-    by default
-    '''
-    envs = [
-        'Gaming',
-        'Software',
-        'Custom'
-    ]
-    env_active = envs[0]
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -143,22 +138,22 @@ class BottlesAdd(Gtk.Box):
         file_dialog.destroy()
 
     def set_gaming_env(self, widget):
-        self.env_active = self.envs[0]
+        self.window.env_active = self.window.envs[0]
         self.set_active_env(widget)
 
     def set_software_env(self, widget):
-        self.env_active = self.envs[1]
+        self.window.env_active = self.window.envs[1]
         self.set_active_env(widget)
 
     def set_custom_env(self, widget):
-        self.env_active = self.envs[2]
+        self.window.env_active = self.window.envs[2]
         self.set_active_env(widget)
 
     def set_active_env(self, widget):
         '''
         Log the selected environment
         '''
-        logging.info("Selected env is: %s" % self.env_active)
+        logging.info("Selected env is: %s" % self.window.env_active)
 
         '''
         For each environment button, remove the active class and

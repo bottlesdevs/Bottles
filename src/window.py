@@ -44,6 +44,17 @@ class BottlesWindow(Gtk.ApplicationWindow):
     box_downloads = Gtk.Template.Child()
 
     '''
+    Define environments and select the first
+    by default
+    '''
+    envs = [
+        'Gaming',
+        'Software',
+        'Custom'
+    ]
+    env_active = envs[0]
+
+    '''
     Common variables
     '''
     previous_page = ""
@@ -57,7 +68,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Initialize template
         '''
         self.init_template()
-        self.default_settings.set_property("gtk-application-prefer-dark-theme", THEME_DARK)
+        self.default_settings.set_property("gtk-application-prefer-dark-theme",
+                                           THEME_DARK)
 
         '''
         Get and assign pages to variable

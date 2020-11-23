@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 -->
+<!-- Generated with glade 3.38.1 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="BottlesAddDetails" parent="GtkBox">
@@ -11,13 +11,13 @@
     <property name="margin-bottom">40</property>
     <property name="orientation">vertical</property>
     <child>
-      <object class="GtkLabel">
+      <object class="GtkLabel" id="label_env_name">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="hexpand">True</property>
         <property name="vexpand">False</property>
         <property name="ypad">10</property>
-        <property name="label" translatable="yes">New Gaming bottle</property>
+        <property name="label" translatable="yes">New bottle</property>
         <property name="justify">center</property>
         <attributes>
           <attribute name="weight" value="book"/>
