@@ -27,11 +27,35 @@ class BottlesPreferences(Gtk.Box):
     template childs
     '''
     notebook_preferences = Gtk.Template.Child()
+    switch_notifications = Gtk.Template.Child()
 
-    def __init__(self, **kwargs):
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
         '''
         Initialize template
         '''
         self.init_template()
+
+        '''
+        Common variables
+        '''
+        self.window = window
+        self.settings = window.settings
+
+        '''
+        Connect signals to widgets
+        '''
+        self.switch_notifications.connect('state-set', self.toggle_notifications)
+
+        '''
+        Set widgets status from user settings
+        '''
+        self.switch_notifications.set_active(self.settings.get_boolean("download-notifications"))
+
+    '''
+    Toggle notifications and store status in settings
+    '''
+    def toggle_notifications(self, widget, state):
+        self.settings.set_boolean("download-notifications", state)
+        

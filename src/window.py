@@ -83,7 +83,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         page_add_details = BottlesAddDetails(self)
         page_details = BottlesDetails()
         page_list = BottlesList(self)
-        page_preferences = BottlesPreferences()
+        page_preferences = BottlesPreferences(self)
 
         '''
         Set reusable variables
@@ -127,10 +127,6 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Set widgets status from user settings
         '''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
-
-        self.send_notification(title="test",
-                                text="test_text",
-                                image="dialog-information")
 
 
     '''
