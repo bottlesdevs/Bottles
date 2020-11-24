@@ -59,7 +59,12 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     previous_page = ""
     default_settings = Gtk.Settings.get_default()
-    settings = Gio.Settings.new("pm.mirko.bottles")
+    settings = Gio.Settings.new(APP_ID)
+
+    '''
+    Initializing Notify
+    '''
+    Notify.init(APP_ID)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -123,9 +128,19 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
 
-        Notify.init("pm.mirko.bottles")
-        notification_test = Notify.Notification.new("Notification test")
-        notification_test.show()
+        self.send_notification(title="test",
+                                text="test_text",
+                                image="dialog-information")
+
+
+    '''
+    Request a new notification to the Notify instance
+    '''
+    def send_notification(self, title, text, image=""):
+        notification = Notify.Notification.new(title,
+                                               text,
+                                               image)
+        notification.show()
 
     '''
     Save the previous page to allow the user to go back
