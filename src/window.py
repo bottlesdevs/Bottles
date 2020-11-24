@@ -19,11 +19,13 @@ from gi.repository import Gtk, Gio, Notify
 
 from .params import *
 from .download import BottlesDownloadEntry
+from .runner import Runner
 
 from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
+from .pages.dialog import BottlesAboutDialog
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/window.ui')
 class BottlesWindow(Gtk.ApplicationWindow):
@@ -40,6 +42,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_list = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
     btn_download_preferences = Gtk.Template.Child()
+    btn_about = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
 
@@ -62,6 +65,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
     settings = Gio.Settings.new(APP_ID)
 
     '''
+    Assign runner to a reusable variable
+    '''
+    runner = Runner()
+
+    '''
     Initializing Notify
     '''
     Notify.init(APP_ID)
@@ -77,11 +85,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
                                            THEME_DARK)
 
         '''
-        Get and assign pages to variable
+        Get and assign pages to variables
         '''
         page_add = BottlesAdd(self)
         page_add_details = BottlesAddDetails(self)
-        page_details = BottlesDetails()
+        page_details = BottlesDetails(self)
         page_list = BottlesList(self)
         page_preferences = BottlesPreferences(self)
 
@@ -119,6 +127,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_back.connect('pressed', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view)
         self.btn_list.connect('pressed', self.show_list_view)
+        self.btn_about.connect('pressed', self.show_about_dialog)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
         self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
         self.switch_dark.connect('state-set', self.toggle_dark)
@@ -127,6 +136,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Set widgets status from user settings
         '''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
+
+        '''
+        Load startup view from user settings
+        '''
+        self.stack_main.set_visible_child_name(self.settings.get_string("startup-view"))
 
 
     '''
@@ -168,6 +182,9 @@ class BottlesWindow(Gtk.ApplicationWindow):
 
     def show_download_preferences_view(self, widget):
         self.show_preferences_view(widget, view=1)
+
+    def show_about_dialog(self, widget):
+        BottlesAboutDialog().show_all()
 
     '''
     Toggle dark mode and store status in settings

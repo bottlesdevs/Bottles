@@ -53,14 +53,14 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxText">
+                  <object class="GtkComboBoxText" id="combo_views">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="active-id">add</property>
                     <items>
-                      <item id="add" translatable="yes">Create new Bottle</item>
-                      <item id="list" translatable="yes">List all Bottles</item>
-                      <item id="details" translatable="yes">Details for a Bottles</item>
+                      <item id="page_add" translatable="yes">Create new Bottle</item>
+                      <item id="page_list" translatable="yes">List all Bottles</item>
+                      <item id="page_details" translatable="yes">Details for a Bottles</item>
                     </items>
                   </object>
                   <packing>

@@ -58,3 +58,15 @@ class BottlesDialog(Gtk.MessageDialog):
         content.add(box)
         self.show_all()
 
+
+@Gtk.Template(resource_path='/pm/mirko/bottles/about.ui')
+class BottlesAboutDialog(Gtk.AboutDialog):
+    __gtype_name__ = 'BottlesAboutDialog'
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Initialize template
+        '''
+        self.init_template()

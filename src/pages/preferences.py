@@ -28,6 +28,7 @@ class BottlesPreferences(Gtk.Box):
     '''
     notebook_preferences = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
+    combo_views = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -47,15 +48,24 @@ class BottlesPreferences(Gtk.Box):
         Connect signals to widgets
         '''
         self.switch_notifications.connect('state-set', self.toggle_notifications)
+        self.combo_views.connect('changed', self.change_startup_view)
 
         '''
         Set widgets status from user settings
         '''
         self.switch_notifications.set_active(self.settings.get_boolean("download-notifications"))
+        self.combo_views.set_active_id(self.settings.get_string("startup-view"))
 
     '''
     Toggle notifications and store status in settings
     '''
     def toggle_notifications(self, widget, state):
         self.settings.set_boolean("download-notifications", state)
+
+    '''
+    Change the startup view and save in user settings
+    '''
+    def change_startup_view(self, widget):
+        option = widget.get_active_id()
+        self.settings.set_string("startup-view", option)
         

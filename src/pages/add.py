@@ -51,6 +51,7 @@ class BottlesAddDetails(Gtk.Box):
         Common variables
         '''
         self.window = window
+        self.runner = window.runner
 
         '''
         Connect signals to widgets
@@ -64,6 +65,7 @@ class BottlesAddDetails(Gtk.Box):
 
     def create_bottle(self, widget):
         logging.info("Create a new %s bottle" % self.window.env_active)
+        self.runner.create_bottle()
 
     def toggle_entry_path(self, widget):
         self.entry_path.set_sensitive(widget.get_active())

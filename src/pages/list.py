@@ -49,6 +49,7 @@ class BottlesListEntry(Gtk.Box):
         Common variables
         '''
         self.window = window
+        self.runner = window.runner
 
         '''
         Connect signals to widgets
@@ -67,6 +68,7 @@ class BottlesListEntry(Gtk.Box):
 
         if response == Gtk.ResponseType.OK:
             logging.info("OK status received")
+            self.runner.delete_bottle()
         else:
             logging.info("Cancel status received")
 
