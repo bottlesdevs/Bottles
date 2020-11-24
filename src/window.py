@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk, Gio, Notify
 
 from .params import *
 from .download import BottlesDownloadEntry
@@ -122,6 +122,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Set widgets status from user settings
         '''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
+
+        Notify.init("pm.mirko.bottles")
+        notification_test = Notify.Notification.new("Notification test")
+        notification_test.show()
 
     '''
     Save the previous page to allow the user to go back
