@@ -15,7 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging, subprocess
+import os, logging, subprocess, urllib.request, json, tarfile
+from glob import glob
 
 '''
 Set the default logging level
@@ -24,10 +25,116 @@ logging.basicConfig(level=logging.DEBUG)
 
 class Runner:
 
+    '''
+    Define repositories URLs
+    TODO: search for vanilla wine binary repository
+    '''
+    repository = "https://github.com/lutris/wine/releases"
+    repository_api = "https://api.github.com/repos/lutris/wine/releases"
+
+    '''
+    Define local path for temp and runners
+    '''
+    temp_path = "./.local/share/bottles/temp"
+    runners_path = "./.local/share/bottles/runners"
+
+    runners_available = []
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        logging.debug("runner")
+        logging.debug("Runner")
+        self.check_runners(install_latest=False)
+
+    '''
+    Performs all checks in one shot
+    '''
+    def checks(self):
+        self.check_runners_dir()
+        self.check_runners()
+
+    '''
+    Clear temp path
+    '''
+    def clear_temp(self):
+        logging.info("Cleaning the temp path.")
+        for f in os.listdir(self.temp_path):
+            os.remove(os.path.join(self.temp_path, f))
+
+
+    '''
+    Check if `runners` directory not exists, then create
+    '''
+    def check_runners_dir(self):
+        if not os.path.isdir(self.runners_path):
+            logging.info("Runners path doens't exist, creating now.")
+            os.makedirs(self.runners_path, exist_ok=True)
+
+        if not os.path.isdir(self.temp_path):
+            logging.info("Temp path doens't exist, creating now.")
+            os.makedirs(self.temp_path, exist_ok=True)
+        else:
+            self.clear_temp()
+
+        return True
+
+    '''
+    Extract a runner archive
+    '''
+    def extract_runner(self, archive):
+        archive = tarfile.open("%s/%s" % (self.temp_path, archive))
+        archive.extractall(self.runners_path)
+
+    '''
+    Download a specific runner release
+    '''
+    def download_runner(self, tag, file):
+        urllib.request.urlretrieve("%s/download/%s/%s" % (self.repository,
+                                                          tag,
+                                                          file),
+                                   "%s/%s" % (self.temp_path, file))
+
+    '''
+    Localy install a new runner
+    '''
+    def install_runner(self, tag, file):
+        logging.info("Installing the `%s` runner." % tag)
+        self.download_runner(tag, file)
+        self.extract_runner(file)
+
+        '''
+        Clear available runners list and do the check again
+        '''
+        self.runners_available = []
+        self.check_runners()
+
+    '''
+    Check localy available runners
+    '''
+    def check_runners(self, install_latest=True):
+        runners = glob("%s/*/" % self.runners_path)
+
+        for runner in runners:
+            self.runners_available.append(runner.split("/")[5])
+
+        if len(self.runners_available) > 0:
+            logging.info("Runners found: \n%s" % ', '.join(self.runners_available))
+
+        '''
+        If there are no locally installed runners, download the
+        latest version available from Lutris' GitHub repository
+        (currently the only one providing the wine binaries)
+        '''
+        if len(self.runners_available) == 0 and install_latest:
+            logging.info("No runners found.")
+
+            with urllib.request.urlopen(self.repository_api) as url:
+                releases = json.loads(url.read().decode())
+                tag = releases[0]["tag_name"]
+                file = releases[0]["assets"][0]["name"]
+
+                self.install_runner(tag, file)
+
 
     '''
     Create/delete method for wineprefixes

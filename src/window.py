@@ -17,6 +17,8 @@
 
 from gi.repository import Gtk, Gio, Notify
 
+import logging
+
 from .params import *
 from .download import BottlesDownloadEntry
 from .runner import Runner
@@ -25,7 +27,12 @@ from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
-from .pages.dialog import BottlesAboutDialog
+from .pages.dialog import BottlesDialog, BottlesAboutDialog
+
+'''
+Set the default logging level
+'''
+logging.basicConfig(level=logging.DEBUG)
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/window.ui')
 class BottlesWindow(Gtk.ApplicationWindow):
@@ -142,6 +149,27 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         self.stack_main.set_visible_child_name(self.settings.get_string("startup-view"))
 
+    '''
+    This method should be called after window shown
+    '''
+    def after_shown(self):
+        if len(self.runner.runners_available) == 0:
+            dialog_checks = BottlesDialog(parent=self,
+                                          title="No runners found",
+                                          message="There are no Runners in the system, proceed with the installation of the latest version?\n\n\
+After confirming, the window may freeze, don't be scared it's normal (for now).")
+            response = dialog_checks.run()
+
+            if response == Gtk.ResponseType.OK:
+                logging.info("OK status received")
+                '''
+                Performs runner checks
+                '''
+                self.runner.checks()
+            else:
+                logging.info("Cancel status received")
+
+            dialog_checks.destroy()
 
     '''
     Request a new notification to the Notify instance
