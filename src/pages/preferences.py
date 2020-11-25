@@ -17,6 +17,36 @@
 
 from gi.repository import Gtk
 
+from .dialog import BottlesDialog
+
+
+@Gtk.Template(resource_path='/pm/mirko/bottles/runner-entry.ui')
+class BottlesRunnerEntry(Gtk.Box):
+    __gtype_name__ = 'BottlesRunnerEntry'
+
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    label_name = Gtk.Template.Child()
+
+    def __init__(self, window, runner_name, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Initialize template
+        '''
+        self.init_template()
+
+        '''
+        Set runner name to the label
+        '''
+        self.label_name.set_text(runner_name)
+
+        '''
+        TODO: add methods for remove runner and browse files
+        '''
+
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/preferences.ui')
 class BottlesPreferences(Gtk.Box):
@@ -29,6 +59,7 @@ class BottlesPreferences(Gtk.Box):
     notebook_preferences = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     combo_views = Gtk.Template.Child()
+    list_runners = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -55,6 +86,18 @@ class BottlesPreferences(Gtk.Box):
         '''
         self.switch_notifications.set_active(self.settings.get_boolean("download-notifications"))
         self.combo_views.set_active_id(self.settings.get_string("startup-view"))
+
+        '''
+        Run methods
+        '''
+        self.update_runners()
+
+    '''
+    Add runners to the list_runners
+    '''
+    def update_runners(self):
+        for runner in self.window.runner.runners_available:
+            self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 
     '''
     Toggle notifications and store status in settings

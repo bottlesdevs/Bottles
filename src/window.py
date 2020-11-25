@@ -21,7 +21,7 @@ import logging
 
 from .params import *
 from .download import BottlesDownloadEntry
-from .runner import Runner
+from .runner import BottlesRunner
 
 from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.details import BottlesDetails
@@ -72,11 +72,6 @@ class BottlesWindow(Gtk.ApplicationWindow):
     settings = Gio.Settings.new(APP_ID)
 
     '''
-    Assign runner to a reusable variable
-    '''
-    runner = Runner()
-
-    '''
     Initializing Notify
     '''
     Notify.init(APP_ID)
@@ -92,6 +87,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
                                            THEME_DARK)
 
         '''
+        Create a runner instance
+        '''
+        self.runner = BottlesRunner(self)
+
+        '''
         Get and assign pages to variables
         '''
         page_add = BottlesAdd(self)
@@ -104,13 +104,6 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Set reusable variables
         '''
         self.page_preferences = page_preferences
-
-        '''
-        Add download entry sample. This is just for example and should be
-        replaced with future `add` method in download.py
-        '''
-        sample_download_entry = BottlesDownloadEntry()
-        self.box_downloads.add(sample_download_entry)
 
         '''
         Add pages to stack and set options
@@ -149,15 +142,19 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         self.stack_main.set_visible_child_name(self.settings.get_string("startup-view"))
 
+        '''
+        This method sould be executed as last
+        '''
+        self.on_start()
+
     '''
     This method should be called after window shown
     '''
-    def after_shown(self):
+    def on_start(self):
         if len(self.runner.runners_available) == 0:
             dialog_checks = BottlesDialog(parent=self,
                                           title="No runners found",
-                                          message="There are no Runners in the system, proceed with the installation of the latest version?\n\n\
-After confirming, the window may freeze, don't be scared it's normal (for now).")
+                                          message="There are no Runners in the system, proceed with the installation of the latest version?")
             response = dialog_checks.run()
 
             if response == Gtk.ResponseType.OK:

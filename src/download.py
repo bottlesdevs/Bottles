@@ -17,11 +17,21 @@
 
 from gi.repository import Gtk
 
+import time
+
 @Gtk.Template(resource_path='/pm/mirko/bottles/download-entry.ui')
 class BottlesDownloadEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDownloadEntry'
 
-    def __init__(self, **kwargs):
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    label_filename = Gtk.Template.Child()
+    btn_cancel = Gtk.Template.Child()
+    progressbar_download = Gtk.Template.Child()
+
+    def __init__(self, file_name, stoppable=True, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -29,3 +39,18 @@ class BottlesDownloadEntry(Gtk.Box):
         '''
         self.init_template()
 
+        '''
+        Populate data
+        '''
+        self.label_filename.set_text(file_name)
+
+        if not stoppable:
+            self.btn_cancel.hide()
+
+    '''
+    Make the progressbar pulse every 1 second
+    '''
+    def pulse(self):
+        while True:
+            time.sleep(1)
+            self.progressbar_download.pulse()

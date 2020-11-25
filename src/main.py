@@ -26,12 +26,6 @@ from .window import BottlesWindow
 
 
 class Application(Gtk.Application):
-    '''
-    This variable is a workaround to help determine if
-    the window has already been shown once
-    TODO: this method should be replaced by a better one
-    '''
-    draw = False
 
     def __init__(self):
         super().__init__(application_id='pm.mirko.bottles',
@@ -55,15 +49,7 @@ class Application(Gtk.Application):
         if not win:
             win = BottlesWindow(application=self)
 
-        win.connect('draw', self.execute_after_shown)
-
         win.present()
-
-    def execute_after_shown(self, widget, status):
-        if not self.draw:
-            widget.after_shown()
-
-            self.draw = True
 
 def main(version):
     app = Application()

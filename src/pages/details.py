@@ -70,6 +70,9 @@ class BottlesDetails(Gtk.Box):
         self.btn_reboot.connect('pressed', self.run_reboot)
 
     def run_winecfg(self, widget):
+        '''
+        p = Popen(['watch', 'ls'])
+        '''
         self.runner.run_winecfg()
 
     def run_winetricks(self, widget):

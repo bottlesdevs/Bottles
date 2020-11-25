@@ -15,15 +15,36 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, logging, subprocess, urllib.request, json, tarfile
+import os, logging, subprocess, urllib.request, json, tarfile, time
+
 from glob import glob
+from threading import Thread
+
+from .download import BottlesDownloadEntry
 
 '''
 Set the default logging level
 '''
 logging.basicConfig(level=logging.DEBUG)
 
-class Runner:
+class RunAsync(Thread):
+
+    def __init__(self, task_name, task_func, task_args=False):
+        Thread.__init__(self)
+
+        self.task_name = task_name
+        self.task_func = task_func
+        self.task_args = task_args
+
+    def run(self):
+        logging.debug('Running async job `%s`.' % self.task_name)
+
+        if not self.task_args:
+            self.task_func()
+        else:
+            self.task_func(self.task_args)
+
+class BottlesRunner:
 
     '''
     Define repositories URLs
@@ -40,24 +61,36 @@ class Runner:
 
     runners_available = []
 
-    def __init__(self, **kwargs):
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
         logging.debug("Runner")
+
+        '''
+        Common variables
+        '''
+        self.window = window
+        self.settings = window.settings
+
         self.check_runners(install_latest=False)
 
     '''
-    Performs all checks in one shot
+    Performs all checks in one async shot
     '''
-    def checks(self):
+    def async_checks(self):
         self.check_runners_dir()
         self.check_runners()
+
+    def checks(self):
+        a = RunAsync('checks', self.async_checks)
+        a.start()
 
     '''
     Clear temp path
     '''
     def clear_temp(self):
         logging.info("Cleaning the temp path.")
+
         for f in os.listdir(self.temp_path):
             os.remove(os.path.join(self.temp_path, f))
 
@@ -95,18 +128,51 @@ class Runner:
                                    "%s/%s" % (self.temp_path, file))
 
     '''
-    Localy install a new runner
+    Localy install a new runner async
     '''
-    def install_runner(self, tag, file):
-        logging.info("Installing the `%s` runner." % tag)
-        self.download_runner(tag, file)
-        self.extract_runner(file)
+    def async_install_runner(self, args):
+
+        '''
+        Add a new entry to the download manager
+        '''
+        download_entry = BottlesDownloadEntry(file_name=args[0],
+                                              stoppable=False)
+        self.window.box_downloads.add(download_entry)
+
+        logging.info("Installing the `%s` runner." % args[0])
+
+        '''
+        Run the progressbar update async
+        '''
+        a = RunAsync('pulse', download_entry.pulse)
+        a.start()
+
+        '''
+        Download and extract the runner archive
+        '''
+        self.download_runner(args[0], args[1])
+        self.extract_runner(args[1])
 
         '''
         Clear available runners list and do the check again
         '''
         self.runners_available = []
         self.check_runners()
+
+        '''
+        Send a notification if the user settings allow it
+        '''
+        if self.settings.get_boolean("download-notifications"):
+            self.window.send_notification("Download manager",
+                                          "Download of `%s` runner finished!" % args[0])
+        '''
+        Remove the entry from the download manager
+        '''
+        download_entry.destroy()
+
+    def install_runner(self, tag, file):
+        a = RunAsync('install', self.async_install_runner, [tag, file])
+        a.start()
 
     '''
     Check localy available runners
