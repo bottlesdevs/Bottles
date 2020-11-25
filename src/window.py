@@ -52,6 +52,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_about = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
+    pop_downloads = Gtk.Template.Child()
 
     '''
     Define environments and select the first
@@ -85,6 +86,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.init_template()
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
                                            THEME_DARK)
+
 
         '''
         Create a runner instance

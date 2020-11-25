@@ -133,6 +133,14 @@ class BottlesRunner:
     def async_install_runner(self, args):
 
         '''
+        Send a notification for download start if the
+        user settings allow it
+        '''
+        if self.settings.get_boolean("download-notifications"):
+            self.window.send_notification("Download manager",
+                                          "Downloading `%s` runner …" % args[0])
+
+        '''
         Add a new entry to the download manager
         '''
         download_entry = BottlesDownloadEntry(file_name=args[0],
@@ -160,7 +168,8 @@ class BottlesRunner:
         self.check_runners()
 
         '''
-        Send a notification if the user settings allow it
+        Send a notification for download end if the
+        user settings allow it
         '''
         if self.settings.get_boolean("download-notifications"):
             self.window.send_notification("Download manager",
@@ -169,6 +178,11 @@ class BottlesRunner:
         Remove the entry from the download manager
         '''
         download_entry.destroy()
+
+        '''
+        Update runners
+        '''
+        self.window.page_preferences.update_runners()
 
     def install_runner(self, tag, file):
         a = RunAsync('install', self.async_install_runner, [tag, file])
