@@ -36,8 +36,10 @@ class BottlesListEntry(Gtk.Box):
     '''
     btn_details = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
+    label_name = Gtk.Template.Child()
+    label_environment = Gtk.Template.Child()
 
-    def __init__(self, window, **kwargs):
+    def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -50,12 +52,23 @@ class BottlesListEntry(Gtk.Box):
         '''
         self.window = window
         self.runner = window.runner
+        self.configuration = configuration[1]
+        print(configuration)
+        self.label_environment_context = self.label_environment.get_style_context()
 
         '''
         Connect signals to widgets
         '''
         self.btn_details.connect('pressed', self.show_details)
         self.btn_delete.connect('pressed', self.confirm_delete)
+
+        '''
+        Populate widgets with data
+        '''
+        self.label_name.set_text(self.configuration.get("Name"))
+        self.label_environment.set_text(self.configuration.get("Environment"))
+        self.label_environment_context.add_class(
+            "tag-%s" % self.configuration.get("Environment").lower())
 
     def show_details(self, widget):
         self.window.stack_main.set_visible_child_name("page_details")
@@ -98,4 +111,17 @@ class BottlesList(Gtk.ScrolledWindow):
         '''
         self.window = window
 
-        self.list_bottles.add(BottlesListEntry(self.window))
+        '''
+        Run methods
+        '''
+        self.update_bottles()
+
+    '''
+    Add bottles to the list_bottles
+    '''
+    def update_bottles(self):
+        for bottle in self.list_bottles.get_children():
+            bottle.destroy()
+
+        for bottle in self.window.runner.local_bottles.items():
+            self.list_bottles.add(BottlesListEntry(self.window, bottle))

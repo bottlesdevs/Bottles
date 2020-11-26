@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.1 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="BottlesListEntry" parent="GtkBox">
@@ -144,19 +144,41 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label_environment">
+          <object class="GtkBox" id="list_labels">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="margin-start">10</property>
-            <property name="margin-top">4</property>
-            <property name="label" translatable="yes">Environment</property>
-            <attributes>
-              <attribute name="weight" value="medium"/>
-            </attributes>
+            <child>
+              <object class="GtkLabel" id="label_environment">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-start">5</property>
+                <property name="margin-top">7</property>
+                <property name="margin-bottom">3</property>
+                <property name="label" translatable="yes">Environment</property>
+                <attributes>
+                  <attribute name="weight" value="medium"/>
+                </attributes>
+                <style>
+                  <class name="tag"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
+            <property name="padding">5</property>
             <property name="position">1</property>
           </packing>
         </child>

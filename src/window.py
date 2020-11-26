@@ -99,9 +99,9 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         page_add = BottlesAdd(self)
         page_add_details = BottlesAddDetails(self)
-        page_create = BottlesCreate(self)
         page_details = BottlesDetails(self)
         page_list = BottlesList(self)
+        page_create = BottlesCreate(self)
         page_preferences = BottlesPreferences(self)
 
         '''
@@ -110,6 +110,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.page_add_details = page_add_details
         self.page_create = page_create
         self.page_preferences = page_preferences
+        self.page_list = page_list
 
         '''
         Add pages to stack and set options

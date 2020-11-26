@@ -23,6 +23,7 @@ from pathlib import Path
 from datetime import date
 
 from .download import BottlesDownloadEntry
+from .pages.list import BottlesListEntry
 
 '''
 Set the default logging level
@@ -63,6 +64,7 @@ class BottlesRunner:
     bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
 
     runners_available = []
+    local_bottles = {}
 
     '''
     Structure of bottle configuration file
@@ -88,6 +90,7 @@ class BottlesRunner:
         self.settings = window.settings
 
         self.check_runners(install_latest=False)
+        self.check_bottles()
 
     '''
     Performs all checks in one async shot
@@ -95,6 +98,7 @@ class BottlesRunner:
     def async_checks(self):
         self.check_runners_dir()
         self.check_runners()
+        self.check_bottles()
 
     def checks(self):
         a = RunAsync('checks', self.async_checks)
@@ -235,6 +239,27 @@ class BottlesRunner:
                 file = releases[0]["assets"][0]["name"]
 
                 self.install_runner(tag, file)
+
+    '''
+    Check local bottles
+    '''
+    def check_bottles(self):
+        bottles = glob("%s/*/" % self.bottles_path)
+
+        '''
+        For each bottle add the path name to the `local_bottles` variable
+        and append the configuration
+        '''
+        for bottle in bottles:
+            bottle_name_path = bottle.split("/")[-2]
+            configuration_file = open('%s/bottle.json' % bottle)
+            configuration_file_json = json.load(configuration_file)
+            configuration_file.close()
+
+            self.local_bottles[bottle_name_path] = configuration_file_json
+
+        if len(self.local_bottles) > 0:
+            logging.info("Bottles found: \n%s" % ', '.join(self.local_bottles))
 
     '''
     Create a new wineprefix async

@@ -59,6 +59,11 @@ class BottlesCreate(Gtk.Box):
         self.btn_open.set_visible(False)
         self.buffer_output.set_text("")
 
+        '''
+        Update bottles
+        '''
+        self.window.page_list.update_bottles()
+
     '''
     Make the progressbar pulse every 1 second
     '''
