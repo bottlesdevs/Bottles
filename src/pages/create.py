@@ -53,6 +53,12 @@ class BottlesCreate(Gtk.Box):
     def show_details(self, widget):
         self.window.stack_main.set_visible_child_name("page_details")
 
+        '''
+        Hide btn_open button and clear buffer
+        '''
+        self.btn_open.set_visible(False)
+        self.buffer_output.set_text("")
+
     '''
     Make the progressbar pulse every 1 second
     '''
