@@ -183,6 +183,9 @@ class BottlesWindow(Gtk.ApplicationWindow):
                 logging.info("Cancel status received")
 
             dialog_checks.destroy()
+        '''
+        TODO: Else check for updates
+        '''
 
     '''
     Request a new notification to the Notify instance

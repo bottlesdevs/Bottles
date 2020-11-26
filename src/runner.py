@@ -20,6 +20,7 @@ import os, logging, subprocess, urllib.request, json, tarfile, time
 from glob import glob
 from threading import Thread
 from pathlib import Path
+from datetime import date
 
 from .download import BottlesDownloadEntry
 
@@ -62,6 +63,18 @@ class BottlesRunner:
     bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
 
     runners_available = []
+
+    '''
+    Structure of bottle configuration file
+    '''
+    sample_configuration = {
+        "Name": "",
+        "Runner": "",
+        "Path": "",
+        "Environment": "",
+        "Creation_Date": "",
+        "Update_Date": ""
+    }
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -234,10 +247,11 @@ class BottlesRunner:
         '''
         bottle_name = args[0]
         bottle_name_path = bottle_name.replace(" ", "-")
-        if not args[1]:
+        if not args[2]:
             bottle_path = self.bottles_path
         else:
-            bottle_path = args[1]
+            bottle_path = args[2]
+        bottle_environment = args[1]
 
         '''
         Run the progressbar update async
@@ -272,12 +286,34 @@ class BottlesRunner:
         buffer_output.insert(end_iter, process_output)
 
         '''
+        Generate bottle configuration file
+        '''
+        buffer_output.insert(end_iter, "Generating Bottle configuration file…")
+        configuration = self.sample_configuration
+        configuration["Name"] = bottle_name
+        configuration["Runner"] = self.runners_available[0]
+        configuration["Path"] = bottle_name_path
+        configuration["Environment"] = bottle_environment
+        configuration["Creation_Date"] = str(date.today())
+        configuration["Update_Date"] = str(date.today())
+
+        with open("%s/%s/bottle.json" % (bottle_path, bottle_name_path),
+                  "w") as configuration_file:
+            json.dump(configuration, configuration_file, indent=4)
+            configuration_file.close()
+
+        '''
         Set the open button visible
         '''
+        buffer_output.insert(
+            end_iter,
+            "Your new bottle with name `%s` is now ready!" % bottle_name)
         btn_open.set_visible(True)
 
-    def create_bottle(self, name, path=False):
-        a = RunAsync('create', self.async_create_bottle, [name, path])
+    def create_bottle(self, name, environment, path=False):
+        a = RunAsync('create', self.async_create_bottle, [name,
+                                                          environment,
+                                                          path])
         a.start()
 
     '''
