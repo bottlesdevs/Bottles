@@ -19,6 +19,7 @@ import os, logging, subprocess, urllib.request, json, tarfile, time
 
 from glob import glob
 from threading import Thread
+from pathlib import Path
 
 from .download import BottlesDownloadEntry
 
@@ -56,8 +57,9 @@ class BottlesRunner:
     '''
     Define local path for temp and runners
     '''
-    temp_path = "./.local/share/bottles/temp"
-    runners_path = "./.local/share/bottles/runners"
+    temp_path = "%s/.local/share/bottles/temp" % Path.home()
+    runners_path = "%s/.local/share/bottles/runners" % Path.home()
+    bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
 
     runners_available = []
 
@@ -103,6 +105,10 @@ class BottlesRunner:
             logging.info("Runners path doens't exist, creating now.")
             os.makedirs(self.runners_path, exist_ok=True)
 
+        if not os.path.isdir(self.bottles_path):
+            logging.info("Bottles path doens't exist, creating now.")
+            os.makedirs(self.bottles_path, exist_ok=True)
+
         if not os.path.isdir(self.temp_path):
             logging.info("Temp path doens't exist, creating now.")
             os.makedirs(self.temp_path, exist_ok=True)
@@ -138,7 +144,8 @@ class BottlesRunner:
         '''
         if self.settings.get_boolean("download-notifications"):
             self.window.send_notification("Download manager",
-                                          "Downloading `%s` runner …" % args[0])
+                                          "Installing `%s` runner …" % args[0],
+                                          "document-save-symbolic")
 
         '''
         Add a new entry to the download manager
@@ -173,7 +180,8 @@ class BottlesRunner:
         '''
         if self.settings.get_boolean("download-notifications"):
             self.window.send_notification("Download manager",
-                                          "Download of `%s` runner finished!" % args[0])
+                                          "Installation of `%s` runner finished!" % args[0],
+                                          "software-installed-symbolic")
         '''
         Remove the entry from the download manager
         '''
@@ -195,7 +203,7 @@ class BottlesRunner:
         runners = glob("%s/*/" % self.runners_path)
 
         for runner in runners:
-            self.runners_available.append(runner.split("/")[5])
+            self.runners_available.append(runner.split("/")[-2])
 
         if len(self.runners_available) > 0:
             logging.info("Runners found: \n%s" % ', '.join(self.runners_available))
@@ -215,13 +223,56 @@ class BottlesRunner:
 
                 self.install_runner(tag, file)
 
-
     '''
-    Create/delete method for wineprefixes
+    Create a new wineprefix async
     '''
-    def create_bottle(self):
+    def async_create_bottle(self):
         logging.info("Creating the wineprefix…")
 
+        '''
+        Run the progressbar update async
+        '''
+        a = RunAsync('pulse', self.window.page_create.pulse)
+        a.start()
+
+        '''
+        Define reusable variables
+        '''
+        buffer_output = self.window.page_create.buffer_output
+        btn_open = self.window.page_create.btn_open
+
+        '''
+        Prepare and execute the command
+        '''
+        command = "WINEPREFIX={path} WINEARCH=win64 {runner} wineboot".format(
+            path = "%s/%s" % (self.bottles_path, "test"),
+            runner = "%s/%s/bin/wine" % (self.runners_path,
+                                         self.runners_available[0])
+        )
+
+        '''
+        Get the command output and add to the buffer
+        '''
+        process = subprocess.Popen(command,
+                                   shell=True,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.STDOUT)
+        process_output = process.stdout.read().decode("utf-8")
+        end_iter = buffer_output.get_end_iter()
+        buffer_output.insert(end_iter, process_output)
+
+        '''
+        Set the open button visible
+        '''
+        btn_open.set_visible(True)
+
+    def create_bottle(self):
+        a = RunAsync('create', self.async_create_bottle)
+        a.start()
+
+    '''
+    Delete a wineprefix
+    '''
     def delete_bottle(self):
         logging.info("Deleting the wineprefix…")
 

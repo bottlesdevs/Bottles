@@ -24,6 +24,7 @@ from .download import BottlesDownloadEntry
 from .runner import BottlesRunner
 
 from .pages.add import BottlesAdd, BottlesAddDetails
+from .pages.create import BottlesCreate
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
@@ -98,6 +99,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         page_add = BottlesAdd(self)
         page_add_details = BottlesAddDetails(self)
+        page_create = BottlesCreate(self)
         page_details = BottlesDetails(self)
         page_list = BottlesList(self)
         page_preferences = BottlesPreferences(self)
@@ -105,6 +107,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         Set reusable variables
         '''
+        self.page_add_details = page_add_details
+        self.page_create = page_create
         self.page_preferences = page_preferences
 
         '''
@@ -113,6 +117,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
         self.stack_main.add_titled(page_add, "page_add", "New Bottle")
+        self.stack_main.add_titled(page_create, "page_create", "Create Bottle")
         self.stack_main.add_titled(page_add_details, "page_add_details", "New Bottle details")
         self.stack_main.add_titled(page_details, "page_details", "Bottle details")
         self.stack_main.add_titled(page_list, "page_list", "Bottles")
@@ -153,6 +158,14 @@ class BottlesWindow(Gtk.ApplicationWindow):
     This method should be called after window shown
     '''
     def on_start(self):
+        '''
+        TODO: Check for connectivity and set a variable, this should
+        be used to disable methods that need connectivity, like first
+        runner installation
+        '''
+        '''
+        Check if there is at least 1 runner in the system
+        '''
         if len(self.runner.runners_available) == 0:
             dialog_checks = BottlesDialog(parent=self,
                                           title="No runners found",
@@ -161,6 +174,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
 
             if response == Gtk.ResponseType.OK:
                 logging.info("OK status received")
+
                 '''
                 Performs runner checks
                 '''

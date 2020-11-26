@@ -96,6 +96,9 @@ class BottlesPreferences(Gtk.Box):
     Add runners to the list_runners
     '''
     def update_runners(self):
+        for runner in self.list_runners.get_children():
+            runner.destroy()
+
         for runner in self.window.runner.runners_available:
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 

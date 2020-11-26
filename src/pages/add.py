@@ -65,6 +65,8 @@ class BottlesAddDetails(Gtk.Box):
 
     def create_bottle(self, widget):
         logging.info("Create a new %s bottle" % self.window.env_active)
+
+        self.window.stack_main.set_visible_child_name("page_create")
         self.runner.create_bottle()
 
     def toggle_entry_path(self, widget):
