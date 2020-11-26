@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 
-import logging
+import logging, re
 
 '''
 Set the default logging level
@@ -59,6 +59,21 @@ class BottlesAddDetails(Gtk.Box):
         self.btn_cancel.connect('pressed', self.show_add_view)
         self.btn_save.connect('pressed', self.create_bottle)
         self.check_path.connect('toggled', self.toggle_entry_path)
+        self.entry_name.connect('key-release-event', self.check_entry_name)
+
+    '''
+    Check for not allowed characters in entry_name
+    '''
+    def check_entry_name(self, widget, event_key):
+        regex = re.compile('[@!#$%^&*()<>?/\|}{~:]')
+        name = widget.get_text()
+
+        if(regex.search(name) == None):
+            self.btn_save.set_sensitive(True)
+            widget.set_icon_from_icon_name(1, "")
+        else:
+            self.btn_save.set_sensitive(False)
+            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     def show_add_view(self, widget):
         self.window.stack_main.set_visible_child_name("page_add")

@@ -98,7 +98,7 @@ class BottlesRunner:
 
 
     '''
-    Check if `runners` directory not exists, then create
+    Check if standard directories not exists, then create
     '''
     def check_runners_dir(self):
         if not os.path.isdir(self.runners_path):
@@ -226,8 +226,18 @@ class BottlesRunner:
     '''
     Create a new wineprefix async
     '''
-    def async_create_bottle(self):
+    def async_create_bottle(self, args):
         logging.info("Creating the wineprefix…")
+
+        '''
+        Define bottle parameters
+        '''
+        bottle_name = args[0]
+        bottle_name_path = bottle_name.replace(" ", "-")
+        if not args[1]:
+            bottle_path = self.bottles_path
+        else:
+            bottle_path = args[1]
 
         '''
         Run the progressbar update async
@@ -245,7 +255,7 @@ class BottlesRunner:
         Prepare and execute the command
         '''
         command = "WINEPREFIX={path} WINEARCH=win64 {runner} wineboot".format(
-            path = "%s/%s" % (self.bottles_path, "test"),
+            path = "%s/%s" % (bottle_path, bottle_name_path),
             runner = "%s/%s/bin/wine" % (self.runners_path,
                                          self.runners_available[0])
         )
@@ -266,8 +276,8 @@ class BottlesRunner:
         '''
         btn_open.set_visible(True)
 
-    def create_bottle(self):
-        a = RunAsync('create', self.async_create_bottle)
+    def create_bottle(self, name, path=False):
+        a = RunAsync('create', self.async_create_bottle, [name, path])
         a.start()
 
     '''
