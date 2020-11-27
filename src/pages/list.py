@@ -36,6 +36,9 @@ class BottlesListEntry(Gtk.Box):
     '''
     btn_details = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
+    btn_browse = Gtk.Template.Child()
+    btn_run = Gtk.Template.Child()
+    btn_backup = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     btn_upgrade = Gtk.Template.Child()
@@ -62,6 +65,8 @@ class BottlesListEntry(Gtk.Box):
         self.btn_details.connect('pressed', self.show_details)
         self.btn_delete.connect('pressed', self.confirm_delete)
         self.btn_upgrade.connect('pressed', self.upgrade_runner)
+        self.btn_run.connect('pressed', self.run_executable)
+        self.btn_browse.connect('pressed', self.run_browse)
 
         '''
         Populate widgets with data
@@ -73,6 +78,44 @@ class BottlesListEntry(Gtk.Box):
         if self.configuration.get("Runner") != self.runner.get_latest_runner():
             self.btn_upgrade.set_visible(True)
 
+    '''
+    Show a file chooser dialog to choose and run a Windows executable
+    '''
+    def run_executable(self, widget):
+        file_dialog = Gtk.FileChooserDialog("Choose a Windows executable file",
+                                            self.window,
+                                            Gtk.FileChooserAction.OPEN,
+                                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+
+        '''
+        Create filter for each allowed file extension
+        '''
+        filter_exe = Gtk.FileFilter()
+        filter_exe.set_name(".exe")
+        filter_exe.add_pattern("*.exe")
+
+        filter_msi = Gtk.FileFilter()
+        filter_msi.set_name(".msi")
+        filter_msi.add_pattern("*.msi")
+
+        file_dialog.add_filter(filter_exe)
+        file_dialog.add_filter(filter_msi)
+
+        response = file_dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            self.runner.run_executable(self.configuration,
+                                       file_dialog.get_filename())
+
+        file_dialog.destroy()
+
+    def run_browse(self, widget):
+        self.runner.open_filemanager(self.configuration)
+
+    '''
+    Show a confirm dialog to update bottle runner with the latest
+    '''
     def upgrade_runner(self, widget):
         dialog_upgrade = BottlesDialog(parent=self.window,
                                       title="Confirm upgrade",
@@ -96,6 +139,9 @@ class BottlesListEntry(Gtk.Box):
         self.window.page_details.set_configuration(self.configuration)
         self.window.stack_main.set_visible_child_name("page_details")
 
+    '''
+    Show a confirm dialog to remove bottle and destroy the widget
+    '''
     def confirm_delete(self, widget):
         dialog_delete = BottlesDialog(parent=self.window,
                                       title="Confirm deletion",
@@ -104,7 +150,8 @@ class BottlesListEntry(Gtk.Box):
 
         if response == Gtk.ResponseType.OK:
             logging.info("OK status received")
-            self.runner.delete_bottle()
+            self.runner.delete_bottle(self.configuration)
+            self.destroy()
         else:
             logging.info("Cancel status received")
 

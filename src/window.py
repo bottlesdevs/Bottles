@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk, Gio, Notify
 
-import logging
+import logging, webbrowser
 
 from .params import *
 from .download import BottlesDownloadEntry
@@ -53,6 +53,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_about = Gtk.Template.Child()
     btn_downloads = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
+    btn_translate = Gtk.Template.Child()
+    btn_support = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
@@ -139,6 +141,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_add.connect('pressed', self.show_add_view)
         self.btn_list.connect('pressed', self.show_list_view)
         self.btn_about.connect('pressed', self.show_about_dialog)
+        self.btn_support.connect('pressed', self.open_support_url)
+        self.btn_translate.connect('pressed', self.open_translate_url)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
         self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
         self.switch_dark.connect('state-set', self.toggle_dark)
@@ -220,6 +224,15 @@ class BottlesWindow(Gtk.ApplicationWindow):
         if self.previous_page != current_page:
             self.previous_page = current_page
             self.btn_back.set_visible(True)
+
+    '''
+    Open URLs
+    '''
+    def open_translate_url(self, widget):
+        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/tree/develop")
+
+    def open_support_url(self, widget):
+        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/issues")
 
     '''
     Return to previous page

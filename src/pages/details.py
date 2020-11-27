@@ -76,8 +76,7 @@ class BottlesDetails(Gtk.Box):
     def set_configuration(self, configuration):
         self.configuration = configuration
         self.label_name.set_text(self.configuration.get("Name"))
-        self.label_size.set_text(self.runner.get_bottle_size(
-            configuration.get("Path")))
+        self.label_size.set_text(self.runner.get_bottle_size(configuration))
         self.label_disk.set_text(self.runner.get_disk_size()["free"])
 
 
@@ -90,6 +89,11 @@ class BottlesDetails(Gtk.Box):
     def run_debug(self, widget):
         self.runner.run_debug(self.configuration)
 
+    '''
+    Show a file chooser dialog to choose and run a Windows executable
+    TODO: this method  (and other) should be declared in different file
+    to be reusable in other files, like list.py
+    '''
     def run_executable(self, widget):
         file_dialog = Gtk.FileChooserDialog("Choose a Windows executable file",
                                             self.window,
@@ -118,7 +122,6 @@ class BottlesDetails(Gtk.Box):
                                        file_dialog.get_filename())
 
         file_dialog.destroy()
-
 
     def run_browse(self, widget):
         self.runner.open_filemanager(self.configuration)

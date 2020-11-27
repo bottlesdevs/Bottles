@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, logging, subprocess, urllib.request, json, tarfile, time, psutil
+import os, logging, subprocess, urllib.request, json, tarfile, time, psutil, shutil
 
 from glob import glob
 from threading import Thread
@@ -73,6 +73,7 @@ class BottlesRunner:
         "Name": "",
         "Runner": "",
         "Path": "",
+        "Custom_Path": False,
         "Environment": "",
         "Creation_Date": "",
         "Update_Date": ""
@@ -278,10 +279,14 @@ class BottlesRunner:
         '''
         bottle_name = args[0]
         bottle_name_path = bottle_name.replace(" ", "-")
-        if not args[2]:
-            bottle_path = self.bottles_path
+
+        if args[2] == "":
+            bottle_custom_path = False
+            bottle_complete_path = "%s/%s" % (self.bottles_path, bottle_name_path)
         else:
-            bottle_path = args[2]
+            bottle_custom_path = True
+            bottle_complete_path = args[2]
+
         bottle_environment = args[1]
 
         '''
@@ -300,7 +305,7 @@ class BottlesRunner:
         Prepare and execute the command
         '''
         command = "WINEPREFIX={path} WINEARCH=win64 {runner} wineboot".format(
-            path = "%s/%s" % (bottle_path, bottle_name_path),
+            path = bottle_complete_path,
             runner = "%s/%s/bin/wine" % (self.runners_path,
                                          self.runners_available[0])
         )
@@ -323,12 +328,16 @@ class BottlesRunner:
         configuration = self.sample_configuration
         configuration["Name"] = bottle_name
         configuration["Runner"] = self.runners_available[0]
-        configuration["Path"] = bottle_name_path
+        if args[2] == "":
+            configuration["Path"] = bottle_name_path
+        else:
+            configuration["Path"] = bottle_complete_path
+        configuration["Custom_Path"] = bottle_custom_path
         configuration["Environment"] = bottle_environment
         configuration["Creation_Date"] = str(date.today())
         configuration["Update_Date"] = str(date.today())
 
-        with open("%s/%s/bottle.json" % (bottle_path, bottle_name_path),
+        with open("%s/bottle.json" % bottle_complete_path,
                   "w") as configuration_file:
             json.dump(configuration, configuration_file, indent=4)
             configuration_file.close()
@@ -410,15 +419,36 @@ class BottlesRunner:
     '''
     Get bottle path size
     '''
-    def get_bottle_size(self, bottle_path_name, human=True):
-        bottle_path = "%s/%s/" % (self.bottles_path, bottle_path_name)
-        return self.get_path_size(bottle_path, human)
+    def get_bottle_size(self, configuration, human=True):
+        path = configuration.get("Path")
+        runner = configuration.get("Runner")
+
+        if not configuration.get("Custom_Path"):
+            path = "%s/%s" % (self.bottles_path, path)
+
+        return self.get_path_size(path, human)
 
     '''
     Delete a wineprefix
     '''
-    def delete_bottle(self, configuration):
+    def async_delete_bottle(self, args):
         logging.info("Deleting the wineprefix…")
+
+        configuration = args[0]
+
+        '''
+        Delete path with all files
+        '''
+        path = configuration.get("Path")
+
+        if not configuration.get("Custom_Path"):
+            path = "%s/%s" % (self.bottles_path, path)
+
+        shutil.rmtree(path)
+
+    def delete_bottle(self, configuration):
+        a = RunAsync('delete', self.async_delete_bottle, [configuration])
+        a.start()
 
     '''
     Methods for running wine applications in wineprefixes
@@ -475,8 +505,11 @@ class BottlesRunner:
         path = configuration.get("Path")
         runner = configuration.get("Runner")
 
+        if not configuration.get("Custom_Path"):
+            path = "%s/%s" % (self.bottles_path, path)
+
         command = "WINEPREFIX={path} WINEARCH=win64 {runner} {command}".format(
-            path = "%s/%s" % (self.bottles_path, path),
+            path = path,
             runner = "%s/%s/bin/wine" % (self.runners_path, runner),
             command = command
         )

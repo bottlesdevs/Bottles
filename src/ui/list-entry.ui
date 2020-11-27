@@ -101,9 +101,10 @@
     <child>
       <object class="GtkButton" id="btn_backup">
         <property name="visible">True</property>
+        <property name="sensitive">False</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
-        <property name="tooltip-text" translatable="yes">Backup</property>
+        <property name="tooltip-text" translatable="yes">Backups are not supported in this version</property>
         <property name="margin-start">5</property>
         <property name="margin-end">5</property>
         <child>
