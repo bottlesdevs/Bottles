@@ -30,7 +30,7 @@ class BottlesCreate(Gtk.Box):
     progressbar_create = Gtk.Template.Child()
     textview_output = Gtk.Template.Child()
     buffer_output = Gtk.Template.Child()
-    btn_open = Gtk.Template.Child()
+    btn_list = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -48,15 +48,15 @@ class BottlesCreate(Gtk.Box):
         '''
         Connect signals to widgets
         '''
-        self.btn_open.connect('pressed', self.show_details)
+        self.btn_list.connect('pressed', self.show_details)
 
     def show_details(self, widget):
-        self.window.stack_main.set_visible_child_name("page_details")
+        self.window.stack_main.set_visible_child_name("page_list")
 
         '''
         Hide btn_open button and clear buffer
         '''
-        self.btn_open.set_visible(False)
+        self.btn_list.set_visible(False)
         self.buffer_output.set_text("")
 
         '''

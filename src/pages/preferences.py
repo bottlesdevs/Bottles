@@ -84,7 +84,7 @@ class BottlesPreferences(Gtk.Box):
         '''
         Set widgets status from user settings
         '''
-        self.switch_notifications.set_active(self.settings.get_boolean("download-notifications"))
+        self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
         self.combo_views.set_active_id(self.settings.get_string("startup-view"))
 
         '''
@@ -106,7 +106,7 @@ class BottlesPreferences(Gtk.Box):
     Toggle notifications and store status in settings
     '''
     def toggle_notifications(self, widget, state):
-        self.settings.set_boolean("download-notifications", state)
+        self.settings.set_boolean("notifications", state)
 
     '''
     Change the startup view and save in user settings

@@ -26,6 +26,9 @@ class BottlesDetails(Gtk.Box):
     Get and assign widgets to variables from
     template childs
     '''
+    label_name = Gtk.Template.Child()
+    label_size = Gtk.Template.Child()
+    label_disk = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
     btn_winetricks = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
@@ -39,7 +42,7 @@ class BottlesDetails(Gtk.Box):
     btn_shutdown = Gtk.Template.Child()
     btn_reboot = Gtk.Template.Child()
 
-    def __init__(self, window, **kwargs):
+    def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -52,6 +55,7 @@ class BottlesDetails(Gtk.Box):
         '''
         self.window = window
         self.runner = window.runner
+        self.configuration = configuration
 
         '''
         Connect signals to widgets
@@ -69,41 +73,73 @@ class BottlesDetails(Gtk.Box):
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
 
+    def set_configuration(self, configuration):
+        self.configuration = configuration
+        self.label_name.set_text(self.configuration.get("Name"))
+        self.label_size.set_text(self.runner.get_bottle_size(
+            configuration.get("Path")))
+        self.label_disk.set_text(self.runner.get_disk_size()["free"])
+
+
     def run_winecfg(self, widget):
-        '''
-        p = Popen(['watch', 'ls'])
-        '''
-        self.runner.run_winecfg()
+        self.runner.run_winecfg(self.configuration)
 
     def run_winetricks(self, widget):
-        self.runner.run_winetricks()
+        self.runner.run_winetricks(self.configuration)
 
     def run_debug(self, widget):
-        self.runner.run_debug()
+        self.runner.run_debug(self.configuration)
 
     def run_executable(self, widget):
-        self.runner.run_executable()
+        file_dialog = Gtk.FileChooserDialog("Choose a Windows executable file",
+                                            self.window,
+                                            Gtk.FileChooserAction.OPEN,
+                                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+
+        '''
+        Create filter for each allowed file extension
+        '''
+        filter_exe = Gtk.FileFilter()
+        filter_exe.set_name(".exe")
+        filter_exe.add_pattern("*.exe")
+
+        filter_msi = Gtk.FileFilter()
+        filter_msi.set_name(".msi")
+        filter_msi.add_pattern("*.msi")
+
+        file_dialog.add_filter(filter_exe)
+        file_dialog.add_filter(filter_msi)
+
+        response = file_dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            self.runner.run_executable(self.configuration,
+                                       file_dialog.get_filename())
+
+        file_dialog.destroy()
+
 
     def run_browse(self, widget):
-        self.runner.open_filemanager()
+        self.runner.open_filemanager(self.configuration)
 
     def run_cmd(self, widget):
-        self.runner.run_cmd()
+        self.runner.run_cmd(self.configuration)
 
     def run_taskmanager(self, widget):
-        self.runner.run_taskmanager()
+        self.runner.run_taskmanager(self.configuration)
 
     def run_controlpanel(self, widget):
-        self.runner.run_controlpanel()
+        self.runner.run_controlpanel(self.configuration)
 
     def run_uninstaller(self, widget):
-        self.runner.run_uninstaller()
+        self.runner.run_uninstaller(self.configuration)
 
     def run_regedit(self, widget):
-        self.runner.run_regedit()
+        self.runner.run_regedit(self.configuration)
 
     def run_shutdown(self, widget):
-        self.runner.send_status(0)
+        self.runner.send_status(self.configuration, "shutdown")
 
     def run_reboot(self, widget):
-        self.runner.send_status(1)
+        self.runner.send_status(self.configuration, "reboot")

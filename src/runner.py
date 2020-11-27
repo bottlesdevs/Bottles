@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, logging, subprocess, urllib.request, json, tarfile, time
+import os, logging, subprocess, urllib.request, json, tarfile, time, psutil
 
 from glob import glob
 from threading import Thread
@@ -159,7 +159,7 @@ class BottlesRunner:
         Send a notification for download start if the
         user settings allow it
         '''
-        if self.settings.get_boolean("download-notifications"):
+        if self.settings.get_boolean("notifications"):
             self.window.send_notification("Download manager",
                                           "Installing `%s` runner …" % args[0],
                                           "document-save-symbolic")
@@ -195,7 +195,7 @@ class BottlesRunner:
         Send a notification for download end if the
         user settings allow it
         '''
-        if self.settings.get_boolean("download-notifications"):
+        if self.settings.get_boolean("notifications"):
             self.window.send_notification("Download manager",
                                           "Installation of `%s` runner finished!" % args[0],
                                           "software-installed-symbolic")
@@ -223,7 +223,8 @@ class BottlesRunner:
             self.runners_available.append(runner.split("/")[-2])
 
         if len(self.runners_available) > 0:
-            logging.info("Runners found: \n%s" % ', '.join(self.runners_available))
+            logging.info("Runners found: \n%s" % ', '.join(
+                self.runners_available))
 
         '''
         If there are no locally installed runners, download the
@@ -268,6 +269,11 @@ class BottlesRunner:
         logging.info("Creating the wineprefix…")
 
         '''
+        Set UI to not usable
+        '''
+        self.window.set_usable_ui(False)
+
+        '''
         Define bottle parameters
         '''
         bottle_name = args[0]
@@ -288,7 +294,7 @@ class BottlesRunner:
         Define reusable variables
         '''
         buffer_output = self.window.page_create.buffer_output
-        btn_open = self.window.page_create.btn_open
+        btn_list = self.window.page_create.btn_list
 
         '''
         Prepare and execute the command
@@ -328,12 +334,20 @@ class BottlesRunner:
             configuration_file.close()
 
         '''
-        Set the open button visible
+        Set the list button visible and set UI to usable again
         '''
         buffer_output.insert(
             end_iter,
             "Your new bottle with name `%s` is now ready!" % bottle_name)
-        btn_open.set_visible(True)
+        btn_list.set_visible(True)
+        self.window.set_usable_ui(True)
+
+
+        '''
+        Clear local bottles list and do the check again
+        '''
+        self.local_bottles = {}
+        self.check_bottles()
 
     def create_bottle(self, name, environment, path=False):
         a = RunAsync('create', self.async_create_bottle, [name,
@@ -342,52 +356,173 @@ class BottlesRunner:
         a.start()
 
     '''
+    Get latest installed runner
+    '''
+    def get_latest_runner(self):
+        return self.runners_available[0]
+    '''
+    Get human size
+    '''
+    def get_human_size(self, size):
+        for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+            if abs(size) < 1024.0:
+                return "%3.1f%s%s" % (size, unit, 'B')
+            size /= 1024.0
+
+        return "%.1f%s%s" % (size, 'Yi', 'B')
+
+    '''
+    Get path size
+    '''
+    def get_path_size(self, path, human=True):
+        path = Path(path)
+        size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
+
+        if human:
+            return self.get_human_size(size)
+
+        return size
+
+    '''
+    Get disk size
+    '''
+    def get_disk_size(self, human=True):
+        '''
+        TODO: disk should be taken from configuration Path
+        '''
+        disk = psutil.disk_usage('/')
+
+        disk_total = disk.total
+        disk_used = disk.used
+        disk_free = disk.free
+
+        if human:
+            disk_total = self.get_human_size(disk.total)
+            disk_used = self.get_human_size(disk.used)
+            disk_free = self.get_human_size(disk.free)
+
+        return {
+            "total": disk_total,
+            "used": disk_free,
+            "free": disk_free,
+        }
+
+    '''
+    Get bottle path size
+    '''
+    def get_bottle_size(self, bottle_path_name, human=True):
+        bottle_path = "%s/%s/" % (self.bottles_path, bottle_path_name)
+        return self.get_path_size(bottle_path, human)
+
+    '''
     Delete a wineprefix
     '''
-    def delete_bottle(self):
+    def delete_bottle(self, configuration):
         logging.info("Deleting the wineprefix…")
 
     '''
     Methods for running wine applications in wineprefixes
     '''
-    def run_executable(self):
+    def run_executable(self, configuration, file_path):
         logging.info("Running an executable on the wineprefix…")
 
-    def run_winecfg(self):
+        '''
+        Escape spaces in command
+        '''
+        file_path = file_path.replace(" ", "\ ")
+
+        self.run_command(configuration, file_path)
+
+    def run_winecfg(self, configuration):
         logging.info("Running winecfg on the wineprefix…")
+        self.run_command(configuration, "winecfg")
 
-    def run_winetricks(self):
+    def run_winetricks(self, configuration):
         logging.info("Running winetricks on the wineprefix…")
+        self.run_command(configuration, "winetricks")
 
-    def run_debug(self):
+    def run_debug(self, configuration):
         logging.info("Running a debug console on the wineprefix…")
+        self.run_command(configuration, "winedbg")
 
-    def run_cmd(self):
+    def run_cmd(self, configuration):
         logging.info("Running a CMD on the wineprefix…")
+        self.run_command(configuration, "wineconsole cmd")
 
-    def run_taskmanager(self):
+    def run_taskmanager(self, configuration):
         logging.info("Running a Task Manager on the wineprefix…")
+        self.run_command(configuration, "taskmgr")
 
-    def run_controlpanel(self):
+    def run_controlpanel(self, configuration):
         logging.info("Running a Control Panel on the wineprefix…")
+        self.run_command(configuration, "control")
 
-    def run_uninstaller(self):
+    def run_uninstaller(self, configuration):
         logging.info("Running an Uninstaller on the wineprefix…")
+        self.run_command(configuration, "uninstaller")
 
-    def run_regedit(self):
+    def run_regedit(self, configuration):
         logging.info("Running a Regedit on the wineprefix…")
+        self.run_command(configuration, "regedit")
+
+    '''
+    Run wine command in a bottle
+    '''
+    def run_command(self, configuration, command):
+        '''
+        Prepare and execute the command
+        '''
+        path = configuration.get("Path")
+        runner = configuration.get("Runner")
+
+        command = "WINEPREFIX={path} WINEARCH=win64 {runner} {command}".format(
+            path = "%s/%s" % (self.bottles_path, path),
+            runner = "%s/%s/bin/wine" % (self.runners_path, runner),
+            command = command
+        )
+        return subprocess.Popen(command, shell=True)
 
     '''
     Method for sending status to wineprefixes
     '''
-    def send_status(self, status):
-        available_status = ["shutdown",
-                            "reboot"]
-        logging.info("Sending %s status to the wineprefix…" % available_status[status])
+    def send_status(self, configuration, status):
+        logging.info("Sending %s status to the wineprefix…" % status)
+
+        available_status = {
+            "shutdown": "-s",
+            "reboot": "-r"
+        }
+        option = available_status[status]
+        bottle_name = configuration.get("Name")
+
+        '''
+        Prepare and execute the command
+        '''
+        self.run_command(configuration, "wineboot %s" % option)
+
+        '''
+        Send a notification for statush change if the
+        user settings allow it
+        '''
+        if self.settings.get_boolean("notifications"):
+            self.window.send_notification("Bottles",
+                                          "`%s` completed for `%s`." % (
+                                              status,
+                                              bottle_name
+                                          ), "applications-system-symbolic")
 
     '''
     Method for open wineprefixes path in file manager
     '''
-    def open_filemanager(self):
+    def open_filemanager(self, configuration):
         logging.info("Opening the file manager on the wineprefix path…")
+
+        bottle_path = configuration.get("Path")
+
+        '''
+        Prepare and execute the command
+        '''
+        command = "xdg-open %s/%s/drive_c" % (self.bottles_path, bottle_path)
+        return subprocess.Popen(command, shell=True)
+
 

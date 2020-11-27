@@ -38,6 +38,7 @@ class BottlesListEntry(Gtk.Box):
     btn_delete = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
+    btn_upgrade = Gtk.Template.Child()
 
     def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
@@ -53,7 +54,6 @@ class BottlesListEntry(Gtk.Box):
         self.window = window
         self.runner = window.runner
         self.configuration = configuration[1]
-        print(configuration)
         self.label_environment_context = self.label_environment.get_style_context()
 
         '''
@@ -61,6 +61,7 @@ class BottlesListEntry(Gtk.Box):
         '''
         self.btn_details.connect('pressed', self.show_details)
         self.btn_delete.connect('pressed', self.confirm_delete)
+        self.btn_upgrade.connect('pressed', self.upgrade_runner)
 
         '''
         Populate widgets with data
@@ -69,8 +70,30 @@ class BottlesListEntry(Gtk.Box):
         self.label_environment.set_text(self.configuration.get("Environment"))
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
+        if self.configuration.get("Runner") != self.runner.get_latest_runner():
+            self.btn_upgrade.set_visible(True)
+
+    def upgrade_runner(self, widget):
+        dialog_upgrade = BottlesDialog(parent=self.window,
+                                      title="Confirm upgrade",
+                                      message="This will change the runner from `%s` to `%s`." % (
+                                          self.configuration.get("Runner"),
+                                          self.runner.get_latest_runner()))
+        response = dialog_upgrade.run()
+
+        if response == Gtk.ResponseType.OK:
+            logging.info("OK status received")
+            '''
+            TODO: method in runner.py to upgrade conf
+            '''
+            self.btn_upgrade.set_visible(False)
+        else:
+            logging.info("Cancel status received")
+
+        dialog_upgrade.destroy()
 
     def show_details(self, widget):
+        self.window.page_details.set_configuration(self.configuration)
         self.window.stack_main.set_visible_child_name("page_details")
 
     def confirm_delete(self, widget):

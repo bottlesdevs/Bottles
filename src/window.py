@@ -51,6 +51,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_preferences = Gtk.Template.Child()
     btn_download_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
+    btn_downloads = Gtk.Template.Child()
+    btn_menu = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
@@ -111,6 +113,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.page_create = page_create
         self.page_preferences = page_preferences
         self.page_list = page_list
+        self.page_details = page_details
 
         '''
         Add pages to stack and set options
@@ -148,7 +151,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         Load startup view from user settings
         '''
-        self.stack_main.set_visible_child_name(self.settings.get_string("startup-view"))
+        self.stack_main.set_visible_child_name(
+            self.settings.get_string("startup-view"))
 
         '''
         This method sould be executed as last
@@ -189,12 +193,22 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
 
     '''
+    Toggle UI usability, this method should be used when performing delicate
+    operations, like new bottle creation
+    '''
+    def set_usable_ui(self, status):
+        for widget in [self.btn_back,
+                       self.btn_add,
+                       self.btn_list,
+                       self.btn_downloads,
+                       self.btn_menu]:
+            widget.set_sensitive(status)
+
+    '''
     Request a new notification to the Notify instance
     '''
     def send_notification(self, title, text, image=""):
-        notification = Notify.Notification.new(title,
-                                               text,
-                                               image)
+        notification = Notify.Notification.new(title, text, image)
         notification.show()
 
     '''
@@ -236,4 +250,5 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     def toggle_dark(self, widget, state):
         self.settings.set_boolean("dark-theme", state)
-        self.default_settings.set_property("gtk-application-prefer-dark-theme", state)
+        self.default_settings.set_property("gtk-application-prefer-dark-theme",
+                                            state)
