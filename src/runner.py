@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, logging, subprocess, urllib.request, json, tarfile, time, psutil, shutil
+import os, logging, subprocess, urllib.request, json, tarfile, time, shutil
 
 from glob import glob
 from threading import Thread
@@ -306,7 +306,7 @@ class BottlesRunner:
         '''
         command = "WINEPREFIX={path} WINEARCH=win64 {runner} wineboot".format(
             path = bottle_complete_path,
-            runner = "%s/%s/bin/wine" % (self.runners_path,
+            runner = "%s/%s/bin/wine64" % (self.runners_path,
                                          self.runners_available[0])
         )
 
@@ -399,16 +399,12 @@ class BottlesRunner:
         '''
         TODO: disk should be taken from configuration Path
         '''
-        disk = psutil.disk_usage('/')
-
-        disk_total = disk.total
-        disk_used = disk.used
-        disk_free = disk.free
+        disk_total, disk_used, disk_free = shutil.disk_usage('/')
 
         if human:
-            disk_total = self.get_human_size(disk.total)
-            disk_used = self.get_human_size(disk.used)
-            disk_free = self.get_human_size(disk.free)
+            disk_total = self.get_human_size(disk_total)
+            disk_used = self.get_human_size(disk_used)
+            disk_free = self.get_human_size(disk_free)
 
         return {
             "total": disk_total,
@@ -510,7 +506,7 @@ class BottlesRunner:
 
         command = "WINEPREFIX={path} WINEARCH=win64 {runner} {command}".format(
             path = path,
-            runner = "%s/%s/bin/wine" % (self.runners_path, runner),
+            runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
         return subprocess.Popen(command, shell=True)

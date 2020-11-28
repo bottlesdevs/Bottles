@@ -1,18 +1,29 @@
 {
-    "app-id" : "pm.mirko.bottles",
-    "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.38",
-    "sdk" : "org.gnome.Sdk",
-    "command" : "bottles",
+    "app-id": "pm.mirko.bottles",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.38",
+    "sdk": "org.gnome.Sdk",
+    "command": "bottles",
     "tags": ["devel", "development"],
-    "finish-args" : [
+    "finish-args": [
+        "--allow=multiarch",
+        "--allow=devel",
         "--share=network",
+        "--device=dri",
         "--share=ipc",
         "--socket=fallback-x11",
         "--socket=wayland",
+  	"--socket=pulseaudio",
         "--socket=session-bus",
+        "--filesystem=xdg-desktop",
+        "--filesystem=xdg-documents",
+        "--filesystem=xdg-pictures",
+        "--filesystem=xdg-music",
+        "--filesystem=xdg-videos",
+        "--filesystem=xdg-download",
+        "--device=all"
     ],
-    "cleanup" : [
+    "cleanup": [
         "/include",
         "/lib/pkgconfig",
         "/man",
@@ -23,17 +34,16 @@
         "*.la",
         "*.a"
     ],
-    "modules" : [
+    "modules": [
         {
-            "name" : "bottles",
-            "builddir" : true,
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "file:///home/mirko/Projects/Bottles"
-                }
-            ]
+            "name": "bottles",
+            "builddir": true,
+            "buildsystem": "meson",
+            "sources": [{
+                "type": "git",
+                "url": "file:///home/mirko/Projects/brombinmirko/Bottles",
+                "branch": "develop"
+            }]
         }
     ]
 }
