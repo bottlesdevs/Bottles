@@ -5,6 +5,8 @@
 </div>
 
 <br/>
+> Fearless? Try something new in the [develop](https://github.com/mirkobrombin/Bottles/tree/develop) branch.
+<br/>
 
 <p align="center">
   <a href="https://appcenter.elementary.io/com.github.mirkobrombin.bottles">
