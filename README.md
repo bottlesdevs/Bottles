@@ -27,6 +27,17 @@
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-10.png" width="300">
 </div>
 
+## Install
+> Disclaimer: This is a development version (alpha), you will find bugs, black holes and monsters under the bed. Be careful.
+
+```
+git clone https://github.com/brombinmirko/bottles
+cd bottles
+git checkout develop
+flatpak-builder --user --install build-dir pm.mirko.bottles.json
+flatpak run  pm.mirko.bottles
+```
+
 ## Why a new application?
 Bottles was born in 2017 as a personal need. I needed a practical way to manage my wineprefixes. 
 I hate the idea of using applications that install me a version of wine for each application and 
