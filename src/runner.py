@@ -59,9 +59,9 @@ class BottlesRunner:
     '''
     Define local path for temp and runners
     '''
-    temp_path = "/app/bottles/temp"
-    runners_path = "/app/bottles/runners"
-    bottles_path = "/app/bottles/bottles"
+    temp_path = "%s/.local/share/bottles/temp" % Path.home()
+    runners_path = "%s/.local/share/bottles/runners" % Path.home()
+    bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
 
     runners_available = []
     local_bottles = {}

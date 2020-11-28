@@ -60,10 +60,7 @@
             "buildsystem": "simple",
             "build-commands": [
                 "mkdir -p /app/lib/i386-linux-gnu",
-                "install -Dm644 ld.so.conf -t /app/etc/",
-                "mkdir -p /app/bottles",
-                "mkdir -p /app/bottles/temp",
-                "mkdir -p /app/bottles/bottles"
+                "install -Dm644 ld.so.conf -t /app/etc/"
             ],
             "sources": [{
                 "type": "file",
@@ -76,8 +73,8 @@
             "buildsystem": "meson",
             "sources": [{
                 "type": "git",
-                "url": "file:///home/mirko/Projects/brombinmirko/Bottles",
-                "branch": "develop"
+                "url": "https://git.mirko.pm/brombinmirko/Bottles",
+                "tag": "2.0.0"
             }]
         }
     ]
