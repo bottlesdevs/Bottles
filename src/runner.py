@@ -55,6 +55,8 @@ class BottlesRunner:
     '''
     repository = "https://github.com/lutris/wine/releases"
     repository_api = "https://api.github.com/repos/lutris/wine/releases"
+    dxvk_repository = "https://github.com/doitsujin/dxvk/releases"
+    dxvk_repository_api = "https://api.github.com/repos/doitsujin/dxvk/releases"
 
     '''
     Define local path for temp and runners
@@ -62,8 +64,10 @@ class BottlesRunner:
     temp_path = "%s/.local/share/bottles/temp" % Path.home()
     runners_path = "%s/.local/share/bottles/runners" % Path.home()
     bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
+    dxvk_path = "%s/.local/share/bottles/dxvk" % Path.home()
 
     runners_available = []
+    dxvk_available = []
     local_bottles = {}
 
     '''
@@ -91,8 +95,6 @@ class BottlesRunner:
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        logging.debug("Runner")
-
         '''
         Common variables
         '''
@@ -100,6 +102,7 @@ class BottlesRunner:
         self.settings = window.settings
 
         self.check_runners(install_latest=False)
+        self.check_dxvk(install_latest=False)
         self.check_bottles()
 
     '''
@@ -108,6 +111,7 @@ class BottlesRunner:
     def async_checks(self):
         self.check_runners_dir()
         self.check_runners()
+        self.check_dxvk()
         self.check_bottles()
 
     def checks(self):
@@ -136,6 +140,10 @@ class BottlesRunner:
             logging.info("Bottles path doens't exist, creating now.")
             os.makedirs(self.bottles_path, exist_ok=True)
 
+        if not os.path.isdir(self.dxvk_path):
+            logging.info("Dxvk path doens't exist, creating now.")
+            os.makedirs(self.dxvk_path, exist_ok=True)
+
         if not os.path.isdir(self.temp_path):
             logging.info("Temp path doens't exist, creating now.")
             os.makedirs(self.temp_path, exist_ok=True)
@@ -145,43 +153,60 @@ class BottlesRunner:
         return True
 
     '''
-    Extract a runner archive
+    Extract a component archive
     '''
-    def extract_runner(self, archive):
+    def extract_component(self, component, archive):
+        if component == "runner":
+            path = self.runners_path
+
+        if component == "dxvk":
+            path = self.dxvk_path
+
         archive = tarfile.open("%s/%s" % (self.temp_path, archive))
-        archive.extractall(self.runners_path)
+        archive.extractall(path)
 
     '''
-    Download a specific runner release
+    Download a specific component release
     '''
-    def download_runner(self, tag, file):
-        urllib.request.urlretrieve("%s/download/%s/%s" % (self.repository,
+    def download_component(self, component, tag, file):
+        if component == "runner":
+            repository = self.repository
+
+        if component == "dxvk":
+            repository = self.dxvk_repository
+
+
+        urllib.request.urlretrieve("%s/download/%s/%s" % (repository,
                                                           tag,
                                                           file),
                                    "%s/%s" % (self.temp_path, file))
 
     '''
-    Localy install a new runner async
+    Localy install a new component (runner, dxvk, ..) async
     '''
-    def async_install_runner(self, args):
-
+    def async_install_component(self, args):
         '''
         Send a notification for download start if the
         user settings allow it
         '''
         if self.settings.get_boolean("notifications"):
             self.window.send_notification("Download manager",
-                                          "Installing `%s` runner …" % args[0],
+                                          "Installing `%s` runner …" % args[1],
                                           "document-save-symbolic")
 
         '''
         Add a new entry to the download manager
         '''
-        download_entry = BottlesDownloadEntry(file_name=args[0],
+        if args[0] == "runner":
+            file_name = args[1]
+        if args[0] == "dxvk":
+            file_name = "dxvk-%s" % args[1]
+
+        download_entry = BottlesDownloadEntry(file_name=file_name,
                                               stoppable=False)
         self.window.box_downloads.add(download_entry)
 
-        logging.info("Installing the `%s` runner." % args[0])
+        logging.info("Installing the `%s` component." % args[1])
 
         '''
         Run the progressbar update async
@@ -190,16 +215,21 @@ class BottlesRunner:
         a.start()
 
         '''
-        Download and extract the runner archive
+        Download and extract the component archive
         '''
-        self.download_runner(args[0], args[1])
-        self.extract_runner(args[1])
+        self.download_component(args[0], args[1], args[2])
+        self.extract_component(args[0], args[2])
 
         '''
-        Clear available runners list and do the check again
+        Clear available component list and do the check again
         '''
-        self.runners_available = []
-        self.check_runners()
+        if args[0] == "runner":
+            self.runners_available = []
+            self.check_runners()
+
+        if args[0] == "dxvk":
+            self.dxvk_available = []
+            self.check_dxvk()
 
         '''
         Send a notification for download end if the
@@ -207,7 +237,7 @@ class BottlesRunner:
         '''
         if self.settings.get_boolean("notifications"):
             self.window.send_notification("Download manager",
-                                          "Installation of `%s` runner finished!" % args[0],
+                                          "Installation of `%s` component finished!" % args[1],
                                           "software-installed-symbolic")
         '''
         Remove the entry from the download manager
@@ -215,12 +245,15 @@ class BottlesRunner:
         download_entry.destroy()
 
         '''
-        Update runners
+        Update components
         '''
-        self.window.page_preferences.update_runners()
+        if args[0] == "runner":
+            self.window.page_preferences.update_runners()
+        if args[0] == "dxvk":
+            self.window.page_preferences.update_dxvk()
 
-    def install_runner(self, tag, file):
-        a = RunAsync('install', self.async_install_runner, [tag, file])
+    def install_component(self, component,  tag, file):
+        a = RunAsync('install', self.async_install_component, [component, tag, file])
         a.start()
 
     '''
@@ -249,7 +282,30 @@ class BottlesRunner:
                 tag = releases[0]["tag_name"]
                 file = releases[0]["assets"][0]["name"]
 
-                self.install_runner(tag, file)
+                self.install_component("runner", tag, file)
+
+    '''
+    Check localy available dxvk
+    '''
+    def check_dxvk(self, install_latest=True):
+        dxvk_list = glob("%s/*/" % self.dxvk_path)
+
+        for dxvk in dxvk_list:
+            self.dxvk_available.append(dxvk.split("/")[-2])
+
+        if len(self.dxvk_available) > 0:
+            logging.info("Dxvk found: \n%s" % ', '.join(
+                self.dxvk_available))
+
+        if len(self.dxvk_available) == 0 and install_latest:
+            logging.info("No dxvk found.")
+
+            with urllib.request.urlopen(self.dxvk_repository_api) as url:
+                releases = json.loads(url.read().decode())
+                tag = releases[0]["tag_name"]
+                file = releases[0]["assets"][0]["name"]
+
+                self.install_component("dxvk", tag, file)
 
     '''
     Check local bottles
@@ -405,6 +461,7 @@ class BottlesRunner:
     '''
     def get_latest_runner(self):
         return self.runners_available[0]
+
     '''
     Get human size
     '''
@@ -547,6 +604,8 @@ class BottlesRunner:
         environment_variables = []
         parameters = configuration["Parameters"]
 
+        if parameters["dxvk"]:
+            environment_variables.append("WINEDLLOVERRIDES='d3d11,dxgi=n' DXVK_HUD='1'")
         if parameters["esync"]:
             environment_variables.append("WINEESYNC=1 WINEDEBUG=+esync")
 

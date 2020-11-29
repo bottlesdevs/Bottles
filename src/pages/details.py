@@ -91,9 +91,21 @@ class BottlesDetails(Gtk.Box):
 
     def set_configuration(self, configuration):
         self.configuration = configuration
+
+        '''
+        Set widgets status from configuration
+        '''
+        parameters = self.configuration.get("Parameters")
         self.label_name.set_text(self.configuration.get("Name"))
         self.label_size.set_text(self.runner.get_bottle_size(configuration))
         self.label_disk.set_text(self.runner.get_disk_size()["free"])
+        self.switch_dxvk.set_active(parameters["dxvk"])
+        self.switch_esync.set_active(parameters["esync"])
+        self.switch_fsync.set_active(parameters["fsync"])
+        self.switch_discrete.set_active(parameters["discrete_gpu"])
+        self.switch_virtual_desktop.set_active(parameters["virtual_desktop"])
+        self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
+        self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
 
     '''
     Methods to change environment variables

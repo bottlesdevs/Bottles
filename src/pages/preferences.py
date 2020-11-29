@@ -60,6 +60,7 @@ class BottlesPreferences(Gtk.Box):
     switch_notifications = Gtk.Template.Child()
     combo_views = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
+    list_dxvk = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -91,6 +92,7 @@ class BottlesPreferences(Gtk.Box):
         Run methods
         '''
         self.update_runners()
+        self.update_dxvk()
 
     '''
     Add runners to the list_runners
@@ -101,6 +103,16 @@ class BottlesPreferences(Gtk.Box):
 
         for runner in self.window.runner.runners_available:
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
+
+    '''
+    Add dxvk to the list_dxvk
+    '''
+    def update_dxvk(self):
+        for dxvk in self.list_dxvk.get_children():
+            dxvk.destroy()
+
+        for dxvk in self.window.runner.dxvk_available:
+            self.list_dxvk.add(BottlesRunnerEntry(self.window, dxvk))
 
     '''
     Toggle notifications and store status in settings

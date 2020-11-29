@@ -171,8 +171,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         TODO: Check for connectivity and set a variable, this should
         be used to disable methods that need connectivity, like first
         runner installation
-        '''
-        '''
+
         Check if there is at least 1 runner in the system
         '''
         if len(self.runner.runners_available) == 0:
