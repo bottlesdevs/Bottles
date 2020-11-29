@@ -41,6 +41,14 @@ class BottlesDetails(Gtk.Box):
     btn_regedit = Gtk.Template.Child()
     btn_shutdown = Gtk.Template.Child()
     btn_reboot = Gtk.Template.Child()
+    btn_killall = Gtk.Template.Child()
+    switch_dxvk = Gtk.Template.Child()
+    switch_esync = Gtk.Template.Child()
+    switch_fsync = Gtk.Template.Child()
+    switch_discrete = Gtk.Template.Child()
+    switch_virtual_desktop = Gtk.Template.Child()
+    combo_virtual_resolutions = Gtk.Template.Child()
+    switch_pulseaudio_latency = Gtk.Template.Child()
 
     def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
@@ -72,6 +80,14 @@ class BottlesDetails(Gtk.Box):
         self.btn_regedit.connect('pressed', self.run_regedit)
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
+        self.btn_killall.connect('pressed', self.run_killall)
+        self.switch_dxvk.connect('state-set', self.toggle_dxvk)
+        self.switch_esync.connect('state-set', self.toggle_esync)
+        self.switch_fsync.connect('state-set', self.toggle_fsync)
+        self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
+        self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
+        self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
+        self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
 
     def set_configuration(self, configuration):
         self.configuration = configuration
@@ -79,7 +95,68 @@ class BottlesDetails(Gtk.Box):
         self.label_size.set_text(self.runner.get_bottle_size(configuration))
         self.label_disk.set_text(self.runner.get_disk_size()["free"])
 
+    '''
+    Methods to change environment variables
+    '''
+    def toggle_dxvk(self, widget, state):
+        '''
+        TODO: to enable dxvk make a dll override from runner.py
+        '''
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "dxvk",
+                                                             state,
+                                                             True)
+        self.configuration = new_configuration
 
+    def toggle_esync(self, widget, state):
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "esync",
+                                                             state,
+                                                             True)
+        self.configuration = new_configuration
+
+    def toggle_fsync(self, widget, state):
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "fsync",
+                                                             state,
+                                                             True)
+        self.configuration = new_configuration
+
+    def toggle_discrete_graphics(self, widget, state):
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "discrete_gpu",
+                                                             state,
+                                                             True)
+        self.configuration = new_configuration
+
+    def toggle_virtual_desktop(self, widget, state):
+        '''
+        TODO: to enable virtual desktop, change /Software/Wine/Explorer/Desktops
+        '''
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "virtual_desktop",
+                                                             state,
+                                                             True)
+        self.configuration = new_configuration
+
+    def set_virtual_desktop_resolution(self, widget):
+        option = widget.get_active_id()
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "virtual_desktop_res",
+                                                             option,
+                                                             True)
+        self.configuration = new_configuration
+
+    def toggle_pulseaudio_latency(self, widget, state):
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "pulseaudio_latency",
+                                                             state,
+                                                             True)
+        self.configuration = new_configuration
+
+    '''
+    Methods for wine utilities
+    '''
     def run_winecfg(self, widget):
         self.runner.run_winecfg(self.configuration)
 
@@ -146,3 +223,6 @@ class BottlesDetails(Gtk.Box):
 
     def run_reboot(self, widget):
         self.runner.send_status(self.configuration, "reboot")
+
+    def run_killall(self, widget):
+        self.runner.send_status(self.configuration, "kill")

@@ -539,7 +539,7 @@
               </packing>
             </child>
             <child>
-              <!-- n-columns=2 n-rows=1 -->
+              <!-- n-columns=3 n-rows=1 -->
               <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -551,6 +551,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Simulates a system shutdown (this does not terminate processes).</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
@@ -597,6 +598,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Simulates a system reboot (this does not terminate processes).</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
@@ -635,6 +637,53 @@
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn_killall">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Kill all processes running in this Bottle.</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">process-stop-symbolic</property>
+                            <property name="icon_size">3</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">2</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Kill all processes</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">1</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">2</property>
                     <property name="top-attach">0</property>
                   </packing>
                 </child>
@@ -816,7 +865,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSwitch">
+                  <object class="GtkSwitch" id="switch_dxvk">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="active">True</property>
@@ -854,7 +903,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSwitch">
+                  <object class="GtkSwitch" id="switch_esync">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="active">True</property>
@@ -892,7 +941,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSwitch">
+                  <object class="GtkSwitch" id="switch_fsync">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                   </object>
@@ -956,7 +1005,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSwitch">
+                  <object class="GtkSwitch" id="switch_discrete">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="active">True</property>
@@ -1021,7 +1070,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSwitch">
+                  <object class="GtkSwitch" id="switch_virtual_desktop">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                   </object>
@@ -1058,7 +1107,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBoxText" id="combo_resolutions">
+                  <object class="GtkComboBoxText" id="combo_virtual_resolutions">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="active-id">add</property>
@@ -1134,7 +1183,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSwitch">
+                  <object class="GtkSwitch" id="switch_pulseaudio_latency">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                   </object>

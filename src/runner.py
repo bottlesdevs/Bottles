@@ -76,7 +76,16 @@ class BottlesRunner:
         "Custom_Path": False,
         "Environment": "",
         "Creation_Date": "",
-        "Update_Date": ""
+        "Update_Date": "",
+        "Parameters": {
+            "dxvk": True,
+            "esync": True,
+            "fsync": False,
+            "discrete_gpu": True,
+            "virtual_desktop": False,
+            "virtual_desktop_res": "",
+            "pulseaudio_latency": False
+        }
     }
 
     def __init__(self, window, **kwargs):
@@ -262,6 +271,33 @@ class BottlesRunner:
 
         if len(self.local_bottles) > 0:
             logging.info("Bottles found: \n%s" % ', '.join(self.local_bottles))
+
+    '''
+    Update parameters in bottle configuration file
+    '''
+    def update_configuration(self, configuration, key, value, is_parameter=False):
+        logging.info("Setting `%s` parameter to `%s` for `%s` Bottle…" % (
+            key, value, configuration.get("Name")
+        ))
+
+        if configuration.get("Custom_Path"):
+            bottle_complete_path = configuration.get("Path")
+        else:
+            bottle_complete_path = "%s/%s" % (self.bottles_path,
+                                              configuration.get("Path"))
+
+        if is_parameter:
+            configuration["Parameters"][key] = value
+        else:
+            configuration[key] = value
+
+        with open("%s/bottle.json" % bottle_complete_path,
+                  "w") as configuration_file:
+            json.dump(configuration, configuration_file, indent=4)
+            configuration_file.close()
+
+        self.window.page_list.update_bottles()
+        return configuration
 
     '''
     Create a new wineprefix async
@@ -504,8 +540,29 @@ class BottlesRunner:
         if not configuration.get("Custom_Path"):
             path = "%s/%s" % (self.bottles_path, path)
 
-        command = "WINEPREFIX={path} WINEARCH=win64 {runner} {command}".format(
+        '''
+        Get environment variables from configuration to pass
+        as command arguments
+        '''
+        environment_variables = []
+        parameters = configuration["Parameters"]
+
+        if parameters["esync"]:
+            environment_variables.append("WINEESYNC=1 WINEDEBUG=+esync")
+
+        if parameters["fsync"]:
+            environment_variables.append("WINEFSYNC=1")
+
+        if parameters["discrete_gpu"]:
+            environment_variables.append("__NV_PRIME_RENDER_OFFLOAD=1")
+            environment_variables.append("__GLX_VENDOR_LIBRARY_NAME='nvidia'")
+            environment_variables.append("__VK_LAYER_NV_optimus='NVIDIA_only'")
+
+        environment_variables = " ".join(environment_variables)
+
+        command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
             path = path,
+            env = environment_variables,
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
@@ -519,7 +576,8 @@ class BottlesRunner:
 
         available_status = {
             "shutdown": "-s",
-            "reboot": "-r"
+            "reboot": "-r",
+            "kill": "-k"
         }
         option = available_status[status]
         bottle_name = configuration.get("Name")
