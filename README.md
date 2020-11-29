@@ -27,7 +27,6 @@
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-8.png" width="300">
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-9.png" width="300">
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-10.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-11.png" width="300">
 </div>
 
 ## Install
