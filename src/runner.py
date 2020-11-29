@@ -81,7 +81,7 @@ class BottlesRunner:
             "dxvk": True,
             "esync": True,
             "fsync": False,
-            "discrete_gpu": True,
+            "discrete_gpu": False,
             "virtual_desktop": False,
             "virtual_desktop_res": "",
             "pulseaudio_latency": False
