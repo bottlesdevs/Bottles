@@ -18,6 +18,37 @@
 from gi.repository import Gtk
 
 
+@Gtk.Template(resource_path='/pm/mirko/bottles/dependency-entry.ui')
+class BottlesDependencyEntry(Gtk.Box):
+    __gtype_name__ = 'BottlesDependencyEntry'
+
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    label_name = Gtk.Template.Child()
+    label_description = Gtk.Template.Child()
+
+    def __init__(self, window, name, description, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Initialize template
+        '''
+        self.init_template()
+
+        '''
+        Common variables
+        '''
+        self.window = window
+
+        '''
+        Set dependency name to the label
+        '''
+        self.label_name.set_text(name)
+        self.label_description.set_text(description)
+
+
 @Gtk.Template(resource_path='/pm/mirko/bottles/details.ui')
 class BottlesDetails(Gtk.Box):
     __gtype_name__ = 'BottlesDetails'
@@ -49,6 +80,7 @@ class BottlesDetails(Gtk.Box):
     switch_virtual_desktop = Gtk.Template.Child()
     combo_virtual_resolutions = Gtk.Template.Child()
     switch_pulseaudio_latency = Gtk.Template.Child()
+    list_dependencies = Gtk.Template.Child()
 
     def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
@@ -88,6 +120,17 @@ class BottlesDetails(Gtk.Box):
         self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
         self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
+
+        '''
+        Add entries to list_dependencies
+        TODO: In BottlesDependencyEntry should check for installation status
+        from Bottle configuration `Installed_Dependencies`
+        '''
+        for dependency in self.runner.supported_dependencies.items():
+            self.list_dependencies.add(
+                BottlesDependencyEntry(self.window,
+                                       dependency[0],
+                                       dependency[1].get("description")))
 
     def set_configuration(self, configuration):
         self.configuration = configuration

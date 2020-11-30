@@ -89,6 +89,26 @@ class BottlesRunner:
             "virtual_desktop": False,
             "virtual_desktop_res": "",
             "pulseaudio_latency": False
+        },
+        "Installed_Dependencies" : []
+    }
+
+    '''
+    TODO: fetch supported dependencies from an online repository
+    for a more extensible support
+    '''
+    supported_dependencies = {
+        "corefonts" : {
+            "description" : "Microsoft Core Fonts",
+            "url" : ""
+        },
+        "vcrun6" : {
+            "description" : "Visual C++ 6 SP4 libraries",
+            "url" : ""
+        },
+        "mfc40" : {
+            "description" : "Microsoft Foundation Classes from win7sp1",
+            "url" : ""
         }
     }
 
