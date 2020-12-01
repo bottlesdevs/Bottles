@@ -128,7 +128,7 @@ class BottlesListEntry(Gtk.Box):
             logging.info("OK status received")
             self.runner.update_configuration(self.configuration,
                                              "Runner",
-                                             self.runner.runners_available[0])
+                                             self.runner.get_latest_runner())
             self.btn_upgrade.set_visible(False)
         else:
             logging.info("Cancel status received")
