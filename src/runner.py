@@ -478,7 +478,7 @@ class BottlesRunner:
         '''
         buffer_output.insert_markup(
             iter,
-            "\n<span foreground='green'>%s</span>" % "Your new bottle with name `%s` is now ready!" %bottle_name,
+            "\n<span foreground='green'>%s</span>" % "Your new bottle with name `%s` is now ready!" % bottle_name,
             -1)
         iter = buffer_output.get_end_iter()
 

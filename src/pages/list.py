@@ -126,9 +126,9 @@ class BottlesListEntry(Gtk.Box):
 
         if response == Gtk.ResponseType.OK:
             logging.info("OK status received")
-            '''
-            TODO: method in runner.py to upgrade conf
-            '''
+            self.runner.update_configuration(self.configuration,
+                                             "Runner",
+                                             self.runner.runners_available[0])
             self.btn_upgrade.set_visible(False)
         else:
             logging.info("Cancel status received")
