@@ -424,6 +424,10 @@ class BottlesRunner:
         '''
         buffer_output = self.window.page_create.buffer_output
         btn_list = self.window.page_create.btn_list
+        iter = buffer_output.get_end_iter()
+
+        buffer_output.insert(iter, "The wine configuratin is being updated…\n")
+        iter = buffer_output.get_end_iter()
 
         '''
         Prepare and execute the command
@@ -442,13 +446,16 @@ class BottlesRunner:
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.STDOUT)
         process_output = process.stdout.read().decode("utf-8")
-        end_iter = buffer_output.get_end_iter()
-        buffer_output.insert(end_iter, process_output)
+
+        buffer_output.insert(iter, process_output)
+        iter = buffer_output.get_end_iter()
 
         '''
         Generate bottle configuration file
         '''
-        buffer_output.insert(end_iter, "\nGenerating Bottle configuration file…")
+        buffer_output.insert(iter, "\nGenerating Bottle configuration file…")
+        iter = buffer_output.get_end_iter()
+
         configuration = self.sample_configuration
         configuration["Name"] = bottle_name
         configuration["Runner"] = self.runners_available[0]
@@ -469,9 +476,12 @@ class BottlesRunner:
         '''
         Set the list button visible and set UI to usable again
         '''
-        buffer_output.insert(
-            end_iter,
-            "\nYour new bottle with name `%s` is now ready!" % bottle_name)
+        buffer_output.insert_markup(
+            iter,
+            "\n<span foreground='green'>%s</span>" % "Your new bottle with name `%s` is now ready!" %bottle_name,
+            -1)
+        iter = buffer_output.get_end_iter()
+
         btn_list.set_visible(True)
         self.window.set_usable_ui(True)
 
