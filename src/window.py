@@ -17,11 +17,11 @@
 
 from gi.repository import Gtk, Gio, Notify
 
-import logging, webbrowser
+import logging, webbrowser, time
 
 from .params import *
 from .download import BottlesDownloadEntry
-from .runner import BottlesRunner
+from .runner import BottlesRunner, RunAsync
 
 from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.create import BottlesCreate
@@ -29,6 +29,8 @@ from .pages.details import BottlesDetails
 from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
 from .pages.dialog import BottlesDialog, BottlesAboutDialog
+
+from .utils import UtilsConnection
 
 '''
 Set the default logging level
@@ -92,6 +94,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
                                            THEME_DARK)
 
+
+        self.utils_conn = UtilsConnection(self)
 
         '''
         Create a runner instance
@@ -168,16 +172,19 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     def on_start(self):
         '''
-        TODO: Check for connectivity and set a variable, this should
-        be used to disable methods that need connectivity, like first
-        runner installation
-
         Check if there is at least 1 runner in the system
         '''
         if len(self.runner.runners_available) == 0:
+            message = "There are no Runners in the system. "
+
+            if self.utils_conn.check_connection():
+                message += "Proceed with the installation of the latest version?"
+            else:
+                message += "But you don't seem to be connected to the internet and you won't be able to download a runner. Connect to the internet and confirm this message to begin the download."
+
             dialog_checks = BottlesDialog(parent=self,
                                           title="No runners found",
-                                          message="There are no Runners in the system, proceed with the installation of the latest version?")
+                                          message=message)
             response = dialog_checks.run()
 
             if response == Gtk.ResponseType.OK:

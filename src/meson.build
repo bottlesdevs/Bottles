@@ -27,6 +27,7 @@ bottles_sources = [
   'params.py',
   'download.py',
   'runner.py',
+  'utils.py',
 ]
 
 install_data(bottles_sources, install_dir: moduledir)

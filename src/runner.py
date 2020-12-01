@@ -120,6 +120,7 @@ class BottlesRunner:
         '''
         self.window = window
         self.settings = window.settings
+        self.utils_conn = window.utils_conn
 
         self.check_runners(install_latest=False)
         self.check_dxvk(install_latest=False)
@@ -205,28 +206,30 @@ class BottlesRunner:
     Localy install a new component (runner, dxvk, ..) async
     '''
     def async_install_component(self, args):
+        component, tag, file = args
+
         '''
         Send a notification for download start if the
         user settings allow it
         '''
         if self.settings.get_boolean("notifications"):
             self.window.send_notification("Download manager",
-                                          "Installing `%s` runner …" % args[1],
+                                          "Installing `%s` runner …" % tag,
                                           "document-save-symbolic")
 
         '''
         Add a new entry to the download manager
         '''
-        if args[0] == "runner":
-            file_name = args[1]
-        if args[0] == "dxvk":
-            file_name = "dxvk-%s" % args[1]
+        if component == "runner":
+            file_name = tag
+        if component == "dxvk":
+            file_name = "dxvk-%s" % tag
 
         download_entry = BottlesDownloadEntry(file_name=file_name,
                                               stoppable=False)
         self.window.box_downloads.add(download_entry)
 
-        logging.info("Installing the `%s` component." % args[1])
+        logging.info("Installing the `%s` component." % tag)
 
         '''
         Run the progressbar update async
@@ -237,17 +240,17 @@ class BottlesRunner:
         '''
         Download and extract the component archive
         '''
-        self.download_component(args[0], args[1], args[2])
-        self.extract_component(args[0], args[2])
+        self.download_component(component, tag, file)
+        self.extract_component(component, file)
 
         '''
         Clear available component list and do the check again
         '''
-        if args[0] == "runner":
+        if component == "runner":
             self.runners_available = []
             self.check_runners()
 
-        if args[0] == "dxvk":
+        if component == "dxvk":
             self.dxvk_available = []
             self.check_dxvk()
 
@@ -257,7 +260,7 @@ class BottlesRunner:
         '''
         if self.settings.get_boolean("notifications"):
             self.window.send_notification("Download manager",
-                                          "Installation of `%s` component finished!" % args[1],
+                                          "Installation of `%s` component finished!" % tag,
                                           "software-installed-symbolic")
         '''
         Remove the entry from the download manager
@@ -267,14 +270,15 @@ class BottlesRunner:
         '''
         Update components
         '''
-        if args[0] == "runner":
+        if component == "runner":
             self.window.page_preferences.update_runners()
-        if args[0] == "dxvk":
+        if component == "dxvk":
             self.window.page_preferences.update_dxvk()
 
     def install_component(self, component,  tag, file):
-        a = RunAsync('install', self.async_install_component, [component, tag, file])
-        a.start()
+        if self.utils_conn.check_connection(True):
+            a = RunAsync('install', self.async_install_component, [component, tag, file])
+            a.start()
 
     '''
     Check localy available runners
@@ -297,12 +301,16 @@ class BottlesRunner:
         if len(self.runners_available) == 0 and install_latest:
             logging.info("No runners found.")
 
-            with urllib.request.urlopen(self.repository_api) as url:
-                releases = json.loads(url.read().decode())
-                tag = releases[0]["tag_name"]
-                file = releases[0]["assets"][0]["name"]
+            '''
+            Fetch runners from repository only if connected
+            '''
+            if self.utils_conn.check_connection():
+                with urllib.request.urlopen(self.repository_api) as url:
+                    releases = json.loads(url.read().decode())
+                    tag = releases[0]["tag_name"]
+                    file = releases[0]["assets"][0]["name"]
 
-                self.install_component("runner", tag, file)
+                    self.install_component("runner", tag, file)
 
     '''
     Check localy available dxvk
@@ -320,12 +328,16 @@ class BottlesRunner:
         if len(self.dxvk_available) == 0 and install_latest:
             logging.info("No dxvk found.")
 
-            with urllib.request.urlopen(self.dxvk_repository_api) as url:
-                releases = json.loads(url.read().decode())
-                tag = releases[0]["tag_name"]
-                file = releases[0]["assets"][0]["name"]
+            '''
+            Fetch dxvk from repository only if connected
+            '''
+            if self.utils_conn.check_connection():
+                with urllib.request.urlopen(self.dxvk_repository_api) as url:
+                    releases = json.loads(url.read().decode())
+                    tag = releases[0]["tag_name"]
+                    file = releases[0]["assets"][0]["name"]
 
-                self.install_component("dxvk", tag, file)
+                    self.install_component("dxvk", tag, file)
 
     '''
     Check local bottles
@@ -381,6 +393,8 @@ class BottlesRunner:
     def async_create_bottle(self, args):
         logging.info("Creating the wineprefix…")
 
+        name, environment, path = args
+
         '''
         Set UI to not usable
         '''
@@ -389,17 +403,15 @@ class BottlesRunner:
         '''
         Define bottle parameters
         '''
-        bottle_name = args[0]
+        bottle_name = name
         bottle_name_path = bottle_name.replace(" ", "-")
 
-        if args[2] == "":
+        if path == "":
             bottle_custom_path = False
             bottle_complete_path = "%s/%s" % (self.bottles_path, bottle_name_path)
         else:
             bottle_custom_path = True
-            bottle_complete_path = args[2]
-
-        bottle_environment = args[1]
+            bottle_complete_path = path
 
         '''
         Run the progressbar update async
@@ -436,16 +448,16 @@ class BottlesRunner:
         '''
         Generate bottle configuration file
         '''
-        buffer_output.insert(end_iter, "Generating Bottle configuration file…")
+        buffer_output.insert(end_iter, "\nGenerating Bottle configuration file…")
         configuration = self.sample_configuration
         configuration["Name"] = bottle_name
         configuration["Runner"] = self.runners_available[0]
-        if args[2] == "":
+        if path == "":
             configuration["Path"] = bottle_name_path
         else:
             configuration["Path"] = bottle_complete_path
         configuration["Custom_Path"] = bottle_custom_path
-        configuration["Environment"] = bottle_environment
+        configuration["Environment"] = environment
         configuration["Creation_Date"] = str(date.today())
         configuration["Update_Date"] = str(date.today())
 
@@ -459,7 +471,7 @@ class BottlesRunner:
         '''
         buffer_output.insert(
             end_iter,
-            "Your new bottle with name `%s` is now ready!" % bottle_name)
+            "\nYour new bottle with name `%s` is now ready!" % bottle_name)
         btn_list.set_visible(True)
         self.window.set_usable_ui(True)
 
@@ -621,27 +633,35 @@ class BottlesRunner:
         Get environment variables from configuration to pass
         as command arguments
         '''
-        environment_variables = []
+        environment_vars = []
         parameters = configuration["Parameters"]
 
         if parameters["dxvk"]:
-            environment_variables.append("WINEDLLOVERRIDES='d3d11,dxgi=n' DXVK_HUD='1'")
+            '''
+            TODO: dxvk hud should be removed in stable release
+            '''
+            environment_vars.append("WINEDLLOVERRIDES='d3d11,dxgi=n'")
+            environment_vars.append("DXVK_HUD='1'")
+
         if parameters["esync"]:
-            environment_variables.append("WINEESYNC=1 WINEDEBUG=+esync")
+            environment_vars.append("WINEESYNC=1 WINEDEBUG=+esync")
 
         if parameters["fsync"]:
-            environment_variables.append("WINEFSYNC=1")
+            environment_vars.append("WINEFSYNC=1")
 
         if parameters["discrete_gpu"]:
-            environment_variables.append("__NV_PRIME_RENDER_OFFLOAD=1")
-            environment_variables.append("__GLX_VENDOR_LIBRARY_NAME='nvidia'")
-            environment_variables.append("__VK_LAYER_NV_optimus='NVIDIA_only'")
+            environment_vars.append("__NV_PRIME_RENDER_OFFLOAD=1")
+            environment_vars.append("__GLX_VENDOR_LIBRARY_NAME='nvidia'")
+            environment_vars.append("__VK_LAYER_NV_optimus='NVIDIA_only'")
 
-        environment_variables = " ".join(environment_variables)
+        if parameters["pulseaudio_latency"]:
+            environment_vars.append("PULSE_LATENCY_MSEC=60")
+
+        environment_vars = " ".join(environment_vars)
 
         command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
             path = path,
-            env = environment_variables,
+            env = environment_vars,
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
