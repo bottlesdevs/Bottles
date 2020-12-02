@@ -589,6 +589,27 @@ class BottlesRunner:
         a.start()
 
     '''
+    Methods for add and remove values to register
+    '''
+    def reg_delete(self, configuration, key, value):
+        logging.info("Removing value `%s` for key `%s` in register for `%s` bottle." % (
+            value, key, configuration.get("Name")
+        ))
+
+        self.run_command(configuration, "reg delete '%s' /v %s /f" % (
+            key, value
+        ))
+
+    def reg_add(self, configuration, key, value, data):
+        logging.info("Adding value `%s` with data `%s` for key `%s` in register for `%s` bottle." % (
+            value, data, key, configuration.get("Name")
+        ))
+
+        self.run_command(configuration, "reg add '%s' /v %s /d %s /f" % (
+            key, value, data
+        ))
+
+    '''
     Methods for install and remove dxvk using official setup script
     TODO: A good task for the future is to use the built-in methods to
     install the new dlls and register the override.
