@@ -66,6 +66,15 @@ class BottlesRunner:
     bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
     dxvk_path = "%s/.local/share/bottles/dxvk" % Path.home()
 
+    dxvk_dlls = [
+        "d3d9.dll",
+        "d3d10.dll",
+        "d3d10_1.dll",
+        "d3d10core.dll",
+        "d3d11.dll",
+        "dxgi.dll"
+    ]
+
     runners_available = []
     dxvk_available = []
     local_bottles = {}
@@ -82,8 +91,8 @@ class BottlesRunner:
         "Creation_Date": "",
         "Update_Date": "",
         "Parameters": {
-            "dxvk": True,
-            "esync": True,
+            "dxvk": False,
+            "esync": False,
             "fsync": False,
             "discrete_gpu": False,
             "virtual_desktop": False,
@@ -581,6 +590,55 @@ class BottlesRunner:
         a = RunAsync('delete', self.async_delete_bottle, [configuration])
         a.start()
 
+    def install_dxvk(self, configuration):
+        '''
+        TODO: this should not be enough for dxvk installation
+        '''
+        self.dll_override(configuration,
+                          32,
+                          self.dxvk_dlls,
+                          "%s/%s/x32" % (self.dxvk_path, self.dxvk_available[0]))
+        self.dll_override(configuration,
+                          64,
+                          self.dxvk_dlls,
+                          "%s/%s/x64" % (self.dxvk_path, self.dxvk_available[0]))
+
+    def remove_dxvk(self, configuration):
+        self.dll_override(configuration,
+                          32,
+                          self.dxvk_dlls,
+                          False,
+                          True)
+        self.dll_override(configuration,
+                          64,
+                          self.dxvk_dlls,
+                          False,
+                          True)
+
+    def dll_override(self, configuration, arch, dlls, source, revert=False):
+        if arch == 32:
+            arch = "system32"
+        else:
+            arch = "syswow64"
+
+        path = "%s/%s/drive_c/windows/%s" % (self.bottles_path,
+                                             configuration.get("Path"),
+                                             arch)
+
+        '''
+        Revert dll from backup
+        '''
+        if revert:
+            for dll in dlls:
+                shutil.move("%s/%s.back" % (path, dll), "%s/%s" % (path, dll))
+        else:
+            '''
+            Backup old dlls and install new one
+            '''
+            for dll in dlls:
+                shutil.move("%s/%s" % (path, dll), "%s/%s.back" % (path, dll))
+                shutil.copy("%s/%s" % (source, dll), "%s/%s" % (path, dll))
+
     '''
     Methods for running wine applications in wineprefixes
     '''
@@ -635,7 +693,6 @@ class BottlesRunner:
         '''
         path = configuration.get("Path")
         runner = configuration.get("Runner")
-
         if not configuration.get("Custom_Path"):
             path = "%s/%s" % (self.bottles_path, path)
 
@@ -672,7 +729,7 @@ class BottlesRunner:
         command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
             path = path,
             env = environment_vars,
-            runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
+            runner = r"%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
         return subprocess.Popen(command, shell=True)

@@ -84,8 +84,7 @@ class BottlesAddDetails(Gtk.Box):
         custom_path = self.entry_path.get_text()
 
         '''
-        TODO: custom path for bottles should be declared in an index file
-        for including in bottles list
+        TODO: Custom bottle paths must be saved to be found when listing bottles
         '''
 
         self.window.stack_main.set_visible_child_name("page_create")
