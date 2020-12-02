@@ -67,11 +67,9 @@ class BottlesRunner:
     dxvk_path = "%s/.local/share/bottles/dxvk" % Path.home()
 
     dxvk_dlls = [
-        "d3d9.dll",
-        "d3d10.dll",
-        "d3d10_1.dll",
         "d3d10core.dll",
         "d3d11.dll",
+        "d3d9.dll",
         "dxgi.dll"
     ]
 
@@ -590,31 +588,35 @@ class BottlesRunner:
         a = RunAsync('delete', self.async_delete_bottle, [configuration])
         a.start()
 
-    def install_dxvk(self, configuration):
-        '''
-        TODO: this should not be enough for dxvk installation
-        '''
-        self.dll_override(configuration,
-                          32,
-                          self.dxvk_dlls,
-                          "%s/%s/x32" % (self.dxvk_path, self.dxvk_available[0]))
-        self.dll_override(configuration,
-                          64,
-                          self.dxvk_dlls,
-                          "%s/%s/x64" % (self.dxvk_path, self.dxvk_available[0]))
+    '''
+    Methods for install and remove dxvk using official setup script
+    TODO: A good task for the future is to use the built-in methods to
+    install the new dlls and register the override.
+    '''
+    def install_dxvk(self, configuration, remove=False):
+        logging.info("Installing dxvk for `%s` bottle." % configuration.get("Name"))
+
+        if remove:
+            option = "uninstall"
+        else:
+            option = "install"
+
+        command = 'WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option}'.format (
+            path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
+            runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
+            dxvk_setup = "%s/%s/setup_dxvk.sh" % (self.dxvk_path, self.dxvk_available[0]),
+            option = option
+        )
+        return subprocess.Popen(command, shell=True)
 
     def remove_dxvk(self, configuration):
-        self.dll_override(configuration,
-                          32,
-                          self.dxvk_dlls,
-                          False,
-                          True)
-        self.dll_override(configuration,
-                          64,
-                          self.dxvk_dlls,
-                          False,
-                          True)
+        logging.info("Removing dxvk for `%s` bottle." % configuration.get("Name"))
 
+        self.install_dxvk(configuration, remove=True)
+
+    '''
+    Method for override dll in system32/syswow64 paths
+    '''
     def dll_override(self, configuration, arch, dlls, source, revert=False):
         if arch == 32:
             arch = "system32"
@@ -636,7 +638,7 @@ class BottlesRunner:
             Backup old dlls and install new one
             '''
             for dll in dlls:
-                shutil.move("%s/%s" % (path, dll), "%s/%s.back" % (path, dll))
+                shutil.move("%s/%s" % (path, dll), "%s/%s.old" % (path, dll))
                 shutil.copy("%s/%s" % (source, dll), "%s/%s" % (path, dll))
 
     '''

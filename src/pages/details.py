@@ -155,16 +155,12 @@ class BottlesDetails(Gtk.Box):
     '''
     def toggle_dxvk(self, widget, state):
         '''
-        TODO: to enable dxvk make a dll override from runner.py
-        do not use official setup.sh script because make use of
-        command that cannot be used from flatpak without more
-        permissions.
+        TODO: dxvk should be installed and removed only when the switcher is
+        toggled by the user and not when configuration is applied
         '''
         if state:
-            print("install")
             self.runner.install_dxvk(self.configuration)
         else:
-            print("remove")
             self.runner.remove_dxvk(self.configuration)
 
         new_configuration = self.runner.update_configuration(self.configuration,
