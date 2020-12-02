@@ -729,7 +729,7 @@ class BottlesRunner:
         command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
             path = path,
             env = environment_vars,
-            runner = r"%s/%s/bin/wine64" % (self.runners_path, runner),
+            runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
         return subprocess.Popen(command, shell=True)
