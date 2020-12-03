@@ -17,7 +17,6 @@ addons:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install python3-pip python-dev build-essential
-  - source /opt/qt*/bin/qt*-env.sh
   - sudo pip3 install --upgrade pip
   - sudo pip3 install meson
   - sudo pip3 install ninja
