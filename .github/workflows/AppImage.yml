@@ -14,4 +14,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Setup-Script
-        run: echo Hello, world!
+        run: chmod +x .ci/AppImage.sh && bash .ci/AppImage.sh
