@@ -16,7 +16,10 @@ addons:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install meson python-dev build-essential
+  - sudo apt-get install python3-pip python-dev build-essential
+  - sudo pip3 install --upgrade pip
+  - sudo pip3 install meson
+  - sudo pip3 install ninja
 
 install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
@@ -25,3 +28,5 @@ install:
 script:
   - mkdir build
   - meson build
+  - cd build
+  - ninja
