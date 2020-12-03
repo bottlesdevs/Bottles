@@ -74,6 +74,9 @@ to open Bottles for each operation.
 Bottles is close to what wineprefix means, since v.2 it provides a simplified method to generate 
 environment-based bottles and thanks to other tools it simplifies the management but nothing more.
 
+## Why Appimage?
+On December 3, 2020 we announced our intentions to migrate to Appimage as the official format for Bottles distribution. [Read more](https://github.com/bottlesdevs/Bottles/issues/42).
+
 ## When?
 Idk. Really. Keep an eye on the develop branch, sooner or later there will be an almost stable 
 release
