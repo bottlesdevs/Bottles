@@ -2,7 +2,6 @@ sudo: required
 language: cpp
 compiler:
   - gcc
-  - clang
 
 addons:
   apt:
@@ -12,7 +11,6 @@ addons:
     packages:
     - gcc-5
     - g++-5
-    - clang-3.8
 
 before_install:
   - sudo apt-get -qq update
@@ -23,7 +21,6 @@ before_install:
 
 install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-  - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
 
 script:
   - mkdir build
