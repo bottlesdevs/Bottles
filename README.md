@@ -34,6 +34,7 @@
 
 ## Install
 > Disclaimer: This is a development version (alpha), you will find bugs, black holes and monsters under the bed. Be careful.
+### AppImage
 
 Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous)
 
@@ -42,6 +43,24 @@ cd Downloads
 chmod +x Bottles-commit-x86_64.AppImage
 ./Bottles-commit-x86_64.AppImage
 And you're done!
+```
+
+### Build with meson
+Instead of use the Appimage you can choose to build your own Bottles from source.
+
+#### Requirements
+```
+- meson
+- ninja
+- python3
+```
+
+#### Build
+```
+mkdir build
+meson build
+ninja
+sudo ninja install
 ```
 
 ## Why a new application?
