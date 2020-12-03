@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/hFokdsQ.png" width="64">
   <h1 align="center">Bottles (v.2)</h1>
   <p align="center">Easily manage wineprefix using environments</p>
-  <small>⚠️ This version is under development.</small>
+  <small>⚠️ This version is under development. [Here](https://github.com/bottlesdevs/Bottles/tree/v1) you can find the stable v1.</small>
 </div>
 
 <br/>
