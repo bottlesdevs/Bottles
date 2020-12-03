@@ -22,11 +22,13 @@ import sys
 import signal
 import gettext
 
-VERSION = '@VERSION@'
-pkgdatadir = '@pkgdatadir@'
-localedir = '@localedir@'
+APPDIR = os.environ['APPDIR']
+VERSION = '0.1.0'
+pkgdatadir = '/usr/local/share/bottles'
+localedir = '/usr/local/share/locale'
 
-sys.path.insert(1, pkgdatadir)
+sys.path.insert(1, "%s/%s" % (APPDIR, pkgdatadir))
+print("%s/%s" % (APPDIR, pkgdatadir))
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('bottles', localedir)
 
@@ -34,7 +36,7 @@ if __name__ == '__main__':
     import gi
 
     from gi.repository import Gio
-    resource = Gio.Resource.load(os.path.join(pkgdatadir, 'bottles.gresource'))
+    resource = Gio.Resource.load('%s/%s/bottles.gresource' % (APPDIR, pkgdatadir))
     resource._register()
 
     from bottles import main
