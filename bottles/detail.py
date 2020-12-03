@@ -70,17 +70,17 @@ class Detail(Gtk.Box):
         self.vbox.add(self.grid_1)
 
         # Drive C
-        self.button_drive_c = Gtk.Button.new_from_icon_name("folder", Gtk.IconSize.DIALOG)
+        self.button_drive_c = Gtk.Button.new_from_icon_name("folder-symbolic", Gtk.IconSize.DND)
         self.button_drive_c.connect("clicked", self.on_button_drive_c_clicked)
         self.grid_1.add(self.button_drive_c)
         
         # Winecfg
-        self.button_wine_cfg = Gtk.Button.new_from_icon_name("bottles_wine-winecfg", Gtk.IconSize.DIALOG)
+        self.button_wine_cfg = Gtk.Button.new_from_icon_name("applications-utilities-symbolic", Gtk.IconSize.DND)
         self.button_wine_cfg.connect("clicked", self.on_button_wine_cfg_clicked)
         self.grid_1.add(self.button_wine_cfg)
         
         # Winetricks
-        self.button_winetricks = Gtk.Button.new_from_icon_name("bottles_winetricks", Gtk.IconSize.DIALOG)
+        self.button_winetricks = Gtk.Button.new_from_icon_name("applications-science-symbolic", Gtk.IconSize.DND)
         self.button_winetricks.connect("clicked", self.on_button_winetricks_clicked)
         self.grid_1.add(self.button_winetricks)
         
@@ -107,17 +107,17 @@ class Detail(Gtk.Box):
         self.vbox.add(self.grid_3)
         
         # Terminal
-        self.button_terminal = Gtk.Button.new_from_icon_name("utilities-terminal", Gtk.IconSize.DIALOG)
+        self.button_terminal = Gtk.Button.new_from_icon_name("utilities-terminal-symbolic", Gtk.IconSize.DND)
         self.button_terminal.connect("clicked", self.on_button_terminal_clicked)
         self.grid_3.add(self.button_terminal)
         
         # Monitor
-        self.button_monitor = Gtk.Button.new_from_icon_name("utilities-system-monitor", Gtk.IconSize.DIALOG)
+        self.button_monitor = Gtk.Button.new_from_icon_name("video-display-symbolic", Gtk.IconSize.DND)
         self.button_monitor.connect("clicked", self.on_button_monitor_clicked)
         self.grid_3.add(self.button_monitor)
         
         # Settings
-        self.button_settings = Gtk.Button.new_from_icon_name("preferences-desktop", Gtk.IconSize.DIALOG)
+        self.button_settings = Gtk.Button.new_from_icon_name("applications-system-symbolic", Gtk.IconSize.DND)
         self.button_settings.connect("clicked", self.on_button_settings_clicked)
         self.grid_3.add(self.button_settings)
 
@@ -144,17 +144,17 @@ class Detail(Gtk.Box):
         self.vbox.add(self.grid_5)
         
         # Regedit
-        self.button_regedit = Gtk.Button.new_from_icon_name("dialog-password", Gtk.IconSize.DIALOG)
+        self.button_regedit = Gtk.Button.new_from_icon_name("dialog-password-symbolic", Gtk.IconSize.DND)
         self.button_regedit.connect("clicked", self.on_button_regedit_clicked)
         self.grid_5.add(self.button_regedit)
         
         # Uninstaller
-        self.button_uninstaller = Gtk.Button.new_from_icon_name("edittrash", Gtk.IconSize.DIALOG)
+        self.button_uninstaller = Gtk.Button.new_from_icon_name("user-trash-symbolic", Gtk.IconSize.DND)
         self.button_uninstaller.connect("clicked", self.on_button_uninstaller_clicked)
         self.grid_5.add(self.button_uninstaller)
         
         # Reboot
-        self.button_reboot = Gtk.Button.new_from_icon_name("system-reboot", Gtk.IconSize.DIALOG)
+        self.button_reboot = Gtk.Button.new_from_icon_name("system-reboot-symbolic", Gtk.IconSize.DND)
         self.button_reboot.connect("clicked", self.on_button_reboot_clicked)
         self.grid_5.add(self.button_reboot)
 
@@ -181,17 +181,17 @@ class Detail(Gtk.Box):
         self.vbox.add(self.grid_7)
         
         # Clone
-        self.button_clone = Gtk.Button.new_from_icon_name("edit-copy", Gtk.IconSize.DIALOG)
+        self.button_clone = Gtk.Button.new_from_icon_name("edit-copy-symbolic", Gtk.IconSize.DND)
         self.button_clone.connect("clicked", self.on_button_clone_clicked)
         self.grid_7.add(self.button_clone)
         
         # Run
-        self.button_run = Gtk.Button.new_from_icon_name("application-x-msi", Gtk.IconSize.DIALOG)
+        self.button_run = Gtk.Button.new_from_icon_name("insert-object-symbolic", Gtk.IconSize.DND)
         self.button_run.connect("clicked", self.on_button_run_clicked)
         self.grid_7.add(self.button_run)
         
         # Debug
-        self.button_debug = Gtk.Button.new_from_icon_name("system-run", Gtk.IconSize.DIALOG)
+        self.button_debug = Gtk.Button.new_from_icon_name("system-run-symbolic", Gtk.IconSize.DND)
         self.button_debug.connect("clicked", self.on_button_debug_clicked)
         self.grid_7.add(self.button_debug)
 
@@ -218,17 +218,17 @@ class Detail(Gtk.Box):
         self.vbox.add(self.grid_9)
         
         # Bug
-        self.button_bug = Gtk.Button.new_from_icon_name("bug", Gtk.IconSize.DIALOG)
+        self.button_bug = Gtk.Button.new_from_icon_name("object-select-symbolic", Gtk.IconSize.DND)
         self.button_bug.connect("clicked", self.on_button_bug_clicked)
         self.grid_9.add(self.button_bug)
         
         # Forums
-        self.button_forums = Gtk.Button.new_from_icon_name("internet-chat", Gtk.IconSize.DIALOG)
+        self.button_forums = Gtk.Button.new_from_icon_name("user-available-symbolic", Gtk.IconSize.DND)
         self.button_forums.connect("clicked", self.on_button_forums_clicked)
         self.grid_9.add(self.button_forums)
         
         # AppDB
-        self.button_appdb = Gtk.Button.new_from_icon_name("office-database", Gtk.IconSize.DIALOG)
+        self.button_appdb = Gtk.Button.new_from_icon_name("folder-saved-search-symbolic", Gtk.IconSize.DND)
         self.button_appdb.connect("clicked", self.on_button_appdb_clicked)
         self.grid_9.add(self.button_appdb)
 
