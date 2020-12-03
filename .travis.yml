@@ -28,13 +28,16 @@ script:
   - meson build
   - cd build
   - ninja
+  - sudo ninja install
 # - Appdir build
+  - mkdir -p appdir/usr/local/share/bottles
+  - cp /usr/local/share/bottles/bottles.gresource appdir/usr/local/share/bottles/bottles.gresource
   - mkdir -p appdir/usr/bin ; cp src/bottles ./appdir/usr/bin/
+  - cp -a /usr/local/share/bottles appdir/usr/local/share/bottles
+  - cp -a src/ui appdir/usr/bin/ui
   - mkdir -p appdir/usr/local/share/glib-2.0/schemas
   - cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/local/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
   - glib-compile-schemas appdir/usr/local/share/glib-2.0/schemas/ || echo "No schemas found."
-  - cp -a src/pages appdir/usr/bin/pages
-  - cp -a src/ui appdir/usr/bin/ui
   - mkdir -p appdir/usr/share/applications ; cp data/pm.mirko.bottles.desktop appdir/usr/share/applications/
   - cp -a ../AppRun appdir/AppRun
   - wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
