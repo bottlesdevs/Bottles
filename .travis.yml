@@ -30,9 +30,9 @@ script:
   - ninja
 # - Appdir build
   - mkdir -p appdir/usr/bin ; cp src/bottles ./appdir/usr/bin/
-  - mkdir -p appdir/usr/share/glib-2.0/schemas
-  - cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
-  - glib-compile-schemas appdir/usr/share/glib-2.0/schemas/ || echo "No schemas found."
+  - mkdir -p appdir/usr/local/share/glib-2.0/schemas
+  - cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/local/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
+  - glib-compile-schemas appdir/usr/local/share/glib-2.0/schemas/ || echo "No schemas found."
   - cp -a src/pages appdir/usr/bin/pages
   - cp -a src/ui appdir/usr/bin/ui
   - mkdir -p appdir/usr/share/applications ; cp data/pm.mirko.bottles.desktop appdir/usr/share/applications/
