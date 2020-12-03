@@ -15,3 +15,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Setup-Script
         run: chmod +x .ci/AppImage.sh && bash .ci/AppImage.sh
+        env:
+          ARCH: x86_64 
