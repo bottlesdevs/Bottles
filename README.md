@@ -33,11 +33,11 @@
 > Disclaimer: This is a development version (alpha), you will find bugs, black holes and monsters under the bed. Be careful.
 
 ```
-git clone https://github.com/brombinmirko/bottles
-cd bottles
-git checkout develop
-flatpak-builder --user --install build-dir pm.mirko.bottles.json
-flatpak run  pm.mirko.bottles
+Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous)
+cd Downloads
+chmod +x Bottles-commit-x86_64.AppImage
+./Bottles-commit-x86_64.AppImage
+And you're done!
 ```
 
 ## Why a new application?
