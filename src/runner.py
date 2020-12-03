@@ -433,7 +433,7 @@ class BottlesRunner:
         btn_list = self.window.page_create.btn_list
         iter = buffer_output.get_end_iter()
 
-        buffer_output.insert(iter, "The wine configuratin is being updated…\n")
+        buffer_output.insert(iter, "The wine configuration is being updated…\n")
         iter = buffer_output.get_end_iter()
 
         '''
