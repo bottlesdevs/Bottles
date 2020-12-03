@@ -32,6 +32,8 @@ script:
   - ninja
 # - Appdir build
   - mkdir -p appdir/usr/bin ; cp src/bottles ./appdir/usr/bin/
+  - cp -a src/pages ./appdir/usr/bin/pages
+  - cp -a src/ui ./appdir/usr/bin/ui
   - mkdir -p appdir/usr/share/applications ; cp data/pm.mirko.bottles.desktop ./appdir/usr/share/applications/
   - wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
   - chmod a+x linuxdeploy-x86_64.AppImage
