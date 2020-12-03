@@ -32,8 +32,9 @@
 ## Install
 > Disclaimer: This is a development version (alpha), you will find bugs, black holes and monsters under the bed. Be careful.
 
-```
 Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous)
+
+```
 cd Downloads
 chmod +x Bottles-commit-x86_64.AppImage
 ./Bottles-commit-x86_64.AppImage
