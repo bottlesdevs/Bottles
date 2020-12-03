@@ -32,7 +32,7 @@ script:
   - ninja
 # - Appdir build
   - mkdir -p appdir/usr/bin ; strip src/bottles ; cp src/bottles ./appdir/usr/bin/
-  - mkdir -p appdir/usr/share/applications ; cp src/data/pm.mirko.bottles.desktop ./appdir/usr/share/applications/
+  - mkdir -p appdir/usr/share/applications ; cp data/pm.mirko.bottles.desktop ./appdir/usr/share/applications/
 # - mkdir -p appdir/usr/share/icons/hicolor/256x256/apps ; cp src/data/icons/pm.mirko.bottles.svg ./appdir/usr/share/icons/hicolor/scalable/apps/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
