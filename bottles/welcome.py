@@ -36,6 +36,18 @@ class Welcome(Gtk.Box):
     def __init__(self, parent):
         Gtk.Box.__init__(self, False, 0)
         self.parent = parent
+        self.set_orientation(Gtk.Orientation.VERTICAL)
+
+        v2_infobar = Gtk.InfoBar()
+        v2_infobar.set_show_close_button(False)
+        v2_buttonbox = Gtk.ButtonBox()
+        v2_link = Gtk.Button(label="Information")
+        v2_link.message_type = Gtk.MessageType.INFO
+        v2_link.connect("clicked", self.go_to_v2)
+        v2_buttonbox.add(v2_link)
+        v2_infobar.get_content_area().add(Gtk.Label("Discover the future of Bottles!"))
+        v2_infobar.get_content_area().add(v2_buttonbox)
+        self.add(v2_infobar)
 
         try:
             current_locale, encoding = locale.getdefaultlocale()
@@ -57,6 +69,9 @@ class Welcome(Gtk.Box):
         self.welcome.connect("activated", self.on_welcome_activated)
 
         self.add(self.welcome)
+    
+    def go_to_v2(self, infobar):
+        webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues/39")
 
     def on_welcome_activated(self, widget, index):
         self.parent.parent.hbar.back.show()
