@@ -64,7 +64,7 @@ jobs:
           mv Bottles-alpha-x86_64.AppImage /home/runner/work/Bottles/Bottles/build/output/Bottles-alpha-x86_64.AppImage
       - uses: actions/upload-artifact@v2
         with:
-          name: Output
-          path: /home/runner/work/Bottles/Bottles/build/output
+          name: Bottles-alpha-x86_64.AppImage
+          path: /home/runner/work/Bottles/Bottles/build/output/Bottles-alpha-x86_64.AppImage
       
         
