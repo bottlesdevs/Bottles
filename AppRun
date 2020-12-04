@@ -6,7 +6,7 @@ export XDG_DATA_DIRS="$APPDIR/usr/share/:/usr/share/:$XDG_DATA_DIRS"
 
 if ! command -v python3 &> /dev/null
 then
-    python3 $APPDIR/usr/bin/bottles
-else
     python $APPDIR/usr/bin/bottles
+else
+    python3 $APPDIR/usr/bin/bottles
 fi
