@@ -61,8 +61,8 @@ Instead of use the Appimage you can choose to build your own Bottles from source
 #### Build
 ```
 mkdir build
-meson build
-ninja
+meson build && cd build
+ninja -j$(nproc)
 sudo ninja install
 ```
 
