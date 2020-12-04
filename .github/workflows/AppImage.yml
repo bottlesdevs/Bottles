@@ -52,15 +52,14 @@ jobs:
         working-directory: /home/runner/work/Bottles/Bottles/build
         env:
           ARCH: x86_64
+          VERSION: alpha
         run: |
-          VERSION=$GITHUB_RUN_ID
           wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
           chmod a+x linuxdeploy-x86_64.AppImage
           ./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/pm.mirko.bottles.svg --output appimage
-          
       - uses: actions/upload-artifact@v2
         with:
-          name: Bottles-${{ $GITHUB_RUN_ID }}-x86_64.AppImage
+          name: Bottles-alpha-x86_64.AppImage
           path: path/to/artifact/
       
         
