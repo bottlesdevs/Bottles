@@ -16,8 +16,7 @@ jobs:
       - name: Setup-Script
         run: |
           echo "[!] Updating Packages [!]"
-          sudo apt update -y 
-          sudo apt upgrade -y
+          sudo apt update -qq
           echo "[!] Installing Packages [!]"
           sudo apt install python3-pip python-dev build-essential
           sudo pip3 install --upgrade pip
