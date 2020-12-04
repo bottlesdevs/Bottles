@@ -9,12 +9,7 @@ before_install:
 script:
 - ls
 - dpkg-deb --build ../Bottles
-- mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
-
-after_success:
-- ls -l $PACKAGE_NAME_VERSION
-- md5sum $PACKAGE_NAME_VERSION
-- dpkg --contents $PACKAGE_NAME_VERSION
+- mv *.deb PACKAGE_NAME_VERSION.deb
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
