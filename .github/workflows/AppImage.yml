@@ -9,10 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
       - name: Packages Update
         run: |
           sudo apt update -qq
@@ -54,10 +51,16 @@ jobs:
       - name: AppImage creation
         working-directory: /home/runner/work/Bottles/Bottles/build
         env:
-          ARCH: x86_64 
+          ARCH: x86_64
         run: |
+          VERSION=$GITHUB_RUN_ID
           wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
           chmod a+x linuxdeploy-x86_64.AppImage
           ./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/pm.mirko.bottles.svg --output appimage
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Bottles-${{ $GITHUB_RUN_ID }}-x86_64.AppImage
+          path: path/to/artifact/
       
         
