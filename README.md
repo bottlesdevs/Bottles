@@ -14,6 +14,8 @@
    <a href="https://travis-ci.com/github/bottlesdevs/Bottles">
     <img src="https://travis-ci.com/bottlesdevs/Bottles.svg?branch=develop">
    </a>
+  <a href="https://github.com/bottlesdevs/Bottles/actions">
+    <img src="https://github.com/bottlesdevs/Bottles/workflows/AppImage/badge.svg")
 </div>
 
 <div align="center">
