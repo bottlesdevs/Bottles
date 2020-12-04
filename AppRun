@@ -4,5 +4,9 @@ export PATH="$APPDIR/usr/bin/:$PATH"
 export LD_LIBRARY_PATH="$APPDIR/usr/lib:$PATH"
 export XDG_DATA_DIRS="$APPDIR/usr/share/:/usr/share/:$XDG_DATA_DIRS"
 
-# maybe python should reference to python3
-python3 $APPDIR/usr/bin/bottles
+if ! command -v python3 &> /dev/null
+then
+    python3 $APPDIR/usr/bin/bottles
+else
+    python $APPDIR/usr/bin/bottles
+fi
