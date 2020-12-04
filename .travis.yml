@@ -1,12 +1,13 @@
 env:
   global:
-  - PACKAGE_NAME=com.github.mirkobrombin.bottles
+  - PACKAGE_NAME=bottles
 
 before_install:
 - export BUILD_VERSION=$(date "+%Y%m%d").$TRAVIS_BUILD_NUMBER
 - export PACKAGE_NAME_VERSION=$PACKAGE_NAME.$BUILD_VERSION.deb
 
 script:
+- ls
 - dpkg-deb --build $PACKAGE_NAME
 - mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
 
