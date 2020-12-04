@@ -6,7 +6,7 @@
 
 <br/>
 
-> Fearless? Try something new in the [develop](https://github.com/mirkobrombin/Bottles/tree/develop) branch.
+> Fearless? Try something [new](https://github.com/mirkobrombin/Bottles/tree/master).
 
 <br/>
 
