@@ -57,9 +57,14 @@ jobs:
           wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
           chmod a+x linuxdeploy-x86_64.AppImage
           ./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/pm.mirko.bottles.svg --output appimage
+      - name: Moving the artifact
+        working-directory: /home/runner/work/Bottles/Bottles/build
+        run: |
+          mkdir output
+          mv Bottles-alpha-x86_64.AppImage /home/runner/work/Bottles/Bottles/build/output/Bottles-alpha-x86_64.AppImage
       - uses: actions/upload-artifact@v2
         with:
           name: Bottles-alpha-x86_64.AppImage
-          path: /home/runner/work/Bottles/Bottles/build
+          path: /home/runner/work/Bottles/Bottles/build/output
       
         
