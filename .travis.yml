@@ -1,6 +1,7 @@
 env:
   global:
   - PACKAGE_NAME=bottles
+  - UPLOADTOOL_SUFFIX=v1
 
 before_install:
 - export BUILD_VERSION=$(date "+%Y%m%d").$TRAVIS_BUILD_NUMBER
