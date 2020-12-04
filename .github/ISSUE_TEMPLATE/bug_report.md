@@ -12,7 +12,7 @@ A clear and concise description of what the bug is.
 
 **Installation**
  - Method: [e.g. Appimage, Meson build, other]
- - Version [e.g. 877386d (find this in name file for Appimage]
+ - Version [e.g. 877386d (find this in name file for Appimage)]
 
 **To Reproduce**
 Steps to reproduce the behavior:
