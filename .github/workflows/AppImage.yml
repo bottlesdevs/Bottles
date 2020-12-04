@@ -18,7 +18,7 @@ jobs:
           sudo apt update -qq
       - name: Packages Install
         run: |
-          sudo apt install python3-pip python-dev build-essential
+          sudo apt install python3-pip python-dev build-essential gettext 
           sudo pip3 install --upgrade pip
           sudo pip3 install meson
           sudo pip3 install ninja
@@ -32,6 +32,7 @@ jobs:
           cd build
           ninja
       - name: Directory and files creation
+        working-directory: /home/runner/work/Bottles/Bottles/build
         run: |
           mkdir -p appdir/usr/local/share/bottles
           glib-compile-resources --sourcedir=../src/ui/ ../src/ui/bottles.gresource.xml --target=appdir/usr/local/share/bottles/bottles.gresource
@@ -42,13 +43,16 @@ jobs:
           mkdir -p appdir/usr/share/glib-2.0/schemas/
           cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
       - name: Glib Schemas compilation
+        working-directory: /home/runner/work/Bottles/Bottles/build
         run: |   
           glib-compile-schemas appdir/usr/share/glib-2.0/schemas/ || echo "No schemas found."
       - name: Directory and files creation
+        working-directory: /home/runner/work/Bottles/Bottles/build
         run: |
           mkdir -p appdir/usr/share/applications ; cp data/pm.mirko.bottles.desktop appdir/usr/share/applications/
           cp -a ../AppRun appdir/AppRun
       - name: AppImage creation
+        working-directory: /home/runner/work/Bottles/Bottles/build
         env:
           ARCH: x86_64 
         run: |
