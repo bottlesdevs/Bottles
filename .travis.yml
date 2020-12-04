@@ -8,7 +8,7 @@ before_install:
 
 script:
 - ls
-- dpkg-deb --build $PACKAGE_NAME
+- dpkg-deb --build ./
 - mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
 
 after_success:
