@@ -8,7 +8,7 @@ before_install:
 
 script:
 - ls
-- dpkg-deb --build ./
+- dpkg-deb --build ../Bottles
 - mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
 
 after_success:
