@@ -55,7 +55,7 @@ com.github.mirkobrombin.bottles
 ## Installation
 
 ### From AppCenter (elementary OS users)
-Go to the [AppCenter](https://appcenter.elementary.io/com.github.mirkobrombin.bottles") page.
+Go to the [AppCenter](https://appcenter.elementary.io/com.github.mirkobrombin.bottles) page.
 
 ### From .deb package
 Grab an updated release [here](https://github.com/mirkobrombin/Bottles/releases), then install:
