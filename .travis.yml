@@ -7,10 +7,9 @@ before_install:
 - export PACKAGE_NAME_VERSION=$PACKAGE_NAME.$BUILD_VERSION.deb
 
 script:
-- ls
 - dpkg-deb --build ../Bottles
 - ls
-- mv *.deb PACKAGE_NAME_VERSION.deb
+- mv *.deb $PACKAGE_NAME_VERSION.deb
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
