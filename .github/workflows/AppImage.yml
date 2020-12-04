@@ -13,22 +13,26 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Setup-Script
+      - name: Packages Update
         run: |
-          echo "[!] Updating Packages [!]"
           sudo apt update -qq
-          echo "[!] Installing Packages [!]"
+      - name: Packages Install
+        run: |
           sudo apt install python3-pip python-dev build-essential
           sudo pip3 install --upgrade pip
           sudo pip3 install meson
           sudo pip3 install ninja
-          echo "[!] Install Script [!]"
+      - name: Packages Install
+        run: |
           if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-          echo "[!] Build Phase [!]"
+      - name: Build enviroment setup
+        run: |
           mkdir build
           meson build
           cd build
           ninja
+      - name: Directory and files creation
+        run: |
           mkdir -p appdir/usr/local/share/bottles
           glib-compile-resources --sourcedir=../src/ui/ ../src/ui/bottles.gresource.xml --target=appdir/usr/local/share/bottles/bottles.gresource
           mkdir -p appdir/usr/bin ; cp src/bottles ./appdir/usr/bin/
@@ -37,11 +41,19 @@ jobs:
           rm appdir/usr/local/share/bottles/bottles/meson.build
           mkdir -p appdir/usr/share/glib-2.0/schemas/
           cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
+      - name: Glib Schemas compilation
+        run: |   
           glib-compile-schemas appdir/usr/share/glib-2.0/schemas/ || echo "No schemas found."
+      - name: Directory and files creation
+        run: |
           mkdir -p appdir/usr/share/applications ; cp data/pm.mirko.bottles.desktop appdir/usr/share/applications/
           cp -a ../AppRun appdir/AppRun
+      - name: AppImage creation
+        env:
+          ARCH: x86_64 
+        run: |
           wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
           chmod a+x linuxdeploy-x86_64.AppImage
           ./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/pm.mirko.bottles.svg --output appimage
-        env:
-          ARCH: x86_64 
+      
+        
