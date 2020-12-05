@@ -39,9 +39,11 @@ class BottlesListEntry(Gtk.Box):
     btn_browse = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
     btn_backup = Gtk.Template.Child()
+    btn_upgrade = Gtk.Template.Child()
+    btn_repair = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
-    btn_upgrade = Gtk.Template.Child()
+    icon_damaged = Gtk.Template.Child()
 
     def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
@@ -67,6 +69,7 @@ class BottlesListEntry(Gtk.Box):
         self.btn_upgrade.connect('pressed', self.upgrade_runner)
         self.btn_run.connect('pressed', self.run_executable)
         self.btn_browse.connect('pressed', self.run_browse)
+        self.btn_repair.connect('pressed', self.repair)
 
         '''
         Populate widgets with data
@@ -75,8 +78,23 @@ class BottlesListEntry(Gtk.Box):
         self.label_environment.set_text(self.configuration.get("Environment"))
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
+
         if self.configuration.get("Runner") != self.runner.get_latest_runner():
             self.btn_upgrade.set_visible(True)
+
+        if self.configuration.get("Broken"):
+            for w in [self.btn_repair,self.icon_damaged]:
+                w.set_visible(True)
+
+            for w in [self.btn_details,
+                      self.btn_upgrade,
+                      self.btn_run,
+                      self.btn_browse]:
+                w.set_sensitive(False)
+
+
+    def repair(self, widget):
+        self.runner.repair_bottle(self.configuration)
 
     '''
     Show a file chooser dialog to choose and run a Windows executable

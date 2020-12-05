@@ -360,9 +360,15 @@ class BottlesRunner:
         '''
         for bottle in bottles:
             bottle_name_path = bottle.split("/")[-2]
-            configuration_file = open('%s/bottle.json' % bottle)
-            configuration_file_json = json.load(configuration_file)
-            configuration_file.close()
+            try:
+                configuration_file = open('%s/bottle.json' % bottle)
+                configuration_file_json = json.load(configuration_file)
+                configuration_file.close()
+            except:
+                configuration_file_json = self.sample_configuration
+                configuration_file_json["Broken"] = True
+                configuration_file_json["Name"] = bottle_name_path
+                configuration_file_json["Environment"] = "Undefined"
 
             self.local_bottles[bottle_name_path] = configuration_file_json
 
@@ -589,6 +595,40 @@ class BottlesRunner:
     def delete_bottle(self, configuration):
         a = RunAsync('delete', self.async_delete_bottle, [configuration])
         a.start()
+
+    '''
+    Repair a bottle generating a new configuration
+    '''
+    def repair_bottle(self, configuration):
+        bottle_complete_path = "%s/%s" % (self.bottles_path,
+                                          configuration.get("Name"))
+
+        '''
+        Creating a new configuration, using path name as bottle name
+        and Custom as environment
+        '''
+        new_configuration = self.sample_configuration
+        new_configuration["Name"] = configuration.get("Name")
+        new_configuration["Runner"] = self.runners_available[0]
+        new_configuration["Path"] = configuration.get("Name")
+        new_configuration["Environment"] = "Custom"
+        new_configuration["Creation_Date"] = str(date.today())
+        new_configuration["Update_Date"] = str(date.today())
+
+        with open("%s/bottle.json" % bottle_complete_path,
+                  "w") as configuration_file:
+            json.dump(new_configuration, configuration_file, indent=4)
+            configuration_file.close()
+
+        '''
+        Re-index all bottles
+        '''
+        self.check_bottles()
+
+        '''
+        The re-populate the list in page_list
+        '''
+        self.window.page_list.update_bottles()
 
     '''
     Methods for add and remove values to register
