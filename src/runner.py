@@ -66,11 +66,13 @@ class BottlesRunner:
     bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
     dxvk_path = "%s/.local/share/bottles/dxvk" % Path.home()
 
+    '''
+    Do not implement dxgi.dll <https://github.com/doitsujin/dxvk/wiki/DXGI>
+    '''
     dxvk_dlls = [
         "d3d10core.dll",
         "d3d11.dll",
         "d3d9.dll",
-        "dxgi.dll"
     ]
 
     runners_available = []
