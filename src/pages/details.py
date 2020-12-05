@@ -17,6 +17,7 @@
 
 from gi.repository import Gtk
 
+import webbrowser
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/dependency-entry.ui')
 class BottlesDependencyEntry(Gtk.Box):
@@ -97,6 +98,7 @@ class BottlesDetails(Gtk.Box):
     combo_virtual_resolutions = Gtk.Template.Child()
     switch_pulseaudio_latency = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
+    btn_report_dependency = Gtk.Template.Child()
 
     def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
@@ -129,6 +131,7 @@ class BottlesDetails(Gtk.Box):
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
         self.btn_killall.connect('pressed', self.run_killall)
+        self.btn_report_dependency.connect('pressed', self.open_report_url)
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_esync.connect('state-set', self.toggle_esync)
         self.switch_fsync.connect('state-set', self.toggle_fsync)
@@ -311,3 +314,9 @@ class BottlesDetails(Gtk.Box):
 
     def run_killall(self, widget):
         self.runner.send_status(self.configuration, "kill")
+
+    '''
+    Open URLs
+    '''
+    def open_report_url(self, widget):
+        webbrowser.open_new_tab("https://github.com/bottlesdevs/dependencies/issues/new/choose")

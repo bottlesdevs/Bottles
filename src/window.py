@@ -235,10 +235,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
     Open URLs
     '''
     def open_translate_url(self, widget):
-        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/tree/develop")
+        webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/tree/develop")
 
     def open_support_url(self, widget):
-        webbrowser.open_new_tab("https://github.com/mirkobrombin/Bottles/issues")
+        webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues")
 
     '''
     Return to previous page
