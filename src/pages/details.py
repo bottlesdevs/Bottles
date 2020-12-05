@@ -28,8 +28,10 @@ class BottlesDependencyEntry(Gtk.Box):
     '''
     label_name = Gtk.Template.Child()
     label_description = Gtk.Template.Child()
+    btn_install = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
 
-    def __init__(self, window, name, description, **kwargs):
+    def __init__(self, window, configuration, dependency, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -41,12 +43,26 @@ class BottlesDependencyEntry(Gtk.Box):
         Common variables
         '''
         self.window = window
+        self.runner = window.runner
+        self.configuration = configuration
+        self.dependency = dependency
 
         '''
         Set dependency name to the label
         '''
-        self.label_name.set_text(name)
-        self.label_description.set_text(description)
+        self.label_name.set_text(dependency[0])
+        self.label_description.set_text(dependency[1].get("Description"))
+
+        '''
+        Connect signals to widgets
+        '''
+        self.btn_install.connect('pressed', self.install_dependency)
+
+    def install_dependency(self, widget):
+        widget.set_sensitive(False)
+        self.runner.install_dependency(self.configuration,
+                                       self.dependency,
+                                       widget)
 
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/details.ui')
@@ -121,17 +137,6 @@ class BottlesDetails(Gtk.Box):
         self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
         self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
 
-        '''
-        Add entries to list_dependencies
-        TODO: In BottlesDependencyEntry should check for installation status
-        from Bottle configuration `Installed_Dependencies`
-        '''
-        for dependency in self.runner.supported_dependencies.items():
-            self.list_dependencies.add(
-                BottlesDependencyEntry(self.window,
-                                       dependency[0],
-                                       dependency[1].get("description")))
-
     def set_configuration(self, configuration):
         self.configuration = configuration
 
@@ -159,6 +164,15 @@ class BottlesDetails(Gtk.Box):
         Unlock signals
         '''
         self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
+
+        '''
+        Add entries to list_dependencies
+        '''
+        for dependency in self.runner.supported_dependencies.items():
+            self.list_dependencies.add(
+                BottlesDependencyEntry(self.window,
+                                       self.configuration,
+                                       dependency))
 
     '''
     Methods to change environment variables

@@ -57,6 +57,8 @@ class BottlesRunner:
     repository_api = "https://api.github.com/repos/lutris/wine/releases"
     dxvk_repository = "https://github.com/doitsujin/dxvk/releases"
     dxvk_repository_api = "https://api.github.com/repos/doitsujin/dxvk/releases"
+    dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
+    dependencies_repository_index = "%s/index.json" % dependencies_repository
 
     '''
     Define local path for temp and runners
@@ -106,20 +108,7 @@ class BottlesRunner:
     TODO: fetch supported dependencies from an online repository
     for a more extensible support
     '''
-    supported_dependencies = {
-        "corefonts" : {
-            "description" : "Microsoft Core Fonts",
-            "url" : ""
-        },
-        "vcrun6" : {
-            "description" : "Visual C++ 6 SP4 libraries",
-            "url" : ""
-        },
-        "mfc40" : {
-            "description" : "Microsoft Foundation Classes from win7sp1",
-            "url" : ""
-        }
-    }
+    supported_dependencies = {}
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -133,6 +122,7 @@ class BottlesRunner:
 
         self.check_runners(install_latest=False)
         self.check_dxvk(install_latest=False)
+        self.fetch_dependencies()
         self.check_bottles()
 
     '''
@@ -143,6 +133,7 @@ class BottlesRunner:
         self.check_runners()
         self.check_dxvk()
         self.check_bottles()
+        self.fetch_dependencies()
 
     def checks(self):
         a = RunAsync('checks', self.async_checks)
@@ -205,11 +196,14 @@ class BottlesRunner:
         if component == "dxvk":
             repository = self.dxvk_repository
 
+        if component == "dependency":
+            repository = self.dependency_repository
+            download_url = "%s/%s" % (repository, file)
+        else:
+            download_url = "%s/download/%s/%s" % (repository, tag, file)
 
-        urllib.request.urlretrieve("%s/download/%s/%s" % (repository,
-                                                          tag,
-                                                          file),
-                                   "%s/%s" % (self.temp_path, file))
+
+        urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file))
 
     '''
     Localy install a new component (runner, dxvk, ..) async
@@ -290,6 +284,32 @@ class BottlesRunner:
             a.start()
 
     '''
+    Method for deoendency installations
+    '''
+    def async_install_dependency(self, args):
+        configuration, dependency, widget = args
+
+        '''
+        Send a notification for download start if the
+        user settings allow it
+        '''
+        if self.settings.get_boolean("notifications"):
+            self.window.send_notification("Download manager",
+                                          "Installing %s in %s bottle …" % (
+                                              dependency.get("Name"),
+                                              configuration.get("Name")
+                                          ),
+                                          "document-save-symbolic")
+
+    def install_dependency(self, configuration, dependency, widget):
+        if self.utils_conn.check_connection(True):
+            a = RunAsync('install_dependency',
+                         self.async_install_dependency, [configuration,
+                                                         dependency,
+                                                         widget])
+            a.start()
+
+    '''
     Check localy available runners
     '''
     def check_runners(self, install_latest=True):
@@ -347,6 +367,17 @@ class BottlesRunner:
                     file = releases[0]["assets"][0]["name"]
 
                     self.install_component("dxvk", tag, file)
+
+    '''
+    Fetch online dependencies
+    '''
+    def fetch_dependencies(self):
+        if self.utils_conn.check_connection():
+            with urllib.request.urlopen(self.dependencies_repository_index) as url:
+                index = json.loads(url.read())
+
+                for dependency in index.items():
+                    self.supported_dependencies[dependency[0]] = dependency[1]
 
     '''
     Check local bottles
