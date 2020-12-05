@@ -142,7 +142,42 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">2</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkImage" id="icon_damaged">
+        <property name="can-focus">False</property>
+        <property name="tooltip-text" translatable="yes">This bottle looks damaged.</property>
+        <property name="margin-end">5</property>
+        <property name="icon-name">dialog-warning-symbolic</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="btn_details">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+        <property name="tooltip-text" translatable="yes">Utility &amp; Preferences</property>
+        <property name="margin-start">5</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="icon-name">document-properties-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack-type">end</property>
+        <property name="position">3</property>
       </packing>
     </child>
     <child>
@@ -165,28 +200,6 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">3</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkButton" id="btn_details">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="receives-default">True</property>
-        <property name="margin-start">5</property>
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="tooltip-text" translatable="yes">Utility &amp; Preferences</property>
-            <property name="icon-name">document-properties-symbolic</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="pack-type">end</property>
         <property name="position">4</property>
       </packing>
     </child>
@@ -194,14 +207,34 @@
       <object class="GtkButton" id="btn_upgrade">
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
-        <property name="margin-left">5</property>
+        <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
         <property name="margin-start">5</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
             <property name="icon-name">software-update-available-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack-type">end</property>
+        <property name="position">5</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="btn_repair">
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+        <property name="tooltip-text" translatable="yes">This bottle looks damaged, the configuration file is missing. I can try to solve by creating a new configuration.</property>
+        <property name="margin-start">5</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="icon-name">mail-mark-junk-symbolic</property>
           </object>
         </child>
       </object>
