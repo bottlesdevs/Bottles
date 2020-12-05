@@ -197,8 +197,8 @@ class BottlesRunner:
             repository = self.dxvk_repository
 
         if component == "dependency":
-            repository = self.dependency_repository
-            download_url = "%s/%s" % (repository, file)
+            repository = self.dependencies_repository
+            download_url = tag
         else:
             download_url = "%s/download/%s/%s" % (repository, tag, file)
 
@@ -228,8 +228,7 @@ class BottlesRunner:
         if component == "dxvk":
             file_name = "dxvk-%s" % tag
 
-        download_entry = BottlesDownloadEntry(file_name=file_name,
-                                              stoppable=False)
+        download_entry = BottlesDownloadEntry(file_name=file_name, stoppable=False)
         self.window.box_downloads.add(download_entry)
 
         logging.info("Installing the `%s` component." % tag)
@@ -296,10 +295,48 @@ class BottlesRunner:
         if self.settings.get_boolean("notifications"):
             self.window.send_notification("Download manager",
                                           "Installing %s in %s bottle …" % (
-                                              dependency.get("Name"),
+                                              dependency[0],
                                               configuration.get("Name")
                                           ),
                                           "document-save-symbolic")
+
+        '''
+        Add a new entry to the download manager
+        '''
+        download_entry = BottlesDownloadEntry(dependency[0])
+        self.window.box_downloads.add(download_entry)
+
+        logging.info("Installing the `%s` dependency for `%s` bottle." % (
+            dependency[0], configuration.get("Name")
+        ))
+
+        '''
+        Run the progressbar update async
+        '''
+        a = RunAsync('pulse', download_entry.pulse)
+        a.start()
+
+        '''
+        Get dependency manifest from repository
+        '''
+        dependency_manifest = self.fetch_dependency_manifest(dependency[0])
+
+        '''
+        Execute installation steps
+        '''
+        for step in dependency_manifest.get("Steps").items():
+            if step[0] == "install_exe":
+                step_data = step[1]
+                self.download_component("dependency",
+                                        step_data.get("url"),
+                                        step_data.get("file_name"))
+                self.run_command(configuration, "%s/%s" % (
+                    self.temp_path, step_data.get("file_name")
+                ))
+        '''
+        Remove the entry from the download manager
+        '''
+        download_entry.destroy()
 
     def install_dependency(self, configuration, dependency, widget):
         if self.utils_conn.check_connection(True):
@@ -378,6 +415,18 @@ class BottlesRunner:
 
                 for dependency in index.items():
                     self.supported_dependencies[dependency[0]] = dependency[1]
+
+    '''
+    Fetch dependency manifest online
+    '''
+    def fetch_dependency_manifest(self, dependency_name):
+        if self.utils_conn.check_connection():
+            with urllib.request.urlopen("%s/%s.json" % (
+                self.dependencies_repository, dependency_name
+            )) as url:
+                return json.loads(url.read())
+
+            return False
 
     '''
     Check local bottles
