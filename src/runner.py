@@ -189,7 +189,7 @@ class BottlesRunner:
     '''
     Download a specific component release
     '''
-    def download_component(self, component, tag, file):
+    def download_component(self, component, tag, file, rename=False):
         if component == "runner":
             repository = self.repository
 
@@ -202,8 +202,25 @@ class BottlesRunner:
         else:
             download_url = "%s/download/%s/%s" % (repository, tag, file)
 
+        '''
+        Check if file already exists in temp path then do not
+        download it again
+        '''
+        file = rename if rename else file
+        if os.path.isfile("%s/%s" % (self.temp_path, file)):
+            logging.info("File `%s` already exists in temp path, skipping." % file)
+            return True
 
         urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file))
+
+        '''
+        The `rename` parameter mean that downloaded file should be
+        renamed to another name
+        '''
+        if rename:
+            logging.info("Renaming `%s` to `%s`." % (file, rename))
+            os.rename("%s/%s" % (self.temp_path, file),
+                      "%s/%s" % (self.temp_path, rename))
 
     '''
     Localy install a new component (runner, dxvk, ..) async
@@ -325,14 +342,37 @@ class BottlesRunner:
         Execute installation steps
         '''
         for step in dependency_manifest.get("Steps").items():
+            '''
+            Step type: delete_sys32_dlls
+            '''
+            if step[0] == "delete_sys32_dlls":
+                dlls = step[1]
+                for dll in dlls:
+                    try:
+                        logging.info("Removing `%s` dll from system32 for `%s` bottle" % (
+                            dll, configuration.get("Name")
+                        ))
+                        os.remove("%s/%s/drive_c/windows/system32/%s" % (
+                            self.bottles_path, configuration.get("Name"), dll))
+                    except:
+                        logging.info("`%s` dll not found for `%s` bottle, failed to remove from system32."% (
+                            dll, configuration.get("Name")
+                        ))
+            '''
+            Step type: install_exe
+            '''
             if step[0] == "install_exe":
                 step_data = step[1]
                 self.download_component("dependency",
                                         step_data.get("url"),
-                                        step_data.get("file_name"))
-                self.run_command(configuration, "%s/%s" % (
-                    self.temp_path, step_data.get("file_name")
-                ))
+                                        step_data.get("file_name"),
+                                        step_data.get("rename"))
+                if step_data.get("rename"):
+                    file = step_data.get("rename")
+                else:
+                    file = step_data.get("file_name")
+                self.run_command(configuration, "%s/%s /T C:\\windows\\Temp" % (
+                    self.temp_path, file))
         '''
         Remove the entry from the download manager
         '''
