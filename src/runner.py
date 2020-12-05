@@ -614,6 +614,7 @@ class BottlesRunner:
         new_configuration["Environment"] = "Custom"
         new_configuration["Creation_Date"] = str(date.today())
         new_configuration["Update_Date"] = str(date.today())
+        del new_configuration["Broken"]
 
         with open("%s/bottle.json" % bottle_complete_path,
                   "w") as configuration_file:
