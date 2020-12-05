@@ -136,6 +136,11 @@ class BottlesDetails(Gtk.Box):
         self.configuration = configuration
 
         '''
+        Block signals to prevent execute widget callbacks
+        '''
+        self.switch_dxvk.handler_block_by_func(self.toggle_dxvk)
+
+        '''
         Set widgets status from configuration
         '''
         parameters = self.configuration.get("Parameters")
@@ -149,6 +154,11 @@ class BottlesDetails(Gtk.Box):
         self.switch_virtual_desktop.set_active(parameters["virtual_desktop"])
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
         self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
+
+        '''
+        Unlock signals
+        '''
+        self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
 
     '''
     Methods to change environment variables
