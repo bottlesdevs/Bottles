@@ -28,6 +28,8 @@ script:
   - meson build
   - cd build
   - ninja
+  - ninja bottles-pot
+  - ninja bottles-update-po
 # - gresource
   - mkdir -p appdir/usr/local/share/bottles
   - glib-compile-resources --sourcedir=../src/ui/ ../src/ui/bottles.gresource.xml --target=appdir/usr/local/share/bottles/bottles.gresource
