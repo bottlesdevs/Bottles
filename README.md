@@ -8,6 +8,9 @@
 <br/>
 
 <div align="center">
+   <a href="https://gitlocalize.com/repo/5547/whole_project?utm_source=badge">
+    <img src="https://gitlocalize.com/repo/5547/whole_project/badge.svg" /> 
+   </a>
    <a href="https://git.mirko.pm/brombinmirko/Bottles/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
    </a>
