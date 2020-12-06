@@ -103,7 +103,7 @@ On December 3, 2020 we announced our intentions to migrate to Appimage as the
 official format for Bottles distribution. [Read more](https://github.com/bottlesdevs/Bottles/issues/42).
 
 ## Where is Winetricks?! :rage4:
-There is and will not be. Read [here](https://github.com/bottlesdevs/Bottles/issues/44) our reasons 
+There is not. There will never be. Read [here](https://github.com/bottlesdevs/Bottles/issues/44) our reasons 
 and how we want to revolutionize the way we install dependencies in Bottles.
 
 ## When? :dizzy_face:
