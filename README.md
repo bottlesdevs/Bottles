@@ -31,28 +31,34 @@
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-9.png" width="300">
 </div>
 
-## Install
-> Disclaimer: This is a development version (alpha), you will find bugs, black holes and monsters under the bed. Be careful.
-### AppImage
+## Help Bottles speak your language :speaking_head:
+Read [here](https://github.com/bottlesdevs/Bottles/tree/master/po) how to 
+translate Bottles in your language or how to help improve existing ones.
 
-Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous)
+## Install :wrench:
+> Disclaimer: This is a development version (alpha), you will find bugs, black 
+holes and monsters under the bed. Be careful.
 
+### AppImage :eyes:
+This is the official method by which we have chosen to distribute Bottles and it 
+is the only one we currently officially support..
+
+Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous), 
+then:
 ```
-cd Downloads
 chmod +x Bottles-commit-x86_64.AppImage
 ./Bottles-commit-x86_64.AppImage
-And you're done!
 ```
+And you're done!
 
-### Build with meson
+### Build with meson :construction_worker:
 Instead of use the Appimage you can choose to build your own Bottles from source.
 
 #### Requirements
-```
 - meson
 - ninja
 - python3
-```
+
 
 #### Build
 ```
@@ -62,7 +68,7 @@ ninja -j$(nproc)
 sudo ninja install
 ```
 
-## Why a new application?
+## Why a new application? :baby:
 Bottles was born in 2017 as a personal need. I needed a practical way to manage my wineprefixes. 
 I hate the idea of using applications that install me a version of wine for each application and 
 I decided to create this application, based on the concept of using one or more wine prefixes as 
@@ -77,7 +83,7 @@ dependencies and parameters necessary to run a game. On the other hand, we have 
 not up to date) that require environments and configurations different from those used in gaming. 
 Hence the idea of managing separate environments.
 
-## Why not just POL or Lutris?
+## Why not just POL or Lutris? :nerd_face:
 Because they are similar but different applications. I want to create environments that contain 
 more applications and games and where the wine version can be updated.
 
@@ -92,18 +98,23 @@ to open Bottles for each operation.
 Bottles is close to what wineprefix means, since v.2 it provides a simplified method to generate 
 environment-based bottles and thanks to other tools it simplifies the management but nothing more.
 
-## Why Appimage?
-On December 3, 2020 we announced our intentions to migrate to Appimage as the official format for Bottles distribution. [Read more](https://github.com/bottlesdevs/Bottles/issues/42).
+## Why Appimage? :balloon:
+On December 3, 2020 we announced our intentions to migrate to Appimage as the 
+official format for Bottles distribution. [Read more](https://github.com/bottlesdevs/Bottles/issues/42).
 
-## When?
+## Where is Winetricks?! :rage4:
+There is and will not be. Read [here](https://github.com/bottlesdevs/Bottles/issues/44) our reasons 
+and how we want to revolutionize the way we install dependencies in Bottles.
+
+## When? :dizzy_face:
 Idk. Really. Keep an eye on the develop branch, sooner or later there will be an almost stable 
 release
 
-## Older versions will be deprecated?
+## Older versions will be deprecated? :sunglasses:
 Maybe in the future, not now.
 I will keep both branches updated for a long time.
 
-## Backward compatibility
+## Backward compatibility :triumph:
 Probably yes. I would like to allow the conversion of the old wine prefixes in v.2. 
 
 Unlike the previous versions, now the bottles are saved with JSON sheets containing all the 
