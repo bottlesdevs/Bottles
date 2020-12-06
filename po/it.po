@@ -1,0 +1,448 @@
+# Italian translations for bottles package.
+# Copyright (C) 2020 THE bottles'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the bottles package.
+# Automatically generated, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bottles\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-06 16:43+0100\n"
+"PO-Revision-Date: 2020-12-06 16:43+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/pm.mirko.bottles.desktop.in:3 data/pm.mirko.bottles.appdata.xml.in:6
+#: src/ui/window.ui:271
+msgid "Bottles"
+msgstr ""
+
+#: data/pm.mirko.bottles.desktop.in:4
+msgid "Easily manage wineprefix"
+msgstr ""
+
+#: data/pm.mirko.bottles.appdata.xml.in:7
+msgid "Easily manage your Wine bottles"
+msgstr ""
+
+#: data/pm.mirko.bottles.appdata.xml.in:8
+msgid "Mirko Brombin"
+msgstr ""
+
+#: data/pm.mirko.bottles.appdata.xml.in:10
+msgid "Easily manage your Wine bottles (wineprefix)"
+msgstr ""
+
+#: data/pm.mirko.bottles.gschema.xml:6 src/ui/window.ui:103
+msgid "Dark theme"
+msgstr ""
+
+#: data/pm.mirko.bottles.gschema.xml:7
+msgid "Enable the dark theme."
+msgstr ""
+
+#: data/pm.mirko.bottles.gschema.xml:11
+msgid "Notifications"
+msgstr ""
+
+#: data/pm.mirko.bottles.gschema.xml:12
+msgid "Enable notifications."
+msgstr ""
+
+#: data/pm.mirko.bottles.gschema.xml:16
+msgid "Startup view"
+msgstr ""
+
+#: data/pm.mirko.bottles.gschema.xml:17
+msgid "Choose which view should be loaded on application startup."
+msgstr ""
+
+#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:277
+#: src/ui/window.ui:292 src/ui/window.ui:310
+msgid "New bottle"
+msgstr ""
+
+#: src/ui/add.ui:41
+msgid "Choose the environment"
+msgstr ""
+
+#: src/ui/add.ui:94
+msgid "Gaming"
+msgstr ""
+
+#: src/ui/add.ui:151
+msgid "Software"
+msgstr ""
+
+#: src/ui/add.ui:208
+msgid "Custom"
+msgstr ""
+
+#: src/ui/add.ui:245
+msgid "Environment description"
+msgstr ""
+
+#: src/ui/add.ui:265
+msgid "Create new bottle"
+msgstr ""
+
+#: src/ui/add.ui:269
+msgid "Create a new bottle with the selected environment"
+msgstr ""
+
+#: src/ui/add.ui:293
+msgid "Import from backup"
+msgstr ""
+
+#: src/ui/add.ui:298
+msgid "Backups are not yet available."
+msgstr ""
+
+#: src/ui/add-details.ui:40
+msgid "Special characters are not allowed!"
+msgstr ""
+
+#: src/ui/add-details.ui:41
+msgid "Name your bottle"
+msgstr ""
+
+#: src/ui/add-details.ui:53
+msgid "I need to choose a custom path"
+msgstr ""
+
+#: src/ui/add-details.ui:58
+msgid "Custom path are not supported in this version"
+msgstr ""
+
+#: src/ui/add-details.ui:75
+msgid "/opt/MyNewBottle"
+msgstr ""
+
+#: src/ui/add-details.ui:105
+msgid "Cancel"
+msgstr ""
+
+#: src/ui/add-details.ui:117
+msgid "Save bottle"
+msgstr ""
+
+#: src/ui/details.ui:34 src/ui/list-entry.ui:169
+msgid "Bottle name"
+msgstr ""
+
+#: src/ui/details.ui:54
+msgid "64 bit"
+msgstr ""
+
+#: src/ui/details.ui:124
+msgid "Winecfg"
+msgstr ""
+
+#: src/ui/details.ui:147
+msgid ""
+"Winetricks will be removed from Bottles in favor of an integrated system for "
+"installing libraries and dependencies. Use the `Dependencies` tab instead.\n"
+"\n"
+"This choice is intended to use as few external tools as possible and to "
+"provide a complete user experience in Bottles."
+msgstr ""
+
+#: src/ui/details.ui:175
+msgid "Winetricks"
+msgstr ""
+
+#: src/ui/details.ui:222
+msgid "Debug"
+msgstr ""
+
+#: src/ui/details.ui:269
+msgid "Run .exe"
+msgstr ""
+
+#: src/ui/details.ui:316
+msgid "Task manager"
+msgstr ""
+
+#: src/ui/details.ui:363
+msgid "Control panel"
+msgstr ""
+
+#: src/ui/details.ui:410
+msgid "Uninstaller"
+msgstr ""
+
+#: src/ui/details.ui:457
+msgid "CMD"
+msgstr ""
+
+#: src/ui/details.ui:504
+msgid "Regedit"
+msgstr ""
+
+#: src/ui/details.ui:551 src/ui/list-entry.ui:40
+msgid "Browse C:"
+msgstr ""
+
+#: src/ui/details.ui:601
+msgid "Simulates a system shutdown (this does not terminate processes)."
+msgstr ""
+
+#: src/ui/details.ui:626
+msgid "Shutdown"
+msgstr ""
+
+#: src/ui/details.ui:648
+msgid "Simulates a system reboot (this does not terminate processes)."
+msgstr ""
+
+#: src/ui/details.ui:673
+msgid "Reboot"
+msgstr ""
+
+#: src/ui/details.ui:695
+msgid "Kill all processes running in this Bottle."
+msgstr ""
+
+#: src/ui/details.ui:720
+msgid "Kill all processes"
+msgstr ""
+
+#: src/ui/details.ui:767
+msgid "Bottle size:"
+msgstr ""
+
+#: src/ui/details.ui:786
+msgid "X"
+msgstr ""
+
+#: src/ui/details.ui:805
+msgid "Remaining disk space:"
+msgstr ""
+
+#: src/ui/details.ui:822
+msgid "Y"
+msgstr ""
+
+#: src/ui/details.ui:846
+msgid "X of Y"
+msgstr ""
+
+#: src/ui/details.ui:861
+msgid "Utility"
+msgstr ""
+
+#: src/ui/details.ui:884
+msgid "DXVK/Synchronization"
+msgstr ""
+
+#: src/ui/details.ui:904
+msgid ""
+"Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
+"translating requests to Vulkan."
+msgstr ""
+
+#: src/ui/details.ui:905
+msgid "DXVK/VKD3D for Direct3D"
+msgstr ""
+
+#: src/ui/details.ui:941
+msgid ""
+"Enable eventfd based synchronization to increase performance for multi-core "
+"processors."
+msgstr ""
+
+#: src/ui/details.ui:942
+msgid "Esync (eventfd synchronization)"
+msgstr ""
+
+#: src/ui/details.ui:978
+msgid ""
+"Enable futex based synchronization to increase performance for multi-core "
+"processors."
+msgstr ""
+
+#: src/ui/details.ui:979
+msgid "Fsync (futex synchronization)"
+msgstr ""
+
+#: src/ui/details.ui:1022
+msgid "GPU"
+msgstr ""
+
+#: src/ui/details.ui:1042
+msgid ""
+"In laptops with two GPUs (Intel+NVIDIA or AMD+Nvidia or Intel+AMD), select "
+"this to use the discrete card."
+msgstr ""
+
+#: src/ui/details.ui:1043
+msgid "Use Discrete Graphics Card"
+msgstr ""
+
+#: src/ui/details.ui:1086
+msgid "Desktop virtualization"
+msgstr ""
+
+#: src/ui/details.ui:1106 src/ui/details.ui:1143
+msgid "Virtualize a desktop where to spawn all Windows applications."
+msgstr ""
+
+#: src/ui/details.ui:1107
+msgid "Virtual Desktop"
+msgstr ""
+
+#: src/ui/details.ui:1144
+msgid "Virtual Desktop resolution"
+msgstr ""
+
+#: src/ui/details.ui:1159
+msgid "1920x1080"
+msgstr ""
+
+#: src/ui/details.ui:1160
+msgid "1680x1050"
+msgstr ""
+
+#: src/ui/details.ui:1161
+msgid "1440x900"
+msgstr ""
+
+#: src/ui/details.ui:1162
+msgid "1280x1024"
+msgstr ""
+
+#: src/ui/details.ui:1163
+msgid "1280x800"
+msgstr ""
+
+#: src/ui/details.ui:1164
+msgid "1280x720"
+msgstr ""
+
+#: src/ui/details.ui:1165
+msgid "1024x768"
+msgstr ""
+
+#: src/ui/details.ui:1166
+msgid "800x600"
+msgstr ""
+
+#: src/ui/details.ui:1167
+msgid "640x480"
+msgstr ""
+
+#: src/ui/details.ui:1199
+msgid "Audio"
+msgstr ""
+
+#: src/ui/details.ui:1219
+msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
+msgstr ""
+
+#: src/ui/details.ui:1220
+msgid "Reduce PulseAudio latency"
+msgstr ""
+
+#: src/ui/details.ui:1263
+msgid "DLL overrides"
+msgstr ""
+
+#: src/ui/details.ui:1278
+msgid "Syntax: key,value|key,value|.."
+msgstr ""
+
+#: src/ui/details.ui:1295 src/ui/window.ui:146
+msgid "Preferences"
+msgstr ""
+
+#: src/ui/details.ui:1316
+msgid ""
+"The following packages are downloaded from external sources (mainly from "
+"Microsoft)."
+msgstr ""
+
+#: src/ui/details.ui:1378
+msgid "Open a issue"
+msgstr ""
+
+#: src/ui/details.ui:1400
+msgid "Found a broken dependency?"
+msgstr ""
+
+#: src/ui/details.ui:1426
+msgid ""
+"Install dependencies (like corefonts, vcrun6, ..)  for better software "
+"compatibility."
+msgstr ""
+
+#: src/ui/details.ui:1427
+msgid "Dependencies"
+msgstr ""
+
+#: src/ui/download-entry.ui:19
+msgid "Runner x.y"
+msgstr ""
+
+#: src/ui/download-entry.ui:53
+msgid "Cancel download"
+msgstr ""
+
+#: src/ui/list-entry.ui:14
+msgid "Destroy bottle"
+msgstr ""
+
+#: src/ui/list-entry.ui:64
+msgid "Backups are not supported in this version"
+msgstr ""
+
+#: src/ui/list-entry.ui:87
+msgid "Run .exe in this bottle"
+msgstr ""
+
+#: src/ui/list-entry.ui:110
+msgid "Utility & Preferences"
+msgstr ""
+
+#: src/ui/list-entry.ui:131
+msgid "Upgrade runner to the latest localy installed"
+msgstr ""
+
+#: src/ui/list-entry.ui:151
+msgid "This bottle looks damaged."
+msgstr ""
+
+#: src/ui/list-entry.ui:192
+msgid "Environment"
+msgstr ""
+
+#: src/ui/list-entry.ui:231
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+
+#: src/ui/window.ui:35
+msgid "Download preferences"
+msgstr ""
+
+#: src/ui/window.ui:61
+msgid "Help translate"
+msgstr ""
+
+#: src/ui/window.ui:74
+msgid "Support Bottles"
+msgstr ""
+
+#: src/ui/window.ui:170
+msgid "About Bottles"
+msgstr ""
+
+#: src/ui/window.ui:238
+msgid ""
+"This is a development release. Please report bugs in the GitHub repository."
+msgstr ""
