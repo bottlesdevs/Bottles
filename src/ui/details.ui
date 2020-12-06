@@ -9,7 +9,7 @@
     <property name="vexpand">True</property>
     <property name="orientation">vertical</property>
     <child>
-      <object class="GtkNotebook">
+      <object class="GtkNotebook" id="notebook_details">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <child>
@@ -1308,11 +1308,15 @@ This choice is intended to use as few external tools as possible and to provide 
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">start</property>
                 <property name="margin-start">10</property>
                 <property name="margin-end">10</property>
-                <property name="margin-top">10</property>
-                <property name="margin-bottom">10</property>
+                <property name="margin-top">5</property>
+                <property name="margin-bottom">5</property>
                 <property name="label" translatable="yes">The following packages are downloaded from external sources (mainly from Microsoft).</property>
+                <attributes>
+                  <attribute name="scale" value="0.80000000000000004"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1332,22 +1336,34 @@ This choice is intended to use as few external tools as possible and to provide 
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="list_dependencies">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="orientation">vertical</property>
+                <property name="can-focus">True</property>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
+                  <object class="GtkViewport">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkBox" id="list_dependencies">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
                 </child>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">2</property>
               </packing>
