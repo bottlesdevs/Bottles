@@ -373,6 +373,11 @@ class BottlesRunner:
                     file = step_data.get("file_name")
                 self.run_command(configuration, "%s/%s /T C:\\windows\\Temp" % (
                     self.temp_path, file))
+
+            '''
+            TODO: Add dependency to the bottle configuration
+            '''
+
         '''
         Remove the entry from the download manager
         '''
