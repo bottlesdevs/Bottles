@@ -210,7 +210,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         for widget in [self.btn_back,
                        self.btn_add,
                        self.btn_list,
-                       self.btn_downloads,
+                       self.btn_download_preferences,
                        self.btn_menu]:
             widget.set_sensitive(status)
 
@@ -226,6 +226,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     def set_previous_page_status(self):
         current_page = self.stack_main.get_visible_child_name()
+        if current_page in ["page_add_details", "page_create"]:
+            current_page = "page_add"
 
         if self.previous_page != current_page:
             self.previous_page = current_page
@@ -258,8 +260,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.page_preferences.notebook_preferences.set_current_page(view)
         self.stack_main.set_visible_child_name("page_preferences")
 
-    def show_download_preferences_view(self, widget):
+    def show_download_preferences_view(self, widget=False):
         self.show_preferences_view(widget, view=1)
+
+    def show_runners_preferences_view(self, widget=False):
+        self.show_preferences_view(widget, view=2)
 
     def show_about_dialog(self, widget):
         BottlesAboutDialog().show_all()
