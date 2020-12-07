@@ -153,23 +153,26 @@ class BottlesRunner:
     Check if standard directories not exists, then create
     '''
     def check_runners_dir(self):
-        if not os.path.isdir(self.runners_path):
-            logging.info("Runners path doens't exist, creating now.")
-            os.makedirs(self.runners_path, exist_ok=True)
+        try:
+            if not os.path.isdir(self.runners_path):
+                logging.info("Runners path doens't exist, creating now.")
+                os.makedirs(self.runners_path, exist_ok=True)
 
-        if not os.path.isdir(self.bottles_path):
-            logging.info("Bottles path doens't exist, creating now.")
-            os.makedirs(self.bottles_path, exist_ok=True)
+            if not os.path.isdir(self.bottles_path):
+                logging.info("Bottles path doens't exist, creating now.")
+                os.makedirs(self.bottles_path, exist_ok=True)
 
-        if not os.path.isdir(self.dxvk_path):
-            logging.info("Dxvk path doens't exist, creating now.")
-            os.makedirs(self.dxvk_path, exist_ok=True)
+            if not os.path.isdir(self.dxvk_path):
+                logging.info("Dxvk path doens't exist, creating now.")
+                os.makedirs(self.dxvk_path, exist_ok=True)
 
-        if not os.path.isdir(self.temp_path):
-            logging.info("Temp path doens't exist, creating now.")
-            os.makedirs(self.temp_path, exist_ok=True)
-        else:
-            self.clear_temp()
+            if not os.path.isdir(self.temp_path):
+                logging.info("Temp path doens't exist, creating now.")
+                os.makedirs(self.temp_path, exist_ok=True)
+            else:
+                self.clear_temp()
+        except:
+            return False
 
         return True
 
@@ -177,11 +180,8 @@ class BottlesRunner:
     Extract a component archive
     '''
     def extract_component(self, component, archive):
-        if component == "runner":
-            path = self.runners_path
-
-        if component == "dxvk":
-            path = self.dxvk_path
+        if component == "runner": path = self.runners_path
+        if component == "dxvk": path = self.dxvk_path
 
         archive = tarfile.open("%s/%s" % (self.temp_path, archive))
         archive.extractall(path)
@@ -190,12 +190,8 @@ class BottlesRunner:
     Download a specific component release
     '''
     def download_component(self, component, tag, file, rename=False):
-        if component == "runner":
-            repository = self.repository
-
-        if component == "dxvk":
-            repository = self.dxvk_repository
-
+        if component == "runner": repository = self.repository
+        if component == "dxvk": repository = self.dxvk_repository
         if component == "dependency":
             repository = self.dependencies_repository
             download_url = tag
@@ -208,7 +204,7 @@ class BottlesRunner:
         '''
         file = rename if rename else file
         if os.path.isfile("%s/%s" % (self.temp_path, file)):
-            logging.info("File `%s` already exists in temp path, skipping." % file)
+            logging.info("File `%s` already exists in temp, skipping." % file)
             return True
 
         urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file))
@@ -240,10 +236,8 @@ class BottlesRunner:
         '''
         Add a new entry to the download manager
         '''
-        if component == "runner":
-            file_name = tag
-        if component == "dxvk":
-            file_name = "dxvk-%s" % tag
+        if component == "runner": file_name = tag
+        if component == "dxvk": file_name = "dxvk-%s" % tag
 
         download_entry = BottlesDownloadEntry(file_name=file_name, stoppable=False)
         self.window.box_downloads.add(download_entry)
@@ -253,8 +247,7 @@ class BottlesRunner:
         '''
         Run the progressbar update async
         '''
-        a = RunAsync('pulse', download_entry.pulse)
-        a.start()
+        a = RunAsync('pulse', download_entry.pulse);a.start()
 
         '''
         Download and extract the component archive
@@ -296,7 +289,9 @@ class BottlesRunner:
 
     def install_component(self, component,  tag, file):
         if self.utils_conn.check_connection(True):
-            a = RunAsync('install', self.async_install_component, [component, tag, file])
+            a = RunAsync('install', self.async_install_component, [component,
+                                                                   tag,
+                                                                   file])
             a.start()
 
     '''
@@ -335,8 +330,7 @@ class BottlesRunner:
         '''
         Run the progressbar update async
         '''
-        a = RunAsync('pulse', download_entry.pulse)
-        a.start()
+        a = RunAsync('pulse', download_entry.pulse);a.start()
 
         '''
         Get dependency manifest from repository
@@ -551,8 +545,7 @@ class BottlesRunner:
     '''
     def update_configuration(self, configuration, key, value, is_parameter=False):
         logging.info("Setting `%s` parameter to `%s` for `%s` Bottle…" % (
-            key, value, configuration.get("Name")
-        ))
+            key, value, configuration.get("Name")))
 
         if configuration.get("Custom_Path"):
             bottle_complete_path = configuration.get("Path")
@@ -602,8 +595,7 @@ class BottlesRunner:
         '''
         Run the progressbar update async
         '''
-        a = RunAsync('pulse', self.window.page_create.pulse)
-        a.start()
+        a = RunAsync('pulse', self.window.page_create.pulse);a.start()
 
         '''
         Define reusable variables
@@ -708,8 +700,7 @@ class BottlesRunner:
         path = Path(path)
         size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
 
-        if human:
-            return self.get_human_size(size)
+        if human: return self.get_human_size(size)
 
         return size
 
@@ -764,8 +755,7 @@ class BottlesRunner:
         shutil.rmtree(path)
 
     def delete_bottle(self, configuration):
-        a = RunAsync('delete', self.async_delete_bottle, [configuration])
-        a.start()
+        a = RunAsync('delete', self.async_delete_bottle, [configuration]);a.start()
 
     '''
     Repair a bottle generating a new configuration
@@ -812,23 +802,19 @@ class BottlesRunner:
     '''
     Methods for add and remove values to register
     '''
-    def reg_delete(self, configuration, key, value):
-        logging.info("Removing value `%s` for key `%s` in register for `%s` bottle." % (
-            value, key, configuration.get("Name")
-        ))
-
-        self.run_command(configuration, "reg delete '%s' /v %s /f" % (
-            key, value
-        ))
-
     def reg_add(self, configuration, key, value, data):
         logging.info("Adding value `%s` with data `%s` for key `%s` in register for `%s` bottle." % (
-            value, data, key, configuration.get("Name")
-        ))
+            value, data, key, configuration.get("Name")))
 
         self.run_command(configuration, "reg add '%s' /v %s /d %s /f" % (
-            key, value, data
-        ))
+            key, value, data))
+
+    def reg_delete(self, configuration, key, value):
+        logging.info("Removing value `%s` for key `%s` in register for `%s` bottle." % (
+            value, key, configuration.get("Name")))
+
+        self.run_command(configuration, "reg delete '%s' /v %s /f" % (
+            key, value))
 
     '''
     Methods for install and remove dxvk using official setup script
@@ -838,17 +824,14 @@ class BottlesRunner:
     def install_dxvk(self, configuration, remove=False):
         logging.info("Installing dxvk for `%s` bottle." % configuration.get("Name"))
 
-        if remove:
-            option = "uninstall"
-        else:
-            option = "install"
+        option = "uninstall" if remove else "install"
 
         command = 'WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option}'.format (
             path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
             runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
             dxvk_setup = "%s/%s/setup_dxvk.sh" % (self.dxvk_path, self.dxvk_available[0]),
-            option = option
-        )
+            option = option)
+
         return subprocess.Popen(command, shell=True)
 
     def remove_dxvk(self, configuration):
@@ -860,11 +843,7 @@ class BottlesRunner:
     Method for override dll in system32/syswow64 paths
     '''
     def dll_override(self, configuration, arch, dlls, source, revert=False):
-        if arch == 32:
-            arch = "system32"
-        else:
-            arch = "syswow64"
-
+        arch = "system32" if arch == 32 else "syswow64"
         path = "%s/%s/drive_c/windows/%s" % (self.bottles_path,
                                              configuration.get("Path"),
                                              arch)
