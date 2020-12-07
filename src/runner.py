@@ -771,6 +771,8 @@ class BottlesRunner:
     Repair a bottle generating a new configuration
     '''
     def repair_bottle(self, configuration):
+        logging.info("Trying to repair the `%s` bottle.." % configuration.get("Name"))
+
         bottle_complete_path = "%s/%s" % (self.bottles_path,
                                           configuration.get("Name"))
 
@@ -791,6 +793,11 @@ class BottlesRunner:
                   "w") as configuration_file:
             json.dump(new_configuration, configuration_file, indent=4)
             configuration_file.close()
+
+        '''
+        Execute wineboot in bottle trying to generate missing files
+        '''
+        self.run_wineboot(new_configuration)
 
         '''
         Re-index all bottles
@@ -888,6 +895,10 @@ class BottlesRunner:
         file_path = file_path.replace(" ", "\ ")
 
         self.run_command(configuration, file_path)
+
+    def run_wineboot(self, configuration):
+        logging.info("Running wineboot on the wineprefix…")
+        self.run_command(configuration, "wineboot")
 
     def run_winecfg(self, configuration):
         logging.info("Running winecfg on the wineprefix…")
