@@ -58,12 +58,26 @@ class BottlesDependencyEntry(Gtk.Box):
         Connect signals to widgets
         '''
         self.btn_install.connect('pressed', self.install_dependency)
+        self.btn_remove.connect('pressed', self.remove_dependency)
+
+        '''
+        Set widgets status from configuration
+        '''
+        if dependency[0] in self.configuration.get("Installed_Dependencies"):
+            self.btn_install.set_visible(False)
+            self.btn_remove.set_visible(True)
 
     def install_dependency(self, widget):
         widget.set_sensitive(False)
         self.runner.install_dependency(self.configuration,
                                        self.dependency,
-                                       widget)
+                                       self)
+
+    def remove_dependency(self, widget):
+        widget.set_sensitive(False)
+        self.runner.remove_dependency(self.configuration,
+                                      self.dependency,
+                                      self)
 
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/details.ui')
@@ -171,6 +185,8 @@ class BottlesDetails(Gtk.Box):
         '''
         Add entries to list_dependencies
         '''
+        for w in self.list_dependencies: w.destroy()
+
         for dependency in self.runner.supported_dependencies.items():
             self.list_dependencies.add(
                 BottlesDependencyEntry(self.window,

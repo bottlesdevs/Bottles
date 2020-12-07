@@ -98,8 +98,7 @@ class BottlesPreferences(Gtk.Box):
     Add runners to the list_runners
     '''
     def update_runners(self):
-        for runner in self.list_runners.get_children():
-            runner.destroy()
+        for runner in self.list_runners.get_children(): runner.destroy()
 
         for runner in self.window.runner.runners_available:
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
@@ -108,8 +107,7 @@ class BottlesPreferences(Gtk.Box):
     Add dxvk to the list_dxvk
     '''
     def update_dxvk(self):
-        for dxvk in self.list_dxvk.get_children():
-            dxvk.destroy()
+        for dxvk in self.list_dxvk.get_children(): dxvk.destroy()
 
         for dxvk in self.window.runner.dxvk_available:
             self.list_dxvk.add(BottlesRunnerEntry(self.window, dxvk))

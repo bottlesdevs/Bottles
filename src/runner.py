@@ -306,6 +306,11 @@ class BottlesRunner:
         configuration, dependency, widget = args
 
         '''
+        Set UI to not usable
+        '''
+        self.window.set_usable_ui(False)
+
+        '''
         Send a notification for download start if the
         user settings allow it
         '''
@@ -374,14 +379,32 @@ class BottlesRunner:
                 self.run_command(configuration, "%s/%s /T C:\\windows\\Temp" % (
                     self.temp_path, file))
 
-            '''
-            TODO: Add dependency to the bottle configuration
-            '''
+        '''
+        Add dependency to the bottle configuration
+        '''
+        if configuration.get("Installed_Dependencies"):
+            dependencies = configuration["Installed_Dependencies"]+[dependency[0]]
+        else:
+            dependencies = [dependency[0]]
+        self.update_configuration(configuration,
+                                  "Installed_Dependencies",
+                                    dependencies)
 
         '''
         Remove the entry from the download manager
         '''
         download_entry.destroy()
+
+        '''
+        Hide installation button and show remove button
+        '''
+        widget.btn_install.set_visible(False)
+        widget.btn_remove.set_visible(True)
+
+        '''
+        Set UI to usable again
+        '''
+        self.window.set_usable_ui(True)
 
     def install_dependency(self, configuration, dependency, widget):
         if self.utils_conn.check_connection(True):
@@ -390,6 +413,29 @@ class BottlesRunner:
                                                          dependency,
                                                          widget])
             a.start()
+
+    def remove_dependency(self, configuration, dependency, widget):
+        logging.info("Removing `%s` dependency from `%s` bottle configuration." % (
+            dependency[0], configuration.get("Name")
+        ))
+        '''
+        Prompt the uninstaller
+        '''
+        self.run_uninstaller(configuration)
+
+        '''
+        Remove dependency to the bottle configuration
+        '''
+        configuration["Installed_Dependencies"].remove(dependency[0])
+        self.update_configuration(configuration,
+                                  "Installed_Dependencies",
+                                    configuration["Installed_Dependencies"])
+
+        '''
+        Show installation button and hide remove button
+        '''
+        widget.btn_install.set_visible(True)
+        widget.btn_remove.set_visible(False)
 
     '''
     Check localy available runners
