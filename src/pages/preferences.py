@@ -95,6 +95,14 @@ class BottlesPreferences(Gtk.Box):
         self.update_dxvk()
 
     '''
+    Set dummy runner alerting user for no installed runners
+    '''
+    def set_dummy_runner(self):
+        for runner in self.list_runners.get_children(): runner.destroy()
+        message = "No installed runners, installing latest release ..\nYou'll be able to create bottles when I'm done."
+        self.list_runners.add(BottlesRunnerEntry(self.window, message))
+
+    '''
     Add runners to the list_runners
     '''
     def update_runners(self):

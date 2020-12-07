@@ -575,6 +575,24 @@ class BottlesRunner:
         name, environment, path = args
 
         '''
+        Define reusable variables
+        '''
+        buffer_output = self.window.page_create.buffer_output
+        btn_list = self.window.page_create.btn_list
+        iter = buffer_output.get_end_iter()
+
+        '''
+        Check if there is at least one runner and dxvk installed, else
+        install latest releases
+        '''
+        if 0 in [len(self.runners_available), len(self.dxvk_available)]:
+            buffer_output.insert(iter, "Runner and/or dxvk not found, installing latest version…\n")
+            iter = buffer_output.get_end_iter()
+            self.window.page_preferences.set_dummy_runner()
+            self.window.show_runners_preferences_view()
+            return self.async_checks()
+
+        '''
         Set UI to not usable
         '''
         self.window.set_usable_ui(False)
@@ -596,13 +614,6 @@ class BottlesRunner:
         Run the progressbar update async
         '''
         a = RunAsync('pulse', self.window.page_create.pulse);a.start()
-
-        '''
-        Define reusable variables
-        '''
-        buffer_output = self.window.page_create.buffer_output
-        btn_list = self.window.page_create.btn_list
-        iter = buffer_output.get_end_iter()
 
         buffer_output.insert(iter, "The wine configuration is being updated…\n")
         iter = buffer_output.get_end_iter()
