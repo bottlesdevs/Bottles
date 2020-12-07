@@ -51,6 +51,13 @@ chmod +x Bottles-commit-x86_64.AppImage
 ```
 And you're done!
 
+### Unofficial packages
+These packages are maitained by our community but not officialy supported.
+
+|Distro|Package Name/Link|Maintainer
+|:----:|:----:|:----:|
+| Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | @Talebian12 |
+
 ### Build with meson :construction_worker:
 Instead of use the Appimage you can choose to build your own Bottles from source.
 
