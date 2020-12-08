@@ -57,6 +57,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_menu = Gtk.Template.Child()
     btn_translate = Gtk.Template.Child()
     btn_support = Gtk.Template.Child()
+    btn_noconnection = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
@@ -149,6 +150,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_translate.connect('pressed', self.open_translate_url)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
         self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
+        self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.switch_dark.connect('state-set', self.toggle_dark)
 
         '''
@@ -166,6 +168,16 @@ class BottlesWindow(Gtk.ApplicationWindow):
         This method sould be executed as last
         '''
         self.on_start()
+
+    def check_for_connection(self, status):
+        if self.utils_conn.check_connection():
+            self.runner.checks()
+
+    '''
+    Toggle btn_noconnection visibility for display connection issues
+    '''
+    def toggle_btn_noconnection(self, status):
+        self.btn_noconnection.set_visible(status)
 
     '''
     This method should be called after window shown

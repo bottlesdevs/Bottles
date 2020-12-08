@@ -360,6 +360,27 @@
             <property name="position">4</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkButton" id="btn_noconnection">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">You don't seem connected to the internet. Without it you will not be able to essential components. Click this icon when you have reestablished the connection.</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="margin-right">1</property>
+                <property name="icon-name">network-error-symbolic</property>
+                <property name="icon_size">2</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
       </object>
     </child>
   </template>
