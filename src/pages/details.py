@@ -161,6 +161,8 @@ class BottlesDetails(Gtk.Box):
         Block signals to prevent execute widget callbacks
         '''
         self.switch_dxvk.handler_block_by_func(self.toggle_dxvk)
+        self.switch_virtual_desktop.handler_block_by_func(self.toggle_virtual_desktop)
+        self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
 
         '''
         Set widgets status from configuration
@@ -181,6 +183,8 @@ class BottlesDetails(Gtk.Box):
         Unlock signals
         '''
         self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
+        self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
+        self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
 
         '''
         Add entries to list_dependencies
@@ -197,10 +201,6 @@ class BottlesDetails(Gtk.Box):
     Methods to change environment variables
     '''
     def toggle_dxvk(self, widget, state):
-        '''
-        TODO: dxvk should be installed and removed only when the switcher is
-        toggled by the user and not when configuration is applied
-        '''
         if state:
             self.runner.install_dxvk(self.configuration)
         else:
@@ -234,9 +234,10 @@ class BottlesDetails(Gtk.Box):
         self.configuration = new_configuration
 
     def toggle_virtual_desktop(self, widget, state):
-        '''
-        TODO: to enable virtual desktop, change /Software/Wine/Explorer/Desktops
-        '''
+        resolution = self.combo_virtual_resolutions.get_active_id()
+        self.runner.toggle_virtual_desktop(self.configuration,
+                                           state,
+                                           resolution)
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "virtual_desktop",
                                                              state,
@@ -244,10 +245,14 @@ class BottlesDetails(Gtk.Box):
         self.configuration = new_configuration
 
     def set_virtual_desktop_resolution(self, widget):
-        option = widget.get_active_id()
+        resolution = widget.get_active_id()
+        if self.switch_virtual_desktop.get_active():
+            self.runner.toggle_virtual_desktop(self.configuration,
+                                               True,
+                                               resolution)
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "virtual_desktop_res",
-                                                             option,
+                                                             resolution,
                                                              True)
         self.configuration = new_configuration
 
