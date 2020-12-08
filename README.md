@@ -57,6 +57,7 @@ These packages are maitained by our community but not officialy supported.
 |Distro|Package Name/Link|Maintainer
 |:----:|:----:|:----:|
 | Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | @Talebian12 |
+| Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | ragouel |
 
 ### Build with meson :construction_worker:
 Instead of use the Appimage you can choose to build your own Bottles from source.
