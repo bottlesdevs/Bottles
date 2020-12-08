@@ -98,7 +98,7 @@ class BottlesRunner:
             "fsync": False,
             "discrete_gpu": False,
             "virtual_desktop": False,
-            "virtual_desktop_res": "",
+            "virtual_desktop_res": "1280x720",
             "pulseaudio_latency": False
         },
         "Installed_Dependencies" : []
@@ -872,6 +872,16 @@ class BottlesRunner:
             for dll in dlls:
                 shutil.move("%s/%s" % (path, dll), "%s/%s.old" % (path, dll))
                 shutil.copy("%s/%s" % (source, dll), "%s/%s" % (path, dll))
+
+    '''
+    Enable or disable virtual desktop for a bottle
+    '''
+    def toggle_virtual_desktop(self, configuration, state, resolution="800x600"):
+        key = "HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops"
+        if state:
+            self.reg_add(configuration, key, "Default", resolution)
+        else:
+            self.reg_delete(configuration, key, "Default")
 
     '''
     Methods for running wine applications in wineprefixes
