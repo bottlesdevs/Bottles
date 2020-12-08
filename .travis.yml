@@ -8,7 +8,7 @@ before_install:
 - export PACKAGE_NAME_VERSION=$PACKAGE_NAME.$BUILD_VERSION.deb
 
 script:
-- dpkg-deb --build ../Bottles
+- dpkg-buildpackage -rfakeroot -b -uc -us
 - ls
 - mv ../*.deb $PACKAGE_NAME_VERSION
 
