@@ -58,11 +58,13 @@
             <child>
               <object class="GtkTextView" id="textview_output">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="can-focus">True</property>
                 <property name="hscroll-policy">natural</property>
                 <property name="vscroll-policy">natural</property>
                 <property name="editable">False</property>
                 <property name="wrap-mode">word</property>
+                <property name="cursor-visible">False</property>
                 <property name="buffer">buffer_output</property>
                 <property name="input-purpose">terminal</property>
                 <property name="monospace">True</property>
