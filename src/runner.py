@@ -888,13 +888,7 @@ class BottlesRunner:
     '''
     def run_executable(self, configuration, file_path):
         logging.info("Running an executable on the wineprefix…")
-
-        '''
-        Escape spaces in command
-        '''
-        file_path = file_path.replace(" ", "\ ")
-
-        self.run_command(configuration, file_path)
+        self.run_command(configuration, "'%s'" % file_path)
 
     def run_wineboot(self, configuration):
         logging.info("Running wineboot on the wineprefix…")
