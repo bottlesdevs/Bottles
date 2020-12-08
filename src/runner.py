@@ -320,7 +320,7 @@ class BottlesRunner:
         '''
         Add a new entry to the download manager
         '''
-        download_entry = BottlesDownloadEntry(dependency[0])
+        download_entry = BottlesDownloadEntry(dependency[0], stoppable=False)
         self.window.box_downloads.add(download_entry)
 
         logging.info("Installing the `%s` dependency for `%s` bottle." % (
