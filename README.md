@@ -59,6 +59,13 @@ These packages are maitained by our community but not officialy supported.
 | Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | @Talebian12 |
 | Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | ragouel |
 
+#### Notices for package maintainers
+We are happy to see packaged Bottles but we ask you to respect some small rules:
+- The package must be `bottles`, in other distributions it is possible to use suffixes (eg` bottles-git` on Arch Linux for the git based package) while on others the RDNN format is required (eg `com.usebottles.bottles` on elementary OS and Flathub repository). All other nomenclatures are discouraged.
+- In the current development phase, the version corresponds to the formula (`2.commit`, eg 2.a005f01), where possible use this formula throughout the development phase. Please don't travel into the future with releases. It might confuse users.
+- Do not package external files and do not make changes to the code, no hard script. Obviously with the exception of files essential for packaging.
+Once the package is published, you can open a [Pull Request](https://github.com/bottlesdevs/Bottles/pulls) to add it to the packages table above! Thanks :heart:!
+
 ### Build with meson :construction_worker:
 Instead of use the Appimage you can choose to build your own Bottles from source.
 
