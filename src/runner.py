@@ -491,6 +491,24 @@ class BottlesRunner:
                     self.install_component("dxvk", tag, file)
 
     '''
+    Get installed programs
+    '''
+    def get_programs(self, configuration):
+        bottle = "%s/%s" % (self.bottles_path, configuration.get("Name"))
+        results =  glob("%s/drive_c/users/*/Start Menu/Programs/*" % bottle)
+        results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/*" % bottle)
+        installed_programs = []
+
+        for program in results:
+            path = program.split("/")[-1]
+            if path not in ["StartUp", "Administrative Tools"]:
+                path = path.replace(".lnk", "")
+                installed_programs.append(path)
+
+        return installed_programs
+
+
+    '''
     Fetch online dependencies
     '''
     def fetch_dependencies(self):
