@@ -19,6 +19,29 @@ from gi.repository import Gtk
 
 import webbrowser
 
+@Gtk.Template(resource_path='/pm/mirko/bottles/program-entry.ui')
+class BottlesProgramEntry(Gtk.Box):
+    __gtype_name__ = 'BottlesProgramEntry'
+
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    label_name = Gtk.Template.Child()
+
+    def __init__(self, window, program_name, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Initialize template
+        '''
+        self.init_template()
+
+        '''
+        Set runner name to the label
+        '''
+        self.label_name.set_text(program_name)
+
 @Gtk.Template(resource_path='/pm/mirko/bottles/dependency-entry.ui')
 class BottlesDependencyEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDependencyEntry'
@@ -104,6 +127,7 @@ class BottlesDetails(Gtk.Box):
     btn_shutdown = Gtk.Template.Child()
     btn_reboot = Gtk.Template.Child()
     btn_killall = Gtk.Template.Child()
+    btn_report_dependency = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_esync = Gtk.Template.Child()
     switch_fsync = Gtk.Template.Child()
@@ -112,7 +136,7 @@ class BottlesDetails(Gtk.Box):
     combo_virtual_resolutions = Gtk.Template.Child()
     switch_pulseaudio_latency = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
-    btn_report_dependency = Gtk.Template.Child()
+    list_programs = Gtk.Template.Child()
 
     def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
@@ -185,6 +209,15 @@ class BottlesDetails(Gtk.Box):
         self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
         self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
+
+        '''
+        Add entries to list_programs
+        '''
+        for w in self.list_programs: w.destroy()
+
+        for program in self.runner.get_programs(self.configuration):
+            self.list_programs.add(
+                BottlesProgramEntry(self.configuration, program))
 
         '''
         Add entries to list_dependencies
