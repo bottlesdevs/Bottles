@@ -58,7 +58,8 @@ These packages are maitained by our community but not officialy supported.
 |:----:|:----:|:----:|
 | Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | @Talebian12 |
 | Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | ragouel |
-| Tumbleweed/Fedora 33 | [`bottles`](https://build.opensuse.org/package/binaries/home:WhiXard/Bottles/openSUSE_Tumbleweed)| WhiXard |
+| Tumbleweed | [`bottles`](https://build.opensuse.org/package/binaries/home:WhiXard/Bottles/openSUSE_Tumbleweed)| WhiXard |
+| Fedora 33 | [`bottles`](https://build.opensuse.org/package/binaries/home:WhiXard/Bottles/openSUSE_Tumbleweed)| WhiXard |
 
 #### Notices for package maintainers
 We are happy to see packaged Bottles but we ask you to respect some small rules:
