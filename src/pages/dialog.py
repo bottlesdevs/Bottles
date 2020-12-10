@@ -48,8 +48,7 @@ class BottlesDialog(Gtk.MessageDialog):
 
         content = self.get_content_area()
 
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,
-                      spacing=6)
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         box.set_border_width(20)
 
         if log:
@@ -57,7 +56,6 @@ class BottlesDialog(Gtk.MessageDialog):
 
         content.add(box)
         self.show_all()
-
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/about.ui')
 class BottlesAboutDialog(Gtk.AboutDialog):
