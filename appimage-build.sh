@@ -20,8 +20,8 @@ mkdir -p appdir/usr/local/share/bottles
 mkdir -p appdir/usr/bin
 mkdir -p appdir/usr/share/glib-2.0/schemas/
 mkdir -p appdir/usr/share/applications
-# mkdir -p appdir/usr/share/metainfo
-# mkdir -p appdir/usr/share/icons
+mkdir -p appdir/usr/share/metainfo
+mkdir -p appdir/usr/share/icons
 
 echo "Compiling and installing glib-resources"
 glib-compile-resources --sourcedir=../src/ui/ ../src/ui/bottles.gresource.xml --target=appdir/usr/local/share/bottles/bottles.gresource
@@ -34,11 +34,11 @@ cp -a ../src appdir/usr/local/share/bottles/bottles
 rm appdir/usr/local/share/bottles/bottles/bottles.in
 rm appdir/usr/local/share/bottles/bottles/meson.build
 
-# echo "Copying appdata"
-# cp -a ../data/pm.mirko.bottles.appdata.xml.in appdir/usr/share/metainfo/pm.mirko.bottles.appdata.xml
+echo "Copying appdata"
+ cp -a ../data/pm.mirko.bottles.appdata.xml.in appdir/usr/share/metainfo/pm.mirko.bottles.appdata.xml
 
-# echo "Copying icons"
-# cp -a ../data/icons appdir/usr/share/icons
+echo "Copying icons"
+ cp -a ../data/icons appdir/usr/share/icons
 
 echo "Copying and compiling gschema"
 cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
@@ -57,4 +57,5 @@ wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/contin
 chmod a+x linuxdeploy-x86_64.AppImage
 
 echo "Building Bottles Appimage"
-./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/pm.mirko.bottles.svg --output appimage
+#./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/pm.mirko.bottles.svg --output appimage
+./linuxdeploy-x86_64.AppImage --appdir appdir  --output appimage
