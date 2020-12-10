@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, logging, subprocess, urllib.request, json, tarfile, time, shutil
+import os, logging, subprocess, urllib.request, json, tarfile, time, shutil, re
 
 from glob import glob
 from threading import Thread
@@ -496,7 +496,9 @@ class BottlesRunner:
     def get_programs(self, configuration):
         bottle = "%s/%s" % (self.bottles_path, configuration.get("Name"))
         results =  glob("%s/drive_c/users/*/Start Menu/Programs/*" % bottle)
+        results =  glob("%s/drive_c/users/*/Start Menu/Programs/*/*" % bottle)
         results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/*" % bottle)
+        results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/*/*" % bottle)
         installed_programs = []
 
         '''
@@ -506,8 +508,13 @@ class BottlesRunner:
         for program in results:
             path = program.split("/")[-1]
             if path not in ["StartUp", "Administrative Tools"]:
-                path = path.replace(".lnk", "")
-                installed_programs.append(path)
+                if path.endswith(".lnk"):
+                    executable_path = ""
+                    with open(program, "r", encoding='utf-8', errors='ignore') as lnk:
+                        lnk = lnk.read()
+                        executable_path = re.search('C:(.*).exe', lnk).group(0)
+                    path = path.replace(".lnk", "")
+                    installed_programs.append([path, executable_path])
 
         return installed_programs
 

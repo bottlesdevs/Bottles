@@ -28,8 +28,9 @@ class BottlesProgramEntry(Gtk.Box):
     template childs
     '''
     label_name = Gtk.Template.Child()
+    btn_run = Gtk.Template.Child()
 
-    def __init__(self, window, program_name, **kwargs):
+    def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -38,9 +39,28 @@ class BottlesProgramEntry(Gtk.Box):
         self.init_template()
 
         '''
+        Common variables
+        '''
+        self.window = window
+        self.runner = window.runner
+        self.configuration = configuration
+        self.program_name = program[0]
+        self.program_executable = program[1]
+
+        '''
         Set runner name to the label
         '''
-        self.label_name.set_text(program_name)
+        self.label_name.set_text(self.program_name)
+
+        '''
+        Connect signals to widgets
+        '''
+        self.btn_run.connect('pressed', self.run_executable)
+
+    def run_executable(self, widget):
+        self.runner.run_executable(self.configuration,
+                                   self.program_executable)
+
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/dependency-entry.ui')
 class BottlesDependencyEntry(Gtk.Box):
@@ -217,7 +237,7 @@ class BottlesDetails(Gtk.Box):
 
         for program in self.runner.get_programs(self.configuration):
             self.list_programs.add(
-                BottlesProgramEntry(self.configuration, program))
+                BottlesProgramEntry(self.window, self.configuration, program))
 
         '''
         Add entries to list_dependencies
