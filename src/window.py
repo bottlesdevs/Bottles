@@ -85,7 +85,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     Notify.init(APP_ID)
 
-    def __init__(self, **kwargs):
+    def __init__(self, arg_executable, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -109,7 +109,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         page_add = BottlesAdd(self)
         page_add_details = BottlesAddDetails(self)
         page_details = BottlesDetails(self)
-        page_list = BottlesList(self)
+        page_list = BottlesList(self, arg_executable)
         page_create = BottlesCreate(self)
         page_preferences = BottlesPreferences(self)
 
@@ -161,13 +161,13 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         Load startup view from user settings
         '''
-        self.stack_main.set_visible_child_name(
-            self.settings.get_string("startup-view"))
+        self.stack_main.set_visible_child_name(self.settings.get_string("startup-view"))
 
         '''
         This method sould be executed as last
         '''
         self.on_start()
+        arg_executable = False
 
     def check_for_connection(self, status):
         if self.utils_conn.check_connection():

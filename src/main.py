@@ -31,7 +31,15 @@ class Application(Gtk.Application):
         super().__init__(application_id='pm.mirko.bottles',
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
 
+        self.props.flags = Gio.ApplicationFlags.HANDLES_OPEN
+        self.arg_executable = False
+
+    def do_open(self, arg_executable, *hint):
+        self.arg_executable = arg_executable[0].get_path()
+        self.do_activate()
+
     def do_activate(self):
+
         '''
         Load custom css
         '''
@@ -47,7 +55,7 @@ class Application(Gtk.Application):
         '''
         win = self.props.active_window
         if not win:
-            win = BottlesWindow(application=self)
+            win = BottlesWindow(application=self, arg_executable=self.arg_executable)
 
         win.present()
 
