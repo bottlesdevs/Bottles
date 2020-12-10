@@ -496,7 +496,7 @@ class BottlesRunner:
     def get_programs(self, configuration):
         bottle = "%s/%s" % (self.bottles_path, configuration.get("Name"))
         results =  glob("%s/drive_c/users/*/Start Menu/Programs/*" % bottle)
-        results =  glob("%s/drive_c/users/*/Start Menu/Programs/*/*" % bottle)
+        results +=  glob("%s/drive_c/users/*/Start Menu/Programs/*/*" % bottle)
         results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/*" % bottle)
         results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/*/*" % bottle)
         installed_programs = []
@@ -506,15 +506,20 @@ class BottlesRunner:
         This file should be encrypted but the executable path should not.
         '''
         for program in results:
+            print(program)
             path = program.split("/")[-1]
             if path not in ["StartUp", "Administrative Tools"]:
                 if path.endswith(".lnk"):
                     executable_path = ""
-                    with open(program, "r", encoding='utf-8', errors='ignore') as lnk:
-                        lnk = lnk.read()
-                        executable_path = re.search('C:(.*).exe', lnk).group(0)
-                    path = path.replace(".lnk", "")
-                    installed_programs.append([path, executable_path])
+                    try:
+                        with open(program, "r", encoding='utf-8', errors='ignore') as lnk:
+                            lnk = lnk.read()
+                            executable_path = re.search('C:(.*).exe', lnk).group(0)
+                            if executable_path.find("ninstall") < 0:
+                                path = path.replace(".lnk", "")
+                                installed_programs.append([path, executable_path])
+                    except:
+                        pass
 
         return installed_programs
 
@@ -917,7 +922,16 @@ class BottlesRunner:
     '''
     def run_executable(self, configuration, file_path):
         logging.info("Running an executable on the wineprefix…")
-        self.run_command(configuration, "'%s'" % file_path)
+
+        '''
+        Check if for .mis then execute with `msiexec` tool
+        '''
+        if "msi" in file_path.split("."):
+            command = "msiexec /i '%s'" % file_path
+        else:
+            command = "'%s'" % file_path
+        print(command)
+        self.run_command(configuration, command)
 
     def run_wineboot(self, configuration):
         logging.info("Running wineboot on the wineprefix…")
