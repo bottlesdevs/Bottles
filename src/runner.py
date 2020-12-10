@@ -499,6 +499,10 @@ class BottlesRunner:
         results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/*" % bottle)
         installed_programs = []
 
+        '''
+        TODO: If possibile, get executable from .lnk file.
+        This file should be encrypted but the executable path should not.
+        '''
         for program in results:
             path = program.split("/")[-1]
             if path not in ["StartUp", "Administrative Tools"]:
