@@ -148,6 +148,7 @@ class BottlesDetails(Gtk.Box):
     btn_reboot = Gtk.Template.Child()
     btn_killall = Gtk.Template.Child()
     btn_report_dependency = Gtk.Template.Child()
+    btn_programs_updates = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_esync = Gtk.Template.Child()
     switch_fsync = Gtk.Template.Child()
@@ -190,6 +191,7 @@ class BottlesDetails(Gtk.Box):
         self.btn_reboot.connect('pressed', self.run_reboot)
         self.btn_killall.connect('pressed', self.run_killall)
         self.btn_report_dependency.connect('pressed', self.open_report_url)
+        self.btn_programs_updates.connect('pressed', self.update_programs)
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_esync.connect('state-set', self.toggle_esync)
         self.switch_fsync.connect('state-set', self.toggle_fsync)
@@ -230,18 +232,23 @@ class BottlesDetails(Gtk.Box):
         self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
 
-        '''
-        Add entries to list_programs
-        '''
+        self.update_programs()
+        self.update_dependencies()
+
+    '''
+    Add entries to list_programs
+    '''
+    def update_programs(self, widget=False):
         for w in self.list_programs: w.destroy()
 
         for program in self.runner.get_programs(self.configuration):
             self.list_programs.add(
                 BottlesProgramEntry(self.window, self.configuration, program))
 
-        '''
-        Add entries to list_dependencies
-        '''
+    '''
+    Add entries to list_dependencies
+    '''
+    def update_dependencies(self, widget=False):
         for w in self.list_dependencies: w.destroy()
 
         for dependency in self.runner.supported_dependencies.items():
