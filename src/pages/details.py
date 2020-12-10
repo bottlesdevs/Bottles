@@ -134,6 +134,7 @@ class BottlesDetails(Gtk.Box):
     label_name = Gtk.Template.Child()
     label_size = Gtk.Template.Child()
     label_disk = Gtk.Template.Child()
+    notebook_details = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
     btn_winetricks = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
@@ -234,6 +235,9 @@ class BottlesDetails(Gtk.Box):
 
         self.update_programs()
         self.update_dependencies()
+
+    def set_page(self, page):
+        self.notebook_details.set_current_page(page)
 
     '''
     Add entries to list_programs

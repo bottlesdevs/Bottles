@@ -41,6 +41,7 @@ class BottlesListEntry(Gtk.Box):
     btn_backup = Gtk.Template.Child()
     btn_upgrade = Gtk.Template.Child()
     btn_repair = Gtk.Template.Child()
+    btn_programs = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
@@ -70,6 +71,7 @@ class BottlesListEntry(Gtk.Box):
         self.btn_run.connect('pressed', self.run_executable)
         self.btn_browse.connect('pressed', self.run_browse)
         self.btn_repair.connect('pressed', self.repair)
+        self.btn_programs.connect('pressed', self.show_programs_detail_view)
 
         '''
         Populate widgets with data
@@ -95,6 +97,9 @@ class BottlesListEntry(Gtk.Box):
 
     def repair(self, widget):
         self.runner.repair_bottle(self.configuration)
+
+    def show_programs_detail_view(self, widget):
+        self.show_details(widget, 3)
 
     '''
     Show a file chooser dialog to choose and run a Windows executable
@@ -153,7 +158,9 @@ class BottlesListEntry(Gtk.Box):
 
         dialog_upgrade.destroy()
 
-    def show_details(self, widget):
+    def show_details(self, widget, page=0):
+        if page > 0:
+            self.window.page_details.set_page(page)
         self.window.page_details.set_configuration(self.configuration)
         self.window.stack_main.set_visible_child_name("page_details")
 
