@@ -60,6 +60,7 @@ These packages are maitained by our community but not officialy supported.
 | Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | ragouel |
 | Tumbleweed | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
 | Fedora 33 | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
+| Void linux | | andry-dev|
 
 #### Notices for package maintainers
 We are happy to see packaged Bottles but we ask you to respect some small rules:
