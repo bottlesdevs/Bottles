@@ -7,6 +7,29 @@
     <property name="can-focus">False</property>
     <property name="has-focus">True</property>
     <child>
+      <object class="GtkButton" id="btn_browse">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+        <property name="tooltip-text" translatable="yes">Browse C:</property>
+        <property name="margin-start">5</property>
+        <property name="margin-end">5</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="icon-name">folder-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack-type">end</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
       <object class="GtkButton" id="btn_delete">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
@@ -33,29 +56,6 @@
       </packing>
     </child>
     <child>
-      <object class="GtkButton" id="btn_browse">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="receives-default">True</property>
-        <property name="tooltip-text" translatable="yes">Browse C:</property>
-        <property name="margin-start">5</property>
-        <property name="margin-end">5</property>
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="icon-name">folder-symbolic</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="pack-type">end</property>
-        <property name="position">1</property>
-      </packing>
-    </child>
-    <child>
       <object class="GtkButton" id="btn_backup">
         <property name="visible">True</property>
         <property name="sensitive">False</property>
@@ -76,7 +76,7 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">2</property>
+        <property name="position">1</property>
       </packing>
     </child>
     <child>
@@ -99,7 +99,29 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">3</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="btn_programs">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+        <property name="tooltip-text" translatable="yes">Installed programs</property>
+        <property name="margin-start">5</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="icon-name">view-grid-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack-type">end</property>
+        <property name="position">4</property>
       </packing>
     </child>
     <child>
@@ -121,7 +143,7 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">4</property>
+        <property name="position">5</property>
       </packing>
     </child>
     <child>
@@ -142,7 +164,7 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">7</property>
+        <property name="position">6</property>
       </packing>
     </child>
     <child>
@@ -155,7 +177,7 @@
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">7</property>
+        <property name="position">6</property>
       </packing>
     </child>
     <child>
