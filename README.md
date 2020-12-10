@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://i.imgur.com/hFokdsQ.png" width="64">
+  <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/a093ed9705c3b29e213e7c305cb311dba3333cfc/data/icons/hicolor/scalable/apps/pm.mirko.bottles.svg" width="64">
   <h1 align="center">Bottles v.2</h1>
   <p align="center">Easily manage wineprefix using environments</p>
   <small>⚠️ This version is under development. <a href="https://github.com/bottlesdevs/Bottles/tree/v1">Here</a> you can find the stable v1.</small>
