@@ -94,6 +94,7 @@ class BottlesRunner:
         "Update_Date": "",
         "Parameters": {
             "dxvk": False,
+            "dxvk_hud": False,
             "esync": False,
             "fsync": False,
             "discrete_gpu": False,
@@ -502,11 +503,9 @@ class BottlesRunner:
         installed_programs = []
 
         '''
-        TODO: If possibile, get executable from .lnk file.
-        This file should be encrypted but the executable path should not.
+        For any .lnk file, check for executable path inside
         '''
         for program in results:
-            print(program)
             path = program.split("/")[-1]
             if path not in ["StartUp", "Administrative Tools"]:
                 if path.endswith(".lnk"):
@@ -519,7 +518,7 @@ class BottlesRunner:
                                 path = path.replace(".lnk", "")
                                 installed_programs.append([path, executable_path])
                     except:
-                        pass
+                        logging.info("Cannot get executable for `%s`." % path)
 
         return installed_programs
 
@@ -993,6 +992,8 @@ class BottlesRunner:
             TODO: dxvk hud should be removed in stable release
             '''
             environment_vars.append("WINEDLLOVERRIDES='d3d11,dxgi=n'")
+
+        if parameters["dxvk_hud"]:
             environment_vars.append("DXVK_HUD='1'")
 
         if parameters["esync"]:

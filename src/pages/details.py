@@ -151,6 +151,7 @@ class BottlesDetails(Gtk.Box):
     btn_report_dependency = Gtk.Template.Child()
     btn_programs_updates = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
+    switch_dxvk_hud = Gtk.Template.Child()
     switch_esync = Gtk.Template.Child()
     switch_fsync = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
@@ -194,6 +195,7 @@ class BottlesDetails(Gtk.Box):
         self.btn_report_dependency.connect('pressed', self.open_report_url)
         self.btn_programs_updates.connect('pressed', self.update_programs)
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
+        self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
         self.switch_esync.connect('state-set', self.toggle_esync)
         self.switch_fsync.connect('state-set', self.toggle_fsync)
         self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
@@ -219,6 +221,7 @@ class BottlesDetails(Gtk.Box):
         self.label_size.set_text(self.runner.get_bottle_size(configuration))
         self.label_disk.set_text(self.runner.get_disk_size()["free"])
         self.switch_dxvk.set_active(parameters["dxvk"])
+        self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_esync.set_active(parameters["esync"])
         self.switch_fsync.set_active(parameters["fsync"])
         self.switch_discrete.set_active(parameters["discrete_gpu"])
@@ -272,6 +275,13 @@ class BottlesDetails(Gtk.Box):
 
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "dxvk",
+                                                             state,
+                                                             True)
+        self.configuration = new_configuration
+
+    def toggle_dxvk_hud(self, widget, state):
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "dxvk_hud",
                                                              state,
                                                              True)
         self.configuration = new_configuration
