@@ -158,6 +158,7 @@ class BottlesDetails(Gtk.Box):
     switch_discrete = Gtk.Template.Child()
     switch_virtual_desktop = Gtk.Template.Child()
     combo_virtual_resolutions = Gtk.Template.Child()
+    combo_runner = Gtk.Template.Child()
     switch_pulseaudio_latency = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
@@ -177,6 +178,12 @@ class BottlesDetails(Gtk.Box):
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
+
+        '''
+        Populate combo_runner with installed runners
+        '''
+        for runner in self.runner.runners_available:
+            self.combo_runner.append(runner, runner)
 
         '''
         Connect signals to widgets
@@ -203,6 +210,7 @@ class BottlesDetails(Gtk.Box):
         self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
         self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
+        self.combo_runner.connect('changed', self.set_runner)
         self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
 
     def set_configuration(self, configuration):
@@ -214,6 +222,7 @@ class BottlesDetails(Gtk.Box):
         self.switch_dxvk.handler_block_by_func(self.toggle_dxvk)
         self.switch_virtual_desktop.handler_block_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
+        self.combo_runner.handler_block_by_func(self.set_runner)
 
         '''
         Get bottle disk usage and free space
@@ -241,6 +250,7 @@ class BottlesDetails(Gtk.Box):
         self.switch_discrete.set_active(parameters["discrete_gpu"])
         self.switch_virtual_desktop.set_active(parameters["virtual_desktop"])
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
+        self.combo_runner.set_active_id(self.configuration.get("Runner"))
         self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
 
         '''
@@ -249,6 +259,7 @@ class BottlesDetails(Gtk.Box):
         self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
         self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
+        self.combo_runner.handler_unblock_by_func(self.set_runner)
 
         self.update_programs()
         self.update_dependencies()
@@ -342,6 +353,14 @@ class BottlesDetails(Gtk.Box):
                                                              "virtual_desktop_res",
                                                              resolution,
                                                              True)
+        self.configuration = new_configuration
+
+    def set_runner(self, widget):
+        runner = widget.get_active_id()
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "Runner",
+                                                             runner,
+                                                             False)
         self.configuration = new_configuration
 
     def toggle_pulseaudio_latency(self, widget, state):

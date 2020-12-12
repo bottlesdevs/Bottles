@@ -29,8 +29,9 @@ class BottlesRunnerEntry(Gtk.Box):
     template childs
     '''
     label_name = Gtk.Template.Child()
+    btn_download = Gtk.Template.Child()
 
-    def __init__(self, window, runner_name, **kwargs):
+    def __init__(self, window, runner_name, installable=False, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -39,13 +40,32 @@ class BottlesRunnerEntry(Gtk.Box):
         self.init_template()
 
         '''
+        Set reusable variables
+        '''
+        self.window = window
+        self.runner = window.runner
+        self.runner_name = runner_name
+
+        '''
         Set runner name to the label
         '''
         self.label_name.set_text(runner_name)
 
         '''
-        TODO: add methods for remove runner and browse files
+        Connect signals to widgets
         '''
+        self.btn_download.connect('pressed', self.download_runner)
+
+        if installable:
+            print(installable)
+            self.runner_tag = installable[0]
+            self.runner_file = installable[1]
+            self.btn_download.set_visible(True)
+
+    def download_runner(self, widget):
+        self.runner.install_component("runner",
+                                      self.runner_tag,
+                                      self.runner_file)
 
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/preferences.ui')
@@ -62,6 +82,7 @@ class BottlesPreferences(Gtk.Box):
     combo_views = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
+    btn_runner_updates = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -83,6 +104,7 @@ class BottlesPreferences(Gtk.Box):
         self.switch_notifications.connect('state-set', self.toggle_notifications)
         self.switch_temp.connect('state-set', self.toggle_temp)
         self.combo_views.connect('changed', self.change_startup_view)
+        self.btn_runner_updates.connect('pressed', self.get_runner_updates)
 
         '''
         Set widgets status from user settings
@@ -104,6 +126,17 @@ class BottlesPreferences(Gtk.Box):
         for runner in self.list_runners.get_children(): runner.destroy()
         message = "No installed runners, installing latest release ..\nYou'll be able to create bottles when I'm done."
         self.list_runners.add(BottlesRunnerEntry(self.window, message))
+
+    '''
+    Get runners updates
+    '''
+    def get_runner_updates(self,widget):
+        self.update_runners()
+        for runner in self.window.runner.get_runner_updates().items():
+            print(runner)
+            self.list_runners.add(BottlesRunnerEntry(self.window,
+                                                     runner[0],
+                                                     installable=runner))
 
     '''
     Add runners to the list_runners

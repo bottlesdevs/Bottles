@@ -106,10 +106,6 @@ class BottlesRunner:
         "Installed_Dependencies" : []
     }
 
-    '''
-    TODO: fetch supported dependencies from an online repository
-    for a more extensible support
-    '''
     supported_dependencies = {}
 
     def __init__(self, window, **kwargs):
@@ -177,6 +173,24 @@ class BottlesRunner:
             return False
 
         return True
+
+    '''
+    Get latest runner updates
+    '''
+    def get_runner_updates(self):
+        updates = {}
+
+        if self.utils_conn.check_connection():
+            with urllib.request.urlopen(self.repository_api) as url:
+                releases = json.loads(url.read().decode())
+                tag = releases[0]["tag_name"]
+                file = releases[0]["assets"][0]["name"]
+                if "%s-x86_64" % tag not in self.runners_available:
+                    updates[tag] = file
+                else:
+                    logging.info("Latest runner is `%s` and is already installed." % tag)
+
+        return updates
 
     '''
     Extract a component archive
@@ -464,6 +478,12 @@ class BottlesRunner:
                     file = releases[0]["assets"][0]["name"]
 
                     self.install_component("runner", tag, file)
+
+        '''
+        Sort runners_available and dxvk_available alphabetically
+        '''
+        self.runners_available = sorted(self.runners_available, reverse=True)
+        self.dxvk_available = sorted(self.dxvk_available, reverse=True)
 
     '''
     Check localy available dxvk
