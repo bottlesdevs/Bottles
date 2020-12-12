@@ -183,7 +183,22 @@ class BottlesRunner:
         updates = {}
 
         if self.utils_conn.check_connection():
+            '''
+            wine
+            '''
             with urllib.request.urlopen(self.repository_api) as url:
+                releases = json.loads(url.read().decode())
+                tag = releases[0]["tag_name"]
+                file = releases[0]["assets"][0]["name"]
+                if "%s-x86_64" % tag not in self.runners_available:
+                    updates[tag] = file
+                else:
+                    logging.info("Latest runner is `%s` and is already installed." % tag)
+
+            '''
+            proton
+            '''
+            with urllib.request.urlopen(self.proton_repository_api) as url:
                 releases = json.loads(url.read().decode())
                 tag = releases[0]["tag_name"]
                 file = releases[0]["assets"][0]["name"]
@@ -278,7 +293,7 @@ class BottlesRunner:
         '''
         Clear available component list and do the check again
         '''
-        if component == "runner":
+        if component in ["runner", "runner:proton"]:
             self.runners_available = []
             self.check_runners()
 
@@ -302,7 +317,7 @@ class BottlesRunner:
         '''
         Update components
         '''
-        if component == "runner":
+        if component in ["runner", "runner:proton"]:
             self.window.page_preferences.update_runners()
         if component == "dxvk":
             self.window.page_preferences.update_dxvk()
