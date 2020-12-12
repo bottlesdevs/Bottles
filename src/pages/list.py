@@ -65,6 +65,14 @@ class BottlesListEntry(Gtk.Box):
         self.arg_executable = arg_executable
 
         '''
+        Check runner type by name
+        '''
+        if self.configuration.get("Runner").startswith("lutris"):
+            self.runner_type = "wine"
+        else:
+            self.runner_type = "proton"
+
+        '''
         Connect signals to widgets
         '''
         self.btn_details.connect('pressed', self.show_details)
@@ -84,7 +92,7 @@ class BottlesListEntry(Gtk.Box):
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
 
-        if self.configuration.get("Runner") != self.runner.get_latest_runner():
+        if self.configuration.get("Runner") != self.runner.get_latest_runner(self.runner_type):
             self.btn_upgrade.set_visible(True)
 
         if self.configuration.get("Broken"):
