@@ -2,6 +2,7 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
+  <object class="GtkTextBuffer" id="buffer_overrides"/>
   <template class="BottlesDetails" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -1342,10 +1343,20 @@ This choice is intended to use as few external tools as possible and to provide 
               </packing>
             </child>
             <child>
-              <object class="GtkTextView">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="tooltip-text" translatable="yes">Syntax: key,value|key,value|..</property>
+                <property name="shadow-type">in</property>
+                <child>
+                  <object class="GtkTextView" id="textview_overrides">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Syntax: key,value (use a new line as separator for each DLL override)</property>
+                    <property name="buffer">buffer_overrides</property>
+                    <property name="input-purpose">terminal</property>
+                    <property name="monospace">True</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1442,13 +1453,18 @@ This choice is intended to use as few external tools as possible and to provide 
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-bottom">5</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-bottom">3</property>
                 <child>
                   <object class="GtkButton" id="btn_report_dependency">
                     <property name="label" translatable="yes">Open a issue</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <style>
+                      <class name="btn_small"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="expand">False</property>

@@ -95,7 +95,6 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
                                            THEME_DARK)
 
-
         self.utils_conn = UtilsConnection(self)
 
         '''
