@@ -132,6 +132,7 @@ class BottlesDetails(Gtk.Box):
     template childs
     '''
     label_name = Gtk.Template.Child()
+    label_runner = Gtk.Template.Child()
     label_size = Gtk.Template.Child()
     label_disk = Gtk.Template.Child()
     notebook_details = Gtk.Template.Child()
@@ -160,6 +161,7 @@ class BottlesDetails(Gtk.Box):
     switch_pulseaudio_latency = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
+    progress_disk = Gtk.Template.Child()
 
     def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
@@ -214,12 +216,24 @@ class BottlesDetails(Gtk.Box):
         self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
 
         '''
+        Get bottle disk usage and free space
+        '''
+        bottle_size = self.runner.get_bottle_size(configuration)
+        bottle_size_float = self.runner.get_bottle_size(configuration, False)
+        disk_total = self.runner.get_disk_size()["total"]
+        disk_total_float = self.runner.get_disk_size(False)["total"]
+        disk_free = self.runner.get_disk_size()["free"]
+        disk_fraction = ((bottle_size_float / disk_total_float) * 100) / 10
+
+        '''
         Set widgets status from configuration
         '''
         parameters = self.configuration.get("Parameters")
         self.label_name.set_text(self.configuration.get("Name"))
-        self.label_size.set_text(self.runner.get_bottle_size(configuration))
-        self.label_disk.set_text(self.runner.get_disk_size()["free"])
+        self.label_runner.set_text(self.configuration.get("Runner"))
+        self.label_size.set_text(bottle_size)
+        self.label_disk.set_text(disk_free)
+        self.progress_disk.set_fraction(disk_fraction)
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_esync.set_active(parameters["esync"])

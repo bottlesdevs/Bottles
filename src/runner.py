@@ -989,9 +989,6 @@ class BottlesRunner:
         parameters = configuration["Parameters"]
 
         if parameters["dxvk"]:
-            '''
-            TODO: dxvk hud should be removed in stable release
-            '''
             environment_vars.append("WINEDLLOVERRIDES='d3d11,dxgi=n'")
 
         if parameters["dxvk_hud"]:
