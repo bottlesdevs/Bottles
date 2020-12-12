@@ -1,12 +1,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the bottles package.
 # Mirko Brombin <send@mirko.pm>, 2020
-
 msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-06 17:19+0100\n"
+"POT-Creation-Date: 2020-12-12 13:34+0100\n"
 "PO-Revision-Date: 2020-12-06 18:19+0100\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: none\n"
@@ -53,10 +52,18 @@ msgid "Enable notifications."
 msgstr "Abilita notifiche."
 
 #: data/pm.mirko.bottles.gschema.xml:16
+msgid "Temp cleaning"
+msgstr ""
+
+#: data/pm.mirko.bottles.gschema.xml:17
+msgid "Clean Temp path on boot."
+msgstr ""
+
+#: data/pm.mirko.bottles.gschema.xml:21
 msgid "Startup view"
 msgstr "Schermata di avvio"
 
-#: data/pm.mirko.bottles.gschema.xml:17
+#: data/pm.mirko.bottles.gschema.xml:22
 msgid "Choose which view should be loaded on application startup."
 msgstr "Scegli la schermata da mostrare all'avvio."
 
@@ -129,214 +136,256 @@ msgstr "Annulla"
 msgid "Save bottle"
 msgstr "Salva bottiglia"
 
-#: src/ui/details.ui:34 src/ui/list-entry.ui:169
+#: src/ui/details.ui:35 src/ui/list-entry.ui:191
 msgid "Bottle name"
 msgstr "Nome bottiglia"
 
-#: src/ui/details.ui:124
+#: src/ui/details.ui:125
 msgid "Winecfg"
 msgstr "Winecfg"
 
-#: src/ui/details.ui:147
+#: src/ui/details.ui:148
 msgid ""
 "Winetricks will be removed from Bottles in favor of an integrated system for "
 "installing libraries and dependencies. Use the `Dependencies` tab instead.\n"
 "\n"
 "This choice is intended to use as few external tools as possible and to "
 "provide a complete user experience in Bottles."
-msgstr "Winetricks verrà rimosso da Bottles a favore di un sistema integrato per"
-"installazione di librerie e dipendenze. Usa invece la scheda 'Dipendenze'. \n\n"
-"Questa scelta con lo scopo di utilizzare il minor numero possibile di strumenti esterni e di fornire un'esperienza utente completa in Bottles."
+msgstr ""
+"Winetricks verrà rimosso da Bottles a favore di un sistema integrato "
+"perinstallazione di librerie e dipendenze. Usa invece la scheda "
+"'Dipendenze'. \n"
+"\n"
+"Questa scelta con lo scopo di utilizzare il minor numero possibile di "
+"strumenti esterni e di fornire un'esperienza utente completa in Bottles."
 
-#: src/ui/details.ui:175
+#: src/ui/details.ui:176
 msgid "Winetricks"
 msgstr "Winetricks"
 
-#: src/ui/details.ui:222
+#: src/ui/details.ui:223
 msgid "Debug"
 msgstr "Debug"
 
-#: src/ui/details.ui:269
+#: src/ui/details.ui:270
 msgid "Run .exe"
 msgstr "Esegui .exe"
 
-#: src/ui/details.ui:316
+#: src/ui/details.ui:317
 msgid "Task manager"
 msgstr "Gestore processi"
 
-#: src/ui/details.ui:363
+#: src/ui/details.ui:364
 msgid "Control panel"
 msgstr "Pannello di controllo"
 
-#: src/ui/details.ui:410
+#: src/ui/details.ui:411
 msgid "Uninstaller"
 msgstr "Disinstallatore"
 
-#: src/ui/details.ui:457
+#: src/ui/details.ui:458
 msgid "CMD"
 msgstr "CMD"
 
-#: src/ui/details.ui:504
+#: src/ui/details.ui:505
 msgid "Regedit"
 msgstr "Regedit"
 
-#: src/ui/details.ui:551 src/ui/list-entry.ui:40
+#: src/ui/details.ui:552 src/ui/list-entry.ui:38
 msgid "Browse C:"
 msgstr "Sfoglia C:"
 
-#: src/ui/details.ui:601
+#: src/ui/details.ui:602
 msgid "Simulates a system shutdown (this does not terminate processes)."
 msgstr "Simula un arresto del sistema (questo non termina i processi)."
 
-#: src/ui/details.ui:626
+#: src/ui/details.ui:627
 msgid "Shutdown"
 msgstr "Spegni"
 
-#: src/ui/details.ui:648
+#: src/ui/details.ui:649
 msgid "Simulates a system reboot (this does not terminate processes)."
 msgstr "Simula un riavvio del sistema (questo non termina i processi)."
 
-#: src/ui/details.ui:673
+#: src/ui/details.ui:674
 msgid "Reboot"
 msgstr "Riavvia"
 
-#: src/ui/details.ui:695
+#: src/ui/details.ui:696
 msgid "Kill all processes running in this Bottle."
 msgstr "Uccidi tutti i processi in esecuzione in questa bottiglia."
 
-#: src/ui/details.ui:720
+#: src/ui/details.ui:721
 msgid "Kill all processes"
 msgstr "Uccidi tutti i processi"
 
-#: src/ui/details.ui:767
+#: src/ui/details.ui:768
 msgid "Bottle size:"
 msgstr "Dimensione bottiglia:"
 
-#: src/ui/details.ui:805
+#: src/ui/details.ui:806
 msgid "Remaining disk space:"
 msgstr "Spazio rimanente sul disco:"
 
-#: src/ui/details.ui:846
+#: src/ui/details.ui:847
 msgid "X of Y"
 msgstr "X di Y"
 
-#: src/ui/details.ui:861
+#: src/ui/details.ui:862
 msgid "Utility"
 msgstr "Utilità"
 
-#: src/ui/details.ui:884
+#: src/ui/details.ui:885
 msgid "DXVK/Synchronization"
 msgstr "DXVK/Sincronizzazione"
 
-#: src/ui/details.ui:904
+#: src/ui/details.ui:905
 msgid ""
 "Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
 "translating requests to Vulkan."
-msgstr "Abilita il supporto per Direct3D 12 e migliora le prestazioni con Direct3D 9/10/11"
-"traducendo le richieste in Vulkan."
+msgstr ""
+"Abilita il supporto per Direct3D 12 e migliora le prestazioni con Direct3D "
+"9/10/11traducendo le richieste in Vulkan."
 
-#: src/ui/details.ui:905
+#: src/ui/details.ui:906
 msgid "DXVK/VKD3D for Direct3D"
 msgstr "DXVK/VKD3D per Direct3D"
 
-#: src/ui/details.ui:941
+#: src/ui/details.ui:942
 msgid ""
 "Enable eventfd based synchronization to increase performance for multi-core "
 "processors."
-msgstr "Abilita la sincronizzazione basata su eventfd per aumentare le prestazioni con multi-core."
+msgstr ""
+"Abilita la sincronizzazione basata su eventfd per aumentare le prestazioni "
+"con multi-core."
 
-#: src/ui/details.ui:942
+#: src/ui/details.ui:943
 msgid "Esync (eventfd synchronization)"
 msgstr "Esync (sincronizzazione eventfd)"
 
-#: src/ui/details.ui:978
+#: src/ui/details.ui:979
 msgid ""
 "Enable futex based synchronization to increase performance for multi-core "
 "processors."
-msgstr "Abilita la sincronizzazione basata su futex per aumentare le prestazioni con multi-core."
+msgstr ""
+"Abilita la sincronizzazione basata su futex per aumentare le prestazioni con "
+"multi-core."
 
-#: src/ui/details.ui:979
+#: src/ui/details.ui:980
 msgid "Fsync (futex synchronization)"
 msgstr "Fsync (sincronizzazione futex)"
 
-#: src/ui/details.ui:1022
+#: src/ui/details.ui:1027
+msgid ""
+"Enable the DXVK overlay showing FPS and other details in D3D applications."
+msgstr ""
+
+#: src/ui/details.ui:1028
+msgid "DXVK HUD"
+msgstr ""
+
+#: src/ui/details.ui:1067
+msgid "Developers and debug"
+msgstr ""
+
+#: src/ui/details.ui:1093
 msgid "GPU"
 msgstr "GPU"
 
-#: src/ui/details.ui:1042
+#: src/ui/details.ui:1113
 msgid ""
 "In laptops with two GPUs (Intel+NVIDIA or AMD+Nvidia or Intel+AMD), select "
 "this to use the discrete card."
-msgstr "Nei laptop con due GPU (Intel + NVIDIA o AMD + Nvidia o Intel + AMD), selezionare"
-"questo per utilizzare la scheda discreta."
+msgstr ""
+"Nei laptop con due GPU (Intel + NVIDIA o AMD + Nvidia o Intel + AMD), "
+"selezionarequesto per utilizzare la scheda discreta."
 
-#: src/ui/details.ui:1043
+#: src/ui/details.ui:1114
 msgid "Use Discrete Graphics Card"
 msgstr "Usa la GPU discreta"
 
-#: src/ui/details.ui:1086
+#: src/ui/details.ui:1157
 msgid "Desktop virtualization"
 msgstr "Virtualizzazione del desktop"
 
-#: src/ui/details.ui:1106 src/ui/details.ui:1143
+#: src/ui/details.ui:1177 src/ui/details.ui:1214
 msgid "Virtualize a desktop where to spawn all Windows applications."
 msgstr "Virtualizza un desktop in cui generare tutte le applicazioni Windows."
 
-#: src/ui/details.ui:1107
+#: src/ui/details.ui:1178
 msgid "Virtual Desktop"
 msgstr "Desktop virtuale"
 
-#: src/ui/details.ui:1144
+#: src/ui/details.ui:1215
 msgid "Virtual Desktop resolution"
 msgstr "Risoluzione desktop virtuale"
 
-#: src/ui/details.ui:1199
+#: src/ui/details.ui:1270
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details.ui:1219
+#: src/ui/details.ui:1290
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
-msgstr "Imposta la latenza di PulseAudio su 60 millisecondi per aumentare la qualità del suono"
+msgstr ""
+"Imposta la latenza di PulseAudio su 60 millisecondi per aumentare la qualità "
+"del suono"
 
-#: src/ui/details.ui:1220
+#: src/ui/details.ui:1291
 msgid "Reduce PulseAudio latency"
 msgstr "Riduci la latenza di PulseAudio"
 
-#: src/ui/details.ui:1263
+#: src/ui/details.ui:1334
 msgid "DLL overrides"
 msgstr "Sostituzioni DLL"
 
-#: src/ui/details.ui:1278
-msgid "Syntax: key,value|key,value|.."
-msgstr "Sintassi: chiave,valore|chiave, valore| .."
+#: src/ui/details.ui:1354
+msgid "Syntax: key,value (use a new line as separator for each DLL override)"
+msgstr ""
 
-#: src/ui/details.ui:1295 src/ui/window.ui:146
+#: src/ui/details.ui:1376 src/ui/window.ui:146
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: src/ui/details.ui:1316
+#: src/ui/details.ui:1397
 msgid ""
 "The following packages are downloaded from external sources (mainly from "
 "Microsoft)."
-msgstr "I seguenti pacchetti vengono scaricati da fonti esterne (principalmente da Microsoft)."
+msgstr ""
+"I seguenti pacchetti vengono scaricati da fonti esterne (principalmente da "
+"Microsoft)."
 
-#: src/ui/details.ui:1378
+#: src/ui/details.ui:1461
 msgid "Open a issue"
 msgstr "Segnala un problema"
 
-#: src/ui/details.ui:1400
+#: src/ui/details.ui:1486
 msgid "Found a broken dependency?"
 msgstr "Hai trovato una dipendenza rotta?"
 
-#: src/ui/details.ui:1426
+#: src/ui/details.ui:1512
 msgid ""
 "Install dependencies (like corefonts, vcrun6, ..)  for better software "
 "compatibility."
-msgstr "Installa le dipendenze (come corefonts, vcrun6, ..) per una miglior compatibilità software."
+msgstr ""
+"Installa le dipendenze (come corefonts, vcrun6, ..) per una miglior "
+"compatibilità software."
 
-#: src/ui/details.ui:1427
+#: src/ui/details.ui:1513
 msgid "Dependencies"
 msgstr "Dipendenze"
+
+#: src/ui/details.ui:1552
+msgid ""
+"These the programs I found installed in the Bottle (they may not be all)."
+msgstr ""
+
+#: src/ui/details.ui:1568
+msgid "Check for installed programs."
+msgstr ""
+
+#: src/ui/details.ui:1649
+msgid "Programs"
+msgstr ""
 
 #: src/ui/download-entry.ui:19
 msgid "Runner x.y"
@@ -346,39 +395,55 @@ msgstr "Runner x.y"
 msgid "Cancel download"
 msgstr "Annulla download"
 
-#: src/ui/list-entry.ui:14
-msgid "Destroy bottle"
-msgstr "Distruggi la bottiglia"
-
-#: src/ui/list-entry.ui:64
+#: src/ui/list-entry.ui:15
 msgid "Backups are not supported in this version"
 msgstr "I backup non sono supportati in questa versione"
+
+#: src/ui/list-entry.ui:61
+msgid "Destroy bottle"
+msgstr "Distruggi la bottiglia"
 
 #: src/ui/list-entry.ui:87
 msgid "Run .exe in this bottle"
 msgstr "Esegui .exe in questa bottiglia"
 
 #: src/ui/list-entry.ui:110
+msgid "Installed programs"
+msgstr ""
+
+#: src/ui/list-entry.ui:132
 msgid "Utility & Preferences"
 msgstr "Utilità & Preferenze"
 
-#: src/ui/list-entry.ui:131
+#: src/ui/list-entry.ui:153
 msgid "Upgrade runner to the latest localy installed"
 msgstr "Aggiorna il runner all'ultimo installato localmente"
 
-#: src/ui/list-entry.ui:151
+#: src/ui/list-entry.ui:173
 msgid "This bottle looks damaged."
 msgstr "Questa bottiglia sembra danneggiata."
 
-#: src/ui/list-entry.ui:192
+#: src/ui/list-entry.ui:214
 msgid "Environment"
 msgstr "Ambiente"
 
-#: src/ui/list-entry.ui:231
+#: src/ui/list-entry.ui:253
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
-msgstr "Questa bottiglia sembra danneggiata, manca il file di configurazione. Posso provare a risolvere creando una nuova configurazione."
+msgstr ""
+"Questa bottiglia sembra danneggiata, manca il file di configurazione. Posso "
+"provare a risolvere creando una nuova configurazione."
+
+#: src/ui/list-entry.ui:274
+#, fuzzy
+msgid "Execute in this bottle"
+msgstr "Esegui .exe in questa bottiglia"
+
+#: src/ui/list-entry.ui:287
+#, fuzzy
+msgid "Run in this bottle"
+msgstr "Esegui .exe in questa bottiglia"
 
 #: src/ui/window.ui:35
 msgid "Download preferences"
@@ -400,4 +465,15 @@ msgstr "A proposito di Bottles"
 msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
-"Questa è una versione di sviluppo. Segnala incidenti e bug nel repository GitHub."
+"Questa è una versione di sviluppo. Segnala incidenti e bug nel repository "
+"GitHub."
+
+#: src/ui/window.ui:368
+msgid ""
+"You don't seem connected to the internet. Without it you will not be able to "
+"essential components. Click this icon when you have reestablished the "
+"connection."
+msgstr ""
+
+#~ msgid "Syntax: key,value|key,value|.."
+#~ msgstr "Sintassi: chiave,valore|chiave, valore| .."
