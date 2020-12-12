@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging, socket
+import logging, socket, subprocess
 
 '''
 Set the default logging level
@@ -45,3 +45,25 @@ class UtilsConnection():
                                               "network-wireless-disabled-symbolic")
             pass
         return False
+
+class UtilsTerminal():
+
+    terminals = [
+        'gnome-terminal -- %s',
+        'xterm -e %s',
+        'konsole -e %s',
+        'xfce4-terminal --command %s',
+    ]
+
+    def __init__(self, command, **kwargs):
+        super().__init__(**kwargs)
+
+        for terminal in self.terminals:
+            command = terminal % 'bash -c "%s"' % command
+            try:
+                subprocess.Popen(command,
+                                 shell=True,
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT)
+            except:
+                pass
