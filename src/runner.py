@@ -56,6 +56,8 @@ class BottlesRunner:
     '''
     repository = "https://github.com/lutris/wine/releases"
     repository_api = "https://api.github.com/repos/lutris/wine/releases"
+    proton_repository = "https://github.com/GloriousEggroll/proton-ge-custom/releases"
+    proton_repository_api = "https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases"
     dxvk_repository = "https://github.com/doitsujin/dxvk/releases"
     dxvk_repository_api = "https://api.github.com/repos/doitsujin/dxvk/releases"
     dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
@@ -196,7 +198,7 @@ class BottlesRunner:
     Extract a component archive
     '''
     def extract_component(self, component, archive):
-        if component == "runner": path = self.runners_path
+        if component in ["runner", "runner:proton"]: path = self.runners_path
         if component == "dxvk": path = self.dxvk_path
 
         archive = tarfile.open("%s/%s" % (self.temp_path, archive))
@@ -207,6 +209,7 @@ class BottlesRunner:
     '''
     def download_component(self, component, tag, file, rename=False):
         if component == "runner": repository = self.repository
+        if component == "runner:proton": repository = self.proton_repository
         if component == "dxvk": repository = self.dxvk_repository
         if component == "dependency":
             repository = self.dependencies_repository
@@ -253,6 +256,7 @@ class BottlesRunner:
         Add a new entry to the download manager
         '''
         if component == "runner": file_name = tag
+        if component == "runner:proton": file_name = "proton-%s" % tag
         if component == "dxvk": file_name = "dxvk-%s" % tag
 
         download_entry = BottlesDownloadEntry(file_name=file_name, stoppable=False)
@@ -461,9 +465,9 @@ class BottlesRunner:
                 self.runners_available))
 
         '''
-        If there are no locally installed runners, download the
-        latest version available from Lutris' GitHub repository
-        (currently the only one providing the wine binaries)
+        If there are no locally installed runners, download the latest
+        builds for Wine and Proton from the GitHub repositories.
+        A very special thanks to Lutris & GloriousEggroll for builds <3!
         '''
         if len(self.runners_available) == 0 and install_latest:
             logging.info("No runners found.")
@@ -472,12 +476,24 @@ class BottlesRunner:
             Fetch runners from repository only if connected
             '''
             if self.utils_conn.check_connection():
+                '''
+                Wine
+                '''
                 with urllib.request.urlopen(self.repository_api) as url:
                     releases = json.loads(url.read().decode())
                     tag = releases[0]["tag_name"]
                     file = releases[0]["assets"][0]["name"]
 
                     self.install_component("runner", tag, file)
+                '''
+                Proton
+                '''
+                with urllib.request.urlopen(self.proton_repository_api) as url:
+                    releases = json.loads(url.read().decode())
+                    tag = releases[0]["tag_name"]
+                    file = releases[0]["assets"][0]["name"]
+
+                    self.install_component("runner:proton", tag, file)
 
         '''
         Sort runners_available and dxvk_available alphabetically
@@ -744,8 +760,12 @@ class BottlesRunner:
     '''
     Get latest installed runner
     '''
-    def get_latest_runner(self):
-        return self.runners_available[0]
+    def get_latest_runner(self, runner_type="wine"):
+        if runner_type == "wine":
+            latest_runner = [idx for idx in self.runners_available if idx.lower().startswith("lutris")][0]
+        else:
+            latest_runner = [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
+        return latest_runner
 
     '''
     Get human size
@@ -997,6 +1017,13 @@ class BottlesRunner:
         '''
         path = configuration.get("Path")
         runner = configuration.get("Runner")
+
+        '''
+        If runner is proton then set path to /dist
+        '''
+        if runner.startswith("Proton"):
+            runner = "%s/dist" % runner
+
         if not configuration.get("Custom_Path"):
             path = "%s/%s" % (self.bottles_path, path)
 
