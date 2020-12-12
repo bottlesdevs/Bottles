@@ -24,6 +24,7 @@ from datetime import date
 
 from .download import BottlesDownloadEntry
 from .pages.list import BottlesListEntry
+from .utils import UtilsTerminal
 
 '''
 Set the default logging level
@@ -946,7 +947,7 @@ class BottlesRunner:
 
     def run_debug(self, configuration):
         logging.info("Running a debug console on the wineprefix…")
-        self.run_command(configuration, "winedbg")
+        self.run_command(configuration, "winedbg", terminal=True)
 
     def run_cmd(self, configuration):
         logging.info("Running a CMD on the wineprefix…")
@@ -971,7 +972,7 @@ class BottlesRunner:
     '''
     Run wine command in a bottle
     '''
-    def run_command(self, configuration, command):
+    def run_command(self, configuration, command, terminal=False):
         '''
         Prepare and execute the command
         '''
@@ -1018,6 +1019,8 @@ class BottlesRunner:
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
+        if terminal:
+            return UtilsTerminal(command)
         return subprocess.Popen(command, shell=True)
 
     '''
