@@ -930,12 +930,11 @@ class BottlesRunner:
             command = "msiexec /i '%s'" % file_path
         else:
             command = "'%s'" % file_path
-        print(command)
         self.run_command(configuration, command)
 
     def run_wineboot(self, configuration):
         logging.info("Running wineboot on the wineprefix…")
-        self.run_command(configuration, "wineboot")
+        self.run_command(configuration, "wineboot -u")
 
     def run_winecfg(self, configuration):
         logging.info("Running winecfg on the wineprefix…")
