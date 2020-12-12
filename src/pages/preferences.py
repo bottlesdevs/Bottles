@@ -58,6 +58,7 @@ class BottlesPreferences(Gtk.Box):
     '''
     notebook_preferences = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
+    switch_temp = Gtk.Template.Child()
     combo_views = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
@@ -80,12 +81,14 @@ class BottlesPreferences(Gtk.Box):
         Connect signals to widgets
         '''
         self.switch_notifications.connect('state-set', self.toggle_notifications)
+        self.switch_temp.connect('state-set', self.toggle_temp)
         self.combo_views.connect('changed', self.change_startup_view)
 
         '''
         Set widgets status from user settings
         '''
         self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
+        self.switch_temp.set_active(self.settings.get_boolean("temp"))
         self.combo_views.set_active_id(self.settings.get_string("startup-view"))
 
         '''
@@ -125,6 +128,12 @@ class BottlesPreferences(Gtk.Box):
     '''
     def toggle_notifications(self, widget, state):
         self.settings.set_boolean("notifications", state)
+
+    '''
+    Toggle temp cleaner and store status in settings
+    '''
+    def toggle_temp(self, widget, state):
+        self.settings.set_boolean("temp", state)
 
     '''
     Change the startup view and save in user settings

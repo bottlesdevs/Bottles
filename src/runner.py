@@ -125,6 +125,7 @@ class BottlesRunner:
         self.check_dxvk(install_latest=False)
         self.fetch_dependencies()
         self.check_bottles()
+        self.clear_temp()
 
     '''
     Performs all checks in one async shot
@@ -143,11 +144,12 @@ class BottlesRunner:
     '''
     Clear temp path
     '''
-    def clear_temp(self):
+    def clear_temp(self, force=False):
         logging.info("Cleaning the temp path.")
 
-        for f in os.listdir(self.temp_path):
-            os.remove(os.path.join(self.temp_path, f))
+        if self.settings.get_boolean("temp") or force:
+            for f in os.listdir(self.temp_path):
+                os.remove(os.path.join(self.temp_path, f))
 
 
     '''
@@ -170,8 +172,6 @@ class BottlesRunner:
             if not os.path.isdir(self.temp_path):
                 logging.info("Temp path doens't exist, creating now.")
                 os.makedirs(self.temp_path, exist_ok=True)
-            else:
-                self.clear_temp()
         except:
             return False
 
