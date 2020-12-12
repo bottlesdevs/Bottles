@@ -40,6 +40,16 @@ class BottlesRunnerEntry(Gtk.Box):
         self.init_template()
 
         '''
+        Set runner type based on name, also if runner is proton then
+        add suffix `Proton-`.
+        '''
+        if not runner_name[:6].lower() in ["lutris", "proton"]:
+            self.runner_type = "runner:proton"
+            runner_name = "Proton-%s" % runner_name
+        else:
+            self.runner_type = "runner"
+
+        '''
         Set reusable variables
         '''
         self.window = window
@@ -63,7 +73,7 @@ class BottlesRunnerEntry(Gtk.Box):
             self.btn_download.set_visible(True)
 
     def download_runner(self, widget):
-        self.runner.install_component("runner",
+        self.runner.install_component(self.runner_type,
                                       self.runner_tag,
                                       self.runner_file)
 
@@ -133,7 +143,6 @@ class BottlesPreferences(Gtk.Box):
     def get_runner_updates(self,widget):
         self.update_runners()
         for runner in self.window.runner.get_runner_updates().items():
-            print(runner)
             self.list_runners.add(BottlesRunnerEntry(self.window,
                                                      runner[0],
                                                      installable=runner))
