@@ -663,9 +663,10 @@ class BottlesRunner:
         name, environment, path, runner = args
 
         if not runner:
-            runner_name = runner = self.runners_available[0]
+            runner = self.runners_available[0]
+        runner_name = runner
+
         if runner.startswith("Proton"):
-            runner_name = runner
             runner = "%s/dist" % runner
 
         '''
