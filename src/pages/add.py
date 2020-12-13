@@ -38,6 +38,8 @@ class BottlesAddDetails(Gtk.Box):
     check_path = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
+    combo_runner = Gtk.Template.Child()
+    expander_advanced = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -52,6 +54,8 @@ class BottlesAddDetails(Gtk.Box):
         '''
         self.window = window
         self.runner = window.runner
+        self.environment = self.window.env_active
+        self.custom_runner = False
 
         '''
         Connect signals to widgets
@@ -60,6 +64,29 @@ class BottlesAddDetails(Gtk.Box):
         self.btn_save.connect('pressed', self.create_bottle)
         self.check_path.connect('toggled', self.toggle_entry_path)
         self.entry_name.connect('key-release-event', self.check_entry_name)
+        self.combo_runner.connect('changed', self.set_runner)
+
+        '''
+        Populate combo_runner with installed runners
+        '''
+        for runner in self.runner.runners_available:
+            self.combo_runner.append(runner, runner)
+
+        self.combo_runner.set_active(0)
+
+    def set_runner(self, widget):
+        self.custom_runner = widget.get_active_id()
+
+    '''
+    Get selected environment
+    if custom show advanced settings
+    '''
+    def update_environment(self):
+        self.expander_advanced.set_visible(False)
+        self.environment = self.window.env_active
+        if self.environment == "Custom":
+            self.custom_runner = self.combo_runner.get_active_id()
+            self.expander_advanced.set_visible(True)
 
     '''
     Check for not allowed characters in entry_name
@@ -90,7 +117,8 @@ class BottlesAddDetails(Gtk.Box):
         self.window.stack_main.set_visible_child_name("page_create")
         self.runner.create_bottle(name=self.entry_name.get_text(),
                                   path=custom_path,
-                                  environment=self.window.env_active)
+                                  environment=self.window.env_active,
+                                  runner=self.custom_runner)
 
     def toggle_entry_path(self, widget):
         self.entry_path.set_sensitive(widget.get_active())
@@ -200,4 +228,5 @@ class BottlesAdd(Gtk.Box):
         context.add_class("btn_env_active")
 
     def show_add_details_view(self, widget):
+        self.window.page_add_details.update_environment()
         self.window.stack_main.set_visible_child_name("page_add_details")
