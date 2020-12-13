@@ -660,7 +660,13 @@ class BottlesRunner:
     def async_create_bottle(self, args):
         logging.info("Creating the wineprefix…")
 
-        name, environment, path = args
+        name, environment, path, runner = args
+
+        if not runner:
+            runner_name = runner = self.runners_available[0]
+        if runner.startswith("Proton"):
+            runner_name = runner
+            runner = "%s/dist" % runner
 
         '''
         Define reusable variables
@@ -711,8 +717,7 @@ class BottlesRunner:
         '''
         command = "WINEPREFIX={path} WINEARCH=win64 {runner} wineboot".format(
             path = bottle_complete_path,
-            runner = "%s/%s/bin/wine64" % (self.runners_path,
-                                         self.runners_available[0])
+            runner = "%s/%s/bin/wine64" % (self.runners_path, runner)
         )
 
         '''
@@ -735,7 +740,7 @@ class BottlesRunner:
 
         configuration = self.sample_configuration
         configuration["Name"] = bottle_name
-        configuration["Runner"] = self.runners_available[0]
+        configuration["Runner"] = runner_name
         if path == "":
             configuration["Path"] = bottle_name_path
         else:
@@ -769,10 +774,11 @@ class BottlesRunner:
         self.local_bottles = {}
         self.check_bottles()
 
-    def create_bottle(self, name, environment, path=False):
+    def create_bottle(self, name, environment, path=False, runner=False):
         a = RunAsync('create', self.async_create_bottle, [name,
                                                           environment,
-                                                          path])
+                                                          path,
+                                                          runner])
         a.start()
 
     '''
