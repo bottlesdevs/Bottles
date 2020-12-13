@@ -30,6 +30,7 @@ class BottlesRunnerEntry(Gtk.Box):
     '''
     label_name = Gtk.Template.Child()
     btn_download = Gtk.Template.Child()
+    btn_browse = Gtk.Template.Child()
 
     def __init__(self, window, runner_name, installable=False, **kwargs):
         super().__init__(**kwargs)
@@ -65,17 +66,22 @@ class BottlesRunnerEntry(Gtk.Box):
         Connect signals to widgets
         '''
         self.btn_download.connect('pressed', self.download_runner)
+        self.btn_browse.connect('pressed', self.run_browse)
 
         if installable:
-            print(installable)
             self.runner_tag = installable[0]
             self.runner_file = installable[1]
             self.btn_download.set_visible(True)
+            self.btn_browse.set_visible(False)
 
     def download_runner(self, widget):
         self.runner.install_component(self.runner_type,
                                       self.runner_tag,
                                       self.runner_file)
+
+    def run_browse(self, widget):
+        self.runner.open_filemanager(path_type="runner",
+                                     runner=self.runner_name)
 
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/preferences.ui')

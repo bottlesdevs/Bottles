@@ -188,24 +188,26 @@ class BottlesRunner:
             '''
             with urllib.request.urlopen(self.repository_api) as url:
                 releases = json.loads(url.read().decode())
-                tag = releases[0]["tag_name"]
-                file = releases[0]["assets"][0]["name"]
-                if "%s-x86_64" % tag not in self.runners_available:
-                    updates[tag] = file
-                else:
-                    logging.info("Latest runner is `%s` and is already installed." % tag)
+                for release in [releases[0], releases[1], releases[2]]:
+                    tag = release["tag_name"]
+                    file = release["assets"][0]["name"]
+                    if "%s-x86_64" % tag not in self.runners_available:
+                        updates[tag] = file
+                    else:
+                        logging.info("Latest runner is `%s` and is already installed." % tag)
 
             '''
             proton
             '''
             with urllib.request.urlopen(self.proton_repository_api) as url:
                 releases = json.loads(url.read().decode())
-                tag = releases[0]["tag_name"]
-                file = releases[0]["assets"][0]["name"]
-                if "%s-x86_64" % tag not in self.runners_available:
-                    updates[tag] = file
-                else:
-                    logging.info("Latest runner is `%s` and is already installed." % tag)
+                for release in [releases[0], releases[1], releases[2]]:
+                    tag = release["tag_name"]
+                    file = release["assets"][0]["name"]
+                    if "Proton-%s" % tag not in self.runners_available:
+                        updates[tag] = file
+                    else:
+                        logging.info("Latest runner is `%s` and is already installed." % tag)
 
         return updates
 
@@ -1102,7 +1104,7 @@ class BottlesRunner:
         self.run_command(configuration, "wineboot %s" % option)
 
         '''
-        Send a notification for statush change if the
+        Send a notification for status change if the
         user settings allow it
         '''
         if self.settings.get_boolean("notifications"):
@@ -1115,15 +1117,20 @@ class BottlesRunner:
     '''
     Method for open wineprefixes path in file manager
     '''
-    def open_filemanager(self, configuration):
-        logging.info("Opening the file manager on the wineprefix path…")
+    def open_filemanager(self, configuration={}, path_type="bottle", runner=False):
+        logging.info("Opening the file manager on the path…")
 
-        bottle_path = configuration.get("Path")
+        if path_type == "bottle":
+            path = "%s/%s/drive_c" % (self.bottles_path,
+                                      configuration.get("Path"))
+
+        if path_type == "runner":
+            path = "%s/%s" % (self.runners_path, runner)
 
         '''
         Prepare and execute the command
         '''
-        command = "xdg-open %s/%s/drive_c" % (self.bottles_path, bottle_path)
+        command = "xdg-open %s" % path
         return subprocess.Popen(command, shell=True)
 
 
