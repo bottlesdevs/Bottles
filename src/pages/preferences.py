@@ -43,7 +43,7 @@ class BottlesRunnerEntry(Gtk.Box):
         Set runner type based on name, also if runner is proton then
         add suffix `Proton-`.
         '''
-        if not runner_name[:6].lower() in ["lutris", "proton"]:
+        if not runner_name[:6].lower() in ["lutris", "proton", "dxvk"]:
             self.runner_type = "runner:proton"
             runner_name = "Proton-%s" % runner_name
         else:

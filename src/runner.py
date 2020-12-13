@@ -500,15 +500,16 @@ class BottlesRunner:
                     file = releases[0]["assets"][0]["name"]
 
                     self.install_component("runner", tag, file)
+
                 '''
                 Proton
-                '''
                 with urllib.request.urlopen(self.proton_repository_api) as url:
                     releases = json.loads(url.read().decode())
                     tag = releases[0]["tag_name"]
                     file = releases[0]["assets"][0]["name"]
 
                     self.install_component("runner:proton", tag, file)
+                '''
 
         '''
         Sort runners_available and dxvk_available alphabetically
