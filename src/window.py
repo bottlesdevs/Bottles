@@ -236,11 +236,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
     Save the previous page to allow the user to go back
     '''
     def set_previous_page_status(self):
-        current_page = self.stack_main.get_visible_child_name()
-        if current_page in ["page_add_details", "page_create"]:
-            current_page = "page_add"
+        if self.previous_page != "page_preferences":
+            current_page = self.stack_main.get_visible_child_name()
+            if current_page in ["page_add_details", "page_create"]:
+                current_page = "page_add"
 
-        if self.previous_page != current_page:
             self.previous_page = current_page
             self.btn_back.set_visible(True)
 
