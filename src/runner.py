@@ -1083,6 +1083,7 @@ class BottlesRunner:
 
         if parameters["dxvk"]:
             environment_vars.append("WINEDLLOVERRIDES='d3d11,dxgi=n'")
+            environment_vars.append("DXVK_STATE_CACHE_PATH='%s'" % path)
 
         if parameters["dxvk_hud"]:
             environment_vars.append("DXVK_HUD='1'")
@@ -1109,6 +1110,7 @@ class BottlesRunner:
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
+        print(command)
         if terminal:
             return UtilsTerminal(command)
         return subprocess.Popen(command, shell=True)
