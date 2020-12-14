@@ -3,6 +3,31 @@ export APPDIR="$(dirname "$(readlink -f "$0")")"
 export PATH="$APPDIR/usr/bin/:$PATH"
 export LD_LIBRARY_PATH="$APPDIR/usr/lib:$PATH"
 export XDG_DATA_DIRS="$APPDIR/usr/share/:/usr/share/:$XDG_DATA_DIRS"
+export DESKTOP_FILE_PATH=$APPDIR/usr/share/applications/pm.mirko.bottles.desktop
+export INSTALLED_DESKTOP_FILE_PATH=~/.local/share/applications/bottles.desktop
+INSTALL_DESKTOP_FILE=false
+
+if ! test -f $INSTALLED_DESKTOP_FILE_PATH; then
+	if ! command -v zenity &> /dev/null
+	then
+		zenity --question --text="Do you want to install this AppImage?"
+		if [ $? = 0 ]; then
+			INSTALL_DESKTOP_FILE=true
+		fi
+	elif command -v kdialog &> /dev/null
+	then
+		kdialog --yesno "Do you want to install this AppImage?" --yes-label "Install" --no-label "Just run" --title "Bottles Installation"
+		if [ $? = 0 ]; then
+			INSTALL_DESKTOP_FILE=true
+		fi
+	fi
+
+	if $INSTALL_DESKTOP_FILE
+	then
+		cp $DESKTOP_FILE_PATH $INSTALLED_DESKTOP_FILE_PATH
+		sed -i -e 's|Exec=bottles|Exec='$APPIMAGE'|g' $INSTALLED_DESKTOP_FILE_PATH
+	fi
+fi
 
 if ! command -v python3 &> /dev/null
 then
