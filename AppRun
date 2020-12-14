@@ -10,7 +10,7 @@ INSTALL_DESKTOP_FILE=false
 if ! test -f $INSTALLED_DESKTOP_FILE_PATH; then
 	if command -v zenity &> /dev/null
 	then
-		zenity --question --text="Do you want to install this AppImage?"
+		zenity --question --text="Do you want to install this AppImage?" --title "Bottles Installation"
 		if [ $? = 0 ]; then
 			INSTALL_DESKTOP_FILE=true
 		fi
