@@ -274,7 +274,7 @@
           <object class="GtkButton" id="btn_back">
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">New bottle</property>
+            <property name="tooltip-text" translatable="yes">Go back</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
@@ -307,7 +307,7 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">New bottle</property>
+            <property name="tooltip-text" translatable="yes">Your Bottles</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
@@ -326,6 +326,7 @@
             <property name="can-focus">True</property>
             <property name="focus-on-click">False</property>
             <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Open menu</property>
             <property name="popover">pop_menu</property>
             <child>
               <object class="GtkImage">
@@ -346,6 +347,7 @@
             <property name="can-focus">True</property>
             <property name="focus-on-click">False</property>
             <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Downloads</property>
             <property name="popover">pop_downloads</property>
             <child>
               <object class="GtkImage">

@@ -103,9 +103,28 @@ class BottlesRunner:
             "discrete_gpu": False,
             "virtual_desktop": False,
             "virtual_desktop_res": "1280x720",
-            "pulseaudio_latency": False
+            "pulseaudio_latency": False,
+            "environment_variables": ""
         },
         "Installed_Dependencies" : []
+    }
+
+    environments = {
+        "gaming": {
+            "Runner": "wine",
+            "Parameters": {
+                "dxvk": True,
+                "esync": True,
+                "discrete_gpu": True,
+                "pulseaudio_latency": True
+            }
+        },
+        "software": {
+            "Runner": "wine",
+            "Parameters": {
+                "dxvk": True
+            }
+        }
     }
 
     supported_dependencies = {}

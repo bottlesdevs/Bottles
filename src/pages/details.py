@@ -151,6 +151,8 @@ class BottlesDetails(Gtk.Box):
     btn_killall = Gtk.Template.Child()
     btn_report_dependency = Gtk.Template.Child()
     btn_programs_updates = Gtk.Template.Child()
+    btn_environment_variables = Gtk.Template.Child()
+    btn_manage_runners = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_esync = Gtk.Template.Child()
@@ -163,6 +165,9 @@ class BottlesDetails(Gtk.Box):
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     progress_disk = Gtk.Template.Child()
+    textview_overrides = Gtk.Template.Child()
+    entry_environment_variables = Gtk.Template.Child()
+    buffer_overrides = Gtk.Template.Child()
 
     def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
@@ -203,6 +208,8 @@ class BottlesDetails(Gtk.Box):
         self.btn_killall.connect('pressed', self.run_killall)
         self.btn_report_dependency.connect('pressed', self.open_report_url)
         self.btn_programs_updates.connect('pressed', self.update_programs)
+        self.btn_environment_variables.connect('pressed', self.save_environment_variables)
+        self.btn_manage_runners.connect('pressed', self.window.show_runners_preferences_view)
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
         self.switch_esync.connect('state-set', self.toggle_esync)
@@ -252,6 +259,7 @@ class BottlesDetails(Gtk.Box):
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
         self.combo_runner.set_active_id(self.configuration.get("Runner"))
         self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
+        self.entry_environment_variables.set_text(parameters["environment_variables"])
 
         '''
         Unlock signals
@@ -266,6 +274,14 @@ class BottlesDetails(Gtk.Box):
 
     def set_page(self, page):
         self.notebook_details.set_current_page(page)
+
+    def save_environment_variables(self, widget):
+        environment_variables = self.entry_environment_variables.get_text()
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "environment_variables",
+                                                             environment_variables,
+                                                             True)
+        self.configuration = new_configuration
 
     '''
     Add entries to list_programs
