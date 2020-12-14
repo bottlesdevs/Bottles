@@ -1078,6 +1078,9 @@ class BottlesRunner:
         environment_vars = []
         parameters = configuration["Parameters"]
 
+        if parameters["environment_variables"]:
+            environment_vars.append(parameters["environment_variables"])
+
         if parameters["dxvk"]:
             environment_vars.append("WINEDLLOVERRIDES='d3d11,dxgi=n'")
 
