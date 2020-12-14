@@ -8,7 +8,7 @@ export INSTALLED_DESKTOP_FILE_PATH=~/.local/share/applications/bottles.desktop
 INSTALL_DESKTOP_FILE=false
 
 if ! test -f $INSTALLED_DESKTOP_FILE_PATH; then
-	if ! command -v zenity &> /dev/null
+	if command -v zenity &> /dev/null
 	then
 		zenity --question --text="Do you want to install this AppImage?"
 		if [ $? = 0 ]; then
