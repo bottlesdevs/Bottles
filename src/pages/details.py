@@ -152,6 +152,7 @@ class BottlesDetails(Gtk.Box):
     btn_report_dependency = Gtk.Template.Child()
     btn_programs_updates = Gtk.Template.Child()
     btn_environment_variables = Gtk.Template.Child()
+    btn_overrides = Gtk.Template.Child()
     btn_manage_runners = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
@@ -165,9 +166,8 @@ class BottlesDetails(Gtk.Box):
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     progress_disk = Gtk.Template.Child()
-    textview_overrides = Gtk.Template.Child()
     entry_environment_variables = Gtk.Template.Child()
-    buffer_overrides = Gtk.Template.Child()
+    entry_overrides = Gtk.Template.Child()
 
     def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
@@ -209,6 +209,7 @@ class BottlesDetails(Gtk.Box):
         self.btn_report_dependency.connect('pressed', self.open_report_url)
         self.btn_programs_updates.connect('pressed', self.update_programs)
         self.btn_environment_variables.connect('pressed', self.save_environment_variables)
+        self.btn_overrides.connect('pressed', self.save_overrides)
         self.btn_manage_runners.connect('pressed', self.window.show_runners_preferences_view)
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
@@ -260,6 +261,7 @@ class BottlesDetails(Gtk.Box):
         self.combo_runner.set_active_id(self.configuration.get("Runner"))
         self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
         self.entry_environment_variables.set_text(parameters["environment_variables"])
+        self.entry_overrides.set_text(parameters["dll_overrides"])
 
         '''
         Unlock signals
@@ -274,6 +276,14 @@ class BottlesDetails(Gtk.Box):
 
     def set_page(self, page):
         self.notebook_details.set_current_page(page)
+
+    def save_overrides(self, widget):
+        overrides = self.entry_overrides.get_text()
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "dll_overrides",
+                                                             overrides,
+                                                             True)
+        self.configuration = new_configuration
 
     def save_environment_variables(self, widget):
         environment_variables = self.entry_environment_variables.get_text()
