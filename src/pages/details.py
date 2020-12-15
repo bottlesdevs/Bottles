@@ -158,6 +158,7 @@ class BottlesDetails(Gtk.Box):
     switch_dxvk_hud = Gtk.Template.Child()
     switch_esync = Gtk.Template.Child()
     switch_fsync = Gtk.Template.Child()
+    switch_aco = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
     switch_virtual_desktop = Gtk.Template.Child()
     combo_virtual_resolutions = Gtk.Template.Child()
@@ -215,6 +216,7 @@ class BottlesDetails(Gtk.Box):
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
         self.switch_esync.connect('state-set', self.toggle_esync)
         self.switch_fsync.connect('state-set', self.toggle_fsync)
+        self.switch_aco.connect('state-set', self.toggle_aco)
         self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
         self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
@@ -240,7 +242,7 @@ class BottlesDetails(Gtk.Box):
         disk_total = self.runner.get_disk_size()["total"]
         disk_total_float = self.runner.get_disk_size(False)["total"]
         disk_free = self.runner.get_disk_size()["free"]
-        disk_fraction = ((bottle_size_float / disk_total_float) * 100) / 10
+        disk_fraction = ((bottle_size_float / disk_total_float) * 100) / 100
 
         '''
         Set widgets status from configuration
@@ -347,6 +349,13 @@ class BottlesDetails(Gtk.Box):
     def toggle_fsync(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "fsync",
+                                                             state,
+                                                             True)
+        self.configuration = new_configuration
+
+    def toggle_aco(self, widget, state):
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "aco_compiler",
                                                              state,
                                                              True)
         self.configuration = new_configuration
