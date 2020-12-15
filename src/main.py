@@ -17,7 +17,7 @@
 
 import sys
 import gi
-
+from pathlib import Path
 gi.require_version('Gtk', '3.0')
 
 from gi.repository import Gtk, Gio, Gdk
@@ -60,5 +60,14 @@ class Application(Gtk.Application):
         win.present()
 
 def main(version):
-    app = Application()
-    return app.run(sys.argv)
+    try:
+        app = Application()
+        return app.run(sys.argv)
+    except Exception as e:
+        crash=["Error on line {}".format(sys.exc_info()[-1].tb_lineno),"\n",e]
+        log_path = "%s/.local/share/bottles/crash.log" % Path.home()
+
+        with open(log_path,"w") as crash_log:
+            for i in crash:
+                i = str(i)
+                crash_log.write(i)

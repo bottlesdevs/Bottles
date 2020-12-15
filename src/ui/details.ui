@@ -2,7 +2,6 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <object class="GtkTextBuffer" id="buffer_overrides"/>
   <template class="BottlesDetails" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -625,7 +624,9 @@ This choice is intended to use as few external tools as possible and to provide 
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="orientation">vertical</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
                         <property name="spacing">5</property>
                         <child>
                           <object class="GtkImage">
@@ -672,7 +673,9 @@ This choice is intended to use as few external tools as possible and to provide 
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="orientation">vertical</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
                         <property name="spacing">5</property>
                         <child>
                           <object class="GtkImage">
@@ -719,7 +722,9 @@ This choice is intended to use as few external tools as possible and to provide 
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="orientation">vertical</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
                         <property name="spacing">5</property>
                         <child>
                           <object class="GtkImage">
@@ -1060,7 +1065,7 @@ This choice is intended to use as few external tools as possible and to provide 
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="tooltip-text" translatable="yes">Enable the DXVK overlay showing FPS and other details in D3D applications.</property>
+                                <property name="tooltip-text" translatable="yes">Enable the DXVK overlay showing FPS and other details in D3D applications. If disabled, default value is set to "compiler".</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                                 <property name="label" translatable="yes">DXVK HUD</property>
@@ -1648,80 +1653,64 @@ This choice is intended to use as few external tools as possible and to provide 
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkBox">
+                      <!-- n-columns=3 n-rows=1 -->
+                      <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="spacing">10</property>
+                        <property name="margin-top">10</property>
+                        <property name="hexpand">True</property>
+                        <property name="row-spacing">5</property>
+                        <property name="column-spacing">10</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkEntry" id="entry_overrides">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
+                            <property name="can-focus">True</property>
+                            <property name="tooltip-text" translatable="yes">Syntax: dll1,dll2=value;dll3=value</property>
+                            <property name="valign">center</property>
+                            <property name="hexpand">True</property>
+                            <property name="primary-icon-name">utilities-terminal-symbolic</property>
+                            <property name="placeholder-text" translatable="yes">Syntax: VAR1=value VAR2=value ..</property>
+                            <property name="input-purpose">terminal</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="btn_overrides">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Save environment variables</property>
+                            <property name="halign">end</property>
+                            <property name="valign">start</property>
                             <child>
-                              <!-- n-columns=2 n-rows=1 -->
-                              <object class="GtkGrid">
+                              <object class="GtkImage">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="row-spacing">5</property>
-                                <property name="column-spacing">10</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="tooltip-text" translatable="yes">Add new dll overrides</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">start</property>
-                                    <property name="label" translatable="yes">DLL overrides</property>
-                                    <property name="use-markup">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left-attach">0</property>
-                                    <property name="top-attach">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkScrolledWindow">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="valign">start</property>
-                                    <property name="hexpand">True</property>
-                                    <property name="shadow-type">in</property>
-                                    <child>
-                                      <object class="GtkViewport">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <child>
-                                          <object class="GtkTextView" id="textview_overrides">
-                                            <property name="visible">True</property>
-                                            <property name="sensitive">False</property>
-                                            <property name="can-focus">True</property>
-                                            <property name="tooltip-text" translatable="yes">Syntax: NAME=var NAME=var ..</property>
-                                            <property name="border-width">1</property>
-                                            <property name="buffer">buffer_overrides</property>
-                                            <property name="input-purpose">terminal</property>
-                                            <property name="monospace">True</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                  <packing>
-                                    <property name="left-attach">1</property>
-                                    <property name="top-attach">0</property>
-                                  </packing>
-                                </child>
+                                <property name="icon-name">object-select-symbolic</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
+                            <property name="left-attach">2</property>
+                            <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="tooltip-text" translatable="yes">Add new dll overrides</property>
+                            <property name="halign">start</property>
+                            <property name="valign">center</property>
+                            <property name="label" translatable="yes">DLL overrides</property>
+                            <property name="use-markup">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                       </object>
@@ -2041,4 +2030,5 @@ This choice is intended to use as few external tools as possible and to provide 
       </packing>
     </child>
   </template>
+  <object class="GtkTextBuffer" id="buffer_overrides"/>
 </interface>

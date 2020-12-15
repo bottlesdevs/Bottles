@@ -104,7 +104,8 @@ class BottlesRunner:
             "virtual_desktop": False,
             "virtual_desktop_res": "1280x720",
             "pulseaudio_latency": False,
-            "environment_variables": ""
+            "environment_variables": "",
+            "dll_overrides": ""
         },
         "Installed_Dependencies" : []
     }
@@ -570,10 +571,8 @@ class BottlesRunner:
     '''
     def get_programs(self, configuration):
         bottle = "%s/%s" % (self.bottles_path, configuration.get("Name"))
-        results =  glob("%s/drive_c/users/*/Start Menu/Programs/*" % bottle)
-        results +=  glob("%s/drive_c/users/*/Start Menu/Programs/*/*" % bottle)
-        results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/*" % bottle)
-        results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/*/*" % bottle)
+        results =  glob("%s/drive_c/users/*/Start Menu/Programs/**/*.lnk" % bottle, recursive=True)
+        results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle, recursive=True)
         installed_programs = []
 
         '''
@@ -581,18 +580,17 @@ class BottlesRunner:
         '''
         for program in results:
             path = program.split("/")[-1]
-            if path not in ["StartUp", "Administrative Tools"]:
-                if path.endswith(".lnk"):
-                    executable_path = ""
-                    try:
-                        with open(program, "r", encoding='utf-8', errors='ignore') as lnk:
-                            lnk = lnk.read()
-                            executable_path = re.search('C:(.*).exe', lnk).group(0)
-                            if executable_path.find("ninstall") < 0:
-                                path = path.replace(".lnk", "")
-                                installed_programs.append([path, executable_path])
-                    except:
-                        logging.info("Cannot get executable for `%s`." % path)
+            if path not in ["Uninstall.lnk"]:
+                executable_path = ""
+                try:
+                    with open(program, "r", encoding='utf-8', errors='ignore') as lnk:
+                        lnk = lnk.read()
+                        executable_path = re.search('C:(.*).exe', lnk).group(0)
+                        if executable_path.find("ninstall") < 0:
+                            path = path.replace(".lnk", "")
+                            installed_programs.append([path, executable_path])
+                except:
+                    logging.info("Cannot get executable for `%s`." % path)
 
         return installed_programs
 
@@ -1078,15 +1076,24 @@ class BottlesRunner:
         environment_vars = []
         parameters = configuration["Parameters"]
 
+        if parameters["dll_overrides"]:
+            environment_vars.append("WINEDLLOVERRIDES='%s'" % parameters["dll_overrides"])
+
         if parameters["environment_variables"]:
             environment_vars.append(parameters["environment_variables"])
 
         if parameters["dxvk"]:
             environment_vars.append("WINEDLLOVERRIDES='d3d11,dxgi=n'")
             environment_vars.append("DXVK_STATE_CACHE_PATH='%s'" % path)
+            environment_vars.append("STAGING_SHARED_MEMORY=1")
+            environment_vars.append("__GL_DXVK_OPTIMIZATIONS=1")
+            environment_vars.append("__GL_SHADER_DISK_CACHE=1")
+            environment_vars.append("__GL_SHADER_DISK_CACHE_PATH='%s'" % path)
 
         if parameters["dxvk_hud"]:
-            environment_vars.append("DXVK_HUD='1'")
+            environment_vars.append("DXVK_HUD='devinfo,fps,version,api,compiler'")
+        else:
+            environment_vars.append("DXVK_HUD='compiler'")
 
         if parameters["esync"]:
             environment_vars.append("WINEESYNC=1 WINEDEBUG=+esync")
