@@ -105,6 +105,23 @@
               </packing>
             </child>
             <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin-bottom">5</property>
+                <property name="label" translatable="yes">Utility</property>
+                <attributes>
+                  <attribute name="weight" value="medium"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
               <!-- n-columns=5 n-rows=2 -->
               <object class="GtkGrid">
                 <property name="visible">True</property>
@@ -165,7 +182,7 @@
                     <property name="sensitive">False</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
-                    <property name="tooltip-text" translatable="yes">Winetricks will be removed from Bottles in favor of an integrated system for installing libraries and dependencies. Use the `Dependencies` tab instead.
+                    <property name="tooltip-text" translatable="yes">Winetricks has been removed in Bottles in favor of an integrated system for installing libraries and dependencies. Use the `Dependencies` tab instead.
 
 This choice is intended to use as few external tools as possible and to provide a complete user experience in Bottles.</property>
                     <property name="relief">none</property>
@@ -590,7 +607,7 @@ This choice is intended to use as few external tools as possible and to provide 
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
             <child>
@@ -603,7 +620,24 @@ This choice is intended to use as few external tools as possible and to provide 
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">3</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin-bottom">5</property>
+                <property name="label" translatable="yes">System control</property>
+                <attributes>
+                  <attribute name="weight" value="medium"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
               </packing>
             </child>
             <child>
@@ -765,7 +799,7 @@ This choice is intended to use as few external tools as possible and to provide 
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">4</property>
+                <property name="position">6</property>
               </packing>
             </child>
             <child>
@@ -778,7 +812,7 @@ This choice is intended to use as few external tools as possible and to provide 
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">5</property>
+                <property name="position">7</property>
               </packing>
             </child>
             <child>
@@ -862,7 +896,7 @@ This choice is intended to use as few external tools as possible and to provide 
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="padding">8</property>
-                <property name="position">6</property>
+                <property name="position">8</property>
               </packing>
             </child>
             <child>
@@ -876,7 +910,7 @@ This choice is intended to use as few external tools as possible and to provide 
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="padding">5</property>
-                <property name="position">7</property>
+                <property name="position">9</property>
               </packing>
             </child>
           </object>
@@ -885,7 +919,7 @@ This choice is intended to use as few external tools as possible and to provide 
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Utility</property>
+            <property name="label" translatable="yes">Dashboard</property>
           </object>
           <packing>
             <property name="tab-fill">False</property>
@@ -954,7 +988,7 @@ This choice is intended to use as few external tools as possible and to provide 
                       </packing>
                     </child>
                     <child>
-                      <!-- n-columns=2 n-rows=3 -->
+                      <!-- n-columns=2 n-rows=4 -->
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -1039,6 +1073,33 @@ This choice is intended to use as few external tools as possible and to provide 
                           <packing>
                             <property name="left-attach">1</property>
                             <property name="top-attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="tooltip-text" translatable="yes">Enable ACO to increase performance in-game when using Mesa drivers.</property>
+                            <property name="halign">start</property>
+                            <property name="valign">center</property>
+                            <property name="label" translatable="yes">ACO shader compiler</property>
+                            <property name="use-markup">True</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="switch_aco">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="halign">start</property>
+                            <property name="valign">center</property>
+                          </object>
+                          <packing>
+                            <property name="left-attach">1</property>
+                            <property name="top-attach">3</property>
                           </packing>
                         </child>
                       </object>
@@ -1657,7 +1718,6 @@ This choice is intended to use as few external tools as possible and to provide 
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-top">10</property>
                         <property name="hexpand">True</property>
                         <property name="row-spacing">5</property>
                         <property name="column-spacing">10</property>
@@ -1669,7 +1729,7 @@ This choice is intended to use as few external tools as possible and to provide 
                             <property name="valign">center</property>
                             <property name="hexpand">True</property>
                             <property name="primary-icon-name">utilities-terminal-symbolic</property>
-                            <property name="placeholder-text" translatable="yes">Syntax: VAR1=value VAR2=value ..</property>
+                            <property name="placeholder-text" translatable="yes">Syntax: dll1,dll2=value;dll3=value</property>
                             <property name="input-purpose">terminal</property>
                           </object>
                           <packing>

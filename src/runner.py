@@ -100,6 +100,7 @@ class BottlesRunner:
             "dxvk_hud": False,
             "esync": False,
             "fsync": False,
+            "aco_compiler": False,
             "discrete_gpu": False,
             "virtual_desktop": False,
             "virtual_desktop_res": "1280x720",
@@ -1091,7 +1092,7 @@ class BottlesRunner:
             environment_vars.append("__GL_SHADER_DISK_CACHE_PATH='%s'" % path)
 
         if parameters["dxvk_hud"]:
-            environment_vars.append("DXVK_HUD='devinfo,fps,version,api,compiler'")
+            environment_vars.append("DXVK_HUD='devinfo,memory,drawcalls,fps,version,api,compiler'")
         else:
             environment_vars.append("DXVK_HUD='compiler'")
 
@@ -1101,10 +1102,19 @@ class BottlesRunner:
         if parameters["fsync"]:
             environment_vars.append("WINEFSYNC=1")
 
+        if parameters["aco_compiler"]:
+            environment_vars.append("RADV_PERFTEST=aco")
+
         if parameters["discrete_gpu"]:
-            environment_vars.append("__NV_PRIME_RENDER_OFFLOAD=1")
-            environment_vars.append("__GLX_VENDOR_LIBRARY_NAME='nvidia'")
-            environment_vars.append("__VK_LAYER_NV_optimus='NVIDIA_only'")
+            if "nvidia" in subprocess.Popen(
+                "lspci | grep 'VGA'",
+                stdout=subprocess.PIPE,
+                shell=True).communicate()[0].decode("utf-8"):
+                environment_vars.append("__NV_PRIME_RENDER_OFFLOAD=1")
+                environment_vars.append("__GLX_VENDOR_LIBRARY_NAME='nvidia'")
+                environment_vars.append("__VK_LAYER_NV_optimus='NVIDIA_only'")
+            else:
+                environment_vars.append("DRI_PRIME=1")
 
         if parameters["pulseaudio_latency"]:
             environment_vars.append("PULSE_LATENCY_MSEC=60")
