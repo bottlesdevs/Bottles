@@ -67,6 +67,7 @@
                   <object class="GtkLabel" id="label_runner">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Runner can be changed from Preferences tab.</property>
                     <property name="margin-left">5</property>
                     <property name="margin-right">5</property>
                     <property name="margin-start">5</property>
@@ -134,6 +135,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Open winecfg in this Bottle for advanced configurations.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -232,6 +234,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Launch a debug console in this Bottle.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -279,6 +282,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Run an executable file in this Bottle.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -326,6 +330,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Manage the processes running in this Bottle.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -373,6 +378,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Manage the wine subsystem settings.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -420,6 +426,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Use this to uninstall programs from the Bottle.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -467,6 +474,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Open a CMD in this Bottle.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -514,6 +522,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Use regedit to add, edit and delete Wine register keys.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -561,6 +570,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Browse the C:\ of this Bottle.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -1742,7 +1752,7 @@ This choice is intended to use as few external tools as possible and to provide 
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
-                            <property name="tooltip-text" translatable="yes">Save environment variables</property>
+                            <property name="tooltip-text" translatable="yes">Save DLL overrides.</property>
                             <property name="halign">end</property>
                             <property name="valign">start</property>
                             <child>
@@ -1802,6 +1812,7 @@ This choice is intended to use as few external tools as possible and to provide 
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="tooltip-text" translatable="yes">Customize preferences for this Bottle.</property>
             <property name="label" translatable="yes">Preferences</property>
           </object>
           <packing>
@@ -2075,6 +2086,7 @@ This choice is intended to use as few external tools as possible and to provide 
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="tooltip-text" translatable="yes">List, manage and run the programs installed in this Bottle.</property>
             <property name="label" translatable="yes">Programs</property>
           </object>
           <packing>
