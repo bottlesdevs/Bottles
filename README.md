@@ -86,6 +86,11 @@ ninja -j$(nproc)
 sudo ninja install
 ```
 
+## Common issues
+**Getting a KeyError after an update.**
+It could be caused by a change in the bottle configuration (a know bug 
+in beta). Try [this](https://github.com/bottlesdevs/Bottles/issues/53) fix.
+
 ## Why a new application? :baby:
 Bottles was born in 2017 as a personal need. I needed a practical way to manage my wineprefixes. 
 I hate the idea of using applications that install me a version of wine for each application and 
