@@ -44,8 +44,7 @@ class BottlesDownloadEntry(Gtk.Box):
         '''
         self.label_filename.set_text(file_name)
 
-        if not stoppable:
-            self.btn_cancel.hide()
+        if not stoppable: self.btn_cancel.hide()
 
     '''
     Make the progressbar pulse every 1 second

@@ -209,9 +209,6 @@ class BottlesWindow(Gtk.ApplicationWindow):
                 logging.info("Cancel status received")
 
             dialog_checks.destroy()
-        '''
-        TODO: Else check for updates
-        '''
 
     '''
     Toggle UI usability, this method should be used when performing delicate

@@ -55,7 +55,8 @@ class Application(Gtk.Application):
         '''
         win = self.props.active_window
         if not win:
-            win = BottlesWindow(application=self, arg_executable=self.arg_executable)
+            win = BottlesWindow(application=self,
+                                arg_executable=self.arg_executable)
 
         win.present()
 
