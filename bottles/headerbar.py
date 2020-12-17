@@ -66,17 +66,20 @@ class Headerbar(Gtk.HeaderBar):
         # trash button
         self.trash = Gtk.Button()
         self.trash = Gtk.Button.new_from_icon_name("user-trash-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
+        self.trash.set_tooltip_text("Delete selected bottle.")
         self.trash.connect("clicked", self.on_trash_clicked)
         self.pack_end(self.trash)
 
         # properties button
         self.properties = Gtk.Button()
         self.properties = Gtk.Button.new_from_icon_name("document-properties-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
+        self.properties.set_tooltip_text("Show bottle properties.")
         self.properties.connect("clicked", self.on_properties_clicked)
         self.pack_end(self.properties)
 
         # save button
         self.save = Gtk.Button(_('Save'))
+        self.save.set_tooltip_text("Save changes.")
         self.save.connect("clicked", self.on_save_clicked)
         self.HGtk.add_class(self.save, "suggested-action")
         self.pack_end(self.save)
@@ -90,13 +93,15 @@ class Headerbar(Gtk.HeaderBar):
 
         # convert button
         self.convert = Gtk.Button()
-        self.convert = Gtk.Button.new_from_icon_name("rotate-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
+        self.convert = Gtk.Button.new_from_icon_name("media-playback-start-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
+        self.convert.set_tooltip_text("Convert and import selected wineprefix.")
         self.convert.connect("clicked", self.on_convert_clicked)
         self.pack_end(self.convert)
 
         # refresh button
         self.refresh = Gtk.Button()
         self.refresh = Gtk.Button.new_from_icon_name("view-refresh-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
+        self.refresh.set_tooltip_text("Refresh")
         self.refresh.connect("clicked", self.on_refresh_clicked)
         self.pack_end(self.refresh)
 
@@ -106,6 +111,7 @@ class Headerbar(Gtk.HeaderBar):
 
         # back button
         self.back = Gtk.Button.new_from_icon_name("go-previous-symbolic", Gtk.IconSize.SMALL_TOOLBAR)
+        self.back.set_tooltip_text("Go back")
         self.back.connect("clicked", self.on_back_clicked)
         Gtk.StyleContext.add_class(self.back.get_style_context(), "back-button")
         self.pack_start(self.back)

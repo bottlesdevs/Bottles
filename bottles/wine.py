@@ -256,14 +256,13 @@ class Wine:
     def check_special_chars(self, string):
         if not re.match(r'^\w+$', string):
             HLog.error('[BOTTLE_NAME_ERROR] '+_('Bottle name can not contain special characters'))
-            message_dialog = Gtk.MessageDialog.new_with_image_from_icon_name(
-                "BOTTLE_NAME_ERROR",
-                _('Bottle name can not contain special characters'),
-                "dialog-warning",
-                Gtk.ButtonsType.CANCEL
+            # Notice for posterity: "parent.parent.parent ...." NEVER do this please. I am a goat.
+            message_dialog = Gtk.MessageDialog(parent=self.parent.parent,
+                flags=Gtk.DialogFlags.MODAL,
+                type=Gtk.MessageType.WARNING,
+                buttons=Gtk.ButtonsType.OK_CANCEL,
+                message_format=_('Bottle name can not contain special characters')
             )
-            message_dialog.set_transient_for(self.parent.parent)
-            message_dialog.set_flags = Gtk.DialogFlags.MODAL
             message_dialog.connect("response", self.md_ok)
             message_dialog.show_all()
             return False
