@@ -113,7 +113,7 @@ class BottlesDxvkEntry(Gtk.Box):
         self.dxvk_name = dxvk_name
 
         '''
-        Set runner name to the label
+        Set dxvk name to the label
         '''
         self.label_name.set_text(dxvk_name)
 
