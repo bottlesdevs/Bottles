@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 13:34+0100\n"
+"POT-Creation-Date: 2020-12-17 21:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,8 +70,7 @@ msgstr ""
 msgid "Choose which view should be loaded on application startup."
 msgstr ""
 
-#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:277
-#: src/ui/window.ui:292 src/ui/window.ui:310
+#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:292
 msgid "New bottle"
 msgstr ""
 
@@ -131,242 +130,355 @@ msgstr ""
 msgid "/opt/MyNewBottle"
 msgstr ""
 
-#: src/ui/add-details.ui:105
+#: src/ui/add-details.ui:113 src/ui/details.ui:1589
+msgid "Runner"
+msgstr ""
+
+#: src/ui/add-details.ui:156
+msgid "Advanced"
+msgstr ""
+
+#: src/ui/add-details.ui:187
 msgid "Cancel"
 msgstr ""
 
-#: src/ui/add-details.ui:117
+#: src/ui/add-details.ui:199
 msgid "Save bottle"
 msgstr ""
 
-#: src/ui/details.ui:35 src/ui/list-entry.ui:191
+#: src/ui/details.ui:34 src/ui/list-entry.ui:191
 msgid "Bottle name"
 msgstr ""
 
-#: src/ui/details.ui:125
+#: src/ui/details.ui:70
+msgid "Runner can be changed from Preferences tab."
+msgstr ""
+
+#: src/ui/details.ui:114
+msgid "Utility"
+msgstr ""
+
+#: src/ui/details.ui:138
+msgid "Open winecfg in this Bottle for advanced configurations."
+msgstr ""
+
+#: src/ui/details.ui:164
 msgid "Winecfg"
 msgstr ""
 
-#: src/ui/details.ui:148
+#: src/ui/details.ui:187
 msgid ""
-"Winetricks will be removed from Bottles in favor of an integrated system for "
+"Winetricks has been removed in Bottles in favor of an integrated system for "
 "installing libraries and dependencies. Use the `Dependencies` tab instead.\n"
 "\n"
 "This choice is intended to use as few external tools as possible and to "
 "provide a complete user experience in Bottles."
 msgstr ""
 
-#: src/ui/details.ui:176
+#: src/ui/details.ui:215
 msgid "Winetricks"
 msgstr ""
 
-#: src/ui/details.ui:223
+#: src/ui/details.ui:237
+msgid "Launch a debug console in this Bottle."
+msgstr ""
+
+#: src/ui/details.ui:263
 msgid "Debug"
 msgstr ""
 
-#: src/ui/details.ui:270
+#: src/ui/details.ui:285
+msgid "Run an executable file in this Bottle."
+msgstr ""
+
+#: src/ui/details.ui:311
 msgid "Run .exe"
 msgstr ""
 
-#: src/ui/details.ui:317
+#: src/ui/details.ui:333
+msgid "Manage the processes running in this Bottle."
+msgstr ""
+
+#: src/ui/details.ui:359
 msgid "Task manager"
 msgstr ""
 
-#: src/ui/details.ui:364
+#: src/ui/details.ui:381
+msgid "Manage the wine subsystem settings."
+msgstr ""
+
+#: src/ui/details.ui:407
 msgid "Control panel"
 msgstr ""
 
-#: src/ui/details.ui:411
+#: src/ui/details.ui:429
+msgid "Use this to uninstall programs from the Bottle."
+msgstr ""
+
+#: src/ui/details.ui:455
 msgid "Uninstaller"
 msgstr ""
 
-#: src/ui/details.ui:458
+#: src/ui/details.ui:477
+msgid "Open a CMD in this Bottle."
+msgstr ""
+
+#: src/ui/details.ui:503
 msgid "CMD"
 msgstr ""
 
-#: src/ui/details.ui:505
+#: src/ui/details.ui:525
+msgid "Use regedit to add, edit and delete Wine register keys."
+msgstr ""
+
+#: src/ui/details.ui:551
 msgid "Regedit"
 msgstr ""
 
-#: src/ui/details.ui:552 src/ui/list-entry.ui:38
+#: src/ui/details.ui:573
+msgid "Browse the C:\\ of this Bottle."
+msgstr ""
+
+#: src/ui/details.ui:599 src/ui/list-entry.ui:38
 msgid "Browse C:"
 msgstr ""
 
-#: src/ui/details.ui:602
+#: src/ui/details.ui:642
+msgid "System control"
+msgstr ""
+
+#: src/ui/details.ui:666
 msgid "Simulates a system shutdown (this does not terminate processes)."
 msgstr ""
 
-#: src/ui/details.ui:627
+#: src/ui/details.ui:693
 msgid "Shutdown"
 msgstr ""
 
-#: src/ui/details.ui:649
+#: src/ui/details.ui:715
 msgid "Simulates a system reboot (this does not terminate processes)."
 msgstr ""
 
-#: src/ui/details.ui:674
+#: src/ui/details.ui:742
 msgid "Reboot"
 msgstr ""
 
-#: src/ui/details.ui:696
+#: src/ui/details.ui:764
 msgid "Kill all processes running in this Bottle."
 msgstr ""
 
-#: src/ui/details.ui:721
+#: src/ui/details.ui:791
 msgid "Kill all processes"
 msgstr ""
 
-#: src/ui/details.ui:768
+#: src/ui/details.ui:838
 msgid "Bottle size:"
 msgstr ""
 
-#: src/ui/details.ui:806
+#: src/ui/details.ui:876
 msgid "Remaining disk space:"
 msgstr ""
 
-#: src/ui/details.ui:847
+#: src/ui/details.ui:917
 msgid "X of Y"
 msgstr ""
 
-#: src/ui/details.ui:862
-msgid "Utility"
+#: src/ui/details.ui:932
+msgid "Dashboard"
 msgstr ""
 
-#: src/ui/details.ui:885
+#: src/ui/details.ui:982
 msgid "DXVK/Synchronization"
 msgstr ""
 
-#: src/ui/details.ui:905
-msgid ""
-"Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
-"translating requests to Vulkan."
-msgstr ""
-
-#: src/ui/details.ui:906
-msgid "DXVK/VKD3D for Direct3D"
-msgstr ""
-
-#: src/ui/details.ui:942
-msgid ""
-"Enable eventfd based synchronization to increase performance for multi-core "
-"processors."
-msgstr ""
-
-#: src/ui/details.ui:943
-msgid "Esync (eventfd synchronization)"
-msgstr ""
-
-#: src/ui/details.ui:979
+#: src/ui/details.ui:1011
 msgid ""
 "Enable futex based synchronization to increase performance for multi-core "
 "processors."
 msgstr ""
 
-#: src/ui/details.ui:980
+#: src/ui/details.ui:1014
 msgid "Fsync (futex synchronization)"
 msgstr ""
 
-#: src/ui/details.ui:1027
+#: src/ui/details.ui:1038
 msgid ""
-"Enable the DXVK overlay showing FPS and other details in D3D applications."
+"Enable eventfd based synchronization to increase performance for multi-core "
+"processors."
 msgstr ""
 
-#: src/ui/details.ui:1028
+#: src/ui/details.ui:1041
+msgid "Esync (eventfd synchronization)"
+msgstr ""
+
+#: src/ui/details.ui:1065
+msgid ""
+"Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
+"translating requests to Vulkan."
+msgstr ""
+
+#: src/ui/details.ui:1068
+msgid "DXVK/VKD3D for Direct3D"
+msgstr ""
+
+#: src/ui/details.ui:1092
+msgid "Enable ACO to increase performance in-game when using Mesa drivers."
+msgstr ""
+
+#: src/ui/details.ui:1095
+msgid "ACO shader compiler"
+msgstr ""
+
+#: src/ui/details.ui:1139
+msgid ""
+"Enable the DXVK overlay showing FPS and other details in D3D applications. "
+"If disabled, default value is set to \"compiler\"."
+msgstr ""
+
+#: src/ui/details.ui:1142
 msgid "DXVK HUD"
 msgstr ""
 
-#: src/ui/details.ui:1067
+#: src/ui/details.ui:1166
+msgid "Add environment variables to the commands executed by runner."
+msgstr ""
+
+#: src/ui/details.ui:1169
+msgid "Environment variables"
+msgstr ""
+
+#: src/ui/details.ui:1182
+msgid "Save environment variables"
+msgstr ""
+
+#: src/ui/details.ui:1202 src/ui/details.ui:1206
+msgid "Syntax: VAR1=value VAR2=value .."
+msgstr ""
+
+#: src/ui/details.ui:1223
 msgid "Developers and debug"
 msgstr ""
 
-#: src/ui/details.ui:1093
+#: src/ui/details.ui:1268
 msgid "GPU"
 msgstr ""
 
-#: src/ui/details.ui:1113
+#: src/ui/details.ui:1309
 msgid ""
 "In laptops with two GPUs (Intel+NVIDIA or AMD+Nvidia or Intel+AMD), select "
 "this to use the discrete card."
 msgstr ""
 
-#: src/ui/details.ui:1114
+#: src/ui/details.ui:1312
 msgid "Use Discrete Graphics Card"
 msgstr ""
 
-#: src/ui/details.ui:1157
+#: src/ui/details.ui:1362
 msgid "Desktop virtualization"
 msgstr ""
 
-#: src/ui/details.ui:1177 src/ui/details.ui:1214
+#: src/ui/details.ui:1391 src/ui/details.ui:1418
 msgid "Virtualize a desktop where to spawn all Windows applications."
 msgstr ""
 
-#: src/ui/details.ui:1178
+#: src/ui/details.ui:1394
 msgid "Virtual Desktop"
 msgstr ""
 
-#: src/ui/details.ui:1215
+#: src/ui/details.ui:1421
 msgid "Virtual Desktop resolution"
 msgstr ""
 
-#: src/ui/details.ui:1270
+#: src/ui/details.ui:1495
 msgid "Audio"
 msgstr ""
 
-#: src/ui/details.ui:1290
+#: src/ui/details.ui:1536
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 
-#: src/ui/details.ui:1291
+#: src/ui/details.ui:1539
 msgid "Reduce PulseAudio latency"
 msgstr ""
 
-#: src/ui/details.ui:1334
+#: src/ui/details.ui:1623
+msgid "Set a different runner for this Bottle."
+msgstr ""
+
+#: src/ui/details.ui:1626
+msgid "Change runner"
+msgstr ""
+
+#: src/ui/details.ui:1648
+msgid "Manage runners"
+msgstr ""
+
+#: src/ui/details.ui:1708
+msgid "DLL"
+msgstr ""
+
+#: src/ui/details.ui:1738 src/ui/details.ui:1742
+msgid "Syntax: dll1,dll2=value;dll3=value"
+msgstr ""
+
+#: src/ui/details.ui:1755
+msgid "Save DLL overrides."
+msgstr ""
+
+#: src/ui/details.ui:1775
+msgid "Add new dll overrides"
+msgstr ""
+
+#: src/ui/details.ui:1778
 msgid "DLL overrides"
 msgstr ""
 
-#: src/ui/details.ui:1354
-msgid "Syntax: key,value (use a new line as separator for each DLL override)"
+#: src/ui/details.ui:1815
+msgid "Customize preferences for this Bottle."
 msgstr ""
 
-#: src/ui/details.ui:1376 src/ui/window.ui:146
+#: src/ui/details.ui:1816 src/ui/window.ui:146
 msgid "Preferences"
 msgstr ""
 
-#: src/ui/details.ui:1397
+#: src/ui/details.ui:1837
 msgid ""
 "The following packages are downloaded from external sources (mainly from "
 "Microsoft)."
 msgstr ""
 
-#: src/ui/details.ui:1461
+#: src/ui/details.ui:1901
 msgid "Open a issue"
 msgstr ""
 
-#: src/ui/details.ui:1486
+#: src/ui/details.ui:1926
 msgid "Found a broken dependency?"
 msgstr ""
 
-#: src/ui/details.ui:1512
+#: src/ui/details.ui:1952
 msgid ""
 "Install dependencies (like corefonts, vcrun6, ..)  for better software "
 "compatibility."
 msgstr ""
 
-#: src/ui/details.ui:1513
+#: src/ui/details.ui:1953
 msgid "Dependencies"
 msgstr ""
 
-#: src/ui/details.ui:1552
+#: src/ui/details.ui:1992
 msgid ""
 "These the programs I found installed in the Bottle (they may not be all)."
 msgstr ""
 
-#: src/ui/details.ui:1568
+#: src/ui/details.ui:2008
 msgid "Check for installed programs."
 msgstr ""
 
-#: src/ui/details.ui:1649
+#: src/ui/details.ui:2089
+msgid "List, manage and run the programs installed in this Bottle."
+msgstr ""
+
+#: src/ui/details.ui:2090
 msgid "Programs"
 msgstr ""
 
@@ -445,9 +557,25 @@ msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
 
-#: src/ui/window.ui:368
+#: src/ui/window.ui:277
+msgid "Go back"
+msgstr ""
+
+#: src/ui/window.ui:310
+msgid "Your Bottles"
+msgstr ""
+
+#: src/ui/window.ui:329
+msgid "Open menu"
+msgstr ""
+
+#: src/ui/window.ui:350
+msgid "Downloads"
+msgstr ""
+
+#: src/ui/window.ui:370
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
-"essential components. Click this icon when you have reestablished the "
-"connection."
+"download essential components. Click this icon when you have reestablished "
+"the connection."
 msgstr ""
