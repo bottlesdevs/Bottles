@@ -51,8 +51,7 @@ class BottlesDialog(Gtk.MessageDialog):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         box.set_border_width(20)
 
-        if log:
-            box.add(message_scroll)
+        if log: box.add(message_scroll)
 
         content.add(box)
         self.show_all()

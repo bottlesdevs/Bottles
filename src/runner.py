@@ -158,8 +158,7 @@ class BottlesRunner:
         self.fetch_dependencies()
 
     def checks(self):
-        a = RunAsync('checks', self.async_checks)
-        a.start()
+        a = RunAsync('checks', self.async_checks);a.start()
 
     '''
     Clear temp path
@@ -321,6 +320,7 @@ class BottlesRunner:
             with open(file_path, "rb") as f:
                 for chunk in iter(lambda: f.read(4096), b""):
                     local_checksum.update(chunk)
+
             if local_checksum.hexdigest() != checksum:
                 logging.info("Downloaded file `%s` looks corrupted." % file)
                 logging.info("Source checksum: `%s` downloaded: `%s`" % (
@@ -329,8 +329,10 @@ class BottlesRunner:
                     "Bottles",
                     "Downloaded file `%s` looks corrupted. Try again." % file,
                     "dialog-error-symbolic")
+
                 os.remove(file_path)
                 return False
+
         return True
 
     '''
@@ -531,8 +533,8 @@ class BottlesRunner:
 
     def remove_dependency(self, configuration, dependency, widget):
         logging.info("Removing `%s` dependency from `%s` bottle configuration." % (
-            dependency[0], configuration.get("Name")
-        ))
+            dependency[0], configuration.get("Name")))
+
         '''
         Prompt the uninstaller
         '''
@@ -609,12 +611,10 @@ class BottlesRunner:
     def check_dxvk(self, install_latest=True):
         dxvk_list = glob("%s/*/" % self.dxvk_path)
 
-        for dxvk in dxvk_list:
-            self.dxvk_available.append(dxvk.split("/")[-2])
+        for dxvk in dxvk_list: self.dxvk_available.append(dxvk.split("/")[-2])
 
         if len(self.dxvk_available) > 0:
-            logging.info("Dxvk found: \n%s" % ', '.join(
-                self.dxvk_available))
+            logging.info("Dxvk found: \n%s" % ', '.join(self.dxvk_available))
 
         if len(self.dxvk_available) == 0 and install_latest:
             logging.info("No dxvk found.")
@@ -743,12 +743,13 @@ class BottlesRunner:
 
         name, environment, path, runner = args
 
-        if not runner:
-            runner = self.runners_available[0]
+        if not runner: runner = self.runners_available[0]
         runner_name = runner
 
-        if runner.startswith("Proton"):
-            runner = "%s/dist" % runner
+        '''
+        If runner is proton, files are located to the dist path
+        '''
+        if runner.startswith("Proton"): runner = "%s/dist" % runner
 
         '''
         Define reusable variables
@@ -962,10 +963,11 @@ class BottlesRunner:
         '''
         path = configuration.get("Path")
 
-        if not configuration.get("Custom_Path"):
-            path = "%s/%s" % (self.bottles_path, path)
+        if path != "":
+            if not configuration.get("Custom_Path"):
+                path = "%s/%s" % (self.bottles_path, path)
 
-        shutil.rmtree(path)
+            shutil.rmtree(path)
 
     def delete_bottle(self, configuration):
         a = RunAsync('delete', self.async_delete_bottle, [configuration]);a.start()
@@ -1268,5 +1270,4 @@ class BottlesRunner:
         '''
         command = "xdg-open %s" % path
         return subprocess.Popen(command, shell=True)
-
 
