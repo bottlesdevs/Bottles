@@ -3,18 +3,17 @@
 # This file is distributed under the same license as the bottles package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-17 21:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"Language-Team: none\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/pm.mirko.bottles.desktop.in:3 data/pm.mirko.bottles.appdata.xml.in:6
@@ -173,12 +172,11 @@ msgid ""
 "\n"
 "This choice is intended to use as few external tools as possible and to "
 "provide a complete user experience in Bottles."
-msgstr "Winetricks verrà rimosso da Bottles a favore di un sistema integrato 
-perinstallazione di librerie e dipendenze. Usa invece la scheda 
-'Dipendenze'. \n
-\n
-Questa scelta con lo scopo di utilizzare il minor numero possibile di 
-strumenti esterni e di fornire un'esperienza utente completa in Bottles."
+msgstr "Winetricks verrà rimosso da Bottles a favore di un sistema integrato "
+"perinstallazione di librerie e dipendenze. Usa invece la scheda"
+"'Dipendenze'. \n\n"
+"Questa scelta con lo scopo di utilizzare il minor numero possibile di "
+"strumenti esterni e di fornire un'esperienza utente completa in Bottles."
 
 #: src/ui/details.ui:215
 msgid "Winetricks"
@@ -241,8 +239,8 @@ msgid "Regedit"
 msgstr "Regedit"
 
 #: src/ui/details.ui:573
-msgid "Browse the C:\ of this Bottle."
-msgstr "Sfoglia il percorso C:\ di questa Bottiglia."
+msgid "Browse the C:\\ of this Bottle."
+msgstr "Sfoglia il percorso C:\\ di questa Bottiglia."
 
 #: src/ui/details.ui:599 src/ui/list-entry.ui:38
 msgid "Browse C:"
@@ -300,8 +298,8 @@ msgstr "DXVK/Sincronizzazione"
 msgid ""
 "Enable futex based synchronization to increase performance for multi-core "
 "processors."
-msgstr "Abilita la sincronizzazione basata su futex per aumentare le prestazioni con 
-multi-core."
+msgstr "Abilita la sincronizzazione basata su futex per aumentare le prestazioni con "
+"multi-core."
 
 #: src/ui/details.ui:1014
 msgid "Fsync (futex synchronization)"
@@ -311,8 +309,8 @@ msgstr "Fsync (sincronizzazione futex)"
 msgid ""
 "Enable eventfd based synchronization to increase performance for multi-core "
 "processors."
-msgstr "Abilita la sincronizzazione basata su eventfd per aumentare le prestazioni 
-con multi-core."
+msgstr "Abilita la sincronizzazione basata su eventfd per aumentare le prestazioni "
+"con multi-core."
 
 #: src/ui/details.ui:1041
 msgid "Esync (eventfd synchronization)"
@@ -322,8 +320,8 @@ msgstr "Esync (sincronizzazione eventfd)"
 msgid ""
 "Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
 "translating requests to Vulkan."
-msgstr "Abilita il supporto per Direct3D 12 e migliora le prestazioni con Direct3D 
-9/10/11traducendo le richieste in Vulkan."
+msgstr "Abilita il supporto per Direct3D 12 e migliora le prestazioni con Direct3D "
+"9/10/11traducendo le richieste in Vulkan."
 
 #: src/ui/details.ui:1068
 msgid "DXVK/VKD3D for Direct3D"
@@ -341,8 +339,8 @@ msgstr "Compilatore shader ACO"
 msgid ""
 "Enable the DXVK overlay showing FPS and other details in D3D applications. "
 "If disabled, default value is set to \"compiler\"."
-msgstr "Abilita l'overlay DXVK mostrando FPS e altri dettagli nelle applicazioni D3D.
-Se disabilitato, di base il valore è impostato su \compiler\."
+msgstr "Abilita l'overlay DXVK mostrando FPS e altri dettagli nelle applicazioni D3D."
+"Se disabilitato, di base il valore è impostato su compiler."
 
 #: src/ui/details.ui:1142
 msgid "DXVK HUD"
@@ -376,8 +374,8 @@ msgstr "GPU"
 msgid ""
 "In laptops with two GPUs (Intel+NVIDIA or AMD+Nvidia or Intel+AMD), select "
 "this to use the discrete card."
-msgstr "Nei laptop con due GPU (Intel + NVIDIA o AMD + Nvidia o Intel + AMD), 
-selezionarequesto per utilizzare la scheda discreta."
+msgstr "Nei laptop con due GPU (Intel + NVIDIA o AMD + Nvidia o Intel + AMD), "
+"selezionarequesto per utilizzare la scheda discreta."
 
 #: src/ui/details.ui:1312
 msgid "Use Discrete Graphics Card"
@@ -405,8 +403,8 @@ msgstr "Audio"
 
 #: src/ui/details.ui:1536
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
-msgstr "Imposta la latenza di PulseAudio su 60 millisecondi per aumentare la qualità 
-del suono"
+msgstr "Imposta la latenza di PulseAudio su 60 millisecondi per aumentare la qualità "
+"del suono"
 
 #: src/ui/details.ui:1539
 msgid "Reduce PulseAudio latency"
@@ -456,8 +454,8 @@ msgstr "Preferenze"
 msgid ""
 "The following packages are downloaded from external sources (mainly from "
 "Microsoft)."
-msgstr "I seguenti pacchetti vengono scaricati da fonti esterne (principalmente da 
-Microsoft)."
+msgstr "I seguenti pacchetti vengono scaricati da fonti esterne (principalmente da "
+"Microsoft)."
 
 #: src/ui/details.ui:1901
 msgid "Open a issue"
@@ -471,8 +469,8 @@ msgstr "Hai trovato una dipendenza rotta?"
 msgid ""
 "Install dependencies (like corefonts, vcrun6, ..)  for better software "
 "compatibility."
-msgstr "Installa le dipendenze (come corefonts, vcrun6, ..) per una miglior 
-compatibilità software."
+msgstr "Installa le dipendenze (come corefonts, vcrun6, ..) per una miglior "
+"compatibilità software."
 
 #: src/ui/details.ui:1953
 msgid "Dependencies"
@@ -539,8 +537,8 @@ msgstr "Ambiente"
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
-msgstr "Questa bottiglia sembra danneggiata, manca il file di configurazione. Posso 
-provare a risolvere creando una nuova configurazione."
+msgstr "Questa bottiglia sembra danneggiata, manca il file di configurazione. Posso "
+"provare a risolvere creando una nuova configurazione."
 
 #: src/ui/list-entry.ui:274
 msgid "Execute in this bottle"
