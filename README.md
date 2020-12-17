@@ -23,12 +23,12 @@
 </div>
 
 <div align="center">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-0.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-1-1.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-2.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-3.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-3-1.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/develop/screenshot-9.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-0.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-1-1.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-2.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-1.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-9.png" width="300">
 </div>
 
 ## Help Bottles speak your language :speaking_head:
