@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, logging, subprocess, urllib.request, json, tarfile, time, shutil, re
+import os, logging, subprocess, urllib.request, json, tarfile, time, shutil, re, hashlib
 
 from glob import glob
 from threading import Thread
@@ -282,7 +282,7 @@ class BottlesRunner:
     '''
     Download a specific component release
     '''
-    def download_component(self, component, tag, file, rename=False):
+    def download_component(self, component, tag, file, rename=False, checksum=False):
         if component == "runner": repository = self.repository
         if component == "runner:proton": repository = self.proton_repository
         if component == "dxvk": repository = self.dxvk_repository
@@ -299,9 +299,8 @@ class BottlesRunner:
         file = rename if rename else file
         if os.path.isfile("%s/%s" % (self.temp_path, file)):
             logging.info("File `%s` already exists in temp, skipping." % file)
-            return True
-
-        urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file))
+        else:
+            urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file))
 
         '''
         The `rename` parameter mean that downloaded file should be
@@ -309,8 +308,30 @@ class BottlesRunner:
         '''
         if rename:
             logging.info("Renaming `%s` to `%s`." % (file, rename))
-            os.rename("%s/%s" % (self.temp_path, file),
-                      "%s/%s" % (self.temp_path, rename))
+            file_path = "%s/%s" % (self.temp_path, rename)
+            os.rename("%s/%s" % (self.temp_path, file), file_path)
+        else:
+            file_path = "%s/%s" % (self.temp_path, file)
+
+        '''
+        Compare checksums to check file corruptions
+        '''
+        if checksum:
+            local_checksum = hashlib.md5()
+            with open(file_path, "rb") as f:
+                for chunk in iter(lambda: f.read(4096), b""):
+                    local_checksum.update(chunk)
+            if local_checksum.hexdigest() != checksum:
+                logging.info("Downloaded file `%s` looks corrupted." % file)
+                logging.info("Source checksum: `%s` downloaded: `%s`" % (
+                    checksum, local_checksum.hexdigest()))
+                self.window.send_notification(
+                    "Bottles",
+                    "Downloaded file `%s` looks corrupted. Try again." % file,
+                    "dialog-error-symbolic")
+                os.remove(file_path)
+                return False
+        return True
 
     '''
     Localy install a new component (runner, dxvk, ..) async
@@ -457,27 +478,31 @@ class BottlesRunner:
             '''
             if step[0] == "install_exe":
                 step_data = step[1]
-                self.download_component("dependency",
+                download = self.download_component("dependency",
                                         step_data.get("url"),
                                         step_data.get("file_name"),
-                                        step_data.get("rename"))
-                if step_data.get("rename"):
-                    file = step_data.get("rename")
+                                        step_data.get("rename"),
+                                        checksum=step_data.get("file_checksum"))
+                if download:
+                    if step_data.get("rename"):
+                        file = step_data.get("rename")
+                    else:
+                        file = step_data.get("file_name")
+                    self.run_command(configuration, "%s/%s /T C:\\windows\\Temp" % (
+                        self.temp_path, file))
                 else:
-                    file = step_data.get("file_name")
-                self.run_command(configuration, "%s/%s /T C:\\windows\\Temp" % (
-                    self.temp_path, file))
+                    widget.btn_install.set_sensitive(True)
+                    return False
 
         '''
         Add dependency to the bottle configuration
         '''
-        if configuration.get("Installed_Dependencies"):
-            dependencies = configuration["Installed_Dependencies"]+[dependency[0]]
-        else:
-            dependencies = [dependency[0]]
-        self.update_configuration(configuration,
-                                  "Installed_Dependencies",
-                                    dependencies)
+        if dependency[0] not in configuration.get("Installed_Dependencies"):
+            if configuration.get("Installed_Dependencies"):
+                dependencies = configuration["Installed_Dependencies"]+[dependency[0]]
+            else:
+                dependencies = [dependency[0]]
+            self.update_configuration(configuration,"Installed_Dependencies", dependencies)
 
         '''
         Remove the entry from the download manager
