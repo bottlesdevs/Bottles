@@ -314,7 +314,7 @@ class BottlesRunner:
             file_path = "%s/%s" % (self.temp_path, file)
 
         '''
-        Compare checksums to check file corruptions
+        Compare checksums to check file corruption
         '''
         if checksum:
             local_checksum = hashlib.md5()
@@ -514,6 +514,7 @@ class BottlesRunner:
         '''
         widget.btn_install.set_visible(False)
         widget.btn_remove.set_visible(True)
+        widget.btn_remove.set_sensitive(True)
 
         '''
         Set UI to usable again
