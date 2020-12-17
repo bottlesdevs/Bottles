@@ -87,7 +87,7 @@ sudo ninja install
 ```
 
 ## Common issues
-**Getting a KeyError after an update.**
+**Getting a KeyError after Bottles update.**  
 It could be caused by a change in the bottle configuration (a know bug 
 in beta). Try [this](https://github.com/bottlesdevs/Bottles/issues/53) fix.
 
