@@ -230,6 +230,43 @@ class BottlesRunner:
                     else:
                         logging.info("Latest runner is `%s` and is already installed." % tag)
 
+        '''
+        Send a notificationif the user settings allow it
+        '''
+        if self.settings.get_boolean("notifications"):
+            if len(updates) == 0:
+                self.window.send_notification("Download manager",
+                                              "No runner updates available.",
+                                              "software-installed-symbolic")
+
+        return updates
+
+    '''
+    Get latest dxvk updates
+    '''
+    def get_dxvk_updates(self):
+        updates = {}
+
+        if self.utils_conn.check_connection():
+            with urllib.request.urlopen(self.dxvk_repository_api) as url:
+                releases = json.loads(url.read().decode())
+                for release in [releases[0], releases[1], releases[2]]:
+                    tag = release["tag_name"]
+                    file = release["assets"][0]["name"]
+                    if "dxvk-%s" % tag[1:] not in self.dxvk_available:
+                        updates[tag] = file
+                    else:
+                        logging.info("Latest dxvk is `%s` and is already installed." % tag)
+
+        '''
+        Send a notificationif the user settings allow it
+        '''
+        if self.settings.get_boolean("notifications"):
+            if len(updates) == 0:
+                self.window.send_notification("Download manager",
+                                              "No dxvk updates available.",
+                                              "software-installed-symbolic")
+
         return updates
 
     '''
@@ -1165,7 +1202,7 @@ class BottlesRunner:
     '''
     Method for open wineprefixes path in file manager
     '''
-    def open_filemanager(self, configuration={}, path_type="bottle", runner=False):
+    def open_filemanager(self, configuration={}, path_type="bottle", runner=False, dxvk=False):
         logging.info("Opening the file manager on the path…")
 
         if path_type == "bottle":
@@ -1174,6 +1211,9 @@ class BottlesRunner:
 
         if path_type == "runner":
             path = "%s/%s" % (self.runners_path, runner)
+
+        if path_type == "dxvk":
+            path = "%s/%s" % (self.dxvk_path, dxvk)
 
         '''
         Prepare and execute the command

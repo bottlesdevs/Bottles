@@ -19,7 +19,6 @@ from gi.repository import Gtk
 
 from .dialog import BottlesDialog
 
-
 @Gtk.Template(resource_path='/pm/mirko/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Gtk.Box):
     __gtype_name__ = 'BottlesRunnerEntry'
@@ -83,6 +82,62 @@ class BottlesRunnerEntry(Gtk.Box):
         self.runner.open_filemanager(path_type="runner",
                                      runner=self.runner_name)
 
+@Gtk.Template(resource_path='/pm/mirko/bottles/dxvk-entry.ui')
+class BottlesDxvkEntry(Gtk.Box):
+    __gtype_name__ = 'BottlesDxvkEntry'
+
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    label_name = Gtk.Template.Child()
+    btn_download = Gtk.Template.Child()
+    btn_browse = Gtk.Template.Child()
+
+    def __init__(self, window, dxvk_name, installable=False, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Initialize template
+        '''
+        self.init_template()
+
+        if not dxvk_name.lower().startswith("dxvk"):
+            dxvk_name = "dxvk-%s" % dxvk_name[1:]
+
+        '''
+        Set reusable variables
+        '''
+        self.window = window
+        self.runner = window.runner
+        self.dxvk_name = dxvk_name
+
+        '''
+        Set runner name to the label
+        '''
+        self.label_name.set_text(dxvk_name)
+
+        '''
+        Connect signals to widgets
+        '''
+        self.btn_download.connect('pressed', self.download_dxvk)
+        self.btn_browse.connect('pressed', self.run_browse)
+
+        if installable:
+            self.dxvk_tag = installable[0]
+            self.dxvk_file = installable[1]
+            self.btn_download.set_visible(True)
+            self.btn_browse.set_visible(False)
+
+    def download_dxvk(self, widget):
+        self.runner.install_component("dxvk",
+                                      self.dxvk_tag,
+                                      self.dxvk_file)
+
+    def run_browse(self, widget):
+        self.runner.open_filemanager(path_type="dxvk",
+                                     dxvk=self.dxvk_name)
+
 
 @Gtk.Template(resource_path='/pm/mirko/bottles/preferences.ui')
 class BottlesPreferences(Gtk.Box):
@@ -99,6 +154,7 @@ class BottlesPreferences(Gtk.Box):
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     btn_runner_updates = Gtk.Template.Child()
+    btn_dxvk_updates = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -121,6 +177,7 @@ class BottlesPreferences(Gtk.Box):
         self.switch_temp.connect('state-set', self.toggle_temp)
         self.combo_views.connect('changed', self.change_startup_view)
         self.btn_runner_updates.connect('pressed', self.get_runner_updates)
+        self.btn_dxvk_updates.connect('pressed', self.get_dxvk_updates)
 
         '''
         Set widgets status from user settings
@@ -154,6 +211,16 @@ class BottlesPreferences(Gtk.Box):
                                                      installable=runner))
 
     '''
+    Get dxvk updates
+    '''
+    def get_dxvk_updates(self,widget):
+        self.update_dxvk()
+        for dxvk in self.window.runner.get_dxvk_updates().items():
+            self.list_dxvk.add(BottlesDxvkEntry(self.window,
+                                                 dxvk[0],
+                                                 installable=dxvk))
+
+    '''
     Add runners to the list_runners
     '''
     def update_runners(self):
@@ -169,7 +236,7 @@ class BottlesPreferences(Gtk.Box):
         for dxvk in self.list_dxvk.get_children(): dxvk.destroy()
 
         for dxvk in self.window.runner.dxvk_available:
-            self.list_dxvk.add(BottlesRunnerEntry(self.window, dxvk))
+            self.list_dxvk.add(BottlesDxvkEntry(self.window, dxvk))
 
     '''
     Toggle notifications and store status in settings
