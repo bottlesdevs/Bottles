@@ -832,10 +832,32 @@ class BottlesRunner:
         configuration["Creation_Date"] = str(date.today())
         configuration["Update_Date"] = str(date.today())
 
+        '''
+        Apply environment configuration
+        '''
+        buffer_output.insert(iter, "\nApplying `%s` environment configuration.." % environment)
+        iter = buffer_output.get_end_iter()
+        if environment != "Custom":
+            environment_parameters = self.environments[environment.lower()]["Parameters"]
+            for parameter in configuration["Parameters"]:
+                if parameter in environment_parameters:
+                    configuration["Parameters"][parameter] = environment_parameters[parameter]
+
+        '''
+        Save bottle configuration
+        '''
         with open("%s/bottle.json" % bottle_complete_path,
                   "w") as configuration_file:
             json.dump(configuration, configuration_file, indent=4)
             configuration_file.close()
+
+        '''
+        Perform dxvk installation if configured
+        '''
+        if configuration["Parameters"]["dxvk"]:
+            buffer_output.insert(iter, "\nInstalling dxvk..")
+            iter = buffer_output.get_end_iter()
+            self.install_dxvk(configuration)
 
         '''
         Set the list button visible and set UI to usable again
