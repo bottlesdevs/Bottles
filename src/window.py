@@ -37,7 +37,7 @@ Set the default logging level
 '''
 logging.basicConfig(level=logging.DEBUG)
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/window.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/window.ui')
 class BottlesWindow(Gtk.ApplicationWindow):
     __gtype_name__ = 'BottlesWindow'
 

@@ -26,7 +26,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 from .dialog import BottlesDialog
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/list-entry.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottlesListEntry(Gtk.Box):
     __gtype_name__ = 'BottlesListEntry'
 
@@ -221,7 +221,7 @@ class BottlesListEntry(Gtk.Box):
         dialog_delete.destroy()
 
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/list.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
 class BottlesList(Gtk.ScrolledWindow):
     __gtype_name__ = 'BottlesList'
 

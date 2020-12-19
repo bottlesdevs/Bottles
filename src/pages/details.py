@@ -19,7 +19,7 @@ from gi.repository import Gtk
 
 import webbrowser
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/program-entry.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class BottlesProgramEntry(Gtk.Box):
     __gtype_name__ = 'BottlesProgramEntry'
 
@@ -62,7 +62,7 @@ class BottlesProgramEntry(Gtk.Box):
                                    self.program_executable)
 
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/dependency-entry.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
 class BottlesDependencyEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDependencyEntry'
 
@@ -133,7 +133,7 @@ class BottlesDependencyEntry(Gtk.Box):
                                       self)
 
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/details.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class BottlesDetails(Gtk.Box):
     __gtype_name__ = 'BottlesDetails'
 

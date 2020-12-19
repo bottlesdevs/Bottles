@@ -19,7 +19,7 @@ from gi.repository import Gtk
 
 import time
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/download-entry.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/download-entry.ui')
 class BottlesDownloadEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDownloadEntry'
 

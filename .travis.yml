@@ -51,17 +51,17 @@ script:
   - rm appdir/usr/local/share/bottles/bottles/meson.build
 # - appdata
   - echo "Copying appdata"
-  - cp -a ../data/pm.mirko.bottles.appdata.xml.in appdir/usr/share/metainfo/pm.mirko.bottles.appdata.xml
+  - cp -a ../data/com.usebottles.bottles.appdata.xml.in appdir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
 # - icons
   - echo "Copying icons"
   - cp -a ../data/icons appdir/usr/share/icons
 # - schemas
   - echo "Copying and compiling gschema"
-  - cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
+  - cp ../data/com.usebottles.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/com.usebottles.bottles.gschema.xml
   - glib-compile-schemas appdir/usr/share/glib-2.0/schemas/
 # - desktop file
   - echo "Copying Desktop file"
-  - cp data/pm.mirko.bottles.desktop appdir/usr/share/applications/
+  - cp data/com.usebottles.bottles.desktop appdir/usr/share/applications/
 # - apprun
   - echo "Copying AppRun file"
   - cp -a ../AppRun appdir/AppRun
