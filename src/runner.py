@@ -478,7 +478,7 @@ class BottlesRunner:
             '''
             Step type: install_exe
             '''
-            if step[0] == "install_exe":
+            if step[0] in ["install_exe", "install_msi"]:
                 step_data = step[1]
                 download = self.download_component("dependency",
                                         step_data.get("url"),
@@ -490,7 +490,7 @@ class BottlesRunner:
                         file = step_data.get("rename")
                     else:
                         file = step_data.get("file_name")
-                    self.run_command(configuration, "%s/%s /T C:\\windows\\Temp" % (
+                    self.run_executable(configuration, "%s/%s" % (
                         self.temp_path, file))
                 else:
                     widget.btn_install.set_sensitive(True)
