@@ -757,7 +757,6 @@ class BottlesRunner:
         Define reusable variables
         '''
         buffer_output = self.window.page_create.buffer_output
-        btn_list = self.window.page_create.btn_list
         iter = buffer_output.get_end_iter()
 
         '''
@@ -871,7 +870,7 @@ class BottlesRunner:
             -1)
         iter = buffer_output.get_end_iter()
 
-        btn_list.set_visible(True)
+        self.window.page_create.set_status("created")
         self.window.set_usable_ui(True)
 
 
