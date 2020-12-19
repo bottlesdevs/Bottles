@@ -19,16 +19,16 @@
 <br/>
 
 <div align="center">
-   <a href="https://git.mirko.pm/brombinmirko/Bottles/blob/master/LICENSE">
+   <a href="https://raw.githubusercontent.com/bottlesdevs/Bottles/v1/LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
    </a>
 </div>
 
 <div align="center">
-    <img  src="https://git.mirko.pm/brombinmirko/Bottles/raw/master/data/screenshot-1.png"> <br>
-    <img  src="https://git.mirko.pm/brombinmirko/Bottles/raw/master/data/screenshot-2.png"> <br>
-    <img  src="https://git.mirko.pm/brombinmirko/Bottles/raw/master/data/screenshot-3.png"> <br>
-    <img  src="https://git.mirko.pm/brombinmirko/Bottles/raw/master/data/screenshot-4.png">
+    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/v1/data/screenshot-1.png"> <br>
+    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/v1/data/screenshot-2.png"> <br>
+    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/v1/data/screenshot-3.png"> <br>
+    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/v1/data/screenshot-4.png">
 </div>
 
 ## Problems/New Features?
@@ -58,31 +58,18 @@ com.github.mirkobrombin.bottles
 Go to the [AppCenter](https://appcenter.elementary.io/com.github.mirkobrombin.bottles) page.
 
 ### From .deb package
-Grab an updated release [here](https://github.com/mirkobrombin/Bottles/releases), then install:
+Grab an updated release [here](https://github.com/bottlesdevs/Bottles/releases/tag/continuous-v1), then install:
 
 ```bash
-sudo dpkg -i com.github.mirkobrombin.bottles_*.deb
+sudo dpkg -i bottles.*.deb
 ```
 
 ### From .setup.py
-Download the updated source [here](https://git.mirko.pm/brombinmirko/Bottles/archive/master.zip), or use git:
+Download the updated source [here](https://github.com/bottlesdevs/Bottles/archive/v1.zip), or use git:
 
 ```bash
-git clone https://git.mirko.pm/brombinmirko/Bottles.git
+git clone https://github.com/bottlesdevs/Bottles.git
 cd Bottles
 sudo python3 setup.py install
 ```
-
-### From PPA (may be out of date)
-Configure PPA:
-```bash
-curl -s --compressed "https://linuxhubit.github.io/ppa/KEY.gpg" | sudo apt-key add -
-sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://linuxhubit.github.io/ppa/my_list_file.list"
-sudo apt update
-```
-then install:
-```bash
-sudo apt install com.github.mirkobrombin.bottles
-```
-
 
