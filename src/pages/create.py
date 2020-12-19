@@ -31,6 +31,8 @@ class BottlesCreate(Gtk.Box):
     textview_output = Gtk.Template.Child()
     buffer_output = Gtk.Template.Child()
     btn_list = Gtk.Template.Child()
+    box_created = Gtk.Template.Child()
+    label_creating = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -50,14 +52,23 @@ class BottlesCreate(Gtk.Box):
         '''
         self.btn_list.connect('pressed', self.show_details)
 
+    '''
+    Set widgets visibility status
+    '''
+    def set_status(self, status="initial"):
+        if status == "initial":
+            self.btn_list.set_visible(False)
+            self.box_created.set_visible(False)
+            self.label_creating.set_visible(True)
+            self.buffer_output.set_text("")
+        elif status == "created":
+            self.btn_list.set_visible(True)
+            self.box_created.set_visible(True)
+            self.label_creating.set_visible(False)
+
     def show_details(self, widget):
         self.window.stack_main.set_visible_child_name("page_list")
-
-        '''
-        Hide btn_open button and clear buffer
-        '''
-        self.btn_list.set_visible(False)
-        self.buffer_output.set_text("")
+        self.set_status("initial")
 
         '''
         Update bottles
