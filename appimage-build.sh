@@ -43,7 +43,7 @@ echo "Copying appdata"
 #cp -a ../data/pm.mirko.bottles.appdata.xml.in appdir/usr/share/metainfo/pm.mirko.bottles.appdata.xml
 
 echo "Copying icons"
-cp -a ../data/icons appdir/usr/share/icons
+cp -a ../data/icons appdir/usr/share
 
 echo "Copying and compiling gschema"
 cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
