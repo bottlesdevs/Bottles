@@ -3,10 +3,10 @@ export APPDIR="$(dirname "$(readlink -f "$0")")"
 export PATH="$APPDIR/usr/bin/:$PATH"
 export LD_LIBRARY_PATH="$APPDIR/usr/lib:$PATH"
 export XDG_DATA_DIRS="$APPDIR/usr/share/:/usr/share/:$XDG_DATA_DIRS"
-export DESKTOP_FILE_PATH=$APPDIR/usr/share/applications/pm.mirko.bottles.desktop
-export ICON_FILE_PATH=$APPDIR/usr/share/icons/hicolor/scalable/apps/pm.mirko.bottles.svg
+export DESKTOP_FILE_PATH=$APPDIR/usr/share/applications/com.usebottles.bottles.desktop
+export ICON_FILE_PATH=$APPDIR/usr/share/icons/hicolor/scalable/apps/com.usebottles.bottles.svg
 export INSTALLED_DESKTOP_FILE_PATH=~/.local/share/applications/bottles.desktop
-export INSTALLED_ICON_FILE_PATH=~/.local/share/icons/hicolor/scalable/apps/pm.mirko.bottles.svg
+export INSTALLED_ICON_FILE_PATH=~/.local/share/icons/hicolor/scalable/apps/com.usebottles.bottles.svg
 INSTALL_DESKTOP_FILE=false
 
 if ! test -f $INSTALLED_ICON_FILE_PATH; then

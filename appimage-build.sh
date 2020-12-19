@@ -40,17 +40,17 @@ rm appdir/usr/local/share/bottles/bottles/bottles.in
 rm appdir/usr/local/share/bottles/bottles/meson.build
 
 echo "Copying appdata"
-#cp -a ../data/pm.mirko.bottles.appdata.xml.in appdir/usr/share/metainfo/pm.mirko.bottles.appdata.xml
+#cp -a ../data/com.usebottles.bottles.appdata.xml.in appdir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
 
 echo "Copying icons"
 cp -a ../data/icons appdir/usr/share
 
 echo "Copying and compiling gschema"
-cp ../data/pm.mirko.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/pm.mirko.bottles.gschema.xml
+cp ../data/com.usebottles.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/com.usebottles.bottles.gschema.xml
 glib-compile-schemas appdir/usr/share/glib-2.0/schemas/
 
 echo "Copying Desktop file"
-cp data/pm.mirko.bottles.desktop appdir/usr/share/applications/
+cp data/com.usebottles.bottles.desktop appdir/usr/share/applications/
 
 echo "Copying AppRun file"
 cp -a ../AppRun appdir/AppRun
@@ -62,5 +62,5 @@ wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/contin
 chmod a+x linuxdeploy-x86_64.AppImage
 
 echo "Building Bottles Appimage"
-#./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/pm.mirko.bottles.svg --output appimage
+#./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg --output appimage
 ./linuxdeploy-x86_64.AppImage --appdir appdir  --output appimage

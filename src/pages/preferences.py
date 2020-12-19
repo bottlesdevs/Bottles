@@ -19,7 +19,7 @@ from gi.repository import Gtk
 
 from .dialog import BottlesDialog
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/runner-entry.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Gtk.Box):
     __gtype_name__ = 'BottlesRunnerEntry'
 
@@ -82,7 +82,7 @@ class BottlesRunnerEntry(Gtk.Box):
         self.runner.open_filemanager(path_type="runner",
                                      runner=self.runner_name)
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/dxvk-entry.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')
 class BottlesDxvkEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDxvkEntry'
 
@@ -139,7 +139,7 @@ class BottlesDxvkEntry(Gtk.Box):
                                      dxvk=self.dxvk_name)
 
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/preferences.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class BottlesPreferences(Gtk.Box):
     __gtype_name__ = 'BottlesPreferences'
 

@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-  input: 'pm.mirko.bottles.desktop.in',
-  output: 'pm.mirko.bottles.desktop',
+  input: 'com.usebottles.bottles.desktop.in',
+  output: 'com.usebottles.bottles.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -15,8 +15,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'pm.mirko.bottles.appdata.xml.in',
-  output: 'pm.mirko.bottles.appdata.xml',
+  input: 'com.usebottles.bottles.appdata.xml.in',
+  output: 'com.usebottles.bottles.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -29,7 +29,7 @@ if appstream_util.found()
   )
 endif
 
-install_data('pm.mirko.bottles.gschema.xml',
+install_data('com.usebottles.bottles.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
@@ -41,6 +41,6 @@ if compile_schemas.found()
 endif
 
 install_data(
-    join_paths('icons/hicolor/scalable/apps/pm.mirko.bottles.svg'),
+    join_paths('icons/hicolor/scalable/apps/com.usebottles.bottles.svg'),
     install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps')
 )

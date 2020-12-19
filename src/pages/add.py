@@ -24,7 +24,7 @@ Set the default logging level
 '''
 logging.basicConfig(level=logging.DEBUG)
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/add-details.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/add-details.ui')
 class BottlesAddDetails(Gtk.Box):
     __gtype_name__ = 'BottlesAddDetails'
 
@@ -123,7 +123,7 @@ class BottlesAddDetails(Gtk.Box):
     def toggle_entry_path(self, widget):
         self.entry_path.set_sensitive(widget.get_active())
 
-@Gtk.Template(resource_path='/pm/mirko/bottles/add.ui')
+@Gtk.Template(resource_path='/com/usebottles/bottles/add.ui')
 class BottlesAdd(Gtk.Box):
     __gtype_name__ = 'BottlesAdd'
 

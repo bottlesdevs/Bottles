@@ -28,7 +28,7 @@ from .window import BottlesWindow
 class Application(Gtk.Application):
 
     def __init__(self):
-        super().__init__(application_id='pm.mirko.bottles',
+        super().__init__(application_id='com.usebottles.bottles',
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
 
         self.props.flags = Gio.ApplicationFlags.HANDLES_OPEN
@@ -43,7 +43,7 @@ class Application(Gtk.Application):
         '''
         Load custom css
         '''
-        bytes = Gio.resources_lookup_data("/pm/mirko/bottles/style.css", 0)
+        bytes = Gio.resources_lookup_data("/com/usebottles/bottles/style.css", 0)
         provider = Gtk.CssProvider()
         provider.load_from_data(bytes.get_data())
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
