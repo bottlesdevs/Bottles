@@ -559,6 +559,7 @@ class BottlesRunner:
     '''
     def check_runners(self, install_latest=True):
         runners = glob("%s/*/" % self.runners_path)
+        self.runners_available = []
 
         for runner in runners:
             self.runners_available.append(runner.split("/")[-2])
@@ -610,6 +611,7 @@ class BottlesRunner:
     '''
     def check_dxvk(self, install_latest=True):
         dxvk_list = glob("%s/*/" % self.dxvk_path)
+        self.dxvk_available = []
 
         for dxvk in dxvk_list: self.dxvk_available.append(dxvk.split("/")[-2])
 
