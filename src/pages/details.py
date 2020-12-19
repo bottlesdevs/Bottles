@@ -75,7 +75,7 @@ class BottlesDependencyEntry(Gtk.Box):
     btn_install = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
 
-    def __init__(self, window, configuration, dependency, **kwargs):
+    def __init__(self, window, configuration, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -90,6 +90,16 @@ class BottlesDependencyEntry(Gtk.Box):
         self.runner = window.runner
         self.configuration = configuration
         self.dependency = dependency
+
+        '''
+        The dependency variable is a plain text
+        '''
+        if plain:
+            self.label_name.set_text(dependency)
+            self.label_description.destroy()
+            self.btn_install.set_visible(False)
+            self.btn_remove.set_visible(False)
+            return None
 
         '''
         Set dependency name to the label
@@ -311,11 +321,20 @@ class BottlesDetails(Gtk.Box):
     def update_dependencies(self, widget=False):
         for w in self.list_dependencies: w.destroy()
 
-        for dependency in self.runner.supported_dependencies.items():
-            self.list_dependencies.add(
-                BottlesDependencyEntry(self.window,
-                                       self.configuration,
-                                       dependency))
+        supported_dependencies = self.runner.supported_dependencies.items()
+        if len(supported_dependencies) > 0:
+            for dependency in supported_dependencies:
+                self.list_dependencies.add(
+                    BottlesDependencyEntry(self.window,
+                                           self.configuration,
+                                           dependency))
+        else:
+            for dependency in self.configuration.get("Installed_Dependencies"):
+                self.list_dependencies.add(
+                    BottlesDependencyEntry(self.window,
+                                           self.configuration,
+                                           dependency,
+                                           plain=True))
 
     '''
     Methods to change environment variables
