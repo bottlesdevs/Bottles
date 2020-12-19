@@ -21,14 +21,13 @@
     <img src="https://github.com/bottlesdevs/Bottles/workflows/AppImage/badge.svg">
   </a>
 </div>
-
+<br>
 <div align="center">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-0.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-1-1.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-2.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-1.png" width="300">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-9.png" width="300">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-0.png" width="400">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-2.png" width="400">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3.png" width="400">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-1.png" width="400">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-9.png" width="400">
 </div>
 
 ## Help Bottles speak your language :speaking_head:
@@ -143,3 +142,4 @@ Probably yes. I would like to allow the conversion of the old wine prefixes in v
 Unlike the previous versions, now the bottles are saved with JSON sheets containing all the 
 instructions and settings, such as the version of wine/proton in use, the various active flags 
 etc.
+
