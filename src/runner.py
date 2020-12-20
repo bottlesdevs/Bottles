@@ -1167,16 +1167,18 @@ class BottlesRunner:
         as command arguments
         '''
         environment_vars = []
+        dll_overrides = []
         parameters = configuration["Parameters"]
 
+        # TODO: WINEDLLOVERRIDES should be one
         if parameters["dll_overrides"]:
-            environment_vars.append("WINEDLLOVERRIDES='%s'" % parameters["dll_overrides"])
+            dll_overrides.append(parameters["dll_overrides"])
 
         if parameters["environment_variables"]:
             environment_vars.append(parameters["environment_variables"])
 
         if parameters["dxvk"]:
-            environment_vars.append("WINEDLLOVERRIDES='d3d11,dxgi=n'")
+            dll_overrides.append("d3d11,dxgi=n")
             environment_vars.append("DXVK_STATE_CACHE_PATH='%s'" % path)
             environment_vars.append("STAGING_SHARED_MEMORY=1")
             environment_vars.append("__GL_DXVK_OPTIMIZATIONS=1")
@@ -1211,6 +1213,7 @@ class BottlesRunner:
         if parameters["pulseaudio_latency"]:
             environment_vars.append("PULSE_LATENCY_MSEC=60")
 
+        environment_vars.append("WINEDLLOVERRIDES='%s'" % ",".join(dll_overrides))
         environment_vars = " ".join(environment_vars)
 
         command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
