@@ -58,7 +58,7 @@ class BottlesMessageDialog(Gtk.MessageDialog):
 class BottlesDialog(Gtk.Dialog):
 
     def __init__(self,
-                 parent=None,
+                 parent,
                  title="Warning",
                  message="An error has occurred.",
                  log=False):
@@ -73,13 +73,18 @@ class BottlesDialog(Gtk.Dialog):
         '''
         if log:
             self.resize(600, 700)
-
+            if parent.settings.get_boolean("dark-theme"):
+                color = "#d4036d"
+            else:
+                color = "#3e0622"
             message_scroll = Gtk.ScrolledWindow()
             message_scroll.set_hexpand(True),message_scroll.set_vexpand(True)
 
             message_view = Gtk.TextView()
             message_buffer = message_view.get_buffer()
-            message_buffer.set_text(log)
+            iter = message_buffer.get_end_iter()
+            message_buffer.insert_markup(
+                iter, "<span foreground='%s'>%s</span>" % (color, log), -1)
             message_scroll.add(message_view)
 
         content = self.get_content_area()
