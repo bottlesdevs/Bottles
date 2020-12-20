@@ -1170,7 +1170,6 @@ class BottlesRunner:
         dll_overrides = []
         parameters = configuration["Parameters"]
 
-        # TODO: WINEDLLOVERRIDES should be one
         if parameters["dll_overrides"]:
             dll_overrides.append(parameters["dll_overrides"])
 
@@ -1222,7 +1221,7 @@ class BottlesRunner:
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
-        print(command)
+
         if terminal:
             return UtilsTerminal(command)
         return subprocess.Popen(command, shell=True)
