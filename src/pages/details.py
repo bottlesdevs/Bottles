@@ -19,6 +19,8 @@ from gi.repository import Gtk
 
 import webbrowser
 
+from .dialog import BottlesDialog
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class BottlesProgramEntry(Gtk.Box):
     __gtype_name__ = 'BottlesProgramEntry'
@@ -102,6 +104,7 @@ class BottlesDependencyEntry(Gtk.Box):
     label_description = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
+    btn_manifest = Gtk.Template.Child()
 
     def __init__(self, window, configuration, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
@@ -140,6 +143,7 @@ class BottlesDependencyEntry(Gtk.Box):
         '''
         self.btn_install.connect('pressed', self.install_dependency)
         self.btn_remove.connect('pressed', self.remove_dependency)
+        self.btn_manifest.connect('pressed', self.open_manifest)
 
         '''
         Set widgets status from configuration
@@ -147,6 +151,16 @@ class BottlesDependencyEntry(Gtk.Box):
         if dependency[0] in self.configuration.get("Installed_Dependencies"):
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(True)
+
+    def open_manifest(self, widget):
+        dialog_upgrade = BottlesDialog(
+            title="Manifest for %s" % self.dependency[0],
+            message="This is the manifest for %s." % self.dependency[0],
+            log=self.runner.fetch_dependency_manifest(self.dependency[0],
+                                                      plain=True))
+        response = dialog_upgrade.run()
+
+        dialog_upgrade.destroy()
 
     def install_dependency(self, widget):
         widget.set_sensitive(False)

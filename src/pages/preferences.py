@@ -17,8 +17,6 @@
 
 from gi.repository import Gtk
 
-from .dialog import BottlesDialog
-
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Gtk.Box):
     __gtype_name__ = 'BottlesRunnerEntry'
