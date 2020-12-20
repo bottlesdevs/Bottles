@@ -316,15 +316,20 @@ class BottlesRunner:
         Compare checksums to check file corruption
         '''
         if checksum:
+            checksum = checksum.lower()
+
             local_checksum = hashlib.md5()
+
             with open(file_path, "rb") as f:
                 for chunk in iter(lambda: f.read(4096), b""):
                     local_checksum.update(chunk)
 
-            if local_checksum.hexdigest().lower() != checksum.lower():
+            local_checksum = local_checksum.hexdigest().lower()
+
+            if local_checksum != checksum:
                 logging.info("Downloaded file `%s` looks corrupted." % file)
                 logging.info("Source checksum: `%s` downloaded: `%s`" % (
-                    checksum, local_checksum.hexdigest()))
+                    checksum, local_checksum))
                 self.window.send_notification(
                     "Bottles",
                     "Downloaded file `%s` looks corrupted. Try again." % file,
