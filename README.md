@@ -88,7 +88,9 @@ sudo ninja install
 ## Common issues
 **Getting a KeyError after Bottles update.**  
 It could be caused by a change in the bottle configuration (a know bug 
-in beta). Try [this](https://github.com/bottlesdevs/Bottles/issues/53) fix.
+in beta).  
+Try [this](https://github.com/bottlesdevs/Bottles/issues/53) fix. If still 
+doesn't work, check if your bottle configuration.json follow the [sample](https://github.com/bottlesdevs/Bottles/blob/fd7caeac0b104751acd2feff6dc7d3c2014a3a5a/src/runner.py#L90).
 
 ## Why a new application? :baby:
 Bottles was born in 2017 as a personal need. I needed a practical way to manage my wineprefixes. 
