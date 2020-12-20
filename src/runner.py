@@ -458,13 +458,13 @@ class BottlesRunner:
         '''
         Execute installation steps
         '''
-        for step in dependency_manifest.get("Steps").items():
+        for step in dependency_manifest.get("Steps"):
+            print(step["action"])
             '''
             Step type: delete_sys32_dlls
             '''
-            if step[0] == "delete_sys32_dlls":
-                dlls = step[1]
-                for dll in dlls:
+            if step["action"] == "delete_sys32_dlls":
+                for dll in step["dlls"]:
                     try:
                         logging.info("Removing `%s` dll from system32 for `%s` bottle" % (
                             dll, configuration.get("Name")
@@ -476,20 +476,19 @@ class BottlesRunner:
                             dll, configuration.get("Name")
                         ))
             '''
-            Step type: install_exe
+            Step type: install_exe, install_msi
             '''
-            if step[0] in ["install_exe", "install_msi"]:
-                step_data = step[1]
+            if step["action"] in ["install_exe", "install_msi"]:
                 download = self.download_component("dependency",
-                                        step_data.get("url"),
-                                        step_data.get("file_name"),
-                                        step_data.get("rename"),
-                                        checksum=step_data.get("file_checksum"))
+                                        step.get("url"),
+                                        step.get("file_name"),
+                                        step.get("rename"),
+                                        checksum=step.get("file_checksum"))
                 if download:
-                    if step_data.get("rename"):
-                        file = step_data.get("rename")
+                    if step.get("rename"):
+                        file = step.get("rename")
                     else:
-                        file = step_data.get("file_name")
+                        file = step.get("file_name")
                     self.run_executable(configuration, "%s/%s" % (
                         self.temp_path, file))
                 else:
