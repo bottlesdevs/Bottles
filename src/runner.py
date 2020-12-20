@@ -321,7 +321,7 @@ class BottlesRunner:
                 for chunk in iter(lambda: f.read(4096), b""):
                     local_checksum.update(chunk)
 
-            if local_checksum.hexdigest() != checksum:
+            if local_checksum.hexdigest().lower() != checksum.lower():
                 logging.info("Downloaded file `%s` looks corrupted." % file)
                 logging.info("Source checksum: `%s` downloaded: `%s`" % (
                     checksum, local_checksum.hexdigest()))
