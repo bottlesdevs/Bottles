@@ -29,6 +29,10 @@ class BottlesProgramEntry(Gtk.Box):
     '''
     label_name = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
+    btn_arguments = Gtk.Template.Child()
+    btn_save_arguments = Gtk.Template.Child()
+    grid_arguments = Gtk.Template.Child()
+    entry_arguments = Gtk.Template.Child()
 
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
@@ -45,7 +49,8 @@ class BottlesProgramEntry(Gtk.Box):
         self.runner = window.runner
         self.configuration = configuration
         self.program_name = program[0]
-        self.program_executable = program[1]
+        self.program_executable = program[1].split("\\")[-1]
+        self.program_executable_path = program[1]
 
         '''
         Set runner name to the label
@@ -56,10 +61,33 @@ class BottlesProgramEntry(Gtk.Box):
         Connect signals to widgets
         '''
         self.btn_run.connect('pressed', self.run_executable)
+        self.btn_save_arguments.connect('pressed', self.save_arguments)
+        self.btn_arguments.connect('toggled', self.toggle_arguments)
+
+        '''
+        Populate widgets with data
+        '''
+        if self.program_executable in self.configuration["Programs"]:
+            arguments = self.configuration["Programs"][self.program_executable]
+            self.entry_arguments.set_text(arguments)
 
     def run_executable(self, widget):
+        arguments = self.configuration["Programs"][self.program_executable]
         self.runner.run_executable(self.configuration,
-                                   self.program_executable)
+                                   self.program_executable_path,
+                                   arguments)
+
+    def save_arguments(self, widget):
+        arguments = self.entry_arguments.get_text()
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             self.program_executable,
+                                                             arguments,
+                                                             scope="Programs")
+        self.configuration = new_configuration
+
+    def toggle_arguments(self, widget):
+        status = widget.get_active()
+        self.grid_arguments.set_visible(status)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
@@ -294,7 +322,7 @@ class BottlesDetails(Gtk.Box):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "dll_overrides",
                                                              overrides,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def save_environment_variables(self, widget):
@@ -302,7 +330,7 @@ class BottlesDetails(Gtk.Box):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "environment_variables",
                                                              environment_variables,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     '''
@@ -348,42 +376,42 @@ class BottlesDetails(Gtk.Box):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "dxvk",
                                                              state,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def toggle_dxvk_hud(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "dxvk_hud",
                                                              state,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def toggle_esync(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "esync",
                                                              state,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def toggle_fsync(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "fsync",
                                                              state,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def toggle_aco(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "aco_compiler",
                                                              state,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def toggle_discrete_graphics(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "discrete_gpu",
                                                              state,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def toggle_virtual_desktop(self, widget, state):
@@ -394,7 +422,7 @@ class BottlesDetails(Gtk.Box):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "virtual_desktop",
                                                              state,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def set_virtual_desktop_resolution(self, widget):
@@ -406,22 +434,21 @@ class BottlesDetails(Gtk.Box):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "virtual_desktop_res",
                                                              resolution,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     def set_runner(self, widget):
         runner = widget.get_active_id()
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "Runner",
-                                                             runner,
-                                                             False)
+                                                             runner)
         self.configuration = new_configuration
 
     def toggle_pulseaudio_latency(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "pulseaudio_latency",
                                                              state,
-                                                             True)
+                                                             scope="Parameters")
         self.configuration = new_configuration
 
     '''

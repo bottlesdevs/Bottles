@@ -108,7 +108,8 @@ class BottlesRunner:
             "environment_variables": "",
             "dll_overrides": ""
         },
-        "Installed_Dependencies" : []
+        "Installed_Dependencies" : [],
+        "Programs" : {}
     }
 
     environments = {
@@ -550,7 +551,7 @@ class BottlesRunner:
         configuration["Installed_Dependencies"].remove(dependency[0])
         self.update_configuration(configuration,
                                   "Installed_Dependencies",
-                                    configuration["Installed_Dependencies"])
+                                  configuration["Installed_Dependencies"])
 
         '''
         Show installation button and hide remove button
@@ -718,7 +719,7 @@ class BottlesRunner:
     '''
     Update parameters in bottle configuration file
     '''
-    def update_configuration(self, configuration, key, value, is_parameter=False):
+    def update_configuration(self, configuration, key, value, scope=False):
         logging.info("Setting `%s` parameter to `%s` for `%s` Bottle…" % (
             key, value, configuration.get("Name")))
 
@@ -728,8 +729,8 @@ class BottlesRunner:
             bottle_complete_path = "%s/%s" % (self.bottles_path,
                                               configuration.get("Path"))
 
-        if is_parameter:
-            configuration["Parameters"][key] = value
+        if scope:
+            configuration[scope][key] = value
         else:
             configuration[key] = value
 
@@ -1095,7 +1096,7 @@ class BottlesRunner:
     '''
     Methods for running wine applications in wineprefixes
     '''
-    def run_executable(self, configuration, file_path):
+    def run_executable(self, configuration, file_path, arguments=False):
         logging.info("Running an executable on the wineprefix…")
 
         '''
@@ -1105,6 +1106,10 @@ class BottlesRunner:
             command = "msiexec /i '%s'" % file_path
         else:
             command = "'%s'" % file_path
+
+        if arguments:
+            command = "%s %s" % (command, arguments)
+
         self.run_command(configuration, command)
 
     def run_wineboot(self, configuration):
