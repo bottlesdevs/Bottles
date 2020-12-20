@@ -680,12 +680,15 @@ class BottlesRunner:
     '''
     Fetch dependency manifest online
     '''
-    def fetch_dependency_manifest(self, dependency_name):
+    def fetch_dependency_manifest(self, dependency_name, plain=False):
         if self.utils_conn.check_connection():
             with urllib.request.urlopen("%s/%s.json" % (
                 self.dependencies_repository, dependency_name
             )) as url:
-                return json.loads(url.read())
+                if plain:
+                    return url.read().decode("utf-8")
+                else:
+                    return json.loads(url.read())
 
             return False
 

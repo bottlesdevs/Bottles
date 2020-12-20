@@ -24,7 +24,7 @@ Set the default logging level
 '''
 logging.basicConfig(level=logging.DEBUG)
 
-from .dialog import BottlesDialog
+from .dialog import BottlesMessageDialog
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottlesListEntry(Gtk.Box):
@@ -178,7 +178,7 @@ class BottlesListEntry(Gtk.Box):
     Show a confirm dialog to update bottle runner with the latest
     '''
     def upgrade_runner(self, widget):
-        dialog_upgrade = BottlesDialog(parent=self.window,
+        dialog_upgrade = BottlesMessageDialog(parent=self.window,
                                       title="Confirm upgrade",
                                       message="This will change the runner from `%s` to `%s`." % (
                                           self.configuration.get("Runner"),
@@ -206,7 +206,7 @@ class BottlesListEntry(Gtk.Box):
     Show a confirm dialog to remove bottle and destroy the widget
     '''
     def confirm_delete(self, widget):
-        dialog_delete = BottlesDialog(parent=self.window,
+        dialog_delete = BottlesMessageDialog(parent=self.window,
                                       title="Confirm deletion",
                                       message="Are you sure you want to delete this Bottle and all files?")
         response = dialog_delete.run()

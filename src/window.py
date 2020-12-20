@@ -28,7 +28,7 @@ from .pages.create import BottlesCreate
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
-from .pages.dialog import BottlesDialog, BottlesAboutDialog
+from .pages.dialog import BottlesMessageDialog, BottlesAboutDialog
 
 from .utils import UtilsConnection
 
@@ -193,7 +193,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
             else:
                 message += "But you don't seem to be connected to the internet and you won't be able to download a runner. Connect to the internet and confirm this message to begin the download."
 
-            dialog_checks = BottlesDialog(parent=self,
+            dialog_checks = BottlesMessageDialog(parent=self,
                                           title="No runners found",
                                           message=message)
             response = dialog_checks.run()

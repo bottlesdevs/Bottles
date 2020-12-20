@@ -18,14 +18,13 @@
 from gi.repository import Gtk
 
 
-class BottlesDialog(Gtk.MessageDialog):
+class BottlesMessageDialog(Gtk.MessageDialog):
 
     def __init__(self,
                  parent,
                  title="Warning",
                  message="An error has occurred.",
-                 log=False,
-                 log_exception=False):
+                 log=False):
 
         Gtk.MessageDialog.__init__(self,
                             parent=parent,
@@ -43,7 +42,44 @@ class BottlesDialog(Gtk.MessageDialog):
 
             message_view = Gtk.TextView()
             message_buffer = message_view.get_buffer()
-            message_buffer.set_text(log_exception)
+            message_buffer.set_text(log)
+            message_scroll.add(message_view)
+
+        content = self.get_content_area()
+
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        box.set_border_width(20)
+
+        if log: box.add(message_scroll)
+
+        content.add(box)
+        self.show_all()
+
+class BottlesDialog(Gtk.Dialog):
+
+    def __init__(self,
+                 parent=None,
+                 title="Warning",
+                 message="An error has occurred.",
+                 log=False):
+
+        Gtk.Dialog.__init__(self,
+                            title=title,
+                            parent=parent,
+                            flags=Gtk.DialogFlags.USE_HEADER_BAR)
+
+        '''
+        If a log is passed, show it as an output
+        '''
+        if log:
+            self.resize(600, 700)
+
+            message_scroll = Gtk.ScrolledWindow()
+            message_scroll.set_hexpand(True),message_scroll.set_vexpand(True)
+
+            message_view = Gtk.TextView()
+            message_buffer = message_view.get_buffer()
+            message_buffer.set_text(log)
             message_scroll.add(message_view)
 
         content = self.get_content_area()

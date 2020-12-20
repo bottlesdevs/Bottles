@@ -18,7 +18,7 @@
             <property name="label" translatable="yes">Dependency name</property>
             <attributes>
               <attribute name="weight" value="semibold"/>
-              <attribute name="scale" value="1.2"/>
+              <attribute name="scale" value="1.1499999999999999"/>
             </attributes>
           </object>
           <packing>
@@ -32,9 +32,11 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="halign">start</property>
+            <property name="margin-top">2</property>
             <property name="label" translatable="yes">Dependency description</property>
             <attributes>
               <attribute name="weight" value="normal"/>
+              <attribute name="scale" value="0.94999999999999996"/>
             </attributes>
           </object>
           <packing>
@@ -48,6 +50,31 @@
         <property name="expand">True</property>
         <property name="fill">True</property>
         <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="btn_install">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+        <property name="tooltip-text" translatable="yes">Install this dependency</property>
+        <property name="margin-left">5</property>
+        <property name="margin-right">5</property>
+        <property name="margin-start">5</property>
+        <property name="margin-end">5</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="icon-name">document-save-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack-type">end</property>
+        <property name="position">1</property>
       </packing>
     </child>
     <child>
@@ -78,11 +105,11 @@
       </packing>
     </child>
     <child>
-      <object class="GtkButton" id="btn_install">
+      <object class="GtkButton" id="btn_manifest">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
-        <property name="tooltip-text" translatable="yes">Install this dependency</property>
+        <property name="tooltip-text" translatable="yes">Show dependency manifest</property>
         <property name="margin-left">5</property>
         <property name="margin-right">5</property>
         <property name="margin-start">5</property>
@@ -91,7 +118,7 @@
           <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="icon-name">document-save-symbolic</property>
+            <property name="icon-name">text-x-generic-symbolic</property>
           </object>
         </child>
       </object>
@@ -99,7 +126,7 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">2</property>
+        <property name="position">3</property>
       </packing>
     </child>
     <style>
