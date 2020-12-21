@@ -8,6 +8,7 @@ bottles_sources = [
   'list.py',
   'details.py',
   'preferences.py',
+  'taskmanager.py',
   'dialog.py',
 ]
 
