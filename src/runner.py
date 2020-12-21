@@ -1024,6 +1024,29 @@ class BottlesRunner:
         self.window.page_list.update_bottles()
 
     '''
+    Methods for wine processes management
+    '''
+    def get_running_processes(self):
+        processes = []
+        pids = subprocess.Popen(
+            "ps -eo pid,pmem,pcpu,stime,time,cmd | grep wine | tr -s ' ' '|'",
+            shell=True,
+            stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+
+        for pid in pids.split("\n"):
+            process_data = pid.split("|")
+            if len(process_data) >= 5 and "ps" not in process_data:
+                processes.append({
+                    "pid": process_data[1],
+                    "pmem": process_data[2],
+                    "cpu": process_data[3],
+                    "stime": process_data[4],
+                    "time": process_data[5],
+                })
+
+        return processes
+
+    '''
     Methods for add and remove values to register
     '''
     def reg_add(self, configuration, key, value, data):
