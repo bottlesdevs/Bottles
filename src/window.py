@@ -28,6 +28,7 @@ from .pages.create import BottlesCreate
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
+from .pages.taskmanager import BottlesTaskManager
 from .pages.dialog import BottlesMessageDialog, BottlesAboutDialog
 
 from .utils import UtilsConnection
@@ -57,6 +58,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_menu = Gtk.Template.Child()
     btn_translate = Gtk.Template.Child()
     btn_support = Gtk.Template.Child()
+    btn_taskmanager = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
@@ -111,6 +113,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         page_list = BottlesList(self, arg_executable)
         page_create = BottlesCreate(self)
         page_preferences = BottlesPreferences(self)
+        page_taskmanager = BottlesTaskManager(self)
 
         '''
         Set reusable variables
@@ -120,6 +123,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.page_preferences = page_preferences
         self.page_list = page_list
         self.page_details = page_details
+        self.page_taskmanager = page_taskmanager
 
         '''
         Add pages to stack and set options
@@ -132,6 +136,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.stack_main.add_titled(page_details, "page_details", "Bottle details")
         self.stack_main.add_titled(page_list, "page_list", "Bottles")
         self.stack_main.add_titled(page_preferences, "page_preferences", "Preferences")
+        self.stack_main.add_titled(page_taskmanager, "page_taskmanager", "Task manager")
 
         '''
         Add widgets to main grid
@@ -148,6 +153,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_support.connect('pressed', self.open_support_url)
         self.btn_translate.connect('pressed', self.open_translate_url)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
+        self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.switch_dark.connect('state-set', self.toggle_dark)
@@ -262,6 +268,9 @@ class BottlesWindow(Gtk.ApplicationWindow):
 
     def show_list_view(self, widget):
         self.stack_main.set_visible_child_name("page_list")
+
+    def show_taskmanager_view(self, widget):
+        self.stack_main.set_visible_child_name("page_taskmanager")
 
     def show_preferences_view(self, widget, view=0):
         self.set_previous_page_status()
