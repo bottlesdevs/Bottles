@@ -74,7 +74,10 @@ class BottlesProgramEntry(Gtk.Box):
             self.entry_arguments.set_text(arguments)
 
     def run_executable(self, widget):
-        arguments = self.configuration["Programs"][self.program_executable]
+        if self.program_executable in self.configuration["Programs"]:
+            arguments = self.configuration["Programs"][self.program_executable]
+        else:
+            arguments = False
         self.runner.run_executable(self.configuration,
                                    self.program_executable_path,
                                    arguments)
