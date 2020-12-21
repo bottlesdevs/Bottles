@@ -33,6 +33,9 @@ class BottlesProgramEntry(Gtk.Box):
     btn_run = Gtk.Template.Child()
     btn_arguments = Gtk.Template.Child()
     btn_save_arguments = Gtk.Template.Child()
+    btn_winehq = Gtk.Template.Child()
+    btn_protondb = Gtk.Template.Child()
+    btn_issues = Gtk.Template.Child()
     grid_arguments = Gtk.Template.Child()
     entry_arguments = Gtk.Template.Child()
 
@@ -64,6 +67,9 @@ class BottlesProgramEntry(Gtk.Box):
         '''
         self.btn_run.connect('pressed', self.run_executable)
         self.btn_save_arguments.connect('pressed', self.save_arguments)
+        self.btn_winehq.connect('pressed', self.open_winehq)
+        self.btn_protondb.connect('pressed', self.open_protondb)
+        self.btn_issues.connect('pressed', self.open_issues)
         self.btn_arguments.connect('toggled', self.toggle_arguments)
 
         '''
@@ -93,6 +99,21 @@ class BottlesProgramEntry(Gtk.Box):
     def toggle_arguments(self, widget):
         status = widget.get_active()
         self.grid_arguments.set_visible(status)
+
+    '''
+    Open URLs
+    '''
+    def open_winehq(self, widget):
+        query = self.program_name.replace(" ", "+")
+        webbrowser.open_new_tab("https://www.winehq.org/search?q=%s" % query)
+
+    def open_protondb(self, widget):
+        query = self.program_name
+        webbrowser.open_new_tab("https://www.protondb.com/search?q=%s" % query)
+
+    def open_issues(self, widget):
+        query = self.program_name.replace(" ", "+")
+        webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues?q=is:issue%s" % query)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
