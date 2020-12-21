@@ -148,6 +148,7 @@ class BottlesPreferences(Gtk.Box):
     notebook_preferences = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
+    switch_release_candidate = Gtk.Template.Child()
     combo_views = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
@@ -173,6 +174,7 @@ class BottlesPreferences(Gtk.Box):
         '''
         self.switch_notifications.connect('state-set', self.toggle_notifications)
         self.switch_temp.connect('state-set', self.toggle_temp)
+        self.switch_release_candidate.connect('state-set', self.toggle_release_candidate)
         self.combo_views.connect('changed', self.change_startup_view)
         self.btn_runner_updates.connect('pressed', self.get_runner_updates)
         self.btn_dxvk_updates.connect('pressed', self.get_dxvk_updates)
@@ -182,6 +184,7 @@ class BottlesPreferences(Gtk.Box):
         '''
         self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
         self.switch_temp.set_active(self.settings.get_boolean("temp"))
+        self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
         self.combo_views.set_active_id(self.settings.get_string("startup-view"))
 
         '''
@@ -204,9 +207,11 @@ class BottlesPreferences(Gtk.Box):
     def get_runner_updates(self,widget):
         self.update_runners()
         for runner in self.window.runner.get_runner_updates().items():
-            self.list_runners.add(BottlesRunnerEntry(self.window,
-                                                     runner[0],
-                                                     installable=runner))
+            rc = "rc" in runner[0].lower()
+            if rc and self.settings.get_boolean("release-candidate") or not rc:
+                self.list_runners.add(BottlesRunnerEntry(self.window,
+                                                         runner[0],
+                                                         installable=runner))
 
     '''
     Get dxvk updates
@@ -241,6 +246,12 @@ class BottlesPreferences(Gtk.Box):
     '''
     def toggle_notifications(self, widget, state):
         self.settings.set_boolean("notifications", state)
+
+    '''
+    Toggle Release Candidate for Runners
+    '''
+    def toggle_release_candidate(self, widget, state):
+        self.settings.set_boolean("release-candidate", state)
 
     '''
     Toggle temp cleaner and store status in settings
