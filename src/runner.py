@@ -193,6 +193,7 @@ class BottlesRunner:
                 logging.info("Temp path doens't exist, creating now.")
                 os.makedirs(self.temp_path, exist_ok=True)
         except:
+            logging.info("One or more path cannot be created.")
             return False
 
         return True
@@ -1067,7 +1068,7 @@ class BottlesRunner:
     '''
     Methods for install and remove dxvk using official setup script
     TODO: A good task for the future is to use the built-in methods to
-    install the new dlls and register the override.
+    install the new dlls and register the override for dxvk.
     '''
     def install_dxvk(self, configuration, remove=False):
         logging.info("Installing dxvk for `%s` bottle." % configuration.get("Name"))
