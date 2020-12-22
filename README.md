@@ -132,7 +132,7 @@ and how we want to revolutionize the way we install dependencies in Bottles.
 
 ## When? :dizzy_face:
 Idk. Really. Keep an eye on the develop branch, sooner or later there will be an almost stable 
-release
+release.
 
 ## Older versions will be deprecated? :sunglasses:
 Maybe in the future, not now.
