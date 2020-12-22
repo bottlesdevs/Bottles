@@ -245,6 +245,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
                 current_page = "page_add"
 
             self.previous_page = current_page
+            self.btn_add.set_visible(False)
+            self.btn_list.set_visible(False)
+            self.btn_menu.set_visible(False)
+            self.btn_downloads.set_visible(False)
             self.btn_back.set_visible(True)
 
     '''
@@ -260,6 +264,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
     Return to previous page
     '''
     def go_back(self, widget):
+        self.btn_add.set_visible(True)
+        self.btn_list.set_visible(True)
+        self.btn_menu.set_visible(True)
+        self.btn_downloads.set_visible(True)
         self.btn_back.set_visible(False)
         self.stack_main.set_visible_child_name(self.previous_page)
 
