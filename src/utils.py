@@ -77,16 +77,24 @@ class UtilsLogger(logging.getLoggerClass()):
         "error": 31,
         "critical": 41
     }
+
+    format_log = {
+        'fmt': '%(asctime)s \033[1m%(levelname)s\033[0m: %(message)s',
+        'datefmt': '%Y-%m-%d %H:%M:%S',
+    }
+
     def color(self, level, message):
         color_id = self.color_map[level]
         return "\033[%dm%s\033[0m" % (color_id, message)
 
-    def __init__(self):
+    def __init__(self, format=format_log):
+        formatter = logging.Formatter(**format)
 
         self.root.setLevel(logging.INFO)
         self.root.handlers = []
 
         handler = logging.StreamHandler()
+        handler.setFormatter(formatter)
         self.root.addHandler(handler)
 
     def debug(self, message):
