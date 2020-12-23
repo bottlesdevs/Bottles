@@ -15,14 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
+
 from gi.repository import Gtk
 
-import logging, re
+from bottles.utils import UtilsTerminal, UtilsLogger
 
-'''
-Set the default logging level
-'''
-logging.basicConfig(level=logging.DEBUG)
+logging = UtilsLogger()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/add-details.ui')
 class BottlesAddDetails(Gtk.Box):
@@ -106,8 +105,6 @@ class BottlesAddDetails(Gtk.Box):
         self.window.stack_main.set_visible_child_name("page_add")
 
     def create_bottle(self, widget):
-        logging.info("Create a new %s bottle" % self.window.env_active)
-
         custom_path = self.entry_path.get_text()
 
         '''
