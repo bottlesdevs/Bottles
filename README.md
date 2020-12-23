@@ -58,6 +58,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Configurations update system across Bottles versions
 - Backup/Restore
 - Importer (from other wineprefix manager)
+- Optional sandboxed bottles
 
 ## Install :wrench:
 > Disclaimer: This is a development version (alpha), you will find bugs, black 
