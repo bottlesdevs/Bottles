@@ -2,36 +2,31 @@
 First off, thanks for taking the time to contribute :heart: !
 
 ### Did you find a bug?
-Make sure the bug has not been reported [here](https://git.mirko.pm/brombinmirko/Bottles/issues?utf8=%E2%9C%93&q=) yet
-If not, please report it [here](https://git.mirko.pm/brombinmirko/Bottles/issues/new).
+Make sure the bug has not been reported [here](https://github.com/bottlesdevs/Bottles/issues) yet
+If not, please report it [here](https://github.com/bottlesdevs/Bottles/issues/new/choose).
 
 ### Did you have problems?
-Check the [Wiki](https://git.mirko.pm/brombinmirko/Bottles/wikis), inside there some of frequently asked questions and guides.
+Check the [Wiki](https://github.com/bottlesdevs/Bottles/wiki), inside there some of frequently asked questions and guides.
 Can not find the solution?
-Find out if someone has already has [already asked](https://git.mirko.pm/brombinmirko/Bottles/issues?utf8=%E2%9C%93&q=) for it, if not, open a new issue [here](https://git.mirko.pm/brombinmirko/Bottles/issues/new).
+Find out if someone has already has [already asked](https://github.com/bottlesdevs/Bottles/issues) for it, if not, open a new issue [here](https://github.com/bottlesdevs/Bottles/issues/new/choose).
 
 ### Did you write a patch that fixes a bug?
 - Open a new GitHub pull request with the patch
 - Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable
 
 ### Do you have a tip for the user interface?
-- Open a issue [here](https://git.mirko.pm/brombinmirko/Bottles/issues/new), if possible,  attach an image that helps understand what you are talking about.
+- Open a issue [here](https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin%2C+francescomasala&labels=&template=feature_request.md&title=%5BRequest%5D+), if possible,  attach an image that helps understand what you are talking about.
 
 ### Do you want to translate?
-#### Update languages
-- Fork the repository
-- Edit a ```bottles.po``` file in ```bottles/locale/```
-- Open a new GitLab pull request
+Check [translate](https://github.com/bottlesdevs/Bottles/tree/master/po) page to help us translate Bottles in your language.
 
-#### Add new language
-- Fork the repository on your GitHub account
-- Create directory for new language in ```bottles/locale/``` with language code as the name ex.```it_IT```, create the subdirectory ```LC_MESSAGES``` inside it, final result: ```bottles/locale/it_IT/LC_MESSAGES/``` 
-- Copy the [bottles.po](https://git.mirko.pm/brombinmirko/Bottles/blob/master/bottles/locale/it_IT/LC_MESSAGES/bottles.po) inside the new directory
-- Translate it
+#### Add language
+- Fork the repository
+- Under `po\` directory, copy `bottles.po` with correct name for your language and modify it as in `it.po` (Italian Translation, use it as an example)
 - Open a new GitHub pull request
 
 ### Do you have questions about the source code?
-Open a new issue [here](https://git.mirko.pm/brombinmirko/Bottles/issues/new), otherwise add a comment directly in the code from GitLab.
+Open a new issue [here](https://github.com/bottlesdevs/Bottles/issues/new), otherwise add a comment directly in the code from GitLab.
 
 Thanks! 
 
