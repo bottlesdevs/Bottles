@@ -34,6 +34,31 @@
 Read [here](https://github.com/bottlesdevs/Bottles/tree/master/po) how to 
 translate Bottles in your language or how to help improve existing ones.
 
+## Features
+- Create bottles based on environments (a set of rule and dependencies for better software compatibility)
+- Access to a customizable environment for all your experiments
+- Run every executable (.exe/.msi) in your bottles, using the context menu in your file manager
+- Integrated management and storage for executable file arguments
+- Support for custom environment variables
+- Simplified DLL overrides
+- On-the-fly runner change for any Bottle
+- Various optimizations for better gaming performance (esync, fsync, dxvk, cache, shader compiler, offload .. and much more.)
+- Tweak different wine prefix settings, without leaving Bottles
+- Automated dxvk installation
+- Automatic installation and management of Wine and Proton runners
+- System for checking runner updates for the bottle and automatic repair in case of breakage
+- Integrated Dependencies installer with compatibility check based on a community-driver repository
+- Detection of installed programs
+- Integrated Task manager for wine processes
+- Easy access to ProtonDB and WineHQ for support
+- .. and much more that you can find by installing Bottles!
+
+### Work in progress
+- Installer manager [#55](https://github.com/bottlesdevs/Bottles/issues/55)
+- Configurations update system across Bottles versions
+- Backup/Restore
+- Importer (from other wineprefix manager)
+
 ## Install :wrench:
 > Disclaimer: This is a development version (alpha), you will find bugs, black 
 holes and monsters under the bed. Be careful.
