@@ -1040,7 +1040,7 @@ class BottlesRunner:
 
         for pid in pids.split("\n"):
             process_data = pid.split("|")
-            if len(process_data) >= 5 and "grep" not in process_data:
+            if len(process_data) >= 6 and "grep" not in process_data:
                 processes.append({
                     "pid": process_data[1],
                     "pmem": process_data[2],
