@@ -15,6 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import gi
+
+gi.require_version('Notify', '0.7')
+
 from gi.repository import Gtk, Gio, Notify
 
 import logging, webbrowser, time
