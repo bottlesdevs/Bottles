@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, logging, subprocess, urllib.request, json, tarfile, time, shutil, re, hashlib
+import os, subprocess, urllib.request, json, tarfile, time, shutil, re, hashlib
 
 from glob import glob
 from threading import Thread
@@ -24,12 +24,9 @@ from datetime import date
 
 from .download import BottlesDownloadEntry
 from .pages.list import BottlesListEntry
-from .utils import UtilsTerminal
+from .utils import UtilsTerminal, UtilsLogger
 
-'''
-Set the default logging level
-'''
-logging.basicConfig(level=logging.DEBUG)
+logging = UtilsLogger()
 
 class RunAsync(Thread):
 

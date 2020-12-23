@@ -65,5 +65,42 @@ class UtilsTerminal():
                                  shell=True,
                                  stdout=subprocess.PIPE,
                                  stderr=subprocess.STDOUT)
+                return True
             except:
                 pass
+
+class UtilsLogger(logging.getLoggerClass()):
+    color_map = {
+        "debug": 37,
+        "info": 36,
+        "warning": 33,
+        "error": 31,
+        "critical": 41
+    }
+    def color(self, level, message):
+        color_id = self.color_map[level]
+        return "\033[%dm%s\033[0m" % (color_id, message)
+
+    def __init__(self):
+
+        self.root.setLevel(logging.INFO)
+        self.root.handlers = []
+
+        handler = logging.StreamHandler()
+        self.root.addHandler(handler)
+
+    def debug(self, message):
+        self.root.info(self.color("debug", message))
+
+    def info(self, message):
+        self.root.info(self.color("info", message))
+
+    def warning(self, message):
+        self.root.info(self.color("warning", message))
+
+    def error(self, message):
+        self.root.info(self.color("error", message))
+
+    def critical(self, message):
+        self.root.info(self.color("critical", message))
+

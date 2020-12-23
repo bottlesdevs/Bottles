@@ -21,7 +21,7 @@ gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk, Gio, Notify
 
-import logging, webbrowser, time
+import webbrowser, time
 
 from .params import *
 from .download import BottlesDownloadEntry
@@ -35,12 +35,9 @@ from .pages.preferences import BottlesPreferences
 from .pages.taskmanager import BottlesTaskManager
 from .pages.dialog import BottlesMessageDialog, BottlesAboutDialog
 
-from .utils import UtilsConnection
+from .utils import UtilsConnection, UtilsLogger
 
-'''
-Set the default logging level
-'''
-logging.basicConfig(level=logging.DEBUG)
+logging = UtilsLogger()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/window.ui')
 class BottlesWindow(Gtk.ApplicationWindow):
@@ -177,6 +174,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         self.on_start()
         arg_executable = False
+        logging.info("Bottles Started!")
 
     def check_for_connection(self, status):
         if self.utils_conn.check_connection():
