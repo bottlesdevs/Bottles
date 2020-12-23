@@ -213,7 +213,7 @@ class BottlesRunner:
                     if "%s-x86_64" % tag not in self.runners_available:
                         updates[tag] = file
                     else:
-                        logging.info("Latest runner is `%s` and is already installed." % tag)
+                        logging.warning("Latest wine runner is `%s` and is already installed." % tag)
 
             '''
             proton
@@ -226,7 +226,7 @@ class BottlesRunner:
                     if "Proton-%s" % tag not in self.runners_available:
                         updates[tag] = file
                     else:
-                        logging.info("Latest runner is `%s` and is already installed." % tag)
+                        logging.warning("Latest proton runner is `%s` and is already installed." % tag)
 
         '''
         Send a notificationif the user settings allow it
@@ -254,7 +254,7 @@ class BottlesRunner:
                     if "dxvk-%s" % tag[1:] not in self.dxvk_available:
                         updates[tag] = file
                     else:
-                        logging.info("Latest dxvk is `%s` and is already installed." % tag)
+                        logging.warning("Latest dxvk is `%s` and is already installed." % tag)
 
         '''
         Send a notificationif the user settings allow it
@@ -296,7 +296,7 @@ class BottlesRunner:
         '''
         file = rename if rename else file
         if os.path.isfile("%s/%s" % (self.temp_path, file)):
-            logging.info("File `%s` already exists in temp, skipping." % file)
+            logging.warning("File `%s` already exists in temp, skipping." % file)
         else:
             urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file))
 
@@ -326,8 +326,8 @@ class BottlesRunner:
             local_checksum = local_checksum.hexdigest().lower()
 
             if local_checksum != checksum:
-                logging.info("Downloaded file `%s` looks corrupted." % file)
-                logging.info("Source checksum: `%s` downloaded: `%s`" % (
+                logging.error("Downloaded file `%s` looks corrupted." % file)
+                logging.error("Source checksum: `%s` downloaded: `%s`" % (
                     checksum, local_checksum))
                 self.window.send_notification(
                     "Bottles",
@@ -476,7 +476,7 @@ class BottlesRunner:
                         os.remove("%s/%s/drive_c/windows/system32/%s" % (
                             self.bottles_path, configuration.get("Name"), dll))
                     except:
-                        logging.info("`%s` dll not found for `%s` bottle, failed to remove from system32."% (
+                        logging.error("`%s` dll not found for `%s` bottle, failed to remove from system32."% (
                             dll, configuration.get("Name")
                         ))
             '''
@@ -577,7 +577,7 @@ class BottlesRunner:
         A very special thanks to Lutris & GloriousEggroll for builds <3!
         '''
         if len(self.runners_available) == 0 and install_latest:
-            logging.info("No runners found.")
+            logging.warning("No runners found.")
 
             '''
             Fetch runners from repository only if connected
@@ -622,7 +622,7 @@ class BottlesRunner:
             logging.info("Dxvk found: \n%s" % ', '.join(self.dxvk_available))
 
         if len(self.dxvk_available) == 0 and install_latest:
-            logging.info("No dxvk found.")
+            logging.warning("No dxvk found.")
 
             '''
             Fetch dxvk from repository only if connected
@@ -659,7 +659,7 @@ class BottlesRunner:
                             path = path.replace(".lnk", "")
                             installed_programs.append([path, executable_path])
                 except:
-                    logging.info("Cannot get executable for `%s`." % path)
+                    logging.error("Cannot get executable for `%s`." % path)
 
         return installed_programs
 
@@ -825,6 +825,7 @@ class BottlesRunner:
         '''
         Generate bottle configuration file
         '''
+        logging.info("Generating Bottle configuration file…")
         buffer_output.insert(iter, "\nGenerating Bottle configuration file…")
         iter = buffer_output.get_end_iter()
 
@@ -843,6 +844,7 @@ class BottlesRunner:
         '''
         Apply environment configuration
         '''
+        logging.info("Applying `%s` environment configuration.." % environment)
         buffer_output.insert(iter, "\nApplying `%s` environment configuration.." % environment)
         iter = buffer_output.get_end_iter()
         if environment != "Custom":
@@ -863,13 +865,15 @@ class BottlesRunner:
         Perform dxvk installation if configured
         '''
         if configuration["Parameters"]["dxvk"]:
-            buffer_output.insert(iter, "\nInstalling dxvk..")
+            logging.info("Installing dxvk…")
+            buffer_output.insert(iter, "\nInstalling dxvk…")
             iter = buffer_output.get_end_iter()
             self.install_dxvk(configuration)
 
         '''
         Set the list button visible and set UI to usable again
         '''
+        logging.info("Bottle `%s` successfully created!" % bottle_name)
         buffer_output.insert_markup(
             iter,
             "\n<span foreground='green'>%s</span>" % "Your new bottle with name `%s` is now ready!" % bottle_name,
@@ -975,6 +979,9 @@ class BottlesRunner:
                 path = "%s/%s" % (self.bottles_path, path)
 
             shutil.rmtree(path)
+            logging.info("Successfully deleted the bottle in path: %s" % path)
+        else:
+            logging.error("Empty path found, failing to avoid disasters.")
 
     def delete_bottle(self, configuration):
         a = RunAsync('delete', self.async_delete_bottle, [configuration]);a.start()
@@ -1254,6 +1261,7 @@ class BottlesRunner:
 
         if terminal:
             return UtilsTerminal(command)
+
         return subprocess.Popen(command, shell=True)
 
     '''

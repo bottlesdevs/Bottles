@@ -98,17 +98,17 @@ class UtilsLogger(logging.getLoggerClass()):
         self.root.addHandler(handler)
 
     def debug(self, message):
-        self.root.info(self.color("debug", message))
+        self.root.debug(self.color("debug", message))
 
     def info(self, message):
         self.root.info(self.color("info", message))
 
     def warning(self, message):
-        self.root.info(self.color("warning", message))
+        self.root.warning(self.color("warning", message))
 
     def error(self, message):
-        self.root.info(self.color("error", message))
+        self.root.error(self.color("error", message))
 
     def critical(self, message):
-        self.root.info(self.color("critical", message))
+        self.root.critical(self.color("critical", message))
 
