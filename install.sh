@@ -5,6 +5,5 @@ if [ -d "$BUILD_DIR" ]; then
 fi
 mkdir build
 meson build
-cd build
-ninja
-sudo ninja install
+ninja -j$(nproc) -C build
+sudo ninja install -C build
