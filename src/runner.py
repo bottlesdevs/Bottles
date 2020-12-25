@@ -21,6 +21,7 @@ from glob import glob
 from threading import Thread
 from pathlib import Path
 from datetime import date
+from distutils.dir_util import copy_tree
 
 from .download import BottlesDownloadEntry
 from .pages.list import BottlesListEntry
@@ -1397,8 +1398,60 @@ class BottlesRunner:
         logging.info("Found %s wineprefixes .." % len(importer_wineprefixes))
         return importer_wineprefixes
 
-    def import_wineprefix(self, wineprefix):
-        pass
+    def import_wineprefix(self, wineprefix, widget):
+        logging.info("Importing wineprefix `%s` in a new bottle .." % wineprefix.get("Name"))
+
+        '''
+        Hide btn_import to prevent double imports
+        '''
+        widget.set_visible(False)
+
+        '''
+        Prepare bottle path for the wineprefix
+        '''
+        bottle_path = "Imported_%s" % wineprefix.get("Name")
+        bottle_complete_path = "%s/%s" % (self.bottles_path, bottle_path)
+
+        try:
+            os.makedirs(bottle_complete_path, exist_ok=False)
+        except:
+            logging.error("Error creating the bottle path for wineprefix `%s`. Aborting." % wineprefix.get("Name"))
+            return False
+
+        '''
+        Copy wineprefix files to the new bottle location
+        '''
+        command = "cp -a %s/* %s/" % (wineprefix.get("Path"), bottle_complete_path)
+        subprocess.Popen(command, shell=True)
+
+        '''
+        Create configuration
+        '''
+        new_configuration = self.sample_configuration
+        new_configuration["Name"] = wineprefix["Name"]
+        new_configuration["Runner"] = self.get_latest_runner()
+        new_configuration["Path"] = bottle_path
+        new_configuration["Environment"] = "Custom"
+        new_configuration["Creation_Date"] = str(date.today())
+        new_configuration["Update_Date"] = str(date.today())
+
+        '''
+        Save configuration
+        '''
+        with open("%s/bottle.json" % bottle_complete_path,
+                  "w") as configuration_file:
+            json.dump(new_configuration, configuration_file, indent=4)
+            configuration_file.close()
+
+        '''
+        Update bottles
+        '''
+        self.check_bottles()
+        self.window.page_list.update_bottles()
+
+        logging.info("Wineprefix `%s` successfully imported!" % wineprefix.get("Name"))
+        return True
+
 
     def browse_wineprefix(self, wineprefix):
         self.open_filemanager(path_type="custom",

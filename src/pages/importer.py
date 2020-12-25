@@ -62,9 +62,14 @@ class BottlesImporterEntry(Gtk.Box):
         Connect widgets to signals
         '''
         self.btn_browse.connect("pressed", self.browse_wineprefix)
+        self.btn_import.connect("pressed", self.import_wineprefix)
 
     def browse_wineprefix(self, widget):
         self.runner.browse_wineprefix(self.prefix)
+
+    def import_wineprefix(self, widget):
+        if self.runner.import_wineprefix(self.prefix, widget):
+            self.destroy()
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
