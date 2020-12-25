@@ -1,0 +1,604 @@
+# French translation
+# Copyright (C) 2020 THE BOTTLE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the bottles package.
+# Lahfa Samy <samy@lahfa.xyz>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bottles\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-17 21:08+0100\n"
+"PO-Revision-Date: 20-12-24 19:30+0100\n"
+"Last-Translator: Lahfa Samy <samy@lahfa.xyz>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/com.usebottles.bottles.desktop.in:3 data/com.usebottles.bottles.appdata.xml.in:6
+#: src/ui/window.ui:271
+msgid "Bottles"
+msgstr "Bottles"
+
+#: data/com.usebottles.bottles.desktop.in:4
+msgid "Easily manage wineprefix"
+msgstr "Gérer facilement vos wineprefix"
+
+#: data/com.usebottles.bottles.appdata.xml.in:7
+msgid "Easily manage your Wine bottles"
+msgstr "Gérer facilement vos Wine bottles"
+
+#: data/com.usebottles.bottles.appdata.xml.in:8
+msgid "Mirko Brombin"
+msgstr "Mirko Brombin"
+
+#: data/com.usebottles.bottles.appdata.xml.in:10
+msgid "Easily manage your Wine bottles (wineprefix)"
+msgstr "Gérer facilement vous bottles Wine (wineprefix)"
+
+#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:103
+msgid "Dark theme"
+msgstr "Thème sombre"
+
+#: data/com.usebottles.bottles.gschema.xml:7
+msgid "Enable the dark theme."
+msgstr "Activer le thème sombre."
+
+#: data/com.usebottles.bottles.gschema.xml:11
+msgid "Notifications"
+msgstr "Notifications"
+
+#: data/com.usebottles.bottles.gschema.xml:12
+msgid "Enable notifications."
+msgstr "Activer les notifications."
+
+#: data/com.usebottles.bottles.gschema.xml:16
+msgid "Temp cleaning"
+msgstr "Suppression du cache"
+
+#: data/com.usebottles.bottles.gschema.xml:17
+msgid "Clean Temp path on boot."
+msgstr "Suppression du chemin d'accès du cache à l'initialisation."
+
+#: data/com.usebottles.bottles.gschema.xml:21
+msgid "Startup view"
+msgstr "Vue de démarrage"
+
+#: data/com.usebottles.bottles.gschema.xml:22
+msgid "Choose which view should be loaded on application startup."
+msgstr "Choisir la vue qui doit être chargée au démarrage du programme."
+
+#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:292
+msgid "New bottle"
+msgstr "Nouvelle bottle"
+
+#: src/ui/add.ui:41
+msgid "Choose the environment"
+msgstr "Choisir l'environnement"
+
+#: src/ui/add.ui:94
+msgid "Gaming"
+msgstr "Gaming"
+
+#: src/ui/add.ui:151
+msgid "Software"
+msgstr "Logicielle"
+
+#: src/ui/add.ui:208
+msgid "Custom"
+msgstr "Personnalisée"
+
+#: src/ui/add.ui:245
+msgid "Environment description"
+msgstr "Description de l'environnement"
+
+#: src/ui/add.ui:265
+msgid "Create new bottle"
+msgstr "Créer une nouvelle bottle"
+
+#: src/ui/add.ui:269
+msgid "Create a new bottle with the selected environment"
+msgstr "Créer une nouvelle bottle avec l'environnement sélectionnée"
+
+#: src/ui/add.ui:293
+msgid "Import from backup"
+msgstr "Imoorter de la sauvegarde"
+
+#: src/ui/add.ui:298
+msgid "Backups are not yet available."
+msgstr "Les sauvegardes ne sont pas encore disponibles."
+
+#: src/ui/add-details.ui:40
+msgid "Special characters are not allowed!"
+msgstr "Les caractères spéciaux ne sont pas autorisées!"
+
+#: src/ui/add-details.ui:41
+msgid "Name your bottle"
+msgstr "Nommer votre bottle"
+
+#: src/ui/add-details.ui:53
+msgid "I need to choose a custom path"
+msgstr "Choisir un chemin d'accès."
+
+#: src/ui/add-details.ui:58
+msgid "Custom path are not supported in this version"
+msgstr "Les chemins d'accès personnalisées ne sont pas supporté dans cette version."
+
+#: src/ui/add-details.ui:75
+msgid "/opt/MyNewBottle"
+msgstr "/opt/MaNouvelleBottle"
+
+#: src/ui/add-details.ui:113 src/ui/details.ui:1589
+msgid "Runner"
+msgstr "Exécuteur"
+
+#: src/ui/add-details.ui:156
+msgid "Advanced"
+msgstr "Avancée"
+
+#: src/ui/add-details.ui:187
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/ui/add-details.ui:199
+msgid "Save bottle"
+msgstr "Sauvegarder la bottle"
+
+#: src/ui/details.ui:34 src/ui/list-entry.ui:191
+msgid "Bottle name"
+msgstr "Nom de la Bottle"
+
+#: src/ui/details.ui:70
+msgid "Runner can be changed from Preferences tab."
+msgstr "L'exécuteur peut être changer dans l'onglet Préférences"
+
+#: src/ui/details.ui:114
+msgid "Utility"
+msgstr "Utilitaire"
+
+#: src/ui/details.ui:138
+msgid "Open winecfg in this Bottle for advanced configurations."
+msgstr "Ouvrir winecfg dans cette Bottle pour une configuration plus avancée"
+
+#: src/ui/details.ui:164
+msgid "Winecfg"
+msgstr "Winecfg"
+
+#: src/ui/details.ui:187
+msgid ""
+"Winetricks has been removed in Bottles in favor of an integrated system for "
+"installing libraries and dependencies. Use the `Dependencies` tab instead.\n"
+"\n"
+"This choice is intended to use as few external tools as possible and to "
+"provide a complete user experience in Bottles."
+msgstr ""
+"Winetricks a été enlever de Bottles, à la place un système intégrer pour"
+"installer des librairies et des dépendances. Utiliser l'onglet `Dépendances` à la place.\n"
+"\n"
+"Ce choix a été fait pour avoir le moins de dépendance que possible et pour"
+"fournir une expérience utilisateur complète dans Bottles."
+
+#: src/ui/details.ui:215
+msgid "Winetricks"
+msgstr "Winetricks"
+
+#: src/ui/details.ui:237
+msgid "Launch a debug console in this Bottle."
+msgstr "Lancer une console de debug pour cette Bottle."
+
+#: src/ui/details.ui:263
+msgid "Debug"
+msgstr "Débogue"
+
+#: src/ui/details.ui:285
+msgid "Run an executable file in this Bottle."
+msgstr "Lancer un fichier exécutable dans ce Bottle."
+
+#: src/ui/details.ui:311
+msgid "Run .exe"
+msgstr "Lancer .exe"
+
+#: src/ui/details.ui:333
+msgid "Manage the processes running in this Bottle."
+msgstr "Gérer les processus fonctionnant dans ce Bottle."
+
+#: src/ui/details.ui:359
+msgid "Task manager"
+msgstr "Gestionnaire des tâches"
+
+#: src/ui/details.ui:381
+msgid "Manage the wine subsystem settings."
+msgstr "Gérer les paramètres sous-système de wine"
+
+#: src/ui/details.ui:407
+msgid "Control panel"
+msgstr "Panneau de configuration"
+
+#: src/ui/details.ui:429
+msgid "Use this to uninstall programs from the Bottle."
+msgstr "Utiliser ceci pour désinstaller les programmes d'un Bottle."
+
+#: src/ui/details.ui:455
+msgid "Uninstaller"
+msgstr "Désinstaller"
+
+#: src/ui/details.ui:477
+msgid "Open a CMD in this Bottle."
+msgstr "Ouvrir un CMD dans ce Bottle."
+
+#: src/ui/details.ui:503
+msgid "CMD"
+msgstr "CMD"
+
+#: src/ui/details.ui:525
+msgid "Use regedit to add, edit and delete Wine register keys."
+msgstr "Utiliser regedit pour rajouter, éditer ou supprimer des clés de registre de Wine."
+
+#: src/ui/details.ui:551
+msgid "Regedit"
+msgstr "Regedit"
+
+#: src/ui/details.ui:573
+msgid "Browse the C:\\ of this Bottle."
+msgstr "Parcourir C:\\ de ce Bottle."
+
+#: src/ui/details.ui:599 src/ui/list-entry.ui:38
+msgid "Browse C:"
+msgstr "Parcourir C:"
+
+#: src/ui/details.ui:642
+msgid "System control"
+msgstr "Contrôle du système"
+
+#: src/ui/details.ui:666
+msgid "Simulates a system shutdown (this does not terminate processes)."
+msgstr "Simule d'une mise hors tension du système (cela ne tue pas les processus)"
+
+#: src/ui/details.ui:693
+msgid "Shutdown"
+msgstr "Mise hors tension"
+
+#: src/ui/details.ui:715
+msgid "Simulates a system reboot (this does not terminate processes)."
+msgstr "Simule un redémarrage du système (cela ne tue pas les processus)"
+
+#: src/ui/details.ui:742
+msgid "Reboot"
+msgstr "Redémarrage"
+
+#: src/ui/details.ui:764
+msgid "Kill all processes running in this Bottle."
+msgstr "Tuer tous les processus qui s'exécute dans ce Bottle."
+
+#: src/ui/details.ui:791
+msgid "Kill all processes"
+msgstr "Tuer tous les processus"
+
+#: src/ui/details.ui:838
+msgid "Bottle size:"
+msgstr "Taille du Bottle:"
+
+#: src/ui/details.ui:876
+msgid "Remaining disk space:"
+msgstr "Espace disque restant:"
+
+#: src/ui/details.ui:917
+msgid "X of Y"
+msgstr "X de Y"
+
+#: src/ui/details.ui:932
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: src/ui/details.ui:982
+msgid "DXVK/Synchronization"
+msgstr "DXVK/Syncrhonisation"
+
+#: src/ui/details.ui:1011
+msgid ""
+"Enable futex based synchronization to increase performance for multi-core "
+"processors."
+msgstr ""
+"Activer la synchronisation basé sur les futex, pour améliorer les performances des processeurs" 
+"multi-cœur."
+
+#: src/ui/details.ui:1014
+msgid "Fsync (futex synchronization)"
+msgstr "Fsync (synchronisation futex)"
+
+#: src/ui/details.ui:1038
+msgid ""
+"Enable eventfd based synchronization to increase performance for multi-core "
+"processors."
+msgstr ""
+"Activation de la synchronisation basé sur eventfd pour améliorer les performances"
+"des processeurs multi-cœur"
+
+#: src/ui/details.ui:1041
+msgid "Esync (eventfd synchronization)"
+msgstr "Esync (synchronisation eventfd)"
+
+#: src/ui/details.ui:1065
+msgid ""
+"Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
+"translating requests to Vulkan."
+msgstr ""
+"Activation du support Direct3D 12 et amélioration des performances des"
+"traductions des requêtes de Direct3D 9/10/11 à Vulkan"
+
+#: src/ui/details.ui:1068
+msgid "DXVK/VKD3D for Direct3D"
+msgstr "DXVK/KD3D pour Direct3D"
+
+#: src/ui/details.ui:1092
+msgid "Enable ACO to increase performance in-game when using Mesa drivers."
+msgstr "Activer ACO pour augmenter les performances en jeux lors de l'usage des drivers Mesa."
+
+#: src/ui/details.ui:1095
+msgid "ACO shader compiler"
+msgstr "ACO compilateur de shader"
+
+#: src/ui/details.ui:1139
+msgid ""
+"Enable the DXVK overlay showing FPS and other details in D3D applications. "
+"If disabled, default value is set to \"compiler\"."
+msgstr "Activer l'overlay DXVK qui montre les FPS et d'autres détails dans les applications"
+"D3D. Si il est désactivé, la valeur par défaut est définie à \"compiler\""
+
+#: src/ui/details.ui:1142
+msgid "DXVK HUD"
+msgstr "DXVK HUD"
+
+#: src/ui/details.ui:1166
+msgid "Add environment variables to the commands executed by runner."
+msgstr "Ajout des variables d'environnement au commande exécuter par l'exécuteur."
+
+#: src/ui/details.ui:1169
+msgid "Environment variables"
+msgstr "Variables d'environnement"
+
+#: src/ui/details.ui:1182
+msgid "Save environment variables"
+msgstr "Sauvegarde les variables d'environnement"
+
+#: src/ui/details.ui:1202 src/ui/details.ui:1206
+msgid "Syntax: VAR1=value VAR2=value .."
+msgstr "Syntaxe: VAR1=valeur VAR2=valeur .."
+
+#: src/ui/details.ui:1223
+msgid "Developers and debug"
+msgstr "Développeurs et déboguage"
+
+#: src/ui/details.ui:1268
+msgid "GPU"
+msgstr "GPU"
+
+#: src/ui/details.ui:1309
+msgid ""
+"In laptops with two GPUs (Intel+NVIDIA or AMD+Nvidia or Intel+AMD), select "
+"this to use the discrete card."
+msgstr ""
+
+#: src/ui/details.ui:1312
+msgid "Use Discrete Graphics Card"
+msgstr "Utiliser la carte graphique dédiée."
+
+#: src/ui/details.ui:1362
+msgid "Desktop virtualization"
+msgstr "Virtualisation du bureau"
+
+#: src/ui/details.ui:1391 src/ui/details.ui:1418
+msgid "Virtualize a desktop where to spawn all Windows applications."
+msgstr "Virtualiser le bureau où sont afficher toutes les applications Windows."
+
+#: src/ui/details.ui:1394
+msgid "Virtual Desktop"
+msgstr "Bureau virtuel"
+
+#: src/ui/details.ui:1421
+msgid "Virtual Desktop resolution"
+msgstr "Résolution du bureau virtuelle"
+
+#: src/ui/details.ui:1495
+msgid "Audio"
+msgstr "Audio"
+
+#: src/ui/details.ui:1536
+msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
+msgstr "Définir la latence de PulseAudio à 60 millisecondes pour améliorer la qualité du sons."
+
+#: src/ui/details.ui:1539
+msgid "Reduce PulseAudio latency"
+msgstr "Réduir la latence de PulseAudio"
+
+#: src/ui/details.ui:1623
+msgid "Set a different runner for this Bottle."
+msgstr "Définir un exécuteur différent pour ce Bottle"
+
+#: src/ui/details.ui:1626
+msgid "Change runner"
+msgstr "Changer l'exécuteur"
+
+#: src/ui/details.ui:1648
+msgid "Manage runners"
+msgstr "Gérer les exécuteurs"
+
+#: src/ui/details.ui:1708
+msgid "DLL"
+msgstr "DLL"
+
+#: src/ui/details.ui:1738 src/ui/details.ui:1742
+msgid "Syntax: dll1,dll2=value;dll3=value"
+msgstr "Syntaxe: dll1,dll2=valeur;dll3=valeur"
+
+#: src/ui/details.ui:1755
+msgid "Save DLL overrides."
+msgstr "Sauvegarder les override DLL."
+
+#: src/ui/details.ui:1775
+msgid "Add new dll overrides"
+msgstr "Rajout d'un nouvel override DLL"
+
+#: src/ui/details.ui:1778
+msgid "DLL overrides"
+msgstr "DLL overrides"
+
+#: src/ui/details.ui:1815
+msgid "Customize preferences for this Bottle."
+msgstr "Personnaliser vos préférences pour ce Bottle."
+
+#: src/ui/details.ui:1816 src/ui/window.ui:146
+msgid "Preferences"
+msgstr "Préférences"
+
+#: src/ui/details.ui:1837
+msgid ""
+"The following packages are downloaded from external sources (mainly from "
+"Microsoft)."
+msgstr ""
+"Les logicielles suivants sont téléchargé depuis des sources externes (principalement de "
+"Microsoft)."
+
+#: src/ui/details.ui:1901
+msgid "Open a issue"
+msgstr "Ouvrir une issue"
+
+#: src/ui/details.ui:1926
+msgid "Found a broken dependency?"
+msgstr "Vous avez une dépendance cassée?"
+
+#: src/ui/details.ui:1952
+msgid ""
+"Install dependencies (like corefonts, vcrun6, ..)  for better software "
+"compatibility."
+msgstr "Installer des dépendances (comme corefonts, vcrun6, ..) pour une meilleure "
+"compatibilité logicielle."
+
+#: src/ui/details.ui:1953
+msgid "Dependencies"
+msgstr "Dépendances"
+
+#: src/ui/details.ui:1992
+msgid ""
+"These the programs I found installed in the Bottle (they may not be all)."
+msgstr ""
+"Ces programmes ont été trouver installer dans ce Bottle (ils ne peuvent pas y être vraiment installer)."
+
+#: src/ui/details.ui:2008
+msgid "Check for installed programs."
+msgstr "Vérifier si des programmes sont installés."
+
+#: src/ui/details.ui:2089
+msgid "List, manage and run the programs installed in this Bottle."
+msgstr "Lister, gérer et lancer les programmes installées dans ce Bottle."
+
+#: src/ui/details.ui:2090
+msgid "Programs"
+msgstr "Programmes"
+
+#: src/ui/download-entry.ui:19
+msgid "Runner x.y"
+msgstr "Exécuteur x.y"
+
+#: src/ui/download-entry.ui:53
+msgid "Cancel download"
+msgstr "Annuler le téléchargement"
+
+#: src/ui/list-entry.ui:15
+msgid "Backups are not supported in this version"
+msgstr "Les sauvegardes ne sont pas supportées dans cette version"
+
+#: src/ui/list-entry.ui:61
+msgid "Destroy bottle"
+msgstr "Détruire ce Bottle"
+
+#: src/ui/list-entry.ui:87
+msgid "Run .exe in this bottle"
+msgstr "Exécuter .exe dans ce bottle"
+
+#: src/ui/list-entry.ui:110
+msgid "Installed programs"
+msgstr "Programmes installés"
+
+#: src/ui/list-entry.ui:132
+msgid "Utility & Preferences"
+msgstr "Utilitaires & Préférences"
+
+#: src/ui/list-entry.ui:153
+msgid "Upgrade runner to the latest localy installed"
+msgstr "Mise à jour de l'exécuteur au plus récent installé localement"
+
+#: src/ui/list-entry.ui:173
+msgid "This bottle looks damaged."
+msgstr "Ce bottle à l'air endommagée."
+
+#: src/ui/list-entry.ui:214
+msgid "Environment"
+msgstr "Environnement"
+
+#: src/ui/list-entry.ui:253
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Ce bottle à l'air endommagé, le fichier de configuration est manquant. Essayer de "
+"réparer en créant un nouveau fichier de configuration."
+
+#: src/ui/list-entry.ui:274
+msgid "Execute in this bottle"
+msgstr "Exécuter dans ce bottle"
+
+#: src/ui/list-entry.ui:287
+msgid "Run in this bottle"
+msgstr "Lancer dans ce bottle"
+
+#: src/ui/window.ui:35
+msgid "Download preferences"
+msgstr "Préférences de téléchargement"
+
+#: src/ui/window.ui:61
+msgid "Help translate"
+msgstr "Aide pour la traduction"
+
+#: src/ui/window.ui:74
+msgid "Support Bottles"
+msgstr "Supporté Bottles"
+
+#: src/ui/window.ui:170
+msgid "About Bottles"
+msgstr "A propos de Bottles"
+
+#: src/ui/window.ui:238
+msgid ""
+"This is a development release. Please report bugs in the GitHub repository."
+msgstr ""
+"C'est une version en cours de développement. Merci de bien vouloir " 
+"reporté les bogues rencontrés dans le dépôt GitHub."
+
+#: src/ui/window.ui:277
+msgid "Go back"
+msgstr "Revenir en arrière"
+
+#: src/ui/window.ui:310
+msgid "Your Bottles"
+msgstr "Vos Bottles"
+
+#: src/ui/window.ui:329
+msgid "Open menu"
+msgstr "Ouvrir le menu"
+
+#: src/ui/window.ui:350
+msgid "Downloads"
+msgstr "Téléchargements"
+
+#: src/ui/window.ui:370
+msgid ""
+"You don't seem connected to the internet. Without it you will not be able to "
+"download essential components. Click this icon when you have reestablished "
+"the connection."
+msgstr ""
+"Il semble que vous ne soyez pas connecter à internet. Sans la connexion"
+", vous ne pourrez pas télécharger des composants essentielles. Cliquez"
+"sur cette icône lorsque votre connexion internet sera rétabli."

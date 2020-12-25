@@ -111,6 +111,12 @@ ninja -j$(nproc)
 sudo ninja install
 ```
 
+#### Uninstall
+```
+cd build
+sudo ninja uninstall
+```
+
 ## Common issues
 **Getting a KeyError after Bottles update.**  
 It could be caused by a change in the bottle configuration (a know bug 
