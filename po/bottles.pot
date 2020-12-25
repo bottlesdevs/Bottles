@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-17 21:08+0100\n"
+"POT-Creation-Date: 2020-12-25 16:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.usebottles.bottles.desktop.in:3 data/com.usebottles.bottles.appdata.xml.in:6
-#: src/ui/window.ui:271
+#: data/com.usebottles.bottles.desktop.in:3
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:296
 msgid "Bottles"
 msgstr ""
 
@@ -63,14 +63,22 @@ msgid "Clean Temp path on boot."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:21
-msgid "Startup view"
+msgid "Release Candidate"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:22
+msgid "Toggle Release Candidate for Runners"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:26
+msgid "Startup view"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:27
 msgid "Choose which view should be loaded on application startup."
 msgstr ""
 
-#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:292
+#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:317
 msgid "New bottle"
 msgstr ""
 
@@ -199,7 +207,7 @@ msgstr ""
 msgid "Manage the processes running in this Bottle."
 msgstr ""
 
-#: src/ui/details.ui:359
+#: src/ui/details.ui:359 src/ui/window.ui:146
 msgid "Task manager"
 msgstr ""
 
@@ -437,7 +445,7 @@ msgstr ""
 msgid "Customize preferences for this Bottle."
 msgstr ""
 
-#: src/ui/details.ui:1816 src/ui/window.ui:146
+#: src/ui/details.ui:1816 src/ui/window.ui:172
 msgid "Preferences"
 msgstr ""
 
@@ -482,6 +490,18 @@ msgstr ""
 msgid "Programs"
 msgstr ""
 
+#: src/ui/details.ui:2131
+msgid "The program installer is an experimental feature and may not work."
+msgstr ""
+
+#: src/ui/details.ui:2147
+msgid "Check for new installers"
+msgstr ""
+
+#: src/ui/details.ui:2228
+msgid "Installers"
+msgstr ""
+
 #: src/ui/download-entry.ui:19
 msgid "Runner x.y"
 msgstr ""
@@ -498,24 +518,24 @@ msgstr ""
 msgid "Destroy bottle"
 msgstr ""
 
-#: src/ui/list-entry.ui:87
-msgid "Run .exe in this bottle"
-msgstr ""
-
-#: src/ui/list-entry.ui:110
-msgid "Installed programs"
-msgstr ""
-
-#: src/ui/list-entry.ui:132
-msgid "Utility & Preferences"
-msgstr ""
-
-#: src/ui/list-entry.ui:153
+#: src/ui/list-entry.ui:86
 msgid "Upgrade runner to the latest localy installed"
 msgstr ""
 
-#: src/ui/list-entry.ui:173
+#: src/ui/list-entry.ui:108
+msgid "Run .exe/.msi in this bottle"
+msgstr ""
+
+#: src/ui/list-entry.ui:131
+msgid "Installed programs"
+msgstr ""
+
+#: src/ui/list-entry.ui:151
 msgid "This bottle looks damaged."
+msgstr ""
+
+#: src/ui/list-entry.ui:166
+msgid "Utility & Preferences"
 msgstr ""
 
 #: src/ui/list-entry.ui:214
@@ -548,32 +568,36 @@ msgstr ""
 msgid "Support Bottles"
 msgstr ""
 
-#: src/ui/window.ui:170
+#: src/ui/window.ui:159
+msgid "Importer"
+msgstr ""
+
+#: src/ui/window.ui:196
 msgid "About Bottles"
 msgstr ""
 
-#: src/ui/window.ui:238
+#: src/ui/window.ui:263
 msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
 
-#: src/ui/window.ui:277
+#: src/ui/window.ui:302
 msgid "Go back"
 msgstr ""
 
-#: src/ui/window.ui:310
+#: src/ui/window.ui:335
 msgid "Your Bottles"
 msgstr ""
 
-#: src/ui/window.ui:329
+#: src/ui/window.ui:354
 msgid "Open menu"
 msgstr ""
 
-#: src/ui/window.ui:350
+#: src/ui/window.ui:375
 msgid "Downloads"
 msgstr ""
 
-#: src/ui/window.ui:370
+#: src/ui/window.ui:395
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
