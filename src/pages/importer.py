@@ -103,7 +103,17 @@ class BottlesImporter(Gtk.ScrolledWindow):
         self.btn_search_wineprefixes.connect("pressed", self.search_wineprefixes)
 
     def search_wineprefixes(self, widget):
+        '''
+        Destroy all childs in list_prefixes
+        '''
+        for w in self.list_prefixes.get_children():
+            w.destroy()
+
+        '''
+        Get and list wineprefixes from other managers
+        '''
         wineprefixes = self.runner.search_wineprefixes()
+
         if len(wineprefixes) > 0:
             for wineprefix in wineprefixes:
                 self.list_prefixes.add(BottlesImporterEntry(self.window, wineprefix))
