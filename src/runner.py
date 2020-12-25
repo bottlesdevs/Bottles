@@ -1380,12 +1380,20 @@ class BottlesRunner:
         '''
         for wineprefix in results:
             wineprefix_name = wineprefix.split("/")[-2]
+
+            '''
+            Determinate manager by index
+            '''
             if i <= is_lutris:
                 wineprefix_manager = "Lutris"
             elif i <=  is_playonlinux:
                 wineprefix_manager = "PlayOnLinux"
             else:
                 wineprefix_manager = "Bottles v1"
+
+            '''
+            Check if there is a drive_c path
+            '''
             if os.path.isdir("%s/drive_c" % wineprefix):
                 importer_wineprefixes.append(
                     {
@@ -1466,5 +1474,4 @@ class BottlesRunner:
     def browse_wineprefix(self, wineprefix):
         self.open_filemanager(path_type="custom",
                               custom_path=wineprefix.get("Path"))
-
 
