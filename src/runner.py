@@ -706,11 +706,30 @@ class BottlesRunner:
                 configuration_file = open('%s/bottle.json' % bottle)
                 configuration_file_json = json.load(configuration_file)
                 configuration_file.close()
+
+                missing_keys = self.sample_configuration.keys() - configuration_file_json.keys()
+                for key in missing_keys:
+                    logging.warning("`%s` not in %s configuration, updating." % (
+                        key, bottle))
+                    self.update_configuration(configuration_file_json,
+                                              key,
+                                              self.sample_configuration[key])
+
+                missing_parameters_keys = self.sample_configuration["Parameters"].keys() - configuration_file_json["Parameters"].keys()
+                for key in missing_parameters_keys:
+                    logging.warning("`%s` not in %s configuration Parameters, updating." % (
+                        key, bottle))
+                    self.update_configuration(configuration_file_json,
+                                              key,
+                                              self.sample_configuration["Parameters"][key],
+                                              scope="Parameters")
+
             except:
                 configuration_file_json = self.sample_configuration
                 configuration_file_json["Broken"] = True
                 configuration_file_json["Name"] = bottle_name_path
                 configuration_file_json["Environment"] = "Undefined"
+
 
             self.local_bottles[bottle_name_path] = configuration_file_json
 
@@ -740,7 +759,10 @@ class BottlesRunner:
             json.dump(configuration, configuration_file, indent=4)
             configuration_file.close()
 
-        self.window.page_list.update_bottles()
+        try:
+            self.window.page_list.update_bottles()
+        except:
+            pass
         return configuration
 
     '''
