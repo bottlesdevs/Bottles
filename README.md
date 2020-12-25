@@ -51,11 +51,11 @@ translate Bottles in your language or how to help improve existing ones.
 - Detection of installed programs
 - Integrated Task manager for wine processes
 - Easy access to ProtonDB and WineHQ for support
+- Configurations update system across Bottles versions
 - .. and much more that you can find by installing Bottles!
 
 ### Work in progress
 - Installer manager [#55](https://github.com/bottlesdevs/Bottles/issues/55)
-- Configurations update system across Bottles versions
 - Backup/Restore
 - Importer (from other wineprefix manager)
 - Optional sandboxed bottles
