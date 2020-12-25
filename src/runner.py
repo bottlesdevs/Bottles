@@ -69,6 +69,13 @@ class BottlesRunner:
     dxvk_path = "%s/.local/share/bottles/dxvk" % Path.home()
 
     '''
+    Define local path for other managers
+    '''
+    lutris_path = "%s/Games" % Path.home()
+    playonlinux_path = "%s/.PlayOnLinux/wineprefix/" % Path.home()
+    bottlesv1_path = "%s/.Bottles" % Path.home()
+
+    '''
     Do not implement dxgi.dll <https://github.com/doitsujin/dxvk/wiki/DXGI>
     '''
     dxvk_dlls = [
@@ -1319,7 +1326,7 @@ class BottlesRunner:
     '''
     Method for open wineprefixes path in file manager
     '''
-    def open_filemanager(self, configuration={}, path_type="bottle", runner=False, dxvk=False):
+    def open_filemanager(self, configuration={}, path_type="bottle", runner=False, dxvk=False, custom_path=""):
         logging.info("Opening the file manager on the path…")
 
         if path_type == "bottle":
@@ -1332,9 +1339,69 @@ class BottlesRunner:
         if path_type == "dxvk":
             path = "%s/%s" % (self.dxvk_path, dxvk)
 
+        if path_type == "custom":
+            path = custom_path
+
         '''
         Prepare and execute the command
         '''
         command = "xdg-open %s" % path
         return subprocess.Popen(command, shell=True)
+
+    '''
+    Methods for search and import wineprefixes from other managers
+    '''
+    def search_wineprefixes(self):
+        importer_wineprefixes = []
+
+        '''
+        Search for wineprefixes in common managers paths
+        '''
+        lutris_results = glob("%s/*/" % self.lutris_path)
+        playonlinux_results = glob("%s/*/" % self.playonlinux_path)
+        bottlesv1_results = glob("%s/*/" % self.bottlesv1_path)
+
+        '''
+        Concatenate all results
+        '''
+        results = lutris_results + playonlinux_results + bottlesv1_results
+
+        '''
+        Define counters
+        '''
+        is_lutris = len(lutris_results)
+        is_playonlinux = is_lutris + len(playonlinux_results)
+        is_bottlesv1 = is_playonlinux + len(bottlesv1_results)
+        i=1
+
+        '''
+        For each wineprefix, check the `drive_c` path and append
+        '''
+        for wineprefix in results:
+            wineprefix_name = wineprefix.split("/")[-2]
+            if i <= is_lutris:
+                wineprefix_manager = "Lutris"
+            elif i <=  is_playonlinux:
+                wineprefix_manager = "PlayOnLinux"
+            else:
+                wineprefix_manager = "Bottles v1"
+            if os.path.isdir("%s/drive_c" % wineprefix):
+                importer_wineprefixes.append(
+                    {
+                        "Name": wineprefix_name,
+                        "Manager": wineprefix_manager,
+                        "Path": wineprefix
+                    })
+            i+=1
+
+        logging.info("Found %s wineprefixes .." % len(importer_wineprefixes))
+        return importer_wineprefixes
+
+    def import_wineprefix(self, wineprefix):
+        pass
+
+    def browse_wineprefix(self, wineprefix):
+        self.open_filemanager(path_type="custom",
+                              custom_path=wineprefix.get("Path"))
+
 
