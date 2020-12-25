@@ -237,7 +237,7 @@ class BottlesRunner:
                         logging.warning("Latest proton runner is `%s` and is already installed." % tag)
 
         '''
-        Send a notificationif the user settings allow it
+        Send a notification if the user settings allow it
         '''
         if self.settings.get_boolean("notifications"):
             if len(updates) == 0:
@@ -1448,6 +1448,16 @@ class BottlesRunner:
         '''
         self.check_bottles()
         self.window.page_list.update_bottles()
+
+        '''
+        Send a notification if the user settings allow it
+        '''
+        if self.settings.get_boolean("notifications"):
+            self.window.send_notification(
+                "Importer",
+                "Wineprefix %s imported successfully!" % wineprefix["Name"],
+                "software-installed-symbolic")
+
 
         logging.info("Wineprefix `%s` successfully imported!" % wineprefix.get("Name"))
         return True
