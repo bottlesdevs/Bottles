@@ -647,7 +647,7 @@ class BottlesRunner:
     Get installed programs
     '''
     def get_programs(self, configuration):
-        bottle = "%s/%s" % (self.bottles_path, configuration.get("Name"))
+        bottle = "%s/%s" % (self.bottles_path, configuration.get("Path"))
         results =  glob("%s/drive_c/users/*/Start Menu/Programs/**/*.lnk" % bottle, recursive=True)
         results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle, recursive=True)
         installed_programs = []
