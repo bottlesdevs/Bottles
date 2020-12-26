@@ -239,11 +239,10 @@ class BottlesRunner:
         '''
         Send a notification if the user settings allow it
         '''
-        if self.settings.get_boolean("notifications"):
-            if len(updates) == 0:
-                self.window.send_notification("Download manager",
-                                              "No runner updates available.",
-                                              "software-installed-symbolic")
+        if len(updates) == 0:
+            self.window.send_notification("Download manager",
+                                          "No runner updates available.",
+                                          "software-installed-symbolic")
 
         return updates
 
@@ -265,13 +264,12 @@ class BottlesRunner:
                         logging.warning("Latest dxvk is `%s` and is already installed." % tag)
 
         '''
-        Send a notificationif the user settings allow it
+        Send a notification if the user settings allow it
         '''
-        if self.settings.get_boolean("notifications"):
-            if len(updates) == 0:
-                self.window.send_notification("Download manager",
-                                              "No dxvk updates available.",
-                                              "software-installed-symbolic")
+        if len(updates) == 0:
+            self.window.send_notification("Download manager",
+                                          "No dxvk updates available.",
+                                          "software-installed-symbolic")
 
         return updates
 
@@ -340,7 +338,8 @@ class BottlesRunner:
                 self.window.send_notification(
                     "Bottles",
                     "Downloaded file `%s` looks corrupted. Try again." % file,
-                    "dialog-error-symbolic")
+                    "dialog-error-symbolic",
+                    user_settings=False)
 
                 os.remove(file_path)
                 return False
@@ -357,10 +356,9 @@ class BottlesRunner:
         Send a notification for download start if the
         user settings allow it
         '''
-        if self.settings.get_boolean("notifications"):
-            self.window.send_notification("Download manager",
-                                          "Installing `%s` runner …" % tag,
-                                          "document-save-symbolic")
+        self.window.send_notification("Download manager",
+                                      "Installing `%s` runner …" % tag,
+                                      "document-save-symbolic")
 
         '''
         Add a new entry to the download manager
@@ -400,10 +398,10 @@ class BottlesRunner:
         Send a notification for download end if the
         user settings allow it
         '''
-        if self.settings.get_boolean("notifications"):
-            self.window.send_notification("Download manager",
-                                          "Installation of `%s` component finished!" % tag,
-                                          "software-installed-symbolic")
+        self.window.send_notification("Download manager",
+                                      "Installation of `%s` component finished!" % tag,
+                                      "software-installed-symbolic")
+
         '''
         Remove the entry from the download manager
         '''
@@ -439,13 +437,12 @@ class BottlesRunner:
         Send a notification for download start if the
         user settings allow it
         '''
-        if self.settings.get_boolean("notifications"):
-            self.window.send_notification("Download manager",
-                                          "Installing %s in %s bottle …" % (
-                                              dependency[0],
-                                              configuration.get("Name")
-                                          ),
-                                          "document-save-symbolic")
+        self.window.send_notification("Download manager",
+                                      "Installing %s in %s bottle …" % (
+                                          dependency[0],
+                                          configuration.get("Name")
+                                      ),
+                                      "document-save-symbolic")
 
         '''
         Add a new entry to the download manager
@@ -1317,12 +1314,11 @@ class BottlesRunner:
         Send a notification for status change if the
         user settings allow it
         '''
-        if self.settings.get_boolean("notifications"):
-            self.window.send_notification("Bottles",
-                                          "`%s` completed for `%s`." % (
-                                              status,
-                                              bottle_name
-                                          ), "applications-system-symbolic")
+        self.window.send_notification("Bottles",
+                                      "`%s` completed for `%s`." % (
+                                          status,
+                                          bottle_name
+                                      ), "applications-system-symbolic")
 
     '''
     Method for open wineprefixes path in file manager
@@ -1468,11 +1464,10 @@ class BottlesRunner:
         '''
         Send a notification if the user settings allow it
         '''
-        if self.settings.get_boolean("notifications"):
-            self.window.send_notification(
-                "Importer",
-                "Wineprefix %s imported successfully!" % wineprefix["Name"],
-                "software-installed-symbolic")
+        self.window.send_notification(
+            "Importer",
+            "Wineprefix %s imported successfully!" % wineprefix["Name"],
+            "software-installed-symbolic")
 
 
         logging.info("Wineprefix `%s` successfully imported!" % wineprefix.get("Name"))
@@ -1486,7 +1481,9 @@ class BottlesRunner:
     '''
     Method for backup bottles
     '''
-    def backup_bottle(self, configuration, scope, path):
+    def async_backup_bottle(self, args):
+        configuration, scope, path = args
+
         if scope is "configuration":
             '''
             Backup configuration
@@ -1498,9 +1495,9 @@ class BottlesRunner:
                 with open(path, "w") as configuration_backup:
                     json.dump(configuration, configuration_backup, indent=4)
                     configuration_backup.close()
-                logging.info("Configuration backup saved in path %s." % path)
+                backup_created = True
             except:
-                logging.error("Failed to create backup in path %s." % path)
+                backup_created = False
 
         elif scope is "full":
             '''
@@ -1508,3 +1505,63 @@ class BottlesRunner:
             '''
             logging.info("Creating a full backup of %s in %s" % (
                 configuration.get("Name"), path))
+
+            '''
+            Add a new entry to the download manager
+            '''
+            download_entry = BottlesDownloadEntry(
+                file_name="Backup %s" %configuration.get("Name"),stoppable=False)
+            self.window.box_downloads.add(download_entry)
+
+            '''
+            Run the progressbar update async
+            '''
+            a = RunAsync('pulse', download_entry.pulse);a.start()
+
+            if configuration.get("Custom_Path"):
+                bottle_complete_path = configuration.get("Path")
+            else:
+                bottle_complete_path = "%s/%s" % (self.bottles_path,
+                                                  configuration.get("Path"))
+
+                try:
+                    '''
+                    Create a new archive in path with bottle content
+                    '''
+                    with tarfile.open(path, "w:gz") as archive_backup:
+                        for root, dirs, files in os.walk(bottle_complete_path):
+                            for file in files:
+                                archive_backup.add(os.path.join(root, file))
+                        archive_backup.close()
+                    backup_created = True
+                except:
+                    backup_created = False
+
+            '''
+            Remove the entry from the download manager
+            '''
+            download_entry.destroy()
+
+        if backup_created:
+            logging.info("Backup saved in path %s." % path)
+            '''
+            Send a notification if the user settings allow it
+            '''
+            self.window.send_notification(
+                "Backup",
+                "Your backup for `%s` is ready!" % configuration.get("Name"),
+                "software-installed-symbolic")
+        else:
+            logging.error("Failed to create backup in path %s." % path)
+            '''
+            Send a notification if the user settings allow it
+            '''
+            self.window.send_notification(
+                "Backup",
+                "Failed to create backup for `%s`!" % configuration.get("Name"),
+                "dialog-error-symbolic")
+
+    def backup_bottle(self, configuration, scope, path):
+        a = RunAsync('backup_bottle', self.async_backup_bottle, [configuration,
+                                                                 scope,
+                                                                 path]);a.start()

@@ -592,7 +592,23 @@ class BottlesDetails(Gtk.Box):
         file_dialog.destroy()
 
     def backup_full(self, widget):
-        print("full")
+        file_dialog = Gtk.FileChooserDialog(
+            "Select the location where to save the backup archive",
+            self.window,
+            Gtk.FileChooserAction.SAVE,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+        file_dialog.set_current_name(
+            "backup_%s.tar.gz" % self.configuration.get("Path"))
+
+        response = file_dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            self.runner.backup_bottle(self.configuration,
+                                      "full",
+                                      file_dialog.get_filename())
+
+        file_dialog.destroy()
 
     '''
     Open URLs
