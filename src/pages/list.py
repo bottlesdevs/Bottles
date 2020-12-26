@@ -38,7 +38,6 @@ class BottlesListEntry(Gtk.Box):
     btn_delete = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
-    btn_backup = Gtk.Template.Child()
     btn_upgrade = Gtk.Template.Child()
     btn_repair = Gtk.Template.Child()
     btn_programs = Gtk.Template.Child()
@@ -117,8 +116,7 @@ class BottlesListEntry(Gtk.Box):
                           self.btn_run,
                           self.btn_browse,
                           self.btn_programs,
-                          self.btn_delete,
-                          self.btn_backup]:
+                          self.btn_delete]:
                     w.set_visible(False)
                 self.btn_run_executable.set_visible(True)
 
