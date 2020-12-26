@@ -1479,7 +1479,7 @@ class BottlesRunner:
                               custom_path=wineprefix.get("Path"))
 
     '''
-    Method for backup bottles
+    Method for create/import backup bottles
     '''
     def async_backup_bottle(self, args):
         configuration, scope, path = args
@@ -1499,7 +1499,7 @@ class BottlesRunner:
             except:
                 backup_created = False
 
-        elif scope is "full":
+        else: # is full
             '''
             Backup full bottle
             '''
@@ -1544,6 +1544,7 @@ class BottlesRunner:
 
         if backup_created:
             logging.info("Backup saved in path %s." % path)
+
             '''
             Send a notification if the user settings allow it
             '''
@@ -1553,6 +1554,7 @@ class BottlesRunner:
                 "software-installed-symbolic")
         else:
             logging.error("Failed to create backup in path %s." % path)
+
             '''
             Send a notification if the user settings allow it
             '''
@@ -1565,3 +1567,69 @@ class BottlesRunner:
         a = RunAsync('backup_bottle', self.async_backup_bottle, [configuration,
                                                                  scope,
                                                                  path]);a.start()
+
+    def async_import_backup_bottle(self, args):
+        scope, path = args
+
+        if scope is "configuration":
+            backup_name = path.split("/")[-1].split(".")[-2]
+            backup_imported = False
+        else: # is full
+
+            backup_name = path.split("/")[-1].split(".")[-3]
+
+            if backup_name.lower().startswith("backup_"):
+                backup_name = backup_name[7:]
+
+            '''
+            Add a new entry to the download manager
+            '''
+            download_entry = BottlesDownloadEntry(
+                file_name="Importing backup %s" % backup_name, stoppable=False)
+            self.window.box_downloads.add(download_entry)
+
+            try:
+                archive = tarfile.open(path)
+                archive.extractall("%s/%s" % (self.bottles_path, backup_name))
+                backup_imported = True
+            except:
+                backup_imported = False
+
+            '''
+            Remove the entry from the download manager
+            '''
+            download_entry.destroy()
+
+        if backup_imported:
+            logging.info("Backup `%s` imported successfully." % path)
+
+            '''
+            Update bottles
+            '''
+            self.check_bottles()
+            self.window.page_list.update_bottles()
+
+            '''
+            Send a notification if the user settings allow it
+            '''
+            self.window.send_notification(
+                "Backup",
+                "Your backup `%s` was imported successfully.!" % backup_name,
+                "software-installed-symbolic")
+        else:
+            logging.error("Failed to import backup `%s`." % backup_name)
+
+            '''
+            Send a notification if the user settings allow it
+            '''
+            self.window.send_notification(
+                "Backup",
+                "Failed to import backup `%s`!" % backup_name,
+                "dialog-error-symbolic")
+
+    def import_backup_bottle(self, scope, path):
+        a = RunAsync('import_backup_bottle',
+                     self.async_import_backup_bottle,
+                     [scope, path]);a.start()
+
+        
