@@ -239,9 +239,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     Request a new notification to the Notify instance
     '''
-    def send_notification(self, title, text, image=""):
-        notification = Notify.Notification.new(title, text, image)
-        notification.show()
+    def send_notification(self, title, text, image="", user_settings=True):
+        if user_settings and self.settings.get_boolean("notifications") or not user_settings:
+            notification = Notify.Notification.new(title, text, image)
+            notification.show()
 
     '''
     Save the previous page to allow the user to go back
