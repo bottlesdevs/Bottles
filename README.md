@@ -55,12 +55,13 @@ translate Bottles in your language or how to help improve existing ones.
 - Integrated Task manager for wine processes
 - Easy access to ProtonDB and WineHQ for support
 - Configurations update system across Bottles versions
+- Backup bottles as configuration file or full archive
 - Importer from Bottles v1 (and other wineprefix manager)
 - .. and much more that you can find by installing Bottles!
 
 ### Work in progress
 - Installer manager [#55](https://github.com/bottlesdevs/Bottles/issues/55)
-- Backup/Restore
+- Restore backups
 - Optional sandboxed bottles
 
 ## Install :wrench:
