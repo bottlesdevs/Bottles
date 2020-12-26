@@ -29,6 +29,7 @@ class BottlesImporterEntry(Gtk.Box):
     label_manager = Gtk.Template.Child()
     btn_import = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
+    img_lock = Gtk.Template.Child()
 
     def __init__(self, window, prefix, sample=False, **kwargs):
         super().__init__(**kwargs)
@@ -51,6 +52,8 @@ class BottlesImporterEntry(Gtk.Box):
         if not sample:
             self.label_name.set_text(prefix.get("Name"))
             self.label_manager.set_text(prefix.get("Manager"))
+            if prefix.get("Lock"):
+                self.img_lock.set_visible(True)
         else:
             self.label_name.set_text("I haven't found any wineprefixes to import.")
             for w in [self.label_manager,
