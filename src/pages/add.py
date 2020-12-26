@@ -156,7 +156,7 @@ class BottlesAdd(Gtk.Box):
         '''
         Connect signals to widgets
         '''
-        self.btn_import.connect('pressed', self.choose_backup)
+        self.btn_import.connect('pressed', self.window.show_importer_view)
         self.btn_add_details.connect('pressed', self.show_add_details_view)
         self.btn_env_gaming.connect('pressed', self.set_gaming_env)
         self.btn_env_software.connect('pressed', self.set_software_env)
