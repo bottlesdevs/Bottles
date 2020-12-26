@@ -231,6 +231,8 @@ class BottlesDetails(Gtk.Box):
     btn_environment_variables = Gtk.Template.Child()
     btn_overrides = Gtk.Template.Child()
     btn_manage_runners = Gtk.Template.Child()
+    btn_backup_config = Gtk.Template.Child()
+    btn_backup_full = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_esync = Gtk.Template.Child()
@@ -289,6 +291,8 @@ class BottlesDetails(Gtk.Box):
         self.btn_environment_variables.connect('pressed', self.save_environment_variables)
         self.btn_overrides.connect('pressed', self.save_overrides)
         self.btn_manage_runners.connect('pressed', self.window.show_runners_preferences_view)
+        self.btn_backup_config.connect('pressed', self.backup_config)
+        self.btn_backup_full.connect('pressed', self.backup_full)
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
         self.switch_esync.connect('state-set', self.toggle_esync)
@@ -565,6 +569,30 @@ class BottlesDetails(Gtk.Box):
 
     def run_killall(self, widget):
         self.runner.send_status(self.configuration, "kill")
+
+    '''
+    Method for backups
+    '''
+    def backup_config(self, widget):
+        file_dialog = Gtk.FileChooserDialog(
+            "Select the location where to save the backup configuration",
+            self.window,
+            Gtk.FileChooserAction.SAVE,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+            Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+        file_dialog.set_current_name("backup_%s.json" % self.configuration.get("Path"))
+
+        response = file_dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            self.runner.backup_bottle(self.configuration,
+                                      "configuration",
+                                      file_dialog.get_filename())
+
+        file_dialog.destroy()
+
+    def backup_full(self, widget):
+        print("full")
 
     '''
     Open URLs

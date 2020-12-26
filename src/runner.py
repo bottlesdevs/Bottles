@@ -1483,3 +1483,28 @@ class BottlesRunner:
         self.open_filemanager(path_type="custom",
                               custom_path=wineprefix.get("Path"))
 
+    '''
+    Method for backup bottles
+    '''
+    def backup_bottle(self, configuration, scope, path):
+        if scope is "configuration":
+            '''
+            Backup configuration
+            '''
+            logging.info("Creating a configuration backup of %s in %s" % (
+                configuration.get("Name"), path))
+
+            try:
+                with open(path, "w") as configuration_backup:
+                    json.dump(configuration, configuration_backup, indent=4)
+                    configuration_backup.close()
+                logging.info("Configuration backup saved in path %s." % path)
+            except:
+                logging.error("Failed to create backup in path %s." % path)
+
+        elif scope is "full":
+            '''
+            Backup full bottle
+            '''
+            logging.info("Creating a full backup of %s in %s" % (
+                configuration.get("Name"), path))
