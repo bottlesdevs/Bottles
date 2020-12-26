@@ -1395,11 +1395,13 @@ class BottlesRunner:
             Check if there is a drive_c path
             '''
             if os.path.isdir("%s/drive_c" % wineprefix):
+                wineprefix_lock = os.path.isfile("%s/bottle.lock" % wineprefix)
                 importer_wineprefixes.append(
                     {
                         "Name": wineprefix_name,
                         "Manager": wineprefix_manager,
-                        "Path": wineprefix
+                        "Path": wineprefix,
+                        "Lock": wineprefix_lock
                     })
             i+=1
 
@@ -1425,6 +1427,12 @@ class BottlesRunner:
         except:
             logging.error("Error creating the bottle path for wineprefix `%s`. Aborting." % wineprefix.get("Name"))
             return False
+
+        '''
+        Create lockfile in source path
+        '''
+        logging.info("Creating lock file in source path ..")
+        open('%s/bottle.lock' % wineprefix.get("Path"), 'a').close()
 
         '''
         Copy wineprefix files to the new bottle location
