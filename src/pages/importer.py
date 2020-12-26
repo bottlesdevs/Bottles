@@ -85,6 +85,8 @@ class BottlesImporter(Gtk.ScrolledWindow):
     '''
     list_prefixes = Gtk.Template.Child()
     btn_search_wineprefixes = Gtk.Template.Child()
+    btn_import_configuration = Gtk.Template.Child()
+    btn_import_full = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -104,6 +106,7 @@ class BottlesImporter(Gtk.ScrolledWindow):
         Connect widgets to signals
         '''
         self.btn_search_wineprefixes.connect("pressed", self.search_wineprefixes)
+        self.btn_import_full.connect("pressed", self.import_backup_full)
 
     def search_wineprefixes(self, widget):
         '''
@@ -122,3 +125,22 @@ class BottlesImporter(Gtk.ScrolledWindow):
                 self.list_prefixes.add(BottlesImporterEntry(self.window, wineprefix))
         else:
             self.list_prefixes.add(BottlesImporterEntry(self.window, {}, sample=True))
+
+    def import_backup_full(self, widget):
+        file_dialog = Gtk.FileChooserDialog("Choose a backup archive",
+                                            self.window,
+                                            Gtk.FileChooserAction.OPEN,
+                                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+
+        filter_tar = Gtk.FileFilter()
+        filter_tar.set_name(".tar.gz")
+        filter_tar.add_pattern("*.tar.gz")
+        file_dialog.add_filter(filter_tar)
+
+        response = file_dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            self.runner.import_backup_bottle("full", file_dialog.get_filename())
+
+        file_dialog.destroy()
