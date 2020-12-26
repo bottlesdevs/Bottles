@@ -214,7 +214,7 @@ class BottlesDetails(Gtk.Box):
     label_disk = Gtk.Template.Child()
     notebook_details = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
-    btn_winetricks = Gtk.Template.Child()
+    btn_dependencies = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
@@ -272,7 +272,7 @@ class BottlesDetails(Gtk.Box):
         Connect signals to widgets
         '''
         self.btn_winecfg.connect('pressed', self.run_winecfg)
-        self.btn_winetricks.connect('pressed', self.run_winetricks)
+        self.btn_dependencies.connect('pressed', self.show_dependencies)
         self.btn_debug.connect('pressed', self.run_debug)
         self.btn_execute.connect('pressed', self.run_executable)
         self.btn_browse.connect('pressed', self.run_browse)
@@ -355,6 +355,9 @@ class BottlesDetails(Gtk.Box):
 
     def set_page(self, page):
         self.notebook_details.set_current_page(page)
+
+    def show_dependencies(self, widget):
+        self.set_page(2)
 
     def save_overrides(self, widget):
         overrides = self.entry_overrides.get_text()

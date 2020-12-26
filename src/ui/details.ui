@@ -2,6 +2,66 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
+  <object class="GtkTextBuffer" id="buffer_overrides"/>
+  <object class="GtkPopover" id="pop_backup">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="width-request">160</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="border-width">9</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkModelButton" id="btn_backup_json">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="tooltip-text" translatable="yes">This is just the bottle configuration, it's perfect if you want to create a new one but without personal files.</property>
+            <property name="text" translatable="yes">Configuration</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="btn_backup_full">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="tooltip-text" translatable="yes">This is the complete archive of your bottle, including personal files.</property>
+            <property name="text" translatable="yes">Full archive</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
   <template class="BottlesDetails" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -179,14 +239,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="btn_winetricks">
+                  <object class="GtkButton" id="btn_dependencies">
                     <property name="visible">True</property>
-                    <property name="sensitive">False</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
-                    <property name="tooltip-text" translatable="yes">Winetricks has been removed in Bottles in favor of an integrated system for installing libraries and dependencies. Use the `Dependencies` tab instead.
-
-This choice is intended to use as few external tools as possible and to provide a complete user experience in Bottles.</property>
+                    <property name="tooltip-text" translatable="yes">In Bottles v2, our Dependencies tool replaces Winetricks.</property>
                     <property name="relief">none</property>
                     <child>
                       <object class="GtkBox">
@@ -198,7 +255,7 @@ This choice is intended to use as few external tools as possible and to provide 
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="icon-name">applications-science-symbolic</property>
+                            <property name="icon-name">application-x-addon-symbolic</property>
                             <property name="icon_size">3</property>
                           </object>
                           <packing>
@@ -212,7 +269,7 @@ This choice is intended to use as few external tools as possible and to provide 
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Winetricks</property>
+                            <property name="label" translatable="yes">Dependencies</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -651,7 +708,7 @@ This choice is intended to use as few external tools as possible and to provide 
               </packing>
             </child>
             <child>
-              <!-- n-columns=3 n-rows=1 -->
+              <!-- n-columns=4 n-rows=1 -->
               <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -659,11 +716,11 @@ This choice is intended to use as few external tools as possible and to provide 
                 <property name="column-spacing">5</property>
                 <property name="column-homogeneous">True</property>
                 <child>
-                  <object class="GtkButton" id="btn_shutdown">
+                  <object class="GtkButton" id="btn_killall">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
-                    <property name="tooltip-text" translatable="yes">Simulates a system shutdown (this does not terminate processes).</property>
+                    <property name="tooltip-text" translatable="yes">Kill all processes running in this Bottle.</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
@@ -676,7 +733,7 @@ This choice is intended to use as few external tools as possible and to provide 
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="icon-name">system-shutdown-symbolic</property>
+                            <property name="icon-name">process-stop-symbolic</property>
                             <property name="icon_size">3</property>
                           </object>
                           <packing>
@@ -690,7 +747,7 @@ This choice is intended to use as few external tools as possible and to provide 
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Shutdown</property>
+                            <property name="label" translatable="yes">Kill all processes</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -703,7 +760,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     </child>
                   </object>
                   <packing>
-                    <property name="left-attach">0</property>
+                    <property name="left-attach">2</property>
                     <property name="top-attach">0</property>
                   </packing>
                 </child>
@@ -757,11 +814,62 @@ This choice is intended to use as few external tools as possible and to provide 
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="btn_killall">
+                  <object class="GtkButton" id="btn_shutdown">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
-                    <property name="tooltip-text" translatable="yes">Kill all processes running in this Bottle.</property>
+                    <property name="tooltip-text" translatable="yes">Simulates a system shutdown (this does not terminate processes).</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="spacing">5</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">system-shutdown-symbolic</property>
+                            <property name="icon_size">3</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">2</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Shutdown</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">1</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkMenuButton">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="focus-on-click">False</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">This is just a placeholder, it doesn't work at the moment.</property>
+                    <property name="popover">pop_backup</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
@@ -788,7 +896,7 @@ This choice is intended to use as few external tools as possible and to provide 
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Kill all processes</property>
+                            <property name="label" translatable="yes">Backup</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -801,7 +909,7 @@ This choice is intended to use as few external tools as possible and to provide 
                     </child>
                   </object>
                   <packing>
-                    <property name="left-attach">2</property>
+                    <property name="left-attach">3</property>
                     <property name="top-attach">0</property>
                   </packing>
                 </child>
@@ -2240,5 +2348,4 @@ This choice is intended to use as few external tools as possible and to provide 
       </packing>
     </child>
   </template>
-  <object class="GtkTextBuffer" id="buffer_overrides"/>
 </interface>
