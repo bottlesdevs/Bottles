@@ -23,11 +23,17 @@
 </div>
 <br>
 <div align="center">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-0.png" width="400">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-2.png" width="400">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3.png" width="400">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-1.png" width="400">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-9.png" width="400">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-0.png">
+    
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-2.png" width="33%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-4.png" width="33%">
+    
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3.png">
+    
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-1.png" width="25%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-2.png" width="25%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-3.png" width="25%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-6.png" width="25%">
 </div>
 
 ## Help Bottles speak your language :speaking_head:
