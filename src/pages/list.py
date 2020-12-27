@@ -109,7 +109,7 @@ class BottlesListEntry(Gtk.Box):
             Check for executable provided as argument
             '''
             if self.arg_executable:
-                logging.info("Found executable `%s` provided as argument." % self.arg_executable)
+                logging.info(_("Found executable `%s` provided as argument.") % self.arg_executable)
 
                 for w in [self.btn_details,
                           self.btn_upgrade,
@@ -134,7 +134,7 @@ class BottlesListEntry(Gtk.Box):
             '''
             If not executable founded as argument, choose from files
             '''
-            file_dialog = Gtk.FileChooserDialog("Choose a Windows executable file",
+            file_dialog = Gtk.FileChooserDialog(_("Choose a Windows executable file"),
                                                 self.window,
                                                 Gtk.FileChooserAction.OPEN,
                                                 (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -177,20 +177,20 @@ class BottlesListEntry(Gtk.Box):
     '''
     def upgrade_runner(self, widget):
         dialog_upgrade = BottlesMessageDialog(parent=self.window,
-                                      title="Confirm upgrade",
-                                      message="This will change the runner from `%s` to `%s`." % (
+                                      title=_("Confirm upgrade"),
+                                      message=_("This will change the runner from `%s` to `%s`.") % (
                                           self.configuration.get("Runner"),
                                           self.runner.get_latest_runner()))
         response = dialog_upgrade.run()
 
         if response == Gtk.ResponseType.OK:
-            logging.info("OK status received")
+            logging.info(_("OK status received"))
             self.runner.update_configuration(self.configuration,
                                              "Runner",
                                              self.runner.get_latest_runner())
             self.btn_upgrade.set_visible(False)
         else:
-            logging.info("Cancel status received")
+            logging.info(_("Cancel status received"))
 
         dialog_upgrade.destroy()
 
@@ -205,16 +205,16 @@ class BottlesListEntry(Gtk.Box):
     '''
     def confirm_delete(self, widget):
         dialog_delete = BottlesMessageDialog(parent=self.window,
-                                      title="Confirm deletion",
-                                      message="Are you sure you want to delete this Bottle and all files?")
+                                      title=_("Confirm deletion"),
+                                      message=_("Are you sure you want to delete this Bottle and all files?")
         response = dialog_delete.run()
 
         if response == Gtk.ResponseType.OK:
-            logging.info("OK status received")
+            logging.info(_("OK status received"))
             self.runner.delete_bottle(self.configuration)
             self.destroy()
         else:
-            logging.info("Cancel status received")
+            logging.info(_("Cancel status received"))
 
         dialog_delete.destroy()
 
