@@ -55,7 +55,7 @@ class BottlesImporterEntry(Gtk.Box):
             if prefix.get("Lock"):
                 self.img_lock.set_visible(True)
         else:
-            self.label_name.set_text("I haven't found any wineprefixes to import.")
+            self.label_name.set_text(_("No wineprefixes found to import."))
             for w in [self.label_manager,
                       self.btn_browse,
                       self.btn_import]:
@@ -127,7 +127,7 @@ class BottlesImporter(Gtk.ScrolledWindow):
             self.list_prefixes.add(BottlesImporterEntry(self.window, {}, sample=True))
 
     def import_backup_full(self, widget):
-        file_dialog = Gtk.FileChooserDialog("Choose a backup archive",
+        file_dialog = Gtk.FileChooserDialog(_("Choose a backup archive"),
                                             self.window,
                                             Gtk.FileChooserAction.OPEN,
                                             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
