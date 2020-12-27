@@ -198,7 +198,7 @@ class BottlesPreferences(Gtk.Box):
     '''
     def set_dummy_runner(self):
         for runner in self.list_runners.get_children(): runner.destroy()
-        message = "No installed runners, installing latest release ..\nYou'll be able to create bottles when I'm done."
+        message = _("No installed runners, installing latest release ..\nYou'll be able to create bottles when I'm done.")
         self.list_runners.add(BottlesRunnerEntry(self.window, message))
 
     '''
