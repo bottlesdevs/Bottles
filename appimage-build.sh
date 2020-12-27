@@ -47,6 +47,8 @@ print_execution "mkdir build"
 print_execution "meson build"
 print_execution "cd build"
 print_execution "ninja"
+print_execution "ninja bottles-pot"
+print_execution "ninja bottles-update-po"
 
 # Appdir
 # ---------------------------------------
@@ -70,8 +72,10 @@ print_execution "cp -a ../src appdir/usr/local/share/bottles/bottles"
 print_execution "rm appdir/usr/local/share/bottles/bottles/bottles.in"
 print_execution "rm appdir/usr/local/share/bottles/bottles/meson.build"
 
-title "Copying appdata"
-#cp -a ../data/com.usebottles.bottles.appdata.xml.in appdir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
+if [[ -v NO_ENVIRONMENT ]]; then
+	title "Copying appdata"
+	print_execution "cp -a ../data/com.usebottles.bottles.appdata.xml.in appdir/usr/share/metainfo/com.usebottles.bottles.appdata.xml"
+fi
 
 title "Compiling and installing translations"
 cat ../po/LINGUAS | while read lang
@@ -100,5 +104,4 @@ print_execution "wget -c -nv https://github.com/linuxdeploy/linuxdeploy/releases
 print_execution "chmod a+x linuxdeploy-x86_64.AppImage"
 
 title "Building Bottles Appimage"
-#./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg --output appimage
 print_execution "./linuxdeploy-x86_64.AppImage --appdir appdir  --output appimage"
