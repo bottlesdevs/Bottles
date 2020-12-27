@@ -515,7 +515,7 @@ class BottlesDetails(Gtk.Box):
     to be reusable in other files, like list.py
     '''
     def run_executable(self, widget):
-        file_dialog = Gtk.FileChooserDialog("Choose a Windows executable file",
+        file_dialog = Gtk.FileChooserDialog(_("Choose a Windows executable file"),
                                             self.window,
                                             Gtk.FileChooserAction.OPEN,
                                             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -575,7 +575,7 @@ class BottlesDetails(Gtk.Box):
     '''
     def backup_config(self, widget):
         file_dialog = Gtk.FileChooserDialog(
-            "Select the location where to save the backup configuration",
+            _("Select the location where to save the backup configuration"),
             self.window,
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -593,7 +593,7 @@ class BottlesDetails(Gtk.Box):
 
     def backup_full(self, widget):
         file_dialog = Gtk.FileChooserDialog(
-            "Select the location where to save the backup archive",
+            _("Select the location where to save the backup archive"),
             self.window,
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
