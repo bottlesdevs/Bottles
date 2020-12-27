@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-27 11:26+0100\n"
+"POT-Creation-Date: 2020-12-27 15:49+0100\n"
 "PO-Revision-Date: 2020-12-27 06:48+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,6 +21,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:296
+#: src/window.py:142
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -140,7 +141,7 @@ msgstr "I percorsi personalizzati non sono disponibili in questa versione"
 msgid "/opt/MyNewBottle"
 msgstr "/opt/LaMiaNuovaBottiglia"
 
-#: src/ui/add-details.ui:113 src/ui/details.ui:1697
+#: src/ui/add-details.ui:113 src/ui/details.ui:1698
 msgid "Runner"
 msgstr "Runner x.y"
 
@@ -174,157 +175,157 @@ msgstr ""
 msgid "Full archive"
 msgstr "Archivio completo"
 
-#: src/ui/details.ui:94 src/ui/list-entry.ui:164
+#: src/ui/details.ui:95 src/ui/list-entry.ui:164
 msgid "Bottle name"
 msgstr "Nome bottiglia"
 
-#: src/ui/details.ui:130
+#: src/ui/details.ui:131
 msgid "Runner can be changed from Preferences tab."
 msgstr "Il runner può essere cambiato dalla scheda Preferenze."
 
-#: src/ui/details.ui:174
+#: src/ui/details.ui:175
 msgid "Utility"
 msgstr "Utilità"
 
-#: src/ui/details.ui:198
+#: src/ui/details.ui:199
 msgid "Open winecfg in this Bottle for advanced configurations."
 msgstr "Apri winecfg in questa Bottiglia per configurazioni avanzate."
 
-#: src/ui/details.ui:224
+#: src/ui/details.ui:225
 msgid "Winecfg"
 msgstr "Winecfg"
 
-#: src/ui/details.ui:246
+#: src/ui/details.ui:247
 msgid "In Bottles v2, our Dependencies tool replaces Winetricks."
 msgstr ""
 
-#: src/ui/details.ui:272 src/ui/details.ui:2061
+#: src/ui/details.ui:273 src/ui/details.ui:2062
 msgid "Dependencies"
 msgstr "Dipendenze"
 
-#: src/ui/details.ui:294
+#: src/ui/details.ui:295
 msgid "Launch a debug console in this Bottle."
 msgstr "Lancia una console di debug in questa Bottiglia."
 
-#: src/ui/details.ui:320
+#: src/ui/details.ui:321
 msgid "Debug"
 msgstr "Debug"
 
-#: src/ui/details.ui:342
+#: src/ui/details.ui:343
 msgid "Run an executable file in this Bottle."
 msgstr "Esegui .exe/.msi in questa ttiglia."
 
-#: src/ui/details.ui:368
+#: src/ui/details.ui:369
 msgid "Run .exe"
 msgstr "Esegui .exe"
 
-#: src/ui/details.ui:390
+#: src/ui/details.ui:391
 msgid "Manage the processes running in this Bottle."
 msgstr "Uccidi tutti i processi in esecuzione in questa bottiglia."
 
-#: src/ui/details.ui:416 src/ui/window.ui:146
+#: src/ui/details.ui:417 src/ui/window.ui:146 src/window.py:144
 msgid "Task manager"
 msgstr "Gestore processi"
 
-#: src/ui/details.ui:438
+#: src/ui/details.ui:439
 msgid "Manage the wine subsystem settings."
 msgstr "Gestisci le impostazioni del sottosistema wine."
 
-#: src/ui/details.ui:464
+#: src/ui/details.ui:465
 msgid "Control panel"
 msgstr "Pannello di controllo"
 
-#: src/ui/details.ui:486
+#: src/ui/details.ui:487
 msgid "Use this to uninstall programs from the Bottle."
 msgstr "Usa questo per disinstallare programmi dalla Bottiglia."
 
-#: src/ui/details.ui:512
+#: src/ui/details.ui:513
 msgid "Uninstaller"
 msgstr "Disinstallatore"
 
-#: src/ui/details.ui:534
+#: src/ui/details.ui:535
 msgid "Open a CMD in this Bottle."
 msgstr "Apri un CMD in questa Bottiglia."
 
-#: src/ui/details.ui:560
+#: src/ui/details.ui:561
 msgid "CMD"
 msgstr "CMD"
 
-#: src/ui/details.ui:582
+#: src/ui/details.ui:583
 msgid "Use regedit to add, edit and delete Wine register keys."
 msgstr ""
 "Usa regedit per aggiungere, modificare ed eliminare chiavi dal registro di "
 "Wine."
 
-#: src/ui/details.ui:608
+#: src/ui/details.ui:609
 msgid "Regedit"
 msgstr "Regedit"
 
-#: src/ui/details.ui:630
+#: src/ui/details.ui:631
 msgid "Browse the C:\\ of this Bottle."
 msgstr "Sfoglia il percorso C:\\ di questa Bottiglia."
 
-#: src/ui/details.ui:656 src/ui/list-entry.ui:14
+#: src/ui/details.ui:657 src/ui/list-entry.ui:14
 msgid "Browse C:"
 msgstr "Sfoglia C:"
 
-#: src/ui/details.ui:699
+#: src/ui/details.ui:700
 msgid "System control"
 msgstr "Controllo del sistema"
 
-#: src/ui/details.ui:723
+#: src/ui/details.ui:724
 msgid "Kill all processes running in this Bottle."
 msgstr "Uccidi tutti i processi in esecuzione in questa bottiglia."
 
-#: src/ui/details.ui:750
+#: src/ui/details.ui:751
 msgid "Kill all processes"
 msgstr "Uccidi tutti i processi"
 
-#: src/ui/details.ui:772
+#: src/ui/details.ui:773
 msgid "Simulates a system reboot (this does not terminate processes)."
 msgstr "Simula un riavvio del sistema (questo non termina i processi)."
 
-#: src/ui/details.ui:799
+#: src/ui/details.ui:800
 msgid "Reboot"
 msgstr "Riavvia"
 
-#: src/ui/details.ui:821
+#: src/ui/details.ui:822
 msgid "Simulates a system shutdown (this does not terminate processes)."
 msgstr "Simula un arresto del sistema (questo non termina i processi)."
 
-#: src/ui/details.ui:848
+#: src/ui/details.ui:849
 msgid "Shutdown"
 msgstr "Spegni"
 
-#: src/ui/details.ui:871
+#: src/ui/details.ui:872
 msgid "Backup this bottle"
 msgstr "Crea backup di questa bottiglia"
 
-#: src/ui/details.ui:899
+#: src/ui/details.ui:900
 msgid "Backup"
 msgstr ""
 
-#: src/ui/details.ui:946
+#: src/ui/details.ui:947
 msgid "Bottle size:"
 msgstr "Dimensione bottiglia:"
 
-#: src/ui/details.ui:984
+#: src/ui/details.ui:985
 msgid "Remaining disk space:"
 msgstr "Spazio rimanente sul disco:"
 
-#: src/ui/details.ui:1025
+#: src/ui/details.ui:1026
 msgid "X of Y"
 msgstr "X di Y"
 
-#: src/ui/details.ui:1040
+#: src/ui/details.ui:1041
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/ui/details.ui:1090
+#: src/ui/details.ui:1091
 msgid "DXVK/Synchronization"
 msgstr "DXVK/Sincronizzazione"
 
-#: src/ui/details.ui:1119
+#: src/ui/details.ui:1120
 msgid ""
 "Enable futex based synchronization to increase performance for multi-core "
 "processors."
@@ -332,11 +333,11 @@ msgstr ""
 "Abilita la sincronizzazione basata su futex per aumentare le prestazioni con "
 "multi-core."
 
-#: src/ui/details.ui:1122
+#: src/ui/details.ui:1123
 msgid "Fsync (futex synchronization)"
 msgstr "Fsync (sincronizzazione futex)"
 
-#: src/ui/details.ui:1146
+#: src/ui/details.ui:1147
 msgid ""
 "Enable eventfd based synchronization to increase performance for multi-core "
 "processors."
@@ -344,11 +345,11 @@ msgstr ""
 "Abilita la sincronizzazione basata su eventfd per aumentare le prestazioni "
 "con multi-core."
 
-#: src/ui/details.ui:1149
+#: src/ui/details.ui:1150
 msgid "Esync (eventfd synchronization)"
 msgstr "Esync (sincronizzazione eventfd)"
 
-#: src/ui/details.ui:1173
+#: src/ui/details.ui:1174
 msgid ""
 "Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
 "translating requests to Vulkan."
@@ -356,21 +357,21 @@ msgstr ""
 "Abilita il supporto per Direct3D 12 e migliora le prestazioni con Direct3D "
 "9/10/11traducendo le richieste in Vulkan."
 
-#: src/ui/details.ui:1176
+#: src/ui/details.ui:1177
 msgid "DXVK/VKD3D for Direct3D"
 msgstr "DXVK/VKD3D per Direct3D"
 
-#: src/ui/details.ui:1200
+#: src/ui/details.ui:1201
 msgid "Enable ACO to increase performance in-game when using Mesa drivers."
 msgstr ""
 "Abilita ACO per incrementare le performance in gioco quando si utilizza i "
 "driver Mesa."
 
-#: src/ui/details.ui:1203
+#: src/ui/details.ui:1204
 msgid "ACO shader compiler"
 msgstr "Compilatore shader ACO"
 
-#: src/ui/details.ui:1247
+#: src/ui/details.ui:1248
 msgid ""
 "Enable the DXVK overlay showing FPS and other details in D3D applications. "
 "If disabled, default value is set to \"compiler\"."
@@ -378,35 +379,35 @@ msgstr ""
 "Abilita l'overlay DXVK mostrando FPS e altri dettagli nelle applicazioni D3D."
 "Se disabilitato, di base il valore è impostato su compiler."
 
-#: src/ui/details.ui:1250
+#: src/ui/details.ui:1251
 msgid "DXVK HUD"
 msgstr "HUD DXVK"
 
-#: src/ui/details.ui:1274
+#: src/ui/details.ui:1275
 msgid "Add environment variables to the commands executed by runner."
 msgstr "Aggiungi variabili d'ambiente ai comandi eseguiti dal runner."
 
-#: src/ui/details.ui:1277
+#: src/ui/details.ui:1278
 msgid "Environment variables"
 msgstr "Ambiente"
 
-#: src/ui/details.ui:1290
+#: src/ui/details.ui:1291
 msgid "Save environment variables"
 msgstr "Salva variabili d'ambiente"
 
-#: src/ui/details.ui:1310 src/ui/details.ui:1314
+#: src/ui/details.ui:1311 src/ui/details.ui:1315
 msgid "Syntax: VAR1=value VAR2=value .."
 msgstr "Sintassi: chiave,valore|chiave, valore| .."
 
-#: src/ui/details.ui:1331
+#: src/ui/details.ui:1332
 msgid "Developers and debug"
 msgstr "Sviluppatori e debug"
 
-#: src/ui/details.ui:1376
+#: src/ui/details.ui:1377
 msgid "GPU"
 msgstr "GPU"
 
-#: src/ui/details.ui:1417
+#: src/ui/details.ui:1418
 msgid ""
 "In laptops with two GPUs (Intel+NVIDIA or AMD+Nvidia or Intel+AMD), select "
 "this to use the discrete card."
@@ -414,81 +415,81 @@ msgstr ""
 "Nei laptop con due GPU (Intel + NVIDIA o AMD + Nvidia o Intel + AMD), "
 "selezionarequesto per utilizzare la scheda discreta."
 
-#: src/ui/details.ui:1420
+#: src/ui/details.ui:1421
 msgid "Use Discrete Graphics Card"
 msgstr "Usa la GPU discreta"
 
-#: src/ui/details.ui:1470
+#: src/ui/details.ui:1471
 msgid "Desktop virtualization"
 msgstr "Virtualizzazione del desktop"
 
-#: src/ui/details.ui:1499 src/ui/details.ui:1526
+#: src/ui/details.ui:1500 src/ui/details.ui:1527
 msgid "Virtualize a desktop where to spawn all Windows applications."
 msgstr "Virtualizza un desktop in cui generare tutte le applicazioni Windows."
 
-#: src/ui/details.ui:1502
+#: src/ui/details.ui:1503
 msgid "Virtual Desktop"
 msgstr "Desktop virtuale"
 
-#: src/ui/details.ui:1529
+#: src/ui/details.ui:1530
 msgid "Virtual Desktop resolution"
 msgstr "Risoluzione desktop virtuale"
 
-#: src/ui/details.ui:1603
+#: src/ui/details.ui:1604
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details.ui:1644
+#: src/ui/details.ui:1645
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Imposta la latenza di PulseAudio su 60 millisecondi per aumentare la qualità "
 "del suono"
 
-#: src/ui/details.ui:1647
+#: src/ui/details.ui:1648
 msgid "Reduce PulseAudio latency"
 msgstr "Riduci la latenza di PulseAudio"
 
-#: src/ui/details.ui:1731
+#: src/ui/details.ui:1732
 msgid "Set a different runner for this Bottle."
 msgstr "Imposta un runner diverso per questa Bottiglia."
 
-#: src/ui/details.ui:1734
+#: src/ui/details.ui:1735
 msgid "Change runner"
 msgstr "Cambia runner"
 
-#: src/ui/details.ui:1756
+#: src/ui/details.ui:1757
 msgid "Manage runners"
 msgstr "Gestisci runner"
 
-#: src/ui/details.ui:1816
+#: src/ui/details.ui:1817
 msgid "DLL"
 msgstr "DLL"
 
-#: src/ui/details.ui:1846 src/ui/details.ui:1850
+#: src/ui/details.ui:1847 src/ui/details.ui:1851
 msgid "Syntax: dll1,dll2=value;dll3=value"
 msgstr "Sintassi: dll1,dll2=valore;dll3=valore"
 
-#: src/ui/details.ui:1863
+#: src/ui/details.ui:1864
 msgid "Save DLL overrides."
 msgstr "Salva sostituzioni DLL."
 
-#: src/ui/details.ui:1883
+#: src/ui/details.ui:1884
 msgid "Add new dll overrides"
 msgstr "Aggiungi nuove sostituzioni DLL"
 
-#: src/ui/details.ui:1886
+#: src/ui/details.ui:1887
 msgid "DLL overrides"
 msgstr "Sostituzioni DLL"
 
-#: src/ui/details.ui:1923
+#: src/ui/details.ui:1924
 msgid "Customize preferences for this Bottle."
 msgstr "Personalizza preferenze per questa Bottiglia."
 
-#: src/ui/details.ui:1924 src/ui/window.ui:172
+#: src/ui/details.ui:1925 src/ui/window.ui:172 src/window.py:143
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: src/ui/details.ui:1945
+#: src/ui/details.ui:1946
 msgid ""
 "The following packages are downloaded from external sources (mainly from "
 "Microsoft)."
@@ -496,15 +497,15 @@ msgstr ""
 "I seguenti pacchetti vengono scaricati da fonti esterne (principalmente da "
 "Microsoft)."
 
-#: src/ui/details.ui:2009
+#: src/ui/details.ui:2010
 msgid "Open a issue"
 msgstr "Segnala un problema"
 
-#: src/ui/details.ui:2034
+#: src/ui/details.ui:2035
 msgid "Found a broken dependency?"
 msgstr "Hai trovato una dipendenza rotta?"
 
-#: src/ui/details.ui:2060
+#: src/ui/details.ui:2061
 msgid ""
 "Install dependencies (like corefonts, vcrun6, ..)  for better software "
 "compatibility."
@@ -512,36 +513,36 @@ msgstr ""
 "Installa le dipendenze (come corefonts, vcrun6, ..) per una miglior "
 "compatibilità software."
 
-#: src/ui/details.ui:2100
+#: src/ui/details.ui:2101
 msgid ""
 "These the programs I found installed in the Bottle (they may not be all)."
 msgstr ""
 "Questi sono i programmi che ho trovato installati nella tua Bottiglia "
 "(potrebbero non essere tutti)."
 
-#: src/ui/details.ui:2116
+#: src/ui/details.ui:2117
 msgid "Check for installed programs."
 msgstr "Cerca programmi installati."
 
-#: src/ui/details.ui:2197
+#: src/ui/details.ui:2198
 msgid "List, manage and run the programs installed in this Bottle."
 msgstr "Lista, gestisci ed esegui programmi installati in questa Bottiglia."
 
-#: src/ui/details.ui:2198
+#: src/ui/details.ui:2199
 msgid "Programs"
 msgstr "Programmi"
 
-#: src/ui/details.ui:2239
+#: src/ui/details.ui:2240
 msgid "The program installer is an experimental feature and may not work."
 msgstr ""
 "L'installatore di programmi è una funzionalità sperimentale e potrebbe non "
 "funzionare."
 
-#: src/ui/details.ui:2255
+#: src/ui/details.ui:2256
 msgid "Check for new installers"
 msgstr "Cerca nuovi installatori"
 
-#: src/ui/details.ui:2336
+#: src/ui/details.ui:2337
 msgid "Installers"
 msgstr "Installatori"
 
@@ -609,7 +610,7 @@ msgstr "Aiutaci a tradurre"
 msgid "Support Bottles"
 msgstr "Supporta Bottles"
 
-#: src/ui/window.ui:159
+#: src/ui/window.ui:159 src/window.py:145
 msgid "Importer"
 msgstr "Importatore"
 
@@ -650,9 +651,48 @@ msgstr ""
 "scaricare i componenti essenziali. Clicca questa icona quando sarai "
 "nuovamente connesso."
 
+#: src/window.py:138
+#, fuzzy
+msgid "New Bottle"
+msgstr "Nuova bottiglia"
+
+#: src/window.py:139
+#, fuzzy
+msgid "Create Bottle"
+msgstr "Crea nuova bottiglia"
+
+#: src/window.py:140
+#, fuzzy
+msgid "New Bottle details"
+msgstr "Nuova bottiglia"
+
+#: src/window.py:141
+#, fuzzy
+msgid "Bottle details"
+msgstr "Bottles"
+
 #: src/window.py:183
 msgid "Bottles Started!"
 msgstr "Bottles Avviato!"
+
+#: src/window.py:206
+msgid "Proceed with the installation of the latest version?"
+msgstr ""
+
+#: src/window.py:208
+#, fuzzy
+msgid ""
+"But you don't seem to be connected to the internet and you won't be able to "
+"download a runner. Connect to the internet and confirm this message to begin "
+"the download."
+msgstr ""
+"Non sembri essere connesso ad internet. Senza non sarai in grado di "
+"scaricare i componenti essenziali. Clicca questa icona quando sarai "
+"nuovamente connesso."
+
+#: src/window.py:211
+msgid "No runners found"
+msgstr ""
 
 #: src/window.py:216
 msgid "OK status received"

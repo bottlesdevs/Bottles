@@ -135,14 +135,14 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
-        self.stack_main.add_titled(page_add, "page_add", "New Bottle")
-        self.stack_main.add_titled(page_create, "page_create", "Create Bottle")
-        self.stack_main.add_titled(page_add_details, "page_add_details", "New Bottle details")
-        self.stack_main.add_titled(page_details, "page_details", "Bottle details")
-        self.stack_main.add_titled(page_list, "page_list", "Bottles")
-        self.stack_main.add_titled(page_preferences, "page_preferences", "Preferences")
-        self.stack_main.add_titled(page_taskmanager, "page_taskmanager", "Task manager")
-        self.stack_main.add_titled(page_importer, "page_importer", "Importer")
+        self.stack_main.add_titled(page_add, "page_add", _("New Bottle"))
+        self.stack_main.add_titled(page_create, "page_create", _("Create Bottle"))
+        self.stack_main.add_titled(page_add_details, "page_add_details", _("New Bottle details"))
+        self.stack_main.add_titled(page_details, "page_details", _("Bottle details"))
+        self.stack_main.add_titled(page_list, "page_list", _("Bottles"))
+        self.stack_main.add_titled(page_preferences, "page_preferences", _("Preferences"))
+        self.stack_main.add_titled(page_taskmanager, "page_taskmanager", _("Task manager"))
+        self.stack_main.add_titled(page_importer, "page_importer", _("Importer"))
 
         '''
         Add widgets to main grid
@@ -203,12 +203,12 @@ class BottlesWindow(Gtk.ApplicationWindow):
             message = "There are no Runners in the system. "
 
             if self.utils_conn.check_connection():
-                message += "Proceed with the installation of the latest version?"
+                message += _("Proceed with the installation of the latest version?")
             else:
-                message += "But you don't seem to be connected to the internet and you won't be able to download a runner. Connect to the internet and confirm this message to begin the download."
+                message += _("But you don't seem to be connected to the internet and you won't be able to download a runner. Connect to the internet and confirm this message to begin the download.")
 
             dialog_checks = BottlesMessageDialog(parent=self,
-                                          title="No runners found",
+                                          title=_("No runners found"),
                                           message=message)
             response = dialog_checks.run()
 
