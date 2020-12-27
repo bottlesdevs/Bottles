@@ -24,54 +24,8 @@ install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 
 script:
-  - mkdir build
-  - meson build
-  - cd build
-  - ninja
-  - ninja bottles-pot
-  - ninja bottles-update-po
-# - directories
-  - echo "Preparing directories"
-  - mkdir -p appdir/usr/local/share/bottles
-  - mkdir -p appdir/usr/bin
-  - mkdir -p appdir/usr/share/glib-2.0/schemas/
-  - mkdir -p appdir/usr/share/applications
-  - mkdir -p appdir/usr/share/metainfo
-  - mkdir -p appdir/usr/share/icons
-# - gresource
-  - echo "Compiling and installing glib-resources"
-  - glib-compile-resources --sourcedir=../src/ui/ ../src/ui/bottles.gresource.xml --target=appdir/usr/local/share/bottles/bottles.gresource
-# - binary
-  - echo "Copying Bottles binary"
-  - cp src/bottles ./appdir/usr/bin/
-# - package
-  - echo "Copying Bottles python package and remove not useful files"
-  - cp -a ../src appdir/usr/local/share/bottles/bottles
-  - rm appdir/usr/local/share/bottles/bottles/bottles.in
-  - rm appdir/usr/local/share/bottles/bottles/meson.build
-# - appdata
-  - echo "Copying appdata"
-  - cp -a ../data/com.usebottles.bottles.appdata.xml.in appdir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
-# - icons
-  - echo "Copying icons"
-  - cp -a ../data/icons appdir/usr/share/icons
-# - schemas
-  - echo "Copying and compiling gschema"
-  - cp ../data/com.usebottles.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/com.usebottles.bottles.gschema.xml
-  - glib-compile-schemas appdir/usr/share/glib-2.0/schemas/
-# - desktop file
-  - echo "Copying Desktop file"
-  - cp data/com.usebottles.bottles.desktop appdir/usr/share/applications/
-# - apprun
-  - echo "Copying AppRun file"
-  - cp -a ../AppRun appdir/AppRun
-# - linuxdeploy
-  - echo "Downloading linuxdeploy Appimage and setting executable"
-  - wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
-  - chmod a+x linuxdeploy-x86_64.AppImage
-# - build appimage
-  - echo "Building Bottles Appimage"
-  - ./linuxdeploy-x86_64.AppImage --appdir appdir  --output appimage
+  - chmod +x
+  - sudo ./appimage-build.sh
 
 after_success:
   - find appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
