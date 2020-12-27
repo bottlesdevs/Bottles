@@ -164,8 +164,7 @@ There is not. There will never be. Read [here](https://github.com/bottlesdevs/Bo
 and how we want to revolutionize the way we install dependencies in Bottles.
 
 ## When? :dizzy_face:
-Idk. Really. Keep an eye on the develop branch, sooner or later there will be an almost stable 
-release.
+Now. Bottles beta releases are already available, read the Installation section of this file.
 
 ## Older versions will be deprecated? :sunglasses:
 Maybe in the future, not now.
