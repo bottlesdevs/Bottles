@@ -1,66 +1,100 @@
 #!/bin/sh
 BUILD_DIR="build/"
 if [ -d "$BUILD_DIR" ]; then
-        rm -r build
+        sudo rm -r build
 fi
+
+red="\e[0;91m"
+blue="\e[0;94m"
+expand_bg="\e[K"
+blue_bg="\e[0;104m${expand_bg}"
+red_bg="\e[0;101m${expand_bg}"
+green_bg="\e[0;102m${expand_bg}"
+green="\e[0;92m"
+white="\e[0;97m"
+bold="\e[1m"
+uline="\e[4m"
+reset="\e[0m"
+
+function title {
+	PREFIX="\n$bold-----"
+	SUFFIX="--$reset"
+	echo -e "$PREFIX $1 $SUFFIX"
+}
+
+function print_execution {
+	if $1; then
+		echo -e "$green_bg$bold-- $1$reset"
+	else
+		echo -e "$red_bg$bold-- Operation failed for: $1$reset"
+	fi
+}
 
 # Set environment variables
 # ---------------------------------------
-echo "Setting environment variables"
+title "Setting environment variables"
 export ARCH=x86_64
 export VERSION="devel"
 
 # Meson/ninja build
 # ---------------------------------------
-echo "Building with meson and ninja"
-mkdir build
-meson build
-cd build
-ninja
+title "Building with meson and ninja"
+print_execution "mkdir build"
+print_execution "meson build"
+print_execution "cd build"
+print_execution "ninja"
 
 # Appdir
 # ---------------------------------------
-echo "Preparing directories"
-mkdir -p appdir/usr/local/share/bottles
-mkdir -p appdir/usr/bin
-mkdir -p appdir/usr/share/glib-2.0/schemas/
-mkdir -p appdir/usr/share/applications
-mkdir -p appdir/usr/share/metainfo
-mkdir -p appdir/usr/share/icons
+title "Preparing directories"
+print_execution "mkdir -p appdir/usr/local/share/bottles"
+print_execution "mkdir -p appdir/usr/bin"
+print_execution "mkdir -p appdir/usr/share/glib-2.0/schemas"
+print_execution "mkdir -p appdir/usr/share/applications"
+print_execution "mkdir -p appdir/usr/share/metainfo"
+print_execution "mkdir -p appdir/usr/share/icons"
 
-echo "Compiling and installing glib-resources"
-glib-compile-resources --sourcedir=../src/ui/ ../src/ui/bottles.gresource.xml --target=appdir/usr/local/share/bottles/bottles.gresource
+title "Compiling and installing glib-resources"
+print_execution "glib-compile-resources --sourcedir=../src/ui/ ../src/ui/bottles.gresource.xml --target=appdir/usr/local/share/bottles/bottles.gresource"
 
-echo "Copying Bottles binary"
-cp src/bottles ./appdir/usr/bin/
 
-echo "Copying Bottles python package and remove not useful files"
-cp -a ../src appdir/usr/local/share/bottles/bottles
-rm appdir/usr/local/share/bottles/bottles/bottles.in
-rm appdir/usr/local/share/bottles/bottles/meson.build
+title "Copying Bottles binary"
+print_execution "cp src/bottles ./appdir/usr/bin/"
 
-echo "Copying appdata"
+title "Copying Bottles python package and remove not useful files"
+print_execution "cp -a ../src appdir/usr/local/share/bottles/bottles"
+print_execution "rm appdir/usr/local/share/bottles/bottles/bottles.in"
+print_execution "rm appdir/usr/local/share/bottles/bottles/meson.build"
+
+title "Copying appdata"
 #cp -a ../data/com.usebottles.bottles.appdata.xml.in appdir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
 
-echo "Copying icons"
-cp -a ../data/icons appdir/usr/share
+title "Compiling and installing translations"
+cat ../po/LINGUAS | while read lang
+do
+	print_execution "mkdir -p appdir/usr/share/locale/$lang/LC_MESSAGES"
+	print_execution "msgfmt -o appdir/usr/share/locale/$lang/LC_MESSAGES/bottles.mo ../po/$lang.po"
+done
 
-echo "Copying and compiling gschema"
-cp ../data/com.usebottles.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/com.usebottles.bottles.gschema.xml
-glib-compile-schemas appdir/usr/share/glib-2.0/schemas/
+title "Copying icons"
+print_execution "cp -a ../data/icons appdir/usr/share"
 
-echo "Copying Desktop file"
-cp data/com.usebottles.bottles.desktop appdir/usr/share/applications/
+title "Copying and compiling gschema"
+print_execution "cp ../data/com.usebottles.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/com.usebottles.bottles.gschema.xml"
+print_execution "glib-compile-schemas appdir/usr/share/glib-2.0/schemas/"
 
-echo "Copying AppRun file"
-cp -a ../AppRun appdir/AppRun
+title "Copying Desktop file"
+print_execution "cp data/com.usebottles.bottles.desktop appdir/usr/share/applications/"
+
+title "Copying AppRun file"
+print_execution "cp -a ../AppRun appdir/AppRun"
 
 # Appimage
 # ---------------------------------------
-echo "Downloading linuxdeploy Appimage and setting executable"
-wget -c -nv "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
-chmod a+x linuxdeploy-x86_64.AppImage
+title "Downloading linuxdeploy Appimage and setting executable"
+print_execution "wget -c -nv https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+print_execution "chmod a+x linuxdeploy-x86_64.AppImage"
 
-echo "Building Bottles Appimage"
+title "Building Bottles Appimage"
 #./linuxdeploy-x86_64.AppImage --appdir appdir --icon-file=../data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg --output appimage
-./linuxdeploy-x86_64.AppImage --appdir appdir  --output appimage
+print_execution "./linuxdeploy-x86_64.AppImage --appdir appdir  --output appimage"
