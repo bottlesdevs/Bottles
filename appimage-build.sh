@@ -32,9 +32,13 @@ function print_execution {
 
 # Set environment variables
 # ---------------------------------------
-title "Setting environment variables"
-export ARCH=x86_64
-export VERSION="devel"
+if [[ -v NO_ENVIRONMENT ]]; then
+	title "No environment variables need to be defined"
+else
+	title "Setting environment variables"
+	export ARCH=x86_64
+	export VERSION="devel"
+fi
 
 # Meson/ninja build
 # ---------------------------------------
