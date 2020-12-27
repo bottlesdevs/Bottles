@@ -24,7 +24,7 @@ install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 
 script:
-  - chmod +x
+  - chmod +x appimage-build.sh
   - sudo ./appimage-build.sh
 
 after_success:
