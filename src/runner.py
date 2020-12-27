@@ -1484,7 +1484,7 @@ class BottlesRunner:
     def async_backup_bottle(self, args):
         configuration, scope, path = args
 
-        if scope is "configuration":
+        if scope == "configuration":
             '''
             Backup configuration
             '''
@@ -1571,7 +1571,7 @@ class BottlesRunner:
     def async_import_backup_bottle(self, args):
         scope, path = args
 
-        if scope is "configuration":
+        if scope == "configuration":
             backup_name = path.split("/")[-1].split(".")[-2]
             backup_imported = False
         else: # is full
