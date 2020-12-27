@@ -163,7 +163,7 @@ class BottlesAdd(Gtk.Box):
         self.btn_env_custom.connect('pressed', self.set_custom_env)
 
     def choose_backup(self, widget):
-        file_dialog = Gtk.FileChooserDialog("Choose a backup",
+        file_dialog = Gtk.FileChooserDialog(_("Choose a backup"),
                                             self.window,
                                             Gtk.FileChooserAction.OPEN,
                                             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -191,17 +191,23 @@ class BottlesAdd(Gtk.Box):
         file_dialog.destroy()
 
     def set_gaming_env(self, widget):
-        self.label_env_description.set_text("The gaming environment has everything needed to run modern Windows games on Linux")
+        self.label_env_description.set_text(
+            _("The gaming environment has everything needed to run modern Windows games on Linux")
+        )
         self.window.env_active = self.window.envs[0]
         self.set_active_env(widget)
 
     def set_software_env(self, widget):
-        self.label_env_description.set_text("The software environment includes dependencies commonly used by modern software.")
+        self.label_env_description.set_text(
+            _("The software environment includes dependencies commonly used by modern software.")
+        )
         self.window.env_active = self.window.envs[1]
         self.set_active_env(widget)
 
     def set_custom_env(self, widget):
-        self.label_env_description.set_text("A clean environment, without any optimization.")
+        self.label_env_description.set_text(
+            _("A clean environment, without any optimization.")
+        )
         self.window.env_active = self.window.envs[2]
         self.set_active_env(widget)
 
@@ -209,7 +215,7 @@ class BottlesAdd(Gtk.Box):
         '''
         Log the selected environment
         '''
-        logging.info("Selected env is: %s" % self.window.env_active)
+        logging.info(_("Selected env is: %s") % self.window.env_active)
 
         '''
         For each environment button, remove the active class and
