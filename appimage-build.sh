@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 BUILD_DIR="build/"
 if [ -d "$BUILD_DIR" ]; then
         sudo rm -r build
