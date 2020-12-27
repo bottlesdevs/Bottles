@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-27 18:11+0100\n"
-"PO-Revision-Date: 20-12-24 19:30+0100\n"
-"Last-Translator: Lahfa Samy <samy@lahfa.xyz>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: French\n"
+"PO-Revision-Date: 2020-12-27 17:38+0000\n"
+"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
+"fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:296
@@ -64,11 +67,11 @@ msgstr "Suppression du chemin d'accès du cache à l'initialisation."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Release Candidate"
-msgstr ""
+msgstr "Release Candidate"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle Release Candidate for Runners"
-msgstr ""
+msgstr "Activer/désactiver Release Candidate pour les coureurs"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Startup view"
@@ -115,13 +118,12 @@ msgid "Import from backup"
 msgstr "Imoorter de la sauvegarde"
 
 #: src/ui/add.ui:297
-#, fuzzy
 msgid "Import from backup or other managers"
-msgstr "Imoorter de la sauvegarde"
+msgstr "Importer depuis une sauvegarde ou d'autres gestionnaires"
 
 #: src/ui/add-details.ui:40
 msgid "Special characters are not allowed!"
-msgstr "Les caractères spéciaux ne sont pas autorisées!"
+msgstr "Les caractères spéciaux ne sont pas autorisées !"
 
 #: src/ui/add-details.ui:41
 msgid "Name your bottle"
@@ -163,9 +165,8 @@ msgid ""
 msgstr ""
 
 #: src/ui/details.ui:22
-#, fuzzy
 msgid "Configuration"
-msgstr "Notifications"
+msgstr "Configuration"
 
 #: src/ui/details.ui:35
 msgid "This is the complete archive of your bottle, including personal files."
@@ -189,7 +190,7 @@ msgstr "Utilitaire"
 
 #: src/ui/details.ui:199
 msgid "Open winecfg in this Bottle for advanced configurations."
-msgstr "Ouvrir winecfg dans cette Bottle pour une configuration plus avancée"
+msgstr "Ouvrir winecfg dans cette Bottle pour une configuration plus avancée."
 
 #: src/ui/details.ui:225
 msgid "Winecfg"
@@ -229,7 +230,7 @@ msgstr "Gestionnaire des tâches"
 
 #: src/ui/details.ui:439
 msgid "Manage the wine subsystem settings."
-msgstr "Gérer les paramètres sous-système de wine"
+msgstr "Gérer les paramètres sous-système de wine."
 
 #: src/ui/details.ui:465
 msgid "Control panel"
@@ -283,7 +284,7 @@ msgstr "Tuer tous les processus"
 
 #: src/ui/details.ui:773
 msgid "Simulates a system reboot (this does not terminate processes)."
-msgstr "Simule un redémarrage du système (cela ne tue pas les processus)"
+msgstr "Simule un redémarrage du système (cela ne tue pas les processus)."
 
 #: src/ui/details.ui:800
 msgid "Reboot"
@@ -292,16 +293,15 @@ msgstr "Redémarrage"
 #: src/ui/details.ui:822
 msgid "Simulates a system shutdown (this does not terminate processes)."
 msgstr ""
-"Simule d'une mise hors tension du système (cela ne tue pas les processus)"
+"Simule d'une mise hors tension du système (cela ne tue pas les processus)."
 
 #: src/ui/details.ui:849
 msgid "Shutdown"
 msgstr "Mise hors tension"
 
 #: src/ui/details.ui:872
-#, fuzzy
 msgid "Backup this bottle"
-msgstr "Lancer dans ce bottle"
+msgstr "Sauvegarder cette bouteille"
 
 #: src/ui/details.ui:900
 msgid "Backup"
@@ -345,7 +345,7 @@ msgid ""
 "processors."
 msgstr ""
 "Activation de la synchronisation basé sur eventfd pour améliorer les "
-"performancesdes processeurs multi-cœur"
+"performancesdes processeurs multi-cœur."
 
 #: src/ui/details.ui:1150
 msgid "Esync (eventfd synchronization)"
@@ -357,7 +357,7 @@ msgid ""
 "translating requests to Vulkan."
 msgstr ""
 "Activation du support Direct3D 12 et amélioration des performances "
-"destraductions des requêtes de Direct3D 9/10/11 à Vulkan"
+"destraductions des requêtes de Direct3D 9/10/11 à Vulkan."
 
 #: src/ui/details.ui:1177
 msgid "DXVK/VKD3D for Direct3D"
@@ -380,7 +380,7 @@ msgid ""
 msgstr ""
 "Activer l'overlay DXVK qui montre les FPS et d'autres détails dans les "
 "applicationsD3D. Si il est désactivé, la valeur par défaut est définie à "
-"\"compiler\""
+"\"compiler\"."
 
 #: src/ui/details.ui:1251
 msgid "DXVK HUD"
@@ -416,6 +416,9 @@ msgid ""
 "In laptops with two GPUs (Intel+NVIDIA or AMD+Nvidia or Intel+AMD), select "
 "this to use the discrete card."
 msgstr ""
+"Sur les ordinateurs portables avec deux processeurs graphiques (Intel + "
+"NVIDIA ou AMD + Nvidia ou Intel + AMD), sélectionnez cette option pour "
+"utiliser la carte discrète."
 
 #: src/ui/details.ui:1421
 msgid "Use Discrete Graphics Card"
@@ -454,7 +457,7 @@ msgstr "Réduir la latence de PulseAudio"
 
 #: src/ui/details.ui:1732
 msgid "Set a different runner for this Bottle."
-msgstr "Définir un exécuteur différent pour ce Bottle"
+msgstr "Définir un exécuteur différent pour ce Bottle."
 
 #: src/ui/details.ui:1735
 msgid "Change runner"
@@ -538,6 +541,8 @@ msgstr "Programmes"
 #: src/ui/details.ui:2240
 msgid "The program installer is an experimental feature and may not work."
 msgstr ""
+"L'installateur du programme est une fonctionnalité expérimentale et peut ne "
+"pas fonctionner."
 
 #: src/ui/details.ui:2256
 msgid "Check for new installers"
@@ -613,7 +618,7 @@ msgstr "Supporté Bottles"
 
 #: src/ui/window.ui:159 src/window.py:145
 msgid "Importer"
-msgstr ""
+msgstr "Importateur"
 
 #: src/ui/window.ui:196
 msgid "About Bottles"
@@ -653,36 +658,30 @@ msgstr ""
 "cette icône lorsque votre connexion internet sera rétabli."
 
 #: src/window.py:138
-#, fuzzy
 msgid "New Bottle"
-msgstr "Nouvelle bottle"
+msgstr "Nouvelle Bottle"
 
 #: src/window.py:139
-#, fuzzy
 msgid "Create Bottle"
-msgstr "Créer une nouvelle bottle"
+msgstr "Créer une nouvelle Bottle"
 
 #: src/window.py:140
-#, fuzzy
 msgid "New Bottle details"
-msgstr "Nouvelle bottle"
+msgstr "Détails de la nouvelle Bouteille"
 
 #: src/window.py:141
-#, fuzzy
 msgid "Bottle details"
-msgstr "Bottles"
+msgstr "Détails de la Bouteille"
 
 #: src/window.py:183
-#, fuzzy
 msgid "Bottles Started!"
-msgstr "Nom de la Bottle"
+msgstr "Bouteilles Commencé!"
 
 #: src/window.py:206
 msgid "Proceed with the installation of the latest version?"
 msgstr ""
 
 #: src/window.py:208
-#, fuzzy
 msgid ""
 "But you don't seem to be connected to the internet and you won't be able to "
 "download a runner. Connect to the internet and confirm this message to begin "
@@ -756,9 +755,8 @@ msgid "This will change the runner from `%s` to `%s`."
 msgstr ""
 
 #: src/pages/list.py:208
-#, fuzzy
 msgid "Confirm deletion"
-msgstr "Notifications"
+msgstr "Confirmer la suppression"
 
 #: src/pages/list.py:209
 msgid "Are you sure you want to delete this Bottle and all files?"
