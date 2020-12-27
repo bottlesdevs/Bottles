@@ -21,7 +21,7 @@ gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk, Gio, Notify
 
-import webbrowser, time
+import webbrowser, time, gettext, locale
 
 from .params import *
 from .download import BottlesDownloadEntry
@@ -180,7 +180,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         '''
         self.on_start()
         arg_executable = False
-        logging.info("Bottles Started!")
+        logging.info(_("Bottles Started!"))
 
     def check_for_connection(self, status):
         if self.utils_conn.check_connection():
@@ -213,14 +213,14 @@ class BottlesWindow(Gtk.ApplicationWindow):
             response = dialog_checks.run()
 
             if response == Gtk.ResponseType.OK:
-                logging.info("OK status received")
+                logging.info(_("OK status received"))
 
                 '''
                 Performs runner checks
                 '''
                 self.runner.checks()
             else:
-                logging.info("Cancel status received")
+                logging.info(_("Cancel status received"))
 
             dialog_checks.destroy()
 
