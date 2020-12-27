@@ -611,8 +611,8 @@ class BottlesRunner:
         '''
         Sort runners_available and dxvk_available alphabetically
         '''
-        self.runners_available = sorted(self.runners_available, reverse=True)
-        self.dxvk_available = sorted(self.dxvk_available, reverse=True)
+        self.runners_available = sorted(self.runners_available)
+        self.dxvk_available = sorted(self.dxvk_available)
 
     '''
     Check localy available dxvk
