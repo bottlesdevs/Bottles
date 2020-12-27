@@ -15,15 +15,31 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
-import gi
-from pathlib import Path
+import os, sys, gi, gettext, locale
+
 gi.require_version('Gtk', '3.0')
 
 from gi.repository import Gtk, Gio, Gdk
 
-from .window import BottlesWindow
+from pathlib import Path
 
+from .params import *
+
+'''
+Custom locale path if AppImage
+'''
+try:
+    LOCALE_PATH = "%s/usr/share/locale/" % os.environ['APPDIR']
+except:
+    LOCALE_PATH = "/usr/local/share/locale/"
+
+locale.bindtextdomain(APP_NAME_LOWER, LOCALE_PATH)
+locale.textdomain(APP_NAME_LOWER)
+gettext.bindtextdomain(APP_NAME_LOWER, LOCALE_PATH)
+gettext.textdomain(APP_NAME_LOWER)
+_ = gettext.gettext
+
+from .window import BottlesWindow
 
 class Application(Gtk.Application):
 
