@@ -22,8 +22,8 @@ class BottlesMessageDialog(Gtk.MessageDialog):
 
     def __init__(self,
                  parent,
-                 title="Warning",
-                 message="An error has occurred.",
+                 title=_("Warning"),
+                 message=_("An error has occurred."),
                  log=False):
 
         Gtk.MessageDialog.__init__(self,
@@ -59,8 +59,8 @@ class BottlesDialog(Gtk.Dialog):
 
     def __init__(self,
                  parent,
-                 title="Warning",
-                 message="An error has occurred.",
+                 title=_("Warning"),
+                 message=_("An error has occurred."),
                  log=False):
 
         Gtk.Dialog.__init__(self,
