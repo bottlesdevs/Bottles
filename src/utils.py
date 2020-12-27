@@ -32,16 +32,16 @@ class UtilsConnection():
     def check_connection(self, show_notification=False):
         try:
             socket.create_connection(("1.1.1.1", 53))
-            logging.info("Connection status: online …")
+            logging.info(_("Connection status: online …"))
             self.window.toggle_btn_noconnection(False)
             return True
         except OSError:
-            logging.info("Connection status: offline …")
+            logging.info(_("Connection status: offline …"))
             self.window.toggle_btn_noconnection(True)
 
             if show_notification:
                 self.window.send_notification("Bottles",
-                                              "You are offline, unable to download.",
+                                              _("You are offline, unable to download."),
                                               "network-wireless-disabled-symbolic")
             pass
         return False
