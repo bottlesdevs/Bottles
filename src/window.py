@@ -94,6 +94,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
         super().__init__(**kwargs)
 
         '''
+        TODO: remove after merge into master branch
+        '''
+        self.set_title("Bottles:feature-bottles-versioning")
+
+        '''
         Initialize template
         '''
         self.init_template()
