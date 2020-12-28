@@ -1533,11 +1533,21 @@ class BottlesRunner:
             bottle_complete_path = "%s/%s" % (self.bottles_path,
                                               configuration.get("Path"))
 
-        states_file = open('%s/states/states.json' % bottle_complete_path)
-        states_file_json = json.load(states_file)
-        states_file.close()
+        try:
+            states_file = open('%s/states/states.json' % bottle_complete_path)
+            states_file_json = json.load(states_file)
+            states_file.close()
+            states = states_file_json.get("States")
 
-        return states_file_json.get("States")
+            logging.info(
+                "Found [{0}] states for bottle: [{1}]".format(
+                len(states), configuration.get("Name")))
+            return states
+        except:
+            logging.error(
+                "Cannot find states.json file for bottle: [{0}]".format(
+                configuration.get("Name")))
+            return []
 
     def set_bottle_state(self, configuration):
         return
