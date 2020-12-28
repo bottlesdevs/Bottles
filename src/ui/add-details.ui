@@ -90,6 +90,7 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="margin-top">5</property>
+            <property name="propagate-natural-height">True</property>
             <child>
               <object class="GtkViewport">
                 <property name="visible">True</property>
@@ -97,44 +98,58 @@
                 <property name="margin-top">5</property>
                 <property name="margin-bottom">5</property>
                 <child>
-                  <object class="GtkBox">
+                  <!-- n-columns=2 n-rows=3 -->
+                  <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="orientation">vertical</property>
+                    <property name="row-spacing">5</property>
+                    <property name="column-spacing">10</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="spacing">10</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Runner</property>
-                            <property name="use-markup">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBoxText" id="combo_runner">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Runner</property>
+                        <property name="use-markup">True</property>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkComboBoxText" id="combo_runner">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Enable versioning</property>
+                        <property name="use-markup">True</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">0</property>
+                        <property name="top-attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSwitch" id="switch_versioning">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">start</property>
+                      </object>
+                      <packing>
+                        <property name="left-attach">1</property>
+                        <property name="top-attach">1</property>
                       </packing>
                     </child>
                     <child>
@@ -172,17 +187,6 @@
         <property name="row-homogeneous">True</property>
         <property name="column-homogeneous">True</property>
         <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="opacity">0</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">0</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkButton" id="btn_cancel">
             <property name="label" translatable="yes">Cancel</property>
             <property name="visible">True</property>
@@ -207,6 +211,17 @@
           </object>
           <packing>
             <property name="left-attach">2</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="opacity">0</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
             <property name="top-attach">0</property>
           </packing>
         </child>
