@@ -199,7 +199,28 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkImage" id="img_versioning">
+                <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Versioning is active in this bottle.</property>
+                <property name="valign">center</property>
+                <property name="margin-left">5</property>
+                <property name="margin-right">5</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="margin-top">5</property>
+                <property name="icon-name">view-wrapped-symbolic</property>
+                <property name="icon_size">1</property>
+                <style>
+                  <class name="tag"/>
+                  <class name="tag-img"/>
+                  <class name="tag-versioning"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
             <child>
               <placeholder/>
