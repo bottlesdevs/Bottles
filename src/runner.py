@@ -1524,6 +1524,8 @@ class BottlesRunner:
     This method create a new state based on indexed bottle files
     '''
     def create_bottle_state(self, configuration, first=False):
+        # TODO: avoid to pass `first` variable, check for existing states instead and define inside
+
         if configuration.get("Custom_Path"):
             bottle_complete_path = configuration.get("Path")
         else:
@@ -1586,10 +1588,9 @@ class BottlesRunner:
                 file["file"])
             subprocess.Popen(command, shell=True)
 
-    def list_bottle_states(self, configuration):
-        # TODO: `create_bottle_state` should be called from detail view
-        self.create_bottle_state(configuration, first=True)
+        # TODO: update (or create) states.json in /states root
 
+    def list_bottle_states(self, configuration):
         if configuration.get("Custom_Path"):
             bottle_complete_path = configuration.get("Path")
         else:
