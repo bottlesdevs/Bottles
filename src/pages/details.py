@@ -273,6 +273,7 @@ class BottlesDetails(Gtk.Box):
     btn_manage_runners = Gtk.Template.Child()
     btn_backup_config = Gtk.Template.Child()
     btn_backup_full = Gtk.Template.Child()
+    btn_add_state = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_esync = Gtk.Template.Child()
@@ -334,6 +335,7 @@ class BottlesDetails(Gtk.Box):
         self.btn_manage_runners.connect('pressed', self.window.show_runners_preferences_view)
         self.btn_backup_config.connect('pressed', self.backup_config)
         self.btn_backup_full.connect('pressed', self.backup_full)
+        self.btn_add_state.connect('pressed', self.add_state)
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
         self.switch_esync.connect('state-set', self.toggle_esync)
@@ -629,6 +631,12 @@ class BottlesDetails(Gtk.Box):
 
     def run_killall(self, widget):
         self.runner.send_status(self.configuration, "kill")
+
+    '''
+    Method for states
+    '''
+    def add_state(self, widget):
+        self.runner.create_bottle_state(self.configuration, first=True) # TODO: remove `first` variable
 
     '''
     Method for backups
