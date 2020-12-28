@@ -1527,7 +1527,17 @@ class BottlesRunner:
         return
 
     def list_bottle_states(self, configuration):
-        return
+        if configuration.get("Custom_Path"):
+            bottle_complete_path = configuration.get("Path")
+        else:
+            bottle_complete_path = "%s/%s" % (self.bottles_path,
+                                              configuration.get("Path"))
+
+        states_file = open('%s/states/states.json' % bottle_complete_path)
+        states_file_json = json.load(states_file)
+        states_file.close()
+
+        return states_file_json.get("States")
 
     def set_bottle_state(self, configuration):
         return
