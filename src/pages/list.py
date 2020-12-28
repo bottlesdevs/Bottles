@@ -167,7 +167,7 @@ class BottlesListEntry(Gtk.Box):
             '''
             self.runner.run_executable(self.configuration, self.arg_executable)
             self.arg_executable = False
-            self.window.page_list.update_bottles()
+            self.runner.update_bottles()
 
     def run_browse(self, widget):
         self.runner.open_filemanager(self.configuration)
