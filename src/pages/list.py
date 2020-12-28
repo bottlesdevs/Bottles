@@ -180,7 +180,7 @@ class BottlesListEntry(Gtk.Box):
     def upgrade_runner(self, widget):
         dialog_upgrade = BottlesMessageDialog(parent=self.window,
                                       title=_("Confirm upgrade"),
-                                      message=_("This will change the runner from `%s` to `%s`.") % (
+                                      message=_("This will change the runner from {0} to {1}.").format(
                                           self.configuration.get("Runner"),
                                           self.runner.get_latest_runner()))
         response = dialog_upgrade.run()
