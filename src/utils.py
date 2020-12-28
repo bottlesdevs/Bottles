@@ -70,6 +70,7 @@ class UtilsTerminal():
                 pass
 
 class UtilsLogger(logging.getLoggerClass()):
+
     color_map = {
         "debug": 37,
         "info": 36,
