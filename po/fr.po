@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-27 18:11+0100\n"
+"POT-Creation-Date: 2020-12-28 14:13+0100\n"
 "PO-Revision-Date: 2020-12-27 17:38+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -657,6 +657,18 @@ msgstr ""
 "vous ne pourrez pas télécharger des composants essentielles. Cliquezsur "
 "cette icône lorsque votre connexion internet sera rétabli."
 
+#: src/main.py:91
+msgid "`Quit` request received."
+msgstr ""
+
+#: src/main.py:95
+msgid "`Help` request received."
+msgstr ""
+
+#: src/main.py:99
+msgid "`Refresh` request received."
+msgstr ""
+
 #: src/window.py:138
 msgid "New Bottle"
 msgstr "Nouvelle Bottle"
@@ -695,11 +707,11 @@ msgstr ""
 msgid "No runners found"
 msgstr ""
 
-#: src/window.py:216 src/pages/list.py:187 src/pages/list.py:213
+#: src/window.py:216 src/pages/list.py:189 src/pages/list.py:215
 msgid "OK status received"
 msgstr ""
 
-#: src/window.py:223 src/pages/list.py:193 src/pages/list.py:217
+#: src/window.py:223 src/pages/list.py:195 src/pages/list.py:219
 msgid "Cancel status received"
 msgstr ""
 
@@ -724,11 +736,21 @@ msgid "A clean environment, without any optimization."
 msgstr ""
 
 #: src/pages/add.py:218
-#, python-format
-msgid "Selected env is: %s"
+#, python-brace-format
+msgid "Selected env is: [{0}]"
 msgstr ""
 
-#: src/pages/details.py:518 src/pages/list.py:137
+#: src/pages/details.py:182
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr ""
+
+#: src/pages/details.py:183
+#, python-brace-format
+msgid "This is the manifest for {0}."
+msgstr ""
+
+#: src/pages/details.py:518 src/pages/list.py:139
 msgid "Choose a Windows executable file"
 msgstr ""
 
@@ -740,25 +762,25 @@ msgstr ""
 msgid "Select the location where to save the backup archive"
 msgstr ""
 
-#: src/pages/list.py:112
-#, python-format
-msgid "Found executable `%s` provided as argument."
+#: src/pages/list.py:113
+#, python-brace-format
+msgid "Arguments found for executable: [{executable}]."
 msgstr ""
 
-#: src/pages/list.py:180
+#: src/pages/list.py:182
 msgid "Confirm upgrade"
 msgstr ""
 
-#: src/pages/list.py:181
+#: src/pages/list.py:183
 #, python-format
 msgid "This will change the runner from `%s` to `%s`."
 msgstr ""
 
-#: src/pages/list.py:208
+#: src/pages/list.py:210
 msgid "Confirm deletion"
 msgstr "Confirmer la suppression"
 
-#: src/pages/list.py:209
+#: src/pages/list.py:211
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr ""
 
