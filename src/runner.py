@@ -99,6 +99,7 @@ class BottlesRunner:
         "Environment": "",
         "Creation_Date": "",
         "Update_Date": "",
+        "Versioning": False,
         "Parameters": {
             "dxvk": False,
             "dxvk_hud": False,
@@ -807,7 +808,7 @@ class BottlesRunner:
     def async_create_bottle(self, args):
         logging.info(_("Creating the wineprefix …"))
 
-        name, environment, path, runner = args
+        name, environment, path, runner, versioning = args
 
         if not runner: runner = self.runners_available[0]
         runner_name = runner
@@ -951,11 +952,12 @@ class BottlesRunner:
         self.local_bottles = {}
         self.check_bottles()
 
-    def create_bottle(self, name, environment, path=False, runner=False):
+    def create_bottle(self, name, environment, path=False, runner=False, versioning=False):
         a = RunAsync('create', self.async_create_bottle, [name,
                                                           environment,
                                                           path,
-                                                          runner])
+                                                          runner,
+                                                          versioning])
         a.start()
 
     '''
@@ -1519,7 +1521,19 @@ class BottlesRunner:
                               custom_path=wineprefix.get("Path"))
 
     '''
-    Method for create/import backup bottles
+    Methods for bottles versioning states
+    '''
+    def create_bottle_state(self, configuration):
+        return
+
+    def list_bottle_states(self, configuration):
+        return
+
+    def set_bottle_state(self, configuration):
+        return
+
+    '''
+    Methods for create/import backup bottles
     '''
     def async_backup_bottle(self, args):
         configuration, scope, path = args
