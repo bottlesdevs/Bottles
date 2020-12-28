@@ -146,6 +146,29 @@
                     <property name="position">2</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkLabel" id="label_update_date">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Last update for this bottle.</property>
+                    <property name="margin-left">5</property>
+                    <property name="margin-right">5</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">4</property>
+                    <property name="label">Update date</property>
+                    <attributes>
+                      <attribute name="weight" value="normal"/>
+                      <attribute name="scale" value="0.90000000000000002"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack-type">end</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>

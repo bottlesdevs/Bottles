@@ -210,6 +210,7 @@ class BottlesDetails(Gtk.Box):
     '''
     label_name = Gtk.Template.Child()
     label_runner = Gtk.Template.Child()
+    label_update_date = Gtk.Template.Child()
     label_size = Gtk.Template.Child()
     label_disk = Gtk.Template.Child()
     notebook_details = Gtk.Template.Child()
@@ -331,6 +332,7 @@ class BottlesDetails(Gtk.Box):
         parameters = self.configuration.get("Parameters")
         self.label_name.set_text(self.configuration.get("Name"))
         self.label_runner.set_text(self.configuration.get("Runner"))
+        self.label_update_date.set_text(self.configuration.get("Update_Date"))
         self.label_size.set_text(bottle_size)
         self.label_disk.set_text(disk_free)
         self.progress_disk.set_fraction(disk_fraction)
