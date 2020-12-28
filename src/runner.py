@@ -1505,9 +1505,7 @@ class BottlesRunner:
         self.window.send_notification(
             _("Importer"),
             _("Wineprefix {0} successfully imported!").format(
-                wineprefix_name = wineprefix["Name"]
-            ),
-            "software-installed-symbolic")
+                wineprefix["Name"]), "software-installed-symbolic")
 
 
         logging.info(
