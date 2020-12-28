@@ -6,23 +6,6 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <child>
-      <object class="GtkLabel" id="label_id">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="halign">start</property>
-        <property name="label" translatable="yes">State id</property>
-        <attributes>
-          <attribute name="weight" value="semibold"/>
-          <attribute name="scale" value="1.1499999999999999"/>
-        </attributes>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
-    <child>
       <object class="GtkButton" id="btn_remove">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
@@ -30,7 +13,7 @@
         <property name="tooltip-text" translatable="yes">Destroy this state.</property>
         <property name="margin-left">5</property>
         <property name="margin-right">5</property>
-        <property name="margin-start">5</property>
+        <property name="margin-start">10</property>
         <property name="margin-end">5</property>
         <child>
           <object class="GtkImage">
@@ -47,7 +30,7 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">1</property>
+        <property name="position">0</property>
       </packing>
     </child>
     <child>
@@ -59,7 +42,6 @@
         <property name="margin-left">5</property>
         <property name="margin-right">5</property>
         <property name="margin-start">5</property>
-        <property name="margin-end">5</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
@@ -84,7 +66,6 @@
         <property name="margin-left">5</property>
         <property name="margin-right">5</property>
         <property name="margin-start">5</property>
-        <property name="margin-end">5</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
@@ -98,6 +79,23 @@
         <property name="fill">True</property>
         <property name="pack-type">end</property>
         <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="label_id">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="halign">start</property>
+        <property name="label" translatable="yes">State id</property>
+        <attributes>
+          <attribute name="weight" value="semibold"/>
+          <attribute name="scale" value="1.1499999999999999"/>
+        </attributes>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">3</property>
       </packing>
     </child>
     <child>
