@@ -330,6 +330,8 @@ class BottlesDetails(Gtk.Box):
         Set widgets status from configuration
         '''
         parameters = self.configuration.get("Parameters")
+        versioning = self.configuration.get("Versioning")
+        self.notebook_details.get_nth_page(5).set_visible(versioning)
         self.label_name.set_text(self.configuration.get("Name"))
         self.label_runner.set_text(self.configuration.get("Runner"))
         self.label_update_date.set_text(self.configuration.get("Update_Date"))
