@@ -21,7 +21,6 @@ from glob import glob
 from threading import Thread
 from pathlib import Path
 from datetime import date
-from distutils.dir_util import copy_tree
 
 from .download import BottlesDownloadEntry
 from .pages.list import BottlesListEntry
