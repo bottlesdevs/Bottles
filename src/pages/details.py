@@ -179,8 +179,8 @@ class BottlesDependencyEntry(Gtk.Box):
     def open_manifest(self, widget):
         dialog_upgrade = BottlesDialog(
             parent=self.window,
-            title="Manifest for %s" % self.dependency[0],
-            message="This is the manifest for %s." % self.dependency[0],
+            title=_("Manifest for {0}").format(self.dependency[0]),
+            message=_("This is the manifest for {0}.").format(self.dependency[0]),
             log=self.runner.fetch_dependency_manifest(self.dependency[0],
                                                       plain=True))
         response = dialog_upgrade.run()
