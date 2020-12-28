@@ -382,7 +382,8 @@ class BottlesRunner:
         if component == "runner:proton": file_name = "proton-%s" % tag
         if component == "dxvk": file_name = "dxvk-%s" % tag
 
-        download_entry = BottlesDownloadEntry(file_name=file_name, stoppable=False)
+        download_entry = BottlesDownloadEntry(file_name=file_name,
+                                              stoppable=False)
         self.window.box_downloads.add(download_entry)
 
         logging.info(_("Installing component: [{0}].").format(tag))
@@ -525,7 +526,9 @@ class BottlesRunner:
                 dependencies = configuration["Installed_Dependencies"]+[dependency[0]]
             else:
                 dependencies = [dependency[0]]
-            self.update_configuration(configuration,"Installed_Dependencies", dependencies)
+            self.update_configuration(configuration,
+                                      "Installed_Dependencies",
+                                      dependencies)
 
         '''
         Remove the entry from the download manager
@@ -660,8 +663,10 @@ class BottlesRunner:
     '''
     def get_programs(self, configuration):
         bottle = "%s/%s" % (self.bottles_path, configuration.get("Path"))
-        results =  glob("%s/drive_c/users/*/Start Menu/Programs/**/*.lnk" % bottle, recursive=True)
-        results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle, recursive=True)
+        results =  glob("%s/drive_c/users/*/Start Menu/Programs/**/*.lnk" % bottle,
+                        recursive=True)
+        results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle,
+                        recursive=True)
         installed_programs = []
 
         '''
