@@ -180,8 +180,8 @@ class BottlesRunner:
     '''
     Method for update bottles list var and page_list
     '''
-    def update_bottles(self):
-        self.check_bottles()
+    def update_bottles(self, silent=False):
+        self.check_bottles(silent)
         self.window.page_list.update_bottles()
 
     '''
@@ -704,7 +704,7 @@ class BottlesRunner:
     '''
     Check local bottles
     '''
-    def check_bottles(self):
+    def check_bottles(self, silent=False):
         bottles = glob("%s/*/" % self.bottles_path)
 
         '''
@@ -744,7 +744,7 @@ class BottlesRunner:
 
             self.local_bottles[bottle_name_path] = configuration_file_json
 
-        if len(self.local_bottles) > 0:
+        if len(self.local_bottles) > 0 and not silent:
             logging.info(_("Bottles found: \n%s") % ', '.join(self.local_bottles))
 
     '''
@@ -771,7 +771,7 @@ class BottlesRunner:
             configuration_file.close()
 
         try:
-            self.window.page_list.update_bottles()
+            self.update_bottles(silent=True)
         except:
             pass
         return configuration
@@ -1052,14 +1052,9 @@ class BottlesRunner:
         self.run_wineboot(new_configuration)
 
         '''
-        Re-index all bottles
+        Update bottles
         '''
-        self.check_bottles()
-
-        '''
-        The re-populate the list in page_list
-        '''
-        self.window.page_list.update_bottles()
+        self.update_bottles()
 
     '''
     Methods for wine processes management
@@ -1464,8 +1459,7 @@ class BottlesRunner:
         '''
         Update bottles
         '''
-        self.check_bottles()
-        self.window.page_list.update_bottles()
+        self.update_bottles(silent=True)
 
         '''
         Send a notification if the user settings allow it
@@ -1612,8 +1606,7 @@ class BottlesRunner:
             '''
             Update bottles
             '''
-            self.check_bottles()
-            self.window.page_list.update_bottles()
+            self.update_bottles()
 
             '''
             Send a notification if the user settings allow it
