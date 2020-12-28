@@ -76,25 +76,6 @@
       </packing>
     </child>
     <child>
-      <object class="GtkLabel" id="label_comment">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="halign">start</property>
-        <property name="margin-start">5</property>
-        <property name="margin-top">2</property>
-        <property name="label" translatable="yes">State comment</property>
-        <attributes>
-          <attribute name="weight" value="normal"/>
-          <attribute name="scale" value="0.94999999999999996"/>
-        </attributes>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
-    </child>
-    <child>
       <object class="GtkButton" id="btn_manifest">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
@@ -116,22 +97,51 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">3</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="label_creation_date">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="tooltip-text" translatable="yes">Creation date</property>
+        <property name="halign">start</property>
+        <property name="margin-end">10</property>
+        <property name="margin-top">2</property>
+        <property name="label" translatable="yes">Creation date</property>
+        <attributes>
+          <attribute name="weight" value="normal"/>
+          <attribute name="scale" value="0.94999999999999996"/>
+        </attributes>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack-type">end</property>
+        <property name="position">4</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="label_comment">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="halign">start</property>
+        <property name="margin-start">5</property>
+        <property name="margin-top">2</property>
+        <property name="label" translatable="yes">State comment</property>
+        <attributes>
+          <attribute name="weight" value="normal"/>
+          <attribute name="scale" value="0.94999999999999996"/>
+        </attributes>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">5</property>
       </packing>
     </child>
     <style>
       <class name="list-entry"/>
     </style>
   </template>
-  <object class="GtkBox">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="orientation">vertical</property>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <placeholder/>
-    </child>
-  </object>
 </interface>
