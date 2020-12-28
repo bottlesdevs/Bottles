@@ -215,7 +215,8 @@ class BottlesAdd(Gtk.Box):
         '''
         Log the selected environment
         '''
-        logging.info(_("Selected env is: %s") % self.window.env_active)
+        logging.info(_("Selected env is: [{environment_name}]").format(
+            environment_name = self.window.env_active))
 
         '''
         For each environment button, remove the active class and

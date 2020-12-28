@@ -109,7 +109,9 @@ class BottlesListEntry(Gtk.Box):
             Check for executable provided as argument
             '''
             if self.arg_executable:
-                logging.info(_("Found executable `%s` provided as argument.") % self.arg_executable)
+                logging.info(
+                    _("Arguments found for executable: [{executable}].").format(
+                        executable = self.arg_executable))
 
                 for w in [self.btn_details,
                           self.btn_upgrade,
