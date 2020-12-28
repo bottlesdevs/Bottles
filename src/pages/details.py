@@ -31,6 +31,7 @@ class BottlesStateEntry(Gtk.Box):
     '''
     label_id = Gtk.Template.Child()
     label_comment = Gtk.Template.Child()
+    label_creation_date = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
@@ -57,6 +58,7 @@ class BottlesStateEntry(Gtk.Box):
         '''
         self.label_id.set_text(self.state_name)
         self.label_comment.set_text(self.state.get("Comment"))
+        self.label_creation_date.set_text(self.state.get("Creation_Date"))
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class BottlesProgramEntry(Gtk.Box):
