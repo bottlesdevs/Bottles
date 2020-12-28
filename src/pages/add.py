@@ -39,6 +39,7 @@ class BottlesAddDetails(Gtk.Box):
     btn_save = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     expander_advanced = Gtk.Template.Child()
+    switch_versioning = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -110,12 +111,13 @@ class BottlesAddDetails(Gtk.Box):
         '''
         TODO: Custom bottle paths must be saved to be found when listing bottles
         '''
-
+        versioning_state = self.switch_versioning.get_state()
         self.window.stack_main.set_visible_child_name("page_create")
         self.runner.create_bottle(name=self.entry_name.get_text(),
                                   path=custom_path,
                                   environment=self.window.env_active,
-                                  runner=self.custom_runner)
+                                  runner=self.custom_runner,
+                                  versioning=versioning_state)
 
     def toggle_entry_path(self, widget):
         self.entry_path.set_sensitive(widget.get_active())
