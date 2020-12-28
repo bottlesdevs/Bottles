@@ -46,6 +46,7 @@ class BottlesCreate(Gtk.Box):
         Common variables
         '''
         self.window = window
+        self.runner = window.runner
 
         '''
         Connect signals to widgets
@@ -73,7 +74,7 @@ class BottlesCreate(Gtk.Box):
         '''
         Update bottles
         '''
-        self.window.page_list.update_bottles()
+        self.runner.update_bottles()
 
     '''
     Make the progressbar pulse every 1 second
