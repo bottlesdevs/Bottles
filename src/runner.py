@@ -178,6 +178,13 @@ class BottlesRunner:
 
 
     '''
+    Method for update bottles list var and page_list
+    '''
+    def update_bottles(self):
+        self.check_bottles()
+        self.window.page_list.update_bottles()
+
+    '''
     Check if standard directories not exists, then create
     '''
     def check_runners_dir(self):
