@@ -1521,12 +1521,75 @@ class BottlesRunner:
                               custom_path=wineprefix.get("Path"))
 
     '''
-    Methods for bottles versioning states
+    This method create a new state based on indexed bottle files
     '''
-    def create_bottle_state(self, configuration):
-        return
+    def create_bottle_state(self, configuration, first=False):
+        if configuration.get("Custom_Path"):
+            bottle_complete_path = configuration.get("Path")
+        else:
+            bottle_complete_path = "%s/%s" % (self.bottles_path,
+                                              configuration.get("Path"))
+
+        indexed_files = {
+            "Update_Date": str(datetime.now()),
+            "Files":[]
+        }
+
+        index_files = glob("%s/drive_c/windows/**" % bottle_complete_path, recursive=True)
+        for file in index_files:
+            if not os.path.isfile(file): continue
+            checksum = hashlib.md5()
+            with open(file, "rb") as f:
+                for chunk in iter(lambda: f.read(4096), b""):
+                    checksum.update(chunk)
+
+            indexed_files["Files"].append({
+                "file": file[len(bottle_complete_path)+9:],
+                "checksum": checksum.hexdigest().lower()
+            })
+
+        '''
+        If this is not the first state, get current indexed files and compare
+        with the previous state
+        '''
+        if not first:
+            '''
+            Get current indexed files as source_index_file
+            '''
+            source_index_file = open('%s/states/index.json' % bottle_complete_path)
+            source_index_file = json.load(indexed_files)
+            source_index_file.close()
+            # TODO: compare list with previous state
+            # TODO: reasign index variable
+        else:
+            state_id = "0"
+
+        state_path = "%s/states/%s" % (bottle_complete_path, state_id)
+
+        '''
+        Create new state structure path and save index.json in root
+        '''
+        os.makedirs("%s/states/%s/windows" % (bottle_complete_path, state_id), exist_ok=True)
+        with open("%s/index.json" % (state_path),
+                  "w") as index_file:
+            json.dump(indexed_files, index_file, indent=4)
+            index_file.close()
+
+        '''
+        Copy indexed files in the new state path
+        '''
+        for file in indexed_files["Files"]:
+            command = "mkdir -p '{0}/{1}' && rsync '{2}/drive_c/{3}' '{0}/{3}'".format(
+                state_path,
+                "/".join(file["file"].split("/")[:-1]),
+                bottle_complete_path,
+                file["file"])
+            subprocess.Popen(command, shell=True)
 
     def list_bottle_states(self, configuration):
+        # TODO: `create_bottle_state` should be called from detail view
+        self.create_bottle_state(configuration, first=True)
+
         if configuration.get("Custom_Path"):
             bottle_complete_path = configuration.get("Path")
         else:
