@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, gi, gettext, locale
+import os, sys, gi, gettext, locale, webbrowser
 
 gi.require_version('Gtk', '3.0')
 
@@ -24,6 +24,7 @@ from gi.repository import Gtk, Gio, Gdk
 from pathlib import Path
 
 from .params import *
+from .utils import UtilsLogger
 
 '''
 Custom locale path if AppImage
@@ -39,6 +40,8 @@ gettext.bindtextdomain(APP_NAME_LOWER, LOCALE_PATH)
 gettext.textdomain(APP_NAME_LOWER)
 _ = gettext.gettext
 
+logging = UtilsLogger()
+
 from .window import BottlesWindow
 
 class Application(Gtk.Application):
@@ -53,6 +56,10 @@ class Application(Gtk.Application):
     def do_open(self, arg_executable, *hint):
         self.arg_executable = arg_executable[0].get_path()
         self.do_activate()
+
+    def do_startup(self):
+        Gtk.Application.do_startup(self)
+        self.set_actions()
 
     def do_activate(self):
 
@@ -74,7 +81,40 @@ class Application(Gtk.Application):
             win = BottlesWindow(application=self,
                                 arg_executable=self.arg_executable)
 
+        self.win = win
         win.present()
+
+    '''
+    Methods for application actions
+    '''
+    def quit(self, action=None, param=None):
+        logging.info(_("`Quit` request received."))
+        self.win.destroy()
+
+    def help(self, action, param):
+        logging.info(_("`Help` request received."))
+        webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/wiki")
+
+    def refresh(self, action, param):
+        logging.info(_("`Refresh` request received."))
+        self.win.runner.update_bottles()
+
+    '''
+    Set application actions
+    '''
+    def set_actions(self):
+        action_entries = [
+            ("quit", self.quit, ("app.quit", ["<Ctrl>Q"])),
+            ("help", self.help, ("app.help", ["F1"])),
+            ("refresh", self.refresh, ("app.refresh", ["<Ctrl>R"]))
+        ]
+
+        for action, callback, accel in action_entries:
+            simple_action = Gio.SimpleAction.new(action, None)
+            simple_action.connect('activate', callback)
+            self.add_action(simple_action)
+            if accel is not None:
+                self.set_accels_for_action(*accel)
 
 def main(version):
     try:
