@@ -21,6 +21,43 @@ import webbrowser
 
 from .dialog import BottlesDialog
 
+@Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
+class BottlesStateEntry(Gtk.Box):
+    __gtype_name__ = 'BottlesStateEntry'
+
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    label_id = Gtk.Template.Child()
+    label_comment = Gtk.Template.Child()
+    btn_restore = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
+    btn_manifest = Gtk.Template.Child()
+
+    def __init__(self, window, configuration, state, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Initialize template
+        '''
+        self.init_template()
+
+        '''
+        Common variables
+        '''
+        self.window = window
+        self.runner = window.runner
+        self.state_name = "State: {0}".format(state[0])
+        self.state = state[1]
+        self.configuration = configuration
+
+        '''
+        Set runner name to the label
+        '''
+        self.label_id.set_text(self.state_name)
+        self.label_comment.set_text(self.state.get("Comment"))
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class BottlesProgramEntry(Gtk.Box):
     __gtype_name__ = 'BottlesProgramEntry'
@@ -246,6 +283,7 @@ class BottlesDetails(Gtk.Box):
     switch_pulseaudio_latency = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
+    list_states = Gtk.Template.Child()
     progress_disk = Gtk.Template.Child()
     entry_environment_variables = Gtk.Template.Child()
     entry_overrides = Gtk.Template.Child()
@@ -360,6 +398,7 @@ class BottlesDetails(Gtk.Box):
 
         self.update_programs()
         self.update_dependencies()
+        self.update_states()
 
     def set_page(self, page):
         self.notebook_details.set_current_page(page)
@@ -413,6 +452,21 @@ class BottlesDetails(Gtk.Box):
                                            self.configuration,
                                            dependency,
                                            plain=True))
+
+    '''
+    Add entries to list_states
+    '''
+    def update_states(self, widget=False):
+        if self.configuration.get("Versioning"):
+            for w in self.list_states: w.destroy()
+
+            states = self.runner.list_bottle_states(self.configuration).items()
+            if len(states) > 0:
+                for state in states:
+                    self.list_states.add(
+                        BottlesStateEntry(self.window,
+                                          self.configuration,
+                                          state))
 
     '''
     Methods to change environment variables
