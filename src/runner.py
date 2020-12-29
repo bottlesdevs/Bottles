@@ -1559,8 +1559,22 @@ class BottlesRunner:
             state_index_file.close()
 
             # TODO: compare list with previous state
-            index_edits = []
-            print(len(index_edits))
+
+            state_temp_checksums = [f["checksum"] for f in state_index_files["Files"]]
+            state_temp_files = [f["file"] for f in state_index_files["Files"]]
+            current_temp_files = [f["file"] for f in current_index_files["Files"]]
+            added_files = set(current_temp_files) - set(state_temp_files)
+            remvoed_files = set(state_temp_files) - set(current_temp_files)
+            changed_files = []
+
+            for file in current_index_files["Files"]:
+                if file["checksum"] not in state_temp_checksums:
+                    changed_files.append(file["file"])
+
+            print("Added files: %s" % ",".join(added_files))
+            print("Removed files: %s" % ",".join(remvoed_files))
+            print("Changed files: %s" % ",".join(changed_files))
+
             return
             for key in index_edits:
                 pass
