@@ -636,7 +636,7 @@ class BottlesDetails(Gtk.Box):
     Method for states
     '''
     def add_state(self, widget):
-        self.runner.create_bottle_state(self.configuration, first=True) # TODO: remove `first` variable
+        self.runner.create_bottle_state(self.configuration)
 
     '''
     Method for backups
