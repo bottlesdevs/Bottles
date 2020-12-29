@@ -100,6 +100,7 @@ class BottlesRunner:
         "Creation_Date": "",
         "Update_Date": "",
         "Versioning": False,
+        "State": 0,
         "Parameters": {
             "dxvk": False,
             "dxvk_hud": False,
@@ -737,6 +738,9 @@ class BottlesRunner:
                 configuration_file.close()
 
                 missing_keys = self.sample_configuration.keys() - configuration_file_json.keys()
+                '''
+                TODO: Check if the loop is correct
+                '''
                 for key in missing_keys:
                     logging.warning(
                         _("Key: [{0}] not in bottle: [{1}] configuration, updating.").format(
@@ -1532,9 +1536,9 @@ class BottlesRunner:
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
 
         '''
-        List all bottle files with checksums in the `current_index_files` dict
+        List all bottle files with checksums in the `current_index` dict
         '''
-        current_index_files = {
+        current_index = {
             "Update_Date": str(datetime.now()),
             "Files":[]
         }
@@ -1545,40 +1549,66 @@ class BottlesRunner:
                 for chunk in iter(lambda: f.read(4096), b""):
                     checksum.update(chunk)
 
-            current_index_files["Files"].append({
+            current_index["Files"].append({
                 "file": file[len(bottle_path)+9:],
                 "checksum": checksum.hexdigest().lower()})
 
         '''
-        If this is not the first state, get latest `state_index_files` and
-        compare with `current_index_files`
+        If this is not the first state, compare current files with state files
         '''
         if not first:
-            state_index_file = open('%s/states/index.json' % bottle_path)
-            state_index_files = json.load(state_index_file)
+            states_file = open('%s/states/states.json' % bottle_path)
+            states_file_json = json.load(states_file)
+            states_file.close()
+
+            state_index_file = open('%s/states/%s/index.json' % (
+                bottle_path, str(configuration.get("State"))))
+            state_index = json.load(state_index_file)
             state_index_file.close()
+            state_index_files = state_index["Additions"]+\
+                                state_index["Removed"]+\
+                                state_index["Changes"]
 
-            # TODO: compare list with previous state
+            state_temp_checksums = [f["checksum"] for f in state_index_files]
+            state_temp_files = [tuple([f["file"],f["checksum"]])  for f in state_index_files]
+            current_temp_files = [tuple([f["file"],f["checksum"]])  for f in current_index["Files"]]
+            additions = set(current_temp_files) - set(state_temp_files)
+            removed = set(state_temp_files) - set(current_temp_files)
 
-            state_temp_checksums = [f["checksum"] for f in state_index_files["Files"]]
-            state_temp_files = [f["file"] for f in state_index_files["Files"]]
-            current_temp_files = [f["file"] for f in current_index_files["Files"]]
-            added_files = set(current_temp_files) - set(state_temp_files)
-            remvoed_files = set(state_temp_files) - set(current_temp_files)
-            changed_files = []
+            new_index = {
+                "Update_Date": str(datetime.now()),
+                "Additions": [],
+                "Removed": [],
+                "Changes": []
+            }
 
-            for file in current_index_files["Files"]:
+            for file in additions:
+                new_index["Additions"].append({
+                    "file": file[0],
+                    "checksum": file[1]
+                })
+
+            for file in removed:
+                new_index["Removed"].append({
+                    "file": file[0],
+                    "checksum": file[1]
+                })
+
+            for file in current_index["Files"]:
                 if file["checksum"] not in state_temp_checksums:
-                    changed_files.append(file["file"])
+                    new_index["Changes"].append({
+                        "file": file["file"],
+                        "checksum": file["checksum"]
+                    })
 
-            print("Added files: %s" % ",".join(added_files))
-            print("Removed files: %s" % ",".join(remvoed_files))
-            print("Changed files: %s" % ",".join(changed_files))
-
-            return
-            for key in index_edits:
-                pass
+            state_id = str(len(states_file_json.get("States")))
         else:
+            new_index = {
+                "Update_Date": str(datetime.now()),
+                "Additions": current_index["Files"],
+                "Removed": [],
+                "Changes": []
+            }
             state_id = "0"
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
@@ -1589,13 +1619,13 @@ class BottlesRunner:
         os.makedirs("%s/states/%s/windows" % (bottle_path, state_id), exist_ok=True)
         with open("%s/index.json" % (state_path),
                   "w") as state_index_file:
-            json.dump(current_index_files, state_index_file, indent=4)
+            json.dump(new_index, state_index_file, indent=4)
             state_index_file.close()
 
         '''
         Copy indexed files in the new state path
         '''
-        for file in current_index_files["Files"]:
+        for file in current_index["Files"]:
             command = "mkdir -p '{0}/{1}' && rsync '{2}/drive_c/{3}' '{0}/{3}'".format(
                 state_path,
                 "/".join(file["file"].split("/")[:-1]),
@@ -1607,29 +1637,34 @@ class BottlesRunner:
         Update the states.json file in /states root
         '''
         new_state = {
-			"Creation_Date": "spe",
-			"Comment": "spe x2",
-			"Files": [file["file"] for file in current_index_files["Files"]]
+			"Creation_Date": str(datetime.now()),
+			"Comment": "NOT_PROVIDED",
+			# "Files": [file["file"] for file in current_index["Files"]]
 		}
 
         if not first:
-            # TODO: update states.json
-            pass
+            new_state_file = {
+                "Update_Date": str(datetime.now()),
+                "States": states_file_json.get("States")
+            }
+            new_state_file["States"][state_id] = new_state
         else:
-            new_state = {
-                "Update_Date": "spe",
+            new_state_file = {
+                "Update_Date": str(datetime.now()),
                 "States": {"0": new_state}
             }
 
         with open('%s/states/states.json' % bottle_path, "w") as states_file:
-            json.dump(new_state, states_file, indent=4)
+            json.dump(new_state_file, states_file, indent=4)
             states_file.close()
 
         '''
-        Copy the state index.json to the states root
+        Create the new index.json to the states root
         '''
-        command = "rsync '{0}/index.json' '{1}/states/'".format(state_path,
-                                                                bottle_path)
+        with open('%s/states/index.json' % bottle_path,
+                  "w") as current_index_file:
+            json.dump(current_index, current_index_file, indent=4)
+            current_index_file.close()
         subprocess.Popen(command, shell=True)
 
     def list_bottle_states(self, configuration):
@@ -1649,6 +1684,7 @@ class BottlesRunner:
             logging.error(
                 "Cannot find states.json file for bottle: [{0}]".format(
                 configuration.get("Name")))
+
             return {}
 
     def set_bottle_state(self, configuration):
