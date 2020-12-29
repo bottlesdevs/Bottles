@@ -1527,15 +1527,9 @@ class BottlesRunner:
     '''
     This method create a new state based on indexed bottle files
     '''
-    def create_bottle_state(self, configuration, first=False):
-        # TODO: avoid to pass `first` variable, check for existing states instead and define inside
-        '''
-        if not os.path.isdir('%s/states/' % bottle_path):
-            first = True
-        else:
-            first = False
-        '''
+    def create_bottle_state(self, configuration):
         bottle_path = self.get_bottle_path(configuration)
+        first = False if os.path.isdir('%s/states/' % bottle_path) else True
 
         indexed_files = {
             "Update_Date": str(datetime.now()),
@@ -1612,7 +1606,7 @@ class BottlesRunner:
             logging.error(
                 "Cannot find states.json file for bottle: [{0}]".format(
                 configuration.get("Name")))
-            return []
+            return {}
 
     def set_bottle_state(self, configuration):
         return
