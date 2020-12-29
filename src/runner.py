@@ -1531,37 +1531,39 @@ class BottlesRunner:
         bottle_path = self.get_bottle_path(configuration)
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
 
-        indexed_files = {
+        '''
+        List all bottle files with checksums in the `current_index_files` dict
+        '''
+        current_index_files = {
             "Update_Date": str(datetime.now()),
             "Files":[]
         }
-
-        index_files = glob("%s/drive_c/windows/**" % bottle_path, recursive=True)
-        for file in index_files:
+        for file in glob("%s/drive_c/windows/**" % bottle_path, recursive=True):
             if not os.path.isfile(file): continue
             checksum = hashlib.md5()
             with open(file, "rb") as f:
                 for chunk in iter(lambda: f.read(4096), b""):
                     checksum.update(chunk)
 
-            indexed_files["Files"].append({
+            current_index_files["Files"].append({
                 "file": file[len(bottle_path)+9:],
-                "checksum": checksum.hexdigest().lower()
-            })
+                "checksum": checksum.hexdigest().lower()})
 
         '''
-        If this is not the first state, get current indexed files and compare
-        with the previous state
+        If this is not the first state, get latest `state_index_files` and
+        compare with `current_index_files`
         '''
         if not first:
-            '''
-            Get current indexed files as source_index_file
-            '''
-            source_index_file = open('%s/states/index.json' % bottle_path)
-            source_index_file = json.load(indexed_files)
-            source_index_file.close()
+            state_index_file = open('%s/states/index.json' % bottle_path)
+            state_index_files = json.load(state_index_file)
+            state_index_file.close()
+
             # TODO: compare list with previous state
-            # TODO: reasign index variable
+            index_edits = []
+            print(len(index_edits))
+            return
+            for key in index_edits:
+                pass
         else:
             state_id = "0"
 
@@ -1572,14 +1574,14 @@ class BottlesRunner:
         '''
         os.makedirs("%s/states/%s/windows" % (bottle_path, state_id), exist_ok=True)
         with open("%s/index.json" % (state_path),
-                  "w") as index_file:
-            json.dump(indexed_files, index_file, indent=4)
-            index_file.close()
+                  "w") as state_index_file:
+            json.dump(current_index_files, state_index_file, indent=4)
+            state_index_file.close()
 
         '''
         Copy indexed files in the new state path
         '''
-        for file in indexed_files["Files"]:
+        for file in current_index_files["Files"]:
             command = "mkdir -p '{0}/{1}' && rsync '{2}/drive_c/{3}' '{0}/{3}'".format(
                 state_path,
                 "/".join(file["file"].split("/")[:-1]),
@@ -1587,7 +1589,34 @@ class BottlesRunner:
                 file["file"])
             subprocess.Popen(command, shell=True)
 
-        # TODO: update (or create) states.json in /states root
+        '''
+        Update the states.json file in /states root
+        '''
+        new_state = {
+			"Creation_Date": "spe",
+			"Comment": "spe x2",
+			"Files": [file["file"] for file in current_index_files["Files"]]
+		}
+
+        if not first:
+            # TODO: update states.json
+            pass
+        else:
+            new_state = {
+                "Update_Date": "spe",
+                "States": {"0": new_state}
+            }
+
+        with open('%s/states/states.json' % bottle_path, "w") as states_file:
+            json.dump(new_state, states_file, indent=4)
+            states_file.close()
+
+        '''
+        Copy the state index.json to the states root
+        '''
+        command = "rsync '{0}/index.json' '{1}/states/'".format(state_path,
+                                                                bottle_path)
+        subprocess.Popen(command, shell=True)
 
     def list_bottle_states(self, configuration):
         bottle_path = self.get_bottle_path(configuration)
