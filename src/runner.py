@@ -768,6 +768,14 @@ class BottlesRunner:
             logging.info(_("Bottles found: %s") % ', '.join(self.local_bottles))
 
     '''
+    Get bottle path by configuration, also check for custom_path
+    '''
+    def get_bottle_path(self, configuration):
+        if configuration.get("Custom_Path"):
+            return configuration.get("Path")
+        return "%s/%s" % (self.bottles_path, configuration.get("Path"))
+
+    '''
     Update parameters in bottle configuration file
     '''
     def update_configuration(self, configuration, key, value, scope=False):
@@ -775,11 +783,7 @@ class BottlesRunner:
             _("Setting Key: [{0}] to [{1}] for bottle: [{2}] …").format(
                 key, value, configuration.get("Name")))
 
-        if configuration.get("Custom_Path"):
-            bottle_complete_path = configuration.get("Path")
-        else:
-            bottle_complete_path = "%s/%s" % (self.bottles_path,
-                                              configuration.get("Path"))
+        bottle_complete_path = self.get_bottle_path(configuration)
 
         if scope:
             configuration[scope][key] = value
@@ -1525,19 +1529,20 @@ class BottlesRunner:
     '''
     def create_bottle_state(self, configuration, first=False):
         # TODO: avoid to pass `first` variable, check for existing states instead and define inside
-
-        if configuration.get("Custom_Path"):
-            bottle_complete_path = configuration.get("Path")
+        '''
+        if not os.path.isdir('%s/states/' % bottle_path):
+            first = True
         else:
-            bottle_complete_path = "%s/%s" % (self.bottles_path,
-                                              configuration.get("Path"))
+            first = False
+        '''
+        bottle_path = self.get_bottle_path(configuration)
 
         indexed_files = {
             "Update_Date": str(datetime.now()),
             "Files":[]
         }
 
-        index_files = glob("%s/drive_c/windows/**" % bottle_complete_path, recursive=True)
+        index_files = glob("%s/drive_c/windows/**" % bottle_path, recursive=True)
         for file in index_files:
             if not os.path.isfile(file): continue
             checksum = hashlib.md5()
@@ -1546,7 +1551,7 @@ class BottlesRunner:
                     checksum.update(chunk)
 
             indexed_files["Files"].append({
-                "file": file[len(bottle_complete_path)+9:],
+                "file": file[len(bottle_path)+9:],
                 "checksum": checksum.hexdigest().lower()
             })
 
@@ -1558,7 +1563,7 @@ class BottlesRunner:
             '''
             Get current indexed files as source_index_file
             '''
-            source_index_file = open('%s/states/index.json' % bottle_complete_path)
+            source_index_file = open('%s/states/index.json' % bottle_path)
             source_index_file = json.load(indexed_files)
             source_index_file.close()
             # TODO: compare list with previous state
@@ -1566,12 +1571,12 @@ class BottlesRunner:
         else:
             state_id = "0"
 
-        state_path = "%s/states/%s" % (bottle_complete_path, state_id)
+        state_path = "%s/states/%s" % (bottle_path, state_id)
 
         '''
         Create new state structure path and save index.json in root
         '''
-        os.makedirs("%s/states/%s/windows" % (bottle_complete_path, state_id), exist_ok=True)
+        os.makedirs("%s/states/%s/windows" % (bottle_path, state_id), exist_ok=True)
         with open("%s/index.json" % (state_path),
                   "w") as index_file:
             json.dump(indexed_files, index_file, indent=4)
@@ -1584,21 +1589,17 @@ class BottlesRunner:
             command = "mkdir -p '{0}/{1}' && rsync '{2}/drive_c/{3}' '{0}/{3}'".format(
                 state_path,
                 "/".join(file["file"].split("/")[:-1]),
-                bottle_complete_path,
+                bottle_path,
                 file["file"])
             subprocess.Popen(command, shell=True)
 
         # TODO: update (or create) states.json in /states root
 
     def list_bottle_states(self, configuration):
-        if configuration.get("Custom_Path"):
-            bottle_complete_path = configuration.get("Path")
-        else:
-            bottle_complete_path = "%s/%s" % (self.bottles_path,
-                                              configuration.get("Path"))
+        bottle_path = self.get_bottle_path(configuration)
 
         try:
-            states_file = open('%s/states/states.json' % bottle_complete_path)
+            states_file = open('%s/states/states.json' % bottle_path)
             states_file_json = json.load(states_file)
             states_file.close()
             states = states_file_json.get("States")
@@ -1658,24 +1659,20 @@ class BottlesRunner:
             '''
             a = RunAsync('pulse', download_entry.pulse);a.start()
 
-            if configuration.get("Custom_Path"):
-                bottle_complete_path = configuration.get("Path")
-            else:
-                bottle_complete_path = "%s/%s" % (self.bottles_path,
-                                                  configuration.get("Path"))
+            bottle_path = self.get_bottle_path(configuration)
 
-                try:
-                    '''
-                    Create a new archive in path with bottle content
-                    '''
-                    with tarfile.open(path, "w:gz") as archive_backup:
-                        for root, dirs, files in os.walk(bottle_complete_path):
-                            for file in files:
-                                archive_backup.add(os.path.join(root, file))
-                        archive_backup.close()
-                    backup_created = True
-                except:
-                    backup_created = False
+            try:
+                '''
+                Create a new archive in path with bottle content
+                '''
+                with tarfile.open(path, "w:gz") as archive_backup:
+                    for root, dirs, files in os.walk(bottle_path):
+                        for file in files:
+                            archive_backup.add(os.path.join(root, file))
+                    archive_backup.close()
+                backup_created = True
+            except:
+                backup_created = False
 
             '''
             Remove the entry from the download manager
