@@ -54,11 +54,13 @@ class BottlesStateEntry(Gtk.Box):
         self.configuration = configuration
 
         '''
-        Set runner name to the label
+        Set widgets data
         '''
         self.label_id.set_text(self.state_name)
         self.label_comment.set_text(self.state[1].get("Comment"))
         self.label_creation_date.set_text(self.state[1].get("Creation_Date"))
+        if state[0] == configuration.get("State"):
+            self.get_style_context().add_class("current-state")
 
         '''
         Connect signals to widgets
