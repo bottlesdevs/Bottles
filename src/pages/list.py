@@ -68,7 +68,7 @@ class BottlesListEntry(Gtk.Box):
         '''
         Check runner type by name
         '''
-        if self.configuration.get("Runner").startswith("lutris"):
+        if self.configuration.get("Runner").startswith(("", "lutris")):
             self.runner_type = "wine"
         else:
             self.runner_type = "proton"
