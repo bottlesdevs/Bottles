@@ -24,7 +24,7 @@ from datetime import date, datetime
 
 from .download import BottlesDownloadEntry
 from .pages.list import BottlesListEntry
-from .utils import UtilsTerminal, UtilsLogger
+from .utils import UtilsTerminal, UtilsLogger, UtilsFiles
 
 logging = UtilsLogger()
 
@@ -336,13 +336,7 @@ class BottlesRunner:
         if checksum:
             checksum = checksum.lower()
 
-            local_checksum = hashlib.md5()
-
-            with open(file_path, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
-                    local_checksum.update(chunk)
-
-            local_checksum = local_checksum.hexdigest().lower()
+            local_checksum = UtilsFiles().get_checksum(file_path)
 
             if local_checksum != checksum:
                 logging.error(
@@ -1536,7 +1530,7 @@ class BottlesRunner:
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
 
         '''
-        List all bottle files with checksums in the `current_index` dict
+        List all current bottle files in `current_index`
         '''
         current_index = {
             "Update_Date": str(datetime.now()),
@@ -1544,14 +1538,10 @@ class BottlesRunner:
         }
         for file in glob("%s/drive_c/windows/**" % bottle_path, recursive=True):
             if not os.path.isfile(file): continue
-            checksum = hashlib.md5()
-            with open(file, "rb") as f:
-                for chunk in iter(lambda: f.read(4096), b""):
-                    checksum.update(chunk)
 
             current_index["Files"].append({
                 "file": file[len(bottle_path)+9:],
-                "checksum": checksum.hexdigest().lower()})
+                "checksum": UtilsFiles().get_checksum(file)})
 
         '''
         If this is not the first state, compare current files with state files
