@@ -18,32 +18,14 @@
 import os, subprocess, urllib.request, json, tarfile, time, shutil, re, hashlib
 
 from glob import glob
-from threading import Thread
 from pathlib import Path
 from datetime import date, datetime
 
-from .download import BottlesDownloadEntry
+from .download import DownloadManager
 from .pages.list import BottlesListEntry
-from .utils import UtilsTerminal, UtilsLogger, UtilsFiles
+from .utils import UtilsTerminal, UtilsLogger, UtilsFiles, RunAsync
 
 logging = UtilsLogger()
-
-class RunAsync(Thread):
-
-    def __init__(self, task_name, task_func, task_args=False):
-        Thread.__init__(self)
-
-        self.task_name = task_name
-        self.task_func = task_func
-        self.task_args = task_args
-
-    def run(self):
-        logging.debug('Running async job [{0}].'.format(self.task_name))
-
-        if not self.task_args:
-            self.task_func()
-        else:
-            self.task_func(self.task_args)
 
 class BottlesRunner:
 
@@ -153,6 +135,8 @@ class BottlesRunner:
         self.fetch_dependencies()
         self.check_bottles()
         self.clear_temp()
+
+        self.download_manager = DownloadManager(window)
 
     '''
     Performs all checks in one async shot
@@ -378,16 +362,9 @@ class BottlesRunner:
         if component == "runner:proton": file_name = "proton-%s" % tag
         if component == "dxvk": file_name = "dxvk-%s" % tag
 
-        download_entry = BottlesDownloadEntry(file_name=file_name,
-                                              stoppable=False)
-        self.window.box_downloads.add(download_entry)
+        download_entry = self.download_manager.new_download(file_name, False)
 
         logging.info(_("Installing component: [{0}].").format(tag))
-
-        '''
-        Run the progressbar update async
-        '''
-        a = RunAsync('pulse', download_entry.pulse);a.start()
 
         '''
         Download and extract the component archive
@@ -418,7 +395,7 @@ class BottlesRunner:
         '''
         Remove the entry from the download manager
         '''
-        download_entry.destroy()
+        download_entry.remove()
 
         '''
         Update components
@@ -459,16 +436,10 @@ class BottlesRunner:
         '''
         Add a new entry to the download manager
         '''
-        download_entry = BottlesDownloadEntry(dependency[0], stoppable=False)
-        self.window.box_downloads.add(download_entry)
+        download_entry = self.download_manager.new_download(dependency[0], False)
 
         logging.info(_("Installing dependency: [{0}] in bottle: [{1}].").format(
             dependency[0], configuration.get("Name")))
-
-        '''
-        Run the progressbar update async
-        '''
-        a = RunAsync('pulse', download_entry.pulse);a.start()
 
         '''
         Get dependency manifest from repository
@@ -529,7 +500,7 @@ class BottlesRunner:
         '''
         Remove the entry from the download manager
         '''
-        download_entry.destroy()
+        download_entry.remove()
 
         '''
         Hide installation button and show remove button
@@ -823,16 +794,14 @@ class BottlesRunner:
         '''
         Define reusable variables
         '''
-        buffer_output = self.window.page_create.buffer_output
-        iter = buffer_output.get_end_iter()
+        update_output = self.window.page_create.update_output
 
         '''
         Check if there is at least one runner and dxvk installed, else
         install latest releases
         '''
         if 0 in [len(self.runners_available), len(self.dxvk_available)]:
-            buffer_output.insert(iter, _("Runner and/or dxvk not found, installing latest version …\n"))
-            iter = buffer_output.get_end_iter()
+            update_output( _("Runner and/or dxvk not found, installing latest version …"))
             self.window.page_preferences.set_dummy_runner()
             self.window.show_runners_preferences_view()
             return self.async_checks()
@@ -860,8 +829,7 @@ class BottlesRunner:
         '''
         a = RunAsync('pulse', self.window.page_create.pulse);a.start()
 
-        buffer_output.insert(iter, _("The wine configuration is being updated …\n"))
-        iter = buffer_output.get_end_iter()
+        update_output( _("The wine configuration is being updated …"))
 
         '''
         Prepare and execute the command
@@ -880,15 +848,13 @@ class BottlesRunner:
                                    stderr=subprocess.STDOUT)
         process_output = process.stdout.read().decode("utf-8")
 
-        buffer_output.insert(iter, process_output)
-        iter = buffer_output.get_end_iter()
+        update_output( process_output)
 
         '''
         Generate bottle configuration file
         '''
         logging.info(_("Generating Bottle configuration file …"))
-        buffer_output.insert(iter, _("\nGenerating Bottle configuration file …"))
-        iter = buffer_output.get_end_iter()
+        update_output( _("Generating Bottle configuration file …"))
 
         configuration = self.sample_configuration
         configuration["Name"] = bottle_name
@@ -901,15 +867,13 @@ class BottlesRunner:
         configuration["Environment"] = environment
         configuration["Creation_Date"] = str(datetime.now())
         configuration["Update_Date"] = str(datetime.now())
-
+        if versioning: configuration["Versioning"] = True
         '''
         Apply environment configuration
         '''
         logging.info(
             _("Applying environment: [{0}] …").format(environment))
-        buffer_output.insert(
-            iter, _("\nApplying environment: {0} …").format(environment))
-        iter = buffer_output.get_end_iter()
+        update_output(_("Applying environment: {0} …").format(environment))
         if environment != "Custom":
             environment_parameters = self.environments[environment.lower()]["Parameters"]
             for parameter in configuration["Parameters"]:
@@ -929,20 +893,24 @@ class BottlesRunner:
         '''
         if configuration["Parameters"]["dxvk"]:
             logging.info(_("Installing dxvk …"))
-            buffer_output.insert(iter, _("\nInstalling dxvk …"))
-            iter = buffer_output.get_end_iter()
+            update_output( _("Installing dxvk …"))
             self.install_dxvk(configuration)
+
+        '''
+        Create first state if versioning enabled
+        '''
+        if versioning:
+            logging.info(_("Creating versioning state 0 …"))
+            update_output( _("Creating versioning state 0 …"))
+            self.create_bottle_state(configuration)
 
         '''
         Set the list button visible and set UI to usable again
         '''
         logging.info(_("Bottle: [{0}] successfully created!").format(
             bottle_name))
-        buffer_output.insert_markup(
-            iter,
-            "\n<span foreground='green'>%s</span>" % _("Your new bottle: {0} is now ready!").format(
-                bottle_name), -1)
-        iter = buffer_output.get_end_iter()
+        update_output(_("Your new bottle: {0} is now ready!").format(
+            bottle_name))
 
         self.window.page_create.set_status("created")
         self.window.set_usable_ui(True)
@@ -1608,16 +1576,9 @@ class BottlesRunner:
         '''
         Add a new entry to the download manager
         '''
-        download_entry = BottlesDownloadEntry(
-            file_name="Generating state %s for %s" % (state_id,
-                                                      configuration.get("Name")),
-            stoppable=False)
-        self.window.box_downloads.add(download_entry)
-
-        '''
-        Run the progressbar update async
-        '''
-        a = RunAsync('pulse', download_entry.pulse);a.start()
+        download_entry = self.download_manager.new_download(
+            _("Generating state {0} for {1}").format(
+                state_id, configuration.get("Name")), False)
 
         '''
         Create new state structure path and save index.json in root
@@ -1681,7 +1642,7 @@ class BottlesRunner:
         '''
         Remove the entry from the download manager
         '''
-        download_entry.destroy()
+        download_entry.remove()
 
         self.window.page_details.update_states()
 
@@ -1745,14 +1706,8 @@ class BottlesRunner:
             '''
             Add a new entry to the download manager
             '''
-            download_entry = BottlesDownloadEntry(
-                file_name="Backup %s" %configuration.get("Name"),stoppable=False)
-            self.window.box_downloads.add(download_entry)
-
-            '''
-            Run the progressbar update async
-            '''
-            a = RunAsync('pulse', download_entry.pulse);a.start()
+            download_entry = self.download_manager.new_download(
+                _("Backup {0}").format(configuration.get("Name")), False)
 
             bottle_path = self.get_bottle_path(configuration)
 
@@ -1772,7 +1727,7 @@ class BottlesRunner:
             '''
             Remove the entry from the download manager
             '''
-            download_entry.destroy()
+            download_entry.remove()
 
         if backup_created:
             logging.info(_("Backup saved in path: {0}.").format(path))
@@ -1818,10 +1773,8 @@ class BottlesRunner:
             '''
             Add a new entry to the download manager
             '''
-            download_entry = BottlesDownloadEntry(
-                file_name=_("Importing backup: {0}").format(backup_name),
-                stoppable=False)
-            self.window.box_downloads.add(download_entry)
+            download_entry = self.download_manager.new_download(
+                _("Importing backup: {0}").format(backup_name), False)
 
             try:
                 archive = tarfile.open(path)
@@ -1833,7 +1786,7 @@ class BottlesRunner:
             '''
             Remove the entry from the download manager
             '''
-            download_entry.destroy()
+            download_entry.remove()
 
         if backup_imported:
             logging.info(
