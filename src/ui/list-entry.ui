@@ -199,26 +199,57 @@
               </packing>
             </child>
             <child>
-              <object class="GtkImage" id="img_versioning">
+              <!-- n-columns=2 n-rows=1 -->
+              <object class="GtkGrid" id="grid_versioning">
                 <property name="can-focus">False</property>
-                <property name="tooltip-text" translatable="yes">Versioning is active in this bottle.</property>
+                <property name="tooltip-text" translatable="yes">Versioning enabled for this bottle</property>
+                <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="margin-left">5</property>
-                <property name="margin-right">5</property>
                 <property name="margin-start">5</property>
-                <property name="margin-end">5</property>
                 <property name="margin-top">5</property>
-                <property name="icon-name">view-wrapped-symbolic</property>
-                <property name="icon_size">1</property>
+                <child>
+                  <object class="GtkImage" id="img_versioning">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Versioning is active in this bottle.</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="margin-top">1</property>
+                    <property name="pixel-size">14</property>
+                    <property name="icon-name">view-wrapped-symbolic</property>
+                    <property name="icon_size">1</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_state">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="margin-start">1</property>
+                    <property name="label" translatable="yes">0</property>
+                    <attributes>
+                      <attribute name="weight" value="medium"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
+                  </packing>
+                </child>
                 <style>
                   <class name="tag"/>
-                  <class name="tag-img"/>
+                  <class name="tag-grid"/>
                   <class name="tag-versioning"/>
                 </style>
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
+                <property name="fill">False</property>
                 <property name="position">1</property>
               </packing>
             </child>
