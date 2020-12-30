@@ -1659,6 +1659,9 @@ class BottlesRunner:
         a = RunAsync('create_bottle_state', self.async_create_bottle_state, [
             configuration, comment]);a.start()
 
+    def set_bottle_state(self, configuration, state_id):
+        print(state_id)
+
     def list_bottle_states(self, configuration):
         bottle_path = self.get_bottle_path(configuration)
 
@@ -1678,9 +1681,6 @@ class BottlesRunner:
                 configuration.get("Name")))
 
             return {}
-
-    def set_bottle_state(self, configuration):
-        return
 
     '''
     Methods for create/import backup bottles
