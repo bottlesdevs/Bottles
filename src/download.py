@@ -19,6 +19,8 @@ from gi.repository import Gtk
 
 import time
 
+from .utils import RunAsync
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/download-entry.ui')
 class BottlesDownloadEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDownloadEntry'
@@ -46,6 +48,12 @@ class BottlesDownloadEntry(Gtk.Box):
 
         if not stoppable: self.btn_cancel.hide()
 
+        '''
+        Run the progressbar update async
+        '''
+        self.pulse_job = RunAsync('pulse', self.pulse)
+        self.pulse_job.start()
+
     '''
     Make the progressbar pulse every 1 second
     '''
@@ -53,3 +61,25 @@ class BottlesDownloadEntry(Gtk.Box):
         while True:
             time.sleep(1)
             self.progressbar_download.pulse()
+
+    def remove(self):
+        # TODO: stop thread
+        self.destroy()
+
+class DownloadManager():
+
+    def __init__(self, window, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Common variables
+        '''
+        self.window = window
+        self.box_downloads = window.box_downloads
+
+    def new_download(self, file_name, stoppable=True):
+        download_entry = BottlesDownloadEntry(file_name, stoppable)
+        self.window.box_downloads.add(download_entry)
+
+        return download_entry
+    
