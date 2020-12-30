@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 
-import webbrowser
+import webbrowser, re
 
 from .dialog import BottlesDialog
 
@@ -290,6 +290,8 @@ class BottlesDetails(Gtk.Box):
     progress_disk = Gtk.Template.Child()
     entry_environment_variables = Gtk.Template.Child()
     entry_overrides = Gtk.Template.Child()
+    entry_state_comment = Gtk.Template.Child()
+    pop_state = Gtk.Template.Child()
 
     def __init__(self, window, configuration={}, **kwargs):
         super().__init__(**kwargs)
@@ -346,6 +348,7 @@ class BottlesDetails(Gtk.Box):
         self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
         self.combo_runner.connect('changed', self.set_runner)
         self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
+        self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
 
     def set_configuration(self, configuration):
         self.configuration = configuration
@@ -633,10 +636,28 @@ class BottlesDetails(Gtk.Box):
         self.runner.send_status(self.configuration, "kill")
 
     '''
+    Check for special characters in state comment
+    '''
+    def check_entry_state_comment(self, widget, event_key):
+        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
+        comment = widget.get_text()
+
+        if(regex.search(comment) == None):
+            self.btn_add_state.set_sensitive(True)
+            widget.set_icon_from_icon_name(1, "")
+        else:
+            self.btn_add_state.set_sensitive(False)
+            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+
+    '''
     Method for states
     '''
     def add_state(self, widget):
-        self.runner.create_bottle_state(self.configuration)
+        comment = self.entry_state_comment.get_text()
+        if comment != "":
+            self.runner.create_bottle_state(self.configuration, comment)
+            self.entry_state_comment.set_text("")
+            self.pop_state.popdown()
 
     '''
     Method for backups

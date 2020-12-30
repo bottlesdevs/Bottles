@@ -868,6 +868,7 @@ class BottlesRunner:
         configuration["Creation_Date"] = str(datetime.now())
         configuration["Update_Date"] = str(datetime.now())
         if versioning: configuration["Versioning"] = True
+
         '''
         Apply environment configuration
         '''
@@ -902,7 +903,7 @@ class BottlesRunner:
         if versioning:
             logging.info(_("Creating versioning state 0 …"))
             update_output( _("Creating versioning state 0 …"))
-            self.create_bottle_state(configuration)
+            self.async_create_bottle_state([configuration, "First boot"])
 
         '''
         Set the list button visible and set UI to usable again
@@ -1494,7 +1495,7 @@ class BottlesRunner:
     This method create a new state based on indexed bottle files
     '''
     def async_create_bottle_state(self, args):
-        configuration = args[0]
+        configuration, comment = args
 
         bottle_path = self.get_bottle_path(configuration)
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
@@ -1605,7 +1606,7 @@ class BottlesRunner:
         '''
         new_state = {
 			"Creation_Date": str(datetime.now()),
-			"Comment": "NOT_PROVIDED",
+			"Comment": comment,
 			# "Files": [file["file"] for file in current_index["Files"]]
 		}
 
@@ -1644,11 +1645,19 @@ class BottlesRunner:
         '''
         download_entry.remove()
 
+        '''
+        Update states
+        '''
         self.window.page_details.update_states()
 
-    def create_bottle_state(self, configuration):
+        '''
+        Update bottles
+        '''
+        self.update_bottles()
+
+    def create_bottle_state(self, configuration, comment="NOT_PROVIDED"):
         a = RunAsync('create_bottle_state', self.async_create_bottle_state, [
-            configuration]);a.start()
+            configuration, comment]);a.start()
 
     def list_bottle_states(self, configuration):
         bottle_path = self.get_bottle_path(configuration)
