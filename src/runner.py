@@ -731,9 +731,6 @@ class BottlesRunner:
                 configuration_file.close()
 
                 missing_keys = self.sample_configuration.keys() - configuration_file_json.keys()
-                '''
-                TODO: Check if the loop is correct
-                '''
                 for key in missing_keys:
                     logging.warning(
                         _("Key: [{0}] not in bottle: [{1}] configuration, updating.").format(
@@ -751,19 +748,15 @@ class BottlesRunner:
                                               key,
                                               self.sample_configuration["Parameters"][key],
                                               scope="Parameters")
+                self.local_bottles[bottle_name_path] = configuration_file_json
 
-            except:
-                configuration_file_json = self.sample_configuration
-                configuration_file_json["Broken"] = True
-                configuration_file_json["Name"] = bottle_name_path
-                configuration_file_json["Environment"] = "Undefined"
-
-
-            self.local_bottles[bottle_name_path] = configuration_file_json
-            try:
-                del configuration_file_json["Broken"]
-            except:
-                pass
+            except FileNotFoundError:
+                new_configuration_json = self.sample_configuration
+                new_configuration_json["Broken"] = True
+                new_configuration_json["Name"] = bottle_name_path
+                new_configuration_json["Environment"] = "Undefined"
+                self.local_bottles[bottle_name_path] = new_configuration_json
+                continue
 
 
         if len(self.local_bottles) > 0 and not silent:
