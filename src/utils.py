@@ -15,7 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging, socket, subprocess, hashlib
+import sys, logging, socket, subprocess, trace, time, hashlib, threading
+
+from threading import Thread
 
 '''
 Set the default logging level
@@ -126,4 +128,21 @@ class UtilsFiles():
         except:
             return False
 
+class RunAsync(Thread):
 
+    def __init__(self, task_name, task_func, task_args=False):
+        Thread.__init__(self)
+
+        self.killed = False
+
+        self.task_name = task_name
+        self.task_func = task_func
+        self.task_args = task_args
+
+    def run(self):
+        logging.debug('Running async job [{0}].'.format(self.task_name))
+
+        if not self.task_args:
+            self.task_func()
+        else:
+            self.task_func(self.task_args)

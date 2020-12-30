@@ -29,7 +29,7 @@ class BottlesCreate(Gtk.Box):
     '''
     progressbar_create = Gtk.Template.Child()
     textview_output = Gtk.Template.Child()
-    buffer_output = Gtk.Template.Child()
+    label_output = Gtk.Template.Child()
     btn_list = Gtk.Template.Child()
     box_created = Gtk.Template.Child()
     label_creating = Gtk.Template.Child()
@@ -53,6 +53,11 @@ class BottlesCreate(Gtk.Box):
         '''
         self.btn_list.connect('pressed', self.show_details)
 
+    def update_output(self, text):
+        current_text = self.label_output.get_text()
+        text = "{0}{1}\n\n".format(current_text, text)
+        self.label_output.set_text(text)
+
     '''
     Set widgets visibility status
     '''
@@ -61,7 +66,7 @@ class BottlesCreate(Gtk.Box):
             self.btn_list.set_visible(False)
             self.box_created.set_visible(False)
             self.label_creating.set_visible(True)
-            self.buffer_output.set_text("")
+            self.label_output.set_text("")
         elif status == "created":
             self.btn_list.set_visible(True)
             self.box_created.set_visible(True)
