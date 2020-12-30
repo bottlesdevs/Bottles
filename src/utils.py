@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging, socket, subprocess
+import logging, socket, subprocess, hashlib
 
 '''
 Set the default logging level
@@ -112,4 +112,18 @@ class UtilsLogger(logging.getLoggerClass()):
 
     def critical(self, message):
         self.root.critical(self.color("critical", message))
+
+class UtilsFiles():
+
+    def get_checksum(self, file):
+        checksum = hashlib.md5()
+
+        try:
+            with open(file, "rb") as f:
+                for chunk in iter(lambda: f.read(4096), b""):
+                    checksum.update(chunk)
+            return checksum.hexdigest().lower()
+        except:
+            return False
+
 
