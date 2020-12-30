@@ -1674,6 +1674,11 @@ class BottlesRunner:
         subprocess.Popen(command, shell=True)
 
         '''
+        Update State in bottle configuration
+        '''
+        self.update_configuration(configuration, "State", state_id)
+
+        '''
         Remove the entry from the download manager
         '''
         download_entry.destroy()
