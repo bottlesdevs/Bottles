@@ -760,6 +760,11 @@ class BottlesRunner:
 
 
             self.local_bottles[bottle_name_path] = configuration_file_json
+            try:
+                del configuration_file_json["Broken"]
+            except:
+                pass
+
 
         if len(self.local_bottles) > 0 and not silent:
             logging.info(_("Bottles found: %s") % ', '.join(self.local_bottles))
@@ -963,7 +968,7 @@ class BottlesRunner:
     Get latest installed runner
     '''
     def get_latest_runner(self, runner_type:RunnerType="wine") -> list:
-        if runner_type == "wine":
+        if runner_type in ["", "wine"]:
             latest_runner = [idx for idx in self.runners_available if idx.lower().startswith("lutris")][0]
         else:
             latest_runner = [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
