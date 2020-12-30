@@ -49,16 +49,24 @@ class BottlesStateEntry(Gtk.Box):
         '''
         self.window = window
         self.runner = window.runner
+        self.state = state
         self.state_name = "State: {0}".format(state[0])
-        self.state = state[1]
         self.configuration = configuration
 
         '''
         Set runner name to the label
         '''
         self.label_id.set_text(self.state_name)
-        self.label_comment.set_text(self.state.get("Comment"))
-        self.label_creation_date.set_text(self.state.get("Creation_Date"))
+        self.label_comment.set_text(self.state[1].get("Comment"))
+        self.label_creation_date.set_text(self.state[1].get("Creation_Date"))
+
+        '''
+        Connect signals to widgets
+        '''
+        self.btn_restore.connect('pressed', self.set_state)
+
+    def set_state(self, widget):
+        self.runner.set_bottle_state(self.configuration, self.state[0])
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class BottlesProgramEntry(Gtk.Box):
