@@ -1525,7 +1525,9 @@ class BottlesRunner:
     '''
     This method create a new state based on indexed bottle files
     '''
-    def create_bottle_state(self, configuration):
+    def async_create_bottle_state(self, args):
+        configuration = args[0]
+
         bottle_path = self.get_bottle_path(configuration)
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
 
@@ -1604,6 +1606,20 @@ class BottlesRunner:
         state_path = "%s/states/%s" % (bottle_path, state_id)
 
         '''
+        Add a new entry to the download manager
+        '''
+        download_entry = BottlesDownloadEntry(
+            file_name="Generating state %s for %s" % (state_id,
+                                                      configuration.get("Name")),
+            stoppable=False)
+        self.window.box_downloads.add(download_entry)
+
+        '''
+        Run the progressbar update async
+        '''
+        a = RunAsync('pulse', download_entry.pulse);a.start()
+
+        '''
         Create new state structure path and save index.json in root
         '''
         os.makedirs("%s/states/%s/windows" % (bottle_path, state_id), exist_ok=True)
@@ -1656,6 +1672,17 @@ class BottlesRunner:
             json.dump(current_index, current_index_file, indent=4)
             current_index_file.close()
         subprocess.Popen(command, shell=True)
+
+        '''
+        Remove the entry from the download manager
+        '''
+        download_entry.destroy()
+
+        self.window.page_details.update_states()
+
+    def create_bottle_state(self, configuration):
+        a = RunAsync('create_bottle_state', self.async_create_bottle_state, [
+            configuration]);a.start()
 
     def list_bottle_states(self, configuration):
         bottle_path = self.get_bottle_path(configuration)

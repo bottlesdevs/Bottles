@@ -44,8 +44,9 @@ class BottlesListEntry(Gtk.Box):
     btn_run_executable = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
+    label_state = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
-    img_versioning = Gtk.Template.Child()
+    grid_versioning = Gtk.Template.Child()
 
     def __init__(self, window, configuration, arg_executable, **kwargs):
         super().__init__(**kwargs)
@@ -87,7 +88,8 @@ class BottlesListEntry(Gtk.Box):
         '''
         Populate widgets with data
         '''
-        self.img_versioning.set_visible(self.configuration.get("Versioning"))
+        self.grid_versioning.set_visible(self.configuration.get("Versioning"))
+        self.label_state.set_text(str(self.configuration.get("State")))
         self.label_name.set_text(self.configuration.get("Name"))
         self.label_environment.set_text(self.configuration.get("Environment"))
         self.label_environment_context.add_class(
