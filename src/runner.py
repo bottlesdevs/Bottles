@@ -1565,7 +1565,7 @@ class BottlesRunner:
             additions = set(current_temp_files) - set(state_temp_files)
             removed = set(state_temp_files) - set(current_temp_files)
 
-            new_index = {
+            new_state_index = {
                 "Update_Date": str(datetime.now()),
                 "Additions": [],
                 "Removed": [],
@@ -1573,27 +1573,27 @@ class BottlesRunner:
             }
 
             for file in additions:
-                new_index["Additions"].append({
+                new_state_index["Additions"].append({
                     "file": file[0],
                     "checksum": file[1]
                 })
 
             for file in removed:
-                new_index["Removed"].append({
+                new_state_index["Removed"].append({
                     "file": file[0],
                     "checksum": file[1]
                 })
 
             for file in current_index["Files"]:
                 if file["checksum"] not in state_temp_checksums:
-                    new_index["Changes"].append({
+                    new_state_index["Changes"].append({
                         "file": file["file"],
                         "checksum": file["checksum"]
                     })
 
             state_id = str(len(states_file_json.get("States")))
         else:
-            new_index = {
+            new_state_index = {
                 "Update_Date": str(datetime.now()),
                 "Additions": current_index["Files"],
                 "Removed": [],
@@ -1609,7 +1609,7 @@ class BottlesRunner:
         os.makedirs("%s/states/%s/windows" % (bottle_path, state_id), exist_ok=True)
         with open("%s/index.json" % (state_path),
                   "w") as state_index_file:
-            json.dump(new_index, state_index_file, indent=4)
+            json.dump(new_state_index, state_index_file, indent=4)
             state_index_file.close()
 
         '''
