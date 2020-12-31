@@ -28,6 +28,7 @@ class BottlesRunnerEntry(Gtk.Box):
     label_name = Gtk.Template.Child()
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
+    spinner_installation = Gtk.Template.Child()
 
     def __init__(self, window, runner_name, installable=False, **kwargs):
         super().__init__(**kwargs)
@@ -72,6 +73,8 @@ class BottlesRunnerEntry(Gtk.Box):
             self.btn_browse.set_visible(False)
 
     def download_runner(self, widget):
+        self.btn_download.set_visible(False)
+        self.spinner_installation.set_visible(True)
         self.runner.install_component(self.runner_type,
                                       self.runner_tag,
                                       self.runner_file)
@@ -91,6 +94,7 @@ class BottlesDxvkEntry(Gtk.Box):
     label_name = Gtk.Template.Child()
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
+    spinner_installation = Gtk.Template.Child()
 
     def __init__(self, window, dxvk_name, installable=False, **kwargs):
         super().__init__(**kwargs)
@@ -133,6 +137,8 @@ class BottlesDxvkEntry(Gtk.Box):
                                       self.dxvk_file)
 
     def run_browse(self, widget):
+        self.btn_download.set_visible(False)
+        self.spinner_installation.set_visible(True)
         self.runner.open_filemanager(path_type="dxvk",
                                      dxvk=self.dxvk_name)
 
