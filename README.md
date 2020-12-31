@@ -58,6 +58,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Backup bottles as configuration file or full archive
 - Import backup archive
 - Importer from Bottles v1 (and other wineprefix manager)
+- Bottles versioning (experimental)
 - .. and much more that you can find by installing Bottles!
 
 ### Work in progress
@@ -121,6 +122,13 @@ sudo ninja install
 cd build
 sudo ninja uninstall
 ```
+
+## Shortcuts
+|Shortcut|Action
+|:----:|:----:|
+| `Ctrl+Q` | Close Bottles |
+| `Ctrl+R` | Reload the Bottles list |
+| `F1` | Go to the documentation |
 
 ## Common issues
 There are no other problems. Are we good? 👀
