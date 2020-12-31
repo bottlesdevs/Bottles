@@ -1524,6 +1524,8 @@ class BottlesRunner:
     '''
     def async_create_bottle_state(self, args:list) -> bool:
         configuration, comment = args
+        logging.info("Creating new state for bottle {0}: …".format(
+            configuration.get("Name")))
 
         bottle_path = self.get_bottle_path(configuration)
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
@@ -1531,17 +1533,7 @@ class BottlesRunner:
         '''
         List all current bottle files in `current_index`
         '''
-        current_index = {
-            "Update_Date": str(datetime.now()),
-            "Files":[]
-        }
-        for file in glob("%s/drive_c/**" % bottle_path, recursive=True):
-            if not os.path.isfile(file): continue
-            if file[len(bottle_path)+9:].split("/")[0] in ["users"]: continue
-
-            current_index["Files"].append({
-                "file": file[len(bottle_path)+9:],
-                "checksum": UtilsFiles().get_checksum(file)})
+        current_index = self.get_bottle_index(configuration)
 
         '''
         If this is not the first state, compare current files with state files
@@ -1615,10 +1607,20 @@ class BottlesRunner:
         '''
         try:
             os.makedirs("%s/states/%s/drive_c" % (bottle_path, state_id), exist_ok=True)
+            '''
+            Create a index.json with all edits in the state
+            '''
             with open("%s/index.json" % (state_path),
                       "w") as state_index_file:
                 json.dump(new_state_index, state_index_file, indent=4)
                 state_index_file.close()
+            '''
+            Create a files.json with all files in the bottle
+            '''
+            with open("%s/files.json" % (state_path),
+                      "w") as state_files_file:
+                json.dump(current_index, state_files_file, indent=4)
+                state_files_file.close()
         except:
             return False
 
@@ -1679,6 +1681,8 @@ class BottlesRunner:
         '''
         self.update_configuration(configuration, "State", state_id)
 
+        logging.info("New state [{0}] created successfully!".format(state_id))
+
         '''
         Remove the entry from the download manager
         '''
@@ -1699,27 +1703,116 @@ class BottlesRunner:
     def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented") -> None:
         RunAsync(self.async_create_bottle_state, None, [configuration, comment])
 
-    def get_bottle_state_index(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
+    def get_bottle_state_edits(self, configuration:BottleConfig, state_id:str) -> dict:
         bottle_path = self.get_bottle_path(configuration)
 
         try:
             file = open('%s/states/%s/index.json' % (bottle_path, state_id))
-            index = file.read() if plain else json.loads(url.read())
+            index = json.loads(file.read())
             file.close()
             return index
         except:
             return {}
 
+    def get_bottle_state_files(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
+        bottle_path = self.get_bottle_path(configuration)
+
+        try:
+            file = open('%s/states/%s/files.json' % (bottle_path, state_id))
+            files = file.read() if plain else json.loads(file.read())
+            file.close()
+            return files
+        except:
+            return {}
+
+    def get_bottle_index(self, configuration:BottleConfig):
+        bottle_path = self.get_bottle_path(configuration)
+
+        current_index = {
+            "Update_Date": str(datetime.now()),
+            "Files":[]
+        }
+        for file in glob("%s/drive_c/**" % bottle_path, recursive=True):
+            if not os.path.isfile(file): continue
+            if file[len(bottle_path)+9:].split("/")[0] in ["users"]: continue
+
+            current_index["Files"].append({
+                "file": file[len(bottle_path)+9:],
+                "checksum": UtilsFiles().get_checksum(file)})
+        return current_index
+
     def set_bottle_state(self, configuration:BottleConfig, state_id:str) -> bool:
-        state_index = self.get_bottle_state_index(configuration, state_id)
-        # TODO: index current files
-        # TODO: compare current with state
-        # TODO: restore differences
-        # TODO: update State in bottle configuration
-        # TODO: delete states > then selected
+        bottle_path = self.get_bottle_path(configuration)
 
-        print(state_index)
+        logging.info(_("Restoring to state: [{0}]").format(state_id))
 
+        bottle_index = self.get_bottle_index(configuration)
+        state_index = self.get_bottle_state_files(configuration, state_id)
+        state_edits = self.get_bottle_state_edits(configuration, state_id)
+
+        search_sources = list(range(int(state_id)+1))
+        search_sources.reverse()
+
+        '''
+        Check for files to be removed because not in the target state
+        Check for files with different checksum compared to the target state one
+        '''
+        remove_files = []
+        edit_files = []
+        for file in bottle_index.get("Files"):
+            if file["file"] not in [file["file"] for file in state_index.get("Files")]:
+                remove_files.append(file)
+            elif file["checksum"] not in [file["checksum"] for file in state_index.get("Files")]:
+                edit_files.append(file)
+        logging.info(_("[{0}] files to remove.").format(len(remove_files)))
+        logging.info(_("[{0}] files to replace.").format(len(edit_files)))
+
+        '''
+        Check for files to be added because not present but in the target state
+        '''
+        add_files = []
+        for file in state_index.get("Files"):
+            if file["file"] not in [file["file"] for file in bottle_index.get("Files")]:
+                add_files.append(file)
+        logging.info(_("[{0}] files to add.").format(len(add_files)))
+
+        '''
+        Perform file updates
+        '''
+        for file in remove_files:
+            os.remove("%s/drive_c/%s" % (bottle_path, file["file"]))
+
+        for file in add_files:
+            for i in search_sources:
+                source = "%s/states/%s/drive_c/%s" % (bottle_path, str(i), file["file"])
+                if os.path.isfile(source): break
+            target = "%s/drive_c/%s" % (bottle_path, file["file"])
+            shutil.copyfile(source, target)
+
+        for file in edit_files:
+            for i in search_sources:
+                source = "%s/states/%s/drive_c/%s" % (bottle_path, str(i), file["file"])
+                if os.path.isfile(source):
+                    checksum = UtilsFiles().get_checksum(source)
+                    if file["checksum"] == checksum: break
+            target = "%s/drive_c/%s" % (bottle_path, file["file"])
+            shutil.copyfile(source, target)
+
+        '''
+        Update State in bottle configuration
+        '''
+        self.update_configuration(configuration, "State", state_id)
+
+        '''
+        Update states
+        '''
+        self.window.page_details.update_states()
+
+        '''
+        Update bottles
+        '''
+        time.sleep(2)
+        self.update_bottles()
         return True
 
     def list_bottle_states(self, configuration:BottleConfig) -> dict:
