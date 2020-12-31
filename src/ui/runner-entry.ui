@@ -44,6 +44,23 @@
       </packing>
     </child>
     <child>
+      <object class="GtkSpinner" id="spinner_installation">
+        <property name="can-focus">False</property>
+        <property name="tooltip-text" translatable="yes">By downloading and installing, the page will change automatically when finished.</property>
+        <property name="margin-start">10</property>
+        <property name="margin-end">10</property>
+        <property name="margin-top">8</property>
+        <property name="margin-bottom">8</property>
+        <property name="active">True</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack-type">end</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
       <object class="GtkButton" id="btn_browse">
         <property name="visible">True</property>
         <property name="can-focus">True</property>

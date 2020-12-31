@@ -1198,18 +1198,14 @@ class BottlesRunner:
     def run_executable(self, configuration:BottleConfig, file_path:str, arguments:str=False) -> None:
         logging.info(_("Running an executable on the wineprefix …"))
 
-        '''
-        Check if for .mis then execute with `msiexec` tool
-        '''
         if "msi" in file_path.split("."):
             command = "msiexec /i '%s'" % file_path
         else:
             command = "'%s'" % file_path
 
-        if arguments:
-            command = "%s %s" % (command, arguments)
+        if arguments: command = "%s %s" % (command, arguments)
 
-        self.run_command(configuration, command)
+        RunAsync(self.run_command, None, configuration, command)
 
     def run_wineboot(self, configuration:BottleConfig) -> None:
         logging.info(_("Running wineboot on the wineprefix …"))
