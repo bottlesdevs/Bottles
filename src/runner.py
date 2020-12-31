@@ -1705,8 +1705,28 @@ class BottlesRunner:
         a = RunAsync('create_bottle_state', self.async_create_bottle_state, [
             configuration, comment]);a.start()
 
+    def get_bottle_state_index(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
+        bottle_path = self.get_bottle_path(configuration)
+
+        try:
+            state_file = open('%s/states/%s/index.json' % (bottle_path, state_id))
+            if plain:
+                state_file_index = state_file.read()
+            else:
+                state_file_index = json.loads(url.read())
+            state_file.close()
+            return state_file_index
+        except:
+            return {}
+
     def set_bottle_state(self, configuration:BottleConfig, state_id:str) -> bool:
-        print(state_id)
+        state_index = self.get_bottle_state_index(configuration, state_id)
+        # TODO: restore state files
+        # TODO: update State in bottle configuration
+        # TODO: delete states > then selected
+
+        print(state_index)
+
         return True
 
     def list_bottle_states(self, configuration:BottleConfig) -> dict:
