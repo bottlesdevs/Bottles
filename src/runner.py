@@ -874,6 +874,8 @@ class BottlesRunner:
                                    stderr=subprocess.STDOUT)
         process_output = process.stdout.read().decode("utf-8")
 
+        time.sleep(1)
+
         update_output( process_output)
 
         '''
@@ -907,6 +909,8 @@ class BottlesRunner:
                 if parameter in environment_parameters:
                     configuration["Parameters"][parameter] = environment_parameters[parameter]
 
+        time.sleep(1)
+
         '''
         Save bottle configuration
         '''
@@ -915,6 +919,8 @@ class BottlesRunner:
             json.dump(configuration, configuration_file, indent=4)
             configuration_file.close()
 
+        time.sleep(5)
+
         '''
         Perform dxvk installation if configured
         '''
@@ -922,6 +928,8 @@ class BottlesRunner:
             logging.info(_("Installing dxvk …"))
             update_output( _("Installing dxvk …"))
             self.install_dxvk(configuration)
+
+        time.sleep(1)
 
         '''
         Create first state if versioning enabled
@@ -1634,12 +1642,14 @@ class BottlesRunner:
         Copy indexed files in the new state path
         '''
         for file in current_index["Files"]:
-            command = "mkdir -p '{0}/drive_c/{1}' && rsync '{2}/drive_c/{3}' '{0}/drive_c/{3}'".format(
+            os.makedirs("{0}/drive_c/{1}".format(
                 state_path,
-                "/".join(file["file"].split("/")[:-1]),
-                bottle_path,
-                file["file"])
-            subprocess.Popen(command, shell=True)
+                "/".join(file["file"].split("/")[:-1])), exist_ok=True)
+            source = "{0}/drive_c/{1}".format(bottle_path, file["file"])
+            target = "{0}/drive_c/{1}".format(state_path, file["file"])
+            shutil.copyfile(source, target)
+
+        time.sleep(5)
 
         '''
         Update the states.json file in /states root
@@ -1698,6 +1708,7 @@ class BottlesRunner:
         '''
         Update bottles
         '''
+        time.sleep(2)
         self.update_bottles()
         return True
 
@@ -1718,7 +1729,9 @@ class BottlesRunner:
 
     def set_bottle_state(self, configuration:BottleConfig, state_id:str) -> bool:
         state_index = self.get_bottle_state_index(configuration, state_id)
-        # TODO: restore state files
+        # TODO: index current files
+        # TODO: compare current with state
+        # TODO: restore differences
         # TODO: update State in bottle configuration
         # TODO: delete states > then selected
 
