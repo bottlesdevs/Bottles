@@ -1543,8 +1543,9 @@ class BottlesRunner:
             "Update_Date": str(datetime.now()),
             "Files":[]
         }
-        for file in glob("%s/drive_c/windows/**" % bottle_path, recursive=True):
+        for file in glob("%s/drive_c/**" % bottle_path, recursive=True):
             if not os.path.isfile(file): continue
+            if file[len(bottle_path)+9:].split("/")[0] in ["users"]: continue
 
             current_index["Files"].append({
                 "file": file[len(bottle_path)+9:],
@@ -1621,7 +1622,7 @@ class BottlesRunner:
         Create new state structure path and save index.json in root
         '''
         try:
-            os.makedirs("%s/states/%s/windows" % (bottle_path, state_id), exist_ok=True)
+            os.makedirs("%s/states/%s/drive_c" % (bottle_path, state_id), exist_ok=True)
             with open("%s/index.json" % (state_path),
                       "w") as state_index_file:
                 json.dump(new_state_index, state_index_file, indent=4)
@@ -1633,7 +1634,7 @@ class BottlesRunner:
         Copy indexed files in the new state path
         '''
         for file in current_index["Files"]:
-            command = "mkdir -p '{0}/{1}' && rsync '{2}/drive_c/{3}' '{0}/{3}'".format(
+            command = "mkdir -p '{0}/drive_c/{1}' && rsync '{2}/drive_c/{3}' '{0}/drive_c/{3}'".format(
                 state_path,
                 "/".join(file["file"].split("/")[:-1]),
                 bottle_path,
