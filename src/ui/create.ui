@@ -107,12 +107,19 @@
                   <object class="GtkLabel" id="label_output">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="margin-start">5</property>
-                    <property name="margin-end">5</property>
-                    <property name="margin-top">5</property>
-                    <property name="margin-bottom">5</property>
+                    <property name="hexpand">True</property>
+                    <property name="xpad">10</property>
+                    <property name="ypad">10</property>
                     <property name="wrap">True</property>
+                    <property name="selectable">True</property>
+                    <property name="xalign">0</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Monospace 10"/>
+                      <attribute name="gravity" value="east"/>
+                    </attributes>
+                    <style>
+                      <class name="terminal"/>
+                    </style>
                   </object>
                 </child>
               </object>
