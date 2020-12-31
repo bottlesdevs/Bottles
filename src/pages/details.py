@@ -66,9 +66,22 @@ class BottlesStateEntry(Gtk.Box):
         Connect signals to widgets
         '''
         self.btn_restore.connect('pressed', self.set_state)
+        self.btn_manifest.connect('pressed', self.open_index)
 
     def set_state(self, widget):
         self.runner.set_bottle_state(self.configuration, self.state[0])
+
+    def open_index(self, widget):
+        dialog_upgrade = BottlesDialog(
+            parent=self.window,
+            title=_("Index for state {0}").format(self.state[0]),
+            message=_("This is the index for {0}.").format(self.state[0]),
+            log=self.runner.get_bottle_state_index(self.configuration,
+                                                   self.state[0],
+                                                   True))
+        response = dialog_upgrade.run()
+
+        dialog_upgrade.destroy()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class BottlesProgramEntry(Gtk.Box):
