@@ -863,15 +863,9 @@ class BottlesRunner:
         '''
         Get the command output and add to the buffer
         '''
-        process = subprocess.Popen(command,
-                                   shell=True,
-                                   stdout=subprocess.PIPE,
-                                   stderr=subprocess.STDOUT)
-        process_output = process.stdout.read().decode("utf-8")
-
+        subprocess.Popen(command, shell=True).communicate()
+        update_output(_("Wine configuration updated!"))
         time.sleep(1)
-
-        update_output( process_output)
 
         '''
         Generate bottle configuration file
@@ -1153,7 +1147,7 @@ class BottlesRunner:
             dxvk_setup = "%s/%s/setup_dxvk.sh" % (self.dxvk_path, self.dxvk_available[0]),
             option = option)
 
-        return subprocess.Popen(command, shell=True)
+        return subprocess.Popen(command, shell=True).communicate()
 
     def remove_dxvk(self, configuration:BottleConfig) -> None:
         logging.info(_("Removing dxvk for bottle: [{0}].").format(
@@ -1219,39 +1213,39 @@ class BottlesRunner:
 
     def run_wineboot(self, configuration:BottleConfig) -> None:
         logging.info(_("Running wineboot on the wineprefix …"))
-        self.run_command(configuration, "wineboot -u")
+        RunAsync(self.run_command, None, configuration, "wineboot -u")
 
     def run_winecfg(self, configuration:BottleConfig) -> None:
         logging.info(_("Running winecfg on the wineprefix …"))
-        self.run_command(configuration, "winecfg")
+        RunAsync(self.run_command, None, configuration, "winecfg")
 
     def run_winetricks(self, configuration:BottleConfig) -> None:
         logging.info(_("Running winetricks on the wineprefix …"))
-        self.run_command(configuration, "winetricks")
+        RunAsync(self.run_command, None, configuration, "winetricks")
 
     def run_debug(self, configuration:BottleConfig) -> None:
         logging.info(_("Running a debug console on the wineprefix …"))
-        self.run_command(configuration, "winedbg", terminal=True)
+        RunAsync(self.run_command, None, configuration, "winedbg", True)
 
     def run_cmd(self, configuration:BottleConfig) -> None:
         logging.info(_("Running a CMD on the wineprefix …"))
-        self.run_command(configuration, "wineconsole cmd")
+        RunAsync(self.run_command, None, configuration, "wineconsole cmd")
 
     def run_taskmanager(self, configuration:BottleConfig) -> None:
         logging.info(_("Running a Task Manager on the wineprefix …"))
-        self.run_command(configuration, "taskmgr")
+        RunAsync(self.run_command, None, configuration, "taskmgr")
 
     def run_controlpanel(self, configuration:BottleConfig) -> None:
         logging.info(_("Running a Control Panel on the wineprefix …"))
-        self.run_command(configuration, "control")
+        RunAsync(self.run_command, None, configuration, "control")
 
     def run_uninstaller(self, configuration:BottleConfig) -> None:
         logging.info(_("Running an Uninstaller on the wineprefix …"))
-        self.run_command(configuration, "uninstaller")
+        RunAsync(self.run_command, None, configuration, "uninstaller")
 
     def run_regedit(self, configuration:BottleConfig) -> None:
         logging.info(_("Running a Regedit on the wineprefix …"))
-        self.run_command(configuration, "regedit")
+        RunAsync(self.run_command, None, configuration, "regedit")
 
     '''
     Run wine command in a bottle
@@ -1335,7 +1329,7 @@ class BottlesRunner:
         if terminal:
             return UtilsTerminal(command)
 
-        return subprocess.Popen(command, shell=True)
+        return subprocess.Popen(command, shell=True).communicate()
 
     '''
     Method for sending status to wineprefixes
@@ -1389,7 +1383,7 @@ class BottlesRunner:
         Prepare and execute the command
         '''
         command = "xdg-open %s" % path
-        return subprocess.Popen(command, shell=True)
+        return subprocess.Popen(command, shell=True).communicate()
 
     '''
     Methods for search and import wineprefixes from other managers
@@ -1484,7 +1478,7 @@ class BottlesRunner:
         Copy wineprefix files to the new bottle location
         '''
         command = "cp -a %s/* %s/" % (wineprefix.get("Path"), bottle_complete_path)
-        subprocess.Popen(command, shell=True)
+        subprocess.Popen(command, shell=True).communicate()
 
         '''
         Create configuration
