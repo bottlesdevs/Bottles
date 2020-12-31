@@ -15,9 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys, logging, socket, subprocess, trace, time, hashlib, threading
+import sys, logging, socket, subprocess, trace, time, hashlib, threading, traceback
 
-from threading import Thread
+from gi.repository import GLib
 
 '''
 Set the default logging level
@@ -128,21 +128,36 @@ class UtilsFiles():
         except:
             return False
 
-class RunAsync(Thread):
+class RunAsync(threading.Thread):
 
-    def __init__(self, task_name, task_func, task_args=False):
-        Thread.__init__(self)
+    def __init__(self, task_func, callback, *args, **kwargs):
+        self.source_id = None
+        self.stop_request = threading.Event()
 
-        self.killed = False
+        super(RunAsync, self).__init__(target=self.target, args=args, kwargs=kwargs)
 
-        self.task_name = task_name
         self.task_func = task_func
-        self.task_args = task_args
 
-    def run(self):
-        logging.debug('Running async job [{0}].'.format(self.task_name))
+        self.callback = callback if callback else lambda r, e: None
+        self.daemon = kwargs.pop("daemon", True)
 
-        if not self.task_args:
-            self.task_func()
-        else:
-            self.task_func(self.task_args)
+        self.start()
+
+    def target(self, *args, **kwargs):
+        result = None
+        error = None
+
+        logging.debug('Running async job [{0}].'.format(self.task_func))
+
+        try:
+            result = self.task_func(*args, **kwargs)
+        except Exception as exception:
+            logging.error(
+                "Error while running async job: {0}\nException: {1}".format(
+                    self.task_func, exception))
+            error = exception
+            _ex_type, _ex_value, trace = sys.exc_info()
+            traceback.print_tb(trace)
+
+        self.source_id = GLib.idle_add(self.callback, result, error)
+        return self.source_id
