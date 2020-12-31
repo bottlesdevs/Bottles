@@ -160,7 +160,7 @@ class BottlesRunner:
         self.fetch_dependencies()
 
     def checks(self):
-        a = RunAsync('checks', self.async_checks);a.start()
+        RunAsync(self.async_checks, None)
 
     '''
     Clear temp path
@@ -424,10 +424,7 @@ class BottlesRunner:
 
     def install_component(self, component:str,  tag:str, file:str) -> None:
         if self.utils_conn.check_connection(True):
-            a = RunAsync('install', self.async_install_component, [component,
-                                                                   tag,
-                                                                   file])
-            a.start()
+            RunAsync(self.async_install_component, None, [component, tag, file])
 
     '''
     Method for deoendency installations
@@ -534,11 +531,9 @@ class BottlesRunner:
 
     def install_dependency(self, configuration:BottleConfig, dependency:list, widget:Gtk.Widget) -> None:
         if self.utils_conn.check_connection(True):
-            a = RunAsync('install_dependency',
-                         self.async_install_dependency, [configuration,
-                                                         dependency,
-                                                         widget])
-            a.start()
+            RunAsync(self.async_install_dependency, None, [configuration,
+                                                           dependency,
+                                                           widget])
 
     def remove_dependency(self, configuration:BottleConfig, dependency:list, widget:Gtk.Widget) -> None:
         logging.info(
@@ -853,7 +848,7 @@ class BottlesRunner:
         '''
         Run the progressbar update async
         '''
-        a = RunAsync('pulse', self.window.page_create.pulse);a.start()
+        RunAsync(self.window.page_create.pulse, None)
 
         update_output( _("The wine configuration is being updated …"))
 
@@ -958,12 +953,11 @@ class BottlesRunner:
         self.check_bottles()
 
     def create_bottle(self, name, environment:str, path:str=False, runner:RunnerName=False, versioning:bool=False) -> None:
-        a = RunAsync('create', self.async_create_bottle, [name,
-                                                          environment,
-                                                          path,
-                                                          runner,
-                                                          versioning])
-        a.start()
+        RunAsync(self.async_create_bottle, None, [name,
+                                                  environment,
+                                                  path,
+                                                  runner,
+                                                  versioning])
 
     '''
     Get latest installed runner
@@ -1055,7 +1049,7 @@ class BottlesRunner:
             return False
 
     def delete_bottle(self, configuration:BottleConfig) -> None:
-        a = RunAsync('delete', self.async_delete_bottle, [configuration]);a.start()
+        RunAsync(self.async_delete_bottle, None, [configuration])
 
     '''
     Repair a bottle generating a new configuration
@@ -1713,8 +1707,7 @@ class BottlesRunner:
         return True
 
     def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented") -> None:
-        a = RunAsync('create_bottle_state', self.async_create_bottle_state, [
-            configuration, comment]);a.start()
+        RunAsync(self.async_create_bottle_state, None, [configuration, comment])
 
     def get_bottle_state_index(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
         bottle_path = self.get_bottle_path(configuration)
@@ -1841,9 +1834,7 @@ class BottlesRunner:
         return False
 
     def backup_bottle(self, configuration:BottleConfig, scope:str, path:str) -> None:
-        a = RunAsync('backup_bottle', self.async_backup_bottle, [configuration,
-                                                                 scope,
-                                                                 path]);a.start()
+        RunAsync(self.async_backup_bottle, None, [configuration, scope, path])
 
     def async_import_backup_bottle(self, args:list) -> bool:
         scope, path = args
@@ -1907,8 +1898,6 @@ class BottlesRunner:
         return False
 
     def import_backup_bottle(self, scope:str, path:str) -> None:
-        a = RunAsync('import_backup_bottle',
-                     self.async_import_backup_bottle,
-                     [scope, path]);a.start()
+        RunAsync(self.async_import_backup_bottle, None, [scope, path])
 
         

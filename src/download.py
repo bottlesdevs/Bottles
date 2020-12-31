@@ -51,8 +51,7 @@ class BottlesDownloadEntry(Gtk.Box):
         '''
         Run the progressbar update async
         '''
-        self.pulse_job = RunAsync('pulse', self.pulse)
-        self.pulse_job.start()
+        RunAsync(self.pulse, None)
 
     '''
     Make the progressbar pulse every 1 second
