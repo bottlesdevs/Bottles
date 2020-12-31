@@ -55,7 +55,7 @@ class BottlesCreate(Gtk.Box):
 
     def update_output(self, text):
         current_text = self.label_output.get_text()
-        text = "{0}{1}\n\n".format(current_text, text)
+        text = "{0}{1}\n".format(current_text, text)
         self.label_output.set_text(text)
 
     '''
