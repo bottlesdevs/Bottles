@@ -1709,13 +1709,10 @@ class BottlesRunner:
         bottle_path = self.get_bottle_path(configuration)
 
         try:
-            state_file = open('%s/states/%s/index.json' % (bottle_path, state_id))
-            if plain:
-                state_file_index = state_file.read()
-            else:
-                state_file_index = json.loads(url.read())
-            state_file.close()
-            return state_file_index
+            file = open('%s/states/%s/index.json' % (bottle_path, state_id))
+            index = file.read() if plain else json.loads(url.read())
+            file.close()
+            return index
         except:
             return {}
 
