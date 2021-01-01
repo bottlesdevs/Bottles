@@ -34,6 +34,9 @@
 </div>
 
 ## Help Bottles speak your language :speaking_head:
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f4135610281e481fb02e85aee5947e75)](https://app.codacy.com/gh/bottlesdevs/Bottles?utm_source=github.com&utm_medium=referral&utm_content=bottlesdevs/Bottles&utm_campaign=Badge_Grade_Settings)
+
 Read [here](https://github.com/bottlesdevs/Bottles/tree/master/po) how to 
 translate Bottles in your language or how to help improve existing ones.
 
