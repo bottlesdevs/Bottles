@@ -38,7 +38,8 @@ class BottlesMessageDialog(Gtk.MessageDialog):
         '''
         if log:
             message_scroll = Gtk.ScrolledWindow()
-            message_scroll.set_hexpand(True),message_scroll.set_vexpand(True)
+            message_scroll.set_hexpand(True)
+            message_scroll.set_vexpand(True)
 
             message_view = Gtk.TextView()
             message_buffer = message_view.get_buffer()
@@ -82,9 +83,9 @@ class BottlesDialog(Gtk.Dialog):
 
             message_view = Gtk.TextView()
             message_buffer = message_view.get_buffer()
-            iter = message_buffer.get_end_iter()
+            buffer_iter = message_buffer.get_end_iter()
             message_buffer.insert_markup(
-                iter, "<span foreground='%s'>%s</span>" % (color, log), -1)
+                buffer_iter, "<span foreground='%s'>%s</span>" % (color, log), -1)
             message_scroll.add(message_view)
 
         content = self.get_content_area()

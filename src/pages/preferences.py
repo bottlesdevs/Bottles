@@ -271,4 +271,3 @@ class BottlesPreferences(Gtk.Box):
     def change_startup_view(self, widget):
         option = widget.get_active_id()
         self.settings.set_string("startup-view", option)
-        

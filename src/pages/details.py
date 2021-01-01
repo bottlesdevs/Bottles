@@ -76,11 +76,10 @@ class BottlesStateEntry(Gtk.Box):
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
             message=_("This is the index for {0}.").format(self.state[0]),
-            log=self.runner.get_bottle_state_index(self.configuration,
+            log=self.runner.get_bottle_state_edits(self.configuration,
                                                    self.state[0],
                                                    True))
-        response = dialog_upgrade.run()
-
+        dialog_upgrade.run()
         dialog_upgrade.destroy()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
@@ -316,7 +315,7 @@ class BottlesDetails(Gtk.Box):
     entry_state_comment = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
 
-    def __init__(self, window, configuration={}, **kwargs):
+    def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -389,7 +388,6 @@ class BottlesDetails(Gtk.Box):
         '''
         bottle_size = self.runner.get_bottle_size(configuration)
         bottle_size_float = self.runner.get_bottle_size(configuration, False)
-        disk_total = self.runner.get_disk_size()["total"]
         disk_total_float = self.runner.get_disk_size(False)["total"]
         disk_free = self.runner.get_disk_size()["free"]
         disk_fraction = ((bottle_size_float / disk_total_float) * 100) / 100
@@ -725,5 +723,6 @@ class BottlesDetails(Gtk.Box):
     '''
     Open URLs
     '''
-    def open_report_url(self, widget):
+    @staticmethod
+    def open_report_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/dependencies/issues/new/choose")
