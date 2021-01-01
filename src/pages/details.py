@@ -244,8 +244,7 @@ class BottlesDependencyEntry(Gtk.Box):
             message=_("This is the manifest for {0}.").format(self.dependency[0]),
             log=self.runner.fetch_dependency_manifest(self.dependency[0],
                                                       plain=True))
-        response = dialog_upgrade.run()
-
+        dialog_upgrade.run()
         dialog_upgrade.destroy()
 
     def install_dependency(self, widget):

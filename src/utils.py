@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys, logging, socket, subprocess, time, hashlib, threading, traceback
+import sys, logging, socket, subprocess, hashlib, threading, traceback
 
 from gi.repository import GLib
 
@@ -63,7 +63,7 @@ class UtilsTerminal():
                 shell=True,
                 stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
             if "1" in terminal_check:
-                output = subprocess.Popen(
+                subprocess.Popen(
                     " ".join(terminal) % 'bash -c "%s"' % command,
                     shell=True,
                     stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
@@ -124,7 +124,7 @@ class UtilsFiles():
                 for chunk in iter(lambda: f.read(4096), b""):
                     checksum.update(chunk)
             return checksum.hexdigest().lower()
-        except:
+        except FileNotFoundError:
             return False
 
 class RunAsync(threading.Thread):

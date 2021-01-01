@@ -81,4 +81,3 @@ class DownloadManager():
         self.window.box_downloads.add(download_entry)
 
         return download_entry
-    
