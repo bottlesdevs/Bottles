@@ -132,6 +132,7 @@ sudo ninja uninstall
 | `Ctrl+Q` | Close Bottles |
 | `Ctrl+R` | Reload the Bottles list |
 | `F1` | Go to the documentation |
+| `Esc` | Go back |
 
 ## Common issues
 There are no other problems. Are we good? 👀

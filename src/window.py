@@ -157,6 +157,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         Connect signals to widgets
         '''
         self.btn_back.connect('pressed', self.go_back)
+        self.btn_back.connect('activate', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view)
         self.btn_list.connect('pressed', self.show_list_view)
         self.btn_about.connect('pressed', self.show_about_dialog)
