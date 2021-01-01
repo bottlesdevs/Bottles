@@ -89,16 +89,16 @@ class Application(Gtk.Application):
     Methods for application actions
     '''
     def quit(self, action=None, param=None):
-        logging.info(_("`Quit` request received."))
+        logging.info(_("[Quit] request received."))
         self.win.destroy()
 
     @staticmethod
     def help(action, param):
-        logging.info(_("`Help` request received."))
+        logging.info(_("[Help] request received."))
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/wiki")
 
     def refresh(self, action, param):
-        logging.info(_("`Refresh` request received."))
+        logging.info(_("[Refresh] request received."))
         self.win.runner.update_bottles()
 
     '''
