@@ -170,8 +170,9 @@ class BottlesRunner:
                 for f in os.listdir(self.temp_path):
                     os.remove(os.path.join(self.temp_path, f))
                 logging.info(_("Temp path cleaned successfully!"))
-            except:
+            except FileNotFoundError:
                 logging.error(_("Failed to clear temp path!"))
+                self.check_runners_dir()
 
 
     '''
@@ -187,28 +188,22 @@ class BottlesRunner:
     '''
     Check if standard directories not exists, then create
     '''
-    def check_runners_dir(self) -> bool:
-        try:
-            if not os.path.isdir(self.runners_path):
-                logging.info(_("Runners path doens't exist, creating now."))
-                os.makedirs(self.runners_path, exist_ok=True)
+    def check_runners_dir(self) -> None:
+        if not os.path.isdir(self.runners_path):
+            logging.info(_("Runners path doens't exist, creating now."))
+            os.makedirs(self.runners_path, exist_ok=True)
 
-            if not os.path.isdir(self.bottles_path):
-                logging.info(_("Bottles path doens't exist, creating now."))
-                os.makedirs(self.bottles_path, exist_ok=True)
+        if not os.path.isdir(self.bottles_path):
+            logging.info(_("Bottles path doens't exist, creating now."))
+            os.makedirs(self.bottles_path, exist_ok=True)
 
-            if not os.path.isdir(self.dxvk_path):
-                logging.info(_("Dxvk path doens't exist, creating now."))
-                os.makedirs(self.dxvk_path, exist_ok=True)
+        if not os.path.isdir(self.dxvk_path):
+            logging.info(_("Dxvk path doens't exist, creating now."))
+            os.makedirs(self.dxvk_path, exist_ok=True)
 
-            if not os.path.isdir(self.temp_path):
-                logging.info(_("Temp path doens't exist, creating now."))
-                os.makedirs(self.temp_path, exist_ok=True)
-        except:
-            logging.info(_("One or more path cannot be created."))
-            return False
-
-        return True
+        if not os.path.isdir(self.temp_path):
+            logging.info(_("Temp path doens't exist, creating now."))
+            os.makedirs(self.temp_path, exist_ok=True)
 
     '''
     Get latest runner updates
@@ -291,10 +286,13 @@ class BottlesRunner:
         if component == "dxvk": path = self.dxvk_path
 
         try:
-            archive = tarfile.open("%s/%s" % (self.temp_path, archive))
-            archive.extractall(path)
+            tar = tarfile.open("%s/%s" % (self.temp_path, archive))
+            tar.extractall(path)
             return True
-        except:
+        except EOFError:
+            os.remove(os.path.join(self.temp_path, archive))
+            shutil.rmtree(os.path.join(path, archive[:-7]))
+            logging.error(_("Extraction failed! Archive ends earlier than expected."))
             return False
 
     '''
