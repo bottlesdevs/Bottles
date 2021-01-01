@@ -88,4 +88,3 @@ class BottlesCreate(Gtk.Box):
         while True:
             time.sleep(1)
             self.progressbar_create.pulse()
-
