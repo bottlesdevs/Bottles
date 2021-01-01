@@ -77,8 +77,8 @@ is the only one we currently officially support..
 Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous), 
 then:
 ```
-chmod +x Bottles-commit-x86_64.AppImage
-./Bottles-commit-x86_64.AppImage
+chmod +x Bottles-devel-x86_64.AppImage
+./Bottles-devel-x86_64.AppImage
 ```
 And you're done!
 
