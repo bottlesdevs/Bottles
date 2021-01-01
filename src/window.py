@@ -21,11 +21,10 @@ gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk, Gio, Notify
 
-import webbrowser, time, gettext, locale
+import webbrowser, gettext, locale
 
 from .params import *
-from .download import BottlesDownloadEntry
-from .runner import BottlesRunner, RunAsync
+from .runner import BottlesRunner
 
 from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.create import BottlesCreate
@@ -269,10 +268,12 @@ class BottlesWindow(Gtk.ApplicationWindow):
     '''
     Open URLs
     '''
-    def open_translate_url(self, widget):
+    @staticmethod
+    def open_translate_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/tree/develop")
 
-    def open_support_url(self, widget):
+    @staticmethod
+    def open_support_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues")
 
     '''
@@ -311,7 +312,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
     def show_runners_preferences_view(self, widget=False):
         self.show_preferences_view(widget, view=2)
 
-    def show_about_dialog(self, widget):
+    @staticmethod
+    def show_about_dialog(widget):
         BottlesAboutDialog().show_all()
 
     '''

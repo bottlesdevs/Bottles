@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, subprocess, urllib.request, json, tarfile, time, shutil, re, hashlib
+import os, subprocess, json, tarfile, time, shutil, re, hashlib, urllib.request
 
 from typing import Union, NewType
 
@@ -23,10 +23,9 @@ from gi.repository import Gtk
 
 from glob import glob
 from pathlib import Path
-from datetime import date, datetime
+from datetime import datetime
 
 from .download import DownloadManager
-from .pages.list import BottlesListEntry
 from .utils import UtilsTerminal, UtilsLogger, UtilsFiles, RunAsync
 
 logging = UtilsLogger()
@@ -180,7 +179,10 @@ class BottlesRunner:
     '''
     def update_bottles(self, silent:bool=False) -> None:
         self.check_bottles(silent)
-        self.window.page_list.update_bottles()
+        try:
+            self.window.page_list.update_bottles()
+        except AttributeError:
+            return
 
     '''
     Check if standard directories not exists, then create
@@ -595,8 +597,6 @@ class BottlesRunner:
 
                     self.install_component("runner", tag, file)
             else:
-                return False
-
                 '''
                 Proton
                 with urllib.request.urlopen(self.proton_repository_api) as url:
@@ -606,6 +606,7 @@ class BottlesRunner:
 
                     self.install_component("runner:proton", tag, file)
                 '''
+                return False
 
         '''
         Sort runners_available and dxvk_available alphabetically
@@ -785,10 +786,7 @@ class BottlesRunner:
             json.dump(configuration, configuration_file, indent=4)
             configuration_file.close()
 
-        try:
-            self.update_bottles(silent=True)
-        except:
-            pass
+        self.update_bottles(silent=True)
 
         '''
         Update configuration Update_Date
@@ -966,7 +964,8 @@ class BottlesRunner:
     '''
     Get human size
     '''
-    def get_human_size(self, size:float) -> str:
+    @staticmethod
+    def get_human_size(size:float) -> str:
         for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
             if abs(size) < 1024.0:
                 return "%3.1f%s%s" % (size, unit, 'B')
@@ -1010,7 +1009,6 @@ class BottlesRunner:
     '''
     def get_bottle_size(self, configuration:BottleConfig, human:bool=True) -> Union[str, float]:
         path = configuration.get("Path")
-        runner = configuration.get("Runner")
 
         if not configuration.get("Custom_Path"):
             path = "%s/%s" % (self.bottles_path, path)
@@ -1090,12 +1088,11 @@ class BottlesRunner:
     '''
     Methods for wine processes management
     '''
-    def get_running_processes(self) -> list:
+    @staticmethod
+    def get_running_processes() -> list:
         processes = []
-        pids = subprocess.Popen(
-            "ps -eo pid,pmem,pcpu,stime,time,cmd | grep wine | tr -s ' ' '|'",
-            shell=True,
-            stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+        command = "ps -eo pid,pmem,pcpu,stime,time,cmd | grep wine | tr -s ' ' '|'"
+        pids = subprocess.check_output(['bash', '-c', command]).decode("utf-8")
 
         for pid in pids.split("\n"):
             process_data = pid.split("|")
@@ -1359,7 +1356,7 @@ class BottlesRunner:
     '''
     Method for open wineprefixes path in file manager
     '''
-    def open_filemanager(self, configuration:BottleConfig={}, path_type:str="bottle", runner:str="", dxvk:str="", custom_path:str="") -> bool:
+    def open_filemanager(self, configuration:BottleConfig=dict, path_type:str="bottle", runner:str="", dxvk:str="", custom_path:str="") -> bool:
         logging.info(_("Opening the file manager in the path …"))
 
         if path_type == "bottle":
@@ -1404,7 +1401,6 @@ class BottlesRunner:
         '''
         is_lutris = len(lutris_results)
         is_playonlinux = is_lutris + len(playonlinux_results)
-        is_bottlesv1 = is_playonlinux + len(bottlesv1_results)
         i=1
 
         '''
@@ -1703,14 +1699,14 @@ class BottlesRunner:
     def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented") -> None:
         RunAsync(self.async_create_bottle_state, None, [configuration, comment])
 
-    def get_bottle_state_edits(self, configuration:BottleConfig, state_id:str) -> dict:
+    def get_bottle_state_edits(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
         bottle_path = self.get_bottle_path(configuration)
 
         try:
             file = open('%s/states/%s/index.json' % (bottle_path, state_id))
-            index = json.loads(file.read())
+            files = file.read() if plain else json.loads(file.read())
             file.close()
-            return index
+            return files
         except:
             return {}
 
@@ -1748,7 +1744,6 @@ class BottlesRunner:
 
         bottle_index = self.get_bottle_index(configuration)
         state_index = self.get_bottle_state_files(configuration, state_id)
-        state_edits = self.get_bottle_state_edits(configuration, state_id)
 
         search_sources = list(range(int(state_id)+1))
         search_sources.reverse()
@@ -1982,5 +1977,3 @@ class BottlesRunner:
 
     def import_backup_bottle(self, scope:str, path:str) -> None:
         RunAsync(self.async_import_backup_bottle, None, [scope, path])
-
-        

@@ -31,7 +31,7 @@ Custom locale path if AppImage
 '''
 try:
     LOCALE_PATH = "%s/usr/share/locale/" % os.environ['APPDIR']
-except:
+except KeyError:
     LOCALE_PATH = "/usr/local/share/locale/"
 
 locale.bindtextdomain(APP_NAME_LOWER, LOCALE_PATH)
@@ -66,9 +66,10 @@ class Application(Gtk.Application):
         '''
         Load custom css
         '''
-        bytes = Gio.resources_lookup_data("/com/usebottles/bottles/style.css", 0)
+        data_bytes = Gio.resources_lookup_data(
+            "/com/usebottles/bottles/style.css", 0)
         provider = Gtk.CssProvider()
-        provider.load_from_data(bytes.get_data())
+        provider.load_from_data(data_bytes.get_data())
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
                                                  provider,
                                                  Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
@@ -91,7 +92,8 @@ class Application(Gtk.Application):
         logging.info(_("`Quit` request received."))
         self.win.destroy()
 
-    def help(self, action, param):
+    @staticmethod
+    def help(action, param):
         logging.info(_("`Help` request received."))
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/wiki")
 

@@ -19,7 +19,7 @@ import re
 
 from gi.repository import Gtk
 
-from bottles.utils import UtilsTerminal, UtilsLogger
+from bottles.utils import UtilsLogger
 
 logging = UtilsLogger()
 

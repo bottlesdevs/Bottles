@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys, logging, socket, subprocess, trace, time, hashlib, threading, traceback
+import sys, logging, socket, subprocess, time, hashlib, threading, traceback
 
 from gi.repository import GLib
 
@@ -45,31 +45,29 @@ class UtilsConnection():
                 self.window.send_notification("Bottles",
                                               _("You are offline, unable to download."),
                                               "network-wireless-disabled-symbolic")
-            pass
         return False
 
 class UtilsTerminal():
 
     terminals = [
-        'gnome-terminal -- %s',
-        'xterm -e %s',
-        'konsole -e %s',
-        'xfce4-terminal --command %s',
+        ['xterm', '-e %s'],
+        ['konsole', '-e %s'],
+        ['gnome-terminal', '-- %s'],
+        ['xfce4-terminal', '--command %s'],
     ]
 
-    def __init__(self, command, **kwargs):
-        super().__init__(**kwargs)
-
+    def __init__(self, command):
         for terminal in self.terminals:
-            command = terminal % 'bash -c "%s"' % command
-            try:
-                subprocess.Popen(command,
-                                 shell=True,
-                                 stdout=subprocess.PIPE,
-                                 stderr=subprocess.STDOUT)
-                return True
-            except:
-                pass
+            terminal_check = subprocess.Popen(
+                "bash command -v %s > /dev/null && echo 1 || echo 0" % terminal[0],
+                shell=True,
+                stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+            if "1" in terminal_check:
+                output = subprocess.Popen(
+                    " ".join(terminal) % 'bash -c "%s"' % command,
+                    shell=True,
+                    stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+                break
 
 class UtilsLogger(logging.getLoggerClass()):
 
@@ -90,8 +88,8 @@ class UtilsLogger(logging.getLoggerClass()):
         color_id = self.color_map[level]
         return "\033[%dm%s\033[0m" % (color_id, message)
 
-    def __init__(self, format=format_log):
-        formatter = logging.Formatter(**format)
+    def __init__(self, formatter=format_log):
+        formatter = logging.Formatter(**formatter)
 
         self.root.setLevel(logging.INFO)
         self.root.handlers = []
@@ -117,7 +115,8 @@ class UtilsLogger(logging.getLoggerClass()):
 
 class UtilsFiles():
 
-    def get_checksum(self, file):
+    @staticmethod
+    def get_checksum(file):
         checksum = hashlib.md5()
 
         try:
