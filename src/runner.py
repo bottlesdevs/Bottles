@@ -475,7 +475,7 @@ class BottlesRunner:
                                 dll, configuration.get("Name")))
                         os.remove("%s/%s/drive_c/windows/system32/%s" % (
                             self.bottles_path, configuration.get("Name"), dll))
-                    except:
+                    except FileNotFoundError:
                         logging.error(
                             _("[{0}] not found in bottle: [{1}], failed removing from system32.").format(
                                 dll, configuration.get("Name")))
