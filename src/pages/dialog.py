@@ -79,7 +79,8 @@ class BottlesDialog(Gtk.Dialog):
             else:
                 color = "#3e0622"
             message_scroll = Gtk.ScrolledWindow()
-            message_scroll.set_hexpand(True),message_scroll.set_vexpand(True)
+            message_scroll.set_hexpand(True)
+            message_scroll.set_vexpand(True)
 
             message_view = Gtk.TextView()
             message_buffer = message_view.get_buffer()

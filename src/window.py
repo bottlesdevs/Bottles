@@ -21,7 +21,7 @@ gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk, Gio, Notify
 
-import webbrowser, gettext, locale
+import webbrowser
 
 from .params import *
 from .runner import BottlesRunner
