@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, subprocess, json, tarfile, time, shutil, re, hashlib, urllib.request
+import os, subprocess, json, tarfile, time, shutil, re, urllib.request
 
 from typing import Union, NewType
 

@@ -11,6 +11,9 @@
    <a href="https://hosted.weblate.org/engage/bottles/">
       <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" alt="Stato traduzione" />
    </a>
+   <a href="https://www.codacy.com/gh/bottlesdevs/Bottles/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bottlesdevs/Bottles&amp;utm_campaign=Badge_Grade">
+        <img src="https://app.codacy.com/project/badge/Grade/1f8c35825c7c45a58a48a21b79764387"/>
+   </a>
    <a href="https://git.mirko.pm/brombinmirko/Bottles/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
    </a>
