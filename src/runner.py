@@ -51,6 +51,8 @@ class BottlesRunner:
     dxvk_repository_api = "https://api.github.com/repos/doitsujin/dxvk/releases"
     dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
     dependencies_repository_index = "%s/index.json" % dependencies_repository
+    installers_repository = "https://raw.githubusercontent.com/bottlesdevs/programs/main/"
+    installers_repository_index = "%s/index.json" % installers_repository
 
     '''
     Define local path for temp and runners
@@ -129,6 +131,7 @@ class BottlesRunner:
     }
 
     supported_dependencies = {}
+    supported_installers = {}
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -143,6 +146,7 @@ class BottlesRunner:
         self.check_runners(install_latest=False)
         self.check_dxvk(install_latest=False)
         self.fetch_dependencies()
+        self.fetch_installers()
         self.check_bottles()
         self.clear_temp()
 
@@ -157,6 +161,7 @@ class BottlesRunner:
         self.check_dxvk()
         self.check_bottles()
         self.fetch_dependencies()
+        self.fetch_installers()
 
     def checks(self):
         RunAsync(self.async_checks, None)
@@ -678,6 +683,39 @@ class BottlesRunner:
                         path))
 
         return installed_programs
+
+
+    '''
+    Fetch online installers
+    '''
+    def fetch_installers(self) -> bool:
+        if self.utils_conn.check_connection():
+            with urllib.request.urlopen(self.installers_repository_index) as url:
+                index = json.loads(url.read())
+
+                for installer in index.items():
+                    self.supported_installers[installer[0]] = installer[1]
+        else:
+            return False
+        return True
+
+    '''
+    Fetch installer manifest online
+    '''
+    def fetch_installer_manifest(self, installer_name:str, installer_category:str, plain:bool=False) -> Union[str, dict, bool]:
+        if self.utils_conn.check_connection():
+            with urllib.request.urlopen("%s/%s/%s.json" % (
+                self.installers_repository,
+                installer_category,
+                installer_name
+            )) as url:
+                if plain:
+                    return url.read().decode("utf-8")
+                else:
+                    return json.loads(url.read())
+
+            return False
+
 
 
     '''

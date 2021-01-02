@@ -21,6 +21,67 @@ import webbrowser, re
 
 from .dialog import BottlesDialog
 
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
+class BottlesInstallerEntry(Gtk.Box):
+    __gtype_name__ = 'BottlesInstallerEntry'
+
+    '''
+    Get and assign widgets to variables from
+    template childs
+    '''
+    label_name = Gtk.Template.Child()
+    label_description = Gtk.Template.Child()
+    btn_install = Gtk.Template.Child()
+    btn_manifest = Gtk.Template.Child()
+
+    def __init__(self, window, configuration, installer, plain=False, **kwargs):
+        super().__init__(**kwargs)
+
+        '''
+        Initialize template
+        '''
+        self.init_template()
+
+        '''
+        Common variables
+        '''
+        self.window = window
+        self.runner = window.runner
+        self.configuration = configuration
+        self.installer = installer
+
+        '''
+        Populate widgets with data
+        '''
+        self.label_name.set_text(installer[0])
+        self.label_description.set_text(installer[1].get("Description"))
+
+        '''
+        Connect signals to widgets
+        '''
+        self.btn_install.connect('pressed', self.execute_installer)
+        self.btn_manifest.connect('pressed', self.open_manifest)
+
+    def open_manifest(self, widget):
+        dialog_upgrade = BottlesDialog(
+            parent=self.window,
+            title=_("Manifest for {0}").format(self.installer[0]),
+            message=_("This is the manifest for {0}.").format(self.installer[0]),
+            log=self.runner.fetch_installer_manifest(self.installer[0],
+                                                     self.installer[1]["Category"],
+                                                      plain=True))
+        dialog_upgrade.run()
+        dialog_upgrade.destroy()
+
+    def execute_installer(self, widget):
+        widget.set_sensitive(False)
+        '''
+        self.runner.execute_installer(self.configuration,
+                                      self.installer,
+                                      self)
+        '''
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
 class BottlesStateEntry(Gtk.Box):
     __gtype_name__ = 'BottlesStateEntry'
@@ -177,7 +238,6 @@ class BottlesProgramEntry(Gtk.Box):
         query = self.program_name.replace(" ", "+")
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues?q=is:issue%s" % query)
 
-
 @Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
 class BottlesDependencyEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDependencyEntry'
@@ -312,6 +372,7 @@ class BottlesDetails(Gtk.Box):
     switch_pulseaudio_latency = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
+    list_installers = Gtk.Template.Child()
     list_states = Gtk.Template.Child()
     progress_disk = Gtk.Template.Child()
     entry_environment_variables = Gtk.Template.Child()
@@ -434,6 +495,7 @@ class BottlesDetails(Gtk.Box):
 
         self.update_programs()
         self.update_dependencies()
+        self.update_installers()
         self.update_states()
 
     def set_page(self, page):
@@ -488,6 +550,19 @@ class BottlesDetails(Gtk.Box):
                                            self.configuration,
                                            dependency,
                                            plain=True))
+
+    '''
+    Add entries to list_installers
+    '''
+    def update_installers(self, widget=False):
+        for w in self.list_installers: w.destroy()
+
+        supported_installers = self.runner.supported_installers.items()
+        for installer in supported_installers:
+            self.list_installers.add(
+                BottlesInstallerEntry(self.window,
+                                      self.configuration,
+                                      installer))
 
     '''
     Add entries to list_states
