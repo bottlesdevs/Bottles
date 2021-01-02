@@ -438,11 +438,6 @@ class BottlesRunner:
         configuration, dependency, widget = args
 
         '''
-        Set UI to not usable
-        '''
-        self.window.set_usable_ui(False)
-
-        '''
         Send a notification for download start if the
         user settings allow it
         '''
@@ -530,10 +525,6 @@ class BottlesRunner:
         widget.btn_remove.set_visible(True)
         widget.btn_remove.set_sensitive(True)
 
-        '''
-        Set UI to usable again
-        '''
-        self.window.set_usable_ui(True)
         return True
 
     def install_dependency(self, configuration:BottleConfig, dependency:list, widget:Gtk.Widget) -> None:
@@ -1560,11 +1551,17 @@ class BottlesRunner:
     '''
     def async_create_bottle_state(self, args:list) -> bool:
         configuration, comment = args
+
         logging.info("Creating new state for bottle: [{0}] …".format(
             configuration.get("Name")))
 
         bottle_path = self.get_bottle_path(configuration)
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
+
+        '''
+        Set UI to not usable
+        '''
+        self.window.set_usable_ui(False)
 
         '''
         List all current bottle files in `current_index`
@@ -1734,6 +1731,12 @@ class BottlesRunner:
         '''
         time.sleep(2)
         self.update_bottles()
+
+        '''
+        Set UI to usable again
+        '''
+        self.window.set_usable_ui(True)
+
         return True
 
     def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented") -> None:
@@ -1781,6 +1784,15 @@ class BottlesRunner:
         bottle_path = self.get_bottle_path(configuration)
 
         logging.info(_("Restoring to state: [{0}]").format(state_id))
+
+        '''
+        Set UI to not usable
+        '''
+        self.window.set_usable_ui(False)
+
+        '''
+        Get indexes
+        '''
 
         bottle_index = self.get_bottle_index(configuration)
         state_index = self.get_bottle_state_files(configuration, state_id)
@@ -1848,6 +1860,12 @@ class BottlesRunner:
         '''
         time.sleep(2)
         self.update_bottles()
+
+        '''
+        Set UI to usable again
+        '''
+        self.window.set_usable_ui(False)
+
         return True
 
     def list_bottle_states(self, configuration:BottleConfig) -> dict:
@@ -1875,6 +1893,11 @@ class BottlesRunner:
     '''
     def async_backup_bottle(self, args:list) -> bool:
         configuration, scope, path = args
+
+        '''
+        Set UI to not usable
+        '''
+        self.window.set_usable_ui(False)
 
         if scope == "configuration":
             '''
@@ -1949,6 +1972,12 @@ class BottlesRunner:
                 _("Failed to create backup for {0}!").format(
                     configuration.get("Name")
                 ), "dialog-error-symbolic")
+
+        '''
+        Set UI to usable again
+        '''
+        self.window.set_usable_ui(False)
+
         return False
 
     def backup_bottle(self, configuration:BottleConfig, scope:str, path:str) -> None:
