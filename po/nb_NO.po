@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-01 14:13+0100\n"
+"POT-Creation-Date: 2021-01-02 09:58+0100\n"
 "PO-Revision-Date: 2020-12-29 21:51+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Weblate 4.4.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:296
-#: src/window.py:146
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:308
+#: src/window.py:147
 msgid "Bottles"
 msgstr "Flasker"
 
@@ -41,7 +41,7 @@ msgstr "Mirko Brombin"
 msgid "Easily manage your Wine bottles (wineprefix)"
 msgstr "Håndter dine Wine-flasker (wineprefiks) enkelt"
 
-#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:103
+#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:116
 msgid "Dark theme"
 msgstr "Mørk drakt"
 
@@ -85,43 +85,43 @@ msgstr "Oppstartsvisning"
 msgid "Choose which view should be loaded on application startup."
 msgstr "Velg hvilken visning som skal brukes ved programoppstart."
 
-#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:317
+#: src/ui/add.ui:23 src/ui/add-details.ui:20 src/ui/window.ui:330
 msgid "New bottle"
 msgstr "Ny flaske"
 
-#: src/ui/add.ui:41
+#: src/ui/add.ui:42
 msgid "Choose the environment"
 msgstr "Velg miljøet"
 
-#: src/ui/add.ui:94
+#: src/ui/add.ui:95
 msgid "Gaming"
 msgstr "Spill"
 
-#: src/ui/add.ui:151
+#: src/ui/add.ui:152
 msgid "Software"
 msgstr "Programvare"
 
-#: src/ui/add.ui:208
+#: src/ui/add.ui:209
 msgid "Custom"
 msgstr "Egendefinert"
 
-#: src/ui/add.ui:245
+#: src/ui/add.ui:246
 msgid "Environment description"
 msgstr "Miljøbeskrivelse"
 
-#: src/ui/add.ui:265
+#: src/ui/add.ui:266
 msgid "Create new bottle"
 msgstr "Opprett ny flaske"
 
-#: src/ui/add.ui:269
+#: src/ui/add.ui:270
 msgid "Create a new bottle with the selected environment"
 msgstr "Opprett en ny flaske med valgt miljø"
 
-#: src/ui/add.ui:293
+#: src/ui/add.ui:294
 msgid "Import from backup"
 msgstr "Importer fra sikkerhetskopi"
 
-#: src/ui/add.ui:297
+#: src/ui/add.ui:298
 msgid "Import from backup or other managers"
 msgstr "Importer fra sikkerhetskopi eller andre håndterere"
 
@@ -259,7 +259,7 @@ msgstr "Kjør .exe"
 msgid "Manage the processes running in this Bottle."
 msgstr "Håndter prosessene som kjører i denne flasken."
 
-#: src/ui/details.ui:517 src/ui/window.ui:146 src/window.py:148
+#: src/ui/details.ui:517 src/ui/window.ui:159 src/window.py:149
 msgid "Task manager"
 msgstr "Oppgavebehandler"
 
@@ -526,7 +526,7 @@ msgstr "DLL-overstyringer"
 msgid "Customize preferences for this Bottle."
 msgstr "Tilpass egenskaper for denne flasken."
 
-#: src/ui/details.ui:2025 src/ui/window.ui:172 src/window.py:147
+#: src/ui/details.ui:2025 src/ui/window.ui:185 src/window.py:148
 msgid "Preferences"
 msgstr "Egenskaper"
 
@@ -677,37 +677,41 @@ msgstr "Bistå oversettelsen"
 msgid "Support Bottles"
 msgstr "Støtte for flasker"
 
-#: src/ui/window.ui:159 src/window.py:149
+#: src/ui/window.ui:87
+msgid "Bug Report"
+msgstr ""
+
+#: src/ui/window.ui:172 src/window.py:150
 msgid "Importer"
 msgstr "Importerer"
 
-#: src/ui/window.ui:196
+#: src/ui/window.ui:209
 msgid "About Bottles"
 msgstr "Om Flasker"
 
-#: src/ui/window.ui:263
+#: src/ui/window.ui:275
 msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
 "Dette er en utviklingsversjon. Innrapporter feil til GitHub-kodelageret."
 
-#: src/ui/window.ui:302
+#: src/ui/window.ui:314
 msgid "Go back"
 msgstr "Tilbake"
 
-#: src/ui/window.ui:335
+#: src/ui/window.ui:348
 msgid "Your Bottles"
 msgstr "Dine flasker"
 
-#: src/ui/window.ui:354
+#: src/ui/window.ui:367
 msgid "Open menu"
 msgstr "Åpne meny"
 
-#: src/ui/window.ui:375
+#: src/ui/window.ui:388
 msgid "Downloads"
 msgstr "Nedlastninger"
 
-#: src/ui/window.ui:395
+#: src/ui/window.ui:408
 #, fuzzy
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
@@ -719,44 +723,44 @@ msgstr ""
 
 #: src/main.py:92
 #, fuzzy
-msgid "`Quit` request received."
+msgid "[Quit] request received."
 msgstr "`Avslutt`-forespørsel mottatt."
 
 #: src/main.py:97
 #, fuzzy
-msgid "`Help` request received."
+msgid "[Help] request received."
 msgstr "`Hjelp`-forespørsel mottatt."
 
 #: src/main.py:101
 #, fuzzy
-msgid "`Refresh` request received."
+msgid "[Refresh] request received."
 msgstr "`Gjenoppfrisk`-forespørsel mottatt."
 
-#: src/window.py:142
+#: src/window.py:143
 msgid "New Bottle"
 msgstr "Ny flaske"
 
-#: src/window.py:143
+#: src/window.py:144
 msgid "Create Bottle"
 msgstr "Opprett flaske"
 
-#: src/window.py:144
+#: src/window.py:145
 msgid "New Bottle details"
 msgstr "Detaljer om ny flaske"
 
-#: src/window.py:145
+#: src/window.py:146
 msgid "Bottle details"
 msgstr "Flaskedetaljer"
 
-#: src/window.py:187
+#: src/window.py:190
 msgid "Bottles Started!"
 msgstr "Flasker startet."
 
-#: src/window.py:210
+#: src/window.py:213
 msgid "Proceed with the installation of the latest version?"
 msgstr "Fortsett installasjonen av siste versjon?"
 
-#: src/window.py:212
+#: src/window.py:215
 #, fuzzy
 msgid ""
 "But you don't seem to be connected to the internet and you won't be able to "
@@ -766,16 +770,16 @@ msgstr ""
 "Du er ikke tilkoblet Internett, og vil ikke kunne laste ned en springer. "
 "Koble til og bekreft denne meldingen for å starte nedlastingen."
 
-#: src/window.py:215
+#: src/window.py:218
 msgid "No runners found"
 msgstr "Fant ingen springere"
 
-#: src/window.py:220 src/pages/list.py:193 src/pages/list.py:219
+#: src/window.py:223 src/pages/list.py:193 src/pages/list.py:219
 #, fuzzy
 msgid "OK status received"
 msgstr "`OK`-status mottatt."
 
-#: src/window.py:228 src/pages/list.py:199 src/pages/list.py:223
+#: src/window.py:231 src/pages/list.py:199 src/pages/list.py:223
 #, fuzzy
 msgid "Cancel status received"
 msgstr "`Avbryt`-status mottatt."

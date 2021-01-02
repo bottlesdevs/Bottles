@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-01 14:13+0100\n"
+"POT-Creation-Date: 2021-01-02 09:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:296
-#: src/window.py:146
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:308
+#: src/window.py:147
 msgid "Bottles"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Easily manage your Wine bottles (wineprefix)"
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:103
+#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:116
 msgid "Dark theme"
 msgstr ""
 
@@ -79,43 +79,43 @@ msgstr ""
 msgid "Choose which view should be loaded on application startup."
 msgstr ""
 
-#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:317
+#: src/ui/add.ui:23 src/ui/add-details.ui:20 src/ui/window.ui:330
 msgid "New bottle"
 msgstr ""
 
-#: src/ui/add.ui:41
+#: src/ui/add.ui:42
 msgid "Choose the environment"
 msgstr ""
 
-#: src/ui/add.ui:94
+#: src/ui/add.ui:95
 msgid "Gaming"
 msgstr ""
 
-#: src/ui/add.ui:151
+#: src/ui/add.ui:152
 msgid "Software"
 msgstr ""
 
-#: src/ui/add.ui:208
+#: src/ui/add.ui:209
 msgid "Custom"
 msgstr ""
 
-#: src/ui/add.ui:245
+#: src/ui/add.ui:246
 msgid "Environment description"
 msgstr ""
 
-#: src/ui/add.ui:265
+#: src/ui/add.ui:266
 msgid "Create new bottle"
 msgstr ""
 
-#: src/ui/add.ui:269
+#: src/ui/add.ui:270
 msgid "Create a new bottle with the selected environment"
 msgstr ""
 
-#: src/ui/add.ui:293
+#: src/ui/add.ui:294
 msgid "Import from backup"
 msgstr ""
 
-#: src/ui/add.ui:297
+#: src/ui/add.ui:298
 msgid "Import from backup or other managers"
 msgstr ""
 
@@ -247,7 +247,7 @@ msgstr ""
 msgid "Manage the processes running in this Bottle."
 msgstr ""
 
-#: src/ui/details.ui:517 src/ui/window.ui:146 src/window.py:148
+#: src/ui/details.ui:517 src/ui/window.ui:159 src/window.py:149
 msgid "Task manager"
 msgstr ""
 
@@ -493,7 +493,7 @@ msgstr ""
 msgid "Customize preferences for this Bottle."
 msgstr ""
 
-#: src/ui/details.ui:2025 src/ui/window.ui:172 src/window.py:147
+#: src/ui/details.ui:2025 src/ui/window.ui:185 src/window.py:148
 msgid "Preferences"
 msgstr ""
 
@@ -628,36 +628,40 @@ msgstr ""
 msgid "Support Bottles"
 msgstr ""
 
-#: src/ui/window.ui:159 src/window.py:149
+#: src/ui/window.ui:87
+msgid "Bug Report"
+msgstr ""
+
+#: src/ui/window.ui:172 src/window.py:150
 msgid "Importer"
 msgstr ""
 
-#: src/ui/window.ui:196
+#: src/ui/window.ui:209
 msgid "About Bottles"
 msgstr ""
 
-#: src/ui/window.ui:263
+#: src/ui/window.ui:275
 msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
 
-#: src/ui/window.ui:302
+#: src/ui/window.ui:314
 msgid "Go back"
 msgstr ""
 
-#: src/ui/window.ui:335
+#: src/ui/window.ui:348
 msgid "Your Bottles"
 msgstr ""
 
-#: src/ui/window.ui:354
+#: src/ui/window.ui:367
 msgid "Open menu"
 msgstr ""
 
-#: src/ui/window.ui:375
+#: src/ui/window.ui:388
 msgid "Downloads"
 msgstr ""
 
-#: src/ui/window.ui:395
+#: src/ui/window.ui:408
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -665,57 +669,57 @@ msgid ""
 msgstr ""
 
 #: src/main.py:92
-msgid "`Quit` request received."
+msgid "[Quit] request received."
 msgstr ""
 
 #: src/main.py:97
-msgid "`Help` request received."
+msgid "[Help] request received."
 msgstr ""
 
 #: src/main.py:101
-msgid "`Refresh` request received."
-msgstr ""
-
-#: src/window.py:142
-msgid "New Bottle"
+msgid "[Refresh] request received."
 msgstr ""
 
 #: src/window.py:143
-msgid "Create Bottle"
+msgid "New Bottle"
 msgstr ""
 
 #: src/window.py:144
-msgid "New Bottle details"
+msgid "Create Bottle"
 msgstr ""
 
 #: src/window.py:145
+msgid "New Bottle details"
+msgstr ""
+
+#: src/window.py:146
 msgid "Bottle details"
 msgstr ""
 
-#: src/window.py:187
+#: src/window.py:190
 msgid "Bottles Started!"
 msgstr ""
 
-#: src/window.py:210
+#: src/window.py:213
 msgid "Proceed with the installation of the latest version?"
 msgstr ""
 
-#: src/window.py:212
+#: src/window.py:215
 msgid ""
 "But you don't seem to be connected to the internet and you won't be able to "
 "download a runner. Connect to the internet and confirm this message to begin "
 "the download."
 msgstr ""
 
-#: src/window.py:215
+#: src/window.py:218
 msgid "No runners found"
 msgstr ""
 
-#: src/window.py:220 src/pages/list.py:193 src/pages/list.py:219
+#: src/window.py:223 src/pages/list.py:193 src/pages/list.py:219
 msgid "OK status received"
 msgstr ""
 
-#: src/window.py:228 src/pages/list.py:199 src/pages/list.py:223
+#: src/window.py:231 src/pages/list.py:199 src/pages/list.py:223
 msgid "Cancel status received"
 msgstr ""
 
