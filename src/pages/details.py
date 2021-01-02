@@ -187,6 +187,7 @@ class BottlesDependencyEntry(Gtk.Box):
     '''
     label_name = Gtk.Template.Child()
     label_description = Gtk.Template.Child()
+    label_category = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
@@ -218,10 +219,11 @@ class BottlesDependencyEntry(Gtk.Box):
             return None
 
         '''
-        Set dependency name to the label
+        Populate widgets with data
         '''
         self.label_name.set_text(dependency[0])
         self.label_description.set_text(dependency[1].get("Description"))
+        self.label_category.set_text(dependency[1].get("Category"))
 
         '''
         Connect signals to widgets
