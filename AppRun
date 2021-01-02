@@ -32,7 +32,7 @@ if ! test -f $INSTALLED_DESKTOP_FILE_PATH; then
 	if $INSTALL_DESKTOP_FILE
 	then
 		cp $DESKTOP_FILE_PATH $INSTALLED_DESKTOP_FILE_PATH
-		sed -i -e 's|Exec=bottles|Exec='$APPIMAGE'|g' $INSTALLED_DESKTOP_FILE_PATH
+		sed -i -e 's|Exec=bottles|Exec='$APPIMAGE' %F|g' $INSTALLED_DESKTOP_FILE_PATH
 	fi
 fi
 
