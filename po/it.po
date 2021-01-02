@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-01 14:13+0100\n"
+"POT-Creation-Date: 2021-01-02 09:58+0100\n"
 "PO-Revision-Date: 2021-01-01 13:22+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Weblate 4.4.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:296
-#: src/window.py:146
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:308
+#: src/window.py:147
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -41,7 +41,7 @@ msgstr "Mirko Brombin"
 msgid "Easily manage your Wine bottles (wineprefix)"
 msgstr "Gestisci con facilità le bottiglie Wine (prefissi wine)"
 
-#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:103
+#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:116
 msgid "Dark theme"
 msgstr "Tema scuro"
 
@@ -81,43 +81,43 @@ msgstr "Schermata di avvio"
 msgid "Choose which view should be loaded on application startup."
 msgstr "Scegli la schermata da mostrare all'avvio."
 
-#: src/ui/add.ui:22 src/ui/add-details.ui:20 src/ui/window.ui:317
+#: src/ui/add.ui:23 src/ui/add-details.ui:20 src/ui/window.ui:330
 msgid "New bottle"
 msgstr "Nuova bottiglia"
 
-#: src/ui/add.ui:41
+#: src/ui/add.ui:42
 msgid "Choose the environment"
 msgstr "Scegli un ambiente"
 
-#: src/ui/add.ui:94
+#: src/ui/add.ui:95
 msgid "Gaming"
 msgstr "Giochi"
 
-#: src/ui/add.ui:151
+#: src/ui/add.ui:152
 msgid "Software"
 msgstr "Programmi"
 
-#: src/ui/add.ui:208
+#: src/ui/add.ui:209
 msgid "Custom"
 msgstr "Personalizzato"
 
-#: src/ui/add.ui:245
+#: src/ui/add.ui:246
 msgid "Environment description"
 msgstr "Descrizione ambiente"
 
-#: src/ui/add.ui:265
+#: src/ui/add.ui:266
 msgid "Create new bottle"
 msgstr "Crea nuova bottiglia"
 
-#: src/ui/add.ui:269
+#: src/ui/add.ui:270
 msgid "Create a new bottle with the selected environment"
 msgstr "Crea una nuova bottiglia con l'ambiente selezionato"
 
-#: src/ui/add.ui:293
+#: src/ui/add.ui:294
 msgid "Import from backup"
 msgstr "Importa da backup"
 
-#: src/ui/add.ui:297
+#: src/ui/add.ui:298
 msgid "Import from backup or other managers"
 msgstr "Importa da backup o altro gestore"
 
@@ -255,7 +255,7 @@ msgstr "Esegui .exe"
 msgid "Manage the processes running in this Bottle."
 msgstr "Uccidi tutti i processi in esecuzione su questa bottiglia."
 
-#: src/ui/details.ui:517 src/ui/window.ui:146 src/window.py:148
+#: src/ui/details.ui:517 src/ui/window.ui:159 src/window.py:149
 msgid "Task manager"
 msgstr "Gestore processi"
 
@@ -517,7 +517,7 @@ msgstr "Sostituzioni DLL"
 msgid "Customize preferences for this Bottle."
 msgstr "Personalizza preferenze per questa Bottiglia."
 
-#: src/ui/details.ui:2025 src/ui/window.ui:172 src/window.py:147
+#: src/ui/details.ui:2025 src/ui/window.ui:185 src/window.py:148
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -663,38 +663,42 @@ msgstr "Aiutaci a tradurre"
 msgid "Support Bottles"
 msgstr "Supporta Bottles"
 
-#: src/ui/window.ui:159 src/window.py:149
+#: src/ui/window.ui:87
+msgid "Bug Report"
+msgstr ""
+
+#: src/ui/window.ui:172 src/window.py:150
 msgid "Importer"
 msgstr "Importatore"
 
-#: src/ui/window.ui:196
+#: src/ui/window.ui:209
 msgid "About Bottles"
 msgstr "A proposito di Bottles"
 
-#: src/ui/window.ui:263
+#: src/ui/window.ui:275
 msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
 "Questa è una versione in fase di sviluppo. Segnala eventuali bug nella "
 "repository GitHub."
 
-#: src/ui/window.ui:302
+#: src/ui/window.ui:314
 msgid "Go back"
 msgstr "Indietro"
 
-#: src/ui/window.ui:335
+#: src/ui/window.ui:348
 msgid "Your Bottles"
 msgstr "A proposito di Bottles"
 
-#: src/ui/window.ui:354
+#: src/ui/window.ui:367
 msgid "Open menu"
 msgstr "Apri menu"
 
-#: src/ui/window.ui:375
+#: src/ui/window.ui:388
 msgid "Downloads"
 msgstr "Preferenze di download"
 
-#: src/ui/window.ui:395
+#: src/ui/window.ui:408
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -705,42 +709,45 @@ msgstr ""
 "nuovamente connesso."
 
 #: src/main.py:92
-msgid "`Quit` request received."
+#, fuzzy
+msgid "[Quit] request received."
 msgstr "Richiesta `Chiudi` ricevuta."
 
 #: src/main.py:97
-msgid "`Help` request received."
+#, fuzzy
+msgid "[Help] request received."
 msgstr "Richiesta `Aiuto` ricevuta."
 
 #: src/main.py:101
-msgid "`Refresh` request received."
+#, fuzzy
+msgid "[Refresh] request received."
 msgstr "Richiesta `Ricarica` ricevuta."
 
-#: src/window.py:142
+#: src/window.py:143
 msgid "New Bottle"
 msgstr "Nuova Bottiglia"
 
-#: src/window.py:143
+#: src/window.py:144
 msgid "Create Bottle"
 msgstr "Crea nuova Bottiglia"
 
-#: src/window.py:144
+#: src/window.py:145
 msgid "New Bottle details"
 msgstr "Dettagli nuova Bottiglia"
 
-#: src/window.py:145
+#: src/window.py:146
 msgid "Bottle details"
 msgstr "Dettagli Bottiglia"
 
-#: src/window.py:187
+#: src/window.py:190
 msgid "Bottles Started!"
 msgstr "Bottles Avviato!"
 
-#: src/window.py:210
+#: src/window.py:213
 msgid "Proceed with the installation of the latest version?"
 msgstr "Procedo con l'installazione dell'ultima versione?"
 
-#: src/window.py:212
+#: src/window.py:215
 msgid ""
 "But you don't seem to be connected to the internet and you won't be able to "
 "download a runner. Connect to the internet and confirm this message to begin "
@@ -750,15 +757,15 @@ msgstr ""
 "scaricare i componenti essenziali. Clicca questa icona quando sarai "
 "nuovamente connesso."
 
-#: src/window.py:215
+#: src/window.py:218
 msgid "No runners found"
 msgstr "Nessun runner trovato"
 
-#: src/window.py:220 src/pages/list.py:193 src/pages/list.py:219
+#: src/window.py:223 src/pages/list.py:193 src/pages/list.py:219
 msgid "OK status received"
 msgstr "Stato OK ricevuto"
 
-#: src/window.py:228 src/pages/list.py:199 src/pages/list.py:223
+#: src/window.py:231 src/pages/list.py:199 src/pages/list.py:223
 msgid "Cancel status received"
 msgstr "Stato Cancella ricevuto"
 
