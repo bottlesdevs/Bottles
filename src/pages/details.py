@@ -272,6 +272,7 @@ class BottlesDetails(Gtk.Box):
     '''
     label_name = Gtk.Template.Child()
     label_runner = Gtk.Template.Child()
+    label_state = Gtk.Template.Child()
     label_update_date = Gtk.Template.Child()
     label_size = Gtk.Template.Child()
     label_disk = Gtk.Template.Child()
@@ -315,6 +316,7 @@ class BottlesDetails(Gtk.Box):
     entry_overrides = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
+    grid_versioning = Gtk.Template.Child()
 
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
@@ -332,7 +334,7 @@ class BottlesDetails(Gtk.Box):
         self.configuration = configuration
 
         '''
-        Populate combo_runner with installed runners
+        Populate widgets with data
         '''
         for runner in self.runner.runners_available:
             self.combo_runner.append(runner, runner)
@@ -401,6 +403,7 @@ class BottlesDetails(Gtk.Box):
         self.notebook_details.get_nth_page(5).set_visible(versioning)
         self.label_name.set_text(self.configuration.get("Name"))
         self.label_runner.set_text(self.configuration.get("Runner"))
+        self.label_state.set_text(str(self.configuration.get("State")))
         self.label_update_date.set_text(self.configuration.get("Update_Date"))
         self.label_size.set_text(bottle_size)
         self.label_disk.set_text(disk_free)
@@ -416,6 +419,7 @@ class BottlesDetails(Gtk.Box):
         self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
         self.entry_environment_variables.set_text(parameters["environment_variables"])
         self.entry_overrides.set_text(parameters["dll_overrides"])
+        self.grid_versioning.set_visible(self.configuration.get("Versioning"))
 
         '''
         Unlock signals
