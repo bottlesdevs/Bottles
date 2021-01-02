@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 
-import webbrowser, re, time
+import webbrowser, re
 
 from .dialog import BottlesDialog
 
