@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk
 
-import webbrowser, re
+import webbrowser, re, time
 
 from .dialog import BottlesDialog
 
@@ -99,6 +99,7 @@ class BottlesProgramEntry(Gtk.Box):
     btn_issues = Gtk.Template.Child()
     grid_arguments = Gtk.Template.Child()
     entry_arguments = Gtk.Template.Child()
+    spinner_running = Gtk.Template.Child()
 
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
@@ -245,6 +246,7 @@ class BottlesDependencyEntry(Gtk.Box):
             title=_("Manifest for {0}").format(self.dependency[0]),
             message=_("This is the manifest for {0}.").format(self.dependency[0]),
             log=self.runner.fetch_dependency_manifest(self.dependency[0],
+                                                      self.dependency[1]["Category"],
                                                       plain=True))
         dialog_upgrade.run()
         dialog_upgrade.destroy()

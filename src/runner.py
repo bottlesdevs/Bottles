@@ -458,7 +458,9 @@ class BottlesRunner:
         '''
         Get dependency manifest from repository
         '''
-        dependency_manifest = self.fetch_dependency_manifest(dependency[0])
+        dependency_manifest = self.fetch_dependency_manifest(
+            dependency[0],
+            dependency[1]["Category"])
 
         '''
         Execute installation steps
@@ -695,10 +697,12 @@ class BottlesRunner:
     '''
     Fetch dependency manifest online
     '''
-    def fetch_dependency_manifest(self, dependency_name:str, plain:bool=False) -> Union[str, dict, bool]:
+    def fetch_dependency_manifest(self, dependency_name:str, dependency_category:str, plain:bool=False) -> Union[str, dict, bool]:
         if self.utils_conn.check_connection():
-            with urllib.request.urlopen("%s/%s.json" % (
-                self.dependencies_repository, dependency_name
+            with urllib.request.urlopen("%s/%s/%s.json" % (
+                self.dependencies_repository,
+                dependency_category,
+                dependency_name
             )) as url:
                 if plain:
                     return url.read().decode("utf-8")
