@@ -1518,7 +1518,7 @@ class BottlesRunner:
     '''
     def async_create_bottle_state(self, args:list) -> bool:
         configuration, comment = args
-        logging.info("Creating new state for bottle {0}: …".format(
+        logging.info("Creating new state for bottle: [{0}] …".format(
             configuration.get("Name")))
 
         bottle_path = self.get_bottle_path(configuration)
