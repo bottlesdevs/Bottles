@@ -1002,7 +1002,7 @@ class BottlesRunner:
 
         return {
             "total": disk_total,
-            "used": disk_free,
+            "used": disk_used,
             "free": disk_free,
         }
 

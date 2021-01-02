@@ -392,10 +392,11 @@ class BottlesDetails(Gtk.Box):
         Get bottle disk usage and free space
         '''
         bottle_size = self.runner.get_bottle_size(configuration)
-        bottle_size_float = self.runner.get_bottle_size(configuration, False)
-        disk_total_float = self.runner.get_disk_size(False)["total"]
         disk_free = self.runner.get_disk_size()["free"]
-        disk_fraction = ((bottle_size_float / disk_total_float) * 100) / 100
+
+        disk_fraction = (
+            self.runner.get_disk_size(False)["used"] /
+            self.runner.get_disk_size(False)["total"])
 
         '''
         Set widgets status from configuration
