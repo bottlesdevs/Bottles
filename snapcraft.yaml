@@ -9,7 +9,7 @@ confinement: classic
 parts:
   bottles:
     plugin: meson
-    build-packages: [python3, gettext, libgstreamer-plugins-base1.0-dev, libgtk-3-dev]
+    build-packages: [python3, gettext, libgtk-3-dev, gsettings-desktop-schemas-dev, appstream, desktop-file-utils]
     stage-packages: [python3, python3-gi]
     source: .
 
