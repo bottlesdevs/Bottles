@@ -43,10 +43,7 @@ logging = UtilsLogger()
 class BottlesWindow(Gtk.ApplicationWindow):
     __gtype_name__ = 'BottlesWindow'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     grid_main = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
@@ -67,10 +64,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
 
-    '''
-    Define environments and select the first
-    by default
-    '''
+    '''Define environments and set first'''
     envs = [
         'Gaming',
         'Software',
@@ -78,43 +72,32 @@ class BottlesWindow(Gtk.ApplicationWindow):
     ]
     env_active = envs[0]
 
-    '''
-    Common variables
-    '''
+    '''Common variables'''
     previous_page = ""
     default_settings = Gtk.Settings.get_default()
     settings = Gio.Settings.new(APP_ID)
 
-    '''
-    Initializing Notify
-    '''
+    '''Notify instance'''
     Notify.init(APP_ID)
 
     def __init__(self, arg_executable, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        TODO: remove after merge into master branch
-        '''
+        '''Custom title for branch'''
         #self.set_title("Bottles:feature-bottles-versioning")
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
                                            THEME_DARK)
 
+        '''UtilsConnection instance'''
         self.utils_conn = UtilsConnection(self)
 
-        '''
-        Create a runner instance
-        '''
+        '''Runner instance'''
         self.runner = BottlesRunner(self)
 
-        '''
-        Get and assign pages to variables
-        '''
+        '''Pages'''
         page_add = BottlesAdd(self)
         page_add_details = BottlesAddDetails(self)
         page_details = BottlesDetails(self)
@@ -124,9 +107,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         page_taskmanager = BottlesTaskManager(self)
         page_importer = BottlesImporter(self)
 
-        '''
-        Set reusable variables
-        '''
+        '''Reusable variables'''
         self.page_add_details = page_add_details
         self.page_create = page_create
         self.page_preferences = page_preferences
@@ -135,9 +116,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.page_taskmanager = page_taskmanager
         self.page_importer = page_importer
 
-        '''
-        Add pages to stack and set options
-        '''
+        '''Populate stack'''
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
         self.stack_main.add_titled(page_add, "page_add", _("New Bottle"))
@@ -149,14 +128,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.stack_main.add_titled(page_taskmanager, "page_taskmanager", _("Task manager"))
         self.stack_main.add_titled(page_importer, "page_importer", _("Importer"))
 
-        '''
-        Add widgets to main grid
-        '''
+        '''Populate grid'''
         self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_back.connect('pressed', self.go_back)
         self.btn_back.connect('activate', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view)
@@ -172,19 +147,13 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.switch_dark.connect('state-set', self.toggle_dark)
 
-        '''
-        Set widgets status from user settings
-        '''
+        '''Set widgets status from user settings'''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
 
-        '''
-        Load startup view from user settings
-        '''
+        '''Load startup view from user settings'''
         self.stack_main.set_visible_child_name(self.settings.get_string("startup-view"))
 
-        '''
-        This method sould be executed as last
-        '''
+        '''Executed on last'''
         self.on_start()
         arg_executable = False
         logging.info(_("Bottles Started!"))
@@ -193,19 +162,13 @@ class BottlesWindow(Gtk.ApplicationWindow):
         if self.utils_conn.check_connection():
             self.runner.checks()
 
-    '''
-    Toggle btn_noconnection visibility for display connection issues
-    '''
+    '''Toggle btn_noconnection visibility'''
     def toggle_btn_noconnection(self, status):
         self.btn_noconnection.set_visible(status)
 
-    '''
-    This method should be called after window shown
-    '''
+    '''Execute before window shown'''
     def on_start(self):
-        '''
-        Check if there is at least 1 runner in the system
-        '''
+        '''Search for at least one local runner'''
         if len(self.runner.runners_available) == 0:
             message = "There are no Runners in the system. "
 
@@ -222,9 +185,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
             if response == Gtk.ResponseType.OK:
                 logging.info(_("OK status received"))
 
-                '''
-                Performs runner checks
-                '''
+                '''Runner checks'''
                 self.runner.checks()
                 # TODO: do not install RC
             else:
@@ -232,10 +193,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
 
             dialog_checks.destroy()
 
-    '''
-    Toggle UI usability, this method should be used when performing delicate
-    operations, like new bottle creation
-    '''
+    '''Toggle UI usability preventing user clicks'''
     def set_usable_ui(self, status):
         for widget in [self.btn_back,
                        self.btn_add,
@@ -244,17 +202,13 @@ class BottlesWindow(Gtk.ApplicationWindow):
                        self.btn_menu]:
             widget.set_sensitive(status)
 
-    '''
-    Request a new notification to the Notify instance
-    '''
+    '''Send new notification'''
     def send_notification(self, title, text, image="", user_settings=True):
         if user_settings and self.settings.get_boolean("notifications") or not user_settings:
             notification = Notify.Notification.new(title, text, image)
             notification.show()
 
-    '''
-    Save the previous page to allow the user to go back
-    '''
+    '''Save pevious page for back button'''
     def set_previous_page_status(self):
         if self.previous_page != "page_preferences":
             current_page = self.stack_main.get_visible_child_name()
@@ -268,9 +222,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
             self.btn_download_preferences.set_visible(False)
             self.btn_back.set_visible(True)
 
-    '''
-    Open URLs
-    '''
+    '''Open URLs'''
     @staticmethod
     def open_translate_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/tree/develop")
@@ -283,9 +235,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
     def open_report_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues")
 
-    '''
-    Return to previous page
-    '''
+    '''Go back to previous page'''
     def go_back(self, widget):
         self.btn_add.set_visible(True)
         self.btn_list.set_visible(True)
@@ -319,13 +269,12 @@ class BottlesWindow(Gtk.ApplicationWindow):
     def show_runners_preferences_view(self, widget=False):
         self.show_preferences_view(widget, view=2)
 
+    '''Show about dialog'''
     @staticmethod
     def show_about_dialog(widget):
         BottlesAboutDialog().show_all()
 
-    '''
-    Toggle dark mode and store status in settings
-    '''
+    '''Toggle dark mode and store in user settings'''
     def toggle_dark(self, widget, state):
         self.settings.set_boolean("dark-theme", state)
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
