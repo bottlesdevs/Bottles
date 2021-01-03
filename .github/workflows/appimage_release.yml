@@ -32,7 +32,9 @@ jobs:
           sudo ./appimage-build.sh
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          title: Release build (continuous)
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          draft: false
           prerelease: true
+          automatic_release_tag: continuous-gh
+          title: Release build (continuous)
           files: /home/runner/work/Bottles/Bottles/Bottles/build/Bottles-devel-x86_64.AppImage
