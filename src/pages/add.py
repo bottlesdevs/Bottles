@@ -27,10 +27,7 @@ logging = UtilsLogger()
 class BottlesAddDetails(Gtk.Box):
     __gtype_name__ = 'BottlesAddDetails'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     label_env_name = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     entry_path = Gtk.Template.Child()
@@ -44,31 +41,23 @@ class BottlesAddDetails(Gtk.Box):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
         self.environment = self.window.env_active
         self.custom_runner = False
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_cancel.connect('pressed', self.show_add_view)
         self.btn_save.connect('pressed', self.create_bottle)
         self.check_path.connect('toggled', self.toggle_entry_path)
         self.entry_name.connect('key-release-event', self.check_entry_name)
         self.combo_runner.connect('changed', self.set_runner)
 
-        '''
-        Populate combo_runner with installed runners
-        '''
+        '''Populate combo_runner'''
         for runner in self.runner.runners_available:
             self.combo_runner.append(runner, runner)
 
@@ -77,10 +66,7 @@ class BottlesAddDetails(Gtk.Box):
     def set_runner(self, widget):
         self.custom_runner = widget.get_active_id()
 
-    '''
-    Get selected environment
-    if custom show advanced settings
-    '''
+    '''Get selected environment, if custom display advanced settings'''
     def update_environment(self):
         self.expander_advanced.set_visible(False)
         self.environment = self.window.env_active
@@ -88,9 +74,7 @@ class BottlesAddDetails(Gtk.Box):
             self.custom_runner = self.combo_runner.get_active_id()
             self.expander_advanced.set_visible(True)
 
-    '''
-    Check for not allowed characters in entry_name
-    '''
+    '''Validate entry_name input'''
     def check_entry_name(self, widget, event_key):
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,]')
         name = widget.get_text()
@@ -102,15 +86,14 @@ class BottlesAddDetails(Gtk.Box):
             self.btn_save.set_sensitive(False)
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
+    '''Show add page'''
     def show_add_view(self, widget):
         self.window.stack_main.set_visible_child_name("page_add")
 
     def create_bottle(self, widget):
         custom_path = self.entry_path.get_text()
 
-        '''
-        TODO: Custom bottle paths must be saved to be found when listing bottles
-        '''
+        '''TODO: Custom bottle paths must be indexed'''
         versioning_state = self.switch_versioning.get_state()
         self.window.stack_main.set_visible_child_name("page_create")
         self.runner.create_bottle(name=self.entry_name.get_text(),
@@ -126,10 +109,7 @@ class BottlesAddDetails(Gtk.Box):
 class BottlesAdd(Gtk.Box):
     __gtype_name__ = 'BottlesAdd'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     btn_env_gaming = Gtk.Template.Child()
     btn_env_software = Gtk.Template.Child()
     btn_env_custom = Gtk.Template.Child()
@@ -140,30 +120,23 @@ class BottlesAdd(Gtk.Box):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
 
-        '''
-        Set default environment
-        '''
+        '''Set default environment'''
         self.set_software_env(self.btn_env_software)
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_import.connect('pressed', self.window.show_importer_view)
         self.btn_add_details.connect('pressed', self.show_add_details_view)
         self.btn_env_gaming.connect('pressed', self.set_gaming_env)
         self.btn_env_software.connect('pressed', self.set_software_env)
         self.btn_env_custom.connect('pressed', self.set_custom_env)
 
+    '''Display file dialog for backup'''
     def choose_backup(self, widget):
         file_dialog = Gtk.FileChooserDialog(_("Choose a backup"),
                                             self.window,
@@ -171,9 +144,7 @@ class BottlesAdd(Gtk.Box):
                                             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
                                             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
 
-        '''
-        Create filter for each allowed backup extension
-        '''
+        '''Create filters for allowed extensions'''
         filter_json = Gtk.FileFilter()
         filter_json.set_name(".json backup")
         filter_json.add_pattern("*.json")
@@ -213,16 +184,10 @@ class BottlesAdd(Gtk.Box):
         self.window.env_active = self.window.envs[2]
         self.set_active_env(widget)
 
+    '''Set button active class for selected environment'''
     def set_active_env(self, widget):
-        '''
-        Log the selected environment
-        '''
         logging.info(_("Selected env is: [{0}]").format(self.window.env_active))
 
-        '''
-        For each environment button, remove the active class and
-        set only to the last pressed
-        '''
         for w in [self.btn_env_gaming,
                   self.btn_env_software,
                   self.btn_env_custom]:
@@ -232,6 +197,7 @@ class BottlesAdd(Gtk.Box):
         context = widget.get_style_context()
         context.add_class("btn_env_active")
 
+    '''Show details page'''
     def show_add_details_view(self, widget):
         self.window.page_add_details.update_environment()
         self.window.stack_main.set_visible_child_name("page_add_details")
