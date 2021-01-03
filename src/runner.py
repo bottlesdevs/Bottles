@@ -241,7 +241,7 @@ class BottlesRunner:
                         logging.warning(
                             _("Latest dxvk: [{0}] already installed.").format(tag))
 
-         '''Notify if the user allows it'''
+        '''Notify if the user allows it'''
         if len(updates) == 0:
             self.window.send_notification(_("Download manager"),
                                           _("No dxvk updates available."),
@@ -320,7 +320,7 @@ class BottlesRunner:
     def async_install_component(self, args:list) -> None:
         component, tag, file = args
 
-         '''Notify if the user allows it'''
+        '''Notify if the user allows it'''
         self.window.send_notification(
             _("Download manager"),
             _("Installing {0} runner …").format(tag),
@@ -348,7 +348,7 @@ class BottlesRunner:
             self.dxvk_available = []
             self.check_dxvk()
 
-         '''Notify if the user allows it'''
+        '''Notify if the user allows it'''
         self.window.send_notification(
             _("Download manager"),
             _("Component {0} successfully installed!").format(tag),
@@ -373,7 +373,7 @@ class BottlesRunner:
     def async_install_dependency(self, args:list) -> bool:
         configuration, dependency, widget = args
 
-         '''Notify if the user allows it'''
+        '''Notify if the user allows it'''
         self.window.send_notification(
             _("Download manager"),
              _("Installing {0} dependency in bottle {1} …").format(
@@ -1162,7 +1162,7 @@ class BottlesRunner:
 
         self.run_command(configuration, "wineboot %s" % option)
 
-         '''Notify if the user allows it'''
+        '''Notify if the user allows it'''
         self.window.send_notification(
             "Bottles",
             _("{0} completed for {1}.").format(status, bottle_name
@@ -1641,7 +1641,7 @@ class BottlesRunner:
         if backup_created:
             logging.info(_("Backup saved in path: {0}.").format(path))
 
-             '''Notify if the user allows it'''
+            '''Notify if the user allows it'''
             self.window.send_notification(
                 "Backup",
                 _("Your backup for {0} is ready!").format(
@@ -1651,7 +1651,7 @@ class BottlesRunner:
         else:
             logging.error(_("Failed to save backup in path: {0}.").format(path))
 
-             '''Notify if the user allows it'''
+            '''Notify if the user allows it'''
             self.window.send_notification(
                 "Backup",
                 _("Failed to create backup for {0}!").format(
@@ -1699,7 +1699,7 @@ class BottlesRunner:
             '''Update bottles'''
             self.update_bottles()
 
-             '''Notify if the user allows it'''
+            '''Notify if the user allows it'''
             self.window.send_notification(
                 "Backup",
                 _("Your backup {0} was imported successfully.!").format(
@@ -1709,7 +1709,7 @@ class BottlesRunner:
             logging.error(_("Failed importing backup: [{0}]").format(
                 backup_name))
 
-             '''Notify if the user allows it'''
+            '''Notify if the user allows it'''
             self.window.send_notification(
                 "Backup",
                 _("Failed importing backup {0}!").format(backup_name),
