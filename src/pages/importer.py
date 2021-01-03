@@ -21,10 +21,7 @@ from gi.repository import Gtk
 class BottlesImporterEntry(Gtk.Box):
     __gtype_name__ = 'BottlesImporterEntry'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     label_name = Gtk.Template.Child()
     label_manager = Gtk.Template.Child()
     btn_import = Gtk.Template.Child()
@@ -34,21 +31,15 @@ class BottlesImporterEntry(Gtk.Box):
     def __init__(self, window, prefix, sample=False, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Set reusable variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
         self.prefix = prefix
 
-        '''
-        Populate widgets with data
-        '''
+        '''Populate widgets'''
         if not sample:
             self.label_name.set_text(prefix.get("Name"))
             self.label_manager.set_text(prefix.get("Manager"))
@@ -61,15 +52,15 @@ class BottlesImporterEntry(Gtk.Box):
                       self.btn_import]:
                 w.set_visible(False)
 
-        '''
-        Connect widgets to signals
-        '''
+        '''Signal connections'''
         self.btn_browse.connect("pressed", self.browse_wineprefix)
         self.btn_import.connect("pressed", self.import_wineprefix)
 
+    '''Browse wineprefix files'''
     def browse_wineprefix(self, widget):
         self.runner.browse_wineprefix(self.prefix)
 
+    '''Import wineprefix'''
     def import_wineprefix(self, widget):
         if self.runner.import_wineprefix(self.prefix, widget):
             self.destroy()
@@ -79,10 +70,7 @@ class BottlesImporterEntry(Gtk.Box):
 class BottlesImporter(Gtk.ScrolledWindow):
     __gtype_name__ = 'BottlesImporter'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     list_prefixes = Gtk.Template.Child()
     btn_search_wineprefixes = Gtk.Template.Child()
     btn_import_configuration = Gtk.Template.Child()
@@ -91,41 +79,32 @@ class BottlesImporter(Gtk.ScrolledWindow):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Set reusable variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
 
-        '''
-        Connect widgets to signals
-        '''
+        '''Signal connections'''
         self.btn_search_wineprefixes.connect("pressed", self.search_wineprefixes)
         self.btn_import_full.connect("pressed", self.import_backup_full)
 
+    '''Search for wineprefixes from other managers'''
     def search_wineprefixes(self, widget):
-        '''
-        Destroy all childs in list_prefixes
-        '''
+        '''Empty list_prefixes'''
         for w in self.list_prefixes.get_children():
             w.destroy()
 
-        '''
-        Get and list wineprefixes from other managers
-        '''
+        '''Get wineprefixes and populate list_prefixes'''
         wineprefixes = self.runner.search_wineprefixes()
-
         if len(wineprefixes) > 0:
             for wineprefix in wineprefixes:
                 self.list_prefixes.add(BottlesImporterEntry(self.window, wineprefix))
         else:
             self.list_prefixes.add(BottlesImporterEntry(self.window, {}, sample=True))
 
+    '''Display file dialog for backup path'''
     def import_backup_full(self, widget):
         file_dialog = Gtk.FileChooserDialog(_("Choose a backup archive"),
                                             self.window,
