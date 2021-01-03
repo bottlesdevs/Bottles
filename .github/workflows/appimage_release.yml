@@ -24,12 +24,10 @@ jobs:
         run: |
           if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
       - name: Executing Script
-        working-directory: /home/runner/work/Bottles/
         run: |
           chmod +x appimage-build.sh
           sudo ./appimage-build.sh
       - name: Post-Build
-        working-directory: /home/runner/work/Bottles/
         run: |
           cp build/Bottles*.AppImage* ./
           find appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
