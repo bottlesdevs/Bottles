@@ -36,7 +36,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: continuous
+          tag_name: continuous-ga
           release_name: Release build (continuous) - GitHub Actions
           body: |
             CI Build
