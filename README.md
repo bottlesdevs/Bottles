@@ -94,8 +94,9 @@ These packages are maitained by our community but not officialy supported.
 | Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | ragouel |
 | Tumbleweed | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
 | Fedora 33 | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
-| Void linux | [`bottles`](https://github.com/void-linux/void-packages/pull/27066) | andry-dev|
 | Flathub | [`com.usebottles.bottles`](https://github.com/flathub/flathub/pull/2022) | francescomasala |
+| Void linux | [`bottles`](https://github.com/void-linux/void-packages/pull/27066) | andry-dev|
+| NixOS | [`bottles`](https://github.com/bottlesdevs/Bottles/issues/72) | bloomvdomino |
 
 #### Notices for package maintainers
 We are happy to see packaged Bottles but we ask you to respect some small rules:
