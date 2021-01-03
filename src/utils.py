@@ -19,11 +19,10 @@ import sys, logging, socket, subprocess, hashlib, threading, traceback
 
 from gi.repository import GLib
 
-'''
-Set the default logging level
-'''
+'''Set default logging level'''
 logging.basicConfig(level=logging.DEBUG)
 
+'''Check online connection'''
 class UtilsConnection():
 
     def __init__(self, window, **kwargs):
@@ -47,6 +46,7 @@ class UtilsConnection():
                                               "network-wireless-disabled-symbolic")
         return False
 
+'''Launch commands in system terminal'''
 class UtilsTerminal():
 
     terminals = [
@@ -69,6 +69,7 @@ class UtilsTerminal():
                     stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
                 break
 
+'''Custom formatted logger'''
 class UtilsLogger(logging.getLoggerClass()):
 
     color_map = {
@@ -113,6 +114,7 @@ class UtilsLogger(logging.getLoggerClass()):
     def critical(self, message):
         self.root.critical(self.color("critical", message))
 
+'''Files utilities'''
 class UtilsFiles():
 
     @staticmethod
@@ -127,6 +129,7 @@ class UtilsFiles():
         except FileNotFoundError:
             return False
 
+'''Execute synchronous tasks'''
 class RunAsync(threading.Thread):
 
     def __init__(self, task_func, callback, *args, **kwargs):
