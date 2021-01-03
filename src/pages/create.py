@@ -23,10 +23,7 @@ import time
 class BottlesCreate(Gtk.Box):
     __gtype_name__ = 'BottlesCreate'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     progressbar_create = Gtk.Template.Child()
     textview_output = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
@@ -37,30 +34,23 @@ class BottlesCreate(Gtk.Box):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_list.connect('pressed', self.show_details)
 
+    '''Concatenate label_output'''
     def update_output(self, text):
         current_text = self.label_output.get_text()
         text = "{0}{1}\n".format(current_text, text)
         self.label_output.set_text(text)
 
-    '''
-    Set widgets visibility status
-    '''
+    '''Set widgets visibility status'''
     def set_status(self, status="initial"):
         if status == "initial":
             self.btn_list.set_visible(False)
@@ -76,14 +66,10 @@ class BottlesCreate(Gtk.Box):
         self.window.stack_main.set_visible_child_name("page_list")
         self.set_status("initial")
 
-        '''
-        Update bottles
-        '''
+        '''Update bottles'''
         self.runner.update_bottles()
 
-    '''
-    Make the progressbar pulse every 1 second
-    '''
+    '''Progressbar pulse every 1s'''
     def pulse(self):
         while True:
             time.sleep(1)
