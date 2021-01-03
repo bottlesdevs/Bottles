@@ -79,7 +79,7 @@ is the only one we currently officially support..
 
 Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous), 
 then:
-```
+```bash
 chmod +x Bottles-devel-x86_64.AppImage
 ./Bottles-devel-x86_64.AppImage
 ```
@@ -115,7 +115,7 @@ Instead of use the Appimage you can choose to build your own Bottles from source
 
 
 #### Build
-```
+```bash
 mkdir build
 meson build && cd build
 ninja -j$(nproc)
@@ -123,7 +123,7 @@ sudo ninja install
 ```
 
 #### Uninstall
-```
+```bash
 cd build
 sudo ninja uninstall
 ```
