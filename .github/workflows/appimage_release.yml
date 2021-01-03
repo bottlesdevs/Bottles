@@ -16,7 +16,7 @@ jobs:
           sudo apt update -qq
       - name: Install Packages 
         run: |
-          sudo apt install python3-pip python-dev build-essential gettext 
+          sudo apt install python3-pip python-dev build-essential gettext tree
           sudo pip3 install --upgrade pip
           sudo pip3 install meson
           sudo pip3 install ninja
