@@ -49,6 +49,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: /home/runner/work/Bottles/Bottles/Bottles/build/appdir/Bottles-devel-x86_64.AppImage
+          asset_path: /home/runner/work/Bottles/Bottles/Bottles/build/Bottles-devel-x86_64.AppImage
           asset_name: Bottles-devel-x86_64.AppImage
           asset_content_type: application/AppImage
