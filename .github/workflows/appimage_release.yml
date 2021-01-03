@@ -30,25 +30,9 @@ jobs:
           cd Bottles
           chmod +x appimage-build.sh
           sudo ./appimage-build.sh
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          tag_name: continuous-ga
-          release_name: Release build (continuous) - GitHub Actions
-          body: |
-            CI Build
-          draft: false
+          title: Release build (continuous)
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
-      - name: Uploading release asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: /home/runner/work/Bottles/Bottles/Bottles/build/Bottles-devel-x86_64.AppImage
-          asset_name: Bottles-devel-x86_64.AppImage
-          asset_content_type: application/AppImage
+          files: /home/runner/work/Bottles/Bottles/Bottles/build/Bottles-devel-x86_64.AppImage
