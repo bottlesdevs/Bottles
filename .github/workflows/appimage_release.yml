@@ -36,11 +36,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: continuous
+          release_name: Release build (continuous)
           body: |
             CI Build
-          draft: true
+          draft: false
           prerelease: true
       - name: Uploading release asset
         id: upload-release-asset 
