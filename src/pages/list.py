@@ -17,23 +17,13 @@
 
 from gi.repository import Gtk
 
-import logging
-
-'''
-Set the default logging level
-'''
-logging.basicConfig(level=logging.DEBUG)
-
 from .dialog import BottlesMessageDialog
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottlesListEntry(Gtk.Box):
     __gtype_name__ = 'BottlesListEntry'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     btn_details = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
@@ -51,31 +41,23 @@ class BottlesListEntry(Gtk.Box):
     def __init__(self, window, configuration, arg_executable, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
         self.configuration = configuration[1]
         self.label_environment_context = self.label_environment.get_style_context()
         self.arg_executable = arg_executable
 
-        '''
-        Check runner type by name
-        '''
+        '''Check runner type by name'''
         if self.configuration.get("Runner").startswith(("", "lutris")):
             self.runner_type = "wine"
         else:
             self.runner_type = "proton"
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_details.connect('pressed', self.show_details)
         self.btn_delete.connect('pressed', self.confirm_delete)
         self.btn_upgrade.connect('pressed', self.upgrade_runner)
@@ -85,9 +67,7 @@ class BottlesListEntry(Gtk.Box):
         self.btn_programs.connect('pressed', self.show_programs_detail_view)
         self.btn_run_executable.connect('pressed', self.run_executable)
 
-        '''
-        Populate widgets with data
-        '''
+        '''Populate widgets'''
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
         self.label_state.set_text(str(self.configuration.get("State")))
         self.label_name.set_text(self.configuration.get("Name"))
@@ -95,9 +75,11 @@ class BottlesListEntry(Gtk.Box):
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
 
+        '''Toggle btn_upgrade'''
         if self.configuration.get("Runner") != self.runner.get_latest_runner(self.runner_type):
             self.btn_upgrade.set_visible(True)
 
+        '''If configuration is broken'''
         if self.configuration.get("Broken"):
             for w in [self.btn_repair,self.icon_damaged]:
                 w.set_visible(True)
@@ -109,9 +91,7 @@ class BottlesListEntry(Gtk.Box):
                       self.btn_programs]:
                 w.set_sensitive(False)
         else:
-            '''
-            Check for executable provided as argument
-            '''
+            '''Check for arguments from configuration'''
             if self.arg_executable:
                 logging.info(
                     _("Arguments found for executable: [{executable}].").format(
@@ -126,29 +106,25 @@ class BottlesListEntry(Gtk.Box):
                     w.set_visible(False)
                 self.btn_run_executable.set_visible(True)
 
+    '''Repair bottle'''
     def repair(self, widget):
         self.runner.repair_bottle(self.configuration)
 
+    '''Show detail page on programs tab'''
     def show_programs_detail_view(self, widget):
         self.show_details(widget, 3)
 
-    '''
-    Show a file chooser dialog to choose and run a Windows executable
-    '''
+    '''Display file dialog for executable'''
     def run_executable(self, widget):
         if not self.arg_executable:
-            '''
-            If not executable founded as argument, choose from files
-            '''
+            '''If executable is not Bottles argument'''
             file_dialog = Gtk.FileChooserDialog(_("Choose a Windows executable file"),
                                                 self.window,
                                                 Gtk.FileChooserAction.OPEN,
                                                 (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
                                                 Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
 
-            '''
-            Create filter for each allowed file extension
-            '''
+            '''Create filters for allowed extensions'''
             filter_exe = Gtk.FileFilter()
             filter_exe.set_name(".exe")
             filter_exe.add_pattern("*.exe")
@@ -168,19 +144,16 @@ class BottlesListEntry(Gtk.Box):
 
             file_dialog.destroy()
         else:
-            '''
-            Else use the one provided
-            '''
+            '''Use executable provided as bottles argument'''
             self.runner.run_executable(self.configuration, self.arg_executable)
             self.arg_executable = False
             self.runner.update_bottles()
 
+    '''Browse bottle drive_c files'''
     def run_browse(self, widget):
         self.runner.open_filemanager(self.configuration)
 
-    '''
-    Show a confirm dialog to update bottle runner with the latest
-    '''
+    '''Show dialog to confirm runner upgrade'''
     def upgrade_runner(self, widget):
         dialog_upgrade = BottlesMessageDialog(parent=self.window,
                                       title=_("Confirm upgrade"),
@@ -200,15 +173,14 @@ class BottlesListEntry(Gtk.Box):
 
         dialog_upgrade.destroy()
 
+    '''Show details page'''
     def show_details(self, widget, page=0):
         if page > 0:
             self.window.page_details.set_page(page)
         self.window.page_details.set_configuration(self.configuration)
         self.window.stack_main.set_visible_child_name("page_details")
 
-    '''
-    Show a confirm dialog to remove bottle and destroy the widget
-    '''
+    '''Show dialog to confirm bottle deletion'''
     def confirm_delete(self, widget):
         dialog_delete = BottlesMessageDialog(parent=self.window,
                                       title=_("Confirm deletion"),
@@ -229,34 +201,23 @@ class BottlesListEntry(Gtk.Box):
 class BottlesList(Gtk.ScrolledWindow):
     __gtype_name__ = 'BottlesList'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     list_bottles = Gtk.Template.Child()
 
     def __init__(self, window, arg_executable, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.arg_executable = arg_executable
 
-        '''
-        Run methods
-        '''
+        '''Populate list_bottles'''
         self.update_bottles()
 
-    '''
-    Add bottles to the list_bottles
-    '''
+    '''Find and append bottles to list_bottles'''
     def update_bottles(self):
         for bottle in self.list_bottles.get_children():
             bottle.destroy()
