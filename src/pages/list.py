@@ -163,13 +163,10 @@ class BottlesListEntry(Gtk.Box):
         response = dialog_upgrade.run()
 
         if response == Gtk.ResponseType.OK:
-            logging.info(_("OK status received"))
             self.runner.update_configuration(self.configuration,
                                              "Runner",
                                              self.runner.get_latest_runner())
             self.btn_upgrade.set_visible(False)
-        else:
-            logging.info(_("Cancel status received"))
 
         dialog_upgrade.destroy()
 
