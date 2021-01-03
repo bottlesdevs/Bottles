@@ -9,8 +9,21 @@ confinement: strict
 parts:
   bottles:
     plugin: meson
-    build-packages: [python3, python3-setuptools, gettext, libgtk-3-dev, gsettings-desktop-schemas-dev, appstream, appstream-util, desktop-file-utils]
-    stage-packages: [python3, python3-gi]
+    build-packages:
+      - gettext
+      - libgtk-3-dev
+      - libglib2.0-dev
+      - python3-setuptools
+      - gsettings-desktop-schemas-dev
+      - appstream
+      - appstream-util
+      - desktop-file-utils
+    stage-packages:
+      - python3
+      - python3-gi
+      - python3-gi-cairo
+      - python3-cairo
+      - gir1.2-gtk-3.0
     source: https://github.com/bottlesdevs/Bottles.git
 
 apps:
