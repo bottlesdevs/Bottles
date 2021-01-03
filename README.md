@@ -126,6 +126,27 @@ cd build
 sudo ninja uninstall
 ```
 
+### Flatpak (build)
+We provide an initial Flatpak support.  
+This is a package not fully tested yet, we don't feel like offering full support.
+
+#### Dependencies
+- org.gnome.Sdk
+- org.gnome.Sdk.Compat.i386
+- org.freedesktop.Sdk.Extension.toolchain-i386
+
+#### Build
+```bash
+flatpak-builder --repo=bottles --force-clean --user build-dir com.usebottles.bottles.yml
+flatpak remote-add --user bottles bottles --no-gpg-verify
+flatpak install --user bottles com.usebottles.bottles
+```
+
+#### Run
+```bash
+flatpak run com.usebottles.bottles
+```
+
 ## Shortcuts
 |Shortcut|Action
 |:----:|:----:|
