@@ -26,9 +26,7 @@ from pathlib import Path
 from .params import *
 from .utils import UtilsLogger
 
-'''
-Custom locale path if AppImage
-'''
+'''Set local path to AppDir if AppImage'''
 try:
     LOCALE_PATH = "%s/usr/share/locale/" % os.environ['APPDIR']
 except KeyError:
@@ -63,9 +61,7 @@ class Application(Gtk.Application):
 
     def do_activate(self):
 
-        '''
-        Load custom css
-        '''
+        '''Load custom CSS'''
         data_bytes = Gio.resources_lookup_data(
             "/com/usebottles/bottles/style.css", 0)
         provider = Gtk.CssProvider()
@@ -74,9 +70,7 @@ class Application(Gtk.Application):
                                                  provider,
                                                  Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
-        '''
-        Window
-        '''
+        '''Window'''
         win = self.props.active_window
         if not win:
             win = BottlesWindow(application=self,
@@ -85,25 +79,23 @@ class Application(Gtk.Application):
         self.win = win
         win.present()
 
-    '''
-    Methods for application actions
-    '''
+    '''Quit application [CTRL+Q]'''
     def quit(self, action=None, param=None):
         logging.info(_("[Quit] request received."))
         self.win.destroy()
 
+    '''Open Help URL [F1]'''
     @staticmethod
     def help(action, param):
         logging.info(_("[Help] request received."))
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/wiki")
 
+    '''Refresh Bottles [CTRL+R]'''
     def refresh(self, action, param):
         logging.info(_("[Refresh] request received."))
         self.win.runner.update_bottles()
 
-    '''
-    Set application actions
-    '''
+    '''Set application actions'''
     def set_actions(self):
         action_entries = [
             ("quit", self.quit, ("app.quit", ["<Ctrl>Q"])),
@@ -118,6 +110,7 @@ class Application(Gtk.Application):
             if accel is not None:
                 self.set_accels_for_action(*accel)
 
+'''Run Bottles application'''
 def main(version):
     try:
         app = Application()
