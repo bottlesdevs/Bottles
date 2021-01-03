@@ -34,7 +34,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           draft: false
-          prerelease: true
+          prerelease: false
           automatic_release_tag: continuous-gh
           title: Release build (continuous)
           files: /home/runner/work/Bottles/Bottles/Bottles/build/Bottles-devel-x86_64.AppImage
