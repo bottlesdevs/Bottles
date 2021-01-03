@@ -25,6 +25,7 @@ jobs:
           if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
       - name: Executing Script
         run: |
+          tree
           chmod +x appimage-build.sh
           sudo ./appimage-build.sh
       - name: Post-Build
