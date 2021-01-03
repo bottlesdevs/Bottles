@@ -52,7 +52,7 @@ class BottlesListEntry(Gtk.Box):
         self.arg_executable = arg_executable
 
         '''Check runner type by name'''
-        if self.configuration.get("Runner").startswith(("", "lutris")):
+        if self.configuration.get("Runner").startswith("lutris"):
             self.runner_type = "wine"
         else:
             self.runner_type = "proton"
@@ -155,11 +155,12 @@ class BottlesListEntry(Gtk.Box):
 
     '''Show dialog to confirm runner upgrade'''
     def upgrade_runner(self, widget):
-        dialog_upgrade = BottlesMessageDialog(parent=self.window,
-                                      title=_("Confirm upgrade"),
-                                      message=_("This will change the runner from {0} to {1}.").format(
-                                          self.configuration.get("Runner"),
-                                          self.runner.get_latest_runner()))
+        dialog_upgrade = BottlesMessageDialog(
+            parent=self.window,
+            title=_("Confirm upgrade"),
+            message=_("This will change the runner from {0} to {1}.").format(
+                self.configuration.get("Runner"),
+                self.runner.get_latest_runner(self.runner_type)))
         response = dialog_upgrade.run()
 
         if response == Gtk.ResponseType.OK:
