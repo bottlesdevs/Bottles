@@ -21,15 +21,11 @@ import webbrowser, re
 
 from .dialog import BottlesDialog
 
-
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
 class BottlesInstallerEntry(Gtk.Box):
     __gtype_name__ = 'BottlesInstallerEntry'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     label_name = Gtk.Template.Child()
     label_description = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
@@ -38,31 +34,24 @@ class BottlesInstallerEntry(Gtk.Box):
     def __init__(self, window, configuration, installer, plain=False, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
         self.installer = installer
 
-        '''
-        Populate widgets with data
-        '''
+        '''Populate widgets'''
         self.label_name.set_text(installer[0])
         self.label_description.set_text(installer[1].get("Description"))
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_install.connect('pressed', self.execute_installer)
         self.btn_manifest.connect('pressed', self.open_manifest)
 
+    '''Open installer manifest'''
     def open_manifest(self, widget):
         dialog_upgrade = BottlesDialog(
             parent=self.window,
@@ -74,6 +63,7 @@ class BottlesInstallerEntry(Gtk.Box):
         dialog_upgrade.run()
         dialog_upgrade.destroy()
 
+    '''Execute installer'''
     def execute_installer(self, widget):
         widget.set_sensitive(False)
         '''
@@ -86,10 +76,7 @@ class BottlesInstallerEntry(Gtk.Box):
 class BottlesStateEntry(Gtk.Box):
     __gtype_name__ = 'BottlesStateEntry'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     label_id = Gtk.Template.Child()
     label_comment = Gtk.Template.Child()
     label_creation_date = Gtk.Template.Child()
@@ -100,38 +87,32 @@ class BottlesStateEntry(Gtk.Box):
     def __init__(self, window, configuration, state, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
         self.state = state
         self.state_name = "State: {0}".format(state[0])
         self.configuration = configuration
 
-        '''
-        Set widgets data
-        '''
+        '''Populate widgets'''
         self.label_id.set_text(self.state_name)
         self.label_comment.set_text(self.state[1].get("Comment"))
         self.label_creation_date.set_text(self.state[1].get("Creation_Date"))
         if state[0] == configuration.get("State"):
             self.get_style_context().add_class("current-state")
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_restore.connect('pressed', self.set_state)
         self.btn_manifest.connect('pressed', self.open_index)
 
+    '''Set bottle state'''
     def set_state(self, widget):
         self.runner.set_bottle_state(self.configuration, self.state[0])
 
+    '''Open state index'''
     def open_index(self, widget):
         dialog_upgrade = BottlesDialog(
             parent=self.window,
@@ -147,10 +128,7 @@ class BottlesStateEntry(Gtk.Box):
 class BottlesProgramEntry(Gtk.Box):
     __gtype_name__ = 'BottlesProgramEntry'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     label_name = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
     btn_arguments = Gtk.Template.Child()
@@ -165,14 +143,10 @@ class BottlesProgramEntry(Gtk.Box):
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
@@ -180,14 +154,10 @@ class BottlesProgramEntry(Gtk.Box):
         self.program_executable = program[1].split("\\")[-1]
         self.program_executable_path = program[1]
 
-        '''
-        Set runner name to the label
-        '''
+        '''Populate widgets'''
         self.label_name.set_text(self.program_name)
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal conenctions'''
         self.btn_run.connect('pressed', self.run_executable)
         self.btn_save_arguments.connect('pressed', self.save_arguments)
         self.btn_winehq.connect('pressed', self.open_winehq)
@@ -195,13 +165,12 @@ class BottlesProgramEntry(Gtk.Box):
         self.btn_issues.connect('pressed', self.open_issues)
         self.btn_arguments.connect('toggled', self.toggle_arguments)
 
-        '''
-        Populate widgets with data
-        '''
+        '''Populate entry_arguments by configuration'''
         if self.program_executable in self.configuration["Programs"]:
             arguments = self.configuration["Programs"][self.program_executable]
             self.entry_arguments.set_text(arguments)
 
+    '''Run executable'''
     def run_executable(self, widget):
         if self.program_executable in self.configuration["Programs"]:
             arguments = self.configuration["Programs"][self.program_executable]
@@ -211,6 +180,7 @@ class BottlesProgramEntry(Gtk.Box):
                                    self.program_executable_path,
                                    arguments)
 
+    '''Save arguments'''
     def save_arguments(self, widget):
         arguments = self.entry_arguments.get_text()
         new_configuration = self.runner.update_configuration(self.configuration,
@@ -219,13 +189,12 @@ class BottlesProgramEntry(Gtk.Box):
                                                              scope="Programs")
         self.configuration = new_configuration
 
+    '''Toggle arguments grid'''
     def toggle_arguments(self, widget):
         status = widget.get_active()
         self.grid_arguments.set_visible(status)
 
-    '''
-    Open URLs
-    '''
+    '''Open URLs'''
     def open_winehq(self, widget):
         query = self.program_name.replace(" ", "+")
         webbrowser.open_new_tab("https://www.winehq.org/search?q=%s" % query)
@@ -242,10 +211,7 @@ class BottlesProgramEntry(Gtk.Box):
 class BottlesDependencyEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDependencyEntry'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     label_name = Gtk.Template.Child()
     label_description = Gtk.Template.Child()
     label_category = Gtk.Template.Child()
@@ -256,22 +222,16 @@ class BottlesDependencyEntry(Gtk.Box):
     def __init__(self, window, configuration, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
         self.dependency = dependency
 
-        '''
-        The dependency variable is a plain text
-        '''
+        '''If dependency is plain text (placeholder)'''
         if plain:
             self.label_name.set_text(dependency)
             self.label_description.destroy()
@@ -279,16 +239,12 @@ class BottlesDependencyEntry(Gtk.Box):
             self.btn_remove.set_visible(False)
             return None
 
-        '''
-        Populate widgets with data
-        '''
+        '''Populate widgets'''
         self.label_name.set_text(dependency[0])
         self.label_description.set_text(dependency[1].get("Description"))
         self.label_category.set_text(dependency[1].get("Category"))
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_install.connect('pressed', self.install_dependency)
         self.btn_remove.connect('pressed', self.remove_dependency)
         self.btn_manifest.connect('pressed', self.open_manifest)
@@ -300,6 +256,7 @@ class BottlesDependencyEntry(Gtk.Box):
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(True)
 
+    '''Open dependency manifest'''
     def open_manifest(self, widget):
         dialog_upgrade = BottlesDialog(
             parent=self.window,
@@ -311,12 +268,14 @@ class BottlesDependencyEntry(Gtk.Box):
         dialog_upgrade.run()
         dialog_upgrade.destroy()
 
+    '''Install dependency'''
     def install_dependency(self, widget):
         widget.set_sensitive(False)
         self.runner.install_dependency(self.configuration,
                                        self.dependency,
                                        self)
 
+    '''Remove dependency'''
     def remove_dependency(self, widget):
         widget.set_sensitive(False)
         self.runner.remove_dependency(self.configuration,
@@ -328,10 +287,7 @@ class BottlesDependencyEntry(Gtk.Box):
 class BottlesDetails(Gtk.Box):
     __gtype_name__ = 'BottlesDetails'
 
-    '''
-    Get and assign widgets to variables from
-    template childs
-    '''
+    '''Get widgets from template'''
     label_name = Gtk.Template.Child()
     label_runner = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
@@ -384,27 +340,19 @@ class BottlesDetails(Gtk.Box):
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
 
-        '''
-        Common variables
-        '''
+        '''Common variables'''
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
 
-        '''
-        Populate widgets with data
-        '''
+        '''Populate combo_runner'''
         for runner in self.runner.runners_available:
             self.combo_runner.append(runner, runner)
 
-        '''
-        Connect signals to widgets
-        '''
+        '''Signal connections'''
         self.btn_winecfg.connect('pressed', self.run_winecfg)
         self.btn_dependencies.connect('pressed', self.show_dependencies)
         self.btn_debug.connect('pressed', self.run_debug)
@@ -438,30 +386,24 @@ class BottlesDetails(Gtk.Box):
         self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
         self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
 
+    '''Set bottle configuration'''
     def set_configuration(self, configuration):
         self.configuration = configuration
 
-        '''
-        Block signals to prevent execute widget callbacks
-        '''
+        '''Lock signals preventing triggering'''
         self.switch_dxvk.handler_block_by_func(self.toggle_dxvk)
         self.switch_virtual_desktop.handler_block_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
         self.combo_runner.handler_block_by_func(self.set_runner)
 
-        '''
-        Get bottle disk usage and free space
-        '''
+        '''Get bottle/disk usage and set disk_fraction'''
         bottle_size = self.runner.get_bottle_size(configuration)
         disk_free = self.runner.get_disk_size()["free"]
-
         disk_fraction = (
             self.runner.get_disk_size(False)["used"] /
             self.runner.get_disk_size(False)["total"])
 
-        '''
-        Set widgets status from configuration
-        '''
+        '''Populate widgets from configuration'''
         parameters = self.configuration.get("Parameters")
         versioning = self.configuration.get("Versioning")
         self.notebook_details.get_nth_page(5).set_visible(versioning)
@@ -485,9 +427,7 @@ class BottlesDetails(Gtk.Box):
         self.entry_overrides.set_text(parameters["dll_overrides"])
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
 
-        '''
-        Unlock signals
-        '''
+        '''Unlock signals'''
         self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
         self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
@@ -498,12 +438,15 @@ class BottlesDetails(Gtk.Box):
         self.update_installers()
         self.update_states()
 
+    '''Set active page'''
     def set_page(self, page):
         self.notebook_details.set_current_page(page)
 
+    '''Show dependencies tab'''
     def show_dependencies(self, widget):
         self.set_page(2)
 
+    '''Save DLL overrides'''
     def save_overrides(self, widget):
         overrides = self.entry_overrides.get_text()
         new_configuration = self.runner.update_configuration(self.configuration,
@@ -512,6 +455,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Save environment variables'''
     def save_environment_variables(self, widget):
         environment_variables = self.entry_environment_variables.get_text()
         new_configuration = self.runner.update_configuration(self.configuration,
@@ -520,9 +464,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
-    '''
-    Add entries to list_programs
-    '''
+    '''Populate list_programs'''
     def update_programs(self, widget=False):
         for w in self.list_programs: w.destroy()
 
@@ -530,9 +472,7 @@ class BottlesDetails(Gtk.Box):
             self.list_programs.add(
                 BottlesProgramEntry(self.window, self.configuration, program))
 
-    '''
-    Add entries to list_dependencies
-    '''
+    '''Populate list_dependencies'''
     def update_dependencies(self, widget=False):
         for w in self.list_dependencies: w.destroy()
 
@@ -551,9 +491,7 @@ class BottlesDetails(Gtk.Box):
                                            dependency,
                                            plain=True))
 
-    '''
-    Add entries to list_installers
-    '''
+    '''Populate list_installers'''
     def update_installers(self, widget=False):
         for w in self.list_installers: w.destroy()
 
@@ -564,9 +502,7 @@ class BottlesDetails(Gtk.Box):
                                       self.configuration,
                                       installer))
 
-    '''
-    Add entries to list_states
-    '''
+    '''Populate list_states'''
     def update_states(self, widget=False):
         if self.configuration.get("Versioning"):
             for w in self.list_states: w.destroy()
@@ -579,9 +515,7 @@ class BottlesDetails(Gtk.Box):
                                           self.configuration,
                                           state))
 
-    '''
-    Methods to change environment variables
-    '''
+    '''Toggle DXVK'''
     def toggle_dxvk(self, widget, state):
         if state:
             self.runner.install_dxvk(self.configuration)
@@ -594,6 +528,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Toggle DXVK HUD'''
     def toggle_dxvk_hud(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "dxvk_hud",
@@ -601,6 +536,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Toggle Esync'''
     def toggle_esync(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "esync",
@@ -608,6 +544,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Toggle Fsync'''
     def toggle_fsync(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "fsync",
@@ -615,6 +552,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Toggle ACO compiler'''
     def toggle_aco(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "aco_compiler",
@@ -622,6 +560,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Toggle discrete graphics usage'''
     def toggle_discrete_graphics(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "discrete_gpu",
@@ -629,6 +568,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Toggle virtual desktop'''
     def toggle_virtual_desktop(self, widget, state):
         resolution = self.combo_virtual_resolutions.get_active_id()
         self.runner.toggle_virtual_desktop(self.configuration,
@@ -640,6 +580,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Set virtual desktop resolution'''
     def set_virtual_desktop_resolution(self, widget):
         resolution = widget.get_active_id()
         if self.switch_virtual_desktop.get_active():
@@ -652,6 +593,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
+    '''Set (change) runner'''
     def set_runner(self, widget):
         runner = widget.get_active_id()
         new_configuration = self.runner.update_configuration(self.configuration,
@@ -659,6 +601,7 @@ class BottlesDetails(Gtk.Box):
                                                              runner)
         self.configuration = new_configuration
 
+    '''Toggle pulseaudio latency'''
     def toggle_pulseaudio_latency(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "pulseaudio_latency",
@@ -666,23 +609,7 @@ class BottlesDetails(Gtk.Box):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
-    '''
-    Methods for wine utilities
-    '''
-    def run_winecfg(self, widget):
-        self.runner.run_winecfg(self.configuration)
-
-    def run_winetricks(self, widget):
-        self.runner.run_winetricks(self.configuration)
-
-    def run_debug(self, widget):
-        self.runner.run_debug(self.configuration)
-
-    '''
-    Show a file chooser dialog to choose and run a Windows executable
-    TODO: this method  (and other) should be declared in different file
-    to be reusable in other files, like list.py
-    '''
+    '''Display file dialog for executable selection'''
     def run_executable(self, widget):
         file_dialog = Gtk.FileChooserDialog(_("Choose a Windows executable file"),
                                             self.window,
@@ -690,9 +617,7 @@ class BottlesDetails(Gtk.Box):
                                             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
                                             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
 
-        '''
-        Create filter for each allowed file extension
-        '''
+        '''Create filters for allowed extensions'''
         filter_exe = Gtk.FileFilter()
         filter_exe.set_name(".exe")
         filter_exe.add_pattern("*.exe")
@@ -711,6 +636,16 @@ class BottlesDetails(Gtk.Box):
                                        file_dialog.get_filename())
 
         file_dialog.destroy()
+
+    '''Run wine executables and utilities'''
+    def run_winecfg(self, widget):
+        self.runner.run_winecfg(self.configuration)
+
+    def run_winetricks(self, widget):
+        self.runner.run_winetricks(self.configuration)
+
+    def run_debug(self, widget):
+        self.runner.run_debug(self.configuration)
 
     def run_browse(self, widget):
         self.runner.open_filemanager(self.configuration)
@@ -739,9 +674,7 @@ class BottlesDetails(Gtk.Box):
     def run_killall(self, widget):
         self.runner.send_status(self.configuration, "kill")
 
-    '''
-    Check for special characters in state comment
-    '''
+    '''Validate entry_state input'''
     def check_entry_state_comment(self, widget, event_key):
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         comment = widget.get_text()
@@ -753,9 +686,7 @@ class BottlesDetails(Gtk.Box):
             self.btn_add_state.set_sensitive(False)
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
-    '''
-    Method for states
-    '''
+    '''Add new state'''
     def add_state(self, widget):
         comment = self.entry_state_comment.get_text()
         if comment != "":
@@ -763,9 +694,7 @@ class BottlesDetails(Gtk.Box):
             self.entry_state_comment.set_text("")
             self.pop_state.popdown()
 
-    '''
-    Method for backups
-    '''
+    '''Display file dialog for backup configuration'''
     def backup_config(self, widget):
         file_dialog = Gtk.FileChooserDialog(
             _("Select the location where to save the backup configuration"),
@@ -784,6 +713,7 @@ class BottlesDetails(Gtk.Box):
 
         file_dialog.destroy()
 
+    '''Display file dialog for backup archive'''
     def backup_full(self, widget):
         file_dialog = Gtk.FileChooserDialog(
             _("Select the location where to save the backup archive"),
@@ -803,9 +733,7 @@ class BottlesDetails(Gtk.Box):
 
         file_dialog.destroy()
 
-    '''
-    Open URLs
-    '''
+    '''Open URLs'''
     @staticmethod
     def open_report_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/dependencies/issues/new/choose")
