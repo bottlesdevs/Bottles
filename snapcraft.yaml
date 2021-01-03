@@ -1,0 +1,16 @@
+name: bottles
+version: git
+summary: Bottles
+description: |
+  Easily run Windows software on Linux with 🍷 Bottles!
+base: core18
+confinement: classic
+
+parts:
+  bottles:
+    plugin: meson
+    source: .
+
+apps:
+  bottles:
+    command: bin/bottles
