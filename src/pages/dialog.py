@@ -17,7 +17,6 @@
 
 from gi.repository import Gtk
 
-
 class BottlesMessageDialog(Gtk.MessageDialog):
 
     def __init__(self,
@@ -33,9 +32,7 @@ class BottlesMessageDialog(Gtk.MessageDialog):
                             buttons=Gtk.ButtonsType.OK_CANCEL,
                             message_format=message)
 
-        '''
-        If a log is passed, show it as an output
-        '''
+        '''Display log as output if defined'''
         if log:
             message_scroll = Gtk.ScrolledWindow()
             message_scroll.set_hexpand(True)
@@ -69,9 +66,7 @@ class BottlesDialog(Gtk.Dialog):
                             parent=parent,
                             flags=Gtk.DialogFlags.USE_HEADER_BAR)
 
-        '''
-        If a log is passed, show it as an output
-        '''
+        '''Display log as output if defined'''
         if log:
             self.resize(600, 700)
             if parent.settings.get_boolean("dark-theme"):
@@ -106,7 +101,5 @@ class BottlesAboutDialog(Gtk.AboutDialog):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        '''
-        Initialize template
-        '''
+        '''Init template'''
         self.init_template()
