@@ -23,3 +23,11 @@ apps:
       - x11
       - home
       - network
+    slots:
+      - dbus-bottles
+
+slots:
+  dbus-bottles:
+    interface: dbus
+    bus: session
+    name: com.usebottles.bottles
