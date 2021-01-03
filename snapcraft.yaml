@@ -9,10 +9,17 @@ confinement: classic
 parts:
   bottles:
     plugin: meson
-    build-packages: [python3, python3-setuptools, gettext, libgtk-3-dev, gsettings-desktop-schemas-dev, appstream, desktop-file-utils]
+    build-packages: [python3, python3-setuptools, gettext, libgtk-3-dev, gsettings-desktop-schemas-dev, appstream, appstream-util, desktop-file-utils]
     stage-packages: [python3, python3-gi]
     source: .
 
 apps:
   bottles:
     command: bin/bottles
+    plugs:
+      - desktop
+      - gsettings
+      - wayland
+      - x11
+      - home
+      - network
