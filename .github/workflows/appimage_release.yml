@@ -32,7 +32,7 @@ jobs:
           sudo ./appimage-build.sh
       - name: Post-Build
         run: |
-          cp build/Bottles*.AppImage* ./
+          cp /home/runner/work/Bottles/Bottles/Bottles/build/Bottles*.AppImage* ./
           find appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
       - name: Create Release
         id: create_release
