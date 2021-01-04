@@ -14,7 +14,6 @@ finish-args:
 - --device=dri
 - --share=ipc
 - --socket=fallback-x11
-- --socket=wayland
 - --socket=pulseaudio
 - --socket=session-bus
 - --filesystem=~/Games
@@ -64,7 +63,4 @@ modules:
   sources:
   - type: git
     url: https://github.com/bottlesdevs/Bottles
-    tag: 2.0.9.1
-build-options:
-  env: {}
-
+    tag: 2.0.9.2
