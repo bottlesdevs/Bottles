@@ -708,12 +708,7 @@ class BottlesRunner:
 
         name, environment, path, runner, versioning = args
 
-        if not runner: runner = self.runners_available[0]
-        runner_name = runner
         update_output = self.window.page_create.update_output
-
-        '''If runner is proton, files are located to the dist path'''
-        if runner.startswith("Proton"): runner = "%s/dist" % runner
 
         '''If there are no local runners and dxvks, install them'''
         if 0 in [len(self.runners_available), len(self.dxvk_available)]:
@@ -721,6 +716,12 @@ class BottlesRunner:
             self.window.page_preferences.set_dummy_runner()
             self.window.show_runners_preferences_view()
             return self.async_checks()
+
+        if not runner: runner = self.runners_available[0]
+        runner_name = runner
+
+        '''If runner is proton, files are located to the dist path'''
+        if runner.startswith("Proton"): runner = "%s/dist" % runner
 
         '''Set UI to not usable'''
         self.window.set_usable_ui(False)
