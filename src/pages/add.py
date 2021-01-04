@@ -47,6 +47,7 @@ class BottlesAddDetails(Gtk.Box):
         '''Common variables'''
         self.window = window
         self.runner = window.runner
+        self.settings = window.settings
         self.environment = self.window.env_active
         self.custom_runner = False
 
@@ -70,6 +71,11 @@ class BottlesAddDetails(Gtk.Box):
     def update_environment(self):
         self.expander_advanced.set_visible(False)
         self.environment = self.window.env_active
+
+        '''Toggle switch_versioning sensitive by settings'''
+        self.switch_versioning.set_sensitive(
+            self.settings.get_boolean("experiments"))
+
         if self.environment == "Custom":
             self.custom_runner = self.combo_runner.get_active_id()
             self.expander_advanced.set_visible(True)

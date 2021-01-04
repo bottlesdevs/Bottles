@@ -799,7 +799,7 @@ class BottlesRunner:
         if versioning:
             logging.info(_("Creating versioning state 0 …"))
             update_output( _("Creating versioning state 0 …"))
-            self.async_create_bottle_state([configuration, "First boot"])
+            self.async_create_bottle_state([configuration, "First boot", False])
 
         '''Set status created and UI usability'''
         logging.info(_("Bottle: [{0}] successfully created!").format(
@@ -1298,7 +1298,7 @@ class BottlesRunner:
 
     '''Create new bottle state'''
     def async_create_bottle_state(self, args:list) -> bool:
-        configuration, comment = args
+        configuration, comment, update = args
 
         logging.info("Creating new state for bottle: [{0}] …".format(
             configuration.get("Name")))
@@ -1448,7 +1448,8 @@ class BottlesRunner:
         download_entry.remove()
 
         '''Update states'''
-        self.window.page_details.update_states()
+        if update:
+            self.window.page_details.update_states()
 
         '''Update bottles'''
         time.sleep(2)
@@ -1459,8 +1460,8 @@ class BottlesRunner:
 
         return True
 
-    def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented") -> None:
-        RunAsync(self.async_create_bottle_state, None, [configuration, comment])
+    def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented", update:bool=False) -> None:
+        RunAsync(self.async_create_bottle_state, None, [configuration, comment, update])
 
     '''Get edits for a state'''
     def get_bottle_state_edits(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
