@@ -88,7 +88,7 @@ class Application(Gtk.Application):
     @staticmethod
     def help(action, param):
         logging.info(_("[Help] request received."))
-        webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/wiki")
+        webbrowser.open_new_tab("https://docs.usebottles.com")
 
     '''Refresh Bottles [CTRL+R]'''
     def refresh(self, action, param):
