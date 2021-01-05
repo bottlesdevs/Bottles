@@ -112,8 +112,10 @@ Instead of use the Appimage you can choose to build your own Bottles from source
 - meson
 - ninja
 - python3
-
-
+- glib
+  - `glib2-devel` on Fedora
+  - `libglib2.0-dev` on Debian/Ubuntu
+  
 #### Build
 ```bash
 mkdir build
