@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-05 11:13+0700\n"
+"POT-Creation-Date: 2021-01-05 18:30+0100\n"
 "PO-Revision-Date: 2020-12-29 21:51+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Weblate 4.4.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:308
-#: src/window.py:126
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:321
+#: src/window.py:127
 msgid "Bottles"
 msgstr "Flasker"
 
@@ -41,7 +41,7 @@ msgstr "Mirko Brombin"
 msgid "Easily manage your Wine bottles (wineprefix)"
 msgstr "Håndter dine Wine-flasker (wineprefiks) enkelt"
 
-#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:116
+#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:129
 msgid "Dark theme"
 msgstr "Mørk drakt"
 
@@ -95,7 +95,7 @@ msgid ""
 "Candidate for Runners"
 msgstr ""
 
-#: src/ui/add.ui:23 src/ui/add-details.ui:20 src/ui/window.ui:330
+#: src/ui/add.ui:23 src/ui/add-details.ui:20 src/ui/window.ui:343
 msgid "New bottle"
 msgstr "Ny flaske"
 
@@ -283,7 +283,7 @@ msgstr "Kjør .exe"
 msgid "Manage the processes running in this Bottle."
 msgstr "Håndter prosessene som kjører i denne flasken."
 
-#: src/ui/details.ui:576 src/ui/window.ui:159 src/window.py:128
+#: src/ui/details.ui:576 src/ui/window.ui:172 src/window.py:129
 msgid "Task manager"
 msgstr "Oppgavebehandler"
 
@@ -550,7 +550,7 @@ msgstr "DLL-overstyringer"
 msgid "Customize preferences for this Bottle."
 msgstr "Tilpass egenskaper for denne flasken."
 
-#: src/ui/details.ui:2084 src/ui/window.ui:185 src/window.py:127
+#: src/ui/details.ui:2084 src/ui/window.ui:198 src/window.py:128
 msgid "Preferences"
 msgstr "Egenskaper"
 
@@ -691,37 +691,41 @@ msgstr "Støtte for flasker"
 msgid "Bug Report"
 msgstr ""
 
-#: src/ui/window.ui:172 src/window.py:129
+#: src/ui/window.ui:100
+msgid "Documentation"
+msgstr ""
+
+#: src/ui/window.ui:185 src/window.py:130
 msgid "Importer"
 msgstr "Importerer"
 
-#: src/ui/window.ui:209
+#: src/ui/window.ui:222
 msgid "About Bottles"
 msgstr "Om Flasker"
 
-#: src/ui/window.ui:275
+#: src/ui/window.ui:288
 msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
 "Dette er en utviklingsversjon. Innrapporter feil til GitHub-kodelageret."
 
-#: src/ui/window.ui:314
+#: src/ui/window.ui:327
 msgid "Go back"
 msgstr "Tilbake"
 
-#: src/ui/window.ui:348
+#: src/ui/window.ui:361
 msgid "Your Bottles"
 msgstr "Dine flasker"
 
-#: src/ui/window.ui:367
+#: src/ui/window.ui:380
 msgid "Open menu"
 msgstr "Åpne meny"
 
-#: src/ui/window.ui:388
+#: src/ui/window.ui:401
 msgid "Downloads"
 msgstr "Nedlastninger"
 
-#: src/ui/window.ui:408
+#: src/ui/window.ui:421
 #, fuzzy
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
@@ -746,31 +750,31 @@ msgstr "`Hjelp`-forespørsel mottatt."
 msgid "[Refresh] request received."
 msgstr "`Gjenoppfrisk`-forespørsel mottatt."
 
-#: src/window.py:122
+#: src/window.py:123
 msgid "New Bottle"
 msgstr "Ny flaske"
 
-#: src/window.py:123
+#: src/window.py:124
 msgid "Create Bottle"
 msgstr "Opprett flaske"
 
-#: src/window.py:124
+#: src/window.py:125
 msgid "New Bottle details"
 msgstr "Detaljer om ny flaske"
 
-#: src/window.py:125
+#: src/window.py:126
 msgid "Bottle details"
 msgstr "Flaskedetaljer"
 
-#: src/window.py:159
+#: src/window.py:161
 msgid "Bottles Started!"
 msgstr "Flasker startet."
 
-#: src/window.py:176
+#: src/window.py:178
 msgid "Proceed with the installation of the latest version?"
 msgstr "Fortsett installasjonen av siste versjon?"
 
-#: src/window.py:178
+#: src/window.py:180
 #, fuzzy
 msgid ""
 "But you don't seem to be connected to the internet and you won't be able to "
@@ -780,16 +784,16 @@ msgstr ""
 "Du er ikke tilkoblet Internett, og vil ikke kunne laste ned en springer. "
 "Koble til og bekreft denne meldingen for å starte nedlastingen."
 
-#: src/window.py:181
+#: src/window.py:183
 msgid "No runners found"
 msgstr "Fant ingen springere"
 
-#: src/window.py:186 src/pages/list.py:190
+#: src/window.py:188 src/pages/list.py:190
 #, fuzzy
 msgid "OK status received"
 msgstr "`OK`-status mottatt."
 
-#: src/window.py:192 src/pages/list.py:194
+#: src/window.py:194 src/pages/list.py:194
 #, fuzzy
 msgid "Cancel status received"
 msgstr "`Avbryt`-status mottatt."

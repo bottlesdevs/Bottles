@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-05 11:13+0700\n"
+"POT-Creation-Date: 2021-01-05 18:30+0100\n"
 "PO-Revision-Date: 2021-01-01 13:22+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Weblate 4.4.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:308
-#: src/window.py:126
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:321
+#: src/window.py:127
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -41,7 +41,7 @@ msgstr "Mirko Brombin"
 msgid "Easily manage your Wine bottles (wineprefix)"
 msgstr "Gestisci con facilità le bottiglie Wine (prefissi wine)"
 
-#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:116
+#: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:129
 msgid "Dark theme"
 msgstr "Tema scuro"
 
@@ -91,7 +91,7 @@ msgid ""
 "Candidate for Runners"
 msgstr ""
 
-#: src/ui/add.ui:23 src/ui/add-details.ui:20 src/ui/window.ui:330
+#: src/ui/add.ui:23 src/ui/add-details.ui:20 src/ui/window.ui:343
 msgid "New bottle"
 msgstr "Nuova bottiglia"
 
@@ -277,7 +277,7 @@ msgstr "Esegui .exe"
 msgid "Manage the processes running in this Bottle."
 msgstr "Uccidi tutti i processi in esecuzione su questa bottiglia."
 
-#: src/ui/details.ui:576 src/ui/window.ui:159 src/window.py:128
+#: src/ui/details.ui:576 src/ui/window.ui:172 src/window.py:129
 msgid "Task manager"
 msgstr "Gestore processi"
 
@@ -539,7 +539,7 @@ msgstr "Sostituzioni DLL"
 msgid "Customize preferences for this Bottle."
 msgstr "Personalizza preferenze per questa Bottiglia."
 
-#: src/ui/details.ui:2084 src/ui/window.ui:185 src/window.py:127
+#: src/ui/details.ui:2084 src/ui/window.ui:198 src/window.py:128
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -677,38 +677,42 @@ msgstr "Supporta Bottles"
 msgid "Bug Report"
 msgstr ""
 
-#: src/ui/window.ui:172 src/window.py:129
+#: src/ui/window.ui:100
+msgid "Documentation"
+msgstr ""
+
+#: src/ui/window.ui:185 src/window.py:130
 msgid "Importer"
 msgstr "Importatore"
 
-#: src/ui/window.ui:209
+#: src/ui/window.ui:222
 msgid "About Bottles"
 msgstr "A proposito di Bottles"
 
-#: src/ui/window.ui:275
+#: src/ui/window.ui:288
 msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
 "Questa è una versione in fase di sviluppo. Segnala eventuali bug nella "
 "repository GitHub."
 
-#: src/ui/window.ui:314
+#: src/ui/window.ui:327
 msgid "Go back"
 msgstr "Indietro"
 
-#: src/ui/window.ui:348
+#: src/ui/window.ui:361
 msgid "Your Bottles"
 msgstr "A proposito di Bottles"
 
-#: src/ui/window.ui:367
+#: src/ui/window.ui:380
 msgid "Open menu"
 msgstr "Apri menu"
 
-#: src/ui/window.ui:388
+#: src/ui/window.ui:401
 msgid "Downloads"
 msgstr "Preferenze di download"
 
-#: src/ui/window.ui:408
+#: src/ui/window.ui:421
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -733,31 +737,31 @@ msgstr "Richiesta `Aiuto` ricevuta."
 msgid "[Refresh] request received."
 msgstr "Richiesta `Ricarica` ricevuta."
 
-#: src/window.py:122
+#: src/window.py:123
 msgid "New Bottle"
 msgstr "Nuova Bottiglia"
 
-#: src/window.py:123
+#: src/window.py:124
 msgid "Create Bottle"
 msgstr "Crea nuova Bottiglia"
 
-#: src/window.py:124
+#: src/window.py:125
 msgid "New Bottle details"
 msgstr "Dettagli nuova Bottiglia"
 
-#: src/window.py:125
+#: src/window.py:126
 msgid "Bottle details"
 msgstr "Dettagli Bottiglia"
 
-#: src/window.py:159
+#: src/window.py:161
 msgid "Bottles Started!"
 msgstr "Bottles Avviato!"
 
-#: src/window.py:176
+#: src/window.py:178
 msgid "Proceed with the installation of the latest version?"
 msgstr "Procedo con l'installazione dell'ultima versione?"
 
-#: src/window.py:178
+#: src/window.py:180
 msgid ""
 "But you don't seem to be connected to the internet and you won't be able to "
 "download a runner. Connect to the internet and confirm this message to begin "
@@ -767,15 +771,15 @@ msgstr ""
 "scaricare i componenti essenziali. Clicca questa icona quando sarai "
 "nuovamente connesso."
 
-#: src/window.py:181
+#: src/window.py:183
 msgid "No runners found"
 msgstr "Nessun runner trovato"
 
-#: src/window.py:186 src/pages/list.py:190
+#: src/window.py:188 src/pages/list.py:190
 msgid "OK status received"
 msgstr "Stato OK ricevuto"
 
-#: src/window.py:192 src/pages/list.py:194
+#: src/window.py:194 src/pages/list.py:194
 msgid "Cancel status received"
 msgstr "Stato Cancella ricevuto"
 
