@@ -275,6 +275,9 @@ class BottlesRunner:
         else:
             download_url = "%s/download/%s/%s" % (repository, tag, file)
 
+        '''Check for missing paths'''
+        self.check_runners_dir()
+
         '''Check if it exists in temp path then don't download'''
         file = rename if rename else file
         if os.path.isfile("%s/%s" % (self.temp_path, file)):
