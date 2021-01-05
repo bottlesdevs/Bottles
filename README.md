@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
   <h1 align="center">Bottles v2</h1>
   <p align="center">Easily manage wineprefix using environments</p>
-  <small>⚠️ This version is under development. <a href="https://github.com/bottlesdevs/Bottles/tree/v1">Here</a> you can find the stable v1.</small>
+  <small><a href="https://github.com/bottlesdevs/Bottles/tree/v1">Here</a> you can find the old v1.</small>
 </div>
 
 <br/>
@@ -35,6 +35,9 @@
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-3.png" width="24%">
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-6.png" width="24%">
 </div>
+
+## Documentation
+We are writing the new [documentation](https://docs.usebottles.com) for Bottles v2.
 
 ## Help Bottles speak your language :speaking_head:
 Read [here](https://github.com/bottlesdevs/Bottles/tree/master/po) how to 
