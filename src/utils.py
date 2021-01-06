@@ -17,6 +17,8 @@
 
 import sys, logging, socket, subprocess, hashlib, threading, traceback
 
+from datetime import datetime, timedelta
+
 from gi.repository import GLib
 
 '''Set default logging level'''
@@ -30,20 +32,39 @@ class UtilsConnection():
 
         self.window = window
 
-    def check_connection(self, show_notification=False):
-        try:
-            socket.create_connection(("1.1.1.1", 53))
-            logging.info(_("Connection status: online …"))
-            self.window.toggle_btn_noconnection(False)
-            return True
-        except OSError:
-            logging.info(_("Connection status: offline …"))
-            self.window.toggle_btn_noconnection(True)
+        '''Set first check datetime'''
+        self.last_check = datetime.now()
 
-            if show_notification:
-                self.window.send_notification("Bottles",
-                                              _("You are offline, unable to download."),
-                                              "network-wireless-disabled-symbolic")
+        '''Default to offline'''
+        self.status = False
+
+    def check_connection(self, show_notification=False):
+        '''Shows old status if 15s have not passed'''
+        if self.last_check + timedelta(seconds=15) > datetime.now() and self.status:
+            return self.status
+
+        '''If status is offline'''
+        if not self.status:
+            try:
+                socket.create_connection(("1.1.1.1", 53))
+                logging.info(_("Connection status: online …"))
+                self.window.toggle_btn_noconnection(False)
+
+                self.last_check = datetime.now()
+                self.status = True
+
+                return True
+            except OSError:
+                logging.info(_("Connection status: offline …"))
+                self.window.toggle_btn_noconnection(True)
+
+                if show_notification:
+                    self.window.send_notification("Bottles",
+                                                  _("You are offline, unable to download."),
+                                                  "network-wireless-disabled-symbolic")
+                self.last_check = datetime.now()
+                self.status = False
+
         return False
 
 '''Launch commands in system terminal'''
