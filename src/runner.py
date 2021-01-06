@@ -830,11 +830,13 @@ class BottlesRunner:
 
     '''Get latest installed runner'''
     def get_latest_runner(self, runner_type:RunnerType="wine") -> list:
-        if runner_type in ["", "wine"]:
-            latest_runner = [idx for idx in self.runners_available if idx.lower().startswith("lutris")][0]
-        else:
-            latest_runner = [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
-        return latest_runner
+        try:
+            if runner_type in ["", "wine"]:
+                return [idx for idx in self.runners_available if idx.lower().startswith("lutris")][0]
+            else:
+                return [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
+        except IndexError:
+            return "Undefined"
 
     '''Get human size by a float'''
     @staticmethod
