@@ -5,8 +5,8 @@
   <template class="BottlesAddDetails" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="margin-start">130</property>
-    <property name="margin-end">130</property>
+    <property name="margin-start">200</property>
+    <property name="margin-end">200</property>
     <property name="margin-top">40</property>
     <property name="margin-bottom">40</property>
     <property name="orientation">vertical</property>
@@ -14,14 +14,15 @@
       <object class="GtkLabel" id="label_env_name">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="margin-top">25</property>
         <property name="hexpand">True</property>
         <property name="vexpand">False</property>
         <property name="ypad">10</property>
         <property name="label" translatable="yes">New bottle</property>
         <property name="justify">center</property>
         <attributes>
-          <attribute name="weight" value="book"/>
-          <attribute name="scale" value="1.5"/>
+          <attribute name="weight" value="ultrabold"/>
+          <attribute name="scale" value="1.7"/>
         </attributes>
       </object>
       <packing>
@@ -31,16 +32,17 @@
       </packing>
     </child>
     <child>
-      <object class="GtkEntry" id="entry_name">
+      <object class="GtkLabel">
         <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="margin-bottom">5</property>
-        <property name="max-length">30</property>
-        <property name="secondary-icon-sensitive">False</property>
-        <property name="secondary-icon-tooltip-text" translatable="yes">Special characters are not allowed!</property>
-        <property name="placeholder-text" translatable="yes">Name your bottle</property>
-        <property name="input-purpose">name</property>
-        <property name="input-hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
+        <property name="can-focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">False</property>
+        <property name="label" translatable="yes">Enter the bottle informations</property>
+        <property name="justify">center</property>
+        <attributes>
+          <attribute name="weight" value="book"/>
+          <attribute name="scale" value="1"/>
+        </attributes>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -49,36 +51,68 @@
       </packing>
     </child>
     <child>
-      <object class="GtkCheckButton" id="check_path">
-        <property name="label" translatable="yes">I need to choose a custom path</property>
+      <!-- n-columns=1 n-rows=3 -->
+      <object class="GtkGrid">
         <property name="visible">True</property>
-        <property name="sensitive">False</property>
-        <property name="can-focus">True</property>
-        <property name="receives-default">False</property>
-        <property name="tooltip-text" translatable="yes">Custom path are not supported in this version</property>
-        <property name="draw-indicator">True</property>
+        <property name="can-focus">False</property>
+        <property name="margin-top">15</property>
+        <property name="margin-bottom">5</property>
+        <child>
+          <object class="GtkCheckButton" id="check_path">
+            <property name="label" translatable="yes">I need to choose a custom path</property>
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="tooltip-text" translatable="yes">Custom path are not supported in this version</property>
+            <property name="halign">start</property>
+            <property name="draw-indicator">True</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry_path">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can-focus">True</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="hexpand">True</property>
+            <property name="primary-icon-name">folder-symbolic</property>
+            <property name="placeholder-text" translatable="yes">/opt/MyNewBottle</property>
+            <property name="input-hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry_name">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="margin-bottom">5</property>
+            <property name="hexpand">True</property>
+            <property name="max-length">30</property>
+            <property name="secondary-icon-sensitive">False</property>
+            <property name="secondary-icon-tooltip-text" translatable="yes">Special characters are not allowed!</property>
+            <property name="placeholder-text" translatable="yes">Name your bottle</property>
+            <property name="input-purpose">name</property>
+            <property name="input-hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
       </object>
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="position">2</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkEntry" id="entry_path">
-        <property name="visible">True</property>
-        <property name="sensitive">False</property>
-        <property name="can-focus">True</property>
-        <property name="margin-top">5</property>
-        <property name="margin-bottom">5</property>
-        <property name="primary-icon-name">folder-symbolic</property>
-        <property name="placeholder-text" translatable="yes">/opt/MyNewBottle</property>
-        <property name="input-hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">3</property>
       </packing>
     </child>
     <child>
@@ -176,7 +210,7 @@
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">4</property>
+        <property name="position">5</property>
       </packing>
     </child>
     <child>
@@ -185,6 +219,7 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="margin-top">15</property>
+        <property name="column-spacing">3</property>
         <property name="row-homogeneous">True</property>
         <property name="column-homogeneous">True</property>
         <child>
@@ -230,7 +265,7 @@
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">5</property>
+        <property name="position">6</property>
       </packing>
     </child>
   </template>

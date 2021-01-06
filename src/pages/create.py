@@ -30,6 +30,7 @@ class BottlesCreate(Gtk.Box):
     btn_list = Gtk.Template.Child()
     box_created = Gtk.Template.Child()
     label_creating = Gtk.Template.Child()
+    label_creating_tip = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -56,11 +57,13 @@ class BottlesCreate(Gtk.Box):
             self.btn_list.set_visible(False)
             self.box_created.set_visible(False)
             self.label_creating.set_visible(True)
+            self.label_creating_tip.set_visible(True)
             self.label_output.set_text("")
         elif status == "created":
             self.btn_list.set_visible(True)
             self.box_created.set_visible(True)
             self.label_creating.set_visible(False)
+            self.label_creating_tip.set_visible(False)
 
     def show_details(self, widget):
         self.window.stack_main.set_visible_child_name("page_list")
