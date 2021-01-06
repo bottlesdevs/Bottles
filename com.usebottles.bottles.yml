@@ -16,9 +16,9 @@ finish-args:
 - --socket=fallback-x11
 - --socket=pulseaudio
 - --socket=session-bus
-- --filesystem=~/Games
-- --filesystem=~/wineprefixes
-- --filesystem=~/.Bottles
+- --filesystem=~/Games:ro
+- --filesystem=~/wineprefixes:ro
+- --filesystem=~/.Bottles:ro
 - --filesystem=~/.local/share/bottles:create
 - --filesystem=xdg-desktop
 - --filesystem=xdg-documents
@@ -63,4 +63,5 @@ modules:
   sources:
   - type: git
     url: https://github.com/bottlesdevs/Bottles
-    tag: 2.0.9.2
+    tag: 2.0.9.6
+
