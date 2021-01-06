@@ -51,15 +51,14 @@
         </child>
         <child>
           <object class="GtkLabel" id="label_tip">
-            <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="valign">start</property>
             <property name="ypad">10</property>
-            <property name="label" translatable="yes">Use the '+' button to create one.</property>
+            <property name="label">This is an example of tip text.</property>
             <property name="justify">center</property>
             <attributes>
               <attribute name="weight" value="normal"/>
-              <attribute name="scale" value="0.90000000000000002"/>
+              <attribute name="scale" value="1"/>
             </attributes>
           </object>
           <packing>

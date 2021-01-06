@@ -20,6 +20,7 @@ from gi.repository import Gtk
 import webbrowser, re
 
 from .dialog import BottlesDialog
+from bottles.empty import BottlesEmpty
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
 class BottlesInstallerEntry(Gtk.Box):
@@ -466,7 +467,15 @@ class BottlesDetails(Gtk.Box):
     def update_programs(self, widget=False):
         for w in self.list_programs: w.destroy()
 
-        for program in self.runner.get_programs(self.configuration):
+        programs = self.runner.get_programs(self.configuration)
+
+        if len(programs) == 0:
+            return self.list_programs.add(BottlesEmpty(
+                text=_("No programs found!"),
+                icon="view-grid-symbolic",
+                tip=_("The programs installed in the bottle will be listed here.")))
+
+        for program in programs:
             self.list_programs.add(
                 BottlesProgramEntry(self.window, self.configuration, program))
 
@@ -481,19 +490,41 @@ class BottlesDetails(Gtk.Box):
                     BottlesDependencyEntry(self.window,
                                            self.configuration,
                                            dependency))
-        else:
+            return
+
+        if len(self.configuration.get("Installed_Dependencies")) > 0:
             for dependency in self.configuration.get("Installed_Dependencies"):
                 self.list_dependencies.add(
                     BottlesDependencyEntry(self.window,
                                            self.configuration,
                                            dependency,
                                            plain=True))
+            return
+
+        return self.list_dependencies.add(BottlesEmpty(
+            text=_("No dependencies found!"),
+            icon="dialog-warning-symbolic",
+            tip=_("There are no dependencies installed and we can't fetch from repository.")))
 
     '''Populate list_installers'''
     def update_installers(self, widget=False):
         for w in self.list_installers: w.destroy()
 
         supported_installers = self.runner.supported_installers.items()
+
+        if len(supported_installers) > 0:
+            for installer in supported_installers:
+                self.list_installers.add(
+                    BottlesInstallerEntry(self.window,
+                                          self.configuration,
+                                          installer))
+            return
+
+        return self.list_installers.add(BottlesEmpty(
+            text=_("No installers found!"),
+            icon="dialog-warning-symbolic",
+            tip=_("We can't fetch the installers from the repository right now.")))
+
         for installer in supported_installers:
             self.list_installers.add(
                 BottlesInstallerEntry(self.window,

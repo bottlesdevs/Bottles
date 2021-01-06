@@ -24,14 +24,21 @@ class BottlesEmpty(Gtk.Grid):
     '''Get widgets from template'''
     img_icon = Gtk.Template.Child()
     label_text = Gtk.Template.Child()
+    label_tip = Gtk.Template.Child()
 
-    def __init__(self, text, icon=False, **kwargs):
+    def __init__(self, text=False, icon=False, tip=False, **kwargs):
         super().__init__(**kwargs)
 
         '''Init template'''
         self.init_template()
 
         '''Populate widgets data'''
+        if text:
+            self.label_text.set_text(text)
+
         if icon:
             self.img_icon.set_from_icon_name(icon, Gtk.IconSize.LARGE_TOOLBAR)
-        self.label_text.set_text(text)
+
+        if tip:
+            self.label_tip.set_visible(True)
+            self.label_tip.set_text(tip)

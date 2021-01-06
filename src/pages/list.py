@@ -224,7 +224,8 @@ class BottlesList(Gtk.ScrolledWindow):
         if len(bottles) == 0:
             return self.list_bottles.add(BottlesEmpty(
                 text=_("No bottles found!"),
-                icon="dialog-information-symbolic"))
+                icon="dialog-information-symbolic",
+                tip=_("Use the '+' button to create one.")))
 
         for bottle in bottles:
             self.list_bottles.add(BottlesListEntry(self.window,
