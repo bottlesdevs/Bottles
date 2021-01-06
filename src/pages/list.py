@@ -19,6 +19,7 @@ import logging
 from gi.repository import Gtk
 
 from .dialog import BottlesMessageDialog
+from bottles.empty import BottlesEmpty
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottlesListEntry(Gtk.Box):
@@ -187,11 +188,8 @@ class BottlesListEntry(Gtk.Box):
         response = dialog_delete.run()
 
         if response == Gtk.ResponseType.OK:
-            logging.info(_("OK status received"))
             self.runner.delete_bottle(self.configuration)
             self.destroy()
-        else:
-            logging.info(_("Cancel status received"))
 
         dialog_delete.destroy()
 
@@ -221,7 +219,14 @@ class BottlesList(Gtk.ScrolledWindow):
         for bottle in self.list_bottles.get_children():
             bottle.destroy()
 
-        for bottle in self.window.runner.local_bottles.items():
+        bottles = self.window.runner.local_bottles.items()
+
+        if len(bottles) == 0:
+            return self.list_bottles.add(BottlesEmpty(
+                text=_("No bottles found!"),
+                icon="dialog-information-symbolic"))
+
+        for bottle in bottles:
             self.list_bottles.add(BottlesListEntry(self.window,
                                                    bottle,
                                                    self.arg_executable))
