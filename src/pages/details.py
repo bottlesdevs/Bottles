@@ -66,11 +66,9 @@ class BottlesInstallerEntry(Gtk.Box):
     '''Execute installer'''
     def execute_installer(self, widget):
         widget.set_sensitive(False)
-        '''
-        self.runner.execute_installer(self.configuration,
-                                      self.installer,
-                                      self)
-        '''
+        self.runner.run_installer(self.configuration,
+                                  self.installer,
+                                  self)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
 class BottlesStateEntry(Gtk.Box):

@@ -472,6 +472,11 @@ class BottlesRunner:
         widget.btn_install.set_visible(True)
         widget.btn_remove.set_visible(False)
 
+    '''Run installer'''
+    def run_installer(self, configuration:BottleConfig, installer:list, widget:Gtk.Widget) -> None:
+        '''TODO: work in progress'''
+        print(installer)
+
     '''Check local runners'''
     def check_runners(self, install_latest:bool=True) -> bool:
         runners = glob("%s/*/" % self.runners_path)
@@ -889,6 +894,11 @@ class BottlesRunner:
                 path = "%s/%s" % (self.bottles_path, path)
 
             shutil.rmtree(path)
+            del self.local_bottles[configuration.get("Path")]
+
+            if len(self.local_bottles.items()) == 0:
+                self.window.page_list.update_bottles()
+
             logging.info(_("Successfully deleted bottle in path: [{0}]").format(
                 path))
             return True
