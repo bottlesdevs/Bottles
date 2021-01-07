@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-06 11:48+0100\n"
+"POT-Creation-Date: 2021-01-07 14:20+0100\n"
 "PO-Revision-Date: 2021-01-05 17:33+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -30,16 +30,112 @@ msgid "Easily manage wineprefix"
 msgstr "Gestisci con facilità i prefissi wine"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
-msgid "Easily manage your Wine bottles"
-msgstr "Gestisci con facilità le bottiglie Wine"
+#: data/com.usebottles.bottles.appdata.xml.in:10
+msgid "Easily run Windows software on Linux with 🍷 Bottles!"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
 msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
-#: data/com.usebottles.bottles.appdata.xml.in:10
-msgid "Easily manage your Wine bottles (wineprefix)"
-msgstr "Gestisci con facilità le bottiglie Wine (prefissi wine)"
+#: data/com.usebottles.bottles.appdata.xml.in:11
+msgid ""
+"Bottles is a modern tool that refines and simplifies running Windows "
+"software on Linux!"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:12
+msgid ""
+"Our built-in dependency installation system allows for easy access to a "
+"broad level of software compatibility. We also include a download manager "
+"for downloading the official components: runner (wine, proton), dxvk, "
+"dependencies, etc."
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:15
+msgid ""
+"Features such as bottle versioning allow you to keep your work safe and "
+"restore it later!"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:16
+msgid "Features:"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:18
+msgid "Create your bottles using preconfigured environments or create your own"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:19
+msgid ""
+"Run every executable (.exe/.msi) in your bottles, directly from the context "
+"menu form your file manager"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:20
+msgid "Automated detection of applications installed in your bottles"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:21
+#, fuzzy
+msgid "Add environment variables easily"
+msgstr "Salva variabili d'ambiente"
+
+#: data/com.usebottles.bottles.appdata.xml.in:22
+msgid "Override DLLs directly from bottle preferences"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:23
+msgid "On-the-fly runner change for any Bottle"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:24
+msgid ""
+"Various optimizations for better gaming performance (esync, fsync, dxvk, "
+"cache, shader compiler, offload .. and much more.)"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:25
+msgid "Automatic installation and management of Wine and Proton runners"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:26
+msgid "Automatic bottle repair in case of breakage"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:27
+msgid ""
+"Integrated Dependencies installer based on a community-driver repository"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:28
+msgid "Integrated Task manager for wine processes"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:29
+msgid "Easy access to ProtonDB and WineHQ for support"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:30
+msgid "Configurations update system across Bottles versions"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:31
+msgid "Bottles backup and import"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:32
+#, fuzzy
+msgid "Easily import wineprefix from other managers"
+msgstr "Importa da backup o altro gestore"
+
+#: data/com.usebottles.bottles.appdata.xml.in:33
+msgid "Bottles versioning (experimental)"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:34
+msgid ".. and much more that you can find by installing Bottles!"
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:129
 msgid "Dark theme"
@@ -93,7 +189,7 @@ msgstr ""
 "Abilita/disabilita funzionalità sperimentali come il versionamento e gli "
 "installatori."
 
-#: src/ui/add.ui:23 src/ui/add-details.ui:20 src/ui/window.ui:343
+#: src/ui/add.ui:23 src/ui/add-details.ui:21 src/ui/window.ui:443
 msgid "New bottle"
 msgstr "Nuova bottiglia"
 
@@ -117,47 +213,51 @@ msgstr "Personalizzato"
 msgid "Environment description"
 msgstr "Descrizione ambiente"
 
-#: src/ui/add.ui:266
+#: src/ui/add.ui:267
 msgid "Create new bottle"
 msgstr "Crea nuova bottiglia"
 
-#: src/ui/add.ui:270
+#: src/ui/add.ui:271
 msgid "Create a new bottle with the selected environment"
 msgstr "Crea una nuova bottiglia con l'ambiente selezionato"
 
-#: src/ui/add.ui:294
+#: src/ui/add.ui:295
 msgid "Import from backup"
 msgstr "Importa da backup"
 
-#: src/ui/add.ui:298
+#: src/ui/add.ui:299
 msgid "Import from backup or other managers"
 msgstr "Importa da backup o altro gestore"
 
-#: src/ui/add-details.ui:40 src/ui/details.ui:98
-msgid "Special characters are not allowed!"
-msgstr "I caratteri speciali non sono ammessi!"
+#: src/ui/add-details.ui:40
+msgid "Enter the bottle informations"
+msgstr ""
 
-#: src/ui/add-details.ui:41
-msgid "Name your bottle"
-msgstr "Nome della bottiglia"
-
-#: src/ui/add-details.ui:53
+#: src/ui/add-details.ui:62
 msgid "I need to choose a custom path"
 msgstr "Necessito di un percorso personalizzato"
 
-#: src/ui/add-details.ui:58
+#: src/ui/add-details.ui:67
 msgid "Custom path are not supported in this version"
 msgstr "I percorsi personalizzati non sono disponibili in questa versione"
 
-#: src/ui/add-details.ui:75
+#: src/ui/add-details.ui:85
 msgid "/opt/MyNewBottle"
 msgstr "/opt/LaMiaNuovaBottiglia"
 
-#: src/ui/add-details.ui:112 src/ui/details.ui:1857
+#: src/ui/add-details.ui:101 src/ui/details.ui:98
+msgid "Special characters are not allowed!"
+msgstr "I caratteri speciali non sono ammessi!"
+
+#: src/ui/add-details.ui:102
+msgid "Name your bottle"
+msgstr "Nome della bottiglia"
+
+#: src/ui/add-details.ui:146 src/ui/details.ui:1857
 msgid "Runner"
 msgstr "Runner"
 
-#: src/ui/add-details.ui:135
+#: src/ui/add-details.ui:169
 msgid ""
 "Versioning is an experimental feature of Bottles, we do not recommend using "
 "it in production. Proceed with caution!"
@@ -165,19 +265,19 @@ msgstr ""
 "Il versionamento è una funzionalità sperimentale di Bottles, ne sconsigliamo "
 "l'uso in produzione. Procedi con cautela!"
 
-#: src/ui/add-details.ui:137
+#: src/ui/add-details.ui:171
 msgid "Enable versioning"
 msgstr "Abilita versionamento"
 
-#: src/ui/add-details.ui:172
+#: src/ui/add-details.ui:206
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: src/ui/add-details.ui:192
+#: src/ui/add-details.ui:227
 msgid "Cancel"
 msgstr "Annulla"
 
-#: src/ui/add-details.ui:204
+#: src/ui/add-details.ui:239
 msgid "Save bottle"
 msgstr "Salva bottiglia"
 
@@ -704,19 +804,19 @@ msgstr ""
 msgid "Go back"
 msgstr "Indietro"
 
-#: src/ui/window.ui:361
-msgid "Your Bottles"
-msgstr "A proposito di Bottles"
-
-#: src/ui/window.ui:380
+#: src/ui/window.ui:344
 msgid "Open menu"
 msgstr "Apri menu"
 
-#: src/ui/window.ui:401
+#: src/ui/window.ui:374
+msgid "Your Bottles"
+msgstr "A proposito di Bottles"
+
+#: src/ui/window.ui:395
 msgid "Downloads"
 msgstr "Preferenze di download"
 
-#: src/ui/window.ui:421
+#: src/ui/window.ui:422
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -776,11 +876,11 @@ msgstr ""
 msgid "No runners found"
 msgstr "Nessun runner trovato"
 
-#: src/window.py:188 src/pages/list.py:190
+#: src/window.py:188
 msgid "OK status received"
 msgstr "Stato OK ricevuto"
 
-#: src/window.py:194 src/pages/list.py:194
+#: src/window.py:194
 msgid "Cancel status received"
 msgstr "Stato Cancella ricevuto"
 
@@ -813,59 +913,104 @@ msgstr "Un ambiente pulito, senza ottimizzazioni."
 msgid "Selected env is: [{0}]"
 msgstr "L'ambiente selezionato è: [{0}]"
 
-#: src/pages/details.py:58 src/pages/details.py:263
+#: src/pages/details.py:59 src/pages/details.py:262
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifesto per {0}"
 
-#: src/pages/details.py:59 src/pages/details.py:264
+#: src/pages/details.py:60 src/pages/details.py:263
 #, python-brace-format
 msgid "This is the manifest for {0}."
 msgstr "Questo è il manifesto per {0}."
 
-#: src/pages/details.py:119
+#: src/pages/details.py:118
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indice per lo stato {0}"
 
-#: src/pages/details.py:120
+#: src/pages/details.py:119
 #, python-brace-format
 msgid "This is the index for {0}."
 msgstr "Questo è l'indice per {0}."
 
-#: src/pages/details.py:614 src/pages/list.py:122
+#: src/pages/details.py:474
+#, fuzzy
+msgid "No programs found!"
+msgstr "Nessun runner trovato"
+
+#: src/pages/details.py:476
+#, fuzzy
+msgid "The programs installed in the bottle will be listed here."
+msgstr ""
+"Questi sono i programmi che ho trovato installati nella tua Bottiglia "
+"(potrebbero non essere tutti)."
+
+#: src/pages/details.py:505
+#, fuzzy
+msgid "No dependencies found!"
+msgstr "Nessun runner trovato"
+
+#: src/pages/details.py:507
+msgid "There are no dependencies installed and we can't fetch from repository."
+msgstr ""
+
+#: src/pages/details.py:524
+#, fuzzy
+msgid "No installers found!"
+msgstr "Nessun runner trovato"
+
+#: src/pages/details.py:526
+msgid "We can't fetch the installers from the repository right now."
+msgstr ""
+
+#: src/pages/details.py:643 src/pages/list.py:123
 msgid "Choose a Windows executable file"
 msgstr "Scegli un file eseguibile Windows"
 
-#: src/pages/details.py:700
+#: src/pages/details.py:729
 msgid "Select the location where to save the backup configuration"
 msgstr "Seleziona la posizione dove salvare il backup della configurazione"
 
-#: src/pages/details.py:719
+#: src/pages/details.py:748
 msgid "Select the location where to save the backup archive"
 msgstr "Seleziona la posizione dove salvare l'archivio backup"
 
-#: src/pages/list.py:98
+#: src/pages/list.py:99
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argomenti trovati per l'eseguibile: [{executable}]."
 
-#: src/pages/list.py:161
+#: src/pages/list.py:162
 msgid "Confirm upgrade"
 msgstr "Conferma aggiornamento"
 
-#: src/pages/list.py:162
+#: src/pages/list.py:163
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "Questo cambierà il runner da {0} a {1}."
 
-#: src/pages/list.py:185
+#: src/pages/list.py:186
 msgid "Confirm deletion"
 msgstr "Conferma eliminazione"
 
-#: src/pages/list.py:186
+#: src/pages/list.py:187
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Sei sicuro di voler rimuovere questa Bottiglia e tutti i suoi file?"
+
+#: src/pages/list.py:226
+#, fuzzy
+msgid "No bottles found!"
+msgstr "Nessun runner trovato"
+
+#: src/pages/list.py:228
+msgid "Use the '+' button to create one."
+msgstr ""
+
+#~ msgid "Easily manage your Wine bottles"
+#~ msgstr "Gestisci con facilità le bottiglie Wine"
+
+#~ msgid "Easily manage your Wine bottles (wineprefix)"
+#~ msgstr "Gestisci con facilità le bottiglie Wine (prefissi wine)"
 
 #~ msgid "Launch a debug console in this Bottle."
 #~ msgstr "Lancia una console di debug in questa Bottiglia."
