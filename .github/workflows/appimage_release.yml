@@ -4,8 +4,6 @@ on:
     branches: [ master ]
     tags:
       - 'test'
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
 jobs:
   build:
