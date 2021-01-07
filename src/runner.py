@@ -551,6 +551,7 @@ class BottlesRunner:
 
     '''Get installed programs'''
     def get_programs(self, configuration:BottleConfig) -> list:
+        '''TODO: Programs found should be stored in a database'''
         bottle = "%s/%s" % (self.bottles_path, configuration.get("Path"))
         results =  glob("%s/drive_c/users/*/Start Menu/Programs/**/*.lnk" % bottle,
                         recursive=True)

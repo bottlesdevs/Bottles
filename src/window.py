@@ -157,6 +157,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
 
         '''Executed on last'''
         self.on_start()
+
+        if arg_executable:
+            self.show_list_view()
+
         arg_executable = False
         logging.info(_("Bottles Started!"))
 
@@ -250,21 +254,21 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_back.set_visible(False)
         self.stack_main.set_visible_child_name(self.previous_page)
 
-    def show_add_view(self, widget):
+    def show_add_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_add")
 
-    def show_list_view(self, widget):
+    def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
 
-    def show_taskmanager_view(self, widget):
+    def show_taskmanager_view(self, widget=False):
         self.set_previous_page_status()
         self.stack_main.set_visible_child_name("page_taskmanager")
 
-    def show_importer_view(self, widget):
+    def show_importer_view(self, widget=False):
         self.set_previous_page_status()
         self.stack_main.set_visible_child_name("page_importer")
 
-    def show_preferences_view(self, widget, view=0):
+    def show_preferences_view(self, widget=False, view=0):
         self.set_previous_page_status()
         self.page_preferences.notebook_preferences.set_current_page(view)
         self.stack_main.set_visible_child_name("page_preferences")
