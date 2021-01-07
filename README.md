@@ -27,13 +27,13 @@
 <br>
 <div align="center">
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-0.png">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-2.png" width="48%">
     <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-4.png" width="48%">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3.png">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-1.png" width="24%">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-2.png" width="24%">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-3-3.png" width="24%">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-6.png" width="24%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-6.png" width="48%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-7.png">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-8.png" width="24%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-9.png" width="24%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-10.png" width="24%">
+    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-13.png" width="24%">
 </div>
 
 ## Documentation
