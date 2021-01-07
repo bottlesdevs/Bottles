@@ -1,74 +1,244 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-	<id>com.usebottles.bottles.desktop</id>
-	<metadata_license>CC0-1.0</metadata_license>
-	<project_license>GPL-3.0-or-later</project_license>
-  <name>Bottles</name>
-  <summary>Easily manage your Wine bottles</summary>
-  <developer_name>Mirko Brombin</developer_name>
-	<description>
-    <p>Easily manage your Wine bottles (wineprefix)</p>
-	</description>
-  ​<mimetypes>
-    <mimetype>application/vnd.microsoft.portable-executable</mimetype>
-  </mimetypes>
-  <screenshots>
-    <screenshot type="default">
-      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/1.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/2.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/3.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/4.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/5.png</image>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/6.png</image>
-    </screenshot>
-  </screenshots>
-  <content_rating type="oars-1.1">
-    <content_attribute id="violence-cartoon">none</content_attribute>
-    <content_attribute id="violence-fantasy">none</content_attribute>
-    <content_attribute id="violence-realistic">none</content_attribute>
-    <content_attribute id="violence-bloodshed">none</content_attribute>
-    <content_attribute id="violence-sexual">none</content_attribute>
-    <content_attribute id="violence-desecration">none</content_attribute>
-    <content_attribute id="violence-slavery">none</content_attribute>
-    <content_attribute id="violence-worship">none</content_attribute>
-    <content_attribute id="drugs-alcohol">none</content_attribute>
-    <content_attribute id="drugs-narcotics">none</content_attribute>
-    <content_attribute id="drugs-tobacco">none</content_attribute>
-    <content_attribute id="sex-nudity">none</content_attribute>
-    <content_attribute id="sex-themes">none</content_attribute>
-    <content_attribute id="sex-homosexuality">none</content_attribute>
-    <content_attribute id="sex-prostitution">none</content_attribute>
-    <content_attribute id="sex-adultery">none</content_attribute>
-    <content_attribute id="sex-appearance">none</content_attribute>
-    <content_attribute id="language-profanity">none</content_attribute>
-    <content_attribute id="language-humor">none</content_attribute>
-    <content_attribute id="language-discrimination">none</content_attribute>
-    <content_attribute id="social-chat">none</content_attribute>
-    <content_attribute id="social-info">none</content_attribute>
-    <content_attribute id="social-audio">none</content_attribute>
-    <content_attribute id="social-location">none</content_attribute>
-    <content_attribute id="social-contacts">none</content_attribute>
-    <content_attribute id="money-purchasing">none</content_attribute>
-    <content_attribute id="money-gambling">none</content_attribute>
-  </content_rating>
-  <url type="homepage">https://github.com/bottlesdevs/Bottles</url>
-  <url type="bugtracker">https://github.com/bottlesdevs/Bottles/issues</url>
-  <url type="help">https://github.com/bottlesdevs/Bottles/issues</url>
-  <releases>
-      <release version="2.0.0" date="2020-12-04">
-        <description>
-          <p>Not provided.</p>
-        </description>
-      </release>
-  </releases>
+    <id>com.usebottles.bottles.desktop</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0-or-later</project_license>
+    <name>Bottles</name>
+    <summary>Easily run Windows software on Linux with 🍷 Bottles!</summary>
+    <developer_name>Mirko Brombin</developer_name>
+    <description>
+        <p>Easily run Windows software on Linux with 🍷 Bottles!</p>
+        <p>Bottles is a modern tool that refines and simplifies running Windows software on Linux!</p>
+        <p>Our built-in dependency installation system allows for easy access to a broad level of software
+            compatibility. We also include a download manager for downloading the official components:
+            runner (wine, proton), dxvk, dependencies, etc.</p>
+        <p>Features such as bottle versioning allow you to keep your work safe and restore it later!</p>
+        <p>Features:</p>
+        <ul>
+          <li>Create your bottles using preconfigured environments or create your own</li>
+          <li>Run every executable (.exe/.msi) in your bottles, directly from the context menu form your file manager</li>
+          <li>Automated detection of applications installed in your bottles</li>
+          <li>Add environment variables easily</li>
+          <li>Override DLLs directly from bottle preferences</li>
+          <li>On-the-fly runner change for any Bottle</li>
+          <li>Various optimizations for better gaming performance (esync, fsync, dxvk, cache, shader compiler, offload .. and much more.)</li>
+          <li>Automatic installation and management of Wine and Proton runners</li>
+          <li>Automatic bottle repair in case of breakage</li>
+          <li>Integrated Dependencies installer based on a community-driver repository</li>
+          <li>Integrated Task manager for wine processes</li>
+          <li>Easy access to ProtonDB and WineHQ for support</li>
+          <li>Configurations update system across Bottles versions</li>
+          <li>Bottles backup and import</li>
+          <li>Easily import wineprefix from other managers</li>
+          <li>Bottles versioning (experimental)</li>
+          <li>.. and much more that you can find by installing Bottles!</li>
+        </ul>
+    </description>
+    ​<mimetypes>
+        <mimetype>application/x-ms-dos-executable</mimetype>
+        <mimetype>application/x-msi</mimetype>
+        <mimetype>application/x-ms-shortcut</mimetype>
+        <mimetype>application/x-wine-extension-msp</mimetype>
+    </mimetypes>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/1.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/2.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/3.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/4.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/5.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/6.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/7.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/8.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/9.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/10.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/11.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/12.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/13.png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/appstream/14.png</image>
+        </screenshot>
+    </screenshots>
+    <content_rating type="oars-1.1">
+        <content_attribute id="violence-cartoon">none</content_attribute>
+        <content_attribute id="violence-fantasy">none</content_attribute>
+        <content_attribute id="violence-realistic">none</content_attribute>
+        <content_attribute id="violence-bloodshed">none</content_attribute>
+        <content_attribute id="violence-sexual">none</content_attribute>
+        <content_attribute id="violence-desecration">none</content_attribute>
+        <content_attribute id="violence-slavery">none</content_attribute>
+        <content_attribute id="violence-worship">none</content_attribute>
+        <content_attribute id="drugs-alcohol">none</content_attribute>
+        <content_attribute id="drugs-narcotics">none</content_attribute>
+        <content_attribute id="drugs-tobacco">none</content_attribute>
+        <content_attribute id="sex-nudity">none</content_attribute>
+        <content_attribute id="sex-themes">none</content_attribute>
+        <content_attribute id="sex-homosexuality">none</content_attribute>
+        <content_attribute id="sex-prostitution">none</content_attribute>
+        <content_attribute id="sex-adultery">none</content_attribute>
+        <content_attribute id="sex-appearance">none</content_attribute>
+        <content_attribute id="language-profanity">none</content_attribute>
+        <content_attribute id="language-humor">none</content_attribute>
+        <content_attribute id="language-discrimination">none</content_attribute>
+        <content_attribute id="social-chat">none</content_attribute>
+        <content_attribute id="social-info">none</content_attribute>
+        <content_attribute id="social-audio">none</content_attribute>
+        <content_attribute id="social-location">none</content_attribute>
+        <content_attribute id="social-contacts">none</content_attribute>
+        <content_attribute id="money-purchasing">none</content_attribute>
+        <content_attribute id="money-gambling">none</content_attribute>
+    </content_rating>
+    <url type="homepage">https://usebottles.com</url>
+    <url type="bugtracker">https://github.com/bottlesdevs/Bottles/issues</url>
+    <url type="help">https://docs.usebottles.com</url>
+    <releases>
+        <release version="2.0.9.7" date="2020-01-07">
+            <description>
+              <p>News:</p>
+              <ul>
+                <li>New friendly pages are shown when there are no bottles, dependencies, installers and programs</li>
+                <li>Now the list of bottles can be reached from the right</li>
+                <li>Experiments can now be enabled from Preferences</li>
+              </ul>
+              <p>Improvements:</p>
+              <ul>
+                <li>General UI improvements</li>
+                <li>Improved connection check method</li>
+                <li>Now the shortcut [F1] and the menu entry open the new documentation</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.0.9.6" date="2020-01-06">
+            <description>
+              <p>News:</p>
+              <ul>
+                <li>Use the [Escape] shortcut to go back</li>
+                <li>The wine debug console now runs in the system terminal</li>
+              </ul>
+              <p>Improvements:</p>
+              <ul>
+                <li>General UI improvements</li>
+                <li>Improved RunAsync method</li>
+              </ul>
+              <p>Bugfix:</p>
+              <ul>
+                <li>Need at least one local runner to create a bottle</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.0.9.5" date="2020-01-05">
+            <description>
+              <p>News:</p>
+              <ul>
+                <li>Use the [F1] shortcut to open documentation</li>
+              </ul>
+              <p>Improvements:</p>
+              <ul>
+                <li>Translations update</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.0.9.4" date="2020-01-05">
+            <description>
+              <p>News:</p>
+              <ul>
+                <li>Use the [Escape] shortcut to go back</li>
+                <li>The wine debug console now runs in the system terminal</li>
+              </ul>
+              <p>Improvements:</p>
+              <ul>
+                <li>New shocking icon powered by @jannuary</li>
+                <li>General UI improvements</li>
+              </ul>
+              <p>Bugfix:</p>
+              <ul>
+                <li>Need at least one local runner to create a bottle</li>
+                <li>No more crashes when creating the bottle if there is no Temp path</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.0.9.3" date="2020-01-04"></release>
+        <release version="2.0.9.2" date="2020-01-04"></release>
+        <release version="2.0.9.1" date="2020-01-02"></release>
+        <release version="2.0.9" date="2021-01-01">
+            <description>
+              <p>Happy 2021🎉!</p>
+              <p>News:</p>
+              <ul>
+                <li>The new experimental Bottle Versioning feature is here! Save the status of a bottle and restore it later with a click.</li>
+              </ul>
+              <p>Improvements:</p>
+              <ul>
+                <li>All wine processes are now spawned asynchronously</li>
+                <li>Compact logs, now showing only essential data</li>
+                <li>General UI improvements</li>
+              </ul>
+              <p>Bugfix:</p>
+              <ul>
+                <li>Minor bugfixes</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.0.8.1" date="2020-12-27">
+            <description>
+              <p>Bugfix:</p>
+              <ul>
+                <li>Fix wrong condition (in some cases it does not allow the use of the application).</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.0.8" date="2020-12-26">
+            <description>
+              <p>News:</p>
+              <ul>
+                <li>Backup and restore bottles</li>
+                <li>Import wineprefixes from other managers</li>
+                <li>Task manager</li>
+                <li>Bottle configuration update across software updates</li>
+                <li>Toggle RC releases for runners</li>
+              </ul>
+              <p>Improvements:</p>
+              <ul>
+                <li>New dependencies icon in details page</li>
+              </ul>
+              <p>Bugfix:</p>
+              <ul>
+                <li>Minor bugfixes</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.0.7" date="2020-12-17"></release>
+        <release version="2.0.6" date="2020-12-10"></release>
+        <release version="2.0.5" date="2020-12-10"></release>
+        <release version="2.0.4" date="2020-12-01"></release>
+        <release version="2.0.3" date="2020-11-30"></release>
+        <release version="2.0.2" date="2020-11-30"></release>
+        <release version="2.0.1" date="2020-11-28"></release>
+        <release version="2.0.0" date="2020-11-28"></release>
+    </releases>
 </component>
