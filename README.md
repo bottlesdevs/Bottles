@@ -89,8 +89,7 @@ And you're done!
 
 ### Flatpak from Flathub
 Flatpak is the second officially supported package format.  
-[[https://flathub.org/apps/details/org.gimp.GIMP|{{https://flathub.org/assets/badges/flathub-badge-en.png|Download on Flathub|width=240,align=middle}}]]
-
+<a href='https://flathub.org/apps/details/com.usebottles.Bottles'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
 ### Unofficial packages
 These packages are maitained by our community but not officialy supported.
