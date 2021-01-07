@@ -77,8 +77,7 @@ translate Bottles in your language or how to help improve existing ones.
 holes and monsters under the bed. Be careful.
 
 ### AppImage :eyes:
-This is the official method by which we have chosen to distribute Bottles and it 
-is the only one we currently officially support..
+This is the first official method by which we have chosen to distribute Bottles.
 
 Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous), 
 then:
@@ -87,6 +86,11 @@ chmod +x Bottles-devel-x86_64.AppImage
 ./Bottles-devel-x86_64.AppImage
 ```
 And you're done!
+
+### Flatpak from Flathub
+Flatpak is the second officially supported package format.  
+[[https://flathub.org/apps/details/org.gimp.GIMP|{{https://flathub.org/assets/badges/flathub-badge-en.png|Download on Flathub|width=240,align=middle}}]]
+
 
 ### Unofficial packages
 These packages are maitained by our community but not officialy supported.
@@ -97,7 +101,6 @@ These packages are maitained by our community but not officialy supported.
 | Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | ragouel |
 | Tumbleweed | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
 | Fedora 33 | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
-| Flathub | [`com.usebottles.bottles`](https://github.com/flathub/flathub/pull/2022) | francescomasala |
 | Void linux | [`bottles`](https://github.com/void-linux/void-packages/pull/27066) | andry-dev|
 | NixOS | [`bottles`](https://github.com/bottlesdevs/Bottles/issues/72) | bloomvdomino |
 
