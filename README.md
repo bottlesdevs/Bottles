@@ -27,7 +27,7 @@
 <br>
 <div align="center">
     <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-0.png">
-    <img  src="https://raw.githubusercontent.com/mirkobrombin/Bottles/master/screenshot-4.png" width="48%">
+    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-4.png" width="48%">
     <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-6.png" width="48%">
     <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-7.png">
     <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-8.png" width="24%">
