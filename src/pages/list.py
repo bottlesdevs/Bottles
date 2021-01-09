@@ -62,6 +62,7 @@ class BottlesListEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_details.connect('pressed', self.show_details)
+        self.btn_details.connect('activate', self.show_details)
         self.btn_delete.connect('pressed', self.confirm_delete)
         self.btn_upgrade.connect('pressed', self.upgrade_runner)
         self.btn_run.connect('pressed', self.run_executable)
@@ -204,15 +205,8 @@ class BottlesList(Gtk.Box):
         self.window = window
         self.arg_executable = arg_executable
 
-        '''Signal connections'''
-        self.list_bottles.connect('row-activated', self.show_details)
-
         '''Populate list_bottles'''
         self.update_bottles()
-
-    def show_details(self, widget, row):
-        print(row)
-        print("test")
 
     '''Find and append bottles to list_bottles'''
     def update_bottles(self):
