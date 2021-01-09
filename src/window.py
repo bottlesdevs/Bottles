@@ -49,7 +49,6 @@ class BottlesWindow(Handy.ApplicationWindow):
     stack_main = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
-    btn_list = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
     btn_download_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
@@ -140,7 +139,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_back.connect('pressed', self.go_back)
         self.btn_back.connect('activate', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view)
-        self.btn_list.connect('pressed', self.show_list_view)
         self.btn_about.connect('pressed', self.show_about_dialog)
         self.btn_support.connect('pressed', self.open_support_url)
         self.btn_report.connect('pressed', self.open_report_url)
@@ -157,8 +155,11 @@ class BottlesWindow(Handy.ApplicationWindow):
         '''Set widgets status from user settings'''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
 
-        '''Load startup view from user settings'''
-        self.stack_main.set_visible_child_name(self.settings.get_string("startup-view"))
+        '''If there is at least one page, show the bottles list'''
+        if len(self.runner.local_bottles) > 0:
+            self.stack_main.set_visible_child_name("page_list")
+        else:
+            self.stack_main.set_visible_child_name("page_add")
 
         '''Executed on last'''
         self.on_start()
@@ -170,7 +171,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         logging.info(_("Bottles Started!"))
 
     def on_squeezer_notify(self, widget, event):
-        print("AAAAAAAAAAAAAAAAAAA")
+        '''TODO: this is used for responsive and doesn't work at this time'''
         child = widget.get_visible_child()
         self.view_switcher_bar.set_reveal(child != self.view_switcher_title)
 
@@ -221,7 +222,6 @@ class BottlesWindow(Handy.ApplicationWindow):
     def set_usable_ui(self, status):
         for widget in [self.btn_back,
                        self.btn_add,
-                       self.btn_list,
                        self.btn_download_preferences,
                        self.btn_menu]:
             widget.set_sensitive(status)
@@ -241,7 +241,6 @@ class BottlesWindow(Handy.ApplicationWindow):
 
             self.previous_page = current_page
             self.btn_add.set_visible(False)
-            self.btn_list.set_visible(False)
             self.btn_menu.set_visible(False)
             self.btn_download_preferences.set_visible(False)
             self.btn_back.set_visible(True)
@@ -265,19 +264,21 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     '''Go back to previous page'''
     def go_back(self, widget):
+        self.hide_view_switcher()
         self.btn_add.set_visible(True)
-        self.btn_list.set_visible(True)
         self.btn_menu.set_visible(True)
         self.btn_download_preferences.set_visible(True)
         self.btn_back.set_visible(False)
         self.stack_main.set_visible_child_name(self.previous_page)
 
     def show_details_view(self, widget=False, configuration=dict):
+        self.set_previous_page_status()
         self.page_details.set_configuration(configuration)
         self.show_view_switcher(self.page_details)
         self.stack_main.set_visible_child_name("page_details")
 
     def show_add_view(self, widget=False):
+        self.set_previous_page_status()
         self.hide_view_switcher()
         self.stack_main.set_visible_child_name("page_add")
 
