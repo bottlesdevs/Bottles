@@ -260,6 +260,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
 
+    def show_details_view(self, widget=False):
+        self.set_previous_page_status()
+        self.stack_main.set_visible_child_name("page_details")
+
     def show_taskmanager_view(self, widget=False):
         self.set_previous_page_status()
         self.stack_main.set_visible_child_name("page_taskmanager")

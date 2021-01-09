@@ -178,7 +178,7 @@ class BottlesListEntry(Gtk.Box):
         if page > 0:
             self.window.page_details.set_page(page)
         self.window.page_details.set_configuration(self.configuration)
-        self.window.stack_main.set_visible_child_name("page_details")
+        self.window.show_details_view()
 
     '''Show dialog to confirm bottle deletion'''
     def confirm_delete(self, widget):
