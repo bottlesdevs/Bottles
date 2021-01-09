@@ -54,6 +54,7 @@ class BottlesWindow(Handy.ApplicationWindow):
     btn_about = Gtk.Template.Child()
     btn_downloads = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
+    btn_more = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
     btn_translate = Gtk.Template.Child()
     btn_support = Gtk.Template.Child()
@@ -269,10 +270,12 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_menu.set_visible(True)
         self.btn_download_preferences.set_visible(True)
         self.btn_back.set_visible(False)
+        self.btn_more.set_visible(False)
         self.stack_main.set_visible_child_name(self.previous_page)
 
     def show_details_view(self, widget=False, configuration=dict):
         self.set_previous_page_status()
+        self.btn_more.set_visible(True)
         self.page_details.set_configuration(configuration)
         self.show_view_switcher(self.page_details)
         self.stack_main.set_visible_child_name("page_details")
