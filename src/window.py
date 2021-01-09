@@ -17,9 +17,10 @@
 
 import gi
 
+gi.require_version('Handy', '1')
 gi.require_version('Notify', '0.7')
 
-from gi.repository import Gtk, Gio, Notify
+from gi.repository import Gtk, Gio, Notify, Handy
 
 import webbrowser
 
@@ -40,7 +41,7 @@ from .utils import UtilsConnection, UtilsLogger
 logging = UtilsLogger()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/window.ui')
-class BottlesWindow(Gtk.ApplicationWindow):
+class BottlesWindow(Handy.ApplicationWindow):
     __gtype_name__ = 'BottlesWindow'
 
     '''Get widgets from template'''

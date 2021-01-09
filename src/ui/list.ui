@@ -2,30 +2,48 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <template class="BottlesList" parent="GtkScrolledWindow">
+  <template class="BottlesList" parent="GtkBox">
     <property name="visible">True</property>
-    <property name="can-focus">True</property>
+    <property name="can-focus">False</property>
+    <property name="halign">center</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="orientation">vertical</property>
     <child>
-      <object class="GtkViewport">
+      <object class="GtkLabel">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <child>
-          <object class="GtkBox" id="list_bottles">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-        </child>
+        <property name="halign">start</property>
+        <property name="margin-top">25</property>
+        <property name="margin-bottom">10</property>
+        <property name="label" translatable="yes">Bottles</property>
+        <property name="wrap">True</property>
+        <property name="wrap-mode">word-char</property>
+        <attributes>
+          <attribute name="font-desc" value="Cantarell Bold 16"/>
+          <attribute name="weight" value="bold"/>
+        </attributes>
       </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkListBox" id="list_bottles">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="selection-mode">none</property>
+        <style>
+          <class name="content"/>
+        </style>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
     </child>
   </template>
 </interface>

@@ -16,14 +16,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-from gi.repository import Gtk
+from gi.repository import Gtk, Handy
 
 from .dialog import BottlesMessageDialog
 from bottles.empty import BottlesEmpty
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
-class BottlesListEntry(Gtk.Box):
+class BottlesListEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesListEntry'
+
+    Handy.init()
 
     '''Get widgets from template'''
     btn_details = Gtk.Template.Child()
@@ -34,7 +36,6 @@ class BottlesListEntry(Gtk.Box):
     btn_repair = Gtk.Template.Child()
     btn_programs = Gtk.Template.Child()
     btn_run_executable = Gtk.Template.Child()
-    label_name = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
@@ -72,7 +73,7 @@ class BottlesListEntry(Gtk.Box):
         '''Populate widgets'''
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
         self.label_state.set_text(str(self.configuration.get("State")))
-        self.label_name.set_text(self.configuration.get("Name"))
+        self.set_title(self.configuration.get("Name"))
         self.label_environment.set_text(self.configuration.get("Environment"))
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
@@ -195,7 +196,7 @@ class BottlesListEntry(Gtk.Box):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
-class BottlesList(Gtk.ScrolledWindow):
+class BottlesList(Gtk.Box):
     __gtype_name__ = 'BottlesList'
 
     '''Get widgets from template'''
@@ -211,8 +212,15 @@ class BottlesList(Gtk.ScrolledWindow):
         self.window = window
         self.arg_executable = arg_executable
 
+        '''Signal connections'''
+        self.list_bottles.connect('row-activated', self.show_details)
+
         '''Populate list_bottles'''
         self.update_bottles()
+
+    def show_details(self, widget, row):
+        print(row)
+        print("test")
 
     '''Find and append bottles to list_bottles'''
     def update_bottles(self):
