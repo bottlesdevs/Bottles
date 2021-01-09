@@ -283,7 +283,7 @@ class BottlesDependencyEntry(Gtk.Box):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
-class BottlesDetails(Gtk.Box):
+class BottlesDetails(Gtk.Stack):
     __gtype_name__ = 'BottlesDetails'
 
     '''Get widgets from template'''
@@ -293,7 +293,6 @@ class BottlesDetails(Gtk.Box):
     label_update_date = Gtk.Template.Child()
     label_size = Gtk.Template.Child()
     label_disk = Gtk.Template.Child()
-    notebook_details = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
     btn_dependencies = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
@@ -307,7 +306,6 @@ class BottlesDetails(Gtk.Box):
     btn_shutdown = Gtk.Template.Child()
     btn_reboot = Gtk.Template.Child()
     btn_killall = Gtk.Template.Child()
-    btn_report_dependency = Gtk.Template.Child()
     btn_programs_updates = Gtk.Template.Child()
     btn_environment_variables = Gtk.Template.Child()
     btn_overrides = Gtk.Template.Child()
@@ -335,6 +333,7 @@ class BottlesDetails(Gtk.Box):
     entry_state_comment = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
+    view_stack_switcher = Gtk.Template.Child()
 
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
@@ -365,7 +364,6 @@ class BottlesDetails(Gtk.Box):
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
         self.btn_killall.connect('pressed', self.run_killall)
-        self.btn_report_dependency.connect('pressed', self.open_report_url)
         self.btn_programs_updates.connect('pressed', self.update_programs)
         self.btn_environment_variables.connect('pressed', self.save_environment_variables)
         self.btn_overrides.connect('pressed', self.save_overrides)
@@ -405,7 +403,6 @@ class BottlesDetails(Gtk.Box):
         '''Populate widgets from configuration'''
         parameters = self.configuration.get("Parameters")
         versioning = self.configuration.get("Versioning")
-        self.notebook_details.get_nth_page(5).set_visible(versioning)
         self.label_name.set_text(self.configuration.get("Name"))
         self.label_runner.set_text(self.configuration.get("Runner"))
         self.label_state.set_text(str(self.configuration.get("State")))

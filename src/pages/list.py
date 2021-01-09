@@ -67,7 +67,6 @@ class BottlesListEntry(Handy.ActionRow):
         self.btn_run.connect('pressed', self.run_executable)
         self.btn_browse.connect('pressed', self.run_browse)
         self.btn_repair.connect('pressed', self.repair)
-        self.btn_programs.connect('pressed', self.show_programs_detail_view)
         self.btn_run_executable.connect('pressed', self.run_executable)
 
         '''Populate widgets'''
@@ -112,10 +111,6 @@ class BottlesListEntry(Handy.ActionRow):
     '''Repair bottle'''
     def repair(self, widget):
         self.runner.repair_bottle(self.configuration)
-
-    '''Show detail page on programs tab'''
-    def show_programs_detail_view(self, widget):
-        self.show_details(widget, 3)
 
     '''Display file dialog for executable'''
     def run_executable(self, widget):
@@ -175,11 +170,8 @@ class BottlesListEntry(Handy.ActionRow):
         dialog_upgrade.destroy()
 
     '''Show details page'''
-    def show_details(self, widget, page=0):
-        if page > 0:
-            self.window.page_details.set_page(page)
-        self.window.page_details.set_configuration(self.configuration)
-        self.window.stack_main.set_visible_child_name("page_details")
+    def show_details(self, widget):
+        self.window.show_details_view(configuration=self.configuration)
 
     '''Show dialog to confirm bottle deletion'''
     def confirm_delete(self, widget):

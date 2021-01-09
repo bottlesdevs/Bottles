@@ -236,8 +236,9 @@
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Bottles</property>
     <property name="window-position">center</property>
-    <property name="default-width">850</property>
-    <property name="default-height">650</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <property name="icon-name">com.usebottles.bottles</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -251,10 +252,17 @@
             <property name="show-close-button">True</property>
             <property name="centering-policy">strict</property>
             <child type="title">
-              <object class="HdyViewSwitcherTitle">
+              <object class="HdySqueezer" id="squeezer">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="title" translatable="yes">Bottles</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="HdyViewSwitcherTitle" id="view_switcher_title">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="title" translatable="yes">Bottles</property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
@@ -414,7 +422,6 @@
           <object class="HdyViewSwitcherBar" id="view_switcher_bar">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="stack">stack</property>
           </object>
           <packing>
             <property name="expand">False</property>

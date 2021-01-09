@@ -65,6 +65,9 @@ class BottlesWindow(Handy.ApplicationWindow):
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
+    squeezer = Gtk.Template.Child()
+    view_switcher_title = Gtk.Template.Child()
+    view_switcher_bar = Gtk.Template.Child()
 
     '''Define environments and set first'''
     envs = [
@@ -149,6 +152,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.switch_dark.connect('state-set', self.toggle_dark)
+        self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
 
         '''Set widgets status from user settings'''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
@@ -164,6 +168,19 @@ class BottlesWindow(Handy.ApplicationWindow):
 
         arg_executable = False
         logging.info(_("Bottles Started!"))
+
+    def on_squeezer_notify(self, widget, event):
+        print("AAAAAAAAAAAAAAAAAAA")
+        child = widget.get_visible_child()
+        self.view_switcher_bar.set_reveal(child != self.view_switcher_title)
+
+    def hide_view_switcher(self):
+        self.view_switcher_title.set_view_switcher_enabled(False)
+
+    def show_view_switcher(self, stack):
+        self.view_switcher_title.set_stack(stack)
+        self.view_switcher_title.set_view_switcher_enabled(True)
+        self.view_switcher_bar.set_stack(stack)
 
     def check_for_connection(self, status):
         if self.utils_conn.check_connection():
@@ -255,7 +272,13 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_back.set_visible(False)
         self.stack_main.set_visible_child_name(self.previous_page)
 
+    def show_details_view(self, widget=False, configuration=dict):
+        self.page_details.set_configuration(configuration)
+        self.show_view_switcher(self.page_details)
+        self.stack_main.set_visible_child_name("page_details")
+
     def show_add_view(self, widget=False):
+        self.hide_view_switcher()
         self.stack_main.set_visible_child_name("page_add")
 
     def show_list_view(self, widget=False):
