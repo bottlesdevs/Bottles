@@ -320,9 +320,9 @@ class BottlesDetails(Gtk.Stack):
     switch_aco = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
     switch_virtual_desktop = Gtk.Template.Child()
+    switch_pulseaudio_latency = Gtk.Template.Child()
     combo_virtual_resolutions = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
-    switch_pulseaudio_latency = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     list_installers = Gtk.Template.Child()
@@ -763,3 +763,10 @@ class BottlesDetails(Gtk.Stack):
     @staticmethod
     def open_report_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/dependencies/issues/new/choose")
+
+    '''Methods for pop_more buttons'''
+    def show_versioning_view(self, widget=False):
+        self.set_visible_child_name("versioning")
+
+    def show_installers_view(self, widget=False):
+        self.set_visible_child_name("installers")

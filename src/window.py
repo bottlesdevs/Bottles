@@ -62,6 +62,8 @@ class BottlesWindow(Handy.ApplicationWindow):
     btn_taskmanager = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
+    btn_versioning = Gtk.Template.Child()
+    btn_installers = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
@@ -152,6 +154,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.switch_dark.connect('state-set', self.toggle_dark)
         self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
+
+        '''BottlesDetail signal connections'''
+        self.btn_versioning.connect('pressed', self.page_details.show_versioning_view)
+        self.btn_installers.connect('pressed', self.page_details.show_installers_view)
 
         '''Set widgets status from user settings'''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
