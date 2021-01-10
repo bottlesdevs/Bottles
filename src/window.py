@@ -28,6 +28,7 @@ from .params import *
 from .runner import BottlesRunner
 
 from .pages.add import BottlesAdd, BottlesAddDetails
+from .pages.new import BottlesNew
 from .pages.create import BottlesCreate
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
@@ -163,10 +164,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
 
         '''If there is at least one page, show the bottles list'''
-        if len(self.runner.local_bottles) > 0:
-            self.stack_main.set_visible_child_name("page_list")
-        else:
-            self.stack_main.set_visible_child_name("page_add")
+        self.stack_main.set_visible_child_name("page_list")
 
         '''Executed on last'''
         self.on_start()
@@ -287,9 +285,8 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_details")
 
     def show_add_view(self, widget=False):
-        self.set_previous_page_status()
-        self.hide_view_switcher()
-        self.stack_main.set_visible_child_name("page_add")
+        new_window = BottlesNew(self)
+        new_window.present()
 
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
