@@ -569,7 +569,13 @@ class BottlesRunner:
                               encoding='utf-8',
                               errors='ignore') as lnk:
                         lnk = lnk.read()
-                        executable_path = re.search('C:(.*).exe', lnk).group(0)
+
+                        executable_path = re.search('C:(.*).exe', lnk)
+                        if executable_path != None:
+                            executable_path = executable_path.group(0)
+                        else:
+                            executable_path = re.search('C:(.*).bat', lnk).group(0)
+
                         if executable_path.find("ninstall") < 0:
                             path = path.replace(".lnk", "")
                             installed_programs.append([path, executable_path])
