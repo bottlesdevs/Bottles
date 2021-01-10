@@ -1046,6 +1046,8 @@ class BottlesRunner:
 
         if "msi" in file_path.split("."):
             command = "msiexec /i '%s'" % file_path
+        elif "bat" in file_path.split("."):
+            command = "wineconsole cmd /c '%s'" % file_path
         else:
             command = "'%s'" % file_path
 

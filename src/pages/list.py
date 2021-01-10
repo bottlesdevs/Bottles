@@ -132,8 +132,13 @@ class BottlesListEntry(Handy.ActionRow):
             filter_msi.set_name(".msi")
             filter_msi.add_pattern("*.msi")
 
+            filter_bat = Gtk.FileFilter()
+            filter_bat.set_name(".bat")
+            filter_bat.add_pattern("*.bat")
+
             file_dialog.add_filter(filter_exe)
             file_dialog.add_filter(filter_msi)
+            file_dialog.add_filter(filter_bat)
 
             response = file_dialog.run()
 
