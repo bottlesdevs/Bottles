@@ -754,7 +754,7 @@ class BottlesRunner:
 
         '''Execute wineboot'''
         update_output( _("The wine configuration is being updated …"))
-        command = "WINEPREFIX={path} WINEARCH=win64 {runner} wineboot".format(
+        command = "DISPLAY=:0.0 WINEPREFIX={path} WINEARCH=win64 {runner} wineboot /nogui".format(
             path = bottle_complete_path,
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner)
         )
@@ -1007,7 +1007,7 @@ class BottlesRunner:
 
         option = "uninstall" if remove else "install"
 
-        command = 'WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --without-dxgi'.format (
+        command = 'DISPLAY=:0.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --without-dxgi'.format (
             path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
             runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
             dxvk_setup = "%s/%s/setup_dxvk.sh" % (self.dxvk_path, self.dxvk_available[0]),
