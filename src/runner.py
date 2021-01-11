@@ -694,7 +694,7 @@ class BottlesRunner:
         return "%s/%s" % (self.bottles_path, configuration.get("Path"))
 
     '''Update parameters in bottle configuration'''
-    def update_configuration(self, configuration:BottleConfig, key:str, value:str, scope:str="") -> dict:
+    def update_configuration(self, configuration:BottleConfig, key:str, value:str, scope:str="", no_update:bool=False) -> dict:
         logging.info(
             _("Setting Key: [{0}] to [{1}] for bottle: [{2}] …").format(
                 key, value, configuration.get("Name")))
@@ -711,7 +711,8 @@ class BottlesRunner:
             json.dump(configuration, configuration_file, indent=4)
             configuration_file.close()
 
-        self.update_bottles(silent=True)
+        if not no_update:
+            self.update_bottles(silent=True)
 
         '''Update Update_Date in configuration'''
         configuration["Update_Date"] = str(datetime.now())
@@ -811,23 +812,13 @@ class BottlesRunner:
         if versioning:
             logging.info(_("Creating versioning state 0 …"))
             update_output( _("Creating versioning state 0 …"))
-            self.async_create_bottle_state([configuration, "First boot", False])
+            self.async_create_bottle_state([configuration, "First boot", False, True])
 
         '''Set status created and UI usability'''
         logging.info(_("Bottle: [{0}] successfully created!").format(
             bottle_name))
         update_output(_("Your new bottle: {0} is now ready!").format(
             bottle_name))
-
-        time.sleep(1)
-
-        '''Update bottles'''
-        self.local_bottles = {}
-        self.check_bottles()
-
-        time.sleep(1)
-
-        self.window.page_list.update_bottles()
 
         time.sleep(2)
 
@@ -1328,7 +1319,7 @@ class BottlesRunner:
 
     '''Create new bottle state'''
     def async_create_bottle_state(self, args:list) -> bool:
-        configuration, comment, update = args
+        configuration, comment, update, no_update = args
 
         logging.info("Creating new state for bottle: [{0}] …".format(
             configuration.get("Name")))
@@ -1400,11 +1391,6 @@ class BottlesRunner:
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
 
-        '''Add entry to download manager'''
-        download_entry = self.download_manager.new_download(
-            _("Generating state {0} for {1}").format(
-                state_id, configuration.get("Name")), False)
-
         try:
             '''Make state structured path'''
             os.makedirs("%s/states/%s/drive_c" % (bottle_path, state_id), exist_ok=True)
@@ -1470,12 +1456,9 @@ class BottlesRunner:
             return False
 
         '''Update State in bottle configuration'''
-        self.update_configuration(configuration, "State", state_id)
+        self.update_configuration(configuration, "State", state_id, no_update=True)
 
         logging.info("New state [{0}] created successfully!".format(state_id))
-
-        '''Remove entry from download manager'''
-        download_entry.remove()
 
         '''Update states'''
         if update:
@@ -1490,8 +1473,8 @@ class BottlesRunner:
 
         return True
 
-    def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented", update:bool=False) -> None:
-        RunAsync(self.async_create_bottle_state, None, [configuration, comment, update])
+    def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented", update:bool=False, no_update:bool=False) -> None:
+        RunAsync(self.async_create_bottle_state, None, [configuration, comment, update, no_update])
 
     '''Get edits for a state'''
     def get_bottle_state_edits(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:

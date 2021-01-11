@@ -214,6 +214,10 @@ class BottlesNew(Handy.Window):
 
         self.stack_create.set_visible_child_name("page_created")
 
+        '''Update bottles'''
+        self.runner.check_bottles()
+        self.window.page_list.update_bottles()
+
     '''Progressbar pulse every 1s'''
     def pulse(self):
         while True:
