@@ -94,3 +94,50 @@
   font-family: monospace;
   padding: 10px;
 }
+
+.borderless, .borderless button.combo, .borderless button {
+  border: 0;
+  background-color: transparent;
+  background-image: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.plain button.combo, .plain-label {
+  opacity: .8;
+}
+
+.environment-entry {
+  padding: 10px;
+  margin: 0 0 5px;
+  border-radius: 7px;
+  color: #fff;
+}
+
+.environment-entry.gaming {
+  background: #DD1B24;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.environment-entry.software {
+  background: #1C71D8;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.environment-entry.custom {
+  background: #9A9996;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.hide-selection .activatable {
+  background-color: transparent;
+  background-image: none;
+  border: 0;
+  outline: 0;
+}
+
+.selection-icon {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  border-radius: 100px;
+  padding: 10px;
+}

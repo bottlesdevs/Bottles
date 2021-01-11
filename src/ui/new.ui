@@ -165,7 +165,8 @@
                 <property name="can-focus">False</property>
                 <property name="margin-bottom">10</property>
                 <style>
-                  <class name="content"/>
+                  <class name="borderless"/>
+                  <class name="hide-selection"/>
                 </style>
               </object>
               <packing>
@@ -224,24 +225,154 @@
                   </object>
                 </child>
                 <child>
-                  <object class="HdyComboRow">
+                  <object class="HdyActionRow">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="activatable">False</property>
                     <property name="title" translatable="yes">Runner</property>
+                    <property name="activatable-widget">combo_runner</property>
                     <child>
-                      <placeholder/>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkComboBoxText" id="combo_runner">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-end">5</property>
+                            <property name="active">0</property>
+                            <items>
+                              <item id="lutris-6.0-rc1-x86_64" translatable="yes">lutris-6.0-rc1-x86_64</item>
+                              <item id="lutris-5.1-x86_64" translatable="yes">lutris-5.1-x86_64</item>
+                              <item id="lutris-5.1-2-x86_64" translatable="yes">lutris-5.1-2-x86_64</item>
+                            </items>
+                            <style>
+                              <class name="borderless"/>
+                              <class name="plain"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-top">5</property>
+                            <property name="margin-bottom">5</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="margin-start">5</property>
+                            <property name="relief">none</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">applications-system-symbolic</property>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="btn_radius"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                      </object>
                     </child>
                   </object>
                 </child>
                 <child>
-                  <object class="HdyComboRow">
+                  <object class="HdyActionRow">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="activatable">False</property>
                     <property name="title" translatable="yes">DXVK Version</property>
+                    <property name="activatable-widget">combo_dxvk</property>
                     <child>
-                      <placeholder/>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkComboBoxText" id="combo_dxvk">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-end">5</property>
+                            <property name="active">0</property>
+                            <items>
+                              <item id="dxvk-1.7.3" translatable="yes">dxvk-1.7.3</item>
+                              <item id="dxvk-1.7.2" translatable="yes">dxvk-1.7.2</item>
+                              <item id="dxvk-1.7.1" translatable="yes">dxvk-1.7.1</item>
+                            </items>
+                            <style>
+                              <class name="borderless"/>
+                              <class name="plain"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-top">5</property>
+                            <property name="margin-bottom">5</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="margin-start">5</property>
+                            <property name="relief">none</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">applications-system-symbolic</property>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="borderless"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                      </object>
                     </child>
                   </object>
                 </child>
@@ -267,20 +398,4 @@
       </object>
     </child>
   </template>
-  <object class="GtkButton">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
-    <property name="receives-default">True</property>
-    <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
-    <property name="halign">center</property>
-    <property name="valign">center</property>
-    <property name="relief">none</property>
-    <child>
-      <object class="GtkImage">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="icon-name">applications-system-symbolic</property>
-      </object>
-    </child>
-  </object>
 </interface>
