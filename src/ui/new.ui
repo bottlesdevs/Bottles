@@ -135,10 +135,11 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
-                              <object class="GtkEntry">
+                              <object class="GtkEntry" id="entry_name">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="has-frame">False</property>
+                                <property name="primary-icon-tooltip-text" translatable="yes">The field cannot be empty and cannot contain special characters.</property>
                                 <property name="placeholder-text" translatable="yes">My beautiful bottle</property>
                                 <style>
                                   <class name="borderless"/>
@@ -230,7 +231,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
-                              <object class="GtkSwitch">
+                              <object class="GtkSwitch" id="switch_versioning">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="halign">center</property>
@@ -297,7 +298,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
-                                <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
+                                <property name="tooltip-text" translatable="yes">Manage runners</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
                                 <property name="margin-left">5</property>
@@ -375,7 +376,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
-                                <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
+                                <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
                                 <property name="margin-left">5</property>
@@ -389,7 +390,7 @@
                                   </object>
                                 </child>
                                 <style>
-                                  <class name="borderless"/>
+                                  <class name="btn_radius"/>
                                 </style>
                               </object>
                               <packing>

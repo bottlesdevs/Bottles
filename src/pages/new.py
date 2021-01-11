@@ -89,6 +89,8 @@ class BottlesNew(Handy.Window):
     list_environments = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
+    entry_name = Gtk.Template.Child()
+    switch_versioning = Gtk.Template.Child()
 
     environments = [
         {
@@ -127,6 +129,7 @@ class BottlesNew(Handy.Window):
         self.btn_close.connect('pressed', self.close_window)
         self.btn_create.connect('pressed', self.create_bottle)
         self.list_environments.connect('row-selected', self.set_active_environment)
+        self.entry_name.connect('key-release-event', self.check_entry_name)
 
         for environment in self.environments:
             env_row = BottlesEnvironmentRow(environment)
@@ -138,6 +141,18 @@ class BottlesNew(Handy.Window):
         row.select()
 
         print(row.get_environment_id())
+
+    '''Validate entry_name input'''
+    def check_entry_name(self, widget, event_key):
+        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,]')
+        name = widget.get_text()
+
+        if(regex.search(name) == None) and name != "":
+            self.btn_create.set_visible(True)
+            widget.set_icon_from_icon_name(1, "")
+        else:
+            self.btn_create.set_visible(False)
+            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     '''Create the bottle'''
     def create_bottle(self, widget):
