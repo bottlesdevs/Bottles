@@ -3,6 +3,10 @@ app-id: com.usebottles.bottles
 runtime: org.gnome.Platform
 runtime-version: '3.38'
 sdk: org.gnome.Sdk
+add-extensions:
+  org.gnome.Platform.Compat.i386:
+    directory: lib/i386-linux-gnu
+    version: '3.38'
 command: bottles
 finish-args:
 - --allow=multiarch
@@ -23,24 +27,6 @@ finish-args:
 - --filesystem=xdg-videos
 - --filesystem=xdg-download
 - --device=all
-
-add-extensions:
-  org.gnome.Platform.Compat.i386:
-    directory: lib/i386-linux-gnu
-    version: "3.38"
-
-  org.freedesktop.Platform.GL32:
-    directory: lib/i386-linux-gnu/GL
-    version: "1.4"
-    versions: "20.08;1.4"
-    subdirectories: true
-    no-autodownload: true
-    autodelete: false
-    add-ld-path: lib
-    merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d
-    download-if: active-gl-driver
-    enable-if: active-gl-driver
-
 x-compat-i386-opts:
   prepend-pkg-config-path: "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig"
   ldflags: "-L/app/lib32"
@@ -49,11 +35,9 @@ x-compat-i386-opts:
     CC: i686-unknown-linux-gnu-gcc
     CXX: i686-unknown-linux-gnu-g++
   libdir: "/app/lib32"
-
 sdk-extensions:
 - org.gnome.Sdk.Compat.i386
 - org.freedesktop.Sdk.Extension.toolchain-i386
-
 cleanup:
 - "/include"
 - "/lib/pkgconfig"
@@ -64,7 +48,6 @@ cleanup:
 - "/share/pkgconfig"
 - "*.la"
 - "*.a"
-
 modules:
 - name: i386-libs
   buildsystem: simple
@@ -80,4 +63,4 @@ modules:
   sources:
   - type: git
     url: https://github.com/bottlesdevs/Bottles
-    tag: 2.0.9.8
+    tag: 2.0.9.9
