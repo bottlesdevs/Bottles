@@ -82,9 +82,13 @@ class BottlesNew(Handy.Window):
     __gtype_name__ = 'BottlesNew'
 
     '''Get widgets from template'''
+    stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
+    btn_close = Gtk.Template.Child()
     list_environments = Gtk.Template.Child()
+    page_create = Gtk.Template.Child()
+    page_creating = Gtk.Template.Child()
 
     environments = [
         {
@@ -116,6 +120,8 @@ class BottlesNew(Handy.Window):
 
         '''Signal connections'''
         self.btn_cancel.connect('pressed', self.close_window)
+        self.btn_close.connect('pressed', self.close_window)
+        self.btn_create.connect('pressed', self.create_bottle)
         self.list_environments.connect('row-selected', self.set_active_environment)
 
         for environment in self.environments:
@@ -128,6 +134,12 @@ class BottlesNew(Handy.Window):
         row.select()
 
         print(row.get_environment_id())
+
+    def create_bottle(self, widget):
+        self.btn_cancel.set_sensitive(False)
+        self.btn_create.set_visible(False)
+        self.page_create.set_visible(False)
+        self.stack_create.set_visible_child_name("page_creating")
 
     def close_window(self, widget):
         self.destroy()
