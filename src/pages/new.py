@@ -118,6 +118,10 @@ class BottlesNew(Handy.Window):
         '''Init template'''
         self.init_template()
 
+        '''Common variables'''
+        self.window = window
+        self.runner = window.runner
+
         '''Signal connections'''
         self.btn_cancel.connect('pressed', self.close_window)
         self.btn_close.connect('pressed', self.close_window)
@@ -135,11 +139,16 @@ class BottlesNew(Handy.Window):
 
         print(row.get_environment_id())
 
+    '''Create the bottle'''
     def create_bottle(self, widget):
+        '''Change buttons state'''
         self.btn_cancel.set_sensitive(False)
         self.btn_create.set_visible(False)
         self.page_create.set_visible(False)
+
+        '''Show the creating page'''
         self.stack_create.set_visible_child_name("page_creating")
 
+    '''Destroy the window'''
     def close_window(self, widget):
         self.destroy()

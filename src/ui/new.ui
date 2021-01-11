@@ -34,7 +34,6 @@
             <child>
               <object class="GtkButton" id="btn_create">
                 <property name="label" translatable="yes">Create</property>
-                <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <style>
@@ -525,9 +524,6 @@ Your new bottle: Testing is now ready!</property>
                 <property name="name">page_creating</property>
                 <property name="position">1</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>
