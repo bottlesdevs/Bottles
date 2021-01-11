@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
+import re, time
 
 from gi.repository import Gtk, Handy
 
@@ -65,7 +65,7 @@ class BottlesEnvironmentEntry(Gtk.Box):
         self.img_icon.set_from_icon_name(environment.get("icon"), Gtk.IconSize.SMALL_TOOLBAR)
 
         context = self.get_style_context()
-        context.add_class(environment.get("id"))
+        context.add_class(environment.get("id").lower())
 
         self.set_visible(True)
 
@@ -91,22 +91,29 @@ class BottlesNew(Handy.Window):
     page_creating = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     switch_versioning = Gtk.Template.Child()
+    label_advanced = Gtk.Template.Child()
+    label_output = Gtk.Template.Child()
+    label_confirm = Gtk.Template.Child()
+    box_advanced = Gtk.Template.Child()
+    combo_runner = Gtk.Template.Child()
+    combo_dxvk = Gtk.Template.Child()
+    progressbar_creating = Gtk.Template.Child()
 
     environments = [
         {
-            "id": "gaming",
+            "id": "Gaming",
             "name": _("Gaming"),
             "description": _("An environment improved for Windows games."),
             "icon": "applications-games-symbolic"
         },
         {
-            "id": "software",
+            "id": "Software",
             "name": _("Software"),
             "description": _("An environment for Windows software."),
             "icon": "applications-engineering-symbolic"
         },
         {
-            "id": "custom",
+            "id": "Custom",
             "name": _("Custom"),
             "description": _("A clear environment for your experiments."),
             "icon": "applications-science-symbolic"
@@ -123,6 +130,7 @@ class BottlesNew(Handy.Window):
         '''Common variables'''
         self.window = window
         self.runner = window.runner
+        self.selected_environment = "gaming"
 
         '''Signal connections'''
         self.btn_cancel.connect('pressed', self.close_window)
@@ -135,12 +143,29 @@ class BottlesNew(Handy.Window):
             env_row = BottlesEnvironmentRow(environment)
             self.list_environments.add(env_row)
 
+        '''Select the first environment in list'''
+        self.list_environments.select_row(
+            self.list_environments.get_children()[0])
+
+        '''Populate combo_runner'''
+        for runner in self.runner.runners_available:
+            self.combo_runner.append(runner, runner)
+
+        self.combo_runner.set_active(0)
+
     def set_active_environment(self, widget, row):
         for w in self.list_environments.get_children():
             w.deselect()
         row.select()
 
-        print(row.get_environment_id())
+        '''Set selected environment'''
+        self.selected_environment = row.get_environment_id()
+
+        '''Toggle advanced options'''
+        status = True if row.get_environment_id() == "Custom" else False
+        for w in [self.label_advanced, self.box_advanced]:
+            w.set_visible(status)
+            w.set_visible(status)
 
     '''Validate entry_name input'''
     def check_entry_name(self, widget, event_key):
@@ -163,6 +188,37 @@ class BottlesNew(Handy.Window):
 
         '''Show the creating page'''
         self.stack_create.set_visible_child_name("page_creating")
+
+        '''Create bottle
+        TODO: add dxvk version'''
+        versioning_state = self.switch_versioning.get_state()
+        self.runner.create_bottle(name=self.entry_name.get_text(),
+                                  path="",
+                                  environment=self.selected_environment,
+                                  runner=self.combo_runner.get_active_id(),
+                                  versioning=versioning_state,
+                                  dialog=self)
+
+    '''Concatenate label_output'''
+    def update_output(self, text):
+        current_text = self.label_output.get_text()
+        text = "{0}{1}\n".format(current_text, text)
+        self.label_output.set_text(text)
+
+    def finish(self):
+        self.label_confirm.set_text(
+            _("A bottle named “%s” was created successfully") % self.entry_name.get_text())
+
+        self.btn_cancel.set_visible(False)
+        self.btn_close.set_visible(True)
+
+        self.stack_create.set_visible_child_name("page_created")
+
+    '''Progressbar pulse every 1s'''
+    def pulse(self):
+        while True:
+            time.sleep(1)
+            self.progressbar_creating.pulse()
 
     '''Destroy the window'''
     def close_window(self, widget):

@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <requires lib="libhandy" version="0.0"/>
+  <requires lib="libhandy" version="1.0"/>
   <template class="BottlesNew" parent="HdyWindow">
     <property name="can-focus">False</property>
     <property name="resizable">False</property>
@@ -77,8 +77,8 @@
                 <property name="halign">center</property>
                 <property name="margin-start">10</property>
                 <property name="margin-end">10</property>
-                <property name="margin-top">15</property>
-                <property name="margin-bottom">20</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">25</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
@@ -139,7 +139,6 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="has-frame">False</property>
-                                <property name="primary-icon-tooltip-text" translatable="yes">The field cannot be empty and cannot contain special characters.</property>
                                 <property name="placeholder-text" translatable="yes">My beautiful bottle</property>
                                 <style>
                                   <class name="borderless"/>
@@ -199,7 +198,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="label_advanced">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-bottom">5</property>
@@ -215,7 +214,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkListBox">
+                  <object class="GtkListBox" id="box_advanced">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-bottom">10</property>
@@ -264,11 +263,6 @@
                                 <property name="margin-right">5</property>
                                 <property name="margin-end">5</property>
                                 <property name="active">0</property>
-                                <items>
-                                  <item id="lutris-6.0-rc1-x86_64" translatable="yes">lutris-6.0-rc1-x86_64</item>
-                                  <item id="lutris-5.1-x86_64" translatable="yes">lutris-5.1-x86_64</item>
-                                  <item id="lutris-5.1-2-x86_64" translatable="yes">lutris-5.1-2-x86_64</item>
-                                </items>
                                 <style>
                                   <class name="borderless"/>
                                   <class name="plain"/>
@@ -426,8 +420,8 @@
                 <property name="halign">center</property>
                 <property name="margin-start">10</property>
                 <property name="margin-end">10</property>
-                <property name="margin-top">15</property>
-                <property name="margin-bottom">20</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">25</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
@@ -469,7 +463,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkProgressBar">
+                  <object class="GtkProgressBar" id="progressbar_creating">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">25</property>
@@ -488,12 +482,6 @@
                     <property name="hexpand">True</property>
                     <property name="xpad">10</property>
                     <property name="ypad">10</property>
-                    <property name="label">The wine configuration is being updated …
-Wine configuration updated!
-Generating Bottle configuration file …
-Applying environment: Software …
-Installing dxvk …
-Your new bottle: Testing is now ready!</property>
                     <property name="wrap">True</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
@@ -524,6 +512,89 @@ Your new bottle: Testing is now ready!</property>
               <packing>
                 <property name="name">page_creating</property>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="page_created">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="margin-left">10</property>
+                <property name="margin-right">10</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">25</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="pixel-size">110</property>
+                    <property name="icon-name">object-select-symbolic</property>
+                    <property name="icon_size">3</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="label" translatable="yes">Bottle created</property>
+                    <property name="wrap">True</property>
+                    <property name="wrap-mode">word-char</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Cantarell Bold 20"/>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_confirm">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="justify">center</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Cantarell 11"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="name">page_created</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>

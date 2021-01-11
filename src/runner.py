@@ -721,9 +721,9 @@ class BottlesRunner:
     def async_create_bottle(self, args:list) -> None:
         logging.info(_("Creating the wineprefix …"))
 
-        name, environment, path, runner, versioning = args
+        name, environment, path, runner, versioning, dialog = args
 
-        update_output = self.window.page_create.update_output
+        update_output = dialog.update_output
 
         '''If there are no local runners and dxvks, install them'''
         if 0 in [len(self.runners_available), len(self.dxvk_available)]:
@@ -738,9 +738,6 @@ class BottlesRunner:
         '''If runner is proton, files are located to the dist path'''
         if runner.startswith("Proton"): runner = "%s/dist" % runner
 
-        '''Set UI to not usable'''
-        self.window.set_usable_ui(False)
-
         '''Define bottle parameters'''
         bottle_name = name
         bottle_name_path = bottle_name.replace(" ", "-")
@@ -753,7 +750,7 @@ class BottlesRunner:
             bottle_complete_path = path
 
         '''Make progressbar pulsing'''
-        RunAsync(self.window.page_create.pulse, None)
+        RunAsync(dialog.pulse, None)
 
         '''Execute wineboot'''
         update_output( _("The wine configuration is being updated …"))
@@ -821,19 +818,28 @@ class BottlesRunner:
             bottle_name))
         update_output(_("Your new bottle: {0} is now ready!").format(
             bottle_name))
-        self.window.page_create.set_status("created")
-        self.window.set_usable_ui(True)
+
+        time.sleep(1)
 
         '''Update bottles'''
         self.local_bottles = {}
         self.check_bottles()
 
-    def create_bottle(self, name, environment:str, path:str=False, runner:RunnerName=False, versioning:bool=False) -> None:
+        time.sleep(1)
+
+        self.window.page_list.update_bottles()
+
+        time.sleep(2)
+
+        dialog.finish()
+
+    def create_bottle(self, name, environment:str, path:str=False, runner:RunnerName=False, versioning:bool=False, dialog:Gtk.Widget=None) -> None:
         RunAsync(self.async_create_bottle, None, [name,
                                                   environment,
                                                   path,
                                                   runner,
-                                                  versioning])
+                                                  versioning,
+                                                  dialog])
 
     '''Get latest installed runner'''
     def get_latest_runner(self, runner_type:RunnerType="wine") -> list:
