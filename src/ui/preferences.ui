@@ -56,13 +56,50 @@
           <object class="HdyPreferencesGroup">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="title" translatable="yes">General</property>
+            <child>
+              <object class="HdyActionRow">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="title" translatable="yes">Notifications</property>
+                <property name="subtitle" translatable="yes">Show notifications for downloads and installs.</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkSwitch" id="switch_versioning7">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="HdyPreferencesGroup">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
             <property name="title" translatable="yes">Wine Runners</property>
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Dark Mode</property>
-                <property name="subtitle" translatable="yes">Whether Bottles should use the Dark theme variant.</property>
+                <property name="title" translatable="yes">Pre-release</property>
+                <property name="subtitle" translatable="yes">Whether the above list should display RC versions.</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
@@ -98,8 +135,7 @@
               <object class="HdyActionRow">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Dark Mode</property>
-                <property name="subtitle" translatable="yes">Whether Bottles should use the Dark theme variant.</property>
+                <property name="title" translatable="yes">placeholder</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
