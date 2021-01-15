@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-07 14:20+0100\n"
-"PO-Revision-Date: 2021-01-14 22:19+0000\n"
+"PO-Revision-Date: 2021-01-16 14:32+0000\n"
 "Last-Translator: lvaskz <titovaskz@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
@@ -54,9 +54,9 @@ msgid ""
 "dependencies, etc."
 msgstr ""
 "Nuestro sistema de instalación de dependencias incorporado permite un fácil "
-"acceso a un amplio nivel de compatibilidad de software.  También incluimos "
-"un gestor de descargas para la descarga de los componentes oficiales: runner "
-"(wine, proton), dxvk, dependencias, etc."
+"acceso a un amplio nivel de compatibilidad de software. También incluimos un "
+"gestor de descargas para la descarga de los componentes oficiales: runner ("
+"wine, proton), dxvk, dependencias, etc."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
@@ -159,7 +159,7 @@ msgstr "Tema Oscuro"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Enable the dark theme."
-msgstr "Habilitar tema oscuro"
+msgstr "Habilitar tema oscuro."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Notifications"
@@ -167,7 +167,7 @@ msgstr "Notificaciones"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Enable notifications."
-msgstr "Habilitar notificaciones"
+msgstr "Habilitar notificaciones."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Temp cleaning"
@@ -243,7 +243,7 @@ msgstr "Importar datos respaldados"
 
 #: src/ui/add.ui:299
 msgid "Import from backup or other managers"
-msgstr ""
+msgstr "Importar desde copias de seguridad u otros administradores"
 
 #: src/ui/add-details.ui:40
 msgid "Enter the bottle informations"
@@ -279,7 +279,7 @@ msgid ""
 "it in production. Proceed with caution!"
 msgstr ""
 "El control de versiones es una función experimental de Bottles, no "
-"recomendamos su uso en producción.  ¡Proceda con precaución!"
+"recomendamos su uso en producción. ¡Proceda con precaución!"
 
 #: src/ui/add-details.ui:171
 msgid "Enable versioning"
@@ -324,7 +324,7 @@ msgstr "Escribe un comentario muy breve:"
 
 #: src/ui/details.ui:99
 msgid "A really short comment"
-msgstr "Un comentario muy breve:"
+msgstr "Un comentario muy breve"
 
 #: src/ui/details.ui:113
 msgid "Save the bottle state."
@@ -392,7 +392,7 @@ msgstr "Ejecute un archivo ejecutable en esta botella."
 
 #: src/ui/details.ui:528
 msgid "Run .exe"
-msgstr "Run .exe"
+msgstr "Instalador .exe"
 
 #: src/ui/details.ui:550
 msgid "Manage the processes running in this Bottle."
@@ -449,361 +449,390 @@ msgstr "Control de sistema"
 
 #: src/ui/details.ui:883
 msgid "Kill all processes running in this Bottle."
-msgstr ""
+msgstr "Elimina todos los procesos que se ejecutan en esta botella."
 
 #: src/ui/details.ui:910
 msgid "Kill all processes"
-msgstr ""
+msgstr "Eliminar todos los procesos"
 
 #: src/ui/details.ui:932
 msgid "Simulates a system reboot (this does not terminate processes)."
-msgstr ""
+msgstr "Simula un reinicio del sistema (esto no termina los procesos)."
 
 #: src/ui/details.ui:959
 msgid "Reboot"
-msgstr ""
+msgstr "Reinicio"
 
 #: src/ui/details.ui:981
 msgid "Simulates a system shutdown (this does not terminate processes)."
-msgstr ""
+msgstr "Simula un apagado del sistema (esto no termina los procesos)."
 
 #: src/ui/details.ui:1008
 msgid "Shutdown"
-msgstr ""
+msgstr "Apagar"
 
 #: src/ui/details.ui:1031
 msgid "Backup this bottle"
-msgstr ""
+msgstr "Respaldar está botella"
 
 #: src/ui/details.ui:1059
 msgid "Backup"
-msgstr ""
+msgstr "Copia de seguridad"
 
 #: src/ui/details.ui:1106
 msgid "Bottle size:"
-msgstr ""
+msgstr "Tamaño de la botella:"
 
 #: src/ui/details.ui:1144
 msgid "Remaining disk space:"
-msgstr ""
+msgstr "Espacio restante en disco:"
 
 #: src/ui/details.ui:1185
 msgid "X of Y"
-msgstr ""
+msgstr "X de Y"
 
 #: src/ui/details.ui:1200
 msgid "Dashboard"
-msgstr ""
+msgstr "Tablero"
 
 #: src/ui/details.ui:1250
 msgid "DXVK/Synchronization"
-msgstr ""
+msgstr "DXVK/Sincronización"
 
 #: src/ui/details.ui:1279
 msgid ""
 "Enable futex based synchronization to increase performance for multi-core "
 "processors."
 msgstr ""
+"Habilite la sincronización basada en futex para aumentar el rendimiento de "
+"los procesadores de varios núcleos."
 
 #: src/ui/details.ui:1282
 msgid "Fsync (futex synchronization)"
-msgstr ""
+msgstr "Fsync (sincronización futex)"
 
 #: src/ui/details.ui:1306
 msgid ""
 "Enable eventfd based synchronization to increase performance for multi-core "
 "processors."
 msgstr ""
+"Habilite la sincronización basada en eventfd para aumentar el rendimiento de "
+"los procesadores de varios núcleos."
 
 #: src/ui/details.ui:1309
 msgid "Esync (eventfd synchronization)"
-msgstr ""
+msgstr "Esync (sincronización eventfd)"
 
 #: src/ui/details.ui:1333
 msgid ""
 "Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
 "translating requests to Vulkan."
 msgstr ""
+"Habilite la compatibilidad con Direct3D 12 y mejore el rendimiento de "
+"Direct3D 9/10/11 traduciendo solicitudes a Vulkan."
 
 #: src/ui/details.ui:1336
 msgid "DXVK/VKD3D for Direct3D"
-msgstr ""
+msgstr "DXVK/VKD3D para Direct3D"
 
 #: src/ui/details.ui:1360
 msgid "Enable ACO to increase performance in-game when using Mesa drivers."
 msgstr ""
+"Habilite ACO para aumentar el rendimiento en el juego al usar controladores "
+"Mesa."
 
 #: src/ui/details.ui:1363
 msgid "ACO shader compiler"
-msgstr ""
+msgstr "Compilador de sombreado ACO"
 
 #: src/ui/details.ui:1407
 msgid ""
 "Enable the DXVK overlay showing FPS and other details in D3D applications. "
 "If disabled, default value is set to \"compiler\"."
 msgstr ""
+"Habilite la superposición DXVK que muestra FPS y otros detalles en "
+"aplicaciones D3D. Si está deshabilitado, el valor predeterminado se "
+"establece en \"compilador\"."
 
 #: src/ui/details.ui:1410
 msgid "DXVK HUD"
-msgstr ""
+msgstr "DXVK HUD"
 
 #: src/ui/details.ui:1434
 msgid "Add environment variables to the commands executed by runner."
 msgstr ""
+"Agregue variables de entorno a los comandos ejecutados por el instalador."
 
 #: src/ui/details.ui:1437
 msgid "Environment variables"
-msgstr ""
+msgstr "Variables de entorno"
 
 #: src/ui/details.ui:1450
 msgid "Save environment variables"
-msgstr ""
+msgstr "Guardar variables de entorno"
 
 #: src/ui/details.ui:1470 src/ui/details.ui:1474
 msgid "Syntax: VAR1=value VAR2=value .."
-msgstr ""
+msgstr "Sintaxis: VAR1=value VAR2=value .."
 
 #: src/ui/details.ui:1491
 msgid "Developers and debug"
-msgstr ""
+msgstr "Desarrolladores y depuración"
 
 #: src/ui/details.ui:1536
 msgid "GPU"
-msgstr ""
+msgstr "GPU"
 
 #: src/ui/details.ui:1577
 msgid ""
 "In laptops with two GPUs (Intel+NVIDIA or AMD+Nvidia or Intel+AMD), select "
 "this to use the discrete card."
 msgstr ""
+"En computadoras portátiles con dos GPU (Intel + NVIDIA o AMD + Nvidia o "
+"Intel + AMD), seleccione esta opción para usar la tarjeta discreta."
 
 #: src/ui/details.ui:1580
 msgid "Use Discrete Graphics Card"
-msgstr ""
+msgstr "Utilice una tarjeta gráfica discreta"
 
 #: src/ui/details.ui:1630
 msgid "Desktop virtualization"
-msgstr ""
+msgstr "Virtualización de escritorio"
 
 #: src/ui/details.ui:1659 src/ui/details.ui:1686
 msgid "Virtualize a desktop where to spawn all Windows applications."
 msgstr ""
+"Virtualice un escritorio donde generar todas las aplicaciones de Windows."
 
 #: src/ui/details.ui:1662
 msgid "Virtual Desktop"
-msgstr ""
+msgstr "Escritorio virtual"
 
 #: src/ui/details.ui:1689
 msgid "Virtual Desktop resolution"
-msgstr ""
+msgstr "Resolución de escritorio virtual"
 
 #: src/ui/details.ui:1763
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: src/ui/details.ui:1804
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
+"Establezca la latencia de PulseAudio en 60 milisegundos para aumentar la "
+"calidad del sonido"
 
 #: src/ui/details.ui:1807
 msgid "Reduce PulseAudio latency"
-msgstr ""
+msgstr "Reducir la latencia de PulseAudio"
 
 #: src/ui/details.ui:1891
 msgid "Set a different runner for this Bottle."
-msgstr ""
+msgstr "Establezca un instalador diferente para esta botella."
 
 #: src/ui/details.ui:1894
 msgid "Change runner"
-msgstr ""
+msgstr "Cambiar instalador"
 
 #: src/ui/details.ui:1916
 msgid "Manage runners"
-msgstr ""
+msgstr "Administrar instaladores"
 
 #: src/ui/details.ui:1976
 msgid "DLL"
-msgstr ""
+msgstr "DLL"
 
 #: src/ui/details.ui:2006 src/ui/details.ui:2010
 msgid "Syntax: dll1,dll2=value;dll3=value"
-msgstr ""
+msgstr "Sintaxis: dll1,dll2=value;dll3=value"
 
 #: src/ui/details.ui:2023
 msgid "Save DLL overrides."
-msgstr ""
+msgstr "Guarde las anulaciones de DLL."
 
 #: src/ui/details.ui:2043
 msgid "Add new dll overrides"
-msgstr ""
+msgstr "Agregar nuevas anulaciones dll"
 
 #: src/ui/details.ui:2046
 msgid "DLL overrides"
-msgstr ""
+msgstr "Anulaciones DLL"
 
 #: src/ui/details.ui:2083
 msgid "Customize preferences for this Bottle."
-msgstr ""
+msgstr "Personaliza las preferencias de esta botella."
 
 #: src/ui/details.ui:2084 src/ui/window.ui:198 src/window.py:128
 msgid "Preferences"
-msgstr ""
+msgstr "Preferencias"
 
 #: src/ui/details.ui:2105
 msgid ""
 "The following packages are downloaded from external sources (mainly from "
 "Microsoft)."
 msgstr ""
+"Los siguientes paquetes se descargan de fuentes externas (principalmente de "
+"Microsoft)."
 
 #: src/ui/details.ui:2169
 msgid "Open a issue"
-msgstr ""
+msgstr "Abrir un problema"
 
 #: src/ui/details.ui:2194
 msgid "Found a broken dependency?"
-msgstr ""
+msgstr "¿Encontraste una dependencia rota?"
 
 #: src/ui/details.ui:2220
 msgid ""
 "Install dependencies (like corefonts, vcrun6, ..)  for better software "
 "compatibility."
 msgstr ""
+"Instale dependencias (como corefonts, vcrun6, ..) para una mejor "
+"compatibilidad de software."
 
 #: src/ui/details.ui:2260
 msgid ""
 "These the programs I found installed in the Bottle (they may not be all)."
 msgstr ""
+"Estos son los programas que encontré instalados en la botella (puede que no "
+"sean todos)."
 
 #: src/ui/details.ui:2276
 msgid "Check for installed programs."
-msgstr ""
+msgstr "Compruebe los programas instalados."
 
 #: src/ui/details.ui:2357
 msgid "List, manage and run the programs installed in this Bottle."
-msgstr ""
+msgstr "Enumere, administre y ejecute los programas instalados en esta Botella."
 
 #: src/ui/details.ui:2358
 msgid "Programs"
-msgstr ""
+msgstr "Programas"
 
 #: src/ui/details.ui:2399
 msgid "The program installer is an experimental feature and may not work."
 msgstr ""
+"El instalador del programa es una función experimental y es posible que no "
+"funcione."
 
 #: src/ui/details.ui:2415
 msgid "Check for new installers"
-msgstr ""
+msgstr "Buscar nuevos instaladores"
 
 #: src/ui/details.ui:2496
 msgid "Installers"
-msgstr ""
+msgstr "Instaladores"
 
 #: src/ui/details.ui:2529
 msgid "Here you can see, create, revert and delete bottle states."
-msgstr ""
+msgstr "Aquí puede ver, crear, revertir y eliminar estados de botella."
 
 #: src/ui/details.ui:2623
 msgid "Versioning"
-msgstr ""
+msgstr "Control de versiones"
 
 #: src/ui/download-entry.ui:19
 msgid "Runner x.y"
-msgstr ""
+msgstr "Instalador x.y"
 
 #: src/ui/download-entry.ui:53
 msgid "Cancel download"
-msgstr ""
+msgstr "Cancelar descarga"
 
 #: src/ui/list-entry.ui:36
 msgid "Destroy bottle"
-msgstr ""
+msgstr "Destruir botella"
 
 #: src/ui/list-entry.ui:60
 msgid "Upgrade runner to the latest localy installed"
-msgstr ""
+msgstr "Actualice el instalador a la última versión instalada localmente"
 
 #: src/ui/list-entry.ui:82
 msgid "Run .exe/.msi in this bottle"
-msgstr ""
+msgstr "Instalar .exe/.msi en esta botella"
 
 #: src/ui/list-entry.ui:104
 msgid "Installed programs"
-msgstr ""
+msgstr "Programas instalados"
 
 #: src/ui/list-entry.ui:124
 msgid "This bottle looks damaged."
-msgstr ""
+msgstr "Esta botella parece dañada."
 
 #: src/ui/list-entry.ui:139
 msgid "Utility & Preferences"
-msgstr ""
+msgstr "Utilidad y preferencias"
 
 #: src/ui/list-entry.ui:187
 msgid "Environment"
-msgstr ""
+msgstr "Ambientes"
 
 #: src/ui/list-entry.ui:278
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
+"Esta botella parece dañada, falta el archivo de configuración. Puedo "
+"intentar resolverlo creando una nueva configuración."
 
 #: src/ui/list-entry.ui:302
 msgid "Execute in this bottle"
-msgstr ""
+msgstr "Ejecutar en esta botella"
 
 #: src/ui/list-entry.ui:315
 msgid "Run in this bottle"
-msgstr ""
+msgstr "Ejecutar en esta botella"
 
 #: src/ui/window.ui:35
 msgid "Download preferences"
-msgstr ""
+msgstr "Descargar preferencias"
 
 #: src/ui/window.ui:61
 msgid "Help translate"
-msgstr ""
+msgstr "Ayuda a traducir"
 
 #: src/ui/window.ui:74
 msgid "Support Bottles"
-msgstr ""
+msgstr "Apoye el proyecto Bottles"
 
 #: src/ui/window.ui:87
 msgid "Bug Report"
-msgstr ""
+msgstr "Reporte de errores"
 
 #: src/ui/window.ui:100
 msgid "Documentation"
-msgstr ""
+msgstr "Documentación"
 
 #: src/ui/window.ui:185 src/window.py:130
 msgid "Importer"
-msgstr ""
+msgstr "Importar"
 
 #: src/ui/window.ui:222
 msgid "About Bottles"
-msgstr ""
+msgstr "Acerca de botellas"
 
 #: src/ui/window.ui:288
 msgid ""
 "This is a development release. Please report bugs in the GitHub repository."
 msgstr ""
+"Esta es una versión de desarrollo. Informe errores en el repositorio de "
+"GitHub."
 
 #: src/ui/window.ui:327
 msgid "Go back"
-msgstr ""
+msgstr "Regresar"
 
 #: src/ui/window.ui:344
 msgid "Open menu"
-msgstr ""
+msgstr "Abrir menú"
 
 #: src/ui/window.ui:374
 msgid "Your Bottles"
-msgstr ""
+msgstr "Sus botellas"
 
 #: src/ui/window.ui:395
 msgid "Downloads"
-msgstr ""
+msgstr "Descargas"
 
 #: src/ui/window.ui:422
 msgid ""
@@ -811,42 +840,45 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
+"Parece que no estás conectado a Internet. Sin él, no podrá descargar "
+"componentes esenciales. Haga clic en este icono cuando haya restablecido la "
+"conexión."
 
 #: src/main.py:84
 msgid "[Quit] request received."
-msgstr ""
+msgstr "Se recibió la solicitud [Salir]."
 
 #: src/main.py:90
 msgid "[Help] request received."
-msgstr ""
+msgstr "[Ayuda] solicitud recibida."
 
 #: src/main.py:95
 msgid "[Refresh] request received."
-msgstr ""
+msgstr "[Actualizar] solicitud recibida."
 
 #: src/window.py:123
 msgid "New Bottle"
-msgstr ""
+msgstr "Nueva botella"
 
 #: src/window.py:124
 msgid "Create Bottle"
-msgstr ""
+msgstr "Crear botella"
 
 #: src/window.py:125
 msgid "New Bottle details"
-msgstr ""
+msgstr "Detalles de nueva botella"
 
 #: src/window.py:126
 msgid "Bottle details"
-msgstr ""
+msgstr "Detalles de botella"
 
 #: src/window.py:161
 msgid "Bottles Started!"
-msgstr ""
+msgstr "¡Botellas iniciadas!"
 
 #: src/window.py:178
 msgid "Proceed with the installation of the latest version?"
-msgstr ""
+msgstr "¿Continuar con la instalación de la última versión?"
 
 #: src/window.py:180
 msgid ""
@@ -854,126 +886,134 @@ msgid ""
 "download a runner. Connect to the internet and confirm this message to begin "
 "the download."
 msgstr ""
+"Pero parece que no estás conectado a Internet y no podrás descargar un "
+"instalador. Conéctese a Internet y confirme este mensaje para comenzar la "
+"descarga."
 
 #: src/window.py:183
 msgid "No runners found"
-msgstr ""
+msgstr "No se encontraron instaladores"
 
 #: src/window.py:188
 msgid "OK status received"
-msgstr ""
+msgstr "OK estado recibido"
 
 #: src/window.py:194
 msgid "Cancel status received"
-msgstr ""
+msgstr "Cancelar estado recibido"
 
 #: src/pages/add.py:147
 msgid "Choose a backup"
-msgstr ""
+msgstr "Selecione una copia de seguridad"
 
 #: src/pages/add.py:174
 msgid ""
 "The gaming environment has everything needed to run modern Windows games on "
 "Linux"
 msgstr ""
+"El entorno de juego tiene todo lo necesario para ejecutar juegos modernos de "
+"Windows en Linux"
 
 #: src/pages/add.py:181
 msgid ""
 "The software environment includes dependencies commonly used by modern "
 "software."
 msgstr ""
+"El entorno de software incluye dependencias comúnmente utilizadas por "
+"software moderno."
 
 #: src/pages/add.py:188
 msgid "A clean environment, without any optimization."
-msgstr ""
+msgstr "Un ambiente limpio, sin optimización alguna."
 
 #: src/pages/add.py:195
 #, python-brace-format
 msgid "Selected env is: [{0}]"
-msgstr ""
+msgstr "El entorno seleccionado es: [{0}]"
 
 #: src/pages/details.py:59 src/pages/details.py:262
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr ""
+msgstr "Manifiesto de {0}"
 
 #: src/pages/details.py:60 src/pages/details.py:263
 #, python-brace-format
 msgid "This is the manifest for {0}."
-msgstr ""
+msgstr "Este es el manifiesto de {0}."
 
 #: src/pages/details.py:118
 #, python-brace-format
 msgid "Index for state {0}"
-msgstr ""
+msgstr "Índice del estado {0}"
 
 #: src/pages/details.py:119
 #, python-brace-format
 msgid "This is the index for {0}."
-msgstr ""
+msgstr "Este es el índice de {0}."
 
 #: src/pages/details.py:474
 msgid "No programs found!"
-msgstr ""
+msgstr "No se encontraron programas!"
 
 #: src/pages/details.py:476
 msgid "The programs installed in the bottle will be listed here."
-msgstr ""
+msgstr "Los programas instalados en la botella se enumerarán aquí."
 
 #: src/pages/details.py:505
 msgid "No dependencies found!"
-msgstr ""
+msgstr "No se encontraron dependencias!"
 
 #: src/pages/details.py:507
 msgid "There are no dependencies installed and we can't fetch from repository."
 msgstr ""
+"No hay dependencias instaladas y no podemos recuperarlas del repositorio."
 
 #: src/pages/details.py:524
 msgid "No installers found!"
-msgstr ""
+msgstr "No se encontraron instaladores!"
 
 #: src/pages/details.py:526
 msgid "We can't fetch the installers from the repository right now."
-msgstr ""
+msgstr "No podemos recuperar los instaladores del repositorio en este momento."
 
 #: src/pages/details.py:643 src/pages/list.py:123
 msgid "Choose a Windows executable file"
-msgstr ""
+msgstr "Elija un archivo ejecutable de Windows"
 
 #: src/pages/details.py:729
 msgid "Select the location where to save the backup configuration"
-msgstr ""
+msgstr "Seleccione la ubicación donde guardar la configuración de respaldo"
 
 #: src/pages/details.py:748
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "Seleccione la ubicación donde guardar el archivo de respaldo"
 
 #: src/pages/list.py:99
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr ""
+msgstr "Argumentos encontrados para el ejecutable: [{executable}]."
 
 #: src/pages/list.py:162
 msgid "Confirm upgrade"
-msgstr ""
+msgstr "Confirme actualización"
 
 #: src/pages/list.py:163
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
-msgstr ""
+msgstr "Esto cambiará el instalador de {0} a {1}."
 
 #: src/pages/list.py:186
 msgid "Confirm deletion"
-msgstr ""
+msgstr "Confirme la eliminación"
 
 #: src/pages/list.py:187
 msgid "Are you sure you want to delete this Bottle and all files?"
-msgstr ""
+msgstr "¿Está seguro de que desea eliminar esta botella y todos los archivos?"
 
 #: src/pages/list.py:226
 msgid "No bottles found!"
-msgstr ""
+msgstr "No se encontraron botellas!"
 
 #: src/pages/list.py:228
 msgid "Use the '+' button to create one."
-msgstr ""
+msgstr "Utilice el botón '+' para crear uno."
