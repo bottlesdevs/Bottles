@@ -22,7 +22,12 @@ class BottlesPreferences(Handy.PreferencesWindow):
     __gtype_name__ = 'BottlesPreferences'
 
     '''Get widgets from template'''
-    #stack_create = Gtk.Template.Child()
+    switch_dark = Gtk.Template.Child()
+    switch_notifications = Gtk.Template.Child()
+    switch_temp = Gtk.Template.Child()
+    switch_release_candidate = Gtk.Template.Child()
+    switch_versioning = Gtk.Template.Child()
+    switch_installers = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
