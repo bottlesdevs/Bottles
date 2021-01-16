@@ -106,19 +106,14 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.runner = BottlesRunner(self)
 
         '''Pages'''
-        page_add = BottlesAdd(self)
-        page_add_details = BottlesAddDetails(self)
         page_details = BottlesDetails(self)
         page_list = BottlesList(self, arg_executable)
         page_create = BottlesCreate(self)
-        page_preferences = BottlesPreferences(self)
         page_taskmanager = BottlesTaskManager(self)
         page_importer = BottlesImporter(self)
 
         '''Reusable variables'''
-        self.page_add_details = page_add_details
         self.page_create = page_create
-        self.page_preferences = page_preferences
         self.page_list = page_list
         self.page_details = page_details
         self.page_taskmanager = page_taskmanager
@@ -127,12 +122,9 @@ class BottlesWindow(Handy.ApplicationWindow):
         '''Populate stack'''
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
-        self.stack_main.add_titled(page_add, "page_add", _("New Bottle"))
         self.stack_main.add_titled(page_create, "page_create", _("Create Bottle"))
-        self.stack_main.add_titled(page_add_details, "page_add_details", _("New Bottle details"))
         self.stack_main.add_titled(page_details, "page_details", _("Bottle details"))
         self.stack_main.add_titled(page_list, "page_list", _("Bottles"))
-        self.stack_main.add_titled(page_preferences, "page_preferences", _("Preferences"))
         self.stack_main.add_titled(page_taskmanager, "page_taskmanager", _("Task manager"))
         self.stack_main.add_titled(page_importer, "page_importer", _("Importer"))
 
@@ -239,16 +231,11 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     '''Save pevious page for back button'''
     def set_previous_page_status(self):
-        if self.previous_page != "page_preferences":
-            current_page = self.stack_main.get_visible_child_name()
-            if current_page in ["page_add_details", "page_create"]:
-                current_page = "page_add"
-
-            self.previous_page = current_page
-            self.btn_add.set_visible(False)
-            self.btn_menu.set_visible(False)
-            self.btn_download_preferences.set_visible(False)
-            self.btn_back.set_visible(True)
+        self.previous_page = self.stack_main.get_visible_child_name()
+        self.btn_add.set_visible(False)
+        self.btn_menu.set_visible(False)
+        self.btn_download_preferences.set_visible(False)
+        self.btn_back.set_visible(True)
 
     '''Open URLs'''
     @staticmethod
@@ -300,9 +287,8 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_importer")
 
     def show_preferences_view(self, widget=False, view=0):
-        self.set_previous_page_status()
-        self.page_preferences.notebook_preferences.set_current_page(view)
-        self.stack_main.set_visible_child_name("page_preferences")
+        preferences_window = BottlesPreferences(self)
+        preferences_window.present()
 
     def show_download_preferences_view(self, widget=False):
         self.show_preferences_view(widget, view=1)

@@ -15,7 +15,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Handy
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
+class BottlesPreferences(Handy.PreferencesWindow):
+    __gtype_name__ = 'BottlesPreferences'
+
+    '''Get widgets from template'''
+    #stack_create = Gtk.Template.Child()
+
+    def __init__(self, window, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(window)
+
+        '''Init template'''
+        self.init_template()
+
+        '''Common variables'''
+        self.window = window
+        self.runner = window.runner
+
+        '''Signal connections'''
+        #self.btn_cancel.connect('pressed', self.close_window)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Gtk.Box):
@@ -120,11 +141,11 @@ class BottlesDxvkEntry(Gtk.Box):
                                      dxvk=self.dxvk_name)
 
 
+'''
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class BottlesPreferences(Gtk.Box):
     __gtype_name__ = 'BottlesPreferences'
 
-    '''Get widgets from template'''
     notebook_preferences = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
@@ -139,14 +160,11 @@ class BottlesPreferences(Gtk.Box):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
         self.init_template()
 
-        '''Common variables'''
         self.window = window
         self.settings = window.settings
 
-        '''Signal connections'''
         self.switch_notifications.connect('state-set', self.toggle_notifications)
         self.switch_temp.connect('state-set', self.toggle_temp)
         self.switch_release_candidate.connect('state-set', self.toggle_release_candidate)
@@ -155,24 +173,20 @@ class BottlesPreferences(Gtk.Box):
         self.btn_runner_updates.connect('pressed', self.get_runner_updates)
         self.btn_dxvk_updates.connect('pressed', self.get_dxvk_updates)
 
-        '''Populate widgets from user settings'''
         self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
         self.switch_temp.set_active(self.settings.get_boolean("temp"))
         self.switch_experimental.set_active(self.settings.get_boolean("experiments"))
         self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
         self.combo_views.set_active_id(self.settings.get_string("startup-view"))
 
-        '''Run updates'''
         self.update_runners()
         self.update_dxvk()
 
-    '''Display message if no local runners'''
     def set_dummy_runner(self):
         for runner in self.list_runners.get_children(): runner.destroy()
         message = _("No installed runners, installing latest release ..\nYou'll be able to create bottles when I'm done.")
         self.list_runners.add(BottlesRunnerEntry(self.window, message))
 
-    '''Get runner updates'''
     def get_runner_updates(self,widget):
         self.update_runners()
         for runner in self.window.runner.get_runner_updates().items():
@@ -182,9 +196,6 @@ class BottlesPreferences(Gtk.Box):
                                                          runner[0],
                                                          installable=runner))
 
-    '''
-    Get dxvk updates
-    '''
     def get_dxvk_updates(self,widget):
         self.update_dxvk()
         for dxvk in self.window.runner.get_dxvk_updates().items():
@@ -192,21 +203,21 @@ class BottlesPreferences(Gtk.Box):
                                                  dxvk[0],
                                                  installable=dxvk))
 
-    '''Populate list_runners'''
+
     def update_runners(self):
         for runner in self.list_runners.get_children(): runner.destroy()
 
         for runner in self.window.runner.runners_available:
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 
-    '''Populate list_dxvk'''
+
     def update_dxvk(self):
         for dxvk in self.list_dxvk.get_children(): dxvk.destroy()
 
         for dxvk in self.window.runner.dxvk_available:
             self.list_dxvk.add(BottlesDxvkEntry(self.window, dxvk))
 
-    '''Save user settings'''
+
     def toggle_notifications(self, widget, state):
         self.settings.set_boolean("notifications", state)
 
@@ -222,3 +233,4 @@ class BottlesPreferences(Gtk.Box):
     def change_startup_view(self, widget):
         option = widget.get_active_id()
         self.settings.set_string("startup-view", option)
+'''
