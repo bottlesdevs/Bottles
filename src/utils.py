@@ -46,7 +46,7 @@ class UtilsConnection():
         '''If status is offline'''
         if not self.status:
             try:
-                socket.create_connection(("1.1.1.1", 53))
+                socket.create_connection(("1.1.1.1", 80))
                 logging.info(_("Connection status: online …"))
                 self.window.toggle_btn_noconnection(False)
 
