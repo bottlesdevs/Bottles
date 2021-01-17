@@ -65,7 +65,6 @@ class BottlesWindow(Handy.ApplicationWindow):
     btn_noconnection = Gtk.Template.Child()
     btn_versioning = Gtk.Template.Child()
     btn_installers = Gtk.Template.Child()
-    switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
     squeezer = Gtk.Template.Child()
@@ -96,8 +95,10 @@ class BottlesWindow(Handy.ApplicationWindow):
 
         '''Init template'''
         self.init_template()
+        self.default_settings.set_property(
+            "gtk-application-prefer-dark-theme",
+            self.settings.get_boolean("dark-theme"))
 
-        '''UtilsConnection instance'''
         self.utils_conn = UtilsConnection(self)
 
         '''Runner instance'''
@@ -143,15 +144,11 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
-        self.switch_dark.connect('state-set', self.toggle_dark)
         self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
 
         '''BottlesDetail signal connections'''
         self.btn_versioning.connect('pressed', self.page_details.show_versioning_view)
         self.btn_installers.connect('pressed', self.page_details.show_installers_view)
-
-        '''Set widgets status from user settings'''
-        self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
 
         '''If there is at least one page, show the bottles list'''
         self.stack_main.set_visible_child_name("page_list")
@@ -298,9 +295,3 @@ class BottlesWindow(Handy.ApplicationWindow):
     @staticmethod
     def show_about_dialog(widget):
         BottlesAboutDialog().show_all()
-
-    '''Toggle dark mode and store in user settings'''
-    def toggle_dark(self, widget, state):
-        self.settings.set_boolean("dark-theme", state)
-        self.default_settings.set_property("gtk-application-prefer-dark-theme",
-                                            state)
