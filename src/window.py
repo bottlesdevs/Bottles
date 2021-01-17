@@ -96,8 +96,6 @@ class BottlesWindow(Handy.ApplicationWindow):
 
         '''Init template'''
         self.init_template()
-        self.default_settings.set_property("gtk-application-prefer-dark-theme",
-                                           THEME_DARK)
 
         '''UtilsConnection instance'''
         self.utils_conn = UtilsConnection(self)
