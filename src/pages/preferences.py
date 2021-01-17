@@ -44,15 +44,30 @@ class BottlesPreferences(Handy.PreferencesWindow):
 
         '''Set widgets status from user settings'''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
+        self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
+        self.switch_temp.set_active(self.settings.get_boolean("temp"))
+        self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
 
         '''Signal connections'''
         self.switch_dark.connect('state-set', self.toggle_dark)
+        self.switch_notifications.connect('state-set', self.toggle_notifications)
+        self.switch_temp.connect('state-set', self.toggle_temp)
+        self.switch_release_candidate.connect('state-set', self.toggle_release_candidate)
 
     '''Toggle dark mode and store in user settings'''
     def toggle_dark(self, widget, state):
         self.settings.set_boolean("dark-theme", state)
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
                                             state)
+
+    def toggle_notifications(self, widget, state):
+        self.settings.set_boolean("notifications", state)
+
+    def toggle_release_candidate(self, widget, state):
+        self.settings.set_boolean("release-candidate", state)
+
+    def toggle_temp(self, widget, state):
+        self.settings.set_boolean("temp", state)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Gtk.Box):
