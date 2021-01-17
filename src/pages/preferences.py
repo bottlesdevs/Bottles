@@ -38,10 +38,21 @@ class BottlesPreferences(Handy.PreferencesWindow):
 
         '''Common variables'''
         self.window = window
+        self.settings = window.settings
+        self.default_settings = window.default_settings
         self.runner = window.runner
 
+        '''Set widgets status from user settings'''
+        self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
+
         '''Signal connections'''
-        #self.btn_cancel.connect('pressed', self.close_window)
+        self.switch_dark.connect('state-set', self.toggle_dark)
+
+    '''Toggle dark mode and store in user settings'''
+    def toggle_dark(self, widget, state):
+        self.settings.set_boolean("dark-theme", state)
+        self.default_settings.set_property("gtk-application-prefer-dark-theme",
+                                            state)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Gtk.Box):
