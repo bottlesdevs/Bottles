@@ -88,7 +88,7 @@ class BottlesWindow(Gtk.ApplicationWindow):
         #self.set_title("Bottles:feature-bottles-versioning")
 
         '''Init template'''
-        self.init_template()
+        self.init_template
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
                                            THEME_DARK)
 

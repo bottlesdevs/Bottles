@@ -36,7 +36,7 @@ class BottlesInstallerEntry(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Common variables'''
         self.window = window
@@ -87,7 +87,7 @@ class BottlesStateEntry(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Common variables'''
         self.window = window
@@ -143,7 +143,7 @@ class BottlesProgramEntry(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Common variables'''
         self.window = window
@@ -222,7 +222,7 @@ class BottlesDependencyEntry(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Common variables'''
         self.window = window
@@ -340,7 +340,7 @@ class BottlesDetails(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Common variables'''
         self.window = window

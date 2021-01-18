@@ -30,7 +30,7 @@ class BottlesEmpty(Gtk.Grid):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Populate widgets data'''
         if text:

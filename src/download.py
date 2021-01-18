@@ -34,7 +34,7 @@ class BottlesDownloadEntry(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Populate widgets data'''
         self.label_filename.set_text(file_name)

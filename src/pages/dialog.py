@@ -102,4 +102,4 @@ class BottlesAboutDialog(Gtk.AboutDialog):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template

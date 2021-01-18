@@ -36,7 +36,7 @@ class BottlesCreate(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Common variables'''
         self.window = window

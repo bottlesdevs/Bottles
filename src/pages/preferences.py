@@ -31,7 +31,7 @@ class BottlesRunnerEntry(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Set runner type by name, append Proton- if proton'''
         if not runner_name.lower().startswith(("lutris", "proton", "dxvk")):
@@ -84,7 +84,7 @@ class BottlesDxvkEntry(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         if not dxvk_name.lower().startswith("dxvk"):
             dxvk_name = "dxvk-%s" % dxvk_name[1:]
@@ -140,7 +140,7 @@ class BottlesPreferences(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        self.init_template
 
         '''Common variables'''
         self.window = window
