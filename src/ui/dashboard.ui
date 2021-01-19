@@ -148,7 +148,7 @@
                   <object class="GtkImage">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="icon-name">document-edit-symbolic</property>
+                    <property name="icon-name">user-trash-symbolic</property>
                   </object>
                 </child>
                 <style>
@@ -336,6 +336,45 @@
                 <property name="can-focus">True</property>
                 <property name="title" translatable="yes">Wine config</property>
                 <property name="subtitle" translatable="yes">Adjust internal settings.</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Utility &amp; Preferences</property>
+                        <property name="relief">none</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">system-run-symbolic</property>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="btn_undecorated"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack-type">end</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="HdyActionRow">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="title" translatable="yes">Browse C:</property>
+                <property name="subtitle" translatable="yes">Browse internal files.</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
