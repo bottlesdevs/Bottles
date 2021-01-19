@@ -276,69 +276,6 @@
             <property name="margin-top">20</property>
             <property name="title" translatable="yes">Programs</property>
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Program name</property>
-                <property name="icon-name">application-x-executable</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="icon-name">media-playback-start-symbolic</property>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="suggested-action"/>
-                          <class name="btn_radius"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="tooltip-text" translatable="yes">Utility &amp; Preferences</property>
-                        <property name="relief">none</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="icon-name">view-more-symbolic</property>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="btn_undecorated"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
               <placeholder/>
             </child>
           </object>
