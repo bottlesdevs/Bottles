@@ -7,6 +7,10 @@
 
 <br/>
 
+> We are working on a new [UI](https://github.com/bottlesdevs/Bottles/issues/77) for Bottles. You can preview it from the `refresh` branch.
+
+<br/>
+
 <div align="center">
    <a href="https://hosted.weblate.org/engage/bottles/">
       <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" alt="Stato traduzione" />
