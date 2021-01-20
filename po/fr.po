@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-07 14:20+0100\n"
-"PO-Revision-Date: 2020-12-30 22:24+0000\n"
-"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2021-01-20 08:32+0000\n"
+"Last-Translator: Yannick A. <yannick.armand@protonmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:321
@@ -32,7 +32,7 @@ msgstr "Gérer facilement vos wineprefix"
 #: data/com.usebottles.bottles.appdata.xml.in:7
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Easily run Windows software on Linux with 🍷 Bottles!"
-msgstr ""
+msgstr "Exécutez facilement les logiciels Windows sur Linux avec 🍷 Bottles !"
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
 msgid "Mirko Brombin"
@@ -43,6 +43,8 @@ msgid ""
 "Bottles is a modern tool that refines and simplifies running Windows "
 "software on Linux!"
 msgstr ""
+"Bottles est un outil moderne qui affine et simplifie l'exécution des "
+"logiciels Windows sous Linux !"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -51,35 +53,44 @@ msgid ""
 "for downloading the official components: runner (wine, proton), dxvk, "
 "dependencies, etc."
 msgstr ""
+"Notre système d'installation de dépendances intégré permet un accès facile à "
+"un large niveau de compatibilité logicielle. Nous incluons également un "
+"gestionnaire de téléchargement pour télécharger les composants officiels : "
+"runner (wine, proton), dxvk, dépendances, etc."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
 "Features such as bottle versioning allow you to keep your work safe and "
 "restore it later!"
 msgstr ""
+"Des fonctionnalités telles que la gestion des versions des bouteilles vous "
+"permettent de protéger votre travail et de le restaurer plus tard."
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
-msgstr ""
+msgstr "Fonctionnalités :"
 
 #: data/com.usebottles.bottles.appdata.xml.in:18
 msgid "Create your bottles using preconfigured environments or create your own"
 msgstr ""
+"Créez vos bouteilles à l'aide d'environnements préconfigurés ou créez les "
+"vôtres"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
 msgid ""
 "Run every executable (.exe/.msi) in your bottles, directly from the context "
 "menu form your file manager"
 msgstr ""
+"Exécutez tous les exécutables (.exe/.msi) de vos bouteilles, directement "
+"depuis le menu contextuel de votre gestionnaire de fichiers"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr ""
+msgstr "Détection automatisée des applications installées dans vos bouteilles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
-#, fuzzy
 msgid "Add environment variables easily"
-msgstr "Sauvegarde les variables d'environnement"
+msgstr "Ajoutez facilement des variables d'environnement"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from bottle preferences"
@@ -94,10 +105,12 @@ msgid ""
 "Various optimizations for better gaming performance (esync, fsync, dxvk, "
 "cache, shader compiler, offload .. and much more.)"
 msgstr ""
+"Diverses optimisations pour de meilleures performances de jeu (esync, fsync, "
+"dxvk, cache, shader compiler, offload... et bien plus encore)."
 
 #: data/com.usebottles.bottles.appdata.xml.in:25
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr ""
+msgstr "Installation et gestion automatique des runners Wine et Proton"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
@@ -110,11 +123,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
 msgid "Integrated Task manager for wine processes"
-msgstr ""
+msgstr "Gestionnaire de tâches intégré pour les processus de wine"
 
 #: data/com.usebottles.bottles.appdata.xml.in:29
 msgid "Easy access to ProtonDB and WineHQ for support"
-msgstr ""
+msgstr "Accès facile à ProtonDB et WineHQ pour l'assistance"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
 msgid "Configurations update system across Bottles versions"
@@ -122,7 +135,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
 msgid "Bottles backup and import"
-msgstr ""
+msgstr "Sauvegarde et importation de bouteilles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
 #, fuzzy
@@ -130,8 +143,9 @@ msgid "Easily import wineprefix from other managers"
 msgstr "Importer depuis une sauvegarde ou d'autres gestionnaires"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
+#, fuzzy
 msgid "Bottles versioning (experimental)"
-msgstr ""
+msgstr "Versionnement des bouteilles (expérimental)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid ".. and much more that you can find by installing Bottles!"
@@ -309,9 +323,8 @@ msgid "A really short comment"
 msgstr ""
 
 #: src/ui/details.ui:113
-#, fuzzy
 msgid "Save the bottle state."
-msgstr "Sauvegarder la bottle"
+msgstr "Enregistrer l'état de la bouteille."
 
 #: src/ui/details.ui:172 src/ui/list-entry.ui:164
 msgid "Bottle name"
@@ -324,17 +337,17 @@ msgstr "L'exécuteur peut être changer dans l'onglet Préférences"
 #: src/ui/details.ui:230
 #, fuzzy
 msgid "Last update for this bottle."
-msgstr "Sauvegarder cette bouteille"
+msgstr "Dernière mise à jour pour cette bouteille."
 
 #: src/ui/details.ui:253 src/ui/list-entry.ui:205
 #, fuzzy
 msgid "Versioning enabled for this bottle"
-msgstr "Personnaliser vos préférences pour ce Bottle."
+msgstr "Versionnement activé pour cette bouteille"
 
 #: src/ui/details.ui:264 src/ui/list-entry.ui:214
 #, fuzzy
 msgid "Versioning is active in this bottle."
-msgstr "Exécuter dans ce bottle"
+msgstr "Le versionnement est actif dans cette bouteille."
 
 #: src/ui/details.ui:285 src/ui/list-entry.ui:234
 msgid "0"

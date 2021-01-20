@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-07 14:20+0100\n"
-"PO-Revision-Date: 2021-01-17 19:04+0000\n"
+"PO-Revision-Date: 2021-01-20 08:32+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
 "bottles/nb_NO/>\n"
@@ -62,7 +62,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
-msgstr ""
+msgstr "Funksjoner:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:18
 msgid "Create your bottles using preconfigured environments or create your own"
@@ -71,14 +71,17 @@ msgstr ""
 "egne"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
+#, fuzzy
 msgid ""
 "Run every executable (.exe/.msi) in your bottles, directly from the context "
 "menu form your file manager"
 msgstr ""
+"Start kjørbare filer (.exe/.msi) i dine flasker, direkte fra "
+"bindeleddsmenyskjema fra din filbehandler."
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr ""
+msgstr "Automatisk oppdagelse av programmer installert i flaskene dine"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 #, fuzzy
@@ -87,7 +90,7 @@ msgstr "Lagre miljøvariabler"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from bottle preferences"
-msgstr ""
+msgstr "Overskriv DLL-filer direkte fra flaskeinnstillinger"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
@@ -105,7 +108,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
-msgstr ""
+msgstr "Automatisk flaskereparasjon i fall de knuses"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid ""
@@ -113,12 +116,13 @@ msgid ""
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
+#, fuzzy
 msgid "Integrated Task manager for wine processes"
-msgstr ""
+msgstr "Integrert oppgavebehandler for Wine-prosesser"
 
 #: data/com.usebottles.bottles.appdata.xml.in:29
 msgid "Easy access to ProtonDB and WineHQ for support"
-msgstr ""
+msgstr "Enkel tilgang til ProtonDB og WineHQ for brukerstøtte"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
 msgid "Configurations update system across Bottles versions"
@@ -126,7 +130,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
 msgid "Bottles backup and import"
-msgstr ""
+msgstr "Flaskesikkerhetskopi og import"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
 #, fuzzy
@@ -187,7 +191,7 @@ msgstr "Velg hvilken visning som skal brukes ved programoppstart."
 
 #: data/com.usebottles.bottles.gschema.xml:31
 msgid "Experiments"
-msgstr ""
+msgstr "Eksperiementer"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid ""
@@ -308,11 +312,11 @@ msgstr "Fullstendig arkiv"
 
 #: src/ui/details.ui:81
 msgid "Type a really short comment:"
-msgstr ""
+msgstr "Skriv en veldig kort kommentar:"
 
 #: src/ui/details.ui:99
 msgid "A really short comment"
-msgstr ""
+msgstr "En veldig kort kommentar"
 
 #: src/ui/details.ui:113
 #, fuzzy
@@ -344,7 +348,7 @@ msgstr "Kjør i denne flasken"
 
 #: src/ui/details.ui:285 src/ui/list-entry.ui:234
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: src/ui/details.ui:334
 msgid "Utility"
@@ -719,8 +723,9 @@ msgid "Installers"
 msgstr "Installasjonskandidater"
 
 #: src/ui/details.ui:2529
+#, fuzzy
 msgid "Here you can see, create, revert and delete bottle states."
-msgstr ""
+msgstr "Her kan du sjekke, opprette, tilbakestille og slette flasketilstander."
 
 #: src/ui/details.ui:2623
 msgid "Versioning"
@@ -794,11 +799,11 @@ msgstr "Støtte Fasker"
 
 #: src/ui/window.ui:87
 msgid "Bug Report"
-msgstr ""
+msgstr "Feilrapport"
 
 #: src/ui/window.ui:100
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentasjon"
 
 #: src/ui/window.ui:185 src/window.py:130
 msgid "Importer"
@@ -946,7 +951,7 @@ msgstr "Dette er manifestet for {0}."
 #: src/pages/details.py:118
 #, python-brace-format
 msgid "Index for state {0}"
-msgstr ""
+msgstr "Indeks for tilstand"
 
 #: src/pages/details.py:119
 #, fuzzy, python-brace-format
@@ -971,8 +976,10 @@ msgid "No dependencies found!"
 msgstr "Fant ingen springere"
 
 #: src/pages/details.py:507
+#, fuzzy
 msgid "There are no dependencies installed and we can't fetch from repository."
 msgstr ""
+"Ingen avhengigheter installert, og henting fra pakkebrønnen kan ikke gjøres."
 
 #: src/pages/details.py:524
 #, fuzzy
@@ -980,8 +987,9 @@ msgid "No installers found!"
 msgstr "Fant ingen springere"
 
 #: src/pages/details.py:526
+#, fuzzy
 msgid "We can't fetch the installers from the repository right now."
-msgstr ""
+msgstr "Kan ikke hente installasjonskandidater fra pakkebrønnen akkurat nå."
 
 #: src/pages/details.py:643 src/pages/list.py:123
 #, fuzzy
