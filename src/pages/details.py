@@ -294,7 +294,6 @@ class BottlesDetails(Gtk.Stack):
     label_size = Gtk.Template.Child()
     label_disk = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
-    btn_dependencies = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
@@ -352,7 +351,6 @@ class BottlesDetails(Gtk.Stack):
 
         '''Signal connections'''
         self.btn_winecfg.connect('pressed', self.run_winecfg)
-        self.btn_dependencies.connect('pressed', self.show_dependencies)
         self.btn_debug.connect('pressed', self.run_debug)
         self.btn_execute.connect('pressed', self.run_executable)
         self.btn_browse.connect('pressed', self.run_browse)
@@ -361,6 +359,17 @@ class BottlesDetails(Gtk.Stack):
         self.btn_controlpanel.connect('pressed', self.run_controlpanel)
         self.btn_uninstaller.connect('pressed', self.run_uninstaller)
         self.btn_regedit.connect('pressed', self.run_regedit)
+
+        self.btn_winecfg.connect('activate', self.run_winecfg)
+        self.btn_debug.connect('activate', self.run_debug)
+        self.btn_execute.connect('activate', self.run_executable)
+        self.btn_browse.connect('activate', self.run_browse)
+        self.btn_cmd.connect('activate', self.run_cmd)
+        self.btn_taskmanager.connect('activate', self.run_taskmanager)
+        self.btn_controlpanel.connect('activate', self.run_controlpanel)
+        self.btn_uninstaller.connect('activate', self.run_uninstaller)
+        self.btn_regedit.connect('activate', self.run_regedit)
+
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
         self.btn_killall.connect('pressed', self.run_killall)
@@ -671,9 +680,6 @@ class BottlesDetails(Gtk.Stack):
     '''Run wine executables and utilities'''
     def run_winecfg(self, widget):
         self.runner.run_winecfg(self.configuration)
-
-    def run_winetricks(self, widget):
-        self.runner.run_winetricks(self.configuration)
 
     def run_debug(self, widget):
         self.runner.run_debug(self.configuration)
