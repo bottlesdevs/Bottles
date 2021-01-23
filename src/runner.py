@@ -502,8 +502,15 @@ class BottlesRunner:
                 '''Wine'''
                 with urllib.request.urlopen(self.repository_api) as url:
                     releases = json.loads(url.read().decode())
-                    tag = releases[0]["tag_name"]
-                    file = releases[0]["assets"][0]["name"]
+                    # TODO: check for RC need improvements
+                    # without a centralized repository it is difficult
+                    # to provide a better method.
+                    if "rc" in releases[0]["tag_name"]:
+                        release = releases[1]
+                    else:
+                        release = releases[0]
+                    tag = release["tag_name"]
+                    file = release["assets"][0]["name"]
 
                     self.install_component("runner", tag, file)
             else:
