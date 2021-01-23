@@ -1140,7 +1140,7 @@ class BottlesRunner:
         if parameters["sync"] == "esync":
             environment_vars.append("WINEESYNC=1") # WINEDEBUG=+esync
 
-        if parameters["fsync"] == "fsync":
+        if parameters["sync"] == "fsync":
             environment_vars.append("WINEFSYNC=1")
 
         if parameters["fixme_logs"]:
