@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Handy
 
 import webbrowser, re
 
@@ -124,20 +124,14 @@ class BottlesStateEntry(Gtk.Box):
         dialog_upgrade.destroy()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
-class BottlesProgramEntry(Gtk.Box):
+class BottlesProgramEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesProgramEntry'
 
     '''Get widgets from template'''
-    label_name = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
-    btn_arguments = Gtk.Template.Child()
-    btn_save_arguments = Gtk.Template.Child()
     btn_winehq = Gtk.Template.Child()
     btn_protondb = Gtk.Template.Child()
     btn_issues = Gtk.Template.Child()
-    grid_arguments = Gtk.Template.Child()
-    entry_arguments = Gtk.Template.Child()
-    spinner_running = Gtk.Template.Child()
 
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
@@ -154,15 +148,13 @@ class BottlesProgramEntry(Gtk.Box):
         self.program_executable_path = program[1]
 
         '''Populate widgets'''
-        self.label_name.set_text(self.program_name)
+        self.set_title(self.program_name)
 
         '''Signal conenctions'''
         self.btn_run.connect('pressed', self.run_executable)
-        self.btn_save_arguments.connect('pressed', self.save_arguments)
         self.btn_winehq.connect('pressed', self.open_winehq)
         self.btn_protondb.connect('pressed', self.open_protondb)
         self.btn_issues.connect('pressed', self.open_issues)
-        self.btn_arguments.connect('toggled', self.toggle_arguments)
 
         '''Populate entry_arguments by configuration'''
         if self.program_executable in self.configuration["Programs"]:
