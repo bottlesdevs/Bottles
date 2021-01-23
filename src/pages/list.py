@@ -199,6 +199,8 @@ class BottlesList(Gtk.Box):
 
     '''Get widgets from template'''
     list_bottles = Gtk.Template.Child()
+    clamp_list = Gtk.Template.Child()
+    grid_empty = Gtk.Template.Child()
 
     def __init__(self, window, arg_executable, **kwargs):
         super().__init__(**kwargs)
@@ -221,10 +223,11 @@ class BottlesList(Gtk.Box):
         bottles = self.window.runner.local_bottles.items()
 
         if len(bottles) == 0:
-            return self.list_bottles.add(BottlesEmpty(
-                text=_("No bottles found!"),
-                icon="dialog-information-symbolic",
-                tip=_("Use the '+' button to create one.")))
+            self.clamp_list.set_visible(False)
+            self.grid_empty.set_visible(True)
+        else:
+            self.clamp_list.set_visible(True)
+            self.grid_empty.set_visible(False)
 
         for bottle in bottles:
             self.list_bottles.add(BottlesListEntry(self.window,
