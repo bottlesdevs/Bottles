@@ -88,8 +88,7 @@ class BottlesRunner:
         "Parameters": {
             "dxvk": False,
             "dxvk_hud": False,
-            "esync": False,
-            "fsync": False,
+            "sync": "wine",
             "aco_compiler": False,
             "discrete_gpu": False,
             "virtual_desktop": False,
@@ -109,7 +108,7 @@ class BottlesRunner:
             "Runner": "wine",
             "Parameters": {
                 "dxvk": True,
-                "esync": True,
+                "sync": "esync",
                 "discrete_gpu": True,
                 "pulseaudio_latency": True
             }
@@ -1131,10 +1130,10 @@ class BottlesRunner:
         else:
             environment_vars.append("DXVK_HUD='compiler'")
 
-        if parameters["esync"]:
+        if parameters["sync"] == "esync":
             environment_vars.append("WINEESYNC=1") # WINEDEBUG=+esync
 
-        if parameters["fsync"]:
+        if parameters["fsync"] == "fsync":
             environment_vars.append("WINEFSYNC=1")
 
         if parameters["fixme_logs"]:
