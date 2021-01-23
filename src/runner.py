@@ -95,6 +95,7 @@ class BottlesRunner:
             "virtual_desktop": False,
             "virtual_desktop_res": "1280x720",
             "pulseaudio_latency": False,
+            "fixme_logs": False,
             "environment_variables": "",
             "dll_overrides": ""
         },
@@ -1131,10 +1132,15 @@ class BottlesRunner:
             environment_vars.append("DXVK_HUD='compiler'")
 
         if parameters["esync"]:
-            environment_vars.append("WINEESYNC=1 WINEDEBUG=+esync")
+            environment_vars.append("WINEESYNC=1") # WINEDEBUG=+esync
 
         if parameters["fsync"]:
             environment_vars.append("WINEFSYNC=1")
+
+        if parameters["fixme_logs"]:
+            environment_vars.append("WINEDEBUG=+fixme-all")
+        else:
+            environment_vars.append("WINEDEBUG=fixme-all")
 
         if parameters["aco_compiler"]:
             environment_vars.append("RADV_PERFTEST=aco")
@@ -1156,7 +1162,7 @@ class BottlesRunner:
         environment_vars.append("WINEDLLOVERRIDES='%s'" % ",".join(dll_overrides))
         environment_vars = " ".join(environment_vars)
 
-        command = "WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
+        command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
             path = path,
             env = environment_vars,
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
