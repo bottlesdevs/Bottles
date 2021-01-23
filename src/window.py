@@ -57,9 +57,6 @@ class BottlesWindow(Handy.ApplicationWindow):
     btn_menu = Gtk.Template.Child()
     btn_more = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
-    btn_translate = Gtk.Template.Child()
-    btn_support = Gtk.Template.Child()
-    btn_report = Gtk.Template.Child()
     btn_taskmanager = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
@@ -135,9 +132,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_back.connect('activate', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view)
         self.btn_about.connect('pressed', self.show_about_dialog)
-        self.btn_support.connect('pressed', self.open_support_url)
-        self.btn_report.connect('pressed', self.open_report_url)
-        self.btn_translate.connect('pressed', self.open_translate_url)
         self.btn_docs.connect('pressed', self.open_docs_url)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
         self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
@@ -234,20 +228,8 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     '''Open URLs'''
     @staticmethod
-    def open_translate_url(widget):
-        webbrowser.open_new_tab("https://hosted.weblate.org/engage/bottles/")
-
-    @staticmethod
     def open_docs_url(widget):
         webbrowser.open_new_tab("https://docs.usebottles.com")
-
-    @staticmethod
-    def open_support_url(widget):
-        webbrowser.open_new_tab("https://liberapay.com/bottles")
-
-    @staticmethod
-    def open_report_url(widget):
-        webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues")
 
     '''Go back to previous page'''
     def go_back(self, widget):
