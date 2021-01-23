@@ -109,7 +109,7 @@ class BottlesNew(Handy.Window):
         {
             "id": "Software",
             "name": _("Software"),
-            "description": _("An environment for Windows software."),
+            "description": _("An environment improved for Windows software."),
             "icon": "applications-engineering-symbolic"
         },
         {
