@@ -159,7 +159,9 @@ class BottlesProgramEntry(Handy.ActionRow):
         '''Populate entry_arguments by configuration'''
         if self.program_executable in self.configuration["Programs"]:
             arguments = self.configuration["Programs"][self.program_executable]
-            self.entry_arguments.set_text(arguments)
+            # TODO: executable arguments should be stored and displayed
+            # in the new dialog-launch-options on spawn
+            # self.entry_arguments.set_text(arguments)
 
     '''Run executable'''
     def run_executable(self, widget):
