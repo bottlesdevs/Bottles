@@ -232,7 +232,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
     '''Go back to previous page'''
-    def go_back(self, widget):
+    def go_back(self, widget=False):
         self.hide_view_switcher()
         self.btn_add.set_visible(True)
         self.btn_menu.set_visible(True)

@@ -755,7 +755,7 @@ class BottlesRunner:
 
         '''Execute wineboot'''
         update_output( _("The wine configuration is being updated …"))
-        command = "DISPLAY=:0.0 WINEPREFIX={path} WINEARCH=win64 {runner} wineboot /nogui".format(
+        command = "DISPLAY=:0.0 WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH=win64 {runner} wineboot /nogui".format(
             path = bottle_complete_path,
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner)
         )
@@ -1156,7 +1156,7 @@ class BottlesRunner:
         environment_vars.append("WINEDLLOVERRIDES='%s'" % ",".join(dll_overrides))
         environment_vars = " ".join(environment_vars)
 
-        command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
+        command = "WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
             path = path,
             env = environment_vars,
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
