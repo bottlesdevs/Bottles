@@ -782,7 +782,7 @@ class BottlesDetails(Gtk.Stack):
         if response == Gtk.ResponseType.OK:
             self.runner.delete_bottle(self.configuration)
             self.destroy()
-            self.window.show_list_view()
+            self.window.go_back()
 
         dialog_delete.destroy()
 
