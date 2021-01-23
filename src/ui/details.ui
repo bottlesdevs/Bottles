@@ -2492,29 +2492,65 @@ Disable if you're experiencing graphical glitches.</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <object class="GtkBox">
+              <object class="HdyClamp">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="orientation">vertical</property>
+                <property name="maximum-size">500</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="margin-left">10</property>
-                        <property name="margin-right">10</property>
-                        <property name="margin-start">10</property>
-                        <property name="margin-end">10</property>
-                        <property name="margin-top">5</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">These the programs I found installed in the Bottle (they may not be all).</property>
-                        <attributes>
-                          <attribute name="scale" value="0.80000000000000004"/>
-                        </attributes>
+                        <property name="margin-top">25</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin-bottom">10</property>
+                            <property name="label" translatable="yes">Programs</property>
+                            <property name="wrap">True</property>
+                            <property name="wrap-mode">word-char</property>
+                            <attributes>
+                              <attribute name="font-desc" value="Cantarell Bold 16"/>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="btn_programs_updates">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">view-refresh-symbolic</property>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="btn_undecorated"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="pack-type">end</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -2523,77 +2559,26 @@ Disable if you're experiencing graphical glitches.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="btn_programs_updates">
+                      <object class="GtkListBox" id="list_programs">
                         <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="tooltip-text" translatable="yes">Check for installed programs.</property>
-                        <property name="relief">none</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="icon-name">view-refresh-symbolic</property>
-                          </object>
+                        <property name="can-focus">False</property>
+                        <child type="placeholder">
+                          <placeholder/>
                         </child>
+                        <style>
+                          <class name="content"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="pack-type">end</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkSeparator">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
                     <child>
-                      <object class="GtkViewport">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <child>
-                          <object class="GtkBox" id="list_programs">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
+                      <placeholder/>
                     </child>
                   </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
-                  </packing>
                 </child>
               </object>
             </child>
