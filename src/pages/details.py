@@ -315,13 +315,14 @@ class BottlesDetails(Gtk.Stack):
     btn_delete = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
-    switch_esync = Gtk.Template.Child()
-    switch_fsync = Gtk.Template.Child()
     switch_aco = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
     switch_virtual_desktop = Gtk.Template.Child()
     switch_pulseaudio_latency = Gtk.Template.Child()
     switch_fixme = Gtk.Template.Child()
+    toggle_sync = Gtk.Template.Child()
+    toggle_esync = Gtk.Template.Child()
+    toggle_fsync = Gtk.Template.Child()
     combo_virtual_resolutions = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
@@ -384,10 +385,12 @@ class BottlesDetails(Gtk.Stack):
         self.btn_backup_full.connect('pressed', self.backup_full)
         self.btn_add_state.connect('pressed', self.add_state)
 
+        self.toggle_sync.connect('toggled', self.set_wine_sync)
+        self.toggle_esync.connect('toggled', self.set_esync)
+        self.toggle_fsync.connect('toggled', self.set_fsync)
+
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
-        self.switch_esync.connect('state-set', self.toggle_esync)
-        self.switch_fsync.connect('state-set', self.toggle_fsync)
         self.switch_aco.connect('state-set', self.toggle_aco)
         self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
         self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
@@ -428,13 +431,14 @@ class BottlesDetails(Gtk.Stack):
         self.progress_disk.set_fraction(disk_fraction)
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
-        self.switch_esync.set_active(parameters["esync"])
-        self.switch_fsync.set_active(parameters["fsync"])
+        if parameters["sync"] == "wine": self.toggle_sync.set_active(True)
+        if parameters["sync"] == "esync": self.toggle_esync.set_active(True)
+        if parameters["sync"] == "fsync": self.toggle_fsync.set_active(True)
         self.switch_discrete.set_active(parameters["discrete_gpu"])
         self.switch_virtual_desktop.set_active(parameters["virtual_desktop"])
+        self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
         self.combo_runner.set_active_id(self.configuration.get("Runner"))
-        self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
         self.entry_environment_variables.set_text(parameters["environment_variables"])
         self.entry_overrides.set_text(parameters["dll_overrides"])
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
@@ -578,21 +582,35 @@ class BottlesDetails(Gtk.Stack):
                                                              scope="Parameters")
         self.configuration = new_configuration
 
-    '''Toggle Esync'''
-    def toggle_esync(self, widget, state):
+    '''Set Wine synchronization type'''
+    def set_sync_type(self, sync):
         new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "esync",
-                                                             state,
+                                                             "sync",
+                                                             sync,
                                                              scope="Parameters")
         self.configuration = new_configuration
 
-    '''Toggle Fsync'''
-    def toggle_fsync(self, widget, state):
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "fsync",
-                                                             state,
-                                                             scope="Parameters")
-        self.configuration = new_configuration
+        if sync in ["esync", "fsync"]:
+            self.toggle_sync.handler_block_by_func(self.set_wine_sync)
+            self.toggle_sync.set_active(False)
+            self.toggle_sync.handler_unblock_by_func(self.set_wine_sync)
+        if sync in ["esync", "wine"]:
+            self.toggle_fsync.handler_block_by_func(self.set_fsync)
+            self.toggle_fsync.set_active(False)
+            self.toggle_fsync.handler_unblock_by_func(self.set_fsync)
+        if sync in ["fsync", "wine"]:
+            self.toggle_esync.handler_block_by_func(self.set_esync)
+            self.toggle_esync.set_active(False)
+            self.toggle_esync.handler_unblock_by_func(self.set_esync)
+
+    def set_wine_sync(self, widget):
+        self.set_sync_type("wine")
+
+    def set_esync(self, widget):
+        self.set_sync_type("esync")
+
+    def set_fsync(self, widget):
+        self.set_sync_type("fsync")
 
     '''Toggle ACO compiler'''
     def toggle_aco(self, widget, state):
