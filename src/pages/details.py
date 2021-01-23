@@ -19,7 +19,7 @@ from gi.repository import Gtk
 
 import webbrowser, re
 
-from .dialog import BottlesDialog
+from .dialog import BottlesDialog, BottlesMessageDialog
 from bottles.empty import BottlesEmpty
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
@@ -312,6 +312,7 @@ class BottlesDetails(Gtk.Stack):
     btn_backup_config = Gtk.Template.Child()
     btn_backup_full = Gtk.Template.Child()
     btn_add_state = Gtk.Template.Child()
+    btn_delete = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_esync = Gtk.Template.Child()
@@ -359,6 +360,7 @@ class BottlesDetails(Gtk.Stack):
         self.btn_controlpanel.connect('pressed', self.run_controlpanel)
         self.btn_uninstaller.connect('pressed', self.run_uninstaller)
         self.btn_regedit.connect('pressed', self.run_regedit)
+        self.btn_delete.connect('pressed', self.confirm_delete)
 
         self.btn_winecfg.connect('activate', self.run_winecfg)
         self.btn_debug.connect('activate', self.run_debug)
@@ -769,6 +771,20 @@ class BottlesDetails(Gtk.Stack):
                                       file_dialog.get_filename())
 
         file_dialog.destroy()
+
+    '''Show dialog to confirm bottle deletion'''
+    def confirm_delete(self, widget):
+        dialog_delete = BottlesMessageDialog(parent=self.window,
+                                      title=_("Confirm deletion"),
+                                      message=_("Are you sure you want to delete this Bottle and all files?"))
+        response = dialog_delete.run()
+
+        if response == Gtk.ResponseType.OK:
+            self.runner.delete_bottle(self.configuration)
+            self.destroy()
+            self.window.show_list_view()
+
+        dialog_delete.destroy()
 
     '''Open URLs'''
     @staticmethod
