@@ -321,6 +321,7 @@ class BottlesDetails(Gtk.Stack):
     switch_discrete = Gtk.Template.Child()
     switch_virtual_desktop = Gtk.Template.Child()
     switch_pulseaudio_latency = Gtk.Template.Child()
+    switch_fixme = Gtk.Template.Child()
     combo_virtual_resolutions = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
@@ -382,6 +383,7 @@ class BottlesDetails(Gtk.Stack):
         self.btn_backup_config.connect('pressed', self.backup_config)
         self.btn_backup_full.connect('pressed', self.backup_full)
         self.btn_add_state.connect('pressed', self.add_state)
+
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
         self.switch_esync.connect('state-set', self.toggle_esync)
@@ -389,9 +391,12 @@ class BottlesDetails(Gtk.Stack):
         self.switch_aco.connect('state-set', self.toggle_aco)
         self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
         self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
+        self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
+        self.switch_fixme.connect('state-set', self.toggle_fixme)
+
         self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
         self.combo_runner.connect('changed', self.set_runner)
-        self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
+
         self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
 
     '''Set bottle configuration'''
@@ -642,6 +647,14 @@ class BottlesDetails(Gtk.Stack):
     def toggle_pulseaudio_latency(self, widget, state):
         new_configuration = self.runner.update_configuration(self.configuration,
                                                              "pulseaudio_latency",
+                                                             state,
+                                                             scope="Parameters")
+        self.configuration = new_configuration
+
+    '''Toggle fixme wine logs'''
+    def toggle_fixme(self, widget, state):
+        new_configuration = self.runner.update_configuration(self.configuration,
+                                                             "fixme_logs",
                                                              state,
                                                              scope="Parameters")
         self.configuration = new_configuration
