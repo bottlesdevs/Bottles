@@ -330,7 +330,7 @@ class BottlesRunner:
     def async_install_component(self, args:list) -> None:
         component_type, component_name, after = args
 
-        manifest = self.fetch_component_manifest("runner", component_name)
+        manifest = self.fetch_component_manifest(component_type, component_name)
 
         '''Notify if the user allows it'''
         self.window.send_notification(
@@ -343,12 +343,14 @@ class BottlesRunner:
 
         logging.info(_("Installing component: [{0}].").format(component_name))
 
-        '''Extract component archive'''
-        download = self.download_component("runner",
+        '''Download component'''
+        download = self.download_component(component_type,
                                 manifest["File"][0]["url"],
                                 manifest["File"][0]["file_name"],
                                 manifest["File"][0]["rename"],
                                 checksum=manifest["File"][0]["file_checksum"])
+
+        '''Extract component archive'''
         if manifest["File"][0]["rename"]:
             archive = manifest["File"][0]["rename"]
         else:
@@ -511,7 +513,7 @@ class BottlesRunner:
             '''If connected, install latest runner from repository'''
             if self.utils_conn.check_connection():
                 runner_name = next(iter(self.supported_wine_runners))
-                self.install_component("runner", runner_name)
+                self.install_component("runner", runner_name, after=after)
             else:
                 return False
 
@@ -535,14 +537,10 @@ class BottlesRunner:
         if len(self.dxvk_available) == 0 and install_latest:
             logging.warning(_("No dxvk found."))
 
-            '''If connected, fetch dxvks from repository'''
+            '''If connected, install latest dxvk from repository'''
             if self.utils_conn.check_connection():
-                with urllib.request.urlopen(self.dxvk_repository_api) as url:
-                    releases = json.loads(url.read().decode())
-                    tag = releases[0]["tag_name"]
-                    file = releases[0]["assets"][0]["name"]
-
-                    self.install_component("dxvk", tag, file)
+                dxvk_version = next(iter(self.supported_dxvk))
+                self.install_component("dxvk", dxvk_version)
             else:
                 return False
         return True
@@ -634,6 +632,8 @@ class BottlesRunner:
     def fetch_component_manifest(self, component_type:str, component_name:str, plain:bool=False) -> Union[str, dict, bool]:
         if component_type == "runner":
             component = self.supported_wine_runners[component_name]
+        if component_type == "dxvk":
+            component = self.supported_dxvk[component_name]
 
         if self.utils_conn.check_connection():
             if "Sub-category" in component:
