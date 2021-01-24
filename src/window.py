@@ -148,6 +148,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         '''If there is at least one page, show the bottles list'''
         self.stack_main.set_visible_child_name("page_list")
 
+        '''Set widget status from settings'''
+        self.btn_versioning.set_visible(self.settings.get_boolean("experiments-versioning"))
+        self.btn_installers.set_visible(self.settings.get_boolean("experiments-installers"))
+
         '''Executed on last'''
         self.on_start()
 
