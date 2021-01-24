@@ -202,6 +202,8 @@ class BottlesRunner:
     def get_runner_updates(self) -> dict:
         updates = {}
 
+        # TODO: fetch updates from new components repository
+
         if self.utils_conn.check_connection():
             '''wine'''
             with urllib.request.urlopen(self.repository_api) as url:
@@ -239,6 +241,8 @@ class BottlesRunner:
     def get_dxvk_updates(self) -> dict:
         updates = {}
 
+        # TODO: fetch updates from new components repository
+
         if self.utils_conn.check_connection():
             with urllib.request.urlopen(self.dxvk_repository_api) as url:
                 releases = json.loads(url.read().decode())
@@ -275,9 +279,7 @@ class BottlesRunner:
             return False
 
     '''Download a specific component release'''
-    def download_component(self, component:str, tag:str, file:str, rename:bool=False, checksum:bool=False) -> bool:
-        # TODO: this method need revision
-        download_url = tag
+    def download_component(self, component:str, download_url:str, file:str, rename:bool=False, checksum:bool=False) -> bool:
         if component == "runner": repository = self.repository
         if component == "runner:proton": repository = self.proton_repository
         if component == "dxvk": repository = self.dxvk_repository
