@@ -8,6 +8,7 @@ export ICON_FILE_PATH=$APPDIR/usr/share/icons/hicolor/scalable/apps/com.usebottl
 export INSTALLED_DESKTOP_FILE_PATH=~/.local/share/applications/bottles.desktop
 export INSTALLED_ICON_FILE_PATH=~/.local/share/icons/hicolor/scalable/apps/com.usebottles.bottles.svg
 INSTALL_DESKTOP_FILE=false
+export G_MESSAGES_DEBUG="fatal"
 
 if ! test -f $INSTALLED_ICON_FILE_PATH; then
 	mkdir -p ~/.local/share/icons/hicolor/scalable/apps/
