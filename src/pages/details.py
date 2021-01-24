@@ -201,12 +201,10 @@ class BottlesProgramEntry(Handy.ActionRow):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues?q=is:issue%s" % query)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
-class BottlesDependencyEntry(Gtk.Box):
+class BottlesDependencyEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesDependencyEntry'
 
     '''Get widgets from template'''
-    label_name = Gtk.Template.Child()
-    label_description = Gtk.Template.Child()
     label_category = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
@@ -226,15 +224,15 @@ class BottlesDependencyEntry(Gtk.Box):
 
         '''If dependency is plain text (placeholder)'''
         if plain:
-            self.label_name.set_text(dependency)
-            self.label_description.destroy()
+            self.set_title(dependency)
+            self.set_subtitle("")
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(False)
             return None
 
         '''Populate widgets'''
-        self.label_name.set_text(dependency[0])
-        self.label_description.set_text(dependency[1].get("Description"))
+        self.set_title(dependency[0])
+        self.set_subtitle(dependency[1].get("Description"))
         self.label_category.set_text(dependency[1].get("Category"))
 
         '''Signal connections'''
