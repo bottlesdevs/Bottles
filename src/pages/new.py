@@ -153,6 +153,12 @@ class BottlesNew(Handy.Window):
 
         self.combo_runner.set_active(0)
 
+        '''Populate combo_dxvk'''
+        for dxvk in self.runner.dxvk_available:
+            self.combo_dxvk.append(dxvk, dxvk)
+
+        self.combo_dxvk.set_active(0)
+
     def set_active_environment(self, widget, row):
         for w in self.list_environments.get_children():
             w.deselect()
