@@ -100,7 +100,7 @@ print_execution "cp -a ../AppRun appdir/AppRun"
 # Appimage
 # ---------------------------------------
 title "Downloading linuxdeploy Appimage and setting executable"
-print_execution "wget -c -nv https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+print_execution "curl -L https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage --output linuxdeploy-x86_64.AppImage"
 print_execution "chmod a+x linuxdeploy-x86_64.AppImage"
 
 title "Building Bottles Appimage"
