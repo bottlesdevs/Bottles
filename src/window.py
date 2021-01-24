@@ -29,6 +29,7 @@ from .runner import BottlesRunner
 
 from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.new import BottlesNew
+from .pages.onboard import BottlesOnboard
 from .pages.create import BottlesCreate
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
@@ -181,28 +182,7 @@ class BottlesWindow(Handy.ApplicationWindow):
     def on_start(self):
         '''Search for at least one local runner'''
         if len(self.runner.runners_available) == 0:
-            message = "There are no Runners in the system. "
-
-            if self.utils_conn.check_connection():
-                message += _("Proceed with the installation of the latest version?")
-            else:
-                message += _("But you don't seem to be connected to the internet and you won't be able to download a runner. Connect to the internet and confirm this message to begin the download.")
-
-            dialog_checks = BottlesMessageDialog(parent=self,
-                                          title=_("No runners found"),
-                                          message=message)
-            response = dialog_checks.run()
-
-            if response == Gtk.ResponseType.OK:
-                logging.info(_("OK status received"))
-
-                '''Runner checks'''
-                self.runner.checks()
-                # TODO: do not install RC
-            else:
-                logging.info(_("Cancel status received"))
-
-            dialog_checks.destroy()
+            self.show_onboard_view()
 
     '''Toggle UI usability preventing user clicks'''
     def set_usable_ui(self, status):
@@ -247,6 +227,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.page_details.set_configuration(configuration)
         self.show_view_switcher(self.page_details)
         self.stack_main.set_visible_child_name("page_details")
+
+    def show_onboard_view(self, widget=False):
+        onboard_window = BottlesOnboard(self)
+        onboard_window.present()
 
     def show_add_view(self, widget=False):
         new_window = BottlesNew(self)
