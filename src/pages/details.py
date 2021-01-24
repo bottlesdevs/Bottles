@@ -23,12 +23,10 @@ from .dialog import BottlesDialog, BottlesMessageDialog
 from bottles.empty import BottlesEmpty
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
-class BottlesInstallerEntry(Gtk.Box):
+class BottlesInstallerEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesInstallerEntry'
 
     '''Get widgets from template'''
-    label_name = Gtk.Template.Child()
-    label_description = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
 
@@ -45,8 +43,8 @@ class BottlesInstallerEntry(Gtk.Box):
         self.installer = installer
 
         '''Populate widgets'''
-        self.label_name.set_text(installer[0])
-        self.label_description.set_text(installer[1].get("Description"))
+        self.set_title(installer[0])
+        self.set_subtitle(installer[1].get("Description"))
 
         '''Signal connections'''
         self.btn_install.connect('pressed', self.execute_installer)
