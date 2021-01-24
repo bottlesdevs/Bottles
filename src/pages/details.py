@@ -70,12 +70,10 @@ class BottlesInstallerEntry(Handy.ActionRow):
                                   self)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
-class BottlesStateEntry(Gtk.Box):
+class BottlesStateEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesStateEntry'
 
     '''Get widgets from template'''
-    label_id = Gtk.Template.Child()
-    label_comment = Gtk.Template.Child()
     label_creation_date = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
@@ -95,8 +93,8 @@ class BottlesStateEntry(Gtk.Box):
         self.configuration = configuration
 
         '''Populate widgets'''
-        self.label_id.set_text(self.state_name)
-        self.label_comment.set_text(self.state[1].get("Comment"))
+        self.set_title(self.state_name)
+        self.set_subtitle(self.state[1].get("Comment"))
         self.label_creation_date.set_text(self.state[1].get("Creation_Date"))
         if state[0] == configuration.get("State"):
             self.get_style_context().add_class("current-state")
