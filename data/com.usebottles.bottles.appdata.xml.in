@@ -4,32 +4,32 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0-or-later</project_license>
     <name>Bottles</name>
-    <summary>Easily run Windows software on Linux with 🍷 Bottles!</summary>
+    <summary>Run Windows software on Linux with Bottles🍷!</summary>
     <developer_name>Mirko Brombin</developer_name>
     <description>
-        <p>Easily run Windows software on Linux with 🍷 Bottles!</p>
-        <p>Bottles is a modern tool that refines and simplifies running Windows software on Linux!</p>
-        <p>Our built-in dependency installation system allows for easy access to a broad level of software
-            compatibility. We also include a download manager for downloading the official components:
-            runner (wine, proton), dxvk, dependencies, etc.</p>
-        <p>Features such as bottle versioning allow you to keep your work safe and restore it later!</p>
+        <p>Run Windows software on Linux with Bottles🍷!</p>
+        <p>Bottle software and enjoy at your leisure!</p>
+        <p>Our built-in dependency installation system grants automatic software
+            compatibility access. Use the download manager to download the official components:
+            the runner (Wine, Proton), DXVK, dependencies, etc.</p>
+        <p>Bottle versioning keeps your work safe now and lets you restore it later!</p>
         <p>Features:</p>
         <ul>
-          <li>Create your bottles using preconfigured environments or create your own</li>
-          <li>Run every executable (.exe/.msi) in your bottles, directly from the context menu form your file manager</li>
+          <li>Create bottles using preconfigured environments or create your own</li>
+          <li>Run executables (.exe/.msi) in your bottles, directly from the context menu of your file-manager</li>
           <li>Automated detection of applications installed in your bottles</li>
-          <li>Add environment variables easily</li>
-          <li>Override DLLs directly from bottle preferences</li>
+          <li>Add environment variables quickly</li>
+          <li>Override DLLs directly from per-bottle preferences</li>
           <li>On-the-fly runner change for any Bottle</li>
-          <li>Various optimizations for better gaming performance (esync, fsync, dxvk, cache, shader compiler, offload .. and much more.)</li>
+          <li>Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader compiler, offload … and much more.)</li>
           <li>Automatic installation and management of Wine and Proton runners</li>
           <li>Automatic bottle repair in case of breakage</li>
-          <li>Integrated Dependencies installer based on a community-driver repository</li>
-          <li>Integrated Task manager for wine processes</li>
-          <li>Easy access to ProtonDB and WineHQ for support</li>
-          <li>Configurations update system across Bottles versions</li>
-          <li>Bottles backup and import</li>
-          <li>Easily import wineprefix from other managers</li>
+          <li>Integrated dependency-installer based on a community-driver repository</li>
+          <li>Integrated Task manager for Wine processes</li>
+          <li>Access to ProtonDB and WineHQ for support</li>
+          <li>System for bringing your configuration to new versions of Bottles</li>
+          <li>Back up and import bottles</li>
+          <li>Import Wine prefixes from other managers</li>
           <li>Bottles versioning (experimental)</li>
           <li>.. and much more that you can find by installing Bottles!</li>
         </ul>
@@ -117,6 +117,47 @@
     <url type="bugtracker">https://github.com/bottlesdevs/Bottles/issues</url>
     <url type="help">https://docs.usebottles.com</url>
     <releases>
+        <release version="2.1.0.4" date="2020-01-20">
+            <description>
+              <p>Bugfix:</p>
+              <ul>
+                <li>Fix downloading dependencies</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.1.0.3" date="2020-01-19"></release>
+        <release version="2.1.0.2" date="2020-01-18">
+            <description>
+              <p>Improvements:</p>
+              <ul>
+                <li>Portuguese (Brazil) by Gabriel Mattoso, Fábio Rodrigues Ribeiro, Leandro Stanger</li>
+                <li>Portuguese by Pão com omlet</li>
+                <li>Norwegian Bokmål by Allan Nordhøy</li>
+                <li>Spanish by lvaskz</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.1.0.1" date="2020-01-15"></release>
+        <release version="2.1.0" date="2020-01-11">
+            <description>
+              <p>Improvements:</p>
+              <ul>
+                <li>Support for 32 bit applications in Flatpak</li>
+              </ul>
+            </description>
+        </release>
+        <release version="2.0.9.9" date="2020-01-10">
+            <description>
+              <p>News:</p>
+              <ul>
+                <li>Execute .bat files in your bottles</li>
+              </ul>
+              <p>Improvements:</p>
+              <ul>
+                <li>General UI improvements</li>
+              </ul>
+            </description>
+        </release>
         <release version="2.0.9.8" date="2020-01-09">
             <description>
               <p>Bugfix:</p>
@@ -176,8 +217,8 @@
             <description>
               <p>News:</p>
               <ul>
-                <li>Use the [Escape] shortcut to go back</li>
-                <li>The wine debug console now runs in the system terminal</li>
+                <li>Use the [Esc] shortcut to go back</li>
+                <li>The Wine debug console now runs in the system terminal</li>
               </ul>
               <p>Improvements:</p>
               <ul>
@@ -187,7 +228,7 @@
               <p>Bugfix:</p>
               <ul>
                 <li>Need at least one local runner to create a bottle</li>
-                <li>No more crashes when creating the bottle if there is no Temp path</li>
+                <li>No more crashes when creating the bottle if there is no temp path</li>
               </ul>
             </description>
         </release>
@@ -199,7 +240,7 @@
               <p>Happy 2021🎉!</p>
               <p>News:</p>
               <ul>
-                <li>The new experimental Bottle Versioning feature is here! Save the status of a bottle and restore it later with a click.</li>
+                <li>The new experimental bottle Versioning feature is here! Save the status of a bottle and restore it later with a click.</li>
               </ul>
               <p>Improvements:</p>
               <ul>
@@ -226,7 +267,7 @@
               <p>News:</p>
               <ul>
                 <li>Backup and restore bottles</li>
-                <li>Import wineprefixes from other managers</li>
+                <li>Import Wine prefixes from other managers</li>
                 <li>Task manager</li>
                 <li>Bottle configuration update across software updates</li>
                 <li>Toggle RC releases for runners</li>
