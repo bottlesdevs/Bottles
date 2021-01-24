@@ -75,9 +75,13 @@ class BottlesPreferences(Handy.PreferencesWindow):
 
     def toggle_experimental_versioning(self, widget, state):
         self.settings.set_boolean("experiments-versioning", state)
+        self.window.btn_versioning.set_visible(
+            self.settings.get_boolean("experiments-versioning"))
 
     def toggle_experimental_installers(self, widget, state):
         self.settings.set_boolean("experiments-installers", state)
+        self.window.btn_installers.set_visible(
+            self.settings.get_boolean("experiments-installers"))
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Gtk.Box):
