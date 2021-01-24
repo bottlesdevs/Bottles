@@ -1561,6 +1561,7 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Search for installed programs</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
                             <child>
@@ -1667,6 +1668,7 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Refresh</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
                             <child>
@@ -1772,6 +1774,7 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="can-focus">True</property>
                             <property name="focus-on-click">False</property>
                             <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Create new state</property>
                             <property name="relief">none</property>
                             <property name="popover">pop_state</property>
                             <child>
@@ -2054,21 +2057,6 @@ Disable if you're experiencing graphical glitches.</property>
             <property name="position">1</property>
           </packing>
         </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkMenuButton">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
-    <property name="focus-on-click">False</property>
-    <property name="receives-default">True</property>
-    <property name="relief">none</property>
-    <property name="popover">pop_state</property>
-    <child>
-      <object class="GtkImage">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="icon-name">list-add-symbolic</property>
       </object>
     </child>
   </object>
