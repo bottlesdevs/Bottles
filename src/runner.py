@@ -276,6 +276,7 @@ class BottlesRunner:
 
     '''Download a specific component release'''
     def download_component(self, component:str, tag:str, file:str, rename:bool=False, checksum:bool=False) -> bool:
+        # TODO: this method need revision
         download_url = tag
         if component == "runner": repository = self.repository
         if component == "runner:proton": repository = self.proton_repository
