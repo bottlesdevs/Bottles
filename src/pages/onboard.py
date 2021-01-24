@@ -56,6 +56,7 @@ class BottlesOnboard(Handy.Window):
 
     def install_runner(self, widget):
         self.next_page()
+        self.runner.checks(after=self.next_page)
 
     def next_page(self, widget=False):
         visible_child = self.stack_onboard.get_visible_child_name()
