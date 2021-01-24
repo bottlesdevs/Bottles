@@ -139,16 +139,17 @@ class BottlesRunner:
         self.download_manager = DownloadManager(window)
 
     '''Performs all checks in one async shot'''
-    def async_checks(self):
+    def async_checks(self, args=False):
+        after = args[0]
         self.check_runners_dir()
-        self.check_runners()
+        self.check_runners(after=after)
         self.check_dxvk()
         self.check_bottles()
         self.fetch_dependencies()
         self.fetch_installers()
 
-    def checks(self):
-        RunAsync(self.async_checks, None)
+    def checks(self, after=False):
+        RunAsync(self.async_checks, None, [after])
 
     '''Clear temp path'''
     def clear_temp(self, force:bool=False) -> None:
@@ -321,7 +322,7 @@ class BottlesRunner:
 
     '''Component installation'''
     def async_install_component(self, args:list) -> None:
-        component, tag, file = args
+        component, tag, file, after = args
 
         '''Notify if the user allows it'''
         self.window.send_notification(
@@ -360,15 +361,20 @@ class BottlesRunner:
         '''Remove entry from download manager'''
         download_entry.remove()
 
-        '''Update component views'''
+        '''Update component views
         if component in ["runner", "runner:proton"]:
             self.window.page_preferences.update_runners()
         if component == "dxvk":
             self.window.page_preferences.update_dxvk()
+        '''
 
-    def install_component(self, component:str,  tag:str, file:str) -> None:
+        '''Execute a method at the end if passed'''
+        if after:
+            after()
+
+    def install_component(self, component:str,  tag:str, file:str, after=False) -> None:
         if self.utils_conn.check_connection(True):
-            RunAsync(self.async_install_component, None, [component, tag, file])
+            RunAsync(self.async_install_component, None, [component, tag, file, after])
 
     '''
     Method for deoendency installations
@@ -478,7 +484,7 @@ class BottlesRunner:
         print(installer)
 
     '''Check local runners'''
-    def check_runners(self, install_latest:bool=True) -> bool:
+    def check_runners(self, install_latest:bool=True, after=False) -> bool:
         runners = glob("%s/*/" % self.runners_path)
         self.runners_available = []
 
@@ -512,7 +518,7 @@ class BottlesRunner:
                     tag = release["tag_name"]
                     file = release["assets"][0]["name"]
 
-                    self.install_component("runner", tag, file)
+                    self.install_component("runner", tag, file, after)
             else:
                 '''Proton
                 with urllib.request.urlopen(self.proton_repository_api) as url:
