@@ -44,8 +44,13 @@ class BottlesRunner:
     proton_repository_api = "https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases"
     dxvk_repository = "https://github.com/doitsujin/dxvk/releases"
     dxvk_repository_api = "https://api.github.com/repos/doitsujin/dxvk/releases"
+
+    components_repository = "https://raw.githubusercontent.com/bottlesdevs/components/main/"
+    components_repository_index = "%s/index.json" % components_repository
+
     dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
     dependencies_repository_index = "%s/index.json" % dependencies_repository
+
     installers_repository = "https://raw.githubusercontent.com/bottlesdevs/programs/main/"
     installers_repository_index = "%s/index.json" % installers_repository
 
@@ -71,6 +76,9 @@ class BottlesRunner:
     runners_available = []
     dxvk_available = []
     local_bottles = {}
+    supported_wine_runners = {}
+    supported_proton_runners = {}
+    supported_dxvk = {}
     supported_dependencies = {}
     supported_installers = {}
 
@@ -131,6 +139,7 @@ class BottlesRunner:
 
         self.check_runners(install_latest=False)
         self.check_dxvk(install_latest=False)
+        self.fetch_components()
         self.fetch_dependencies()
         self.fetch_installers()
         self.check_bottles()
@@ -252,7 +261,7 @@ class BottlesRunner:
 
     '''Extract a component archive'''
     def extract_component(self, component:str, archive:str) -> True:
-        if component in ["runner", "runner:proton"]: path = self.runners_path
+        if component == "runner": path = self.runners_path
         if component == "dxvk": path = self.dxvk_path
 
         try:
@@ -267,14 +276,11 @@ class BottlesRunner:
 
     '''Download a specific component release'''
     def download_component(self, component:str, tag:str, file:str, rename:bool=False, checksum:bool=False) -> bool:
+        download_url = tag
         if component == "runner": repository = self.repository
         if component == "runner:proton": repository = self.proton_repository
         if component == "dxvk": repository = self.dxvk_repository
-        if component == "dependency":
-            repository = self.dependencies_repository
-            download_url = tag
-        else:
-            download_url = "%s/download/%s/%s" % (repository, tag, file)
+        if component == "dependency": repository = self.dependencies_repository
 
         '''Check for missing paths'''
         self.check_runners_dir()
@@ -322,59 +328,58 @@ class BottlesRunner:
 
     '''Component installation'''
     def async_install_component(self, args:list) -> None:
-        component, tag, file, after = args
+        component_type, component_name, after = args
+
+        manifest = self.fetch_component_manifest("runner", component_name)
 
         '''Notify if the user allows it'''
         self.window.send_notification(
             _("Download manager"),
-            _("Installing {0} runner …").format(tag),
+            _("Installing {0} runner …").format(component_name),
             "document-save-symbolic")
 
-        if component == "runner": file_name = tag
-        if component == "runner:proton": file_name = "proton-%s" % tag
-        if component == "dxvk": file_name = "dxvk-%s" % tag
-
         '''Add entry to download manager'''
-        download_entry = self.download_manager.new_download(file_name, False)
+        download_entry = self.download_manager.new_download(component_name, False)
 
-        logging.info(_("Installing component: [{0}].").format(tag))
+        logging.info(_("Installing component: [{0}].").format(component_name))
 
         '''Extract component archive'''
-        self.download_component(component, tag, file)
-        self.extract_component(component, file)
+        download = self.download_component("runner",
+                                manifest["File"][0]["url"],
+                                manifest["File"][0]["file_name"],
+                                manifest["File"][0]["rename"],
+                                checksum=manifest["File"][0]["file_checksum"])
+        if manifest["File"][0]["rename"]:
+            archive = manifest["File"][0]["rename"]
+        else:
+            archive = manifest["File"][0]["file_name"]
+        self.extract_component(component_type, archive)
 
         '''Empty the component lists and repopulate'''
-        if component in ["runner", "runner:proton"]:
+        if component_type == "runner":
             self.runners_available = []
             self.check_runners()
 
-        if component == "dxvk":
+        if component_type == "dxvk":
             self.dxvk_available = []
             self.check_dxvk()
 
         '''Notify if the user allows it'''
         self.window.send_notification(
             _("Download manager"),
-            _("Component {0} successfully installed!").format(tag),
+            _("Component {0} successfully installed!").format(component_name),
             "software-installed-symbolic")
 
         '''Remove entry from download manager'''
         download_entry.remove()
 
-        '''Update component views
-        if component in ["runner", "runner:proton"]:
-            self.window.page_preferences.update_runners()
-        if component == "dxvk":
-            self.window.page_preferences.update_dxvk()
-        '''
-
         '''Execute a method at the end if passed'''
         if after:
             after()
 
-    def install_component(self, component:str,  tag:str, file:str, after=False) -> None:
+    def install_component(self, component_type:str, component_name:str, after=False) -> None:
         if self.utils_conn.check_connection(True):
-            RunAsync(self.async_install_component, None, [component, tag, file, after])
+            RunAsync(self.async_install_component, None, [component_type, component_name, after])
 
     '''
     Method for deoendency installations
@@ -503,31 +508,11 @@ class BottlesRunner:
         if len(self.runners_available) == 0 and install_latest:
             logging.warning(_("No runners found."))
 
-            '''If connected, fetch runners from repository'''
+            '''If connected, install latest runner from repository'''
             if self.utils_conn.check_connection():
-                '''Wine'''
-                with urllib.request.urlopen(self.repository_api) as url:
-                    releases = json.loads(url.read().decode())
-                    # TODO: check for RC need improvements
-                    # without a centralized repository it is difficult
-                    # to provide a better method.
-                    if "rc" in releases[0]["tag_name"]:
-                        release = releases[1]
-                    else:
-                        release = releases[0]
-                    tag = release["tag_name"]
-                    file = release["assets"][0]["name"]
-
-                    self.install_component("runner", tag, file, after)
+                runner_name = next(iter(self.supported_wine_runners))
+                self.install_component("runner", runner_name)
             else:
-                '''Proton
-                with urllib.request.urlopen(self.proton_repository_api) as url:
-                    releases = json.loads(url.read().decode())
-                    tag = releases[0]["tag_name"]
-                    file = releases[0]["assets"][0]["name"]
-
-                    self.install_component("runner:proton", tag, file)
-                '''
                 return False
 
         '''Sort component lists alphabetically'''
@@ -619,6 +604,50 @@ class BottlesRunner:
                 installer_category,
                 installer_name
             )) as url:
+                if plain:
+                    return url.read().decode("utf-8")
+                else:
+                    return json.loads(url.read())
+
+            return False
+
+    '''Fetch components'''
+    def fetch_components(self) -> bool:
+        if self.utils_conn.check_connection():
+            with urllib.request.urlopen(self.components_repository_index) as url:
+                index = json.loads(url.read())
+
+                for component in index.items():
+                    if component[1]["Category"] == "runners":
+                        if component[1]["Sub-category"] == "wine":
+                            self.supported_wine_runners[component[0]] = component[1]
+                        if component[1]["Sub-category"] == "proton":
+                            self.supported_proton_runners[component[0]] = component[1]
+
+                    if component[1]["Category"] == "dxvk":
+                        self.supported_dxvk[component[0]] = component[1]
+        else:
+            return False
+        return True
+
+    '''Fetch component manifest'''
+    def fetch_component_manifest(self, component_type:str, component_name:str, plain:bool=False) -> Union[str, dict, bool]:
+        if component_type == "runner":
+            component = self.supported_wine_runners[component_name]
+
+        if self.utils_conn.check_connection():
+            if "Sub-category" in component:
+                manifest_url = "%s/%s/%s/%s.json" % (
+                    self.components_repository,
+                    component["Category"],
+                    component["Sub-category"],
+                    component_name)
+            else:
+                manifest_url = "%s/%s/%s.json" % (
+                    self.components_repository,
+                    component["Category"],
+                    component_name)
+            with urllib.request.urlopen(manifest_url) as url:
                 if plain:
                     return url.read().decode("utf-8")
                 else:
