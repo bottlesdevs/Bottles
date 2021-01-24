@@ -19,6 +19,8 @@ import re, time
 
 from gi.repository import Gtk, Handy
 
+from bottles.utils import RunAsync
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
 class BottlesOnboard(Handy.Window):
     __gtype_name__ = 'BottlesOnboard'
@@ -56,6 +58,7 @@ class BottlesOnboard(Handy.Window):
 
     def install_runner(self, widget):
         self.next_page()
+        RunAsync(self.pulse, None)
         self.runner.checks(after=self.next_page)
 
     def next_page(self, widget=False):
@@ -74,24 +77,11 @@ class BottlesOnboard(Handy.Window):
             self.btn_install.set_visible(False)
             self.btn_close.set_visible(True)
 
-    def finish(self):
-        self.label_confirm.set_text(
-            _("A bottle named “%s” was created successfully") % self.entry_name.get_text())
-
-        self.btn_cancel.set_visible(False)
-        self.btn_close.set_visible(True)
-
-        self.stack_create.set_visible_child_name("page_created")
-
-        '''Update bottles'''
-        self.runner.check_bottles()
-        self.window.page_list.update_bottles()
-
     '''Progressbar pulse every 1s'''
     def pulse(self):
         while True:
             time.sleep(1)
-            self.progressbar_creating.pulse()
+            self.progressbar_downloading.pulse()
 
     '''Destroy the window'''
     def close_window(self, widget):
