@@ -145,6 +145,7 @@ class BottlesProgramEntry(Handy.ActionRow):
 
         '''Populate widgets'''
         self.set_title(self.program_name)
+        self.set_icon_name(program[2])
 
         '''Signal conenctions'''
         self.btn_run.connect('pressed', self.run_executable)
