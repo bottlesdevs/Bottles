@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, subprocess, json, tarfile, time, shutil, re, urllib.request
+import os, subprocess, json, tarfile, time, shutil, re, urllib.request, fnmatch
 
 from typing import Union, NewType
 
@@ -53,6 +53,9 @@ class BottlesRunner:
 
     installers_repository = "https://raw.githubusercontent.com/bottlesdevs/programs/main/"
     installers_repository_index = "%s/index.json" % installers_repository
+
+    '''Icon paths'''
+    icons_user = "%s/.local/share/icons" % Path.home()
 
     '''Local paths'''
     temp_path = "%s/.local/share/bottles/temp" % Path.home()
@@ -548,6 +551,17 @@ class BottlesRunner:
                 return False
         return True
 
+    def find_program_icon(self, program_name):
+        logging.debug("Searching [%s] icon.." % program_name)
+        results = []
+        pattern = "*%s*" % program_name
+        for root, dirs, files in os.walk(self.icons_user):
+            for name in files:
+                if fnmatch.fnmatch(name.lower(), pattern.lower()):
+                    name = name.split("/")[-1][:-4]
+                    return name
+        return "application-x-executable"
+
     '''Get installed programs'''
     def get_programs(self, configuration:BottleConfig) -> list:
         '''TODO: Programs found should be stored in a database'''
@@ -577,7 +591,8 @@ class BottlesRunner:
 
                         if executable_path.find("ninstall") < 0:
                             path = path.replace(".lnk", "")
-                            installed_programs.append([path, executable_path])
+                            icon = self.find_program_icon(path)
+                            installed_programs.append([path, executable_path, icon])
                 except:
                     logging.error(_("Cannot find executable for [{0}].").format(
                         path))
