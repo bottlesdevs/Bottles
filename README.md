@@ -7,7 +7,7 @@
 
 <br/>
 
-> We are working on a new [UI](https://github.com/bottlesdevs/Bottles/issues/77) for Bottles. You can preview it from the `refresh` branch.
+> We are working on a new [UI](https://usebottles.com/blog/bottles-3-project-refresh/) for Bottles.
 
 <br/>
 
