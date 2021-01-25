@@ -83,7 +83,7 @@ holes and monsters under the bed. Be careful.
 ### AppImage :eyes:
 This is the first official method by which we have chosen to distribute Bottles.
 
-Download the latest [Build](https://github.com/bottlesdevs/Bottles/releases/tag/continuous-gh), 
+Download the latest [Stable](https://github.com/bottlesdevs/Bottles/releases) or [Unstable](https://github.com/bottlesdevs/Bottles/releases/tag/unstable) build, 
 then:
 ```bash
 chmod +x Bottles-devel-x86_64.AppImage
