@@ -323,6 +323,7 @@ class BottlesDetails(Gtk.Stack):
     pop_state = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     view_stack_switcher = Gtk.Template.Child()
+    group_programs = Gtk.Template.Child()
 
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
@@ -478,9 +479,16 @@ class BottlesDetails(Gtk.Stack):
                 icon="view-grid-symbolic",
                 tip=_("The programs installed in the bottle will be listed here.")))
 
+        i = 0
         for program in programs:
-            self.list_programs.add(
-                BottlesProgramEntry(self.window, self.configuration, program))
+            self.list_programs.add(BottlesProgramEntry(
+                self.window, self.configuration, program))
+
+            '''Append first 5 entries to group_programs'''
+            if i < 5:
+                self.group_programs.add(BottlesProgramEntry(
+                    self.window, self.configuration, program))
+            i =+ 1
 
     '''Populate list_dependencies'''
     def update_dependencies(self, widget=False):
