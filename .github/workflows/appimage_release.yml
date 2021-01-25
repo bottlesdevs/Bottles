@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04 # Ubuntu Bionic Beaver
     steps:
-      - name: Update Packages 
+      - name: Update Packages
         run: |
           sudo apt update -qq
       - name: Install Packages
