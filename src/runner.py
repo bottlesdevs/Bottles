@@ -623,8 +623,7 @@ class BottlesRunner:
             )) as url:
                 if plain:
                     return url.read().decode("utf-8")
-                else:
-                    return json.loads(url.read())
+                return json.loads(url.read())
 
             return False
 
@@ -669,8 +668,7 @@ class BottlesRunner:
             with urllib.request.urlopen(manifest_url) as url:
                 if plain:
                     return url.read().decode("utf-8")
-                else:
-                    return json.loads(url.read())
+                return json.loads(url.read())
 
             return False
 
@@ -696,8 +694,7 @@ class BottlesRunner:
             )) as url:
                 if plain:
                     return url.read().decode("utf-8")
-                else:
-                    return json.loads(url.read())
+                return json.loads(url.read())
 
             return False
 
@@ -898,8 +895,7 @@ class BottlesRunner:
         try:
             if runner_type in ["", "wine"]:
                 return [idx for idx in self.runners_available if idx.lower().startswith("lutris")][0]
-            else:
-                return [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
+            return [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
         except IndexError:
             return "Undefined"
 
@@ -969,9 +965,9 @@ class BottlesRunner:
             logging.info(_("Successfully deleted bottle in path: [{0}]").format(
                 path))
             return True
-        else:
-            logging.error(_("Empty path found, failing to avoid disasters."))
-            return False
+
+        logging.error(_("Empty path found, failing to avoid disasters."))
+        return False
 
     def delete_bottle(self, configuration:BottleConfig) -> None:
         RunAsync(self.async_delete_bottle, None, [configuration])
@@ -1729,18 +1725,18 @@ class BottlesRunner:
                     configuration.get("Name")
                 ), "software-installed-symbolic")
             return True
-        else:
-            logging.error(_("Failed to save backup in path: {0}.").format(path))
 
-            '''Notify if the user allows it'''
-            self.window.send_notification(
-                "Backup",
-                _("Failed to create backup for {0}!").format(
-                    configuration.get("Name")
-                ), "dialog-error-symbolic")
+        logging.error(_("Failed to save backup in path: {0}.").format(path))
+
+        '''Notify if the user allows it'''
+        self.window.send_notification(
+            "Backup",
+            _("Failed to create backup for {0}!").format(
+                configuration.get("Name")
+            ), "dialog-error-symbolic")
 
         '''Set UI to usable again'''
-        self.window.set_usable_ui(False)
+        self.window.set_usable_ui(True)
 
         return False
 
@@ -1786,15 +1782,15 @@ class BottlesRunner:
                 _("Your backup {0} was imported successfully.!").format(
                     backup_name), "software-installed-symbolic")
             return True
-        else:
-            logging.error(_("Failed importing backup: [{0}]").format(
-                backup_name))
 
-            '''Notify if the user allows it'''
-            self.window.send_notification(
-                "Backup",
-                _("Failed importing backup {0}!").format(backup_name),
-                "dialog-error-symbolic")
+        logging.error(_("Failed importing backup: [{0}]").format(
+            backup_name))
+
+        '''Notify if the user allows it'''
+        self.window.send_notification(
+            "Backup",
+            _("Failed importing backup {0}!").format(backup_name),
+            "dialog-error-symbolic")
         return False
 
     def import_backup_bottle(self, scope:str, path:str) -> None:
