@@ -85,7 +85,7 @@ class BottlesAddDetails(Gtk.Box):
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,]')
         name = widget.get_text()
 
-        if(regex.search(name) == None):
+        if(regex.search(name) is None):
             self.btn_save.set_sensitive(True)
             widget.set_icon_from_icon_name(1, "")
         else:

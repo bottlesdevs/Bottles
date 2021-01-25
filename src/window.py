@@ -16,12 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import gi
+import webbrowser
 
 gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk, Gio, Notify
-
-import webbrowser
 
 from .params import *
 from .runner import BottlesRunner
@@ -193,7 +192,6 @@ class BottlesWindow(Gtk.ApplicationWindow):
 
                 '''Runner checks'''
                 self.runner.checks()
-                # TODO: do not install RC
             else:
                 logging.info(_("Cancel status received"))
 

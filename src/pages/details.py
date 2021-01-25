@@ -17,7 +17,8 @@
 
 from gi.repository import Gtk
 
-import webbrowser, re
+import webbrowser
+import re
 
 from .dialog import BottlesDialog
 from bottles.empty import BottlesEmpty
@@ -525,12 +526,6 @@ class BottlesDetails(Gtk.Box):
             icon="dialog-warning-symbolic",
             tip=_("We can't fetch the installers from the repository right now.")))
 
-        for installer in supported_installers:
-            self.list_installers.add(
-                BottlesInstallerEntry(self.window,
-                                      self.configuration,
-                                      installer))
-
     '''Populate list_states'''
     def update_states(self, widget=False):
         if self.configuration.get("Versioning"):
@@ -713,7 +708,7 @@ class BottlesDetails(Gtk.Box):
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         comment = widget.get_text()
 
-        if(regex.search(comment) == None):
+        if(regex.search(comment) is None):
             self.btn_add_state.set_sensitive(True)
             widget.set_icon_from_icon_name(1, "")
         else:

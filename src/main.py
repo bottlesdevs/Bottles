@@ -15,7 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, sys, gi, gettext, locale, webbrowser
+import os
+import sys
+import gi
+import gettext
+import locale
+import webbrowser
 
 gi.require_version('Gtk', '3.0')
 
