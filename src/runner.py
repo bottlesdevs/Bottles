@@ -1137,7 +1137,7 @@ class BottlesRunner:
 
     def run_cmd(self, configuration:BottleConfig) -> None:
         logging.info(_("Running a CMD on the wineprefix …"))
-        RunAsync(self.run_command, None, configuration, "wineconsole cmd")
+        RunAsync(self.run_command, None, configuration, "cmd", True)
 
     def run_taskmanager(self, configuration:BottleConfig) -> None:
         logging.info(_("Running a Task Manager on the wineprefix …"))
