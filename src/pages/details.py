@@ -17,7 +17,8 @@
 
 from gi.repository import Gtk, Handy
 
-import webbrowser, re
+import re
+import webbrowser
 
 from .dialog import BottlesDialog, BottlesMessageDialog
 from bottles.empty import BottlesEmpty

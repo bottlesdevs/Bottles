@@ -16,13 +16,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import gi
+import webbrowser
 
 gi.require_version('Handy', '1')
 gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk, Gio, Notify, Handy
-
-import webbrowser
 
 from .params import *
 from .runner import BottlesRunner
