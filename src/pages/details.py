@@ -538,12 +538,6 @@ class BottlesDetails(Gtk.Stack):
             icon="dialog-warning-symbolic",
             tip=_("We can't fetch the installers from the repository right now.")))
 
-        for installer in supported_installers:
-            self.list_installers.add(
-                BottlesInstallerEntry(self.window,
-                                      self.configuration,
-                                      installer))
-
     '''Populate list_states'''
     def update_states(self, widget=False):
         if self.configuration.get("Versioning"):
