@@ -739,7 +739,7 @@ class BottlesDetails(Gtk.Stack):
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         comment = widget.get_text()
 
-        if(regex.search(comment) == None):
+        if(regex.search(comment) is None):
             self.btn_add_state.set_sensitive(True)
             widget.set_icon_from_icon_name(1, "")
         else:
