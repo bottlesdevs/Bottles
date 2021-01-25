@@ -90,8 +90,8 @@ Download the release of your choice:
 
 then:
 ```bash
-chmod +x Bottles-devel-x86_64.AppImage
-./Bottles-devel-x86_64.AppImage
+chmod +x Bottles-*-x86_64.AppImage
+./Bottles-*-x86_64.AppImage
 ```
 And you're done!
 
