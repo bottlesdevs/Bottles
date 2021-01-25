@@ -584,7 +584,7 @@ class BottlesRunner:
                         lnk = lnk.read()
 
                         executable_path = re.search('C:(.*).exe', lnk)
-                        if executable_path != None:
+                        if executable_path is not None:
                             executable_path = executable_path.group(0)
                         else:
                             executable_path = re.search('C:(.*).bat', lnk).group(0)
