@@ -33,6 +33,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           draft: false
           prerelease: false
-          automatic_release_tag: continuous-gh
-          title: Release build (continuous)
+          automatic_release_tag: unstable
+          title: Unstable build
           files: /home/runner/work/Bottles/Bottles/Bottles/build/Bottles-devel-x86_64.AppImage
