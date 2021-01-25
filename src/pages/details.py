@@ -471,6 +471,7 @@ class BottlesDetails(Gtk.Stack):
     '''Populate list_programs'''
     def update_programs(self, widget=False):
         for w in self.list_programs: w.destroy()
+        for w in self.group_programs: w.destroy()
 
         programs = self.runner.get_programs(self.configuration)
 
