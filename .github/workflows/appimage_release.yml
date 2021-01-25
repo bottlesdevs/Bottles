@@ -12,7 +12,7 @@ jobs:
       - name: Update Packages 
         run: |
           sudo apt update -qq
-      - name: Install Packages 
+      - name: Install Packages
         run: |
           sudo apt install python3-pip python-dev build-essential gettext git
           sudo pip3 install --upgrade pip
