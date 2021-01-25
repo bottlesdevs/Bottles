@@ -591,7 +591,8 @@ class BottlesRunner:
 
                         if executable_path.find("ninstall") < 0:
                             path = path.replace(".lnk", "")
-                            icon = self.find_program_icon(path)
+                            executable_name = executable_path.split("\\")[-1][:-4]
+                            icon = self.find_program_icon(executable_name)
                             installed_programs.append([path, executable_path, icon])
                 except:
                     logging.error(_("Cannot find executable for [{0}].").format(
