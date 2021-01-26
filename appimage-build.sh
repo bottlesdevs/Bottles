@@ -11,6 +11,7 @@ blue_bg="\e[0;104m${expand_bg}"
 red_bg="\e[0;101m${expand_bg}"
 green_bg="\e[0;102m${expand_bg}"
 green="\e[0;92m"
+black="\e[30m"
 white="\e[0;97m"
 bold="\e[1m"
 uline="\e[4m"
@@ -24,9 +25,9 @@ function title {
 
 function print_execution {
 	if $1; then
-		echo -e "$green_bg$bold-- $1$reset"
+		echo -e "$green_bg$bold$black-- $1$reset"
 	else
-		echo -e "$red_bg$bold-- Operation failed for: $1$reset"
+		echo -e "$red_bg$bold$black-- Operation failed for: $1$reset"
 	fi
 }
 
