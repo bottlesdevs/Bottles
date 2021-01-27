@@ -19,7 +19,10 @@ jobs:
           sudo pip3 install meson
           sudo pip3 install ninja
       - name: Repo cloning
-        run: git clone https://github.com/bottlesdevs/Bottles
+        run: |
+          git clone https://github.com/bottlesdevs/Bottles
+          cd Bottles
+          git checkout refresh
       - name: g++ version check
         run: |
           if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
