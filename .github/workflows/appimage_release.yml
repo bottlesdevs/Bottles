@@ -7,27 +7,31 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-18.04 # Ubuntu Bionic Beaver
+    runs-on: ubuntu-18.04
     steps:
-      - name: Update Packages
-        run: |
-          sudo apt update -qq
-      - name: Install Packages
+      - name: Updating system
+        run: sudo apt update -qq
+          
+      - name: Installing build dependencies
         run: |
           sudo apt install python3-pip python-dev build-essential gettext git
           sudo pip3 install --upgrade pip
           sudo pip3 install meson
           sudo pip3 install ninja
-      - name: Repo cloning
+          
+      - name: Cloning repository
         run: git clone https://github.com/bottlesdevs/Bottles
+        
       - name: g++ version check
         run: |
           if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-      - name: Executing Script
+          
+      - name: Building Bottles AppImage
         run: |
           cd Bottles
           chmod +x appimage-build.sh
           sudo ./appimage-build.sh
+          
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
