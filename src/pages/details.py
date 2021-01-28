@@ -28,9 +28,10 @@ class BottlesLaunchOptions(Handy.Window):
     __gtype_name__ = 'BottlesLaunchOptions'
 
     '''Get widgets from template'''
-    #stack_create = Gtk.Template.Child()
+    entry_arguments = Gtk.Template.Child()
+    btn_cancel = Gtk.Template.Child()
 
-    def __init__(self, window, **kwargs):
+    def __init__(self, window, arguments, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
@@ -40,6 +41,13 @@ class BottlesLaunchOptions(Handy.Window):
         '''Common variables'''
         self.window = window
         self.runner = window.runner
+        self.arguments = arguments
+
+        '''Populate widgets'''
+        self.entry_arguments.set_text(self.arguments)
+
+        '''Signal connections'''
+        self.btn_cancel.connect('pressed', self.close_window)
 
     '''Destroy the window'''
     def close_window(self, widget):
@@ -163,6 +171,7 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
+        self.arguments = ""
         self.program_name = program[0]
         self.program_executable = program[1].split("\\")[-1]
         self.program_executable_path = program[1]
@@ -180,13 +189,10 @@ class BottlesProgramEntry(Handy.ActionRow):
 
         '''Populate entry_arguments by configuration'''
         if self.program_executable in self.configuration["Programs"]:
-            arguments = self.configuration["Programs"][self.program_executable]
-            # TODO: executable arguments should be stored and displayed
-            # in the new dialog-launch-options on spawn
-            # self.entry_arguments.set_text(arguments)
+            self.arguments = self.configuration["Programs"][self.program_executable]
 
     def show_launch_options_view(self, widget=False):
-        new_window = BottlesLaunchOptions(self.window)
+        new_window = BottlesLaunchOptions(self.window, self.arguments)
         new_window.present()
 
     '''Run executable'''
