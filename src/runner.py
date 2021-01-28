@@ -518,15 +518,23 @@ class BottlesRunner:
 
         '''
         If there are no locally installed runners, download the latest
-        builds for Wine and Proton from the GitHub repositories.
-        A very special thanks to Lutris & GloriousEggroll for builds <3!
+        build for chardonnay from the components repository.
+        A very special thanks to Lutris & GloriousEggroll for extra builds <3!
         '''
         if len(self.runners_available) == 0 and install_latest:
             logging.warning(_("No runners found."))
 
             '''If connected, install latest runner from repository'''
             if self.utils_conn.check_connection():
-                runner_name = next(iter(self.supported_wine_runners))
+                if not self.window.settings.get_boolean("release-candidate"):
+                    tmp_runners = []
+                    for runner in self.supported_wine_runners.items():
+                        if runner[1]["Channel"] not in ["rc", "unstable"]:
+                            tmp_runners.append(runner)
+                else:
+                    tmp_runners = self.supported_wine_runners
+
+                runner_name = next(iter(tmp_runners))[0]
                 self.install_component("runner", runner_name, after=after)
             else:
                 return False
