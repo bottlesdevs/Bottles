@@ -35,9 +35,6 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
           <object class="GtkToggleButton" id="btn_arguments">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
@@ -76,6 +73,9 @@
             <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
         </child>
         <child>
           <object class="GtkBox">
@@ -176,7 +176,7 @@
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
-          <object class="GtkModelButton">
+          <object class="GtkModelButton" id="btn_launch_options">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>

@@ -23,6 +23,28 @@ import webbrowser
 from .dialog import BottlesDialog, BottlesMessageDialog
 from bottles.empty import BottlesEmpty
 
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
+class BottlesLaunchOptions(Handy.Window):
+    __gtype_name__ = 'BottlesLaunchOptions'
+
+    '''Get widgets from template'''
+    #stack_create = Gtk.Template.Child()
+
+    def __init__(self, window, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(window)
+
+        '''Init template'''
+        self.init_template()
+
+        '''Common variables'''
+        self.window = window
+        self.runner = window.runner
+
+    '''Destroy the window'''
+    def close_window(self, widget):
+        self.destroy()
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
 class BottlesInstallerEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesInstallerEntry'
@@ -129,6 +151,7 @@ class BottlesProgramEntry(Handy.ActionRow):
     btn_winehq = Gtk.Template.Child()
     btn_protondb = Gtk.Template.Child()
     btn_issues = Gtk.Template.Child()
+    btn_launch_options = Gtk.Template.Child()
 
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
@@ -153,6 +176,7 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.btn_winehq.connect('pressed', self.open_winehq)
         self.btn_protondb.connect('pressed', self.open_protondb)
         self.btn_issues.connect('pressed', self.open_issues)
+        self.btn_launch_options.connect('pressed', self.show_launch_options_view)
 
         '''Populate entry_arguments by configuration'''
         if self.program_executable in self.configuration["Programs"]:
@@ -160,6 +184,10 @@ class BottlesProgramEntry(Handy.ActionRow):
             # TODO: executable arguments should be stored and displayed
             # in the new dialog-launch-options on spawn
             # self.entry_arguments.set_text(arguments)
+
+    def show_launch_options_view(self, widget=False):
+        new_window = BottlesLaunchOptions(self.window)
+        new_window.present()
 
     '''Run executable'''
     def run_executable(self, widget):
