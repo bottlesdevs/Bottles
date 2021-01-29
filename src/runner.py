@@ -281,13 +281,18 @@ class BottlesRunner:
 
         try:
             tar = tarfile.open("%s/%s" % (self.temp_path, archive))
+            root_dir = tar.getnames()[0]
             tar.extractall(path)
-            return True
         except EOFError:
             os.remove(os.path.join(self.temp_path, archive))
             shutil.rmtree(os.path.join(path, archive[:-7]))
             logging.error(_("Extraction failed! Archive ends earlier than expected."))
             return False
+
+        if root_dir.endswith("x86_64"):
+            shutil.move("%s/%s" % (path, root_dir),
+                        "%s/%s" % (path, root_dir[:-7]))
+        return True
 
     '''Download a specific component release'''
     def download_component(self, component:str, download_url:str, file:str, rename:bool=False, checksum:bool=False) -> bool:
@@ -651,10 +656,17 @@ class BottlesRunner:
 
                 for component in index.items():
                     if component[1]["Category"] == "runners":
+
                         if component[1]["Sub-category"] == "wine":
                             self.supported_wine_runners[component[0]] = component[1]
+                            if component[0] in self.runners_available:
+                                self.supported_wine_runners[component[0]]["Installed"] = True
+
                         if component[1]["Sub-category"] == "proton":
                             self.supported_proton_runners[component[0]] = component[1]
+                            if component[0] in self.runners_available:
+                                self.supported_proton_runners[component[0]]["Installed"] = True
+
 
                     if component[1]["Category"] == "dxvk":
                         self.supported_dxvk[component[0]] = component[1]
