@@ -29,6 +29,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
     switch_versioning = Gtk.Template.Child()
     switch_installers = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
+    list_runners = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -60,6 +61,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.switch_installers.connect('state-set', self.toggle_experimental_installers)
 
         self.populate_dxvk_list()
+        self.populate_runners_list()
 
     '''Toggle dark mode and store in user settings'''
     def toggle_dark(self, widget, state):
@@ -89,6 +91,13 @@ class BottlesPreferences(Handy.PreferencesWindow):
     def populate_dxvk_list(self):
         for dxvk in self.runner.supported_dxvk.items():
             self.list_dxvk.add(BottlesDxvkEntry(self.window, dxvk))
+
+    def populate_runners_list(self):
+        for runner in self.runner.supported_wine_runners.items():
+            self.list_runners.add(BottlesDxvkEntry(self.window, runner))
+
+        for runner in self.runner.supported_proton_runners.items():
+            self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')
 class BottlesDxvkEntry(Handy.ActionRow):
@@ -137,40 +146,35 @@ class BottlesDxvkEntry(Handy.ActionRow):
                                      dxvk=self.dxvk_name)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
-class BottlesRunnerEntry(Gtk.Box):
+class BottlesRunnerEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesRunnerEntry'
 
     '''Get widgets from template'''
-    label_name = Gtk.Template.Child()
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
-    spinner_installation = Gtk.Template.Child()
+    btn_actions = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
 
-    def __init__(self, window, runner_name, installable=False, **kwargs):
+    def __init__(self, window, runner_entry, **kwargs):
         super().__init__(**kwargs)
 
         '''Init template'''
         self.init_template()
 
-        '''Set runner type by name, append Proton- if proton'''
-        if not runner_name.lower().startswith(("lutris", "proton", "dxvk")):
-            self.runner_type = "runner:proton"
-            runner_name = "Proton-%s" % runner_name
-        else:
-            self.runner_type = "runner"
-
         '''Common variables'''
         self.window = window
         self.runner = window.runner
-        self.runner_name = runner_name
+        self.runner_name = runner_entry[0]
 
         '''Populate widgets'''
-        self.label_name.set_text(runner_name)
-        if installable:
-            self.runner_tag = installable[0]
-            self.runner_file = installable[1]
+        self.set_title(self.runner_name)
+
+        if runner_entry[1].get("Installed"):
+            self.btn_browse.set_visible(True)
+        else:
             self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
+            self.btn_actions.set_visible(False)
+
 
         '''Signal connections'''
         self.btn_download.connect('pressed', self.download_runner)
@@ -178,14 +182,11 @@ class BottlesRunnerEntry(Gtk.Box):
 
     '''Install runner'''
     def download_runner(self, widget):
-        self.btn_download.set_visible(False)
-        self.spinner_installation.set_visible(True)
-        self.runner.install_component(self.runner_type,
-                                      self.runner_tag,
-                                      self.runner_file)
+        print("install runner")
 
     '''Browse runner files'''
     def run_browse(self, widget):
+        self.btn_download.set_visible(False)
         self.runner.open_filemanager(path_type="runner",
                                      runner=self.runner_name)
 
