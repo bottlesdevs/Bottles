@@ -94,7 +94,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
 
     def populate_runners_list(self):
         for runner in self.runner.supported_wine_runners.items():
-            self.list_runners.add(BottlesDxvkEntry(self.window, runner))
+            self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 
         for runner in self.runner.supported_proton_runners.items():
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
@@ -135,9 +135,8 @@ class BottlesDxvkEntry(Handy.ActionRow):
 
     '''Install dxvk'''
     def download_dxvk(self, widget):
-        self.runner.install_component("dxvk",
-                                      self.dxvk_tag,
-                                      self.dxvk_file)
+        print("install dxvk")
+        # self.runner.install_component("dxvk", self.dxvk_tag, self.dxvk_file)
 
     '''Browse dxvk files'''
     def run_browse(self, widget):
