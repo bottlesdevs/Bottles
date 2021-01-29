@@ -97,6 +97,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
     '''Get widgets from template'''
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
+    btn_actions = Gtk.Template.Child()
 
     def __init__(self, window, dxvk, **kwargs):
         super().__init__(**kwargs)
@@ -107,14 +108,17 @@ class BottlesDxvkEntry(Handy.ActionRow):
         '''Common variables'''
         self.window = window
         self.runner = window.runner
-        self.dxvk_name = "dxvk-%s" % dxvk[0][1:]
+        self.dxvk_name = dxvk[0]
 
         '''Populate widgets'''
         self.set_title(self.dxvk_name)
 
         if dxvk[1].get("Installed"):
+            self.btn_browse.set_visible(True)
+        else:
             self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
+            self.btn_actions.set_visible(False)
+
 
         '''Signal connections'''
         self.btn_download.connect('pressed', self.download_dxvk)
