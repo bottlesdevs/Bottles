@@ -658,6 +658,8 @@ class BottlesRunner:
 
                     if component[1]["Category"] == "dxvk":
                         self.supported_dxvk[component[0]] = component[1]
+                        if component[0] in self.dxvk_available:
+                            self.supported_dxvk[component[0]]["Installed"] = True
         else:
             return False
         return True

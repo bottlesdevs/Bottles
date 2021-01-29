@@ -28,6 +28,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
     switch_release_candidate = Gtk.Template.Child()
     switch_versioning = Gtk.Template.Child()
     switch_installers = Gtk.Template.Child()
+    list_dxvk = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -58,6 +59,8 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.switch_versioning.connect('state-set', self.toggle_experimental_versioning)
         self.switch_installers.connect('state-set', self.toggle_experimental_installers)
 
+        self.populate_dxvk_list()
+
     '''Toggle dark mode and store in user settings'''
     def toggle_dark(self, widget, state):
         self.settings.set_boolean("dark-theme", state)
@@ -82,6 +85,52 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.settings.set_boolean("experiments-installers", state)
         self.window.btn_installers.set_visible(
             self.settings.get_boolean("experiments-installers"))
+
+    def populate_dxvk_list(self):
+        for dxvk in self.runner.supported_dxvk.items():
+            self.list_dxvk.add(BottlesDxvkEntry(self.window, dxvk))
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')
+class BottlesDxvkEntry(Handy.ActionRow):
+    __gtype_name__ = 'BottlesDxvkEntry'
+
+    '''Get widgets from template'''
+    btn_download = Gtk.Template.Child()
+    btn_browse = Gtk.Template.Child()
+
+    def __init__(self, window, dxvk, **kwargs):
+        super().__init__(**kwargs)
+
+        '''Init template'''
+        self.init_template()
+
+        '''Common variables'''
+        self.window = window
+        self.runner = window.runner
+        self.dxvk_name = "dxvk-%s" % dxvk[0][1:]
+
+        '''Populate widgets'''
+        self.set_title(self.dxvk_name)
+
+        if dxvk[1].get("Installed"):
+            self.btn_download.set_visible(True)
+            self.btn_browse.set_visible(False)
+
+        '''Signal connections'''
+        self.btn_download.connect('pressed', self.download_dxvk)
+        self.btn_browse.connect('pressed', self.run_browse)
+
+    '''Install dxvk'''
+    def download_dxvk(self, widget):
+        self.runner.install_component("dxvk",
+                                      self.dxvk_tag,
+                                      self.dxvk_file)
+
+    '''Browse dxvk files'''
+    def run_browse(self, widget):
+        self.btn_download.set_visible(False)
+        self.runner.open_filemanager(path_type="dxvk",
+                                     dxvk=self.dxvk_name)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Gtk.Box):
@@ -135,55 +184,6 @@ class BottlesRunnerEntry(Gtk.Box):
     def run_browse(self, widget):
         self.runner.open_filemanager(path_type="runner",
                                      runner=self.runner_name)
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')
-class BottlesDxvkEntry(Gtk.Box):
-    __gtype_name__ = 'BottlesDxvkEntry'
-
-    '''Get widgets from template'''
-    label_name = Gtk.Template.Child()
-    btn_download = Gtk.Template.Child()
-    btn_browse = Gtk.Template.Child()
-    spinner_installation = Gtk.Template.Child()
-
-    def __init__(self, window, dxvk_name, installable=False, **kwargs):
-        super().__init__(**kwargs)
-
-        '''Init template'''
-        self.init_template()
-
-        if not dxvk_name.lower().startswith("dxvk"):
-            dxvk_name = "dxvk-%s" % dxvk_name[1:]
-
-        '''Common variables'''
-        self.window = window
-        self.runner = window.runner
-        self.dxvk_name = dxvk_name
-
-        '''Populate widgets'''
-        self.label_name.set_text(dxvk_name)
-        if installable:
-            self.dxvk_tag = installable[0]
-            self.dxvk_file = installable[1]
-            self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
-
-        '''Signal connections'''
-        self.btn_download.connect('pressed', self.download_dxvk)
-        self.btn_browse.connect('pressed', self.run_browse)
-
-    '''Install dxvk'''
-    def download_dxvk(self, widget):
-        self.runner.install_component("dxvk",
-                                      self.dxvk_tag,
-                                      self.dxvk_file)
-
-    '''Browse dxvk files'''
-    def run_browse(self, widget):
-        self.btn_download.set_visible(False)
-        self.spinner_installation.set_visible(True)
-        self.runner.open_filemanager(path_type="dxvk",
-                                     dxvk=self.dxvk_name)
 
 
 '''
