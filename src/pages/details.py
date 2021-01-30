@@ -49,6 +49,14 @@ class BottlesDLLOverrideEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_remove.connect('pressed', self.remove_override)
+        self.combo_type.connect('changed', self.set_override_type)
+
+    def set_override_type(self, widget):
+        override_type = widget.get_active_id()
+        self.runner.update_configuration(configuration=self.configuration,
+                                         key=self.override[0],
+                                         value=override_type,
+                                         scope="DLL_Overrides")
 
     '''Remove DLL override'''
     def remove_override(self, widget):
