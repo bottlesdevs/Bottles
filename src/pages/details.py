@@ -270,6 +270,7 @@ class BottlesProgramEntry(Handy.ActionRow):
     btn_protondb = Gtk.Template.Child()
     btn_issues = Gtk.Template.Child()
     btn_launch_options = Gtk.Template.Child()
+    btn_uninstall = Gtk.Template.Child()
 
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
@@ -296,6 +297,7 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.btn_protondb.connect('pressed', self.open_protondb)
         self.btn_issues.connect('pressed', self.open_issues)
         self.btn_launch_options.connect('pressed', self.show_launch_options_view)
+        self.btn_uninstall.connect('pressed', self.window.page_details.run_uninstaller)
 
         '''Populate entry_arguments by configuration'''
         if self.program_executable in self.configuration["Programs"]:
