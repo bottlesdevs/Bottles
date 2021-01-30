@@ -6,13 +6,13 @@
   <template class="BottlesDLLOverrides" parent="HdyWindow">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window-position">center</property>
-    <property name="default-width">550</property>
+    <property name="default-width">500</property>
     <property name="destroy-with-parent">True</property>
     <property name="type-hint">dialog</property>
     <property name="gravity">center</property>
+    <property name="has-resize-grip">True</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -35,7 +35,7 @@
           <object class="HdyClamp">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="maximum-size">500</property>
+            <property name="maximum-size">450</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -76,7 +76,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton" id="btn_save1">
+                              <object class="GtkButton" id="btn_save">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
