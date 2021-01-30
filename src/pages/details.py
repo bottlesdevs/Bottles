@@ -23,17 +23,16 @@ import webbrowser
 from .dialog import BottlesDialog, BottlesMessageDialog
 from bottles.empty import BottlesEmpty
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
-class BottlesDLLOverrides(Handy.Window):
-    __gtype_name__ = 'BottlesDLLOverrides'
+@Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
+class BottlesDLLOverrideEntry(Handy.ActionRow):
+    __gtype_name__ = 'BottlesDLLOverrideEntry'
 
     '''Get widgets from template'''
-    entry_name = Gtk.Template.Child()
-    btn_save = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
+    combo_type = Gtk.Template.Child()
 
-    def __init__(self, window, configuration, **kwargs):
+    def __init__(self, window, configuration, override, **kwargs):
         super().__init__(**kwargs)
-        self.set_transient_for(window)
 
         '''Init template'''
         self.init_template()
@@ -42,6 +41,40 @@ class BottlesDLLOverrides(Handy.Window):
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
+        self.override = override
+
+        '''Populate widgets'''
+        self.set_title(self.override[0])
+        self.set_subtitle(self.override[1])
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
+class BottlesDLLOverrides(Handy.Window):
+    __gtype_name__ = 'BottlesDLLOverrides'
+
+    '''Get widgets from template'''
+    entry_name = Gtk.Template.Child()
+    btn_save = Gtk.Template.Child()
+    list_overrides = Gtk.Template.Child()
+
+    def __init__(self, window, configuration, **kwargs):
+        super().__init__(**kwargs)
+
+        '''Init template'''
+        self.init_template()
+
+        '''Common variables'''
+        self.window = window
+        self.runner = window.runner
+        self.configuration = configuration
+
+        '''Populate widgets'''
+        self.populate_overrides_list()
+
+    def populate_overrides_list(self):
+        for override in self.configuration.get("DLL_Overrides").items():
+            self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
+                                                            self.configuration,
+                                                            override))
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class BottlesLaunchOptions(Handy.Window):

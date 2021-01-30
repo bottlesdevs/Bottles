@@ -115,9 +115,9 @@ class BottlesRunner:
             "pulseaudio_latency": False,
             "fixme_logs": False,
             "environment_variables": "",
-            "dll_overrides": ""
         },
         "Installed_Dependencies" : [],
+        "DLL_Overrides" : {},
         "Programs" : {}
     }
 
