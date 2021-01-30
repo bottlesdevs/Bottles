@@ -23,6 +23,26 @@ import webbrowser
 from .dialog import BottlesDialog, BottlesMessageDialog
 from bottles.empty import BottlesEmpty
 
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
+class BottlesDLLOverrides(Handy.Window):
+    __gtype_name__ = 'BottlesDLLOverrides'
+
+    '''Get widgets from template'''
+    entry_name = Gtk.Template.Child()
+    btn_save = Gtk.Template.Child()
+
+    def __init__(self, window, configuration, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(window)
+
+        '''Init template'''
+        self.init_template()
+
+        '''Common variables'''
+        self.window = window
+        self.runner = window.runner
+        self.configuration = configuration
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class BottlesLaunchOptions(Handy.Window):
     __gtype_name__ = 'BottlesLaunchOptions'
@@ -205,6 +225,7 @@ class BottlesProgramEntry(Handy.ActionRow):
         if self.program_executable in self.configuration["Programs"]:
             self.arguments = self.configuration["Programs"][self.program_executable]
 
+    '''Show dialog for launch options'''
     def show_launch_options_view(self, widget=False):
         new_window = BottlesLaunchOptions(self.window,
                                           self.configuration,
@@ -357,7 +378,6 @@ class BottlesDetails(Gtk.Stack):
     list_states = Gtk.Template.Child()
     progress_disk = Gtk.Template.Child()
     entry_environment_variables = Gtk.Template.Child()
-    entry_overrides = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
@@ -390,6 +410,7 @@ class BottlesDetails(Gtk.Stack):
         self.btn_uninstaller.connect('pressed', self.run_uninstaller)
         self.btn_regedit.connect('pressed', self.run_regedit)
         self.btn_delete.connect('pressed', self.confirm_delete)
+        self.btn_overrides.connect('pressed', self.show_dll_overrides_view)
 
         self.btn_winecfg.connect('activate', self.run_winecfg)
         self.btn_debug.connect('activate', self.run_debug)
@@ -400,13 +421,13 @@ class BottlesDetails(Gtk.Stack):
         self.btn_controlpanel.connect('activate', self.run_controlpanel)
         self.btn_uninstaller.connect('activate', self.run_uninstaller)
         self.btn_regedit.connect('activate', self.run_regedit)
+        self.btn_overrides.connect('activate', self.show_dll_overrides_view)
 
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
         self.btn_killall.connect('pressed', self.run_killall)
         self.btn_programs_updates.connect('pressed', self.update_programs)
         self.btn_environment_variables.connect('pressed', self.save_environment_variables)
-        self.btn_overrides.connect('pressed', self.save_overrides)
         self.btn_backup_config.connect('pressed', self.backup_config)
         self.btn_backup_full.connect('pressed', self.backup_full)
         self.btn_add_state.connect('pressed', self.add_state)
@@ -466,7 +487,6 @@ class BottlesDetails(Gtk.Stack):
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
         self.combo_runner.set_active_id(self.configuration.get("Runner"))
         self.entry_environment_variables.set_text(parameters["environment_variables"])
-        self.entry_overrides.set_text(parameters["dll_overrides"])
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
 
         '''Unlock signals'''
@@ -487,15 +507,6 @@ class BottlesDetails(Gtk.Stack):
     '''Show dependencies tab'''
     def show_dependencies(self, widget):
         self.set_page(2)
-
-    '''Save DLL overrides'''
-    def save_overrides(self, widget):
-        overrides = self.entry_overrides.get_text()
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "dll_overrides",
-                                                             overrides,
-                                                             scope="Parameters")
-        self.configuration = new_configuration
 
     '''Save environment variables'''
     def save_environment_variables(self, widget):
@@ -844,6 +855,12 @@ class BottlesDetails(Gtk.Stack):
             self.window.go_back()
 
         dialog_delete.destroy()
+
+    '''Show dialog for DLL overrides'''
+    def show_dll_overrides_view(self, widget=False):
+        new_window = BottlesDLLOverrides(self.window,
+                                         self.configuration)
+        new_window.present()
 
     '''Open URLs'''
     @staticmethod

@@ -1378,12 +1378,13 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="title" translatable="yes">DLL Overrides</property>
+                            <property name="activatable-widget">btn_overrides</property>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <child>
-                                  <object class="GtkButton" id="btn_versioning">
+                                  <object class="GtkButton" id="btn_overrides">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -1412,68 +1413,6 @@ Disable if you're experiencing graphical glitches.</property>
                         </child>
                         <child>
                           <placeholder/>
-                        </child>
-                        <child>
-                          <!-- n-columns=3 n-rows=1 -->
-                          <object class="GtkGrid">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="row-spacing">5</property>
-                            <property name="column-spacing">10</property>
-                            <child>
-                              <object class="GtkEntry" id="entry_overrides">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="tooltip-text" translatable="yes">Syntax: dll1,dll2=value;dll3=value</property>
-                                <property name="valign">center</property>
-                                <property name="hexpand">True</property>
-                                <property name="primary-icon-name">utilities-terminal-symbolic</property>
-                                <property name="placeholder-text" translatable="yes">Syntax: dll1,dll2=value;dll3=value</property>
-                                <property name="input-purpose">terminal</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="btn_overrides">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="tooltip-text" translatable="yes">Save DLL overrides.</property>
-                                <property name="halign">end</property>
-                                <property name="valign">start</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">object-select-symbolic</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left-attach">2</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="tooltip-text" translatable="yes">Add new dll overrides</property>
-                                <property name="halign">start</property>
-                                <property name="valign">center</property>
-                                <property name="label" translatable="yes">DLL overrides</property>
-                                <property name="use-markup">True</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                          </object>
                         </child>
                       </object>
                       <packing>
