@@ -21,7 +21,6 @@ import re
 import webbrowser
 
 from .dialog import BottlesDialog, BottlesMessageDialog
-from bottles.empty import BottlesEmpty
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
 class BottlesDLLOverrideEntry(Handy.ActionRow):
@@ -636,10 +635,7 @@ class BottlesDetails(Gtk.Stack):
         programs = self.runner.get_programs(self.configuration)
 
         if len(programs) == 0:
-            return self.list_programs.add(BottlesEmpty(
-                text=_("No programs found!"),
-                icon="view-grid-symbolic",
-                tip=_("The programs installed in the bottle will be listed here.")))
+            return
 
         i = 0
         for program in programs:
@@ -674,11 +670,6 @@ class BottlesDetails(Gtk.Stack):
                                            plain=True))
             return
 
-        return self.list_dependencies.add(BottlesEmpty(
-            text=_("No dependencies found!"),
-            icon="dialog-warning-symbolic",
-            tip=_("There are no dependencies installed and we can't fetch from repository.")))
-
     '''Populate list_installers'''
     def update_installers(self, widget=False):
         for w in self.list_installers: w.destroy()
@@ -692,11 +683,6 @@ class BottlesDetails(Gtk.Stack):
                                           self.configuration,
                                           installer))
             return
-
-        return self.list_installers.add(BottlesEmpty(
-            text=_("No installers found!"),
-            icon="dialog-warning-symbolic",
-            tip=_("We can't fetch the installers from the repository right now.")))
 
     '''Populate list_states'''
     def update_states(self, widget=False):
