@@ -45,7 +45,7 @@ class BottlesDLLOverrideEntry(Handy.ActionRow):
 
         '''Populate widgets'''
         self.set_title(self.override[0])
-        self.set_subtitle(self.override[1])
+        self.combo_type.set_active_id(self.override[1])
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
 class BottlesDLLOverrides(Handy.Window):
