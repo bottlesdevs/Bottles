@@ -1198,8 +1198,9 @@ class BottlesRunner:
         dll_overrides = []
         parameters = configuration["Parameters"]
 
-        if parameters["dll_overrides"]:
-            dll_overrides.append(parameters["dll_overrides"])
+        if configuration.get("DLL_Overrides"):
+            for dll in configuration.get("DLL_Overrides").items():
+                dll_overrides.append("%s=%s" % (dll[0], dll[1]))
 
         if parameters["environment_variables"]:
             environment_vars.append(parameters["environment_variables"])
@@ -1245,7 +1246,7 @@ class BottlesRunner:
         if parameters["pulseaudio_latency"]:
             environment_vars.append("PULSE_LATENCY_MSEC=60")
 
-        environment_vars.append("WINEDLLOVERRIDES='%s'" % ",".join(dll_overrides))
+        environment_vars.append("WINEDLLOVERRIDES='%s'" % ";".join(dll_overrides))
         environment_vars = " ".join(environment_vars)
 
         command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
@@ -1254,6 +1255,8 @@ class BottlesRunner:
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
+
+        print(command)
 
         if terminal:
             return UtilsTerminal(command)
