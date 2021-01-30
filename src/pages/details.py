@@ -70,6 +70,27 @@ class BottlesDLLOverrides(Handy.Window):
         '''Populate widgets'''
         self.populate_overrides_list()
 
+        '''Signal connections'''
+        self.btn_save.connect('pressed', self.save_override)
+
+    '''Save new DLL override'''
+    def save_override(self, widget):
+        dll_name = self.entry_name.get_text()
+
+        '''Store new override in bottle configuration'''
+        self.runner.update_configuration(self.configuration,
+                                         dll_name,
+                                         "n,b",
+                                         scope="DLL_Overrides")
+        dll = [dll_name, "n,b"]
+
+        '''Create new entry in list_overrides'''
+        self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
+                                                        self.configuration,
+                                                        dll))
+        '''Empty entry_name'''
+        self.entry_name.set_text("")
+
     def populate_overrides_list(self):
         for override in self.configuration.get("DLL_Overrides").items():
             self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
