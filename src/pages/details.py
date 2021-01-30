@@ -30,8 +30,9 @@ class BottlesLaunchOptions(Handy.Window):
     '''Get widgets from template'''
     entry_arguments = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
+    btn_save = Gtk.Template.Child()
 
-    def __init__(self, window, arguments, **kwargs):
+    def __init__(self, window, configuration, program_executable, arguments, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
@@ -41,6 +42,8 @@ class BottlesLaunchOptions(Handy.Window):
         '''Common variables'''
         self.window = window
         self.runner = window.runner
+        self.configuration = configuration
+        self.program_executable = program_executable
         self.arguments = arguments
 
         '''Populate widgets'''
@@ -48,10 +51,21 @@ class BottlesLaunchOptions(Handy.Window):
 
         '''Signal connections'''
         self.btn_cancel.connect('pressed', self.close_window)
+        self.btn_save.connect('pressed', self.save_options)
 
     '''Destroy the window'''
     def close_window(self, widget):
         self.destroy()
+
+    '''Save launch options'''
+    def save_options(self, widget):
+        self.arguments = self.entry_arguments.get_text()
+        self.runner.update_configuration(self.configuration,
+                                         self.program_executable,
+                                         self.arguments,
+                                         scope="Programs")
+        self.close_window(widget)
+        self.window.page_details.update_programs()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
 class BottlesInstallerEntry(Handy.ActionRow):
@@ -192,7 +206,10 @@ class BottlesProgramEntry(Handy.ActionRow):
             self.arguments = self.configuration["Programs"][self.program_executable]
 
     def show_launch_options_view(self, widget=False):
-        new_window = BottlesLaunchOptions(self.window, self.arguments)
+        new_window = BottlesLaunchOptions(self.window,
+                                          self.configuration,
+                                          self.program_executable,
+                                          self.arguments)
         new_window.present()
 
     '''Run executable'''
@@ -204,20 +221,6 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.runner.run_executable(self.configuration,
                                    self.program_executable_path,
                                    arguments)
-
-    '''Save arguments'''
-    def save_arguments(self, widget):
-        arguments = self.entry_arguments.get_text()
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             self.program_executable,
-                                                             arguments,
-                                                             scope="Programs")
-        self.configuration = new_configuration
-
-    '''Toggle arguments grid'''
-    def toggle_arguments(self, widget):
-        status = widget.get_active()
-        self.grid_arguments.set_visible(status)
 
     '''Open URLs'''
     def open_winehq(self, widget):
