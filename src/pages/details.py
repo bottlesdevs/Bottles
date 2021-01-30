@@ -413,12 +413,12 @@ class BottlesDetails(Gtk.Stack):
     __gtype_name__ = 'BottlesDetails'
 
     '''Get widgets from template'''
-    label_name = Gtk.Template.Child()
     label_runner = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
     # label_update_date = Gtk.Template.Child()
     label_size = Gtk.Template.Child()
     label_disk = Gtk.Template.Child()
+    btn_rename = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
@@ -457,6 +457,7 @@ class BottlesDetails(Gtk.Stack):
     list_installers = Gtk.Template.Child()
     list_states = Gtk.Template.Child()
     progress_disk = Gtk.Template.Child()
+    entry_name = Gtk.Template.Child()
     entry_environment_variables = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
@@ -514,6 +515,7 @@ class BottlesDetails(Gtk.Stack):
         self.btn_backup_full.connect('pressed', self.backup_full)
         self.btn_add_state.connect('pressed', self.add_state)
 
+        self.btn_rename.connect('toggled', self.toggle_rename)
         self.toggle_sync.connect('toggled', self.set_wine_sync)
         self.toggle_esync.connect('toggled', self.set_esync)
         self.toggle_fsync.connect('toggled', self.set_fsync)
@@ -551,7 +553,7 @@ class BottlesDetails(Gtk.Stack):
         '''Populate widgets from configuration'''
         parameters = self.configuration.get("Parameters")
         versioning = self.configuration.get("Versioning")
-        self.label_name.set_text(self.configuration.get("Name"))
+        self.entry_name.set_text(self.configuration.get("Name"))
         self.label_runner.set_text(self.configuration.get("Runner"))
         self.label_state.set_text(str(self.configuration.get("State")))
         # self.label_update_date.set_text(self.configuration.get("Update_Date"))
@@ -581,6 +583,18 @@ class BottlesDetails(Gtk.Stack):
         self.update_dependencies()
         self.update_installers()
         self.update_states()
+
+    '''Toggle entry_name editable'''
+    def toggle_rename(self, widget):
+        status = widget.get_active()
+        self.entry_name.set_editable(status)
+
+        if status:
+            self.entry_name.grab_focus()
+        else:
+            self.runner.update_configuration(configuration=self.configuration,
+                                             key="Name",
+                                             value=self.entry_name.get_text())
 
     '''Set active page'''
     def set_page(self, page):

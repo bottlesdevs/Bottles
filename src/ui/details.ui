@@ -309,17 +309,18 @@
                         <property name="margin-top">25</property>
                         <property name="spacing">5</property>
                         <child>
-                          <object class="GtkLabel" id="label_name">
+                          <object class="GtkEntry" id="entry_name">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes">Bottle name</property>
-                            <property name="wrap">True</property>
-                            <property name="wrap-mode">word-char</property>
-                            <attributes>
-                              <attribute name="font-desc" value="Cantarell Bold 16"/>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
+                            <property name="can-focus">True</property>
+                            <property name="editable">False</property>
+                            <property name="max-length">20</property>
+                            <property name="text" translatable="yes">Bottle name</property>
+                            <property name="placeholder-text" translatable="yes">Type a name for your bottle</property>
+                            <style>
+                              <class name="borderless"/>
+                              <class name="heading_1"/>
+                              <class name="no-padding"/>
+                            </style>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -328,10 +329,15 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkButton" id="btn_edit">
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <object class="GtkToggleButton" id="btn_rename">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
                             <child>
                               <object class="GtkImage">
                                 <property name="visible">True</property>
@@ -347,7 +353,7 @@
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="pack-type">end</property>
-                            <property name="position">1</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                         <child>
