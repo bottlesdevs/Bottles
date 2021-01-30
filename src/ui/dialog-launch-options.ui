@@ -32,8 +32,9 @@
               </object>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="btn_save">
                 <property name="label" translatable="yes">Save</property>
+                <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <style>
