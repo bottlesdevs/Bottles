@@ -393,6 +393,8 @@ class BottlesDetails(Gtk.Stack):
     btn_backup_full = Gtk.Template.Child()
     btn_add_state = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
+    btn_manage_runners = Gtk.Template.Child()
+    btn_manage_dxvk = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_aco = Gtk.Template.Child()
@@ -444,6 +446,8 @@ class BottlesDetails(Gtk.Stack):
         self.btn_regedit.connect('pressed', self.run_regedit)
         self.btn_delete.connect('pressed', self.confirm_delete)
         self.btn_overrides.connect('pressed', self.show_dll_overrides_view)
+        self.btn_manage_runners.connect('pressed', self.window.show_preferences_view)
+        self.btn_manage_dxvk.connect('pressed', self.window.show_preferences_view)
 
         self.btn_winecfg.connect('activate', self.run_winecfg)
         self.btn_debug.connect('activate', self.run_debug)
