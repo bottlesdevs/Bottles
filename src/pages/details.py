@@ -53,9 +53,9 @@ class BottlesDLLOverrideEntry(Handy.ActionRow):
     '''Remove DLL override'''
     def remove_override(self, widget):
         '''Remove override from bottle configuration'''
-        self.runner.update_configuration(self.configuration,
-                                         self.override[0],
-                                         False,
+        self.runner.update_configuration(configuration=self.configuration,
+                                         key=self.override[0],
+                                         value=False,
                                          scope="DLL_Overrides",
                                          remove=True)
 
@@ -93,9 +93,9 @@ class BottlesDLLOverrides(Handy.Window):
         dll_name = self.entry_name.get_text()
 
         '''Store new override in bottle configuration'''
-        self.runner.update_configuration(self.configuration,
-                                         dll_name,
-                                         "n,b",
+        self.runner.update_configuration(configuration=self.configuration,
+                                         key=dll_name,
+                                         value="n,b",
                                          scope="DLL_Overrides")
 
         '''Create new entry in list_overrides'''
@@ -148,9 +148,9 @@ class BottlesLaunchOptions(Handy.Window):
     '''Save launch options'''
     def save_options(self, widget):
         self.arguments = self.entry_arguments.get_text()
-        self.runner.update_configuration(self.configuration,
-                                         self.program_executable,
-                                         self.arguments,
+        self.runner.update_configuration(configuration=self.configuration,
+                                         key=self.program_executable,
+                                         value=self.arguments,
                                          scope="Programs")
         self.close_window(widget)
         self.window.page_details.update_programs()
@@ -583,10 +583,11 @@ class BottlesDetails(Gtk.Stack):
     '''Save environment variables'''
     def save_environment_variables(self, widget):
         environment_variables = self.entry_environment_variables.get_text()
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "environment_variables",
-                                                             environment_variables,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="environment_variables",
+            value=environment_variables,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Populate list_programs'''
@@ -679,26 +680,29 @@ class BottlesDetails(Gtk.Stack):
         else:
             self.runner.remove_dxvk(self.configuration)
 
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "dxvk",
-                                                             state,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="dxvk",
+            value=state,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Toggle DXVK HUD'''
     def toggle_dxvk_hud(self, widget, state):
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "dxvk_hud",
-                                                             state,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="dxvk_hud",
+            value=state,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Set Wine synchronization type'''
     def set_sync_type(self, sync):
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "sync",
-                                                             sync,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="sync",
+            value=sync,
+            scope="Parameters")
         self.configuration = new_configuration
 
         if sync in ["esync", "fsync"]:
@@ -725,18 +729,20 @@ class BottlesDetails(Gtk.Stack):
 
     '''Toggle ACO compiler'''
     def toggle_aco(self, widget, state):
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "aco_compiler",
-                                                             state,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="aco_compiler",
+            value=state,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Toggle discrete graphics usage'''
     def toggle_discrete_graphics(self, widget, state):
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "discrete_gpu",
-                                                             state,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="discrete_gpu",
+            value=state,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Toggle virtual desktop'''
@@ -745,10 +751,11 @@ class BottlesDetails(Gtk.Stack):
         self.runner.toggle_virtual_desktop(self.configuration,
                                            state,
                                            resolution)
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "virtual_desktop",
-                                                             state,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="virtual_desktop",
+            value=state,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Set virtual desktop resolution'''
@@ -758,34 +765,38 @@ class BottlesDetails(Gtk.Stack):
             self.runner.toggle_virtual_desktop(self.configuration,
                                                True,
                                                resolution)
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "virtual_desktop_res",
-                                                             resolution,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="virtual_desktop_res",
+            value=resolution,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Set (change) runner'''
     def set_runner(self, widget):
         runner = widget.get_active_id()
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "Runner",
-                                                             runner)
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="Runner",
+            value=runner)
         self.configuration = new_configuration
 
     '''Toggle pulseaudio latency'''
     def toggle_pulseaudio_latency(self, widget, state):
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "pulseaudio_latency",
-                                                             state,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="pulseaudio_latency",
+            value=state,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Toggle fixme wine logs'''
     def toggle_fixme(self, widget, state):
-        new_configuration = self.runner.update_configuration(self.configuration,
-                                                             "fixme_logs",
-                                                             state,
-                                                             scope="Parameters")
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="fixme_logs",
+            value=state,
+            scope="Parameters")
         self.configuration = new_configuration
 
     '''Display file dialog for executable selection'''
