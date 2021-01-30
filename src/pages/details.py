@@ -47,6 +47,21 @@ class BottlesDLLOverrideEntry(Handy.ActionRow):
         self.set_title(self.override[0])
         self.combo_type.set_active_id(self.override[1])
 
+        '''Signal connections'''
+        self.btn_remove.connect('pressed', self.remove_override)
+
+    '''Remove DLL override'''
+    def remove_override(self, widget):
+        '''Remove override from bottle configuration'''
+        self.runner.update_configuration(self.configuration,
+                                         self.override[0],
+                                         False,
+                                         scope="DLL_Overrides",
+                                         remove=True)
+
+        '''Remove entry from list_overrides'''
+        self.destroy()
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
 class BottlesDLLOverrides(Handy.Window):
     __gtype_name__ = 'BottlesDLLOverrides'
@@ -82,12 +97,11 @@ class BottlesDLLOverrides(Handy.Window):
                                          dll_name,
                                          "n,b",
                                          scope="DLL_Overrides")
-        dll = [dll_name, "n,b"]
 
         '''Create new entry in list_overrides'''
         self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
                                                         self.configuration,
-                                                        dll))
+                                                        [dll_name, "n,b"]))
         '''Empty entry_name'''
         self.entry_name.set_text("")
 
