@@ -481,6 +481,8 @@ class BottlesDetails(Gtk.Stack):
             self.combo_runner.append(runner, runner)
 
         '''Signal connections'''
+        self.entry_name.connect('key-release-event', self.check_entry_name)
+
         self.btn_winecfg.connect('pressed', self.run_winecfg)
         self.btn_debug.connect('pressed', self.run_debug)
         self.btn_execute.connect('pressed', self.run_executable)
@@ -583,6 +585,18 @@ class BottlesDetails(Gtk.Stack):
         self.update_dependencies()
         self.update_installers()
         self.update_states()
+
+    '''Validate entry_name input'''
+    def check_entry_name(self, widget, event_key):
+        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,]')
+        name = widget.get_text()
+
+        if(regex.search(name) is None) and name != "":
+            self.btn_rename.set_sensitive(True)
+            widget.set_icon_from_icon_name(1, "")
+        else:
+            self.btn_rename.set_sensitive(False)
+            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     '''Toggle entry_name editable'''
     def toggle_rename(self, widget):

@@ -314,7 +314,12 @@
                             <property name="can-focus">True</property>
                             <property name="editable">False</property>
                             <property name="max-length">20</property>
+                            <property name="has-frame">False</property>
                             <property name="text" translatable="yes">Bottle name</property>
+                            <property name="shadow-type">none</property>
+                            <property name="primary-icon-activatable">False</property>
+                            <property name="primary-icon-sensitive">False</property>
+                            <property name="secondary-icon-tooltip-text" translatable="yes">This field cannot contain special characters!</property>
                             <property name="placeholder-text" translatable="yes">Type a name for your bottle</property>
                             <style>
                               <class name="borderless"/>
@@ -329,13 +334,11 @@
                           </packing>
                         </child>
                         <child>
-                          <placeholder/>
-                        </child>
-                        <child>
                           <object class="GtkToggleButton" id="btn_rename">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Rename bottle</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
                             <child>
@@ -442,13 +445,13 @@
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="margin-bottom">10</property>
                         <property name="spacing">5</property>
                         <child>
                           <object class="GtkLabel" id="label_arch">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-bottom">10</property>
                             <property name="label" translatable="yes">64 Bit</property>
                             <property name="wrap">True</property>
                             <property name="wrap-mode">word-char</property>
@@ -468,7 +471,6 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-bottom">10</property>
                             <property name="label" translatable="yes">lutris-6.0-rc1-x86_64</property>
                             <property name="wrap">True</property>
                             <property name="wrap-mode">word-char</property>
