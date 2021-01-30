@@ -782,7 +782,7 @@ class BottlesRunner:
         return "%s/%s" % (self.bottles_path, configuration.get("Path"))
 
     '''Update parameters in bottle configuration'''
-    def update_configuration(self, configuration:BottleConfig, key:str, value:str, scope:str="", no_update:bool=False) -> dict:
+    def update_configuration(self, configuration:BottleConfig, key:str, value:str, scope:str="", no_update:bool=False, remove:bool=False) -> dict:
         logging.info(
             _("Setting Key: [{0}] to [{1}] for bottle: [{2}] …").format(
                 key, value, configuration.get("Name")))
@@ -791,8 +791,12 @@ class BottlesRunner:
 
         if scope != "":
             configuration[scope][key] = value
+            if remove:
+                del configuration[scope][key]
         else:
             configuration[key] = value
+            if remove:
+                del configuration[key]
 
         with open("%s/bottle.json" % bottle_complete_path,
                   "w") as configuration_file:
