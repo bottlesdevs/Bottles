@@ -43,6 +43,8 @@ class BottlesImporterEntry(Handy.ActionRow):
         self.label_manager.set_text(prefix.get("Manager"))
         if prefix.get("Lock"):
             self.img_lock.set_visible(True)
+        self.label_manager.get_style_context().add_class(
+            "tag-%s" % prefix.get("Manager").lower())
 
         '''Signal connections'''
         self.btn_browse.connect("pressed", self.browse_wineprefix)

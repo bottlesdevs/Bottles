@@ -48,13 +48,10 @@
                 <property name="can-focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="margin-left">5</property>
-                <property name="margin-start">5</property>
-                <property name="margin-top">7</property>
-                <property name="margin-bottom">3</property>
                 <property name="label" translatable="yes">Manager</property>
                 <attributes>
-                  <attribute name="weight" value="medium"/>
+                  <attribute name="font-desc" value="Cantarell 10"/>
+                  <attribute name="weight" value="normal"/>
                 </attributes>
                 <style>
                   <class name="tag"/>
@@ -71,16 +68,12 @@
                 <property name="can-focus">False</property>
                 <property name="tooltip-text" translatable="yes">This wineprefix was already imported in Bottles.</property>
                 <property name="valign">center</property>
-                <property name="margin-left">5</property>
-                <property name="margin-right">5</property>
                 <property name="margin-start">5</property>
                 <property name="margin-end">5</property>
-                <property name="margin-top">5</property>
                 <property name="icon-name">channel-secure-symbolic</property>
                 <property name="icon_size">1</property>
                 <style>
                   <class name="tag"/>
-                  <class name="tag-img"/>
                 </style>
               </object>
               <packing>
