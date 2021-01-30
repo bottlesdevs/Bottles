@@ -15,20 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Handy
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')
-class BottlesImporterEntry(Gtk.Box):
+class BottlesImporterEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesImporterEntry'
 
     '''Get widgets from template'''
-    label_name = Gtk.Template.Child()
     label_manager = Gtk.Template.Child()
     btn_import = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     img_lock = Gtk.Template.Child()
 
-    def __init__(self, window, prefix, sample=False, **kwargs):
+    def __init__(self, window, prefix, **kwargs):
         super().__init__(**kwargs)
 
         '''Init template'''
@@ -40,17 +39,10 @@ class BottlesImporterEntry(Gtk.Box):
         self.prefix = prefix
 
         '''Populate widgets'''
-        if not sample:
-            self.label_name.set_text(prefix.get("Name"))
-            self.label_manager.set_text(prefix.get("Manager"))
-            if prefix.get("Lock"):
-                self.img_lock.set_visible(True)
-        else:
-            self.label_name.set_text(_("No wineprefixes found to import."))
-            for w in [self.label_manager,
-                      self.btn_browse,
-                      self.btn_import]:
-                w.set_visible(False)
+        self.set_title(prefix.get("Name"))
+        self.label_manager.set_text(prefix.get("Manager"))
+        if prefix.get("Lock"):
+            self.img_lock.set_visible(True)
 
         '''Signal connections'''
         self.btn_browse.connect("pressed", self.browse_wineprefix)
@@ -101,8 +93,6 @@ class BottlesImporter(Gtk.ScrolledWindow):
         if len(wineprefixes) > 0:
             for wineprefix in wineprefixes:
                 self.list_prefixes.add(BottlesImporterEntry(self.window, wineprefix))
-        else:
-            self.list_prefixes.add(BottlesImporterEntry(self.window, {}, sample=True))
 
     '''Display file dialog for backup path'''
     def import_backup_full(self, widget):
