@@ -74,7 +74,7 @@ class UtilsTerminal():
     def __init__(self, command):
         for terminal in self.terminals:
             terminal_check = subprocess.Popen(
-                "bash command -v %s > /dev/null && echo 1 || echo 0" % terminal[0],
+                "command -v %s > /dev/null && echo 1 || echo 0" % terminal[0],
                 shell=True,
                 stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
             if "1" in terminal_check:
