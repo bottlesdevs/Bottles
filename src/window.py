@@ -60,9 +60,11 @@ class BottlesWindow(Gtk.ApplicationWindow):
     btn_taskmanager = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
+    btn_v3 = Gtk.Template.Child()
     switch_dark = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
+    infobar = Gtk.Template.Child()
 
     '''Define environments and set first'''
     envs = [
@@ -146,10 +148,16 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
+        self.btn_v3.connect('pressed', self.open_v3_note)
         self.switch_dark.connect('state-set', self.toggle_dark)
+        self.infobar.connect('response', self.disable_v3_note)
 
         '''Set widgets status from user settings'''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
+
+        '''Load settings'''
+        if not self.settings.get_boolean("v3-note"):
+            self.disable_v3_note()
 
         '''Load startup view from user settings'''
         self.stack_main.set_visible_child_name(self.settings.get_string("startup-view"))
@@ -243,6 +251,10 @@ class BottlesWindow(Gtk.ApplicationWindow):
     def open_report_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues")
 
+    @staticmethod
+    def open_v3_note(widget):
+        webbrowser.open_new_tab("https://usebottles.com/blog/bottles-3-project-refresh/")
+
     '''Go back to previous page'''
     def go_back(self, widget):
         self.btn_add.set_visible(True)
@@ -291,3 +303,8 @@ class BottlesWindow(Gtk.ApplicationWindow):
         self.settings.set_boolean("dark-theme", state)
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
                                             state)
+
+    '''Toggle dark mode and store in user settings'''
+    def disable_v3_note(self, widget=False, response_id=False):
+        self.infobar.set_visible(False)
+        self.settings.set_boolean("v3-note", False)
