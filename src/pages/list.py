@@ -54,9 +54,8 @@ class BottlesListEntry(Gtk.Box):
         self.arg_executable = arg_executable
 
         '''Check runner type by name'''
-        if self.configuration.get("Runner").startswith("lutris"):
-            self.runner_type = "wine"
-        else:
+        self.runner_type = "wine"
+        if not self.configuration.get("Runner").startswith("lutris"):
             self.runner_type = "proton"
 
         '''Signal connections'''
