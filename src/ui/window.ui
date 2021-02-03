@@ -242,7 +242,9 @@
         <property name="can-focus">False</property>
         <child>
           <object class="GtkInfoBar">
+            <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="show-close-button">True</property>
             <child internal-child="action_area">
               <object class="GtkButtonBox">
                 <property name="can-focus">False</property>
@@ -255,7 +257,17 @@
                   <placeholder/>
                 </child>
                 <child>
-                  <placeholder/>
+                  <object class="GtkButton" id="btn_v3">
+                    <property name="label" translatable="yes">More info</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
                 </child>
               </object>
               <packing>
@@ -284,7 +296,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">This is a development release. Please report bugs in the GitHub repository.</property>
+                    <property name="label" translatable="yes">We are working on Bottles v3.</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
