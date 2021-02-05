@@ -22,6 +22,49 @@ import webbrowser
 
 from .dialog import BottlesDialog, BottlesMessageDialog
 
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-environment-variables.ui')
+class BottlesEnvironmentVariables(Handy.Window):
+    __gtype_name__ = 'BottlesEnvironmentVariables'
+
+    '''Get widgets from template'''
+    entry_variables = Gtk.Template.Child()
+    btn_cancel = Gtk.Template.Child()
+    btn_save = Gtk.Template.Child()
+
+    def __init__(self, window, configuration, program_executable, arguments, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(window)
+
+        '''Init template'''
+        self.init_template()
+
+        '''Common variables'''
+        self.window = window
+        self.runner = window.runner
+        self.configuration = configuration
+        self.variables = variables
+
+        '''Populate widgets'''
+        self.entry_variables.set_text(self.variables)
+
+        '''Signal connections'''
+        self.btn_cancel.connect('pressed', self.close_window)
+        self.btn_save.connect('pressed', self.save_variables)
+
+    '''Destroy the window'''
+    def close_window(self, widget):
+        self.destroy()
+
+    '''Save launch options'''
+    def save_variables(self, widget):
+        self.variables = self.entry_variables.get_text()
+        self.runner.update_configuration(configuration=self.configuration,
+                                         key="environment_variables",
+                                         value=self.variables,
+                                         scope="Parameters")
+        self.close_window(widget)
+        self.window.page_details.update_programs()
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
 class BottlesDLLOverrideEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesDLLOverrideEntry'
