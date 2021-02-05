@@ -78,9 +78,10 @@ class BottlesListEntry(Handy.ActionRow):
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
 
-        '''Toggle btn_upgrade'''
+        '''Toggle btn_upgrade
         if self.configuration.get("Runner") != self.runner.get_latest_runner(self.runner_type):
             self.btn_upgrade.set_visible(True)
+        '''
 
         '''If configuration is broken'''
         if self.configuration.get("Broken"):
