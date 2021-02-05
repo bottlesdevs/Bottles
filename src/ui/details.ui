@@ -1489,7 +1489,7 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <child>
-                                  <object class="GtkButton" id="btn_versioning3">
+                                  <object class="GtkButton" id="btn_environment_variables">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -1572,69 +1572,6 @@ Disable if you're experiencing graphical glitches.</property>
                         </child>
                         <child>
                           <placeholder/>
-                        </child>
-                        <child>
-                          <!-- n-columns=3 n-rows=1 -->
-                          <object class="GtkGrid">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-top">10</property>
-                            <property name="hexpand">True</property>
-                            <property name="row-spacing">5</property>
-                            <property name="column-spacing">10</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="tooltip-text" translatable="yes">Add environment variables to the commands executed by runner.</property>
-                                <property name="halign">start</property>
-                                <property name="valign">center</property>
-                                <property name="label" translatable="yes">Environment variables</property>
-                                <property name="use-markup">True</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">0</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkEntry" id="entry_environment_variables">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="tooltip-text" translatable="yes">Syntax: VAR1=value VAR2=value ..</property>
-                                <property name="valign">center</property>
-                                <property name="hexpand">True</property>
-                                <property name="primary-icon-name">utilities-terminal-symbolic</property>
-                                <property name="placeholder-text" translatable="yes">Syntax: VAR1=value VAR2=value ..</property>
-                                <property name="input-purpose">terminal</property>
-                              </object>
-                              <packing>
-                                <property name="left-attach">1</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="btn_environment_variables">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="tooltip-text" translatable="yes">Save environment variables</property>
-                                <property name="halign">end</property>
-                                <property name="valign">start</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">object-select-symbolic</property>
-                                  </object>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="left-attach">2</property>
-                                <property name="top-attach">0</property>
-                              </packing>
-                            </child>
-                          </object>
                         </child>
                       </object>
                       <packing>
