@@ -548,6 +548,7 @@ class BottlesDetails(Gtk.Stack):
         self.btn_uninstaller.connect('activate', self.run_uninstaller)
         self.btn_regedit.connect('activate', self.run_regedit)
         self.btn_overrides.connect('activate', self.show_dll_overrides_view)
+        self.btn_environment_variables.connect('activate', self.show_environment_variables)
 
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
