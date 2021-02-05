@@ -31,7 +31,7 @@ class BottlesEnvironmentVariables(Handy.Window):
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
 
-    def __init__(self, window, configuration, program_executable, arguments, **kwargs):
+    def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
@@ -42,7 +42,7 @@ class BottlesEnvironmentVariables(Handy.Window):
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
-        self.variables = variables
+        self.variables = configuration["Parameters"]["environment_variables"]
 
         '''Populate widgets'''
         self.entry_variables.set_text(self.variables)
@@ -500,7 +500,6 @@ class BottlesDetails(Gtk.Stack):
     list_states = Gtk.Template.Child()
     progress_disk = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
-    entry_environment_variables = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
@@ -554,7 +553,7 @@ class BottlesDetails(Gtk.Stack):
         self.btn_reboot.connect('pressed', self.run_reboot)
         self.btn_killall.connect('pressed', self.run_killall)
         self.btn_programs_updates.connect('pressed', self.update_programs)
-        self.btn_environment_variables.connect('pressed', self.save_environment_variables)
+        self.btn_environment_variables.connect('pressed', self.show_environment_variables)
         self.btn_backup_config.connect('pressed', self.backup_config)
         self.btn_backup_full.connect('pressed', self.backup_full)
         self.btn_add_state.connect('pressed', self.add_state)
@@ -614,7 +613,6 @@ class BottlesDetails(Gtk.Stack):
         self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
         self.combo_runner.set_active_id(self.configuration.get("Runner"))
-        self.entry_environment_variables.set_text(parameters["environment_variables"])
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
 
         '''Unlock signals'''
@@ -627,6 +625,14 @@ class BottlesDetails(Gtk.Stack):
         self.update_dependencies()
         self.update_installers()
         self.update_states()
+
+
+
+    '''Show dialog for launch options'''
+    def show_environment_variables(self, widget=False):
+        new_window = BottlesEnvironmentVariables(self.window,
+                                                 self.configuration)
+        new_window.present()
 
     '''Validate entry_name input'''
     def check_entry_name(self, widget, event_key):
