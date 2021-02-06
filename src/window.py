@@ -28,7 +28,6 @@ from .runner import BottlesRunner
 
 from .pages.new import BottlesNew
 from .pages.onboard import BottlesOnboard
-from .pages.create import BottlesCreate
 from .pages.details import BottlesDetails
 from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
@@ -103,12 +102,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         '''Pages'''
         page_details = BottlesDetails(self)
         page_list = BottlesList(self, arg_executable)
-        page_create = BottlesCreate(self)
         page_taskmanager = BottlesTaskManager(self)
         page_importer = BottlesImporter(self)
 
         '''Reusable variables'''
-        self.page_create = page_create
         self.page_list = page_list
         self.page_details = page_details
         self.page_taskmanager = page_taskmanager
@@ -117,7 +114,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         '''Populate stack'''
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
-        self.stack_main.add_titled(page_create, "page_create", _("Create Bottle"))
         self.stack_main.add_titled(page_details, "page_details", _("Bottle details"))
         self.stack_main.add_titled(page_list, "page_list", _("Bottles"))
         self.stack_main.add_titled(page_taskmanager, "page_taskmanager", _("Task manager"))
