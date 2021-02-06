@@ -26,7 +26,6 @@ from gi.repository import Gtk, Gio, Notify, Handy
 from .params import *
 from .runner import BottlesRunner
 
-from .pages.add import BottlesAdd, BottlesAddDetails
 from .pages.new import BottlesNew
 from .pages.onboard import BottlesOnboard
 from .pages.create import BottlesCreate
