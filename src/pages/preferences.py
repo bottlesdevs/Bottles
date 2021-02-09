@@ -30,6 +30,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
     switch_installers = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
+    actionrow_prerelease = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -74,6 +75,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
 
     def toggle_release_candidate(self, widget, state):
         self.settings.set_boolean("release-candidate", state)
+        self.populate_runners_list()
 
     def toggle_temp(self, widget, state):
         self.settings.set_boolean("temp", state)
@@ -93,10 +95,20 @@ class BottlesPreferences(Handy.PreferencesWindow):
             self.list_dxvk.add(BottlesDxvkEntry(self.window, dxvk))
 
     def populate_runners_list(self):
+        for w in self.list_runners:
+            if w != self.actionrow_prerelease:
+                w.destroy()
+
         for runner in self.runner.supported_wine_runners.items():
+            if not self.window.settings.get_boolean("release-candidate"):
+                if runner[1]["Channel"] in ["rc", "unstable"]:
+                    continue
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 
         for runner in self.runner.supported_proton_runners.items():
+            if not self.window.settings.get_boolean("release-candidate"):
+                if runner[1]["Channel"] in ["rc", "unstable"]:
+                    continue
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')
