@@ -49,7 +49,6 @@ class BottlesWindow(Handy.ApplicationWindow):
     btn_back = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
-    btn_download_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
     btn_downloads = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
@@ -131,7 +130,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_preferences.connect('pressed', self.show_preferences_view)
         self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
-        self.btn_download_preferences.connect('pressed', self.show_download_preferences_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
 
@@ -186,7 +184,6 @@ class BottlesWindow(Handy.ApplicationWindow):
     def set_usable_ui(self, status):
         for widget in [self.btn_back,
                        self.btn_add,
-                       self.btn_download_preferences,
                        self.btn_menu]:
             widget.set_sensitive(status)
 
@@ -201,7 +198,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.previous_page = self.stack_main.get_visible_child_name()
         self.btn_add.set_visible(False)
         self.btn_menu.set_visible(False)
-        self.btn_download_preferences.set_visible(False)
         self.btn_back.set_visible(True)
 
     '''Open URLs'''
@@ -214,7 +210,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.hide_view_switcher()
         self.btn_add.set_visible(True)
         self.btn_menu.set_visible(True)
-        self.btn_download_preferences.set_visible(True)
         self.btn_back.set_visible(False)
         self.btn_more.set_visible(False)
         self.stack_main.set_visible_child_name(self.previous_page)
