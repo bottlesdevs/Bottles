@@ -295,7 +295,7 @@ class BottlesRunner:
         return True
 
     '''Download a specific component release'''
-    def download_component(self, component:str, download_url:str, file:str, rename:bool=False, checksum:bool=False) -> bool:
+    def download_component(self, component:str, download_url:str, file:str, rename:bool=False, checksum:bool=False, func=False) -> bool:
         if component == "runner": repository = self.repository
         if component == "runner:proton": repository = self.proton_repository
         if component == "dxvk": repository = self.dxvk_repository
@@ -306,11 +306,25 @@ class BottlesRunner:
 
         '''Check if it exists in temp path then don't download'''
         file = rename if rename else file
+
+        '''Add entry to download manager'''
+        download_entry = self.download_manager.new_download(file, False)
+
+        if func:
+            update_func = func
+        else:
+            update_func = download_entry.idle_update_status
+
         if os.path.isfile("%s/%s" % (self.temp_path, file)):
             logging.warning(
                 _("File [{0}] already exists in temp, skipping.").format(file))
         else:
-            urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file))
+            prepared_request = urllib.request.Request(download_url, method='HEAD')
+            request = urllib.request.urlopen(prepared_request)
+            #TODO: if request.status == 200:
+            download_size = request.headers['Content-Length']
+            urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file),
+                                       reporthook=update_func)
 
         '''Rename the file if required'''
         if rename:
@@ -343,11 +357,14 @@ class BottlesRunner:
                 os.remove(file_path)
                 return False
 
+        '''Remove entry from download manager'''
+        download_entry.remove()
+
         return True
 
     '''Component installation'''
     def async_install_component(self, args:list) -> None:
-        component_type, component_name, after = args
+        component_type, component_name, after, func = args
 
         manifest = self.fetch_component_manifest(component_type, component_name)
 
@@ -357,9 +374,6 @@ class BottlesRunner:
             _("Installing {0} runner …").format(component_name),
             "document-save-symbolic")
 
-        '''Add entry to download manager'''
-        download_entry = self.download_manager.new_download(component_name, False)
-
         logging.info(_("Installing component: [{0}].").format(component_name))
 
         '''Download component'''
@@ -367,7 +381,8 @@ class BottlesRunner:
                                 manifest["File"][0]["url"],
                                 manifest["File"][0]["file_name"],
                                 manifest["File"][0]["rename"],
-                                checksum=manifest["File"][0]["file_checksum"])
+                                checksum=manifest["File"][0]["file_checksum"],
+                                func=func)
 
         '''Extract component archive'''
         if manifest["File"][0]["rename"]:
@@ -391,16 +406,13 @@ class BottlesRunner:
             _("Component {0} successfully installed!").format(component_name),
             "software-installed-symbolic")
 
-        '''Remove entry from download manager'''
-        download_entry.remove()
-
         '''Execute a method at the end if passed'''
         if after:
             after()
 
-    def install_component(self, component_type:str, component_name:str, after=False) -> None:
+    def install_component(self, component_type:str, component_name:str, after=False, func=False) -> None:
         if self.utils_conn.check_connection(True):
-            RunAsync(self.async_install_component, None, [component_type, component_name, after])
+            RunAsync(self.async_install_component, None, [component_type, component_name, after, func])
 
     '''
     Method for deoendency installations
