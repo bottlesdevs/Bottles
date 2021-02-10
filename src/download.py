@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 import time
 
@@ -29,6 +29,7 @@ class BottlesDownloadEntry(Gtk.Box):
     label_filename = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     progressbar_download = Gtk.Template.Child()
+    label_download_status = Gtk.Template.Child()
 
     def __init__(self, file_name, stoppable=True, **kwargs):
         super().__init__(**kwargs)
@@ -48,6 +49,16 @@ class BottlesDownloadEntry(Gtk.Box):
         while True:
             time.sleep(1)
             self.progressbar_download.pulse()
+
+    def update_status(self, count, block_size, total_size):
+        if not self.label_download_status.get_visible():
+            self.label_download_status.set_visible(True)
+
+        percent = int(count * block_size * 100 / total_size)
+        self.label_download_status.set_text(f'{str(percent)}%')
+
+    def idle_update_status(self, count, block_size, total_size):
+        GLib.idle_add(self.update_status, count, block_size, total_size)
 
     def remove(self):
         self.destroy()
