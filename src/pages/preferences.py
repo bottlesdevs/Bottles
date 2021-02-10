@@ -118,7 +118,6 @@ class BottlesDxvkEntry(Handy.ActionRow):
     '''Get widgets from template'''
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
-    btn_actions = Gtk.Template.Child()
 
     def __init__(self, window, dxvk, **kwargs):
         super().__init__(**kwargs)
@@ -138,7 +137,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
             self.btn_browse.set_visible(True)
         else:
             self.btn_download.set_visible(True)
-            self.btn_actions.set_visible(False)
+            self.btn_browse.set_visible(False)
 
 
         '''Signal connections'''
@@ -163,7 +162,6 @@ class BottlesRunnerEntry(Handy.ActionRow):
     '''Get widgets from template'''
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
-    btn_actions = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
 
     def __init__(self, window, runner_entry, **kwargs):
@@ -184,7 +182,7 @@ class BottlesRunnerEntry(Handy.ActionRow):
             self.btn_browse.set_visible(True)
         else:
             self.btn_download.set_visible(True)
-            self.btn_actions.set_visible(False)
+            self.btn_browse.set_visible(False)
 
 
         '''Signal connections'''
