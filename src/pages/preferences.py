@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, GLib, Handy
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class BottlesPreferences(Handy.PreferencesWindow):
@@ -163,6 +163,8 @@ class BottlesRunnerEntry(Handy.ActionRow):
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
+    box_download_status = Gtk.Template.Child()
+    label_download_status = Gtk.Template.Child()
 
     def __init__(self, window, runner_entry, **kwargs):
         super().__init__(**kwargs)
@@ -191,13 +193,29 @@ class BottlesRunnerEntry(Handy.ActionRow):
 
     '''Install runner'''
     def download_runner(self, widget):
-        print("install runner")
+        self.btn_download.set_visible(False)
+        self.box_download_status.set_visible(True)
+        self.runner.install_component("runner", self.runner_name, func=self.idle_update_status)
 
     '''Browse runner files'''
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
         self.runner.open_filemanager(path_type="runner",
                                      runner=self.runner_name)
+
+    def update_status(self, count, block_size, total_size):
+        if not self.label_download_status.get_visible():
+            self.label_download_status.set_visible(True)
+
+        percent = int(count * block_size * 100 / total_size)
+        self.label_download_status.set_text(f'{str(percent)}%')
+
+        if percent == 100:
+            self.box_download_status.set_visible(False)
+            self.btn_browse.set_visible(True)
+
+    def idle_update_status(self, count, block_size, total_size):
+        GLib.idle_add(self.update_status, count, block_size, total_size)
 
 
 '''
