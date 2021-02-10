@@ -29,17 +29,41 @@
           </packing>
         </child>
         <child>
-          <object class="GtkProgressBar" id="progressbar_download">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="valign">center</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="fraction">0.5</property>
-            <property name="pulse-step">1</property>
+            <property name="hexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkProgressBar" id="progressbar_download">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="valign">center</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
+                <property name="fraction">0.5</property>
+                <property name="pulse-step">1</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_download_status">
+                <property name="can-focus">False</property>
+                <property name="label">n/a</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
-            <property name="expand">True</property>
+            <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
