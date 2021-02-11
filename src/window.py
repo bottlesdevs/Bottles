@@ -46,6 +46,7 @@ class BottlesWindow(Handy.ApplicationWindow):
     '''Get widgets from template'''
     grid_main = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
+    box_more = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
@@ -216,7 +217,8 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     def show_details_view(self, widget=False, configuration=dict):
         self.set_previous_page_status()
-        self.btn_more.set_visible(True)
+        if True in [w.get_visible() for w in self.box_more.get_children()]:
+            self.btn_more.set_visible(True)
         self.page_details.set_configuration(configuration)
         self.show_view_switcher(self.page_details)
         self.stack_main.set_visible_child_name("page_details")
