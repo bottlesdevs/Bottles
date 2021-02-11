@@ -410,6 +410,8 @@ class BottlesRunner:
         if after:
             after()
 
+        # TODO: refresh local lists after installation
+
     def install_component(self, component_type:str, component_name:str, after=False, func=False) -> None:
         if self.utils_conn.check_connection(True):
             RunAsync(self.async_install_component, None, [component_type, component_name, after, func])

@@ -147,7 +147,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
     '''Install dxvk'''
     def download_dxvk(self, widget):
         print("install dxvk")
-        # self.runner.install_component("dxvk", self.dxvk_tag, self.dxvk_file)
+        # TODO: Install dxvk
 
     '''Browse dxvk files'''
     def run_browse(self, widget):
