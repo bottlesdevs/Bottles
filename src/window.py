@@ -209,16 +209,21 @@ class BottlesWindow(Handy.ApplicationWindow):
     '''Go back to previous page'''
     def go_back(self, widget=False):
         self.hide_view_switcher()
-        self.btn_add.set_visible(True)
-        self.btn_menu.set_visible(True)
-        self.btn_back.set_visible(False)
-        self.btn_more.set_visible(False)
+
+        for w in [self.btn_add, self.btn_menu]:
+            w.set_visible(True)
+
+        for w in [self.btn_back, self.btn_more]:
+            w.set_visible(False)
+
         self.stack_main.set_visible_child_name(self.previous_page)
 
     def show_details_view(self, widget=False, configuration=dict):
         self.set_previous_page_status()
+
         if True in [w.get_visible() for w in self.box_more.get_children()]:
             self.btn_more.set_visible(True)
+
         self.page_details.set_configuration(configuration)
         self.show_view_switcher(self.page_details)
         self.stack_main.set_visible_child_name("page_details")
