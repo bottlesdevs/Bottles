@@ -50,15 +50,21 @@ class BottlesDownloadEntry(Gtk.Box):
             time.sleep(1)
             self.progressbar_download.pulse()
 
-    def update_status(self, count, block_size, total_size):
+    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False):
         if not self.label_download_status.get_visible():
             self.label_download_status.set_visible(True)
 
-        percent = int(count * block_size * 100 / total_size)
-        self.label_download_status.set_text(f'{str(percent)}%')
+        if not completed:
+            percent = int(count * block_size * 100 / total_size)
+            self.label_download_status.set_text(f'{str(percent)}%')
+        else:
+            percent = 100
 
-    def idle_update_status(self, count, block_size, total_size):
-        GLib.idle_add(self.update_status, count, block_size, total_size)
+        if percent == 100:
+            self.remove()
+
+    def update_status(self, count=False, block_size=False, total_size=False, completed=False):
+        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed)
 
     def remove(self):
         self.destroy()
