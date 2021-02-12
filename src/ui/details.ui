@@ -309,31 +309,6 @@
                         <property name="margin-top">25</property>
                         <property name="spacing">5</property>
                         <child>
-                          <object class="GtkEntry" id="entry_name">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="editable">False</property>
-                            <property name="max-length">20</property>
-                            <property name="has-frame">False</property>
-                            <property name="text" translatable="yes">Bottle name</property>
-                            <property name="shadow-type">none</property>
-                            <property name="primary-icon-activatable">False</property>
-                            <property name="primary-icon-sensitive">False</property>
-                            <property name="secondary-icon-tooltip-text" translatable="yes">This field cannot contain special characters!</property>
-                            <property name="placeholder-text" translatable="yes">Type a name for your bottle</property>
-                            <style>
-                              <class name="borderless"/>
-                              <class name="heading_1"/>
-                              <class name="no-padding"/>
-                            </style>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkToggleButton" id="btn_rename">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -356,7 +331,7 @@
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="pack-type">end</property>
-                            <property name="position">2</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -416,7 +391,54 @@
                             <property name="expand">False</property>
                             <property name="fill">False</property>
                             <property name="pack-type">end</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="entry_name">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="editable">False</property>
+                            <property name="max-length">20</property>
+                            <property name="has-frame">False</property>
+                            <property name="text" translatable="yes">Bottle name</property>
+                            <property name="shadow-type">none</property>
+                            <property name="primary-icon-activatable">False</property>
+                            <property name="primary-icon-sensitive">False</property>
+                            <property name="secondary-icon-tooltip-text" translatable="yes">This field cannot contain special characters!</property>
+                            <property name="placeholder-text" translatable="yes">Type a name for your bottle</property>
+                            <style>
+                              <class name="borderless"/>
+                              <class name="heading_1"/>
+                              <class name="no-padding"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
                             <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label_environment">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="label" translatable="yes">Environment</property>
+                            <attributes>
+                              <attribute name="font-desc" value="Cantarell 10"/>
+                              <attribute name="weight" value="normal"/>
+                            </attributes>
+                            <style>
+                              <class name="tag"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="pack-type">end</property>
+                            <property name="position">3</property>
                           </packing>
                         </child>
                       </object>
