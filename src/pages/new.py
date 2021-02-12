@@ -18,7 +18,7 @@
 import re
 import time
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, GLib, Handy
 
 class BottlesEnvironmentRow(Gtk.ListBoxRow):
 
@@ -207,10 +207,13 @@ class BottlesNew(Handy.Window):
                                   dialog=self)
 
     '''Concatenate label_output'''
-    def update_output(self, text):
+    def idle_update_output(self, text):
         current_text = self.label_output.get_text()
         text = "{0}{1}\n".format(current_text, text)
         self.label_output.set_text(text)
+
+    def update_output(self, text):
+        GLib.idle_add(self.idle_update_output, text)
 
     def finish(self):
         self.label_confirm.set_text(
