@@ -517,7 +517,6 @@ class BottlesDetails(Gtk.Stack):
         self.window = window
         self.runner = window.runner
         self.configuration = configuration
-        self.label_environment_context = self.label_environment.get_style_context()
 
         '''Populate combo_runner'''
         for runner in self.runner.runners_available:
@@ -602,7 +601,7 @@ class BottlesDetails(Gtk.Stack):
         self.entry_name.set_text(self.configuration.get("Name"))
         self.label_runner.set_text(self.configuration.get("Runner"))
         self.label_environment.set_text(self.configuration.get("Environment"))
-        self.label_environment_context.add_class(
+        self.label_environment.get_style_context().add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
         self.label_state.set_text(str(self.configuration.get("State")))
         # self.label_update_date.set_text(self.configuration.get("Update_Date"))
