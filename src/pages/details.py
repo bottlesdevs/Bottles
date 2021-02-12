@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, GLib, Handy
 
 import re
 import webbrowser
@@ -739,7 +739,7 @@ class BottlesDetails(Gtk.Stack):
             return
 
     '''Populate list_states'''
-    def update_states(self, widget=False):
+    def idle_update_states(self, widget=False):
         if self.configuration.get("Versioning"):
             for w in self.list_states: w.destroy()
 
@@ -750,6 +750,9 @@ class BottlesDetails(Gtk.Stack):
                         BottlesStateEntry(self.window,
                                           self.configuration,
                                           state))
+
+    def update_states(self, widget=False):
+        GLib.idle_add(self.idle_update_states, widget=False)
 
     '''Toggle DXVK'''
     def toggle_dxvk(self, widget, state):
@@ -960,7 +963,7 @@ class BottlesDetails(Gtk.Stack):
     def add_state(self, widget):
         comment = self.entry_state_comment.get_text()
         if comment != "":
-            self.runner.create_bottle_state(self.configuration, comment)
+            self.runner.create_bottle_state(self.configuration, comment, after=self.update_states)
             self.entry_state_comment.set_text("")
             self.pop_state.popdown()
 

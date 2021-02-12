@@ -1429,7 +1429,7 @@ class BottlesRunner:
 
     '''Create new bottle state'''
     def async_create_bottle_state(self, args:list) -> bool:
-        configuration, comment, update, no_update = args
+        configuration, comment, update, no_update, after = args
 
         logging.info("Creating new state for bottle: [{0}] …".format(
             configuration.get("Name")))
@@ -1566,7 +1566,8 @@ class BottlesRunner:
             return False
 
         '''Update State in bottle configuration'''
-        self.update_configuration(configuration, "State", state_id, no_update=True)
+        self.update_configuration(configuration, "State", state_id)
+        self.update_configuration(configuration, "Versioning", True)
 
         logging.info("New state [{0}] created successfully!".format(state_id))
 
@@ -1578,13 +1579,16 @@ class BottlesRunner:
         time.sleep(2)
         self.update_bottles()
 
+        '''Execute caller function after all'''
+        after()
+
         '''Set UI to usable again'''
         self.window.set_usable_ui(True)
 
         return True
 
-    def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented", update:bool=False, no_update:bool=False) -> None:
-        RunAsync(self.async_create_bottle_state, None, [configuration, comment, update, no_update])
+    def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented", update:bool=False, no_update:bool=False, after:bool=False) -> None:
+        RunAsync(self.async_create_bottle_state, None, [configuration, comment, update, no_update, after])
 
     '''Get edits for a state'''
     def get_bottle_state_edits(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
