@@ -313,11 +313,12 @@ class BottlesRunner:
         if func:
             update_func = func
         else:
-            update_func = download_entry.idle_update_status
+            update_func = download_entry.update_status
 
         if os.path.isfile("%s/%s" % (self.temp_path, file)):
             logging.warning(
                 _("File [{0}] already exists in temp, skipping.").format(file))
+            update_func(completed=True)
         else:
             prepared_request = urllib.request.Request(download_url, method='HEAD')
             request = urllib.request.urlopen(prepared_request)
@@ -356,10 +357,6 @@ class BottlesRunner:
 
                 os.remove(file_path)
                 return False
-
-        '''Remove entry from download manager'''
-        download_entry.remove()
-
         return True
 
     '''Component installation'''

@@ -203,17 +203,20 @@ class BottlesRunnerEntry(Handy.ActionRow):
         self.runner.open_filemanager(path_type="runner",
                                      runner=self.runner_name)
 
-    def update_status(self, count, block_size, total_size):
+    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False):
         if not self.label_download_status.get_visible():
             self.label_download_status.set_visible(True)
 
-        percent = int(count * block_size * 100 / total_size)
-        self.label_download_status.set_text(f'{str(percent)}%')
+        if not completed:
+            percent = int(count * block_size * 100 / total_size)
+            self.label_download_status.set_text(f'{str(percent)}%')
+        else:
+            percent = 100
 
         if percent == 100:
             self.box_download_status.set_visible(False)
             self.btn_browse.set_visible(True)
 
-    def idle_update_status(self, count, block_size, total_size):
-        GLib.idle_add(self.update_status, count, block_size, total_size)
+    def update_status(self, count=False, block_size=False, total_size=False, completed=False):
+        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed)
 
