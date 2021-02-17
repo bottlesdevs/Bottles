@@ -118,6 +118,9 @@ class BottlesDxvkEntry(Handy.ActionRow):
     '''Get widgets from template'''
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
+    box_download_status = Gtk.Template.Child()
+    label_download_status = Gtk.Template.Child()
 
     def __init__(self, window, dxvk, **kwargs):
         super().__init__(**kwargs)
@@ -146,14 +149,33 @@ class BottlesDxvkEntry(Handy.ActionRow):
 
     '''Install dxvk'''
     def download_dxvk(self, widget):
-        print("install dxvk")
-        # TODO: Install dxvk
+        self.btn_download.set_visible(False)
+        self.box_download_status.set_visible(True)
+        self.runner.install_component("dxvk", self.dxvk_name, func=self.idle_update_status)
 
     '''Browse dxvk files'''
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
         self.runner.open_filemanager(path_type="dxvk",
                                      dxvk=self.dxvk_name)
+
+    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False):
+        if not self.label_download_status.get_visible():
+            self.label_download_status.set_visible(True)
+
+        if not completed:
+            percent = int(count * block_size * 100 / total_size)
+            self.label_download_status.set_text(f'{str(percent)}%')
+        else:
+            percent = 100
+
+        if percent == 100:
+            self.box_download_status.set_visible(False)
+            self.btn_browse.set_visible(True)
+
+    def update_status(self, count=False, block_size=False, total_size=False, completed=False):
+        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed)
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Handy.ActionRow):
@@ -185,7 +207,6 @@ class BottlesRunnerEntry(Handy.ActionRow):
         else:
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
-
 
         '''Signal connections'''
         self.btn_download.connect('pressed', self.download_runner)
