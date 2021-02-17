@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, Gdk, GObject, GLib, Handy
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class BottlesPreferences(Handy.PreferencesWindow):
@@ -151,7 +151,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
     def download_dxvk(self, widget):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
-        self.runner.install_component("dxvk", self.dxvk_name, func=self.idle_update_status)
+        self.runner.install_component("dxvk", self.dxvk_name, func=self.update_status)
 
     '''Browse dxvk files'''
     def run_browse(self, widget):
@@ -216,7 +216,7 @@ class BottlesRunnerEntry(Handy.ActionRow):
     def download_runner(self, widget):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
-        self.runner.install_component("runner", self.runner_name, func=self.idle_update_status)
+        self.runner.install_component("runner", self.runner_name, func=self.update_status)
 
     '''Browse runner files'''
     def run_browse(self, widget):

@@ -320,8 +320,8 @@ class BottlesRunner:
                 _("File [{0}] already exists in temp, skipping.").format(file))
             update_func(completed=True)
         else:
-            prepared_request = urllib.request.Request(download_url, method='HEAD')
-            request = urllib.request.urlopen(prepared_request)
+            request = urllib.request.Request(download_url, method='HEAD')
+            request = urllib.request.urlopen(request)
             #TODO: if request.status == 200:
             download_size = request.headers['Content-Length']
             urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file),
