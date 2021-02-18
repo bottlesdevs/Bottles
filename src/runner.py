@@ -1271,8 +1271,6 @@ class BottlesRunner:
             command = command
         )
 
-        print(command)
-
         if terminal:
             return UtilsTerminal(command)
 

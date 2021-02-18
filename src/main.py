@@ -21,6 +21,7 @@ import gi
 import gettext
 import locale
 import webbrowser
+import subprocess
 
 gi.require_version('Gtk', '3.0')
 
@@ -74,6 +75,19 @@ class Application(Gtk.Application):
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
                                                  provider,
                                                  Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+        gtk_theme = subprocess.check_output(['gsettings',
+                                            'get',
+                                            'org.gnome.desktop.interface',
+                                            'gtk-theme']).decode("utf-8")
+        if "Yaru" in gtk_theme:
+            data_bytes = Gio.resources_lookup_data(
+                "/com/usebottles/bottles/yaru.css", 0)
+            provider = Gtk.CssProvider()
+            provider.load_from_data(data_bytes.get_data())
+            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
+                                                     provider,
+                                                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
         '''Window'''
         win = self.props.active_window
