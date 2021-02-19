@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkPopover" id="pop_downloads">
-    <property name="can-focus">False</property>
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
-        <property name="width-request">160</property>
+        <property name="width_request">160</property>
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
+        <property name="can_focus">False</property>
+        <property name="border_width">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkBox" id="box_downloads">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
               <placeholder/>
@@ -30,8 +30,8 @@
         <child>
           <object class="GtkModelButton" id="btn_download_preferences">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Download preferences</property>
           </object>
           <packing>
@@ -44,20 +44,20 @@
     </child>
   </object>
   <object class="GtkPopover" id="pop_menu">
-    <property name="can-focus">False</property>
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
-        <property name="width-request">160</property>
+        <property name="width_request">160</property>
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
+        <property name="can_focus">False</property>
+        <property name="border_width">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkModelButton" id="btn_translate">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Help translate</property>
           </object>
           <packing>
@@ -69,8 +69,8 @@
         <child>
           <object class="GtkModelButton" id="btn_support">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Support Bottles</property>
           </object>
           <packing>
@@ -82,8 +82,8 @@
         <child>
           <object class="GtkModelButton" id="btn_report">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Bug Report</property>
           </object>
           <packing>
@@ -95,8 +95,8 @@
         <child>
           <object class="GtkModelButton" id="btn_docs">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Documentation</property>
           </object>
           <packing>
@@ -108,7 +108,7 @@
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -119,13 +119,13 @@
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-start">4</property>
-            <property name="margin-end">4</property>
+            <property name="can_focus">False</property>
+            <property name="margin_start">4</property>
+            <property name="margin_end">4</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Dark theme</property>
               </object>
               <packing>
@@ -137,12 +137,12 @@
             <child>
               <object class="GtkSwitch" id="switch_dark">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
+                <property name="can_focus">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="pack-type">end</property>
+                <property name="pack_type">end</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -156,7 +156,7 @@
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -167,8 +167,8 @@
         <child>
           <object class="GtkModelButton" id="btn_taskmanager">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Task manager</property>
           </object>
           <packing>
@@ -180,8 +180,8 @@
         <child>
           <object class="GtkModelButton" id="btn_importer">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Importer</property>
           </object>
           <packing>
@@ -193,8 +193,8 @@
         <child>
           <object class="GtkModelButton" id="btn_preferences">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Preferences</property>
           </object>
           <packing>
@@ -206,7 +206,7 @@
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -217,8 +217,8 @@
         <child>
           <object class="GtkModelButton" id="btn_about">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">About Bottles</property>
           </object>
           <packing>
@@ -231,25 +231,165 @@
     </child>
   </object>
   <template class="BottlesWindow" parent="GtkApplicationWindow">
-    <property name="can-focus">False</property>
-    <property name="window-position">center</property>
-    <property name="default-width">900</property>
-    <property name="default-height">600</property>
+    <property name="can_focus">False</property>
+    <property name="window_position">center</property>
+    <property name="default_width">900</property>
+    <property name="default_height">600</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header_bar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">Bottles</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <object class="GtkButton" id="btn_back">
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Go back</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">go-previous</property>
+              </object>
+            </child>
+            <accelerator key="Escape" signal="activate"/>
+          </object>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_add">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">New bottle</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">list-add-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="btn_menu">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="focus_on_click">False</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Open menu</property>
+            <property name="popover">pop_menu</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">open-menu-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_start">6</property>
+            <property name="margin_end">6</property>
+            <property name="spacing">5</property>
+            <child>
+              <object class="GtkButton" id="btn_list">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Your Bottles</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">view-list-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="btn_downloads">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="focus_on_click">False</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Downloads</property>
+                <property name="popover">pop_downloads</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">document-save-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_noconnection">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">You don't seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_right">1</property>
+                <property name="icon_name">network-error-symbolic</property>
+                <property name="icon_size">2</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+      </object>
+    </child>
     <child>
-      <!-- n-columns=1 n-rows=2 -->
       <object class="GtkGrid" id="grid_main">
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
+        <property name="can_focus">False</property>
         <child>
           <object class="GtkInfoBar" id="infobar">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="show-close-button">True</property>
+            <property name="can_focus">False</property>
+            <property name="show_close_button">True</property>
             <child internal-child="action_area">
               <object class="GtkButtonBox">
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <property name="spacing">6</property>
-                <property name="layout-style">end</property>
+                <property name="layout_style">end</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -260,8 +400,8 @@
                   <object class="GtkButton" id="btn_v3">
                     <property name="label" translatable="yes">More info</property>
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -278,13 +418,13 @@
             </child>
             <child internal-child="content_area">
               <object class="GtkBox">
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <property name="spacing">16</property>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="icon-name">emblem-important-symbolic</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">emblem-important-symbolic</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -295,7 +435,7 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                    <property name="can_focus">False</property>
                     <property name="label" translatable="yes">We are working on Bottles v3.</property>
                   </object>
                   <packing>
@@ -316,152 +456,8 @@
             </child>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-      </object>
-    </child>
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="header_bar">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="title" translatable="yes">Bottles</property>
-        <property name="show-close-button">True</property>
-        <child>
-          <object class="GtkButton" id="btn_back">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Go back</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">go-next-symbolic-rtl.symbolic</property>
-              </object>
-            </child>
-            <accelerator key="Escape" signal="activate"/>
-          </object>
-        </child>
-        <child>
-          <object class="GtkMenuButton" id="btn_menu">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="focus-on-click">False</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Open menu</property>
-            <property name="popover">pop_menu</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">open-menu-symbolic</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack-type">end</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-start">6</property>
-            <property name="margin-end">6</property>
-            <property name="spacing">5</property>
-            <child>
-              <object class="GtkButton" id="btn_list">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="tooltip-text" translatable="yes">Your Bottles</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="icon-name">view-list-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkMenuButton" id="btn_downloads">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="focus-on-click">False</property>
-                <property name="receives-default">True</property>
-                <property name="tooltip-text" translatable="yes">Downloads</property>
-                <property name="popover">pop_downloads</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="icon-name">document-save-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="pack-type">end</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btn_noconnection">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">You don't seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="margin-right">1</property>
-                <property name="icon-name">network-error-symbolic</property>
-                <property name="icon_size">2</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack-type">end</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btn_add">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">New bottle</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">list-add-symbolic</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="position">5</property>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
           </packing>
         </child>
       </object>
@@ -469,8 +465,8 @@
   </template>
   <object class="GtkStack" id="stack_main">
     <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="transition-type">crossfade</property>
+    <property name="can_focus">False</property>
+    <property name="transition_type">crossfade</property>
     <child>
       <placeholder/>
     </child>
