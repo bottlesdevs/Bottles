@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-07 14:20+0100\n"
+"POT-Creation-Date: 2021-02-19 08:42+0100\n"
 "PO-Revision-Date: 2021-01-25 01:01+0000\n"
 "Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Weblate 4.5-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:321
-#: src/window.py:127
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/window.ui:332
+#: src/window.py:128
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -29,9 +29,14 @@ msgstr "Bottles"
 msgid "Easily manage wineprefix"
 msgstr "Gerencie o wineprefix facilmente"
 
+#: data/com.usebottles.bottles.desktop.in:5
+msgid "com.usebottles.bottles"
+msgstr ""
+
 #: data/com.usebottles.bottles.appdata.xml.in:7
 #: data/com.usebottles.bottles.appdata.xml.in:10
-msgid "Easily run Windows software on Linux with 🍷 Bottles!"
+#, fuzzy
+msgid "Run Windows software on Linux with Bottles🍷!"
 msgstr "Execute facilmente o software Windows no Linux com 🍷 Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
@@ -39,19 +44,15 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
-msgid ""
-"Bottles is a modern tool that refines and simplifies running Windows "
-"software on Linux!"
+msgid "Bottle software and enjoy at your leisure!"
 msgstr ""
-"O Bottles é uma ferramenta moderna que aprimora e simplifica a execução de "
-"software Windows no Linux!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
+#, fuzzy
 msgid ""
-"Our built-in dependency installation system allows for easy access to a "
-"broad level of software compatibility. We also include a download manager "
-"for downloading the official components: runner (wine, proton), dxvk, "
-"dependencies, etc."
+"Our built-in dependency installation system grants automatic software "
+"compatibility access. Use the download manager to download the official "
+"components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
 "Nosso sistema de instalação de dependência integrado permite fácil acesso a "
 "um amplo nível de compatibilidade de software. Também incluímos um "
@@ -59,9 +60,9 @@ msgstr ""
 "proton), dxvk, dependências, etc."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
+#, fuzzy
 msgid ""
-"Features such as bottle versioning allow you to keep your work safe and "
-"restore it later!"
+"Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
 "Recursos como controle de versão de bottle permitem que você mantenha seu "
 "trabalho seguro e restaure-o mais tarde!"
@@ -71,14 +72,16 @@ msgid "Features:"
 msgstr "Características:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:18
-msgid "Create your bottles using preconfigured environments or create your own"
+#, fuzzy
+msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
 "Crie seus bottles usando ambientes pré-configurados ou crie seus próprios"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
+#, fuzzy
 msgid ""
-"Run every executable (.exe/.msi) in your bottles, directly from the context "
-"menu form your file manager"
+"Run executables (.exe/.msi) in your bottles, directly from the context menu "
+"of your file-manager"
 msgstr ""
 "Execute todos os executáveis (.exe /.msi) em seus bottles, diretamente do "
 "menu de contexto de seu gerenciador de arquivos"
@@ -88,11 +91,13 @@ msgid "Automated detection of applications installed in your bottles"
 msgstr "Detecção automatizada de aplicativos instalados em seus bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
-msgid "Add environment variables easily"
+#, fuzzy
+msgid "Add environment variables quickly"
 msgstr "Adicione variáveis de ambiente facilmente"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
-msgid "Override DLLs directly from bottle preferences"
+#, fuzzy
+msgid "Override DLLs directly from per-bottle preferences"
 msgstr "Substituir DLLs diretamente das preferências do bottle"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
@@ -100,9 +105,10 @@ msgid "On-the-fly runner change for any Bottle"
 msgstr "Mudança de runner em tempo real para qualquer bottle"
 
 #: data/com.usebottles.bottles.appdata.xml.in:24
+#, fuzzy
 msgid ""
-"Various optimizations for better gaming performance (esync, fsync, dxvk, "
-"cache, shader compiler, offload .. and much more.)"
+"Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
+"compiler, offload … and much more.)"
 msgstr ""
 "Várias otimizações para melhor desempenho de jogos (esync, fsync, dxvk, "
 "cache, compilador de sombreador, descarregamento... e muito mais)."
@@ -116,30 +122,35 @@ msgid "Automatic bottle repair in case of breakage"
 msgstr "Reparo automático do bottle em caso de quebra"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
-msgid ""
-"Integrated Dependencies installer based on a community-driver repository"
+#, fuzzy
+msgid "Integrated dependency-installer based on a community-driver repository"
 msgstr ""
 "Instalador de dependências integradas baseado em um repositório de driver da "
 "comunidade"
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
-msgid "Integrated Task manager for wine processes"
+#, fuzzy
+msgid "Integrated Task manager for Wine processes"
 msgstr "Gerenciador de tarefas integrado para processos do wine"
 
 #: data/com.usebottles.bottles.appdata.xml.in:29
-msgid "Easy access to ProtonDB and WineHQ for support"
+#, fuzzy
+msgid "Access to ProtonDB and WineHQ for support"
 msgstr "Fácil acesso ao ProtonDB e WineHQ para suporte"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
-msgid "Configurations update system across Bottles versions"
-msgstr "As configurações atualizam o sistema nas versões dos Bottles"
+msgid "System for bringing your configuration to new versions of Bottles"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
-msgid "Bottles backup and import"
-msgstr "Backup e importação dos Bottles"
+#, fuzzy
+msgid "Back up and import bottles"
+msgstr "Faça backup deste bottle"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
-msgid "Easily import wineprefix from other managers"
+#: data/com.usebottles.bottles.appdata.xml.in:301
+#, fuzzy
+msgid "Import Wine prefixes from other managers"
 msgstr "Importe facilmente o wineprefix de outros gerenciadores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
@@ -149,6 +160,234 @@ msgstr "Controle de versão dos Bottles (Experimental)"
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid ".. and much more that you can find by installing Bottles!"
 msgstr ".. e muito mais que você pode encontrar instalando o Bottles!"
+
+#: data/com.usebottles.bottles.appdata.xml.in:122
+#: data/com.usebottles.bottles.appdata.xml.in:135
+#: data/com.usebottles.bottles.appdata.xml.in:162
+#: data/com.usebottles.bottles.appdata.xml.in:174
+#: data/com.usebottles.bottles.appdata.xml.in:186
+#: data/com.usebottles.bottles.appdata.xml.in:209
+#: data/com.usebottles.bottles.appdata.xml.in:224
+#: data/com.usebottles.bottles.appdata.xml.in:241
+#: data/com.usebottles.bottles.appdata.xml.in:254
+#: data/com.usebottles.bottles.appdata.xml.in:276
+#: data/com.usebottles.bottles.appdata.xml.in:306
+msgid "Improvements:"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:124
+msgid "Spanish translations thanks to @fitojb"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:125
+msgid "Initial Indonesian translations thanks to @rezaalmanda"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:131
+#: data/com.usebottles.bottles.appdata.xml.in:144
+#: data/com.usebottles.bottles.appdata.xml.in:153
+#: data/com.usebottles.bottles.appdata.xml.in:194
+#: data/com.usebottles.bottles.appdata.xml.in:229
+#: data/com.usebottles.bottles.appdata.xml.in:259
+#: data/com.usebottles.bottles.appdata.xml.in:282
+#: data/com.usebottles.bottles.appdata.xml.in:290
+#: data/com.usebottles.bottles.appdata.xml.in:310
+msgid "Bugfix:"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:133
+#: data/com.usebottles.bottles.appdata.xml.in:147
+msgid "Minor bugfix"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:137
+msgid "Turkish translations thanks to @gunduzhan"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:138
+msgid "Display informations for Bottles v3"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:146
+msgid "Code improvements"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:155
+#, fuzzy
+msgid "Fix downloading dependencies"
+msgstr "Preferências de download"
+
+#: data/com.usebottles.bottles.appdata.xml.in:164
+msgid ""
+"Portuguese (Brazil) by Gabriel Mattoso, Fábio Rodrigues Ribeiro, Leandro "
+"Stanger"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:165
+msgid "Portuguese by Pão com omlet"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:166
+msgid "Norwegian Bokmål by Allan Nordhøy"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:167
+msgid "Spanish by lvaskz"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:176
+msgid "Support for 32 bit applications in Flatpak"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:182
+#: data/com.usebottles.bottles.appdata.xml.in:203
+#: data/com.usebottles.bottles.appdata.xml.in:219
+#: data/com.usebottles.bottles.appdata.xml.in:237
+#: data/com.usebottles.bottles.appdata.xml.in:249
+#: data/com.usebottles.bottles.appdata.xml.in:272
+#: data/com.usebottles.bottles.appdata.xml.in:298
+msgid "News:"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:184
+#, fuzzy
+msgid "Execute .bat files in your bottles"
+msgstr "Execute neste bottle"
+
+#: data/com.usebottles.bottles.appdata.xml.in:188
+#: data/com.usebottles.bottles.appdata.xml.in:211
+#: data/com.usebottles.bottles.appdata.xml.in:226
+#: data/com.usebottles.bottles.appdata.xml.in:257
+#: data/com.usebottles.bottles.appdata.xml.in:280
+msgid "General UI improvements"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:196
+msgid ""
+"Proposed a fix that should resolve the execution of executables on Flatpak"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:197
+msgid "The window can now be resized"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:205
+msgid ""
+"New friendly pages are shown when there are no bottles, dependencies, "
+"installers and programs"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:206
+msgid "Now the list of bottles can be reached from the right"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:207
+#, fuzzy
+msgid "Experiments can now be enabled from Preferences"
+msgstr "O Runner pode ser alterado na guia Preferências."
+
+#: data/com.usebottles.bottles.appdata.xml.in:212
+msgid "Improved connection check method"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:213
+msgid "Now the shortcut [F1] and the menu entry open the new documentation"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:221
+msgid "Use the [Escape] shortcut to go back"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:222
+msgid "The wine debug console now runs in the system terminal"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:227
+msgid "Improved RunAsync method"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:231
+#: data/com.usebottles.bottles.appdata.xml.in:261
+msgid "Need at least one local runner to create a bottle"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:239
+msgid "Use the [F1] shortcut to open documentation"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:243
+msgid "Translations update"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:251
+msgid "Use the [Esc] shortcut to go back"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:252
+msgid "The Wine debug console now runs in the system terminal"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:256
+msgid "New shocking icon powered by @jannuary"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:262
+msgid "No more crashes when creating the bottle if there is no temp path"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:271
+msgid "Happy 2021🎉!"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:274
+msgid ""
+"The new experimental bottle versioning feature is here! Save the status of a "
+"bottle and restore it later with a click."
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:278
+msgid "All wine processes are now spawned asynchronously"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:279
+msgid "Compact logs, now showing only essential data"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:284
+#: data/com.usebottles.bottles.appdata.xml.in:312
+msgid "Minor bugfixes"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:292
+msgid ""
+"Fix wrong condition (in some cases it does not allow the use of the "
+"application)."
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:300
+#, fuzzy
+msgid "Backup and restore bottles"
+msgstr "Faça backup deste bottle"
+
+#: data/com.usebottles.bottles.appdata.xml.in:302 src/ui/details.ui:576
+#: src/ui/window.ui:172 src/window.py:130
+msgid "Task manager"
+msgstr "Gerenciador de tarefas"
+
+#: data/com.usebottles.bottles.appdata.xml.in:303
+#, fuzzy
+msgid "Bottle configuration update across software updates"
+msgstr "As configurações atualizam o sistema nas versões dos Bottles"
+
+#: data/com.usebottles.bottles.appdata.xml.in:304
+#, fuzzy
+msgid "Toggle RC releases for runners"
+msgstr "Ativar Release Candidate para Runners"
+
+#: data/com.usebottles.bottles.appdata.xml.in:308
+#, fuzzy
+msgid "New dependencies icon in details page"
+msgstr "Nenhuma dependência encontrada!"
 
 #: data/com.usebottles.bottles.gschema.xml:6 src/ui/window.ui:129
 msgid "Dark theme"
@@ -200,10 +439,18 @@ msgid ""
 "Toggle experimental features such as versioning and installers.Release "
 "Candidate for Runners"
 msgstr ""
-"Alterne recursos experimentais, como controle de versão e "
-"instaladores.Candidato a Lançamento para Runners"
+"Alterne recursos experimentais, como controle de versão e instaladores."
+"Candidato a Lançamento para Runners"
 
-#: src/ui/add.ui:23 src/ui/add-details.ui:21 src/ui/window.ui:443
+#: data/com.usebottles.bottles.gschema.xml:36
+msgid "v3 note"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:37
+msgid "Toggle the v3 notice"
+msgstr ""
+
+#: src/ui/add.ui:23 src/ui/add-details.ui:21 src/ui/window.ui:454
 msgid "New bottle"
 msgstr "Crie um novo bottle"
 
@@ -244,8 +491,9 @@ msgid "Import from backup or other managers"
 msgstr "Importar backup ou de outros gerenciadores"
 
 #: src/ui/add-details.ui:40
-msgid "Enter the bottle informations"
-msgstr "Insira as informações do bottle"
+#, fuzzy
+msgid "Enter a name for this bottle"
+msgstr "Última atualização para este bottle."
 
 #: src/ui/add-details.ui:62
 msgid "I need to choose a custom path"
@@ -364,8 +612,9 @@ msgid "Winecfg"
 msgstr "Winecfg"
 
 #: src/ui/details.ui:406
-msgid "In Bottles v2, our Dependencies tool replaces Winetricks."
-msgstr "No Bottles v2, nossa ferramenta Dependências substitui o Winetricks."
+#, fuzzy
+msgid "Install dependencies"
+msgstr "Dependências"
 
 #: src/ui/details.ui:432 src/ui/details.ui:2221
 msgid "Dependencies"
@@ -394,10 +643,6 @@ msgstr "Executar .exe"
 #: src/ui/details.ui:550
 msgid "Manage the processes running in this Bottle."
 msgstr "Gerencie os processos em execução neste Bottle."
-
-#: src/ui/details.ui:576 src/ui/window.ui:172 src/window.py:129
-msgid "Task manager"
-msgstr "Gerenciador de tarefas"
 
 #: src/ui/details.ui:598
 msgid "Manage the wine subsystem settings."
@@ -525,8 +770,8 @@ msgid ""
 "Enable Direct3D 12 support and improve Direct3D 9/10/11 performance "
 "translating requests to Vulkan."
 msgstr ""
-"Habilite o suporte ao Direct3D 12 e melhore o desempenho do Direct3D 9/10/"
-"11, traduzindo as solicitações para o Vulkan."
+"Habilite o suporte ao Direct3D 12 e melhore o desempenho do Direct3D "
+"9/10/11, traduzindo as solicitações para o Vulkan."
 
 #: src/ui/details.ui:1336
 msgid "DXVK/VKD3D for Direct3D"
@@ -534,7 +779,8 @@ msgstr "DXVK/VKD3D para Direct3D"
 
 #: src/ui/details.ui:1360
 msgid "Enable ACO to increase performance in-game when using Mesa drivers."
-msgstr "Habilite o ACO para aumentar o desempenho no jogo ao usar drivers Mesa."
+msgstr ""
+"Habilite o ACO para aumentar o desempenho no jogo ao usar drivers Mesa."
 
 #: src/ui/details.ui:1363
 msgid "ACO shader compiler"
@@ -655,7 +901,7 @@ msgstr "Substituições de DLL"
 msgid "Customize preferences for this Bottle."
 msgstr "Personalize as preferências para este Bottle."
 
-#: src/ui/details.ui:2084 src/ui/window.ui:198 src/window.py:128
+#: src/ui/details.ui:2084 src/ui/window.ui:198 src/window.py:129
 msgid "Preferences"
 msgstr "Preferências"
 
@@ -795,7 +1041,7 @@ msgstr "Relatório de erro"
 msgid "Documentation"
 msgstr "Documentação"
 
-#: src/ui/window.ui:185 src/window.py:130
+#: src/ui/window.ui:185 src/window.py:131
 msgid "Importer"
 msgstr "Importador"
 
@@ -803,30 +1049,31 @@ msgstr "Importador"
 msgid "About Bottles"
 msgstr "Sobre Bottles"
 
-#: src/ui/window.ui:288
-msgid ""
-"This is a development release. Please report bugs in the GitHub repository."
+#: src/ui/window.ui:261
+msgid "More info"
 msgstr ""
-"Esta é uma versão de desenvolvimento. Por favor, reporte os bugs no "
-"repositório GitHub."
 
-#: src/ui/window.ui:327
+#: src/ui/window.ui:299
+msgid "We are working on Bottles v3."
+msgstr ""
+
+#: src/ui/window.ui:338
 msgid "Go back"
 msgstr "Voltar"
 
-#: src/ui/window.ui:344
+#: src/ui/window.ui:355
 msgid "Open menu"
 msgstr "Abrir menu"
 
-#: src/ui/window.ui:374
+#: src/ui/window.ui:385
 msgid "Your Bottles"
 msgstr "Seus Bottles"
 
-#: src/ui/window.ui:395
+#: src/ui/window.ui:406
 msgid "Downloads"
 msgstr "Downloads"
 
-#: src/ui/window.ui:422
+#: src/ui/window.ui:433
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -836,43 +1083,43 @@ msgstr ""
 "componentes essenciais. Clique neste ícone quando tiver restabelecido a "
 "conexão."
 
-#: src/main.py:84
+#: src/main.py:89
 msgid "[Quit] request received."
 msgstr "Solicitação [Sair] recebida."
 
-#: src/main.py:90
+#: src/main.py:95
 msgid "[Help] request received."
 msgstr "[Ajuda] solicitação recebida."
 
-#: src/main.py:95
+#: src/main.py:100
 msgid "[Refresh] request received."
 msgstr "[Atualizar] solicitação recebida."
 
-#: src/window.py:123
+#: src/window.py:124
 msgid "New Bottle"
 msgstr "Novo Bottle"
 
-#: src/window.py:124
+#: src/window.py:125
 msgid "Create Bottle"
 msgstr "Criar Bottle"
 
-#: src/window.py:125
+#: src/window.py:126
 msgid "New Bottle details"
 msgstr "Detalhes da nova Bottle"
 
-#: src/window.py:126
+#: src/window.py:127
 msgid "Bottle details"
 msgstr "Detalhes do Bottle"
 
-#: src/window.py:161
+#: src/window.py:172
 msgid "Bottles Started!"
 msgstr "Bottles iniciadas!"
 
-#: src/window.py:178
+#: src/window.py:189
 msgid "Proceed with the installation of the latest version?"
 msgstr "Continuar com a instalação da versão mais recente?"
 
-#: src/window.py:180
+#: src/window.py:191
 msgid ""
 "But you don't seem to be connected to the internet and you won't be able to "
 "download a runner. Connect to the internet and confirm this message to begin "
@@ -882,15 +1129,15 @@ msgstr ""
 "runner. Conecte-se à internet e confirme esta mensagem para iniciar o "
 "download."
 
-#: src/window.py:183
+#: src/window.py:194
 msgid "No runners found"
 msgstr "Nenhum runners encontrado"
 
-#: src/window.py:188
+#: src/window.py:199
 msgid "OK status received"
 msgstr "Status OK recebido"
 
-#: src/window.py:194
+#: src/window.py:204
 msgid "Cancel status received"
 msgstr "Status cancelar recebido"
 
@@ -923,51 +1170,51 @@ msgstr "Um ambiente limpo, sem qualquer otimização."
 msgid "Selected env is: [{0}]"
 msgstr "O env selecionado é: [{0}]"
 
-#: src/pages/details.py:59 src/pages/details.py:262
+#: src/pages/details.py:60 src/pages/details.py:263
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest para {0}"
 
-#: src/pages/details.py:60 src/pages/details.py:263
+#: src/pages/details.py:61 src/pages/details.py:264
 #, python-brace-format
 msgid "This is the manifest for {0}."
 msgstr "Este é o manifest de {0}."
 
-#: src/pages/details.py:118
+#: src/pages/details.py:119
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Índice para o estado {0}"
 
-#: src/pages/details.py:119
+#: src/pages/details.py:120
 #, python-brace-format
 msgid "This is the index for {0}."
 msgstr "Este é o índice para {0}."
 
-#: src/pages/details.py:474
+#: src/pages/details.py:475
 msgid "No programs found!"
 msgstr "Nenhum programa encontrado!"
 
-#: src/pages/details.py:476
+#: src/pages/details.py:477
 msgid "The programs installed in the bottle will be listed here."
 msgstr "Os programas instalados no bottle serão listados aqui."
 
-#: src/pages/details.py:505
+#: src/pages/details.py:506
 msgid "No dependencies found!"
 msgstr "Nenhuma dependência encontrada!"
 
-#: src/pages/details.py:507
+#: src/pages/details.py:508
 msgid "There are no dependencies installed and we can't fetch from repository."
 msgstr "Não há dependências instaladas e não podemos buscar do repositório."
 
-#: src/pages/details.py:524
+#: src/pages/details.py:525
 msgid "No installers found!"
 msgstr "Nenhum instalador encontrado!"
 
-#: src/pages/details.py:526
+#: src/pages/details.py:527
 msgid "We can't fetch the installers from the repository right now."
 msgstr "Não podemos obter os instaladores do repositório agora."
 
-#: src/pages/details.py:643 src/pages/list.py:123
+#: src/pages/details.py:638 src/pages/list.py:123
 msgid "Choose a Windows executable file"
 msgstr "Escolha um arquivo executável do Windows"
 
@@ -984,27 +1231,51 @@ msgstr "Selecione o local onde salvar o arquivo de backup"
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumentos encontrados para executável: [{executable}]."
 
-#: src/pages/list.py:162
+#: src/pages/list.py:167
 msgid "Confirm upgrade"
 msgstr "Confirme a atualização"
 
-#: src/pages/list.py:163
+#: src/pages/list.py:168
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "Isso mudará o runner de {0} para {1}."
 
-#: src/pages/list.py:186
+#: src/pages/list.py:191
 msgid "Confirm deletion"
 msgstr "Confirme a exclusão"
 
-#: src/pages/list.py:187
+#: src/pages/list.py:192
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Tem certeza de que deseja excluir este Bottle e todos os arquivos?"
 
-#: src/pages/list.py:226
+#: src/pages/list.py:231
 msgid "No bottles found!"
 msgstr "Nenhum bottles encontrado!"
 
-#: src/pages/list.py:228
+#: src/pages/list.py:233
 msgid "Use the '+' button to create one."
 msgstr "Use o botão '+' para criar um."
+
+#~ msgid ""
+#~ "Bottles is a modern tool that refines and simplifies running Windows "
+#~ "software on Linux!"
+#~ msgstr ""
+#~ "O Bottles é uma ferramenta moderna que aprimora e simplifica a execução "
+#~ "de software Windows no Linux!"
+
+#~ msgid "Bottles backup and import"
+#~ msgstr "Backup e importação dos Bottles"
+
+#~ msgid "Enter the bottle informations"
+#~ msgstr "Insira as informações do bottle"
+
+#~ msgid "In Bottles v2, our Dependencies tool replaces Winetricks."
+#~ msgstr ""
+#~ "No Bottles v2, nossa ferramenta Dependências substitui o Winetricks."
+
+#~ msgid ""
+#~ "This is a development release. Please report bugs in the GitHub "
+#~ "repository."
+#~ msgstr ""
+#~ "Esta é uma versão de desenvolvimento. Por favor, reporte os bugs no "
+#~ "repositório GitHub."
