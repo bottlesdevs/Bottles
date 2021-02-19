@@ -123,6 +123,7 @@ class BottlesDLLOverrides(Handy.Window):
 
     def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
+        self.set_transient_for(window)
 
         '''Init template'''
         self.init_template()
@@ -139,27 +140,34 @@ class BottlesDLLOverrides(Handy.Window):
         self.btn_save.connect('pressed', self.save_override)
 
     '''Save new DLL override'''
-    def save_override(self, widget):
+    def idle_save_override(self, widget=False):
         dll_name = self.entry_name.get_text()
 
-        '''Store new override in bottle configuration'''
-        self.runner.update_configuration(configuration=self.configuration,
-                                         key=dll_name,
-                                         value="n,b",
-                                         scope="DLL_Overrides")
+        if dll_name !=  "":
+            '''Store new override in bottle configuration'''
+            self.runner.update_configuration(configuration=self.configuration,
+                                             key=dll_name,
+                                             value="n,b",
+                                             scope="DLL_Overrides")
 
-        '''Create new entry in list_overrides'''
-        self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
-                                                        self.configuration,
-                                                        [dll_name, "n,b"]))
-        '''Empty entry_name'''
-        self.entry_name.set_text("")
+            '''Create new entry in list_overrides'''
+            self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
+                                                            self.configuration,
+                                                            [dll_name, "n,b"]))
+            '''Empty entry_name'''
+            self.entry_name.set_text("")
 
-    def populate_overrides_list(self):
+    def save_override(self,widget=False):
+        GLib.idle_add(self.idle_save_override)
+
+    def idle_populate_overrides_list(self):
         for override in self.configuration.get("DLL_Overrides").items():
             self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
                                                             self.configuration,
                                                             override))
+
+    def populate_overrides_list(self):
+        GLib.idle_add(self.idle_populate_overrides_list)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class BottlesLaunchOptions(Handy.Window):
