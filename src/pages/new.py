@@ -203,6 +203,7 @@ class BottlesNew(Handy.Window):
                                   path="",
                                   environment=self.selected_environment,
                                   runner=self.combo_runner.get_active_id(),
+                                  dxvk=self.combo_dxvk.get_active_id(),
                                   versioning=versioning_state,
                                   dialog=self)
 
