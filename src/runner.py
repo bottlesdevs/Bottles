@@ -827,7 +827,7 @@ class BottlesRunner:
     def async_create_bottle(self, args:list) -> None:
         logging.info(_("Creating the wineprefix …"))
 
-        name, environment, path, runner, versioning, dialog = args
+        name, environment, path, runner, dxvk, versioning, dialog = args
 
         update_output = dialog.update_output
 
@@ -840,6 +840,9 @@ class BottlesRunner:
 
         if not runner: runner = self.runners_available[0]
         runner_name = runner
+
+        if not dxvk: dxvk = self.dxvk_available[0]
+        dxvk_name = dxvk
 
         '''If runner is proton, files are located to the dist path'''
         if runner.startswith("Proton"): runner = "%s/dist" % runner
@@ -875,6 +878,7 @@ class BottlesRunner:
         configuration = self.sample_configuration
         configuration["Name"] = bottle_name
         configuration["Runner"] = runner_name
+        configuration["DXVK"] = dxvk_name
         if path == "":
             configuration["Path"] = bottle_name_path
         else:
@@ -909,7 +913,7 @@ class BottlesRunner:
         if configuration["Parameters"]["dxvk"]:
             logging.info(_("Installing dxvk …"))
             update_output( _("Installing dxvk …"))
-            self.install_dxvk(configuration)
+            self.install_dxvk(configuration, version=dxvk_name)
 
         time.sleep(1)
 
@@ -929,11 +933,12 @@ class BottlesRunner:
 
         dialog.finish()
 
-    def create_bottle(self, name, environment:str, path:str=False, runner:RunnerName=False, versioning:bool=False, dialog:Gtk.Widget=None) -> None:
+    def create_bottle(self, name, environment:str, path:str=False, runner:RunnerName=False, dxvk:bool=False, versioning:bool=False, dialog:Gtk.Widget=None) -> None:
         RunAsync(self.async_create_bottle, None, [name,
                                                   environment,
                                                   path,
                                                   runner,
+                                                  dxvk,
                                                   versioning,
                                                   dialog])
 
@@ -1096,16 +1101,21 @@ class BottlesRunner:
     TODO: A good task for the future is to use the built-in methods
     to install the new dlls and register the override for dxvk.
     '''
-    def install_dxvk(self, configuration:BottleConfig, remove:bool=False) -> bool:
+    def install_dxvk(self, configuration:BottleConfig, remove:bool=False, version:str=False) -> bool:
         logging.info(_("Installing dxvk for bottle: [{0}].").format(
             configuration.get("Name")))
+
+        if version:
+            dxvk_version = version
+        else:
+            dxvk_version = configuration.get("DXVK")
 
         option = "uninstall" if remove else "install"
 
         command = 'DISPLAY=:0.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --without-dxgi'.format (
             path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
             runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
-            dxvk_setup = "%s/%s/setup_dxvk.sh" % (self.dxvk_path, self.dxvk_available[0]),
+            dxvk_setup = "%s/%s/setup_dxvk.sh" % (self.dxvk_path, dxvk_version),
             option = option)
 
         return subprocess.Popen(command, shell=True).communicate()
