@@ -465,9 +465,6 @@ class BottlesDetails(Gtk.Stack):
     '''Get widgets from template'''
     label_runner = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
-    # label_update_date = Gtk.Template.Child()
-    label_size = Gtk.Template.Child()
-    label_disk = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     btn_rename = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
@@ -507,7 +504,6 @@ class BottlesDetails(Gtk.Stack):
     list_programs = Gtk.Template.Child()
     list_installers = Gtk.Template.Child()
     list_states = Gtk.Template.Child()
-    progress_disk = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
@@ -596,13 +592,6 @@ class BottlesDetails(Gtk.Stack):
         self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
         self.combo_runner.handler_block_by_func(self.set_runner)
 
-        '''Get bottle/disk usage and set disk_fraction'''
-        bottle_size = self.runner.get_bottle_size(configuration)
-        disk_free = self.runner.get_disk_size()["free"]
-        disk_fraction = (
-            self.runner.get_disk_size(False)["used"] /
-            self.runner.get_disk_size(False)["total"])
-
         '''Populate widgets from configuration'''
         parameters = self.configuration.get("Parameters")
         versioning = self.configuration.get("Versioning")
@@ -613,9 +602,6 @@ class BottlesDetails(Gtk.Stack):
             "tag-%s" % self.configuration.get("Environment").lower())
         self.label_state.set_text(str(self.configuration.get("State")))
         # self.label_update_date.set_text(self.configuration.get("Update_Date"))
-        self.label_size.set_text(bottle_size)
-        self.label_disk.set_text(disk_free)
-        self.progress_disk.set_fraction(disk_fraction)
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         if parameters["sync"] == "wine": self.toggle_sync.set_active(True)
