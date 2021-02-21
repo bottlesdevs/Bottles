@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, GLib, Handy
 
 from .dialog import BottlesMessageDialog
 from bottles.empty import BottlesEmpty
@@ -217,7 +217,7 @@ class BottlesList(Gtk.Box):
         self.update_bottles()
 
     '''Find and append bottles to list_bottles'''
-    def update_bottles(self):
+    def idle_update_bottles(self):
         for bottle in self.list_bottles.get_children():
             bottle.destroy()
 
@@ -235,3 +235,6 @@ class BottlesList(Gtk.Box):
                                                    bottle,
                                                    self.arg_executable))
         self.arg_executable = False
+
+    def update_bottles(self):
+        GLib.idle_add(self.idle_update_bottles)
