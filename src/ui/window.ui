@@ -186,10 +186,21 @@
                 <property name="can_focus">False</property>
                 <property name="homogeneous">True</property>
                 <child>
-                  <object class="HdyViewSwitcherTitle" id="view_switcher_title">
+                  <object class="HdyViewSwitcher" id="view_switcher">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="title">Bottles</property>
+                    <property name="stack">stack</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="name">title_label</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label">Bottles</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                 </child>
               </object>
@@ -372,6 +383,9 @@
           <object class="HdyViewSwitcherBar" id="view_switcher_bar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="policy">auto</property>
+            <property name="stack">stack</property>
+            <property name="reveal">True</property>
           </object>
           <packing>
             <property name="expand">False</property>

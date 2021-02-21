@@ -63,7 +63,7 @@ class BottlesWindow(Handy.ApplicationWindow):
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
     squeezer = Gtk.Template.Child()
-    view_switcher_title = Gtk.Template.Child()
+    view_switcher = Gtk.Template.Child()
     view_switcher_bar = Gtk.Template.Child()
 
     '''Define environments and set first'''
@@ -157,14 +157,16 @@ class BottlesWindow(Handy.ApplicationWindow):
     def on_squeezer_notify(self, widget, event):
         '''TODO: this is used for responsive and doesn't work at this time'''
         child = widget.get_visible_child()
-        self.view_switcher_bar.set_reveal(child != self.view_switcher_title)
+        self.view_switcher_bar.set_reveal(child != self.view_switcher)
 
     def hide_view_switcher(self):
-        self.view_switcher_title.set_view_switcher_enabled(False)
+        self.view_switcher.set_visible(False)
+        self.view_switcher_bar.set_visible(False)
 
     def show_view_switcher(self, stack):
-        self.view_switcher_title.set_stack(stack)
-        self.view_switcher_title.set_view_switcher_enabled(True)
+        self.view_switcher.set_stack(stack)
+        self.view_switcher.set_visible(True)
+        self.view_switcher_bar.set_visible(True)
         self.view_switcher_bar.set_stack(stack)
 
     def check_for_connection(self, status):
