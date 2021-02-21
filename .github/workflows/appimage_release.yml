@@ -39,7 +39,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           draft: false
-          prerelease: false
+          prerelease: true
           automatic_release_tag: nightly
           title: Nightly build
           files: /home/runner/work/Bottles/Bottles/Bottles/build/Bottles-devel-x86_64.AppImage
