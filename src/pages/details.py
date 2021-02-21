@@ -500,6 +500,7 @@ class BottlesDetails(Gtk.Stack):
     toggle_fsync = Gtk.Template.Child()
     combo_virtual_resolutions = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
+    combo_dxvk = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     list_installers = Gtk.Template.Child()
@@ -522,9 +523,12 @@ class BottlesDetails(Gtk.Stack):
         self.runner = window.runner
         self.configuration = configuration
 
-        '''Populate combo_runner'''
+        '''Populate combo_runner, combo_dxvk'''
         for runner in self.runner.runners_available:
             self.combo_runner.append(runner, runner)
+
+        for dxvk in self.runner.dxvk_available:
+            self.combo_dxvk.append(dxvk, dxvk)
 
         '''Signal connections'''
         self.entry_name.connect('key-release-event', self.check_entry_name)
@@ -579,6 +583,7 @@ class BottlesDetails(Gtk.Stack):
 
         self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
         self.combo_runner.connect('changed', self.set_runner)
+        self.combo_dxvk.connect('changed', self.set_dxvk)
 
         self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
 
@@ -591,6 +596,7 @@ class BottlesDetails(Gtk.Stack):
         self.switch_virtual_desktop.handler_block_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
         self.combo_runner.handler_block_by_func(self.set_runner)
+        self.combo_dxvk.handler_block_by_func(self.set_dxvk)
 
         '''Populate widgets from configuration'''
         parameters = self.configuration.get("Parameters")
@@ -612,6 +618,7 @@ class BottlesDetails(Gtk.Stack):
         self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
         self.combo_runner.set_active_id(self.configuration.get("Runner"))
+        self.combo_dxvk.set_active_id(self.configuration.get("DXVK"))
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
 
         '''Unlock signals'''
@@ -619,6 +626,7 @@ class BottlesDetails(Gtk.Stack):
         self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
         self.combo_runner.handler_unblock_by_func(self.set_runner)
+        self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
 
         self.update_programs()
         self.update_dependencies()
@@ -749,7 +757,7 @@ class BottlesDetails(Gtk.Stack):
         GLib.idle_add(self.idle_update_states, widget=False)
 
     '''Toggle DXVK'''
-    def toggle_dxvk(self, widget, state):
+    def toggle_dxvk(self, widget=False, state=False):
         if state:
             self.runner.install_dxvk(self.configuration)
         else:
@@ -855,6 +863,21 @@ class BottlesDetails(Gtk.Stack):
             key="Runner",
             value=runner)
         self.configuration = new_configuration
+
+    '''Set (change) dxvk'''
+    def set_dxvk(self, widget):
+        # remove old dxvk
+        self.toggle_dxvk(state=False)
+
+        dxvk = widget.get_active_id()
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="DXVK",
+            value=dxvk)
+        self.configuration = new_configuration
+
+        # install new dxvk
+        self.toggle_dxvk(state=True)
 
     '''Toggle pulseaudio latency'''
     def toggle_pulseaudio_latency(self, widget, state):

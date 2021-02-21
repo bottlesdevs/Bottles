@@ -97,6 +97,7 @@ class BottlesRunner:
     sample_configuration = {
         "Name": "",
         "Runner": "",
+        "DXVK": "",
         "Path": "",
         "Custom_Path": False,
         "Environment": "",
