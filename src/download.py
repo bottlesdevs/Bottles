@@ -77,9 +77,12 @@ class DownloadManager():
         '''Common variables'''
         self.window = window
         self.box_downloads = window.box_downloads
+        self.pop_downloads = window.pop_downloads
 
     def new_download(self, file_name, stoppable=True):
         download_entry = BottlesDownloadEntry(file_name, stoppable)
         self.window.box_downloads.add(download_entry)
+
+        GLib.idle_add(self.pop_downloads.popup)
 
         return download_entry
