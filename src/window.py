@@ -229,6 +229,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.page_details.set_configuration(configuration)
         self.show_view_switcher(self.page_details)
         self.stack_main.set_visible_child_name("page_details")
+        self.page_details.set_visible_child_name("bottle")
 
     def show_onboard_view(self, widget=False):
         onboard_window = BottlesOnboard(self)
