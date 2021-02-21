@@ -209,7 +209,7 @@ class BottlesNew(Handy.Window):
     '''Concatenate label_output'''
     def idle_update_output(self, text):
         current_text = self.label_output.get_text()
-        text = "{0}{1}\n".format(current_text, text)
+        text = f"{current_text}{text}\n"
         self.label_output.set_text(text)
 
     def update_output(self, text):

@@ -916,7 +916,7 @@ class BottlesRunner:
         if versioning:
             logging.info(_("Creating versioning state 0 …"))
             update_output( _("Creating versioning state 0 …"))
-            self.async_create_bottle_state([configuration, "First boot", False, True])
+            self.async_create_bottle_state([configuration, "First boot", False, True, False])
 
         '''Set status created and UI usability'''
         logging.info(_("Bottle: [{0}] successfully created!").format(
@@ -1579,7 +1579,8 @@ class BottlesRunner:
         self.update_bottles()
 
         '''Execute caller function after all'''
-        after()
+        if after:
+            after()
 
         '''Set UI to usable again'''
         self.window.set_usable_ui(True)
