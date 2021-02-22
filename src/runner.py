@@ -210,71 +210,6 @@ class BottlesRunner:
             logging.info(_("Temp path doens't exist, creating now."))
             os.makedirs(self.temp_path, exist_ok=True)
 
-    '''Get runner updates'''
-    def get_runner_updates(self) -> dict:
-        updates = {}
-
-        # TODO: fetch updates from new components repository
-
-        if self.utils_conn.check_connection():
-            '''wine'''
-            with urllib.request.urlopen(self.repository_api) as url:
-                releases = json.loads(url.read().decode())
-                for release in [releases[0], releases[1], releases[2]]:
-                    tag = release["tag_name"]
-                    file = release["assets"][0]["name"]
-                    if "%s-x86_64" % tag not in self.runners_available:
-                        updates[tag] = file
-                    else:
-                        logging.warning(
-                            _("Latest wine runner: [{0}] already installed.").format(tag))
-
-            '''proton'''
-            with urllib.request.urlopen(self.proton_repository_api) as url:
-                releases = json.loads(url.read().decode())
-                for release in [releases[0], releases[1], releases[2]]:
-                    tag = release["tag_name"]
-                    file = release["assets"][0]["name"]
-                    if "Proton-%s" % tag not in self.runners_available:
-                        updates[tag] = file
-                    else:
-                        logging.warning(
-                            _("Latest proton runner: [{0}] already installed.").format(tag))
-
-        '''Notify if the user allows it'''
-        if len(updates) == 0:
-            self.window.send_notification(_("Download manager"),
-                                          _("No runner updates available."),
-                                          "software-installed-symbolic")
-
-        return updates
-
-    '''Get dxvk updates'''
-    def get_dxvk_updates(self) -> dict:
-        updates = {}
-
-        # TODO: fetch updates from new components repository
-
-        if self.utils_conn.check_connection():
-            with urllib.request.urlopen(self.dxvk_repository_api) as url:
-                releases = json.loads(url.read().decode())
-                for release in [releases[0], releases[1], releases[2]]:
-                    tag = release["tag_name"]
-                    file = release["assets"][0]["name"]
-                    if "dxvk-%s" % tag[1:] not in self.dxvk_available:
-                        updates[tag] = file
-                    else:
-                        logging.warning(
-                            _("Latest dxvk: [{0}] already installed.").format(tag))
-
-        '''Notify if the user allows it'''
-        if len(updates) == 0:
-            self.window.send_notification(_("Download manager"),
-                                          _("No dxvk updates available."),
-                                          "software-installed-symbolic")
-
-        return updates
-
     '''Extract a component archive'''
     def extract_component(self, component:str, archive:str) -> True:
         if component == "runner": path = self.runners_path
@@ -323,10 +258,13 @@ class BottlesRunner:
         else:
             request = urllib.request.Request(download_url, method='HEAD')
             request = urllib.request.urlopen(request)
-            #TODO: if request.status == 200:
-            download_size = request.headers['Content-Length']
-            urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file),
-                                       reporthook=update_func)
+            if request.status == 200:
+                download_size = request.headers['Content-Length']
+                urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file),
+                                           reporthook=update_func)
+            else:
+                download_entry.remove()
+                return False
 
         '''Rename the file if required'''
         if rename:
@@ -357,7 +295,10 @@ class BottlesRunner:
                     user_settings=False)
 
                 os.remove(file_path)
+                download_entry.remove()
                 return False
+
+        download_entry.remove()
         return True
 
     '''Component installation'''
@@ -408,7 +349,8 @@ class BottlesRunner:
         if after:
             after()
 
-        # TODO: refresh local lists after installation
+        '''Re-populate local lists'''
+        self.checks()
 
     def install_component(self, component_type:str, component_name:str, after=False, func=False) -> None:
         if self.utils_conn.check_connection(True):
