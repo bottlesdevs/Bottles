@@ -212,7 +212,7 @@ class BottlesRunner:
 
     '''Extract a component archive'''
     def extract_component(self, component:str, archive:str) -> True:
-        if component == "runner": path = self.runners_path
+        if component in ["runner", "runner:proton"]: path = self.runners_path
         if component == "dxvk": path = self.dxvk_path
 
         try:
@@ -331,7 +331,7 @@ class BottlesRunner:
         self.extract_component(component_type, archive)
 
         '''Empty the component lists and repopulate'''
-        if component_type == "runner":
+        if component_type in ["runner", "runner:proton"]:
             self.runners_available = []
             self.check_runners()
 
@@ -635,6 +635,8 @@ class BottlesRunner:
     def fetch_component_manifest(self, component_type:str, component_name:str, plain:bool=False) -> Union[str, dict, bool]:
         if component_type == "runner":
             component = self.supported_wine_runners[component_name]
+        if component_type == "runner:proton":
+            component = self.supported_proton_runners[component_name]
         if component_type == "dxvk":
             component = self.supported_dxvk[component_name]
 

@@ -216,7 +216,14 @@ class BottlesRunnerEntry(Handy.ActionRow):
     def download_runner(self, widget):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
-        self.runner.install_component("runner", self.runner_name, func=self.update_status)
+
+        component_type = "runner"
+        if self.runner_name.startswith("proton"):
+            component_type = "runner:proton"
+
+        self.runner.install_component(component_type,
+                                      self.runner_name,
+                                      func=self.update_status)
 
     '''Browse runner files'''
     def run_browse(self, widget):
