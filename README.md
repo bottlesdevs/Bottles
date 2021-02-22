@@ -27,7 +27,7 @@
 </div>
 <br>
 <div align="center">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot.png">
+    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/refresh/screenshot.png">
 </div>
 
 ## Documentation
