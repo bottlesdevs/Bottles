@@ -323,11 +323,16 @@ class BottlesRunner:
                                 checksum=manifest["File"][0]["file_checksum"],
                                 func=func)
 
+        if not download:
+            return func(failed=True)
+
         '''Extract component archive'''
         if manifest["File"][0]["rename"]:
             archive = manifest["File"][0]["rename"]
         else:
             archive = manifest["File"][0]["file_name"]
+
+
         self.extract_component(component_type, archive)
 
         '''Empty the component lists and repopulate'''

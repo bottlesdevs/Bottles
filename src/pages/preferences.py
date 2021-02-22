@@ -159,7 +159,13 @@ class BottlesDxvkEntry(Handy.ActionRow):
         self.runner.open_filemanager(path_type="dxvk",
                                      dxvk=self.dxvk_name)
 
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False):
+    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+        if failed:
+            self.box_download_status.set_visible(False)
+            self.btn_download.set_visible(True)
+            self.btn_browse.set_visible(False)
+            return False
+
         if not self.label_download_status.get_visible():
             self.label_download_status.set_visible(True)
 
@@ -173,8 +179,8 @@ class BottlesDxvkEntry(Handy.ActionRow):
             self.box_download_status.set_visible(False)
             self.btn_browse.set_visible(True)
 
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False):
-        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed)
+    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed, failed)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
@@ -231,7 +237,13 @@ class BottlesRunnerEntry(Handy.ActionRow):
         self.runner.open_filemanager(path_type="runner",
                                      runner=self.runner_name)
 
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False):
+    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+        if failed:
+            self.box_download_status.set_visible(False)
+            self.btn_download.set_visible(True)
+            self.btn_browse.set_visible(False)
+            return False
+
         if not self.label_download_status.get_visible():
             self.label_download_status.set_visible(True)
 
@@ -245,6 +257,6 @@ class BottlesRunnerEntry(Handy.ActionRow):
             self.box_download_status.set_visible(False)
             self.btn_browse.set_visible(True)
 
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False):
-        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed)
+    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed, failed)
 
