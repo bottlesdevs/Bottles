@@ -1,8 +1,9 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
-  <h1 align="center">Bottles v2</h1>
+  <h1 align="center">Bottles v3</h1>
   <p align="center">Easily manage wineprefix using environments</p>
   <small><a href="https://github.com/bottlesdevs/Bottles/tree/v1">Here</a> you can find the old v1.</small>
+  <p align="center">More about the <a href="https://usebottles.com/blog/bottles-3-project-refresh/">new UI</a></p>
 </div>
 
 <br/>
@@ -26,14 +27,7 @@
 </div>
 <br>
 <div align="center">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-0.png">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-4.png" width="48%">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-6.png" width="48%">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-7.png">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-8.png" width="24%">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-9.png" width="24%">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-10.png" width="24%">
-    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot-13.png" width="24%">
+    <img  src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/screenshot.png">
 </div>
 
 ## Documentation
