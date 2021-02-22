@@ -27,7 +27,7 @@ import fnmatch
 
 from typing import Union, NewType
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 from glob import glob
 from pathlib import Path
@@ -428,9 +428,9 @@ class BottlesRunner:
         download_entry.remove()
 
         '''Hide installation button and show remove button'''
-        widget.btn_install.set_visible(False)
-        widget.btn_remove.set_visible(True)
-        widget.btn_remove.set_sensitive(True)
+        GLib.idle_add(widget.btn_install.set_visible, False)
+        GLib.idle_add(widget.btn_remove.set_visible, True)
+        GLib.idle_add(widget.btn_remove.set_sensitive, True)
 
         return True
 
@@ -455,8 +455,8 @@ class BottlesRunner:
                                   configuration["Installed_Dependencies"])
 
         '''Show installation button and hide remove button'''
-        widget.btn_install.set_visible(True)
-        widget.btn_remove.set_visible(False)
+        GLib.idle_add(widget.btn_install.set_visible, True)
+        GLib.idle_add(widget.btn_remove.set_visible, False)
 
     '''Run installer'''
     def run_installer(self, configuration:BottleConfig, installer:list, widget:Gtk.Widget) -> None:

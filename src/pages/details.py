@@ -445,14 +445,14 @@ class BottlesDependencyEntry(Handy.ActionRow):
 
     '''Install dependency'''
     def install_dependency(self, widget):
-        widget.set_sensitive(False)
+        GLib.idle_add(widget.set_sensitive, False)
         self.runner.install_dependency(self.configuration,
                                        self.dependency,
                                        self)
 
     '''Remove dependency'''
     def remove_dependency(self, widget):
-        widget.set_sensitive(False)
+        GLib.idle_add(widget.set_sensitive, False)
         self.runner.remove_dependency(self.configuration,
                                       self.dependency,
                                       self)
