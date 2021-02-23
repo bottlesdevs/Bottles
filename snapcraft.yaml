@@ -27,7 +27,7 @@ parts:
 
 apps:
   bottles:
-    command: bin/bottles
+    command: $SNAP/usr/local/bin/bottles
     plugs:
       - desktop
       - unity7
