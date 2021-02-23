@@ -2,6 +2,7 @@ name: bottles
 version: git
 summary: Bottles
 description: "Easily run Windows software on Linux with 🍷 Bottles!"
+license: GPL-3.0+
 
 base: core18
 confinement: strict
@@ -19,6 +20,9 @@ parts:
       - desktop-file-utils
       - gsettings-desktop-schemas-dev
     source: . # https://github.com/bottlesdevs/Bottles.git
+    override-pull: |
+      snapcraftctl pull
+      sed -i -e 's|@PYTHON@|/usr/bin/python3|g' src/bottles.in
     stage-packages:
       - python3-gi
       - python3-gi-cairo
@@ -39,6 +43,8 @@ apps:
       - unity7
       - x11
       - network
+      - audio-playback
+      - removable-media
     slots:
       - dbus-bottles
     environment:
