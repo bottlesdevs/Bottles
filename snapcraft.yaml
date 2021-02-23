@@ -29,7 +29,8 @@ parts:
 
 apps:
   bottles:
-    command: bin/bottles
+    command: bin/desktop-launch $SNAP/usr/local/bin/bottles
+    extensions: [gnome-3-34]
     plugs:
       - desktop
       - desktop-legacy
@@ -41,8 +42,10 @@ apps:
     slots:
       - dbus-bottles
     environment:
-      PYTHONPATH: $SNAP/gnome-platform/usr/lib/python3.6/site-packages
-      LD_LIBRARY_PATH: $SNAP/gnome-platform/usr/lib:$LD_LIBRARY_PATH
+      PYTHONPATH: $SNAP/usr/lib/python3/dist-packages:$SNAP/gnome-platform/usr/lib/python3/dist-packages:$SNAP/usr/share/bottles
+      GSETTINGS_SCHEMA_DIR: $SNAP/share/glib-2.0/schemas
+      GTK_USE_PORTAL: "1"
+      GI_TYPELIB_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/girepository-1.0
 
 slots:
   dbus-bottles:
