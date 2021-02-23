@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="BottlesAboutDialog" parent="GtkAboutDialog">
-    <property name="can-focus">False</property>
-    <property name="window-position">center-on-parent</property>
-    <property name="type-hint">dialog</property>
-    <property name="program-name">Bottles</property>
-    <property name="version">3.0.0.0</property>
+    <property name="can_focus">False</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
+    <property name="program_name">Bottles</property>
+    <property name="version">3.0.0</property>
     <property name="copyright" translatable="yes">© 2017-2021 - Bottles Developers</property>
     <property name="comments" translatable="yes">Easily manage wineprefix using environments</property>
     <property name="website">https://usebottles.com</property>
-    <property name="website-label">usebottles.com</property>
+    <property name="website_label">usebottles.com</property>
     <property name="authors">Mirko Brombin &lt;https://github.com/mirkobrombin/&gt;
 Francesco Masala &lt;mail@francescomasala.me&gt;</property>
-    <property name="translator-credits">Lahfa Samy &lt;samy@lahfa.xyz&gt;
+    <property name="translator_credits">Lahfa Samy &lt;samy@lahfa.xyz&gt;
 Filipe de Almeida Garrett &lt;https://github.com/filipegarrett&gt;
 Allan Nordhøy &lt;https://github.com/comradekingu&gt;
 Leandro Stanger &lt;https://github.com/LeandroStanger&gt;
@@ -22,21 +22,30 @@ Allan Nordhøy &lt;https://github.com/comradekingu&gt;
 Fábio Rodrigues Ribeiro &lt;https://github.com/farribeiro&gt;
 Gabriel Mattoso &lt;https://github.com/realgrm&gt;
 Gündüzhan Gündüz &lt;https://github.com/gunduzhan&gt;
-Yannick A. &lt;https://github.com/yannicka&gt;</property>
+Yannick A. &lt;https://github.com/yannicka&gt;
+bloomvdomino &lt;https://github.com/bloomvdomino&gt;
+Åke Engelbrektson &lt;https://github.com/eson57&gt;
+Adolfo Jayme-Barrientos &lt;https://github.com/fitojb&gt;
+Gündüzhan Gündüz &lt;https://github.com/gunduzhan&gt;
+Reza &lt;https://github.com/rezaalmanda&gt;
+Jakub Fabijan &lt;https://github.com/jakubfabijan&gt;</property>
     <property name="artists">Marco Montini &lt;https://github.com/marckniack&gt;
 Noëlle &lt;https://github.com/jannuary&gt;
 Alvar Lagerlöf &lt;https://github.com/alvarlagerlof&gt;</property>
-    <property name="logo-icon-name">com.usebottles.bottles</property>
-    <property name="license-type">gpl-3-0-only</property>
+    <property name="logo_icon_name">com.usebottles.bottles</property>
+    <property name="license_type">gpl-3-0-only</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can-focus">False</property>
+        <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="can-focus">False</property>
-            <property name="layout-style">end</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
             <child>
               <placeholder/>
             </child>
@@ -53,14 +62,14 @@ Alvar Lagerlöf &lt;https://github.com/alvarlagerlof&gt;</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
             <property name="homogeneous">True</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">&lt;a href="https://hosted.weblate.org/engage/bottles/"&gt;Translate&lt;/a&gt;</property>
-                <property name="use-markup">True</property>
+                <property name="use_markup">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -71,9 +80,9 @@ Alvar Lagerlöf &lt;https://github.com/alvarlagerlof&gt;</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">&lt;a href="https://usebottles.com/funding/"&gt;Funding&lt;/a&gt;</property>
-                <property name="use-markup">True</property>
+                <property name="use_markup">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -84,9 +93,9 @@ Alvar Lagerlöf &lt;https://github.com/alvarlagerlof&gt;</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">&lt;a href="https://github.com/bottlesdevs/Bottles/issues"&gt;Bug report&lt;/a&gt;</property>
-                <property name="use-markup">True</property>
+                <property name="use_markup">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
