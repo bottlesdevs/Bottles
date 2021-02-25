@@ -98,6 +98,7 @@ class BottlesWindow(Handy.ApplicationWindow):
 
         '''Runner instance'''
         self.runner = BottlesRunner(self)
+        self.runner.check_runners_dir()
 
         '''Pages'''
         page_details = BottlesDetails(self)
