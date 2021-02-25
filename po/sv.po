@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 14:16+0100\n"
-"PO-Revision-Date: 2021-02-23 14:50+0000\n"
+"PO-Revision-Date: 2021-02-25 14:41+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
 "sv/>\n"
@@ -401,17 +401,16 @@ msgid ""
 "Toggle experimental features such as versioning and installers.Release "
 "Candidate for Runners"
 msgstr ""
-"Av/På för experimentella funktioner som versionshantering och "
-"installationsprogrammet. RC-utgåva för körprogram."
+"Av/På för experimentella funktioner såsom versionshantering och "
+"installationsprogram. RC-utgåva för körprogram."
 
 #: data/com.usebottles.bottles.gschema.xml:36
-#, fuzzy
 msgid "Experiments:versioning"
-msgstr "Experiment"
+msgstr "Experiment: Versionshantering"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Toggle experimental versioning feature"
-msgstr ""
+msgstr "Experimentell funktionshantering av/på"
 
 #: data/com.usebottles.bottles.gschema.xml:41
 #, fuzzy
@@ -420,11 +419,11 @@ msgstr "Experiment"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle experimental installers feature"
-msgstr ""
+msgstr "Experimentell installerarfunktion av/på"
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
-msgstr ""
+msgstr "© 2017-2021 - Bottles Utvecklare"
 
 #: src/ui/about.ui:12
 #, fuzzy
@@ -433,25 +432,26 @@ msgstr "Enkel hantering av Wine-prefix"
 
 #: src/ui/about.ui:71
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
-msgstr ""
+msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Översätt</a>"
 
 #: src/ui/about.ui:84
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/funding/\"> Finansiering</a>"
 
 #: src/ui/about.ui:97
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
+"<a href=\"https://github.com/bottlesdevs/Bottles/issues\"> Felrapport </a>"
 
 #: src/ui/about.ui:110
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/blog\"> Blogg</a>"
 
 #: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
 #: src/ui/state-entry.ui:21
 msgid "Show manifest"
-msgstr ""
+msgstr "Visa manifest"
 
 #: src/ui/dependency-entry.ui:45 src/ui/installer-entry.ui:45
 #, fuzzy
@@ -470,7 +470,7 @@ msgstr "Miljöbeskrivning"
 
 #: src/ui/dependency-entry.ui:102
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -532,7 +532,7 @@ msgstr "Buteljnamn"
 
 #: src/ui/details.ui:247 src/ui/new.ui:149
 msgid "This field cannot contain special characters!"
-msgstr ""
+msgstr "Detta fält får inte innehålla specialtecken!"
 
 #: src/ui/details.ui:248
 #, fuzzy
@@ -545,11 +545,11 @@ msgstr "Miljö"
 
 #: src/ui/details.ui:316
 msgid "64 Bit"
-msgstr ""
+msgstr "64 bitar"
 
 #: src/ui/details.ui:335
 msgid "lutris-6.0-rc1-x86_64"
-msgstr ""
+msgstr "lutris-6.0-rc1-x86_64"
 
 #: src/ui/details.ui:386
 msgid "Run .exe"
@@ -571,7 +571,7 @@ msgstr "Winecfg"
 
 #: src/ui/details.ui:507
 msgid "Adjust internal settings."
-msgstr ""
+msgstr "Justera interna inställningar."
 
 #: src/ui/details.ui:544 src/ui/list-entry.ui:221
 msgid "Browse C:"
@@ -579,11 +579,11 @@ msgstr "Bläddra i C:"
 
 #: src/ui/details.ui:546
 msgid "Browse internal files."
-msgstr ""
+msgstr "Bläddra bland interna filer."
 
 #: src/ui/details.ui:583
 msgid "Command Line"
-msgstr ""
+msgstr "Kommandorad"
 
 #: src/ui/details.ui:585
 #, fuzzy
@@ -592,11 +592,11 @@ msgstr "Kör i denna butelj"
 
 #: src/ui/details.ui:622
 msgid "Registry Editor"
-msgstr ""
+msgstr "Registereditor"
 
 #: src/ui/details.ui:624
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "Redigera det interna registret."
 
 #: src/ui/details.ui:661
 msgid "Debug"
@@ -604,7 +604,7 @@ msgstr "Felsök"
 
 #: src/ui/details.ui:663
 msgid "Debug wine processes."
-msgstr ""
+msgstr "Felsök Wine-processer."
 
 #: src/ui/details.ui:700
 #, fuzzy
@@ -622,7 +622,7 @@ msgstr "Avinstallerare"
 
 #: src/ui/details.ui:741
 msgid "Uninstall programs using wine uninstaller"
-msgstr ""
+msgstr "Avinstallera program med Wines avinstallerare"
 
 #: src/ui/details.ui:778
 #, fuzzy
@@ -631,7 +631,7 @@ msgstr "Kontrollpanel"
 
 #: src/ui/details.ui:780
 msgid "Access the internal wine control panel."
-msgstr ""
+msgstr "Gå till den interna Wine-kontrollpanelen."
 
 #: src/ui/details.ui:832
 #, fuzzy
@@ -640,7 +640,7 @@ msgstr "Bottles"
 
 #: src/ui/details.ui:860
 msgid "Graphics"
-msgstr ""
+msgstr "Grafik"
 
 #: src/ui/details.ui:865
 msgid "Use DXVK"
