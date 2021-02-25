@@ -91,6 +91,7 @@ done
 
 title "Copying icons"
 print_execution "cp -a ../data/icons appdir/usr/share"
+print_execution "mv appdir/usr/share/icons/symbolic/scalable/apps/*.svg appdir/usr/share/icons/hicolor/scalable/apps/"
 
 title "Copying and compiling gschema"
 print_execution "cp ../data/com.usebottles.bottles.gschema.xml appdir/usr/share/glib-2.0/schemas/com.usebottles.bottles.gschema.xml"
