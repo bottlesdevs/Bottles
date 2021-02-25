@@ -163,8 +163,8 @@ class BottlesRunner:
     def async_checks(self, args=False):
         after = args[0]
         self.check_runners_dir()
-        self.check_runners(after=after)
         self.check_dxvk()
+        self.check_runners(after=after)
         self.check_bottles()
         self.fetch_dependencies()
         self.fetch_installers()
@@ -251,7 +251,7 @@ class BottlesRunner:
         else:
             update_func = download_entry.update_status
 
-        if os.path.isfile("%s/%s" % (self.temp_path, file)):
+        if os.path.isfile(f"{self.temp_path}/{file}"):
             logging.warning(
                 _("File [{0}] already exists in temp, skipping.").format(file))
             update_func(completed=True)
@@ -303,7 +303,7 @@ class BottlesRunner:
 
     '''Component installation'''
     def async_install_component(self, args:list) -> None:
-        component_type, component_name, after, func = args
+        component_type, component_name, after, func, checks = args
 
         manifest = self.fetch_component_manifest(component_type, component_name)
 
@@ -355,11 +355,12 @@ class BottlesRunner:
             after()
 
         '''Re-populate local lists'''
-        self.checks()
+        if checks:
+            self.checks()
 
-    def install_component(self, component_type:str, component_name:str, after=False, func=False) -> None:
+    def install_component(self, component_type:str, component_name:str, after=False, func=False, checks=True) -> None:
         if self.utils_conn.check_connection(True):
-            RunAsync(self.async_install_component, None, [component_type, component_name, after, func])
+            RunAsync(self.async_install_component, None, [component_type, component_name, after, func, checks])
 
     '''
     Method for deoendency installations
@@ -527,7 +528,7 @@ class BottlesRunner:
             '''If connected, install latest dxvk from repository'''
             if self.utils_conn.check_connection():
                 dxvk_version = next(iter(self.supported_dxvk))
-                self.install_component("dxvk", dxvk_version)
+                self.install_component("dxvk", dxvk_version, checks=False)
             else:
                 return False
         return True
