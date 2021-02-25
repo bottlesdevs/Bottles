@@ -28,7 +28,7 @@ command: bottles
 finish-args:
 - --allow=multiarch
 - --share=network
-- --device=dri
+- --device=all
 - --share=ipc
 - --socket=fallback-x11
 - --socket=pulseaudio
@@ -80,4 +80,18 @@ modules:
   sources:
   - type: git
     url: https://github.com/bottlesdevs/Bottles
-    tag: 2.0.9.9
+    branch: refresh
+    commit: 1ed9177deabc8f17f4f39b9baa7c15e2420c9ad8
+- name: libhandy
+  builddir: true
+  buildsystem: meson
+  config-opts:
+  - -Dglade_catalog=disabled
+  - -Dintrospection=enabled
+  - -Dexamples=false
+  - -Dtests=false
+  sources:
+  - type: git
+    url: https://gitlab.gnome.org/GNOME/libhandy
+    tag: 1.1.90
+    commit: 89a1610b62533c9d6c5267cfac0108e724df25ba
