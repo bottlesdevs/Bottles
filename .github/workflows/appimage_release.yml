@@ -1,7 +1,7 @@
 name: AppImage Release
 on:
   push:
-    branches: [ refresh ]
+    branches: [ master ]
     tags:
       - 'test'
   workflow_dispatch:
