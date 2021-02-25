@@ -4,13 +4,20 @@ summary: Bottles
 description: "Easily run Windows software on Linux with 🍷 Bottles!"
 license: GPL-3.0+
 
-base: core18
+base: core20
 confinement: strict
 grade: devel
 
 parts:
+
   bottles:
     plugin: meson
+    meson-parameters: [--prefix=/snap/bottles/current/usr]
+    source: . # https://github.com/bottlesdevs/Bottles.git
+    override-pull: |
+      snapcraftctl pull
+      sed -i -e 's|@PYTHON@|/usr/bin/python3|g' src/bottles.in
+      snapcraftctl set-version $(git describe --tags --abbrev=10)
     build-packages:
       - python3
       - python3-distutils
@@ -19,10 +26,6 @@ parts:
       - appstream-util
       - desktop-file-utils
       - gsettings-desktop-schemas-dev
-    source: . # https://github.com/bottlesdevs/Bottles.git
-    override-pull: |
-      snapcraftctl pull
-      sed -i -e 's|@PYTHON@|/usr/bin/python3|g' src/bottles.in
     stage-packages:
       - python3-gi
       - python3-gi-cairo
@@ -34,7 +37,7 @@ parts:
 apps:
   bottles:
     command: bin/desktop-launch $SNAP/usr/local/bin/bottles
-    extensions: [gnome-3-34]
+    extensions: [gnome-3-38]
     plugs:
       - desktop
       - desktop-legacy
@@ -47,11 +50,6 @@ apps:
       - removable-media
     slots:
       - dbus-bottles
-    environment:
-      PYTHONPATH: $SNAP/usr/lib/python3/dist-packages:$SNAP/gnome-platform/usr/lib/python3/dist-packages:$SNAP/usr/share/bottles
-      GSETTINGS_SCHEMA_DIR: $SNAP/share/glib-2.0/schemas
-      GTK_USE_PORTAL: "1"
-      GI_TYPELIB_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/girepository-1.0
 
 slots:
   dbus-bottles:
