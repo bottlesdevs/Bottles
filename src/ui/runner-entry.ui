@@ -6,37 +6,12 @@
   <template class="BottlesRunnerEntry" parent="HdyActionRow">
     <property name="visible">True</property>
     <property name="can_focus">True</property>
-    <property name="title" translatable="yes">Runner name</property>
+    <property name="title">Runner name</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">5</property>
-        <child>
-          <object class="GtkButton" id="btn_download">
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">document-save-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="suggested-action"/>
-              <class name="btn_radius"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
         <child>
           <object class="GtkButton" id="btn_browse">
             <property name="can_focus">True</property>
@@ -53,6 +28,31 @@
               </object>
             </child>
             <style>
+              <class name="btn_radius"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_download">
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">document-save-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="suggested-action"/>
               <class name="btn_radius"/>
             </style>
           </object>

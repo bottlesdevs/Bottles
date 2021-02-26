@@ -1,57 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.0"/>
   <template class="BottlesListEntry" parent="HdyActionRow">
     <property name="visible">True</property>
-    <property name="can-focus">True</property>
-    <property name="title" translatable="yes">Bottle name</property>
-    <property name="activatable-widget">btn_details</property>
+    <property name="can_focus">True</property>
+    <property name="title">Bottle name</property>
+    <property name="activatable_widget">btn_details</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-start">6</property>
-        <property name="margin-end">6</property>
-        <property name="margin-top">6</property>
-        <property name="margin-bottom">6</property>
-        <child>
-          <object class="GtkButton" id="btn_run">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Run .exe/.msi in this bottle</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">insert-object-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="btn_radius"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
+        <property name="can_focus">False</property>
+        <property name="margin_start">6</property>
+        <property name="margin_end">6</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <child>
           <object class="GtkBox" id="list_labels">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkLabel" id="label_environment">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="label" translatable="yes">Environment</property>
+                <property name="label">Environment</property>
                 <attributes>
                   <attribute name="font-desc" value="Cantarell 10"/>
                   <attribute name="weight" value="normal"/>
@@ -67,33 +42,32 @@
               </packing>
             </child>
             <child>
-              <!-- n-columns=2 n-rows=1 -->
               <object class="GtkGrid" id="grid_versioning">
-                <property name="can-focus">False</property>
-                <property name="tooltip-text" translatable="yes">Versioning enabled for this bottle</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Versioning enabled for this bottle</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkImage" id="img_versioning">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="tooltip-text" translatable="yes">Versioning is active in this bottle.</property>
+                    <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Versioning is active in this bottle.</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
-                    <property name="margin-top">1</property>
-                    <property name="pixel-size">14</property>
-                    <property name="icon-name">view-wrapped-symbolic</property>
+                    <property name="margin_top">1</property>
+                    <property name="pixel_size">14</property>
+                    <property name="icon_name">view-wrapped-symbolic</property>
                     <property name="icon_size">1</property>
                   </object>
                   <packing>
-                    <property name="left-attach">0</property>
-                    <property name="top-attach">0</property>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="label_state">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                    <property name="can_focus">False</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="label" translatable="yes">0</property>
@@ -103,8 +77,8 @@
                     </attributes>
                   </object>
                   <packing>
-                    <property name="left-attach">1</property>
-                    <property name="top-attach">0</property>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <style>
@@ -121,11 +95,11 @@
             </child>
             <child>
               <object class="GtkImage" id="icon_damaged">
-                <property name="can-focus">False</property>
-                <property name="tooltip-text" translatable="yes">This bottle looks damaged.</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">This bottle looks damaged.</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="icon-name">dialog-warning-symbolic</property>
+                <property name="icon_name">dialog-warning-symbolic</property>
                 <style>
                   <class name="tag"/>
                 </style>
@@ -145,17 +119,42 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="btn_details">
+          <object class="GtkButton" id="btn_run">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Utility &amp; Preferences</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Run .exe/.msi in this bottle</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">go-next-symbolic</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">insert-object-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="btn_radius"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_details">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Utility &amp; Preferences</property>
+            <property name="relief">none</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">go-next-symbolic</property>
               </object>
             </child>
             <style>
@@ -165,42 +164,42 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack-type">end</property>
+            <property name="pack_type">end</property>
             <property name="position">1</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="btn_upgrade">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Upgrade runner to the latest localy installed</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">software-update-available-symbolic</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">software-update-available-symbolic</property>
               </object>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack-type">end</property>
+            <property name="pack_type">end</property>
             <property name="position">2</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="btn_delete">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Destroy bottle</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Destroy bottle</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">user-trash-symbolic</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">user-trash-symbolic</property>
               </object>
             </child>
             <style>
@@ -210,87 +209,87 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack-type">end</property>
+            <property name="pack_type">end</property>
             <property name="position">3</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="btn_browse">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Browse C:</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Browse C:</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">folder-symbolic</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">folder-symbolic</property>
               </object>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack-type">end</property>
+            <property name="pack_type">end</property>
             <property name="position">4</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="btn_programs">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Installed programs</property>
+          <object class="GtkButton" id="btn_repair">
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">This bottle looks damaged, the configuration file is missing. I can try to solve by creating a new configuration.</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">view-grid-symbolic</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">mail-mark-junk-symbolic</property>
               </object>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack-type">end</property>
+            <property name="pack_type">end</property>
             <property name="position">6</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="btn_repair">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">This bottle looks damaged, the configuration file is missing. I can try to solve by creating a new configuration.</property>
+          <object class="GtkButton" id="btn_programs">
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Installed programs</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">mail-mark-junk-symbolic</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">view-grid-symbolic</property>
               </object>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack-type">end</property>
+            <property name="pack_type">end</property>
             <property name="position">6</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="btn_run_executable">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Execute in this bottle</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Execute in this bottle</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <property name="can_focus">False</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                    <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Run in this bottle</property>
                     <attributes>
                       <attribute name="font-desc" value="Cantarell 10"/>
@@ -305,9 +304,9 @@
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="margin-start">5</property>
-                    <property name="icon-name">media-playback-start-symbolic</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_start">5</property>
+                    <property name="icon_name">media-playback-start-symbolic</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -321,7 +320,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack-type">end</property>
+            <property name="pack_type">end</property>
             <property name="position">7</property>
           </packing>
         </child>

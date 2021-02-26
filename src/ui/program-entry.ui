@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
   <object class="GtkPopover" id="pop_actions">
-    <property name="can-focus">False</property>
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
-        <property name="width-request">160</property>
+        <property name="width_request">160</property>
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
+        <property name="can_focus">False</property>
+        <property name="border_width">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkModelButton" id="btn_launch_options">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Change Launch Options</property>
           </object>
           <packing>
@@ -29,7 +29,7 @@
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -40,8 +40,8 @@
         <child>
           <object class="GtkModelButton" id="btn_winehq">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">WineHQ</property>
           </object>
           <packing>
@@ -53,8 +53,8 @@
         <child>
           <object class="GtkModelButton" id="btn_protondb">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">ProtonDB</property>
           </object>
           <packing>
@@ -66,8 +66,8 @@
         <child>
           <object class="GtkModelButton" id="btn_issues">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Bottles Issues</property>
           </object>
           <packing>
@@ -79,7 +79,7 @@
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -90,8 +90,8 @@
         <child>
           <object class="GtkModelButton" id="btn_uninstall">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="text" translatable="yes">Uninstall</property>
           </object>
           <packing>
@@ -105,26 +105,26 @@
   </object>
   <template class="BottlesProgramEntry" parent="HdyActionRow">
     <property name="visible">True</property>
-    <property name="can-focus">True</property>
-    <property name="title" translatable="yes">Program name</property>
-    <property name="icon-name">application-x-executable</property>
+    <property name="can_focus">True</property>
+    <property name="title">Program name</property>
+    <property name="icon_name">application-x-executable</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
+        <property name="can_focus">False</property>
         <property name="spacing">5</property>
         <child>
           <object class="GtkButton" id="btn_run">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">media-playback-start-symbolic</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">media-playback-start-symbolic</property>
               </object>
             </child>
             <style>
@@ -135,16 +135,16 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="pack-type">end</property>
+            <property name="pack_type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkMenuButton">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="focus-on-click">False</property>
-            <property name="receives-default">True</property>
+            <property name="can_focus">True</property>
+            <property name="focus_on_click">False</property>
+            <property name="receives_default">True</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="relief">none</property>
@@ -152,8 +152,8 @@
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">view-more-symbolic</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">view-more-symbolic</property>
               </object>
             </child>
           </object>
