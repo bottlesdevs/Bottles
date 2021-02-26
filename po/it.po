@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-26 20:21+0100\n"
-"PO-Revision-Date: 2021-02-26 19:55+0000\n"
+"PO-Revision-Date: 2021-02-26 19:59+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -36,7 +36,6 @@ msgstr "com.usebottles.bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 #: data/com.usebottles.bottles.appdata.xml.in:10
-#, fuzzy
 msgid "Run Windows software on Linux with Bottles🍷!"
 msgstr "Esegui facilmente software Windows con 🍷 Bottles!"
 
@@ -1375,44 +1374,44 @@ msgstr "Impossibile salvare il backup nel percorso: {0}."
 #: src/runner.py:1747
 #, python-brace-format
 msgid "Failed to create backup for {0}!"
-msgstr ""
+msgstr "Impossibile creare il backup per {0}!"
 
 #: src/runner.py:1773
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "Importa da backup"
+msgstr "Importazione del backup: {0}"
 
 #: src/runner.py:1787
 #, python-brace-format
 msgid "Backup: [{0}] imported successfully."
-msgstr ""
+msgstr "Backup: [{0}] importato correttamente."
 
 #: src/runner.py:1795
 #, python-brace-format
 msgid "Your backup {0} was imported successfully.!"
-msgstr ""
+msgstr "Il tuo backup {0} è stato importato correttamente.!"
 
 #: src/runner.py:1799
 #, python-brace-format
 msgid "Failed importing backup: [{0}]"
-msgstr ""
+msgstr "Importazione del backup non riuscita: [{0}]"
 
 #: src/runner.py:1805
 #, python-brace-format
 msgid "Failed importing backup {0}!"
-msgstr ""
+msgstr "Importazione del backup {0} non riuscita!"
 
 #: src/utils.py:44
 msgid "Connection status: online …"
-msgstr ""
+msgstr "Stato della connessione: online …"
 
 #: src/utils.py:52
 msgid "Connection status: offline …"
-msgstr ""
+msgstr "Stato della connessione: offline …"
 
 #: src/utils.py:57
 msgid "You are offline, unable to download."
-msgstr ""
+msgstr "Sei offline, non puoi scaricare."
 
 #: src/window.py:118
 msgid "Bottle details"
@@ -1464,16 +1463,15 @@ msgstr "Sei sicuro di voler rimuovere questa Bottiglia e tutti i suoi file?"
 
 #: src/pages/dialog.py:24 src/pages/dialog.py:60
 msgid "Warning"
-msgstr ""
+msgstr "Avviso"
 
 #: src/pages/dialog.py:25 src/pages/dialog.py:61
 msgid "An error has occurred."
-msgstr ""
+msgstr "C'è stato un errore."
 
 #: src/pages/importer.py:101
-#, fuzzy
 msgid "Choose a backup archive"
-msgstr "Scegli un backup"
+msgstr "Scegli un archivio di backup"
 
 #: src/pages/list.py:101
 #, python-brace-format
@@ -1495,7 +1493,7 @@ msgstr "Giochi"
 
 #: src/pages/new.py:107
 msgid "An environment improved for Windows games."
-msgstr ""
+msgstr "Un ambiente migliorato per i giochi Windows."
 
 #: src/pages/new.py:112
 msgid "Software"
@@ -1503,21 +1501,20 @@ msgstr "Programmi"
 
 #: src/pages/new.py:113
 msgid "An environment improved for Windows software."
-msgstr ""
+msgstr "Un ambiente migliorato per il software Windows."
 
 #: src/pages/new.py:118
 msgid "Custom"
 msgstr "Personalizzato"
 
 #: src/pages/new.py:119
-#, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "Un ambiente pulito, senza ottimizzazioni."
+msgstr "Un ambiente pulito per i tuoi esperimenti."
 
 #: src/pages/new.py:221
 #, python-format
 msgid "A bottle named “%s” was created successfully"
-msgstr ""
+msgstr "Una bottiglia denominata \"%s\" è stata creata correttamente"
 
 #, fuzzy
 #~ msgid "Execute .bat files in your bottles"
