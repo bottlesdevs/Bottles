@@ -224,7 +224,7 @@ class BottlesRunnerEntry(Handy.ActionRow):
         self.box_download_status.set_visible(True)
 
         component_type = "runner"
-        if self.runner_name.startswith("proton"):
+        if self.runner_name.lower().startswith("proton"):
             component_type = "runner:proton"
 
         self.runner.install_component(component_type,
