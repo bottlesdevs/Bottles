@@ -152,10 +152,13 @@ class BottlesWindow(Handy.ApplicationWindow):
         if arg_executable:
             self.show_list_view()
 
+        '''Toggle view_switcher_bar by window size'''
+        self.on_squeezer_notify(widget=self.squeezer)
+
         arg_executable = False
         logging.info(_("Bottles Started!"))
 
-    def on_squeezer_notify(self, widget, event):
+    def on_squeezer_notify(self, widget, event=False):
         '''TODO: this is used for responsive and doesn't work at this time'''
         child = widget.get_visible_child()
         self.view_switcher_bar.set_reveal(child != self.view_switcher)
