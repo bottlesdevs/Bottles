@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-26 20:21+0100\n"
-"PO-Revision-Date: 2021-03-03 07:19+0000\n"
-"Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
+"PO-Revision-Date: 2021-03-05 22:26+0000\n"
+"Last-Translator: Fábio Rodrigues Ribeiro <farribeiro@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.5.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -45,7 +45,7 @@ msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
-msgstr ""
+msgstr "Software Bottle e divirta-se no seu lazer!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -227,16 +227,15 @@ msgstr "Experimentos:instaladores"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle experimental installers feature"
-msgstr ""
+msgstr "Ativar recurso de instaladores experimentais"
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
 msgstr "© 2017-2021 - Bottles Developers"
 
 #: src/ui/about.ui:12
-#, fuzzy
 msgid "Easily manage wineprefix using environments"
-msgstr "Gerencie o wineprefix facilmente"
+msgstr "Gerencie facilmente o wineprefix usando ambientes"
 
 #: src/ui/about.ui:71
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
@@ -263,7 +262,6 @@ msgid "Show manifest"
 msgstr "Mostrar manifesto"
 
 #: src/ui/dependency-entry.ui:45 src/ui/installer-entry.ui:45
-#, fuzzy
 msgid "Bug report"
 msgstr "Relatório de erro"
 
@@ -304,9 +302,8 @@ msgid "Save the bottle state."
 msgstr "Salve o estado do bottle."
 
 #: src/ui/details.ui:159
-#, fuzzy
 msgid "Rename bottle"
-msgstr "Salvar bottle"
+msgstr "Renomear Bottle"
 
 #: src/ui/details.ui:183 src/ui/list-entry.ui:47
 msgid "Versioning enabled for this bottle"
@@ -353,14 +350,12 @@ msgid "Programs"
 msgstr "Programas"
 
 #: src/ui/details.ui:500
-#, fuzzy
 msgid "Utilities"
-msgstr "Utilitário"
+msgstr "Utilitários"
 
 #: src/ui/details.ui:505
-#, fuzzy
 msgid "Wine config"
-msgstr "Winecfg"
+msgstr "Wine config"
 
 #: src/ui/details.ui:507
 msgid "Adjust internal settings."
@@ -399,14 +394,12 @@ msgid "Debug wine processes."
 msgstr "Depurar processos de wine."
 
 #: src/ui/details.ui:700
-#, fuzzy
 msgid "Task Manager"
 msgstr "Gerenciador de tarefas"
 
 #: src/ui/details.ui:702
-#, fuzzy
 msgid "Manage processes with the Wine task manager."
-msgstr "Gerencie os processos em execução neste Bottle."
+msgstr "Gerencie processos com o gerenciador de tarefas Wine."
 
 #: src/ui/details.ui:739
 msgid "Uninstaller"
@@ -542,11 +535,11 @@ msgstr ""
 
 #: src/ui/details.ui:1407
 msgid "Enable wine fixme logs"
-msgstr ""
+msgstr "Ativar logs de fixme do wine"
 
 #: src/ui/details.ui:1408
 msgid "Log code paths that are unimplemented in Wine."
-msgstr ""
+msgstr "Caminhos de código de log que não são implementados no Wine."
 
 #: src/ui/details.ui:1449 src/ui/preferences.ui:8 src/ui/window.ui:75
 msgid "Preferences"
@@ -578,7 +571,7 @@ msgstr "Crie um novo estado"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
-msgstr ""
+msgstr "Mensagem vai aqui."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
@@ -594,25 +587,24 @@ msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)"
 msgstr ""
+"Bibliotecas de links dinâmicos podem ser especificadas para serem integradas "
+"(fornecidas pelo Wine) ou nativas (fornecidas pelo programa)"
 
 #: src/ui/dialog-dll-overrides.ui:56
-#, fuzzy
 msgid "New override"
-msgstr "Substituições de DLL"
+msgstr "Nova substituição"
 
 #: src/ui/dialog-dll-overrides.ui:67
 msgid "e.g. ucrtbase"
-msgstr ""
+msgstr "por exemplo. ucrtbase"
 
 #: src/ui/dialog-dll-overrides.ui:123
-#, fuzzy
 msgid "Existing overrides"
-msgstr "Substituições de DLL"
+msgstr "Substituições existentes"
 
 #: src/ui/dialog-environment-variables.ui:25
-#, fuzzy
 msgid "Change environment variables"
-msgstr "Salvar variáveis de ambiente"
+msgstr "Alterar variáveis de ambiente"
 
 #: src/ui/dialog-environment-variables.ui:36 src/ui/dialog-launch-options.ui:36
 msgid "Save"
@@ -641,7 +633,7 @@ msgstr "Alterar opções de lançamento"
 
 #: src/ui/dialog-launch-options.ui:75
 msgid "These arguments are passed on program launch:"
-msgstr ""
+msgstr "Esses argumentos são passados no lançamento do programa:"
 
 #: src/ui/dll-override-entry.ui:23
 msgid "Builtin (Wine)"
@@ -653,16 +645,15 @@ msgstr "Nativo (Windows)"
 
 #: src/ui/dll-override-entry.ui:25
 msgid "Builtin then Native"
-msgstr ""
+msgstr "Integrado e depois nativo"
 
 #: src/ui/dll-override-entry.ui:26
 msgid "Native then Builtin"
-msgstr ""
+msgstr "Nativo e depois integrado"
 
 #: src/ui/dxvk-entry.ui:9
-#, fuzzy
 msgid "DXVK version"
-msgstr "Versionamento"
+msgstr "Versão DXVK"
 
 #: src/ui/dxvk-entry.ui:68 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -776,7 +767,7 @@ msgstr "Ative o controle de versão para salvar e restaurar o estado do bottle."
 
 #: src/ui/new.ui:442
 msgid "Creating bottle…"
-msgstr "Crie um novo bottle"
+msgstr "Criando Bottle…"
 
 #: src/ui/new.ui:461
 msgid "Take a drink, it may take a while"
@@ -804,9 +795,7 @@ msgstr "Bem-vindo ao Bottles"
 
 #: src/ui/onboard.ui:131
 msgid "Bottles makes running Windows Software on Linux much easier."
-msgstr ""
-"O Bottles é uma ferramenta moderna que aprimora e simplifica a execução de "
-"software Windows no Linux!"
+msgstr "Bottles torna a execução do software Windows no Linux muito mais fácil."
 
 #: src/ui/onboard.ui:188
 msgid "What is Wine?"
@@ -855,9 +844,8 @@ msgid "Runners"
 msgstr "Runners"
 
 #: src/ui/onboard.ui:324
-#, fuzzy
 msgid "Downloading…"
-msgstr "Downloads"
+msgstr "Baixando…"
 
 #: src/ui/onboard.ui:344
 msgid "Sit down and have a drink, it may take a few minutes."
@@ -952,7 +940,6 @@ msgid "Creation date"
 msgstr "Data de criação"
 
 #: src/ui/state-entry.ui:92
-#, fuzzy
 msgid "Restore this state"
 msgstr "Execute neste bottle"
 
@@ -961,18 +948,16 @@ msgid "These are the wine/wineserver processes running on your PC."
 msgstr "Estes são os processos wine/wineserver em execução no seu Computador."
 
 #: src/ui/task-manager.ui:45
-#, fuzzy
 msgid "Check for running processes."
-msgstr "Verifique se há programas instalados."
+msgstr "Verifique se há processos em execução."
 
 #: src/ui/window.ui:49 src/window.py:120
 msgid "Task manager"
 msgstr "Gerenciador de tarefas"
 
 #: src/ui/window.ui:62
-#, fuzzy
 msgid "Import and export"
-msgstr "Importador"
+msgstr "Importar e exportar"
 
 #: src/ui/window.ui:99
 msgid "Documentation"
@@ -1022,67 +1007,68 @@ msgstr "[Atualizar] solicitação recebida."
 
 #: src/runner.py:181
 msgid "Temp path cleaned successfully!"
-msgstr ""
+msgstr "Caminho temporário limpo com sucesso!"
 
 #: src/runner.py:183
-#, fuzzy
 msgid "Failed to clear temp path!"
-msgstr "Eu preciso escolher um caminho personalizado"
+msgstr "Falha ao limpar o caminho temporário!"
 
 #: src/runner.py:198
 msgid "Runners path doens't exist, creating now."
-msgstr ""
+msgstr "Os caminho dos Runners não existem, criando agora."
 
 #: src/runner.py:202
 msgid "Bottles path doens't exist, creating now."
-msgstr ""
+msgstr "O caminho das Bottles não existe, criando agora."
 
 #: src/runner.py:206
 msgid "Dxvk path doens't exist, creating now."
-msgstr ""
+msgstr "Caminho da Dxvk não existe, criando agora."
 
 #: src/runner.py:210
+#, fuzzy
 msgid "Temp path doens't exist, creating now."
-msgstr ""
+msgstr "Caminho temporário não existe, criando agora."
 
 #: src/runner.py:225
+#, fuzzy
 msgid "Extraction failed! Archive ends earlier than expected."
-msgstr ""
+msgstr "A extração falhou! O arquivo termina antes do esperado."
 
 #: src/runner.py:256
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "File [{0}] already exists in temp, skipping."
-msgstr ""
+msgstr "O arquivo [{0}] já existe em temp, pulando."
 
 #: src/runner.py:272
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Renaming [{0}] to [{1}]."
-msgstr ""
+msgstr "Renomeando [{0}] para [{1}]."
 
 #: src/runner.py:286
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Downloaded file [{0}] looks corrupted."
-msgstr ""
+msgstr "O arquivo baixado [{0}] parece corrompido."
 
 #: src/runner.py:288
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Source checksum: [{0}] downloaded: [{1}]"
-msgstr ""
+msgstr "Checksum da fonte: [{0}] baixado: [{1}]"
 
 #: src/runner.py:292
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Downloaded file {0} looks corrupted. Try again."
-msgstr ""
+msgstr "O arquivo baixado {0} parece corrompido. Tente novamente."
 
 #: src/runner.py:312 src/runner.py:349 src/runner.py:373
 #, fuzzy
 msgid "Download manager"
-msgstr "Gerenciador de tarefas"
+msgstr "Gerenciador de download"
 
 #: src/runner.py:313
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Installing {0} runner …"
-msgstr ""
+msgstr "Instalando {0} runner…"
 
 #: src/runner.py:316
 #, python-brace-format
@@ -1097,17 +1083,17 @@ msgstr ""
 #: src/runner.py:374
 #, fuzzy, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
-msgstr "Dependências"
+msgstr "Instalando {0} dependência na bottle {1} …"
 
 #: src/runner.py:381
 #, python-brace-format
 msgid "Installing dependency: [{0}] in bottle: [{1}]."
-msgstr ""
+msgstr "Instalando a dependência: [{0}] no bottle: [{1}]."
 
 #: src/runner.py:396
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Removing [{0}] from system32 in bottle: [{1}]"
-msgstr ""
+msgstr "Removendo [{0}] do system32 no bottle: [{1}]"
 
 #: src/runner.py:402
 #, python-brace-format
@@ -1122,22 +1108,22 @@ msgstr ""
 #: src/runner.py:481
 #, fuzzy, python-brace-format
 msgid "Runners found: [{0}]"
-msgstr "Nenhum runners encontrado"
+msgstr "Runners encontrados: [{0}]"
 
 #: src/runner.py:490
 #, fuzzy
 msgid "No runners found."
-msgstr "Nenhum runners encontrado"
+msgstr "Nenhum runners encontrado."
 
 #: src/runner.py:522
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Dxvk found: [{0}]"
-msgstr ""
+msgstr "Dxvk encontrado: [{0}]"
 
 #: src/runner.py:526
 #, fuzzy
 msgid "No dxvk found."
-msgstr "Nenhum runners encontrado"
+msgstr "Nenhum dxvk encontrado."
 
 #: src/runner.py:580
 #, python-brace-format
@@ -1157,7 +1143,7 @@ msgstr ""
 #: src/runner.py:739
 #, fuzzy, python-format
 msgid "Bottles found: %s"
-msgstr "Nenhum bottles encontrado!"
+msgstr "Bottles encontradas: %s"
 
 #: src/runner.py:750
 #, python-brace-format
@@ -1167,7 +1153,7 @@ msgstr ""
 #: src/runner.py:778
 #, fuzzy
 msgid "Creating the wineprefix …"
-msgstr "Gerencie o wineprefix facilmente"
+msgstr "Criando o wineprefix…"
 
 #: src/runner.py:786
 msgid "Runner and/or dxvk not found, installing latest version …"
@@ -1180,7 +1166,7 @@ msgstr ""
 #: src/runner.py:821
 #, fuzzy
 msgid "Wine configuration updated!"
-msgstr "Configuração"
+msgstr "Configuração do Wine atualizada!"
 
 #: src/runner.py:825 src/runner.py:826
 msgid "Generating Bottle configuration file …"
@@ -1197,8 +1183,9 @@ msgid "Applying environment: {0} …"
 msgstr ""
 
 #: src/runner.py:864 src/runner.py:865
+#, fuzzy
 msgid "Installing dxvk …"
-msgstr ""
+msgstr "Instalando dxvk …"
 
 #: src/runner.py:872 src/runner.py:873
 msgid "Creating versioning state 0 …"
@@ -1215,8 +1202,9 @@ msgid "Your new bottle: {0} is now ready!"
 msgstr ""
 
 #: src/runner.py:950
+#, fuzzy
 msgid "Deleting a bottle …"
-msgstr ""
+msgstr "Excluindo uma bottle …"
 
 #: src/runner.py:967
 #, python-brace-format
@@ -1246,7 +1234,7 @@ msgstr ""
 #: src/runner.py:1055
 #, fuzzy, python-brace-format
 msgid "Installing dxvk for bottle: [{0}]."
-msgstr "Índice para o estado {0}"
+msgstr "Instalando dxvk para o Bottle: [{0}]."
 
 #: src/runner.py:1075
 #, python-brace-format
@@ -1364,17 +1352,17 @@ msgstr ""
 #: src/runner.py:1713
 #, fuzzy, python-brace-format
 msgid "Backup {0}"
-msgstr "Backup"
+msgstr "Backup {0}"
 
 #: src/runner.py:1732
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Backup saved in path: {0}."
-msgstr ""
+msgstr "Backup salvo no caminho: {0}."
 
 #: src/runner.py:1737
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "Your backup for {0} is ready!"
-msgstr ""
+msgstr "Seu backup para {0} está pronto!"
 
 #: src/runner.py:1742
 #, python-brace-format
@@ -1389,7 +1377,7 @@ msgstr ""
 #: src/runner.py:1773
 #, fuzzy, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "Importar backup"
+msgstr "Importando backup: {0}"
 
 #: src/runner.py:1787
 #, python-brace-format
@@ -1472,8 +1460,9 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Tem certeza de que deseja excluir este Bottle e todos os arquivos?"
 
 #: src/pages/dialog.py:24 src/pages/dialog.py:60
+#, fuzzy
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #: src/pages/dialog.py:25 src/pages/dialog.py:61
 msgid "An error has occurred."
@@ -1482,7 +1471,7 @@ msgstr ""
 #: src/pages/importer.py:101
 #, fuzzy
 msgid "Choose a backup archive"
-msgstr "Escolha um backup"
+msgstr "Escolha um arquivo de backup"
 
 #: src/pages/list.py:101
 #, python-brace-format
@@ -1503,16 +1492,18 @@ msgid "Gaming"
 msgstr "Jogos"
 
 #: src/pages/new.py:107
+#, fuzzy
 msgid "An environment improved for Windows games."
-msgstr ""
+msgstr "Um ambiente melhorado para jogos do Windows."
 
 #: src/pages/new.py:112
 msgid "Software"
 msgstr "Programas"
 
 #: src/pages/new.py:113
+#, fuzzy
 msgid "An environment improved for Windows software."
-msgstr ""
+msgstr "Um ambiente otimizado para programas do Windows."
 
 #: src/pages/new.py:118
 msgid "Custom"
@@ -1521,12 +1512,12 @@ msgstr "Personalizado"
 #: src/pages/new.py:119
 #, fuzzy
 msgid "A clear environment for your experiments."
-msgstr "Um ambiente limpo, sem qualquer otimização."
+msgstr "Um ambiente limpo para seus experimentos."
 
 #: src/pages/new.py:221
-#, python-format
+#, fuzzy, python-format
 msgid "A bottle named “%s” was created successfully"
-msgstr ""
+msgstr "Um bottle chamado “%s” foi criado com sucesso"
 
 #~ msgid "Improvements:"
 #~ msgstr "Melhorias:"
