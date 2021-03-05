@@ -23,7 +23,6 @@ jobs:
         run: |
           git clone https://github.com/bottlesdevs/Bottles
           cd Bottles
-          git checkout refresh
         
       - name: g++ version check
         run: |
