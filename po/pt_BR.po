@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-26 20:21+0100\n"
-"PO-Revision-Date: 2021-03-05 22:26+0000\n"
+"PO-Revision-Date: 2021-03-06 15:18+0000\n"
 "Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
@@ -1030,42 +1030,40 @@ msgid "Temp path doens't exist, creating now."
 msgstr "Caminho temporário não existe, criando agora."
 
 #: src/runner.py:225
-#, fuzzy
 msgid "Extraction failed! Archive ends earlier than expected."
 msgstr "A extração falhou! O arquivo termina antes do esperado."
 
 #: src/runner.py:256
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "File [{0}] already exists in temp, skipping."
 msgstr "O arquivo [{0}] já existe em temp, pulando."
 
 #: src/runner.py:272
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Renaming [{0}] to [{1}]."
 msgstr "Renomeando [{0}] para [{1}]."
 
 #: src/runner.py:286
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Downloaded file [{0}] looks corrupted."
 msgstr "O arquivo baixado [{0}] parece corrompido."
 
 #: src/runner.py:288
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Source checksum: [{0}] downloaded: [{1}]"
 msgstr "Checksum da fonte: [{0}] baixado: [{1}]"
 
 #: src/runner.py:292
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Downloaded file {0} looks corrupted. Try again."
 msgstr "O arquivo baixado {0} parece corrompido. Tente novamente."
 
 #: src/runner.py:312 src/runner.py:349 src/runner.py:373
-#, fuzzy
 msgid "Download manager"
 msgstr "Gerenciador de download"
 
 #: src/runner.py:313
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing {0} runner …"
 msgstr "Instalando {0} runner…"
 
@@ -1080,7 +1078,7 @@ msgid "Component {0} successfully installed!"
 msgstr ""
 
 #: src/runner.py:374
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
 msgstr "Instalando {0} dependência na bottle {1} …"
 
@@ -1090,7 +1088,7 @@ msgid "Installing dependency: [{0}] in bottle: [{1}]."
 msgstr "Instalando a dependência: [{0}] no bottle: [{1}]."
 
 #: src/runner.py:396
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Removing [{0}] from system32 in bottle: [{1}]"
 msgstr "Removendo [{0}] do system32 no bottle: [{1}]"
 
@@ -1105,22 +1103,20 @@ msgid "Removing dependency: [{0}] from bottle: [{1}] configuration."
 msgstr ""
 
 #: src/runner.py:481
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Runners found: [{0}]"
 msgstr "Runners encontrados: [{0}]"
 
 #: src/runner.py:490
-#, fuzzy
 msgid "No runners found."
 msgstr "Nenhum runners encontrado."
 
 #: src/runner.py:522
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Dxvk found: [{0}]"
 msgstr "Dxvk encontrado: [{0}]"
 
 #: src/runner.py:526
-#, fuzzy
 msgid "No dxvk found."
 msgstr "Nenhum dxvk encontrado."
 
@@ -1140,7 +1136,7 @@ msgid "Key: [{0}] not in bottle: [{1}] configuration Parameters, updating."
 msgstr ""
 
 #: src/runner.py:739
-#, fuzzy, python-format
+#, python-format
 msgid "Bottles found: %s"
 msgstr "Bottles encontradas: %s"
 
@@ -1150,7 +1146,6 @@ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
 msgstr ""
 
 #: src/runner.py:778
-#, fuzzy
 msgid "Creating the wineprefix …"
 msgstr "Criando o wineprefix…"
 
@@ -1163,7 +1158,6 @@ msgid "The wine configuration is being updated …"
 msgstr ""
 
 #: src/runner.py:821
-#, fuzzy
 msgid "Wine configuration updated!"
 msgstr "Configuração do Wine atualizada!"
 
@@ -1182,7 +1176,6 @@ msgid "Applying environment: {0} …"
 msgstr ""
 
 #: src/runner.py:864 src/runner.py:865
-#, fuzzy
 msgid "Installing dxvk …"
 msgstr "Instalando dxvk …"
 
@@ -1201,9 +1194,8 @@ msgid "Your new bottle: {0} is now ready!"
 msgstr ""
 
 #: src/runner.py:950
-#, fuzzy
 msgid "Deleting a bottle …"
-msgstr "Excluindo uma bottle …"
+msgstr "Excluindo um bottle …"
 
 #: src/runner.py:967
 #, python-brace-format
@@ -1231,7 +1223,7 @@ msgid "Removing Value: [{0}] for Key: [{1}] in register bottle: {2}"
 msgstr ""
 
 #: src/runner.py:1055
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing dxvk for bottle: [{0}]."
 msgstr "Instalando dxvk para o Bottle: [{0}]."
 
@@ -1349,17 +1341,17 @@ msgid "Backuping bottle: [{0}] in [{1}]"
 msgstr ""
 
 #: src/runner.py:1713
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup {0}"
 msgstr "Backup {0}"
 
 #: src/runner.py:1732
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup saved in path: {0}."
 msgstr "Backup salvo no caminho: {0}."
 
 #: src/runner.py:1737
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Your backup for {0} is ready!"
 msgstr "Seu backup para {0} está pronto!"
 
@@ -1374,7 +1366,7 @@ msgid "Failed to create backup for {0}!"
 msgstr ""
 
 #: src/runner.py:1773
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importando backup: {0}"
 
@@ -1459,7 +1451,6 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Tem certeza de que deseja excluir este Bottle e todos os arquivos?"
 
 #: src/pages/dialog.py:24 src/pages/dialog.py:60
-#, fuzzy
 msgid "Warning"
 msgstr "Aviso"
 
@@ -1468,7 +1459,6 @@ msgid "An error has occurred."
 msgstr ""
 
 #: src/pages/importer.py:101
-#, fuzzy
 msgid "Choose a backup archive"
 msgstr "Escolha um arquivo de backup"
 
@@ -1491,7 +1481,6 @@ msgid "Gaming"
 msgstr "Jogos"
 
 #: src/pages/new.py:107
-#, fuzzy
 msgid "An environment improved for Windows games."
 msgstr "Um ambiente melhorado para jogos do Windows."
 
@@ -1500,7 +1489,6 @@ msgid "Software"
 msgstr "Programas"
 
 #: src/pages/new.py:113
-#, fuzzy
 msgid "An environment improved for Windows software."
 msgstr "Um ambiente otimizado para programas do Windows."
 
@@ -1509,12 +1497,11 @@ msgid "Custom"
 msgstr "Personalizado"
 
 #: src/pages/new.py:119
-#, fuzzy
 msgid "A clear environment for your experiments."
 msgstr "Um ambiente limpo para seus experimentos."
 
 #: src/pages/new.py:221
-#, fuzzy, python-format
+#, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "Um bottle chamado “%s” foi criado com sucesso"
 
