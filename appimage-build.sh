@@ -33,7 +33,7 @@ function print_execution {
 
 # Set linuxdeploy env
 # ---------------------------------------
-# export LINUXDEPLOY=./linuxdeploy-x86_64.AppImage
+export LINUXDEPLOY=./linuxdeploy-x86_64.AppImage
 
 # Set environment variables
 # ---------------------------------------
@@ -109,12 +109,12 @@ title "Downloading linuxdeploy Appimage and setting executable"
 print_execution "curl -L https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage --output linuxdeploy-x86_64.AppImage"
 print_execution "chmod a+x linuxdeploy-x86_64.AppImage"
 
-# title "Downloading linuxdeploy-plugin-gtk"
-# print_execution "curl -L https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh --output linuxdeploy-plugin-gtk.sh"
-# print_execution "chmod a+x linuxdeploy-plugin-gtk.sh"
+title "Downloading linuxdeploy-plugin-gtk"
+print_execution "curl -L https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh --output linuxdeploy-plugin-gtk.sh"
+print_execution "chmod a+x linuxdeploy-plugin-gtk.sh"
 
-# title "Executing linuxdeploy-plugin-gtk on appdir"
-# print_execution "./linuxdeploy-plugin-gtk.sh --appdir appdir"
+title "Executing linuxdeploy-plugin-gtk on appdir"
+print_execution "./linuxdeploy-plugin-gtk.sh --appdir appdir"
 
 title "Building Bottles Appimage"
 print_execution "./linuxdeploy-x86_64.AppImage --appdir appdir  --output appimage"
