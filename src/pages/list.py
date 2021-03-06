@@ -19,7 +19,6 @@ import logging
 from gi.repository import Gtk, GLib, Handy
 
 from .dialog import BottlesMessageDialog
-from bottles.empty import BottlesEmpty
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottlesListEntry(Handy.ActionRow):
