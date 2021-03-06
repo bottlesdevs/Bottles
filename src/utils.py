@@ -107,7 +107,7 @@ class UtilsLogger(logging.getLoggerClass()):
 
     def __init__(self, formatter=None):
         if formatter is None:
-            formatter = format_log
+            formatter = self.format_log
         formatter = logging.Formatter(**formatter)
 
         self.root.setLevel(logging.INFO)
