@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gdk, GObject, GLib, Handy
+from gi.repository import Gtk, GLib, Handy
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class BottlesPreferences(Handy.PreferencesWindow):
@@ -100,15 +100,15 @@ class BottlesPreferences(Handy.PreferencesWindow):
                 w.destroy()
 
         for runner in self.runner.supported_wine_runners.items():
-            if not self.window.settings.get_boolean("release-candidate"):
-                if runner[1]["Channel"] in ["rc", "unstable"]:
-                    continue
+            if (not self.window.settings.get_boolean("release-candidate")
+                    and runner[1]["Channel"] in ["rc", "unstable"]):
+                continue
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 
         for runner in self.runner.supported_proton_runners.items():
-            if not self.window.settings.get_boolean("release-candidate"):
-                if runner[1]["Channel"] in ["rc", "unstable"]:
-                    continue
+            if (not self.window.settings.get_boolean("release-candidate")
+                    and runner[1]["Channel"] in ["rc", "unstable"]):
+                continue
             self.list_runners.add(BottlesRunnerEntry(self.window, runner))
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')

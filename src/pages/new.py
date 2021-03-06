@@ -169,7 +169,7 @@ class BottlesNew(Handy.Window):
         self.selected_environment = row.get_environment_id()
 
         '''Toggle advanced options'''
-        status = True if row.get_environment_id() == "Custom" else False
+        status = row.get_environment_id() == "Custom"
         for w in [self.label_advanced, self.box_advanced]:
             w.set_visible(status)
             w.set_visible(status)

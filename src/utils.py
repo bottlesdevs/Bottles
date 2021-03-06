@@ -23,7 +23,7 @@ import hashlib
 import threading
 import traceback
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from gi.repository import GLib
 
@@ -105,7 +105,9 @@ class UtilsLogger(logging.getLoggerClass()):
         color_id = self.color_map[level]
         return "\033[%dm%s\033[0m" % (color_id, message)
 
-    def __init__(self, formatter=format_log):
+    def __init__(self, formatter=None):
+        if formatter is None:
+            formatter = format_log
         formatter = logging.Formatter(**formatter)
 
         self.root.setLevel(logging.INFO)

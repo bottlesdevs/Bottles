@@ -1492,8 +1492,8 @@ class BottlesRunner:
 
         '''Update the states.json file'''
         new_state = {
-			"Creation_Date": str(datetime.now()),
-			"Comment": comment,
+            "Creation_Date": str(datetime.now()),
+            "Comment": comment,
 			# "Files": [file["file"] for file in current_index["Files"]]
 		}
 
