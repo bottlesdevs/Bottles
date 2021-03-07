@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-26 20:21+0100\n"
+"POT-Creation-Date: 2021-03-07 13:46+0100\n"
 "PO-Revision-Date: 2021-02-27 17:08+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -30,18 +30,17 @@ msgstr "Bottles"
 msgid "Easily manage wineprefix"
 msgstr "Enkel hantering av Wine-prefix"
 
-#: data/com.usebottles.bottles.desktop.in:5
-msgid "com.usebottles.bottles"
-msgstr "com.usebottles.bottles"
-
 #: data/com.usebottles.bottles.appdata.xml.in:7
-#: data/com.usebottles.bottles.appdata.xml.in:10
-msgid "Run Windows software on Linux with Bottles🍷!"
-msgstr "Kör Windows-program på Linux med Bottles 🍷!"
+msgid "Run Windows software"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
 msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
+
+#: data/com.usebottles.bottles.appdata.xml.in:10
+msgid "Run Windows software on Linux with Bottles🍷!"
+msgstr "Kör Windows-program på Linux med Bottles 🍷!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -147,17 +146,13 @@ msgstr "Buteljversionshantering (experimentell)"
 msgid ".. and much more that you can find by installing Bottles!"
 msgstr "... och mycket mer som du hittar genom att installera Bottles!"
 
-#: data/com.usebottles.bottles.appdata.xml.in:116
+#: data/com.usebottles.bottles.appdata.xml.in:113
 msgid "Updates:"
 msgstr "Uppdateringar:"
 
-#: data/com.usebottles.bottles.appdata.xml.in:118
-msgid "Vertical layout for downloads"
-msgstr "Vertikal layout för nerladdningar"
-
-#: data/com.usebottles.bottles.appdata.xml.in:119
-msgid "Fix appdata informations"
-msgstr "Fixa appdatainformation"
+#: data/com.usebottles.bottles.appdata.xml.in:115
+msgid "Bundle GTK with AppImage"
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -804,8 +799,8 @@ msgid ""
 "Wineprefixes are environments in which Wine works. In Bottles we call these, "
 "<b>bottles</b>."
 msgstr ""
-"Wine är ett kompatibilitetslager som låter oss köra Windows-program i Linux."
-"\n"
+"Wine är ett kompatibilitetslager som låter oss köra Windows-program i "
+"Linux.\n"
 "I Bottles kallas det för <b>körprogram</b>.\n"
 "\n"
 "Wineprefixer är miljöer i vilka Wine fungerar. I Bottles kallar vi dessa för "
@@ -1089,7 +1084,8 @@ msgstr "Tar bort [{0}] från system32 i butelj: [{1}]"
 #: src/runner.py:402
 #, python-brace-format
 msgid "[{0}] not found in bottle: [{1}], failed removing from system32."
-msgstr "[{0}] hittades inte i butelj: [{1}], kunde inte tas bort från system32."
+msgstr ""
+"[{0}] hittades inte i butelj: [{1}], kunde inte tas bort från system32."
 
 #: src/runner.py:451
 #, python-brace-format
@@ -1405,7 +1401,7 @@ msgstr "Du är offline, kan inte ladda ner."
 msgid "Bottle details"
 msgstr "Buteljdetaljer"
 
-#: src/window.py:156
+#: src/window.py:159
 msgid "Bottles Started!"
 msgstr "Bottles startad!"
 
@@ -1429,7 +1425,7 @@ msgstr "Index för status {0}"
 msgid "This is the index for {0}."
 msgstr "Detta är index för {0}."
 
-#: src/pages/details.py:902 src/pages/list.py:121
+#: src/pages/details.py:902 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "Välj en körbar Windows-fil"
 
@@ -1441,11 +1437,11 @@ msgstr "Välj var säkerhetskopieringskonfigurationen skall sparas"
 msgid "Select the location where to save the backup archive"
 msgstr "Välj var säkerhetskopieringsarkivet skall sparas"
 
-#: src/pages/details.py:1029 src/pages/list.py:186
+#: src/pages/details.py:1029 src/pages/list.py:185
 msgid "Confirm deletion"
 msgstr "Bekräfta borttagning"
 
-#: src/pages/details.py:1030 src/pages/list.py:187
+#: src/pages/details.py:1030 src/pages/list.py:186
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Vill du verkligen ta bort denna butelj och alla filer?"
 
@@ -1461,16 +1457,16 @@ msgstr "Ett fel har inträffat."
 msgid "Choose a backup archive"
 msgstr "Välj en säkerhetskopia"
 
-#: src/pages/list.py:101
+#: src/pages/list.py:100
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argument hittades för körbar: [{executable}]."
 
-#: src/pages/list.py:165
+#: src/pages/list.py:164
 msgid "Confirm upgrade"
 msgstr "Bekräfta uppgradering"
 
-#: src/pages/list.py:166
+#: src/pages/list.py:165
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "Detta kommer att ändra körprogrammet från {0} till {1}."
@@ -1503,6 +1499,15 @@ msgstr "En ren miljö för dina experiment."
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "En butelj kallad \"%s\" skapades"
+
+#~ msgid "com.usebottles.bottles"
+#~ msgstr "com.usebottles.bottles"
+
+#~ msgid "Vertical layout for downloads"
+#~ msgstr "Vertikal layout för nerladdningar"
+
+#~ msgid "Fix appdata informations"
+#~ msgstr "Fixa appdatainformation"
 
 #~ msgid "Improvements:"
 #~ msgstr "Förbättringar:"
