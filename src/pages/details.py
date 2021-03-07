@@ -610,6 +610,7 @@ class BottlesDetails(Gtk.Stack):
         # self.label_update_date.set_text(self.configuration.get("Update_Date"))
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
+        self.switch_aco.set_active(parameters["aco_compiler"])
         if parameters["sync"] == "wine": self.toggle_sync.set_active(True)
         if parameters["sync"] == "esync": self.toggle_esync.set_active(True)
         if parameters["sync"] == "fsync": self.toggle_fsync.set_active(True)
