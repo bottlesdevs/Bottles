@@ -28,7 +28,6 @@ command: bottles
 finish-args:
 - --allow=multiarch
 - --share=network
-- --device=all
 - --share=ipc
 - --socket=fallback-x11
 - --socket=pulseaudio
@@ -43,6 +42,8 @@ finish-args:
 - --filesystem=xdg-music
 - --filesystem=xdg-videos
 - --filesystem=xdg-download
+- --filesystem=/run/media
+- --filesystem=/media
 - --device=all
 x-compat-i386-opts:
   prepend-pkg-config-path: "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig"
@@ -74,14 +75,6 @@ modules:
   sources:
   - type: file
     path: ld.so.conf
-- name: bottles
-  builddir: true
-  buildsystem: meson
-  sources:
-  - type: git
-    url: https://github.com/bottlesdevs/Bottles
-    branch: refresh
-    commit: 1ed9177deabc8f17f4f39b9baa7c15e2420c9ad8
 - name: libhandy
   builddir: true
   buildsystem: meson
@@ -95,3 +88,10 @@ modules:
     url: https://gitlab.gnome.org/GNOME/libhandy
     tag: 1.1.90
     commit: 89a1610b62533c9d6c5267cfac0108e724df25ba
+- name: bottles
+  builddir: true
+  buildsystem: meson
+  sources:
+  - type: git
+    url: https://github.com/bottlesdevs/Bottles
+    tag: 3.0.7
