@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-07 13:46+0100\n"
-"PO-Revision-Date: 2021-03-06 15:18+0000\n"
-"Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
+"PO-Revision-Date: 2021-03-08 17:15+0000\n"
+"Last-Translator: Vitor Sabino Cardoso da SIlva <vitorcsilva180396@gmail.com>"
+"\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -32,7 +33,7 @@ msgstr "Gerencie o wineprefix facilmente"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
-msgstr ""
+msgstr "Execute aplicativos do Windows"
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
 msgid "Mirko Brombin"
@@ -153,7 +154,7 @@ msgstr "Atualizações:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "Bundle GTK with AppImage"
-msgstr ""
+msgstr "Dependência do pacote GTK para o AppImage"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -350,7 +351,7 @@ msgstr "Utilitários"
 
 #: src/ui/details.ui:505
 msgid "Wine config"
-msgstr "Wine config"
+msgstr "Configuração do wine"
 
 #: src/ui/details.ui:507
 msgid "Adjust internal settings."
@@ -1066,12 +1067,12 @@ msgstr "Instalando {0} runner…"
 #: src/runner.py:316
 #, python-brace-format
 msgid "Installing component: [{0}]."
-msgstr ""
+msgstr "Instalando o componente: [{0}]."
 
 #: src/runner.py:350
 #, python-brace-format
 msgid "Component {0} successfully installed!"
-msgstr ""
+msgstr "Componente {0} instalado com sucesso!"
 
 #: src/runner.py:374
 #, python-brace-format
@@ -1091,12 +1092,12 @@ msgstr "Removendo [{0}] do system32 no bottle: [{1}]"
 #: src/runner.py:402
 #, python-brace-format
 msgid "[{0}] not found in bottle: [{1}], failed removing from system32."
-msgstr ""
+msgstr "[{0}] não encontrado no bottle: [{1}], falha ao remover do system32."
 
 #: src/runner.py:451
 #, python-brace-format
 msgid "Removing dependency: [{0}] from bottle: [{1}] configuration."
-msgstr ""
+msgstr "Removendo dependência: [{0}] do bottle: configuração [{1}]."
 
 #: src/runner.py:481
 #, python-brace-format
@@ -1119,17 +1120,19 @@ msgstr "Nenhum dxvk encontrado."
 #: src/runner.py:580
 #, python-brace-format
 msgid "Cannot find executable for [{0}]."
-msgstr ""
+msgstr "Não é possível encontrar executável para [{0}]."
 
 #: src/runner.py:712
 #, python-brace-format
 msgid "Key: [{0}] not in bottle: [{1}] configuration, updating."
-msgstr ""
+msgstr "Chave: [{0}] não está no bottle: [{1}] configuração, atualização."
 
 #: src/runner.py:721
 #, python-brace-format
 msgid "Key: [{0}] not in bottle: [{1}] configuration Parameters, updating."
 msgstr ""
+"Chave: [{0}] não está no bottle: [{1}] Parâmetros de configuração, "
+"atualizando."
 
 #: src/runner.py:739
 #, python-format
@@ -1139,7 +1142,7 @@ msgstr "Bottles encontradas: %s"
 #: src/runner.py:750
 #, python-brace-format
 msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
-msgstr ""
+msgstr "Chave de configuração: [{0}] para [{1}] para bottle: [{2}]…"
 
 #: src/runner.py:778
 msgid "Creating the wineprefix …"
@@ -1147,11 +1150,11 @@ msgstr "Criando o wineprefix…"
 
 #: src/runner.py:786
 msgid "Runner and/or dxvk not found, installing latest version …"
-msgstr ""
+msgstr "Runner e/ou dxvk não encontrado, instalando a versão mais recente…"
 
 #: src/runner.py:815
 msgid "The wine configuration is being updated …"
-msgstr ""
+msgstr "A configuração do wine está sendo atualizada …"
 
 #: src/runner.py:821
 msgid "Wine configuration updated!"
@@ -1159,17 +1162,17 @@ msgstr "Configuração do Wine atualizada!"
 
 #: src/runner.py:825 src/runner.py:826
 msgid "Generating Bottle configuration file …"
-msgstr ""
+msgstr "Gerando arquivo de configuração do Bottle …"
 
 #: src/runner.py:844
 #, python-brace-format
 msgid "Applying environment: [{0}] …"
-msgstr ""
+msgstr "Aplicando ambiente: [{0}] …"
 
 #: src/runner.py:845
 #, python-brace-format
 msgid "Applying environment: {0} …"
-msgstr ""
+msgstr "Aplicando ambiente: {0} …"
 
 #: src/runner.py:864 src/runner.py:865
 msgid "Installing dxvk …"
@@ -1177,17 +1180,17 @@ msgstr "Instalando dxvk …"
 
 #: src/runner.py:872 src/runner.py:873
 msgid "Creating versioning state 0 …"
-msgstr ""
+msgstr "Criando o estado de versionamento 0…"
 
 #: src/runner.py:877
 #, python-brace-format
 msgid "Bottle: [{0}] successfully created!"
-msgstr ""
+msgstr "Bottle: [{0}] criada com sucesso!"
 
 #: src/runner.py:879
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
-msgstr ""
+msgstr "Sua nova garrafa: {0} agora está pronta!"
 
 #: src/runner.py:950
 msgid "Deleting a bottle …"
@@ -1196,27 +1199,29 @@ msgstr "Excluindo um bottle …"
 #: src/runner.py:967
 #, python-brace-format
 msgid "Successfully deleted bottle in path: [{0}]"
-msgstr ""
+msgstr "Bottle excluída com sucesso no caminho: [{0}]"
 
 #: src/runner.py:971
 msgid "Empty path found, failing to avoid disasters."
-msgstr ""
+msgstr "Caminho vazio encontrado, falhando para evitar desastres."
 
 #: src/runner.py:979
 #, python-brace-format
 msgid "Trying to repair the bottle: [{0}] …"
-msgstr ""
+msgstr "Tentando consertar o bottle: [{0}] …"
 
 #: src/runner.py:1034
 #, python-brace-format
 msgid ""
 "Adding Key: [{0}] with Value: [{1}] and Data: [{2}] in register bottle: {3}"
 msgstr ""
+"Adicionando chave: [{0}] com Valor: [{1}] e Dados: [{2}] no bottle de "
+"registro: {3}"
 
 #: src/runner.py:1043
 #, python-brace-format
 msgid "Removing Value: [{0}] for Key: [{1}] in register bottle: {2}"
-msgstr ""
+msgstr "Removendo valor: [{0}] para a chave: [{1}] no bottle de registro: {2}"
 
 #: src/runner.py:1055
 #, python-brace-format
@@ -1226,115 +1231,115 @@ msgstr "Instalando dxvk para o Bottle: [{0}]."
 #: src/runner.py:1075
 #, python-brace-format
 msgid "Removing dxvk for bottle: [{0}]."
-msgstr ""
+msgstr "Removendo dxvk no bottle: [{0}]."
 
 #: src/runner.py:1112
 msgid "Running an executable on the wineprefix …"
-msgstr ""
+msgstr "Executando um executável no wineprefix …"
 
 #: src/runner.py:1126
 msgid "Running wineboot on the wineprefix …"
-msgstr ""
+msgstr "Executando wineboot no wineprefix …"
 
 #: src/runner.py:1130
 msgid "Running winecfg on the wineprefix …"
-msgstr ""
+msgstr "Executando winecfg no wineprefix …"
 
 #: src/runner.py:1134
 msgid "Running winetricks on the wineprefix …"
-msgstr ""
+msgstr "Executando winetricks no wineprefix …"
 
 #: src/runner.py:1138
 msgid "Running a debug console on the wineprefix …"
-msgstr ""
+msgstr "Executando um console de depuração no wineprefix …"
 
 #: src/runner.py:1142
 msgid "Running a CMD on the wineprefix …"
-msgstr ""
+msgstr "Executando um CMD no wineprefix …"
 
 #: src/runner.py:1146
 msgid "Running a Task Manager on the wineprefix …"
-msgstr ""
+msgstr "Executando um gerenciador de tarefas no wineprefix …"
 
 #: src/runner.py:1150
 msgid "Running a Control Panel on the wineprefix …"
-msgstr ""
+msgstr "Executando o painel de controle no wineprefix …"
 
 #: src/runner.py:1154
 msgid "Running an Uninstaller on the wineprefix …"
-msgstr ""
+msgstr "Executando o desinstalador no wineprefix …"
 
 #: src/runner.py:1158
 msgid "Running a Regedit on the wineprefix …"
-msgstr ""
+msgstr "Executando um Editor de Registro no wineprefix …"
 
 #: src/runner.py:1244
 #, python-brace-format
 msgid "Sending Status: [{0}] to the wineprefix …"
-msgstr ""
+msgstr "Mandando Status: [{0}] para o wineprefix …"
 
 #: src/runner.py:1260
 #, python-brace-format
 msgid "{0} completed for {1}."
-msgstr ""
+msgstr "{0} completado para {1}."
 
 #: src/runner.py:1265
 msgid "Opening the file manager in the path …"
-msgstr ""
+msgstr "Abrindo o gerenciador de arquivos no caminho …"
 
 #: src/runner.py:1329
 #, python-brace-format
 msgid "Importing wineprefix [{0}] in a new bottle …"
-msgstr ""
+msgstr "Importando wineprefix [{0}] em um novo bottle …"
 
 #: src/runner.py:1343
 #, python-brace-format
 msgid "Error creating the bottle path for wineprefix [{0}]. Aborting."
-msgstr ""
+msgstr "Error ao criar o caminho do Bottle para o wineprefix [{0}]. Abortando."
 
 #: src/runner.py:1348
 msgid "Creating lock file in source path …"
-msgstr ""
+msgstr "Criando arquivo de bloqueio no caminho de origem …"
 
 #: src/runner.py:1376
 #, python-brace-format
 msgid "Wineprefix {0} successfully imported!"
-msgstr ""
+msgstr "Wineprefix {0} importado com sucesso!"
 
 #: src/runner.py:1381
 #, python-brace-format
 msgid "Wineprefix: [{0}] successfully imported!"
-msgstr ""
+msgstr "Wineprefix: [{0}] importado com sucesso!"
 
 #: src/runner.py:1599
 #, python-brace-format
 msgid "Restoring to state: [{0}]"
-msgstr ""
+msgstr "Restaurando para o estado: [{0}]"
 
 #: src/runner.py:1619
 #, python-brace-format
 msgid "[{0}] files to remove."
-msgstr ""
+msgstr "[{0}] arquivos para remover."
 
 #: src/runner.py:1620
 #, python-brace-format
 msgid "[{0}] files to replace."
-msgstr ""
+msgstr "[{0}] arquivos para substituir."
 
 #: src/runner.py:1627
 #, python-brace-format
 msgid "[{0}] files to add."
-msgstr ""
+msgstr "[{0}] arquivos para adicionar."
 
 #: src/runner.py:1694
 #, python-brace-format
 msgid "Backuping configuration: [{0}] in [{1}]"
-msgstr ""
+msgstr "Configuração de backup: [{0}] em [{1}]"
 
 #: src/runner.py:1708
 #, python-brace-format
 msgid "Backuping bottle: [{0}] in [{1}]"
-msgstr ""
+msgstr "Bottle reserva: [{0}] em [{1}]"
 
 #: src/runner.py:1713
 #, python-brace-format
@@ -1354,12 +1359,12 @@ msgstr "Seu backup para {0} está pronto!"
 #: src/runner.py:1742
 #, python-brace-format
 msgid "Failed to save backup in path: {0}."
-msgstr ""
+msgstr "Falha ao salvar backup no caminho: {0}."
 
 #: src/runner.py:1747
 #, python-brace-format
 msgid "Failed to create backup for {0}!"
-msgstr ""
+msgstr "Falha ao criar backup para {0}!"
 
 #: src/runner.py:1773
 #, python-brace-format
@@ -1369,34 +1374,34 @@ msgstr "Importando backup: {0}"
 #: src/runner.py:1787
 #, python-brace-format
 msgid "Backup: [{0}] imported successfully."
-msgstr ""
+msgstr "Backup: [{0}] importado com sucesso."
 
 #: src/runner.py:1795
 #, python-brace-format
 msgid "Your backup {0} was imported successfully.!"
-msgstr ""
+msgstr "Seu backup {0} foi importado com sucesso.!"
 
 #: src/runner.py:1799
 #, python-brace-format
 msgid "Failed importing backup: [{0}]"
-msgstr ""
+msgstr "Falha ao importar backup: [{0}]"
 
 #: src/runner.py:1805
 #, python-brace-format
 msgid "Failed importing backup {0}!"
-msgstr ""
+msgstr "Falha ao importar backup {0}!"
 
 #: src/utils.py:44
 msgid "Connection status: online …"
-msgstr ""
+msgstr "Status da conexão: online …"
 
 #: src/utils.py:52
 msgid "Connection status: offline …"
-msgstr ""
+msgstr "Status da conexão: offline…"
 
 #: src/utils.py:57
 msgid "You are offline, unable to download."
-msgstr ""
+msgstr "Você está offline, incapaz de fazer download."
 
 #: src/window.py:118
 msgid "Bottle details"
@@ -1452,7 +1457,7 @@ msgstr "Aviso"
 
 #: src/pages/dialog.py:25 src/pages/dialog.py:61
 msgid "An error has occurred."
-msgstr ""
+msgstr "Ocorreu um erro."
 
 #: src/pages/importer.py:101
 msgid "Choose a backup archive"
