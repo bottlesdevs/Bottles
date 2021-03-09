@@ -9,8 +9,8 @@ export SYMBOLIC_ICON_FILE_PATH=$APPDIR/usr/share/icons/symbolic/scalable/apps/co
 export INSTALLED_DESKTOP_FILE_PATH=~/.local/share/applications/bottles.desktop
 export INSTALLED_ICON_FILE_PATH=~/.local/share/icons/hicolor/scalable/apps/com.usebottles.bottles.svg
 export INSTALLED_SYMBOLIC_ICON_FILE_PATH=~/.local/share/icons/hicolor/symbolic/apps/com.usebottles.bottles-symbolic.svg
-INSTALL_DESKTOP_FILE=false
 export G_MESSAGES_DEBUG="fatal"
+INSTALL_DESKTOP_FILE=false
 
 if ! test -f $INSTALLED_ICON_FILE_PATH; then
 	mkdir -p ~/.local/share/icons/hicolor/scalable/apps/
