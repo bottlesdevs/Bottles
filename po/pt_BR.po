@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-07 13:46+0100\n"
-"PO-Revision-Date: 2021-03-08 17:15+0000\n"
-"Last-Translator: Vitor Sabino Cardoso da SIlva <vitorcsilva180396@gmail.com>"
-"\n"
+"PO-Revision-Date: 2021-03-13 00:03+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -18,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -79,7 +78,7 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Execute todos os executáveis (.exe /.msi) em seus bottles, diretamente do "
+"Execute todos os executáveis (.exe/.msi) em seus bottles, diretamente do "
 "menu de contexto de seu gerenciador de arquivos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
@@ -92,7 +91,7 @@ msgstr "Adicione variáveis de ambiente facilmente"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr "Substituir DLLs diretamente das preferências do bottle"
+msgstr "Substitua DLLs diretamente das preferências do bottle"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
@@ -104,7 +103,7 @@ msgid ""
 "compiler, offload … and much more.)"
 msgstr ""
 "Várias otimizações para melhor desempenho de jogos (esync, fsync, DXVK, "
-"cache, compilador de shaders... e muito mais.)"
+"cache, compilador de shaders… e muito mais.)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:25
 msgid "Automatic installation and management of Wine and Proton runners"
@@ -134,7 +133,7 @@ msgstr "Sistema para trazer suas configurações para novas versões do Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
 msgid "Back up and import bottles"
-msgstr "Faça backup deste bottle"
+msgstr "Faça backup e importe bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
 msgid "Import Wine prefixes from other managers"
@@ -162,7 +161,7 @@ msgstr "Tema escuro"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Enable the dark theme."
-msgstr "Ative o tema escuro."
+msgstr "Ativa o tema escuro."
 
 #: data/com.usebottles.bottles.gschema.xml:11 src/ui/preferences.ui:64
 msgid "Notifications"
@@ -170,15 +169,15 @@ msgstr "Notificações"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Enable notifications."
-msgstr "Ativar notificações."
+msgstr "Ativa notificações."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Temp cleaning"
-msgstr "Limpeza Temp"
+msgstr "Limpeza de temporários"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Clean Temp path on boot."
-msgstr "Limpe o caminho temporário na inicialização."
+msgstr "Limpa o caminho temporário na inicialização."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Release Candidate"
@@ -186,7 +185,7 @@ msgstr "Candidato a Lançamento"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle Release Candidate for Runners"
-msgstr "Ativar Release Candidate para Runners"
+msgstr "Ativa Candidato a Lançamento para runners"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Startup view"
@@ -206,8 +205,8 @@ msgid ""
 "Toggle experimental features such as versioning and installers.Release "
 "Candidate for Runners"
 msgstr ""
-"Alterne recursos experimentais, como controle de versão e instaladores."
-"Candidato a Lançamento para Runners"
+"Alterna recursos experimentais, como controle de versão e "
+"instaladores.Candidato a Lançamento para Runners"
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Experiments:versioning"
@@ -215,7 +214,7 @@ msgstr "Experimentos:versionamento"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Toggle experimental versioning feature"
-msgstr "Alternar recurso de controle de versão experimental"
+msgstr "Alterna recurso experimental de controle de versão"
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Experiments:installers"
@@ -223,7 +222,7 @@ msgstr "Experimentos:instaladores"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle experimental installers feature"
-msgstr "Ativar recurso de instaladores experimentais"
+msgstr "Alterna recurso experimental de instaladores"
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -266,8 +265,8 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
-"Esta é apenas a configuração do bottle, é perfeita se você deseja criar uma "
-"nova, mas sem arquivos pessoais."
+"Esta é apenas a configuração do Bottle que pode ser utilizada para criar uma "
+"nova sem os arquivos pessoais."
 
 #: src/ui/details.ui:23 src/ui/importer.ui:23
 msgid "Configuration"
@@ -275,7 +274,7 @@ msgstr "Configuração"
 
 #: src/ui/details.ui:36 src/ui/importer.ui:36
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Este é o arquivo completo da seu bottle, incluindo arquivos pessoais."
+msgstr "Este é o arquivo completo do seu Bottle, incluindo arquivos pessoais."
 
 #: src/ui/details.ui:37 src/ui/importer.ui:37
 msgid "Full archive"
@@ -295,7 +294,7 @@ msgstr "Um comentário bem curto"
 
 #: src/ui/details.ui:96
 msgid "Save the bottle state."
-msgstr "Salve o estado do bottle."
+msgstr "Salvar estado do bottle."
 
 #: src/ui/details.ui:159
 msgid "Rename bottle"
@@ -303,11 +302,11 @@ msgstr "Renomear Bottle"
 
 #: src/ui/details.ui:183 src/ui/list-entry.ui:47
 msgid "Versioning enabled for this bottle"
-msgstr "Controle de versão habilitado para este bottle"
+msgstr "Controle de versão habilitado para este Bottle"
 
 #: src/ui/details.ui:192 src/ui/list-entry.ui:54
 msgid "Versioning is active in this bottle."
-msgstr "O controle de versão está ativo neste bottle."
+msgstr "O controle de versão está ativo neste Bottle."
 
 #: src/ui/details.ui:213 src/ui/list-entry.ui:73
 msgid "0"
@@ -323,7 +322,7 @@ msgstr "Este campo não pode conter caracteres especiais!"
 
 #: src/ui/details.ui:248
 msgid "Type a name for your bottle"
-msgstr "Digite um nome para a seu bottle"
+msgstr "Digite um nome para a seu Bottle"
 
 #: src/ui/details.ui:267
 msgid "Environment"
@@ -331,7 +330,7 @@ msgstr "Ambiente"
 
 #: src/ui/details.ui:316
 msgid "64 Bit"
-msgstr "64-bit"
+msgstr "64 bits"
 
 #: src/ui/details.ui:335
 msgid "lutris-6.0-rc1-x86_64"
@@ -351,7 +350,7 @@ msgstr "Utilitários"
 
 #: src/ui/details.ui:505
 msgid "Wine config"
-msgstr "Configuração do wine"
+msgstr "Configuração do Wine"
 
 #: src/ui/details.ui:507
 msgid "Adjust internal settings."
@@ -359,7 +358,7 @@ msgstr "Ajuste as configurações internas."
 
 #: src/ui/details.ui:544 src/ui/list-entry.ui:220
 msgid "Browse C:"
-msgstr "Navegar C:"
+msgstr "Navegar em C:"
 
 #: src/ui/details.ui:546
 msgid "Browse internal files."
@@ -383,11 +382,11 @@ msgstr "Edite o registro interno."
 
 #: src/ui/details.ui:661
 msgid "Debug"
-msgstr "Debug"
+msgstr "Depurar"
 
 #: src/ui/details.ui:663
 msgid "Debug wine processes."
-msgstr "Depurar processos de wine."
+msgstr "Depurar processos do Wine."
 
 #: src/ui/details.ui:700
 msgid "Task Manager"
@@ -395,7 +394,7 @@ msgstr "Gerenciador de tarefas"
 
 #: src/ui/details.ui:702
 msgid "Manage processes with the Wine task manager."
-msgstr "Gerencie processos com o gerenciador de tarefas Wine."
+msgstr "Controle processos através do gerenciador de tarefas do Wine."
 
 #: src/ui/details.ui:739
 msgid "Uninstaller"
@@ -411,11 +410,11 @@ msgstr "Painel de controle"
 
 #: src/ui/details.ui:780
 msgid "Access the internal wine control panel."
-msgstr "Acesse o painel de controle interno do wine."
+msgstr "Acesse o painel de controle interno do Wine."
 
 #: src/ui/details.ui:832
 msgid "Bottle"
-msgstr "Bottles"
+msgstr "Bottle"
 
 #: src/ui/details.ui:860
 msgid "Graphics"
@@ -435,19 +434,19 @@ msgstr ""
 
 #: src/ui/details.ui:893
 msgid "Enable ACO shader compiler"
-msgstr "Habilitar compilador de sombreador ACO"
+msgstr "Habilitar compilador de shaders ACO"
 
 #: src/ui/details.ui:921
 msgid "Discrete GPU"
-msgstr "GPU discreta"
+msgstr "GPU dedicada"
 
 #: src/ui/details.ui:922
 msgid "Improves performance at the cost of increased power usage."
-msgstr "Melhora o desempenho ao custo de maior uso de energia."
+msgstr "Melhora o desempenho com maior consumo de energia."
 
 #: src/ui/details.ui:948
 msgid "Use a virtual desktop"
-msgstr "Usar área de trabalho Virtual"
+msgstr "Usar área de trabalho virtual"
 
 #: src/ui/details.ui:949
 msgid "Use the Wine virtual desktop."
@@ -478,11 +477,11 @@ msgstr "Fsync"
 
 #: src/ui/details.ui:1096 src/ui/new.ui:261
 msgid "Runner"
-msgstr "Runner"
+msgstr "Agente de execução (runner)"
 
 #: src/ui/details.ui:1139 src/ui/new.ui:304
 msgid "Manage runners"
-msgstr "Gerenciar runners"
+msgstr "Gerenciar agentes de execução"
 
 #: src/ui/details.ui:1170 src/ui/new.ui:335
 msgid "DXVK Version"
@@ -513,7 +512,7 @@ msgstr ""
 
 #: src/ui/details.ui:1337
 msgid "Developers & Debug"
-msgstr "Desenvolvedores e debug"
+msgstr "Desenvolvedores & Depuração"
 
 #: src/ui/details.ui:1342
 msgid "Environment variables"
@@ -547,7 +546,7 @@ msgstr "Dependências"
 
 #: src/ui/details.ui:1583
 msgid "Search for installed programs"
-msgstr "Verifique se há programas instalados"
+msgstr "Buscar programas instalados"
 
 #: src/ui/details.ui:1671 src/ui/preferences.ui:201 src/ui/window.ui:151
 msgid "Installers"
@@ -559,7 +558,7 @@ msgstr "Atualizar"
 
 #: src/ui/details.ui:1776 src/ui/preferences.ui:175 src/ui/window.ui:138
 msgid "Versioning"
-msgstr "Versionamento"
+msgstr "Controle de versão"
 
 #: src/ui/details.ui:1796
 msgid "Create new state"
@@ -592,7 +591,7 @@ msgstr "Nova substituição"
 
 #: src/ui/dialog-dll-overrides.ui:67
 msgid "e.g. ucrtbase"
-msgstr "por exemplo. ucrtbase"
+msgstr "ucrtbase, por exemplo"
 
 #: src/ui/dialog-dll-overrides.ui:123
 msgid "Existing overrides"
@@ -617,11 +616,11 @@ msgstr ""
 #: src/ui/dialog-environment-variables.ui:87 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
 msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr "e.g.: -exemplo1 -exemplo2 -exemplo3 =olá"
+msgstr "ex.: -exemplo1 -exemplo2 -exemplo3 =olá"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
-msgstr "e.g: VAR1=valor VAR2=valor .."
+msgstr "ex.: VAR1=valor VAR2=valor .."
 
 #: src/ui/dialog-launch-options.ui:25
 msgid "Change launch options"
@@ -633,7 +632,7 @@ msgstr "Esses argumentos são passados no lançamento do programa:"
 
 #: src/ui/dll-override-entry.ui:23
 msgid "Builtin (Wine)"
-msgstr "Construído em (Wine)"
+msgstr "Integrado (Wine)"
 
 #: src/ui/dll-override-entry.ui:24
 msgid "Native (Windows)"
@@ -649,7 +648,7 @@ msgstr "Nativo e depois integrado"
 
 #: src/ui/dxvk-entry.ui:9
 msgid "DXVK version"
-msgstr "Versão DXVK"
+msgstr "Versão do DXVK"
 
 #: src/ui/dxvk-entry.ui:68 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -671,19 +670,19 @@ msgstr "Importador"
 
 #: src/ui/importer.ui:122
 msgid "Import Bottles backup"
-msgstr "Backup de importação do Bottles"
+msgstr "Importar backup do Bottles"
 
 #: src/ui/importer-entry.ui:69
 msgid "This wineprefix was already imported in Bottles."
-msgstr "Este prefixo do wine já foi importado no Bottles."
+msgstr "Esta configuração (wineprefix) já foi importada para o Bottles."
 
 #: src/ui/list-entry.ui:99
 msgid "This bottle looks damaged."
-msgstr "Este bottle parece danificado."
+msgstr "Este Bottle parece danificado."
 
 #: src/ui/list-entry.ui:126
 msgid "Run .exe/.msi in this bottle"
-msgstr "Execute .exe /.msi nesta garrafa"
+msgstr "Execute .exe/.msi neste Bottle"
 
 #: src/ui/list-entry.ui:151
 msgid "Utility & Preferences"
@@ -691,18 +690,20 @@ msgstr "Utilitário & Preferências"
 
 #: src/ui/list-entry.ui:175
 msgid "Upgrade runner to the latest localy installed"
-msgstr "Atualize o runner para o local mais recente instalado"
+msgstr ""
+"Atualize o agente de execução (runner) para o mais recente instalado "
+"localmente"
 
 #: src/ui/list-entry.ui:196
 msgid "Destroy bottle"
-msgstr "Destruir bottle"
+msgstr "Destruir Bottle"
 
 #: src/ui/list-entry.ui:241
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
-"Este bottle parece danificado, o arquivo de configuração está faltando. "
+"Este Bottle parece danificado, o arquivo de configuração não foi encontrado. "
 "Posso tentar resolver criando uma nova configuração."
 
 #: src/ui/list-entry.ui:262
@@ -711,11 +712,11 @@ msgstr "Programas instalados"
 
 #: src/ui/list-entry.ui:283
 msgid "Execute in this bottle"
-msgstr "Execute neste bottle"
+msgstr "Execute neste Bottle"
 
 #: src/ui/list-entry.ui:293
 msgid "Run in this bottle"
-msgstr "Rode neste bottle"
+msgstr "Rode neste Bottle"
 
 #: src/ui/new.ui:25
 msgid "Create bottle"
@@ -735,7 +736,7 @@ msgstr "Novo Bottle"
 
 #: src/ui/new.ui:118
 msgid "Choose a name for your bottle"
-msgstr "Escolha um nome para a seu bottle"
+msgstr "Escolha um nome para a seu Bottle"
 
 #: src/ui/new.ui:139
 msgid "Name"
@@ -743,7 +744,7 @@ msgstr "Nome"
 
 #: src/ui/new.ui:150
 msgid "My beautiful bottle"
-msgstr "Minha belo bottle"
+msgstr "Meu lindo Bottle"
 
 #: src/ui/new.ui:181
 msgid "Choose an environment"
@@ -759,7 +760,7 @@ msgstr "Controle de versão"
 
 #: src/ui/new.ui:235
 msgid "Enable versioning to save and restore the bottle to a state."
-msgstr "Ative o controle de versão para salvar e restaurar o estado do bottle."
+msgstr "Ative o controle de versão para salvar e restaurar o estado do Bottle."
 
 #: src/ui/new.ui:442
 msgid "Creating bottle…"
@@ -767,7 +768,7 @@ msgstr "Criando Bottle…"
 
 #: src/ui/new.ui:461
 msgid "Take a drink, it may take a while"
-msgstr "Pode ir tomar um cafezinho, podera demorar um pouco"
+msgstr "Pode ir tomar um cafezinho, poderá demorar um pouco"
 
 #: src/ui/new.ui:559
 msgid "Bottle created"
