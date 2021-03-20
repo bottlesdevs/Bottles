@@ -9,7 +9,32 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
+      - name: Get Version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(cat VERSION)
+        
+      - name: Install dependencies
+        run: |
+          sudo apt install -y python3.8-minimal python3-pip python3-setuptools patchelf desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace
+          
+      - name: Install appimage-builder
+        run: |
+          sudo python3.8 -m pip install .
+          
       - name: Build AppImage
         uses: AppImageCrafters/build-appimage@v1
         with:
           recipe: AppImageBuilder.yml
+        
+      - name: List files in directory
+        run: ls
+          
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: appimage-builder
+          path: './appimage-builder*.AppImage*'
+
+
+
