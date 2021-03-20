@@ -5,7 +5,7 @@ script:
   - rm -rf build  | true
   # Building with meson and ninja
   - mkdir build
-  - meson build --prefix=/
+  - meson build
   - cd build
   - ninja
   - ninja bottles-pot
