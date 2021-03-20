@@ -69,7 +69,8 @@ class UtilsTerminal():
         ['konsole', '-e %s'],
         ['gnome-terminal', '-- %s'],
         ['xfce4-terminal', '--command %s'],
-        ['mate-terminal', '--command %s']
+        ['mate-terminal', '--command %s'],
+        ['tilix', '-- %s'],
     ]
 
     def __init__(self, command):
