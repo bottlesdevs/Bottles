@@ -17,9 +17,9 @@ jobs:
       - name: Installing build dependencies
         run: |
           sudo apt install -y python3 python3.8-minimal python3-pip python3-setuptools gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson
-      - name: Installing build dependencies
+      - name: find meson
         run: |
-          ls /usr/bin
+          sudo find / -executable | grep 'meson'
           
       - name: Build AppImage
         uses: docker://appimagecrafters/appimage-builder:latest
