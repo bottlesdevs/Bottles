@@ -16,10 +16,7 @@ jobs:
         
       - name: Installing build dependencies
         run: |
-          sudo apt install python3-pip python-dev build-essential gettext git patchelf librsvg2-dev
-          sudo pip3 install --upgrade pip
-          sudo pip3 install meson
-          sudo pip3 install ninja
+          sudo apt install python3-pip python-dev build-essential gettext git patchelf librsvg2-dev meson ninja
           
       - name: Build AppImage
         uses: AppImageCrafters/build-appimage@v1
