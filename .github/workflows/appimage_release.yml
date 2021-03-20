@@ -14,13 +14,12 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::$(cat VERSION)
         
-      - name: Install dependencies
+      - name: Installing build dependencies
         run: |
-          sudo apt install -y python3.8-minimal python3-pip python3-setuptools patchelf desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace
-          
-      - name: Install appimage-builder
-        run: |
-          sudo python3.8 -m pip install .
+          sudo apt install python3-pip python-dev build-essential gettext git patchelf librsvg2-dev
+          sudo pip3 install --upgrade pip
+          sudo pip3 install meson
+          sudo pip3 install ninja
           
       - name: Build AppImage
         uses: AppImageCrafters/build-appimage@v1
