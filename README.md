@@ -24,6 +24,7 @@
   <a href="https://github.com/bottlesdevs/Bottles/actions">
     <img src="https://github.com/bottlesdevs/Bottles/workflows/AppImage%20Release/badge.svg">
   </a>
+  <br>
   <a href="https://t.me/usebottles">
     Telegram Group
   </a>
