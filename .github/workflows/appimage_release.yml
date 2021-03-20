@@ -1,7 +1,7 @@
 name: AppImage Release
 on:
   push:
-    branches: [ master ]
+    branches: [ appimage-recipe ]
     tags:
       - 'test'
   workflow_dispatch:
@@ -9,36 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      - name: Updating system
-        run: sudo apt update -qq
-          
-      - name: Installing build dependencies
-        run: |
-          sudo apt install python3-pip python-dev build-essential gettext git patchelf librsvg2-dev
-          sudo pip3 install --upgrade pip
-          sudo pip3 install meson
-          sudo pip3 install ninja
-          
-      - name: Cloning repository
-        run: |
-          git clone https://github.com/bottlesdevs/Bottles
-          cd Bottles
-        
-      - name: g++ version check
-        run: |
-          if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-          
-      - name: Building Bottles AppImage
-        run: |
-          cd Bottles
-          chmod +x appimage-build.sh
-          sudo ./appimage-build.sh
-          
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Build AppImage
+        uses: AppImageCrafters/build-appimage@v1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          draft: false
-          prerelease: false
-          automatic_release_tag: unstable
-          title: Unstable build
-          files: /home/runner/work/Bottles/Bottles/Bottles/build/Bottles-devel-x86_64.AppImage
+          recipe: AppImageBuilder.yml
