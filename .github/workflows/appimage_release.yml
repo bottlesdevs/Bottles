@@ -13,10 +13,6 @@ jobs:
       - name: Get Version
         id: get_version
         run: echo ::set-output name=VERSION::$(cat VERSION)
-
-      - name: Set global environment variables
-        run: |
-          echo "cat VERSION" >> $VERSION
         
       - name: Installing build dependencies
         run: |
