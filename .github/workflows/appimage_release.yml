@@ -13,6 +13,10 @@ jobs:
       - name: Get Version
         id: get_version
         run: echo ::set-output name=VERSION::$(cat VERSION)
+
+      - name: Set global environment variables
+        run: |
+          echo "cat VERSION" >> $VERSION
         
       - name: Installing build dependencies
         run: |
@@ -34,13 +38,17 @@ jobs:
       - name: Build AppImage
         run: appimage-builder --recipe AppImageBuilder.yml --skip-test 
         
-      - name: List files in directory
-        run: ls
+      - name: Print Version
+        run: echo $VERSION
         
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          name: AppImage
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          draft: false
+          prerelease: false
+          automatic_release_tag: unstable
+          title: Unstable build
+          files: Bottles-*-x86_64.AppImage*
 
 
 
