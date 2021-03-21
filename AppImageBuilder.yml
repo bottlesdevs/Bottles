@@ -97,6 +97,8 @@ AppDir:
     env:
       # Set python home
       PYTHONPATH: '${APPDIR}/usr/lib/python3/dist-packages'
+      # if you want to use Adwaita just uncomment bellow
+      # GTK_THEME: Adwaita
      
   test:
     fedora:
