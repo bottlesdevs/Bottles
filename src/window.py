@@ -93,6 +93,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
             self.settings.get_boolean("dark-theme"))
+        
+        '''Validate argument extension'''
+        if arg_executable and not arg_executable.endswith(('.exe', '.msi', '.bat')):
+            arg_executable = False
 
         self.utils_conn = UtilsConnection(self)
 
@@ -149,7 +153,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         '''Executed on last'''
         self.on_start()
 
-        if arg_executable and arg_executable.endswith(('.exe', '.msi', '.bat')):
+        if arg_executable:
             self.show_list_view()
 
         '''Toggle view_switcher_bar by window size'''
