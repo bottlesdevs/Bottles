@@ -1,7 +1,7 @@
 name: AppImage Unstable
 on:
   push:
-    branches: [ appimage-recipe ]
+    branches: [ master ]
     tags:
       - 'test'
   workflow_dispatch:
