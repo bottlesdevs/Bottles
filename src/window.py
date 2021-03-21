@@ -150,7 +150,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.on_start()
 
         if arg_executable:
-            if arg_executable.endswith(('.exe', '.msi', '.bat'))
+            if arg_executable.endswith(('.exe', '.msi', '.bat')):
                 self.show_list_view()
 
         '''Toggle view_switcher_bar by window size'''
