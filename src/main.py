@@ -15,11 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .window import BottlesWindow
-from .utils import UtilsLogger
-from .params import *
-from pathlib import Path
-from gi.repository import Gtk, Gio, Gdk
 import os
 import sys
 import gi
@@ -30,6 +25,12 @@ import subprocess
 
 gi.require_version('Gtk', '3.0')
 
+from gi.repository import Gtk, Gio, Gdk
+
+from pathlib import Path
+
+from .params import *
+from .utils import UtilsLogger
 
 '''Set local path to AppDir if AppImage'''
 try:
@@ -45,6 +46,7 @@ _ = gettext.gettext
 
 logging = UtilsLogger()
 
+from .window import BottlesWindow
 
 class Application(Gtk.Application):
 
