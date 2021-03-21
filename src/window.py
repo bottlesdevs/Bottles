@@ -149,9 +149,8 @@ class BottlesWindow(Handy.ApplicationWindow):
         '''Executed on last'''
         self.on_start()
 
-        if arg_executable:
-            if arg_executable.endswith(('.exe', '.msi', '.bat')):
-                self.show_list_view()
+        if arg_executable and arg_executable.endswith(('.exe', '.msi', '.bat')):
+            self.show_list_view()
 
         '''Toggle view_switcher_bar by window size'''
         self.on_squeezer_notify(widget=self.squeezer)
