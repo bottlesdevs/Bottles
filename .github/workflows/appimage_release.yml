@@ -11,7 +11,7 @@ jobs:
       
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+        run: echo ::set-output name=VERSION::$(cat VERSION)
         
       - name: Installing build dependencies
         run: |
@@ -39,7 +39,7 @@ jobs:
           draft: false
           prerelease: false
           automatic_release_tag: ${{ steps.get_version.outputs.VERSION }}
-          title: Unstable build
+          title: ${{ steps.get_version.outputs.VERSION }}
           files: Bottles-*-x86_64.AppImage*
 
 
