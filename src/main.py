@@ -15,6 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from .window import BottlesWindow
+from .utils import UtilsLogger
+from .params import *
+from pathlib import Path
+from gi.repository import Gtk, Gio, Gdk
 import os
 import sys
 import gi
@@ -25,12 +30,6 @@ import subprocess
 
 gi.require_version('Gtk', '3.0')
 
-from gi.repository import Gtk, Gio, Gdk
-
-from pathlib import Path
-
-from .params import *
-from .utils import UtilsLogger
 
 '''Set local path to AppDir if AppImage'''
 try:
@@ -46,7 +45,6 @@ _ = gettext.gettext
 
 logging = UtilsLogger()
 
-from .window import BottlesWindow
 
 class Application(Gtk.Application):
 
@@ -66,7 +64,6 @@ class Application(Gtk.Application):
         self.set_actions()
 
     def do_activate(self):
-
         '''Load custom CSS'''
         data_bytes = Gio.resources_lookup_data(
             "/com/usebottles/bottles/style.css", 0)
@@ -77,12 +74,20 @@ class Application(Gtk.Application):
                                                  Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
         gtk_theme = subprocess.check_output(['gsettings',
-                                            'get',
-                                            'org.gnome.desktop.interface',
-                                            'gtk-theme']).decode("utf-8")
+                                             'get',
+                                             'org.gnome.desktop.interface',
+                                             'gtk-theme']).decode("utf-8")
         if "Yaru" in gtk_theme:
             data_bytes = Gio.resources_lookup_data(
                 "/com/usebottles/bottles/yaru.css", 0)
+            provider = Gtk.CssProvider()
+            provider.load_from_data(data_bytes.get_data())
+            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
+                                                     provider,
+                                                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        elif "Breeze" in gtk_theme:
+            data_bytes = Gio.resources_lookup_data(
+                "/com/usebottles/bottles/breeze.css", 0)
             provider = Gtk.CssProvider()
             provider.load_from_data(data_bytes.get_data())
             Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
@@ -99,6 +104,7 @@ class Application(Gtk.Application):
         win.present()
 
     '''Quit application [CTRL+Q]'''
+
     def quit(self, action=None, param=None):
         logging.info(_("[Quit] request received."))
         self.win.destroy()
@@ -110,11 +116,13 @@ class Application(Gtk.Application):
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
     '''Refresh Bottles [CTRL+R]'''
+
     def refresh(self, action, param):
         logging.info(_("[Refresh] request received."))
         self.win.runner.update_bottles()
 
     '''Set application actions'''
+
     def set_actions(self):
         action_entries = [
             ("quit", self.quit, ("app.quit", ["<Ctrl>Q"])),
@@ -129,16 +137,20 @@ class Application(Gtk.Application):
             if accel is not None:
                 self.set_accels_for_action(*accel)
 
+
 '''Run Bottles application'''
+
+
 def main(version):
     try:
         app = Application()
         return app.run(sys.argv)
     except Exception as e:
-        crash=["Error on line {}".format(sys.exc_info()[-1].tb_lineno),"\n",e]
+        crash = ["Error on line {}".format(
+            sys.exc_info()[-1].tb_lineno), "\n", e]
         log_path = "%s/.local/share/bottles/crash.log" % Path.home()
 
-        with open(log_path,"w") as crash_log:
+        with open(log_path, "w") as crash_log:
             for i in crash:
                 i = str(i)
                 crash_log.write(i)
