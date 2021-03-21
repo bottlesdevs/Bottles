@@ -1,4 +1,4 @@
-name: AppImage Release
+name: AppImage Unstable
 on:
   push:
     branches: [ appimage-recipe ]
@@ -34,8 +34,10 @@ jobs:
       - name: Build AppImage
         run: appimage-builder --recipe AppImageBuilder.yml --skip-test 
         
-      - name: Print Version
-        run: echo $VERSION
+      - name: Rename
+        run: |
+          mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
+          mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
         
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
