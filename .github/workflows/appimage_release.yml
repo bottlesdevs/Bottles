@@ -17,12 +17,22 @@ jobs:
       - name: Installing build dependencies
         run: |
           sudo apt install -y python3 python3.8-minimal python3-pip python3-setuptools gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson
-          
-      - name: Build AppImage
-        uses: docker://appimagecrafters/appimage-builder:latest
+      
+      - name: appimagetool
+        run: |
+           sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
+           sudo chmod +x /usr/local/bin/appimagetool
+      
+      - name: setup python
+        uses: actions/setup-python@v2
         with:
-          entrypoint: appimage-builder
-          args: --recipe AppImageBuilder.yml --skip-test
+          python-version: 3.8
+      
+      - name: Install appimage-builder
+        run: yes | sudo pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git
+      
+      - name: Build AppImage
+        run: appimage-builder --recipe AppImageBuilder.yml --skip-test 
         
       - name: List files in directory
         run: ls
