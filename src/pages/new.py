@@ -17,6 +17,7 @@
 
 import re
 import time
+import gi
 
 from gi.repository import Gtk, GLib, Handy
 
