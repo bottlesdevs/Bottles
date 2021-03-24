@@ -95,7 +95,7 @@ These packages are maitained by our community but not officialy supported.
 |Distro|Package Name/Link|Maintainer
 |:----:|:----:|:----:|
 | Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | Talebian12 |
-| Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | ragouel |
+| Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | francescomasala |
 | Tumbleweed | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
 | Fedora | [`bottles`](https://src.fedoraproject.org/rpms/bottles)| tim77 |
 | Void linux | [`bottles`](https://github.com/void-linux/void-packages/pull/27066) | andry-dev|
