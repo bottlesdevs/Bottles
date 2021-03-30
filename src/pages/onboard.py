@@ -27,6 +27,7 @@ class BottlesOnboard(Handy.Window):
 
     '''Get widgets from template'''
     stack_onboard = Gtk.Template.Child()
+    btn_back = Gtk.Template.Child()
     btn_next = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
@@ -53,6 +54,7 @@ class BottlesOnboard(Handy.Window):
 
         '''Signal connections'''
         self.btn_close.connect('pressed', self.close_window)
+        self.btn_back.connect('pressed', self.previous_page)
         self.btn_next.connect('pressed', self.next_page)
         self.btn_install.connect('pressed', self.install_runner)
 
@@ -60,6 +62,14 @@ class BottlesOnboard(Handy.Window):
         self.next_page()
         RunAsync(self.pulse, None)
         self.runner.checks(after=self.next_page)
+
+    def previous_page(self, widget=False):
+        visible_child = self.stack_onboard.get_visible_child_name()
+        previous_page = self.stack_pages[self.stack_pages.index(visible_child) - 1]
+        self.stack_onboard.set_visible_child_name(previous_page)
+
+        if previous_page == "page_finish":
+            quit()
 
     def next_page(self, widget=False):
         visible_child = self.stack_onboard.get_visible_child_name()
@@ -72,6 +82,7 @@ class BottlesOnboard(Handy.Window):
 
         if next_page == "page_download":
             self.btn_install.set_visible(False)
+            self.btn_back.set_visible(False)
 
         if next_page == "page_finish":
             self.btn_install.set_visible(False)
