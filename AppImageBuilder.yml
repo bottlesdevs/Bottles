@@ -98,7 +98,8 @@ AppDir:
       # Set python home
       PYTHONPATH: '${APPDIR}/usr/lib/python3/dist-packages'
       # SSL CERTIFICATE_VERIFY_FAILED
-      SSL_CERT_DIR: '/etc/ssl/certs'
+      SSL_CERT_DIR: '/etc/ssl/certs:/etc/pki/tls/certs:/etc/ssl:/etc/pki/tls:/etc/pki:/etc/pki/ca-trust:/usr/local/share/certs:/etc/openssl/certs:/var/ssl/certs'
+      SSL_CERT_FILE: "/etc/ssl/certs/ca-certificates.crt:/etc/pki/tls/certs/ca-bundle.crt:/etc/ssl/ca-bundle.pem:/etc/pki/tls/cacert.pem:/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem:/etc/ssl/cert.pem"
       # if you want to use Adwaita just uncomment bellow
       # GTK_THEME: Adwaita
      
