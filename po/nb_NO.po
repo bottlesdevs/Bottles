@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-14 09:59+0100\n"
-"PO-Revision-Date: 2021-03-08 17:15+0000\n"
+"PO-Revision-Date: 2021-04-13 05:52+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
 "bottles/nb_NO/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -1163,7 +1163,7 @@ msgstr ""
 #: src/runner.py:374
 #, fuzzy, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
-msgstr "Avhengigheter"
+msgstr "Installerer {0} i flasken {1} …"
 
 #: src/runner.py:381
 #, python-brace-format
@@ -1186,9 +1186,9 @@ msgid "Removing dependency: [{0}] from bottle: [{1}] configuration."
 msgstr ""
 
 #: src/runner.py:481
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Runners found: [{0}]"
-msgstr "Fant ingen springere"
+msgstr "Fant disse springerne: [{0}]"
 
 #: src/runner.py:490
 #, fuzzy
@@ -1431,7 +1431,7 @@ msgstr ""
 #: src/runner.py:1713
 #, fuzzy, python-brace-format
 msgid "Backup {0}"
-msgstr "Sikkerhetskopier"
+msgstr "Sikkerhetskopi {0}"
 
 #: src/runner.py:1732
 #, python-brace-format
@@ -1454,9 +1454,9 @@ msgid "Failed to create backup for {0}!"
 msgstr ""
 
 #: src/runner.py:1773
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "Importer fra sikkerhetskopi"
+msgstr "Importerer sikkerhetskopi: {0}"
 
 #: src/runner.py:1787
 #, python-brace-format
