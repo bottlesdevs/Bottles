@@ -80,9 +80,11 @@ AppDir:
     - zlib1g
     - python3-certifi
  
-    exclude: []
+    exclude: 
+    - adwaita-icon-theme
+    - humanity-icon-theme
 
-  before_runtime: |
+  after_runtime: |
      ls -a $APPDIR
      rm -f $APPDIR/.bundle.yml
      rm -rf $APPDIR/usr/share/doc
