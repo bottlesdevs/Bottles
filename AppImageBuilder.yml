@@ -79,14 +79,14 @@ AppDir:
     - libglib2.0-bin
     - ibus-gtk3
     - zlib1g
-    - ca-certificates
+    #ca-certificates
     - python3-certifi
  
     exclude: []
 
-  #after_bundle: |
-   # python3.8 -m pip install --ignore-installed --prefix=/usr --root=$APPDIR install --upgrade certif
-  
+  after_bundle: |
+     rm $APPDIR/.bundl.yml
+    
   files:
     include: []
 
@@ -102,8 +102,8 @@ AppDir:
     env:
       # Set python home
       PYTHONPATH: '${APPDIR}/usr/lib/python3/dist-packages'
-      # SSL CERTIFICATE_VERIFY_FAILED
-      SSL_CERT_DIR: "/etc/ssl/certs:/etc/pki/ca-trust/extracted/pem:/etc/pki/ca-trust/extracted/openssl:/etc/ssl:/etc/pki/tls:/etc/pki:/etc/pki/ca-trust:/usr/local/share/certs:/usr/share/pki/ca-trust-source:/etc/openssl/certs:/var/ssl/certs"
+      # SSL CERTIFICATE_VERIFY_FAILED python3.8 -m pip install --ignore-installed --prefix=/usr --root=$APPDIR install --upgrade certifi
+      #SSL_CERT_DIR: "/etc/ssl/certs:/etc/pki/ca-trust/extracted/pem:/etc/pki/ca-trust/extracted/openssl:/etc/ssl:/etc/pki/tls:/etc/pki:/etc/pki/ca-trust:/usr/local/share/certs:/usr/share/pki/ca-trust-source:/etc/openssl/certs:/var/ssl/certs"
       SSL_CERT_FILE: "$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem"
       # if you want to use Adwaita just uncomment bellow
       # GTK_THEME: Adwaita
