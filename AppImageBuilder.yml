@@ -85,7 +85,6 @@ AppDir:
     - humanity-icon-theme
 
   after_runtime: |
-     ls -a $APPDIR
      rm -f $APPDIR/.bundle.yml
      rm -rf $APPDIR/usr/share/doc
      rm -rf $APPDIR/usr/share/man
