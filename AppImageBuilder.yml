@@ -85,7 +85,7 @@ AppDir:
     exclude: []
 
   after_bundle: |
-     rm $APPDIR/.bundle.yml
+     rm -f $APPDIR/.bundle.yml
     
   files:
     include: []
