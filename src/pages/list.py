@@ -177,6 +177,7 @@ class BottlesListEntry(Handy.ActionRow):
 
     '''Show details page'''
     def show_details(self, widget):
+        self.window.page_details.update_combo_components()
         self.window.show_details_view(configuration=self.configuration)
 
     '''Show dialog to confirm bottle deletion'''

@@ -355,8 +355,9 @@ class BottlesRunner:
             after()
 
         '''Re-populate local lists'''
+        self.fetch_components()
         if checks:
-            self.checks()
+            pass
 
     def install_component(self, component_type:str, component_name:str, after=False, func=False, checks=True) -> None:
         if self.utils_conn.check_connection(True):
@@ -509,7 +510,6 @@ class BottlesRunner:
         self.runners_available = sorted(self.runners_available)
         self.dxvk_available = sorted(self.dxvk_available)
 
-        print(self.supported_wine_runners)
         return True
 
     '''Check local dxvks'''
@@ -634,6 +634,8 @@ class BottlesRunner:
                         self.supported_dxvk[component[0]] = component[1]
                         if component[0] in self.dxvk_available:
                             self.supported_dxvk[component[0]]["Installed"] = True
+
+            self.async_checks([False])
         else:
             return False
         return True

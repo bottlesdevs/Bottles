@@ -523,13 +523,6 @@ class BottlesDetails(Gtk.Stack):
         self.runner = window.runner
         self.configuration = configuration
 
-        '''Populate combo_runner, combo_dxvk'''
-        for runner in self.runner.runners_available:
-            self.combo_runner.append(runner, runner)
-
-        for dxvk in self.runner.dxvk_available:
-            self.combo_dxvk.append(dxvk, dxvk)
-
         '''Signal connections'''
         self.entry_name.connect('key-release-event', self.check_entry_name)
 
@@ -586,6 +579,24 @@ class BottlesDetails(Gtk.Stack):
         self.combo_dxvk.connect('changed', self.set_dxvk)
 
         self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
+
+    def update_combo_components(self):
+        self.combo_runner.handler_block_by_func(self.set_runner)
+        self.combo_dxvk.handler_block_by_func(self.set_dxvk)
+
+        '''Populate combo_runner, combo_dxvk'''
+        self.combo_runner.remove_all()
+        self.combo_dxvk.remove_all()
+
+        for runner in self.runner.runners_available:
+            print(runner)
+            self.combo_runner.append(runner, runner)
+
+        for dxvk in self.runner.dxvk_available:
+            self.combo_dxvk.append(dxvk, dxvk)
+
+        self.combo_runner.handler_unblock_by_func(self.set_runner)
+        self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
 
     '''Set bottle configuration'''
     def set_configuration(self, configuration):
