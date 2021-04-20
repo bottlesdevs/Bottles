@@ -267,7 +267,7 @@ class BottlesRunner:
                 return False
 
         '''Rename the file if required'''
-        if rename:
+        if rename and file != rename:
             logging.info(
                 _("Renaming [{0}] to [{1}].").format(file, rename))
             file_path = "%s/%s" % (self.temp_path, rename)
@@ -509,6 +509,7 @@ class BottlesRunner:
         self.runners_available = sorted(self.runners_available)
         self.dxvk_available = sorted(self.dxvk_available)
 
+        print(self.supported_wine_runners)
         return True
 
     '''Check local dxvks'''
