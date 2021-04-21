@@ -148,6 +148,13 @@ class UtilsFiles():
         except FileNotFoundError:
             return False
 
+    @staticmethod
+    def use_insensitive_ext(string):
+        '''Converts a glob pattern into a case-insensitive glob pattern'''
+        ext = string.split('.')[1]
+        globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
+        return '*.%s' % ''.join(globlist)
+
 '''Execute synchronous tasks'''
 class RunAsync(threading.Thread):
 
