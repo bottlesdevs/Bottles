@@ -21,6 +21,7 @@ import re
 import webbrowser
 
 from .dialog import BottlesDialog, BottlesMessageDialog
+from ..utils import UtilsFiles
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-environment-variables.ui')
 class BottlesEnvironmentVariables(Handy.Window):
@@ -920,15 +921,15 @@ class BottlesDetails(Gtk.Stack):
         '''Create filters for allowed extensions'''
         filter_exe = Gtk.FileFilter()
         filter_exe.set_name(".exe")
-        filter_exe.add_pattern("*.exe")
+        filter_exe.add_pattern(UtilsFiles.use_insensitive_ext("*.exe"))
 
         filter_msi = Gtk.FileFilter()
         filter_msi.set_name(".msi")
-        filter_msi.add_pattern("*.msi")
+        filter_exe.add_pattern(UtilsFiles.use_insensitive_ext("*.msi"))
 
         filter_bat = Gtk.FileFilter()
         filter_bat.set_name(".bat")
-        filter_bat.add_pattern("*.bat")
+        filter_exe.add_pattern(UtilsFiles.use_insensitive_ext("*.bat"))
 
         file_dialog.add_filter(filter_exe)
         file_dialog.add_filter(filter_msi)
