@@ -35,7 +35,7 @@
 </div>
 
 ## Documentation
-We are writing the new [documentation](https://docs.usebottles.com) for Bottles v2.
+We are writing the new [documentation](https://docs.usebottles.com) for Bottles v3.
 
 ## Help Bottles speak your language :speaking_head:
 Read [here](https://github.com/bottlesdevs/Bottles/tree/master/po) how to 
@@ -99,7 +99,7 @@ These packages are maitained by our community but not officialy supported.
 | Tumbleweed | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
 | Fedora | [`bottles`](https://src.fedoraproject.org/rpms/bottles)| tim77 |
 | Void linux | [`bottles`](https://github.com/void-linux/void-packages/pull/27066) | andry-dev|
-| NixOS | [`bottles`](https://github.com/bottlesdevs/Bottles/issues/72) | bloomvdomino |
+| NixOS | [`bottles`](https://github.com/NixOS/nixpkgs/pull/113825) | bloomvdomino |
 
 #### Notices for package maintainers
 We are happy to see packaged Bottles but we ask you to respect some small rules:
