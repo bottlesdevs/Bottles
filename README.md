@@ -12,14 +12,11 @@
    <a href="https://hosted.weblate.org/engage/bottles/">
       <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" alt="Stato traduzione" />
    </a>
-   <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/refresh">
-      <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/refresh" alt="CodeFactor" />
+   <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/master">
+      <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/master" alt="CodeFactor" />
    </a>
    <a href="https://git.mirko.pm/brombinmirko/Bottles/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
-   </a>
-   <a href="https://travis-ci.com/github/bottlesdevs/Bottles">
-    <img src="https://travis-ci.com/bottlesdevs/Bottles.svg?branch=develop">
    </a>
   <a href="https://github.com/bottlesdevs/Bottles/actions">
     <img src="https://github.com/bottlesdevs/Bottles/workflows/AppImage%20Release/badge.svg">
