@@ -3,7 +3,7 @@
   <h1 align="center">Bottles v3</h1>
   <p align="center">Easily manage wineprefix using environments</p>
   <small><a href="https://github.com/bottlesdevs/Bottles/tree/v1">Here</a> you can find the old v1.</small>
-  <p align="center">More about the <a href="https://usebottles.com/blog/bottles-3-project-refresh/">new UI</a></p>
+  <p align="center">More about the <a href="https://github.com/bottlesdevs/Bottles/issues/133">Bottles v4</a></p>
 </div>
 
 <br/>
