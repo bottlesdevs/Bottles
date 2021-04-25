@@ -17,7 +17,6 @@ parts:
     override-pull: |
       snapcraftctl pull
       sed -i -e 's|@PYTHON@|/usr/bin/python3|g' src/bottles.in
-      snapcraftctl set-version $(git describe --tags --abbrev=10)
     build-packages:
       - python3
       - python3-distutils
