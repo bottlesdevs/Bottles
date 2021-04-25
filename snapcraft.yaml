@@ -12,7 +12,7 @@ parts:
 
   bottles:
     plugin: meson
-    meson-parameters: [--prefix=/snap/bottles/current/usr]
+    meson-parameters: [ --prefix=/usr ]
     source: . # https://github.com/bottlesdevs/Bottles.git
     override-pull: |
       snapcraftctl pull
@@ -33,10 +33,12 @@ parts:
       - libnotify4
       - libnotify-dev
       - libgtk-3-dev
+    organize:
+      snap/bottles/current/usr: usr
 
 apps:
   bottles:
-    command: bin/desktop-launch $SNAP/usr/local/bin/bottles
+    command: usr/bin/bottles
     extensions: [gnome-3-38]
     plugs:
       - desktop
