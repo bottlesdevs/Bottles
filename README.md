@@ -86,6 +86,9 @@ And you're done!
 Flatpak is the second officially supported package format.  
 <a href='https://flathub.org/apps/details/com.usebottles.bottles'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
+### Snap
+In the process of publication.
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/bottles)
 ### Unofficial packages
 These packages are maitained by our community but not officialy supported.
 
