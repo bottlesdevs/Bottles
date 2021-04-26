@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="BottlesEnvironmentEntry" parent="GtkBox">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="spacing">10</property>
     <child>
       <object class="GtkImage" id="img_icon">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
-        <property name="margin_start">5</property>
-        <property name="margin_end">5</property>
-        <property name="icon_name">applications-engineering-symbolic</property>
+        <property name="margin-start">5</property>
+        <property name="margin-end">5</property>
+        <property name="icon-name">applications-engineering-symbolic</property>
         <property name="icon_size">3</property>
+        <style>
+          <class name="selection-logo"/>
+        </style>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -26,13 +29,13 @@
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel" id="label_title">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="valign">end</property>
             <property name="vexpand">True</property>
@@ -51,7 +54,7 @@
         <child>
           <object class="GtkLabel" id="label_subtitle">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="valign">start</property>
             <property name="vexpand">True</property>
@@ -78,12 +81,12 @@
     </child>
     <child>
       <object class="GtkImage" id="img_selected">
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
-        <property name="margin_start">5</property>
-        <property name="margin_end">5</property>
-        <property name="icon_name">object-select-symbolic</property>
+        <property name="margin-start">5</property>
+        <property name="margin-end">5</property>
+        <property name="icon-name">object-select-symbolic</property>
         <style>
           <class name="selection-icon"/>
         </style>
