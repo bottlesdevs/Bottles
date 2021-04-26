@@ -84,6 +84,7 @@ And you're done!
 
 ### Flatpak from Flathub
 Flatpak is the second officially supported package format.  
+
 <a href='https://flathub.org/apps/details/com.usebottles.bottles'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
 ### Snap
