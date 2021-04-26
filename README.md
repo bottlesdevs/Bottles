@@ -136,8 +136,7 @@ sudo ninja uninstall
 ```
 
 ### Flatpak (build)
-We provide an initial Flatpak support.  
-This is a package not fully tested yet, we don't feel like offering full support.
+We provide an official Flatpak package.  
 
 #### Dependencies
 - org.gnome.Sdk
@@ -154,6 +153,17 @@ flatpak install --user bottles com.usebottles.bottles
 #### Run
 ```bash
 flatpak run com.usebottles.bottles
+```
+
+### Snap (build)
+We also provide an initial Snap support.
+This is a package not fully tested.
+
+#### Build
+```bash
+snapcraft
+snap install bottles*.snap --dangerous
+snap run bottles
 ```
 
 ## Shortcuts
