@@ -22,18 +22,25 @@ import sys
 import signal
 import gettext
 
-try:
-	APPDIR = os.environ['APPDIR']
-	VERSION = '0.1.0'
-	pkgdatadir = '/usr/local/share/bottles'
-	localedir = '/usr/local/share/locale'
-	gresource_path = '%s/%s/bottles.gresource' % (APPDIR, pkgdatadir)
-	sys.path.insert(1, "%s/%s" % (APPDIR, pkgdatadir))
-except:
-	VERSION = '@VERSION@'
-	pkgdatadir = '@pkgdatadir@'
-	localedir = '@localedir@'
-	gresource_path = '%s/bottles.gresource' % pkgdatadir
+if "APPDIR" in os.environ:
+	APPDIR = os.environ["APPDIR"]
+	VERSION = "3.1.5"
+	pkgdatadir = "/usr/local/share/bottles"
+	localedir = "/usr/local/share/locale"
+	gresource_path = f"{APPDIR}/{pkgdatadir}/bottles.gresource"
+	sys.path.insert(1, f"{APPDIR}/{pkgdatadir}")
+elif "SNAP" in os.environ:
+	SNAP = os.environ["SNAP"]
+	VERSION = "3.1.5"
+	pkgdatadir = "usr/share/bottles"
+	localedir = "usr/share/locale"
+	gresource_path = f"{SNAP}/{pkgdatadir}/bottles.gresource"
+	sys.path.insert(1, f"{SNAP}/{pkgdatadir}")
+else:
+	VERSION = "@VERSION@"
+	pkgdatadir = "@pkgdatadir@"
+	localedir = "@localedir@"
+	gresource_path = f"{pkgdatadir}/bottles.gresource"
 	sys.path.insert(1, pkgdatadir)
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
