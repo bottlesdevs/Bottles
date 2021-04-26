@@ -8,6 +8,10 @@ base: core20
 confinement: strict
 grade: stable
 
+architectures:
+  - build-on: [amd64, armhf]
+    run-on: [amd64, armhf]
+    
 parts:
 
   bottles:
