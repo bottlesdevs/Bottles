@@ -157,20 +157,18 @@ class BottlesRunner:
         self.check_bottles()
         self.clear_temp()
 
-        self.download_manager = DownloadManager(window)
-
     '''Performs all checks in one async shot'''
-    def async_checks(self, args=False):
-        after = args[0]
+    def async_checks(self, args=False, no_install=False):
+        after, no_install = args
         self.check_runners_dir()
         self.check_dxvk()
-        self.check_runners(after=after)
+        self.check_runners(install_latest=not no_install, after=after)
         self.check_bottles()
         self.fetch_dependencies()
         self.fetch_installers()
 
-    def checks(self, after=False):
-        RunAsync(self.async_checks, None, [after])
+    def checks(self, after=False, no_install=False):
+        RunAsync(self.async_checks, None, [after, no_install])
 
     '''Clear temp path'''
     def clear_temp(self, force:bool=False) -> None:
@@ -232,6 +230,8 @@ class BottlesRunner:
 
     '''Download a specific component release'''
     def download_component(self, component:str, download_url:str, file:str, rename:bool=False, checksum:bool=False, func=False) -> bool:
+        self.download_manager = DownloadManager(self.window)
+
         if component == "runner": repository = self.repository
         if component == "runner:proton": repository = self.proton_repository
         if component == "dxvk": repository = self.dxvk_repository
@@ -323,7 +323,7 @@ class BottlesRunner:
                                 checksum=manifest["File"][0]["file_checksum"],
                                 func=func)
 
-        if not download:
+        if not download and func:
             return func(failed=True)
 
         '''Extract component archive'''
@@ -356,8 +356,6 @@ class BottlesRunner:
 
         '''Re-populate local lists'''
         self.fetch_components()
-        if checks:
-            pass
 
     def install_component(self, component_type:str, component_name:str, after=False, func=False, checks=True) -> None:
         if self.utils_conn.check_connection(True):
@@ -368,6 +366,7 @@ class BottlesRunner:
     '''
     def async_install_dependency(self, args:list) -> bool:
         configuration, dependency, widget = args
+        self.download_manager = DownloadManager(self.window)
 
         '''Notify if the user allows it'''
         self.window.send_notification(
@@ -635,7 +634,7 @@ class BottlesRunner:
                         if component[0] in self.dxvk_available:
                             self.supported_dxvk[component[0]]["Installed"] = True
 
-            self.async_checks([False])
+            self.async_checks([False, True])
         else:
             return False
         return True

@@ -46,7 +46,10 @@ class BottlesOnboard(Handy.Window):
         self.set_transient_for(window)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window

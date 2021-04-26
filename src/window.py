@@ -89,7 +89,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         #self.set_title("Bottles:feature-bottles-versioning")
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
             self.settings.get_boolean("dark-theme"))

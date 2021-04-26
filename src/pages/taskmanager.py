@@ -29,7 +29,10 @@ class BottlesTaskManager(Gtk.Box):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window

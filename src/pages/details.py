@@ -37,7 +37,10 @@ class BottlesEnvironmentVariables(Handy.Window):
         self.set_transient_for(window)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -78,7 +81,10 @@ class BottlesDLLOverrideEntry(Handy.ActionRow):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -127,7 +133,10 @@ class BottlesDLLOverrides(Handy.Window):
         self.set_transient_for(window)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -184,7 +193,10 @@ class BottlesLaunchOptions(Handy.Window):
         self.set_transient_for(window)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -226,7 +238,10 @@ class BottlesInstallerEntry(Handy.ActionRow):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -275,7 +290,10 @@ class BottlesStateEntry(Handy.ActionRow):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -327,7 +345,10 @@ class BottlesProgramEntry(Handy.ActionRow):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -399,7 +420,10 @@ class BottlesDependencyEntry(Handy.ActionRow):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -517,7 +541,10 @@ class BottlesDetails(Gtk.Stack):
         super().__init__(**kwargs)
 
         '''Init template'''
-        self.init_template()
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
 
         '''Common variables'''
         self.window = window
