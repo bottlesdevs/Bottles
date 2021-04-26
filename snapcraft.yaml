@@ -6,14 +6,14 @@ license: GPL-3.0+
 
 base: core20
 confinement: strict
-grade: devel
+grade: stable
 
 parts:
 
   bottles:
     plugin: meson
     meson-parameters: [ --prefix=/usr ]
-    source: . # https://github.com/bottlesdevs/Bottles.git
+    source: https://github.com/bottlesdevs/Bottles.git
     override-pull: |
       snapcraftctl pull
       sed -i -e 's|@PYTHON@|/usr/bin/python3|g' src/bottles.in
