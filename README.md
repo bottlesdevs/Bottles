@@ -3,14 +3,14 @@
   <h1 align="center">Bottles v3</h1>
   <p align="center">Easily manage wineprefix using environments</p>
   <small><a href="https://github.com/bottlesdevs/Bottles/tree/v1">Here</a> you can find the old v1.</small>
-  <p align="center">More about the <a href="https://github.com/bottlesdevs/Bottles/issues/133">Bottles v4</a></p>
+  <p align="center">More about <a href="https://github.com/bottlesdevs/Bottles/issues/133">Bottles v4</a></p>
 </div>
 
 <br/>
 
 <div align="center">
    <a href="https://hosted.weblate.org/engage/bottles/">
-      <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" alt="Stato traduzione" />
+      <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" alt="Translation status" />
    </a>
    <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/master">
       <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/master" alt="CodeFactor" />
@@ -68,8 +68,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Optional sandboxed bottles
 
 ## Install :wrench:
-> Disclaimer: This is a development version (alpha), you will find bugs, black 
-holes and monsters under the bed. Be careful.
+Choose your preferred installation method.
 
 ### AppImage :eyes:
 This is the first official method by which we have chosen to distribute Bottles.
@@ -82,26 +81,27 @@ chmod +x Bottles-devel-x86_64.AppImage
 ```
 And you're done!
 
-### Flatpak from Flathub
+### Flatpak (Flathub)
 Flatpak is the second officially supported package format.  
 
 <a href='https://flathub.org/apps/details/com.usebottles.bottles'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
 
-### Snap
+### Snap (Snapcraft)
 Pending approval.  
 
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/bottles)
+
 ### Unofficial packages
 These packages are maitained by our community but not officialy supported.
 
-|Distro|Package Name/Link|Maintainer
-|:----:|:----:|:----:|
-| Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | Talebian |
-| Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | francescomasala |
-| Tumbleweed | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard |
-| Fedora | [`bottles`](https://src.fedoraproject.org/rpms/bottles)| tim77 |
-| Void linux | [`bottles`](https://github.com/void-linux/void-packages/pull/27066) | andry-dev|
-| NixOS | [`bottles`](https://github.com/NixOS/nixpkgs/pull/113825) | bloomvdomino |
+|Distro|Package Name/Link|Maintainer|Status
+|:----:|:----:|:----:|:----:|
+| Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | Talebian | Active |
+| Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | francescomasala | Active |
+| Fedora | [`bottles`](https://src.fedoraproject.org/rpms/bottles)| tim77 | Active |
+| Void linux | [`bottles`](https://github.com/void-linux/void-packages/pull/27066) | andry-dev| Active |
+| NixOS | [`bottles`](https://github.com/NixOS/nixpkgs/pull/113825) | bloomvdomino | Active |
+| Tumbleweed | [`bottles`](https://download.opensuse.org/repositories/home:/WhiXard/openSUSE_Tumbleweed/x86_64/)| WhiXard | Not maintained |
 
 #### Notices for package maintainers
 We are happy to see packaged Bottles but we ask you to respect some small rules:
@@ -215,17 +215,10 @@ official format for Bottles distribution. [Read more](https://github.com/bottles
 There is not. There will never be. Read [here](https://github.com/bottlesdevs/Bottles/issues/44) our reasons 
 and how we want to revolutionize the way we install dependencies in Bottles.
 
-## When? :dizzy_face:
-Now. Bottles stable releases are already available, read the Installation section of this file.
-
 ## Older versions will be deprecated? :sunglasses:
 Maybe in the future, not now.
 I will keep both branches updated for a long time.
 
 ## Backward compatibility :triumph:
-Probably yes. I would like to allow the conversion of the old wine prefixes in v.2. 
-
-Unlike the previous versions, now the bottles are saved with JSON sheets containing all the 
-instructions and settings, such as the version of wine/proton in use, the various active flags 
-etc.
-
+Thanks to a common model and an internal update system, you can update Bottles without worrying about anything.
+You can import Bottles v1 prefixes via the built-in importer.
