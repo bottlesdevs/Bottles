@@ -236,7 +236,6 @@ class BottlesWindow(Handy.ApplicationWindow):
 
         if True in [w.get_visible() for w in self.box_more.get_children()]:
             self.btn_more.set_visible(True)
-
         self.page_details.set_configuration(configuration)
         self.show_view_switcher(self.page_details)
         self.stack_main.set_visible_child_name("page_details")

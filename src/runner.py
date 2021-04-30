@@ -612,6 +612,7 @@ class BottlesRunner:
     '''Fetch components'''
     def fetch_components(self) -> bool:
         if self.utils_conn.check_connection():
+            print(self.components_repository_index)
             with urllib.request.urlopen(self.components_repository_index) as url:
                 index = json.loads(url.read())
 
@@ -963,8 +964,7 @@ class BottlesRunner:
             shutil.rmtree(path)
             del self.local_bottles[configuration.get("Path")]
 
-            if len(self.local_bottles.items()) == 0:
-                self.window.page_list.update_bottles()
+            self.window.page_list.update_bottles()
 
             logging.info(_("Successfully deleted bottle in path: [{0}]").format(
                 path))

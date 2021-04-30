@@ -617,7 +617,6 @@ class BottlesDetails(Gtk.Stack):
         self.combo_dxvk.remove_all()
 
         for runner in self.runner.runners_available:
-            print(runner)
             self.combo_runner.append(runner, runner)
 
         for dxvk in self.runner.dxvk_available:
@@ -1072,7 +1071,6 @@ class BottlesDetails(Gtk.Stack):
 
         if response == Gtk.ResponseType.OK:
             self.runner.delete_bottle(self.configuration)
-            self.destroy()
             self.window.go_back()
 
         dialog_delete.destroy()
