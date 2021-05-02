@@ -1,4 +1,4 @@
-name: AppImage - Pull Request
+name: Test AppImage build
 on:
   pull_request:	
     branches: [ master ]
@@ -10,17 +10,21 @@ jobs:
       - name: Update Packages
         run: |
           sudo apt update -qq
+
       - name: Install Packages
         run: |
           sudo apt install python3-pip python-dev build-essential gettext git
           sudo pip3 install --upgrade pip
           sudo pip3 install meson
           sudo pip3 install ninja
+
       - name: Repo cloning
         run: git clone https://github.com/bottlesdevs/Bottles
+
       - name: g++ version check
         run: |
           if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+          
       - name: Executing Script
         run: |
           cd Bottles
