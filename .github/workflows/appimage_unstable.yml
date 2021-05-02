@@ -34,12 +34,12 @@ jobs:
       - name: Build AppImage
         run: appimage-builder --recipe AppImageBuilder.yml --skip-test
 
-      - name: Build Debian package
-        uses: dawidd6/action-debian-package@v1
+      - name: Build debian package
+        run: |
+          dpkg-buildpackage
         
       - name: Rename
         run: |
-          ls
           mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
           mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
 
