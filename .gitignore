@@ -37,19 +37,16 @@ packagecache
 
 .buildconfig
 
-debhelper-build-stamp
-.DS_Store
-.debhelper
+# Ignore generated files
 *.deb
 *.dsc
+*.changes
 *.build
 *.buildinfo
-*.changes
 *.tar.gz
-*.log
-*.substvars
-/.vagrant
-/*/debian/hello
-/*/debian/files
-/*/hello
-/tutorial-1/packageroot/usr
+
+# Ignore files generated during build
+*debian/files
+*debian/.*
+*debian/com.usebottles.bottles*
+*obj-x86_64-linux-gnu
