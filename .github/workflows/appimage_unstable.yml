@@ -35,7 +35,7 @@ jobs:
         run: appimage-builder --recipe AppImageBuilder.yml --skip-test
 
       - name: Build Debian package
-        uses: dawidd6/action-debian-package@v12
+        uses: dawidd6/action-debian-package@v1
         
       - name: Rename
         run: |
