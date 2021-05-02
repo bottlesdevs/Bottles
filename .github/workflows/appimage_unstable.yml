@@ -33,15 +33,17 @@ jobs:
       
       - name: Build AppImage
         run: appimage-builder --recipe AppImageBuilder.yml --skip-test
-
-      - name: Build debian package
-        run: |
-          dpkg-buildpackage
         
       - name: Rename
         run: |
           mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
           mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
+          
+      - name: Build deb package
+        uses: singingwolfboy/build-dpkg-buster@v1
+        id: build
+        with:
+          args: --unsigned-source --unsigned-changes
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -53,5 +55,4 @@ jobs:
           files: |
             Bottles-*-x86_64.AppImage*
             ../com.usebottles.bottles*.deb
-
 
