@@ -38,12 +38,6 @@ jobs:
         run: |
           mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
           mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
-          
-      - name: Build deb package
-        uses: singingwolfboy/build-dpkg-buster@v1
-        id: build
-        with:
-          args: --unsigned-source --unsigned-changes
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -54,5 +48,4 @@ jobs:
           title: Unstable build
           files: |
             Bottles-*-x86_64.AppImage*
-            ../com.usebottles.bottles*.deb
 
