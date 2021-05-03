@@ -1289,9 +1289,9 @@ class BottlesRunner:
         importer_wineprefixes = []
 
         '''Search wine prefixes in external managers paths'''
-        lutris_results = glob("%s/*/" % self.lutris_path)
-        playonlinux_results = glob("%s/*/" % self.playonlinux_path)
-        bottlesv1_results = glob("%s/*/" % self.bottlesv1_path)
+        lutris_results = glob(f"{self.lutris_path}/*/")
+        playonlinux_results = glob(f"{self.playonlinux_path}/*/")
+        bottlesv1_results = glob(f"{self.bottlesv1_path}/*/")
 
         results = lutris_results + playonlinux_results + bottlesv1_results
 
