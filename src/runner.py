@@ -1164,6 +1164,9 @@ class BottlesRunner:
     def run_command(self, configuration:BottleConfig, command:str, terminal:bool=False) -> bool:
         if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
             terminal = False
+            if command in ["winedbg", "cmd"]:
+                command = f"wineconsole {command}"
+            print(command)
 
         path = configuration.get("Path")
         runner = configuration.get("Runner")
