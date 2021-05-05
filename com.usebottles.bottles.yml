@@ -1,16 +1,42 @@
 ---
-app-id: com.usebottles.bottles
-runtime: org.gnome.Platform
-runtime-version: '3.38'
+id: com.usebottles.bottles
 sdk: org.gnome.Sdk
+runtime: org.gnome.Platform
+runtime-version: '40'
+command: bottles
+finish-args:
+  - --allow=multiarch
+  - --share=network
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --filesystem=~/Games:ro
+  - --filesystem=~/wineprefixes:ro
+  - --filesystem=~/.Bottles:ro
+  - --filesystem=~/.local/share/bottles:create
+  - --filesystem=xdg-desktop
+  - --filesystem=xdg-documents
+  - --filesystem=xdg-pictures
+  - --filesystem=xdg-music
+  - --filesystem=xdg-videos
+  - --filesystem=xdg-download
+  - --filesystem=/run/media
+  - --filesystem=/media
+  - --device=all
+  - --system-talk-name=org.freedesktop.UDisks2
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.gtk.vfs
+  - --talk-name=org.gtk.vfs.*
+  - --env=IS_FLATPAK=1
+
 add-extensions:
   org.gnome.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
-    version: '3.38'
+    version: '40'
 
   org.gnome.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
-    version: "3.38"
+    version: "40"
     no-autodownload: true
 
   org.freedesktop.Platform.GL32:
@@ -24,27 +50,7 @@ add-extensions:
     merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d
     download-if: active-gl-driver
     enable-if: active-gl-driver
-command: bottles
-finish-args:
-- --allow=multiarch
-- --share=network
-- --share=ipc
-- --socket=fallback-x11
-- --socket=pulseaudio
-- --socket=session-bus
-- --filesystem=~/Games:ro
-- --filesystem=~/wineprefixes:ro
-- --filesystem=~/.Bottles:ro
-- --filesystem=~/.local/share/bottles:create
-- --filesystem=xdg-desktop
-- --filesystem=xdg-documents
-- --filesystem=xdg-pictures
-- --filesystem=xdg-music
-- --filesystem=xdg-videos
-- --filesystem=xdg-download
-- --filesystem=/run/media
-- --filesystem=/media
-- --device=all
+
 x-compat-i386-opts:
   prepend-pkg-config-path: "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig"
   ldflags: "-L/app/lib32"
@@ -53,45 +59,36 @@ x-compat-i386-opts:
     CC: i686-unknown-linux-gnu-gcc
     CXX: i686-unknown-linux-gnu-g++
   libdir: "/app/lib32"
+
 sdk-extensions:
-- org.gnome.Sdk.Compat.i386
-- org.freedesktop.Sdk.Extension.toolchain-i386
+  - org.gnome.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.toolchain-i386
+
 cleanup:
-- "/include"
-- "/lib/pkgconfig"
-- "/man"
-- "/share/doc"
-- "/share/gtk-doc"
-- "/share/man"
-- "/share/pkgconfig"
-- "*.la"
-- "*.a"
+  - "/include"
+  - "/lib/pkgconfig"
+  - "/man"
+  - "/share/doc"
+  - "/share/gtk-doc"
+  - "/share/man"
+  - "/share/pkgconfig"
+  - "*.la"
+  - "*.a"
+
 modules:
-- name: i386-libs
-  buildsystem: simple
-  build-commands:
-  - mkdir -p /app/lib/i386-linux-gnu
-  - install -Dm644 ld.so.conf -t /app/etc/
-  sources:
-  - type: file
-    path: ld.so.conf
-- name: libhandy
-  builddir: true
-  buildsystem: meson
-  config-opts:
-  - -Dglade_catalog=disabled
-  - -Dintrospection=enabled
-  - -Dexamples=false
-  - -Dtests=false
-  sources:
-  - type: git
-    url: https://gitlab.gnome.org/GNOME/libhandy
-    tag: 1.1.90
-    commit: 89a1610b62533c9d6c5267cfac0108e724df25ba
-- name: bottles
-  builddir: true
-  buildsystem: meson
-  sources:
-  - type: git
-    url: https://github.com/bottlesdevs/Bottles
-    tag: 3.0.7
+  - name: i386-libs
+    buildsystem: simple
+    build-commands:
+    - mkdir -p /app/lib/i386-linux-gnu
+    - install -Dm644 ld.so.conf -t /app/etc/
+    sources:
+    - type: file
+      path: ld.so.conf
+
+  - name: bottles
+    builddir: true
+    buildsystem: meson
+    sources:
+    - type: git
+      url: https://github.com/bottlesdevs/Bottles
+      tag: 3.1.7
