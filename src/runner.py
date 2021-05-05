@@ -1162,6 +1162,9 @@ class BottlesRunner:
 
     '''Execute command in a bottle'''
     def run_command(self, configuration:BottleConfig, command:str, terminal:bool=False) -> bool:
+        if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
+            terminal = False
+
         path = configuration.get("Path")
         runner = configuration.get("Runner")
 
