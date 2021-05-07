@@ -23,7 +23,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
 #: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:148
-#: src/window.py:198
+#: src/window.py:198 src/window.py:147 src/window.py:197
 msgid "Bottles"
 msgstr "Butelje"
 
@@ -348,11 +348,11 @@ msgstr ""
 msgid "Updating DXVK, please wait…"
 msgstr "Aktualiziranje stanja …"
 
-#: src/ui/details-preferences.ui:77
+#: src/ui/details-preferences.ui:77 src/ui/details-preferences.ui:61
 msgid "Use VKD3D"
 msgstr "Koristi VKD3D"
 
-#: src/ui/details-preferences.ui:78
+#: src/ui/details-preferences.ui:78 src/ui/details-preferences.ui:62
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -365,11 +365,11 @@ msgstr ""
 msgid "Updating VKD3D, please wait…"
 msgstr "Aktualiziranje stanja …"
 
-#: src/ui/details-preferences.ui:121
+#: src/ui/details-preferences.ui:121 src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
 msgstr "Aktiviraj DLSS (DXVK-NVAPI)"
 
-#: src/ui/details-preferences.ui:122
+#: src/ui/details-preferences.ui:122 src/ui/details-preferences.ui:117
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr "Osiguraj DLSS podršku ako je dostupna i Nvidiaov NVAPI."
 
@@ -378,11 +378,11 @@ msgstr "Osiguraj DLSS podršku ako je dostupna i Nvidiaov NVAPI."
 msgid "Updating DXVK-NVAPI, please wait…"
 msgstr "Instaliranje DXVK-NVAPI-a …"
 
-#: src/ui/details-preferences.ui:166
+#: src/ui/details-preferences.ui:166 src/ui/details-preferences.ui:145
 msgid "Enable FSR"
 msgstr "Aktiviraj FSR"
 
-#: src/ui/details-preferences.ui:167
+#: src/ui/details-preferences.ui:167 src/ui/details-preferences.ui:146
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
@@ -391,27 +391,27 @@ msgstr ""
 "broja sličica u sekundi.\n"
 "Deaktiviraj ako se pojave greške u prikazu."
 
-#: src/ui/details-preferences.ui:183
+#: src/ui/details-preferences.ui:183 src/ui/details-preferences.ui:162
 msgid "Ultra Quality"
 msgstr "Ultra kvaliteta"
 
-#: src/ui/details-preferences.ui:184
+#: src/ui/details-preferences.ui:184 src/ui/details-preferences.ui:163
 msgid "Quality"
 msgstr "Kvaliteta"
 
-#: src/ui/details-preferences.ui:185
+#: src/ui/details-preferences.ui:185 src/ui/details-preferences.ui:164
 msgid "Balanced"
 msgstr "Uravnoteženo"
 
-#: src/ui/details-preferences.ui:186
+#: src/ui/details-preferences.ui:186 src/ui/details-preferences.ui:165
 msgid "Performance"
 msgstr "Izvođenje"
 
-#: src/ui/details-preferences.ui:235
+#: src/ui/details-preferences.ui:235 src/ui/details-preferences.ui:214
 msgid "Enable ACO shader compiler"
 msgstr "Aktiviraj ACO kompajler sjena"
 
-#: src/ui/details-preferences.ui:236
+#: src/ui/details-preferences.ui:236 src/ui/details-preferences.ui:215
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -419,19 +419,19 @@ msgstr ""
 "Poboljšava izvođenje igara i 3D programa.\n"
 "Deaktiviraj ako se pojave greške u prikazu."
 
-#: src/ui/details-preferences.ui:263
+#: src/ui/details-preferences.ui:263 src/ui/details-preferences.ui:242
 msgid "Discrete GPU"
 msgstr "Diskretni grafički procesor"
 
-#: src/ui/details-preferences.ui:264
+#: src/ui/details-preferences.ui:264 src/ui/details-preferences.ui:243
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Poboljšava izvođenje, ali troši više energije."
 
-#: src/ui/details-preferences.ui:290
+#: src/ui/details-preferences.ui:290 src/ui/details-preferences.ui:269
 msgid "Use a virtual desktop"
 msgstr "Koristi virtualnu radnu površinu"
 
-#: src/ui/details-preferences.ui:291
+#: src/ui/details-preferences.ui:291 src/ui/details-preferences.ui:270
 msgid "Use the Wine virtual desktop."
 msgstr "Koristi Wineovu virtualnu radnu površinu."
 
@@ -444,14 +444,15 @@ msgid "Let the program capture mouse input when fullscreen."
 msgstr ""
 
 #: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
+#: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
 msgstr "Sustav"
 
-#: src/ui/details-preferences.ui:411
+#: src/ui/details-preferences.ui:411 src/ui/details-preferences.ui:385
 msgid "Synchronization"
 msgstr "Sinkronizacija"
 
-#: src/ui/details-preferences.ui:412
+#: src/ui/details-preferences.ui:412 src/ui/details-preferences.ui:386
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr ""
@@ -462,15 +463,16 @@ msgstr ""
 msgid "Will restart the wineserver."
 msgstr ""
 
-#: src/ui/details-preferences.ui:434
+#: src/ui/details-preferences.ui:434 src/ui/details-preferences.ui:407
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details-preferences.ui:449
+#: src/ui/details-preferences.ui:449 src/ui/details-preferences.ui:421
 msgid "Fsync"
 msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:473 src/ui/new.ui:284
+#: src/ui/details-preferences.ui:444
 msgid "Runner"
 msgstr "Pokretač"
 
@@ -479,23 +481,26 @@ msgid "Updating Runner and components, please wait…"
 msgstr ""
 
 #: src/ui/details-preferences.ui:531 src/ui/new.ui:326
+#: src/ui/details-preferences.ui:487
 msgid "Manage runners"
 msgstr "Upravljaj pokretačima"
 
 #: src/ui/details-preferences.ui:563 src/ui/new.ui:358
+#: src/ui/details-preferences.ui:519
 msgid "DXVK version"
 msgstr "DXVK verzija"
 
 #: src/ui/details-preferences.ui:621 src/ui/details-preferences.ui:803
-#: src/ui/new.ui:400
+#: src/ui/new.ui:400 src/ui/details-preferences.ui:562
+#: src/ui/details-preferences.ui:712
 msgid "Manage DXVK versions"
 msgstr "Upravljaj DXVK verzijama"
 
-#: src/ui/details-preferences.ui:653
+#: src/ui/details-preferences.ui:653 src/ui/details-preferences.ui:594
 msgid "VKD3D version"
 msgstr "VKD3D verzija"
 
-#: src/ui/details-preferences.ui:712
+#: src/ui/details-preferences.ui:712 src/ui/details-preferences.ui:637
 msgid "Manage VKD3D versions"
 msgstr "Upravljaj VKD3D verzijama"
 
@@ -504,7 +509,7 @@ msgstr "Upravljaj VKD3D verzijama"
 msgid "DXVK NVAPI version"
 msgstr "NVAPI verzija"
 
-#: src/ui/details-preferences.ui:835
+#: src/ui/details-preferences.ui:835 src/ui/details-preferences.ui:744
 msgid "Windows version"
 msgstr "Windows verzija"
 
@@ -514,11 +519,11 @@ msgid "Updating Windows version, please wait…"
 msgstr "Postavljanje verzije Windowsa …"
 
 #: src/ui/details-preferences.ui:894 src/ui/dialog-dll-overrides.ui:26
-#: src/ui/dialog-dll-overrides.ui:52
+#: src/ui/dialog-dll-overrides.ui:52 src/ui/details-preferences.ui:787
 msgid "DLL overrides"
 msgstr "DLL nadjačavanja"
 
-#: src/ui/details-preferences.ui:932
+#: src/ui/details-preferences.ui:932 src/ui/details-preferences.ui:825
 msgid "Working directory"
 msgstr "Radna mapa"
 
@@ -527,22 +532,22 @@ msgstr "Radna mapa"
 msgid "Default to the bottle path."
 msgstr "Pokaži na stazu butelje"
 
-#: src/ui/details-preferences.ui:950
+#: src/ui/details-preferences.ui:950 src/ui/details-preferences.ui:843
 msgid "Choose a directory"
 msgstr "Odaberi mapu"
 
-#: src/ui/details-preferences.ui:981
+#: src/ui/details-preferences.ui:981 src/ui/details-preferences.ui:341
 #, fuzzy
 msgid "Use Bottles runtime"
 msgstr "Ime butelje"
 
-#: src/ui/details-preferences.ui:982
+#: src/ui/details-preferences.ui:982 src/ui/details-preferences.ui:342
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1009
+#: src/ui/details-preferences.ui:1009 src/ui/details-preferences.ui:89
 msgid "Use GameMode"
 msgstr "Koristi GameMode"
 
@@ -564,43 +569,44 @@ msgstr ""
 msgid "Manage Gamescope settings"
 msgstr ""
 
-#: src/ui/details-preferences.ui:1118
+#: src/ui/details-preferences.ui:1118 src/ui/details-preferences.ui:886
 msgid "Audio"
 msgstr "Zvuk"
 
-#: src/ui/details-preferences.ui:1123
+#: src/ui/details-preferences.ui:1123 src/ui/details-preferences.ui:891
 msgid "Reduce PulseAudio latency"
 msgstr "Smanji PulseAudio kašnjenje"
 
-#: src/ui/details-preferences.ui:1124
+#: src/ui/details-preferences.ui:1124 src/ui/details-preferences.ui:892
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Za povećanje kvalitete zvuka, u programu PulseAudio postavi kašnjenje na 60 "
 "milisekundi"
 
-#: src/ui/details-preferences.ui:1161
+#: src/ui/details-preferences.ui:1161 src/ui/details-preferences.ui:929
 msgid "Developers & Debug"
 msgstr "Programeri i otklanjanje grešaka"
 
 #: src/ui/details-preferences.ui:1166 src/ui/dialog-env-vars.ui:24
+#: src/ui/details-preferences.ui:934
 msgid "Environment variables"
 msgstr "Varijable okruženja"
 
-#: src/ui/details-preferences.ui:1204
+#: src/ui/details-preferences.ui:1204 src/ui/details-preferences.ui:972
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details-preferences.ui:1205
+#: src/ui/details-preferences.ui:1205 src/ui/details-preferences.ui:973
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Uključi/Isključi DXVK sloj koji prikazuje FPS i ostale detalje u D3D "
 "programima."
 
-#: src/ui/details-preferences.ui:1231
+#: src/ui/details-preferences.ui:1231 src/ui/details-preferences.ui:999
 msgid "Enable wine fixme logs"
 msgstr "Aktiviraj wine zapise za ispravljanje"
 
-#: src/ui/details-preferences.ui:1232
+#: src/ui/details-preferences.ui:1232 src/ui/details-preferences.ui:1000
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Zapiši putanje kodova koji u Wineu nisu implementirani."
 
@@ -654,7 +660,8 @@ msgstr "Ovdje upiši poruku."
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
 #: src/views/bottle_details.py:287 src/views/bottle_details.py:376
 #: src/views/bottle_preferences.py:160 src/views/bottle_programs.py:69
-#: src/views/list.py:125
+#: src/views/list.py:125 src/views/bottle_details.py:276
+#: src/views/bottle_details.py:365 src/views/bottle_preferences.py:142
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -808,7 +815,7 @@ msgid "Run with arguments"
 msgstr "Pokreni s agrumentima"
 
 #: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:286
-#: src/views/list.py:124
+#: src/views/list.py:124 src/views/bottle_details.py:275
 msgid "Run"
 msgstr "Pokreni"
 
@@ -867,7 +874,7 @@ msgstr "Ovo je kompletna arhiva tvoje butelje, uključujući osobne datoteke."
 msgid "Full archive"
 msgstr "Kompletna arhiva"
 
-#: src/ui/importer.ui:75 src/window.py:153
+#: src/ui/importer.ui:75 src/window.py:153 src/window.py:152
 msgid "Importer"
 msgstr "Uvoznik"
 
@@ -1221,6 +1228,7 @@ msgid "Finish"
 msgstr "Završi"
 
 #: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:106
+#: src/views/details.py:107
 msgid "Preferences"
 msgstr "Postavke"
 
@@ -1293,7 +1301,7 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:271 src/views/details.py:122
+#: src/ui/preferences.ui:271 src/views/details.py:122 src/views/details.py:123
 msgid "Installers"
 msgstr "Instalacijski programi"
 
@@ -1317,7 +1325,7 @@ msgstr "Dokumentacija"
 msgid "Forums"
 msgstr "Forumi"
 
-#: src/ui/window.ui:83 src/window.py:291
+#: src/ui/window.ui:83 src/window.py:291 src/window.py:290
 msgid "Health check"
 msgstr ""
 
@@ -1382,133 +1390,133 @@ msgstr "Primljen je zahtjev za [Pomoć]."
 msgid "[Refresh] request received."
 msgstr "Primljen je zahtjev za [Aktualiziraj]."
 
-#: src/utils.py:71
+#: src/utils.py:71 src/utils.py:70
 msgid "You are offline, unable to download."
 msgstr "Računalo nije povezano. Preuzimanje nije moguće."
 
-#: src/window.py:143 src/window.py:196
+#: src/window.py:143 src/window.py:196 src/window.py:142 src/window.py:195
 msgid "Bottle details"
 msgstr "Podaci butelje"
 
-#: src/window.py:186
+#: src/window.py:186 src/window.py:185
 msgid "Bottles Started!"
 msgstr "Butelje je pokrenut!"
 
-#: src/window.py:200
+#: src/window.py:200 src/window.py:199
 msgid "Import & export"
 msgstr "Uvezi i izvezi"
 
-#: src/backend/backup.py:81
+#: src/backend/backup.py:81 src/backend/backup.py:65
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Sigurnosna kopija {0}"
 
-#: src/backend/backup.py:134
+#: src/backend/backup.py:134 src/backend/backup.py:106
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Uvoz sigurnosne kopije: {0}"
 
-#: src/backend/manager.py:1007
+#: src/backend/manager.py:1007 src/backend/manager.py:1004
 msgid "Fail to install components, tried 3 times."
 msgstr ""
 
-#: src/backend/manager.py:1017
+#: src/backend/manager.py:1017 src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
 msgstr "Nedostaju bitne komponente. Instaliranje u tijeku …"
 
-#: src/backend/manager.py:1100
+#: src/backend/manager.py:1100 src/backend/manager.py:1097
 msgid "Generating bottle configuration…"
 msgstr "Generiranje konfiguracije butelje …"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1122
+#: src/backend/manager.py:1122 src/backend/manager.py:1116
 msgid "The WINE config is being updated…"
 msgstr "WINE konfiguracija se aktualizira …"
 
-#: src/backend/manager.py:1124
+#: src/backend/manager.py:1124 src/backend/manager.py:1118
 msgid "WINE config updated!"
 msgstr "WINE konfiguracija je aktualizirana!"
 
-#: src/backend/manager.py:1132
+#: src/backend/manager.py:1132 src/backend/manager.py:1127
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 "Pokretanje kao Flatpak, postavljanje mape korisnika u testno okruženje …"
 
-#: src/backend/manager.py:1134
+#: src/backend/manager.py:1134 src/backend/manager.py:1129
 msgid "Sandboxing userdir…"
 msgstr "Postavljanje mape korisnika u testno okruženje …"
 
-#: src/backend/manager.py:1151
+#: src/backend/manager.py:1151 src/backend/manager.py:1147
 msgid "Setting Windows version…"
 msgstr "Postavljanje verzije Windowsa …"
 
-#: src/backend/manager.py:1159
+#: src/backend/manager.py:1159 src/backend/manager.py:1155
 msgid "Apply CMD default settings…"
 msgstr "Primijeni standardne CMD postavke …"
 
-#: src/backend/manager.py:1167
+#: src/backend/manager.py:1167 src/backend/manager.py:1163
 msgid "Optimizing environment…"
 msgstr "Optimiranje okruženja …"
 
-#: src/backend/manager.py:1178
+#: src/backend/manager.py:1178 src/backend/manager.py:1175
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Primjenjivanje okruženja: {0} …"
 
-#: src/backend/manager.py:1190
+#: src/backend/manager.py:1190 src/backend/manager.py:1185
 msgid "Installing DXVK…"
 msgstr "Instaliranje DXVK-a …"
 
-#: src/backend/manager.py:1196
+#: src/backend/manager.py:1196 src/backend/manager.py:1191
 msgid "Installing VKD3D…"
 msgstr "Instaliranje VKD3D-a …"
 
-#: src/backend/manager.py:1202
+#: src/backend/manager.py:1202 src/backend/manager.py:1197
 msgid "Installing DXVK-NVAPI…"
 msgstr "Instaliranje DXVK-NVAPI-a …"
 
-#: src/backend/manager.py:1207
+#: src/backend/manager.py:1207 src/backend/manager.py:1202
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Instaliranje ovisnosti {0} …"
 
-#: src/backend/manager.py:1225
+#: src/backend/manager.py:1225 src/backend/manager.py:1223
 msgid "Creating versioning state 0…"
 msgstr "Stvaranje stanja 0 za upravljanje verzijama …"
 
-#: src/backend/manager.py:1233
+#: src/backend/manager.py:1233 src/backend/manager.py:1231
 msgid "Finalizing…"
 msgstr "Završavanje …"
 
-#: src/backend/versioning.py:72
+#: src/backend/versioning.py:72 src/backend/versioning.py:55
 msgid "Generating state files index …"
 msgstr "Generiranje indeksa datoteka stanja …"
 
-#: src/backend/versioning.py:158
+#: src/backend/versioning.py:158 src/backend/versioning.py:141
 msgid "Creating a restore point …"
 msgstr "Stvaranje stanja …"
 
-#: src/backend/versioning.py:182
+#: src/backend/versioning.py:182 src/backend/versioning.py:165
 msgid "Could not create the state folder."
 msgstr ""
 
-#: src/backend/versioning.py:189
+#: src/backend/versioning.py:189 src/backend/versioning.py:172
 msgid "Updating index …"
 msgstr "Aktualiziranje indeksa …"
 
-#: src/backend/versioning.py:213
+#: src/backend/versioning.py:213 src/backend/versioning.py:196
 msgid "Updating states …"
 msgstr "Aktualiziranje stanja …"
 
-#: src/backend/versioning.py:242
+#: src/backend/versioning.py:242 src/backend/versioning.py:225
 msgid "Could not update the states file."
 msgstr ""
 
-#: src/backend/versioning.py:256
+#: src/backend/versioning.py:256 src/backend/versioning.py:239
 msgid "Could not update the index file."
 msgstr ""
 
-#: src/backend/versioning.py:282
+#: src/backend/versioning.py:282 src/backend/versioning.py:265
 #, fuzzy, python-brace-format
 msgid "New state [{0}] created successfully!"
 msgstr "Privremene datoteke su izbrisane!"
@@ -1535,65 +1543,66 @@ msgstr "Došlo je do greške."
 msgid "Copy to clipboard"
 msgstr "Kopiraj u međuspremnik"
 
-#: src/views/details.py:102
+#: src/views/details.py:102 src/views/details.py:103
 msgid "Details & Utilities"
 msgstr "Detalji i uslužni programi"
 
-#: src/views/details.py:110
+#: src/views/details.py:110 src/views/details.py:111
 msgid "Dependencies"
 msgstr "Ovisnosti"
 
-#: src/views/details.py:114
+#: src/views/details.py:114 src/views/details.py:115
 msgid "Programs"
 msgstr "Programi"
 
-#: src/views/details.py:115
+#: src/views/details.py:115 src/views/details.py:116
 msgid "Found in your bottle's Start menu."
 msgstr "Pronađeno u izborniku Start tvoje butelje."
 
-#: src/views/details.py:118
+#: src/views/details.py:118 src/views/details.py:119
 msgid "Versioning"
 msgstr "Upravljanje verzijama"
 
-#: src/views/details.py:126
+#: src/views/details.py:126 src/views/details.py:127
 msgid "Task manager"
 msgstr "Upravljač zadataka"
 
-#: src/views/bottle_details.py:170
+#: src/views/bottle_details.py:170 src/views/bottle_details.py:162
 #, python-format
 msgid "Updated: %s"
 msgstr "Aktualizirano: %s"
 
 #. set arch
-#: src/views/bottle_details.py:173
+#: src/views/bottle_details.py:173 src/views/bottle_details.py:165
 msgid "64-bit"
 msgstr "64-bit"
 
-#: src/views/bottle_details.py:175
+#: src/views/bottle_details.py:175 src/views/bottle_details.py:167
 msgid "32-bit"
 msgstr "32-bit"
 
 #: src/views/bottle_details.py:283 src/views/list.py:121
+#: src/views/bottle_details.py:272
 msgid "Choose a Windows executable file"
 msgstr "Odaberi jednu Windows izvršnu datoteku"
 
-#: src/views/bottle_details.py:365
+#: src/views/bottle_details.py:365 src/views/bottle_details.py:354
 msgid "Select the location where to save the backup config"
 msgstr "Odaberi mjesto za spremanje konfiguracije sigurnosne kopije"
 
-#: src/views/bottle_details.py:369
+#: src/views/bottle_details.py:369 src/views/bottle_details.py:358
 msgid "Select the location where to save the backup archive"
 msgstr "Odaberi mjesto za spremanje arhive sigurnosne kopije"
 
-#: src/views/bottle_details.py:376
+#: src/views/bottle_details.py:376 src/views/bottle_details.py:365
 msgid "Export"
 msgstr "Izvoz"
 
-#: src/views/bottle_details.py:407
+#: src/views/bottle_details.py:407 src/views/bottle_details.py:396
 msgid "Confirm deletion"
 msgstr "Potvrdi brisanje"
 
-#: src/views/bottle_details.py:409
+#: src/views/bottle_details.py:409 src/views/bottle_details.py:398
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Stvarno želiš izbrisati ovu butelju i sve datoteke?"
 
@@ -1602,11 +1611,11 @@ msgstr "Stvarno želiš izbrisati ovu butelju i sve datoteke?"
 msgid "This feature is not available on your system."
 msgstr "Modus za igre nije dostupan na tvom sustavu ili nije pokrenut."
 
-#: src/views/bottle_preferences.py:156
+#: src/views/bottle_preferences.py:156 src/views/bottle_preferences.py:138
 msgid "Choose working directory for executables"
 msgstr "Odaberi radnu mapu za izvršne datoteke"
 
-#: src/views/bottle_preferences.py:159
+#: src/views/bottle_preferences.py:159 src/views/bottle_preferences.py:141
 msgid "Done"
 msgstr "Obavljeno"
 
@@ -1635,67 +1644,88 @@ msgstr "--"
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Pronađeni argumenti za izvršnu datoteku: [{executable}]."
 
-#: src/views/new.py:73
+#: src/views/new.py:73 src/views/new.py:72
 msgid "Gaming"
 msgstr "Igre"
 
-#: src/views/new.py:74
+#: src/views/new.py:74 src/views/new.py:73
 msgid "An environment improved for Windows games."
 msgstr "Poboljšano okruženje za Windows igre."
 
-#: src/views/new.py:79
+#: src/views/new.py:79 src/views/new.py:78
 msgid "Application"
 msgstr "Program"
 
-#: src/views/new.py:80
+#: src/views/new.py:80 src/views/new.py:79
 #, fuzzy
 msgid "An environment improved for Windows application."
 msgstr "Poboljšano okruženje za Windows igre."
 
-#: src/views/new.py:85
+#: src/views/new.py:85 src/views/new.py:84
 msgid "Custom"
 msgstr "Prilagođeno"
 
-#: src/views/new.py:86
+#: src/views/new.py:86 src/views/new.py:85
 msgid "A clear environment for your experiments."
 msgstr "Čisto okruženje za tvoje eksperimente."
 
-#: src/views/new.py:94
+#: src/views/new.py:94 src/views/new.py:93
 msgid "Layered"
 msgstr "Slojevito"
 
-#: src/views/new.py:95
+#: src/views/new.py:95 src/views/new.py:94
 msgid "A layered environment, where every app is a layer."
 msgstr ""
 
-#: src/views/new.py:248
+#: src/views/new.py:248 src/views/new.py:247
 msgid "There was an error creating the bottle."
 msgstr "Došlo je do greške prilikom stvaranja butelje."
 
-#: src/views/new.py:255
+#: src/views/new.py:255 src/views/new.py:254
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Butelja s imenom „{0}” je uspješno stvorena"
 
 #: src/widgets/dependency.py:95 src/widgets/installer.py:70
+#: src/widgets/dependency.py:94 src/widgets/installer.py:69
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest za {0}"
 
-#: src/widgets/installer.py:81
+#: src/widgets/installer.py:81 src/widgets/installer.py:80
 #, python-brace-format
 msgid "Review for {0}"
 msgstr "Pregled za {0}"
 
-#: src/widgets/installer.py:125
+#: src/widgets/installer.py:125 src/widgets/installer.py:124
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
 msgstr "Korak {self.__step} od {self.steps}"
 
-#: src/widgets/state.py:91
+#: src/widgets/state.py:91 src/widgets/state.py:90
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indeks za stanje {0}"
+
+#: src/ui/about.ui:11
+msgid "© 2017-2021 - Bottles Developers"
+msgstr "© 2017. – 2021. – Programeri programa Bottles (Butelje)"
+
+#: src/ui/details-preferences.ui:90
+msgid "Optimise gaming performance on demand"
+msgstr "Optimiraj performansu igranja po potrebi"
+
+#: src/ui/details-preferences.ui:669
+msgid "NVAPI version"
+msgstr "NVAPI verzija"
+
+#: src/ui/details-preferences.ui:827
+msgid "Point to the bottle path"
+msgstr "Pokaži na stazu butelje"
+
+#: src/views/bottle_preferences.py:128
+msgid "Gamemode is either not available on your system or not running."
+msgstr "Modus za igre nije dostupan na tvom sustavu ili nije pokrenut."
 
 #~ msgid "Software"
 #~ msgstr "Softver"
