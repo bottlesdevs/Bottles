@@ -28,6 +28,8 @@ class BottlesOnboard(Handy.Window):
     '''Get widgets from template'''
     stack_onboard = Gtk.Template.Child()
     btn_stack_next = Gtk.Template.Child()
+    btn_stack_back = Gtk.Template.Child()
+    btn_quit = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_next = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
@@ -59,6 +61,7 @@ class BottlesOnboard(Handy.Window):
         '''Signal connections'''
         self.stack_onboard.connect('notify::visible-child', self.page_changed)
         self.btn_close.connect('pressed', self.close_window)
+        self.btn_quit.connect('pressed', self.quit)
         self.btn_back.connect('pressed', self.previous_page)
         self.btn_next.connect('pressed', self.next_page)
         self.btn_install.connect('pressed', self.install_runner)
@@ -71,27 +74,35 @@ class BottlesOnboard(Handy.Window):
         if page == "page_welcome":
             self.btn_stack_next.set_visible(True)
             self.btn_stack_next.set_visible_child(self.btn_next)
-            self.btn_back.set_visible(True)
+            self.btn_stack_back.set_visible(True)
+            self.btn_stack_back.set_visible_child(self.btn_quit)
 
         if page == "page_wine":
             self.btn_stack_next.set_visible(True)
             self.btn_stack_next.set_visible_child(self.btn_next)
-            self.btn_back.set_visible(True)
+            self.btn_stack_back.set_visible(True)
+            self.btn_stack_back.set_visible_child(self.btn_back)
 
         if page == "page_runners":
             self.btn_stack_next.set_visible(True)
             self.btn_stack_next.set_visible_child(self.btn_install)
-            self.btn_back.set_visible(True)
+            self.btn_stack_back.set_visible(True)
+            self.btn_stack_back.set_visible_child(self.btn_back)
 
         if page == "page_download":
             self.btn_stack_next.set_visible(False)
             self.btn_stack_next.set_visible_child(self.btn_install)
-            self.btn_back.set_visible(False)
+            self.btn_stack_back.set_visible(False)
+            self.btn_stack_back.set_visible_child(self.btn_quit)
 
         if page == "page_finish":
             self.btn_stack_next.set_visible(True)
             self.btn_stack_next.set_visible_child(self.btn_close)
-            self.btn_back.set_visible(False)
+            self.btn_stack_back.set_visible(False)
+            self.btn_stack_back.set_visible_child(self.btn_quit)
+
+    def quit(self, widget=False):
+        quit()
 
     def install_runner(self, widget):
         self.next_page()
@@ -102,9 +113,6 @@ class BottlesOnboard(Handy.Window):
         visible_child = self.stack_onboard.get_visible_child_name()
         previous_page = self.stack_pages[self.stack_pages.index(visible_child) - 1]
         self.stack_onboard.set_visible_child_name(previous_page)
-
-        if previous_page == "page_finish":
-            quit()
 
     def next_page(self, widget=False):
         visible_child = self.stack_onboard.get_visible_child_name()
