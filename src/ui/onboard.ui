@@ -23,39 +23,38 @@
             <property name="can-focus">False</property>
             <property name="title" translatable="yes">Welcome</property>
             <child>
-              <object class="GtkButton" id="btn_close">
-                <property name="label" translatable="yes">Close</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_next">
-                <property name="label" translatable="yes">Next</property>
+              <object class="GtkStack" id="btn_stack_next">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                <child>
+                  <object class="GtkButton" id="btn_next">
+                    <property name="label" translatable="yes">Next</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn_install">
+                    <property name="label" translatable="yes">Install</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="btn_close">
+                    <property name="label" translatable="yes">Close</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="pack-type">end</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_install">
-                <property name="label" translatable="yes">Install</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-                <property name="position">2</property>
               </packing>
             </child>
             <child>
