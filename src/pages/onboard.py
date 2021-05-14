@@ -57,10 +57,41 @@ class BottlesOnboard(Handy.Window):
         self.runner = window.runner
 
         '''Signal connections'''
+        self.stack_onboard.connect('notify::visible-child', self.page_changed)
         self.btn_close.connect('pressed', self.close_window)
         self.btn_back.connect('pressed', self.previous_page)
         self.btn_next.connect('pressed', self.next_page)
         self.btn_install.connect('pressed', self.install_runner)
+
+        self.page_changed()
+
+    def page_changed(self, widget=False, event=False):
+        page = self.stack_onboard.get_visible_child_name()
+
+        if page == "page_welcome":
+            self.btn_stack_next.set_visible(True)
+            self.btn_stack_next.set_visible_child(self.btn_next)
+            self.btn_back.set_visible(True)
+
+        if page == "page_wine":
+            self.btn_stack_next.set_visible(True)
+            self.btn_stack_next.set_visible_child(self.btn_next)
+            self.btn_back.set_visible(True)
+
+        if page == "page_runners":
+            self.btn_stack_next.set_visible(True)
+            self.btn_stack_next.set_visible_child(self.btn_install)
+            self.btn_back.set_visible(True)
+
+        if page == "page_download":
+            self.btn_stack_next.set_visible(False)
+            self.btn_stack_next.set_visible_child(self.btn_install)
+            self.btn_back.set_visible(False)
+
+        if page == "page_finish":
+            self.btn_stack_next.set_visible(True)
+            self.btn_stack_next.set_visible_child(self.btn_close)
+            self.btn_back.set_visible(False)
 
     def install_runner(self, widget):
         self.next_page()
@@ -79,19 +110,6 @@ class BottlesOnboard(Handy.Window):
         visible_child = self.stack_onboard.get_visible_child_name()
         next_page = self.stack_pages[self.stack_pages.index(visible_child) + 1]
         self.stack_onboard.set_visible_child_name(next_page)
-
-        if next_page == "page_runners":
-            self.btn_stack_next.set_visible(True)
-            self.btn_stack_next.set_visible_child(self.btn_install)
-
-        if next_page == "page_download":
-            self.btn_stack_next.set_visible(False)
-            self.btn_stack_next.set_visible_child(self.btn_install)
-            self.btn_back.set_visible(False)
-
-        if next_page == "page_finish":
-            self.btn_stack_next.set_visible(True)
-            self.btn_stack_next.set_visible_child(self.btn_close)
 
     '''Progressbar pulse every 1s'''
     def pulse(self):
