@@ -27,6 +27,7 @@ class BottlesOnboard(Handy.Window):
 
     '''Get widgets from template'''
     stack_onboard = Gtk.Template.Child()
+    btn_stack_next = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_next = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
@@ -80,16 +81,17 @@ class BottlesOnboard(Handy.Window):
         self.stack_onboard.set_visible_child_name(next_page)
 
         if next_page == "page_runners":
-            self.btn_next.set_visible(False)
-            self.btn_install.set_visible(True)
+            self.btn_stack_next.set_visible(True)
+            self.btn_stack_next.set_visible_child(self.btn_install)
 
         if next_page == "page_download":
-            self.btn_install.set_visible(False)
+            self.btn_stack_next.set_visible(False)
+            self.btn_stack_next.set_visible_child(self.btn_install)
             self.btn_back.set_visible(False)
 
         if next_page == "page_finish":
-            self.btn_install.set_visible(False)
-            self.btn_close.set_visible(True)
+            self.btn_stack_next.set_visible(True)
+            self.btn_stack_next.set_visible_child(self.btn_close)
 
     '''Progressbar pulse every 1s'''
     def pulse(self):
