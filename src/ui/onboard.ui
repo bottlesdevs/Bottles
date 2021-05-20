@@ -25,6 +25,7 @@
             <child>
               <object class="GtkStack" id="btn_stack_next">
                 <property name="visible">True</property>
+                <property name="can-focus">False</property>
                 <child>
                   <object class="GtkButton" id="btn_next">
                     <property name="label" translatable="yes">Next</property>
@@ -46,6 +47,9 @@
                       <class name="suggested-action"/>
                     </style>
                   </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
                 <child>
                   <object class="GtkButton" id="btn_close">
@@ -57,6 +61,9 @@
                       <class name="suggested-action"/>
                     </style>
                   </object>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
                 </child>
               </object>
               <packing>
@@ -66,6 +73,7 @@
             <child>
               <object class="GtkStack" id="btn_stack_back">
                 <property name="visible">True</property>
+                <property name="can-focus">False</property>
                 <child>
                   <object class="GtkButton" id="btn_quit">
                     <property name="label" translatable="yes">Quit</property>
@@ -81,8 +89,14 @@
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                   </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
               </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -301,6 +315,8 @@ Wineprefixes are environments in which Wine works. In Bottles we call these, &lt
                         <property name="margin-bottom">5</property>
                         <property name="label" translatable="yes">We need to download and install a runner to allow you to create your own bottles.
 The download size is &lt;b&gt;~70MB&lt;/b&gt;.
+
+We cannot offer these files with Bottles as these have different release cycles.
 
 When you are ready press the Install button.</property>
                         <property name="use-markup">True</property>

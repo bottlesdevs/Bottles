@@ -205,7 +205,7 @@ class BottlesList(Gtk.Box):
     '''Get widgets from template'''
     list_bottles = Gtk.Template.Child()
     clamp_list = Gtk.Template.Child()
-    grid_empty = Gtk.Template.Child()
+    hdy_status = Gtk.Template.Child()
 
     def __init__(self, window, arg_executable, **kwargs):
         super().__init__(**kwargs)
@@ -232,10 +232,10 @@ class BottlesList(Gtk.Box):
 
         if len(bottles) == 0:
             self.clamp_list.set_visible(False)
-            self.grid_empty.set_visible(True)
+            self.hdy_status.set_visible(True)
         else:
             self.clamp_list.set_visible(True)
-            self.grid_empty.set_visible(False)
+            self.hdy_status.set_visible(False)
 
         for bottle in bottles:
             self.list_bottles.add(BottlesListEntry(self.window,
