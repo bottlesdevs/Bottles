@@ -48,14 +48,14 @@ AppDir:
     icon: com.usebottles.bottles
     version: 3.1.8
     # Set the python executable as entry point
-    exec: usr/bin/python3.8
+    exec: usr/bin/python3.9
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
     exec_args: "$APPDIR/usr/bin/bottles $@"
 
   apt:
     arch: amd64
     sources:
-      - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ groovy main restricted universe multiverse'
+      - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ hirsute main restricted universe multiverse'
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
 
     include:
@@ -68,7 +68,7 @@ AppDir:
     - libgpg-error0
     - libpcre3
     - libprocps8
-    - libpython3.8-stdlib
+    - libpython3.9-stdlib
     - librsvg2-common
     - libselinux1
     - python3-gi-cairo
