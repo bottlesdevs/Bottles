@@ -48,7 +48,7 @@ AppDir:
     icon: com.usebottles.bottles
     version: 3.1.8
     # Set the python executable as entry point
-    exec: usr/bin/python3.8
+    exec: usr/bin/python3.9
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
     exec_args: "$APPDIR/usr/bin/bottles $@"
 
