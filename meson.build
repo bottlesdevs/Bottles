@@ -1,14 +1,18 @@
-project('bottles',  
-          version: '3.1.7',
-    meson_version: '>= 0.50.0',
-  default_options: [ 'warning_level=2',
-                   ],
+project(
+	'bottles',
+	version: '3.1.7',
+	meson_version: '>= 0.50.0',
+	default_options: [
+		'warning_level=2',
+	],
+  	license: 'GPL-3.0-or-later'
 )
 
 i18n = import('i18n')
+localedir = get_option('localedir')
 
-subdir('data')
-subdir('src')
 subdir('po')
+subdir('src')
+subdir('data')
 
 meson.add_install_script('build-aux/meson/postinstall.py')

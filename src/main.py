@@ -32,16 +32,28 @@ from pathlib import Path
 from .params import *
 from .utils import UtilsLogger
 
-'''Set local path to AppDir if AppImage'''
-try:
-    LOCALE_PATH = "%s/usr/share/locale/" % os.environ['APPDIR']
-except KeyError:
-    LOCALE_PATH = "/usr/local/share/locale/"
+share_dir = os.path.join(sys.prefix, 'share')
+base_dir = '.'
 
-locale.bindtextdomain(APP_NAME_LOWER, LOCALE_PATH)
-locale.textdomain(APP_NAME_LOWER)
-gettext.bindtextdomain(APP_NAME_LOWER, LOCALE_PATH)
-gettext.textdomain(APP_NAME_LOWER)
+if getattr(sys, 'frozen', False):
+    base_dir = os.path.dirname(sys.executable)
+    share_dir = os.path.join(base_dir, 'share')
+elif sys.argv[0]:
+    execdir = os.path.dirname(os.path.realpath(sys.argv[0]))
+    base_dir = os.path.dirname(execdir)
+    share_dir = os.path.join(base_dir, 'share')
+    if not os.path.exists(share_dir):
+        share_dir = base_dir
+
+locale_dir = os.path.join(share_dir, 'locale')
+
+if not os.path.exists(locale_dir): # development
+    locale_dir = os.path.join(base_dir, 'build', 'mo')
+
+locale.bindtextdomain("bottles", locale_dir)
+locale.textdomain("bottles")
+gettext.bindtextdomain("bottles", locale_dir)
+gettext.textdomain("bottles")
 _ = gettext.gettext
 
 logging = UtilsLogger()
