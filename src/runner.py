@@ -798,7 +798,11 @@ class BottlesRunner:
         dxvk_name = dxvk
 
         '''If runner is proton, files are located to the dist path'''
-        if runner.startswith("Proton"): runner = "%s/dist" % runner
+        if runner.startswith("Proton"):
+            if os.path.exists("%s/dist" % runner):
+                runner = "%s/dist" % runner
+            else:
+                runner = "%s/files" % runner
 
         '''Define bottle parameters'''
         bottle_name = name
