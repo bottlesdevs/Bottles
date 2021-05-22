@@ -1176,7 +1176,10 @@ class BottlesRunner:
 
         '''If runner is proton then set path to /dist'''
         if runner.startswith("Proton"):
-            runner = "%s/dist" % runner
+            if os.path.exists("%s/dist" % runner):
+                runner = "%s/dist" % runner
+            else:
+                runner = "%s/files" % runner
 
         if not configuration.get("Custom_Path"):
             path = "%s/%s" % (self.bottles_path, path)
