@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-03 16:05+0200\n"
-"PO-Revision-Date: 2021-05-28 20:30+0000\n"
-"Last-Translator: ᅟ <rmnscnce@ya.ru>\n"
+"PO-Revision-Date: 2021-06-01 05:55+0000\n"
+"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
 "bottles/id/>\n"
 "Language: id\n"
@@ -606,6 +606,8 @@ msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)"
 msgstr ""
+"Perpustakaan Tautan Dinamis dapat ditentukan untuk dibangun (disediakan oleh "
+"Wine) atau asli (disediakan oleh program)"
 
 #: src/ui/dialog-dll-overrides.ui:56
 msgid "New override"
@@ -657,7 +659,6 @@ msgid "Builtin (Wine)"
 msgstr "Bawaan (Wine)"
 
 #: src/ui/dll-override-entry.ui:24
-#, fuzzy
 msgid "Native (Windows)"
 msgstr "Asli (Windows)"
 
@@ -870,9 +871,8 @@ msgstr ""
 "Jika Anda sudah siap klik tombol Pasang."
 
 #: src/ui/onboard.ui:305
-#, fuzzy
 msgid "Runners"
-msgstr "Runner"
+msgstr "Pelari"
 
 #: src/ui/onboard.ui:335
 msgid "Downloading…"
@@ -1302,16 +1302,16 @@ msgstr "Menjalankan sebuah Panel Kontrol pada wineprefix…"
 
 #: src/runner.py:1156
 msgid "Running an Uninstaller on the wineprefix …"
-msgstr ""
+msgstr "Menjalankan Uninstaller pada wineprefix …"
 
 #: src/runner.py:1160
 msgid "Running a Regedit on the wineprefix …"
-msgstr ""
+msgstr "Menjalankan Regedit pada wineprefix …"
 
 #: src/runner.py:1246
 #, python-brace-format
 msgid "Sending Status: [{0}] to the wineprefix …"
-msgstr ""
+msgstr "Status Pengiriman: [{0}] ke wineprefix …"
 
 #: src/runner.py:1262
 #, python-brace-format
@@ -1320,36 +1320,36 @@ msgstr "{0} selesai untuk {1}."
 
 #: src/runner.py:1267
 msgid "Opening the file manager in the path …"
-msgstr ""
+msgstr "Membuka pengelola file di jalur…"
 
 #: src/runner.py:1331
 #, python-brace-format
 msgid "Importing wineprefix [{0}] in a new bottle …"
-msgstr ""
+msgstr "Mengimpor wineprefix [{0}] dalam botol baru …"
 
 #: src/runner.py:1345
 #, python-brace-format
 msgid "Error creating the bottle path for wineprefix [{0}]. Aborting."
-msgstr ""
+msgstr "Kesalahan membuat jalur botol untuk wineprefix [{0}]. Membatalkan."
 
 #: src/runner.py:1350
 msgid "Creating lock file in source path …"
-msgstr ""
+msgstr "Membuat file kunci di jalur sumber …"
 
 #: src/runner.py:1378
 #, python-brace-format
 msgid "Wineprefix {0} successfully imported!"
-msgstr ""
+msgstr "Wineprefix {0} berhasil diimpor!"
 
 #: src/runner.py:1383
 #, python-brace-format
 msgid "Wineprefix: [{0}] successfully imported!"
-msgstr ""
+msgstr "Wineprefix: [{0}] berhasil diimpor!"
 
 #: src/runner.py:1601
 #, python-brace-format
 msgid "Restoring to state: [{0}]"
-msgstr ""
+msgstr "Memulihkan ke negara bagian: [{0}]"
 
 #: src/runner.py:1621
 #, python-brace-format
@@ -1468,15 +1468,15 @@ msgstr "Ini adalah indeks untuk {0}."
 
 #: src/pages/details.py:941 src/pages/list.py:124
 msgid "Choose a Windows executable file"
-msgstr ""
+msgstr "Pilih berkas bisa-eksekusi Windows"
 
 #: src/pages/details.py:1029
 msgid "Select the location where to save the backup configuration"
-msgstr ""
+msgstr "Pilih lokasi tempat menyimpan konfigurasi cadangan"
 
 #: src/pages/details.py:1048
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "Pilih lokasi tempat menyimpan arsip cadangan"
 
 #: src/pages/details.py:1068 src/pages/list.py:190
 msgid "Confirm deletion"
@@ -1501,16 +1501,16 @@ msgstr "Pilih arsip cadangan"
 #: src/pages/list.py:104
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr ""
+msgstr "Argumen yang ditemukan untuk executable: [{executable}]."
 
 #: src/pages/list.py:168
 msgid "Confirm upgrade"
-msgstr ""
+msgstr "Konfirmasi pemutakhiran"
 
 #: src/pages/list.py:169
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
-msgstr ""
+msgstr "Ini akan mengubah pelari dari {0} menjadi {1}."
 
 #: src/pages/new.py:109
 msgid "Gaming"
@@ -1518,7 +1518,7 @@ msgstr "Gim"
 
 #: src/pages/new.py:110
 msgid "An environment improved for Windows games."
-msgstr ""
+msgstr "Lingkungan ditingkatkan untuk permainan Windows."
 
 #: src/pages/new.py:115
 msgid "Software"
@@ -1526,7 +1526,7 @@ msgstr "Perangkat lunak"
 
 #: src/pages/new.py:116
 msgid "An environment improved for Windows software."
-msgstr ""
+msgstr "Lingkungan yang disempurnakan untuk piranti lunak Windows."
 
 #: src/pages/new.py:121
 msgid "Custom"
@@ -1534,12 +1534,12 @@ msgstr "Kustom"
 
 #: src/pages/new.py:122
 msgid "A clear environment for your experiments."
-msgstr ""
+msgstr "Lingkungan yang jelas untuk eksperimen Anda."
 
 #: src/pages/new.py:227
 #, python-format
 msgid "A bottle named “%s” was created successfully"
-msgstr ""
+msgstr "Botol bernama \"%s\" berhasil dibuat"
 
 #, fuzzy
 #~ msgid "Experiments can now be enabled from Preferences"
