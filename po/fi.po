@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-03 16:05+0200\n"
-"PO-Revision-Date: 2021-04-21 15:17+0000\n"
-"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"PO-Revision-Date: 2021-06-06 16:07+0000\n"
+"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
 "Language: fi\n"
@@ -112,10 +112,10 @@ msgid "Automatic bottle repair in case of breakage"
 msgstr "Automaattinen pullonkorjaus rikkoutuessa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
-#, fuzzy
 msgid "Integrated dependency-installer based on a community-driven repository"
 msgstr ""
-"Integroitu riippuvuuden asennusohjelma, joka perustuu yhteisöajurivarastoon"
+"Integroitu riippuvuuden asennusohjelma, joka perustuu yhteisöohjattuun "
+"arkistoon"
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
 msgid "Integrated Task manager for Wine processes"
@@ -151,40 +151,35 @@ msgstr "Päivitykset:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Fix environment selection style on Yaru theme"
-msgstr ""
+msgstr "Korjaa ympäristön valintatyyli Yaru-teemassa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "Do not destroy page_details on bottle deletion"
-msgstr ""
+msgstr "Älä tuhoa page_details-sivua pullon poiston yhteydessä."
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid "Add freetype as a dependency"
-msgstr ""
+msgstr "Lisää freetype riippuvuussuhteeksi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-#, fuzzy
 msgid "French translations thanks to @julroy67"
-msgstr "Portoguese-käännökset Pão com omletin ansiosta"
+msgstr "Ranskan käännökset kiitos @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Slovak translations thanks to @MartinIIOT"
-msgstr ""
+msgstr "Slovakian käännökset @MartinIIOT ansiosta"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
-#, fuzzy
 msgid "German translations thanks to @thericosanto"
-msgstr "Portoguese-käännökset Pão com omletin ansiosta"
+msgstr "Saksan käännökset kiitos @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Portuguese translations thanks to @SantosSi"
-msgstr "Portoguese-käännökset Pão com omletin ansiosta"
+msgstr "Portugalin käännökset kiitos @SantosSi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @vitor180396"
-msgstr ""
-"Käännökset portugaliksi (Brasilia) rffontenellen ja andrelomba86:n ansiosta"
+msgstr "Portugali (Brasilia) käännökset kiitos @vitor180396"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -818,7 +813,7 @@ msgstr "Asentaa"
 
 #: src/ui/onboard.ui:63
 msgid "Back"
-msgstr ""
+msgstr "Takaisin"
 
 #: src/ui/onboard.ui:123
 msgid "Welcome to Bottles"
@@ -1068,27 +1063,27 @@ msgstr "Purku epäonnistui! Arkisto päättyy odotettua aikaisemmin."
 #: src/runner.py:256
 #, python-brace-format
 msgid "File [{0}] already exists in temp, skipping."
-msgstr ""
+msgstr "Tiedosto [{0}] on jo olemassa, ohitetaan."
 
 #: src/runner.py:272
 #, python-brace-format
 msgid "Renaming [{0}] to [{1}]."
-msgstr ""
+msgstr "Nimeä [{0}] uudelleen [{1}]."
 
 #: src/runner.py:286
 #, python-brace-format
 msgid "Downloaded file [{0}] looks corrupted."
-msgstr ""
+msgstr "Ladattu tiedosto [{0}] näyttää vioittuneelta."
 
 #: src/runner.py:288
 #, python-brace-format
 msgid "Source checksum: [{0}] downloaded: [{1}]"
-msgstr ""
+msgstr "Lähteen tarkistussumma: [{0}] ladattu: [{1}]"
 
 #: src/runner.py:292
 #, python-brace-format
 msgid "Downloaded file {0} looks corrupted. Try again."
-msgstr ""
+msgstr "Ladattu tiedosto {0} näyttää vioittuneelta. Yritä uudelleen."
 
 #: src/runner.py:312 src/runner.py:349 src/runner.py:373
 msgid "Download manager"
@@ -1097,47 +1092,48 @@ msgstr "Lataushallinta"
 #: src/runner.py:313
 #, python-brace-format
 msgid "Installing {0} runner …"
-msgstr ""
+msgstr "Asennus {0} juoksija …"
 
 #: src/runner.py:316
 #, python-brace-format
 msgid "Installing component: [{0}]."
-msgstr ""
+msgstr "Komponentin asentaminen: [{0}]."
 
 #: src/runner.py:350
 #, python-brace-format
 msgid "Component {0} successfully installed!"
-msgstr ""
+msgstr "Komponentti {0} asennettu onnistuneesti!"
 
 #: src/runner.py:374
 #, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
-msgstr ""
+msgstr "Asennus {0} riippuvuus pullossa {1} …"
 
 #: src/runner.py:381
 #, python-brace-format
 msgid "Installing dependency: [{0}] in bottle: [{1}]."
-msgstr ""
+msgstr "Asennetaan riippuvuus: [{0}] pullossa: [{1}]."
 
 #: src/runner.py:396
 #, python-brace-format
 msgid "Removing [{0}] from system32 in bottle: [{1}]"
-msgstr ""
+msgstr "Poistetaan [{0}] system32:sta pullossa: [{1}]"
 
 #: src/runner.py:402
 #, python-brace-format
 msgid "[{0}] not found in bottle: [{1}], failed removing from system32."
 msgstr ""
+"[{0}] ei löytynyt pullosta: [{1}], poistaminen system32:sta epäonnistui."
 
 #: src/runner.py:451
 #, python-brace-format
 msgid "Removing dependency: [{0}] from bottle: [{1}] configuration."
-msgstr ""
+msgstr "Poistetaan riippuvuus: [{0}] pullosta: [{1}] kokoonpano."
 
 #: src/runner.py:481
 #, python-brace-format
 msgid "Runners found: [{0}]"
-msgstr ""
+msgstr "Juoksijat löytyivät: [{0}]"
 
 #: src/runner.py:490
 msgid "No runners found."
@@ -1146,7 +1142,7 @@ msgstr "Ajajia ei löytynyt."
 #: src/runner.py:522
 #, python-brace-format
 msgid "Dxvk found: [{0}]"
-msgstr ""
+msgstr "Dxvk löytyi: [{0}]"
 
 #: src/runner.py:526
 msgid "No dxvk found."
@@ -1155,17 +1151,17 @@ msgstr "Dxvk:ta ei löytynyt."
 #: src/runner.py:580
 #, python-brace-format
 msgid "Cannot find executable for [{0}]."
-msgstr ""
+msgstr "Ei löydy suoritettavaa tiedostoa [{0}]."
 
 #: src/runner.py:715
 #, python-brace-format
 msgid "Key: [{0}] not in bottle: [{1}] configuration, updating."
-msgstr ""
+msgstr "Avain: [{0}] ei pullossa: [{1}] kokoonpano, päivitys."
 
 #: src/runner.py:724
 #, python-brace-format
 msgid "Key: [{0}] not in bottle: [{1}] configuration Parameters, updating."
-msgstr ""
+msgstr "Avain: [{0}] ei pullossa: [{1}] kokoonpano Parametrit, päivitys."
 
 #: src/runner.py:742
 #, python-format
@@ -1175,7 +1171,7 @@ msgstr "Löytyi pulloja: %s"
 #: src/runner.py:753
 #, python-brace-format
 msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
-msgstr ""
+msgstr "Asetusavain: [{0}] asti [{1}] pullon puolesta: [{2}] …"
 
 #: src/runner.py:781
 msgid "Creating the wineprefix …"
@@ -1200,133 +1196,135 @@ msgstr "Luodaan pullon määritystiedosto…"
 #: src/runner.py:847
 #, python-brace-format
 msgid "Applying environment: [{0}] …"
-msgstr ""
+msgstr "Sovellusympäristö: [{0}] …"
 
 #: src/runner.py:848
 #, python-brace-format
 msgid "Applying environment: {0} …"
-msgstr ""
+msgstr "Sovellusympäristö: {0} …"
 
 #: src/runner.py:867 src/runner.py:868
 msgid "Installing dxvk …"
-msgstr ""
+msgstr "dxvk:n asentaminen …"
 
 #: src/runner.py:875 src/runner.py:876
 msgid "Creating versioning state 0 …"
-msgstr ""
+msgstr "Versionointitilan 0 luominen …"
 
 #: src/runner.py:880
 #, python-brace-format
 msgid "Bottle: [{0}] successfully created!"
-msgstr ""
+msgstr "Pullo: [{0}] luotu onnistuneesti!"
 
 #: src/runner.py:882
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
-msgstr ""
+msgstr "Uusi pullosi: {0} on nyt valmis!"
 
 #: src/runner.py:953
 msgid "Deleting a bottle …"
-msgstr ""
+msgstr "Poistetaan pulloa…"
 
 #: src/runner.py:969
 #, python-brace-format
 msgid "Successfully deleted bottle in path: [{0}]"
-msgstr ""
+msgstr "Poistettiin onnistuneesti pullon polulta: [{0}]"
 
 #: src/runner.py:973
 msgid "Empty path found, failing to avoid disasters."
-msgstr ""
+msgstr "Tyhjä polku löydetty, ei onnistu välttämään katastrofeja."
 
 #: src/runner.py:981
 #, python-brace-format
 msgid "Trying to repair the bottle: [{0}] …"
-msgstr ""
+msgstr "Pullon korjaaminen: [{0}] …"
 
 #: src/runner.py:1036
 #, python-brace-format
 msgid ""
 "Adding Key: [{0}] with Value: [{1}] and Data: [{2}] in register bottle: {3}"
 msgstr ""
+"Avaimen lisääminen: [{0}] ja arvo: [{0}] ja arvo: [{0}]: [{1}] ja Data: [{1}]"
+" ja Data: [{1}]: [{2}] rekisteripullossa: {3}"
 
 #: src/runner.py:1045
 #, python-brace-format
 msgid "Removing Value: [{0}] for Key: [{1}] in register bottle: {2}"
-msgstr ""
+msgstr "Poistetaan arvoa: [{0}] avaimelle: [{1}] rekisteripullossa: {2}"
 
 #: src/runner.py:1057
 #, python-brace-format
 msgid "Installing dxvk for bottle: [{0}]."
-msgstr ""
+msgstr "Dxvk: n asentaminen pullolle: [{0}]."
 
 #: src/runner.py:1077
 #, python-brace-format
 msgid "Removing dxvk for bottle: [{0}]."
-msgstr ""
+msgstr "Pullon dxvk:n irrotus: [{0}]."
 
 #: src/runner.py:1114
 msgid "Running an executable on the wineprefix …"
-msgstr ""
+msgstr "Suoritetaan suoritettavaa tiedostoa viinin etuliitteellä …"
 
 #: src/runner.py:1128
 msgid "Running wineboot on the wineprefix …"
-msgstr ""
+msgstr "winebootin suorittaminen wineprefixillä …"
 
 #: src/runner.py:1132
 msgid "Running winecfg on the wineprefix …"
-msgstr ""
+msgstr "winecfg:n suorittaminen wineprefixillä …"
 
 #: src/runner.py:1136
 msgid "Running winetricks on the wineprefix …"
-msgstr ""
+msgstr "Winetricksin suorittaminen wineprefixillä …"
 
 #: src/runner.py:1140
 msgid "Running a debug console on the wineprefix …"
-msgstr ""
+msgstr "Vianmäärityskonsolin suorittaminen wineprefix …"
 
 #: src/runner.py:1144
 msgid "Running a CMD on the wineprefix …"
-msgstr ""
+msgstr "CMD-ohjelman suorittaminen wineprefixillä …"
 
 #: src/runner.py:1148
 msgid "Running a Task Manager on the wineprefix …"
-msgstr ""
+msgstr "Tehtävienhallinnan suorittaminen wineprefix …"
 
 #: src/runner.py:1152
 msgid "Running a Control Panel on the wineprefix …"
-msgstr ""
+msgstr "Ohjauspaneelin suorittaminen wineprefix …"
 
 #: src/runner.py:1156
 msgid "Running an Uninstaller on the wineprefix …"
-msgstr ""
+msgstr "Asennuksen poistoohjelman suorittaminen wineprefix …"
 
 #: src/runner.py:1160
 msgid "Running a Regedit on the wineprefix …"
-msgstr ""
+msgstr "Regedit-ohjelman suorittaminen wineprefix …"
 
 #: src/runner.py:1246
 #, python-brace-format
 msgid "Sending Status: [{0}] to the wineprefix …"
-msgstr ""
+msgstr "Lähetetään tila: [{0}] viinien etuliitteen …"
 
 #: src/runner.py:1262
 #, python-brace-format
 msgid "{0} completed for {1}."
-msgstr ""
+msgstr "{0} valmis {1}."
 
 #: src/runner.py:1267
 msgid "Opening the file manager in the path …"
-msgstr ""
+msgstr "Tiedostonhallinnan avaaminen polulla …"
 
 #: src/runner.py:1331
 #, python-brace-format
 msgid "Importing wineprefix [{0}] in a new bottle …"
-msgstr ""
+msgstr "Viiniprefiksin [{0}] tuominen uuteen pulloon …"
 
 #: src/runner.py:1345
 #, python-brace-format
 msgid "Error creating the bottle path for wineprefix [{0}]. Aborting."
-msgstr ""
+msgstr "Virhe luotaessa pullopolkua viinin etuliitteille [{0}]. Keskeytetään."
 
 #: src/runner.py:1350
 msgid "Creating lock file in source path …"
