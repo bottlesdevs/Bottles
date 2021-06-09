@@ -798,7 +798,7 @@ class BottlesRunner:
 
         '''If runner is proton, files are located to the dist path'''
         if runner.startswith("Proton"):
-            if os.path.exists("%s/dist" % runner):
+            if os.path.exists("%s/%s/dist" % (self.runners_path, runner)):
                 runner = "%s/dist" % runner
             else:
                 runner = "%s/files" % runner
