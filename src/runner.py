@@ -729,12 +729,11 @@ class BottlesRunner:
                 self.local_bottles[bottle_name_path] = configuration_file_json
 
             except FileNotFoundError:
-                new_configuration_json = self.sample_configuration
+                new_configuration_json = self.sample_configuration.copy()
                 new_configuration_json["Broken"] = True
                 new_configuration_json["Name"] = bottle_name_path
                 new_configuration_json["Environment"] = "Undefined"
                 self.local_bottles[bottle_name_path] = new_configuration_json
-                continue
 
 
         if len(self.local_bottles) > 0 and not silent:
