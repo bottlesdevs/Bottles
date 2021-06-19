@@ -8,40 +8,44 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-03 16:05+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-06-20 04:31+0000\n"
+"Last-Translator: marchellodev <marchellodev@gmail.com>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/bottles/"
+"bottles/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.7\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:102 src/ui/window.ui:165 src/ui/window.ui:180
 #: src/window.py:126
 msgid "Bottles"
-msgstr ""
+msgstr "Пляшки"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
-msgstr ""
+msgstr "Легке керування wine префіксами"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
-msgstr ""
+msgstr "Запуск програмного забезпечення Windows"
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
 msgid "Mirko Brombin"
-msgstr ""
+msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles🍷!"
-msgstr ""
+msgstr "Запускайте програмне забезпечення Windows на Linux із Bottles🍷!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
-msgstr ""
+msgstr "Закорковуйте програми в пляшки і насолоджуйтесь на дозвіллі!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -49,167 +53,185 @@ msgid ""
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
+"Наша вбудована система встановлення залежностей надає автоматичний доступ до "
+"компонентам сумісності програмного забезпечення. За допомогою менеджера "
+"завантажень завантажте офіційні компоненти: двигун (Wine, Proton), DXVK, "
+"залежності тощо."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
+"Система керування версіями в \"пляшках\" зберігає вашу роботу в безпеці і "
+"дозволяє відновити її пізніше!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
-msgstr ""
+msgstr "Функції:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:18
 msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
+"Створюйте пляшки за допомогою попередньо налаштованих середовищ або "
+"створюйте власні"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
 msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
+"Запуск виконуваних файлів (.exe/.msi) у ваших пляшках безпосередньо з "
+"контекстного меню файлового менеджера"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr ""
+msgstr "Автоматичне виявлення програм, встановлених у ваших пляшках"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
-msgstr ""
+msgstr "Швидке додавання змінних середовища"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr ""
+msgstr "Перевизначення бібліотек DLL безпосередньо з налаштувань кожної пляшки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
-msgstr ""
+msgstr "Зміна бігуна (runner) \"на льоту\" будь-якої пляшки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:24
 msgid ""
 "Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
 "compiler, offload … and much more.)"
 msgstr ""
+"Різні оптимізації продуктивності ігор (esync, fsync, DXVK, кеш-пам’ять, "
+"компілятор шейдерів, розвантаження… та багато іншого.)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:25
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr ""
+msgstr "Автоматичне вставновлення та управління версіями Wine та Proton"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
+#, fuzzy
 msgid "Automatic bottle repair in case of breakage"
-msgstr ""
+msgstr "Автоматичний ремонт пляшок в разі поломки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
 msgstr ""
+"Вбудований інсталятор залежностей на основі репозиторію, керованого "
+"спільнотою"
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
 msgid "Integrated Task manager for Wine processes"
-msgstr ""
+msgstr "Вбудований диспетчер завдань для Wine процесів"
 
 #: data/com.usebottles.bottles.appdata.xml.in:29
+#, fuzzy
 msgid "Access to ProtonDB and WineHQ for support"
-msgstr ""
+msgstr "Доступ до ProtonDB та WineHQ для підтримки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr ""
+msgstr "Система застосування вашої конфігурації до нових версій Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
+#, fuzzy
 msgid "Back up and import bottles"
-msgstr ""
+msgstr "Резервне копіювання та імпорт пляшок"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
+#, fuzzy
 msgid "Import Wine prefixes from other managers"
-msgstr ""
+msgstr "Імпорт префіксів wine від інших менеджерів"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning (experimental)"
-msgstr ""
+msgstr "Керування версіями Bottles (експериментально)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid ".. and much more that you can find by installing Bottles!"
-msgstr ""
+msgstr ".. та багато іншого, що ви зможете знайти, встановивши Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
 msgid "Updates:"
-msgstr ""
+msgstr "Оновлення:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Fix environment selection style on Yaru theme"
-msgstr ""
+msgstr "Виправити стиль вибору середовища в темі Yaru"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "Do not destroy page_details on bottle deletion"
-msgstr ""
+msgstr "Не знищувати page_details при видаленні пляшки"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid "Add freetype as a dependency"
-msgstr ""
+msgstr "Додати freetype як залежність"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid "French translations thanks to @julroy67"
-msgstr ""
+msgstr "Переклад на французьку дякуючи @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Slovak translations thanks to @MartinIIOT"
-msgstr ""
+msgstr "Переклад на словацьку дякуючи @MartinIIOT"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "German translations thanks to @thericosanto"
-msgstr ""
+msgstr "Переклад на німецьку дякуючи @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 msgid "Portuguese translations thanks to @SantosSi"
-msgstr ""
+msgstr "Переклад на португальську дякуючи @SantosSi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Portuguese (Brazil) translations thanks to @vitor180396"
-msgstr ""
+msgstr "Переклад на португальську (Бразилія) дякуючи @vitor180396"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
-msgstr ""
+msgstr "Темна тема"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Enable the dark theme."
-msgstr ""
+msgstr "Використовувати темну тему."
 
 #: data/com.usebottles.bottles.gschema.xml:11 src/ui/preferences.ui:64
 msgid "Notifications"
-msgstr ""
+msgstr "Сповіщення"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Enable notifications."
-msgstr ""
+msgstr "Увімкнути сповіщення."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Temp cleaning"
-msgstr ""
+msgstr "Очищення тимчасових файлів"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Clean Temp path on boot."
-msgstr ""
+msgstr "Очищення тимчасових файлів при завантаженні."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Release Candidate"
-msgstr ""
+msgstr "Реліз-кандидат"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Toggle Release Candidate for Runners"
-msgstr ""
+msgstr "Використовувати версію реліз-кандидат для бігунів"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Startup view"
-msgstr ""
+msgstr "Вигляд при запуску"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Choose which view should be loaded on application startup."
-msgstr ""
+msgstr "Виберіть подання, яке слід завантажувати під час запуску застосунку."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:170
 msgid "Experiments"
-msgstr ""
+msgstr "Експерименти"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid ""
