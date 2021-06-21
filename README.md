@@ -22,6 +22,9 @@
   <a href="https://github.com/bottlesdevs/Bottles/actions">
     <img src="https://github.com/bottlesdevs/Bottles/workflows/AppImage%20Release/badge.svg">
   </a>
+  <a href="https://aur.archlinux.org/bottles">
+    <img alt="AUR version" src="https://img.shields.io/aur/version/bottles">
+  </a>
   <br>
   <a href="https://t.me/usebottles">
     <img src="https://img.shields.io/static/v1?label=Join%20our&message=Telegram%20Group&color=blue&logo=telegram" />
@@ -84,6 +87,13 @@ chmod +x Bottles-devel-x86_64.AppImage
 ```
 And you're done!
 
+### AUR
+There is the official package of Bottles on AUR for ArchLinux and derivatives.
+
+<a href='https://aur.archlinux.org/bottles'>
+  <img alt="AUR version" src="https://img.shields.io/aur/version/bottles?style=for-the-badge">
+</a>
+
 ### Snap
 Bottles can also be installed as a snap from the Snapcraft repository. Click
 the button below.
@@ -106,7 +116,6 @@ These packages are maitained by our community but not officialy supported.
 |:----:|:----:|:----:|:----:|
 | Flatpak (Beta) | [`com.usebottles.bottles`](https://github.com/flathub/com.usebottles.bottles/tree/beta) | LeandroStanger | Active |
 | Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | Talebian | Active |
-| Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | francescomasala | Active |
 | Fedora | [`bottles`](https://src.fedoraproject.org/rpms/bottles)| tim77 | Active |
 | Void linux | [`bottles`](https://github.com/void-linux/void-packages/pull/27066) | andry-dev| Active |
 | NixOS | [`bottles`](https://github.com/NixOS/nixpkgs/pull/113825) | bloomvdomino | Active |
