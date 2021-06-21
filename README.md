@@ -84,14 +84,6 @@ chmod +x Bottles-devel-x86_64.AppImage
 ```
 And you're done!
 
-### Flatpak
-Bottles can also be installed via Flatpak from the Flathub repository. Click
-the button below.
-
-<a href='https://flathub.org/apps/details/com.usebottles.bottles'>
-  <img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
-</a>
-
 ### Snap
 Bottles can also be installed as a snap from the Snapcraft repository. Click
 the button below.
@@ -112,6 +104,7 @@ These packages are maitained by our community but not officialy supported.
 
 |Distro|Package Name/Link|Maintainer|Status
 |:----:|:----:|:----:|:----:|
+| Flatpak (Beta) | [`com.usebottles.bottles`](https://github.com/flathub/com.usebottles.bottles/tree/beta) | LeandroStanger | Active |
 | Arch Linux | [`bottles-git`](https://aur.archlinux.org/packages/bottles-git) (AUR) | Talebian | Active |
 | Arch Linux | [`bottles`](https://aur.archlinux.org/packages/bottles) (AUR) | francescomasala | Active |
 | Fedora | [`bottles`](https://src.fedoraproject.org/rpms/bottles)| tim77 | Active |
@@ -150,25 +143,10 @@ sudo ninja install
 sudo ninja uninstall
 ```
 
-### 🛠️ Flatpak (build)
-We provide an official Flatpak package.  
 
-#### Dependencies
-- org.gnome.Sdk
-- org.gnome.Sdk.Compat.i386
-- org.freedesktop.Sdk.Extension.toolchain-i386
-
-#### Build
-```bash
-flatpak-builder --repo=bottles --force-clean --user build-dir com.usebottles.bottles.yml
-flatpak remote-add --user bottles bottles --no-gpg-verify
-flatpak install --user bottles com.usebottles.bottles
-```
-
-#### Run
-```bash
-flatpak run com.usebottles.bottles
-```
+### Flathub
+We have removed Bottles' official Flatpak, you can read more details [here](https://mirko.pm/blog/bottles-will-leave-flatpak/). 
+There is also an unofficial flatpak, maintained by third parties, you can find it in the table below.
 
 ### 🛠️ Snap (build)
 We also provide an initial Snap support.
