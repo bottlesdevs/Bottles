@@ -7,6 +7,8 @@ assignees: mirkobrombin
 
 ---
 
+📢 !!PLEASE READ:!! We have discontinued the Flatpak version of Bottles. Please do not open flatpak related issues. (Read more: https://mirko.pm/blog/bottles-will-leave-flatpak/)
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
