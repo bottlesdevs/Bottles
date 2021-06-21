@@ -22,7 +22,7 @@
   <a href="https://github.com/bottlesdevs/Bottles/actions">
     <img src="https://github.com/bottlesdevs/Bottles/workflows/AppImage%20Release/badge.svg">
   </a>
-  <a href="https://aur.archlinux.org/bottles">
+  <a href="https://aur.archlinux.org/packages/bottles/">
     <img alt="AUR version" src="https://img.shields.io/aur/version/bottles">
   </a>
   <br>
@@ -90,7 +90,7 @@ And you're done!
 ### AUR
 There is the official package of Bottles on AUR for ArchLinux and derivatives.
 
-<a href='https://aur.archlinux.org/bottles'>
+<a href='https://aur.archlinux.org/packages/bottles/'>
   <img alt="AUR version" src="https://img.shields.io/aur/version/bottles?style=for-the-badge">
 </a>
 
