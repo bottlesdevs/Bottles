@@ -60,6 +60,8 @@ class BottlesWindow(Handy.ApplicationWindow):
     btn_noconnection = Gtk.Template.Child()
     btn_versioning = Gtk.Template.Child()
     btn_installers = Gtk.Template.Child()
+    btn_fpk_info = Gtk.Template.Child()
+    btn_fpk_pkgs = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
     squeezer = Gtk.Template.Child()
@@ -140,6 +142,8 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
+        self.btn_fpk_info.connect('pressed', self.open_flatpak_notice)
+        self.btn_fpk_pkgs.connect('pressed', self.open_other_packages)
         self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
 
         '''BottlesDetail signal connections'''
@@ -218,6 +222,12 @@ class BottlesWindow(Handy.ApplicationWindow):
     @staticmethod
     def open_docs_url(widget):
         webbrowser.open_new_tab("https://docs.usebottles.com")
+
+    def open_flatpak_notice(self, widget):
+        webbrowser.open_new_tab("https://mirko.pm/blog/bottles-will-leave-flatpak/")
+
+    def open_other_packages(self, widget):
+        webbrowser.open_new_tab("https://usebottles.com/download/")
 
     '''Go back to previous page'''
     def go_back(self, widget=False):
