@@ -121,11 +121,11 @@ class BottlesListEntry(Handy.ActionRow):
     def run_executable(self, widget):
         if not self.arg_executable:
             '''If executable is not Bottles argument'''
-            file_dialog = Gtk.FileChooserDialog(_("Choose a Windows executable file"),
-                                                self.window,
-                                                Gtk.FileChooserAction.OPEN,
-                                                (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-                                                Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+            file_dialog = Gtk.FileChooserNative.new(
+                _("Choose a Windows executable file"),
+                self.window,
+                Gtk.FileChooserAction.OPEN
+            )
 
             '''Create filters for allowed extensions'''
             filter_exe = Gtk.FileFilter()
@@ -146,7 +146,7 @@ class BottlesListEntry(Handy.ActionRow):
 
             response = file_dialog.run()
 
-            if response == Gtk.ResponseType.OK:
+            if response == -3:
                 self.runner.run_executable(self.configuration,
                                            file_dialog.get_filename())
 

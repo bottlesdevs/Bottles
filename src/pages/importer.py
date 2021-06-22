@@ -104,11 +104,11 @@ class BottlesImporter(Gtk.ScrolledWindow):
 
     '''Display file dialog for backup path'''
     def import_backup_full(self, widget):
-        file_dialog = Gtk.FileChooserDialog(_("Choose a backup archive"),
-                                            self.window,
-                                            Gtk.FileChooserAction.OPEN,
-                                            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-                                            Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        file_dialog = Gtk.FileChooserNative.new(
+            _("Choose a backup archive"),
+            self.window,
+            Gtk.FileChooserAction.OPEN
+        )
 
         filter_tar = Gtk.FileFilter()
         filter_tar.set_name(".tar.gz")
@@ -117,7 +117,7 @@ class BottlesImporter(Gtk.ScrolledWindow):
 
         response = file_dialog.run()
 
-        if response == Gtk.ResponseType.OK:
+        if response == -3:
             self.runner.import_backup_bottle("full", file_dialog.get_filename())
 
         file_dialog.destroy()
