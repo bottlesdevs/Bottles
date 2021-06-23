@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-22 16:17+0200\n"
-"PO-Revision-Date: 2021-05-28 20:30+0000\n"
+"PO-Revision-Date: 2021-06-23 13:20+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
 "sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -152,11 +152,12 @@ msgstr "Uppdateringar:"
 msgid ""
 "Fixed a bug that caused each bottle to be broken even if only one was broken"
 msgstr ""
+"Fixade ett fel som gjorde att varje butelj gick sönder även om bara en var "
+"trasig"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "Franska översättningar tack vare @julroy67"
+msgstr "Fransk översättning tack vare @panmourovaty"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -263,7 +264,7 @@ msgstr "Felrapport"
 
 #: src/ui/dependency-entry.ui:150
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Ladda ner & Installera detta beroendet"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -652,7 +653,7 @@ msgstr "DXVK-version"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr ""
+msgstr "Ladda ner och installera denna DXVK"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -796,7 +797,7 @@ msgstr "Installera"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "Avsluta"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -839,7 +840,6 @@ msgid "We are almost there"
 msgstr "Vi är nästan där"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -853,6 +853,9 @@ msgstr ""
 "Vi behöver ladda ner och installera ett körprogram för att du skall kunna "
 "skapa dina egna buteljer.\n"
 "Nerladdningsstorleken är <b>~70MB</b>.\n"
+"\n"
+"Vi kan inte erbjuda dessa filer tillsammans med Bottles, eftersom de har "
+"olika utgivningscykler.\n"
 "\n"
 "Tryck på installationsknappen när du är klar."
 
@@ -950,7 +953,7 @@ msgstr "Bottles-problem"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "Ladda ner och installera detta körprogram"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
