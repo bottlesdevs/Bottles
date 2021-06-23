@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-22 16:17+0200\n"
-"PO-Revision-Date: 2021-05-06 13:01+0000\n"
+"PO-Revision-Date: 2021-06-23 12:38+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -157,11 +157,12 @@ msgstr "Aggiornamenti:"
 msgid ""
 "Fixed a bug that caused each bottle to be broken even if only one was broken"
 msgstr ""
+"Corretto un bug che causava la rottura di ogni bottiglia anche se solo una "
+"era rotta"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "Traduzioni francesi grazie a @julroy67"
+msgstr "Traduzioni in ceco grazie a @panmourovaty"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -169,7 +170,7 @@ msgstr "Tema scuro"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Enable the dark theme."
-msgstr "Abilita tema scuro."
+msgstr "Abilita il tema scuro."
 
 #: data/com.usebottles.bottles.gschema.xml:11 src/ui/preferences.ui:64
 msgid "Notifications"
@@ -268,7 +269,7 @@ msgstr "Segnala Bug"
 
 #: src/ui/dependency-entry.ui:150
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Scaricare e installare questa dipendenza"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -662,7 +663,7 @@ msgstr "Versione DXVK"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr ""
+msgstr "Scaricare e installare questo DXVK"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -805,7 +806,7 @@ msgstr "Installa"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "Abbandona"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -848,7 +849,6 @@ msgid "We are almost there"
 msgstr "Ci siamo quasi"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -859,11 +859,14 @@ msgid ""
 "\n"
 "When you are ready press the Install button."
 msgstr ""
-"Dobbiamo scaricare e installare un runner per consentirti di creare le tue "
-"bottiglie.\n"
-"La dimensione del download è <b> ~ 70 MB </b>.\n"
+"Abbiamo bisogno di scaricare e installare un corridore per permetterti di "
+"creare le tue bottiglie.\n"
+"La dimensione del download è <b>~70MB</b>.\n"
 "\n"
-"Quando sei pronto, premi il pulsante Installa."
+"Non possiamo offrire questi file con Bottles perché questi hanno cicli di "
+"rilascio diversi.\n"
+"\n"
+"Quando sei pronto premi il pulsante Installa."
 
 #: src/ui/onboard.ui:336
 msgid "Runners"
@@ -959,7 +962,7 @@ msgstr "Problemi Bottles"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "Scaricare e installare questo corridore"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
