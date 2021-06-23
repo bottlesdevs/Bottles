@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import gi
+import time
 import webbrowser
 
 gi.require_version('Handy', '1')
@@ -35,7 +36,7 @@ from .pages.taskmanager import BottlesTaskManager
 from .pages.importer import BottlesImporter
 from .pages.dialog import BottlesAboutDialog
 
-from .utils import UtilsConnection, UtilsLogger
+from .utils import UtilsConnection, UtilsLogger, RunAsync
 
 logging = UtilsLogger()
 
@@ -97,6 +98,7 @@ class BottlesWindow(Handy.ApplicationWindow):
             "gtk-application-prefer-dark-theme",
             self.settings.get_boolean("dark-theme"))
         
+
         '''Validate argument extension'''
         if arg_executable and not arg_executable.endswith(('.exe', '.msi', '.bat')):
             arg_executable = False
@@ -269,6 +271,12 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     def show_runners_preferences_view(self, widget=False):
         self.show_preferences_view(widget, view=2)
+
+    '''Properly close Bottles'''
+    @staticmethod
+    def proper_close():
+        time.sleep(1)
+        quit()
 
     '''Show about dialog'''
     @staticmethod

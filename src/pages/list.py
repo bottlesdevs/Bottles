@@ -154,6 +154,8 @@ class BottlesListEntry(Handy.ActionRow):
         else:
             '''Use executable provided as bottles argument'''
             self.runner.run_executable(self.configuration, self.arg_executable)
+            if self.window.settings.get_boolean("auto-close-bottles"):
+                self.window.proper_close()
             self.arg_executable = False
             self.runner.update_bottles()
 

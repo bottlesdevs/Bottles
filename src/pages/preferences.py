@@ -28,6 +28,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
     switch_release_candidate = Gtk.Template.Child()
     switch_versioning = Gtk.Template.Child()
     switch_installers = Gtk.Template.Child()
+    switch_auto_close = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     actionrow_prerelease = Gtk.Template.Child()
@@ -55,6 +56,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
         self.switch_versioning.set_active(self.settings.get_boolean("experiments-versioning"))
         self.switch_installers.set_active(self.settings.get_boolean("experiments-installers"))
+        self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
 
         '''Signal connections'''
         self.switch_dark.connect('state-set', self.toggle_dark)
@@ -63,6 +65,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.switch_release_candidate.connect('state-set', self.toggle_release_candidate)
         self.switch_versioning.connect('state-set', self.toggle_experimental_versioning)
         self.switch_installers.connect('state-set', self.toggle_experimental_installers)
+        self.switch_auto_close.connect('state-set', self.toggle_auto_close)
 
         self.populate_dxvk_list()
         self.populate_runners_list()
@@ -92,6 +95,9 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.settings.set_boolean("experiments-installers", state)
         self.window.btn_installers.set_visible(
             self.settings.get_boolean("experiments-installers"))
+
+    def toggle_auto_close(self, widget, state):
+        self.settings.set_boolean("auto-close-bottles", state)
 
     def populate_dxvk_list(self):
         for dxvk in self.runner.supported_dxvk.items():
