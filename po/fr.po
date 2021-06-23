@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-22 16:17+0200\n"
-"PO-Revision-Date: 2021-06-19 15:12+0000\n"
+"PO-Revision-Date: 2021-06-24 13:14+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -157,11 +157,12 @@ msgstr "Mises à jour :"
 msgid ""
 "Fixed a bug that caused each bottle to be broken even if only one was broken"
 msgstr ""
+"Correction d’un bogue qui faisait que chaque bouteille était cassée alors qu’"
+"une seule l’était"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "Traductions en français grâce @julroy67"
+msgstr "Traductions en tchèque grâce à @panmourovaty"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -270,7 +271,7 @@ msgstr "Rapport de bug"
 
 #: src/ui/dependency-entry.ui:150
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Télécharger et installer cette dépendance"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -666,7 +667,7 @@ msgstr "Version de DXVK"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr ""
+msgstr "Télécharger et installer cette version de DXVK"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -812,7 +813,7 @@ msgstr "Installer"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "Quitter"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -857,7 +858,6 @@ msgid "We are almost there"
 msgstr "Nous y sommes presque"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -871,6 +871,9 @@ msgstr ""
 "Nous devons télécharger et installer un exécuteur pour vous permettre de "
 "créer vos propres bouteilles.\n"
 "La taille du téléchargement est d’environ <b>70 Mo</b>.\n"
+"\n"
+"Nous ne pouvons pas offrir ces fichiers avec Bouteilles, car leur cycle de "
+"sortie est différent.\n"
 "\n"
 "Lorsque vous êtes prêt, cliquez sur le bouton Installer."
 
@@ -970,7 +973,7 @@ msgstr "Bogues de Bouteilles"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "Télécharger et installer cet exécuteur"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
