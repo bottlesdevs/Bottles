@@ -18,7 +18,7 @@ jobs:
       # Fix python interpreter
       # --------------------------------------
       - name: Fix python interpreter
-        run: sed -i -e 's|@PYTHON@|/usr/bin/python3|g' src/amusiz.in
+        run: sed -i -e 's|@PYTHON@|/usr/bin/python3|g' src/bottles.in
         
       # AppImage Build
       # --------------------------------------
