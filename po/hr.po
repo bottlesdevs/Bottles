@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-22 16:17+0200\n"
-"PO-Revision-Date: 2021-05-07 20:29+0000\n"
+"PO-Revision-Date: 2021-06-28 04:31+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -157,11 +157,12 @@ msgstr "Aktualiziranja:"
 msgid ""
 "Fixed a bug that caused each bottle to be broken even if only one was broken"
 msgstr ""
+"Ispravljena je greška zbog koje je svaka boca bila pokvarena čak i ako je "
+"bila pokvarena samo jedna boca"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "Francuski prijevod, hvala @julroy67"
+msgstr "Češki prijevod, hvala @panmourovaty"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -268,7 +269,7 @@ msgstr "Prijava grešaka"
 
 #: src/ui/dependency-entry.ui:150
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Preuzmi i instaliraj ovu ovisnost"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -660,7 +661,7 @@ msgstr "DXVK verzija"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr ""
+msgstr "Preuzmi i instaliraj ovaj DXVK"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -804,7 +805,7 @@ msgstr "Instaliraj"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "Prekini"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -847,7 +848,6 @@ msgid "We are almost there"
 msgstr "Skoro smo gotovi"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -862,7 +862,10 @@ msgstr ""
 "butelja.\n"
 "Veličina preuzimanja je <b>~ 70 MB</b>.\n"
 "\n"
-"Pritisni gumb Instaliraj."
+"Te datoteke ne možemo ponuditi s programom Butelje jer imaju drugačije "
+"cikluse izdavanja.\n"
+"\n"
+"Kad je sve spremno, pritisni gumb Instaliraj."
 
 #: src/ui/onboard.ui:336
 msgid "Runners"
@@ -958,7 +961,7 @@ msgstr "Problemi s programom Butelje"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "Preuzmi i instaliraj ovaj pokretač"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
