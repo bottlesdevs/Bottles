@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-22 16:17+0200\n"
-"PO-Revision-Date: 2021-06-02 16:28+0000\n"
-"Last-Translator: udo pton <udopton@gmail.com>\n"
+"PO-Revision-Date: 2021-06-28 04:35+0000\n"
+"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -153,11 +153,12 @@ msgstr "Güncellemeler:"
 msgid ""
 "Fixed a bug that caused each bottle to be broken even if only one was broken"
 msgstr ""
+"Her şişenin yalnızca bir şişe kırılmış olsa bile kırılmasına neden olan bir "
+"hata düzeltildi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "@ Julroy67 'a Fransızca çeviriler için teşekkürler"
+msgstr "@panmourovaty sayesinde Çekçe çeviriler"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -264,7 +265,7 @@ msgstr "Hata raporu"
 
 #: src/ui/dependency-entry.ui:150
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Bu bağımlılığı karşıdan yükleme ve yükleme"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -657,7 +658,7 @@ msgstr "DXVK sürümü"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr ""
+msgstr "Bu DXVK'yi karşıdan yükle ve yükle"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -801,7 +802,7 @@ msgstr "Yükle"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "istifa etmek"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -846,7 +847,6 @@ msgid "We are almost there"
 msgstr "Neredeyse geldik"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -857,9 +857,12 @@ msgid ""
 "\n"
 "When you are ready press the Install button."
 msgstr ""
-"Kendi şişelerinizi yaratmanıza izin vermek için bir koşucu indirip kurmamız "
-"gerekiyor.\n"
-"İndirme boyutu <b> ~ 70MB </b> 'dir.\n"
+"Kendi şişelerinizi oluşturmanıza izin vermek için bir koşucu indirip "
+"kurmamız gerekiyor.\n"
+"İndirme boyutu <b>~70MB</b>.\n"
+"\n"
+"Farklı sürüm döngülerine sahip olduğu için bu dosyaları Bottles ile "
+"sunamayız.\n"
 "\n"
 "Hazır olduğunuzda Yükle düğmesine basın."
 
@@ -957,7 +960,7 @@ msgstr "Şişeler Sorunları"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "Bu koşucuyı karşıdan yükle ve yükle"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
