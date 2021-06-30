@@ -46,13 +46,6 @@ RunnerType = NewType('RunnerType', str)
 class BottlesRunner:
 
     '''Repositories URLs'''
-    repository = "https://github.com/lutris/wine/releases"
-    repository_api = "https://api.github.com/repos/lutris/wine/releases"
-    proton_repository = "https://github.com/GloriousEggroll/proton-ge-custom/releases"
-    proton_repository_api = "https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases"
-    dxvk_repository = "https://github.com/doitsujin/dxvk/releases"
-    dxvk_repository_api = "https://api.github.com/repos/doitsujin/dxvk/releases"
-
     components_repository = "https://raw.githubusercontent.com/bottlesdevs/components/main/"
     components_repository_index = "%s/index.json" % components_repository
 
@@ -231,11 +224,6 @@ class BottlesRunner:
     '''Download a specific component release'''
     def download_component(self, component:str, download_url:str, file:str, rename:bool=False, checksum:bool=False, func=False) -> bool:
         self.download_manager = DownloadManager(self.window)
-
-        if component == "runner": repository = self.repository
-        if component == "runner:proton": repository = self.proton_repository
-        if component == "dxvk": repository = self.dxvk_repository
-        if component == "dependency": repository = self.dependencies_repository
 
         '''Check for missing paths'''
         self.check_runners_dir()
