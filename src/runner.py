@@ -47,7 +47,7 @@ class BottlesRunner:
 
     '''Repositories URLs'''
     components_repository = "https://raw.githubusercontent.com/bottlesdevs/components/main/"
-    components_repository_index = "%s/index.json" % components_repository
+    components_repository_index = "%s/testing.json" % components_repository
 
     dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
     dependencies_repository_index = "%s/index.json" % dependencies_repository
@@ -79,6 +79,7 @@ class BottlesRunner:
     '''Component lists'''
     runners_available = []
     dxvk_available = []
+    gamemode_available = False
     local_bottles = {}
     supported_wine_runners = {}
     supported_proton_runners = {}
@@ -101,6 +102,7 @@ class BottlesRunner:
         "Parameters": {
             "dxvk": False,
             "dxvk_hud": False,
+            "gamemode": False,
             "sync": "wine",
             "aco_compiler": False,
             "discrete_gpu": False,
@@ -144,6 +146,7 @@ class BottlesRunner:
 
         self.check_runners(install_latest=False)
         self.check_dxvk(install_latest=False)
+        self.check_gamemode()
         self.fetch_components()
         self.fetch_dependencies()
         self.fetch_installers()
@@ -155,6 +158,7 @@ class BottlesRunner:
         after, no_install = args
         self.check_runners_dir()
         self.check_dxvk()
+        self.check_gamemode()
         self.check_runners(install_latest=not no_install, after=after)
         self.check_bottles()
         self.fetch_dependencies()
@@ -520,6 +524,17 @@ class BottlesRunner:
             else:
                 return False
         return True
+
+    '''Check for gamemode in the system'''
+    def check_gamemode(self):
+        if shutil.which("gamemoderun") is not None:
+            status = subprocess.call([
+                "systemctl", "is-active", "--quiet", "gamemoded"])
+            if status == 3:
+                status = subprocess.call([
+                    "systemctl", "--user", "is-active", "--quiet", "gamemoded"])
+            if status == 0:
+                self.gamemode_available = True
 
     def find_program_icon(self, program_name):
         logging.debug("Searching [%s] icon.." % program_name)
@@ -1112,8 +1127,6 @@ class BottlesRunner:
 
         if arguments: command = "%s %s" % (command, arguments)
 
-        print(command)
-
         RunAsync(self.run_command, None, configuration, command)
 
     def run_wineboot(self, configuration:BottleConfig) -> None:
@@ -1234,6 +1247,10 @@ class BottlesRunner:
             runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
             command = command
         )
+
+        # Check for gamemode enabled
+        if self.gamemode_available and configuration["Parameters"]["gamemode"]:
+            command = f"gamemoderun {command}"
 
         if terminal:
             return UtilsTerminal(command)

@@ -552,6 +552,7 @@ class BottlesDetails(Gtk.Stack):
     btn_manage_dxvk = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
+    switch_gamemode = Gtk.Template.Child()
     switch_aco = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
     switch_virtual_desktop = Gtk.Template.Child()
@@ -635,6 +636,7 @@ class BottlesDetails(Gtk.Stack):
 
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
+        self.switch_gamemode.connect('state-set', self.toggle_gamemode)
         self.switch_aco.connect('state-set', self.toggle_aco)
         self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
         self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
@@ -646,6 +648,9 @@ class BottlesDetails(Gtk.Stack):
         self.combo_dxvk.connect('changed', self.set_dxvk)
 
         self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
+
+        # Toggle gamemode switcher sensitivity
+        self.switch_gamemode.set_sensitive(self.runner.gamemode_available)
 
     def update_combo_components(self):
         self.combo_runner.handler_block_by_func(self.set_runner)
@@ -687,6 +692,7 @@ class BottlesDetails(Gtk.Stack):
         # self.label_update_date.set_text(self.configuration.get("Update_Date"))
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
+        self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_aco.set_active(parameters["aco_compiler"])
         if parameters["sync"] == "wine": self.toggle_sync.set_active(True)
         if parameters["sync"] == "esync": self.toggle_esync.set_active(True)
@@ -853,6 +859,15 @@ class BottlesDetails(Gtk.Stack):
         new_configuration = self.runner.update_configuration(
             configuration=self.configuration,
             key="dxvk_hud",
+            value=state,
+            scope="Parameters")
+        self.configuration = new_configuration
+
+    '''Toggle Gamemode'''
+    def toggle_gamemode(self, widget=False, state=False):
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="gamemode",
             value=state,
             scope="Parameters")
         self.configuration = new_configuration

@@ -29,8 +29,8 @@ class BottlesPreferences(Handy.PreferencesWindow):
     switch_versioning = Gtk.Template.Child()
     switch_installers = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
-    list_dxvk = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
+    list_dxvk = Gtk.Template.Child()
     actionrow_prerelease = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
@@ -67,8 +67,8 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.switch_installers.connect('state-set', self.toggle_experimental_installers)
         self.switch_auto_close.connect('state-set', self.toggle_auto_close)
 
-        self.populate_dxvk_list()
         self.populate_runners_list()
+        self.populate_dxvk_list()
 
     '''Toggle dark mode and store in user settings'''
     def toggle_dark(self, widget, state):
