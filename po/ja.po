@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-22 16:17+0200\n"
-"PO-Revision-Date: 2021-05-06 12:16+0000\n"
-"Last-Translator: Jatin <jatin1812@protonmail.com>\n"
+"PO-Revision-Date: 2021-06-28 04:36+0000\n"
+"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -152,12 +152,11 @@ msgstr "更新:"
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid ""
 "Fixed a bug that caused each bottle to be broken even if only one was broken"
-msgstr ""
+msgstr "ボトルが1本しか壊れていなくても、1本ずつ壊れていることになってしまうバグを修正"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "@julroy67のおかげでフランス語の翻訳"
+msgstr "チェコ語の翻訳は @panmourovaty に感謝します。"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -795,7 +794,7 @@ msgstr "インストール"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "辞める"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -840,7 +839,6 @@ msgid "We are almost there"
 msgstr "私たちは、ほぼ、そこにいる"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -851,11 +849,12 @@ msgid ""
 "\n"
 "When you are ready press the Install button."
 msgstr ""
-"自分のボトルを作成できるように、ランナーをダウンロードしてインストールする必"
-"要があります。\n"
-"ダウンロードサイズは<b> 〜70MB </b>です。\n"
+"独自のボトルを作成するためのランナーをダウンロードしてインストールする必要があります。\n"
+"ダウンロードサイズは<b>~70MB</b>です。\n"
 "\n"
-"準備ができたら、インストールボタンを押します。"
+"これらのファイルはリリースサイクルが異なるため、Bottlesと一緒に提供することはできません。\n"
+"\n"
+"準備ができたら、Installボタンを押してください。"
 
 #: src/ui/onboard.ui:336
 msgid "Runners"
@@ -951,7 +950,7 @@ msgstr "ボトルの問題"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "このランナーをダウンロード＆インストールする"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"

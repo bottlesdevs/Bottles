@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-22 16:17+0200\n"
-"PO-Revision-Date: 2021-05-28 05:53+0000\n"
+"PO-Revision-Date: 2021-06-28 04:35+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -159,11 +159,12 @@ msgstr "Обновления:"
 msgid ""
 "Fixed a bug that caused each bottle to be broken even if only one was broken"
 msgstr ""
+"Исправлена ошибка, из-за которой каждая бутылка разбивалась, даже если была "
+"разбита только одна"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "Перевод на французский язык благодаря @julroy67"
+msgstr "Перевод на чешский язык благодаря @panmourovaty"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -271,7 +272,7 @@ msgstr "Отчёт об ошибке"
 
 #: src/ui/dependency-entry.ui:150
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Загрузите и установите эту зависимость"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -661,7 +662,7 @@ msgstr "Версия DXVK"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr ""
+msgstr "Загрузить и установить этот DXVK"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -805,7 +806,7 @@ msgstr "Установить"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "Увольнение"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -848,7 +849,6 @@ msgid "We are almost there"
 msgstr "Мы почти готовы"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -859,11 +859,14 @@ msgid ""
 "\n"
 "When you are ready press the Install button."
 msgstr ""
-"Нам необходимо скачать и установить runner, чтобы вы могли создавать свои "
-"собственные \"бутылки\".\n"
-"Размер загрузки составляет <b>~70МБ </b>.\n"
+"Нужно скачать и установить бегунок, позволяющий создавать собственные "
+"бутылки.\n"
+"Размер загрузки составляет <b>~70MB</b>.\n"
 "\n"
-"Когда вы будете готовы, нажмите кнопку \"Установить\"."
+"Мы не можем предложить эти файлы вместе с Bottles, так как у них разные "
+"циклы выпуска.\n"
+"\n"
+"Когда вы будете готовы, нажмите кнопку Install."
 
 #: src/ui/onboard.ui:336
 msgid "Runners"
@@ -959,7 +962,7 @@ msgstr "Проблемы с Bottles"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "Загрузите и установите этот бегунок"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-22 16:17+0200\n"
-"PO-Revision-Date: 2021-05-08 12:55+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2021-06-28 04:35+0000\n"
+"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -155,11 +155,12 @@ msgstr "Atualizações:"
 msgid ""
 "Fixed a bug that caused each bottle to be broken even if only one was broken"
 msgstr ""
+"Corrigido um bug que fazia com que cada garrafa fosse quebrada mesmo que "
+"apenas uma estivesse quebrada"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "Traduções para o françes graças a @julroy67"
+msgstr "Traduções para checo graças a @panmourovaty"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -268,7 +269,7 @@ msgstr "Relatório de erro"
 
 #: src/ui/dependency-entry.ui:150
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Baixar e instalar esta dependência"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -662,7 +663,7 @@ msgstr "Versão do DXVK"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr ""
+msgstr "Baixar & Instalar este DXVK"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -806,7 +807,7 @@ msgstr "Instalar"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "Desista"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -850,7 +851,6 @@ msgid "We are almost there"
 msgstr "Estamos quase lá"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -861,11 +861,14 @@ msgid ""
 "\n"
 "When you are ready press the Install button."
 msgstr ""
-"Precisamos baixar e instalar um runner para permitir que você crie seus "
-"próprios bottles.\n"
-"O tamanho do download é <b> ~ 70 MB </b>.\n"
+"Precisamos baixar e instalar um runner para que você possa criar suas "
+"próprias garrafas.\n"
+"O tamanho do download é <b>~70MB</b>.\n"
 "\n"
-"Quando estiver pronto, pressione o botão Instalar."
+"Não podemos oferecer estes arquivos com Garrafas, pois estas têm ciclos de "
+"lançamento diferentes.\n"
+"\n"
+"Quando você estiver pronto, pressione o botão Instalar."
 
 #: src/ui/onboard.ui:336
 msgid "Runners"
@@ -961,7 +964,7 @@ msgstr "Problemas com Bottles"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "Descarregar e instalar este corredor"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
