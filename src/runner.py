@@ -1124,6 +1124,8 @@ class BottlesRunner:
 
         if arguments: command = "%s %s" % (command, arguments)
 
+        print(command)
+
         RunAsync(self.run_command, None, configuration, command)
 
     def run_wineboot(self, configuration:BottleConfig) -> None:

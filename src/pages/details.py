@@ -23,6 +23,42 @@ import webbrowser
 from .dialog import BottlesDialog, BottlesMessageDialog
 from ..utils import UtilsFiles
 
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-run-args.ui')
+class BottlesRunArgs(Handy.Window):
+    __gtype_name__ = 'BottlesRunArgs'
+
+    '''Get widgets from template'''
+    entry_args = Gtk.Template.Child()
+    btn_cancel = Gtk.Template.Child()
+    btn_run = Gtk.Template.Child()
+
+    def __init__(self, parent, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(parent.window)
+
+        '''Init template'''
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
+
+        '''Common variables'''
+        self.parent = parent
+
+        '''Signal connections'''
+        self.btn_cancel.connect('pressed', self.close_window)
+        self.btn_run.connect('pressed', self.run_executable)
+
+    '''Destroy the window'''
+    def close_window(self, widget=None):
+        self.destroy()
+
+    '''Run executable with args'''
+    def run_executable(self, widget):
+        args = self.entry_args.get_text()
+        self.parent.run_executable(False, args)
+        self.close_window()
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-environment-variables.ui')
 class BottlesEnvironmentVariables(Handy.Window):
     __gtype_name__ = 'BottlesEnvironmentVariables'
@@ -495,6 +531,7 @@ class BottlesDetails(Gtk.Stack):
     btn_winecfg = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
+    btn_run_args = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_cmd = Gtk.Template.Child()
     btn_taskmanager = Gtk.Template.Child()
@@ -557,6 +594,7 @@ class BottlesDetails(Gtk.Stack):
         self.btn_winecfg.connect('pressed', self.run_winecfg)
         self.btn_debug.connect('pressed', self.run_debug)
         self.btn_execute.connect('pressed', self.run_executable)
+        self.btn_run_args.connect('pressed', self.run_executable_with_args)
         self.btn_browse.connect('pressed', self.run_browse)
         self.btn_cmd.connect('pressed', self.run_cmd)
         self.btn_taskmanager.connect('pressed', self.run_taskmanager)
@@ -571,6 +609,7 @@ class BottlesDetails(Gtk.Stack):
         self.btn_winecfg.connect('activate', self.run_winecfg)
         self.btn_debug.connect('activate', self.run_debug)
         self.btn_execute.connect('activate', self.run_executable)
+        self.btn_run_args.connect('activate', self.run_executable_with_args)
         self.btn_browse.connect('activate', self.run_browse)
         self.btn_cmd.connect('activate', self.run_cmd)
         self.btn_taskmanager.connect('activate', self.run_taskmanager)
@@ -936,8 +975,12 @@ class BottlesDetails(Gtk.Stack):
             scope="Parameters")
         self.configuration = new_configuration
 
+    def run_executable_with_args(self, widget):
+        new_window = BottlesRunArgs(self)
+        new_window.present()
+
     '''Display file dialog for executable selection'''
-    def run_executable(self, widget):
+    def run_executable(self, widget, args=False):
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a Windows executable file"),
             self.window,
@@ -964,8 +1007,15 @@ class BottlesDetails(Gtk.Stack):
         response = file_dialog.run()
 
         if response == -3:
-            self.runner.run_executable(self.configuration,
-                                       file_dialog.get_filename())
+            if args:
+                self.runner.run_executable(
+                    configuration=self.configuration,
+                    file_path=file_dialog.get_filename(),
+                    arguments=args)
+            else:
+                self.runner.run_executable(
+                    configuration=self.configuration,
+                    file_path=file_dialog.get_filename())
 
         file_dialog.destroy()
 
