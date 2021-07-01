@@ -1,6 +1,20 @@
-com.usebottles.bottles (3.1.15) precise; urgency=low
+com.usebottles.bottles (2021.7.1-treviso) precise; urgency=low
 
-  * Fixed a bug that caused each bottle to be broken even if only one was broken
-  * Czech translations thanks to @panmourovaty
+  * New versioning based on CalVer model
+  * Create bottles using the wine runner provided by the distribution
+  * Enable gamemode for your bottles if installed in the system
+  * Run .exe/.msi/.bat files with custom arguments
+  * Fixed the "bad interpreter" error on debian package
+  * Optionally close Bottles after starting an executable from the file manager
+  * Added tooltips to understand what some elements of the UI do
+  * Using portal for file picker
+  * Esperanto translations thanks to @phlostically
+  * Spanish translations thanks to @fitojb
+  * Croatin translations thanks to @milotype
+  * Portuguese translations thanks to @laralem
+  * French translations thanks to @julroy67
+  * Swedish translations thanks to @eson57
+  * Ukrain thanslations thanks to @marchellodev
+
 
  -- Mirko Brombin <send@mirko.pm>  Sat, 19 Jun 2021 08:06:00 +0000

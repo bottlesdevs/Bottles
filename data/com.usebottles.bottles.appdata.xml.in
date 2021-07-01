@@ -93,19 +93,27 @@
     <url type="bugtracker">https://github.com/bottlesdevs/Bottles/issues</url>
     <url type="help">https://docs.usebottles.com</url>
     <releases>
-        <release version="3.1.15" date="2021-06-19">
+        <release version="2021.07.01-treviso" date="2021-07-01">
             <description>
               <p>Updates:</p>
               <ul>
-                <li>Fixed a bug that caused each bottle to be broken even if only one was broken</li>
-                <li>Czech translations thanks to @panmourovaty</li>
+                <li>New versioning based on CalVer model</li>
+                <li>Create bottles using the wine runner provided by the distribution</li>
+                <li>Enable gamemode for your bottles if installed in the system</li>
+                <li>Run .exe/.msi/.bat files with custom arguments</li>
+                <li>Fixed the "bad interpreter" error on debian package</li>
+                <li>Optionally close Bottles after starting an executable from the file manager</li>
+                <li>Added tooltips to understand what some elements of the UI do</li>
+                <li>Using portal for file picker</li>
+                <li>Esperanto translations thanks to @phlostically</li>
+                <li>Spanish translations thanks to @fitojb</li>
+                <li>Croatin translations thanks to @milotype</li>
+                <li>Portuguese translations thanks to @laralem</li>
+                <li>French translations thanks to @julroy67</li>
+                <li>Swedish translations thanks to @eson57</li>
+                <li>Ukrain thanslations thanks to @marchellodev</li>
               </ul>
             </description>
         </release>
-        <release version="3.1.14" date="2021-06-11"></release>
-        <release version="3.1.13" date="2021-06-09"></release>
-        <release version="3.1.12" date="2021-05-25"></release>
-        <release version="3.1.11" date="2021-05-23"></release>
-        <release version="3.1.10" date="2021-05-22"></release>
     </releases>
 </component>
