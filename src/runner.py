@@ -1193,6 +1193,12 @@ class BottlesRunner:
             else:
                 runner = "%s/files" % runner
 
+        '''If runner is system'''
+        if runner.startswith("sys-"):
+            runner = "wine"
+        else:
+            runner = "%s/%s/bin/wine64" % (self.runners_path, runner)
+
         if not configuration.get("Custom_Path"):
             path = "%s/%s" % (self.bottles_path, path)
 
@@ -1255,7 +1261,7 @@ class BottlesRunner:
         command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
             path = path,
             env = environment_vars,
-            runner = "%s/%s/bin/wine64" % (self.runners_path, runner),
+            runner = runner,
             command = command
         )
 
