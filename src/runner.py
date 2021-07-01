@@ -47,7 +47,7 @@ class BottlesRunner:
 
     '''Repositories URLs'''
     components_repository = "https://raw.githubusercontent.com/bottlesdevs/components/main/"
-    components_repository_index = "%s/testing.json" % components_repository
+    components_repository_index = "%s/index.json" % components_repository
 
     dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
     dependencies_repository_index = "%s/index.json" % dependencies_repository
@@ -465,6 +465,17 @@ class BottlesRunner:
     def check_runners(self, install_latest:bool=True, after=False) -> bool:
         runners = glob("%s/*/" % self.runners_path)
         self.runners_available = []
+
+        '''Check system wine'''
+        if shutil.which("wine") is not None:
+            version = subprocess.Popen(
+                "wine --version",
+                stdout=subprocess.PIPE,
+                shell=True).communicate()[0].decode("utf-8")
+            version = f'sys-{version.split(" ")[0]}'
+            self.runners_available.append(version)
+
+        '''Check Bottles runners'''
 
         for runner in runners:
             self.runners_available.append(runner.split("/")[-2])
