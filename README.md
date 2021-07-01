@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/bottlesdevs/Bottles/master/data/icons/hicolor/scalable/apps/com.usebottles.bottles.svg" width="64">
-  <h1 align="center">Bottles v3</h1>
+  <h1 align="center">Bottles</h1>
   <p align="center">Easily manage wineprefix using environments</p>
   <small>
     <a href="https://github.com/bottlesdevs/Bottles/issues/133">Read more</a> about the next big Bottles release!.
