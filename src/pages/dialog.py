@@ -15,7 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Handy
+import webbrowser
 
 class BottlesMessageDialog(Gtk.MessageDialog):
 
@@ -106,3 +107,39 @@ class BottlesAboutDialog(Gtk.AboutDialog):
             self.init_template()
         except TypeError:
             self.init_template("")
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-crash-report.ui')
+class BottlesCrashReport(Handy.Window):
+    __gtype_name__ = 'BottlesCrashReport'
+
+    '''Get widgets from template'''
+    btn_cancel = Gtk.Template.Child()
+    btn_send = Gtk.Template.Child()
+    label_output = Gtk.Template.Child()
+
+    def __init__(self, window, log, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(window)
+
+        '''Init template'''
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
+
+        '''Common variables'''
+        self.window = window
+
+        '''Signal connections'''
+        self.btn_cancel.connect('pressed', self.close_window)
+        self.btn_send.connect('pressed', self.open_github)
+
+        self.label_output.set_text = log
+
+    '''Destroy the window'''
+    def close_window(self, widget=None):
+        self.destroy()
+
+    '''Run executable with args'''
+    def open_github(self, widget):
+        webbrowser.open("https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin&labels=bug&template=bug_report.md&title=%5BBUG%5D+")

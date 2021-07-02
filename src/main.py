@@ -154,7 +154,6 @@ class Application(Gtk.Application):
 
 '''Run Bottles application'''
 
-
 def main(version):
     try:
         app = Application()

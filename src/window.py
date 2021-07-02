@@ -34,7 +34,7 @@ from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
 from .pages.taskmanager import BottlesTaskManager
 from .pages.importer import BottlesImporter
-from .pages.dialog import BottlesAboutDialog
+from .pages.dialog import BottlesAboutDialog, BottlesCrashReport
 
 from .utils import UtilsConnection, UtilsLogger, RunAsync
 
