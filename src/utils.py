@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
+import json
 import logging
 import socket
 import subprocess
@@ -24,6 +25,7 @@ import threading
 import traceback
 
 from datetime import datetime
+from pathlib import Path
 
 from gi.repository import GLib
 
@@ -180,11 +182,17 @@ class RunAsync(threading.Thread):
         try:
             result = self.task_func(*args, **kwargs)
         except Exception as exception:
-            logging.error(
-                f"Error while running async job: {self.task_func}\nException: {exception}")
+            logging.error(f"Error while running async job: {self.task_func}\nException: {exception}")
+
             error = exception
             _ex_type, _ex_value, trace = sys.exc_info()
             traceback.print_tb(trace)
+            traceback_info = '\n'.join(traceback.format_tb(trace))
+
+            log_path = f"{Path.home()}/.local/share/bottles/crash.log"
+            with open(log_path, "w") as crash_log:
+                crash_log.write(traceback_info)
+
 
         self.source_id = GLib.idle_add(self.callback, result, error)
         return self.source_id

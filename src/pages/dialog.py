@@ -127,14 +127,13 @@ class BottlesCrashReport(Handy.Window):
         except TypeError:
             self.init_template("")
 
-        '''Common variables'''
-        self.window = window
-
         '''Signal connections'''
         self.btn_cancel.connect('pressed', self.close_window)
         self.btn_send.connect('pressed', self.open_github)
 
-        self.label_output.set_text = log
+        if type(log) == list:
+            log = "\n".join(log)
+        self.label_output.set_text(log)
 
     '''Destroy the window'''
     def close_window(self, widget=None):

@@ -155,15 +155,5 @@ class Application(Gtk.Application):
 '''Run Bottles application'''
 
 def main(version):
-    try:
-        app = Application()
-        return app.run(sys.argv)
-    except Exception as e:
-        crash = ["Error on line {}".format(
-            sys.exc_info()[-1].tb_lineno), "\n", e]
-        log_path = "%s/.local/share/bottles/crash.log" % Path.home()
-
-        with open(log_path, "w") as crash_log:
-            for i in crash:
-                i = str(i)
-                crash_log.write(i)
+    app = Application()
+    return app.run(sys.argv)
