@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import gi
+import os
 import time
 import webbrowser
 
@@ -23,6 +24,7 @@ gi.require_version('Handy', '1')
 gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk, Gio, Notify, Handy
+from pathlib import Path
 
 from .params import *
 from .runner import BottlesRunner
@@ -196,6 +198,8 @@ class BottlesWindow(Handy.ApplicationWindow):
         if len(self.runner.runners_available) == 0:
             self.show_onboard_view()
 
+        self.check_crash_log()
+
     '''Toggle UI usability preventing user clicks'''
     def set_usable_ui(self, status):
         for widget in [self.btn_back,
@@ -271,6 +275,20 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     def show_runners_preferences_view(self, widget=False):
         self.show_preferences_view(widget, view=2)
+
+    def check_crash_log(self):
+        log_path = f"{Path.home()}/.local/share/bottles/crash.log"
+        crash_log = False
+
+        try:
+            with open(log_path, "r") as log_file:
+                crash_log = log_file.readlines()
+                os.remove(log_path)
+
+            if crash_log:
+                BottlesCrashReport(self, crash_log)
+        except FileNotFoundError:
+            pass
 
     '''Properly close Bottles'''
     @staticmethod
