@@ -124,25 +124,10 @@ class BottlesListEntry(Handy.ActionRow):
             file_dialog = Gtk.FileChooserNative.new(
                 _("Choose a Windows executable file"),
                 self.window,
-                Gtk.FileChooserAction.OPEN
+                Gtk.FileChooserAction.OPEN,
+                _("Run"),
+                _("Cancel")
             )
-
-            '''Create filters for allowed extensions'''
-            filter_exe = Gtk.FileFilter()
-            filter_exe.set_name(".exe")
-            filter_exe.add_pattern(UtilsFiles.use_insensitive_ext("*.exe"))
-
-            filter_msi = Gtk.FileFilter()
-            filter_msi.set_name(".msi")
-            filter_exe.add_pattern(UtilsFiles.use_insensitive_ext("*.msi"))
-
-            filter_bat = Gtk.FileFilter()
-            filter_bat.set_name(".bat")
-            filter_exe.add_pattern(UtilsFiles.use_insensitive_ext("*.bat"))
-
-            file_dialog.add_filter(filter_exe)
-            file_dialog.add_filter(filter_msi)
-            file_dialog.add_filter(filter_bat)
 
             response = file_dialog.run()
 
