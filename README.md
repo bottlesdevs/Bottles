@@ -102,6 +102,14 @@ the button below.
   <img width='240' alt='Get it from the Snap Store' src='https://snapcraft.io/static/images/badges/en/snap-store-black.svg'/>
 </a>
 
+### Flatpak
+Bottles can also be installed as a flatpak from the Flathub repository. Click
+the button below.
+
+<a href='https://flathub.org/apps/details/com.usebottles.Bottles'>
+  <img width='240' alt='Get it from the Snap Store' src='https://flathub.org/assets/badges/flathub-badge-en.svg'/>
+</a>
+
 ### Platform specific packages
 We also offer Bottles as platform-specific installation packages.
 
@@ -152,10 +160,6 @@ sudo ninja install
 sudo ninja uninstall
 ```
 
-
-### Flathub
-We have removed Bottles' official Flatpak, you can read more details [here](https://mirko.pm/blog/bottles-will-leave-flatpak/). 
-There is also an unofficial flatpak, maintained by third parties, you can find it in the table below.
 
 ### 🛠️ Snap (build)
 We also provide an initial Snap support.
