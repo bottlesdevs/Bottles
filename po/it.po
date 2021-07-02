@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-22 16:17+0200\n"
+"POT-Creation-Date: 2021-07-02 08:39+0200\n"
 "PO-Revision-Date: 2021-06-23 12:38+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:165 src/ui/window.ui:180
-#: src/window.py:126
+#: src/window.py:128
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -154,15 +154,72 @@ msgid "Updates:"
 msgstr "Aggiornamenti:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-msgid ""
-"Fixed a bug that caused each bottle to be broken even if only one was broken"
+msgid "New versioning based on CalVer model"
 msgstr ""
-"Corretto un bug che causava la rottura di ogni bottiglia anche se solo una "
-"era rotta"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-msgid "Czech translations thanks to @panmourovaty"
+msgid "Create bottles using the wine runner provided by the distribution"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:102
+msgid "Enable gamemode for your bottles if installed in the system"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:103
+msgid "Run .exe/.msi/.bat files with custom arguments"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:104
+msgid "Fixed the \"bad interpreter\" error on debian package"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:105
+msgid ""
+"Optionally close Bottles after starting an executable from the file manager"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:106
+msgid "Added tooltips to understand what some elements of the UI do"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:107
+msgid "Using portal for file picker"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:108
+#, fuzzy
+msgid "Esperanto translations thanks to @phlostically"
+msgstr "Traduzioni tedesche grazie a @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:109
+#, fuzzy
+msgid "Spanish translations thanks to @fitojb"
+msgstr "Traduzioni tedesche grazie a @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:110
+#, fuzzy
+msgid "Croatin translations thanks to @milotype"
+msgstr "Traduzioni tedesche grazie a @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:111
+#, fuzzy
+msgid "Portuguese translations thanks to @laralem"
+msgstr "Traduzioni portoghesi grazie a @SantosSi"
+
+#: data/com.usebottles.bottles.appdata.xml.in:112
+#, fuzzy
+msgid "French translations thanks to @julroy67"
 msgstr "Traduzioni in ceco grazie a @panmourovaty"
+
+#: data/com.usebottles.bottles.appdata.xml.in:113
+#, fuzzy
+msgid "Swedish translations thanks to @eson57"
+msgstr "Traduzioni tedesche grazie a @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:114
+#, fuzzy
+msgid "Ukrain thanslations thanks to @marchellodev"
+msgstr "Traduzioni tedesche grazie a @thericosanto"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -204,7 +261,7 @@ msgstr "Schermata di avvio"
 msgid "Choose which view should be loaded on application startup."
 msgstr "Scegli la schermata da mostrare all'avvio."
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:170
+#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:197
 msgid "Experiments"
 msgstr "Esperimenti"
 
@@ -232,6 +289,14 @@ msgstr "Esperimenti:installatori"
 msgid "Toggle experimental installers feature"
 msgstr "Abilita la funzionalità di installatori sperimentale"
 
+#: data/com.usebottles.bottles.gschema.xml:46
+msgid "Automatically close Bottles"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:47
+msgid "Close Bottles after starting executable from file manager"
+msgstr ""
+
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
 msgstr "© 2017-2021 - Sviluppatori Bottles"
@@ -240,21 +305,21 @@ msgstr "© 2017-2021 - Sviluppatori Bottles"
 msgid "Easily manage wineprefix using environments"
 msgstr "Gestisci con facilità i prefissi wine"
 
-#: src/ui/about.ui:96
+#: src/ui/about.ui:98
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Traduci</a>"
 
-#: src/ui/about.ui:109
+#: src/ui/about.ui:111
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Supporta</a>"
 
-#: src/ui/about.ui:122
+#: src/ui/about.ui:124
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Segnala bug</a>"
 
-#: src/ui/about.ui:135
+#: src/ui/about.ui:137
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
@@ -283,7 +348,7 @@ msgstr ""
 msgid "Configuration"
 msgstr "Configurazione"
 
-#: src/ui/details.ui:36 src/ui/importer.ui:36
+#: src/ui/details.ui:36 src/ui/details.ui:66 src/ui/importer.ui:36
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr ""
 "Questo è l'archivio completo della tua bottiglia, inclusi i file personali."
@@ -292,153 +357,178 @@ msgstr ""
 msgid "Full archive"
 msgstr "Archivio completo"
 
-#: src/ui/details.ui:64
+#: src/ui/details.ui:67
+msgid "Run with arguments"
+msgstr ""
+
+#: src/ui/details.ui:94
 msgid "Type a really short comment:"
 msgstr "Scrivi un breve commento:"
 
-#: src/ui/details.ui:81
+#: src/ui/details.ui:111
 msgid "Special characters are not allowed!"
 msgstr "I caratteri speciali non sono ammessi!"
 
-#: src/ui/details.ui:82
+#: src/ui/details.ui:112
 msgid "A really short comment"
 msgstr "Un commento corto"
 
-#: src/ui/details.ui:96
+#: src/ui/details.ui:126
 msgid "Save the bottle state."
 msgstr "Salva lo stato della bottiglia."
 
-#: src/ui/details.ui:159
+#: src/ui/details.ui:189
 msgid "Rename bottle"
 msgstr "Rinomina la bottiglia"
 
-#: src/ui/details.ui:184 src/ui/list-entry.ui:47
+#: src/ui/details.ui:215 src/ui/list-entry.ui:47
 msgid "Versioning enabled for this bottle"
 msgstr "Versionamento abilitato per questa bottiglia"
 
-#: src/ui/details.ui:193 src/ui/list-entry.ui:54
+#: src/ui/details.ui:224 src/ui/list-entry.ui:54
 msgid "Versioning is active in this bottle."
 msgstr "Il versionamento è attivo in questa bottiglia."
 
-#: src/ui/details.ui:214 src/ui/list-entry.ui:73
+#: src/ui/details.ui:245 src/ui/list-entry.ui:73
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:244
+#: src/ui/details.ui:296
 msgid "Bottle name"
 msgstr "Nome bottiglia"
 
-#: src/ui/details.ui:248 src/ui/new.ui:149
+#: src/ui/details.ui:300 src/ui/new.ui:149
 msgid "This field cannot contain special characters!"
 msgstr "Questo campo non può contenere caratteri speciali!"
 
-#: src/ui/details.ui:249
+#: src/ui/details.ui:301
 msgid "Type a name for your bottle"
 msgstr "Digita un nome per la tua bottiglia"
 
-#: src/ui/details.ui:268
+#: src/ui/details.ui:320
 msgid "Environment"
 msgstr "Ambiente"
 
-#: src/ui/details.ui:317
+#: src/ui/details.ui:369
 msgid "64 Bit"
 msgstr "64 Bit"
 
-#: src/ui/details.ui:336
+#: src/ui/details.ui:388
 msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
-#: src/ui/details.ui:387
-msgid "Run .exe"
+#: src/ui/details.ui:419
+#, fuzzy
+msgid "Destroy this bottle"
+msgstr "Distruggi la bottiglia"
+
+#: src/ui/details.ui:440
+#, fuzzy
+msgid "Run executable"
 msgstr "Esegui .exe"
 
-#: src/ui/details.ui:485 src/ui/details.ui:1568 src/ui/details.ui:1641
+#: src/ui/details.ui:477
+#, fuzzy
+msgid "Kill all wine processes"
+msgstr "Uccidi tutti i processi"
+
+#: src/ui/details.ui:498
+#, fuzzy
+msgid "Reboot Windows"
+msgstr "Nativo (Windows)"
+
+#: src/ui/details.ui:519
+#, fuzzy
+msgid "Shutdown Windows"
+msgstr "Spegni"
+
+#: src/ui/details.ui:558 src/ui/details.ui:1668 src/ui/details.ui:1741
 msgid "Programs"
 msgstr "Programmi"
 
-#: src/ui/details.ui:501
+#: src/ui/details.ui:574
 msgid "Utilities"
 msgstr "Utilità"
 
-#: src/ui/details.ui:506
+#: src/ui/details.ui:579
 msgid "Wine config"
 msgstr "Winecfg"
 
-#: src/ui/details.ui:508
+#: src/ui/details.ui:581
 msgid "Adjust internal settings."
 msgstr "Regola le impostazioni interne."
 
-#: src/ui/details.ui:545 src/ui/list-entry.ui:221
+#: src/ui/details.ui:618 src/ui/list-entry.ui:221
 msgid "Browse C:"
 msgstr "Sfoglia C:"
 
-#: src/ui/details.ui:547
+#: src/ui/details.ui:620
 msgid "Browse internal files."
 msgstr "Sfoglia i file interni."
 
-#: src/ui/details.ui:584
+#: src/ui/details.ui:657
 msgid "Command Line"
 msgstr "Riga di comando"
 
-#: src/ui/details.ui:586
+#: src/ui/details.ui:659
 msgid "Run commands inside the Bottle."
 msgstr "Esegui comandi all'interno della bottiglia."
 
-#: src/ui/details.ui:623
+#: src/ui/details.ui:696
 msgid "Registry Editor"
 msgstr "Editor del registro"
 
-#: src/ui/details.ui:625
+#: src/ui/details.ui:698
 msgid "Edit the internal registry."
 msgstr "Modifica il registro interno."
 
-#: src/ui/details.ui:662
+#: src/ui/details.ui:735
 msgid "Debug"
 msgstr "Debug"
 
-#: src/ui/details.ui:664
+#: src/ui/details.ui:737
 msgid "Debug wine processes."
 msgstr "Eseguire il debug dei processi wine."
 
-#: src/ui/details.ui:701
+#: src/ui/details.ui:774
 msgid "Task Manager"
 msgstr "Gestore Processi"
 
-#: src/ui/details.ui:703
+#: src/ui/details.ui:776
 msgid "Manage processes with the Wine task manager."
 msgstr "Gestisci i processi con il task manager di Wine."
 
-#: src/ui/details.ui:740
+#: src/ui/details.ui:813
 msgid "Uninstaller"
 msgstr "Disinstallatore"
 
-#: src/ui/details.ui:742
+#: src/ui/details.ui:815
 msgid "Uninstall programs using wine uninstaller"
 msgstr ""
 "Disinstallare i programmi utilizzando il programma di disinstallazione di "
 "wine"
 
-#: src/ui/details.ui:779
+#: src/ui/details.ui:852
 msgid "Control Panel"
 msgstr "Pannello di controllo"
 
-#: src/ui/details.ui:781
+#: src/ui/details.ui:854
 msgid "Access the internal wine control panel."
 msgstr "Accedi al pannello di controllo interno di wine."
 
-#: src/ui/details.ui:833
+#: src/ui/details.ui:906
 msgid "Bottle"
 msgstr "Bottiglia"
 
-#: src/ui/details.ui:861
+#: src/ui/details.ui:934
 msgid "Graphics"
 msgstr "Grafica"
 
-#: src/ui/details.ui:866
+#: src/ui/details.ui:939
 msgid "Use DXVK"
 msgstr "Usa DXVK"
 
-#: src/ui/details.ui:867 src/ui/details.ui:895
+#: src/ui/details.ui:940 src/ui/details.ui:995
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -446,133 +536,141 @@ msgstr ""
 "Migliora le performance nei giochi e nelle applicazioni 3D.\n"
 "Disabilita se riscontri glitch grafici."
 
-#: src/ui/details.ui:894
+#: src/ui/details.ui:967
+msgid "Use Gamemode"
+msgstr ""
+
+#: src/ui/details.ui:968
+msgid "Optimise gaming performance on demand"
+msgstr ""
+
+#: src/ui/details.ui:994
 msgid "Enable ACO shader compiler"
 msgstr "Abilita compilatore di shader ACO"
 
-#: src/ui/details.ui:922
+#: src/ui/details.ui:1022
 msgid "Discrete GPU"
 msgstr "Usa la GPU dedicata"
 
-#: src/ui/details.ui:923
+#: src/ui/details.ui:1023
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Migliora le performance al costo di un maggior utilizzo energetico."
 
-#: src/ui/details.ui:949
+#: src/ui/details.ui:1049
 msgid "Use a virtual desktop"
 msgstr "Usa un Desktop virtuale"
 
-#: src/ui/details.ui:950
+#: src/ui/details.ui:1050
 msgid "Use the Wine virtual desktop."
 msgstr "Usa il Desktop virtuale di Wine."
 
-#: src/ui/details.ui:1033 src/ui/details.ui:1046
+#: src/ui/details.ui:1133 src/ui/details.ui:1146
 msgid "System"
 msgstr "Sistema"
 
-#: src/ui/details.ui:1038
+#: src/ui/details.ui:1138
 msgid "Synchronization"
 msgstr "Sincronizzazione"
 
-#: src/ui/details.ui:1039
+#: src/ui/details.ui:1139
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr ""
 "Abilita la sincronizzazione per aumentare le prestazioni con multi-core."
 
-#: src/ui/details.ui:1060
+#: src/ui/details.ui:1160
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1074
+#: src/ui/details.ui:1174
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1097 src/ui/new.ui:261
+#: src/ui/details.ui:1197 src/ui/new.ui:261
 msgid "Runner"
 msgstr "Runner"
 
-#: src/ui/details.ui:1140 src/ui/new.ui:302
+#: src/ui/details.ui:1240 src/ui/new.ui:302
 msgid "Manage runners"
 msgstr "Gestisci runner"
 
-#: src/ui/details.ui:1172 src/ui/new.ui:334
+#: src/ui/details.ui:1272 src/ui/new.ui:334
 msgid "DXVK Version"
 msgstr "Versione DXVK"
 
-#: src/ui/details.ui:1215 src/ui/new.ui:375
+#: src/ui/details.ui:1315 src/ui/new.ui:375
 msgid "Manage DXVK versions"
 msgstr "Gestisci le versioni DXVK"
 
-#: src/ui/details.ui:1248 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1348 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "Sostituzioni DLL"
 
-#: src/ui/details.ui:1297
+#: src/ui/details.ui:1397
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details.ui:1302
+#: src/ui/details.ui:1402
 msgid "Reduce PulseAudio latency"
 msgstr "Riduci la latenza di PulseAudio"
 
-#: src/ui/details.ui:1303
+#: src/ui/details.ui:1403
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Imposta la latenza di PulseAudio su 60 millisecondi per aumentare la qualità "
 "del suono"
 
-#: src/ui/details.ui:1340
+#: src/ui/details.ui:1440
 msgid "Developers & Debug"
 msgstr "Sviluppatori & Debug"
 
-#: src/ui/details.ui:1345
+#: src/ui/details.ui:1445
 msgid "Environment variables"
 msgstr "Ambiente"
 
-#: src/ui/details.ui:1383
+#: src/ui/details.ui:1483
 msgid "DXVK HUD"
 msgstr "HUD DXVK"
 
-#: src/ui/details.ui:1384
+#: src/ui/details.ui:1484
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Abilita l'overlay DXVK mostrando FPS e altri dettagli nelle applicazioni D3D."
 
-#: src/ui/details.ui:1410
+#: src/ui/details.ui:1510
 msgid "Enable wine fixme logs"
 msgstr "Abilita i log fixme di wine"
 
-#: src/ui/details.ui:1411
+#: src/ui/details.ui:1511
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Mostra i log per le funzioni non implementate in Wine."
 
-#: src/ui/details.ui:1452 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/ui/details.ui:1552 src/ui/preferences.ui:8 src/ui/window.ui:75
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: src/ui/details.ui:1486 src/ui/details.ui:1534
+#: src/ui/details.ui:1586 src/ui/details.ui:1634
 msgid "Dependencies"
 msgstr "Dipendenze"
 
-#: src/ui/details.ui:1587
+#: src/ui/details.ui:1687
 msgid "Search for installed programs"
 msgstr "Cerca programmi installati"
 
-#: src/ui/details.ui:1675 src/ui/preferences.ui:201 src/ui/window.ui:151
+#: src/ui/details.ui:1775 src/ui/preferences.ui:228 src/ui/window.ui:151
 msgid "Installers"
 msgstr "Installatori"
 
-#: src/ui/details.ui:1694 src/ui/importer.ui:95
+#: src/ui/details.ui:1794 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "Ricarica"
 
-#: src/ui/details.ui:1780 src/ui/preferences.ui:175 src/ui/window.ui:138
+#: src/ui/details.ui:1880 src/ui/preferences.ui:202 src/ui/window.ui:138
 msgid "Versioning"
 msgstr "Versionamento"
 
-#: src/ui/details.ui:1800
+#: src/ui/details.ui:1900
 msgid "Create new state"
 msgstr "Crea nuovo stato"
 
@@ -582,6 +680,7 @@ msgstr "Il messaggio va qui."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/pages/details.py:1004 src/pages/list.py:129
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -679,7 +778,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "Disinstallatore"
 
-#: src/ui/importer.ui:76 src/runner.py:1387 src/window.py:128
+#: src/ui/importer.ui:76 src/runner.py:1390 src/window.py:130
 msgid "Importer"
 msgstr "Importatore"
 
@@ -904,11 +1003,11 @@ msgstr "Pagina 1"
 msgid "Apperance"
 msgstr "Apparenza"
 
-#: src/ui/preferences.ui:27 src/ui/preferences.ui:234
+#: src/ui/preferences.ui:27 src/ui/preferences.ui:261
 msgid "Dark Mode"
 msgstr "Tema scuro"
 
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:235
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:262
 msgid "Whether Bottles should use the Dark theme variant."
 msgstr "Scegli se utilizzare la variante scura del tema."
 
@@ -928,19 +1027,27 @@ msgstr "File temporanei"
 msgid "Clean temp files when Bottles launches?"
 msgstr "Devo pulire i file temporanei all'avvio di Bottles?"
 
-#: src/ui/preferences.ui:123
+#: src/ui/preferences.ui:118
+msgid "Close Bottles after starting a program"
+msgstr ""
+
+#: src/ui/preferences.ui:119
+msgid "Close Bottles after starting a program from the file manager"
+msgstr ""
+
+#: src/ui/preferences.ui:150
 msgid "Wine Runners"
 msgstr "Wine Runners"
 
-#: src/ui/preferences.ui:128
+#: src/ui/preferences.ui:155
 msgid "Pre-release"
 msgstr "Rilasci anticipati"
 
-#: src/ui/preferences.ui:129
+#: src/ui/preferences.ui:156
 msgid "Whether the above list should display unstable versions."
 msgstr "Se l'elenco precedente deve visualizzare versioni instabili."
 
-#: src/ui/preferences.ui:160
+#: src/ui/preferences.ui:187
 msgid "DXVK Versions"
 msgstr "Versioni DXVK"
 
@@ -984,7 +1091,7 @@ msgstr "Questi sono i processi wine / wineserver in esecuzione sul tuo PC."
 msgid "Check for running processes."
 msgstr "Controlla i processi in esecuzione."
 
-#: src/ui/window.ui:49 src/window.py:127
+#: src/ui/window.ui:49 src/window.py:129
 msgid "Task manager"
 msgstr "Gestore processi"
 
@@ -1038,458 +1145,154 @@ msgstr "Richiesta [Aiuto] ricevuta."
 msgid "[Refresh] request received."
 msgstr "Richiesta [Ricarica] ricevuta."
 
-#: src/runner.py:179
-msgid "Temp path cleaned successfully!"
-msgstr "Percorso temporaneo pulito con successo!"
-
-#: src/runner.py:181
-msgid "Failed to clear temp path!"
-msgstr "Impossibile cancellare il percorso temporaneo!"
-
-#: src/runner.py:196
-msgid "Runners path doens't exist, creating now."
-msgstr "Il percorso dei Runners non esiste, la creo adesso."
-
-#: src/runner.py:200
-msgid "Bottles path doens't exist, creating now."
-msgstr "Il percorso di Bottles non esiste, lo creo adesso."
-
-#: src/runner.py:204
-msgid "Dxvk path doens't exist, creating now."
-msgstr "Il percorso per DXVK non esiste, lo creo adesso."
-
-#: src/runner.py:208
-msgid "Temp path doens't exist, creating now."
-msgstr "Il percorso Temp non esiste, lo creo adesso."
-
-#: src/runner.py:223
-msgid "Extraction failed! Archive ends earlier than expected."
-msgstr "Estrazione fallita! L'archivio termina prima del previsto."
-
-#: src/runner.py:256
-#, python-brace-format
-msgid "File [{0}] already exists in temp, skipping."
-msgstr "Il file [{0}] esiste già nella temp, lo salto."
-
-#: src/runner.py:272
-#, python-brace-format
-msgid "Renaming [{0}] to [{1}]."
-msgstr "Rinomino [{0}] in [{1}]."
-
-#: src/runner.py:286
-#, python-brace-format
-msgid "Downloaded file [{0}] looks corrupted."
-msgstr "Il file scaricato [{0}] sembra corrotto."
-
-#: src/runner.py:288
-#, python-brace-format
-msgid "Source checksum: [{0}] downloaded: [{1}]"
-msgstr "La checksum della sorgente: [{0}], la checksum scaricata: [{1}]"
-
-#: src/runner.py:292
+#: src/runner.py:279
 #, python-brace-format
 msgid "Downloaded file {0} looks corrupted. Try again."
 msgstr "Il file scaricato {0} sembra corrotto. Riprova."
 
-#: src/runner.py:312 src/runner.py:349 src/runner.py:373
+#: src/runner.py:299 src/runner.py:336 src/runner.py:360
 msgid "Download manager"
 msgstr "Gestore scaricamenti"
 
-#: src/runner.py:313
+#: src/runner.py:300
 #, python-brace-format
 msgid "Installing {0} runner …"
 msgstr "Installando il runner {0} …"
 
-#: src/runner.py:316
-#, python-brace-format
-msgid "Installing component: [{0}]."
-msgstr "Installando componente: [{0}]."
-
-#: src/runner.py:350
+#: src/runner.py:337
 #, python-brace-format
 msgid "Component {0} successfully installed!"
 msgstr "Componentge {0} installato con successo!"
 
-#: src/runner.py:374
+#: src/runner.py:361
 #, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
 msgstr "Installazione di {0} dipendenza nella bottiglia {1} …"
-
-#: src/runner.py:381
-#, python-brace-format
-msgid "Installing dependency: [{0}] in bottle: [{1}]."
-msgstr "Installazione della dipendenza: [{0}] nella bottiglia: [{1}]."
-
-#: src/runner.py:396
-#, python-brace-format
-msgid "Removing [{0}] from system32 in bottle: [{1}]"
-msgstr "Rimozione di [{0}] da system32 nella bottiglia: [{1}]"
-
-#: src/runner.py:402
-#, python-brace-format
-msgid "[{0}] not found in bottle: [{1}], failed removing from system32."
-msgstr ""
-"[{0}] non trovato nella bottiglia: [{1}], rimozione non riuscita da system32."
-
-#: src/runner.py:451
-#, python-brace-format
-msgid "Removing dependency: [{0}] from bottle: [{1}] configuration."
-msgstr ""
-"Rimozione della dipendenza: [{0}] dalla bottiglia: configurazione [{1}]."
-
-#: src/runner.py:481
-#, python-brace-format
-msgid "Runners found: [{0}]"
-msgstr "Runners trovati: [{0}]"
-
-#: src/runner.py:490
-msgid "No runners found."
-msgstr "Nessun runner trovato."
-
-#: src/runner.py:522
-#, python-brace-format
-msgid "Dxvk found: [{0}]"
-msgstr "DXVK trovati: [{0}]"
-
-#: src/runner.py:526
-msgid "No dxvk found."
-msgstr "Nessun DXVK trovato."
-
-#: src/runner.py:580
-#, python-brace-format
-msgid "Cannot find executable for [{0}]."
-msgstr "Impossibile trovare l'eseguibile per [{0}]."
-
-#: src/runner.py:714
-#, python-brace-format
-msgid "Key: [{0}] not in bottle: [{1}] configuration, updating."
-msgstr "Chiave: [{0}] non in bottiglia: [{1}] configurazione, aggiornamento."
-
-#: src/runner.py:723
-#, python-brace-format
-msgid "Key: [{0}] not in bottle: [{1}] configuration Parameters, updating."
-msgstr ""
-"Chiave: [{0}] non in bottiglia: [{1}] parametri di configurazione, "
-"aggiornamento."
-
-#: src/runner.py:740
-#, python-format
-msgid "Bottles found: %s"
-msgstr "Bottiglie trovate: %s"
-
-#: src/runner.py:751
-#, python-brace-format
-msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
-msgstr "Chiave di impostazione: da [{0}] a [{1}] per la bottiglia: [{2}] …"
-
-#: src/runner.py:779
-msgid "Creating the wineprefix …"
-msgstr "Creazione del wineprefix …"
 
 #: src/runner.py:787
 msgid "Runner and/or dxvk not found, installing latest version …"
 msgstr "Runner e/o dxvk non trovati, installazione dell'ultima versione …"
 
-#: src/runner.py:820
+#: src/runner.py:826
 msgid "The wine configuration is being updated …"
 msgstr "La configurazione di wine è in fase di aggiornamento …"
 
-#: src/runner.py:826
+#: src/runner.py:832
 msgid "Wine configuration updated!"
 msgstr "Configurazione Wine aggiornata!"
 
-#: src/runner.py:830 src/runner.py:831
-msgid "Generating Bottle configuration file …"
-msgstr "Generazione del file di configurazione della bottiglia …"
-
-#: src/runner.py:849
-#, python-brace-format
-msgid "Applying environment: [{0}] …"
-msgstr "Applicazione dell'ambiente: [{0}]…"
-
-#: src/runner.py:850
+#: src/runner.py:855
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Applicazione dell'ambiente: {0} …"
 
-#: src/runner.py:869 src/runner.py:870
+#: src/runner.py:874
 msgid "Installing dxvk …"
 msgstr "Installazione di dxvk …"
 
-#: src/runner.py:877 src/runner.py:878
+#: src/runner.py:882
 msgid "Creating versioning state 0 …"
 msgstr "Creazione dello stato di controllo delle versioni 0 …"
 
-#: src/runner.py:882
-#, python-brace-format
-msgid "Bottle: [{0}] successfully created!"
-msgstr "Bottiglia: [{0}] creata con successo!"
-
-#: src/runner.py:884
+#: src/runner.py:888
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "La tua nuova bottiglia: {0} è ora pronta!"
 
-#: src/runner.py:955
-msgid "Deleting a bottle …"
-msgstr "Eliminazione di una bottiglia …"
-
-#: src/runner.py:971
-#, python-brace-format
-msgid "Successfully deleted bottle in path: [{0}]"
-msgstr "Bottiglia eliminata correttamente nel percorso: [{0}]"
-
-#: src/runner.py:975
-msgid "Empty path found, failing to avoid disasters."
-msgstr "Percorso vuoto trovato, non riuscendo a evitare disastri."
-
-#: src/runner.py:983
-#, python-brace-format
-msgid "Trying to repair the bottle: [{0}] …"
-msgstr "Tentativo di riparare la bottiglia: [{0}] …"
-
-#: src/runner.py:1038
-#, python-brace-format
-msgid ""
-"Adding Key: [{0}] with Value: [{1}] and Data: [{2}] in register bottle: {3}"
-msgstr ""
-"Aggiunta chiave: [{0}] con valore: [{1}] e dati: [{2}] nella bottiglia di "
-"registro: {3}"
-
-#: src/runner.py:1047
-#, python-brace-format
-msgid "Removing Value: [{0}] for Key: [{1}] in register bottle: {2}"
-msgstr ""
-"Rimozione del valore: [{0}] per la chiave: [{1}] nella bottiglia del "
-"registro: {2}"
-
-#: src/runner.py:1059
-#, python-brace-format
-msgid "Installing dxvk for bottle: [{0}]."
-msgstr "Installazione di dxvk per la bottiglia: [{0}]."
-
-#: src/runner.py:1079
-#, python-brace-format
-msgid "Removing dxvk for bottle: [{0}]."
-msgstr "Rimozione di dxvk per la bottiglia: [{0}]."
-
-#: src/runner.py:1116
-msgid "Running an executable on the wineprefix …"
-msgstr "Esecuzione di un eseguibile su wineprefix …"
-
-#: src/runner.py:1130
-msgid "Running wineboot on the wineprefix …"
-msgstr "Esecuzione di wineboot su wineprefix …"
-
-#: src/runner.py:1134
-msgid "Running winecfg on the wineprefix …"
-msgstr "Esecuzione di winecfg su wineprefix …"
-
-#: src/runner.py:1138
-msgid "Running winetricks on the wineprefix …"
-msgstr "Esecuzione di winetricks su wineprefix …"
-
-#: src/runner.py:1142
-msgid "Running a debug console on the wineprefix …"
-msgstr "Esecuzione di una console di debug su wineprefix …"
-
-#: src/runner.py:1146
-msgid "Running a CMD on the wineprefix …"
-msgstr "Esecuzione di un CMD sul wineprefix …"
-
-#: src/runner.py:1150
-msgid "Running a Task Manager on the wineprefix …"
-msgstr "Esecuzione di un Task Manager su wineprefix …"
-
-#: src/runner.py:1154
-msgid "Running a Control Panel on the wineprefix …"
-msgstr "Esecuzione di un pannello di controllo su wineprefix …"
-
-#: src/runner.py:1158
-msgid "Running an Uninstaller on the wineprefix …"
-msgstr "Esecuzione di un programma di disinstallazione su wineprefix …"
-
-#: src/runner.py:1162
-msgid "Running a Regedit on the wineprefix …"
-msgstr "Esecuzione di un Regedit sul wineprefix …"
-
-#: src/runner.py:1256
-#, python-brace-format
-msgid "Sending Status: [{0}] to the wineprefix …"
-msgstr "Invio stato: [{0}] al wineprefix …"
-
-#: src/runner.py:1272
+#: src/runner.py:1277
 #, python-brace-format
 msgid "{0} completed for {1}."
 msgstr "{0} completato per {1}."
 
-#: src/runner.py:1277
-msgid "Opening the file manager in the path …"
-msgstr "Apertura del file manager nel percorso …"
-
-#: src/runner.py:1341
-#, python-brace-format
-msgid "Importing wineprefix [{0}] in a new bottle …"
-msgstr "Importazione wineprefix [{0}] in una nuova bottiglia …"
-
-#: src/runner.py:1355
-#, python-brace-format
-msgid "Error creating the bottle path for wineprefix [{0}]. Aborting."
-msgstr ""
-"Errore durante la creazione del percorso della bottiglia per wineprefix "
-"[{0}]. Interruzione."
-
-#: src/runner.py:1360
-msgid "Creating lock file in source path …"
-msgstr "Creazione del file di blocco nel percorso di origine …"
-
-#: src/runner.py:1388
+#: src/runner.py:1391
 #, python-brace-format
 msgid "Wineprefix {0} successfully imported!"
 msgstr "Wineprefix {0} importato con successo!"
 
-#: src/runner.py:1393
-#, python-brace-format
-msgid "Wineprefix: [{0}] successfully imported!"
-msgstr "Wineprefix: [{0}] importato con successo!"
-
-#: src/runner.py:1611
-#, python-brace-format
-msgid "Restoring to state: [{0}]"
-msgstr "Ripristino allo stato: [{0}]"
-
-#: src/runner.py:1631
-#, python-brace-format
-msgid "[{0}] files to remove."
-msgstr "[{0}] file da rimuovere."
-
-#: src/runner.py:1632
-#, python-brace-format
-msgid "[{0}] files to replace."
-msgstr "[{0}] file da sostituire."
-
-#: src/runner.py:1639
-#, python-brace-format
-msgid "[{0}] files to add."
-msgstr "[{0}] file da aggiungere."
-
-#: src/runner.py:1706
-#, python-brace-format
-msgid "Backuping configuration: [{0}] in [{1}]"
-msgstr "Configurazione di backup: [{0}] in [{1}]"
-
-#: src/runner.py:1720
-#, python-brace-format
-msgid "Backuping bottle: [{0}] in [{1}]"
-msgstr "Bottiglia di backup: [{0}] in [{1}]"
-
-#: src/runner.py:1725
+#: src/runner.py:1722
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Backup {0}"
 
-#: src/runner.py:1744
-#, python-brace-format
-msgid "Backup saved in path: {0}."
-msgstr "Backup salvato nel percorso: {0}."
-
-#: src/runner.py:1749
+#: src/runner.py:1746
 #, python-brace-format
 msgid "Your backup for {0} is ready!"
 msgstr "Il tuo backup per {0} è pronto!"
 
-#: src/runner.py:1754
-#, python-brace-format
-msgid "Failed to save backup in path: {0}."
-msgstr "Impossibile salvare il backup nel percorso: {0}."
-
-#: src/runner.py:1759
+#: src/runner.py:1756
 #, python-brace-format
 msgid "Failed to create backup for {0}!"
 msgstr "Impossibile creare il backup per {0}!"
 
-#: src/runner.py:1785
+#: src/runner.py:1782
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importazione del backup: {0}"
 
-#: src/runner.py:1799
-#, python-brace-format
-msgid "Backup: [{0}] imported successfully."
-msgstr "Backup: [{0}] importato correttamente."
-
-#: src/runner.py:1807
+#: src/runner.py:1803
 #, python-brace-format
 msgid "Your backup {0} was imported successfully.!"
 msgstr "Il tuo backup {0} è stato importato correttamente.!"
 
-#: src/runner.py:1811
-#, python-brace-format
-msgid "Failed importing backup: [{0}]"
-msgstr "Importazione del backup non riuscita: [{0}]"
-
-#: src/runner.py:1817
+#: src/runner.py:1812
 #, python-brace-format
 msgid "Failed importing backup {0}!"
 msgstr "Importazione del backup {0} non riuscita!"
-
-#: src/utils.py:44
-msgid "Connection status: online …"
-msgstr "Stato della connessione: online …"
-
-#: src/utils.py:52
-msgid "Connection status: offline …"
-msgstr "Stato della connessione: offline …"
 
 #: src/utils.py:57
 msgid "You are offline, unable to download."
 msgstr "Sei offline, non puoi scaricare."
 
-#: src/window.py:125
+#: src/window.py:127
 msgid "Bottle details"
 msgstr "Dettagli Bottiglia"
 
-#: src/window.py:166
+#: src/window.py:168
 msgid "Bottles Started!"
 msgstr "Bottles Avviato!"
 
-#: src/pages/details.py:264 src/pages/details.py:463
+#: src/pages/details.py:300 src/pages/details.py:499
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifesto per {0}"
 
-#: src/pages/details.py:265 src/pages/details.py:464
+#: src/pages/details.py:301 src/pages/details.py:500
 #, python-brace-format
 msgid "This is the manifest for {0}."
 msgstr "Questo è il manifesto per {0}."
 
-#: src/pages/details.py:324
+#: src/pages/details.py:360
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indice per lo stato {0}"
 
-#: src/pages/details.py:325
+#: src/pages/details.py:361
 #, python-brace-format
 msgid "This is the index for {0}."
 msgstr "Questo è l'indice per {0}."
 
-#: src/pages/details.py:942 src/pages/list.py:125
+#: src/pages/details.py:1000 src/pages/list.py:125
 msgid "Choose a Windows executable file"
 msgstr "Scegli un file eseguibile Windows"
 
-#: src/pages/details.py:1029
+#: src/pages/details.py:1003 src/pages/list.py:128
+#, fuzzy
+msgid "Run"
+msgstr "Runner"
+
+#: src/pages/details.py:1079
 msgid "Select the location where to save the backup configuration"
 msgstr "Seleziona la posizione dove salvare il backup della configurazione"
 
-#: src/pages/details.py:1048
+#: src/pages/details.py:1098
 msgid "Select the location where to save the backup archive"
 msgstr "Seleziona la posizione dove salvare l'archivio backup"
 
-#: src/pages/details.py:1068 src/pages/list.py:190
+#: src/pages/details.py:1118 src/pages/list.py:177
 msgid "Confirm deletion"
 msgstr "Conferma eliminazione"
 
-#: src/pages/details.py:1069 src/pages/list.py:191
+#: src/pages/details.py:1119 src/pages/list.py:178
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Sei sicuro di voler rimuovere questa Bottiglia e tutti i suoi file?"
 
@@ -1510,11 +1313,11 @@ msgstr "Scegli un archivio di backup"
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argomenti trovati per l'eseguibile: [{executable}]."
 
-#: src/pages/list.py:168
+#: src/pages/list.py:155
 msgid "Confirm upgrade"
 msgstr "Conferma aggiornamento"
 
-#: src/pages/list.py:169
+#: src/pages/list.py:156
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "Questo cambierà il runner da {0} a {1}."
@@ -1548,6 +1351,260 @@ msgstr "Un ambiente pulito per i tuoi esperimenti."
 msgid "A bottle named “%s” was created successfully"
 msgstr "Una bottiglia denominata \"%s\" è stata creata correttamente"
 
+#~ msgid ""
+#~ "Fixed a bug that caused each bottle to be broken even if only one was "
+#~ "broken"
+#~ msgstr ""
+#~ "Corretto un bug che causava la rottura di ogni bottiglia anche se solo "
+#~ "una era rotta"
+
+#~ msgid "Temp path cleaned successfully!"
+#~ msgstr "Percorso temporaneo pulito con successo!"
+
+#~ msgid "Failed to clear temp path!"
+#~ msgstr "Impossibile cancellare il percorso temporaneo!"
+
+#~ msgid "Runners path doens't exist, creating now."
+#~ msgstr "Il percorso dei Runners non esiste, la creo adesso."
+
+#~ msgid "Bottles path doens't exist, creating now."
+#~ msgstr "Il percorso di Bottles non esiste, lo creo adesso."
+
+#~ msgid "Dxvk path doens't exist, creating now."
+#~ msgstr "Il percorso per DXVK non esiste, lo creo adesso."
+
+#~ msgid "Temp path doens't exist, creating now."
+#~ msgstr "Il percorso Temp non esiste, lo creo adesso."
+
+#~ msgid "Extraction failed! Archive ends earlier than expected."
+#~ msgstr "Estrazione fallita! L'archivio termina prima del previsto."
+
+#, python-brace-format
+#~ msgid "File [{0}] already exists in temp, skipping."
+#~ msgstr "Il file [{0}] esiste già nella temp, lo salto."
+
+#, python-brace-format
+#~ msgid "Renaming [{0}] to [{1}]."
+#~ msgstr "Rinomino [{0}] in [{1}]."
+
+#, python-brace-format
+#~ msgid "Downloaded file [{0}] looks corrupted."
+#~ msgstr "Il file scaricato [{0}] sembra corrotto."
+
+#, python-brace-format
+#~ msgid "Source checksum: [{0}] downloaded: [{1}]"
+#~ msgstr "La checksum della sorgente: [{0}], la checksum scaricata: [{1}]"
+
+#, python-brace-format
+#~ msgid "Installing component: [{0}]."
+#~ msgstr "Installando componente: [{0}]."
+
+#, python-brace-format
+#~ msgid "Installing dependency: [{0}] in bottle: [{1}]."
+#~ msgstr "Installazione della dipendenza: [{0}] nella bottiglia: [{1}]."
+
+#, python-brace-format
+#~ msgid "Removing [{0}] from system32 in bottle: [{1}]"
+#~ msgstr "Rimozione di [{0}] da system32 nella bottiglia: [{1}]"
+
+#, python-brace-format
+#~ msgid "[{0}] not found in bottle: [{1}], failed removing from system32."
+#~ msgstr ""
+#~ "[{0}] non trovato nella bottiglia: [{1}], rimozione non riuscita da "
+#~ "system32."
+
+#, python-brace-format
+#~ msgid "Removing dependency: [{0}] from bottle: [{1}] configuration."
+#~ msgstr ""
+#~ "Rimozione della dipendenza: [{0}] dalla bottiglia: configurazione [{1}]."
+
+#, python-brace-format
+#~ msgid "Runners found: [{0}]"
+#~ msgstr "Runners trovati: [{0}]"
+
+#~ msgid "No runners found."
+#~ msgstr "Nessun runner trovato."
+
+#, python-brace-format
+#~ msgid "Dxvk found: [{0}]"
+#~ msgstr "DXVK trovati: [{0}]"
+
+#~ msgid "No dxvk found."
+#~ msgstr "Nessun DXVK trovato."
+
+#, python-brace-format
+#~ msgid "Cannot find executable for [{0}]."
+#~ msgstr "Impossibile trovare l'eseguibile per [{0}]."
+
+#, python-brace-format
+#~ msgid "Key: [{0}] not in bottle: [{1}] configuration, updating."
+#~ msgstr ""
+#~ "Chiave: [{0}] non in bottiglia: [{1}] configurazione, aggiornamento."
+
+#, python-brace-format
+#~ msgid "Key: [{0}] not in bottle: [{1}] configuration Parameters, updating."
+#~ msgstr ""
+#~ "Chiave: [{0}] non in bottiglia: [{1}] parametri di configurazione, "
+#~ "aggiornamento."
+
+#, python-format
+#~ msgid "Bottles found: %s"
+#~ msgstr "Bottiglie trovate: %s"
+
+#, python-brace-format
+#~ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
+#~ msgstr "Chiave di impostazione: da [{0}] a [{1}] per la bottiglia: [{2}] …"
+
+#~ msgid "Creating the wineprefix …"
+#~ msgstr "Creazione del wineprefix …"
+
+#~ msgid "Generating Bottle configuration file …"
+#~ msgstr "Generazione del file di configurazione della bottiglia …"
+
+#, python-brace-format
+#~ msgid "Applying environment: [{0}] …"
+#~ msgstr "Applicazione dell'ambiente: [{0}]…"
+
+#, python-brace-format
+#~ msgid "Bottle: [{0}] successfully created!"
+#~ msgstr "Bottiglia: [{0}] creata con successo!"
+
+#~ msgid "Deleting a bottle …"
+#~ msgstr "Eliminazione di una bottiglia …"
+
+#, python-brace-format
+#~ msgid "Successfully deleted bottle in path: [{0}]"
+#~ msgstr "Bottiglia eliminata correttamente nel percorso: [{0}]"
+
+#~ msgid "Empty path found, failing to avoid disasters."
+#~ msgstr "Percorso vuoto trovato, non riuscendo a evitare disastri."
+
+#, python-brace-format
+#~ msgid "Trying to repair the bottle: [{0}] …"
+#~ msgstr "Tentativo di riparare la bottiglia: [{0}] …"
+
+#, python-brace-format
+#~ msgid ""
+#~ "Adding Key: [{0}] with Value: [{1}] and Data: [{2}] in register bottle: "
+#~ "{3}"
+#~ msgstr ""
+#~ "Aggiunta chiave: [{0}] con valore: [{1}] e dati: [{2}] nella bottiglia di "
+#~ "registro: {3}"
+
+#, python-brace-format
+#~ msgid "Removing Value: [{0}] for Key: [{1}] in register bottle: {2}"
+#~ msgstr ""
+#~ "Rimozione del valore: [{0}] per la chiave: [{1}] nella bottiglia del "
+#~ "registro: {2}"
+
+#, python-brace-format
+#~ msgid "Installing dxvk for bottle: [{0}]."
+#~ msgstr "Installazione di dxvk per la bottiglia: [{0}]."
+
+#, python-brace-format
+#~ msgid "Removing dxvk for bottle: [{0}]."
+#~ msgstr "Rimozione di dxvk per la bottiglia: [{0}]."
+
+#~ msgid "Running an executable on the wineprefix …"
+#~ msgstr "Esecuzione di un eseguibile su wineprefix …"
+
+#~ msgid "Running wineboot on the wineprefix …"
+#~ msgstr "Esecuzione di wineboot su wineprefix …"
+
+#~ msgid "Running winecfg on the wineprefix …"
+#~ msgstr "Esecuzione di winecfg su wineprefix …"
+
+#~ msgid "Running winetricks on the wineprefix …"
+#~ msgstr "Esecuzione di winetricks su wineprefix …"
+
+#~ msgid "Running a debug console on the wineprefix …"
+#~ msgstr "Esecuzione di una console di debug su wineprefix …"
+
+#~ msgid "Running a CMD on the wineprefix …"
+#~ msgstr "Esecuzione di un CMD sul wineprefix …"
+
+#~ msgid "Running a Task Manager on the wineprefix …"
+#~ msgstr "Esecuzione di un Task Manager su wineprefix …"
+
+#~ msgid "Running a Control Panel on the wineprefix …"
+#~ msgstr "Esecuzione di un pannello di controllo su wineprefix …"
+
+#~ msgid "Running an Uninstaller on the wineprefix …"
+#~ msgstr "Esecuzione di un programma di disinstallazione su wineprefix …"
+
+#~ msgid "Running a Regedit on the wineprefix …"
+#~ msgstr "Esecuzione di un Regedit sul wineprefix …"
+
+#, python-brace-format
+#~ msgid "Sending Status: [{0}] to the wineprefix …"
+#~ msgstr "Invio stato: [{0}] al wineprefix …"
+
+#~ msgid "Opening the file manager in the path …"
+#~ msgstr "Apertura del file manager nel percorso …"
+
+#, python-brace-format
+#~ msgid "Importing wineprefix [{0}] in a new bottle …"
+#~ msgstr "Importazione wineprefix [{0}] in una nuova bottiglia …"
+
+#, python-brace-format
+#~ msgid "Error creating the bottle path for wineprefix [{0}]. Aborting."
+#~ msgstr ""
+#~ "Errore durante la creazione del percorso della bottiglia per wineprefix "
+#~ "[{0}]. Interruzione."
+
+#~ msgid "Creating lock file in source path …"
+#~ msgstr "Creazione del file di blocco nel percorso di origine …"
+
+#, python-brace-format
+#~ msgid "Wineprefix: [{0}] successfully imported!"
+#~ msgstr "Wineprefix: [{0}] importato con successo!"
+
+#, python-brace-format
+#~ msgid "Restoring to state: [{0}]"
+#~ msgstr "Ripristino allo stato: [{0}]"
+
+#, python-brace-format
+#~ msgid "[{0}] files to remove."
+#~ msgstr "[{0}] file da rimuovere."
+
+#, python-brace-format
+#~ msgid "[{0}] files to replace."
+#~ msgstr "[{0}] file da sostituire."
+
+#, python-brace-format
+#~ msgid "[{0}] files to add."
+#~ msgstr "[{0}] file da aggiungere."
+
+#, python-brace-format
+#~ msgid "Backuping configuration: [{0}] in [{1}]"
+#~ msgstr "Configurazione di backup: [{0}] in [{1}]"
+
+#, python-brace-format
+#~ msgid "Backuping bottle: [{0}] in [{1}]"
+#~ msgstr "Bottiglia di backup: [{0}] in [{1}]"
+
+#, python-brace-format
+#~ msgid "Backup saved in path: {0}."
+#~ msgstr "Backup salvato nel percorso: {0}."
+
+#, python-brace-format
+#~ msgid "Failed to save backup in path: {0}."
+#~ msgstr "Impossibile salvare il backup nel percorso: {0}."
+
+#, python-brace-format
+#~ msgid "Backup: [{0}] imported successfully."
+#~ msgstr "Backup: [{0}] importato correttamente."
+
+#, python-brace-format
+#~ msgid "Failed importing backup: [{0}]"
+#~ msgstr "Importazione del backup non riuscita: [{0}]"
+
+#~ msgid "Connection status: online …"
+#~ msgstr "Stato della connessione: online …"
+
+#~ msgid "Connection status: offline …"
+#~ msgstr "Stato della connessione: offline …"
+
 #~ msgid "Fix environment selection style on Yaru theme"
 #~ msgstr "Sistemata la selezione degli ambienti col tema Yaru"
 
@@ -1559,12 +1616,6 @@ msgstr "Una bottiglia denominata \"%s\" è stata creata correttamente"
 
 #~ msgid "Slovak translations thanks to @MartinIIOT"
 #~ msgstr "Traduzioni in slovacco grazie a @MartinIIOT"
-
-#~ msgid "German translations thanks to @thericosanto"
-#~ msgstr "Traduzioni tedesche grazie a @thericosanto"
-
-#~ msgid "Portuguese translations thanks to @SantosSi"
-#~ msgstr "Traduzioni portoghesi grazie a @SantosSi"
 
 #~ msgid "Portuguese (Brazil) translations thanks to @vitor180396"
 #~ msgstr "Traduzioni portoghesi (Brasile) grazie a @vitor180396"
@@ -1708,9 +1759,6 @@ msgstr "Una bottiglia denominata \"%s\" è stata creata correttamente"
 #~ msgid "Kill all processes running in this Bottle."
 #~ msgstr "Uccidi tutti i processi in esecuzione in questa bottiglia."
 
-#~ msgid "Kill all processes"
-#~ msgstr "Uccidi tutti i processi"
-
 #~ msgid "Simulates a system reboot (this does not terminate processes)."
 #~ msgstr "Simula un riavvio del sistema (questo non termina i processi)."
 
@@ -1719,9 +1767,6 @@ msgstr "Una bottiglia denominata \"%s\" è stata creata correttamente"
 
 #~ msgid "Simulates a system shutdown (this does not terminate processes)."
 #~ msgstr "Simula un arresto del sistema (questo non termina i processi)."
-
-#~ msgid "Shutdown"
-#~ msgstr "Spegni"
 
 #~ msgid "Backup this bottle"
 #~ msgstr "Crea backup di questa bottiglia"
