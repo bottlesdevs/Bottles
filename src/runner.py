@@ -821,7 +821,7 @@ class BottlesRunner:
 
         '''Make progressbar pulsing'''
         RunAsync(dialog.pulse, None)
-        print(runner)
+
         '''Execute wineboot'''
         update_output( _("The wine configuration is being updated …"))
         command = "DISPLAY=:0.0 WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH=win64 {runner} wineboot /nogui".format(
