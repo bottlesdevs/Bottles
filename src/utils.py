@@ -41,7 +41,7 @@ class UtilsConnection():
     def check_connection(self, show_notification=False):
         try:
             socket.gethostbyname('usebottles.com')
-            logging.info(_("Connection status: online …"))
+            logging.info("Connection status: online …")
             self.window.toggle_btn_noconnection(False)
 
             self.last_check = datetime.now()
@@ -49,7 +49,7 @@ class UtilsConnection():
 
             return True
         except socket.error:
-            logging.info(_("Connection status: offline …"))
+            logging.info("Connection status: offline …")
             self.window.toggle_btn_noconnection(True)
 
             if show_notification:
@@ -175,14 +175,13 @@ class RunAsync(threading.Thread):
         result = None
         error = None
 
-        logging.debug('Running async job [{0}].'.format(self.task_func))
+        logging.debug(f"Running async job [{self.task_func}].")
 
         try:
             result = self.task_func(*args, **kwargs)
         except Exception as exception:
             logging.error(
-                "Error while running async job: {0}\nException: {1}".format(
-                    self.task_func, exception))
+                f"Error while running async job: {self.task_func}\nException: {exception}")
             error = exception
             _ex_type, _ex_value, trace = sys.exc_info()
             traceback.print_tb(trace)
