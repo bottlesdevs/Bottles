@@ -195,7 +195,8 @@ class BottlesWindow(Handy.ApplicationWindow):
     '''Execute before window shown'''
     def on_start(self):
         '''Search for at least one local runner'''
-        if len(self.runner.runners_available) == 0:
+        tmp_runners = [x for x in self.runner.runners_available if not x.startswith('sys-')]
+        if len(tmp_runners) == 0:
             self.show_onboard_view()
 
         self.check_crash_log()
