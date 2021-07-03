@@ -26,7 +26,6 @@ import re
 import urllib.request
 import fnmatch
 import requests
-import validators
 
 from typing import Union, NewType
 
@@ -37,7 +36,7 @@ from pathlib import Path
 from datetime import datetime
 
 from .download import DownloadManager
-from .utils import UtilsTerminal, UtilsLogger, UtilsFiles, RunAsync, CabExtract
+from .utils import UtilsTerminal, UtilsLogger, UtilsFiles, RunAsync, CabExtract, validate_url
 
 logging = UtilsLogger()
 
@@ -414,7 +413,7 @@ class BottlesRunner:
 
             '''Step type: cab_extract'''
             if step["action"] == "cab_extract":
-                if validators.url(step["url"]):
+                if validate_url(step["url"]):
                     download = self.download_component("dependency",
                                             step.get("url"),
                                             step.get("file_name"),
