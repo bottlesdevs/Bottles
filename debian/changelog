@@ -1,21 +1,13 @@
-com.usebottles.bottles (2021.7.2-treviso) precise; urgency=low
+com.usebottles.bottles (2021.7.3-treviso) precise; urgency=low
 
-  * New versioning based on CalVer model
-  * Create bottles using the wine runner provided by the distribution
-  * Enable gamemode for your bottles if installed in the system
-  * Run .exe/.msi/.bat files with custom arguments
-  * Fixed the "bad interpreter" error on debian package
-  * Optionally close Bottles after starting an executable from the file manager
-  * Added tooltips to understand what some elements of the UI do
-  * Using portal for file picker
-  * Filechooser do not filter by extensions anymore
-  * Esperanto translations thanks to @phlostically
-  * Spanish translations thanks to @fitojb
-  * Croatin translations thanks to @milotype
-  * Portuguese translations thanks to @laralem
-  * French translations thanks to @julroy67
+  * Display a crash report on restart if something goes wrong
+  * Using the new yaml format for the bottle configuration
+  * Using the new yaml repositories for components/dependencies/programs
+  * Automatic update old bottle configuration to the new model
+  * Backup bottle configuration and archive
+  * Import backup archives
+  * Show onboard if system wine is the only installed runner
   * Swedish translations thanks to @eson57
-  * Ukrain thanslations thanks to @marchellodev
 
 
- -- Mirko Brombin <send@mirko.pm>  Sat, 02 Jul 2021 08:41:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Sat, 03 Jul 2021 16:12:00 +0000
