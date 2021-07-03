@@ -108,6 +108,104 @@
       ]
     },
     {
+      "name": "python-requests",
+      "buildsystem": "simple",
+      "build-commands": [
+            "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/requests/requests/archive/v2.25.1.tar.gz",
+          "sha256": "03b192fad682a33964df331d35f90918b1940c89f6c5bcb10060be688ba50315"
+        }
+      ]
+    },
+    {
+      "name": "python-urllib3",
+      "buildsystem": "simple",
+      "build-commands": [
+            "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/urllib3/urllib3/archive/1.26.6.tar.gz",
+          "sha256": "ab4582b44fbe33f3e3fc838e3d90dde7f68fa3697aeb075962e0ba4b93020327"
+        }
+      ]
+    },
+    {
+      "name": "python-chardet",
+      "buildsystem": "simple",
+      "build-commands": [
+            "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/chardet/chardet/archive/4.0.0.tar.gz",
+          "sha256": "67bbe3eb02691d38831ddf2719c40fe09381bc17f15321946f6cd71dc274e530"
+        }
+      ]
+    },
+    {
+      "name": "python-certifi",
+      "buildsystem": "simple",
+      "build-commands": [
+            "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/certifi/python-certifi/archive/2021.05.30.tar.gz",
+          "sha256": "9bffc4826ac0308591e26852a0404548a9e4e30b7214ebfd86360cd214f51dda"
+        }
+      ]
+    },
+    {
+      "name": "python-idna",
+      "buildsystem": "simple",
+      "build-commands": [
+            "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/kjd/idna/archive/v3.2.tar.gz",
+          "sha256": "7104cb016a7b2c0d53195e6088abb5cdce03aa0c1b0874a4863c216f647abd29"
+        }
+      ]
+    },
+    {
+      "name": "python-validators",
+      "buildsystem": "simple",
+      "build-commands": [
+            "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/kvesteri/validators/archive/0.18.1.tar.gz",
+          "sha256": "69341d7336faee65524550c42dca45e87f28c44fcb271502b6b330daf20ca6ab"
+        }
+      ]
+    },
+    {
+      "name": "python-decorator",
+      "buildsystem": "simple",
+      "build-commands": [
+            "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/micheles/decorator/archive/4.4.2.tar.gz",
+          "sha256": "5f53613d90a820df490ffeb782a66910dd992d31434aaa5f610ac7e0817d3822"
+        }
+      ]
+    },
+    {
       "name": "bottles",
       "builddir": true,
       "buildsystem": "meson",
