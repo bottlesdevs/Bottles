@@ -17,7 +17,7 @@
 
 import os
 import subprocess
-import json
+import yaml
 import tarfile
 import time
 import shutil
@@ -47,13 +47,13 @@ class BottlesRunner:
 
     '''Repositories URLs'''
     components_repository = "https://raw.githubusercontent.com/bottlesdevs/components/main/"
-    components_repository_index = "%s/index.json" % components_repository
+    components_repository_index = "%s/index.yml" % components_repository
 
     dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
-    dependencies_repository_index = "%s/index.json" % dependencies_repository
+    dependencies_repository_index = "%s/index.yml" % dependencies_repository
 
     installers_repository = "https://raw.githubusercontent.com/bottlesdevs/programs/main/"
-    installers_repository_index = "%s/index.json" % installers_repository
+    installers_repository_index = "%s/index.yml" % installers_repository
 
     '''Icon paths'''
     icons_user = "%s/.local/share/icons" % Path.home()
@@ -592,7 +592,7 @@ class BottlesRunner:
     def fetch_installers(self) -> bool:
         if self.utils_conn.check_connection():
             with urllib.request.urlopen(self.installers_repository_index) as url:
-                index = json.loads(url.read())
+                index = yaml.safe_load(url.read())
 
                 for installer in index.items():
                     self.supported_installers[installer[0]] = installer[1]
@@ -603,14 +603,14 @@ class BottlesRunner:
     '''Fetch installer manifest'''
     def fetch_installer_manifest(self, installer_name:str, installer_category:str, plain:bool=False) -> Union[str, dict, bool]:
         if self.utils_conn.check_connection():
-            with urllib.request.urlopen("%s/%s/%s.json" % (
+            with urllib.request.urlopen("%s/%s/%s.yml" % (
                 self.installers_repository,
                 installer_category,
                 installer_name
             )) as url:
                 if plain:
                     return url.read().decode("utf-8")
-                return json.loads(url.read())
+                return yaml.safe_load(url.read())
 
             return False
 
@@ -618,7 +618,7 @@ class BottlesRunner:
     def fetch_components(self) -> bool:
         if self.utils_conn.check_connection():
             with urllib.request.urlopen(self.components_repository_index) as url:
-                index = json.loads(url.read())
+                index = yaml.safe_load(url.read())
 
                 for component in index.items():
                     if component[1]["Category"] == "runners":
@@ -655,20 +655,20 @@ class BottlesRunner:
 
         if self.utils_conn.check_connection():
             if "Sub-category" in component:
-                manifest_url = "%s/%s/%s/%s.json" % (
+                manifest_url = "%s/%s/%s/%s.yml" % (
                     self.components_repository,
                     component["Category"],
                     component["Sub-category"],
                     component_name)
             else:
-                manifest_url = "%s/%s/%s.json" % (
+                manifest_url = "%s/%s/%s.yml" % (
                     self.components_repository,
                     component["Category"],
                     component_name)
             with urllib.request.urlopen(manifest_url) as url:
                 if plain:
                     return url.read().decode("utf-8")
-                return json.loads(url.read())
+                return yaml.safe_load(url.read())
 
             return False
 
@@ -676,7 +676,7 @@ class BottlesRunner:
     def fetch_dependencies(self) -> bool:
         if self.utils_conn.check_connection():
             with urllib.request.urlopen(self.dependencies_repository_index) as url:
-                index = json.loads(url.read())
+                index = yaml.safe_load(url.read())
 
                 for dependency in index.items():
                     self.supported_dependencies[dependency[0]] = dependency[1]
@@ -687,14 +687,14 @@ class BottlesRunner:
     '''Fetch dependency manifest'''
     def fetch_dependency_manifest(self, dependency_name:str, dependency_category:str, plain:bool=False) -> Union[str, dict, bool]:
         if self.utils_conn.check_connection():
-            with urllib.request.urlopen("%s/%s/%s.json" % (
+            with urllib.request.urlopen("%s/%s/%s.yml" % (
                 self.dependencies_repository,
                 dependency_category,
                 dependency_name
             )) as url:
                 if plain:
                     return url.read().decode("utf-8")
-                return json.loads(url.read())
+                return yaml.safe_load(url.read())
 
             return False
 
@@ -709,34 +709,34 @@ class BottlesRunner:
         for bottle in bottles:
             bottle_name_path = bottle.split("/")[-2]
             try:
-                configuration_file = open('%s/bottle.json' % bottle)
-                configuration_file_json = json.load(configuration_file)
+                configuration_file = open('%s/bottle.yml' % bottle)
+                configuration_file_yaml = yaml.safe_load(configuration_file)
                 configuration_file.close()
 
-                missing_keys = self.sample_configuration.keys() - configuration_file_json.keys()
+                missing_keys = self.sample_configuration.keys() - configuration_file_yaml.keys()
                 for key in missing_keys:
                     logging.warning(
                         f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] configuration, updating.")
-                    self.update_configuration(configuration_file_json,
+                    self.update_configuration(configuration_file_yaml,
                                               key,
                                               self.sample_configuration[key])
 
-                missing_parameters_keys = self.sample_configuration["Parameters"].keys() - configuration_file_json["Parameters"].keys()
+                missing_parameters_keys = self.sample_configuration["Parameters"].keys() - configuration_file_yaml["Parameters"].keys()
                 for key in missing_parameters_keys:
                     logging.warning(
                         f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] configuration Parameters, updating.")
-                    self.update_configuration(configuration_file_json,
+                    self.update_configuration(configuration_file_yaml,
                                               key,
                                               self.sample_configuration["Parameters"][key],
                                               scope="Parameters")
-                self.local_bottles[bottle_name_path] = configuration_file_json
+                self.local_bottles[bottle_name_path] = configuration_file_yaml
 
             except FileNotFoundError:
-                new_configuration_json = self.sample_configuration.copy()
-                new_configuration_json["Broken"] = True
-                new_configuration_json["Name"] = bottle_name_path
-                new_configuration_json["Environment"] = "Undefined"
-                self.local_bottles[bottle_name_path] = new_configuration_json
+                new_configuration_yaml = self.sample_configuration.copy()
+                new_configuration_yaml["Broken"] = True
+                new_configuration_yaml["Name"] = bottle_name_path
+                new_configuration_yaml["Environment"] = "Undefined"
+                self.local_bottles[bottle_name_path] = new_configuration_yaml
 
 
         if len(self.local_bottles) > 0 and not silent:
@@ -764,9 +764,9 @@ class BottlesRunner:
             if remove:
                 del configuration[key]
 
-        with open("%s/bottle.json" % bottle_complete_path,
+        with open("%s/bottle.yml" % bottle_complete_path,
                   "w") as configuration_file:
-            json.dump(configuration, configuration_file, indent=4)
+            yaml.dump(configuration, configuration_file, indent=4)
             configuration_file.close()
 
         if not no_update:
@@ -864,8 +864,8 @@ class BottlesRunner:
         time.sleep(1)
 
         '''Save bottle configuration'''
-        with open(f"{bottle_complete_path}/bottle.json", "w") as configuration_file:
-            json.dump(configuration, configuration_file, indent=4)
+        with open(f"{bottle_complete_path}/bottle.yml", "w") as configuration_file:
+            yaml.dump(configuration, configuration_file, indent=4)
             configuration_file.close()
 
         time.sleep(5)
@@ -999,9 +999,9 @@ class BottlesRunner:
         del new_configuration["Broken"]
 
         try:
-            with open("%s/bottle.json" % bottle_complete_path,
+            with open("%s/bottle.yml" % bottle_complete_path,
                       "w") as configuration_file:
-                json.dump(new_configuration, configuration_file, indent=4)
+                yaml.dump(new_configuration, configuration_file, indent=4)
                 configuration_file.close()
         except:
             return False
@@ -1379,9 +1379,9 @@ class BottlesRunner:
         new_configuration["Update_Date"] = str(datetime.now())
 
         '''Save configuration'''
-        with open("%s/bottle.json" % bottle_complete_path,
+        with open("%s/bottle.yml" % bottle_complete_path,
                   "w") as configuration_file:
-            json.dump(new_configuration, configuration_file, indent=4)
+            yaml.dump(new_configuration, configuration_file, indent=4)
             configuration_file.close()
 
         '''Update bottles'''
@@ -1421,13 +1421,13 @@ class BottlesRunner:
 
         '''If it is not the first state, compare files with the previous one'''
         if not first:
-            states_file = open('%s/states/states.json' % bottle_path)
-            states_file_json = json.load(states_file)
+            states_file = open('%s/states/states.yml' % bottle_path)
+            states_file_yaml = yaml.safe_load(states_file)
             states_file.close()
 
-            state_index_file = open('%s/states/%s/index.json' % (
+            state_index_file = open('%s/states/%s/index.yml' % (
                 bottle_path, str(configuration.get("State"))))
-            state_index = json.load(state_index_file)
+            state_index = yaml.safe_load(state_index_file)
             state_index_file.close()
             state_index_files = state_index["Additions"]+\
                                 state_index["Removed"]+\
@@ -1465,7 +1465,7 @@ class BottlesRunner:
                         "checksum": file["checksum"]
                     })
 
-            state_id = str(len(states_file_json.get("States")))
+            state_id = str(len(states_file_yaml.get("States")))
         else:
             new_state_index = {
                 "Update_Date": str(datetime.now()),
@@ -1481,16 +1481,16 @@ class BottlesRunner:
             '''Make state structured path'''
             os.makedirs("%s/states/%s/drive_c" % (bottle_path, state_id), exist_ok=True)
 
-            '''Save index.json with state edits'''
-            with open("%s/index.json" % (state_path),
+            '''Save index.yml with state edits'''
+            with open("%s/index.yml" % (state_path),
                       "w") as state_index_file:
-                json.dump(new_state_index, state_index_file, indent=4)
+                yaml.dump(new_state_index, state_index_file, indent=4)
                 state_index_file.close()
 
-            '''Save files.json with bottle files'''
-            with open("%s/files.json" % (state_path),
+            '''Save files.yml with bottle files'''
+            with open("%s/files.yml" % (state_path),
                       "w") as state_files_file:
-                json.dump(current_index, state_files_file, indent=4)
+                yaml.dump(current_index, state_files_file, indent=4)
                 state_files_file.close()
         except:
             return False
@@ -1506,7 +1506,7 @@ class BottlesRunner:
 
         time.sleep(5)
 
-        '''Update the states.json file'''
+        '''Update the states.yml file'''
         new_state = {
             "Creation_Date": str(datetime.now()),
             "Comment": comment,
@@ -1516,7 +1516,7 @@ class BottlesRunner:
         if not first:
             new_state_file = {
                 "Update_Date": str(datetime.now()),
-                "States": states_file_json.get("States")
+                "States": states_file_yaml.get("States")
             }
             new_state_file["States"][state_id] = new_state
         else:
@@ -1526,17 +1526,17 @@ class BottlesRunner:
             }
 
         try:
-            with open('%s/states/states.json' % bottle_path, "w") as states_file:
-                json.dump(new_state_file, states_file, indent=4)
+            with open('%s/states/states.yml' % bottle_path, "w") as states_file:
+                yaml.dump(new_state_file, states_file, indent=4)
                 states_file.close()
         except:
             return False
 
-        '''Create new index.json in the states root'''
+        '''Create new index.yml in the states root'''
         try:
-            with open('%s/states/index.json' % bottle_path,
+            with open('%s/states/index.yml' % bottle_path,
                       "w") as current_index_file:
-                json.dump(current_index, current_index_file, indent=4)
+                yaml.dump(current_index, current_index_file, indent=4)
                 current_index_file.close()
         except:
             return False
@@ -1572,8 +1572,8 @@ class BottlesRunner:
         bottle_path = self.get_bottle_path(configuration)
 
         try:
-            file = open('%s/states/%s/index.json' % (bottle_path, state_id))
-            files = file.read() if plain else json.loads(file.read())
+            file = open('%s/states/%s/index.yml' % (bottle_path, state_id))
+            files = file.read() if plain else yaml.safe_load(file.read())
             file.close()
             return files
         except:
@@ -1584,8 +1584,8 @@ class BottlesRunner:
         bottle_path = self.get_bottle_path(configuration)
 
         try:
-            file = open('%s/states/%s/files.json' % (bottle_path, state_id))
-            files = file.read() if plain else json.loads(file.read())
+            file = open('%s/states/%s/files.yml' % (bottle_path, state_id))
+            files = file.read() if plain else yaml.safe_load(file.read())
             file.close()
             return files
         except:
@@ -1681,17 +1681,17 @@ class BottlesRunner:
         bottle_path = self.get_bottle_path(configuration)
 
         try:
-            states_file = open('%s/states/states.json' % bottle_path)
-            states_file_json = json.load(states_file)
+            states_file = open('%s/states/states.yml' % bottle_path)
+            states_file_yaml = yaml.safe_load(states_file)
             states_file.close()
-            states = states_file_json.get("States")
+            states = states_file_yaml.get("States")
 
             logging.info(
                 f"Found [{len(states)}] states for bottle: [{configuration['Name']}]")
             return states
         except:
             logging.error(
-                f"Cannot find states.json file for bottle: [{configuration['Name']}]")
+                f"Cannot find states.yml file for bottle: [{configuration['Name']}]")
 
             return {}
 
@@ -1708,7 +1708,7 @@ class BottlesRunner:
                 f"Backuping configuration: [{configuration['Name']}] in [{path}]")
             try:
                 with open(path, "w") as configuration_backup:
-                    json.dump(configuration, configuration_backup, indent=4)
+                    yaml.dump(configuration, configuration_backup, indent=4)
                     configuration_backup.close()
                 backup_created = True
             except:
