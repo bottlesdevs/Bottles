@@ -13,7 +13,7 @@ jobs:
       # --------------------------------------
       - name: Install build dependencies
         run: |
-          sudo apt install -y debhelper python3 python3.8-minimal python3-pip python3-setuptools gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind python3-yaml
+          sudo apt install -y debhelper python3 python3.8-minimal python3-pip python3-setuptools gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind python3-yaml python3-validators python3-requests
       
       # Fix python interpreter
       # --------------------------------------
