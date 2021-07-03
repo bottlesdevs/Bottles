@@ -178,20 +178,6 @@
       ]
     },
     {
-      "name": "python-decorator",
-      "buildsystem": "simple",
-      "build-commands": [
-            "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/micheles/decorator/archive/4.4.2.tar.gz",
-          "sha256": "5f53613d90a820df490ffeb782a66910dd992d31434aaa5f610ac7e0817d3822"
-        }
-      ]
-    },
-    {
       "name": "bottles",
       "builddir": true,
       "buildsystem": "meson",
