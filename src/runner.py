@@ -1786,6 +1786,7 @@ class BottlesRunner:
 
     def async_import_backup_bottle(self, args:list) -> bool:
         scope, path = args
+        self.download_manager = DownloadManager(self.window)
 
         if scope == "configuration":
             backup_name = path.split("/")[-1].split(".")[-2]
