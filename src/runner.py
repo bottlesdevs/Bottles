@@ -480,7 +480,10 @@ class BottlesRunner:
         build for chardonnay from the components repository.
         A very special thanks to Lutris & GloriousEggroll for extra builds <3!
         '''
-        if len(self.runners_available) == 0 and install_latest:
+
+        tmp_runners = [x for x in self.runners_available if not x.startswith('sys-')]
+
+        if len(tmp_runners) == 0 and install_latest:
             logging.warning("No runners found.")
 
             '''If connected, install latest runner from repository'''
@@ -494,7 +497,6 @@ class BottlesRunner:
                 else:
                     tmp_runners = self.supported_wine_runners
                     runner_name = next(iter(tmp_runners))
-
                 self.install_component("runner", runner_name, after=after)
             else:
                 return False
