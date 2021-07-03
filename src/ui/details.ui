@@ -470,16 +470,18 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
-                              <object class="GtkButton" id="btn_killall">
+                              <object class="GtkMenuButton">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="focus-on-click">False</property>
                                 <property name="receives-default">True</property>
-                                <property name="tooltip-text" translatable="yes">Kill all wine processes</property>
+                                <property name="tooltip-text" translatable="yes">Backup bottle</property>
+                                <property name="popover">pop_backup</property>
                                 <child>
                                   <object class="GtkImage">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="icon-name">process-stop-symbolic</property>
+                                    <property name="icon-name">document-save-symbolic</property>
                                   </object>
                                 </child>
                               </object>
@@ -530,6 +532,27 @@
                                 <property name="fill">True</property>
                                 <property name="pack-type">end</property>
                                 <property name="position">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_killall">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Kill all wine processes</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">process-stop-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">3</property>
                               </packing>
                             </child>
                             <style>
