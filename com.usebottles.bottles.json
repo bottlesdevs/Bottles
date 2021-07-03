@@ -1,0 +1,122 @@
+{
+  "id": "com.usebottles.bottles",
+  "sdk": "org.gnome.Sdk",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "40",
+  "command": "bottles",
+  "finish-args": [
+    "--allow=multiarch",
+    "--share=network",
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--socket=pulseaudio",
+    "--filesystem=~/Games:ro",
+    "--filesystem=~/wineprefixes:ro",
+    "--filesystem=~/.Bottles:ro",
+    "--filesystem=~/.local/share/bottles:create",
+    "--filesystem=xdg-desktop",
+    "--filesystem=xdg-documents",
+    "--filesystem=xdg-pictures",
+    "--filesystem=xdg-music",
+    "--filesystem=xdg-videos",
+    "--filesystem=xdg-download",
+    "--filesystem=/run/media",
+    "--filesystem=/media",
+    "--filesystem=xdg-run/gvfsd",
+    "--device=all",
+    "--system-talk-name=org.freedesktop.UDisks2",
+    "--talk-name=org.freedesktop.Notifications",
+    "--talk-name=org.gtk.vfs",
+    "--talk-name=org.gtk.vfs.*",
+    "--env=IS_FLATPAK=1"
+  ],
+  "add-extensions": {
+    "org.gnome.Platform.Compat.i386": {
+      "directory": "lib/i386-linux-gnu",
+      "version": "40"
+    },
+    "org.gnome.Platform.Compat.i386.Debug": {
+      "directory": "lib/debug/lib/i386-linux-gnu",
+      "version": "40",
+      "no-autodownload": true
+    },
+    "org.freedesktop.Platform.GL32": {
+      "directory": "lib/i386-linux-gnu/GL",
+      "version": "1.4",
+      "versions": "20.08;1.4",
+      "subdirectories": true,
+      "no-autodownload": true,
+      "autodelete": false,
+      "add-ld-path": "lib",
+      "merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d",
+      "download-if": "active-gl-driver",
+      "enable-if": "active-gl-driver"
+    }
+  },
+  "x-compat-i386-opts": {
+    "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+    "ldflags": "-L/app/lib32",
+    "append-path": "/usr/lib/sdk/toolchain-i386/bin",
+    "env": {
+      "CC": "i686-unknown-linux-gnu-gcc",
+      "CXX": "i686-unknown-linux-gnu-g++"
+    },
+    "libdir": "/app/lib32"
+  },
+  "sdk-extensions": [
+    "org.gnome.Sdk.Compat.i386",
+    "org.freedesktop.Sdk.Extension.toolchain-i386"
+  ],
+  "cleanup": [
+    "/include",
+    "/lib/pkgconfig",
+    "/man",
+    "/share/doc",
+    "/share/gtk-doc",
+    "/share/man",
+    "/share/pkgconfig",
+    "*.la",
+    "*.a"
+  ],
+  "modules": [
+    {
+      "name": "i386-libs",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/lib/i386-linux-gnu",
+        "install -Dm644 ld.so.conf -t /app/etc/"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "ld.so.conf"
+        }
+      ]
+    },
+    {
+      "name": "PyYAML",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/yaml/pyyaml/archive/5.4.1.tar.gz",
+          "sha256": "75f966559c5f262dfc44da0f958cc2aa18953ae5021f2c3657b415c5a370045f"
+        }
+      ]
+    },
+    {
+      "name": "bottles",
+      "builddir": true,
+      "buildsystem": "meson",
+      "sources": [
+        {
+          "type": "file",
+          "path": "."
+        }
+      ]
+    }
+  ]
+}
