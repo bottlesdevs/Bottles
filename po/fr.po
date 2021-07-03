@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-02 08:39+0200\n"
-"PO-Revision-Date: 2021-07-02 12:58+0000\n"
-"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"PO-Revision-Date: 2021-07-03 14:43+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
 "Language: fr\n"
@@ -160,13 +160,13 @@ msgstr "Nouveau versionnement basé sur le modèle CalVer"
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "Create bottles using the wine runner provided by the distribution"
 msgstr ""
-"Créer des bouteilles à l'aide du couloir à vin fourni par la distribution."
+"Créer des bouteilles en utilisant l’exécuteur wine fourni par la distribution"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid "Enable gamemode for your bottles if installed in the system"
 msgstr ""
-"Activez le mode de jeu pour vos bouteilles si elles sont installées dans le "
-"système."
+"Activez le mode de jeu pour vos bouteilles s’il est disponible sur votre "
+"système"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid "Run .exe/.msi/.bat files with custom arguments"
@@ -174,59 +174,52 @@ msgstr "Exécuter les fichiers .exe/.msi/.bat avec des arguments personnalisés"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Fixed the \"bad interpreter\" error on debian package"
-msgstr "Correction de l'erreur \"bad interpreter\" sur le paquet debian"
+msgstr "Correction de l’erreur « bad interpreter » du paquet debian"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid ""
 "Optionally close Bottles after starting an executable from the file manager"
 msgstr ""
-"Fermeture facultative de Bottles après le lancement d'un exécutable à partir "
-"du gestionnaire de fichiers"
+"Fermeture Bouteilles de manière optionnelle après le lancement d’un "
+"exécutable à partir du gestionnaire de fichiers"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 msgid "Added tooltips to understand what some elements of the UI do"
 msgstr ""
-"Ajout d'infobulles pour comprendre ce que font certains éléments de "
-"l'interface utilisateur"
+"Ajout d’infobulles pour comprendre ce que font certains éléments de l’"
+"interface utilisateur"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid "Using portal for file picker"
-msgstr "Utilisation du portail pour le sélecteur de fichiers"
+msgstr "Utiliser les portails pour le sélecteur de fichiers"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
-#, fuzzy
 msgid "Esperanto translations thanks to @phlostically"
-msgstr "Traductions en allemand grâce à @thericosanto"
+msgstr "Traductions en espéranto grâce à @phlostically"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-#, fuzzy
 msgid "Spanish translations thanks to @fitojb"
-msgstr "Traductions en allemand grâce à @thericosanto"
+msgstr "Traductions en espagnol grâce à @fitojb"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
-#, fuzzy
 msgid "Croatin translations thanks to @milotype"
-msgstr "Traductions en allemand grâce à @thericosanto"
+msgstr "Traductions en croate grâce à @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
-#, fuzzy
 msgid "Portuguese translations thanks to @laralem"
-msgstr "Traductions en portugais grâce à @SantosSi"
+msgstr "Traductions en portugais grâce à @laralem"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
-#, fuzzy
 msgid "French translations thanks to @julroy67"
-msgstr "Traductions en tchèque grâce à @panmourovaty"
+msgstr "Traductions en français grâce à @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
-#, fuzzy
 msgid "Swedish translations thanks to @eson57"
-msgstr "Traductions en allemand grâce à @thericosanto"
+msgstr "Traductions en suédois grâce à @eson57"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
-#, fuzzy
 msgid "Ukrain thanslations thanks to @marchellodev"
-msgstr "Traductions en allemand grâce à @thericosanto"
+msgstr "Traductions en ukrainien grâce à @marchellodev"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -430,29 +423,24 @@ msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
 #: src/ui/details.ui:419
-#, fuzzy
 msgid "Destroy this bottle"
 msgstr "Détruire cette bouteille"
 
 #: src/ui/details.ui:440
-#, fuzzy
 msgid "Run executable"
-msgstr "Exécuter .exe"
+msgstr "Exécuter l’exécutable"
 
 #: src/ui/details.ui:477
-#, fuzzy
 msgid "Kill all wine processes"
-msgstr "Tuer tous les processus"
+msgstr "Tuer tous les processus wine"
 
 #: src/ui/details.ui:498
-#, fuzzy
 msgid "Reboot Windows"
-msgstr "Natif (Windows)"
+msgstr "Redémarrer Windows"
 
 #: src/ui/details.ui:519
-#, fuzzy
 msgid "Shutdown Windows"
-msgstr "Mise hors tension"
+msgstr "Éteindre Windows"
 
 #: src/ui/details.ui:558 src/ui/details.ui:1668 src/ui/details.ui:1741
 msgid "Programs"
@@ -552,7 +540,7 @@ msgstr "Utiliser le mode de jeu"
 
 #: src/ui/details.ui:968
 msgid "Optimise gaming performance on demand"
-msgstr "Optimisez les performances de jeu à la demande"
+msgstr "Optimiser les performances des jeux sur demande"
 
 #: src/ui/details.ui:994
 msgid "Enable ACO shader compiler"
@@ -1049,13 +1037,13 @@ msgstr "Nettoyer les fichiers temporaires au lancement de Bouteilles ?"
 
 #: src/ui/preferences.ui:118
 msgid "Close Bottles after starting a program"
-msgstr "Fermer les bouteilles après le démarrage d'un programme"
+msgstr "Fermer Bouteilles après le démarrage d’un programme"
 
 #: src/ui/preferences.ui:119
 msgid "Close Bottles after starting a program from the file manager"
 msgstr ""
-"Fermer Bottles après le démarrage d'un programme à partir du gestionnaire de "
-"fichiers"
+"Fermer Bouteilles après le démarrage d’un programme à partir du gestionnaire "
+"de fichiers"
 
 #: src/ui/preferences.ui:150
 msgid "Wine Runners"
@@ -1299,9 +1287,8 @@ msgid "Choose a Windows executable file"
 msgstr "Choisissez un fichier exécutable Windows"
 
 #: src/pages/details.py:1003 src/pages/list.py:128
-#, fuzzy
 msgid "Run"
-msgstr "Exécuteur"
+msgstr "Exécuter"
 
 #: src/pages/details.py:1079
 msgid "Select the location where to save the backup configuration"
