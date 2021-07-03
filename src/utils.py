@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
+import shutil
 import logging
 import socket
 import subprocess
@@ -195,3 +196,43 @@ class RunAsync(threading.Thread):
 
         self.source_id = GLib.idle_add(self.callback, result, error)
         return self.source_id
+
+
+'''Extract a Windows cabinet'''
+class CabExtract():
+
+    requirements = False
+
+    def __init__(self, path: str, name: str):
+        self.path = path
+        self.name = name
+
+        self.__checks()
+        self.__extract()
+
+    def __checks(self):
+        if shutil.which("cabextract") is not None:
+            self.requirements = True
+
+    def __extract(self):
+        temp_path = "%s/.local/share/bottles/temp" % Path.home()
+
+        if not self.requirements:
+            return False
+
+        if not self.path.endswith((".exe", ".msi")):
+            # TODO: in Trento we should raise specific exceptions
+            return False
+
+        try:
+            subprocess.Popen(
+                f"cabextract {self.path} -d {temp_path}/{self.name}",
+                shell=True
+            ).communicate()
+            return True
+        except:
+            pass
+
+        return False
+
+        
