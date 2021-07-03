@@ -178,20 +178,6 @@
       ]
     },
     {
-      "name": "python-validators",
-      "buildsystem": "simple",
-      "build-commands": [
-            "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/kvesteri/validators/archive/0.18.1.tar.gz",
-          "sha256": "69341d7336faee65524550c42dca45e87f28c44fcb271502b6b330daf20ca6ab"
-        }
-      ]
-    },
-    {
       "name": "python-decorator",
       "buildsystem": "simple",
       "build-commands": [
