@@ -1714,6 +1714,7 @@ class BottlesRunner:
     '''Make a bottle backup'''
     def async_backup_bottle(self, args:list) -> bool:
         configuration, scope, path = args
+        self.download_manager = DownloadManager(self.window)
 
         '''Set UI to not usable'''
         self.window.set_usable_ui(False)
