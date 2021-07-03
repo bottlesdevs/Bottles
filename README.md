@@ -13,6 +13,9 @@
   <a href="https://hosted.weblate.org/engage/bottles">
     <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" />
   </a>
+  <a href="https://liberapay.com/bottles">
+    <img src="https://img.shields.io/liberapay/receives/bottles.svg?logo=liberapay">
+  </a>
   <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/master">
     <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/master" />
   </a>
