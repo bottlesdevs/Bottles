@@ -110,6 +110,8 @@ AppDir:
 
   runtime:
     env:
+      # Needed by Wayland
+      XDG_DATA_DIRS: '/usr/local/share/:/usr/share/'
       # Set python home
       PYTHONPATH: '${APPDIR}/usr/lib/python3/dist-packages'
       # SSL CERTIFICATE_VERIFY_FAILED python3.8 -m pip install --ignore-installed --prefix=/usr --root=$APPDIR install --upgrade certifi
