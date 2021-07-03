@@ -25,6 +25,8 @@ import shutil
 import re
 import urllib.request
 import fnmatch
+import requests
+import validators
 
 from typing import Union, NewType
 
@@ -35,7 +37,7 @@ from pathlib import Path
 from datetime import datetime
 
 from .download import DownloadManager
-from .utils import UtilsTerminal, UtilsLogger, UtilsFiles, RunAsync
+from .utils import UtilsTerminal, UtilsLogger, UtilsFiles, RunAsync, CabExtract
 
 logging = UtilsLogger()
 
@@ -248,12 +250,15 @@ class BottlesRunner:
             logging.warning(f"File [{file}] already exists in temp, skipping.")
             update_func(completed=True)
         else:
+            download_url = requests.get(download_url, allow_redirects=True).url
             request = urllib.request.Request(download_url, method='HEAD')
-            request = urllib.request.urlopen(request)
+            request = urllib.request.urlopen(download_url)
             if request.status == 200:
                 download_size = request.headers['Content-Length']
-                urllib.request.urlretrieve(download_url, "%s/%s" % (self.temp_path, file),
-                                           reporthook=update_func)
+                urllib.request.urlretrieve(
+                    download_url,
+                    f"{self.temp_path}/{file}",
+                    reporthook=update_func)
             else:
                 download_entry.remove()
                 return False
@@ -376,6 +381,7 @@ class BottlesRunner:
 
         '''Execute installation steps'''
         for step in dependency_manifest.get("Steps"):
+
             '''Step type: delete_sys32_dlls'''
             if step["action"] == "delete_sys32_dlls":
                 for dll in step["dlls"]:
@@ -405,6 +411,44 @@ class BottlesRunner:
                 else:
                     widget.btn_install.set_sensitive(True)
                     return False
+
+            '''Step type: cab_extract'''
+            if step["action"] == "cab_extract":
+                if validators.url(step["url"]):
+                    download = self.download_component("dependency",
+                                            step.get("url"),
+                                            step.get("file_name"),
+                                            step.get("rename"),
+                                            checksum=step.get("file_checksum"))
+                    if download:
+                        if step.get("rename"):
+                            file = step.get("rename")
+                        else:
+                            file = step.get("file_name")
+
+                        CabExtract(f"{self.temp_path}/{file}", dependency[0])
+
+                elif step["url"].startswith("temp/"):
+                    path = step["url"]
+                    path = path.replace("temp/", f"{self.temp_path}/")
+                    CabExtract(f"{path}/{step.get('file_name')}", dependency[0])
+
+            '''Step type: copy_cab_dll'''
+            if step["action"] == "copy_cab_dll":
+                path = step["url"]
+                path = path.replace("temp/", f"{self.temp_path}/")
+                bottle_path = self.get_bottle_path(configuration)
+                shutil.copyfile(
+                    f"{path}/{step.get('file_name')}",
+                    f"{bottle_path}/drive_c/{step.get('dest')}")
+
+            '''Step type: override_dll'''
+            if step["action"] == "override_dll":
+                self.reg_add(
+                    configuration,
+                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                    value=step.get("dll"),
+                    data=step.get("type"))
 
         '''Add dependency to bottle configuration'''
         if dependency[0] not in configuration.get("Installed_Dependencies"):
