@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-02 08:39+0200\n"
-"PO-Revision-Date: 2021-06-28 04:35+0000\n"
-"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"PO-Revision-Date: 2021-07-03 14:43+0000\n"
+"Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -185,39 +185,32 @@ msgid "Using portal for file picker"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
-#, fuzzy
 msgid "Esperanto translations thanks to @phlostically"
-msgstr "Traduções para o alemão graças a @thericosanto"
+msgstr "Traduções de Esperanto graças a @phlostically"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-#, fuzzy
 msgid "Spanish translations thanks to @fitojb"
-msgstr "Traduções para o alemão graças a @thericosanto"
+msgstr "Traduções para o Espanhol graças a @fitojb"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
-#, fuzzy
 msgid "Croatin translations thanks to @milotype"
-msgstr "Traduções para o alemão graças a @thericosanto"
+msgstr "Traduções Croatas graças a @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
-#, fuzzy
 msgid "Portuguese translations thanks to @laralem"
-msgstr "Traduções para o português graças a @SantosSi"
+msgstr "Traduções para o português graças a @laralem"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
-#, fuzzy
 msgid "French translations thanks to @julroy67"
-msgstr "Traduções para checo graças a @panmourovaty"
+msgstr "Traduções para o Francês graças a @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
-#, fuzzy
 msgid "Swedish translations thanks to @eson57"
-msgstr "Traduções para o alemão graças a @thericosanto"
+msgstr "Traduções Suecas graças a @ eson57"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
-#, fuzzy
 msgid "Ukrain thanslations thanks to @marchellodev"
-msgstr "Traduções para o alemão graças a @thericosanto"
+msgstr "Traduções da Ucrânia graças a @marchellodev"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -290,7 +283,7 @@ msgstr "Alterna recurso experimental de instaladores"
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "Fechar Bottles automaticamente"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Close Bottles after starting executable from file manager"
@@ -358,7 +351,7 @@ msgstr "Arquivo completo"
 
 #: src/ui/details.ui:67
 msgid "Run with arguments"
-msgstr ""
+msgstr "Adicionar parâmetros de inicialização"
 
 #: src/ui/details.ui:94
 msgid "Type a really short comment:"
@@ -417,27 +410,22 @@ msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
 #: src/ui/details.ui:419
-#, fuzzy
 msgid "Destroy this bottle"
-msgstr "Destruir Bottle"
+msgstr "Delete esse Bottle"
 
 #: src/ui/details.ui:440
-#, fuzzy
 msgid "Run executable"
-msgstr "Executar .exe"
+msgstr "Executar .exe/.msi/.bat"
 
 #: src/ui/details.ui:477
-#, fuzzy
 msgid "Kill all wine processes"
 msgstr "Mate todos os processos"
 
 #: src/ui/details.ui:498
-#, fuzzy
 msgid "Reboot Windows"
-msgstr "Nativo (Windows)"
+msgstr "Reiniciar"
 
 #: src/ui/details.ui:519
-#, fuzzy
 msgid "Shutdown Windows"
 msgstr "Desligar"
 
@@ -535,11 +523,11 @@ msgstr ""
 
 #: src/ui/details.ui:967
 msgid "Use Gamemode"
-msgstr ""
+msgstr "Usar Gamemode"
 
 #: src/ui/details.ui:968
 msgid "Optimise gaming performance on demand"
-msgstr ""
+msgstr "Otimize o desempenho dos seus jogos"
 
 #: src/ui/details.ui:994
 msgid "Enable ACO shader compiler"
@@ -1031,11 +1019,13 @@ msgstr "Limpar arquivos temporários quando o Bottles for lançado?"
 
 #: src/ui/preferences.ui:118
 msgid "Close Bottles after starting a program"
-msgstr ""
+msgstr "Fechar Bottles automaticamente após iniciar um programa"
 
 #: src/ui/preferences.ui:119
 msgid "Close Bottles after starting a program from the file manager"
 msgstr ""
+"Feche o Bottles automaticamente após iniciar um programa a partir do "
+"gerenciador de arquivos"
 
 #: src/ui/preferences.ui:150
 msgid "Wine Runners"
@@ -1278,9 +1268,8 @@ msgid "Choose a Windows executable file"
 msgstr "Escolha um arquivo executável do Windows"
 
 #: src/pages/details.py:1003 src/pages/list.py:128
-#, fuzzy
 msgid "Run"
-msgstr "Agente de execução (runner)"
+msgstr "Executar"
 
 #: src/pages/details.py:1079
 msgid "Select the location where to save the backup configuration"
