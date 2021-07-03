@@ -1081,7 +1081,7 @@ class BottlesDetails(Gtk.Stack):
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
-        file_dialog.set_current_name("backup_%s.json" % self.configuration.get("Path"))
+        file_dialog.set_current_name("backup_%s.yml" % self.configuration.get("Path"))
 
         response = file_dialog.run()
 
