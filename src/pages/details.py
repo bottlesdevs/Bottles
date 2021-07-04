@@ -451,6 +451,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
     btn_install = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
+    btn_license = Gtk.Template.Child()
 
     def __init__(self, window, configuration, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
@@ -484,6 +485,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
         self.btn_install.connect('pressed', self.install_dependency)
         self.btn_remove.connect('pressed', self.remove_dependency)
         self.btn_manifest.connect('pressed', self.open_manifest)
+        self.btn_license.connect('pressed', self.open_license)
 
         '''
         Set widgets status from configuration
@@ -503,6 +505,13 @@ class BottlesDependencyEntry(Handy.ActionRow):
                                                       plain=True))
         dialog_upgrade.run()
         dialog_upgrade.destroy()
+
+    '''Open dependency license'''
+    def open_license(self, widget):
+        manifest = self.runner.fetch_dependency_manifest(
+            self.dependency[0],
+            self.dependency[1]["Category"])
+        webbrowser.open(manifest["License_url"])
 
     '''Install dependency'''
     def install_dependency(self, widget):
