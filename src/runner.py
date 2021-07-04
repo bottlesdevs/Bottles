@@ -52,7 +52,7 @@ class BottlesRunner:
     components_repository_index = "%s/index.yml" % components_repository
 
     dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
-    dependencies_repository_index = "%s/testing.yml" % dependencies_repository
+    dependencies_repository_index = "%s/index.yml" % dependencies_repository
 
     installers_repository = "https://raw.githubusercontent.com/bottlesdevs/programs/main/"
     installers_repository_index = "%s/index.yml" % installers_repository
