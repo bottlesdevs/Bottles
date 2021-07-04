@@ -121,6 +121,7 @@ AppDir:
       # Needed by Wayland
       XDG_DATA_DIRS: '/usr/local/share/:/usr/share/'
       # Set python home
+      LD_LIBRARY_PATH: '${APPDIR}/usr/lib:${LD_LIBRARY_PATH}'
       PYTHONPATH: '${APPDIR}/usr/lib/python3/dist-packages'
       # SSL CERTIFICATE_VERIFY_FAILED python3.8 -m pip install --ignore-installed --prefix=/usr --root=$APPDIR install --upgrade certifi
       #SSL_CERT_DIR: "/etc/ssl/certs:/etc/pki/ca-trust/extracted/pem:/etc/pki/ca-trust/extracted/openssl:/etc/ssl:/etc/pki/tls:/etc/pki:/etc/pki/ca-trust:/usr/local/share/certs:/usr/share/pki/ca-trust-source:/etc/openssl/certs:/var/ssl/certs"
