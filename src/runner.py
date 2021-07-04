@@ -57,6 +57,10 @@ class BottlesRunner:
     installers_repository = "https://raw.githubusercontent.com/bottlesdevs/programs/main/"
     installers_repository_index = "%s/index.yml" % installers_repository
 
+    if "TESTING_REPOS" in os.environ:
+        dependencies_repository_index = "%s/testing.yml" % dependencies_repository
+
+
     '''Icon paths'''
     icons_user = "%s/.local/share/icons" % Path.home()
 
