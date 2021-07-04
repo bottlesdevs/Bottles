@@ -37,6 +37,10 @@ packagecache
 
 .buildconfig
 
+# Ignore AppImage build dirs
+/AppDir
+/appimage-builder-cache
+
 # Ignore generated files
 *.deb
 *.dsc
@@ -44,6 +48,7 @@ packagecache
 *.build
 *.buildinfo
 *.tar.gz
+
 
 # Ignore files generated during build
 *debian/files
