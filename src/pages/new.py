@@ -93,11 +93,11 @@ class BottlesNew(Handy.Window):
     list_environments = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
+    page_created = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     switch_versioning = Gtk.Template.Child()
     label_advanced = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
-    label_confirm = Gtk.Template.Child()
     box_advanced = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
@@ -223,7 +223,7 @@ class BottlesNew(Handy.Window):
         GLib.idle_add(self.idle_update_output, text)
 
     def finish(self):
-        self.label_confirm.set_text(
+        self.page_created.set_description(
             _("A bottle named “%s” was created successfully") % self.entry_name.get_text())
 
         self.btn_cancel.set_visible(False)
