@@ -41,8 +41,8 @@ jobs:
       
       # Deb Build
       # --------------------------------------
-      - name: Build .deb package
-        run: dpkg-buildpackage
+      #- name: Build .deb package
+      #  run: dpkg-buildpackage
       
       
       # Rename and release packages
@@ -51,7 +51,7 @@ jobs:
         run: |
           mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
           mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
-          mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
+#mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
         
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -62,4 +62,4 @@ jobs:
           title: Unstable build
           files: |
             Bottles-*-x86_64.AppImage*
-            com.usebottles.bottles-unstable.deb
+#com.usebottles.bottles-unstable.deb
