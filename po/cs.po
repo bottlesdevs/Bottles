@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-02 08:39+0200\n"
+"POT-Creation-Date: 2021-07-03 22:02+0200\n"
 "PO-Revision-Date: 2021-06-15 14:05+0000\n"
 "Last-Translator: panmourovaty <panmourovaty@centrum.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:165 src/ui/window.ui:180
-#: src/window.py:128
+#: src/window.py:130
 msgid "Bottles"
 msgstr "Láhve"
 
@@ -145,74 +145,109 @@ msgstr "Správce verzí láhví (experimentální)"
 msgid ".. and much more that you can find by installing Bottles!"
 msgstr ".. a mnohem více můžete zjistit tak že si nainstalujete Láhve!"
 
-#: data/com.usebottles.bottles.appdata.xml.in:98
-msgid "Updates:"
-msgstr "Aktualizace:"
+#: data/com.usebottles.bottles.appdata.xml.in:99
+msgid "Display a crash report on restart if something goes wrong"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-msgid "New versioning based on CalVer model"
+msgid "Using the new yaml format for the bottle configuration"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-msgid "Create bottles using the wine runner provided by the distribution"
+msgid "Using the new yaml repositories for components/dependencies/programs"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
-msgid "Enable gamemode for your bottles if installed in the system"
+msgid "Automatic update old bottle configuration to the new model"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-msgid "Run .exe/.msi/.bat files with custom arguments"
-msgstr ""
+#, fuzzy
+msgid "Backup bottle configuration and archive"
+msgstr "Generuji konfigurační soubor láhve …"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-msgid "Fixed the \"bad interpreter\" error on debian package"
-msgstr ""
+#, fuzzy
+msgid "Import backup archives"
+msgstr "Vyberte záložní archiv"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
-msgid ""
-"Optionally close Bottles after starting an executable from the file manager"
+msgid "Show onboard if system wine is the only installed runner"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-msgid "Added tooltips to understand what some elements of the UI do"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:107
-msgid "Using portal for file picker"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:108
-#, fuzzy
-msgid "Esperanto translations thanks to @phlostically"
-msgstr "Německý překlad díky @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:109
-#, fuzzy
-msgid "Spanish translations thanks to @fitojb"
-msgstr "Německý překlad díky @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:110
-#, fuzzy
-msgid "Croatin translations thanks to @milotype"
-msgstr "Německý překlad díky @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:111
-#, fuzzy
-msgid "Portuguese translations thanks to @laralem"
-msgstr "Portugalský překlad díky @SantosSi"
-
-#: data/com.usebottles.bottles.appdata.xml.in:112
-#, fuzzy
-msgid "French translations thanks to @julroy67"
-msgstr "Francouzský překlad díky @julroy67"
-
-#: data/com.usebottles.bottles.appdata.xml.in:113
+#: data/com.usebottles.bottles.appdata.xml.in:128
 #, fuzzy
 msgid "Swedish translations thanks to @eson57"
 msgstr "Německý překlad díky @thericosanto"
 
+#: data/com.usebottles.bottles.appdata.xml.in:112
+msgid "Updates:"
+msgstr "Aktualizace:"
+
 #: data/com.usebottles.bottles.appdata.xml.in:114
+msgid "New versioning based on CalVer model"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:115
+msgid "Create bottles using the wine runner provided by the distribution"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:116
+msgid "Enable gamemode for your bottles if installed in the system"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:117
+msgid "Run .exe/.msi/.bat files with custom arguments"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:118
+msgid "Fixed the \"bad interpreter\" error on debian package"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:119
+msgid ""
+"Optionally close Bottles after starting an executable from the file manager"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:120
+msgid "Added tooltips to understand what some elements of the UI do"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:121
+msgid "Using portal for file picker"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:122
+msgid "Filechooser do not filter by extensions anymore"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:123
+#, fuzzy
+msgid "Esperanto translations thanks to @phlostically"
+msgstr "Německý překlad díky @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:124
+#, fuzzy
+msgid "Spanish translations thanks to @fitojb"
+msgstr "Německý překlad díky @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:125
+#, fuzzy
+msgid "Croatin translations thanks to @milotype"
+msgstr "Německý překlad díky @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:126
+#, fuzzy
+msgid "Portuguese translations thanks to @laralem"
+msgstr "Portugalský překlad díky @SantosSi"
+
+#: data/com.usebottles.bottles.appdata.xml.in:127
+#, fuzzy
+msgid "French translations thanks to @julroy67"
+msgstr "Francouzský překlad díky @julroy67"
+
+#: data/com.usebottles.bottles.appdata.xml.in:129
 #, fuzzy
 msgid "Ukrain thanslations thanks to @marchellodev"
 msgstr "Německý překlad díky @thericosanto"
@@ -423,105 +458,110 @@ msgstr "Zničit láhev"
 msgid "Run executable"
 msgstr "Spustit .exe"
 
-#: src/ui/details.ui:477
+#: src/ui/details.ui:478
 #, fuzzy
-msgid "Kill all wine processes"
-msgstr "Ladění Wine procesů."
+msgid "Backup bottle"
+msgstr "Zálohujte a importujte láhve"
 
-#: src/ui/details.ui:498
+#: src/ui/details.ui:500
 #, fuzzy
 msgid "Reboot Windows"
 msgstr "Nativní (Windows)"
 
-#: src/ui/details.ui:519
+#: src/ui/details.ui:521
 msgid "Shutdown Windows"
 msgstr ""
 
-#: src/ui/details.ui:558 src/ui/details.ui:1668 src/ui/details.ui:1741
+#: src/ui/details.ui:542
+#, fuzzy
+msgid "Kill all wine processes"
+msgstr "Ladění Wine procesů."
+
+#: src/ui/details.ui:581 src/ui/details.ui:1691 src/ui/details.ui:1764
 msgid "Programs"
 msgstr "Programy"
 
-#: src/ui/details.ui:574
+#: src/ui/details.ui:597
 msgid "Utilities"
 msgstr "Nástroje"
 
-#: src/ui/details.ui:579
+#: src/ui/details.ui:602
 msgid "Wine config"
 msgstr "Nastavení Wine"
 
-#: src/ui/details.ui:581
+#: src/ui/details.ui:604
 msgid "Adjust internal settings."
 msgstr "Upravit vnitřní nastavení."
 
-#: src/ui/details.ui:618 src/ui/list-entry.ui:221
+#: src/ui/details.ui:641 src/ui/list-entry.ui:221
 msgid "Browse C:"
 msgstr "Procházet C:"
 
-#: src/ui/details.ui:620
+#: src/ui/details.ui:643
 msgid "Browse internal files."
 msgstr "Procházet interní soubory."
 
-#: src/ui/details.ui:657
+#: src/ui/details.ui:680
 msgid "Command Line"
 msgstr "Příkazový řádek"
 
-#: src/ui/details.ui:659
+#: src/ui/details.ui:682
 msgid "Run commands inside the Bottle."
 msgstr "Spustit příkazy uvnitř láhve."
 
-#: src/ui/details.ui:696
+#: src/ui/details.ui:719
 msgid "Registry Editor"
 msgstr "Editor Registru"
 
-#: src/ui/details.ui:698
+#: src/ui/details.ui:721
 msgid "Edit the internal registry."
 msgstr "Upravit interní registr."
 
-#: src/ui/details.ui:735
+#: src/ui/details.ui:758
 msgid "Debug"
 msgstr "Ladit"
 
-#: src/ui/details.ui:737
+#: src/ui/details.ui:760
 msgid "Debug wine processes."
 msgstr "Ladění Wine procesů."
 
-#: src/ui/details.ui:774
+#: src/ui/details.ui:797
 msgid "Task Manager"
 msgstr "Správce úloh"
 
-#: src/ui/details.ui:776
+#: src/ui/details.ui:799
 msgid "Manage processes with the Wine task manager."
 msgstr "Spravovat procesy pomocí Wine Správce úloh."
 
-#: src/ui/details.ui:813
+#: src/ui/details.ui:836
 msgid "Uninstaller"
 msgstr "Odinstalovat"
 
-#: src/ui/details.ui:815
+#: src/ui/details.ui:838
 msgid "Uninstall programs using wine uninstaller"
 msgstr "Odinstalovat programy pomocí Wine odinstalátoru"
 
-#: src/ui/details.ui:852
+#: src/ui/details.ui:875
 msgid "Control Panel"
 msgstr "Ovládací panel"
 
-#: src/ui/details.ui:854
+#: src/ui/details.ui:877
 msgid "Access the internal wine control panel."
 msgstr "Přístup k internímu Wine Ovládacímu panelu."
 
-#: src/ui/details.ui:906
+#: src/ui/details.ui:929
 msgid "Bottle"
 msgstr "Láhev"
 
-#: src/ui/details.ui:934
+#: src/ui/details.ui:957
 msgid "Graphics"
 msgstr "Grafika"
 
-#: src/ui/details.ui:939
+#: src/ui/details.ui:962
 msgid "Use DXVK"
 msgstr "Použít DXVK"
 
-#: src/ui/details.ui:940 src/ui/details.ui:995
+#: src/ui/details.ui:963 src/ui/details.ui:1018
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -529,139 +569,139 @@ msgstr ""
 "Zvyšuje výkon ve hrách a 3D aplikacích.\n"
 "Vypněte pokud máte problém s grafickými závadami."
 
-#: src/ui/details.ui:967
+#: src/ui/details.ui:990
 msgid "Use Gamemode"
 msgstr ""
 
-#: src/ui/details.ui:968
+#: src/ui/details.ui:991
 msgid "Optimise gaming performance on demand"
 msgstr ""
 
-#: src/ui/details.ui:994
+#: src/ui/details.ui:1017
 msgid "Enable ACO shader compiler"
 msgstr "Povolit ACO shader compiler"
 
-#: src/ui/details.ui:1022
+#: src/ui/details.ui:1045
 msgid "Discrete GPU"
 msgstr "Hybridní GPU"
 
-#: src/ui/details.ui:1023
+#: src/ui/details.ui:1046
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Zvyšuje výkon za cenu zvýšené spotřeby elektřiny."
 
-#: src/ui/details.ui:1049
+#: src/ui/details.ui:1072
 msgid "Use a virtual desktop"
 msgstr "Použít virtuální plochu"
 
-#: src/ui/details.ui:1050
+#: src/ui/details.ui:1073
 msgid "Use the Wine virtual desktop."
 msgstr "Použít Virtuální plochu Wine."
 
-#: src/ui/details.ui:1133 src/ui/details.ui:1146
+#: src/ui/details.ui:1156 src/ui/details.ui:1169
 msgid "System"
 msgstr "Systém"
 
-#: src/ui/details.ui:1138
+#: src/ui/details.ui:1161
 msgid "Synchronization"
 msgstr "Synchronizace"
 
-#: src/ui/details.ui:1139
+#: src/ui/details.ui:1162
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr "Povolením synchronizace zvýšíte výkon vícejádrových procesorů."
 
-#: src/ui/details.ui:1160
+#: src/ui/details.ui:1183
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1174
+#: src/ui/details.ui:1197
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1197 src/ui/new.ui:261
+#: src/ui/details.ui:1220 src/ui/new.ui:261
 msgid "Runner"
 msgstr "Runner"
 
-#: src/ui/details.ui:1240 src/ui/new.ui:302
+#: src/ui/details.ui:1263 src/ui/new.ui:302
 msgid "Manage runners"
 msgstr "Spravovat runnery"
 
-#: src/ui/details.ui:1272 src/ui/new.ui:334
+#: src/ui/details.ui:1295 src/ui/new.ui:334
 msgid "DXVK Version"
 msgstr "Verze DXVK"
 
-#: src/ui/details.ui:1315 src/ui/new.ui:375
+#: src/ui/details.ui:1338 src/ui/new.ui:375
 msgid "Manage DXVK versions"
 msgstr "Spravovat verze DXVK"
 
-#: src/ui/details.ui:1348 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1371 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "Přepsání DLL"
 
-#: src/ui/details.ui:1397
+#: src/ui/details.ui:1420
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details.ui:1402
+#: src/ui/details.ui:1425
 msgid "Reduce PulseAudio latency"
 msgstr "Sníží latenci PulseAudia"
 
-#: src/ui/details.ui:1403
+#: src/ui/details.ui:1426
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Nastaví latenci PulseAudia na 60 milisekund za účelem zvýšení kvality zvuku"
 
-#: src/ui/details.ui:1440
+#: src/ui/details.ui:1463
 msgid "Developers & Debug"
 msgstr "Vývoj & odstraňování chyb"
 
-#: src/ui/details.ui:1445
+#: src/ui/details.ui:1468
 msgid "Environment variables"
 msgstr "Proměnné prostředí"
 
-#: src/ui/details.ui:1483
+#: src/ui/details.ui:1506
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details.ui:1484
+#: src/ui/details.ui:1507
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Zapne DXVK překrytí které zobrazuje FPS a další detaily v D3D aplikacích."
 
-#: src/ui/details.ui:1510
+#: src/ui/details.ui:1533
 msgid "Enable wine fixme logs"
 msgstr "Zapnout Wine fixme logy"
 
-#: src/ui/details.ui:1511
+#: src/ui/details.ui:1534
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Protokolujte cesty kódu, které nejsou ve Wine implementovány."
 
-#: src/ui/details.ui:1552 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/ui/details.ui:1575 src/ui/preferences.ui:8 src/ui/window.ui:75
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: src/ui/details.ui:1586 src/ui/details.ui:1634
+#: src/ui/details.ui:1609 src/ui/details.ui:1657
 msgid "Dependencies"
 msgstr "Závislosti"
 
-#: src/ui/details.ui:1687
+#: src/ui/details.ui:1710
 msgid "Search for installed programs"
 msgstr "Hledat nainstalované programy"
 
-#: src/ui/details.ui:1775 src/ui/preferences.ui:228 src/ui/window.ui:151
+#: src/ui/details.ui:1798 src/ui/preferences.ui:228 src/ui/window.ui:151
 msgid "Installers"
 msgstr "Instalátory"
 
-#: src/ui/details.ui:1794 src/ui/importer.ui:95
+#: src/ui/details.ui:1817 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: src/ui/details.ui:1880 src/ui/preferences.ui:202 src/ui/window.ui:138
+#: src/ui/details.ui:1903 src/ui/preferences.ui:202 src/ui/window.ui:138
 msgid "Versioning"
 msgstr "Správa verzí"
 
-#: src/ui/details.ui:1900
+#: src/ui/details.ui:1923
 msgid "Create new state"
 msgstr "Vytvořit nový stav"
 
@@ -768,7 +808,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "Odinstalovat"
 
-#: src/ui/importer.ui:76 src/runner.py:1390 src/window.py:130
+#: src/ui/importer.ui:76 src/runner.py:1451 src/window.py:132
 msgid "Importer"
 msgstr "Importovat"
 
@@ -1078,7 +1118,7 @@ msgstr "Zde jsou wine/wineserver procesy které běží na vašem PC."
 msgid "Check for running processes."
 msgstr "Zkontrolovat spuštěné procesy."
 
-#: src/ui/window.ui:49 src/window.py:129
+#: src/ui/window.ui:49 src/window.py:131
 msgid "Task manager"
 msgstr "Správce úloh"
 
@@ -1131,109 +1171,109 @@ msgstr "[Help] žádost přijata."
 msgid "[Refresh] request received."
 msgstr "[Refresh] žádost přijata."
 
-#: src/runner.py:279
+#: src/runner.py:284
 #, python-brace-format
 msgid "Downloaded file {0} looks corrupted. Try again."
 msgstr "Stažený soubor {0} vypadá poškozený. Zkuste to znovu."
 
-#: src/runner.py:299 src/runner.py:336 src/runner.py:360
+#: src/runner.py:304 src/runner.py:341 src/runner.py:365
 msgid "Download manager"
 msgstr "Správce stahování"
 
-#: src/runner.py:300
+#: src/runner.py:305
 #, python-brace-format
 msgid "Installing {0} runner …"
 msgstr "Instaluje se {0} runner…"
 
-#: src/runner.py:337
+#: src/runner.py:342
 #, python-brace-format
 msgid "Component {0} successfully installed!"
 msgstr "Komponenta {0} úspěšně nainstalována!"
 
-#: src/runner.py:361
+#: src/runner.py:366
 #, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
 msgstr "Instaluji {0} závislost v láhvi {1} …"
 
-#: src/runner.py:787
+#: src/runner.py:848
 msgid "Runner and/or dxvk not found, installing latest version …"
 msgstr "Runner a/nebo DXVK nebylo nalezeno, instaluji nejnovější verzi…"
 
-#: src/runner.py:826
+#: src/runner.py:887
 msgid "The wine configuration is being updated …"
 msgstr "Konfigurace wine je aktualizována …"
 
-#: src/runner.py:832
+#: src/runner.py:893
 msgid "Wine configuration updated!"
 msgstr "Konfigurace wine byla aktualizována!"
 
-#: src/runner.py:855
+#: src/runner.py:916
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Aplikuji prostředí: [{0}] …"
 
-#: src/runner.py:874
+#: src/runner.py:935
 msgid "Installing dxvk …"
 msgstr "Instaluji DXVK …"
 
-#: src/runner.py:882
+#: src/runner.py:943
 msgid "Creating versioning state 0 …"
 msgstr "Vytvářím verzovací stav 0 …"
 
-#: src/runner.py:888
+#: src/runner.py:949
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Vaše nová láhev: {0} je nyní připravena!"
 
-#: src/runner.py:1277
+#: src/runner.py:1338
 #, python-brace-format
 msgid "{0} completed for {1}."
 msgstr "{0} dokončeno pro {1}."
 
-#: src/runner.py:1391
+#: src/runner.py:1452
 #, python-brace-format
 msgid "Wineprefix {0} successfully imported!"
 msgstr "Wineprefix {0} byl úspěšně importován!"
 
-#: src/runner.py:1722
+#: src/runner.py:1784
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Záloha {0}"
 
-#: src/runner.py:1746
+#: src/runner.py:1808
 #, python-brace-format
 msgid "Your backup for {0} is ready!"
 msgstr "Vaše záloha pro {0} je připravena!"
 
-#: src/runner.py:1756
+#: src/runner.py:1818
 #, python-brace-format
 msgid "Failed to create backup for {0}!"
 msgstr "Nepodařilo se vytvořit zálohu pro {0}!"
 
-#: src/runner.py:1782
+#: src/runner.py:1845
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importuji zálohu: {0}"
 
-#: src/runner.py:1803
+#: src/runner.py:1866
 #, python-brace-format
 msgid "Your backup {0} was imported successfully.!"
 msgstr "Vaše záloha {0} byla úspěšně importována!"
 
-#: src/runner.py:1812
+#: src/runner.py:1875
 #, python-brace-format
 msgid "Failed importing backup {0}!"
 msgstr "Nepodařilo se importovat zálohu: {0}!"
 
-#: src/utils.py:57
+#: src/utils.py:60
 msgid "You are offline, unable to download."
 msgstr "Jste offline, nemohu stahovat."
 
-#: src/window.py:127
+#: src/window.py:129
 msgid "Bottle details"
 msgstr "Detaily láhve"
 
-#: src/window.py:168
+#: src/window.py:170
 msgid "Bottles Started!"
 msgstr "Láhve Spuštěny!"
 
@@ -1282,11 +1322,11 @@ msgstr "Potvrďte odstranění"
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
 
-#: src/pages/dialog.py:24 src/pages/dialog.py:60
+#: src/pages/dialog.py:25 src/pages/dialog.py:61
 msgid "Warning"
 msgstr "Varování"
 
-#: src/pages/dialog.py:25 src/pages/dialog.py:61
+#: src/pages/dialog.py:26 src/pages/dialog.py:62
 msgid "An error has occurred."
 msgstr "Došlo k chybě."
 
@@ -1432,9 +1472,6 @@ msgstr "Láhev pojmenovaná “%s” byla úspěšně vytvořena"
 
 #~ msgid "Creating the wineprefix …"
 #~ msgstr "Vytvářím wineprefix…"
-
-#~ msgid "Generating Bottle configuration file …"
-#~ msgstr "Generuji konfigurační soubor láhve …"
 
 #, python-brace-format
 #~ msgid "Applying environment: [{0}] …"

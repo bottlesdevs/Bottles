@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-02 08:39+0200\n"
+"POT-Creation-Date: 2021-07-03 22:02+0200\n"
 "PO-Revision-Date: 2021-05-30 11:32+0000\n"
 "Last-Translator: Flywater Zh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:165 src/ui/window.ui:180
-#: src/window.py:128
+#: src/window.py:130
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -139,74 +139,109 @@ msgstr "Bottles 版本控制（实验功能）"
 msgid ".. and much more that you can find by installing Bottles!"
 msgstr "……和更多您可以通过安装 Bottles 来发现的功能！"
 
-#: data/com.usebottles.bottles.appdata.xml.in:98
-msgid "Updates:"
-msgstr "更新："
+#: data/com.usebottles.bottles.appdata.xml.in:99
+msgid "Display a crash report on restart if something goes wrong"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-msgid "New versioning based on CalVer model"
+msgid "Using the new yaml format for the bottle configuration"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-msgid "Create bottles using the wine runner provided by the distribution"
+msgid "Using the new yaml repositories for components/dependencies/programs"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
-msgid "Enable gamemode for your bottles if installed in the system"
+msgid "Automatic update old bottle configuration to the new model"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-msgid "Run .exe/.msi/.bat files with custom arguments"
-msgstr ""
+#, fuzzy
+msgid "Backup bottle configuration and archive"
+msgstr "正在生成 Bottle 配置文件…"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-msgid "Fixed the \"bad interpreter\" error on debian package"
-msgstr ""
+#, fuzzy
+msgid "Import backup archives"
+msgstr "选择一个备份归档"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
-msgid ""
-"Optionally close Bottles after starting an executable from the file manager"
+msgid "Show onboard if system wine is the only installed runner"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-msgid "Added tooltips to understand what some elements of the UI do"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:107
-msgid "Using portal for file picker"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:108
-#, fuzzy
-msgid "Esperanto translations thanks to @phlostically"
-msgstr "感谢 @thericosanto 翻译德语"
-
-#: data/com.usebottles.bottles.appdata.xml.in:109
-#, fuzzy
-msgid "Spanish translations thanks to @fitojb"
-msgstr "感谢 @thericosanto 翻译德语"
-
-#: data/com.usebottles.bottles.appdata.xml.in:110
-#, fuzzy
-msgid "Croatin translations thanks to @milotype"
-msgstr "感谢 @thericosanto 翻译德语"
-
-#: data/com.usebottles.bottles.appdata.xml.in:111
-#, fuzzy
-msgid "Portuguese translations thanks to @laralem"
-msgstr "感谢 @SantosSi 翻译葡萄牙语"
-
-#: data/com.usebottles.bottles.appdata.xml.in:112
-#, fuzzy
-msgid "French translations thanks to @julroy67"
-msgstr "感谢 @julroy67 翻译法语"
-
-#: data/com.usebottles.bottles.appdata.xml.in:113
+#: data/com.usebottles.bottles.appdata.xml.in:128
 #, fuzzy
 msgid "Swedish translations thanks to @eson57"
 msgstr "感谢 @thericosanto 翻译德语"
 
+#: data/com.usebottles.bottles.appdata.xml.in:112
+msgid "Updates:"
+msgstr "更新："
+
 #: data/com.usebottles.bottles.appdata.xml.in:114
+msgid "New versioning based on CalVer model"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:115
+msgid "Create bottles using the wine runner provided by the distribution"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:116
+msgid "Enable gamemode for your bottles if installed in the system"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:117
+msgid "Run .exe/.msi/.bat files with custom arguments"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:118
+msgid "Fixed the \"bad interpreter\" error on debian package"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:119
+msgid ""
+"Optionally close Bottles after starting an executable from the file manager"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:120
+msgid "Added tooltips to understand what some elements of the UI do"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:121
+msgid "Using portal for file picker"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:122
+msgid "Filechooser do not filter by extensions anymore"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:123
+#, fuzzy
+msgid "Esperanto translations thanks to @phlostically"
+msgstr "感谢 @thericosanto 翻译德语"
+
+#: data/com.usebottles.bottles.appdata.xml.in:124
+#, fuzzy
+msgid "Spanish translations thanks to @fitojb"
+msgstr "感谢 @thericosanto 翻译德语"
+
+#: data/com.usebottles.bottles.appdata.xml.in:125
+#, fuzzy
+msgid "Croatin translations thanks to @milotype"
+msgstr "感谢 @thericosanto 翻译德语"
+
+#: data/com.usebottles.bottles.appdata.xml.in:126
+#, fuzzy
+msgid "Portuguese translations thanks to @laralem"
+msgstr "感谢 @SantosSi 翻译葡萄牙语"
+
+#: data/com.usebottles.bottles.appdata.xml.in:127
+#, fuzzy
+msgid "French translations thanks to @julroy67"
+msgstr "感谢 @julroy67 翻译法语"
+
+#: data/com.usebottles.bottles.appdata.xml.in:129
 #, fuzzy
 msgid "Ukrain thanslations thanks to @marchellodev"
 msgstr "感谢 @thericosanto 翻译德语"
@@ -411,105 +446,110 @@ msgstr "销毁 bottle"
 msgid "Run executable"
 msgstr "运行 .exe"
 
-#: src/ui/details.ui:477
+#: src/ui/details.ui:478
 #, fuzzy
-msgid "Kill all wine processes"
-msgstr "调试 wine 进程。"
+msgid "Backup bottle"
+msgstr "备份和导入 bottles"
 
-#: src/ui/details.ui:498
+#: src/ui/details.ui:500
 #, fuzzy
 msgid "Reboot Windows"
 msgstr "原生（Windows）"
 
-#: src/ui/details.ui:519
+#: src/ui/details.ui:521
 msgid "Shutdown Windows"
 msgstr ""
 
-#: src/ui/details.ui:558 src/ui/details.ui:1668 src/ui/details.ui:1741
+#: src/ui/details.ui:542
+#, fuzzy
+msgid "Kill all wine processes"
+msgstr "调试 wine 进程。"
+
+#: src/ui/details.ui:581 src/ui/details.ui:1691 src/ui/details.ui:1764
 msgid "Programs"
 msgstr "程序"
 
-#: src/ui/details.ui:574
+#: src/ui/details.ui:597
 msgid "Utilities"
 msgstr "工具"
 
-#: src/ui/details.ui:579
+#: src/ui/details.ui:602
 msgid "Wine config"
 msgstr "Wine 配置"
 
-#: src/ui/details.ui:581
+#: src/ui/details.ui:604
 msgid "Adjust internal settings."
 msgstr "调整内部设置。"
 
-#: src/ui/details.ui:618 src/ui/list-entry.ui:221
+#: src/ui/details.ui:641 src/ui/list-entry.ui:221
 msgid "Browse C:"
 msgstr "浏览 C:"
 
-#: src/ui/details.ui:620
+#: src/ui/details.ui:643
 msgid "Browse internal files."
 msgstr "浏览内部文件。"
 
-#: src/ui/details.ui:657
+#: src/ui/details.ui:680
 msgid "Command Line"
 msgstr "命令行"
 
-#: src/ui/details.ui:659
+#: src/ui/details.ui:682
 msgid "Run commands inside the Bottle."
 msgstr "在 Bottle 内运行命令。"
 
-#: src/ui/details.ui:696
+#: src/ui/details.ui:719
 msgid "Registry Editor"
 msgstr "注册表编辑器"
 
-#: src/ui/details.ui:698
+#: src/ui/details.ui:721
 msgid "Edit the internal registry."
 msgstr "编辑内部注册表。"
 
-#: src/ui/details.ui:735
+#: src/ui/details.ui:758
 msgid "Debug"
 msgstr "调试"
 
-#: src/ui/details.ui:737
+#: src/ui/details.ui:760
 msgid "Debug wine processes."
 msgstr "调试 wine 进程。"
 
-#: src/ui/details.ui:774
+#: src/ui/details.ui:797
 msgid "Task Manager"
 msgstr "任务管理器"
 
-#: src/ui/details.ui:776
+#: src/ui/details.ui:799
 msgid "Manage processes with the Wine task manager."
 msgstr "用 Wine 任务管理器管理进程。"
 
-#: src/ui/details.ui:813
+#: src/ui/details.ui:836
 msgid "Uninstaller"
 msgstr "卸载器"
 
-#: src/ui/details.ui:815
+#: src/ui/details.ui:838
 msgid "Uninstall programs using wine uninstaller"
 msgstr "使用 wine 卸载器卸载程序"
 
-#: src/ui/details.ui:852
+#: src/ui/details.ui:875
 msgid "Control Panel"
 msgstr "控制面板"
 
-#: src/ui/details.ui:854
+#: src/ui/details.ui:877
 msgid "Access the internal wine control panel."
 msgstr "访问内部 wine 控制面板。"
 
-#: src/ui/details.ui:906
+#: src/ui/details.ui:929
 msgid "Bottle"
 msgstr "Bottle"
 
-#: src/ui/details.ui:934
+#: src/ui/details.ui:957
 msgid "Graphics"
 msgstr "图形"
 
-#: src/ui/details.ui:939
+#: src/ui/details.ui:962
 msgid "Use DXVK"
 msgstr "使用 DXVK"
 
-#: src/ui/details.ui:940 src/ui/details.ui:995
+#: src/ui/details.ui:963 src/ui/details.ui:1018
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -517,137 +557,137 @@ msgstr ""
 "在游戏和 3D 应用程序中提高性能。\n"
 "如果您遭遇图形故障请禁用。"
 
-#: src/ui/details.ui:967
+#: src/ui/details.ui:990
 msgid "Use Gamemode"
 msgstr ""
 
-#: src/ui/details.ui:968
+#: src/ui/details.ui:991
 msgid "Optimise gaming performance on demand"
 msgstr ""
 
-#: src/ui/details.ui:994
+#: src/ui/details.ui:1017
 msgid "Enable ACO shader compiler"
 msgstr "启用 ACO 着色编译器"
 
-#: src/ui/details.ui:1022
+#: src/ui/details.ui:1045
 msgid "Discrete GPU"
 msgstr "独立显卡"
 
-#: src/ui/details.ui:1023
+#: src/ui/details.ui:1046
 msgid "Improves performance at the cost of increased power usage."
 msgstr "以增加功耗为代价提升性能。"
 
-#: src/ui/details.ui:1049
+#: src/ui/details.ui:1072
 msgid "Use a virtual desktop"
 msgstr "使用虚拟桌面"
 
-#: src/ui/details.ui:1050
+#: src/ui/details.ui:1073
 msgid "Use the Wine virtual desktop."
 msgstr "使用 Wine 虚拟桌面。"
 
-#: src/ui/details.ui:1133 src/ui/details.ui:1146
+#: src/ui/details.ui:1156 src/ui/details.ui:1169
 msgid "System"
 msgstr "系统"
 
-#: src/ui/details.ui:1138
+#: src/ui/details.ui:1161
 msgid "Synchronization"
 msgstr "同步"
 
-#: src/ui/details.ui:1139
+#: src/ui/details.ui:1162
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr "为多核心处理器启用同步以增强性能。"
 
-#: src/ui/details.ui:1160
+#: src/ui/details.ui:1183
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1174
+#: src/ui/details.ui:1197
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1197 src/ui/new.ui:261
+#: src/ui/details.ui:1220 src/ui/new.ui:261
 msgid "Runner"
 msgstr "运行器"
 
-#: src/ui/details.ui:1240 src/ui/new.ui:302
+#: src/ui/details.ui:1263 src/ui/new.ui:302
 msgid "Manage runners"
 msgstr "管理运行器"
 
-#: src/ui/details.ui:1272 src/ui/new.ui:334
+#: src/ui/details.ui:1295 src/ui/new.ui:334
 msgid "DXVK Version"
 msgstr "DXVK 版本"
 
-#: src/ui/details.ui:1315 src/ui/new.ui:375
+#: src/ui/details.ui:1338 src/ui/new.ui:375
 msgid "Manage DXVK versions"
 msgstr "管理 DXVK 版本"
 
-#: src/ui/details.ui:1348 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1371 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "DLL 覆盖"
 
-#: src/ui/details.ui:1397
+#: src/ui/details.ui:1420
 msgid "Audio"
 msgstr "音频"
 
-#: src/ui/details.ui:1402
+#: src/ui/details.ui:1425
 msgid "Reduce PulseAudio latency"
 msgstr "降低 PulseAudio 延迟"
 
-#: src/ui/details.ui:1403
+#: src/ui/details.ui:1426
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音频质量"
 
-#: src/ui/details.ui:1440
+#: src/ui/details.ui:1463
 msgid "Developers & Debug"
 msgstr "开发者与调试"
 
-#: src/ui/details.ui:1445
+#: src/ui/details.ui:1468
 msgid "Environment variables"
 msgstr "环境变量"
 
-#: src/ui/details.ui:1483
+#: src/ui/details.ui:1506
 msgid "DXVK HUD"
 msgstr "DXVK 抬头显示"
 
-#: src/ui/details.ui:1484
+#: src/ui/details.ui:1507
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr "切换 DXVK 在 D3D 应用程序中叠加显示帧率和其它详情。"
 
-#: src/ui/details.ui:1510
+#: src/ui/details.ui:1533
 msgid "Enable wine fixme logs"
 msgstr "启用 wine fixme 日志"
 
-#: src/ui/details.ui:1511
+#: src/ui/details.ui:1534
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "记录未在 Wine 中实现的代码路径。"
 
-#: src/ui/details.ui:1552 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/ui/details.ui:1575 src/ui/preferences.ui:8 src/ui/window.ui:75
 msgid "Preferences"
 msgstr "首选项"
 
-#: src/ui/details.ui:1586 src/ui/details.ui:1634
+#: src/ui/details.ui:1609 src/ui/details.ui:1657
 msgid "Dependencies"
 msgstr "依赖"
 
-#: src/ui/details.ui:1687
+#: src/ui/details.ui:1710
 msgid "Search for installed programs"
 msgstr "搜索已安装的程序"
 
-#: src/ui/details.ui:1775 src/ui/preferences.ui:228 src/ui/window.ui:151
+#: src/ui/details.ui:1798 src/ui/preferences.ui:228 src/ui/window.ui:151
 msgid "Installers"
 msgstr "安装器"
 
-#: src/ui/details.ui:1794 src/ui/importer.ui:95
+#: src/ui/details.ui:1817 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "刷新"
 
-#: src/ui/details.ui:1880 src/ui/preferences.ui:202 src/ui/window.ui:138
+#: src/ui/details.ui:1903 src/ui/preferences.ui:202 src/ui/window.ui:138
 msgid "Versioning"
 msgstr "版本控制"
 
-#: src/ui/details.ui:1900
+#: src/ui/details.ui:1923
 msgid "Create new state"
 msgstr "创建新状态"
 
@@ -752,7 +792,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "卸载"
 
-#: src/ui/importer.ui:76 src/runner.py:1390 src/window.py:130
+#: src/ui/importer.ui:76 src/runner.py:1451 src/window.py:132
 msgid "Importer"
 msgstr "导入器"
 
@@ -1057,7 +1097,7 @@ msgstr "这些是正在您的电脑上运行的 wine/wineserver 进程。"
 msgid "Check for running processes."
 msgstr "检查正在运行的进程。"
 
-#: src/ui/window.ui:49 src/window.py:129
+#: src/ui/window.ui:49 src/window.py:131
 msgid "Task manager"
 msgstr "任务管理器"
 
@@ -1110,109 +1150,109 @@ msgstr "[帮助] 请求已收到。"
 msgid "[Refresh] request received."
 msgstr "[刷新] 请求已收到。"
 
-#: src/runner.py:279
+#: src/runner.py:284
 #, python-brace-format
 msgid "Downloaded file {0} looks corrupted. Try again."
 msgstr "下载的文件 {0} 看起来已损坏。重试。"
 
-#: src/runner.py:299 src/runner.py:336 src/runner.py:360
+#: src/runner.py:304 src/runner.py:341 src/runner.py:365
 msgid "Download manager"
 msgstr "下载管理器"
 
-#: src/runner.py:300
+#: src/runner.py:305
 #, python-brace-format
 msgid "Installing {0} runner …"
 msgstr "正在安装 {0} 运行器…"
 
-#: src/runner.py:337
+#: src/runner.py:342
 #, python-brace-format
 msgid "Component {0} successfully installed!"
 msgstr "组件 {0} 已成功安装！"
 
-#: src/runner.py:361
+#: src/runner.py:366
 #, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
 msgstr "正在 bottle {1} 中安装依赖 {0} …"
 
-#: src/runner.py:787
+#: src/runner.py:848
 msgid "Runner and/or dxvk not found, installing latest version …"
 msgstr "未找到运行器和/或 dxvk，正在安装最新版本…"
 
-#: src/runner.py:826
+#: src/runner.py:887
 msgid "The wine configuration is being updated …"
 msgstr "正在更新 wine 配置…"
 
-#: src/runner.py:832
+#: src/runner.py:893
 msgid "Wine configuration updated!"
 msgstr "Wine 配置已更新！"
 
-#: src/runner.py:855
+#: src/runner.py:916
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "正在应用环境：{0} …"
 
-#: src/runner.py:874
+#: src/runner.py:935
 msgid "Installing dxvk …"
 msgstr "正在安装 dxvk …"
 
-#: src/runner.py:882
+#: src/runner.py:943
 msgid "Creating versioning state 0 …"
 msgstr "正在创建版本状态 0 …"
 
-#: src/runner.py:888
+#: src/runner.py:949
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "您的新 bottle：{0} 准备就绪！"
 
-#: src/runner.py:1277
+#: src/runner.py:1338
 #, python-brace-format
 msgid "{0} completed for {1}."
 msgstr "已为 {1} 完成 {0}。"
 
-#: src/runner.py:1391
+#: src/runner.py:1452
 #, python-brace-format
 msgid "Wineprefix {0} successfully imported!"
 msgstr "Wineprefix {0} 成功导入！"
 
-#: src/runner.py:1722
+#: src/runner.py:1784
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "备份 {0}"
 
-#: src/runner.py:1746
+#: src/runner.py:1808
 #, python-brace-format
 msgid "Your backup for {0} is ready!"
 msgstr "您的 {0} 备份已就绪！"
 
-#: src/runner.py:1756
+#: src/runner.py:1818
 #, python-brace-format
 msgid "Failed to create backup for {0}!"
 msgstr "为 {0} 创建备份失败！"
 
-#: src/runner.py:1782
+#: src/runner.py:1845
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "正在导入备份：{0}"
 
-#: src/runner.py:1803
+#: src/runner.py:1866
 #, python-brace-format
 msgid "Your backup {0} was imported successfully.!"
 msgstr "您的备份 {0} 已导入成功！"
 
-#: src/runner.py:1812
+#: src/runner.py:1875
 #, python-brace-format
 msgid "Failed importing backup {0}!"
 msgstr "导入备份 {0} 失败！"
 
-#: src/utils.py:57
+#: src/utils.py:60
 msgid "You are offline, unable to download."
 msgstr "您已离线，无法下载。"
 
-#: src/window.py:127
+#: src/window.py:129
 msgid "Bottle details"
 msgstr "Bottle 详情"
 
-#: src/window.py:168
+#: src/window.py:170
 msgid "Bottles Started!"
 msgstr "Bottles 已启动！"
 
@@ -1261,11 +1301,11 @@ msgstr "确认删除"
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
-#: src/pages/dialog.py:24 src/pages/dialog.py:60
+#: src/pages/dialog.py:25 src/pages/dialog.py:61
 msgid "Warning"
 msgstr "警告"
 
-#: src/pages/dialog.py:25 src/pages/dialog.py:61
+#: src/pages/dialog.py:26 src/pages/dialog.py:62
 msgid "An error has occurred."
 msgstr "发生了错误。"
 
@@ -1409,9 +1449,6 @@ msgstr "名为“%s”的 bottle 创建成功"
 
 #~ msgid "Creating the wineprefix …"
 #~ msgstr "正在创建 wineprefix …"
-
-#~ msgid "Generating Bottle configuration file …"
-#~ msgstr "正在生成 Bottle 配置文件…"
 
 #, python-brace-format
 #~ msgid "Applying environment: [{0}] …"
