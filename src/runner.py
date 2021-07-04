@@ -52,7 +52,7 @@ class BottlesRunner:
     components_repository_index = "%s/index.yml" % components_repository
 
     dependencies_repository = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
-    dependencies_repository_index = "%s/index.yml" % dependencies_repository
+    dependencies_repository_index = "%s/testing.yml" % dependencies_repository
 
     installers_repository = "https://raw.githubusercontent.com/bottlesdevs/programs/main/"
     installers_repository_index = "%s/index.yml" % installers_repository
@@ -239,6 +239,10 @@ class BottlesRunner:
 
         '''Add entry to download manager'''
         download_entry = self.download_manager.new_download(file, False)
+
+        '''TODO: In Trento we should check if the resource exists in temp'''
+        if download_url.startswith("temp/"):
+            return True
 
         if func:
             update_func = func

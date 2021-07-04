@@ -246,4 +246,4 @@ def validate_url(url: str):
         r'(?::\d+)?'
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
-    return re.match(regex, "http://www.example.com") is not None
+    return re.match(regex, url) is not None
