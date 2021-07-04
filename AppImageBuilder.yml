@@ -63,6 +63,8 @@ AppDir:
     include:
     - gsettings-desktop-schemas
     - dconf-gsettings-backend
+    - gsettings-backend
+    - libhandy-1-0
     - libbz2-1.0
     - libcanberra-gtk3-module
     - libcanberra-pulse
@@ -74,6 +76,10 @@ AppDir:
     - libpython3.9-stdlib
     - librsvg2-common
     - libselinux1
+    - libgtk-3-0
+    - libglib2.0-0
+    - libglib2.0-bin
+    - libgee-0.8-2
     - python3-gi-cairo
     - python3-certifi
     - python3-yaml
@@ -81,7 +87,6 @@ AppDir:
     - gir1.2-gtk-3.0
     - gir1.2-handy-1
     - gir1.2-notify-0.7
-    - libglib2.0-bin
     - ibus-gtk3
     - zlib1g
     - libfreetype6
