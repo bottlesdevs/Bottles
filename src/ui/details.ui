@@ -1717,17 +1717,42 @@ Disable if you're experiencing graphical glitches.</property>
                         <property name="margin-top">25</property>
                         <property name="margin-bottom">10</property>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes">Programs</property>
-                            <property name="wrap">True</property>
-                            <property name="wrap-mode">word-char</property>
-                            <attributes>
-                              <attribute name="font-desc" value="Cantarell Bold 16"/>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="label" translatable="yes">Programs</property>
+                                <property name="wrap">True</property>
+                                <property name="wrap-mode">word-char</property>
+                                <attributes>
+                                  <attribute name="font-desc" value="Cantarell Bold 16"/>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="label" translatable="yes">These are the programs found in your bottle's Start menu</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -1743,6 +1768,7 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="tooltip-text" translatable="yes">Search for installed programs</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="relief">none</property>
                             <child>
                               <object class="GtkImage">
                                 <property name="visible">True</property>
@@ -1751,7 +1777,8 @@ Disable if you're experiencing graphical glitches.</property>
                               </object>
                             </child>
                             <style>
-                              <class name="btn_undecorated"/>
+                              <class name="circular"/>
+                              <class name="image-button"/>
                             </style>
                           </object>
                           <packing>
@@ -1851,6 +1878,7 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="tooltip-text" translatable="yes">Refresh</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
+                            <property name="relief">none</property>
                             <child>
                               <object class="GtkImage">
                                 <property name="visible">True</property>
@@ -1859,7 +1887,8 @@ Disable if you're experiencing graphical glitches.</property>
                               </object>
                             </child>
                             <style>
-                              <class name="btn_undecorated"/>
+                              <class name="circular"/>
+                              <class name="image-button"/>
                             </style>
                           </object>
                           <packing>
@@ -1968,7 +1997,8 @@ Disable if you're experiencing graphical glitches.</property>
                               </object>
                             </child>
                             <style>
-                              <class name="btn_undecorated"/>
+                              <class name="circular"/>
+                              <class name="image-button"/>
                             </style>
                           </object>
                           <packing>
@@ -1994,7 +2024,8 @@ Disable if you're experiencing graphical glitches.</property>
                               </object>
                             </child>
                             <style>
-                              <class name="btn_undecorated"/>
+                              <class name="circular"/>
+                              <class name="image-button"/>
                             </style>
                           </object>
                           <packing>
