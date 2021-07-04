@@ -550,6 +550,8 @@ class BottlesDetails(Gtk.Stack):
     btn_delete = Gtk.Template.Child()
     btn_manage_runners = Gtk.Template.Child()
     btn_manage_dxvk = Gtk.Template.Child()
+    btn_help_versioning = Gtk.Template.Child()
+    btn_help_debug = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
@@ -628,6 +630,8 @@ class BottlesDetails(Gtk.Stack):
         self.btn_backup_config.connect('pressed', self.backup_config)
         self.btn_backup_full.connect('pressed', self.backup_full)
         self.btn_add_state.connect('pressed', self.add_state)
+        self.btn_help_versioning.connect('pressed', self.open_doc_url, "bottles/versioning")
+        self.btn_help_debug.connect('pressed', self.open_doc_url, "utilities/logs-and-debugger#wine-debugger")
 
         self.btn_rename.connect('toggled', self.toggle_rename)
         self.toggle_sync.connect('toggled', self.set_wine_sync)
@@ -651,6 +655,8 @@ class BottlesDetails(Gtk.Stack):
 
         # Toggle gamemode switcher sensitivity
         self.switch_gamemode.set_sensitive(self.runner.gamemode_available)
+        if not self.runner.gamemode_available:
+            self.switch_gamemode.set_tooltip_text(_("Gamemode is either not available on your system or not running."))
 
     def update_combo_components(self):
         self.combo_runner.handler_block_by_func(self.set_runner)
@@ -1135,6 +1141,10 @@ class BottlesDetails(Gtk.Stack):
     @staticmethod
     def open_report_url(widget):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/dependencies/issues/new/choose")
+
+    @staticmethod
+    def open_doc_url(widget, page):
+        webbrowser.open_new_tab(f"https://docs.usebottles.com/{page}")
 
     '''Methods for pop_more buttons'''
     def show_versioning_view(self, widget=False):

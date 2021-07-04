@@ -179,6 +179,7 @@
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="double-buffered">False</property>
                         <property name="margin-top">18</property>
                         <property name="spacing">5</property>
                         <child>
@@ -441,6 +442,9 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
+                            <style>
+                              <class name="suggested-action"/>
+                            </style>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -783,7 +787,34 @@
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
                                     <property name="pack-type">end</property>
-                                    <property name="position">0</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkButton" id="btn_help_debug">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="tooltip-text" translatable="yes">Read documentation</property>
+                                    <property name="halign">end</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">dialog-question-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="circular"/>
+                                      <class name="image-button"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
                                   </packing>
                                 </child>
                               </object>
@@ -1594,18 +1625,19 @@ Disable if you're experiencing graphical glitches.</property>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="margin-bottom">10</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">25</property>
+                        <property name="margin-bottom">10</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-bottom">10</property>
                             <property name="label" translatable="yes">Dependencies</property>
                             <property name="wrap">True</property>
                             <property name="wrap-mode">word-char</property>
@@ -1676,18 +1708,19 @@ Disable if you're experiencing graphical glitches.</property>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="margin-bottom">10</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">25</property>
+                        <property name="margin-bottom">10</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-bottom">10</property>
                             <property name="label" translatable="yes">Programs</property>
                             <property name="wrap">True</property>
                             <property name="wrap-mode">word-char</property>
@@ -1783,18 +1816,19 @@ Disable if you're experiencing graphical glitches.</property>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="margin-bottom">10</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">25</property>
+                        <property name="margin-bottom">10</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-bottom">10</property>
                             <property name="label" translatable="yes">Installers</property>
                             <property name="wrap">True</property>
                             <property name="wrap-mode">word-char</property>
@@ -1888,18 +1922,19 @@ Disable if you're experiencing graphical glitches.</property>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="margin-bottom">10</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-top">25</property>
+                        <property name="margin-bottom">10</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="halign">start</property>
-                            <property name="margin-bottom">10</property>
                             <property name="label" translatable="yes">Versioning</property>
                             <property name="wrap">True</property>
                             <property name="wrap-mode">word-char</property>
@@ -1912,6 +1947,34 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="btn_help_versioning">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <property name="tooltip-text" translatable="yes">Read documentation</property>
+                            <property name="halign">end</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-start">5</property>
+                            <property name="hexpand">True</property>
+                            <property name="relief">none</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">dialog-question-symbolic</property>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="btn_undecorated"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
