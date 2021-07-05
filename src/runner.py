@@ -120,7 +120,8 @@ class BottlesRunner:
         },
         "Installed_Dependencies" : [],
         "DLL_Overrides" : {},
-        "Programs" : {}
+        "Programs" : {},
+        "Uninstallers": {}
     }
 
     '''Environments'''
@@ -462,13 +463,21 @@ class BottlesRunner:
 
         '''Add dependency to bottle configuration'''
         if dependency[0] not in configuration.get("Installed_Dependencies"):
+            dependencies = [dependency[0]]
             if configuration.get("Installed_Dependencies"):
                 dependencies = configuration["Installed_Dependencies"]+[dependency[0]]
-            else:
-                dependencies = [dependency[0]]
-            self.update_configuration(configuration,
-                                      "Installed_Dependencies",
-                                      dependencies)
+
+            self.update_configuration(
+                configuration,
+                "Installed_Dependencies",
+                dependencies)
+
+            if dependency_manifest.get("Uninstaller"):
+                self.update_configuration(
+                    configuration,
+                    dependency[0],
+                    dependency_manifest["Uninstaller"],
+                    "Uninstallers")
 
         '''Remove entry from download manager'''
         download_entry.remove()
@@ -490,8 +499,21 @@ class BottlesRunner:
         logging.info(
             f"Removing dependency: [{ dependency[0]}] from bottle: [{configuration['Name']}] configuration.")
 
-        '''Prompt the uninstaller'''
-        self.run_uninstaller(configuration)
+        uuid = False
+
+        '''Run uninstaller'''
+        if dependency[0] in configuration["Uninstallers"]:
+            uninstaller = configuration["Uninstallers"][dependency[0]]
+            command = f"uninstaller --list | grep '{uninstaller}' | cut -f1 -d\|"
+            uuid = self.run_command(
+                configuration=configuration,
+                command=command,
+                terminal=False,
+                environment=False,
+                comunicate=True)
+            uuid = uuid.strip()
+
+        self.run_uninstaller(configuration, uuid)
 
         '''Remove dependency from bottle configuration'''
         configuration["Installed_Dependencies"].remove(dependency[0])
@@ -1222,16 +1244,19 @@ class BottlesRunner:
         logging.info("Running a Control Panel on the wineprefix …")
         RunAsync(self.run_command, None, configuration, "control")
 
-    def run_uninstaller(self, configuration:BottleConfig) -> None:
+    def run_uninstaller(self, configuration:BottleConfig, uuid:str=False) -> None:
         logging.info("Running an Uninstaller on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "uninstaller")
+        command = "uninstaller"
+        if uuid:
+            command = f"uninstaller --remove '{uuid}'"
+        RunAsync(self.run_command, None, configuration, command)
 
     def run_regedit(self, configuration:BottleConfig) -> None:
         logging.info("Running a Regedit on the wineprefix …")
         RunAsync(self.run_command, None, configuration, "regedit")
 
     '''Execute command in a bottle'''
-    def run_command(self, configuration:BottleConfig, command:str, terminal:bool=False, environment:dict=False) -> bool:
+    def run_command(self, configuration:BottleConfig, command:str, terminal:bool=False, environment:dict=False, comunicate:bool=False) -> bool:
         if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
             terminal = False
             if command in ["winedbg", "cmd"]:
@@ -1326,12 +1351,20 @@ class BottlesRunner:
             command = command
         )
 
+        print(command)
+
         # Check for gamemode enabled
         if self.gamemode_available and configuration["Parameters"]["gamemode"]:
             command = f"gamemoderun {command}"
 
         if terminal:
             return UtilsTerminal(command)
+
+        if comunicate:
+            return subprocess.Popen(
+                command,
+                stdout=subprocess.PIPE,
+                shell=True).communicate()[0].decode("utf-8")
 
         return subprocess.Popen(command, shell=True).communicate()
 
