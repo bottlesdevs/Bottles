@@ -581,6 +581,7 @@ class BottlesDetails(Gtk.Stack):
     list_states = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
+    entry_search_deps = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     view_stack_switcher = Gtk.Template.Child()
@@ -660,12 +661,25 @@ class BottlesDetails(Gtk.Stack):
         self.combo_runner.connect('changed', self.set_runner)
         self.combo_dxvk.connect('changed', self.set_dxvk)
 
+        self.entry_search_deps.connect('key-release-event', self.search_dependencies)
+        self.entry_search_deps.connect('changed', self.search_dependencies)
         self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
 
         # Toggle gamemode switcher sensitivity
         self.switch_gamemode.set_sensitive(self.runner.gamemode_available)
         if not self.runner.gamemode_available:
             self.switch_gamemode.set_tooltip_text(_("Gamemode is either not available on your system or not running."))
+
+    def search_dependencies(self, widget, event=None, data=None):
+        terms = widget.get_text()
+        self.list_dependencies.set_filter_func(
+            self.filter_dependencies,
+            terms)
+
+    def filter_dependencies(self, row, terms=None):
+        if terms.lower() in row.get_title().lower():
+            return True
+        return False
 
     def update_combo_components(self):
         self.combo_runner.handler_block_by_func(self.set_runner)

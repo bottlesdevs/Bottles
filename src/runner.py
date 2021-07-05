@@ -527,7 +527,7 @@ class BottlesRunner:
 
     '''Run installer'''
     def run_installer(self, configuration:BottleConfig, installer:list, widget:Gtk.Widget) -> None:
-        '''TODO: work in progress'''
+        '''TODO: scheduled for Trento'''
         print(installer)
 
     '''Check local runners'''
