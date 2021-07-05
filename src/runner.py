@@ -413,8 +413,11 @@ class BottlesRunner:
                         file = step.get("rename")
                     else:
                         file = step.get("file_name")
-                    self.run_executable(configuration, "%s/%s" % (
-                        self.temp_path, file))
+                    self.run_executable(
+                        configuration=configuration,
+                        file_path=f"{self.temp_path}/{file}",
+                        arguments=step.get("arguments"),
+                        environment=step.get("environment"))
                 else:
                     widget.btn_install.set_sensitive(True)
                     return False
@@ -1177,7 +1180,7 @@ class BottlesRunner:
             self.reg_delete(configuration, key, "Default")
 
     '''Run wine executables/programs in a bottle'''
-    def run_executable(self, configuration:BottleConfig, file_path:str, arguments:str=False) -> None:
+    def run_executable(self, configuration:BottleConfig, file_path:str, arguments:str=False, environment:dict=False) -> None:
         logging.info("Running an executable on the wineprefix …")
 
         if "msi" in file_path.split("."):
@@ -1189,7 +1192,7 @@ class BottlesRunner:
 
         if arguments: command = "%s %s" % (command, arguments)
 
-        RunAsync(self.run_command, None, configuration, command)
+        RunAsync(self.run_command, None, configuration, command, False, environment)
 
     def run_wineboot(self, configuration:BottleConfig) -> None:
         logging.info("Running wineboot on the wineprefix …")
@@ -1228,7 +1231,7 @@ class BottlesRunner:
         RunAsync(self.run_command, None, configuration, "regedit")
 
     '''Execute command in a bottle'''
-    def run_command(self, configuration:BottleConfig, command:str, terminal:bool=False) -> bool:
+    def run_command(self, configuration:BottleConfig, command:str, terminal:bool=False, environment:dict=False) -> bool:
         if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
             terminal = False
             if command in ["winedbg", "cmd"]:
@@ -1264,6 +1267,13 @@ class BottlesRunner:
 
         if parameters["environment_variables"]:
             environment_vars.append(parameters["environment_variables"])
+
+        if environment:
+            if environment.get("WINEDLLOVERRIDES"):
+                dll_overrides.append(environment["WINEDLLOVERRIDES"])
+                del environment["WINEDLLOVERRIDES"]
+            for e in environment:
+                environment_vars.append(e)
 
         if parameters["dxvk"]:
             dll_overrides.append("d3d11,dxgi=n")
