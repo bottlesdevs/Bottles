@@ -369,6 +369,13 @@ class BottlesRunner:
         configuration, dependency, widget = args
         self.download_manager = DownloadManager(self.window)
 
+        if configuration["Versioning"]:
+            self.async_create_bottle_state([
+                configuration,
+                f"before {dependency[0]}",
+                True, False, None
+            ])
+
         '''Notify if the user allows it'''
         self.window.send_notification(
             _("Download manager"),
@@ -449,6 +456,7 @@ class BottlesRunner:
                 path = step["url"]
                 path = path.replace("temp/", f"{self.temp_path}/")
                 bottle_path = self.get_bottle_path(configuration)
+
                 shutil.copyfile(
                     f"{path}/{step.get('file_name')}",
                     f"{bottle_path}/drive_c/{step.get('dest')}")

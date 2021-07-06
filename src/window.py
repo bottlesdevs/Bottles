@@ -99,7 +99,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
             self.settings.get_boolean("dark-theme"))
-        
 
         '''Validate argument extension'''
         if arg_executable and not arg_executable.endswith(('.exe', '.msi', '.bat')):
