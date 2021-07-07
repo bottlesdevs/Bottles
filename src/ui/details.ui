@@ -216,8 +216,8 @@
                             <property name="tooltip-text" translatable="yes">Versioning enabled for this bottle</property>
                             <property name="halign">center</property>
                             <property name="valign">center</property>
-                            <property name="margin-start">5</property>
-                            <property name="margin-end">5</property>
+                            <property name="margin-start">2</property>
+                            <property name="margin-end">2</property>
                             <child>
                               <object class="GtkImage" id="img_versioning">
                                 <property name="visible">True</property>
@@ -291,6 +291,7 @@
                           <object class="GtkEntry" id="entry_name">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="halign">start</property>
                             <property name="editable">False</property>
                             <property name="max-length">20</property>
                             <property name="has-frame">False</property>
@@ -488,6 +489,10 @@
                                     <property name="icon-name">document-save-symbolic</property>
                                   </object>
                                 </child>
+                                <style>
+                                  <class name="circular"/>
+                                  <class name="image-button"/>
+                                </style>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -509,6 +514,10 @@
                                     <property name="icon-name">system-reboot-symbolic</property>
                                   </object>
                                 </child>
+                                <style>
+                                  <class name="circular"/>
+                                  <class name="image-button"/>
+                                </style>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -530,6 +539,10 @@
                                     <property name="icon-name">system-shutdown-symbolic</property>
                                   </object>
                                 </child>
+                                <style>
+                                  <class name="circular"/>
+                                  <class name="image-button"/>
+                                </style>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -551,6 +564,10 @@
                                     <property name="icon-name">process-stop-symbolic</property>
                                   </object>
                                 </child>
+                                <style>
+                                  <class name="circular"/>
+                                  <class name="image-button"/>
+                                </style>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
