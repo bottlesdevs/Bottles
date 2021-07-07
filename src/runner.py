@@ -533,6 +533,25 @@ class BottlesRunner:
         GLib.idle_add(widget.btn_install.set_visible, True)
         GLib.idle_add(widget.btn_remove.set_visible, False)
 
+    def remove_program(self, configuration:BottleConfig, program_name: str):
+        logging.info(
+            f"Removing program: [{ program_name }] from bottle: [{configuration['Name']}] configuration.")
+
+        uuid = False
+
+        '''Run uninstaller'''
+        command = f"uninstaller --list | grep '{program_name}' | cut -f1 -d\|"
+        uuid = self.run_command(
+            configuration=configuration,
+            command=command,
+            terminal=False,
+            environment=False,
+            comunicate=True)
+        uuid = uuid.strip()
+
+        self.run_uninstaller(configuration, uuid)
+
+
     '''Run installer'''
     def run_installer(self, configuration:BottleConfig, installer:list, widget:Gtk.Widget) -> None:
         '''TODO: scheduled for Trento'''

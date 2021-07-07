@@ -405,7 +405,7 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.btn_protondb.connect('pressed', self.open_protondb)
         self.btn_issues.connect('pressed', self.open_issues)
         self.btn_launch_options.connect('pressed', self.show_launch_options_view)
-        self.btn_uninstall.connect('pressed', self.window.page_details.run_uninstaller)
+        self.btn_uninstall.connect('pressed', self.remove_program)
 
         '''Populate entry_arguments by configuration'''
         if self.program_executable in self.configuration["Programs"]:
@@ -428,6 +428,9 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.runner.run_executable(self.configuration,
                                    self.program_executable_path,
                                    arguments)
+
+    def remove_program(self, widget):
+        self.runner.remove_program(self.configuration, self.program_name)
 
     '''Open URLs'''
     def open_winehq(self, widget):
