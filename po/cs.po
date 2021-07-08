@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-03 22:02+0200\n"
-"PO-Revision-Date: 2021-07-07 12:54+0000\n"
-"Last-Translator: Vojtěch Perník <pervoj@gmx.com>\n"
+"PO-Revision-Date: 2021-07-08 13:44+0000\n"
+"Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
 "Language: cs\n"
@@ -54,7 +54,7 @@ msgid ""
 msgstr ""
 "Náš integrovaný systém instalace závislostí poskytuje automatický přístup ke "
 "kompatibilitě softwaru. Použijte správce stahování ke stažení oficiálních "
-"komponent: spouštěč (Wine, Proton), DXVK, závislosti atd."
+"komponent: runner (Wine, Proton), DXVK, závislosti atd."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
@@ -172,12 +172,12 @@ msgstr "Import záložních archivů"
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Show onboard if system wine is the only installed runner"
 msgstr ""
+"Zobrazit na palubě, pokud je systémové víno jediným nainstalovaným runnerem"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 #: data/com.usebottles.bottles.appdata.xml.in:128
-#, fuzzy
 msgid "Swedish translations thanks to @eson57"
-msgstr "Německý překlad díky @thericosanto"
+msgstr "Švédský překlad díky @eson57"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "Updates:"
@@ -185,70 +185,68 @@ msgstr "Aktualizace:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
 msgid "New versioning based on CalVer model"
-msgstr ""
+msgstr "Nové verzování založené na modelu CalVer"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "Create bottles using the wine runner provided by the distribution"
-msgstr ""
+msgstr "Vytváření láhví pomocí runneru wine, který je k dispozici v distribuci"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Enable gamemode for your bottles if installed in the system"
 msgstr ""
+"Povolení herního režimu pro vaše láhve, pokud jsou v systému nainstalovány"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Run .exe/.msi/.bat files with custom arguments"
-msgstr ""
+msgstr "Spouštění souborů .exe/.msi/.bat s vlastními argumenty"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid "Fixed the \"bad interpreter\" error on debian package"
-msgstr ""
+msgstr "Opravena chyba \"bad interpreter\" v balíčku pro Debian"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid ""
 "Optionally close Bottles after starting an executable from the file manager"
 msgstr ""
+"Volitelné zavření Láhví po spuštění spustitelného souboru ze správce souborů"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Added tooltips to understand what some elements of the UI do"
 msgstr ""
+"Přidány nápovědy k pochopení toho, co dělají některé prvky uživatelského "
+"rozhraní"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Using portal for file picker"
-msgstr ""
+msgstr "Použití portálu pro výběr souborů"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Filechooser do not filter by extensions anymore"
-msgstr ""
+msgstr "Dialog pro výběr souborů již nefiltruje podle přípony"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
-#, fuzzy
 msgid "Esperanto translations thanks to @phlostically"
-msgstr "Německý překlad díky @thericosanto"
+msgstr "Esperantský překlad díky @phlostically"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid "Spanish translations thanks to @fitojb"
-msgstr "Německý překlad díky @thericosanto"
+msgstr "Španělský překlad díky @fitojb"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-#, fuzzy
 msgid "Croatin translations thanks to @milotype"
-msgstr "Německý překlad díky @thericosanto"
+msgstr "Chorvatský překlad díky @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#, fuzzy
 msgid "Portuguese translations thanks to @laralem"
-msgstr "Portugalský překlad díky @SantosSi"
+msgstr "Portugalský překlad díky @laralem"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
-#, fuzzy
 msgid "French translations thanks to @julroy67"
 msgstr "Francouzský překlad díky @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
-#, fuzzy
 msgid "Ukrain thanslations thanks to @marchellodev"
-msgstr "Německý překlad díky @thericosanto"
+msgstr "Ukrajinský překlad díky @marchellodev"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Dark theme"
@@ -320,11 +318,11 @@ msgstr "Zapnout funkci experimentální instalátory"
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "Automatické zavření Láhví"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Close Bottles after starting executable from file manager"
-msgstr ""
+msgstr "Zavření Láhví po spuštění spustitelného souboru ze správce souborů"
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -364,7 +362,7 @@ msgstr "Zpráva o chybě"
 
 #: src/ui/dependency-entry.ui:150
 msgid "Download & Install this dependency"
-msgstr ""
+msgstr "Stáhnout a nainstalovat tuto závislost"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -388,7 +386,7 @@ msgstr "Kompletní archiv"
 
 #: src/ui/details.ui:67
 msgid "Run with arguments"
-msgstr ""
+msgstr "Spustit s argumenty"
 
 #: src/ui/details.ui:94
 msgid "Type a really short comment:"
@@ -447,33 +445,28 @@ msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
 #: src/ui/details.ui:419
-#, fuzzy
 msgid "Destroy this bottle"
-msgstr "Zničit láhev"
+msgstr "Zničit tuto láhev"
 
 #: src/ui/details.ui:440
-#, fuzzy
 msgid "Run executable"
-msgstr "Spustit .exe"
+msgstr "Spustit spustitelný soubor"
 
 #: src/ui/details.ui:478
-#, fuzzy
 msgid "Backup bottle"
-msgstr "Zálohujte a importujte láhve"
+msgstr "Zálohovat láhev"
 
 #: src/ui/details.ui:500
-#, fuzzy
 msgid "Reboot Windows"
-msgstr "Nativní (Windows)"
+msgstr "Restartovat Windows"
 
 #: src/ui/details.ui:521
 msgid "Shutdown Windows"
-msgstr ""
+msgstr "Vypnut Windows"
 
 #: src/ui/details.ui:542
-#, fuzzy
 msgid "Kill all wine processes"
-msgstr "Ladění Wine procesů."
+msgstr "Ukončení všech procesů wine"
 
 #: src/ui/details.ui:581 src/ui/details.ui:1691 src/ui/details.ui:1764
 msgid "Programs"
@@ -569,11 +562,11 @@ msgstr ""
 
 #: src/ui/details.ui:990
 msgid "Use Gamemode"
-msgstr ""
+msgstr "Použít herní režim"
 
 #: src/ui/details.ui:991
 msgid "Optimise gaming performance on demand"
-msgstr ""
+msgstr "Optimalizovat herní výkon na vyžádání"
 
 #: src/ui/details.ui:1017
 msgid "Enable ACO shader compiler"
@@ -790,7 +783,7 @@ msgstr "Verze DXVK"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr ""
+msgstr "Stáhnout a nainstalovat tento DXVK"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -932,7 +925,7 @@ msgstr "Nainstalovat"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
-msgstr ""
+msgstr "Ukončit"
 
 #: src/ui/onboard.ui:87
 msgid "Back"
@@ -975,7 +968,6 @@ msgid "We are almost there"
 msgstr "Už tam skoro jsme"
 
 #: src/ui/onboard.ui:316
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -989,6 +981,8 @@ msgstr ""
 "Musíme si stáhnout a nainstalovat runner, který vám umožní vytvořit si "
 "vlastní lahve.\n"
 "Velikost souboru ke stažení je <b>~70MB</b>.\n"
+"\n"
+"Nemůžeme tyto soubory poskytovat s Láhvemi, jelikož mají jiné cykly vydání.\n"
 "\n"
 "Až budete připraveni, stiskněte tlačítko Instalovat."
 
@@ -1054,11 +1048,11 @@ msgstr "Vyčistit dočasné soubory při spuštění láhví?"
 
 #: src/ui/preferences.ui:118
 msgid "Close Bottles after starting a program"
-msgstr ""
+msgstr "Zavřít Láhve po spuštění programu"
 
 #: src/ui/preferences.ui:119
 msgid "Close Bottles after starting a program from the file manager"
-msgstr ""
+msgstr "Zavřít Láhve po spuštění programu ze správce souborů"
 
 #: src/ui/preferences.ui:150
 msgid "Wine Runners"
@@ -1094,7 +1088,7 @@ msgstr "Problémy s Láhvemi"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr ""
+msgstr "Stáhnout a nainstalovat tento runner"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
@@ -1300,9 +1294,8 @@ msgid "Choose a Windows executable file"
 msgstr "Vyberte spustitelný soubor Windows"
 
 #: src/pages/details.py:1003 src/pages/list.py:128
-#, fuzzy
 msgid "Run"
-msgstr "Runner"
+msgstr "Spustit"
 
 #: src/pages/details.py:1079
 msgid "Select the location where to save the backup configuration"

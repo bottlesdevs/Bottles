@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-03 22:02+0200\n"
-"PO-Revision-Date: 2021-07-02 12:58+0000\n"
-"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"PO-Revision-Date: 2021-07-08 13:44+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -152,10 +152,12 @@ msgstr "… y mucho más que puede encontrar instalando Bottles"
 #: data/com.usebottles.bottles.appdata.xml.in:99
 msgid "Display a crash report on restart if something goes wrong"
 msgstr ""
+"Mostrar un informe de cierre inesperado al reiniciar tras producirse un "
+"problema"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Using the new yaml format for the bottle configuration"
-msgstr ""
+msgstr "Se utiliza el formato YAML nuevo para la configuración de cada botella"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "Using the new yaml repositories for components/dependencies/programs"
@@ -171,9 +173,8 @@ msgid "Backup bottle configuration and archive"
 msgstr "Generando archivo de configuración de botella…"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-#, fuzzy
 msgid "Import backup archives"
-msgstr "Elija un archivo de respaldo"
+msgstr "Importe archivadores de respaldo"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid "Show onboard if system wine is the only installed runner"
@@ -326,11 +327,11 @@ msgstr "Alternar la función de instaladores experimentales"
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "Cerrar Bottles automáticamente"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Close Bottles after starting executable from file manager"
-msgstr ""
+msgstr "Cerrar Bottles tras iniciar el ejecutable en el gestor de archivos"
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -1001,18 +1002,18 @@ msgid ""
 "\n"
 "When you are ready press the Install button."
 msgstr ""
-"Necesitamos descargar e instalar un ejecutable para que pueda crear sus "
+"Necesitamos descargar e instalar un ejecutor para que pueda crear sus "
 "propias botellas.\n"
 "El tamaño de la descarga es de <b>70 MB</b> aproximadamente.\n"
 "\n"
-"No podemos ofrecer estos ficheros con Botellas debido a que tienen "
-"diferentes ciclos de desarrollo.\n"
+"No podemos ofrecer estos archivos con Bottles debido a que tienen diferentes "
+"ciclos de desarrollo.\n"
 "\n"
-"Cuando esté listo, pulse el botón Instalar."
+"Cuando esté preparado, pulse el botón Instalar."
 
 #: src/ui/onboard.ui:336
 msgid "Runners"
-msgstr "Ejecutadores"
+msgstr "Ejecutores"
 
 #: src/ui/onboard.ui:366
 msgid "Downloading…"
