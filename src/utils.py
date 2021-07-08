@@ -192,6 +192,7 @@ class RunAsync(threading.Thread):
 
             log_path = f"{Path.home()}/.local/share/bottles/crash.log"
             with open(log_path, "w") as crash_log:
+                crash_log.write(str(exception))
                 crash_log.write(traceback_info)
 
 
