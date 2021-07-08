@@ -205,10 +205,26 @@ class BottlesNew(Handy.Window):
         '''Create bottle
         TODO: add dxvk version'''
         versioning_state = self.switch_versioning.get_state()
+        if self.selected_environment == "Custom":
+            runner = self.combo_runner.get_active_id()
+        else:
+            rv = [i for i in self.runner.runners_available if i.startswith('vaniglia')]
+            rl = [i for i in self.runner.runners_available if i.startswith('lutris')]
+            rs = [i for i in self.runner.runners_available if i.startswith('sys-')]
+
+            if len(rv) > 0: # use the latest from vaniglia
+                runner = rv[0]
+            elif len(rl) > 0: # use the latest from lutris
+                runner = rl[0]
+            elif len(rs) > 0: # use the latest from system
+                runner = rs[0]
+            else: # use any other runner available
+                self.runner.runners_available[0]
+
         self.runner.create_bottle(name=self.entry_name.get_text(),
                                   path="",
                                   environment=self.selected_environment,
-                                  runner=self.combo_runner.get_active_id(),
+                                  runner=runner,
                                   dxvk=self.combo_dxvk.get_active_id(),
                                   versioning=versioning_state,
                                   dialog=self)
