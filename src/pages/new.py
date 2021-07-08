@@ -219,7 +219,7 @@ class BottlesNew(Handy.Window):
             elif len(rs) > 0: # use the latest from system
                 runner = rs[0]
             else: # use any other runner available
-                self.runner.runners_available[0]
+                runner = self.runner.runners_available[0]
 
         self.runner.create_bottle(name=self.entry_name.get_text(),
                                   path="",
