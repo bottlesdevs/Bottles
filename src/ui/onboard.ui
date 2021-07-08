@@ -169,6 +169,7 @@
                         <property name="can-focus">False</property>
                         <property name="margin-bottom">5</property>
                         <property name="label" translatable="yes">Bottles makes running Windows Software on Linux much easier.</property>
+                        <property name="max-width-chars">60</property>
                         <attributes>
                           <attribute name="font-desc" value="Cantarell 11"/>
                         </attributes>
@@ -225,7 +226,7 @@
                         <property name="halign">center</property>
                         <property name="margin-top">10</property>
                         <property name="margin-bottom">10</property>
-                        <property name="label" translatable="yes">What is Wine?</property>
+                        <property name="label" translatable="yes">What are runners?</property>
                         <property name="wrap">True</property>
                         <property name="wrap-mode">word-char</property>
                         <attributes>
@@ -245,12 +246,14 @@
                         <property name="can-focus">False</property>
                         <property name="margin-top">5</property>
                         <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">Wine is the compatibility layer that allows Windows software to run on Linux.
-In Bottles it is called &lt;b&gt;runner&lt;/b&gt;.
+                        <property name="label" translatable="yes">These are compatibility layers which allows Windows software to be installed and run on Linux systems.
 
-Wineprefixes are environments in which Wine works. In Bottles we call these, &lt;b&gt;bottles&lt;/b&gt;.</property>
+&lt;b&gt;Bottles&lt;/b&gt; are environments where the runner configures the system and where the Windows software runs and is installed.
+
+&lt;a href="https://docs.usebottles.com/components/runners"&gt;Read more about runners&lt;/a&gt;</property>
                         <property name="use-markup">True</property>
                         <property name="wrap">True</property>
+                        <property name="max-width-chars">60</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -321,6 +324,7 @@ We cannot offer these files with Bottles as these have different release cycles.
 When you are ready press the Install button.</property>
                         <property name="use-markup">True</property>
                         <property name="wrap">True</property>
+                        <property name="max-width-chars">60</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
