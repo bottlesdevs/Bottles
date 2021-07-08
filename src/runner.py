@@ -581,7 +581,7 @@ class BottlesRunner:
 
         '''
         If there are no locally installed runners, download the latest
-        build for chardonnay from the components repository.
+        build for vaniglia from the components repository.
         A very special thanks to Lutris & GloriousEggroll for extra builds <3!
         '''
 
