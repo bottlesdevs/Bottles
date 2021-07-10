@@ -23,6 +23,22 @@ import webbrowser
 from .dialog import BottlesDialog, BottlesMessageDialog
 from ..utils import UtilsFiles
 
+class BottlesDetailsPageRow(Gtk.ListBoxRow):
+
+    def __init__(self, page_name, title, **kwargs):
+        super().__init__(**kwargs)
+
+        self.page_name = page_name
+        self.add(Gtk.Label(
+            label=title,
+            xalign=0.0
+        ))
+
+        self.get_style_context().add_class("page-row")
+
+        self.show_all()
+
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-run-args.ui')
 class BottlesRunArgs(Handy.Window):
     __gtype_name__ = 'BottlesRunArgs'
@@ -532,7 +548,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
-class BottlesDetails(Gtk.Stack):
+class BottlesDetails(Handy.Leaflet):
     __gtype_name__ = 'BottlesDetails'
 
     '''Get widgets from template'''
@@ -582,13 +598,14 @@ class BottlesDetails(Gtk.Stack):
     list_programs = Gtk.Template.Child()
     list_installers = Gtk.Template.Child()
     list_states = Gtk.Template.Child()
+    list_pages = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     entry_search_deps = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
-    view_stack_switcher = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
+    stack_bottle = Gtk.Template.Child()
 
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
@@ -668,10 +685,39 @@ class BottlesDetails(Gtk.Stack):
         self.entry_search_deps.connect('changed', self.search_dependencies)
         self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
 
+        self.list_pages.connect('row-selected', self.change_page)
+
         # Toggle gamemode switcher sensitivity
         self.switch_gamemode.set_sensitive(self.runner.gamemode_available)
         if not self.runner.gamemode_available:
             self.switch_gamemode.set_tooltip_text(_("Gamemode is either not available on your system or not running."))
+
+        self.build_pages()
+
+
+    def build_pages(self):
+        pages = {
+            "bottle": _("Details & Utilities"),
+            "preferences": _("Preferences"),
+            "dependencies": _("Dependencies"),
+            "programs": _("Programs")
+        }
+        if self.window.settings.get_boolean("experiments-versioning"):
+            pages["versioning"] = _("Versioning")
+        if self.window.settings.get_boolean("experiments-installers"):
+            pages["installers"] = _("Installers")
+
+        for w in self.list_pages.get_children():
+            w.destroy()
+
+        for p in pages:
+            self.list_pages.add(BottlesDetailsPageRow(p, pages[p]))
+
+    def change_page(self, widget, row):
+        try:
+            self.stack_bottle.set_visible_child_name(row.page_name)
+        except AttributeError:
+            pass
 
     def search_dependencies(self, widget, event=None, data=None):
         terms = widget.get_text()
@@ -1177,7 +1223,7 @@ class BottlesDetails(Gtk.Stack):
 
     '''Methods for pop_more buttons'''
     def show_versioning_view(self, widget=False):
-        self.set_visible_child_name("versioning")
+        self.stack_bottle.set_visible_child_name("versioning")
 
     def show_installers_view(self, widget=False):
-        self.set_visible_child_name("installers")
+        self.stack_bottle.set_visible_child_name("installers")
