@@ -1548,6 +1548,8 @@ class BottlesRunner:
         logging.info(
             f"Creating new state for bottle: [{configuration['Name']}] …")
 
+        self.download_manager = DownloadManager(self.window)
+
         bottle_path = self.get_bottle_path(configuration)
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
 
@@ -1556,6 +1558,9 @@ class BottlesRunner:
 
         '''List all bottle files'''
         current_index = self.get_bottle_index(configuration)
+
+        download_entry = self.download_manager.new_download(
+            _("Generating state files index …"), False)
 
         '''If it is not the first state, compare files with the previous one'''
         if not first:
@@ -1615,6 +1620,10 @@ class BottlesRunner:
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
 
+        download_entry.destroy()
+        download_entry = self.download_manager.new_download(
+            _("Creating a restore point …"), False)
+
         try:
             '''Make state structured path'''
             os.makedirs("%s/states/%s/drive_c" % (bottle_path, state_id), exist_ok=True)
@@ -1633,6 +1642,10 @@ class BottlesRunner:
         except:
             return False
 
+        download_entry.destroy()
+        download_entry = self.download_manager.new_download(
+            _("Updating index …"), False)
+
         '''Copy indexed files in the new state path'''
         for file in current_index["Files"]:
             os.makedirs("{0}/drive_c/{1}".format(
@@ -1643,6 +1656,10 @@ class BottlesRunner:
             shutil.copyfile(source, target)
 
         time.sleep(5)
+
+        download_entry.destroy()
+        download_entry = self.download_manager.new_download(
+            _("Updating states …"), False)
 
         '''Update the states.yml file'''
         new_state = {
@@ -1692,6 +1709,8 @@ class BottlesRunner:
         '''Update bottles'''
         time.sleep(2)
         self.update_bottles()
+
+        download_entry.destroy()
 
         '''Execute caller function after all'''
         if after:
