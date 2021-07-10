@@ -131,30 +131,10 @@
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
-          <object class="GtkModelButton" id="btn_versioning">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Versioning</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkModelButton" id="btn_installers">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Installers</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          <placeholder/>
         </child>
       </object>
     </child>
@@ -180,31 +160,6 @@
             <property name="title" translatable="yes">Bottles</property>
             <property name="show-close-button">True</property>
             <property name="centering-policy">strict</property>
-            <child type="title">
-              <object class="HdySqueezer" id="squeezer">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="homogeneous">True</property>
-                <child>
-                  <object class="HdyViewSwitcher" id="view_switcher">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="stack">stack</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="name">title_label</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label">Bottles</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                </child>
-              </object>
-            </child>
             <child>
               <object class="GtkMenuButton" id="btn_menu">
                 <property name="visible">True</property>

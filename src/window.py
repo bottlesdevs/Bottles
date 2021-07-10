@@ -61,13 +61,8 @@ class BottlesWindow(Handy.ApplicationWindow):
     btn_taskmanager = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
-    btn_versioning = Gtk.Template.Child()
-    btn_installers = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
-    squeezer = Gtk.Template.Child()
-    view_switcher = Gtk.Template.Child()
-    view_switcher_bar = Gtk.Template.Child()
 
     '''Define environments and set first'''
     envs = [
@@ -87,9 +82,6 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     def __init__(self, arg_executable, **kwargs):
         super().__init__(**kwargs)
-
-        '''Custom title for branch'''
-        #self.set_title("Bottles:feature-bottles-versioning")
 
         '''Init template'''
         try:
@@ -143,18 +135,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
-        self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
-
-        '''BottlesDetail signal connections'''
-        self.btn_versioning.connect('pressed', self.page_details.show_versioning_view)
-        self.btn_installers.connect('pressed', self.page_details.show_installers_view)
+        # self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
 
         '''If there is at least one page, show the bottles list'''
         self.stack_main.set_visible_child_name("page_list")
-
-        '''Set widget status from settings'''
-        self.btn_versioning.set_visible(self.settings.get_boolean("experiments-versioning"))
-        self.btn_installers.set_visible(self.settings.get_boolean("experiments-installers"))
 
         '''Executed on last'''
         self.on_start()
@@ -162,26 +146,12 @@ class BottlesWindow(Handy.ApplicationWindow):
         if arg_executable:
             self.show_list_view()
 
-        '''Toggle view_switcher_bar by window size'''
-        self.on_squeezer_notify(widget=self.squeezer)
-
         arg_executable = False
         logging.info(_("Bottles Started!"))
 
     def on_squeezer_notify(self, widget, event=False):
         '''TODO: this is used for responsive and doesn't work at this time'''
         child = widget.get_visible_child()
-        self.view_switcher_bar.set_reveal(child != self.view_switcher)
-
-    def hide_view_switcher(self):
-        self.view_switcher.set_visible(False)
-        self.view_switcher_bar.set_visible(False)
-
-    def show_view_switcher(self, stack):
-        self.view_switcher.set_stack(stack)
-        self.view_switcher.set_visible(True)
-        self.view_switcher_bar.set_visible(True)
-        self.view_switcher_bar.set_stack(stack)
 
     def check_for_connection(self, status):
         if self.utils_conn.check_connection():
@@ -227,7 +197,6 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     '''Go back to previous page'''
     def go_back(self, widget=False):
-        self.hide_view_switcher()
 
         for w in [self.btn_add, self.btn_menu]:
             w.set_visible(True)
@@ -243,7 +212,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         if True in [w.get_visible() for w in self.box_more.get_children()]:
             self.btn_more.set_visible(True)
         self.page_details.set_configuration(configuration)
-        self.show_view_switcher(self.page_details)
         self.stack_main.set_visible_child_name("page_details")
         self.page_details.set_visible_child_name("bottle")
 
