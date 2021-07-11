@@ -1433,15 +1433,13 @@ class BottlesRunner:
                 environment_vars.append(e)
 
         if parameters["dxvk"]:
-            dll_overrides.append("d3d11,dxgi=n")
+            # dll_overrides.append("d3d11,dxgi=n")
+            environment_vars.append("WINE_LARGE_ADDRESS_AWARE=1")
             environment_vars.append("DXVK_STATE_CACHE_PATH='%s'" % path)
             environment_vars.append("STAGING_SHARED_MEMORY=1")
             environment_vars.append("__GL_DXVK_OPTIMIZATIONS=1")
             environment_vars.append("__GL_SHADER_DISK_CACHE=1")
             environment_vars.append("__GL_SHADER_DISK_CACHE_PATH='%s'" % path)
-
-        if parameters["vkd3d"]:
-            dll_overrides.append("d3d12,dxgi=n")
 
         if parameters["dxvk_hud"]:
             environment_vars.append("DXVK_HUD='devinfo,memory,drawcalls,fps,version,api,compiler'")
@@ -1490,6 +1488,7 @@ class BottlesRunner:
         if self.gamemode_available and configuration["Parameters"]["gamemode"]:
             command = f"gamemoderun {command}"
 
+        print(command)
         if terminal:
             return UtilsTerminal(command)
 
