@@ -1046,7 +1046,7 @@
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="title" translatable="yes">Use DXVK</property>
-                                    <property name="subtitle" translatable="yes">Improves performance in games and 3D applications.
+                                    <property name="subtitle" translatable="yes">Improves performance for Directx 11 games and 3D applications.
 Disable if you're experiencing graphical glitches.</property>
                                     <child>
                                       <object class="GtkBox">
@@ -1054,6 +1054,34 @@ Disable if you're experiencing graphical glitches.</property>
                                         <property name="can-focus">False</property>
                                         <child>
                                           <object class="GtkSwitch" id="switch_dxvk">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="halign">start</property>
+                                            <property name="valign">center</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="HdyActionRow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="title" translatable="yes">Use VKD3D</property>
+                                    <property name="subtitle" translatable="yes">Improves performance for Directx 12 games and 3D applications.
+Disable if you're experiencing graphical glitches.</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <child>
+                                          <object class="GtkSwitch" id="switch_vkd3d">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="halign">start</property>
@@ -1418,6 +1446,81 @@ Disable if you're experiencing graphical glitches.</property>
                                         </child>
                                         <child>
                                           <object class="GtkButton" id="btn_manage_dxvk">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="receives-default">True</property>
+                                            <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
+                                            <property name="halign">center</property>
+                                            <property name="valign">center</property>
+                                            <property name="margin-left">5</property>
+                                            <property name="margin-start">5</property>
+                                            <property name="relief">none</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="icon-name">applications-system-symbolic</property>
+                                              </object>
+                                            </child>
+                                            <style>
+                                              <class name="circular"/>
+                                              <class name="image-button"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="HdyActionRow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="title" translatable="yes">VKD3D Version</property>
+                                    <property name="activatable-widget">combo_vkd3d</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <child>
+                                          <object class="GtkComboBoxText" id="combo_vkd3d">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="valign">center</property>
+                                            <property name="margin-right">5</property>
+                                            <property name="margin-end">5</property>
+                                            <property name="active">0</property>
+                                            <style>
+                                              <class name="borderless"/>
+                                              <class name="plain"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkSeparator">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-top">5</property>
+                                            <property name="margin-bottom">5</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton" id="btn_manage_vkd3d">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>

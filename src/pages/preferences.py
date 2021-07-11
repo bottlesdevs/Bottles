@@ -31,6 +31,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
     switch_auto_close = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
+    list_vkd3d = Gtk.Template.Child()
     actionrow_prerelease = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
@@ -69,6 +70,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
 
         self.populate_runners_list()
         self.populate_dxvk_list()
+        self.populate_vkd3d_list()
 
     '''Toggle dark mode and store in user settings'''
     def toggle_dark(self, widget, state):
@@ -100,6 +102,10 @@ class BottlesPreferences(Handy.PreferencesWindow):
     def populate_dxvk_list(self):
         for dxvk in self.runner.supported_dxvk.items():
             self.list_dxvk.add(BottlesDxvkEntry(self.window, dxvk))
+
+    def populate_vkd3d_list(self):
+        for vkd3d in self.runner.supported_vkd3d.items():
+            self.list_vkd3d.add(BottlesVkd3dEntry(self.window, vkd3d))
 
     def populate_runners_list(self):
         for w in self.list_runners:
@@ -168,6 +174,80 @@ class BottlesDxvkEntry(Handy.ActionRow):
         self.btn_download.set_visible(False)
         self.runner.open_filemanager(path_type="dxvk",
                                      dxvk=self.dxvk_name)
+
+    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+        if failed:
+            self.box_download_status.set_visible(False)
+            self.btn_download.set_visible(True)
+            self.btn_browse.set_visible(False)
+            return False
+
+        if not self.label_download_status.get_visible():
+            self.label_download_status.set_visible(True)
+
+        if not completed:
+            percent = int(count * block_size * 100 / total_size)
+            self.label_download_status.set_text(f'{str(percent)}%')
+        else:
+            percent = 100
+
+        if percent == 100:
+            self.box_download_status.set_visible(False)
+            self.btn_browse.set_visible(True)
+
+    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed, failed)
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/vkd3d-entry.ui')
+class BottlesVkd3dEntry(Handy.ActionRow):
+    __gtype_name__ = 'BottlesVkd3dEntry'
+
+    '''Get widgets from template'''
+    btn_download = Gtk.Template.Child()
+    btn_browse = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
+    box_download_status = Gtk.Template.Child()
+    label_download_status = Gtk.Template.Child()
+
+    def __init__(self, window, vkd3d, **kwargs):
+        super().__init__(**kwargs)
+
+        '''Init template'''
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
+
+        '''Common variables'''
+        self.window = window
+        self.runner = window.runner
+        self.vkd3d_name = vkd3d[0]
+
+        '''Populate widgets'''
+        self.set_title(self.vkd3d_name)
+
+        if vkd3d[1].get("Installed"):
+            self.btn_browse.set_visible(True)
+        else:
+            self.btn_download.set_visible(True)
+            self.btn_browse.set_visible(False)
+
+
+        '''Signal connections'''
+        self.btn_download.connect('pressed', self.download_vkd3d)
+        self.btn_browse.connect('pressed', self.run_browse)
+
+    '''Install vkd3d'''
+    def download_vkd3d(self, widget):
+        self.btn_download.set_visible(False)
+        self.box_download_status.set_visible(True)
+        self.runner.install_component("vkd3d", self.vkd3d_name, func=self.update_status)
+
+    '''Browse vkd3d files'''
+    def run_browse(self, widget):
+        self.btn_download.set_visible(False)
+        self.runner.open_filemanager(path_type="vkd3d",
+                                     vkd3d=self.vkd3d_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:

@@ -58,7 +58,9 @@ class BottlesRunner:
     installers_repository_index = "%s/index.yml" % installers_repository
 
     if "TESTING_REPOS" in os.environ:
-        dependencies_repository_index = "%s/testing.yml" % dependencies_repository
+        if int(os.environ["TESTING_REPOS"]) == 1:
+            dependencies_repository_index = "%s/testing.yml" % dependencies_repository
+            components_repository_index = "%s/testing.yml" % components_repository
 
 
     '''Icon paths'''
@@ -69,6 +71,7 @@ class BottlesRunner:
     runners_path = "%s/.local/share/bottles/runners" % Path.home()
     bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
     dxvk_path = "%s/.local/share/bottles/dxvk" % Path.home()
+    vkd3d_path = "%s/.local/share/bottles/vkd3d" % Path.home()
 
     '''External managers paths'''
     lutris_path = "%s/Games" % Path.home()
@@ -85,11 +88,13 @@ class BottlesRunner:
     '''Component lists'''
     runners_available = []
     dxvk_available = []
+    vkd3d_available = []
     gamemode_available = False
     local_bottles = {}
     supported_wine_runners = {}
     supported_proton_runners = {}
     supported_dxvk = {}
+    supported_vkd3d = {}
     supported_dependencies = {}
     supported_installers = {}
 
@@ -98,6 +103,7 @@ class BottlesRunner:
         "Name": "",
         "Runner": "",
         "DXVK": "",
+        "VKD3D": "",
         "Path": "",
         "Custom_Path": False,
         "Environment": "",
@@ -108,6 +114,7 @@ class BottlesRunner:
         "Parameters": {
             "dxvk": False,
             "dxvk_hud": False,
+            "vkd3d": False,
             "gamemode": False,
             "sync": "wine",
             "aco_compiler": False,
@@ -130,6 +137,7 @@ class BottlesRunner:
             "Runner": "wine",
             "Parameters": {
                 "dxvk": True,
+                "vkd3d": True,
                 "sync": "esync",
                 "discrete_gpu": True,
                 "pulseaudio_latency": True
@@ -138,7 +146,8 @@ class BottlesRunner:
         "software": {
             "Runner": "wine",
             "Parameters": {
-                "dxvk": True
+                "dxvk": True,
+                "vkd3d": True
             }
         }
     }
@@ -153,6 +162,7 @@ class BottlesRunner:
 
         self.check_runners(install_latest=False)
         self.check_dxvk(install_latest=False)
+        self.check_vkd3d(install_latest=False)
         self.check_gamemode()
         self.fetch_components()
         self.fetch_dependencies()
@@ -165,6 +175,7 @@ class BottlesRunner:
         after, no_install = args
         self.check_runners_dir()
         self.check_dxvk()
+        self.check_vkd3d()
         self.check_gamemode()
         self.check_runners(install_latest=not no_install, after=after)
         self.check_bottles()
@@ -208,6 +219,10 @@ class BottlesRunner:
             logging.info("Dxvk path doens't exist, creating now.")
             os.makedirs(self.dxvk_path, exist_ok=True)
 
+        if not os.path.isdir(self.vkd3d_path):
+            logging.info("Vkd3d path doens't exist, creating now.")
+            os.makedirs(self.vkd3d_path, exist_ok=True)
+
         if not os.path.isdir(self.temp_path):
             logging.info("Temp path doens't exist, creating now.")
             os.makedirs(self.temp_path, exist_ok=True)
@@ -216,6 +231,7 @@ class BottlesRunner:
     def extract_component(self, component:str, archive:str) -> True:
         if component in ["runner", "runner:proton"]: path = self.runners_path
         if component == "dxvk": path = self.dxvk_path
+        if component == "vkd3d": path = self.vkd3d_path
 
         try:
             tar = tarfile.open("%s/%s" % (self.temp_path, archive))
@@ -345,6 +361,10 @@ class BottlesRunner:
         if component_type == "dxvk":
             self.dxvk_available = []
             self.check_dxvk()
+
+        if component_type == "vkd3d":
+            self.vkd3d_available = []
+            self.check_vkd3d()
 
         '''Notify if the user allows it'''
         self.window.send_notification(
@@ -627,8 +647,37 @@ class BottlesRunner:
 
             '''If connected, install latest dxvk from repository'''
             if self.utils_conn.check_connection():
-                dxvk_version = next(iter(self.supported_dxvk))
-                self.install_component("dxvk", dxvk_version, checks=False)
+                try:
+                    dxvk_version = next(iter(self.supported_dxvk))
+                    self.install_component("dxvk", dxvk_version, checks=False)
+                except StopIteration:
+                    logging.warning("No dxvk found.")
+                    return False
+            else:
+                return False
+        return True
+
+    '''Check local vkd3d'''
+    def check_vkd3d(self, install_latest:bool=True) -> bool:
+        vkd3d_list = glob("%s/*/" % self.vkd3d_path)
+        self.vkd3d_available = []
+
+        for vkd3d in vkd3d_list: self.vkd3d_available.append(vkd3d.split("/")[-2])
+
+        if len(self.vkd3d_available) > 0:
+            logging.info(f"Vkd3d found: [{'|'.join(self.vkd3d_available)}]")
+
+        if len(self.vkd3d_available) == 0 and install_latest:
+            logging.warning("No vkd3d found.")
+
+            '''If connected, install latest vkd3d from repository'''
+            if self.utils_conn.check_connection():
+                try:
+                    vkd3d_version = next(iter(self.supported_vkd3d))
+                    self.install_component("vkd3d", vkd3d_version, checks=False)
+                except StopIteration:
+                    logging.warning("No vkd3d found.")
+                    return False
             else:
                 return False
         return True
@@ -738,11 +787,15 @@ class BottlesRunner:
                             if component[0] in self.runners_available:
                                 self.supported_proton_runners[component[0]]["Installed"] = True
 
-
                     if component[1]["Category"] == "dxvk":
                         self.supported_dxvk[component[0]] = component[1]
                         if component[0] in self.dxvk_available:
                             self.supported_dxvk[component[0]]["Installed"] = True
+
+                    if component[1]["Category"] == "vkd3d":
+                        self.supported_vkd3d[component[0]] = component[1]
+                        if component[0] in self.vkd3d_available:
+                            self.supported_vkd3d[component[0]]["Installed"] = True
 
             self.async_checks([False, True])
         else:
@@ -757,6 +810,8 @@ class BottlesRunner:
             component = self.supported_proton_runners[component_name]
         if component_type == "dxvk":
             component = self.supported_dxvk[component_name]
+        if component_type == "vkd3d":
+            component = self.supported_vkd3d[component_name]
 
         if self.utils_conn.check_connection():
             if "Sub-category" in component:
@@ -900,13 +955,16 @@ class BottlesRunner:
     def async_create_bottle(self, args:list) -> None:
         logging.info("Creating the wineprefix …")
 
-        name, environment, path, runner, dxvk, versioning, dialog = args
+        name, environment, path, runner, dxvk, vkd3d, versioning, dialog = args
 
         update_output = dialog.update_output
 
-        '''If there are no local runners and dxvks, install them'''
-        if 0 in [len(self.runners_available), len(self.dxvk_available)]:
-            update_output(_("Runner and/or dxvk not found, installing latest version …"))
+        '''If there are no local runners, dxvks, vkd3ds, install them'''
+        if 0 in [
+            len(self.runners_available),
+            len(self.dxvk_available),
+            len(self.vkd3d_available)]:
+            update_output(_("One or more components not found, installing latest version …"))
             self.window.page_preferences.set_dummy_runner()
             self.window.show_runners_preferences_view()
             return self.async_checks()
@@ -916,6 +974,9 @@ class BottlesRunner:
 
         if not dxvk: dxvk = self.dxvk_available[0]
         dxvk_name = dxvk
+
+        if not vkd3d: vkd3d = self.vkd3d_available[0]
+        vkd3d_name = vkd3d
 
         '''If runner is proton, files are located to the dist path'''
         if runner.startswith("Proton"):
@@ -962,6 +1023,7 @@ class BottlesRunner:
         configuration["Name"] = bottle_name
         configuration["Runner"] = runner_name
         configuration["DXVK"] = dxvk_name
+        configuration["VKD3D"] = vkd3d_name
         if path == "":
             configuration["Path"] = bottle_name_path
         else:
@@ -996,6 +1058,12 @@ class BottlesRunner:
             update_output( _("Installing dxvk …"))
             self.install_dxvk(configuration, version=dxvk_name)
 
+        '''Perform vkd3d installation if configured'''
+        if configuration["Parameters"]["vkd3ddxvk"]:
+            logging.info("Installing vkd3d …")
+            update_output( _("Installing vkd3d …"))
+            self.install_vkd3d(configuration, version=vkd3d_name)
+
         time.sleep(1)
 
         '''Create first state if versioning enabled'''
@@ -1013,12 +1081,13 @@ class BottlesRunner:
 
         dialog.finish()
 
-    def create_bottle(self, name, environment:str, path:str=False, runner:RunnerName=False, dxvk:bool=False, versioning:bool=False, dialog:Gtk.Widget=None) -> None:
+    def create_bottle(self, name, environment:str, path:str=False, runner:RunnerName=False, dxvk:bool=False, vkd3d:bool=False, versioning:bool=False, dialog:Gtk.Widget=None) -> None:
         RunAsync(self.async_create_bottle, None, [name,
                                                   environment,
                                                   path,
                                                   runner,
                                                   dxvk,
+                                                  vkd3d,
                                                   versioning,
                                                   dialog])
 
@@ -1193,11 +1262,42 @@ class BottlesRunner:
 
         return subprocess.Popen(command, shell=True).communicate()
 
+    '''
+    Install vkd3d using official script
+    '''
+    def install_vkd3d(self, configuration:BottleConfig, remove:bool=False, version:str=False) -> bool:
+        logging.info(f"Installing vkd3d for bottle: [{configuration['Name']}].")
+
+        if version:
+            vkd3d_version = version
+        else:
+            vkd3d_version = configuration.get("VKD3D")
+
+        if not vkd3d_version:
+            vkd3d_version = self.vkd3d_available[0]
+            self.update_configuration(configuration, "VKD3D", vkd3d_version)
+
+        option = "uninstall" if remove else "install"
+
+        command = 'DISPLAY=:0.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {vkd3d_setup} {option} --without-dxgi'.format (
+            path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
+            runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
+            vkd3d_setup = "%s/%s/setup_vkd3d_proton.sh" % (self.vkd3d_path, vkd3d_version),
+            option = option)
+
+        return subprocess.Popen(command, shell=True).communicate()
+
     '''Remove dxvk using official script'''
     def remove_dxvk(self, configuration:BottleConfig) -> None:
         logging.info(f"Removing dxvk for bottle: [{configuration['Name']}].")
 
         self.install_dxvk(configuration, remove=True)
+
+    '''Remove vkd3d using official script'''
+    def remove_vkd3d(self, configuration:BottleConfig) -> None:
+        logging.info(f"Removing vkd3d for bottle: [{configuration['Name']}].")
+
+        self.install_vkd3d(configuration, remove=True)
 
     '''Override dlls in system32/syswow64 paths'''
     def dll_override(self, configuration:BottleConfig, arch:str, dlls:list, source:str, revert:bool=False) -> bool:
@@ -1336,6 +1436,9 @@ class BottlesRunner:
             environment_vars.append("__GL_SHADER_DISK_CACHE=1")
             environment_vars.append("__GL_SHADER_DISK_CACHE_PATH='%s'" % path)
 
+        if parameters["vkd3d"]:
+            dll_overrides.append("d3d12,dxgi=n")
+
         if parameters["dxvk_hud"]:
             environment_vars.append("DXVK_HUD='devinfo,memory,drawcalls,fps,version,api,compiler'")
         else:
@@ -1418,7 +1521,7 @@ class BottlesRunner:
             ), "applications-system-symbolic")
 
     '''Open file manager in different paths'''
-    def open_filemanager(self, configuration:BottleConfig=dict, path_type:str="bottle", runner:str="", dxvk:str="", custom_path:str="") -> bool:
+    def open_filemanager(self, configuration:BottleConfig=dict, path_type:str="bottle", runner:str="", dxvk:str="", vkd3d:str="", custom_path:str="") -> bool:
         logging.info("Opening the file manager in the path …")
 
         if path_type == "bottle":
@@ -1430,6 +1533,9 @@ class BottlesRunner:
 
         if path_type == "dxvk" and dxvk != "":
             path = "%s/%s" % (self.dxvk_path, dxvk)
+
+        if path_type == "vkd3d" and vkd3d != "":
+            path = "%s/%s" % (self.vkd3d_path, vkd3d)
 
         if path_type == "custom" and custom_path != "":
             path = custom_path

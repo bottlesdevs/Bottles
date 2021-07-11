@@ -578,10 +578,12 @@ class BottlesDetails(Handy.Leaflet):
     btn_delete = Gtk.Template.Child()
     btn_manage_runners = Gtk.Template.Child()
     btn_manage_dxvk = Gtk.Template.Child()
+    btn_manage_vkd3d = Gtk.Template.Child()
     btn_help_versioning = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
+    switch_vkd3d = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_aco = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
@@ -594,6 +596,7 @@ class BottlesDetails(Handy.Leaflet):
     combo_virtual_resolutions = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
+    combo_vkd3d = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     list_installers = Gtk.Template.Child()
@@ -638,6 +641,7 @@ class BottlesDetails(Handy.Leaflet):
         self.btn_overrides.connect('pressed', self.show_dll_overrides_view)
         self.btn_manage_runners.connect('pressed', self.window.show_preferences_view)
         self.btn_manage_dxvk.connect('pressed', self.window.show_preferences_view)
+        self.btn_manage_vkd3d.connect('pressed', self.window.show_preferences_view)
 
         self.btn_winecfg.connect('activate', self.run_winecfg)
         self.btn_debug.connect('activate', self.run_debug)
@@ -670,6 +674,7 @@ class BottlesDetails(Handy.Leaflet):
 
         self.switch_dxvk.connect('state-set', self.toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
+        self.switch_vkd3d.connect('state-set', self.toggle_vkd3d)
         self.switch_gamemode.connect('state-set', self.toggle_gamemode)
         self.switch_aco.connect('state-set', self.toggle_aco)
         self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
@@ -680,6 +685,7 @@ class BottlesDetails(Handy.Leaflet):
         self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
         self.combo_runner.connect('changed', self.set_runner)
         self.combo_dxvk.connect('changed', self.set_dxvk)
+        self.combo_vkd3d.connect('changed', self.set_vkd3d)
 
         self.entry_search_deps.connect('key-release-event', self.search_dependencies)
         self.entry_search_deps.connect('changed', self.search_dependencies)
@@ -733,10 +739,12 @@ class BottlesDetails(Handy.Leaflet):
     def update_combo_components(self):
         self.combo_runner.handler_block_by_func(self.set_runner)
         self.combo_dxvk.handler_block_by_func(self.set_dxvk)
+        self.combo_vkd3d.handler_block_by_func(self.set_vkd3d)
 
-        '''Populate combo_runner, combo_dxvk'''
+        '''Populate combo_runner, combo_dxvk, combo_vkd3d'''
         self.combo_runner.remove_all()
         self.combo_dxvk.remove_all()
+        self.combo_vkd3d.remove_all()
 
         for runner in self.runner.runners_available:
             self.combo_runner.append(runner, runner)
@@ -744,8 +752,12 @@ class BottlesDetails(Handy.Leaflet):
         for dxvk in self.runner.dxvk_available:
             self.combo_dxvk.append(dxvk, dxvk)
 
+        for vkd3d in self.runner.vkd3d_available:
+            self.combo_vkd3d.append(vkd3d, vkd3d)
+
         self.combo_runner.handler_unblock_by_func(self.set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
+        self.combo_vkd3d.handler_unblock_by_func(self.set_vkd3d)
 
     '''Set bottle configuration'''
     def set_configuration(self, configuration):
@@ -753,10 +765,12 @@ class BottlesDetails(Handy.Leaflet):
 
         '''Lock signals preventing triggering'''
         self.switch_dxvk.handler_block_by_func(self.toggle_dxvk)
+        self.switch_vkd3d.handler_block_by_func(self.toggle_vkd3d)
         self.switch_virtual_desktop.handler_block_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
         self.combo_runner.handler_block_by_func(self.set_runner)
         self.combo_dxvk.handler_block_by_func(self.set_dxvk)
+        self.combo_vkd3d.handler_block_by_func(self.set_vkd3d)
 
         '''Populate widgets from configuration'''
         parameters = self.configuration.get("Parameters")
@@ -770,6 +784,7 @@ class BottlesDetails(Handy.Leaflet):
         # self.label_update_date.set_text(self.configuration.get("Update_Date"))
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
+        self.switch_vkd3d.set_active(parameters["vkd3d"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_aco.set_active(parameters["aco_compiler"])
         if parameters["sync"] == "wine": self.toggle_sync.set_active(True)
@@ -781,14 +796,17 @@ class BottlesDetails(Handy.Leaflet):
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
         self.combo_runner.set_active_id(self.configuration.get("Runner"))
         self.combo_dxvk.set_active_id(self.configuration.get("DXVK"))
+        self.combo_vkd3d.set_active_id(self.configuration.get("VKD3D"))
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
 
         '''Unlock signals'''
         self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
+        self.switch_vkd3d.handler_unblock_by_func(self.toggle_vkd3d)
         self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
         self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
         self.combo_runner.handler_unblock_by_func(self.set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
+        self.combo_vkd3d.handler_unblock_by_func(self.set_vkd3d)
 
         self.update_programs()
         self.update_dependencies()
@@ -944,6 +962,20 @@ class BottlesDetails(Handy.Leaflet):
             scope="Parameters")
         self.configuration = new_configuration
 
+    '''Toggle VKD3D'''
+    def toggle_vkd3d(self, widget=False, state=False):
+        if state:
+            self.runner.install_vkd3d(self.configuration)
+        else:
+            self.runner.remove_vkd3d(self.configuration)
+
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="vkd3d",
+            value=state,
+            scope="Parameters")
+        self.configuration = new_configuration
+
     '''Toggle Gamemode'''
     def toggle_gamemode(self, widget=False, state=False):
         new_configuration = self.runner.update_configuration(
@@ -1052,6 +1084,21 @@ class BottlesDetails(Handy.Leaflet):
 
         # install new dxvk
         self.toggle_dxvk(state=True)
+
+    '''Set (change) vkd3d'''
+    def set_vkd3d(self, widget):
+        # remove old vkd3d
+        self.toggle_vkd3d(state=False)
+
+        vkd3d = widget.get_active_id()
+        new_configuration = self.runner.update_configuration(
+            configuration=self.configuration,
+            key="VKD3D",
+            value=vkd3d)
+        self.configuration = new_configuration
+
+        # install new vkd3d
+        self.toggle_vkd3d(state=True)
 
     '''Toggle pulseaudio latency'''
     def toggle_pulseaudio_latency(self, widget, state):
