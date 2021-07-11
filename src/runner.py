@@ -67,11 +67,13 @@ class BottlesRunner:
     icons_user = "%s/.local/share/icons" % Path.home()
 
     '''Local paths'''
-    temp_path = "%s/.local/share/bottles/temp" % Path.home()
-    runners_path = "%s/.local/share/bottles/runners" % Path.home()
-    bottles_path = "%s/.local/share/bottles/bottles" % Path.home()
-    dxvk_path = "%s/.local/share/bottles/dxvk" % Path.home()
-    vkd3d_path = "%s/.local/share/bottles/vkd3d" % Path.home()
+    base_path = f"{Path.home()}/.local/share/bottles"
+    temp_path = f"{base_path}/temp"
+    runners_path = f"{base_path}/runners"
+    bottles_path = f"{base_path}/bottles"
+    dxvk_path = f"{base_path}/dxvk"
+    vkd3d_path = f"{base_path}/vkd3d"
+
 
     '''External managers paths'''
     lutris_path = "%s/Games" % Path.home()
@@ -1007,7 +1009,7 @@ class BottlesRunner:
 
         '''Execute wineboot'''
         update_output( _("The wine configuration is being updated …"))
-        command = "DISPLAY=:0.0 WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH=win64 {runner} wineboot /nogui".format(
+        command = "DISPLAY=:3.0 WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH=win64 {runner} wineboot /nogui".format(
             path = bottle_complete_path,
             runner = runner
         )
@@ -1059,7 +1061,7 @@ class BottlesRunner:
             self.install_dxvk(configuration, version=dxvk_name)
 
         '''Perform vkd3d installation if configured'''
-        if configuration["Parameters"]["vkd3ddxvk"]:
+        if configuration["Parameters"]["vkd3d"]:
             logging.info("Installing vkd3d …")
             update_output( _("Installing vkd3d …"))
             self.install_vkd3d(configuration, version=vkd3d_name)
@@ -1254,7 +1256,7 @@ class BottlesRunner:
 
         option = "uninstall" if remove else "install"
 
-        command = 'DISPLAY=:0.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --without-dxgi'.format (
+        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --without-dxgi'.format (
             path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
             runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
             dxvk_setup = "%s/%s/setup_dxvk.sh" % (self.dxvk_path, dxvk_version),
@@ -1279,7 +1281,7 @@ class BottlesRunner:
 
         option = "uninstall" if remove else "install"
 
-        command = 'DISPLAY=:0.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {vkd3d_setup} {option} --without-dxgi'.format (
+        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {vkd3d_setup} {option} --without-dxgi'.format (
             path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
             runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
             vkd3d_setup = "%s/%s/setup_vkd3d_proton.sh" % (self.vkd3d_path, vkd3d_version),
