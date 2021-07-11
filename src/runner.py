@@ -1258,7 +1258,7 @@ class BottlesRunner:
 
         option = "uninstall" if remove else "install"
 
-        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --without-dxgi'.format (
+        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --with-d3d10'.format (
             path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
             runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
             dxvk_setup = "%s/%s/setup_dxvk.sh" % (self.dxvk_path, dxvk_version),
@@ -1283,7 +1283,7 @@ class BottlesRunner:
 
         option = "uninstall" if remove else "install"
 
-        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {vkd3d_setup} {option} --without-dxgi'.format (
+        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {vkd3d_setup} {option}'.format (
             path = "%s/%s" % (self.bottles_path, configuration.get("Path")),
             runner = "%s/%s/bin" % (self.runners_path, configuration.get("Runner")),
             vkd3d_setup = "%s/%s/setup_vkd3d_proton.sh" % (self.vkd3d_path, vkd3d_version),
