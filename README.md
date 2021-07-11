@@ -88,6 +88,12 @@ second one is not recommended in a production environment.
 chmod +x Bottles-devel-x86_64.AppImage
 ./Bottles-devel-x86_64.AppImage
 ```
+
+#### ..or using [zap](https://github.com/srevinsaju/zap)⚡!
+```bash
+zap install bottles
+```
+
 And you're done!
 
 ### AUR
