@@ -714,6 +714,8 @@ class BottlesRunner:
                         recursive=True)
         results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle,
                         recursive=True)
+        results += glob("%s/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle,
+                        recursive=True)
         installed_programs = []
 
         '''For any .lnk file, check for executable path'''
