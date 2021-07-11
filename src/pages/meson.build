@@ -11,7 +11,7 @@ bottles_sources = [
   'taskmanager.py',
   'importer.py',
   'dialog.py',
-  'onboard.py',
+  'onboard.py'
 ]
 
 install_data(bottles_sources, install_dir: pagesdir)

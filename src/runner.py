@@ -1484,8 +1484,6 @@ class BottlesRunner:
             command = command
         )
 
-        print(command)
-
         # Check for gamemode enabled
         if self.gamemode_available and configuration["Parameters"]["gamemode"]:
             command = f"gamemoderun {command}"
