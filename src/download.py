@@ -31,8 +31,14 @@ class BottlesDownloadEntry(Gtk.Box):
     progressbar_download = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
 
-    def __init__(self, file_name, stoppable=True, **kwargs):
+    def __init__(self, window, file_name, stoppable=True, **kwargs):
         super().__init__(**kwargs)
+
+        self.window = window
+        self.box_downloads = window.box_downloads
+
+        '''Set btn_downloads visible'''
+        self.window.btn_downloads.set_visible(True)
 
         '''Populate widgets data'''
         self.label_filename.set_text(file_name)
@@ -64,6 +70,9 @@ class BottlesDownloadEntry(Gtk.Box):
         GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed)
 
     def remove(self):
+        downloads = self.box_downloads.get_children()
+        if len(downloads) == 1:
+            self.window.btn_downloads.set_visible(False)
         self.destroy()
 
 class DownloadManager():
@@ -74,12 +83,12 @@ class DownloadManager():
         '''Common variables'''
         self.window = window
         self.box_downloads = window.box_downloads
-        self.pop_downloads = window.pop_downloads
+        # self.pop_downloads = window.pop_downloads
 
     def new_download(self, file_name, stoppable=True):
-        download_entry = BottlesDownloadEntry(file_name, stoppable)
+        download_entry = BottlesDownloadEntry(self.window, file_name, stoppable)
         self.window.box_downloads.add(download_entry)
 
-        GLib.idle_add(self.pop_downloads.popup)
+        # GLib.idle_add(self.pop_downloads.popup)
 
         return download_entry
