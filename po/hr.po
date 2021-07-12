@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-03 22:02+0200\n"
+"POT-Creation-Date: 2021-07-12 09:52+0200\n"
 "PO-Revision-Date: 2021-07-11 11:32+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,8 +22,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:72 src/ui/window.ui:165 src/ui/window.ui:180
-#: src/window.py:130
+#: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
+#: src/window.py:121
 msgid "Bottles"
 msgstr "Butelje"
 
@@ -130,7 +130,8 @@ msgstr "Pristup ProtonDB-u i WineHQ-a za podršku"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr "Sustav za aktualiziranje konfiguracije na nove verzije programa Butelje"
+msgstr ""
+"Sustav za aktualiziranje konfiguracije na nove verzije programa Butelje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
 msgid "Back up and import bottles"
@@ -251,50 +252,74 @@ msgid "Ukrain thanslations thanks to @marchellodev"
 msgstr "Prijevod na ukrajinski, hvala @marchellodev"
 
 #: data/com.usebottles.bottles.gschema.xml:6
+msgid "Flatpak migration"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:7
+msgid "Toggle the flatpak migration dialog."
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
 msgstr "Tamna tema"
 
-#: data/com.usebottles.bottles.gschema.xml:7
+#: data/com.usebottles.bottles.gschema.xml:12
 msgid "Enable the dark theme."
 msgstr "Aktiviraj tamnu temu."
 
-#: data/com.usebottles.bottles.gschema.xml:11 src/ui/preferences.ui:64
+#: data/com.usebottles.bottles.gschema.xml:16
+msgid "Window width"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:17
+msgid "Change the window width"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:21
+msgid "Window height"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:22
+msgid "Change the window height"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:26 src/ui/preferences.ui:65
 msgid "Notifications"
 msgstr "Obavijesti"
 
-#: data/com.usebottles.bottles.gschema.xml:12
+#: data/com.usebottles.bottles.gschema.xml:27
 msgid "Enable notifications."
 msgstr "Aktiviraj obavijesti."
 
-#: data/com.usebottles.bottles.gschema.xml:16
+#: data/com.usebottles.bottles.gschema.xml:31
 msgid "Temp cleaning"
 msgstr "Brisanje privremenih datoteka"
 
-#: data/com.usebottles.bottles.gschema.xml:17
+#: data/com.usebottles.bottles.gschema.xml:32
 msgid "Clean Temp path on boot."
 msgstr "Izbriši privremene datoteke pri pokretanju programa."
 
-#: data/com.usebottles.bottles.gschema.xml:21
+#: data/com.usebottles.bottles.gschema.xml:36
 msgid "Release Candidate"
 msgstr "Kandidat izdanja"
 
-#: data/com.usebottles.bottles.gschema.xml:22
+#: data/com.usebottles.bottles.gschema.xml:37
 msgid "Toggle Release Candidate for Runners"
 msgstr "Uključi/Isključi kandidate izdanja za pokretače"
 
-#: data/com.usebottles.bottles.gschema.xml:26
+#: data/com.usebottles.bottles.gschema.xml:41
 msgid "Startup view"
 msgstr "Početni prikaz"
 
-#: data/com.usebottles.bottles.gschema.xml:27
+#: data/com.usebottles.bottles.gschema.xml:42
 msgid "Choose which view should be loaded on application startup."
 msgstr "Odaberi prikaz koji će se učitati prilikom pokretanja programa."
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:197
+#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:226
 msgid "Experiments"
 msgstr "Eksperimenti"
 
-#: data/com.usebottles.bottles.gschema.xml:32
+#: data/com.usebottles.bottles.gschema.xml:47
 msgid ""
 "Toggle experimental features such as versioning and installers.Release "
 "Candidate for Runners"
@@ -302,27 +327,27 @@ msgstr ""
 "Uključi/Isključi eksperimentalne funkcije kao što su upravljanje verzijama i "
 "instalacijski programi. Kandidat izdanja za pokretače"
 
-#: data/com.usebottles.bottles.gschema.xml:36
+#: data/com.usebottles.bottles.gschema.xml:51
 msgid "Experiments:versioning"
 msgstr "Eksperimenti:upravljanje verzijama"
 
-#: data/com.usebottles.bottles.gschema.xml:37
+#: data/com.usebottles.bottles.gschema.xml:52
 msgid "Toggle experimental versioning feature"
 msgstr "Uključi/Isključi eksperimentalnu funkciju za upravljanje verzijama"
 
-#: data/com.usebottles.bottles.gschema.xml:41
+#: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:installers"
 msgstr "Eksperimenti:instalacijski programi"
 
-#: data/com.usebottles.bottles.gschema.xml:42
+#: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental installers feature"
 msgstr "Uključi/Isključi eksperimentalnu funkciju za instalacijske programe"
 
-#: data/com.usebottles.bottles.gschema.xml:46
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Automatski zatvori Butelje"
 
-#: data/com.usebottles.bottles.gschema.xml:47
+#: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting executable from file manager"
 msgstr ""
 "Zatvori Butelje nakon pokretanja izvršne datoteke iz upravljača datoteka"
@@ -335,21 +360,21 @@ msgstr "© 2017. – 2021. – Programeri programa Bottles (Butelje)"
 msgid "Easily manage wineprefix using environments"
 msgstr "Jednostavno upravljaj Wine mapama koristeći okruženja"
 
-#: src/ui/about.ui:98
+#: src/ui/about.ui:99
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Prevedi</a>"
 
-#: src/ui/about.ui:111
+#: src/ui/about.ui:112
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Financiranje</a>"
 
-#: src/ui/about.ui:124
+#: src/ui/about.ui:125
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Prijava grešaka</a>"
 
-#: src/ui/about.ui:137
+#: src/ui/about.ui:138
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
@@ -358,11 +383,15 @@ msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgid "Show manifest"
 msgstr "Pokaži manifest"
 
-#: src/ui/dependency-entry.ui:45 src/ui/installer-entry.ui:45
+#: src/ui/dependency-entry.ui:34
+msgid "License"
+msgstr ""
+
+#: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:45
 msgid "Bug report"
 msgstr "Prijava grešaka"
 
-#: src/ui/dependency-entry.ui:150
+#: src/ui/dependency-entry.ui:166
 msgid "Download & Install this dependency"
 msgstr "Preuzmi i instaliraj ovu ovisnost"
 
@@ -406,155 +435,192 @@ msgstr "Kratki komentar"
 msgid "Save the bottle state."
 msgstr "Spremi stanje butelje."
 
-#: src/ui/details.ui:189
+#: src/ui/details.ui:241
 msgid "Rename bottle"
 msgstr "Preimenuj butelju"
 
-#: src/ui/details.ui:215 src/ui/list-entry.ui:47
+#: src/ui/details.ui:268 src/ui/list-entry.ui:76
 msgid "Versioning enabled for this bottle"
 msgstr "Upravljanje verzijama je aktivirano za ovu butelju"
 
-#: src/ui/details.ui:224 src/ui/list-entry.ui:54
+#: src/ui/details.ui:279 src/ui/list-entry.ui:83
 msgid "Versioning is active in this bottle."
 msgstr "Upravljanje verzijama je aktivno u ovoj butelji."
 
-#: src/ui/details.ui:245 src/ui/list-entry.ui:73
+#: src/ui/details.ui:300 src/ui/list-entry.ui:102
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:296
+#: src/ui/details.ui:352
 msgid "Bottle name"
 msgstr "Ime butelje"
 
-#: src/ui/details.ui:300 src/ui/new.ui:149
-msgid "This field cannot contain special characters!"
-msgstr "Ovo polje ne smije sadržati posebne znakove!"
-
-#: src/ui/details.ui:301
+#: src/ui/details.ui:356
 msgid "Type a name for your bottle"
 msgstr "Upiši ime za butelju"
 
-#: src/ui/details.ui:320
+#: src/ui/details.ui:375
 msgid "Environment"
 msgstr "Okruženje"
 
-#: src/ui/details.ui:369
+#: src/ui/details.ui:409
 msgid "64 Bit"
 msgstr "64-bitno"
 
-#: src/ui/details.ui:388
+#: src/ui/details.ui:428
 msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
-#: src/ui/details.ui:419
+#: src/ui/details.ui:459
 msgid "Destroy this bottle"
 msgstr "Uništi ovu butelju"
 
-#: src/ui/details.ui:440
+#: src/ui/details.ui:480
 msgid "Run executable"
 msgstr "Pokreni izvršnu datoteku"
 
-#: src/ui/details.ui:478
+#: src/ui/details.ui:521
 msgid "Backup bottle"
 msgstr "Spremi sigurnosnu kopiju butelje"
 
-#: src/ui/details.ui:500
+#: src/ui/details.ui:547
 msgid "Reboot Windows"
 msgstr "Ponovo pokreni Windows"
 
-#: src/ui/details.ui:521
+#: src/ui/details.ui:572
 msgid "Shutdown Windows"
 msgstr "Isključi Windows"
 
-#: src/ui/details.ui:542
+#: src/ui/details.ui:597
 msgid "Kill all wine processes"
 msgstr "Prekini sve Wine procese"
 
-#: src/ui/details.ui:581 src/ui/details.ui:1691 src/ui/details.ui:1764
+#: src/ui/details.ui:640 src/ui/details.ui:1926 src/ui/details.ui:2021
+#: src/pages/details.py:709
 msgid "Programs"
 msgstr "Programi"
 
-#: src/ui/details.ui:597
+#: src/ui/details.ui:656
 msgid "Utilities"
 msgstr "Uslužni programi"
 
-#: src/ui/details.ui:602
+#: src/ui/details.ui:661
 msgid "Wine config"
 msgstr "Wine konfiguracija"
 
-#: src/ui/details.ui:604
+#: src/ui/details.ui:663
 msgid "Adjust internal settings."
 msgstr "Podesi interne postavke."
 
-#: src/ui/details.ui:641 src/ui/list-entry.ui:221
+#: src/ui/details.ui:700 src/ui/list-entry.ui:257
 msgid "Browse C:"
 msgstr "Pregledaj C:"
 
-#: src/ui/details.ui:643
+#: src/ui/details.ui:702
 msgid "Browse internal files."
 msgstr "Pregledaj interne datoteke."
 
-#: src/ui/details.ui:680
+#: src/ui/details.ui:739
 msgid "Command Line"
 msgstr "Naredbeni redak"
 
-#: src/ui/details.ui:682
+#: src/ui/details.ui:741
 msgid "Run commands inside the Bottle."
 msgstr "Pokreni naredbe unutar butelje."
 
-#: src/ui/details.ui:719
+#: src/ui/details.ui:778
 msgid "Registry Editor"
 msgstr "Uređivač registra"
 
-#: src/ui/details.ui:721
+#: src/ui/details.ui:780
 msgid "Edit the internal registry."
 msgstr "Uredi unutarnji registar."
 
-#: src/ui/details.ui:758
+#: src/ui/details.ui:817
 msgid "Debug"
 msgstr "Otklanjanje grešaka"
 
-#: src/ui/details.ui:760
+#: src/ui/details.ui:819
 msgid "Debug wine processes."
 msgstr "Otklanjaj greške Wine procesa."
 
-#: src/ui/details.ui:797
+#: src/ui/details.ui:853 src/ui/details.ui:2183
+#, fuzzy
+msgid "Read documentation"
+msgstr "Dokumentacija"
+
+#: src/ui/details.ui:883
 msgid "Task Manager"
 msgstr "Upravljač zadataka"
 
-#: src/ui/details.ui:799
+#: src/ui/details.ui:885
 msgid "Manage processes with the Wine task manager."
 msgstr "Upravljaj procesima s Wine upravljačem zadataka."
 
-#: src/ui/details.ui:836
+#: src/ui/details.ui:922
 msgid "Uninstaller"
 msgstr "Deinstalacijski program"
 
-#: src/ui/details.ui:838
+#: src/ui/details.ui:924
 msgid "Uninstall programs using wine uninstaller"
 msgstr "Deinstaliraj programe koristeći Wineov deinstalacijski program"
 
-#: src/ui/details.ui:875
+#: src/ui/details.ui:961
 msgid "Control Panel"
 msgstr "Upravljačka ploča"
 
-#: src/ui/details.ui:877
+#: src/ui/details.ui:963
 msgid "Access the internal wine control panel."
 msgstr "Pristupi internoj Wine upravljačkoj ploči."
 
-#: src/ui/details.ui:929
+#: src/ui/details.ui:1015
 msgid "Bottle"
 msgstr "Butelja"
 
-#: src/ui/details.ui:957
+#: src/ui/details.ui:1043
 msgid "Graphics"
 msgstr "Prikaz"
 
-#: src/ui/details.ui:962
+#: src/ui/details.ui:1048
 msgid "Use DXVK"
 msgstr "Koristi DXVK"
 
-#: src/ui/details.ui:963 src/ui/details.ui:1018
+#: src/ui/details.ui:1049
+#, fuzzy
+msgid ""
+"Improves performance for Directx 11 games and 3D applications.\n"
+"Disable if you're experiencing graphical glitches."
+msgstr ""
+"Poboljšava izvođenje igara i 3D programa.\n"
+"Deaktiviraj ako se pojave greške u prikazu."
+
+#: src/ui/details.ui:1076
+#, fuzzy
+msgid "Use VKD3D"
+msgstr "Koristi DXVK"
+
+#: src/ui/details.ui:1077
+#, fuzzy
+msgid ""
+"Improves performance for Directx 12 games and 3D applications.\n"
+"Disable if you're experiencing graphical glitches."
+msgstr ""
+"Poboljšava izvođenje igara i 3D programa.\n"
+"Deaktiviraj ako se pojave greške u prikazu."
+
+#: src/ui/details.ui:1104
+msgid "Use Gamemode"
+msgstr "Koristi Gamemode"
+
+#: src/ui/details.ui:1105
+msgid "Optimise gaming performance on demand"
+msgstr "Optimiraj performansu igranja po potrebi"
+
+#: src/ui/details.ui:1131
+msgid "Enable ACO shader compiler"
+msgstr "Aktiviraj ACO kompajler sjena"
+
+#: src/ui/details.ui:1132
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -562,142 +628,150 @@ msgstr ""
 "Poboljšava izvođenje igara i 3D programa.\n"
 "Deaktiviraj ako se pojave greške u prikazu."
 
-#: src/ui/details.ui:990
-msgid "Use Gamemode"
-msgstr "Koristi Gamemode"
-
-#: src/ui/details.ui:991
-msgid "Optimise gaming performance on demand"
-msgstr "Optimiraj performansu igranja po potrebi"
-
-#: src/ui/details.ui:1017
-msgid "Enable ACO shader compiler"
-msgstr "Aktiviraj ACO kompajler sjena"
-
-#: src/ui/details.ui:1045
+#: src/ui/details.ui:1159
 msgid "Discrete GPU"
 msgstr "Diskretni grafički procesor"
 
-#: src/ui/details.ui:1046
+#: src/ui/details.ui:1160
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Poboljšava izvođenje, ali troši više energije."
 
-#: src/ui/details.ui:1072
+#: src/ui/details.ui:1186
 msgid "Use a virtual desktop"
 msgstr "Koristi virtualnu radnu površinu"
 
-#: src/ui/details.ui:1073
+#: src/ui/details.ui:1187
 msgid "Use the Wine virtual desktop."
 msgstr "Koristi Wineovu virtualnu radnu površinu."
 
-#: src/ui/details.ui:1156 src/ui/details.ui:1169
+#: src/ui/details.ui:1270 src/ui/details.ui:1283
 msgid "System"
 msgstr "Sustav"
 
-#: src/ui/details.ui:1161
+#: src/ui/details.ui:1275
 msgid "Synchronization"
 msgstr "Sinkronizacija"
 
-#: src/ui/details.ui:1162
+#: src/ui/details.ui:1276
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr ""
 "Aktiviraj sinkronizaciju za povećavanje izvođenja višejezgrenih procesora."
 
-#: src/ui/details.ui:1183
+#: src/ui/details.ui:1297
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1197
+#: src/ui/details.ui:1311
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1220 src/ui/new.ui:261
+#: src/ui/details.ui:1334 src/ui/new.ui:261
 msgid "Runner"
 msgstr "Pokretač"
 
-#: src/ui/details.ui:1263 src/ui/new.ui:302
+#: src/ui/details.ui:1377 src/ui/new.ui:302
 msgid "Manage runners"
 msgstr "Upravljaj pokretačima"
 
-#: src/ui/details.ui:1295 src/ui/new.ui:334
+#: src/ui/details.ui:1409 src/ui/new.ui:334
 msgid "DXVK Version"
 msgstr "DXVK verzija"
 
-#: src/ui/details.ui:1338 src/ui/new.ui:375
+#: src/ui/details.ui:1452 src/ui/details.ui:1527 src/ui/new.ui:375
 msgid "Manage DXVK versions"
 msgstr "Upravljaj DXVK verzijama"
 
-#: src/ui/details.ui:1371 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1484
+#, fuzzy
+msgid "VKD3D Version"
+msgstr "DXVK verzija"
+
+#: src/ui/details.ui:1560 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "Zamjene DLL biblioteka"
 
-#: src/ui/details.ui:1420
+#: src/ui/details.ui:1609
 msgid "Audio"
 msgstr "Zvuk"
 
-#: src/ui/details.ui:1425
+#: src/ui/details.ui:1614
 msgid "Reduce PulseAudio latency"
 msgstr "Smanji PulseAudio kašnjenje"
 
-#: src/ui/details.ui:1426
+#: src/ui/details.ui:1615
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Za povećanje kvalitete zvuka, u programu PulseAudio postavi kašnjenje na 60 "
 "milisekundi"
 
-#: src/ui/details.ui:1463
+#: src/ui/details.ui:1652
 msgid "Developers & Debug"
 msgstr "Programeri i otklanjanje grešaka"
 
-#: src/ui/details.ui:1468
+#: src/ui/details.ui:1657
 msgid "Environment variables"
 msgstr "Varijable okruženja"
 
-#: src/ui/details.ui:1506
+#: src/ui/details.ui:1695
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details.ui:1507
+#: src/ui/details.ui:1696
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Uključi/Isključi DXVK sloj koji prikazuje FPS i ostale detalje u D3D "
 "programima."
 
-#: src/ui/details.ui:1533
+#: src/ui/details.ui:1722
 msgid "Enable wine fixme logs"
 msgstr "Aktiviraj wine zapise za ispravljanje"
 
-#: src/ui/details.ui:1534
+#: src/ui/details.ui:1723
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Zapiši putanje kodova koji u Wineu nisu implementirani."
 
-#: src/ui/details.ui:1575 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/pages/details.py:707
 msgid "Preferences"
 msgstr "Postavke"
 
-#: src/ui/details.ui:1609 src/ui/details.ui:1657
+#: src/ui/details.ui:1804 src/ui/details.ui:1886 src/pages/details.py:708
 msgid "Dependencies"
 msgstr "Ovisnosti"
 
-#: src/ui/details.ui:1710
+#: src/ui/details.ui:1823
+msgid ""
+"While the files on this page have been verified may be under proprietary "
+"license."
+msgstr ""
+
+#: src/ui/details.ui:1853
+msgid "Microsoft .NET Framework 4 .."
+msgstr ""
+
+#: src/ui/details.ui:1945
+msgid "These are the programs found in your bottle's Start menu"
+msgstr ""
+
+#: src/ui/details.ui:1965
 msgid "Search for installed programs"
 msgstr "Traži instalirane programe"
 
-#: src/ui/details.ui:1798 src/ui/preferences.ui:228 src/ui/window.ui:151
+#: src/ui/details.ui:2056 src/ui/preferences.ui:261 src/pages/details.py:714
 msgid "Installers"
 msgstr "Instalacijski programi"
 
-#: src/ui/details.ui:1817 src/ui/importer.ui:95
+#: src/ui/details.ui:2075 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "Osvježi"
 
-#: src/ui/details.ui:1903 src/ui/preferences.ui:202 src/ui/window.ui:138
+#: src/ui/details.ui:2164 src/ui/preferences.ui:235 src/pages/details.py:712
 msgid "Versioning"
 msgstr "Upravljanje verzijama"
 
-#: src/ui/details.ui:1923
+#: src/ui/details.ui:2213
 msgid "Create new state"
 msgstr "Stvori novo stanje"
 
@@ -707,7 +781,7 @@ msgstr "Ovdje upiši poruku."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1004 src/pages/list.py:129
+#: src/pages/details.py:1132 src/pages/list.py:129
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -805,7 +879,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "Deinstaliraj"
 
-#: src/ui/importer.ui:76 src/runner.py:1451 src/window.py:132
+#: src/ui/importer.ui:76 src/runner.py:1640 src/window.py:123
 msgid "Importer"
 msgstr "Uvoznik"
 
@@ -821,27 +895,31 @@ msgstr "Ova je Wine mapa već uvezena u Butelje."
 msgid "Start by creating a bottle"
 msgstr "Započni sa stvaranjem butelje"
 
-#: src/ui/list-entry.ui:99
-msgid "This bottle looks damaged."
-msgstr "Čini se da je ova butelja oštećena."
-
-#: src/ui/list-entry.ui:126
+#: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
 msgstr "Pokreni .exe/.msi u ovoj butelji"
 
-#: src/ui/list-entry.ui:152
+#: src/ui/list-entry.ui:149
+msgid "This bottle looks damaged."
+msgstr "Čini se da je ova butelja oštećena."
+
+#: src/ui/list-entry.ui:176
 msgid "Utility & Preferences"
 msgstr "Uslužni program i postavke"
 
-#: src/ui/list-entry.ui:176
+#: src/ui/list-entry.ui:202
 msgid "Upgrade runner to the latest localy installed"
 msgstr "Nadogradi pokretač na zadnji lokalno instalirani"
 
-#: src/ui/list-entry.ui:197
+#: src/ui/list-entry.ui:229
 msgid "Destroy bottle"
 msgstr "Uništi butelju"
 
-#: src/ui/list-entry.ui:242
+#: src/ui/list-entry.ui:284
+msgid "Installed programs"
+msgstr "Instalirani programi"
+
+#: src/ui/list-entry.ui:311
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
@@ -849,15 +927,11 @@ msgstr ""
 "Čini se da je ova butelja oštećena. Nedostaje datoteka konfiguracije. Mogu "
 "pokušati riješiti problem stvaranjem nove konfiguracije."
 
-#: src/ui/list-entry.ui:263
-msgid "Installed programs"
-msgstr "Instalirani programi"
-
-#: src/ui/list-entry.ui:284
+#: src/ui/list-entry.ui:338
 msgid "Execute in this bottle"
 msgstr "Izvrši u ovoj butelji"
 
-#: src/ui/list-entry.ui:294
+#: src/ui/list-entry.ui:350
 msgid "Run in this bottle"
 msgstr "Pokreni u ovoj butelji"
 
@@ -884,6 +958,10 @@ msgstr "Odaberi ime za butelju"
 #: src/ui/new.ui:139
 msgid "Name"
 msgstr "Ime"
+
+#: src/ui/new.ui:149
+msgid "This field cannot contain special characters!"
+msgstr "Ovo polje ne smije sadržati posebne znakove!"
 
 #: src/ui/new.ui:150
 msgid "My beautiful bottle"
@@ -915,11 +993,11 @@ msgstr "Stvaranje butelje …"
 msgid "Take a drink, it may take a while"
 msgstr "Nabavi si piće. Ovo može potrajati"
 
-#: src/ui/new.ui:557
+#: src/ui/new.ui:527
 msgid "Bottle created"
 msgstr "Butelja je stvorena"
 
-#: src/ui/onboard.ui:24 src/ui/onboard.ui:199
+#: src/ui/onboard.ui:24 src/ui/onboard.ui:200
 msgid "Welcome"
 msgstr "Dobrodošlica"
 
@@ -947,44 +1025,44 @@ msgstr "Butelje"
 msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr "Butelje znatno olakšava pokretanje Windows softvera na Linuxu."
 
-#: src/ui/onboard.ui:228
-msgid "What is Wine?"
-msgstr "Što je Wine?"
+#: src/ui/onboard.ui:229
+#, fuzzy
+msgid "What are runners?"
+msgstr "Upravljaj pokretačima"
 
-#: src/ui/onboard.ui:248
+#: src/ui/onboard.ui:249
 msgid ""
-"Wine is the compatibility layer that allows Windows software to run on "
-"Linux.\n"
-"In Bottles it is called <b>runner</b>.\n"
+"These are compatibility layers which allows Windows software to be installed "
+"and run on Linux systems.\n"
 "\n"
-"Wineprefixes are environments in which Wine works. In Bottles we call these, "
-"<b>bottles</b>."
+"<b>Bottles</b> are environments where the runner configures the system and "
+"where the Windows software runs and is installed.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
+"runners</a>"
 msgstr ""
-"Wine je sloj kompatibilnosti koji omogućuje korištenje Windows softvera na "
-"Linuxu.\n"
-"U programu Butelje zove se <b>pokretač</b>.\n"
-"\n"
-"Wine mape (wineprefix) su okruženja u kojima radi Wine. U programu Butelje "
-"zovemo ih <b>butelje</b>."
 
-#: src/ui/onboard.ui:266
+#: src/ui/onboard.ui:269
 msgid "Wine"
 msgstr "Wine"
 
-#: src/ui/onboard.ui:296
+#: src/ui/onboard.ui:299
 msgid "We are almost there"
 msgstr "Skoro smo gotovi"
 
-#: src/ui/onboard.ui:316
+#: src/ui/onboard.ui:319
+#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
 "The download size is <b>~70MB</b>.\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Read more "
+"about what we're going to download</a>\n"
 "\n"
 "We cannot offer these files with Bottles as these have different release "
 "cycles.\n"
 "\n"
-"When you are ready press the Install button."
+"When you are ready press the <b>Install</b> button."
 msgstr ""
 "Moramo preuzeti i instalirati pokretač koji će omogućiti stvaranje vlastitih "
 "butelja.\n"
@@ -995,89 +1073,91 @@ msgstr ""
 "\n"
 "Kad je sve spremno, pritisni gumb Instaliraj."
 
-#: src/ui/onboard.ui:336
+#: src/ui/onboard.ui:341 src/ui/preferences.ui:154
 msgid "Runners"
 msgstr "Pokretači"
 
-#: src/ui/onboard.ui:366
+#: src/ui/onboard.ui:371
 msgid "Downloading…"
 msgstr "Preuzimanje …"
 
-#: src/ui/onboard.ui:386
+#: src/ui/onboard.ui:391
 msgid "Sit down and have a drink, it may take a few minutes."
 msgstr "Sjedni i nabavi si piće. Ovo može potrajati nekoliko minuta."
 
-#: src/ui/onboard.ui:414
+#: src/ui/onboard.ui:419
 msgid "Download"
 msgstr "Preuzmi"
 
-#: src/ui/onboard.ui:458
+#: src/ui/onboard.ui:463
 msgid "Everything is ready!"
 msgstr "Sve je spremno!"
 
-#: src/ui/onboard.ui:478
+#: src/ui/onboard.ui:483
 msgid "You are now ready to create your first bottles."
 msgstr "Sve je spremno za stvaranje butelja."
 
-#: src/ui/onboard.ui:493
+#: src/ui/onboard.ui:498
 msgid "Finish"
 msgstr "Završi"
 
-#: src/ui/preferences.ui:17
-msgid "Page 1"
-msgstr "Stranica 1"
-
-#: src/ui/preferences.ui:22
-msgid "Apperance"
-msgstr "Izgled"
-
-#: src/ui/preferences.ui:27 src/ui/preferences.ui:261
-msgid "Dark Mode"
-msgstr "Tamni modus"
-
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:262
-msgid "Whether Bottles should use the Dark theme variant."
-msgstr "Treba li program Butelje koristiti varijantu tamne teme."
-
-#: src/ui/preferences.ui:59
+#: src/ui/preferences.ui:18 src/ui/preferences.ui:60
 msgid "General"
 msgstr "Opće"
 
-#: src/ui/preferences.ui:65
+#: src/ui/preferences.ui:23
+msgid "Apperance"
+msgstr "Izgled"
+
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:294
+msgid "Dark Mode"
+msgstr "Tamni modus"
+
+#: src/ui/preferences.ui:29 src/ui/preferences.ui:295
+msgid "Whether Bottles should use the Dark theme variant."
+msgstr "Treba li program Butelje koristiti varijantu tamne teme."
+
+#: src/ui/preferences.ui:66
 msgid "Show notifications for downloads and installs."
 msgstr "Pokaži obavijesti o preuzimanjima i instalacijama."
 
-#: src/ui/preferences.ui:91
+#: src/ui/preferences.ui:92
 msgid "Temp files"
 msgstr "Privremene datoteke"
 
-#: src/ui/preferences.ui:92
+#: src/ui/preferences.ui:93
 msgid "Clean temp files when Bottles launches?"
 msgstr "Izbrisati privremene datoteke kad se pokrene program Butelje?"
 
-#: src/ui/preferences.ui:118
+#: src/ui/preferences.ui:119
 msgid "Close Bottles after starting a program"
 msgstr "Zatvori Butelje nakon pokretanja jednog programa"
 
-#: src/ui/preferences.ui:119
+#: src/ui/preferences.ui:120
 msgid "Close Bottles after starting a program from the file manager"
-msgstr "Zatvori Butelje nakon pokretanja jednog programa iz upravljača datoteka"
+msgstr ""
+"Zatvori Butelje nakon pokretanja jednog programa iz upravljača datoteka"
 
-#: src/ui/preferences.ui:150
-msgid "Wine Runners"
-msgstr "Wine pokretači"
-
-#: src/ui/preferences.ui:155
+#: src/ui/preferences.ui:163
 msgid "Pre-release"
 msgstr "Predizdanje"
 
-#: src/ui/preferences.ui:156
+#: src/ui/preferences.ui:164
 msgid "Whether the above list should display unstable versions."
 msgstr "Treba li gornji popis prikazati nestabilne verzije."
 
-#: src/ui/preferences.ui:187
-msgid "DXVK Versions"
-msgstr "DXVK verzije"
+#: src/ui/preferences.ui:198
+msgid "DXVK/VKD3D"
+msgstr ""
+
+#: src/ui/preferences.ui:203
+#, fuzzy
+msgid "DXVK"
+msgstr "Koristi DXVK"
+
+#: src/ui/preferences.ui:213
+msgid "VKD3D"
+msgstr ""
 
 #: src/ui/program-entry.ui:21
 msgid "Change Launch Options"
@@ -1120,7 +1200,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr "Provjeri ima li pokrenutih procesa."
 
-#: src/ui/window.ui:49 src/window.py:131
+#: src/ui/window.ui:49 src/window.py:122
 msgid "Task manager"
 msgstr "Upravljač zadataka"
 
@@ -1136,15 +1216,15 @@ msgstr "Dokumentacija"
 msgid "About Bottles"
 msgstr "O programu Butelje"
 
-#: src/ui/window.ui:214 src/ui/window.ui:254
+#: src/ui/window.ui:169 src/ui/window.ui:209
 msgid "Open menu"
 msgstr "Otvori izbornik"
 
-#: src/ui/window.ui:234
+#: src/ui/window.ui:189
 msgid "Downloads"
 msgstr "Preuzimanja"
 
-#: src/ui/window.ui:274
+#: src/ui/window.ui:229
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1153,181 +1233,216 @@ msgstr ""
 "Čini se da ne postoji veza s internetom. Bez nje nije moguće preuzeti bitne "
 "komponente. Klikni ovu ikonu nakon uspostavljanja veze."
 
-#: src/ui/window.ui:293
+#: src/ui/window.ui:248
 msgid "Go back"
 msgstr "Idi natrag"
 
-#: src/ui/window.ui:312
+#: src/ui/window.ui:267
 msgid "New bottle"
 msgstr "Nova butelja"
 
-#: src/main.py:123
+#: src/main.py:124
 msgid "[Quit] request received."
 msgstr "Primljen je zahtjev [Zatvori program]."
 
-#: src/main.py:129
+#: src/main.py:130
 msgid "[Help] request received."
 msgstr "Primljen je zahtjev [Pomoć]."
 
-#: src/main.py:135
+#: src/main.py:136
 msgid "[Refresh] request received."
 msgstr "Primljen je zahtjev [Aktualiziraj]."
 
-#: src/runner.py:284
+#: src/runner.py:314
 #, python-brace-format
 msgid "Downloaded file {0} looks corrupted. Try again."
 msgstr "Čini se da je preuzeta datoteka [{0}] oštećena. Pokušaj ponovo."
 
-#: src/runner.py:304 src/runner.py:341 src/runner.py:365
+#: src/runner.py:334 src/runner.py:375 src/runner.py:406
 msgid "Download manager"
 msgstr "Upravljač preuzimanja"
 
-#: src/runner.py:305
+#: src/runner.py:335
 #, python-brace-format
 msgid "Installing {0} runner …"
 msgstr "Instaliranje {0} pokretača …"
 
-#: src/runner.py:342
+#: src/runner.py:376
 #, python-brace-format
 msgid "Component {0} successfully installed!"
 msgstr "Komponenta {0} je uspješno instalirana!"
 
-#: src/runner.py:366
+#: src/runner.py:407
 #, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
 msgstr "Instaliranje potrebnog softvera {0} u butelji {1} …"
 
-#: src/runner.py:848
-msgid "Runner and/or dxvk not found, installing latest version …"
+#: src/runner.py:974
+#, fuzzy
+msgid "One or more components not found, installing latest version …"
 msgstr "Pokretač i/ili dxvk nisu pronađeni, instalira se najnovija verzija …"
 
-#: src/runner.py:887
+#: src/runner.py:1016
 msgid "The wine configuration is being updated …"
 msgstr "Wine konfiguracija se aktualizira …"
 
-#: src/runner.py:893
+#: src/runner.py:1022
 msgid "Wine configuration updated!"
 msgstr "Wine konfiguracija je aktualizirana!"
 
-#: src/runner.py:916
+#: src/runner.py:1046
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Primjenjivanje okruženja: {0} …"
 
-#: src/runner.py:935
+#: src/runner.py:1065
 msgid "Installing dxvk …"
 msgstr "Instaliranje dxvk-a …"
 
-#: src/runner.py:943
+#: src/runner.py:1071
+#, fuzzy
+msgid "Installing vkd3d …"
+msgstr "Instaliranje dxvk-a …"
+
+#: src/runner.py:1079
 msgid "Creating versioning state 0 …"
 msgstr "Stvaranje stanja 0 za upravljanje verzijama …"
 
-#: src/runner.py:949
+#: src/runner.py:1085
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Tvoja nova butelja: {0} je sada spremna!"
 
-#: src/runner.py:1338
+#: src/runner.py:1524
 #, python-brace-format
 msgid "{0} completed for {1}."
 msgstr "{0} završeno za {1}."
 
-#: src/runner.py:1452
+#: src/runner.py:1641
 #, python-brace-format
 msgid "Wineprefix {0} successfully imported!"
 msgstr "Wine mapa {0} uspješno uvezena!"
 
-#: src/runner.py:1784
+#: src/runner.py:1673
+#, fuzzy
+msgid "Generating state files index …"
+msgstr "Stanje veze: nepovezano …"
+
+#: src/runner.py:1735
+#, fuzzy
+msgid "Creating a restore point …"
+msgstr "Stvaranje datoteke zaključavanja u putanji izvora …"
+
+#: src/runner.py:1757
+#, fuzzy
+msgid "Updating index …"
+msgstr "Stvaranje Wine mape …"
+
+#: src/runner.py:1772
+#, fuzzy
+msgid "Updating states …"
+msgstr "Stvaranje butelje …"
+
+#: src/runner.py:1992
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Sigurnosna kopija {0}"
 
-#: src/runner.py:1808
+#: src/runner.py:2016
 #, python-brace-format
 msgid "Your backup for {0} is ready!"
 msgstr "Sigurnosna kopija za {0} je spremna!"
 
-#: src/runner.py:1818
+#: src/runner.py:2026
 #, python-brace-format
 msgid "Failed to create backup for {0}!"
 msgstr "Neuspjela izrada sigurnosne kopije za {0}!"
 
-#: src/runner.py:1845
+#: src/runner.py:2053
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Uvoz sigurnosne kopije: {0}"
 
-#: src/runner.py:1866
+#: src/runner.py:2074
 #, python-brace-format
 msgid "Your backup {0} was imported successfully.!"
 msgstr "Sigurnosna kopija {0} je uspješno uvezena!"
 
-#: src/runner.py:1875
+#: src/runner.py:2083
 #, python-brace-format
 msgid "Failed importing backup {0}!"
 msgstr "Neuspio uvoz sigurnosne kopije {0}!"
 
-#: src/utils.py:60
+#: src/utils.py:59
 msgid "You are offline, unable to download."
 msgstr "Računalo nije povezano. Preuzimanje nije moguće."
 
-#: src/window.py:129
+#: src/window.py:120
 msgid "Bottle details"
 msgstr "Podaci butelje"
 
-#: src/window.py:170
+#: src/window.py:150
 msgid "Bottles Started!"
 msgstr "Butelje je pokrenut!"
 
-#: src/pages/details.py:300 src/pages/details.py:499
+#: src/pages/details.py:316 src/pages/details.py:520
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest za {0}"
 
-#: src/pages/details.py:301 src/pages/details.py:500
+#: src/pages/details.py:317 src/pages/details.py:521
 #, python-brace-format
 msgid "This is the manifest for {0}."
 msgstr "Ovo je manifest za {0}."
 
-#: src/pages/details.py:360
+#: src/pages/details.py:376
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indeks za stanje {0}"
 
-#: src/pages/details.py:361
+#: src/pages/details.py:377
 #, python-brace-format
 msgid "This is the index for {0}."
 msgstr "Ovo je indeks za {0}."
 
-#: src/pages/details.py:1000 src/pages/list.py:125
+#: src/pages/details.py:699
+msgid "Gamemode is either not available on your system or not running."
+msgstr ""
+
+#: src/pages/details.py:706
+#, fuzzy
+msgid "Details & Utilities"
+msgstr "Uslužni programi"
+
+#: src/pages/details.py:1128 src/pages/list.py:125
 msgid "Choose a Windows executable file"
 msgstr "Odaberi jednu Windows izvršnu datoteku"
 
-#: src/pages/details.py:1003 src/pages/list.py:128
+#: src/pages/details.py:1131 src/pages/list.py:128
 msgid "Run"
 msgstr "Pokreni"
 
-#: src/pages/details.py:1079
+#: src/pages/details.py:1207
 msgid "Select the location where to save the backup configuration"
 msgstr "Odaberi mjesto za spremanje konfiguracije sigurnosne kopije"
 
-#: src/pages/details.py:1098
+#: src/pages/details.py:1226
 msgid "Select the location where to save the backup archive"
 msgstr "Odaberi mjesto za spremanje arhive sigurnosne kopije"
 
-#: src/pages/details.py:1118 src/pages/list.py:177
+#: src/pages/details.py:1246 src/pages/list.py:177
 msgid "Confirm deletion"
 msgstr "Potvrdi brisanje"
 
-#: src/pages/details.py:1119 src/pages/list.py:178
+#: src/pages/details.py:1247 src/pages/list.py:178
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Stvarno želiš izbrisati ovu butelju i sve datoteke?"
 
-#: src/pages/dialog.py:25 src/pages/dialog.py:61
+#: src/pages/dialog.py:28 src/pages/dialog.py:64
 msgid "Warning"
 msgstr "Upozorenje"
 
-#: src/pages/dialog.py:26 src/pages/dialog.py:62
+#: src/pages/dialog.py:29 src/pages/dialog.py:65
 msgid "An error has occurred."
 msgstr "Došlo je do greške."
 
@@ -1373,10 +1488,37 @@ msgstr "Prilagođeno"
 msgid "A clear environment for your experiments."
 msgstr "Čisto okruženje za tvoje eksperimente."
 
-#: src/pages/new.py:227
+#: src/pages/new.py:243
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "Butelja s imenom „%s” je uspješno stvorena"
+
+#~ msgid "What is Wine?"
+#~ msgstr "Što je Wine?"
+
+#~ msgid ""
+#~ "Wine is the compatibility layer that allows Windows software to run on "
+#~ "Linux.\n"
+#~ "In Bottles it is called <b>runner</b>.\n"
+#~ "\n"
+#~ "Wineprefixes are environments in which Wine works. In Bottles we call "
+#~ "these, <b>bottles</b>."
+#~ msgstr ""
+#~ "Wine je sloj kompatibilnosti koji omogućuje korištenje Windows softvera "
+#~ "na Linuxu.\n"
+#~ "U programu Butelje zove se <b>pokretač</b>.\n"
+#~ "\n"
+#~ "Wine mape (wineprefix) su okruženja u kojima radi Wine. U programu "
+#~ "Butelje zovemo ih <b>butelje</b>."
+
+#~ msgid "Page 1"
+#~ msgstr "Stranica 1"
+
+#~ msgid "Wine Runners"
+#~ msgstr "Wine pokretači"
+
+#~ msgid "DXVK Versions"
+#~ msgstr "DXVK verzije"
 
 #~ msgid ""
 #~ "Fixed a bug that caused each bottle to be broken even if only one was "
@@ -1482,9 +1624,6 @@ msgstr "Butelja s imenom „%s” je uspješno stvorena"
 #~ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
 #~ msgstr "Postavljanje ključa: [{0}] u [{1}] za butelju: [{2}] …"
 
-#~ msgid "Creating the wineprefix …"
-#~ msgstr "Stvaranje Wine mape …"
-
 #, python-brace-format
 #~ msgid "Applying environment: [{0}] …"
 #~ msgstr "Primjenjivanje okruženja: [{0}] …"
@@ -1574,9 +1713,6 @@ msgstr "Butelja s imenom „%s” je uspješno stvorena"
 #~ msgid "Error creating the bottle path for wineprefix [{0}]. Aborting."
 #~ msgstr "Greška u stvaranju putanje butelje za Wine mapu [{0}]. Prekida se."
 
-#~ msgid "Creating lock file in source path …"
-#~ msgstr "Stvaranje datoteke zaključavanja u putanji izvora …"
-
 #, python-brace-format
 #~ msgid "Wineprefix: [{0}] successfully imported!"
 #~ msgstr "Wine mapa: [{0}] uspješno uvezena!"
@@ -1623,9 +1759,6 @@ msgstr "Butelja s imenom „%s” je uspješno stvorena"
 
 #~ msgid "Connection status: online …"
 #~ msgstr "Stanje veze: povezano …"
-
-#~ msgid "Connection status: offline …"
-#~ msgstr "Stanje veze: nepovezano …"
 
 #~ msgid "Fix environment selection style on Yaru theme"
 #~ msgstr "Ispravi stil biranja okruženja na Yaru temu"

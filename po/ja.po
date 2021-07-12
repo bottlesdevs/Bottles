@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-03 22:02+0200\n"
+"POT-Creation-Date: 2021-07-12 09:52+0200\n"
 "PO-Revision-Date: 2021-07-02 12:58+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:72 src/ui/window.ui:165 src/ui/window.ui:180
-#: src/window.py:130
+#: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
+#: src/window.py:121
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -253,50 +253,74 @@ msgid "Ukrain thanslations thanks to @marchellodev"
 msgstr "@thericosantoのおかげでドイツ語の翻訳"
 
 #: data/com.usebottles.bottles.gschema.xml:6
+msgid "Flatpak migration"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:7
+msgid "Toggle the flatpak migration dialog."
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
 msgstr "ダークテーマ"
 
-#: data/com.usebottles.bottles.gschema.xml:7
+#: data/com.usebottles.bottles.gschema.xml:12
 msgid "Enable the dark theme."
 msgstr "ダークテーマを有効にします。"
 
-#: data/com.usebottles.bottles.gschema.xml:11 src/ui/preferences.ui:64
+#: data/com.usebottles.bottles.gschema.xml:16
+msgid "Window width"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:17
+msgid "Change the window width"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:21
+msgid "Window height"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:22
+msgid "Change the window height"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:26 src/ui/preferences.ui:65
 msgid "Notifications"
 msgstr "通知"
 
-#: data/com.usebottles.bottles.gschema.xml:12
+#: data/com.usebottles.bottles.gschema.xml:27
 msgid "Enable notifications."
 msgstr "通知を有効にします。"
 
-#: data/com.usebottles.bottles.gschema.xml:16
+#: data/com.usebottles.bottles.gschema.xml:31
 msgid "Temp cleaning"
 msgstr "一時ファイルをクリーンアップする"
 
-#: data/com.usebottles.bottles.gschema.xml:17
+#: data/com.usebottles.bottles.gschema.xml:32
 msgid "Clean Temp path on boot."
 msgstr "システムブートで一時ファイルパスをクリーンアップします。"
 
-#: data/com.usebottles.bottles.gschema.xml:21
+#: data/com.usebottles.bottles.gschema.xml:36
 msgid "Release Candidate"
 msgstr "リリース候補版"
 
-#: data/com.usebottles.bottles.gschema.xml:22
+#: data/com.usebottles.bottles.gschema.xml:37
 msgid "Toggle Release Candidate for Runners"
 msgstr "ランナーのリリース候補を切り替えます"
 
-#: data/com.usebottles.bottles.gschema.xml:26
+#: data/com.usebottles.bottles.gschema.xml:41
 msgid "Startup view"
 msgstr "スタートアップビュー"
 
-#: data/com.usebottles.bottles.gschema.xml:27
+#: data/com.usebottles.bottles.gschema.xml:42
 msgid "Choose which view should be loaded on application startup."
 msgstr "アプリケーションの起動時にロードするビューを選択します。"
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:197
+#: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:226
 msgid "Experiments"
 msgstr "実験"
 
-#: data/com.usebottles.bottles.gschema.xml:32
+#: data/com.usebottles.bottles.gschema.xml:47
 msgid ""
 "Toggle experimental features such as versioning and installers.Release "
 "Candidate for Runners"
@@ -304,27 +328,27 @@ msgstr ""
 "バージョニングやインストーラーなどの実験的な機能を切り替えます。ランナーのリ"
 "リース候補を切り替えます"
 
-#: data/com.usebottles.bottles.gschema.xml:36
+#: data/com.usebottles.bottles.gschema.xml:51
 msgid "Experiments:versioning"
 msgstr "実験：バージョン管理"
 
-#: data/com.usebottles.bottles.gschema.xml:37
+#: data/com.usebottles.bottles.gschema.xml:52
 msgid "Toggle experimental versioning feature"
 msgstr "実験的なバージョン管理機能を切り替えます"
 
-#: data/com.usebottles.bottles.gschema.xml:41
+#: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:installers"
 msgstr "実験：インストーラー"
 
-#: data/com.usebottles.bottles.gschema.xml:42
+#: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental installers feature"
 msgstr "実験的なインストーラー機能を切り替えます"
 
-#: data/com.usebottles.bottles.gschema.xml:46
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:47
+#: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting executable from file manager"
 msgstr ""
 
@@ -336,21 +360,21 @@ msgstr "© 2017年-2021年 - Bottlesの開発者"
 msgid "Easily manage wineprefix using environments"
 msgstr "環境を使用してwineprefixを簡単に管理"
 
-#: src/ui/about.ui:98
+#: src/ui/about.ui:99
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 
-#: src/ui/about.ui:111
+#: src/ui/about.ui:112
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 
-#: src/ui/about.ui:124
+#: src/ui/about.ui:125
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 
-#: src/ui/about.ui:137
+#: src/ui/about.ui:138
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
@@ -359,11 +383,15 @@ msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgid "Show manifest"
 msgstr "マニフェストを表示"
 
-#: src/ui/dependency-entry.ui:45 src/ui/installer-entry.ui:45
+#: src/ui/dependency-entry.ui:34
+msgid "License"
+msgstr ""
+
+#: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:45
 msgid "Bug report"
 msgstr "バグレポート"
 
-#: src/ui/dependency-entry.ui:150
+#: src/ui/dependency-entry.ui:166
 msgid "Download & Install this dependency"
 msgstr ""
 
@@ -407,160 +435,197 @@ msgstr "本当に短いコメント"
 msgid "Save the bottle state."
 msgstr "ボトルの状態を保存します。"
 
-#: src/ui/details.ui:189
+#: src/ui/details.ui:241
 msgid "Rename bottle"
 msgstr "ボトルの名前を変更する"
 
-#: src/ui/details.ui:215 src/ui/list-entry.ui:47
+#: src/ui/details.ui:268 src/ui/list-entry.ui:76
 msgid "Versioning enabled for this bottle"
 msgstr "このボトルでバージョン管理が有効になっています"
 
-#: src/ui/details.ui:224 src/ui/list-entry.ui:54
+#: src/ui/details.ui:279 src/ui/list-entry.ui:83
 msgid "Versioning is active in this bottle."
 msgstr "このボトルではバージョン管理がアクティブです。"
 
-#: src/ui/details.ui:245 src/ui/list-entry.ui:73
+#: src/ui/details.ui:300 src/ui/list-entry.ui:102
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:296
+#: src/ui/details.ui:352
 msgid "Bottle name"
 msgstr "ボトルの名前"
 
-#: src/ui/details.ui:300 src/ui/new.ui:149
-msgid "This field cannot contain special characters!"
-msgstr "このフィールドに特殊文字を含めることはできません！"
-
-#: src/ui/details.ui:301
+#: src/ui/details.ui:356
 msgid "Type a name for your bottle"
 msgstr "ボトルの名前を入力してください"
 
-#: src/ui/details.ui:320
+#: src/ui/details.ui:375
 msgid "Environment"
 msgstr "環境"
 
-#: src/ui/details.ui:369
+#: src/ui/details.ui:409
 msgid "64 Bit"
 msgstr "64ビット"
 
-#: src/ui/details.ui:388
+#: src/ui/details.ui:428
 msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
-#: src/ui/details.ui:419
+#: src/ui/details.ui:459
 #, fuzzy
 msgid "Destroy this bottle"
 msgstr "ボトルを破壊する"
 
-#: src/ui/details.ui:440
+#: src/ui/details.ui:480
 #, fuzzy
 msgid "Run executable"
 msgstr "Run .exe"
 
-#: src/ui/details.ui:478
+#: src/ui/details.ui:521
 #, fuzzy
 msgid "Backup bottle"
 msgstr "ボトルのバックアップとインポート"
 
-#: src/ui/details.ui:500
+#: src/ui/details.ui:547
 #, fuzzy
 msgid "Reboot Windows"
 msgstr "ネイティブ(Windows)"
 
-#: src/ui/details.ui:521
+#: src/ui/details.ui:572
 msgid "Shutdown Windows"
 msgstr ""
 
-#: src/ui/details.ui:542
+#: src/ui/details.ui:597
 #, fuzzy
 msgid "Kill all wine processes"
 msgstr "ワインプロセスをデバッグします。"
 
-#: src/ui/details.ui:581 src/ui/details.ui:1691 src/ui/details.ui:1764
+#: src/ui/details.ui:640 src/ui/details.ui:1926 src/ui/details.ui:2021
+#: src/pages/details.py:709
 msgid "Programs"
 msgstr "プログラム"
 
-#: src/ui/details.ui:597
+#: src/ui/details.ui:656
 msgid "Utilities"
 msgstr "ユーティリティ"
 
-#: src/ui/details.ui:602
+#: src/ui/details.ui:661
 msgid "Wine config"
 msgstr "Wine 設定"
 
-#: src/ui/details.ui:604
+#: src/ui/details.ui:663
 msgid "Adjust internal settings."
 msgstr "内部設定を調整します。"
 
-#: src/ui/details.ui:641 src/ui/list-entry.ui:221
+#: src/ui/details.ui:700 src/ui/list-entry.ui:257
 msgid "Browse C:"
 msgstr "ブラウズ C："
 
-#: src/ui/details.ui:643
+#: src/ui/details.ui:702
 msgid "Browse internal files."
 msgstr "内部ファイルを参照します。"
 
-#: src/ui/details.ui:680
+#: src/ui/details.ui:739
 msgid "Command Line"
 msgstr "コマンドライン"
 
-#: src/ui/details.ui:682
+#: src/ui/details.ui:741
 msgid "Run commands inside the Bottle."
 msgstr "ボトル内でコマンドを実行します。"
 
-#: src/ui/details.ui:719
+#: src/ui/details.ui:778
 msgid "Registry Editor"
 msgstr "レジストリエディタ"
 
-#: src/ui/details.ui:721
+#: src/ui/details.ui:780
 msgid "Edit the internal registry."
 msgstr "内部レジストリを編集します。"
 
-#: src/ui/details.ui:758
+#: src/ui/details.ui:817
 msgid "Debug"
 msgstr "デバッグ"
 
-#: src/ui/details.ui:760
+#: src/ui/details.ui:819
 msgid "Debug wine processes."
 msgstr "ワインプロセスをデバッグします。"
 
-#: src/ui/details.ui:797
+#: src/ui/details.ui:853 src/ui/details.ui:2183
+#, fuzzy
+msgid "Read documentation"
+msgstr "ドキュメンテーション"
+
+#: src/ui/details.ui:883
 msgid "Task Manager"
 msgstr "タスクマネージャー"
 
-#: src/ui/details.ui:799
+#: src/ui/details.ui:885
 msgid "Manage processes with the Wine task manager."
 msgstr "Wineタスクマネージャーでプロセスを管理します。"
 
-#: src/ui/details.ui:836
+#: src/ui/details.ui:922
 msgid "Uninstaller"
 msgstr "アンインストーラー"
 
-#: src/ui/details.ui:838
+#: src/ui/details.ui:924
 msgid "Uninstall programs using wine uninstaller"
 msgstr "ワインアンインストーラーを使用してプログラムをアンインストールする"
 
-#: src/ui/details.ui:875
+#: src/ui/details.ui:961
 msgid "Control Panel"
 msgstr "コントロールパネル"
 
-#: src/ui/details.ui:877
+#: src/ui/details.ui:963
 msgid "Access the internal wine control panel."
 msgstr "内部のワインコントロールパネルにアクセスします。"
 
-#: src/ui/details.ui:929
+#: src/ui/details.ui:1015
 msgid "Bottle"
 msgstr "ボトル"
 
-#: src/ui/details.ui:957
+#: src/ui/details.ui:1043
 msgid "Graphics"
 msgstr "グラフィックス"
 
-#: src/ui/details.ui:962
+#: src/ui/details.ui:1048
 msgid "Use DXVK"
 msgstr "DXVKを使用する"
 
-#: src/ui/details.ui:963 src/ui/details.ui:1018
+#: src/ui/details.ui:1049
+#, fuzzy
+msgid ""
+"Improves performance for Directx 11 games and 3D applications.\n"
+"Disable if you're experiencing graphical glitches."
+msgstr ""
+"ゲームおよび3Dアプリケーションのパフォーマンスを向上させます。\n"
+"グラフィカルな不具合が発生している場合には無効にします。"
+
+#: src/ui/details.ui:1076
+#, fuzzy
+msgid "Use VKD3D"
+msgstr "DXVKを使用する"
+
+#: src/ui/details.ui:1077
+#, fuzzy
+msgid ""
+"Improves performance for Directx 12 games and 3D applications.\n"
+"Disable if you're experiencing graphical glitches."
+msgstr ""
+"ゲームおよび3Dアプリケーションのパフォーマンスを向上させます。\n"
+"グラフィカルな不具合が発生している場合には無効にします。"
+
+#: src/ui/details.ui:1104
+msgid "Use Gamemode"
+msgstr ""
+
+#: src/ui/details.ui:1105
+msgid "Optimise gaming performance on demand"
+msgstr ""
+
+#: src/ui/details.ui:1131
+msgid "Enable ACO shader compiler"
+msgstr "ACOシェーダーコンパイラを有効にする"
+
+#: src/ui/details.ui:1132
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -568,139 +633,147 @@ msgstr ""
 "ゲームおよび3Dアプリケーションのパフォーマンスを向上させます。\n"
 "グラフィカルな不具合が発生している場合には無効にします。"
 
-#: src/ui/details.ui:990
-msgid "Use Gamemode"
-msgstr ""
-
-#: src/ui/details.ui:991
-msgid "Optimise gaming performance on demand"
-msgstr ""
-
-#: src/ui/details.ui:1017
-msgid "Enable ACO shader compiler"
-msgstr "ACOシェーダーコンパイラを有効にする"
-
-#: src/ui/details.ui:1045
+#: src/ui/details.ui:1159
 msgid "Discrete GPU"
 msgstr "ディスクリートGPU"
 
-#: src/ui/details.ui:1046
+#: src/ui/details.ui:1160
 msgid "Improves performance at the cost of increased power usage."
 msgstr "電力使用量の増加を犠牲にしてパフォーマンスを向上させます。"
 
-#: src/ui/details.ui:1072
+#: src/ui/details.ui:1186
 msgid "Use a virtual desktop"
 msgstr "仮想デスクトップを使用する"
 
-#: src/ui/details.ui:1073
+#: src/ui/details.ui:1187
 msgid "Use the Wine virtual desktop."
 msgstr "Wine仮想デスクトップを使用します。"
 
-#: src/ui/details.ui:1156 src/ui/details.ui:1169
+#: src/ui/details.ui:1270 src/ui/details.ui:1283
 msgid "System"
 msgstr "システム"
 
-#: src/ui/details.ui:1161
+#: src/ui/details.ui:1275
 msgid "Synchronization"
 msgstr "同期"
 
-#: src/ui/details.ui:1162
+#: src/ui/details.ui:1276
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr "同期を有効にして、マルチコアプロセッサのパフォーマンスを向上させます。"
 
-#: src/ui/details.ui:1183
+#: src/ui/details.ui:1297
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1197
+#: src/ui/details.ui:1311
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1220 src/ui/new.ui:261
+#: src/ui/details.ui:1334 src/ui/new.ui:261
 msgid "Runner"
 msgstr "ランナー"
 
-#: src/ui/details.ui:1263 src/ui/new.ui:302
+#: src/ui/details.ui:1377 src/ui/new.ui:302
 msgid "Manage runners"
 msgstr "ランナーを管理する"
 
-#: src/ui/details.ui:1295 src/ui/new.ui:334
+#: src/ui/details.ui:1409 src/ui/new.ui:334
 msgid "DXVK Version"
 msgstr "DXVKバージョン"
 
-#: src/ui/details.ui:1338 src/ui/new.ui:375
+#: src/ui/details.ui:1452 src/ui/details.ui:1527 src/ui/new.ui:375
 msgid "Manage DXVK versions"
 msgstr "DXVKバージョンを管理する"
 
-#: src/ui/details.ui:1371 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1484
+#, fuzzy
+msgid "VKD3D Version"
+msgstr "DXVKバージョン"
+
+#: src/ui/details.ui:1560 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "DLLのオーバーライド"
 
-#: src/ui/details.ui:1420
+#: src/ui/details.ui:1609
 msgid "Audio"
 msgstr "オーディオ"
 
-#: src/ui/details.ui:1425
+#: src/ui/details.ui:1614
 msgid "Reduce PulseAudio latency"
 msgstr "PulseAudioのレイテンシーを減らす"
 
-#: src/ui/details.ui:1426
+#: src/ui/details.ui:1615
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr "音質を上げるには、PulseAudioのレイテンシーを60ミリ秒に設定します"
 
-#: src/ui/details.ui:1463
+#: src/ui/details.ui:1652
 msgid "Developers & Debug"
 msgstr "開発者とデバッグ"
 
-#: src/ui/details.ui:1468
+#: src/ui/details.ui:1657
 msgid "Environment variables"
 msgstr "環境変数"
 
-#: src/ui/details.ui:1506
+#: src/ui/details.ui:1695
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details.ui:1507
+#: src/ui/details.ui:1696
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "D3DアプリケーションのFPSおよびその他の詳細を表示するDXVKオーバーレイを切り替"
 "えます。"
 
-#: src/ui/details.ui:1533
+#: src/ui/details.ui:1722
 msgid "Enable wine fixme logs"
 msgstr "wine fixmeログを有効にする"
 
-#: src/ui/details.ui:1534
+#: src/ui/details.ui:1723
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wineで実装されていないログコードパス。"
 
-#: src/ui/details.ui:1575 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/pages/details.py:707
 msgid "Preferences"
 msgstr "設定"
 
-#: src/ui/details.ui:1609 src/ui/details.ui:1657
+#: src/ui/details.ui:1804 src/ui/details.ui:1886 src/pages/details.py:708
 msgid "Dependencies"
 msgstr "依存関係"
 
-#: src/ui/details.ui:1710
+#: src/ui/details.ui:1823
+msgid ""
+"While the files on this page have been verified may be under proprietary "
+"license."
+msgstr ""
+
+#: src/ui/details.ui:1853
+msgid "Microsoft .NET Framework 4 .."
+msgstr ""
+
+#: src/ui/details.ui:1945
+msgid "These are the programs found in your bottle's Start menu"
+msgstr ""
+
+#: src/ui/details.ui:1965
 msgid "Search for installed programs"
 msgstr "インストールされているプログラムを検索する"
 
-#: src/ui/details.ui:1798 src/ui/preferences.ui:228 src/ui/window.ui:151
+#: src/ui/details.ui:2056 src/ui/preferences.ui:261 src/pages/details.py:714
 msgid "Installers"
 msgstr "インストーラー"
 
-#: src/ui/details.ui:1817 src/ui/importer.ui:95
+#: src/ui/details.ui:2075 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "リフレッシュ"
 
-#: src/ui/details.ui:1903 src/ui/preferences.ui:202 src/ui/window.ui:138
+#: src/ui/details.ui:2164 src/ui/preferences.ui:235 src/pages/details.py:712
 msgid "Versioning"
 msgstr "バージョン管理"
 
-#: src/ui/details.ui:1923
+#: src/ui/details.ui:2213
 msgid "Create new state"
 msgstr "新しい状態を作成する"
 
@@ -710,7 +783,7 @@ msgstr "メッセージはここにあります。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1004 src/pages/list.py:129
+#: src/pages/details.py:1132 src/pages/list.py:129
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -807,7 +880,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "アンインストール"
 
-#: src/ui/importer.ui:76 src/runner.py:1451 src/window.py:132
+#: src/ui/importer.ui:76 src/runner.py:1640 src/window.py:123
 msgid "Importer"
 msgstr "インポータ"
 
@@ -823,28 +896,32 @@ msgstr "このwineprefixはすでにBottlesにインポートされています�
 msgid "Start by creating a bottle"
 msgstr "ボトルを作成することから始めます"
 
-#: src/ui/list-entry.ui:99
-msgid "This bottle looks damaged."
-msgstr "このボトルは破損しているようです。"
-
-#: src/ui/list-entry.ui:126
+#: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
 msgstr "このボトルで.exe / .msiを実行します"
 
-#: src/ui/list-entry.ui:152
+#: src/ui/list-entry.ui:149
+msgid "This bottle looks damaged."
+msgstr "このボトルは破損しているようです。"
+
+#: src/ui/list-entry.ui:176
 msgid "Utility & Preferences"
 msgstr "ユーティリティと設定"
 
-#: src/ui/list-entry.ui:176
+#: src/ui/list-entry.ui:202
 msgid "Upgrade runner to the latest localy installed"
 msgstr ""
 "ランナーをローカルにインストールされた最新のランナーにアップグレードする"
 
-#: src/ui/list-entry.ui:197
+#: src/ui/list-entry.ui:229
 msgid "Destroy bottle"
 msgstr "ボトルを破壊する"
 
-#: src/ui/list-entry.ui:242
+#: src/ui/list-entry.ui:284
+msgid "Installed programs"
+msgstr "インストールされているプログラム"
+
+#: src/ui/list-entry.ui:311
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
@@ -852,15 +929,11 @@ msgstr ""
 "このボトルは破損しているようです、構成ファイルがありません。私は新しい構成を"
 "作成することで解決を試みることができます。"
 
-#: src/ui/list-entry.ui:263
-msgid "Installed programs"
-msgstr "インストールされているプログラム"
-
-#: src/ui/list-entry.ui:284
+#: src/ui/list-entry.ui:338
 msgid "Execute in this bottle"
 msgstr "このボトルで実行する"
 
-#: src/ui/list-entry.ui:294
+#: src/ui/list-entry.ui:350
 msgid "Run in this bottle"
 msgstr "このボトルで実行"
 
@@ -887,6 +960,10 @@ msgstr "ボトルの名前を選択してください"
 #: src/ui/new.ui:139
 msgid "Name"
 msgstr "名前"
+
+#: src/ui/new.ui:149
+msgid "This field cannot contain special characters!"
+msgstr "このフィールドに特殊文字を含めることはできません！"
 
 #: src/ui/new.ui:150
 msgid "My beautiful bottle"
@@ -916,11 +993,11 @@ msgstr "ボトルを作成しています…"
 msgid "Take a drink, it may take a while"
 msgstr "飲み物を飲む、それは時間がかかるかもしれません"
 
-#: src/ui/new.ui:557
+#: src/ui/new.ui:527
 msgid "Bottle created"
 msgstr "ボトルを作成された"
 
-#: src/ui/onboard.ui:24 src/ui/onboard.ui:199
+#: src/ui/onboard.ui:24 src/ui/onboard.ui:200
 msgid "Welcome"
 msgstr "ようこそ"
 
@@ -950,44 +1027,44 @@ msgstr ""
 "ボトルを使用すると、LinuxでのWindowsソフトウェアの実行がはるかに簡単になりま"
 "す。"
 
-#: src/ui/onboard.ui:228
-msgid "What is Wine?"
-msgstr "Wineは何ですか？"
+#: src/ui/onboard.ui:229
+#, fuzzy
+msgid "What are runners?"
+msgstr "ランナーを管理する"
 
-#: src/ui/onboard.ui:248
+#: src/ui/onboard.ui:249
 msgid ""
-"Wine is the compatibility layer that allows Windows software to run on "
-"Linux.\n"
-"In Bottles it is called <b>runner</b>.\n"
+"These are compatibility layers which allows Windows software to be installed "
+"and run on Linux systems.\n"
 "\n"
-"Wineprefixes are environments in which Wine works. In Bottles we call these, "
-"<b>bottles</b>."
+"<b>Bottles</b> are environments where the runner configures the system and "
+"where the Windows software runs and is installed.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
+"runners</a>"
 msgstr ""
-"Wineは、WindowsソフトウェアをLinux上で実行できるようにする互換性レイヤーで"
-"す。\n"
-"Bottlesでは、<b>ランナー</b>と呼ばれます。\n"
-"\n"
-"Wineprefixは、Wineが機能する環境です。Bottlesでは、これらを<b>ボトル</b>と呼"
-"びます。"
 
-#: src/ui/onboard.ui:266
+#: src/ui/onboard.ui:269
 msgid "Wine"
 msgstr "Wine"
 
-#: src/ui/onboard.ui:296
+#: src/ui/onboard.ui:299
 msgid "We are almost there"
 msgstr "私たちは、ほぼ、そこにいる"
 
-#: src/ui/onboard.ui:316
+#: src/ui/onboard.ui:319
+#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
 "The download size is <b>~70MB</b>.\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Read more "
+"about what we're going to download</a>\n"
 "\n"
 "We cannot offer these files with Bottles as these have different release "
 "cycles.\n"
 "\n"
-"When you are ready press the Install button."
+"When you are ready press the <b>Install</b> button."
 msgstr ""
 "独自のボトルを作成するためのランナーをダウンロードしてインストールする必要が"
 "あります。\n"
@@ -998,89 +1075,90 @@ msgstr ""
 "\n"
 "準備ができたら、Installボタンを押してください。"
 
-#: src/ui/onboard.ui:336
+#: src/ui/onboard.ui:341 src/ui/preferences.ui:154
 msgid "Runners"
 msgstr "ランナー"
 
-#: src/ui/onboard.ui:366
+#: src/ui/onboard.ui:371
 msgid "Downloading…"
 msgstr "ダウンロードしている…"
 
-#: src/ui/onboard.ui:386
+#: src/ui/onboard.ui:391
 msgid "Sit down and have a drink, it may take a few minutes."
 msgstr "座って飲み物を飲む、数分かかる場合があります。"
 
-#: src/ui/onboard.ui:414
+#: src/ui/onboard.ui:419
 msgid "Download"
 msgstr "ダウンロード"
 
-#: src/ui/onboard.ui:458
+#: src/ui/onboard.ui:463
 msgid "Everything is ready!"
 msgstr "すべての準備が整いました！"
 
-#: src/ui/onboard.ui:478
+#: src/ui/onboard.ui:483
 msgid "You are now ready to create your first bottles."
 msgstr "これで、最初のボトルを作成する準備が整いました。"
 
-#: src/ui/onboard.ui:493
+#: src/ui/onboard.ui:498
 msgid "Finish"
 msgstr "終了"
 
-#: src/ui/preferences.ui:17
-msgid "Page 1"
-msgstr "ページ1"
-
-#: src/ui/preferences.ui:22
-msgid "Apperance"
-msgstr "外観"
-
-#: src/ui/preferences.ui:27 src/ui/preferences.ui:261
-msgid "Dark Mode"
-msgstr "ダークモード"
-
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:262
-msgid "Whether Bottles should use the Dark theme variant."
-msgstr "ボトルがダークテーマバリアントを使用する必要があるかどうか。"
-
-#: src/ui/preferences.ui:59
+#: src/ui/preferences.ui:18 src/ui/preferences.ui:60
 msgid "General"
 msgstr "一般"
 
-#: src/ui/preferences.ui:65
+#: src/ui/preferences.ui:23
+msgid "Apperance"
+msgstr "外観"
+
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:294
+msgid "Dark Mode"
+msgstr "ダークモード"
+
+#: src/ui/preferences.ui:29 src/ui/preferences.ui:295
+msgid "Whether Bottles should use the Dark theme variant."
+msgstr "ボトルがダークテーマバリアントを使用する必要があるかどうか。"
+
+#: src/ui/preferences.ui:66
 msgid "Show notifications for downloads and installs."
 msgstr "ダウンロードとインストールの通知を表示します。"
 
-#: src/ui/preferences.ui:91
+#: src/ui/preferences.ui:92
 msgid "Temp files"
 msgstr "一時ファイル"
 
-#: src/ui/preferences.ui:92
+#: src/ui/preferences.ui:93
 msgid "Clean temp files when Bottles launches?"
 msgstr "ボトルの起動時に一時ファイルをクリーンアップしますか？"
 
-#: src/ui/preferences.ui:118
+#: src/ui/preferences.ui:119
 msgid "Close Bottles after starting a program"
 msgstr ""
 
-#: src/ui/preferences.ui:119
+#: src/ui/preferences.ui:120
 msgid "Close Bottles after starting a program from the file manager"
 msgstr ""
 
-#: src/ui/preferences.ui:150
-msgid "Wine Runners"
-msgstr "ワインランナー"
-
-#: src/ui/preferences.ui:155
+#: src/ui/preferences.ui:163
 msgid "Pre-release"
 msgstr "プレリリース"
 
-#: src/ui/preferences.ui:156
+#: src/ui/preferences.ui:164
 msgid "Whether the above list should display unstable versions."
 msgstr "上記のリストに不安定なバージョンを表示するかどうか。"
 
-#: src/ui/preferences.ui:187
-msgid "DXVK Versions"
-msgstr "DXVKバージョン"
+#: src/ui/preferences.ui:198
+msgid "DXVK/VKD3D"
+msgstr ""
+
+#: src/ui/preferences.ui:203
+#, fuzzy
+msgid "DXVK"
+msgstr "DXVKを使用する"
+
+#: src/ui/preferences.ui:213
+msgid "VKD3D"
+msgstr ""
 
 #: src/ui/program-entry.ui:21
 msgid "Change Launch Options"
@@ -1122,7 +1200,7 @@ msgstr "これらは、PCで実行されているWine/ Wineサーバーのプロ
 msgid "Check for running processes."
 msgstr "実行中のプロセスを確認します。"
 
-#: src/ui/window.ui:49 src/window.py:131
+#: src/ui/window.ui:49 src/window.py:122
 msgid "Task manager"
 msgstr "タスクマネージャー"
 
@@ -1138,15 +1216,15 @@ msgstr "ドキュメンテーション"
 msgid "About Bottles"
 msgstr "Bottlesについて"
 
-#: src/ui/window.ui:214 src/ui/window.ui:254
+#: src/ui/window.ui:169 src/ui/window.ui:209
 msgid "Open menu"
 msgstr "メニューを開く"
 
-#: src/ui/window.ui:234
+#: src/ui/window.ui:189
 msgid "Downloads"
 msgstr "ダウンロードリスト"
 
-#: src/ui/window.ui:274
+#: src/ui/window.ui:229
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1156,184 +1234,219 @@ msgstr ""
 "ネントをダウンロードできません。接続を再確立したら、このアイコンをクリックし"
 "ます。"
 
-#: src/ui/window.ui:293
+#: src/ui/window.ui:248
 msgid "Go back"
 msgstr "戻る"
 
-#: src/ui/window.ui:312
+#: src/ui/window.ui:267
 msgid "New bottle"
 msgstr "新しいボトル"
 
-#: src/main.py:123
+#: src/main.py:124
 msgid "[Quit] request received."
 msgstr "[終了]リクエストを受信しました。"
 
-#: src/main.py:129
+#: src/main.py:130
 msgid "[Help] request received."
 msgstr "[ヘルプ]リクエストを受信しました。"
 
-#: src/main.py:135
+#: src/main.py:136
 msgid "[Refresh] request received."
 msgstr "[リフレシュ]リクエストを受信しました。"
 
-#: src/runner.py:284
+#: src/runner.py:314
 #, python-brace-format
 msgid "Downloaded file {0} looks corrupted. Try again."
 msgstr "ダウンロードしたファイル{0}が破損しているようです。再試行。"
 
-#: src/runner.py:304 src/runner.py:341 src/runner.py:365
+#: src/runner.py:334 src/runner.py:375 src/runner.py:406
 msgid "Download manager"
 msgstr "ダウンロードマネジャー"
 
-#: src/runner.py:305
+#: src/runner.py:335
 #, python-brace-format
 msgid "Installing {0} runner …"
 msgstr "{0}ランナーをインストール…"
 
-#: src/runner.py:342
+#: src/runner.py:376
 #, python-brace-format
 msgid "Component {0} successfully installed!"
 msgstr "コンポーネント{0}が正常にインストールされました！"
 
-#: src/runner.py:366
+#: src/runner.py:407
 #, python-brace-format
 msgid "Installing {0} dependency in bottle {1} …"
 msgstr "ボトル{1}に依存関係{0}をインストール…"
 
-#: src/runner.py:848
-msgid "Runner and/or dxvk not found, installing latest version …"
+#: src/runner.py:974
+#, fuzzy
+msgid "One or more components not found, installing latest version …"
 msgstr ""
 "ランナーまたはdxvk、あるいはその両方が見つかりません。最新バージョンをインス"
 "トールしています…"
 
-#: src/runner.py:887
+#: src/runner.py:1016
 msgid "The wine configuration is being updated …"
 msgstr "wineの構成を更新しています…"
 
-#: src/runner.py:893
+#: src/runner.py:1022
 msgid "Wine configuration updated!"
 msgstr "Wineの構成が更新されました！"
 
-#: src/runner.py:916
+#: src/runner.py:1046
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "環境を適用しています：{0}…"
 
-#: src/runner.py:935
+#: src/runner.py:1065
 msgid "Installing dxvk …"
 msgstr "dxvkのインストール…"
 
-#: src/runner.py:943
+#: src/runner.py:1071
+#, fuzzy
+msgid "Installing vkd3d …"
+msgstr "dxvkのインストール…"
+
+#: src/runner.py:1079
 msgid "Creating versioning state 0 …"
 msgstr "バージョン管理状態0の作成…"
 
-#: src/runner.py:949
+#: src/runner.py:1085
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "新しいボトル：{0}の準備ができました！"
 
-#: src/runner.py:1338
+#: src/runner.py:1524
 #, python-brace-format
 msgid "{0} completed for {1}."
 msgstr "{1}の{0}が完了しました。"
 
-#: src/runner.py:1452
+#: src/runner.py:1641
 #, python-brace-format
 msgid "Wineprefix {0} successfully imported!"
 msgstr "Wineprefix {0}が正常にインポートされました！"
 
-#: src/runner.py:1784
+#: src/runner.py:1673
+#, fuzzy
+msgid "Generating state files index …"
+msgstr "接続ステータス：オフライン…"
+
+#: src/runner.py:1735
+#, fuzzy
+msgid "Creating a restore point …"
+msgstr "ソースパスにロックファイルを作成しています…"
+
+#: src/runner.py:1757
+#, fuzzy
+msgid "Updating index …"
+msgstr "wineprefixの作成…"
+
+#: src/runner.py:1772
+#, fuzzy
+msgid "Updating states …"
+msgstr "ボトルを作成しています…"
+
+#: src/runner.py:1992
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "バックアップ{0}"
 
-#: src/runner.py:1808
+#: src/runner.py:2016
 #, python-brace-format
 msgid "Your backup for {0} is ready!"
 msgstr "{0}のバックアップの準備ができました！"
 
-#: src/runner.py:1818
+#: src/runner.py:2026
 #, python-brace-format
 msgid "Failed to create backup for {0}!"
 msgstr "{0}のバックアップの作成に失敗しました！"
 
-#: src/runner.py:1845
+#: src/runner.py:2053
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "バックアップのインポート：{0}"
 
-#: src/runner.py:1866
+#: src/runner.py:2074
 #, python-brace-format
 msgid "Your backup {0} was imported successfully.!"
 msgstr "バックアップ{0}が正常にインポートされました。！"
 
-#: src/runner.py:1875
+#: src/runner.py:2083
 #, python-brace-format
 msgid "Failed importing backup {0}!"
 msgstr "バックアップ{0}のインポートに失敗しました！"
 
-#: src/utils.py:60
+#: src/utils.py:59
 msgid "You are offline, unable to download."
 msgstr "オフラインで、ダウンロードできません。"
 
-#: src/window.py:129
+#: src/window.py:120
 msgid "Bottle details"
 msgstr "ボトルの詳細"
 
-#: src/window.py:170
+#: src/window.py:150
 msgid "Bottles Started!"
 msgstr "ボトルス起動しました!"
 
-#: src/pages/details.py:300 src/pages/details.py:499
+#: src/pages/details.py:316 src/pages/details.py:520
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "{0}のマニフェスト"
 
-#: src/pages/details.py:301 src/pages/details.py:500
+#: src/pages/details.py:317 src/pages/details.py:521
 #, python-brace-format
 msgid "This is the manifest for {0}."
 msgstr "これは{0}のマニフェストです。"
 
-#: src/pages/details.py:360
+#: src/pages/details.py:376
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "状態{0}のインデックス"
 
-#: src/pages/details.py:361
+#: src/pages/details.py:377
 #, python-brace-format
 msgid "This is the index for {0}."
 msgstr "これは{0}のインデックスです。"
 
-#: src/pages/details.py:1000 src/pages/list.py:125
+#: src/pages/details.py:699
+msgid "Gamemode is either not available on your system or not running."
+msgstr ""
+
+#: src/pages/details.py:706
+#, fuzzy
+msgid "Details & Utilities"
+msgstr "ユーティリティ"
+
+#: src/pages/details.py:1128 src/pages/list.py:125
 msgid "Choose a Windows executable file"
 msgstr "Windows実行可能ファイルを選択してください"
 
-#: src/pages/details.py:1003 src/pages/list.py:128
+#: src/pages/details.py:1131 src/pages/list.py:128
 #, fuzzy
 msgid "Run"
 msgstr "ランナー"
 
-#: src/pages/details.py:1079
+#: src/pages/details.py:1207
 msgid "Select the location where to save the backup configuration"
 msgstr "バックアップ構成を保存する場所を選択してください"
 
-#: src/pages/details.py:1098
+#: src/pages/details.py:1226
 msgid "Select the location where to save the backup archive"
 msgstr "バックアップアーカイブを保存する場所を選択してください"
 
-#: src/pages/details.py:1118 src/pages/list.py:177
+#: src/pages/details.py:1246 src/pages/list.py:177
 msgid "Confirm deletion"
 msgstr "削除の確認"
 
-#: src/pages/details.py:1119 src/pages/list.py:178
+#: src/pages/details.py:1247 src/pages/list.py:178
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
 
-#: src/pages/dialog.py:25 src/pages/dialog.py:61
+#: src/pages/dialog.py:28 src/pages/dialog.py:64
 msgid "Warning"
 msgstr "注意"
 
-#: src/pages/dialog.py:26 src/pages/dialog.py:62
+#: src/pages/dialog.py:29 src/pages/dialog.py:65
 msgid "An error has occurred."
 msgstr "エラーが発生しました。"
 
@@ -1379,10 +1492,37 @@ msgstr "カスタム"
 msgid "A clear environment for your experiments."
 msgstr "あなたの実験のための明確な環境。"
 
-#: src/pages/new.py:227
+#: src/pages/new.py:243
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "「%s」という名前のボトルが正常に作成されました"
+
+#~ msgid "What is Wine?"
+#~ msgstr "Wineは何ですか？"
+
+#~ msgid ""
+#~ "Wine is the compatibility layer that allows Windows software to run on "
+#~ "Linux.\n"
+#~ "In Bottles it is called <b>runner</b>.\n"
+#~ "\n"
+#~ "Wineprefixes are environments in which Wine works. In Bottles we call "
+#~ "these, <b>bottles</b>."
+#~ msgstr ""
+#~ "Wineは、WindowsソフトウェアをLinux上で実行できるようにする互換性レイヤーで"
+#~ "す。\n"
+#~ "Bottlesでは、<b>ランナー</b>と呼ばれます。\n"
+#~ "\n"
+#~ "Wineprefixは、Wineが機能する環境です。Bottlesでは、これらを<b>ボトル</b>と"
+#~ "呼びます。"
+
+#~ msgid "Page 1"
+#~ msgstr "ページ1"
+
+#~ msgid "Wine Runners"
+#~ msgstr "ワインランナー"
+
+#~ msgid "DXVK Versions"
+#~ msgstr "DXVKバージョン"
 
 #~ msgid ""
 #~ "Fixed a bug that caused each bottle to be broken even if only one was "
@@ -1483,9 +1623,6 @@ msgstr "「%s」という名前のボトルが正常に作成されました"
 #~ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
 #~ msgstr "ボトル：[{2}]の設定キー：[{0}]から[{1}]…"
 
-#~ msgid "Creating the wineprefix …"
-#~ msgstr "wineprefixの作成…"
-
 #, python-brace-format
 #~ msgid "Applying environment: [{0}] …"
 #~ msgstr "環境を適用しています：[{0}]…"
@@ -1571,9 +1708,6 @@ msgstr "「%s」という名前のボトルが正常に作成されました"
 #~ msgid "Error creating the bottle path for wineprefix [{0}]. Aborting."
 #~ msgstr "wineprefix [{0}]のボトルパスの作成中にエラーが発生しました。中止。"
 
-#~ msgid "Creating lock file in source path …"
-#~ msgstr "ソースパスにロックファイルを作成しています…"
-
 #, python-brace-format
 #~ msgid "Wineprefix: [{0}] successfully imported!"
 #~ msgstr "Wineprefix：[{0}]が正常にインポートされました！"
@@ -1620,9 +1754,6 @@ msgstr "「%s」という名前のボトルが正常に作成されました"
 
 #~ msgid "Connection status: online …"
 #~ msgstr "接続ステータス：オンライン…"
-
-#~ msgid "Connection status: offline …"
-#~ msgstr "接続ステータス：オフライン…"
 
 #~ msgid "Fix environment selection style on Yaru theme"
 #~ msgstr "Yaruテーマで環境選択スタイルを修正"
