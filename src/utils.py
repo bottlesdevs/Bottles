@@ -44,7 +44,6 @@ class UtilsConnection():
     def check_connection(self, show_notification=False):
         try:
             socket.gethostbyname('usebottles.com')
-            logging.info("Connection status: online …")
             self.window.toggle_btn_noconnection(False)
 
             self.last_check = datetime.now()
@@ -52,7 +51,7 @@ class UtilsConnection():
 
             return True
         except socket.error:
-            logging.info("Connection status: offline …")
+            logging.warning("Connection status: offline …")
             self.window.toggle_btn_noconnection(True)
 
             if show_notification:
