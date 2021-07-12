@@ -162,13 +162,13 @@ class BottlesRunner:
         self.settings = window.settings
         self.utils_conn = window.utils_conn
 
-        self.check_runners(install_latest=False)
-        self.check_dxvk(install_latest=False)
-        self.check_vkd3d(install_latest=False)
         self.check_gamemode()
         self.fetch_components()
         self.fetch_dependencies()
         self.fetch_installers()
+        self.check_runners(install_latest=False)
+        self.check_dxvk(install_latest=True)
+        self.check_vkd3d(install_latest=True)
         self.check_bottles()
         self.clear_temp()
 
@@ -301,7 +301,6 @@ class BottlesRunner:
         '''Checksums comparison'''
         if checksum:
             checksum = checksum.lower()
-
             local_checksum = UtilsFiles().get_checksum(file_path)
 
             if local_checksum != checksum:
@@ -653,7 +652,6 @@ class BottlesRunner:
                     dxvk_version = next(iter(self.supported_dxvk))
                     self.install_component("dxvk", dxvk_version, checks=False)
                 except StopIteration:
-                    logging.warning("No dxvk found.")
                     return False
             else:
                 return False
@@ -678,7 +676,6 @@ class BottlesRunner:
                     vkd3d_version = next(iter(self.supported_vkd3d))
                     self.install_component("vkd3d", vkd3d_version, checks=False)
                 except StopIteration:
-                    logging.warning("No vkd3d found.")
                     return False
             else:
                 return False
@@ -800,11 +797,8 @@ class BottlesRunner:
                         self.supported_vkd3d[component[0]] = component[1]
                         if component[0] in self.vkd3d_available:
                             self.supported_vkd3d[component[0]]["Installed"] = True
-
-            self.async_checks([False, True])
-        else:
-            return False
-        return True
+                return True
+        return False
 
     '''Fetch component manifest'''
     def fetch_component_manifest(self, component_type:str, component_name:str, plain:bool=False) -> Union[str, dict, bool]:
