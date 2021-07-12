@@ -34,12 +34,6 @@ class BottlesDownloadEntry(Gtk.Box):
     def __init__(self, file_name, stoppable=True, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
         '''Populate widgets data'''
         self.label_filename.set_text(file_name)
         if not stoppable: self.btn_cancel.hide()

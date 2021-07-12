@@ -30,12 +30,6 @@ class BottlesImporterEntry(Handy.ActionRow):
     def __init__(self, window, prefix, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
         '''Common variables'''
         self.window = window
         self.runner = window.runner
@@ -75,12 +69,6 @@ class BottlesImporter(Gtk.ScrolledWindow):
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window

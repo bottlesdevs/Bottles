@@ -54,12 +54,6 @@ class BottlesEnvironmentEntry(Gtk.Box):
     def __init__(self, environment, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
         '''Common variables'''
         self.environment = environment
 
@@ -127,12 +121,6 @@ class BottlesNew(Handy.Window):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window

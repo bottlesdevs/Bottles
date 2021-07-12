@@ -38,12 +38,6 @@ class BottlesPreferences(Handy.PreferencesWindow):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
         '''Common variables'''
         self.window = window
         self.settings = window.settings
@@ -138,12 +132,6 @@ class BottlesDxvkEntry(Handy.ActionRow):
     def __init__(self, window, dxvk, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
         '''Common variables'''
         self.window = window
         self.runner = window.runner
@@ -211,12 +199,6 @@ class BottlesVkd3dEntry(Handy.ActionRow):
 
     def __init__(self, window, vkd3d, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -286,12 +268,6 @@ class BottlesRunnerEntry(Handy.ActionRow):
 
     def __init__(self, window, runner_entry, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window

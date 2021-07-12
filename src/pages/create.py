@@ -35,12 +35,6 @@ class BottlesCreate(Gtk.Box):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
         '''Common variables'''
         self.window = window
         self.runner = window.runner

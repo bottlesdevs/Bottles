@@ -105,12 +105,6 @@ class BottlesAboutDialog(Gtk.AboutDialog):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-crash-report.ui')
 class BottlesCrashReport(Handy.Window):
     __gtype_name__ = 'BottlesCrashReport'
@@ -123,12 +117,6 @@ class BottlesCrashReport(Handy.Window):
     def __init__(self, window, log, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Signal connections'''
         self.btn_cancel.connect('pressed', self.close_window)
@@ -187,12 +175,6 @@ class BottlesFlatpakMigration(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
         self.window = window
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Signal connections'''
         self.btn_ignore.connect('pressed', self.close_window)

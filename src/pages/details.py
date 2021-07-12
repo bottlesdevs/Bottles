@@ -52,12 +52,6 @@ class BottlesRunArgs(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(parent.window)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
         '''Common variables'''
         self.parent = parent
 
@@ -87,12 +81,6 @@ class BottlesEnvironmentVariables(Handy.Window):
     def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -131,12 +119,6 @@ class BottlesDLLOverrideEntry(Handy.ActionRow):
 
     def __init__(self, window, configuration, override, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -183,12 +165,6 @@ class BottlesDLLOverrides(Handy.Window):
     def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -244,12 +220,6 @@ class BottlesLaunchOptions(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
-
         '''Common variables'''
         self.window = window
         self.runner = window.runner
@@ -288,12 +258,6 @@ class BottlesInstallerEntry(Handy.ActionRow):
 
     def __init__(self, window, configuration, installer, plain=False, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -340,12 +304,6 @@ class BottlesStateEntry(Handy.ActionRow):
 
     def __init__(self, window, configuration, state, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -395,12 +353,6 @@ class BottlesProgramEntry(Handy.ActionRow):
 
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -474,12 +426,6 @@ class BottlesDependencyEntry(Handy.ActionRow):
 
     def __init__(self, window, configuration, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
@@ -612,12 +558,6 @@ class BottlesDetails(Handy.Leaflet):
 
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
-
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
 
         '''Common variables'''
         self.window = window
