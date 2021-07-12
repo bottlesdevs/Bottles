@@ -218,7 +218,9 @@ class CabExtract():
             self.requirements = True
 
     def __extract(self):
-        temp_path = "%s/.local/share/bottles/temp" % Path.home()
+        temp_path = f"{Path.home()}/.local/share/bottles/temp"
+        if "IS_FLATPAK" in os.environ:
+            temp_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles/temp"
 
         if not self.requirements:
             return False
