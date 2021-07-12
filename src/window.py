@@ -83,11 +83,6 @@ class BottlesWindow(Handy.ApplicationWindow):
     def __init__(self, arg_executable, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
-        try:
-            self.init_template()
-        except TypeError:
-            self.init_template("")
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
             self.settings.get_boolean("dark-theme"))
