@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 09:52+0200\n"
+"POT-Creation-Date: 2021-07-12 18:43+0200\n"
 "PO-Revision-Date: 2021-07-08 13:44+0000\n"
 "Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:121
+#: src/window.py:116
 msgid "Bottles"
 msgstr "Láhve"
 
@@ -146,105 +146,259 @@ msgid ".. and much more that you can find by installing Bottles!"
 msgstr ".. a mnohem více můžete zjistit tak že si nainstalujete Láhve!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
+msgid "Dependencies can be extracted and installed from a Windows cabinet"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:100
+msgid "Dependencies can override and move dll"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:101
+msgid "Dependencies can now install fonts without user intervention"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:102
+msgid ""
+"Dependency/installer manifests, support environment variables and arguments"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:103
+msgid ""
+"If versioning is active for the bottle, a new state is created before "
+"installing a dependency"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:104
+msgid ""
+"Dependencies and installers now call their uninstaller, if this is declared "
+"in the manifest"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:105
+msgid "Now you can search for dependencies using the search field"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:106
+msgid "Dependencies and installers show the source license"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:107
+msgid ""
+"When a crash report appears, reporting it the issue is automatically and "
+"correctly filled"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:108
+msgid ""
+"While creating a new state, information about the entire process is shown on "
+"the screen"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:109
+msgid "Support for vkd3d"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:110
+msgid "The search for installed programs has been extended to user AppData"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:111
+msgid "Fixed some problems related to the dxvk implementation"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:112
+msgid ""
+"Now dxvk and vkd3d are installed only after the user presses Install on "
+"first start"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:113
+msgid "Reduced the amount of logs"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:114
+msgid "Flatpak now uses the app directories"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:115
+msgid ""
+"If there are bottles in the old dir and the app dir is empty then a "
+"migration dialog is shown"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:116
+msgid "Fixed a bug in Nvidia identification for optimus laptops"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:117
+msgid ""
+"Fixed a bug in the management of the download manager that resulted in a "
+"crash"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:118
+msgid "The preferences are organized into sections"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:119
+msgid "The program list is hidden if empty"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:120
+msgid "The bottle details page now uses a sidebar"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:121
+msgid "Added references to documentation for some features"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:122
+msgid ""
+"Makes the UI more consistent with rounded edges and status pages from "
+"libhandy"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:123
+msgid "Replacing the name wine with runner, where possible"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:124
+msgid "Added more information for initial download to the Onboard"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:125
+#: data/com.usebottles.bottles.appdata.xml.in:169
+msgid "French translations thanks to @julroy67"
+msgstr "Francouzský překlad díky @julroy67"
+
+#: data/com.usebottles.bottles.appdata.xml.in:126
+#, fuzzy
+msgid "Portuguese (Brazil) translations thanks to @LeandroStanger"
+msgstr "Překlad brazilské portugalštiny díky @vitor180396"
+
+#: data/com.usebottles.bottles.appdata.xml.in:127
+#, fuzzy
+msgid "Hungarian translations thanks to @ovari"
+msgstr "Chorvatský překlad díky @milotype"
+
+#: data/com.usebottles.bottles.appdata.xml.in:128
+#, fuzzy
+msgid "Chinese (Simplified) translations thanks to Flywater Zh"
+msgstr "Chorvatský překlad díky @milotype"
+
+#: data/com.usebottles.bottles.appdata.xml.in:129
+#: data/com.usebottles.bottles.appdata.xml.in:168
+msgid "Portuguese translations thanks to @laralem"
+msgstr "Portugalský překlad díky @laralem"
+
+#: data/com.usebottles.bottles.appdata.xml.in:130
+#, fuzzy
+msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
+msgstr "Švédský překlad díky @eson57"
+
+#: data/com.usebottles.bottles.appdata.xml.in:131
+#: data/com.usebottles.bottles.appdata.xml.in:166
+msgid "Spanish translations thanks to @fitojb"
+msgstr "Španělský překlad díky @fitojb"
+
+#: data/com.usebottles.bottles.appdata.xml.in:132
+#: data/com.usebottles.bottles.appdata.xml.in:165
+msgid "Esperanto translations thanks to @phlostically"
+msgstr "Esperantský překlad díky @phlostically"
+
+#: data/com.usebottles.bottles.appdata.xml.in:133
+#, fuzzy
+msgid "Croatian translations thanks to @milotype"
+msgstr "Chorvatský překlad díky @milotype"
+
+#: data/com.usebottles.bottles.appdata.xml.in:134
+msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:141
 msgid "Display a crash report on restart if something goes wrong"
 msgstr "Pokud se něco pokazí, zobrazte zprávu o selhání při restartu"
 
-#: data/com.usebottles.bottles.appdata.xml.in:100
+#: data/com.usebottles.bottles.appdata.xml.in:142
 msgid "Using the new yaml format for the bottle configuration"
 msgstr "Použití nového formátu yaml pro konfiguraci láhve"
 
-#: data/com.usebottles.bottles.appdata.xml.in:101
+#: data/com.usebottles.bottles.appdata.xml.in:143
 msgid "Using the new yaml repositories for components/dependencies/programs"
 msgstr "Používání nových repozitářů yaml pro komponenty/závislosti/programy"
 
-#: data/com.usebottles.bottles.appdata.xml.in:102
+#: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Automatic update old bottle configuration to the new model"
 msgstr "Automatická aktualizace staré konfigurace láhve na nový model"
 
-#: data/com.usebottles.bottles.appdata.xml.in:103
+#: data/com.usebottles.bottles.appdata.xml.in:145
 msgid "Backup bottle configuration and archive"
 msgstr "Zálohování konfigurace láhve a archivace"
 
-#: data/com.usebottles.bottles.appdata.xml.in:104
+#: data/com.usebottles.bottles.appdata.xml.in:146
 msgid "Import backup archives"
 msgstr "Import záložních archivů"
 
-#: data/com.usebottles.bottles.appdata.xml.in:105
+#: data/com.usebottles.bottles.appdata.xml.in:147
 msgid "Show onboard if system wine is the only installed runner"
 msgstr ""
 "Zobrazit na palubě, pokud je systémové víno jediným nainstalovaným runnerem"
 
-#: data/com.usebottles.bottles.appdata.xml.in:106
-#: data/com.usebottles.bottles.appdata.xml.in:128
+#: data/com.usebottles.bottles.appdata.xml.in:148
+#: data/com.usebottles.bottles.appdata.xml.in:170
 msgid "Swedish translations thanks to @eson57"
 msgstr "Švédský překlad díky @eson57"
 
-#: data/com.usebottles.bottles.appdata.xml.in:112
+#: data/com.usebottles.bottles.appdata.xml.in:154
 msgid "Updates:"
 msgstr "Aktualizace:"
 
-#: data/com.usebottles.bottles.appdata.xml.in:114
+#: data/com.usebottles.bottles.appdata.xml.in:156
 msgid "New versioning based on CalVer model"
 msgstr "Nové verzování založené na modelu CalVer"
 
-#: data/com.usebottles.bottles.appdata.xml.in:115
+#: data/com.usebottles.bottles.appdata.xml.in:157
 msgid "Create bottles using the wine runner provided by the distribution"
 msgstr "Vytváření láhví pomocí runneru wine, který je k dispozici v distribuci"
 
-#: data/com.usebottles.bottles.appdata.xml.in:116
+#: data/com.usebottles.bottles.appdata.xml.in:158
 msgid "Enable gamemode for your bottles if installed in the system"
 msgstr ""
 "Povolení herního režimu pro vaše láhve, pokud jsou v systému nainstalovány"
 
-#: data/com.usebottles.bottles.appdata.xml.in:117
+#: data/com.usebottles.bottles.appdata.xml.in:159
 msgid "Run .exe/.msi/.bat files with custom arguments"
 msgstr "Spouštění souborů .exe/.msi/.bat s vlastními argumenty"
 
-#: data/com.usebottles.bottles.appdata.xml.in:118
+#: data/com.usebottles.bottles.appdata.xml.in:160
 msgid "Fixed the \"bad interpreter\" error on debian package"
 msgstr "Opravena chyba \"bad interpreter\" v balíčku pro Debian"
 
-#: data/com.usebottles.bottles.appdata.xml.in:119
+#: data/com.usebottles.bottles.appdata.xml.in:161
 msgid ""
 "Optionally close Bottles after starting an executable from the file manager"
 msgstr ""
 "Volitelné zavření Láhví po spuštění spustitelného souboru ze správce souborů"
 
-#: data/com.usebottles.bottles.appdata.xml.in:120
+#: data/com.usebottles.bottles.appdata.xml.in:162
 msgid "Added tooltips to understand what some elements of the UI do"
 msgstr ""
 "Přidány nápovědy k pochopení toho, co dělají některé prvky uživatelského "
 "rozhraní"
 
-#: data/com.usebottles.bottles.appdata.xml.in:121
+#: data/com.usebottles.bottles.appdata.xml.in:163
 msgid "Using portal for file picker"
 msgstr "Použití portálu pro výběr souborů"
 
-#: data/com.usebottles.bottles.appdata.xml.in:122
+#: data/com.usebottles.bottles.appdata.xml.in:164
 msgid "Filechooser do not filter by extensions anymore"
 msgstr "Dialog pro výběr souborů již nefiltruje podle přípony"
 
-#: data/com.usebottles.bottles.appdata.xml.in:123
-msgid "Esperanto translations thanks to @phlostically"
-msgstr "Esperantský překlad díky @phlostically"
-
-#: data/com.usebottles.bottles.appdata.xml.in:124
-msgid "Spanish translations thanks to @fitojb"
-msgstr "Španělský překlad díky @fitojb"
-
-#: data/com.usebottles.bottles.appdata.xml.in:125
+#: data/com.usebottles.bottles.appdata.xml.in:167
 msgid "Croatin translations thanks to @milotype"
 msgstr "Chorvatský překlad díky @milotype"
 
-#: data/com.usebottles.bottles.appdata.xml.in:126
-msgid "Portuguese translations thanks to @laralem"
-msgstr "Portugalský překlad díky @laralem"
-
-#: data/com.usebottles.bottles.appdata.xml.in:127
-msgid "French translations thanks to @julroy67"
-msgstr "Francouzský překlad díky @julroy67"
-
-#: data/com.usebottles.bottles.appdata.xml.in:129
+#: data/com.usebottles.bottles.appdata.xml.in:171
 msgid "Ukrain thanslations thanks to @marchellodev"
 msgstr "Ukrajinský překlad díky @marchellodev"
 
@@ -492,8 +646,8 @@ msgstr "Vypnut Windows"
 msgid "Kill all wine processes"
 msgstr "Ukončení všech procesů wine"
 
-#: src/ui/details.ui:640 src/ui/details.ui:1926 src/ui/details.ui:2021
-#: src/pages/details.py:709
+#: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
+#: src/pages/details.py:651
 msgid "Programs"
 msgstr "Programy"
 
@@ -541,7 +695,7 @@ msgstr "Ladit"
 msgid "Debug wine processes."
 msgstr "Ladění Wine procesů."
 
-#: src/ui/details.ui:853 src/ui/details.ui:2183
+#: src/ui/details.ui:853 src/ui/details.ui:1827 src/ui/details.ui:2224
 #, fuzzy
 msgid "Read documentation"
 msgstr "Dokumentace"
@@ -727,45 +881,49 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Protokolujte cesty kódu, které nejsou ve Wine implementovány."
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:707
+#: src/pages/details.py:649
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: src/ui/details.ui:1804 src/ui/details.ui:1886 src/pages/details.py:708
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:650
 msgid "Dependencies"
 msgstr "Závislosti"
 
-#: src/ui/details.ui:1823
+#: src/ui/details.ui:1837
+msgid "Report a missing dependency"
+msgstr ""
+
+#: src/ui/details.ui:1864
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr ""
 
-#: src/ui/details.ui:1853
+#: src/ui/details.ui:1894
 msgid "Microsoft .NET Framework 4 .."
 msgstr ""
 
-#: src/ui/details.ui:1945
+#: src/ui/details.ui:1986
 msgid "These are the programs found in your bottle's Start menu"
 msgstr ""
 
-#: src/ui/details.ui:1965
+#: src/ui/details.ui:2006
 msgid "Search for installed programs"
 msgstr "Hledat nainstalované programy"
 
-#: src/ui/details.ui:2056 src/ui/preferences.ui:261 src/pages/details.py:714
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:656
 msgid "Installers"
 msgstr "Instalátory"
 
-#: src/ui/details.ui:2075 src/ui/importer.ui:95
+#: src/ui/details.ui:2116 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: src/ui/details.ui:2164 src/ui/preferences.ui:235 src/pages/details.py:712
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:654
 msgid "Versioning"
 msgstr "Správa verzí"
 
-#: src/ui/details.ui:2213
+#: src/ui/details.ui:2254
 msgid "Create new state"
 msgstr "Vytvořit nový stav"
 
@@ -775,7 +933,7 @@ msgstr "Zpráva jde sem."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1132 src/pages/list.py:129
+#: src/pages/details.py:1074 src/pages/list.py:123
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -872,7 +1030,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "Odinstalovat"
 
-#: src/ui/importer.ui:76 src/runner.py:1640 src/window.py:123
+#: src/ui/importer.ui:76 src/window.py:118
 msgid "Importer"
 msgstr "Importovat"
 
@@ -1188,7 +1346,7 @@ msgstr "Zde jsou wine/wineserver procesy které běží na vašem PC."
 msgid "Check for running processes."
 msgstr "Zkontrolovat spuštěné procesy."
 
-#: src/ui/window.ui:49 src/window.py:122
+#: src/ui/window.ui:49 src/window.py:117
 msgid "Task manager"
 msgstr "Správce úloh"
 
@@ -1204,15 +1362,15 @@ msgstr "Dokumentace"
 msgid "About Bottles"
 msgstr "O Láhvích"
 
-#: src/ui/window.ui:169 src/ui/window.ui:209
+#: src/ui/window.ui:169 src/ui/window.ui:208
 msgid "Open menu"
 msgstr "Otevřít menu"
 
-#: src/ui/window.ui:189
+#: src/ui/window.ui:188
 msgid "Downloads"
 msgstr "Stažené"
 
-#: src/ui/window.ui:229
+#: src/ui/window.ui:228
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1221,11 +1379,11 @@ msgstr ""
 "Zdá se, že nejste připojeni k internetu. Bez něj si nebudete moci stáhnout "
 "základní komponenty. Po obnovení připojení klikněte na tuto ikonu."
 
-#: src/ui/window.ui:248
+#: src/ui/window.ui:247
 msgid "Go back"
 msgstr "Jít zpět"
 
-#: src/ui/window.ui:267
+#: src/ui/window.ui:266
 msgid "New bottle"
 msgstr "Nová láhev"
 
@@ -1241,188 +1399,134 @@ msgstr "[Help] žádost přijata."
 msgid "[Refresh] request received."
 msgstr "[Refresh] žádost přijata."
 
-#: src/runner.py:314
-#, python-brace-format
-msgid "Downloaded file {0} looks corrupted. Try again."
-msgstr "Stažený soubor {0} vypadá poškozený. Zkuste to znovu."
-
-#: src/runner.py:334 src/runner.py:375 src/runner.py:406
-msgid "Download manager"
-msgstr "Správce stahování"
-
-#: src/runner.py:335
-#, python-brace-format
-msgid "Installing {0} runner …"
-msgstr "Instaluje se {0} runner…"
-
-#: src/runner.py:376
-#, python-brace-format
-msgid "Component {0} successfully installed!"
-msgstr "Komponenta {0} úspěšně nainstalována!"
-
-#: src/runner.py:407
-#, python-brace-format
-msgid "Installing {0} dependency in bottle {1} …"
-msgstr "Instaluji {0} závislost v láhvi {1} …"
-
-#: src/runner.py:974
+#: src/runner.py:964
 #, fuzzy
 msgid "One or more components not found, installing latest version …"
 msgstr "Runner a/nebo DXVK nebylo nalezeno, instaluji nejnovější verzi…"
 
-#: src/runner.py:1016
+#: src/runner.py:1006
 msgid "The wine configuration is being updated …"
 msgstr "Konfigurace wine je aktualizována …"
 
-#: src/runner.py:1022
+#: src/runner.py:1012
 msgid "Wine configuration updated!"
 msgstr "Konfigurace wine byla aktualizována!"
 
-#: src/runner.py:1046
+#: src/runner.py:1036
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Aplikuji prostředí: [{0}] …"
 
-#: src/runner.py:1065
+#: src/runner.py:1055
 msgid "Installing dxvk …"
 msgstr "Instaluji DXVK …"
 
-#: src/runner.py:1071
+#: src/runner.py:1061
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Instaluji DXVK …"
 
-#: src/runner.py:1079
+#: src/runner.py:1069
 msgid "Creating versioning state 0 …"
 msgstr "Vytvářím verzovací stav 0 …"
 
-#: src/runner.py:1085
+#: src/runner.py:1075
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Vaše nová láhev: {0} je nyní připravena!"
 
-#: src/runner.py:1524
-#, python-brace-format
-msgid "{0} completed for {1}."
-msgstr "{0} dokončeno pro {1}."
-
-#: src/runner.py:1641
-#, python-brace-format
-msgid "Wineprefix {0} successfully imported!"
-msgstr "Wineprefix {0} byl úspěšně importován!"
-
-#: src/runner.py:1673
+#: src/runner.py:1650
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Stav Připojení: offline …"
 
-#: src/runner.py:1735
+#: src/runner.py:1712
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Vytvářím zamykací soubor ve zdrojové cestě …"
 
-#: src/runner.py:1757
+#: src/runner.py:1734
 #, fuzzy
 msgid "Updating index …"
 msgstr "Vytvářím wineprefix…"
 
-#: src/runner.py:1772
+#: src/runner.py:1749
 #, fuzzy
 msgid "Updating states …"
 msgstr "Vytvářím láhev…"
 
-#: src/runner.py:1992
+#: src/runner.py:1969
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Záloha {0}"
 
 #: src/runner.py:2016
 #, python-brace-format
-msgid "Your backup for {0} is ready!"
-msgstr "Vaše záloha pro {0} je připravena!"
-
-#: src/runner.py:2026
-#, python-brace-format
-msgid "Failed to create backup for {0}!"
-msgstr "Nepodařilo se vytvořit zálohu pro {0}!"
-
-#: src/runner.py:2053
-#, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importuji zálohu: {0}"
 
-#: src/runner.py:2074
-#, python-brace-format
-msgid "Your backup {0} was imported successfully.!"
-msgstr "Vaše záloha {0} byla úspěšně importována!"
-
-#: src/runner.py:2083
-#, python-brace-format
-msgid "Failed importing backup {0}!"
-msgstr "Nepodařilo se importovat zálohu: {0}!"
-
-#: src/utils.py:59
+#: src/utils.py:60
 msgid "You are offline, unable to download."
 msgstr "Jste offline, nemohu stahovat."
 
-#: src/window.py:120
+#: src/window.py:115
 msgid "Bottle details"
 msgstr "Detaily láhve"
 
-#: src/window.py:150
+#: src/window.py:145
 msgid "Bottles Started!"
 msgstr "Láhve Spuštěny!"
 
-#: src/pages/details.py:316 src/pages/details.py:520
+#: src/pages/details.py:280 src/pages/details.py:466
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest pro {0}"
 
-#: src/pages/details.py:317 src/pages/details.py:521
+#: src/pages/details.py:281 src/pages/details.py:467
 #, python-brace-format
 msgid "This is the manifest for {0}."
 msgstr "Tento manifest je pro {0}."
 
-#: src/pages/details.py:376
+#: src/pages/details.py:334
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Index pro stav {0}"
 
-#: src/pages/details.py:377
+#: src/pages/details.py:335
 #, python-brace-format
 msgid "This is the index for {0}."
 msgstr "Tento index je pro {0}."
 
-#: src/pages/details.py:699
+#: src/pages/details.py:641
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:706
+#: src/pages/details.py:648
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Nástroje"
 
-#: src/pages/details.py:1128 src/pages/list.py:125
+#: src/pages/details.py:1070 src/pages/list.py:119
 msgid "Choose a Windows executable file"
 msgstr "Vyberte spustitelný soubor Windows"
 
-#: src/pages/details.py:1131 src/pages/list.py:128
+#: src/pages/details.py:1073 src/pages/list.py:122
 msgid "Run"
 msgstr "Spustit"
 
-#: src/pages/details.py:1207
+#: src/pages/details.py:1149
 msgid "Select the location where to save the backup configuration"
 msgstr "Vyberte lokaci do které chcete uložit konfiguraci záloh"
 
-#: src/pages/details.py:1226
+#: src/pages/details.py:1168
 msgid "Select the location where to save the backup archive"
 msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
 
-#: src/pages/details.py:1246 src/pages/list.py:177
+#: src/pages/details.py:1188 src/pages/list.py:171
 msgid "Confirm deletion"
 msgstr "Potvrďte odstranění"
 
-#: src/pages/details.py:1247 src/pages/list.py:178
+#: src/pages/details.py:1189 src/pages/list.py:172
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
 
@@ -1434,52 +1538,95 @@ msgstr "Varování"
 msgid "An error has occurred."
 msgstr "Došlo k chybě."
 
-#: src/pages/importer.py:108
+#: src/pages/importer.py:96
 msgid "Choose a backup archive"
 msgstr "Vyberte záložní archiv"
 
-#: src/pages/list.py:104
+#: src/pages/list.py:98
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumenty nalezené pro spustitelný soubor: [{executable}]."
 
-#: src/pages/list.py:155
+#: src/pages/list.py:149
 msgid "Confirm upgrade"
 msgstr "Potvrďte upgrade"
 
-#: src/pages/list.py:156
+#: src/pages/list.py:150
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "Toto změní runner z {0} na {1}."
 
-#: src/pages/new.py:109
+#: src/pages/new.py:103
 msgid "Gaming"
 msgstr "Hry"
 
-#: src/pages/new.py:110
+#: src/pages/new.py:104
 msgid "An environment improved for Windows games."
 msgstr "Prostředí dělané pro hry z Windows."
 
-#: src/pages/new.py:115
+#: src/pages/new.py:109
 msgid "Software"
 msgstr "Software"
 
-#: src/pages/new.py:116
+#: src/pages/new.py:110
 msgid "An environment improved for Windows software."
 msgstr "Prostředí dělané pro software z Windows."
 
-#: src/pages/new.py:121
+#: src/pages/new.py:115
 msgid "Custom"
 msgstr "Vlastní"
 
-#: src/pages/new.py:122
+#: src/pages/new.py:116
 msgid "A clear environment for your experiments."
 msgstr "Čisté rozhraní pro vaše experimenty."
 
-#: src/pages/new.py:243
+#: src/pages/new.py:231
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "Láhev pojmenovaná “%s” byla úspěšně vytvořena"
+
+#, python-brace-format
+#~ msgid "Downloaded file {0} looks corrupted. Try again."
+#~ msgstr "Stažený soubor {0} vypadá poškozený. Zkuste to znovu."
+
+#~ msgid "Download manager"
+#~ msgstr "Správce stahování"
+
+#, python-brace-format
+#~ msgid "Installing {0} runner …"
+#~ msgstr "Instaluje se {0} runner…"
+
+#, python-brace-format
+#~ msgid "Component {0} successfully installed!"
+#~ msgstr "Komponenta {0} úspěšně nainstalována!"
+
+#, python-brace-format
+#~ msgid "Installing {0} dependency in bottle {1} …"
+#~ msgstr "Instaluji {0} závislost v láhvi {1} …"
+
+#, python-brace-format
+#~ msgid "{0} completed for {1}."
+#~ msgstr "{0} dokončeno pro {1}."
+
+#, python-brace-format
+#~ msgid "Wineprefix {0} successfully imported!"
+#~ msgstr "Wineprefix {0} byl úspěšně importován!"
+
+#, python-brace-format
+#~ msgid "Your backup for {0} is ready!"
+#~ msgstr "Vaše záloha pro {0} je připravena!"
+
+#, python-brace-format
+#~ msgid "Failed to create backup for {0}!"
+#~ msgstr "Nepodařilo se vytvořit zálohu pro {0}!"
+
+#, python-brace-format
+#~ msgid "Your backup {0} was imported successfully.!"
+#~ msgstr "Vaše záloha {0} byla úspěšně importována!"
+
+#, python-brace-format
+#~ msgid "Failed importing backup {0}!"
+#~ msgstr "Nepodařilo se importovat zálohu: {0}!"
 
 #~ msgid "What is Wine?"
 #~ msgstr "Co je Wine?"
@@ -1746,6 +1893,3 @@ msgstr "Láhev pojmenovaná “%s” byla úspěšně vytvořena"
 
 #~ msgid "Slovak translations thanks to @MartinIIOT"
 #~ msgstr "Slovenský překlad díky @MartinIIOT"
-
-#~ msgid "Portuguese (Brazil) translations thanks to @vitor180396"
-#~ msgstr "Překlad brazilské portugalštiny díky @vitor180396"

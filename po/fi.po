@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 09:52+0200\n"
+"POT-Creation-Date: 2021-07-12 18:43+0200\n"
 "PO-Revision-Date: 2021-06-14 12:32+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:121
+#: src/window.py:116
 msgid "Bottles"
 msgstr "Pullot"
 
@@ -146,108 +146,262 @@ msgid ".. and much more that you can find by installing Bottles!"
 msgstr ".. ja paljon muuta, jonka löydät asentamalla Pullot!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
-msgid "Display a crash report on restart if something goes wrong"
+msgid "Dependencies can be extracted and installed from a Windows cabinet"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-msgid "Using the new yaml format for the bottle configuration"
+msgid "Dependencies can override and move dll"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-msgid "Using the new yaml repositories for components/dependencies/programs"
+msgid "Dependencies can now install fonts without user intervention"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
-msgid "Automatic update old bottle configuration to the new model"
+msgid ""
+"Dependency/installer manifests, support environment variables and arguments"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-#, fuzzy
-msgid "Backup bottle configuration and archive"
-msgstr "Luodaan pullon määritystiedosto…"
+msgid ""
+"If versioning is active for the bottle, a new state is created before "
+"installing a dependency"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-#, fuzzy
-msgid "Import backup archives"
-msgstr "Valitse varmuuskopiointiarkisto"
+msgid ""
+"Dependencies and installers now call their uninstaller, if this is declared "
+"in the manifest"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
-msgid "Show onboard if system wine is the only installed runner"
+msgid "Now you can search for dependencies using the search field"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#: data/com.usebottles.bottles.appdata.xml.in:128
-#, fuzzy
-msgid "Swedish translations thanks to @eson57"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgid "Dependencies and installers show the source license"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:107
+msgid ""
+"When a crash report appears, reporting it the issue is automatically and "
+"correctly filled"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:108
+msgid ""
+"While creating a new state, information about the entire process is shown on "
+"the screen"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:109
+msgid "Support for vkd3d"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:110
+msgid "The search for installed programs has been extended to user AppData"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:111
+msgid "Fixed some problems related to the dxvk implementation"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
-msgid "Updates:"
-msgstr "Päivitykset:"
+msgid ""
+"Now dxvk and vkd3d are installed only after the user presses Install on "
+"first start"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:113
+msgid "Reduced the amount of logs"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
-msgid "New versioning based on CalVer model"
+msgid "Flatpak now uses the app directories"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
-msgid "Create bottles using the wine runner provided by the distribution"
+msgid ""
+"If there are bottles in the old dir and the app dir is empty then a "
+"migration dialog is shown"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
-msgid "Enable gamemode for your bottles if installed in the system"
+msgid "Fixed a bug in Nvidia identification for optimus laptops"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
-msgid "Run .exe/.msi/.bat files with custom arguments"
+msgid ""
+"Fixed a bug in the management of the download manager that resulted in a "
+"crash"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
-msgid "Fixed the \"bad interpreter\" error on debian package"
+msgid "The preferences are organized into sections"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
-msgid ""
-"Optionally close Bottles after starting an executable from the file manager"
+msgid "The program list is hidden if empty"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
-msgid "Added tooltips to understand what some elements of the UI do"
+msgid "The bottle details page now uses a sidebar"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
-msgid "Using portal for file picker"
+msgid "Added references to documentation for some features"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
-msgid "Filechooser do not filter by extensions anymore"
+msgid ""
+"Makes the UI more consistent with rounded edges and status pages from "
+"libhandy"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
-#, fuzzy
-msgid "Esperanto translations thanks to @phlostically"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgid "Replacing the name wine with runner, where possible"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
-msgid "Spanish translations thanks to @fitojb"
-msgstr "Saksan käännökset kiitos @thericosanto"
+msgid "Added more information for initial download to the Onboard"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-#, fuzzy
-msgid "Croatin translations thanks to @milotype"
-msgstr "Saksan käännökset kiitos @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:126
-#, fuzzy
-msgid "Portuguese translations thanks to @laralem"
-msgstr "Portugalin käännökset kiitos @SantosSi"
-
-#: data/com.usebottles.bottles.appdata.xml.in:127
+#: data/com.usebottles.bottles.appdata.xml.in:169
 #, fuzzy
 msgid "French translations thanks to @julroy67"
 msgstr "Ranskan käännökset kiitos @julroy67"
 
+#: data/com.usebottles.bottles.appdata.xml.in:126
+#, fuzzy
+msgid "Portuguese (Brazil) translations thanks to @LeandroStanger"
+msgstr "Portugali (Brasilia) käännökset kiitos @vitor180396"
+
+#: data/com.usebottles.bottles.appdata.xml.in:127
+#, fuzzy
+msgid "Hungarian translations thanks to @ovari"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:128
+#, fuzzy
+msgid "Chinese (Simplified) translations thanks to Flywater Zh"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
 #: data/com.usebottles.bottles.appdata.xml.in:129
+#: data/com.usebottles.bottles.appdata.xml.in:168
+#, fuzzy
+msgid "Portuguese translations thanks to @laralem"
+msgstr "Portugalin käännökset kiitos @SantosSi"
+
+#: data/com.usebottles.bottles.appdata.xml.in:130
+#, fuzzy
+msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:131
+#: data/com.usebottles.bottles.appdata.xml.in:166
+#, fuzzy
+msgid "Spanish translations thanks to @fitojb"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:132
+#: data/com.usebottles.bottles.appdata.xml.in:165
+#, fuzzy
+msgid "Esperanto translations thanks to @phlostically"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:133
+#, fuzzy
+msgid "Croatian translations thanks to @milotype"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:134
+msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:141
+msgid "Display a crash report on restart if something goes wrong"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:142
+msgid "Using the new yaml format for the bottle configuration"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:143
+msgid "Using the new yaml repositories for components/dependencies/programs"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:144
+msgid "Automatic update old bottle configuration to the new model"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:145
+#, fuzzy
+msgid "Backup bottle configuration and archive"
+msgstr "Luodaan pullon määritystiedosto…"
+
+#: data/com.usebottles.bottles.appdata.xml.in:146
+#, fuzzy
+msgid "Import backup archives"
+msgstr "Valitse varmuuskopiointiarkisto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:147
+msgid "Show onboard if system wine is the only installed runner"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:148
+#: data/com.usebottles.bottles.appdata.xml.in:170
+#, fuzzy
+msgid "Swedish translations thanks to @eson57"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:154
+msgid "Updates:"
+msgstr "Päivitykset:"
+
+#: data/com.usebottles.bottles.appdata.xml.in:156
+msgid "New versioning based on CalVer model"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:157
+msgid "Create bottles using the wine runner provided by the distribution"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:158
+msgid "Enable gamemode for your bottles if installed in the system"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:159
+msgid "Run .exe/.msi/.bat files with custom arguments"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:160
+msgid "Fixed the \"bad interpreter\" error on debian package"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:161
+msgid ""
+"Optionally close Bottles after starting an executable from the file manager"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:162
+msgid "Added tooltips to understand what some elements of the UI do"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:163
+msgid "Using portal for file picker"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:164
+msgid "Filechooser do not filter by extensions anymore"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:167
+#, fuzzy
+msgid "Croatin translations thanks to @milotype"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:171
 #, fuzzy
 msgid "Ukrain thanslations thanks to @marchellodev"
 msgstr "Saksan käännökset kiitos @thericosanto"
@@ -502,8 +656,8 @@ msgstr ""
 msgid "Kill all wine processes"
 msgstr "wine-prosessien selvittäminen."
 
-#: src/ui/details.ui:640 src/ui/details.ui:1926 src/ui/details.ui:2021
-#: src/pages/details.py:709
+#: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
+#: src/pages/details.py:651
 msgid "Programs"
 msgstr "Ohjelmat"
 
@@ -551,7 +705,7 @@ msgstr "Virheenkorjaus"
 msgid "Debug wine processes."
 msgstr "wine-prosessien selvittäminen."
 
-#: src/ui/details.ui:853 src/ui/details.ui:2183
+#: src/ui/details.ui:853 src/ui/details.ui:1827 src/ui/details.ui:2224
 #, fuzzy
 msgid "Read documentation"
 msgstr "Dokumentointi"
@@ -739,45 +893,49 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Lokikoodipolut, joita ei ole toteutettu Winessä."
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:707
+#: src/pages/details.py:649
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: src/ui/details.ui:1804 src/ui/details.ui:1886 src/pages/details.py:708
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:650
 msgid "Dependencies"
 msgstr "Riippuvuudet"
 
-#: src/ui/details.ui:1823
+#: src/ui/details.ui:1837
+msgid "Report a missing dependency"
+msgstr ""
+
+#: src/ui/details.ui:1864
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr ""
 
-#: src/ui/details.ui:1853
+#: src/ui/details.ui:1894
 msgid "Microsoft .NET Framework 4 .."
 msgstr ""
 
-#: src/ui/details.ui:1945
+#: src/ui/details.ui:1986
 msgid "These are the programs found in your bottle's Start menu"
 msgstr ""
 
-#: src/ui/details.ui:1965
+#: src/ui/details.ui:2006
 msgid "Search for installed programs"
 msgstr "Etsi asennettuja ohjelmia"
 
-#: src/ui/details.ui:2056 src/ui/preferences.ui:261 src/pages/details.py:714
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:656
 msgid "Installers"
 msgstr "Asentajat"
 
-#: src/ui/details.ui:2075 src/ui/importer.ui:95
+#: src/ui/details.ui:2116 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "Virkistää"
 
-#: src/ui/details.ui:2164 src/ui/preferences.ui:235 src/pages/details.py:712
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:654
 msgid "Versioning"
 msgstr "Versiointi"
 
-#: src/ui/details.ui:2213
+#: src/ui/details.ui:2254
 msgid "Create new state"
 msgstr "Luo uusi tila"
 
@@ -787,7 +945,7 @@ msgstr "Viesti menee tänne."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1132 src/pages/list.py:129
+#: src/pages/details.py:1074 src/pages/list.py:123
 msgid "Cancel"
 msgstr "Peruuttaa"
 
@@ -884,7 +1042,7 @@ msgstr "0 %"
 msgid "Uninstall"
 msgstr "Poista asennus"
 
-#: src/ui/importer.ui:76 src/runner.py:1640 src/window.py:123
+#: src/ui/importer.ui:76 src/window.py:118
 msgid "Importer"
 msgstr "Tuoja"
 
@@ -1200,7 +1358,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr "Tarkista käynnissä olevat prosessit."
 
-#: src/ui/window.ui:49 src/window.py:122
+#: src/ui/window.ui:49 src/window.py:117
 msgid "Task manager"
 msgstr "Tehtävienhallinta"
 
@@ -1216,15 +1374,15 @@ msgstr "Dokumentointi"
 msgid "About Bottles"
 msgstr "Tietoja Pulloista"
 
-#: src/ui/window.ui:169 src/ui/window.ui:209
+#: src/ui/window.ui:169 src/ui/window.ui:208
 msgid "Open menu"
 msgstr "Avaa valikko"
 
-#: src/ui/window.ui:189
+#: src/ui/window.ui:188
 msgid "Downloads"
 msgstr "Lataukset"
 
-#: src/ui/window.ui:229
+#: src/ui/window.ui:228
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1234,11 +1392,11 @@ msgstr ""
 "välttämättömiä komponentteja. Napsauta tätä kuvaketta, kun yhteys on "
 "muodostettu uudelleen."
 
-#: src/ui/window.ui:248
+#: src/ui/window.ui:247
 msgid "Go back"
 msgstr "Mene takaisin"
 
-#: src/ui/window.ui:267
+#: src/ui/window.ui:266
 msgid "New bottle"
 msgstr "Uusi pullo"
 
@@ -1254,189 +1412,135 @@ msgstr "[Help]-pyyntö vastaanotettu."
 msgid "[Refresh] request received."
 msgstr "[Refresh]-pyyntö vastaanotettu."
 
-#: src/runner.py:314
-#, python-brace-format
-msgid "Downloaded file {0} looks corrupted. Try again."
-msgstr "Ladattu tiedosto {0} näyttää vioittuneelta. Yritä uudelleen."
-
-#: src/runner.py:334 src/runner.py:375 src/runner.py:406
-msgid "Download manager"
-msgstr "Lataushallinta"
-
-#: src/runner.py:335
-#, python-brace-format
-msgid "Installing {0} runner …"
-msgstr "Asennus {0} juoksija …"
-
-#: src/runner.py:376
-#, python-brace-format
-msgid "Component {0} successfully installed!"
-msgstr "Komponentti {0} asennettu onnistuneesti!"
-
-#: src/runner.py:407
-#, python-brace-format
-msgid "Installing {0} dependency in bottle {1} …"
-msgstr "Asennus {0} riippuvuus pullossa {1} …"
-
-#: src/runner.py:974
+#: src/runner.py:964
 #, fuzzy
 msgid "One or more components not found, installing latest version …"
 msgstr "Ajajaa ja/tai dxvk:ta ei löydy, asennetaan uusin versio…"
 
-#: src/runner.py:1016
+#: src/runner.py:1006
 msgid "The wine configuration is being updated …"
 msgstr "Winen kokoonpanoa päivitetään …"
 
-#: src/runner.py:1022
+#: src/runner.py:1012
 msgid "Wine configuration updated!"
 msgstr "Winen kokoonpano päivitetty!"
 
-#: src/runner.py:1046
+#: src/runner.py:1036
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Sovellusympäristö: {0} …"
 
-#: src/runner.py:1065
+#: src/runner.py:1055
 msgid "Installing dxvk …"
 msgstr "dxvk:n asentaminen …"
 
-#: src/runner.py:1071
+#: src/runner.py:1061
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "dxvk:n asentaminen …"
 
-#: src/runner.py:1079
+#: src/runner.py:1069
 msgid "Creating versioning state 0 …"
 msgstr "Versionointitilan 0 luominen …"
 
-#: src/runner.py:1085
+#: src/runner.py:1075
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Uusi pullosi: {0} on nyt valmis!"
 
-#: src/runner.py:1524
-#, python-brace-format
-msgid "{0} completed for {1}."
-msgstr "{0} valmis {1}."
-
-#: src/runner.py:1641
-#, python-brace-format
-msgid "Wineprefix {0} successfully imported!"
-msgstr "Wineprefix {0} onnistuneesti tuotu!"
-
-#: src/runner.py:1673
+#: src/runner.py:1650
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Yhteyden tila: offline …"
 
-#: src/runner.py:1735
+#: src/runner.py:1712
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Lukitustiedoston luominen lähdepolkuun …"
 
-#: src/runner.py:1757
+#: src/runner.py:1734
 #, fuzzy
 msgid "Updating index …"
 msgstr "Luodaan wine-etuliitettä…"
 
-#: src/runner.py:1772
+#: src/runner.py:1749
 #, fuzzy
 msgid "Updating states …"
 msgstr "Luodaan pulloa…"
 
-#: src/runner.py:1992
+#: src/runner.py:1969
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Varmuuskopiointi {0}"
 
 #: src/runner.py:2016
 #, python-brace-format
-msgid "Your backup for {0} is ready!"
-msgstr "Varmuuskopio {0} on valmis!"
-
-#: src/runner.py:2026
-#, python-brace-format
-msgid "Failed to create backup for {0}!"
-msgstr "Epäonnistui varmuuskopion luomisessa tiedostolle {0}!"
-
-#: src/runner.py:2053
-#, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Varmuuskopion tuominen: {0}"
 
-#: src/runner.py:2074
-#, python-brace-format
-msgid "Your backup {0} was imported successfully.!"
-msgstr "Varmuuskopion {0} tuonti onnistui.!"
-
-#: src/runner.py:2083
-#, python-brace-format
-msgid "Failed importing backup {0}!"
-msgstr "Varmuuskopion tuonti epäonnistui {0}!"
-
-#: src/utils.py:59
+#: src/utils.py:60
 msgid "You are offline, unable to download."
 msgstr "Olet offline-tilassa, et voi ladata."
 
-#: src/window.py:120
+#: src/window.py:115
 msgid "Bottle details"
 msgstr "Pullon tiedot"
 
-#: src/window.py:150
+#: src/window.py:145
 msgid "Bottles Started!"
 msgstr "Pullot aloitettu!"
 
-#: src/pages/details.py:316 src/pages/details.py:520
+#: src/pages/details.py:280 src/pages/details.py:466
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest for {0}"
 
-#: src/pages/details.py:317 src/pages/details.py:521
+#: src/pages/details.py:281 src/pages/details.py:467
 #, python-brace-format
 msgid "This is the manifest for {0}."
 msgstr "Tämä on {0}:n ilmentymä."
 
-#: src/pages/details.py:376
+#: src/pages/details.py:334
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Valtion indeksi {0}"
 
-#: src/pages/details.py:377
+#: src/pages/details.py:335
 #, python-brace-format
 msgid "This is the index for {0}."
 msgstr "Tämä on {0}:n indeksi."
 
-#: src/pages/details.py:699
+#: src/pages/details.py:641
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:706
+#: src/pages/details.py:648
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Apuohjelmat"
 
-#: src/pages/details.py:1128 src/pages/list.py:125
+#: src/pages/details.py:1070 src/pages/list.py:119
 msgid "Choose a Windows executable file"
 msgstr "Valitse Windowsin suoritettava tiedosto"
 
-#: src/pages/details.py:1131 src/pages/list.py:128
+#: src/pages/details.py:1073 src/pages/list.py:122
 #, fuzzy
 msgid "Run"
 msgstr "Ajo"
 
-#: src/pages/details.py:1207
+#: src/pages/details.py:1149
 msgid "Select the location where to save the backup configuration"
 msgstr "Valitse sijainti, johon varmuuskopioitu kokoonpano tallennetaan"
 
-#: src/pages/details.py:1226
+#: src/pages/details.py:1168
 msgid "Select the location where to save the backup archive"
 msgstr "Valitse sijainti, johon varmuuskopioarkisto tallennetaan"
 
-#: src/pages/details.py:1246 src/pages/list.py:177
+#: src/pages/details.py:1188 src/pages/list.py:171
 msgid "Confirm deletion"
 msgstr "Vahvista poisto"
 
-#: src/pages/details.py:1247 src/pages/list.py:178
+#: src/pages/details.py:1189 src/pages/list.py:172
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Haluatko varmasti poistaa tämän pullon ja kaikki tiedostot?"
 
@@ -1448,52 +1552,95 @@ msgstr "Varoitus"
 msgid "An error has occurred."
 msgstr "On tapahtunut virhe."
 
-#: src/pages/importer.py:108
+#: src/pages/importer.py:96
 msgid "Choose a backup archive"
 msgstr "Valitse varmuuskopiointiarkisto"
 
-#: src/pages/list.py:104
+#: src/pages/list.py:98
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Suoritettavalle ohjelmalle löytyi argumentteja: [{executable}]."
 
-#: src/pages/list.py:155
+#: src/pages/list.py:149
 msgid "Confirm upgrade"
 msgstr "Vahvista päivitys"
 
-#: src/pages/list.py:156
+#: src/pages/list.py:150
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "Tämä muuttaa juoksijan arvosta {0} arvoon {1}."
 
-#: src/pages/new.py:109
+#: src/pages/new.py:103
 msgid "Gaming"
 msgstr "Pelaaminen"
 
-#: src/pages/new.py:110
+#: src/pages/new.py:104
 msgid "An environment improved for Windows games."
 msgstr "Windows-pelejä varten parannettu ympäristö."
 
-#: src/pages/new.py:115
+#: src/pages/new.py:109
 msgid "Software"
 msgstr "Ohjelmisto"
 
-#: src/pages/new.py:116
+#: src/pages/new.py:110
 msgid "An environment improved for Windows software."
 msgstr "Windows-ohjelmistoja varten parannettu ympäristö."
 
-#: src/pages/new.py:121
+#: src/pages/new.py:115
 msgid "Custom"
 msgstr "Custom"
 
-#: src/pages/new.py:122
+#: src/pages/new.py:116
 msgid "A clear environment for your experiments."
 msgstr "Selkeä ympäristö kokeiluillesi."
 
-#: src/pages/new.py:243
+#: src/pages/new.py:231
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "Pullo nimeltä \"%s\" luotiin onnistuneesti."
+
+#, python-brace-format
+#~ msgid "Downloaded file {0} looks corrupted. Try again."
+#~ msgstr "Ladattu tiedosto {0} näyttää vioittuneelta. Yritä uudelleen."
+
+#~ msgid "Download manager"
+#~ msgstr "Lataushallinta"
+
+#, python-brace-format
+#~ msgid "Installing {0} runner …"
+#~ msgstr "Asennus {0} juoksija …"
+
+#, python-brace-format
+#~ msgid "Component {0} successfully installed!"
+#~ msgstr "Komponentti {0} asennettu onnistuneesti!"
+
+#, python-brace-format
+#~ msgid "Installing {0} dependency in bottle {1} …"
+#~ msgstr "Asennus {0} riippuvuus pullossa {1} …"
+
+#, python-brace-format
+#~ msgid "{0} completed for {1}."
+#~ msgstr "{0} valmis {1}."
+
+#, python-brace-format
+#~ msgid "Wineprefix {0} successfully imported!"
+#~ msgstr "Wineprefix {0} onnistuneesti tuotu!"
+
+#, python-brace-format
+#~ msgid "Your backup for {0} is ready!"
+#~ msgstr "Varmuuskopio {0} on valmis!"
+
+#, python-brace-format
+#~ msgid "Failed to create backup for {0}!"
+#~ msgstr "Epäonnistui varmuuskopion luomisessa tiedostolle {0}!"
+
+#, python-brace-format
+#~ msgid "Your backup {0} was imported successfully.!"
+#~ msgstr "Varmuuskopion {0} tuonti onnistui.!"
+
+#, python-brace-format
+#~ msgid "Failed importing backup {0}!"
+#~ msgstr "Varmuuskopion tuonti epäonnistui {0}!"
 
 #~ msgid "What is Wine?"
 #~ msgstr "Mikä on Wine?"
@@ -1760,6 +1907,3 @@ msgstr "Pullo nimeltä \"%s\" luotiin onnistuneesti."
 
 #~ msgid "Slovak translations thanks to @MartinIIOT"
 #~ msgstr "Slovakian käännökset @MartinIIOT ansiosta"
-
-#~ msgid "Portuguese (Brazil) translations thanks to @vitor180396"
-#~ msgstr "Portugali (Brasilia) käännökset kiitos @vitor180396"
