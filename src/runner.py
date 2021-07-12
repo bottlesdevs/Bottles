@@ -1467,7 +1467,7 @@ class BottlesRunner:
             if "nvidia" in subprocess.Popen(
                 "lspci | grep 'VGA'",
                 stdout=subprocess.PIPE,
-                shell=True).communicate()[0].decode("utf-8"):
+                shell=True).communicate()[0].decode("utf-8").lower():
                 environment_vars.append("__NV_PRIME_RENDER_OFFLOAD=1")
                 environment_vars.append("__GLX_VENDOR_LIBRARY_NAME='nvidia'")
                 environment_vars.append("__VK_LAYER_NV_optimus='NVIDIA_only'")
