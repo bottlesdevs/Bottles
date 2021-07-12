@@ -115,7 +115,7 @@ the button below.
 Bottles can also be installed as a flatpak from the Flathub repository. Click
 the button below.
 
-<a href='https://flathub.org/apps/details/com.usebottles.Bottles'>
+<a href='https://flathub.org/apps/details/com.usebottles.bottles'>
   <img width='240' alt='Get it from the Snap Store' src='https://flathub.org/assets/badges/flathub-badge-en.svg'/>
 </a>
 
