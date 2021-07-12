@@ -68,6 +68,8 @@ class BottlesRunner:
 
     '''Local paths'''
     base_path = f"{Path.home()}/.local/share/bottles"
+    if "IS_FLATPAK" in os.environ:
+        base_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles"
     temp_path = f"{base_path}/temp"
     runners_path = f"{base_path}/runners"
     bottles_path = f"{base_path}/bottles"
