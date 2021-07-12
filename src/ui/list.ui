@@ -72,7 +72,18 @@
         <property name="title" translatable="yes">Bottles</property>
         <property name="description" translatable="yes">Start by creating a bottle</property>
         <child>
-          <placeholder/>
+          <object class="GtkButton" id="btn_create">
+            <property name="label" translatable="yes">Create a new Bottle</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <style>
+              <class name="suggested-action"/>
+              <class name="circular-button"/>
+            </style>
+          </object>
         </child>
       </object>
       <packing>

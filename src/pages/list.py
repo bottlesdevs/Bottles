@@ -187,6 +187,7 @@ class BottlesList(Gtk.Box):
     list_bottles = Gtk.Template.Child()
     clamp_list = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
+    btn_create = Gtk.Template.Child()
 
     def __init__(self, window, arg_executable, **kwargs):
         super().__init__(**kwargs)
@@ -194,6 +195,9 @@ class BottlesList(Gtk.Box):
         '''Common variables'''
         self.window = window
         self.arg_executable = arg_executable
+
+        '''Connect signals'''
+        self.btn_create.connect("pressed", self.window.show_add_view)
 
         '''Populate list_bottles'''
         self.update_bottles()
