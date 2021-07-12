@@ -166,12 +166,12 @@ class BottlesRunner:
         self.utils_conn = window.utils_conn
 
         self.check_gamemode()
+        self.check_dxvk(install_latest=False)
+        self.check_vkd3d(install_latest=False)
+        self.check_runners(install_latest=False)
         self.fetch_components()
         self.fetch_dependencies()
         self.fetch_installers()
-        self.check_runners(install_latest=False)
-        self.check_dxvk(install_latest=False)
-        self.check_vkd3d(install_latest=False)
         self.check_bottles()
         self.clear_temp()
 
@@ -265,6 +265,7 @@ class BottlesRunner:
 
         '''Add entry to download manager'''
         download_entry = self.download_manager.new_download(file, False)
+        time.sleep(1)
 
         '''TODO: In Trento we should check if the resource exists in temp'''
         if download_url.startswith("temp/"):
@@ -277,7 +278,7 @@ class BottlesRunner:
 
         if os.path.isfile(f"{self.temp_path}/{file}"):
             logging.warning(f"File [{file}] already exists in temp, skipping.")
-            update_func(completed=True)
+            GLib.idle_add(update_func, False, False, False, True)
         else:
             if component not in ["runner", "runner:proton"]: # skip check for big files like runners
                 download_url = requests.get(download_url, allow_redirects=True).url
@@ -290,7 +291,7 @@ class BottlesRunner:
                     f"{self.temp_path}/{file}",
                     reporthook=update_func)
             else:
-                download_entry.remove()
+                GLib.idle_add(download_entry.remove)
                 return False
 
         '''Rename the file if required'''
@@ -309,18 +310,12 @@ class BottlesRunner:
             if local_checksum != checksum:
                 logging.error(f"Downloaded file [{file}] looks corrupted.")
                 logging.error(f"Source checksum: [{checksum}] downloaded: [{local_checksum}]")
-                self.window.send_notification(
-                    "Bottles",
-                    _("Downloaded file {0} looks corrupted. Try again.").format(
-                        file),
-                    "dialog-error-symbolic",
-                    user_settings=False)
 
                 os.remove(file_path)
-                download_entry.remove()
+                GLib.idle_add(download_entry.remove)
                 return False
 
-        download_entry.remove()
+        GLib.idle_add(download_entry.remove)
         return True
 
     '''Component installation'''
@@ -328,12 +323,6 @@ class BottlesRunner:
         component_type, component_name, after, func, checks = args
 
         manifest = self.fetch_component_manifest(component_type, component_name)
-
-        '''Notify if the user allows it'''
-        self.window.send_notification(
-            _("Download manager"),
-            _("Installing {0} runner …").format(component_name),
-            "document-save-symbolic")
 
         logging.info(f"Installing component: [{component_name}].")
 
@@ -370,12 +359,6 @@ class BottlesRunner:
             self.vkd3d_available = []
             self.check_vkd3d()
 
-        '''Notify if the user allows it'''
-        self.window.send_notification(
-            _("Download manager"),
-            _("Component {0} successfully installed!").format(component_name),
-            "software-installed-symbolic")
-
         '''Execute a method at the end if passed'''
         if after:
             after()
@@ -393,6 +376,7 @@ class BottlesRunner:
     def async_install_dependency(self, args:list) -> bool:
         configuration, dependency, widget = args
         self.download_manager = DownloadManager(self.window)
+        download_entry = self.download_manager.new_download(dependency[0], False)
 
         if configuration["Versioning"]:
             self.async_create_bottle_state([
@@ -400,16 +384,6 @@ class BottlesRunner:
                 f"before {dependency[0]}",
                 True, False, None
             ])
-
-        '''Notify if the user allows it'''
-        self.window.send_notification(
-            _("Download manager"),
-             _("Installing {0} dependency in bottle {1} …").format(
-                 dependency[0], configuration.get("Name")),
-             "document-save-symbolic")
-
-        '''Add entry to download manager'''
-        download_entry = self.download_manager.new_download(dependency[0], False)
 
         logging.info(
             f"Installing dependency: [{dependency[0]}] in bottle: [{configuration['Name']}].")
@@ -469,12 +443,29 @@ class BottlesRunner:
                         else:
                             file = step.get("file_name")
 
-                        CabExtract(f"{self.temp_path}/{file}", dependency[0])
+                        CabExtract(f"{self.temp_path}/{file}", file)
+                        CabExtract(
+                            f"{self.temp_path}/{file}",
+                            os.path.splitext(f"{file}")[0])
 
                 elif step["url"].startswith("temp/"):
                     path = step["url"]
                     path = path.replace("temp/", f"{self.temp_path}/")
-                    CabExtract(f"{path}/{step.get('file_name')}", dependency[0])
+                    CabExtract(
+                        f"{path}/{step.get('file_name')}",
+                        os.path.splitext(f"{step.get('file_name')}")[0])
+
+            '''Step type: install_cab_fonts'''
+            if step["action"] == "install_cab_fonts":
+                path = step["url"]
+                path = path.replace("temp/", f"{self.temp_path}/")
+                bottle_path = self.get_bottle_path(configuration)
+
+                for font in step.get('fonts'):
+                    shutil.copyfile(
+                        f"{path}/{font}",
+                        f"{bottle_path}/drive_c/windows/Fonts/{font}")
+                    time.sleep(1)
 
             '''Step type: copy_cab_dll'''
             if step["action"] == "copy_cab_dll":
@@ -513,7 +504,7 @@ class BottlesRunner:
                     "Uninstallers")
 
         '''Remove entry from download manager'''
-        download_entry.remove()
+        GLib.idle_add(download_entry.remove)
 
         '''Hide installation button and show remove button'''
         GLib.idle_add(widget.btn_install.set_visible, False)
@@ -862,7 +853,6 @@ class BottlesRunner:
     '''Check Bottles data from old directory (only Flatpak)'''
     def check_bottles_n(self):
         data = glob(f"{self.base_path_n}/*")
-        print(len(data))
         return len(data)
 
     '''Check local bottles'''
@@ -1491,7 +1481,6 @@ class BottlesRunner:
         if self.gamemode_available and configuration["Parameters"]["gamemode"]:
             command = f"gamemoderun {command}"
 
-        print(command)
         if terminal:
             return UtilsTerminal(command)
 
@@ -1517,12 +1506,6 @@ class BottlesRunner:
         bottle_name = configuration.get("Name")
 
         self.run_command(configuration, "wineboot %s" % option)
-
-        '''Notify if the user allows it'''
-        self.window.send_notification(
-            "Bottles",
-            _("{0} completed for {1}.").format(status, bottle_name
-            ), "applications-system-symbolic")
 
     '''Open file manager in different paths'''
     def open_filemanager(self, configuration:BottleConfig=dict, path_type:str="bottle", runner:str="", dxvk:str="", vkd3d:str="", custom_path:str="") -> bool:
@@ -1634,12 +1617,6 @@ class BottlesRunner:
 
         '''Update bottles'''
         self.update_bottles(silent=True)
-
-        '''Notify if the user allows it'''
-        self.window.send_notification(
-            _("Importer"),
-            _("Wineprefix {0} successfully imported!").format(
-                wineprefix["Name"]), "software-installed-symbolic")
 
 
         logging.info(
@@ -2009,23 +1986,9 @@ class BottlesRunner:
 
         if backup_created:
             logging.info(f"Backup saved in path: {path}.")
-
-            '''Notify if the user allows it'''
-            self.window.send_notification(
-                "Backup",
-                _("Your backup for {0} is ready!").format(
-                    configuration.get("Name")
-                ), "software-installed-symbolic")
             return True
 
         logging.error(f"Failed to save backup in path: {path}.")
-
-        '''Notify if the user allows it'''
-        self.window.send_notification(
-            "Backup",
-            _("Failed to create backup for {0}!").format(
-                configuration.get("Name")
-            ), "dialog-error-symbolic")
 
         '''Set UI to usable again'''
         self.window.set_usable_ui(True)
@@ -2067,21 +2030,9 @@ class BottlesRunner:
 
             '''Update bottles'''
             self.update_bottles()
-
-            '''Notify if the user allows it'''
-            self.window.send_notification(
-                "Backup",
-                _("Your backup {0} was imported successfully.!").format(
-                    backup_name), "software-installed-symbolic")
             return True
 
         logging.error(f"Failed importing backup: [{backup_name}]")
-
-        '''Notify if the user allows it'''
-        self.window.send_notification(
-            "Backup",
-            _("Failed importing backup {0}!").format(backup_name),
-            "dialog-error-symbolic")
         return False
 
     def import_backup_bottle(self, scope:str, path:str) -> None:
