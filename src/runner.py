@@ -170,8 +170,8 @@ class BottlesRunner:
         self.fetch_dependencies()
         self.fetch_installers()
         self.check_runners(install_latest=False)
-        self.check_dxvk(install_latest=True)
-        self.check_vkd3d(install_latest=True)
+        self.check_dxvk(install_latest=False)
+        self.check_vkd3d(install_latest=False)
         self.check_bottles()
         self.clear_temp()
 
