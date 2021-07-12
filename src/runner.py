@@ -279,7 +279,7 @@ class BottlesRunner:
             logging.warning(f"File [{file}] already exists in temp, skipping.")
             update_func(completed=True)
         else:
-            if component != "runner": # skip check for big files like runners
+            if component not in ["runner", "runner:proton"]: # skip check for big files like runners
                 download_url = requests.get(download_url, allow_redirects=True).url
             request = urllib.request.Request(download_url, method='HEAD')
             request = urllib.request.urlopen(download_url)
