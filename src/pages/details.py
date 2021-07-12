@@ -527,6 +527,7 @@ class BottlesDetails(Handy.Leaflet):
     btn_manage_vkd3d = Gtk.Template.Child()
     btn_help_versioning = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
+    btn_request_dependency = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
@@ -606,6 +607,7 @@ class BottlesDetails(Handy.Leaflet):
         self.btn_add_state.connect('pressed', self.add_state)
         self.btn_help_versioning.connect('pressed', self.open_doc_url, "bottles/versioning")
         self.btn_help_debug.connect('pressed', self.open_doc_url, "utilities/logs-and-debugger#wine-debugger")
+        self.btn_request_dependency.connect('pressed', self.open_doc_url, "contribute/missing-dependencies")
 
         self.btn_rename.connect('toggled', self.toggle_rename)
         self.toggle_sync.connect('toggled', self.set_wine_sync)
