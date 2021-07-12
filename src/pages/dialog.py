@@ -174,3 +174,37 @@ class BottlesCrashReport(Handy.Window):
         f"{log}%0A"\
         "```"
         webbrowser.open(f"https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin&labels=crash&title=%5BCrash%20report%5D+&body={template}")
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-flatpak-migration.ui')
+class BottlesFlatpakMigration(Handy.Window):
+    __gtype_name__ = 'BottlesFlatpakMigration'
+
+    '''Get widgets from template'''
+    btn_ignore = Gtk.Template.Child()
+    btn_migrate = Gtk.Template.Child()
+
+    def __init__(self, window, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(window)
+        self.window = window
+
+        '''Init template'''
+        try:
+            self.init_template()
+        except TypeError:
+            self.init_template("")
+
+        '''Signal connections'''
+        self.btn_ignore.connect('pressed', self.close_window)
+        self.btn_migrate.connect('pressed', self.open_documentation)
+
+    '''Destroy the window'''
+    def close_window(self, widget=None):
+        self.window.settings.set_boolean("flatpak-migration", False)
+        self.window.show_onboard_view()
+        self.destroy()
+
+    '''Destroy the window'''
+    def open_documentation(self, widget=None):
+        webbrowser.open("https://docs.usebottles.com/getting-started/migrate-bottles-to-flatpak")
+        self.destroy()

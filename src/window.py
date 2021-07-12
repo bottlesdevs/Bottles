@@ -36,7 +36,7 @@ from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
 from .pages.taskmanager import BottlesTaskManager
 from .pages.importer import BottlesImporter
-from .pages.dialog import BottlesAboutDialog, BottlesCrashReport
+from .pages.dialog import BottlesAboutDialog, BottlesCrashReport, BottlesFlatpakMigration
 
 from .utils import UtilsConnection, UtilsLogger, RunAsync
 
@@ -166,7 +166,13 @@ class BottlesWindow(Handy.ApplicationWindow):
         '''Search for at least one local runner'''
         tmp_runners = [x for x in self.runner.runners_available if not x.startswith('sys-')]
         if len(tmp_runners) == 0:
-            self.show_onboard_view()
+            '''Check for flatpak migration'''
+            if "IS_FLATPAK" in os.environ \
+                and self.settings.get_boolean("flatpak-migration") \
+                and self.runner.check_bottles_n() > 0:
+                self.show_flatpak_migration_view()
+            else:
+                self.show_onboard_view()
 
         self.check_crash_log()
 
@@ -214,6 +220,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.page_details.set_configuration(configuration)
         self.stack_main.set_visible_child_name("page_details")
         self.page_details.set_visible_child_name("bottle")
+
+    def show_flatpak_migration_view(self, widget=False):
+        migration_window = BottlesFlatpakMigration(self)
+        migration_window.present()
 
     def show_onboard_view(self, widget=False):
         onboard_window = BottlesOnboard(self)

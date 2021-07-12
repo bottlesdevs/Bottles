@@ -69,6 +69,7 @@ class BottlesRunner:
     '''Local paths'''
     base_path = f"{Path.home()}/.local/share/bottles"
     if "IS_FLATPAK" in os.environ:
+        base_path_n = base_path
         base_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles"
     temp_path = f"{base_path}/temp"
     runners_path = f"{base_path}/runners"
@@ -857,6 +858,12 @@ class BottlesRunner:
                 return yaml.safe_load(url.read())
 
             return False
+
+    '''Check Bottles data from old directory (only Flatpak)'''
+    def check_bottles_n(self):
+        data = glob(f"{self.base_path_n}/*")
+        print(len(data))
+        return len(data)
 
     '''Check local bottles'''
     def check_bottles(self, silent:bool=False) -> None:
