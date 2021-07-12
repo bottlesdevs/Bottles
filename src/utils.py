@@ -190,6 +190,8 @@ class RunAsync(threading.Thread):
             traceback_info = '\n'.join(traceback.format_tb(trace))
 
             log_path = f"{Path.home()}/.local/share/bottles/crash.log"
+            if "IS_FLATPAK" in os.environ:
+                log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
             with open(log_path, "w") as crash_log:
                 crash_log.write(str(exception))
                 crash_log.write(traceback_info)
