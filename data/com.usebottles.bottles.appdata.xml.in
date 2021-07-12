@@ -98,6 +98,7 @@
             <ul>
                 <li>Dependencies can be extracted and installed from a Windows cabinet</li>
                 <li>Dependencies can override and move dll</li>
+                <li>Dependencies can now install fonts without user intervention</li>
                 <li>Dependency/installer manifests, support environment variables and arguments</li>
                 <li>If versioning is active for the bottle, a new state is created before installing a dependency</li>
                 <li>Dependencies and installers now call their uninstaller, if this is declared in the manifest</li>
@@ -113,6 +114,7 @@
                 <li>Flatpak now uses the app directories</li>
                 <li>If there are bottles in the old dir and the app dir is empty then a migration dialog is shown</li>
                 <li>Fixed a bug in Nvidia identification for optimus laptops</li>
+                <li>Fixed a bug in the management of the download manager that resulted in a crash</li>
                 <li>The preferences are organized into sections</li>
                 <li>The program list is hidden if empty</li>
                 <li>The bottle details page now uses a sidebar</li>
