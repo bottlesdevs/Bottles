@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 21:41+0200\n"
+"POT-Creation-Date: 2021-07-13 14:09+0200\n"
 "PO-Revision-Date: 2021-07-11 11:32+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -1246,7 +1246,8 @@ msgid "Downloading…"
 msgstr "Preuzimanje …"
 
 #: src/ui/onboard.ui:391
-msgid "Sit down and have a drink, it may take a few minutes."
+#, fuzzy
+msgid "Sit down and relax, it may take a few minutes."
 msgstr "Sjedni i nabavi si piće. Ovo može potrajati nekoliko minuta."
 
 #: src/ui/onboard.ui:419
@@ -1417,68 +1418,78 @@ msgstr "Primljen je zahtjev [Pomoć]."
 msgid "[Refresh] request received."
 msgstr "Primljen je zahtjev [Aktualiziraj]."
 
-#: src/runner.py:964
+#: src/runner.py:970
 #, fuzzy
-msgid "One or more components not found, installing latest version …"
+msgid "No runners found, please install one."
+msgstr "Nijedan pokretač nije pronađen."
+
+#: src/runner.py:974
+#, fuzzy
+msgid "No dxvk found, installing the latest version …"
 msgstr "Pokretač i/ili dxvk nisu pronađeni, instalira se najnovija verzija …"
 
-#: src/runner.py:1006
+#: src/runner.py:977
+#, fuzzy
+msgid "No vkd3d found, installing the latest version …"
+msgstr "Pokretač i/ili dxvk nisu pronađeni, instalira se najnovija verzija …"
+
+#: src/runner.py:1017
 msgid "The wine configuration is being updated …"
 msgstr "Wine konfiguracija se aktualizira …"
 
-#: src/runner.py:1012
+#: src/runner.py:1023
 msgid "Wine configuration updated!"
 msgstr "Wine konfiguracija je aktualizirana!"
 
-#: src/runner.py:1036
+#: src/runner.py:1047
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Primjenjivanje okruženja: {0} …"
 
-#: src/runner.py:1055
+#: src/runner.py:1066
 msgid "Installing dxvk …"
 msgstr "Instaliranje dxvk-a …"
 
-#: src/runner.py:1061
+#: src/runner.py:1072
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Instaliranje dxvk-a …"
 
-#: src/runner.py:1069
+#: src/runner.py:1080
 msgid "Creating versioning state 0 …"
 msgstr "Stvaranje stanja 0 za upravljanje verzijama …"
 
-#: src/runner.py:1075
+#: src/runner.py:1086
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Tvoja nova butelja: {0} je sada spremna!"
 
-#: src/runner.py:1650
+#: src/runner.py:1661
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Stanje veze: nepovezano …"
 
-#: src/runner.py:1712
+#: src/runner.py:1723
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Stvaranje datoteke zaključavanja u putanji izvora …"
 
-#: src/runner.py:1734
+#: src/runner.py:1745
 #, fuzzy
 msgid "Updating index …"
 msgstr "Stvaranje Wine mape …"
 
-#: src/runner.py:1749
+#: src/runner.py:1760
 #, fuzzy
 msgid "Updating states …"
 msgstr "Stvaranje butelje …"
 
-#: src/runner.py:1969
+#: src/runner.py:1980
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Sigurnosna kopija {0}"
 
-#: src/runner.py:2016
+#: src/runner.py:2027
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Uvoz sigurnosne kopije: {0}"
@@ -1744,9 +1755,6 @@ msgstr "Butelja s imenom „%s” je uspješno stvorena"
 #, python-brace-format
 #~ msgid "Runners found: [{0}]"
 #~ msgstr "Pronađeni pokretači: [{0}]"
-
-#~ msgid "No runners found."
-#~ msgstr "Nijedan pokretač nije pronađen."
 
 #, python-brace-format
 #~ msgid "Dxvk found: [{0}]"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 21:41+0200\n"
+"POT-Creation-Date: 2021-07-13 14:09+0200\n"
 "PO-Revision-Date: 2021-07-02 14:10+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -1243,7 +1243,8 @@ msgid "Downloading…"
 msgstr "Laddar ner …"
 
 #: src/ui/onboard.ui:391
-msgid "Sit down and have a drink, it may take a few minutes."
+#, fuzzy
+msgid "Sit down and relax, it may take a few minutes."
 msgstr "Sitt ner och drick något, det kan ta några minuter."
 
 #: src/ui/onboard.ui:419
@@ -1414,68 +1415,78 @@ msgstr "[Hjälp] begäran mottagen."
 msgid "[Refresh] request received."
 msgstr "[Uppdatera] begäran mottagen."
 
-#: src/runner.py:964
+#: src/runner.py:970
 #, fuzzy
-msgid "One or more components not found, installing latest version …"
+msgid "No runners found, please install one."
+msgstr "Inga körprogram hittades."
+
+#: src/runner.py:974
+#, fuzzy
+msgid "No dxvk found, installing the latest version …"
 msgstr "Körprogram och/eller dxvk hittades inte, installerar senaste version …"
 
-#: src/runner.py:1006
+#: src/runner.py:977
+#, fuzzy
+msgid "No vkd3d found, installing the latest version …"
+msgstr "Körprogram och/eller dxvk hittades inte, installerar senaste version …"
+
+#: src/runner.py:1017
 msgid "The wine configuration is being updated …"
 msgstr "Wine-konfigurationen uppdateras …"
 
-#: src/runner.py:1012
+#: src/runner.py:1023
 msgid "Wine configuration updated!"
 msgstr "Wine-konfiguration uppdaterad!"
 
-#: src/runner.py:1036
+#: src/runner.py:1047
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Tillämpar miljö: {0} …"
 
-#: src/runner.py:1055
+#: src/runner.py:1066
 msgid "Installing dxvk …"
 msgstr "Installerar dxvk …"
 
-#: src/runner.py:1061
+#: src/runner.py:1072
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Installerar dxvk …"
 
-#: src/runner.py:1069
+#: src/runner.py:1080
 msgid "Creating versioning state 0 …"
 msgstr "Skapar versionshanteringsstatus 0 …"
 
-#: src/runner.py:1075
+#: src/runner.py:1086
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Din nya butelj: {0} är nu klar!"
 
-#: src/runner.py:1650
+#: src/runner.py:1661
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Anslutningsstatus: Offline …"
 
-#: src/runner.py:1712
+#: src/runner.py:1723
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Skapar låsfil på källsökväg …"
 
-#: src/runner.py:1734
+#: src/runner.py:1745
 #, fuzzy
 msgid "Updating index …"
 msgstr "Skapar wineprefixet …"
 
-#: src/runner.py:1749
+#: src/runner.py:1760
 #, fuzzy
 msgid "Updating states …"
 msgstr "Skapar butelj …"
 
-#: src/runner.py:1969
+#: src/runner.py:1980
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Säkerhetskopiera {0}"
 
-#: src/runner.py:2016
+#: src/runner.py:2027
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importerar säkerhetskopia: {0}"
@@ -1738,9 +1749,6 @@ msgstr "En butelj kallad \"%s\" skapades"
 #, python-brace-format
 #~ msgid "Runners found: [{0}]"
 #~ msgstr "Körprogram hittades: [{0}]"
-
-#~ msgid "No runners found."
-#~ msgstr "Inga körprogram hittades."
 
 #, python-brace-format
 #~ msgid "Dxvk found: [{0}]"

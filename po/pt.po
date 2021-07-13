@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 21:41+0200\n"
+"POT-Creation-Date: 2021-07-13 14:09+0200\n"
 "PO-Revision-Date: 2021-07-06 13:04+0000\n"
 "Last-Translator: Sérgio Morais <lalocas@protonmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bottles/"
@@ -1255,7 +1255,8 @@ msgid "Downloading…"
 msgstr "A descarregar…"
 
 #: src/ui/onboard.ui:391
-msgid "Sit down and have a drink, it may take a few minutes."
+#, fuzzy
+msgid "Sit down and relax, it may take a few minutes."
 msgstr "Sente-se e tome um café, isto pode demorar alguns minutos."
 
 #: src/ui/onboard.ui:419
@@ -1424,68 +1425,78 @@ msgstr "Solicitação [Ajuda] recebida."
 msgid "[Refresh] request received."
 msgstr "Solicitação [Atualizar] recebida."
 
-#: src/runner.py:964
+#: src/runner.py:970
 #, fuzzy
-msgid "One or more components not found, installing latest version …"
+msgid "No runners found, please install one."
+msgstr "Nenhum runners encontrado."
+
+#: src/runner.py:974
+#, fuzzy
+msgid "No dxvk found, installing the latest version …"
 msgstr "Runner e/ou dxvk não encontrado, instalando a versão mais recente…"
 
-#: src/runner.py:1006
+#: src/runner.py:977
+#, fuzzy
+msgid "No vkd3d found, installing the latest version …"
+msgstr "Runner e/ou dxvk não encontrado, instalando a versão mais recente…"
+
+#: src/runner.py:1017
 msgid "The wine configuration is being updated …"
 msgstr "A configuração do wine está a ser atualizada …"
 
-#: src/runner.py:1012
+#: src/runner.py:1023
 msgid "Wine configuration updated!"
 msgstr "Configuração do Wine atualizada!"
 
-#: src/runner.py:1036
+#: src/runner.py:1047
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Aplicando ambiente: {0} …"
 
-#: src/runner.py:1055
+#: src/runner.py:1066
 msgid "Installing dxvk …"
 msgstr "A instalar dxvk …"
 
-#: src/runner.py:1061
+#: src/runner.py:1072
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "A instalar dxvk …"
 
-#: src/runner.py:1069
+#: src/runner.py:1080
 msgid "Creating versioning state 0 …"
 msgstr "Criando o estado de versionamento 0…"
 
-#: src/runner.py:1075
+#: src/runner.py:1086
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "A nova \"bottle\": {0} agora está pronta!"
 
-#: src/runner.py:1650
+#: src/runner.py:1661
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Estado da conexão: offline…"
 
-#: src/runner.py:1712
+#: src/runner.py:1723
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "A criar ficheiro de bloqueio no caminho de origem …"
 
-#: src/runner.py:1734
+#: src/runner.py:1745
 #, fuzzy
 msgid "Updating index …"
 msgstr "A criar um wineprefix…"
 
-#: src/runner.py:1749
+#: src/runner.py:1760
 #, fuzzy
 msgid "Updating states …"
 msgstr "Criando Bottle…"
 
-#: src/runner.py:1969
+#: src/runner.py:1980
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Cópia de segurança {0}"
 
-#: src/runner.py:2016
+#: src/runner.py:2027
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "A importar a cópia de segurança: {0}"
@@ -1749,9 +1760,6 @@ msgstr "Um bottle chamado “%s” foi criado com sucesso"
 #, python-brace-format
 #~ msgid "Runners found: [{0}]"
 #~ msgstr "Runners encontrados: [{0}]"
-
-#~ msgid "No runners found."
-#~ msgstr "Nenhum runners encontrado."
 
 #, python-brace-format
 #~ msgid "Dxvk found: [{0}]"

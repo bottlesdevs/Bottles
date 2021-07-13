@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 21:41+0200\n"
+"POT-Creation-Date: 2021-07-13 14:09+0200\n"
 "PO-Revision-Date: 2021-06-14 12:32+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -1247,7 +1247,8 @@ msgid "Downloading…"
 msgstr "Ladataan…"
 
 #: src/ui/onboard.ui:391
-msgid "Sit down and have a drink, it may take a few minutes."
+#, fuzzy
+msgid "Sit down and relax, it may take a few minutes."
 msgstr "Istu alas ja ota juoma; se voi kestää muutaman minuutin."
 
 #: src/ui/onboard.ui:419
@@ -1418,68 +1419,78 @@ msgstr "[Help]-pyyntö vastaanotettu."
 msgid "[Refresh] request received."
 msgstr "[Refresh]-pyyntö vastaanotettu."
 
-#: src/runner.py:964
+#: src/runner.py:970
 #, fuzzy
-msgid "One or more components not found, installing latest version …"
+msgid "No runners found, please install one."
+msgstr "Ajajia ei löytynyt."
+
+#: src/runner.py:974
+#, fuzzy
+msgid "No dxvk found, installing the latest version …"
 msgstr "Ajajaa ja/tai dxvk:ta ei löydy, asennetaan uusin versio…"
 
-#: src/runner.py:1006
+#: src/runner.py:977
+#, fuzzy
+msgid "No vkd3d found, installing the latest version …"
+msgstr "Ajajaa ja/tai dxvk:ta ei löydy, asennetaan uusin versio…"
+
+#: src/runner.py:1017
 msgid "The wine configuration is being updated …"
 msgstr "Winen kokoonpanoa päivitetään …"
 
-#: src/runner.py:1012
+#: src/runner.py:1023
 msgid "Wine configuration updated!"
 msgstr "Winen kokoonpano päivitetty!"
 
-#: src/runner.py:1036
+#: src/runner.py:1047
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Sovellusympäristö: {0} …"
 
-#: src/runner.py:1055
+#: src/runner.py:1066
 msgid "Installing dxvk …"
 msgstr "dxvk:n asentaminen …"
 
-#: src/runner.py:1061
+#: src/runner.py:1072
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "dxvk:n asentaminen …"
 
-#: src/runner.py:1069
+#: src/runner.py:1080
 msgid "Creating versioning state 0 …"
 msgstr "Versionointitilan 0 luominen …"
 
-#: src/runner.py:1075
+#: src/runner.py:1086
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Uusi pullosi: {0} on nyt valmis!"
 
-#: src/runner.py:1650
+#: src/runner.py:1661
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Yhteyden tila: offline …"
 
-#: src/runner.py:1712
+#: src/runner.py:1723
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Lukitustiedoston luominen lähdepolkuun …"
 
-#: src/runner.py:1734
+#: src/runner.py:1745
 #, fuzzy
 msgid "Updating index …"
 msgstr "Luodaan wine-etuliitettä…"
 
-#: src/runner.py:1749
+#: src/runner.py:1760
 #, fuzzy
 msgid "Updating states …"
 msgstr "Luodaan pulloa…"
 
-#: src/runner.py:1969
+#: src/runner.py:1980
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Varmuuskopiointi {0}"
 
-#: src/runner.py:2016
+#: src/runner.py:2027
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Varmuuskopion tuominen: {0}"
@@ -1736,9 +1747,6 @@ msgstr "Pullo nimeltä \"%s\" luotiin onnistuneesti."
 #, python-brace-format
 #~ msgid "Runners found: [{0}]"
 #~ msgstr "Juoksijat löytyivät: [{0}]"
-
-#~ msgid "No runners found."
-#~ msgstr "Ajajia ei löytynyt."
 
 #, python-brace-format
 #~ msgid "Dxvk found: [{0}]"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 21:41+0200\n"
+"POT-Creation-Date: 2021-07-13 14:09+0200\n"
 "PO-Revision-Date: 2021-06-28 04:36+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
@@ -1255,7 +1255,8 @@ msgid "Downloading…"
 msgstr "Mengunduh…"
 
 #: src/ui/onboard.ui:391
-msgid "Sit down and have a drink, it may take a few minutes."
+#, fuzzy
+msgid "Sit down and relax, it may take a few minutes."
 msgstr "Duduk dan minumlah, ini akan memakan beberapa menit."
 
 #: src/ui/onboard.ui:419
@@ -1427,68 +1428,78 @@ msgstr "Permintaan [Tolong] diterima."
 msgid "[Refresh] request received."
 msgstr "Permintaan [Segarkan] diterima."
 
-#: src/runner.py:964
+#: src/runner.py:970
 #, fuzzy
-msgid "One or more components not found, installing latest version …"
+msgid "No runners found, please install one."
+msgstr "Tiada runner ditemukan."
+
+#: src/runner.py:974
+#, fuzzy
+msgid "No dxvk found, installing the latest version …"
 msgstr "Runner dan/atau DXVK tidak ditemukan. Memasang versi terbaru…"
 
-#: src/runner.py:1006
+#: src/runner.py:977
+#, fuzzy
+msgid "No vkd3d found, installing the latest version …"
+msgstr "Runner dan/atau DXVK tidak ditemukan. Memasang versi terbaru…"
+
+#: src/runner.py:1017
 msgid "The wine configuration is being updated …"
 msgstr "Konfigurasi wine sedang diperbarui…"
 
-#: src/runner.py:1012
+#: src/runner.py:1023
 msgid "Wine configuration updated!"
 msgstr "Konfigurasi wine diperbarui!"
 
-#: src/runner.py:1036
+#: src/runner.py:1047
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Menerapkan lingkup: {0}…"
 
-#: src/runner.py:1055
+#: src/runner.py:1066
 msgid "Installing dxvk …"
 msgstr "Memasang dxvk …"
 
-#: src/runner.py:1061
+#: src/runner.py:1072
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Memasang dxvk …"
 
-#: src/runner.py:1069
+#: src/runner.py:1080
 msgid "Creating versioning state 0 …"
 msgstr "Membuat status versi 0…"
 
-#: src/runner.py:1075
+#: src/runner.py:1086
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Bottle baru Anda: {0} sekarang siap!"
 
-#: src/runner.py:1650
+#: src/runner.py:1661
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Status koneksi: offline …"
 
-#: src/runner.py:1712
+#: src/runner.py:1723
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Membuat file kunci di jalur sumber …"
 
-#: src/runner.py:1734
+#: src/runner.py:1745
 #, fuzzy
 msgid "Updating index …"
 msgstr "Membuat wineprefix…"
 
-#: src/runner.py:1749
+#: src/runner.py:1760
 #, fuzzy
 msgid "Updating states …"
 msgstr "Membuat bottle…"
 
-#: src/runner.py:1969
+#: src/runner.py:1980
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Cadangan {0}"
 
-#: src/runner.py:2016
+#: src/runner.py:2027
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Mengimpor cadangan: {0}"
@@ -1752,9 +1763,6 @@ msgstr "Botol bernama \"%s\" berhasil dibuat"
 #, python-brace-format
 #~ msgid "Runners found: [{0}]"
 #~ msgstr "Runner ditemukan: [{0}]"
-
-#~ msgid "No runners found."
-#~ msgstr "Tiada runner ditemukan."
 
 #, python-brace-format
 #~ msgid "Dxvk found: [{0}]"

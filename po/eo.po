@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-12 21:41+0200\n"
+"POT-Creation-Date: 2021-07-13 14:09+0200\n"
 "PO-Revision-Date: 2021-07-11 11:32+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/bottles/"
@@ -1232,7 +1232,8 @@ msgid "Downloading…"
 msgstr "Elŝutante…"
 
 #: src/ui/onboard.ui:391
-msgid "Sit down and have a drink, it may take a few minutes."
+#, fuzzy
+msgid "Sit down and relax, it may take a few minutes."
 msgstr "Trinku ion, eble tio daŭros kelkajn minutojn."
 
 #: src/ui/onboard.ui:419
@@ -1401,68 +1402,78 @@ msgstr "Riceviĝis peto [Helpo]."
 msgid "[Refresh] request received."
 msgstr "Riceviĝis peto [Reŝargi]."
 
-#: src/runner.py:964
+#: src/runner.py:970
 #, fuzzy
-msgid "One or more components not found, installing latest version …"
+msgid "No runners found, please install one."
+msgstr "Neniuj ruliloj troviĝis."
+
+#: src/runner.py:974
+#, fuzzy
+msgid "No dxvk found, installing the latest version …"
 msgstr "Ne troviĝis rulilo kaj/aŭ DXVK; instalante plej novan version…"
 
-#: src/runner.py:1006
+#: src/runner.py:977
+#, fuzzy
+msgid "No vkd3d found, installing the latest version …"
+msgstr "Ne troviĝis rulilo kaj/aŭ DXVK; instalante plej novan version…"
+
+#: src/runner.py:1017
 msgid "The wine configuration is being updated …"
 msgstr "Reagordante Wine…"
 
-#: src/runner.py:1012
+#: src/runner.py:1023
 msgid "Wine configuration updated!"
 msgstr "Reagordiĝis Wine!"
 
-#: src/runner.py:1036
+#: src/runner.py:1047
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Efektivigante medion: {0}…"
 
-#: src/runner.py:1055
+#: src/runner.py:1066
 msgid "Installing dxvk …"
 msgstr "Instalante DXVK…"
 
-#: src/runner.py:1061
+#: src/runner.py:1072
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Instalante DXVK…"
 
-#: src/runner.py:1069
+#: src/runner.py:1080
 msgid "Creating versioning state 0 …"
 msgstr "Kreante versian staton 0…"
 
-#: src/runner.py:1075
+#: src/runner.py:1086
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Pretas via nova botelo {0}!"
 
-#: src/runner.py:1650
+#: src/runner.py:1661
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Konektostato: ne konektita…"
 
-#: src/runner.py:1712
+#: src/runner.py:1723
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Kreante ŝlosdosieron en fonta dosierujo…"
 
-#: src/runner.py:1734
+#: src/runner.py:1745
 #, fuzzy
 msgid "Updating index …"
 msgstr "Kreante la Wine-prefikson…"
 
-#: src/runner.py:1749
+#: src/runner.py:1760
 #, fuzzy
 msgid "Updating states …"
 msgstr "Kreante botelon…"
 
-#: src/runner.py:1969
+#: src/runner.py:1980
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Savkopii {0}"
 
-#: src/runner.py:2016
+#: src/runner.py:2027
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Enportante savkopion: {0}"
@@ -1726,9 +1737,6 @@ msgstr "Sukcese kreiĝis botelo “%s”"
 #, python-brace-format
 #~ msgid "Runners found: [{0}]"
 #~ msgstr "Troviĝis ruliloj: [{0}]"
-
-#~ msgid "No runners found."
-#~ msgstr "Neniuj ruliloj troviĝis."
 
 #, python-brace-format
 #~ msgid "Dxvk found: [{0}]"
