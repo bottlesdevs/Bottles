@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-12 21:41+0200\n"
-"PO-Revision-Date: 2021-07-13 05:38+0000\n"
+"PO-Revision-Date: 2021-07-13 12:07+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
 #: src/window.py:116
 msgid "Bottles"
-msgstr "Botellas"
+msgstr "Bottles"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
@@ -44,7 +44,7 @@ msgstr "Ejecute fácilmente programas de Windows en Linux con 🍷 Botellas!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
-msgstr "¡Embotella el software y disfruta de tu tiempo libre!"
+msgstr "Embotelle programas y disfrútelos en cualquier momento"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -66,7 +66,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
-msgstr "Funciones:"
+msgstr "Funcionalidades:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:18
 msgid "Create bottles using preconfigured environments or create your own"
@@ -114,7 +114,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
-msgstr "Reparación de botellas automática en caso de rotura"
+msgstr "Reparación de botellas automática en caso de daño"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
@@ -168,6 +168,8 @@ msgstr ""
 msgid ""
 "Dependency/installer manifests, support environment variables and arguments"
 msgstr ""
+"Manifiestos para dependencias/instaladores; se permiten variables de entorno "
+"y argumentos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid ""
@@ -205,7 +207,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "Support for vkd3d"
-msgstr ""
+msgstr "Compatibilidad con vkd3d"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "The search for installed programs has been extended to user AppData"
@@ -374,7 +376,7 @@ msgstr "Actualizaciones:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:156
 msgid "New versioning based on CalVer model"
-msgstr ""
+msgstr "Numeración de versiones nueva, según el modelo CalVer"
 
 #: data/com.usebottles.bottles.appdata.xml.in:157
 msgid "Create bottles using the wine runner provided by the distribution"
@@ -682,7 +684,7 @@ msgstr "Configuración de Wine"
 
 #: src/ui/details.ui:663
 msgid "Adjust internal settings."
-msgstr "Ajustar la configuración interna."
+msgstr "Ajuste la configuración interna."
 
 #: src/ui/details.ui:700 src/ui/list-entry.ui:257
 msgid "Browse C:"
@@ -690,7 +692,7 @@ msgstr "Buscar en C:"
 
 #: src/ui/details.ui:702
 msgid "Browse internal files."
-msgstr "Examinar archivos internos."
+msgstr "Explore los archivos internos."
 
 #: src/ui/details.ui:739
 msgid "Command Line"
@@ -698,7 +700,7 @@ msgstr "Linea de órdenes"
 
 #: src/ui/details.ui:741
 msgid "Run commands inside the Bottle."
-msgstr "Ejecuta comandos dentro de la botella."
+msgstr "Ejecute órdenes dentro de la botella."
 
 #: src/ui/details.ui:778
 msgid "Registry Editor"
@@ -757,35 +759,32 @@ msgid "Use DXVK"
 msgstr "Usa DXVK"
 
 #: src/ui/details.ui:1049
-#, fuzzy
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Mejora el rendimiento en juegos y aplicaciones 3D.\n"
-"Desactive si experimenta fallos en la gráfica."
+"Mejora el rendimiento en juegos y aplicaciones 3D que utilicen DirectX 11.\n"
+"Desactívelo si ocurren fallos gráficos."
 
 #: src/ui/details.ui:1076
-#, fuzzy
 msgid "Use VKD3D"
-msgstr "Usa DXVK"
+msgstr "Utilizar VKD3D"
 
 #: src/ui/details.ui:1077
-#, fuzzy
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Mejora el rendimiento en juegos y aplicaciones 3D.\n"
-"Desactive si experimenta fallos en la gráfica."
+"Mejora el rendimiento en juegos y aplicaciones 3D que utilicen DirectX 12.\n"
+"Desactívelo si ocurren fallos gráficos."
 
 #: src/ui/details.ui:1104
 msgid "Use Gamemode"
-msgstr ""
+msgstr "Utilizar modo de juego"
 
 #: src/ui/details.ui:1105
 msgid "Optimise gaming performance on demand"
-msgstr ""
+msgstr "Optimice el rendimiento al jugar según la exigencia"
 
 #: src/ui/details.ui:1131
 msgid "Enable ACO shader compiler"
@@ -855,9 +854,8 @@ msgid "Manage DXVK versions"
 msgstr "Gestionar versiones de DXVK"
 
 #: src/ui/details.ui:1484
-#, fuzzy
 msgid "VKD3D Version"
-msgstr "Versión de DXVK"
+msgstr "Versión de VKD3D"
 
 #: src/ui/details.ui:1560 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -990,18 +988,18 @@ msgstr "Anulaciones existentes"
 
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
-msgstr "Guardar variables de entorno"
+msgstr "Cambiar variables de entorno"
 
 #: src/ui/dialog-environment-variables.ui:36 src/ui/dialog-launch-options.ui:36
 msgid "Save"
-msgstr "Salvar"
+msgstr "Guardar"
 
 #: src/ui/dialog-environment-variables.ui:75
 msgid ""
 "Here you can change the environment variables for the commands that are "
 "executed."
 msgstr ""
-"Aquí puede cambiar las variables de entorno de los comandos que se ejecutan."
+"Aquí puede cambiar las variables de entorno de las órdenes que se ejecutan."
 
 #: src/ui/dialog-environment-variables.ui:87 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
@@ -1022,7 +1020,7 @@ msgstr "Estos argumentos se transmiten al iniciar el programa:"
 
 #: src/ui/dll-override-entry.ui:23
 msgid "Builtin (Wine)"
-msgstr "Integrado (Wine)"
+msgstr "Incorporado (Wine)"
 
 #: src/ui/dll-override-entry.ui:24
 msgid "Native (Windows)"
@@ -1030,11 +1028,11 @@ msgstr "Nativo (Windows)"
 
 #: src/ui/dll-override-entry.ui:25
 msgid "Builtin then Native"
-msgstr "Construido entonces nativo"
+msgstr "Incorporado, después nativo"
 
 #: src/ui/dll-override-entry.ui:26
 msgid "Native then Builtin"
-msgstr "Nativo y luego integrado"
+msgstr "Nativo, después incorporado"
 
 #: src/ui/dxvk-entry.ui:9
 msgid "DXVK version"
@@ -1064,7 +1062,7 @@ msgstr "Importador"
 
 #: src/ui/importer.ui:122
 msgid "Import Bottles backup"
-msgstr "Importar Botellas respaldadas"
+msgstr "Importar respaldo de Bottles"
 
 #: src/ui/importer-entry.ui:69
 msgid "This wineprefix was already imported in Bottles."
@@ -1107,8 +1105,8 @@ msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
-"Esta botella parece dañada, falta el archivo de configuración. Puedo "
-"intentar resolverlo creando una nueva configuración."
+"Esta botella parece dañada; falta el archivo de configuración. Es posible "
+"intentar resolverlo creando una configuración nueva."
 
 #: src/ui/list-entry.ui:338
 msgid "Execute in this bottle"
@@ -1475,7 +1473,7 @@ msgstr "Creando el estado de control de versiones 0…"
 #: src/runner.py:1075
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
-msgstr "Tu nueva botella: {0} ya está lista!"
+msgstr "Su botella nueva, {0}, ya está lista."
 
 #: src/runner.py:1650
 msgid "Generating state files index …"
@@ -1513,7 +1511,7 @@ msgstr "Detalles de botella"
 
 #: src/window.py:145
 msgid "Bottles Started!"
-msgstr "¡Botellas iniciadas!"
+msgstr "Ha iniciado Bottles."
 
 #: src/pages/details.py:280 src/pages/details.py:466
 #, python-brace-format
