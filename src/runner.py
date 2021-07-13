@@ -965,9 +965,7 @@ class BottlesRunner:
             len(self.dxvk_available),
             len(self.vkd3d_available)]:
             update_output(_("One or more components not found, installing latest version …"))
-            self.window.page_preferences.set_dummy_runner()
-            self.window.show_runners_preferences_view()
-            return self.async_checks()
+            self.async_checks()
 
         if not runner: runner = self.runners_available[0]
         runner_name = runner
