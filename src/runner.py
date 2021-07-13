@@ -631,7 +631,7 @@ class BottlesRunner:
         return True
 
     '''Check local dxvks'''
-    def check_dxvk(self, install_latest:bool=True) -> bool:
+    def check_dxvk(self, install_latest:bool=True, no_async:bool=False) -> bool:
         dxvk_list = glob("%s/*/" % self.dxvk_path)
         self.dxvk_available = []
 
@@ -647,7 +647,10 @@ class BottlesRunner:
             if self.utils_conn.check_connection():
                 try:
                     dxvk_version = next(iter(self.supported_dxvk))
-                    self.install_component("dxvk", dxvk_version, checks=False)
+                    if no_async:
+                        self.async_install_component(["dxvk", dxvk_version, False, False, False])
+                    else:
+                        self.install_component("dxvk", dxvk_version, checks=False)
                 except StopIteration:
                     return False
             else:
@@ -655,7 +658,7 @@ class BottlesRunner:
         return True
 
     '''Check local vkd3d'''
-    def check_vkd3d(self, install_latest:bool=True) -> bool:
+    def check_vkd3d(self, install_latest:bool=True, no_async:bool=False) -> bool:
         vkd3d_list = glob("%s/*/" % self.vkd3d_path)
         self.vkd3d_available = []
 
@@ -671,7 +674,10 @@ class BottlesRunner:
             if self.utils_conn.check_connection():
                 try:
                     vkd3d_version = next(iter(self.supported_vkd3d))
-                    self.install_component("vkd3d", vkd3d_version, checks=False)
+                    if no_async:
+                        self.async_install_component(["vkd3d", vkd3d_version, False, False, False])
+                    else:
+                        self.install_component("vkd3d", vkd3d_version, checks=False)
                 except StopIteration:
                     return False
             else:
@@ -960,12 +966,16 @@ class BottlesRunner:
         update_output = dialog.update_output
 
         '''If there are no local runners, dxvks, vkd3ds, install them'''
-        if 0 in [
-            len(self.runners_available),
-            len(self.dxvk_available),
-            len(self.vkd3d_available)]:
-            update_output(_("One or more components not found, installing latest version …"))
-            self.async_checks()
+        if len(self.runners_available) == 0:
+            update_output(_("No runners found, please install one."))
+            self.window.show_preferences_view()
+            dialog.destroy()
+        if len(self.dxvk_available) == 0:
+            update_output(_("No dxvk found, installing the latest version …"))
+            self.check_dxvk(no_async=True)
+        if len(self.vkd3d_available) == 0:
+            update_output(_("No vkd3d found, installing the latest version …"))
+            self.check_vkd3d(no_async=True)
 
         if not runner: runner = self.runners_available[0]
         runner_name = runner
