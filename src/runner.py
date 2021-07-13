@@ -608,16 +608,19 @@ class BottlesRunner:
 
             '''If connected, install latest runner from repository'''
             if self.utils_conn.check_connection():
-                if not self.window.settings.get_boolean("release-candidate"):
-                    tmp_runners = []
-                    for runner in self.supported_wine_runners.items():
-                        if runner[1]["Channel"] not in ["rc", "unstable"]:
-                            tmp_runners.append(runner)
-                    runner_name = next(iter(tmp_runners))[0]
-                else:
-                    tmp_runners = self.supported_wine_runners
-                    runner_name = next(iter(tmp_runners))
-                self.install_component("runner", runner_name, after=after)
+                try:
+                    if not self.window.settings.get_boolean("release-candidate"):
+                        tmp_runners = []
+                        for runner in self.supported_wine_runners.items():
+                            if runner[1]["Channel"] not in ["rc", "unstable"]:
+                                tmp_runners.append(runner)
+                        runner_name = next(iter(tmp_runners))[0]
+                    else:
+                        tmp_runners = self.supported_wine_runners
+                        runner_name = next(iter(tmp_runners))
+                    self.install_component("runner", runner_name, after=after)
+                except StopIteration:
+                    return False
             else:
                 return False
 
