@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-12 21:41+0200\n"
-"PO-Revision-Date: 2021-07-06 13:04+0000\n"
+"PO-Revision-Date: 2021-07-13 12:07+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
 #: src/window.py:116
 msgid "Bottles"
-msgstr ""
+msgstr "Tárolók"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
@@ -40,11 +40,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles🍷!"
-msgstr ""
+msgstr "Futtassa a Windows szoftvert Linuxon Tárolókkal🍷!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
-msgstr ""
+msgstr "Tárolószoftver és élvezze szabadidejében!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -57,24 +57,30 @@ msgstr ""
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
+"A tárolási verziók biztonságban tartják a munkáját és később "
+"visszaállíthatók!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
-msgstr ""
+msgstr "Jellemzők:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:18
 msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
+"Hozzon létre tárolókat előre beállított környezetek segítségével, vagy "
+"hozzon létre sajátot"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
 msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
+"Futtassa a futtatható fájlokat (.exe /.msi) a tárolókban, közvetlenül a "
+"fájlkezelő helyi menüjéből"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr ""
+msgstr "A tárolókba telepített alkalmazások önműködő felismerése"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -82,11 +88,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr ""
+msgstr "A DLL-ek felülírása közvetlenül a tárolónkénti beállításokból történik"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
-msgstr ""
+msgstr "Azonnali futócsere bármilyen tárolóhoz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:24
 msgid ""
@@ -100,7 +106,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
-msgstr ""
+msgstr "Önműködő tároló javítás törés esetén"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
@@ -117,10 +123,11 @@ msgstr ""
 #: data/com.usebottles.bottles.appdata.xml.in:30
 msgid "System for bringing your configuration to new versions of Bottles"
 msgstr ""
+"Rendszer, amellyel a beállításokat a Tárolók új verzióihoz juttathatja el"
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
 msgid "Back up and import bottles"
-msgstr ""
+msgstr "Készítsen biztonsági másolatot és importáljon tárolókat"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
 msgid "Import Wine prefixes from other managers"
@@ -128,11 +135,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning (experimental)"
-msgstr ""
+msgstr "Tárolókverzió (kísérleti)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid ".. and much more that you can find by installing Bottles!"
-msgstr ""
+msgstr "… és még sok minden más, amit megtalál a Tárolók telepítésével!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
 msgid "Dependencies can be extracted and installed from a Windows cabinet"
@@ -156,6 +163,8 @@ msgid ""
 "If versioning is active for the bottle, a new state is created before "
 "installing a dependency"
 msgstr ""
+"Ha a tároló verzióváltása aktív, akkor egy függőség telepítése előtt új "
+"állapot jön létre"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid ""
@@ -214,6 +223,8 @@ msgid ""
 "If there are bottles in the old dir and the app dir is empty then a "
 "migration dialog is shown"
 msgstr ""
+"Ha vannak tárolók a régi könyvtárban, és az alkalmazás könyvtár üres, akkor "
+"megjelenik az áttelepítési párbeszédpanel"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Fixed a bug in Nvidia identification for optimus laptops"
@@ -235,7 +246,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "The bottle details page now uses a sidebar"
-msgstr ""
+msgstr "A tároló részleteinek oldala most oldalsávot használ"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Added references to documentation for some features"
@@ -258,46 +269,46 @@ msgstr ""
 #: data/com.usebottles.bottles.appdata.xml.in:125
 #: data/com.usebottles.bottles.appdata.xml.in:169
 msgid "French translations thanks to @julroy67"
-msgstr ""
+msgstr "Francia fordítás: @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Portuguese (Brazil) translations thanks to @LeandroStanger"
-msgstr ""
+msgstr "Portugál (Brazília) fordítás: @LeandroStanger"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
 msgid "Hungarian translations thanks to @ovari"
-msgstr ""
+msgstr "Magyar fordítás: @ovari"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid "Chinese (Simplified) translations thanks to Flywater Zh"
-msgstr ""
+msgstr "Kínai (egyszerűsített) fordítás: Flywater Zh"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
 #: data/com.usebottles.bottles.appdata.xml.in:168
 msgid "Portuguese translations thanks to @laralem"
-msgstr ""
+msgstr "Portugál fordítás: @laralem"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
-msgstr ""
+msgstr "Cseh fordítás: @pervoj, Vojtěch Perník"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 #: data/com.usebottles.bottles.appdata.xml.in:166
 msgid "Spanish translations thanks to @fitojb"
-msgstr ""
+msgstr "Spanyol fordítás: @fitojb"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 #: data/com.usebottles.bottles.appdata.xml.in:165
 msgid "Esperanto translations thanks to @phlostically"
-msgstr ""
+msgstr "Eszperantó fordítás: @phlostically"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
 msgid "Croatian translations thanks to @milotype"
-msgstr ""
+msgstr "Horvát fordítás: @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
 msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
-msgstr ""
+msgstr "Új embléma: @jannuary @alvarlagerlof @ZekeSmith"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
 msgid "Display a crash report on restart if something goes wrong"
@@ -305,7 +316,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
 msgid "Using the new yaml format for the bottle configuration"
-msgstr ""
+msgstr "Az új yaml-formátum használata a tároló beállításához"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
 msgid "Using the new yaml repositories for components/dependencies/programs"
@@ -313,11 +324,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Automatic update old bottle configuration to the new model"
-msgstr ""
+msgstr "A régi tárolóbeállítások önműködő frissítése az új modellre"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
 msgid "Backup bottle configuration and archive"
-msgstr ""
+msgstr "Tartalék tároló beállítása és archiválása"
 
 #: data/com.usebottles.bottles.appdata.xml.in:146
 msgid "Import backup archives"
@@ -330,11 +341,11 @@ msgstr ""
 #: data/com.usebottles.bottles.appdata.xml.in:148
 #: data/com.usebottles.bottles.appdata.xml.in:170
 msgid "Swedish translations thanks to @eson57"
-msgstr ""
+msgstr "Svéd fordítás: @eson57"
 
 #: data/com.usebottles.bottles.appdata.xml.in:154
 msgid "Updates:"
-msgstr ""
+msgstr "Frissítések:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:156
 msgid "New versioning based on CalVer model"
@@ -342,11 +353,12 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:157
 msgid "Create bottles using the wine runner provided by the distribution"
-msgstr ""
+msgstr "Készítsen tárolókat az elosztó által biztosított wine-futtatóval"
 
 #: data/com.usebottles.bottles.appdata.xml.in:158
 msgid "Enable gamemode for your bottles if installed in the system"
 msgstr ""
+"Engedélyezze a játékmódot tárolójai számára, ha telepítve van a rendszerbe"
 
 #: data/com.usebottles.bottles.appdata.xml.in:159
 msgid "Run .exe/.msi/.bat files with custom arguments"
@@ -360,6 +372,8 @@ msgstr ""
 msgid ""
 "Optionally close Bottles after starting an executable from the file manager"
 msgstr ""
+"Opcionálisan zárja be a Tárolókat, miután elindított egy futtatható fájlt a "
+"fájlkezelőből"
 
 #: data/com.usebottles.bottles.appdata.xml.in:162
 msgid "Added tooltips to understand what some elements of the UI do"
@@ -375,7 +389,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:167
 msgid "Croatin translations thanks to @milotype"
-msgstr ""
+msgstr "Horvát fordítás: @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:171
 msgid "Ukrain thanslations thanks to @marchellodev"
@@ -473,7 +487,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "Tárolók önműködő bezárása"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting executable from file manager"
@@ -481,7 +495,7 @@ msgstr ""
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
-msgstr ""
+msgstr "© 2017-2021 - Tárolók fejlesztői"
 
 #: src/ui/about.ui:12
 msgid "Easily manage wineprefix using environments"
@@ -489,20 +503,22 @@ msgstr ""
 
 #: src/ui/about.ui:99
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
-msgstr ""
+msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Fordítás</a>"
 
 #: src/ui/about.ui:112
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/funding/\">Finanszírozás</a>"
 
 #: src/ui/about.ui:125
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
+"<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Hiba "
+"bejelentése</a>"
 
 #: src/ui/about.ui:138
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
 #: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
 #: src/ui/state-entry.ui:21
@@ -796,9 +812,8 @@ msgid "Manage DXVK versions"
 msgstr ""
 
 #: src/ui/details.ui:1484
-#, fuzzy
 msgid "VKD3D Version"
-msgstr "Verziószámozás"
+msgstr "VKD3D-verzió"
 
 #: src/ui/details.ui:1560 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -807,7 +822,7 @@ msgstr ""
 
 #: src/ui/details.ui:1609
 msgid "Audio"
-msgstr ""
+msgstr "Hang"
 
 #: src/ui/details.ui:1614
 msgid "Reduce PulseAudio latency"
@@ -1136,9 +1151,8 @@ msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr ""
 
 #: src/ui/onboard.ui:229
-#, fuzzy
 msgid "What are runners?"
-msgstr "Mi a Wine?"
+msgstr "Mik a futók?"
 
 #: src/ui/onboard.ui:249
 msgid ""
@@ -1176,7 +1190,7 @@ msgstr ""
 
 #: src/ui/onboard.ui:341 src/ui/preferences.ui:154
 msgid "Runners"
-msgstr ""
+msgstr "Futók"
 
 #: src/ui/onboard.ui:371
 msgid "Downloading…"
@@ -1248,15 +1262,15 @@ msgstr ""
 
 #: src/ui/preferences.ui:198
 msgid "DXVK/VKD3D"
-msgstr ""
+msgstr "DXVK/VKD3D"
 
 #: src/ui/preferences.ui:203
 msgid "DXVK"
-msgstr ""
+msgstr "DXVK"
 
 #: src/ui/preferences.ui:213
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: src/ui/program-entry.ui:21
 msgid "Change Launch Options"
@@ -1264,11 +1278,11 @@ msgstr ""
 
 #: src/ui/program-entry.ui:45
 msgid "WineHQ"
-msgstr ""
+msgstr "WineHQ"
 
 #: src/ui/program-entry.ui:58
 msgid "ProtonDB"
-msgstr ""
+msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:71
 msgid "Bottles Issues"
@@ -1312,15 +1326,15 @@ msgstr ""
 
 #: src/ui/window.ui:112
 msgid "About Bottles"
-msgstr ""
+msgstr "A Tárolók névjegye"
 
 #: src/ui/window.ui:169 src/ui/window.ui:208
 msgid "Open menu"
-msgstr ""
+msgstr "Menü megnyitása"
 
 #: src/ui/window.ui:188
 msgid "Downloads"
-msgstr ""
+msgstr "Letöltések"
 
 #: src/ui/window.ui:228
 msgid ""
@@ -1331,7 +1345,7 @@ msgstr ""
 
 #: src/ui/window.ui:247
 msgid "Go back"
-msgstr ""
+msgstr "Vissza"
 
 #: src/ui/window.ui:266
 msgid "New bottle"
@@ -1368,11 +1382,11 @@ msgstr ""
 
 #: src/runner.py:1055
 msgid "Installing dxvk …"
-msgstr ""
+msgstr "A dxvk telepítése…"
 
 #: src/runner.py:1061
 msgid "Installing vkd3d …"
-msgstr ""
+msgstr "A vkd3d telepítése…"
 
 #: src/runner.py:1069
 msgid "Creating versioning state 0 …"
@@ -1419,7 +1433,7 @@ msgstr ""
 
 #: src/window.py:145
 msgid "Bottles Started!"
-msgstr ""
+msgstr "Tárolók elindítva!"
 
 #: src/pages/details.py:280 src/pages/details.py:466
 #, python-brace-format
@@ -1447,7 +1461,7 @@ msgstr ""
 
 #: src/pages/details.py:648
 msgid "Details & Utilities"
-msgstr ""
+msgstr "Részletek és közművek"
 
 #: src/pages/details.py:1070 src/pages/list.py:119
 msgid "Choose a Windows executable file"
@@ -1455,7 +1469,7 @@ msgstr ""
 
 #: src/pages/details.py:1073 src/pages/list.py:122
 msgid "Run"
-msgstr ""
+msgstr "Futtatás"
 
 #: src/pages/details.py:1149
 msgid "Select the location where to save the backup configuration"
@@ -1467,7 +1481,7 @@ msgstr ""
 
 #: src/pages/details.py:1188 src/pages/list.py:171
 msgid "Confirm deletion"
-msgstr ""
+msgstr "Törlés megerősítése"
 
 #: src/pages/details.py:1189 src/pages/list.py:172
 msgid "Are you sure you want to delete this Bottle and all files?"
@@ -1475,11 +1489,11 @@ msgstr ""
 
 #: src/pages/dialog.py:28 src/pages/dialog.py:64
 msgid "Warning"
-msgstr ""
+msgstr "Figyelmeztetés"
 
 #: src/pages/dialog.py:29 src/pages/dialog.py:65
 msgid "An error has occurred."
-msgstr ""
+msgstr "Hiba történt."
 
 #: src/pages/importer.py:96
 msgid "Choose a backup archive"
@@ -1492,7 +1506,7 @@ msgstr ""
 
 #: src/pages/list.py:149
 msgid "Confirm upgrade"
-msgstr ""
+msgstr "Frissítés megerősítése"
 
 #: src/pages/list.py:150
 #, python-brace-format
@@ -1501,7 +1515,7 @@ msgstr ""
 
 #: src/pages/new.py:103
 msgid "Gaming"
-msgstr ""
+msgstr "Játékok"
 
 #: src/pages/new.py:104
 msgid "An environment improved for Windows games."
@@ -1509,7 +1523,7 @@ msgstr ""
 
 #: src/pages/new.py:109
 msgid "Software"
-msgstr ""
+msgstr "Szoftver"
 
 #: src/pages/new.py:110
 msgid "An environment improved for Windows software."
@@ -1517,7 +1531,7 @@ msgstr ""
 
 #: src/pages/new.py:115
 msgid "Custom"
-msgstr ""
+msgstr "Egyéni"
 
 #: src/pages/new.py:116
 msgid "A clear environment for your experiments."
