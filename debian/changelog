@@ -1,13 +1,42 @@
-com.usebottles.bottles (2021.7.3-treviso) precise; urgency=low
+com.usebottles.bottles (2021.7.14-treviso) precise; urgency=low
 
-  * Display a crash report on restart if something goes wrong
-  * Using the new yaml format for the bottle configuration
-  * Using the new yaml repositories for components/dependencies/programs
-  * Automatic update old bottle configuration to the new model
-  * Backup bottle configuration and archive
-  * Import backup archives
-  * Show onboard if system wine is the only installed runner
-  * Swedish translations thanks to @eson57
+  * Dependencies can be extracted and installed from a Windows cabinet
+  * Dependencies can override and move dll
+  * Dependencies can now install fonts without user intervention
+  * Dependency/installer manifests, support environment variables and arguments
+  * If versioning is active for the bottle, a new state is created before installing a dependency
+  * Dependencies and installers now call their uninstaller, if this is declared in the manifest
+  * Now you can search for dependencies using the search field
+  * Dependencies and installers show the source license
+  * When a crash report appears, reporting it the issue is automatically and correctly filled
+  * While creating a new state, information about the entire process is shown on the screen
+  * Support for vkd3d
+  * The search for installed programs has been extended to user AppData
+  * Fixed some problems related to the dxvk implementation
+  * Now dxvk and vkd3d are installed only after the user presses Install on first start
+  * Reduced the amount of logs
+  * Flatpak now uses the app directories
+  * If there are bottles in the old dir and the app dir is empty then a migration dialog is shown
+  * Fixed a bug in Nvidia identification for optimus laptops
+  * Fixed a bug in the management of the download manager that resulted in a crash
+  * Install dxvk and vkd3d on bottle creation if missing
+  * The preferences are organized into sections
+  * The program list is hidden if empty
+  * The bottle details page now uses a sidebar
+  * Added references to documentation for some features
+  * Makes the UI more consistent with rounded edges and status pages from libhandy
+  * Replacing the name wine with runner, where possible
+  * Added more information for initial download to the Onboard
+  * French translations thanks to @julroy67
+  * Portuguese (Brazil) translations thanks to @LeandroStanger
+  * Hungarian translations thanks to @ovari
+  * Chinese (Simplified) translations thanks to Flywater Zh
+  * Portuguese translations thanks to @laralem
+  * Czech translations thanks to @pervoj and Vojtěch Perník
+  * Spanish translations thanks to @fitojb
+  * Esperanto translations thanks to @phlostically
+  * Croatian translations thanks to @milotype
+  * New logo thanks to @jannuary @alvarlagerlof @ZekeSmith
 
 
- -- Mirko Brombin <send@mirko.pm>  Sat, 03 Jul 2021 16:12:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Wed, 14 Jul 2021 00:00:00 +0000
