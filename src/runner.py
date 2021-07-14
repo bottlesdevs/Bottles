@@ -1337,9 +1337,15 @@ class BottlesRunner:
         else:
             self.reg_delete(configuration, key, "Default")
 
+    '''Run .lnk files in a bottle'''
+    def run_lnk(self, configuration:BottleConfig, file_path:str, arguments:str=False, environment:dict=False) -> None:
+        logging.info("Running link file on the bottle …")
+        command = f"start /unix '{file_path}'"
+        RunAsync(self.run_command, None, configuration, command, False, environment)
+
     '''Run wine executables/programs in a bottle'''
     def run_executable(self, configuration:BottleConfig, file_path:str, arguments:str=False, environment:dict=False) -> None:
-        logging.info("Running an executable on the wineprefix …")
+        logging.info("Running an executable on the bottle …")
 
         if "msi" in file_path.split("."):
             command = "msiexec /i '%s'" % file_path
