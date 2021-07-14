@@ -80,22 +80,42 @@ class BottlesWindow(Handy.ApplicationWindow):
     '''Notify instance'''
     Notify.init(APP_ID)
 
-    def __init__(self, arg_executable, **kwargs):
+    def __init__(self, arg_executable, arg_lnk, arg_bottle, **kwargs):
         super().__init__(**kwargs)
 
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
             self.settings.get_boolean("dark-theme"))
 
-        '''Validate argument extension'''
+        '''Validate arg_executable extension'''
         if arg_executable and not arg_executable.endswith(('.exe', '.msi', '.bat')):
             arg_executable = False
+
+        '''Validate arg_lnk extension'''
+        if arg_lnk and not arg_lnk.endswith('.lnk'):
+            arg_lnk = False
 
         self.utils_conn = UtilsConnection(self)
 
         '''Runner instance'''
         self.runner = BottlesRunner(self)
         self.runner.check_runners_dir()
+
+        '''Run executable in a bottle'''
+        if arg_executable and arg_bottle:
+            if arg_bottle in self.runner.local_bottles.keys():
+                bottle_configuration = self.runner.local_bottles[arg_bottle]
+                self.runner.run_executable(bottle_configuration,
+                                           arg_executable)
+                self.proper_close()
+
+        '''Run lnk in a bottle'''
+        if arg_lnk and arg_bottle:
+            if arg_bottle in self.runner.local_bottles.keys():
+                bottle_configuration = self.runner.local_bottles[arg_bottle]
+                self.runner.run_lnk(bottle_configuration,
+                                    arg_lnk)
+                self.proper_close()
 
         '''Pages'''
         page_details = BottlesDetails(self)
@@ -273,3 +293,4 @@ class BottlesWindow(Handy.ApplicationWindow):
     @staticmethod
     def show_about_dialog(widget):
         BottlesAboutDialog().show_all()
+

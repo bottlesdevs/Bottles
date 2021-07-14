@@ -25,7 +25,7 @@ import subprocess
 
 gi.require_version('Gtk', '3.0')
 
-from gi.repository import Gtk, Gio, Gdk
+from gi.repository import Gtk, Gio, Gdk, GLib
 
 from pathlib import Path
 
@@ -64,13 +64,47 @@ class Application(Gtk.Application):
 
     def __init__(self):
         super().__init__(application_id='com.usebottles.bottles',
-                         flags=Gio.ApplicationFlags.FLAGS_NONE)
+                         flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
-        self.props.flags = Gio.ApplicationFlags.HANDLES_OPEN
         self.arg_executable = False
+        self.arg_lnk = False
+        self.arg_bottle = False
+        self.add_arguments()
 
-    def do_open(self, arg_executable, *hint):
-        self.arg_executable = arg_executable[0].get_path()
+    def add_arguments(self):
+        self.add_main_option("executable",
+                             ord("e"),
+                             GLib.OptionFlags.NONE,
+                             GLib.OptionArg.STRING,
+                             _("Executable path"),
+                             None)
+        self.add_main_option("lnk",
+                             ord("l"),
+                             GLib.OptionFlags.NONE,
+                             GLib.OptionArg.STRING,
+                             _("lnk path"),
+                             None)
+        self.add_main_option("bottle",
+                             ord("b"),
+                             GLib.OptionFlags.NONE,
+                             GLib.OptionArg.STRING,
+                             _("Bottle name"),
+                             None)
+
+    def do_command_line(self, command):
+        options = command.get_options_dict()
+        if options.contains("executable"):
+            executable_path = options.lookup_value("executable").get_string()
+            self.arg_executable = executable_path
+
+        if options.contains("lnk"):
+            lnk_path = options.lookup_value("lnk").get_string()
+            self.arg_lnk = lnk_path
+
+        if options.contains("bottle"):
+            bottle_name = options.lookup_value("bottle").get_string()
+            self.arg_bottle = bottle_name
+
         self.do_activate()
 
     def do_startup(self):
@@ -113,7 +147,9 @@ class Application(Gtk.Application):
 
         if not win:
             win = BottlesWindow(application=self,
-                                arg_executable=self.arg_executable)
+                                arg_executable=self.arg_executable,
+                                arg_bottle=self.arg_bottle,
+                                arg_lnk=self.arg_lnk)
 
         self.win = win
         win.present()
@@ -158,3 +194,4 @@ class Application(Gtk.Application):
 def main(version):
     app = Application()
     return app.run(sys.argv)
+
