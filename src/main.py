@@ -105,6 +105,11 @@ class Application(Gtk.Application):
             bottle_name = options.lookup_value("bottle").get_string()
             self.arg_bottle = bottle_name
 
+        if not self.arg_executable:
+            for a in sys.argv:
+                if a.endswith(('.exe', '.msi', '.bat')):
+                    self.arg_executable = a
+
         self.do_activate()
 
     def do_startup(self):
