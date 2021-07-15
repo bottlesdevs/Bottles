@@ -117,7 +117,7 @@ class Application(Gtk.Application):
         self.set_actions()
 
     def do_activate(self):
-        '''Load custom CSS'''
+        # Load custom CSS
         data_bytes = Gio.resources_lookup_data(
             "/com/usebottles/bottles/style.css", 0)
         provider = Gtk.CssProvider()
@@ -147,7 +147,7 @@ class Application(Gtk.Application):
                                                      provider,
                                                      Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
-        '''Window'''
+        # Window
         win = self.props.active_window
 
         if not win:
@@ -159,25 +159,25 @@ class Application(Gtk.Application):
         self.win = win
         win.present()
 
-    '''Quit application [CTRL+Q]'''
+    # Quit application [CTRL+Q]
 
     def quit(self, action=None, param=None):
         logging.info(_("[Quit] request received."))
         self.win.destroy()
 
-    '''Open Help URL [F1]'''
+    # Open Help URL [F1]
     @staticmethod
     def help(action, param):
         logging.info(_("[Help] request received."))
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
-    '''Refresh Bottles [CTRL+R]'''
+    # Refresh Bottles [CTRL+R]
 
     def refresh(self, action, param):
         logging.info(_("[Refresh] request received."))
         self.win.runner.update_bottles()
 
-    '''Set application actions'''
+    # Set application actions
 
     def set_actions(self):
         action_entries = [
@@ -194,7 +194,7 @@ class Application(Gtk.Application):
                 self.set_accels_for_action(*accel)
 
 
-'''Run Bottles application'''
+# Run Bottles application
 
 def main(version):
     app = Application()

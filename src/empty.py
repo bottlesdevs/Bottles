@@ -21,7 +21,7 @@ from gi.repository import Gtk
 class BottlesEmpty(Gtk.Grid):
     __gtype_name__ = 'BottlesEmpty'
 
-    '''Get widgets from template'''
+    # Get widgets from template
     img_icon = Gtk.Template.Child()
     label_text = Gtk.Template.Child()
     label_tip = Gtk.Template.Child()
@@ -29,13 +29,13 @@ class BottlesEmpty(Gtk.Grid):
     def __init__(self, text=False, icon=False, tip=False, **kwargs):
         super().__init__(**kwargs)
 
-        '''Init template'''
+        # Init template
         try:
             self.init_template()
         except TypeError:
             self.init_template("")
 
-        '''Populate widgets data'''
+        # Populate widgets data
         if text:
             self.label_text.set_text(text)
 

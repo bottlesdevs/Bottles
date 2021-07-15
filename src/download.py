@@ -25,7 +25,7 @@ from .utils import RunAsync
 class BottlesDownloadEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDownloadEntry'
 
-    '''Get widgets from template'''
+    # Get widgets from template
     label_filename = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     progressbar_download = Gtk.Template.Child()
@@ -37,17 +37,17 @@ class BottlesDownloadEntry(Gtk.Box):
         self.window = window
         self.box_downloads = window.box_downloads
 
-        '''Set btn_downloads visible'''
+        # Set btn_downloads visible
         self.window.btn_downloads.set_visible(True)
 
-        '''Populate widgets data'''
+        # Populate widgets data
         self.label_filename.set_text(file_name)
         if not stoppable: self.btn_cancel.hide()
 
-        '''Start pulsing'''
+        # Start pulsing
         RunAsync(self.pulse, None)
 
-    '''Progressbar pulse every 1s'''
+    # Progressbar pulse every 1s
     def pulse(self):
         while True:
             time.sleep(1)
@@ -80,7 +80,7 @@ class DownloadManager():
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # Common variables
         self.window = window
         self.box_downloads = window.box_downloads
         # self.pop_downloads = window.pop_downloads

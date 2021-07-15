@@ -46,7 +46,7 @@ logging = UtilsLogger()
 class BottlesWindow(Handy.ApplicationWindow):
     __gtype_name__ = 'BottlesWindow'
 
-    '''Get widgets from template'''
+    # Get widgets from template
     grid_main = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
     box_more = Gtk.Template.Child()
@@ -64,7 +64,7 @@ class BottlesWindow(Handy.ApplicationWindow):
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
 
-    '''Define environments and set first'''
+    # Define environments and set first
     envs = [
         'Gaming',
         'Software',
@@ -72,12 +72,12 @@ class BottlesWindow(Handy.ApplicationWindow):
     ]
     env_active = envs[0]
 
-    '''Common variables'''
+    # Common variables
     previous_page = ""
     default_settings = Gtk.Settings.get_default()
     settings = Gio.Settings.new(APP_ID)
 
-    '''Notify instance'''
+    # Notify instance
     Notify.init(APP_ID)
 
     def __init__(self, arg_executable, arg_lnk, arg_bottle, **kwargs):
@@ -87,21 +87,21 @@ class BottlesWindow(Handy.ApplicationWindow):
             "gtk-application-prefer-dark-theme",
             self.settings.get_boolean("dark-theme"))
 
-        '''Validate arg_executable extension'''
+        # Validate arg_executable extension
         if arg_executable and not arg_executable.endswith(('.exe', '.msi', '.bat')):
             arg_executable = False
 
-        '''Validate arg_lnk extension'''
+        # Validate arg_lnk extension
         if arg_lnk and not arg_lnk.endswith('.lnk'):
             arg_lnk = False
 
         self.utils_conn = UtilsConnection(self)
 
-        '''Runner instance'''
+        # Runner instance
         self.runner = BottlesRunner(self)
         self.runner.check_runners_dir()
 
-        '''Run executable in a bottle'''
+        # Run executable in a bottle
         if arg_executable and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
@@ -109,7 +109,7 @@ class BottlesWindow(Handy.ApplicationWindow):
                                            arg_executable)
                 self.proper_close()
 
-        '''Run lnk in a bottle'''
+        # Run lnk in a bottle
         if arg_lnk and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
@@ -117,19 +117,19 @@ class BottlesWindow(Handy.ApplicationWindow):
                                     arg_lnk)
                 self.proper_close()
 
-        '''Pages'''
+        # Pages
         page_details = BottlesDetails(self)
         page_list = BottlesList(self, arg_executable)
         page_taskmanager = BottlesTaskManager(self)
         page_importer = BottlesImporter(self)
 
-        '''Reusable variables'''
+        # Reusable variables
         self.page_list = page_list
         self.page_details = page_details
         self.page_taskmanager = page_taskmanager
         self.page_importer = page_importer
 
-        '''Populate stack'''
+        # Populate stack
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
         self.stack_main.add_titled(page_details, "page_details", _("Bottle details"))
@@ -137,10 +137,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.stack_main.add_titled(page_taskmanager, "page_taskmanager", _("Task manager"))
         self.stack_main.add_titled(page_importer, "page_importer", _("Importer"))
 
-        '''Populate grid'''
+        # Populate grid
         self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
 
-        '''Signal connections'''
+        # Signal connections
         self.btn_back.connect('pressed', self.go_back)
         self.btn_back.connect('activate', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view)
@@ -152,10 +152,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         # self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
 
-        '''If there is at least one page, show the bottles list'''
+        # If there is at least one page, show the bottles list
         self.stack_main.set_visible_child_name("page_list")
 
-        '''Executed on last'''
+        # Executed on last
         self.on_start()
 
         if arg_executable:
@@ -165,23 +165,23 @@ class BottlesWindow(Handy.ApplicationWindow):
         logging.info(_("Bottles Started!"))
 
     def on_squeezer_notify(self, widget, event=False):
-        '''TODO: this is used for responsive and doesn't work at this time'''
+        # TODO: this is used for responsive and doesn't work at this time
         child = widget.get_visible_child()
 
     def check_for_connection(self, status):
         if self.utils_conn.check_connection():
             self.runner.checks()
 
-    '''Toggle btn_noconnection visibility'''
+    # Toggle btn_noconnection visibility
     def toggle_btn_noconnection(self, status):
         self.btn_noconnection.set_visible(status)
 
-    '''Execute before window shown'''
+    # Execute before window shown
     def on_start(self):
-        '''Search for at least one local runner'''
+        # Search for at least one local runner
         tmp_runners = [x for x in self.runner.runners_available if not x.startswith('sys-')]
         if len(tmp_runners) == 0:
-            '''Check for flatpak migration'''
+            # Check for flatpak migration
             if "IS_FLATPAK" in os.environ \
                 and self.settings.get_boolean("flatpak-migration") \
                 and self.runner.check_bottles_n() > 0:
@@ -191,32 +191,32 @@ class BottlesWindow(Handy.ApplicationWindow):
 
         self.check_crash_log()
 
-    '''Toggle UI usability preventing user clicks'''
+    # Toggle UI usability preventing user clicks
     def set_usable_ui(self, status):
         for widget in [self.btn_back,
                        self.btn_add,
                        self.btn_menu]:
             widget.set_sensitive(status)
 
-    '''Send new notification'''
+    # Send new notification
     def send_notification(self, title, text, image="", user_settings=True):
         if user_settings and self.settings.get_boolean("notifications") or not user_settings:
             notification = Notify.Notification.new(title, text, image)
             notification.show()
 
-    '''Save pevious page for back button'''
+    # Save pevious page for back button
     def set_previous_page_status(self):
         self.previous_page = self.stack_main.get_visible_child_name()
         self.btn_add.set_visible(False)
         self.btn_menu.set_visible(False)
         self.btn_back.set_visible(True)
 
-    '''Open URLs'''
+    # Open URLs
     @staticmethod
     def open_docs_url(widget):
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
-    '''Go back to previous page'''
+    # Go back to previous page
     def go_back(self, widget=False):
 
         for w in [self.btn_add, self.btn_menu]:
@@ -283,13 +283,13 @@ class BottlesWindow(Handy.ApplicationWindow):
         except FileNotFoundError:
             pass
 
-    '''Properly close Bottles'''
+    # Properly close Bottles
     @staticmethod
     def proper_close():
         time.sleep(1)
         quit()
 
-    '''Show about dialog'''
+    # Show about dialog
     @staticmethod
     def show_about_dialog(widget):
         BottlesAboutDialog().show_all()

@@ -31,10 +31,10 @@ from pathlib import Path
 
 from gi.repository import GLib
 
-'''Set default logging level'''
+# Set default logging level
 logging.basicConfig(level=logging.DEBUG)
 
-'''Check online connection'''
+# Check online connection
 class UtilsConnection():
 
     def __init__(self, window, **kwargs):
@@ -64,7 +64,7 @@ class UtilsConnection():
 
         return False
 
-'''Launch commands in system terminal'''
+# Launch commands in system terminal
 class UtilsTerminal():
 
     terminals = [
@@ -89,7 +89,7 @@ class UtilsTerminal():
                     stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
                 break
 
-'''Custom formatted logger'''
+# Custom formatted logger
 class UtilsLogger(logging.getLoggerClass()):
 
     color_map = {
@@ -136,7 +136,7 @@ class UtilsLogger(logging.getLoggerClass()):
     def critical(self, message):
         self.root.critical(self.color("critical", message))
 
-'''Files utilities'''
+# Files utilities
 class UtilsFiles():
 
     @staticmethod
@@ -153,12 +153,12 @@ class UtilsFiles():
 
     @staticmethod
     def use_insensitive_ext(string):
-        '''Converts a glob pattern into a case-insensitive glob pattern'''
+        # Converts a glob pattern into a case-insensitive glob pattern
         ext = string.split('.')[1]
         globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
         return '*.%s' % ''.join(globlist)
 
-'''Execute synchronous tasks'''
+# Execute synchronous tasks
 class RunAsync(threading.Thread):
 
     def __init__(self, task_func, callback, *args, **kwargs):
@@ -202,7 +202,7 @@ class RunAsync(threading.Thread):
         return self.source_id
 
 
-'''Extract a Windows cabinet'''
+# Extract a Windows cabinet
 class CabExtract():
 
     requirements = False
