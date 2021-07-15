@@ -687,13 +687,7 @@ class BottlesRunner:
     '''Check for gamemode in the system'''
     def check_gamemode(self):
         if shutil.which("gamemoderun") is not None:
-            status = subprocess.call([
-                "systemctl", "is-active", "--quiet", "gamemoded"])
-            if status == 3:
-                status = subprocess.call([
-                    "systemctl", "--user", "is-active", "--quiet", "gamemoded"])
-            if status == 0:
-                self.gamemode_available = True
+            self.gamemode_available = True
 
     def find_program_icon(self, program_name):
         logging.debug(f"Searching [{program_name}] icon..")
