@@ -20,6 +20,7 @@ from gi.repository import Gtk, GLib, Handy
 
 from .dialog import BottlesMessageDialog
 from ..utils import UtilsFiles
+from ..runner_utilities import RunnerUtilities
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottlesListEntry(Handy.ActionRow):
@@ -126,13 +127,13 @@ class BottlesListEntry(Handy.ActionRow):
             response = file_dialog.run()
 
             if response == -3:
-                self.runner.run_executable(self.configuration,
+                RunnerUtilities().run_executable(self.configuration,
                                            file_dialog.get_filename())
 
             file_dialog.destroy()
         else:
             '''Use executable provided as bottles argument'''
-            self.runner.run_executable(self.configuration, self.arg_executable)
+            RunnerUtilities().run_executable(self.configuration, self.arg_executable)
             if self.window.settings.get_boolean("auto-close-bottles"):
                 self.window.proper_close()
             self.arg_executable = False

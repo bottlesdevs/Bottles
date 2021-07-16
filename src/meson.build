@@ -27,6 +27,8 @@ bottles_sources = [
   'params.py',
   'download.py',
   'runner.py',
+  'runner_utilities.py',
+  'runner_globals.py',
   'empty.py',
   'utils.py',
 ]

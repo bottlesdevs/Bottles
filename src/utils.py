@@ -65,6 +65,7 @@ class UtilsConnection():
             self.status = False
 
         return False
+    
 
 # Launch commands in system terminal
 class UtilsTerminal():

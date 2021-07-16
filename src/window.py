@@ -28,6 +28,7 @@ from pathlib import Path
 
 from .params import *
 from .runner import BottlesRunner
+from .runner_utilities import RunnerUtilities
 
 from .pages.new import BottlesNew
 from .pages.onboard import BottlesOnboard
@@ -105,7 +106,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         if arg_executable and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
-                self.runner.run_executable(bottle_configuration,
+                RunnerUtilities().run_executable(bottle_configuration,
                                            arg_executable)
                 self.proper_close()
 
@@ -113,7 +114,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         if arg_lnk and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
-                self.runner.run_lnk(bottle_configuration,
+                RunnerUtilities().run_lnk(bottle_configuration,
                                     arg_lnk)
                 self.proper_close()
 

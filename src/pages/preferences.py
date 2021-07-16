@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, GLib, Handy
+from ..runner_utilities import RunnerUtilities
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class BottlesPreferences(Handy.PreferencesWindow):
@@ -160,7 +161,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
     '''Browse dxvk files'''
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
-        self.runner.open_filemanager(path_type="dxvk",
+        RunnerUtilities().open_filemanager(path_type="dxvk",
                                      dxvk=self.dxvk_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
@@ -228,7 +229,7 @@ class BottlesVkd3dEntry(Handy.ActionRow):
     '''Browse vkd3d files'''
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
-        self.runner.open_filemanager(path_type="vkd3d",
+        RunnerUtilities().open_filemanager(path_type="vkd3d",
                                      vkd3d=self.vkd3d_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
@@ -303,7 +304,7 @@ class BottlesRunnerEntry(Handy.ActionRow):
     '''Browse runner files'''
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
-        self.runner.open_filemanager(path_type="runner",
+        RunnerUtilities().open_filemanager(path_type="runner",
                                      runner=self.runner_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):

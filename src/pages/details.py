@@ -22,6 +22,8 @@ import webbrowser
 
 from .dialog import BottlesDialog, BottlesMessageDialog
 from ..utils import UtilsFiles
+from ..runner_utilities import RunnerUtilities
+from ..runner_globals import *
 
 class BottlesDetailsPageRow(Gtk.ListBoxRow):
 
@@ -393,7 +395,7 @@ class BottlesProgramEntry(Handy.ActionRow):
             arguments = self.configuration["Programs"][self.program_executable]
         else:
             arguments = False
-        self.runner.run_executable(self.configuration,
+        RunnerUtilities().run_executable(self.configuration,
                                    self.program_executable_path,
                                    arguments)
 
@@ -636,8 +638,8 @@ class BottlesDetails(Handy.Leaflet):
         self.list_pages.connect('row-selected', self.change_page)
 
         # Toggle gamemode switcher sensitivity
-        self.switch_gamemode.set_sensitive(self.runner.gamemode_available)
-        if not self.runner.gamemode_available:
+        self.switch_gamemode.set_sensitive(gamemode_available)
+        if not gamemode_available:
             self.switch_gamemode.set_tooltip_text(_("Gamemode is either not available on your system or not running."))
 
         self.build_pages()
@@ -1078,12 +1080,12 @@ class BottlesDetails(Handy.Leaflet):
 
         if response == -3:
             if args:
-                self.runner.run_executable(
+                RunnerUtilities().run_executable(
                     configuration=self.configuration,
                     file_path=file_dialog.get_filename(),
                     arguments=args)
             else:
-                self.runner.run_executable(
+                RunnerUtilities().run_executable(
                     configuration=self.configuration,
                     file_path=file_dialog.get_filename())
 
@@ -1091,37 +1093,37 @@ class BottlesDetails(Handy.Leaflet):
 
     '''Run wine executables and utilities'''
     def run_winecfg(self, widget):
-        self.runner.run_winecfg(self.configuration)
+        RunnerUtilities().run_winecfg(self.configuration)
 
     def run_debug(self, widget):
-        self.runner.run_debug(self.configuration)
+        RunnerUtilities().run_debug(self.configuration)
 
     def run_browse(self, widget):
-        self.runner.open_filemanager(self.configuration)
+        RunnerUtilities().open_filemanager(self.configuration)
 
     def run_cmd(self, widget):
-        self.runner.run_cmd(self.configuration)
+        RunnerUtilities().run_cmd(self.configuration)
 
     def run_taskmanager(self, widget):
-        self.runner.run_taskmanager(self.configuration)
+        RunnerUtilities().run_taskmanager(self.configuration)
 
     def run_controlpanel(self, widget):
-        self.runner.run_controlpanel(self.configuration)
+        RunnerUtilities().run_controlpanel(self.configuration)
 
     def run_uninstaller(self, widget):
-        self.runner.run_uninstaller(self.configuration)
+        RunnerUtilities().run_uninstaller(self.configuration)
 
     def run_regedit(self, widget):
-        self.runner.run_regedit(self.configuration)
+        RunnerUtilities().run_regedit(self.configuration)
 
     def run_shutdown(self, widget):
-        self.runner.send_status(self.configuration, "shutdown")
+        RunnerUtilities.send_status(self.configuration, "shutdown")
 
     def run_reboot(self, widget):
-        self.runner.send_status(self.configuration, "reboot")
+        RunnerUtilities.send_status(self.configuration, "reboot")
 
     def run_killall(self, widget):
-        self.runner.send_status(self.configuration, "kill")
+        RunnerUtilities.send_status(self.configuration, "kill")
 
     '''Validate entry_state input'''
     def check_entry_state_comment(self, widget, event_key):
