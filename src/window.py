@@ -39,7 +39,7 @@ from .pages.taskmanager import BottlesTaskManager
 from .pages.importer import BottlesImporter
 from .pages.dialog import BottlesAboutDialog, BottlesCrashReport, BottlesFlatpakMigration
 
-from .utils import UtilsConnection, UtilsLogger, RunAsync
+from .utils import UtilsConnection, UtilsLogger
 
 logging = UtilsLogger()
 

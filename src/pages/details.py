@@ -23,7 +23,6 @@ import webbrowser
 from .dialog import BottlesDialog, BottlesMessageDialog
 from ..utils import UtilsFiles
 from ..runner_utilities import RunnerUtilities
-from ..runner_globals import *
 
 class BottlesDetailsPageRow(Gtk.ListBoxRow):
 

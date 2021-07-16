@@ -31,9 +31,9 @@ class BottlesSamples:
             "fixme_logs": False,
             "environment_variables": "",
         },
-        "Installed_Dependencies" : [],
-        "DLL_Overrides" : {},
-        "Programs" : {},
+        "Installed_Dependencies": [],
+        "DLL_Overrides": {},
+        "Programs": {},
         "Uninstallers": {}
     }
 
@@ -56,6 +56,8 @@ class BottlesSamples:
             }
         }
     }
+
+
 class BottlesRepositories:
     components = "https://raw.githubusercontent.com/bottlesdevs/components/main/"
     components_index = f"{components}/index.yml"

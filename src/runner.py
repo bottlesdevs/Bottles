@@ -38,7 +38,7 @@ from datetime import datetime
 from .download import DownloadManager
 from .utils import UtilsLogger, UtilsFiles, RunAsync, CabExtract, validate_url
 from .runner_utilities import RunnerUtilities
-from .runner_globals import *
+from .runner_globals import BottlesSamples, BottlesRepositories, BottlesPaths, TrdyPaths
 
 logging = UtilsLogger()
 

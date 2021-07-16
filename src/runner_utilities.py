@@ -5,7 +5,7 @@ from typing import NewType
 
 from .download import DownloadManager
 from .utils import UtilsTerminal, UtilsLogger, RunAsync
-from .runner_globals import *
+from .runner_globals import BottlesPaths
 
 logging = UtilsLogger()
 
