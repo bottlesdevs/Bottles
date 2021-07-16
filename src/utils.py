@@ -31,6 +31,8 @@ from pathlib import Path
 
 from gi.repository import GLib
 
+from .pages.dialog import BottlesDialog
+
 # Set default logging level
 logging.basicConfig(level=logging.DEBUG)
 
@@ -158,6 +160,17 @@ class UtilsFiles():
         globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
         return '*.%s' % ''.join(globlist)
 
+
+def write_log(data:list):
+    log_path = f"{Path.home()}/.local/share/bottles/crash.log"
+    if "IS_FLATPAK" in os.environ:
+        log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
+
+    with open(log_path, "w") as crash_log:
+        for d in data:
+            crash_log.write(d)
+
+
 # Execute synchronous tasks
 class RunAsync(threading.Thread):
 
@@ -190,13 +203,7 @@ class RunAsync(threading.Thread):
             traceback.print_tb(trace)
             traceback_info = '\n'.join(traceback.format_tb(trace))
 
-            log_path = f"{Path.home()}/.local/share/bottles/crash.log"
-            if "IS_FLATPAK" in os.environ:
-                log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
-            with open(log_path, "w") as crash_log:
-                crash_log.write(str(exception))
-                crash_log.write(traceback_info)
-
+            write_log([str(exception), traceback_info])
 
         self.source_id = GLib.idle_add(self.callback, result, error)
         return self.source_id
@@ -215,31 +222,39 @@ class CabExtract():
         self.__extract()
 
     def __checks(self):
-        if shutil.which("cabextract") is not None:
-            self.requirements = True
+        if not os.path.exists(self.path):
+            logging.error(f"Cab file {self.path} not found")
+            write_log(f"Cab file {self.path} not found")
+            exit()
 
-    def __extract(self):
+        if not self.path.endswith((".exe", ".msi")):
+            logging.error(f"{self.path} is not a cab file")
+            write_log(f"{self.path} is not a cab file")
+            exit()
+        
+        if not shutil.which("cabextract2"):
+            logging.fatal("cabextract utility not found, please install to use dependencies wich need this feature")
+            write_log("cabextract utility not found, please install to use dependencies wich need this feature")
+            exit()
+        
+        return True
+
+    def __extract(self) -> bool:
         temp_path = f"{Path.home()}/.local/share/bottles/temp"
         if "IS_FLATPAK" in os.environ:
             temp_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles/temp"
-
-        if not self.requirements:
-            return False
-
-        if not self.path.endswith((".exe", ".msi")):
-            # TODO: in Trento we should raise specific exceptions
-            return False
 
         try:
             subprocess.Popen(
                 f"cabextract {self.path} -d {temp_path}/{self.name}",
                 shell=True
             ).communicate()
-            return True
-        except:
-            pass
+        except Exception as exception:
+            logging.error(f"Error while extracting cab file {self.path}:\n{exception}")
+            return False
 
-        return False
+        return True
+
 
         
 def validate_url(url: str):
