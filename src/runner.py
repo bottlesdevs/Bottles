@@ -61,60 +61,6 @@ class BottlesRunner:
     supported_dependencies = {}
     supported_installers = {}
 
-    # Bottle configuration sample
-    sample_configuration = {
-        "Name": "",
-        "Runner": "",
-        "DXVK": "",
-        "VKD3D": "",
-        "Path": "",
-        "Custom_Path": False,
-        "Environment": "",
-        "Creation_Date": "",
-        "Update_Date": "",
-        "Versioning": False,
-        "State": 0,
-        "Parameters": {
-            "dxvk": False,
-            "dxvk_hud": False,
-            "vkd3d": False,
-            "gamemode": False,
-            "sync": "wine",
-            "aco_compiler": False,
-            "discrete_gpu": False,
-            "virtual_desktop": False,
-            "virtual_desktop_res": "1280x720",
-            "pulseaudio_latency": False,
-            "fixme_logs": False,
-            "environment_variables": "",
-        },
-        "Installed_Dependencies" : [],
-        "DLL_Overrides" : {},
-        "Programs" : {},
-        "Uninstallers": {}
-    }
-
-    # Environments
-    environments = {
-        "gaming": {
-            "Runner": "wine",
-            "Parameters": {
-                "dxvk": True,
-                "vkd3d": True,
-                "sync": "esync",
-                "discrete_gpu": True,
-                "pulseaudio_latency": True
-            }
-        },
-        "software": {
-            "Runner": "wine",
-            "Parameters": {
-                "dxvk": True,
-                "vkd3d": True
-            }
-        }
-    }
-
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
@@ -839,26 +785,26 @@ class BottlesRunner:
                 configuration_file_yaml = yaml.safe_load(configuration_file)
                 configuration_file.close()
 
-                missing_keys = self.sample_configuration.keys() - configuration_file_yaml.keys()
+                missing_keys = BottlesSamples.configuration.keys() - configuration_file_yaml.keys()
                 for key in missing_keys:
                     logging.warning(
                         f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] configuration, updating.")
                     self.update_configuration(configuration_file_yaml,
                                               key,
-                                              self.sample_configuration[key])
+                                              BottlesSamples.configuration[key])
 
-                missing_parameters_keys = self.sample_configuration["Parameters"].keys() - configuration_file_yaml["Parameters"].keys()
+                missing_parameters_keys = BottlesSamples.configuration["Parameters"].keys() - configuration_file_yaml["Parameters"].keys()
                 for key in missing_parameters_keys:
                     logging.warning(
                         f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] configuration Parameters, updating.")
                     self.update_configuration(configuration_file_yaml,
                                               key,
-                                              self.sample_configuration["Parameters"][key],
+                                              BottlesSamples.configuration["Parameters"][key],
                                               scope="Parameters")
                 self.local_bottles[bottle_name_path] = configuration_file_yaml
 
             except FileNotFoundError:
-                new_configuration_yaml = self.sample_configuration.copy()
+                new_configuration_yaml = BottlesSamples.configuration.copy()
                 new_configuration_yaml["Broken"] = True
                 new_configuration_yaml["Name"] = bottle_name_path
                 new_configuration_yaml["Environment"] = "Undefined"
@@ -972,7 +918,7 @@ class BottlesRunner:
         logging.info("Generating Bottle configuration file …")
         update_output("Generating Bottle configuration file …")
 
-        configuration = self.sample_configuration
+        configuration = BottlesSamples.configuration
         configuration["Name"] = bottle_name
         configuration["Runner"] = runner_name
         configuration["DXVK"] = dxvk_name
@@ -991,7 +937,7 @@ class BottlesRunner:
         logging.info(f"Applying environment: [{environment}] …")
         update_output(_("Applying environment: {0} …").format(environment))
         if environment != "Custom":
-            environment_parameters = self.environments[environment.lower()]["Parameters"]
+            environment_parameters = BottlesSamples.environments[environment.lower()]["Parameters"]
             for parameter in configuration["Parameters"]:
                 if parameter in environment_parameters:
                     configuration["Parameters"][parameter] = environment_parameters[parameter]
@@ -1131,7 +1077,7 @@ class BottlesRunner:
         bottle_complete_path = f"{BottlesPaths.bottles}/{configuration['Name']}"
 
         # Create new configuration with path as name and Custom environment 
-        new_configuration = self.sample_configuration
+        new_configuration = BottlesSamples.configuration
         new_configuration["Name"] = configuration.get("Name")
         new_configuration["Runner"] = self.runners_available[0]
         new_configuration["Path"] = configuration.get("Name")
@@ -1368,7 +1314,7 @@ class BottlesRunner:
         subprocess.Popen(command, shell=True).communicate()
 
         # Create bottle configuration
-        new_configuration = self.sample_configuration
+        new_configuration = BottlesSamples.configuration
         new_configuration["Name"] = wineprefix["Name"]
         new_configuration["Runner"] = self.get_latest_runner()
         new_configuration["Path"] = bottle_path
