@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-13 17:38+0200\n"
-"PO-Revision-Date: 2021-07-06 13:04+0000\n"
-"Last-Translator: Flywater Zh <lumingzh@qq.com>\n"
+"PO-Revision-Date: 2021-07-16 13:26+0000\n"
+"Last-Translator: Yuzaihhhh <yuzaihhhh@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -683,9 +683,8 @@ msgid "Debug wine processes."
 msgstr "调试 wine 进程。"
 
 #: src/ui/details.ui:853 src/ui/details.ui:1827 src/ui/details.ui:2224
-#, fuzzy
 msgid "Read documentation"
-msgstr "文档"
+msgstr "阅读文档"
 
 #: src/ui/details.ui:883
 msgid "Task Manager"
@@ -724,26 +723,23 @@ msgid "Use DXVK"
 msgstr "使用 DXVK"
 
 #: src/ui/details.ui:1049
-#, fuzzy
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"在游戏和 3D 应用程序中提高性能。\n"
+"改进Directx 11游戏和3D应用程序的性能。\n"
 "如果您遭遇图形故障请禁用。"
 
 #: src/ui/details.ui:1076
-#, fuzzy
 msgid "Use VKD3D"
-msgstr "使用 DXVK"
+msgstr "使用 VKD3D"
 
 #: src/ui/details.ui:1077
-#, fuzzy
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"在游戏和 3D 应用程序中提高性能。\n"
+"改进Directx 12游戏和3D应用程序的性能。\n"
 "如果您遭遇图形故障请禁用。"
 
 #: src/ui/details.ui:1104
@@ -820,9 +816,8 @@ msgid "Manage DXVK versions"
 msgstr "管理 DXVK 版本"
 
 #: src/ui/details.ui:1484
-#, fuzzy
 msgid "VKD3D Version"
-msgstr "DXVK 版本"
+msgstr "VKD3D 版本"
 
 #: src/ui/details.ui:1560 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -882,15 +877,15 @@ msgstr ""
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
-msgstr ""
+msgstr "虽然此页面上的文件已验证，但可能属于专有许可证。"
 
 #: src/ui/details.ui:1894
 msgid "Microsoft .NET Framework 4 .."
-msgstr ""
+msgstr "微软 .NET Framework 4 .."
 
 #: src/ui/details.ui:1986
 msgid "These are the programs found in your bottle's Start menu"
-msgstr ""
+msgstr "可从Bottles开始菜单中找到的程序"
 
 #: src/ui/details.ui:2006
 msgid "Search for installed programs"
@@ -1026,14 +1021,12 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "该 wineprefix 已导入 Bottles 中。"
 
 #: src/ui/list.ui:73
-#, fuzzy
 msgid "Start off by creating a Bottle."
-msgstr "以创建 bottle 开始"
+msgstr "新建一个Bottle以开始。"
 
 #: src/ui/list.ui:76
-#, fuzzy
 msgid "Create a new Bottle"
-msgstr "创建新状态"
+msgstr "新建一个Bottle"
 
 #: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
@@ -1126,7 +1119,6 @@ msgid "Creating bottle…"
 msgstr "正在创建 bottle…"
 
 #: src/ui/new.ui:459
-#, fuzzy
 msgid "Take a break, it may take a while"
 msgstr "喝杯茶，它可能会花一点时间"
 
@@ -1163,9 +1155,8 @@ msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr "Bottles 使在 Linux 上运行 Windows 软件更加容易。"
 
 #: src/ui/onboard.ui:229
-#, fuzzy
 msgid "What are runners?"
-msgstr "管理运行器"
+msgstr "什么是 runners？"
 
 #: src/ui/onboard.ui:249
 msgid ""
@@ -1188,7 +1179,6 @@ msgid "We are almost there"
 msgstr "即将完成"
 
 #: src/ui/onboard.ui:319
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -1203,10 +1193,12 @@ msgid ""
 msgstr ""
 "我们需要下载并安装一个运行器让你能够创建自己的 bottles。\n"
 "下载文件的大小是<b>~70MB</b>。\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\""
+">了解我们将要下载的内容</a>\n"
 "\n"
 "由于这些运行器具有不同的发布周期我们不能为 Bottles 提供这些文件。\n"
 "\n"
-"您准备好时请点击安装按钮。"
+"您准备好时请点击<b>安装</b>按钮。"
 
 #: src/ui/onboard.ui:341 src/ui/preferences.ui:154
 msgid "Runners"
