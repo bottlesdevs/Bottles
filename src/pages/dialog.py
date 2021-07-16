@@ -73,10 +73,9 @@ class BottlesDialog(Gtk.Dialog):
         '''Display log as output if defined'''
         if log:
             self.resize(600, 700)
-            if parent.settings.get_boolean("dark-theme"):
+            color = "#3e0622"
+            if parent is not None and parent.settings.get_boolean("dark-theme"):
                 color = "#d4036d"
-            else:
-                color = "#3e0622"
             message_scroll = Gtk.ScrolledWindow()
             message_scroll.set_hexpand(True)
             message_scroll.set_vexpand(True)
