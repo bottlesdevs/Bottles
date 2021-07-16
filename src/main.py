@@ -32,6 +32,8 @@ from pathlib import Path
 from .params import *
 from .utils import UtilsLogger
 
+VERSION = "Bottles 2021.7.14-treviso"
+
 share_dir = os.path.join(sys.prefix, 'share')
 base_dir = '.'
 
@@ -72,6 +74,12 @@ class Application(Gtk.Application):
         self.add_arguments()
 
     def add_arguments(self):
+        self.add_main_option("version",
+                             ord("v"),
+                             GLib.OptionFlags.NONE,
+                             GLib.OptionArg.NONE,
+                             _("Show version"),
+                             None)
         self.add_main_option("executable",
                              ord("e"),
                              GLib.OptionFlags.NONE,
@@ -96,6 +104,10 @@ class Application(Gtk.Application):
         if options.contains("executable"):
             executable_path = options.lookup_value("executable").get_string()
             self.arg_executable = executable_path
+
+        if options.contains("version"):
+            print(VERSION)
+            quit()
 
         if options.contains("lnk"):
             lnk_path = options.lookup_value("lnk").get_string()
