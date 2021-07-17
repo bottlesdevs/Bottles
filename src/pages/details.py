@@ -27,14 +27,33 @@ class BottlesDetailsPageRow(Gtk.ListBoxRow):
 
     def __init__(self, page_name, title, **kwargs):
         super().__init__(**kwargs)
-
         self.page_name = page_name
-        self.add(Gtk.Label(
+
+        icons = {
+            "bottle": "com.usebottles.bottles-symbolic",
+            "preferences": "applications-system-symbolic",
+            "dependencies": "application-x-addon-symbolic",
+            "programs": "preferences-desktop-apps-symbolic",
+            "versioning": "preferences-system-time-symbolic",
+            "installers": "system-software-install-symbolic"
+        }
+
+        box = Gtk.Box(
+            orientation=Gtk.Orientation.HORIZONTAL, 
+            spacing=6
+        )
+        icon = Gtk.Image()
+        icon.set_from_icon_name(icons[page_name], Gtk.IconSize.SMALL_TOOLBAR)
+        box.pack_start(icon, False, False, 0)
+
+        box.pack_start(Gtk.Label(
             label=title,
             xalign=0.0
-        ))
+        ), False, False, 0)
 
         self.get_style_context().add_class("page-row")
+
+        self.add(box)
 
         self.show_all()
 
