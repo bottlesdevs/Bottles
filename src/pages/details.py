@@ -21,8 +21,7 @@ import re
 import webbrowser
 
 from .dialog import BottlesDialog, BottlesMessageDialog
-from ..utils import UtilsFiles
-from ..runner_utilities import RunnerUtilities
+from ..runner_utilities import RunnerUtilities, gamemode_available
 
 class BottlesDetailsPageRow(Gtk.ListBoxRow):
 

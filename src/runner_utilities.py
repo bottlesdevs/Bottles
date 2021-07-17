@@ -3,9 +3,8 @@ import subprocess
 
 from typing import NewType
 
-from .download import DownloadManager
 from .utils import UtilsTerminal, UtilsLogger, RunAsync
-from .runner_globals import BottlesPaths
+from .runner_globals import BottlesPaths, gamemode_available
 
 logging = UtilsLogger()
 

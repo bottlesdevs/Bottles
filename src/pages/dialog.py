@@ -18,7 +18,9 @@
 from urllib.parse import quote
 import webbrowser
 import os
+import gi
 
+gi.require_version('Handy', '1')
 from gi.repository import Gtk, Handy
 
 class BottlesMessageDialog(Gtk.MessageDialog):

@@ -367,7 +367,6 @@ class BottlesRunner:
                     shutil.copyfile(
                         f"{path}/{font}",
                         f"{bottle_path}/drive_c/windows/Fonts/{font}")
-                    time.sleep(1)
 
             # Step type: copy_cab_dll
             if step["action"] == "copy_cab_dll":

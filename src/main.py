@@ -25,7 +25,7 @@ import subprocess
 
 gi.require_version('Gtk', '3.0')
 
-from gi.repository import Gtk, Gio, Gdk, GLib
+from gi.repository import Gtk, Gio, Gdk, GLib, GObject
 
 from pathlib import Path
 
@@ -207,6 +207,8 @@ class Application(Gtk.Application):
 
 
 # Run Bottles application
+
+GObject.threads_init()
 
 def main(version):
     app = Application()
