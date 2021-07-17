@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-13 17:38+0200\n"
 "PO-Revision-Date: 2021-07-18 12:17+0000\n"
-"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -40,7 +40,7 @@ msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles🍷!"
-msgstr "Ejecute fácilmente programas de Windows en Linux con 🍷 Botellas!"
+msgstr "Ejecute fácilmente programas de Windows en Linux con Bottles 🍷"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -78,8 +78,8 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Ejecute todos los instaladores (.exe / .msi) en sus botellas, directamente "
-"desde el menú contextual de su administrador de archivos"
+"Abra ejecutables (.exe/.msi) en sus botellas, directamente desde el menú "
+"contextual del gestor de archivos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
@@ -108,9 +108,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:25
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr ""
-"Instalación y gestión automática de los componentes de ejecución Wine y "
-"Proton"
+msgstr "Instalación y gestión automática de los ejecutores Wine y Proton"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
@@ -176,6 +174,8 @@ msgid ""
 "If versioning is active for the bottle, a new state is created before "
 "installing a dependency"
 msgstr ""
+"Si el versionado está activo en la botella, se crea un estado nuevo antes de "
+"instalar una dependencia"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid ""
@@ -198,12 +198,16 @@ msgid ""
 "When a crash report appears, reporting it the issue is automatically and "
 "correctly filled"
 msgstr ""
+"Cuando aparece un informe de cierre inesperado, se genera el informe "
+"automática y adecuadamente"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "While creating a new state, information about the entire process is shown on "
 "the screen"
 msgstr ""
+"Cuando se crea un estado nuevo, se muestra en pantalla información sobre "
+"todo el proceso"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "Support for vkd3d"
@@ -212,10 +216,11 @@ msgstr "Compatibilidad con vkd3d"
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "The search for installed programs has been extended to user AppData"
 msgstr ""
+"La búsqueda de programas instalados se ha ampliado a los AppData de usuario"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "Fixed some problems related to the dxvk implementation"
-msgstr ""
+msgstr "Se corrigieron algunos problemas relativos a la implementación de DXVK"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid ""
@@ -257,7 +262,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid "Install dxvk and vkd3d on bottle creation if missing"
-msgstr ""
+msgstr "Se instalan DXVK y VKD3D si faltasen al crear botellas"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "The preferences are organized into sections"
@@ -350,6 +355,8 @@ msgstr "Se utiliza el formato YAML nuevo para la configuración de cada botella"
 #: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Using the new yaml repositories for components/dependencies/programs"
 msgstr ""
+"Se utilizan los repositorios YAML nuevos para componentes, dependencias y "
+"programas"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
 msgid "Automatic update old bottle configuration to the new model"
@@ -384,6 +391,8 @@ msgstr "Numeración de versiones nueva, según el modelo CalVer"
 #: data/com.usebottles.bottles.appdata.xml.in:158
 msgid "Create bottles using the wine runner provided by the distribution"
 msgstr ""
+"Creación de botellas utilizando el ejecutor de Wine provisto por la "
+"distribución"
 
 #: data/com.usebottles.bottles.appdata.xml.in:159
 msgid "Enable gamemode for your bottles if installed in the system"
@@ -494,7 +503,7 @@ msgstr "Elija qué vista debe cargarse al iniciar la aplicación."
 
 #: data/com.usebottles.bottles.gschema.xml:46 src/ui/preferences.ui:226
 msgid "Experiments"
-msgstr "Experimental"
+msgstr "Experimentos"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid ""
@@ -732,7 +741,7 @@ msgstr "Gestor de tareas"
 
 #: src/ui/details.ui:885
 msgid "Manage processes with the Wine task manager."
-msgstr "Gestione los procesos con el administrador de tareas de Wine."
+msgstr "Gestione los procesos con el gestor de tareas de Wine."
 
 #: src/ui/details.ui:922
 msgid "Uninstaller"
@@ -740,7 +749,7 @@ msgstr "Desinstalador"
 
 #: src/ui/details.ui:924
 msgid "Uninstall programs using wine uninstaller"
-msgstr "Desinstalar programas usando el desinstalador de Wine"
+msgstr "Desinstale programas mediante el desinstalador de Wine"
 
 #: src/ui/details.ui:961
 msgid "Control Panel"
@@ -752,7 +761,7 @@ msgstr "Accede al panel de control interno del Wine."
 
 #: src/ui/details.ui:1015
 msgid "Bottle"
-msgstr "Bottle"
+msgstr "Botella"
 
 #: src/ui/details.ui:1043
 msgid "Graphics"
@@ -760,7 +769,7 @@ msgstr "Gráficos"
 
 #: src/ui/details.ui:1048
 msgid "Use DXVK"
-msgstr "Usa DXVK"
+msgstr "Utilizar DXVK"
 
 #: src/ui/details.ui:1049
 msgid ""
@@ -843,11 +852,11 @@ msgstr "Fsync"
 
 #: src/ui/details.ui:1334 src/ui/new.ui:261
 msgid "Runner"
-msgstr "Instalador"
+msgstr "Ejecutor"
 
 #: src/ui/details.ui:1377 src/ui/new.ui:302
 msgid "Manage runners"
-msgstr "Administrar instaladores"
+msgstr "Gestionar ejecutores"
 
 #: src/ui/details.ui:1409 src/ui/new.ui:334
 msgid "DXVK Version"
@@ -890,7 +899,7 @@ msgstr "Variables de entorno"
 
 #: src/ui/details.ui:1695
 msgid "DXVK HUD"
-msgstr "DXVK HUD"
+msgstr "HUD de DXVK"
 
 #: src/ui/details.ui:1696
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
@@ -900,11 +909,11 @@ msgstr ""
 
 #: src/ui/details.ui:1722
 msgid "Enable wine fixme logs"
-msgstr "Habilitar registros de Wine fixme"
+msgstr "Activar registros «fixme» de Wine"
 
 #: src/ui/details.ui:1723
 msgid "Log code paths that are unimplemented in Wine."
-msgstr "Rutas de código de registro que no están implementadas en Wine."
+msgstr "Registra las rutas de código que no se han implementado en Wine."
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
 #: src/pages/details.py:649
@@ -929,7 +938,7 @@ msgstr ""
 
 #: src/ui/details.ui:1894
 msgid "Microsoft .NET Framework 4 .."
-msgstr ""
+msgstr "Microsoft .NET Framework 4"
 
 #: src/ui/details.ui:1986
 msgid "These are the programs found in your bottle's Start menu"
@@ -980,11 +989,11 @@ msgstr ""
 
 #: src/ui/dialog-dll-overrides.ui:57
 msgid "New override"
-msgstr "Nueva anulación"
+msgstr "Anulación nueva"
 
 #: src/ui/dialog-dll-overrides.ui:68
 msgid "e.g. ucrtbase"
-msgstr "por ejemplo ucrtbase"
+msgstr "p. ej., ucrtbase"
 
 #: src/ui/dialog-dll-overrides.ui:125
 msgid "Existing overrides"
@@ -1070,7 +1079,7 @@ msgstr "Importar respaldo de Bottles"
 
 #: src/ui/importer-entry.ui:69
 msgid "This wineprefix was already imported in Bottles."
-msgstr "Este wineprefix ya se importó en Bottles."
+msgstr "Este prefijo de Wine ya se importó en Bottles."
 
 #: src/ui/list.ui:73
 msgid "Start off by creating a Bottle."
@@ -1392,7 +1401,7 @@ msgstr "Compruebe si hay procesos en ejecución."
 
 #: src/ui/window.ui:49 src/window.py:117
 msgid "Task manager"
-msgstr "Administrator de tareas"
+msgstr "Gestor de tareas"
 
 #: src/ui/window.ui:62
 msgid "Import and export"
@@ -1438,28 +1447,23 @@ msgstr "Se recibió la solicitud [Salir]."
 
 #: src/main.py:130
 msgid "[Help] request received."
-msgstr "[Ayuda] solicitud recibida."
+msgstr "Se recibió la solicitud [Ayuda]."
 
 #: src/main.py:136
 msgid "[Refresh] request received."
-msgstr "[Actualizar] solicitud recibida."
+msgstr "Se recibió la solicitud [Actualizar]."
 
 #: src/runner.py:970
-#, fuzzy
 msgid "No runners found, please install one."
-msgstr "No se encontró ningún ejecutor."
+msgstr "No se encontró ningún ejecutor; instale uno."
 
 #: src/runner.py:974
-#, fuzzy
 msgid "No dxvk found, installing the latest version …"
-msgstr ""
-"No se encontraron uno o más componentes; instalando la versión más reciente…"
+msgstr "No se encontró DXVK; instalando la versión más reciente…"
 
 #: src/runner.py:977
-#, fuzzy
 msgid "No vkd3d found, installing the latest version …"
-msgstr ""
-"No se encontraron uno o más componentes; instalando la versión más reciente…"
+msgstr "No se encontró VKD3D; instalando la versión más reciente…"
 
 #: src/runner.py:1017
 msgid "The wine configuration is being updated …"
@@ -1467,7 +1471,7 @@ msgstr "Se está actualizando la configuración del Wine …"
 
 #: src/runner.py:1023
 msgid "Wine configuration updated!"
-msgstr "Configuración Wine actualizada!"
+msgstr "Se actualizó la configuración de Wine."
 
 #: src/runner.py:1047
 #, python-brace-format
@@ -1635,7 +1639,7 @@ msgstr "Un entorno limpio para sus experimentos."
 #: src/pages/new.py:231
 #, python-format
 msgid "A bottle named “%s” was created successfully"
-msgstr "Se creó correctamente una botella llamada “%s”"
+msgstr "Se creó una botella llamada «%s» correctamente"
 
 #, python-brace-format
 #~ msgid "Downloaded file {0} looks corrupted. Try again."
