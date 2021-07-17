@@ -21,7 +21,7 @@ import os
 import gi
 
 gi.require_version('Handy', '1')
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Handy, Pango
 
 class BottlesMessageDialog(Gtk.MessageDialog):
 
@@ -64,7 +64,7 @@ class BottlesDialog(Gtk.Dialog):
     def __init__(self,
                  parent,
                  title=_("Warning"),
-                 message=_("An error has occurred."),
+                 message=False,
                  log=False):
 
         Gtk.Dialog.__init__(self,
@@ -88,6 +88,10 @@ class BottlesDialog(Gtk.Dialog):
             message_buffer.insert_markup(
                 buffer_iter, "<span foreground='%s'>%s</span>" % (color, log), -1)
             message_scroll.add(message_view)
+        else:
+            message_label = Gtk.Label(label=message)
+            message_label.wrap_width = 500
+            message_label.wrap_mode = Pango.WrapMode.WORD_CHAR
 
         content = self.get_content_area()
 
@@ -95,6 +99,7 @@ class BottlesDialog(Gtk.Dialog):
         box.set_border_width(20)
 
         if log: box.add(message_scroll)
+        if message: box.add(message_label)
 
         content.add(box)
         self.show_all()

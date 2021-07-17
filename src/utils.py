@@ -214,29 +214,30 @@ class RunAsync(threading.Thread):
 class CabExtract():
 
     requirements = False
-
-    def __init__(self, path: str, name: str):
+    
+    def run(self, path: str, name: str):
         self.path = path
         self.name = name
 
-        self.__checks()
-        self.__extract()
+        if not self.__checks():
+            return False
+        return self.__extract()
 
     def __checks(self):
         if not os.path.exists(self.path):
             logging.error(f"Cab file {self.path} not found")
             write_log(f"Cab file {self.path} not found")
-            exit()
+            return False
 
         if not self.path.endswith((".exe", ".msi")):
             logging.error(f"{self.path} is not a cab file")
             write_log(f"{self.path} is not a cab file")
-            exit()
+            return False
         
-        if not shutil.which("cabextract"):
+        if not shutil.which("cabextract2"):
             logging.fatal("cabextract utility not found, please install to use dependencies wich need this feature")
             write_log("cabextract utility not found, please install to use dependencies wich need this feature")
-            exit()
+            return False
         
         return True
 
@@ -250,11 +251,11 @@ class CabExtract():
                 f"cabextract {self.path} -d {temp_path}/{self.name}",
                 shell=True
             ).communicate()
+            return True
         except Exception as exception:
             logging.error(f"Error while extracting cab file {self.path}:\n{exception}")
-            return False
 
-        return True
+        return False
 
 
         

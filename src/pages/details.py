@@ -423,6 +423,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
     btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     btn_license = Gtk.Template.Child()
+    btn_err = Gtk.Template.Child()
 
     def __init__(self, window, configuration, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
@@ -491,6 +492,12 @@ class BottlesDependencyEntry(Handy.ActionRow):
         self.runner.remove_dependency(self.configuration,
                                       self.dependency,
                                       self)
+    
+    '''Set error status'''
+    def set_err(self):
+        self.btn_install.set_visible(False)
+        self.btn_remove.set_visible(False)
+        self.btn_err.set_visible(True)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')

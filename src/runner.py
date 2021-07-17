@@ -345,17 +345,29 @@ class BottlesRunner:
                         else:
                             file = step.get("file_name")
 
-                        CabExtract(f"{BottlesPaths.temp}/{file}", file)
-                        CabExtract(
+                        if not CabExtract().run(
                             f"{BottlesPaths.temp}/{file}",
-                            os.path.splitext(f"{file}")[0])
+                            file
+                        ):
+                            GLib.idle_add(widget.set_err)
+                            exit()
+                        if not CabExtract().run(
+                            f"{BottlesPaths.temp}/{file}",
+                            os.path.splitext(f"{file}")[0]
+                        ):
+                            GLib.idle_add(widget.set_err)
+                            exit()
 
                 elif step["url"].startswith("temp/"):
                     path = step["url"]
                     path = path.replace("temp/", f"{BottlesPaths.temp}/")
-                    CabExtract(
+
+                    if not CabExtract().run(
                         f"{path}/{step.get('file_name')}",
-                        os.path.splitext(f"{step.get('file_name')}")[0])
+                        os.path.splitext(f"{step.get('file_name')}")[0]
+                    ):
+                        GLib.idle_add(widget.set_err)
+                        exit()
 
             # Step type: install_cab_fonts
             if step["action"] == "install_cab_fonts":
@@ -373,10 +385,15 @@ class BottlesRunner:
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
                 bottle_path = self.get_bottle_path(configuration)
-
-                shutil.copyfile(
-                    f"{path}/{step.get('file_name')}",
-                    f"{bottle_path}/drive_c/{step.get('dest')}")
+                
+                try:
+                    shutil.copyfile(
+                        f"{path}/{step.get('file_name')}",
+                        f"{bottle_path}/drive_c/{step.get('dest')}")
+                except FileNotFoundError:
+                    logging.error(
+                        f"dll {step.get('file_name')} not found in temp directory, there should be other errors from cabextract.")
+                    break
 
             # Step type: override_dll
             if step["action"] == "override_dll":
