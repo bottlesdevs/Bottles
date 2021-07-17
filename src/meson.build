@@ -29,6 +29,7 @@ bottles_sources = [
   'runner.py',
   'runner_utilities.py',
   'runner_globals.py',
+  'runner_versioning.py',
   'empty.py',
   'utils.py',
 ]

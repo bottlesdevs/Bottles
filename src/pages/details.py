@@ -278,7 +278,7 @@ class BottlesInstallerEntry(Handy.ActionRow):
         dialog_upgrade = BottlesDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
-            message=_("This is the manifest for {0}.").format(self.installer[0]),
+            message=False,
             log=self.runner.fetch_installer_manifest(self.installer[0],
                                                      self.installer[1]["Category"],
                                                       plain=True))
@@ -311,6 +311,7 @@ class BottlesStateEntry(Handy.ActionRow):
         self.state = state
         self.state_name = "State: {0}".format(state[0])
         self.configuration = configuration
+        self.versioning_manager = self.runner.versioning_manager
 
         '''Populate widgets'''
         self.set_title(self.state_name)
@@ -325,15 +326,15 @@ class BottlesStateEntry(Handy.ActionRow):
 
     '''Set bottle state'''
     def set_state(self, widget):
-        self.runner.set_bottle_state(self.configuration, self.state[0])
+        self.versioning_manager.set_bottle_state(self.configuration, self.state[0])
 
     '''Open state index'''
     def open_index(self, widget):
         dialog_upgrade = BottlesDialog(
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
-            message=_("This is the index for {0}.").format(self.state[0]),
-            log=self.runner.get_bottle_state_edits(self.configuration,
+            message=False,
+            log=self.versioning_manager.get_bottle_state_edits(self.configuration,
                                                    self.state[0],
                                                    True))
         dialog_upgrade.run()
@@ -465,7 +466,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
         dialog_upgrade = BottlesDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
-            message=_("This is the manifest for {0}.").format(self.dependency[0]),
+            message=False,
             log=self.runner.fetch_dependency_manifest(self.dependency[0],
                                                       self.dependency[1]["Category"],
                                                       plain=True))
@@ -570,6 +571,7 @@ class BottlesDetails(Handy.Leaflet):
         '''Common variables'''
         self.window = window
         self.runner = window.runner
+        self.versioning_manager = window.runner.versioning_manager
         self.configuration = configuration
 
         '''Signal connections'''
@@ -877,7 +879,7 @@ class BottlesDetails(Handy.Leaflet):
         if self.configuration.get("Versioning"):
             for w in self.list_states: w.destroy()
 
-            states = self.runner.list_bottle_states(self.configuration).items()
+            states = self.versioning_manager.list_bottle_states(self.configuration).items()
             if len(states) > 0:
                 for state in states:
                     self.list_states.add(
@@ -1146,7 +1148,7 @@ class BottlesDetails(Handy.Leaflet):
     def add_state(self, widget):
         comment = self.entry_state_comment.get_text()
         if comment != "":
-            self.runner.create_bottle_state(self.configuration, comment, after=self.update_states)
+            self.versioning_manager.create_bottle_state(self.configuration, comment, after=self.update_states)
             self.entry_state_comment.set_text("")
             self.pop_state.popdown()
 
