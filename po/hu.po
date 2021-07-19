@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-13 17:38+0200\n"
-"PO-Revision-Date: 2021-07-18 12:17+0000\n"
+"PO-Revision-Date: 2021-07-19 06:06+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -502,8 +502,8 @@ msgid ""
 "Toggle experimental features such as versioning and installers.Release "
 "Candidate for Runners"
 msgstr ""
-"Váltson át olyan kísérleti funkciókat, mint a verziószámosítás és a "
-"telepítők. Engedélyezze a futók jelöltjét"
+"Kísérleti funkcióváltók, mint például a verziók és a telepítők. Futók "
+"kiadásra jelölt"
 
 #: data/com.usebottles.bottles.gschema.xml:51
 msgid "Experiments:versioning"
@@ -572,7 +572,7 @@ msgstr "Hibajelentés"
 
 #: src/ui/dependency-entry.ui:166
 msgid "Download & Install this dependency"
-msgstr "Töltse le és telepítse ezt a függőséget"
+msgstr "Függőség letöltése és telepítése"
 
 #: src/ui/details.ui:22 src/ui/importer.ui:22
 msgid ""
@@ -636,7 +636,7 @@ msgstr "Tároló neve"
 
 #: src/ui/details.ui:356
 msgid "Type a name for your bottle"
-msgstr "Írja be a tároló nevét"
+msgstr "Tároló neve megadása"
 
 #: src/ui/details.ui:375
 msgid "Environment"
@@ -852,11 +852,11 @@ msgstr "A futók kezelése"
 
 #: src/ui/details.ui:1409 src/ui/new.ui:334
 msgid "DXVK Version"
-msgstr "DXVK verzió"
+msgstr "DXVK-verzió"
 
 #: src/ui/details.ui:1452 src/ui/details.ui:1527 src/ui/new.ui:375
 msgid "Manage DXVK versions"
-msgstr "DXVK verzióinak kezelése"
+msgstr "DXVK-verzióinak kezelése"
 
 #: src/ui/details.ui:1484
 msgid "VKD3D Version"
@@ -883,7 +883,7 @@ msgstr ""
 
 #: src/ui/details.ui:1652
 msgid "Developers & Debug"
-msgstr "Fejlesztők & hibakeresés"
+msgstr "Fejlesztők és hibakeresés"
 
 #: src/ui/details.ui:1657
 msgid "Environment variables"
@@ -950,7 +950,7 @@ msgstr "Frissítés"
 
 #: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:654
 msgid "Versioning"
-msgstr "Verziószámozás"
+msgstr "Verziókészítés"
 
 #: src/ui/details.ui:2254
 msgid "Create new state"
@@ -1039,11 +1039,11 @@ msgstr "Natív majd beépített"
 
 #: src/ui/dxvk-entry.ui:9
 msgid "DXVK version"
-msgstr "DXVK verzió"
+msgstr "DXVK-verzió"
 
 #: src/ui/dxvk-entry.ui:44
 msgid "Download & Install this DXVK"
-msgstr "Töltse le & telepítse ezt a DXVK-t"
+msgstr "DXVK letöltése és telepítése"
 
 #: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
 #: src/ui/runner-entry.ui:19
@@ -1077,7 +1077,7 @@ msgstr "Kezdje egy Tároló létrehozásával."
 
 #: src/ui/list.ui:76
 msgid "Create a new Bottle"
-msgstr "Hozzon létre egy új tárolót"
+msgstr "Új tároló létrehozása"
 
 #: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
@@ -1089,7 +1089,7 @@ msgstr "Ez a tároló sérültnek tűnik."
 
 #: src/ui/list-entry.ui:176
 msgid "Utility & Preferences"
-msgstr "Segédprogram & beállítások"
+msgstr "Segédprogram és beállítások"
 
 #: src/ui/list-entry.ui:202
 msgid "Upgrade runner to the latest localy installed"
@@ -1133,11 +1133,11 @@ msgstr "Bezárás"
 
 #: src/ui/new.ui:99
 msgid "New Bottle"
-msgstr "Új Tároló"
+msgstr "Új tároló"
 
 #: src/ui/new.ui:118
 msgid "Choose a name for your bottle"
-msgstr "Válasszon egy nevet a tárolójának"
+msgstr "Tároló neve megadása"
 
 #: src/ui/new.ui:139
 msgid "Name"
@@ -1153,7 +1153,7 @@ msgstr "Gyönyörű tárolóm"
 
 #: src/ui/new.ui:181
 msgid "Choose an environment"
-msgstr "Válasszon környezetet"
+msgstr "Környezet kijelölése"
 
 #: src/ui/new.ui:213
 msgid "Advanced options"
@@ -1161,11 +1161,11 @@ msgstr "Haladó beállítások"
 
 #: src/ui/new.ui:234
 msgid "Use versioning"
-msgstr "Használja a verziószámot"
+msgstr "Verziókészítés használata"
 
 #: src/ui/new.ui:235
 msgid "Enable versioning to save and restore the bottle to a state."
-msgstr "Engedélyezze a verziószámot a tároló mentéséhez és visszaállításához."
+msgstr "Verziókészítés engedélyezése a tároló mentéséhez és visszaállításához."
 
 #: src/ui/new.ui:440
 msgid "Creating bottle…"
@@ -1254,7 +1254,7 @@ msgid ""
 msgstr ""
 "Le kell töltenünk és telepítenünk kell egy futót, hogy lehetővé tegye saját "
 "tárolók létrehozását.\n"
-"A letöltési méret<b>~70MB</b>.\n"
+"A letöltési méret <b>kb. 70MB</b>.\n"
 "<a href=\"https://docs.usebottles.com/getting-started/first-run\">További "
 "információ arról, hogy mit fogunk letölteni</a>\n"
 "\n"
@@ -1269,7 +1269,7 @@ msgstr "Futók"
 
 #: src/ui/onboard.ui:371
 msgid "Downloading…"
-msgstr "Letöltés folyamatban…"
+msgstr "Letöltés folyamatban van…"
 
 #: src/ui/onboard.ui:391
 msgid "Sit down and relax, it may take a few minutes."
@@ -1365,7 +1365,7 @@ msgstr "Tárolók problémák"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
-msgstr "Töltse le & telepítse ezt a futót"
+msgstr "Futó letöltése és telepítése"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
@@ -1381,7 +1381,7 @@ msgstr "Állítsa vissza ezt az állapotot"
 
 #: src/ui/task-manager.ui:26
 msgid "These are the wine/wineserver processes running on your PC."
-msgstr "Ezek a wine/wineserver folyamatok futnak a számítógépén."
+msgstr "Ezek a wine/wine-kiszolgáló folyamatok futnak a számítógépén."
 
 #: src/ui/task-manager.ui:45
 msgid "Check for running processes."
@@ -1447,11 +1447,11 @@ msgstr "Nincsenek futók, kérjük, telepítsen egyet."
 
 #: src/runner.py:974
 msgid "No dxvk found, installing the latest version …"
-msgstr "Nem található dxvk, telepítse a legújabb verziót…"
+msgstr "Nem található a dxvk, telepítse a legújabb verziót…"
 
 #: src/runner.py:977
 msgid "No vkd3d found, installing the latest version …"
-msgstr "Nem található vkd3d, telepítse a legújabb verziót…"
+msgstr "Nem található a vkd3d, telepítse a legújabb verziót…"
 
 #: src/runner.py:1017
 msgid "The wine configuration is being updated …"
@@ -1464,7 +1464,7 @@ msgstr "A wine konfigurációja frissítve!"
 #: src/runner.py:1047
 #, python-brace-format
 msgid "Applying environment: {0} …"
-msgstr "Alkalmazó környezet: {0} …"
+msgstr "Környezet alkalmazása folyamatban van: {0}…"
 
 #: src/runner.py:1066
 msgid "Installing dxvk …"
@@ -1476,7 +1476,7 @@ msgstr "A vkd3d telepítése…"
 
 #: src/runner.py:1080
 msgid "Creating versioning state 0 …"
-msgstr "Verziós állapot létrehozása 0 …"
+msgstr "Verziós állapot létrehozása 0…"
 
 #: src/runner.py:1086
 #, python-brace-format
@@ -1547,7 +1547,7 @@ msgstr "A játékmód vagy nem érhető el a rendszerén, vagy nem fut."
 
 #: src/pages/details.py:648
 msgid "Details & Utilities"
-msgstr "Részletek és közművek"
+msgstr "Részletek és segédprogramok"
 
 #: src/pages/details.py:1070 src/pages/list.py:119
 msgid "Choose a Windows executable file"
@@ -1626,7 +1626,7 @@ msgstr "Tiszta környezet a kísérletekhez."
 #: src/pages/new.py:231
 #, python-format
 msgid "A bottle named “%s” was created successfully"
-msgstr "Nevű tároló „%s” sikeresen létrehozva"
+msgstr "A(z) „%s” tároló sikeresen létrehozva"
 
 #~ msgid "Page 1"
 #~ msgstr "1. oldal"
