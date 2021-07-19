@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-13 17:38+0200\n"
+"POT-Creation-Date: 2021-07-19 08:07+0200\n"
 "PO-Revision-Date: 2021-07-02 12:58+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:116
+#: src/window.py:137
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -280,7 +280,6 @@ msgid "Added more information for initial download to the Onboard"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#: data/com.usebottles.bottles.appdata.xml.in:170
 #, fuzzy
 msgid "French translations thanks to @julroy67"
 msgstr "Französische Übersetzungen Dank an @julroy67"
@@ -301,7 +300,6 @@ msgid "Chinese (Simplified) translations thanks to Flywater Zh"
 msgstr "Deutsche Übersetzungen Dank an @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#: data/com.usebottles.bottles.appdata.xml.in:169
 #, fuzzy
 msgid "Portuguese translations thanks to @laralem"
 msgstr "Portugiesische Übersetzungen dank @SantosSi"
@@ -312,13 +310,11 @@ msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
 msgstr "Deutsche Übersetzungen Dank an @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#: data/com.usebottles.bottles.appdata.xml.in:167
 #, fuzzy
 msgid "Spanish translations thanks to @fitojb"
 msgstr "Deutsche Übersetzungen Dank an @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
-#: data/com.usebottles.bottles.appdata.xml.in:166
 #, fuzzy
 msgid "Esperanto translations thanks to @phlostically"
 msgstr "Deutsche Übersetzungen Dank an @thericosanto"
@@ -331,95 +327,6 @@ msgstr "Deutsche Übersetzungen Dank an @thericosanto"
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
 msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:142
-msgid "Display a crash report on restart if something goes wrong"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:143
-msgid "Using the new yaml format for the bottle configuration"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:144
-msgid "Using the new yaml repositories for components/dependencies/programs"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:145
-msgid "Automatic update old bottle configuration to the new model"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:146
-#, fuzzy
-msgid "Backup bottle configuration and archive"
-msgstr "Flaschenkonfigurationsdatei generieren …"
-
-#: data/com.usebottles.bottles.appdata.xml.in:147
-#, fuzzy
-msgid "Import backup archives"
-msgstr "Wählen Sie ein Sicherungsarchiv"
-
-#: data/com.usebottles.bottles.appdata.xml.in:148
-msgid "Show onboard if system wine is the only installed runner"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:149
-#: data/com.usebottles.bottles.appdata.xml.in:171
-#, fuzzy
-msgid "Swedish translations thanks to @eson57"
-msgstr "Deutsche Übersetzungen Dank an @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:155
-msgid "Updates:"
-msgstr "Updates:"
-
-#: data/com.usebottles.bottles.appdata.xml.in:157
-msgid "New versioning based on CalVer model"
-msgstr "Neue Versionierung auf Basis des CalVer-Modells"
-
-#: data/com.usebottles.bottles.appdata.xml.in:158
-msgid "Create bottles using the wine runner provided by the distribution"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:159
-msgid "Enable gamemode for your bottles if installed in the system"
-msgstr ""
-"Aktivieren Sie den Gamemode für Ihre Flaschen, wenn diese im System "
-"installiert sind"
-
-#: data/com.usebottles.bottles.appdata.xml.in:160
-msgid "Run .exe/.msi/.bat files with custom arguments"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:161
-msgid "Fixed the \"bad interpreter\" error on debian package"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:162
-msgid ""
-"Optionally close Bottles after starting an executable from the file manager"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:163
-msgid "Added tooltips to understand what some elements of the UI do"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:164
-msgid "Using portal for file picker"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:165
-msgid "Filechooser do not filter by extensions anymore"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:168
-#, fuzzy
-msgid "Croatin translations thanks to @milotype"
-msgstr "Deutsche Übersetzungen Dank an @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:172
-#, fuzzy
-msgid "Ukrain thanslations thanks to @marchellodev"
-msgstr "Deutsche Übersetzungen Dank an @thericosanto"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -560,7 +467,13 @@ msgstr ""
 msgid "Bug report"
 msgstr "Einen Bug melden"
 
-#: src/ui/dependency-entry.ui:166
+#: src/ui/dependency-entry.ui:140
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+
+#: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
 msgstr ""
 
@@ -621,7 +534,7 @@ msgstr "Versionierung ist für diese Bottle aktiv."
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:352
+#: src/ui/details.ui:352 src/main.py:99
 msgid "Bottle name"
 msgstr "Bottle Name"
 
@@ -671,7 +584,7 @@ msgid "Kill all wine processes"
 msgstr "Wine Prozess debuggen."
 
 #: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:651
+#: src/pages/details.py:679
 msgid "Programs"
 msgstr "Programme"
 
@@ -909,11 +822,11 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Logge Programmpfade, die in Wine nicht implementiert sind."
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:649
+#: src/pages/details.py:677
 msgid "Preferences"
 msgstr "Eigenschaften"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:650
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:678
 msgid "Dependencies"
 msgstr "Abhängigkeiten"
 
@@ -939,7 +852,7 @@ msgstr ""
 msgid "Search for installed programs"
 msgstr "Suche nach installierten Programmen"
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:656
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:684
 msgid "Installers"
 msgstr "Installer"
 
@@ -947,7 +860,7 @@ msgstr "Installer"
 msgid "Refresh"
 msgstr "Neu laden"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:654
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:682
 msgid "Versioning"
 msgstr "Versionierung"
 
@@ -961,7 +874,7 @@ msgstr "Nachricht hier ablegen."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1074 src/pages/list.py:123
+#: src/pages/details.py:1102 src/pages/list.py:124
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -1060,7 +973,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "Deinstallieren"
 
-#: src/ui/importer.ui:76 src/window.py:118
+#: src/ui/importer.ui:76 src/window.py:139
 msgid "Importer"
 msgstr "Importierungsassistent"
 
@@ -1386,7 +1299,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr "Suche laufende Prozesse."
 
-#: src/ui/window.ui:49 src/window.py:117
+#: src/ui/window.ui:49 src/window.py:138
 msgid "Task manager"
 msgstr "Task-Manager"
 
@@ -1428,171 +1341,156 @@ msgstr "Zurück"
 msgid "New bottle"
 msgstr "Neue Bottle"
 
-#: src/main.py:124
+#: src/main.py:81
+#, fuzzy
+msgid "Show version"
+msgstr "DXVK Version"
+
+#: src/main.py:87
+#, fuzzy
+msgid "Executable path"
+msgstr "Starte .exe"
+
+#: src/main.py:93
+msgid "lnk path"
+msgstr ""
+
+#: src/main.py:177
 msgid "[Quit] request received."
 msgstr "[Beenden] Anforderung erhalten."
 
-#: src/main.py:130
+#: src/main.py:183
 msgid "[Help] request received."
 msgstr "[Hilfe] Anforderung erhalten."
 
-#: src/main.py:136
+#: src/main.py:189
 msgid "[Refresh] request received."
 msgstr "[Neu laden] Anforderung erhalten."
 
-#: src/runner.py:970
+#: src/runner.py:879
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Keine Läufer gefunden."
 
-#: src/runner.py:974
+#: src/runner.py:883
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr ""
 "Runner und/oder dxvk nicht gefunden, Installation der neuesten Version …"
 
-#: src/runner.py:977
+#: src/runner.py:886
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr ""
 "Runner und/oder dxvk nicht gefunden, Installation der neuesten Version …"
 
-#: src/runner.py:1017
+#. Execute wineboot
+#: src/runner.py:926
 msgid "The wine configuration is being updated …"
 msgstr "Die Weinkonfiguration wird aktualisiert …"
 
-#: src/runner.py:1023
+#: src/runner.py:932
 msgid "Wine configuration updated!"
 msgstr "Weinkonfiguration aktualisiert!"
 
-#: src/runner.py:1047
+#: src/runner.py:956
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Umgebung anwenden: {0} …"
 
-#: src/runner.py:1066
+#: src/runner.py:975
 msgid "Installing dxvk …"
 msgstr "Installation von dxvk …"
 
-#: src/runner.py:1072
+#: src/runner.py:981
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Installation von dxvk …"
 
-#: src/runner.py:1080
+#: src/runner.py:989
 msgid "Creating versioning state 0 …"
 msgstr "Erstellen des Versionierungsstatus 0 …"
 
-#: src/runner.py:1086
+#: src/runner.py:995
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Ihre neue Flasche: {0} ist jetzt fertig!"
 
-#: src/runner.py:1661
-#, fuzzy
-msgid "Generating state files index …"
-msgstr "Verbindungsstatus: offline …"
-
-#: src/runner.py:1723
-#, fuzzy
-msgid "Creating a restore point …"
-msgstr "Lock-Datei im Quellpfad erzeugen …"
-
-#: src/runner.py:1745
-#, fuzzy
-msgid "Updating index …"
-msgstr "Wineprefixes einfach verwalten …"
-
-#: src/runner.py:1760
-#, fuzzy
-msgid "Updating states …"
-msgstr "Bottle wird angelegt…"
-
-#: src/runner.py:1980
+#: src/runner.py:1390
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Sicherung {0}"
 
-#: src/runner.py:2027
+#: src/runner.py:1437
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Sicherung importieren: {0}"
 
-#: src/utils.py:60
+#: src/utils.py:62
 msgid "You are offline, unable to download."
 msgstr "Sie sind offline und können nicht herunterladen."
 
-#: src/window.py:115
+#: src/window.py:136
 msgid "Bottle details"
 msgstr "Details zur Flasche"
 
-#: src/window.py:145
+#: src/window.py:166
 msgid "Bottles Started!"
 msgstr "Flaschen gestartet!"
 
-#: src/pages/details.py:280 src/pages/details.py:466
+#: src/pages/details.py:299 src/pages/details.py:487
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest für {0}"
 
-#: src/pages/details.py:281 src/pages/details.py:467
-#, python-brace-format
-msgid "This is the manifest for {0}."
-msgstr "Dies ist das Manifest für {0}."
-
-#: src/pages/details.py:334
+#: src/pages/details.py:354
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Index für Zustand {0}"
 
-#: src/pages/details.py:335
-#, python-brace-format
-msgid "This is the index for {0}."
-msgstr "Dies ist der Index für {0}."
-
-#: src/pages/details.py:641
+#: src/pages/details.py:669
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:648
+#: src/pages/details.py:676
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Dienstprogramme"
 
-#: src/pages/details.py:1070 src/pages/list.py:119
+#: src/pages/details.py:1098 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "Wählen Sie eine ausführbare Windows-Datei"
 
-#: src/pages/details.py:1073 src/pages/list.py:122
+#: src/pages/details.py:1101 src/pages/list.py:123
 #, fuzzy
 msgid "Run"
 msgstr "Starter"
 
-#: src/pages/details.py:1149
+#: src/pages/details.py:1177
 msgid "Select the location where to save the backup configuration"
 msgstr ""
 "Wählen Sie den Ort, an dem die Sicherungskonfiguration gespeichert werden "
 "soll"
 
-#: src/pages/details.py:1168
+#: src/pages/details.py:1196
 msgid "Select the location where to save the backup archive"
 msgstr ""
 "Wählen Sie den Ort, an dem das Sicherungsarchiv gespeichert werden soll"
 
-#: src/pages/details.py:1188 src/pages/list.py:171
+#: src/pages/details.py:1216 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "Bestätigung der Löschung"
 
-#: src/pages/details.py:1189 src/pages/list.py:172
+#: src/pages/details.py:1217 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr ""
 "Sind Sie sicher, dass Sie diese Flasche und alle Dateien löschen wollen?"
 
-#: src/pages/dialog.py:28 src/pages/dialog.py:64
+#: src/pages/dialog.py:30 src/pages/dialog.py:66
 msgid "Warning"
 msgstr "Warnung"
 
-#: src/pages/dialog.py:29 src/pages/dialog.py:65
+#: src/pages/dialog.py:31
 msgid "An error has occurred."
 msgstr "Es ist ein Fehler aufgetreten."
 
@@ -1600,16 +1498,16 @@ msgstr "Es ist ein Fehler aufgetreten."
 msgid "Choose a backup archive"
 msgstr "Wählen Sie ein Sicherungsarchiv"
 
-#: src/pages/list.py:98
+#: src/pages/list.py:99
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumente für ausführbare Datei gefunden: [{executable}]."
 
-#: src/pages/list.py:149
+#: src/pages/list.py:150
 msgid "Confirm upgrade"
 msgstr "Bestätigen Sie das Upgrade"
 
-#: src/pages/list.py:150
+#: src/pages/list.py:151
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "Dadurch wird der Läufer von {0} auf {1} geändert."
@@ -1642,6 +1540,61 @@ msgstr "Eine übersichtliche Umgebung für Ihre Experimente."
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "Eine Flasche mit dem Namen \"%s\" wurde erfolgreich angelegt"
+
+#, fuzzy
+#~ msgid "Backup bottle configuration and archive"
+#~ msgstr "Flaschenkonfigurationsdatei generieren …"
+
+#, fuzzy
+#~ msgid "Import backup archives"
+#~ msgstr "Wählen Sie ein Sicherungsarchiv"
+
+#, fuzzy
+#~ msgid "Swedish translations thanks to @eson57"
+#~ msgstr "Deutsche Übersetzungen Dank an @thericosanto"
+
+#~ msgid "Updates:"
+#~ msgstr "Updates:"
+
+#~ msgid "New versioning based on CalVer model"
+#~ msgstr "Neue Versionierung auf Basis des CalVer-Modells"
+
+#~ msgid "Enable gamemode for your bottles if installed in the system"
+#~ msgstr ""
+#~ "Aktivieren Sie den Gamemode für Ihre Flaschen, wenn diese im System "
+#~ "installiert sind"
+
+#, fuzzy
+#~ msgid "Croatin translations thanks to @milotype"
+#~ msgstr "Deutsche Übersetzungen Dank an @thericosanto"
+
+#, fuzzy
+#~ msgid "Ukrain thanslations thanks to @marchellodev"
+#~ msgstr "Deutsche Übersetzungen Dank an @thericosanto"
+
+#, fuzzy
+#~ msgid "Generating state files index …"
+#~ msgstr "Verbindungsstatus: offline …"
+
+#, fuzzy
+#~ msgid "Creating a restore point …"
+#~ msgstr "Lock-Datei im Quellpfad erzeugen …"
+
+#, fuzzy
+#~ msgid "Updating index …"
+#~ msgstr "Wineprefixes einfach verwalten …"
+
+#, fuzzy
+#~ msgid "Updating states …"
+#~ msgstr "Bottle wird angelegt…"
+
+#, python-brace-format
+#~ msgid "This is the manifest for {0}."
+#~ msgstr "Dies ist das Manifest für {0}."
+
+#, python-brace-format
+#~ msgid "This is the index for {0}."
+#~ msgstr "Dies ist der Index für {0}."
 
 #, python-brace-format
 #~ msgid "Downloaded file {0} looks corrupted. Try again."

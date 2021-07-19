@@ -275,7 +275,7 @@ class BottlesRunner:
             RunAsync(self.async_install_component, None, [component_type, component_name, after, func, checks])
 
     '''
-    Method for deoendency installations
+    Method for dependency installations
     '''
     def async_install_dependency(self, args:list) -> bool:
         configuration, dependency, widget = args

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-13 17:38+0200\n"
+"POT-Creation-Date: 2021-07-19 08:07+0200\n"
 "PO-Revision-Date: 2021-07-19 06:06+0000\n"
 "Last-Translator: Yuzaihhhh <yuzaihhhh@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:116
+#: src/window.py:137
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -265,7 +265,6 @@ msgid "Added more information for initial download to the Onboard"
 msgstr "在引导页面中添加了初始下载的更多信息"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#: data/com.usebottles.bottles.appdata.xml.in:170
 msgid "French translations thanks to @julroy67"
 msgstr "感谢 @julroy67 翻译法语"
 
@@ -282,7 +281,6 @@ msgid "Chinese (Simplified) translations thanks to Flywater Zh"
 msgstr "感谢 @Flywater Zh 翻译中文（简体）"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#: data/com.usebottles.bottles.appdata.xml.in:169
 msgid "Portuguese translations thanks to @laralem"
 msgstr "感谢 @laralem 翻译葡萄牙语"
 
@@ -291,12 +289,10 @@ msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
 msgstr "感谢 @pervoj 和 Vojtěch Perník 翻译捷克语"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#: data/com.usebottles.bottles.appdata.xml.in:167
 msgid "Spanish translations thanks to @fitojb"
 msgstr "感谢 @fitojb 翻译西班牙语"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
-#: data/com.usebottles.bottles.appdata.xml.in:166
 msgid "Esperanto translations thanks to @phlostically"
 msgstr "感谢 @phlostically 翻译世界语"
 
@@ -307,88 +303,6 @@ msgstr "感谢 @milotype 翻译克罗地亚语"
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
 msgstr "感谢 @jannuary @alvarlagerlof @ZekeSmith 制作的新 logo"
-
-#: data/com.usebottles.bottles.appdata.xml.in:142
-msgid "Display a crash report on restart if something goes wrong"
-msgstr "如果发生错误在重启时显示崩溃报告"
-
-#: data/com.usebottles.bottles.appdata.xml.in:143
-msgid "Using the new yaml format for the bottle configuration"
-msgstr "为 bottle 配置使用新的 yaml 格式"
-
-#: data/com.usebottles.bottles.appdata.xml.in:144
-msgid "Using the new yaml repositories for components/dependencies/programs"
-msgstr "为组件/依赖/程序使用新的 yaml 仓库"
-
-#: data/com.usebottles.bottles.appdata.xml.in:145
-msgid "Automatic update old bottle configuration to the new model"
-msgstr "自动将 bottle 配置更新为新模式"
-
-#: data/com.usebottles.bottles.appdata.xml.in:146
-msgid "Backup bottle configuration and archive"
-msgstr "备份 bottle 配置并归档"
-
-#: data/com.usebottles.bottles.appdata.xml.in:147
-msgid "Import backup archives"
-msgstr "导入备份归档"
-
-#: data/com.usebottles.bottles.appdata.xml.in:148
-msgid "Show onboard if system wine is the only installed runner"
-msgstr "如果系统 wine 是唯一安装的运行器则显示机上运行器"
-
-#: data/com.usebottles.bottles.appdata.xml.in:149
-#: data/com.usebottles.bottles.appdata.xml.in:171
-msgid "Swedish translations thanks to @eson57"
-msgstr "感谢 @eson57 翻译瑞典语"
-
-#: data/com.usebottles.bottles.appdata.xml.in:155
-msgid "Updates:"
-msgstr "更新："
-
-#: data/com.usebottles.bottles.appdata.xml.in:157
-msgid "New versioning based on CalVer model"
-msgstr "基于 CalVer 模式的新版本控制"
-
-#: data/com.usebottles.bottles.appdata.xml.in:158
-msgid "Create bottles using the wine runner provided by the distribution"
-msgstr "使用由发行版提供的 wine 运行器创建 bottles"
-
-#: data/com.usebottles.bottles.appdata.xml.in:159
-msgid "Enable gamemode for your bottles if installed in the system"
-msgstr "如果系统中安装有游戏模式则为您的 bottles 启用"
-
-#: data/com.usebottles.bottles.appdata.xml.in:160
-msgid "Run .exe/.msi/.bat files with custom arguments"
-msgstr "使用自定义参数运行 .exe/.msi/.bat 文件"
-
-#: data/com.usebottles.bottles.appdata.xml.in:161
-msgid "Fixed the \"bad interpreter\" error on debian package"
-msgstr "修复 debian 软件包上的“坏的解释器”错误"
-
-#: data/com.usebottles.bottles.appdata.xml.in:162
-msgid ""
-"Optionally close Bottles after starting an executable from the file manager"
-msgstr "可选的从文件管理器启动可执行文件后关闭 Bottles"
-
-#: data/com.usebottles.bottles.appdata.xml.in:163
-msgid "Added tooltips to understand what some elements of the UI do"
-msgstr "添加了帮助理解用户界面上一些元素作用的工具提示"
-
-#: data/com.usebottles.bottles.appdata.xml.in:164
-msgid "Using portal for file picker"
-msgstr "为文件选取使用传送门"
-
-#: data/com.usebottles.bottles.appdata.xml.in:165
-msgid "Filechooser do not filter by extensions anymore"
-msgstr "文件选择器不再以扩展名过滤文件"
-
-#: data/com.usebottles.bottles.appdata.xml.in:168
-msgid "Croatin translations thanks to @milotype"
-msgstr "感谢 @milotype 翻译克罗地亚语"
-
-#: data/com.usebottles.bottles.appdata.xml.in:172
-msgid "Ukrain thanslations thanks to @marchellodev"
-msgstr "感谢 @marchellodev 翻译乌克兰语"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -526,7 +440,13 @@ msgstr "许可证"
 msgid "Bug report"
 msgstr "缺陷报告"
 
-#: src/ui/dependency-entry.ui:166
+#: src/ui/dependency-entry.ui:140
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+
+#: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
 msgstr "下载并安装该依赖"
 
@@ -584,7 +504,7 @@ msgstr "该 bottle 已激活版本控制。"
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:352
+#: src/ui/details.ui:352 src/main.py:99
 msgid "Bottle name"
 msgstr "Bottle 名称"
 
@@ -629,7 +549,7 @@ msgid "Kill all wine processes"
 msgstr "杀死所有 wine 进程"
 
 #: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:651
+#: src/pages/details.py:679
 msgid "Programs"
 msgstr "程序"
 
@@ -856,11 +776,11 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "记录未在 Wine 中实现的代码路径。"
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:649
+#: src/pages/details.py:677
 msgid "Preferences"
 msgstr "首选项"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:650
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:678
 msgid "Dependencies"
 msgstr "依赖"
 
@@ -886,7 +806,7 @@ msgstr "可从Bottles开始菜单中找到的程序"
 msgid "Search for installed programs"
 msgstr "搜索已安装的程序"
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:656
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:684
 msgid "Installers"
 msgstr "安装器"
 
@@ -894,7 +814,7 @@ msgstr "安装器"
 msgid "Refresh"
 msgstr "刷新"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:654
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:682
 msgid "Versioning"
 msgstr "版本控制"
 
@@ -908,7 +828,7 @@ msgstr "消息在这里。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1074 src/pages/list.py:123
+#: src/pages/details.py:1102 src/pages/list.py:124
 msgid "Cancel"
 msgstr "取消"
 
@@ -1003,7 +923,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "卸载"
 
-#: src/ui/importer.ui:76 src/window.py:118
+#: src/ui/importer.ui:76 src/window.py:139
 msgid "Importer"
 msgstr "导入器"
 
@@ -1168,7 +1088,8 @@ msgstr ""
 "\n"
 "<b>Bottles</b>是运行器配置系统，和Windows软件安装与运行的环境。\n"
 "\n"
-"<a href=\"https://docs.usebottles.com/components/runners\">阅读更多关于运行器的信息</a>"
+"<a href=\"https://docs.usebottles.com/components/runners\">阅读更多关于运行器"
+"的信息</a>"
 
 #: src/ui/onboard.ui:269
 msgid "Wine"
@@ -1193,8 +1114,8 @@ msgid ""
 msgstr ""
 "我们需要下载并安装一个运行器让你能够创建自己的 bottles。\n"
 "下载文件的大小是<b>~70MB</b>。\n"
-"<a href=\"https://docs.usebottles.com/getting-started/first-run\""
-">了解我们将要下载的内容</a>\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">了解我们将"
+"要下载的内容</a>\n"
 "\n"
 "由于这些运行器具有不同的发布周期我们不能为 Bottles 提供这些文件。\n"
 "\n"
@@ -1324,7 +1245,7 @@ msgstr "这些是正在您的电脑上运行的 wine/wineserver 进程。"
 msgid "Check for running processes."
 msgstr "检查正在运行的进程。"
 
-#: src/ui/window.ui:49 src/window.py:117
+#: src/ui/window.ui:49 src/window.py:138
 msgid "Task manager"
 msgstr "任务管理器"
 
@@ -1365,155 +1286,144 @@ msgstr "返回"
 msgid "New bottle"
 msgstr "新建 bottle"
 
-#: src/main.py:124
+#: src/main.py:81
+#, fuzzy
+msgid "Show version"
+msgstr "DXVK 版本"
+
+#: src/main.py:87
+#, fuzzy
+msgid "Executable path"
+msgstr "运行可执行文件"
+
+#: src/main.py:93
+msgid "lnk path"
+msgstr ""
+
+#: src/main.py:177
 msgid "[Quit] request received."
 msgstr "[退出] 请求已收到。"
 
-#: src/main.py:130
+#: src/main.py:183
 msgid "[Help] request received."
 msgstr "[帮助] 请求已收到。"
 
-#: src/main.py:136
+#: src/main.py:189
 msgid "[Refresh] request received."
 msgstr "[刷新] 请求已收到。"
 
-#: src/runner.py:970
+#: src/runner.py:879
 msgid "No runners found, please install one."
 msgstr "未找到运行器，请安装一个。"
 
-#: src/runner.py:974
+#: src/runner.py:883
 msgid "No dxvk found, installing the latest version …"
 msgstr "未找到 dxvk，正在安装最新版本…"
 
-#: src/runner.py:977
+#: src/runner.py:886
 msgid "No vkd3d found, installing the latest version …"
 msgstr "未找到 vkd3d，正在安装最新版本…"
 
-#: src/runner.py:1017
+#. Execute wineboot
+#: src/runner.py:926
 msgid "The wine configuration is being updated …"
 msgstr "正在更新 wine 配置…"
 
-#: src/runner.py:1023
+#: src/runner.py:932
 msgid "Wine configuration updated!"
 msgstr "Wine 配置已更新！"
 
-#: src/runner.py:1047
+#: src/runner.py:956
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "正在应用环境：{0} …"
 
-#: src/runner.py:1066
+#: src/runner.py:975
 msgid "Installing dxvk …"
 msgstr "正在安装 dxvk …"
 
-#: src/runner.py:1072
+#: src/runner.py:981
 msgid "Installing vkd3d …"
 msgstr "正在安装 vkd3d …"
 
-#: src/runner.py:1080
+#: src/runner.py:989
 msgid "Creating versioning state 0 …"
 msgstr "正在创建版本状态 0 …"
 
-#: src/runner.py:1086
+#: src/runner.py:995
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "您的新 bottle：{0} 准备就绪！"
 
-#: src/runner.py:1661
-msgid "Generating state files index …"
-msgstr "正在生成状态文件索引…"
-
-#: src/runner.py:1723
-msgid "Creating a restore point …"
-msgstr "正在创建还原点…"
-
-#: src/runner.py:1745
-msgid "Updating index …"
-msgstr "正在更新索引…"
-
-#: src/runner.py:1760
-msgid "Updating states …"
-msgstr "正在更新状态…"
-
-#: src/runner.py:1980
+#: src/runner.py:1390
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "备份 {0}"
 
-#: src/runner.py:2027
+#: src/runner.py:1437
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "正在导入备份：{0}"
 
-#: src/utils.py:60
+#: src/utils.py:62
 msgid "You are offline, unable to download."
 msgstr "您已离线，无法下载。"
 
-#: src/window.py:115
+#: src/window.py:136
 msgid "Bottle details"
 msgstr "Bottle 详情"
 
-#: src/window.py:145
+#: src/window.py:166
 msgid "Bottles Started!"
 msgstr "Bottles 已启动！"
 
-#: src/pages/details.py:280 src/pages/details.py:466
+#: src/pages/details.py:299 src/pages/details.py:487
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "{0} 的清单"
 
-#: src/pages/details.py:281 src/pages/details.py:467
-#, python-brace-format
-msgid "This is the manifest for {0}."
-msgstr "这是 {0} 的清单。"
-
-#: src/pages/details.py:334
+#: src/pages/details.py:354
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "状态 {0} 的索引"
 
-#: src/pages/details.py:335
-#, python-brace-format
-msgid "This is the index for {0}."
-msgstr "这是 {0} 的索引。"
-
-#: src/pages/details.py:641
+#: src/pages/details.py:669
 msgid "Gamemode is either not available on your system or not running."
 msgstr "游戏模式在你的系统中不可用，或没在运行。"
 
-#: src/pages/details.py:648
+#: src/pages/details.py:676
 msgid "Details & Utilities"
 msgstr "详情 & 工具"
 
-#: src/pages/details.py:1070 src/pages/list.py:119
+#: src/pages/details.py:1098 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "选择一个 Windows 可执行文件"
 
-#: src/pages/details.py:1073 src/pages/list.py:122
+#: src/pages/details.py:1101 src/pages/list.py:123
 msgid "Run"
 msgstr "运行"
 
-#: src/pages/details.py:1149
+#: src/pages/details.py:1177
 msgid "Select the location where to save the backup configuration"
 msgstr "选择要保存备份配置的位置"
 
-#: src/pages/details.py:1168
+#: src/pages/details.py:1196
 msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
-#: src/pages/details.py:1188 src/pages/list.py:171
+#: src/pages/details.py:1216 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "确认删除"
 
-#: src/pages/details.py:1189 src/pages/list.py:172
+#: src/pages/details.py:1217 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
-#: src/pages/dialog.py:28 src/pages/dialog.py:64
+#: src/pages/dialog.py:30 src/pages/dialog.py:66
 msgid "Warning"
 msgstr "警告"
 
-#: src/pages/dialog.py:29 src/pages/dialog.py:65
+#: src/pages/dialog.py:31
 msgid "An error has occurred."
 msgstr "发生了错误。"
 
@@ -1521,16 +1431,16 @@ msgstr "发生了错误。"
 msgid "Choose a backup archive"
 msgstr "选择一个备份归档"
 
-#: src/pages/list.py:98
+#: src/pages/list.py:99
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "发现可执行文件：[{executable}] 的变量。"
 
-#: src/pages/list.py:149
+#: src/pages/list.py:150
 msgid "Confirm upgrade"
 msgstr "确认升级"
 
-#: src/pages/list.py:150
+#: src/pages/list.py:151
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "这会将运行器从 {0} 改为 {1}。"
@@ -1563,6 +1473,88 @@ msgstr "为您的实验提供的清洁环境。"
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "名为“%s”的 bottle 创建成功"
+
+#~ msgid "Display a crash report on restart if something goes wrong"
+#~ msgstr "如果发生错误在重启时显示崩溃报告"
+
+#~ msgid "Using the new yaml format for the bottle configuration"
+#~ msgstr "为 bottle 配置使用新的 yaml 格式"
+
+#~ msgid "Using the new yaml repositories for components/dependencies/programs"
+#~ msgstr "为组件/依赖/程序使用新的 yaml 仓库"
+
+#~ msgid "Automatic update old bottle configuration to the new model"
+#~ msgstr "自动将 bottle 配置更新为新模式"
+
+#~ msgid "Backup bottle configuration and archive"
+#~ msgstr "备份 bottle 配置并归档"
+
+#~ msgid "Import backup archives"
+#~ msgstr "导入备份归档"
+
+#~ msgid "Show onboard if system wine is the only installed runner"
+#~ msgstr "如果系统 wine 是唯一安装的运行器则显示机上运行器"
+
+#~ msgid "Swedish translations thanks to @eson57"
+#~ msgstr "感谢 @eson57 翻译瑞典语"
+
+#~ msgid "Updates:"
+#~ msgstr "更新："
+
+#~ msgid "New versioning based on CalVer model"
+#~ msgstr "基于 CalVer 模式的新版本控制"
+
+#~ msgid "Create bottles using the wine runner provided by the distribution"
+#~ msgstr "使用由发行版提供的 wine 运行器创建 bottles"
+
+#~ msgid "Enable gamemode for your bottles if installed in the system"
+#~ msgstr "如果系统中安装有游戏模式则为您的 bottles 启用"
+
+#~ msgid "Run .exe/.msi/.bat files with custom arguments"
+#~ msgstr "使用自定义参数运行 .exe/.msi/.bat 文件"
+
+#~ msgid "Fixed the \"bad interpreter\" error on debian package"
+#~ msgstr "修复 debian 软件包上的“坏的解释器”错误"
+
+#~ msgid ""
+#~ "Optionally close Bottles after starting an executable from the file "
+#~ "manager"
+#~ msgstr "可选的从文件管理器启动可执行文件后关闭 Bottles"
+
+#~ msgid "Added tooltips to understand what some elements of the UI do"
+#~ msgstr "添加了帮助理解用户界面上一些元素作用的工具提示"
+
+#~ msgid "Using portal for file picker"
+#~ msgstr "为文件选取使用传送门"
+
+#~ msgid "Filechooser do not filter by extensions anymore"
+#~ msgstr "文件选择器不再以扩展名过滤文件"
+
+#~ msgid "Croatin translations thanks to @milotype"
+#~ msgstr "感谢 @milotype 翻译克罗地亚语"
+
+#~ msgid "Ukrain thanslations thanks to @marchellodev"
+#~ msgstr "感谢 @marchellodev 翻译乌克兰语"
+
+#~ msgid "Generating state files index …"
+#~ msgstr "正在生成状态文件索引…"
+
+#~ msgid "Creating a restore point …"
+#~ msgstr "正在创建还原点…"
+
+#~ msgid "Updating index …"
+#~ msgstr "正在更新索引…"
+
+#~ msgid "Updating states …"
+#~ msgstr "正在更新状态…"
+
+#, python-brace-format
+#~ msgid "This is the manifest for {0}."
+#~ msgstr "这是 {0} 的清单。"
+
+#, python-brace-format
+#~ msgid "This is the index for {0}."
+#~ msgstr "这是 {0} 的索引。"
 
 #, python-brace-format
 #~ msgid "Downloaded file {0} looks corrupted. Try again."

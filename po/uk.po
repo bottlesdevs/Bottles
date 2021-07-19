@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-13 17:38+0200\n"
+"POT-Creation-Date: 2021-07-19 08:07+0200\n"
 "PO-Revision-Date: 2021-06-20 04:31+0000\n"
 "Last-Translator: marchellodev <marchellodev@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bottles/"
@@ -23,7 +23,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:116
+#: src/window.py:137
 msgid "Bottles"
 msgstr "Пляшки"
 
@@ -279,7 +279,6 @@ msgid "Added more information for initial download to the Onboard"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#: data/com.usebottles.bottles.appdata.xml.in:170
 #, fuzzy
 msgid "French translations thanks to @julroy67"
 msgstr "Переклад на французьку дякуючи @julroy67"
@@ -300,7 +299,6 @@ msgid "Chinese (Simplified) translations thanks to Flywater Zh"
 msgstr "Переклад на німецьку дякуючи @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#: data/com.usebottles.bottles.appdata.xml.in:169
 #, fuzzy
 msgid "Portuguese translations thanks to @laralem"
 msgstr "Переклад на португальську дякуючи @SantosSi"
@@ -311,13 +309,11 @@ msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
 msgstr "Переклад на німецьку дякуючи @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#: data/com.usebottles.bottles.appdata.xml.in:167
 #, fuzzy
 msgid "Spanish translations thanks to @fitojb"
 msgstr "Переклад на німецьку дякуючи @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
-#: data/com.usebottles.bottles.appdata.xml.in:166
 #, fuzzy
 msgid "Esperanto translations thanks to @phlostically"
 msgstr "Переклад на німецьку дякуючи @thericosanto"
@@ -330,91 +326,6 @@ msgstr "Переклад на німецьку дякуючи @thericosanto"
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
 msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:142
-msgid "Display a crash report on restart if something goes wrong"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:143
-msgid "Using the new yaml format for the bottle configuration"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:144
-msgid "Using the new yaml repositories for components/dependencies/programs"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:145
-msgid "Automatic update old bottle configuration to the new model"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:146
-msgid "Backup bottle configuration and archive"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:147
-msgid "Import backup archives"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:148
-msgid "Show onboard if system wine is the only installed runner"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:149
-#: data/com.usebottles.bottles.appdata.xml.in:171
-#, fuzzy
-msgid "Swedish translations thanks to @eson57"
-msgstr "Переклад на німецьку дякуючи @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:155
-msgid "Updates:"
-msgstr "Оновлення:"
-
-#: data/com.usebottles.bottles.appdata.xml.in:157
-msgid "New versioning based on CalVer model"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:158
-msgid "Create bottles using the wine runner provided by the distribution"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:159
-msgid "Enable gamemode for your bottles if installed in the system"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:160
-msgid "Run .exe/.msi/.bat files with custom arguments"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:161
-msgid "Fixed the \"bad interpreter\" error on debian package"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:162
-msgid ""
-"Optionally close Bottles after starting an executable from the file manager"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:163
-msgid "Added tooltips to understand what some elements of the UI do"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:164
-msgid "Using portal for file picker"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:165
-msgid "Filechooser do not filter by extensions anymore"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:168
-#, fuzzy
-msgid "Croatin translations thanks to @milotype"
-msgstr "Переклад на німецьку дякуючи @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:172
-#, fuzzy
-msgid "Ukrain thanslations thanks to @marchellodev"
-msgstr "Переклад на німецьку дякуючи @thericosanto"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -552,7 +463,13 @@ msgstr ""
 msgid "Bug report"
 msgstr ""
 
-#: src/ui/dependency-entry.ui:166
+#: src/ui/dependency-entry.ui:140
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+
+#: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
 msgstr ""
 
@@ -610,7 +527,7 @@ msgstr ""
 msgid "0"
 msgstr ""
 
-#: src/ui/details.ui:352
+#: src/ui/details.ui:352 src/main.py:99
 msgid "Bottle name"
 msgstr ""
 
@@ -656,7 +573,7 @@ msgid "Kill all wine processes"
 msgstr ""
 
 #: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:651
+#: src/pages/details.py:679
 msgid "Programs"
 msgstr ""
 
@@ -877,11 +794,11 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:649
+#: src/pages/details.py:677
 msgid "Preferences"
 msgstr ""
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:650
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:678
 msgid "Dependencies"
 msgstr ""
 
@@ -907,7 +824,7 @@ msgstr ""
 msgid "Search for installed programs"
 msgstr ""
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:656
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:684
 msgid "Installers"
 msgstr ""
 
@@ -915,7 +832,7 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:654
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:682
 msgid "Versioning"
 msgstr ""
 
@@ -929,7 +846,7 @@ msgstr ""
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1074 src/pages/list.py:123
+#: src/pages/details.py:1102 src/pages/list.py:124
 msgid "Cancel"
 msgstr ""
 
@@ -1024,7 +941,7 @@ msgstr ""
 msgid "Uninstall"
 msgstr ""
 
-#: src/ui/importer.ui:76 src/window.py:118
+#: src/ui/importer.ui:76 src/window.py:139
 msgid "Importer"
 msgstr ""
 
@@ -1332,7 +1249,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr ""
 
-#: src/ui/window.ui:49 src/window.py:117
+#: src/ui/window.ui:49 src/window.py:138
 msgid "Task manager"
 msgstr ""
 
@@ -1371,155 +1288,142 @@ msgstr ""
 msgid "New bottle"
 msgstr ""
 
-#: src/main.py:124
+#: src/main.py:81
+msgid "Show version"
+msgstr ""
+
+#: src/main.py:87
+msgid "Executable path"
+msgstr ""
+
+#: src/main.py:93
+msgid "lnk path"
+msgstr ""
+
+#: src/main.py:177
 msgid "[Quit] request received."
 msgstr ""
 
-#: src/main.py:130
+#: src/main.py:183
 msgid "[Help] request received."
 msgstr ""
 
-#: src/main.py:136
+#: src/main.py:189
 msgid "[Refresh] request received."
 msgstr ""
 
-#: src/runner.py:970
+#: src/runner.py:879
 msgid "No runners found, please install one."
 msgstr ""
 
-#: src/runner.py:974
+#: src/runner.py:883
 msgid "No dxvk found, installing the latest version …"
 msgstr ""
 
-#: src/runner.py:977
+#: src/runner.py:886
 msgid "No vkd3d found, installing the latest version …"
 msgstr ""
 
-#: src/runner.py:1017
+#. Execute wineboot
+#: src/runner.py:926
 msgid "The wine configuration is being updated …"
 msgstr ""
 
-#: src/runner.py:1023
+#: src/runner.py:932
 msgid "Wine configuration updated!"
 msgstr ""
 
-#: src/runner.py:1047
+#: src/runner.py:956
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr ""
 
-#: src/runner.py:1066
+#: src/runner.py:975
 msgid "Installing dxvk …"
 msgstr ""
 
-#: src/runner.py:1072
+#: src/runner.py:981
 msgid "Installing vkd3d …"
 msgstr ""
 
-#: src/runner.py:1080
+#: src/runner.py:989
 msgid "Creating versioning state 0 …"
 msgstr ""
 
-#: src/runner.py:1086
+#: src/runner.py:995
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr ""
 
-#: src/runner.py:1661
-msgid "Generating state files index …"
-msgstr ""
-
-#: src/runner.py:1723
-msgid "Creating a restore point …"
-msgstr ""
-
-#: src/runner.py:1745
-msgid "Updating index …"
-msgstr ""
-
-#: src/runner.py:1760
-msgid "Updating states …"
-msgstr ""
-
-#: src/runner.py:1980
+#: src/runner.py:1390
 #, python-brace-format
 msgid "Backup {0}"
 msgstr ""
 
-#: src/runner.py:2027
+#: src/runner.py:1437
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr ""
 
-#: src/utils.py:60
+#: src/utils.py:62
 msgid "You are offline, unable to download."
 msgstr ""
 
-#: src/window.py:115
+#: src/window.py:136
 msgid "Bottle details"
 msgstr ""
 
-#: src/window.py:145
+#: src/window.py:166
 msgid "Bottles Started!"
 msgstr ""
 
-#: src/pages/details.py:280 src/pages/details.py:466
+#: src/pages/details.py:299 src/pages/details.py:487
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr ""
 
-#: src/pages/details.py:281 src/pages/details.py:467
-#, python-brace-format
-msgid "This is the manifest for {0}."
-msgstr ""
-
-#: src/pages/details.py:334
+#: src/pages/details.py:354
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr ""
 
-#: src/pages/details.py:335
-#, python-brace-format
-msgid "This is the index for {0}."
-msgstr ""
-
-#: src/pages/details.py:641
+#: src/pages/details.py:669
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:648
+#: src/pages/details.py:676
 msgid "Details & Utilities"
 msgstr ""
 
-#: src/pages/details.py:1070 src/pages/list.py:119
+#: src/pages/details.py:1098 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr ""
 
-#: src/pages/details.py:1073 src/pages/list.py:122
+#: src/pages/details.py:1101 src/pages/list.py:123
 msgid "Run"
 msgstr ""
 
-#: src/pages/details.py:1149
+#: src/pages/details.py:1177
 msgid "Select the location where to save the backup configuration"
 msgstr ""
 
-#: src/pages/details.py:1168
+#: src/pages/details.py:1196
 msgid "Select the location where to save the backup archive"
 msgstr ""
 
-#: src/pages/details.py:1188 src/pages/list.py:171
+#: src/pages/details.py:1216 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr ""
 
-#: src/pages/details.py:1189 src/pages/list.py:172
+#: src/pages/details.py:1217 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr ""
 
-#: src/pages/dialog.py:28 src/pages/dialog.py:64
+#: src/pages/dialog.py:30 src/pages/dialog.py:66
 msgid "Warning"
 msgstr ""
 
-#: src/pages/dialog.py:29 src/pages/dialog.py:65
+#: src/pages/dialog.py:31
 msgid "An error has occurred."
 msgstr ""
 
@@ -1527,16 +1431,16 @@ msgstr ""
 msgid "Choose a backup archive"
 msgstr ""
 
-#: src/pages/list.py:98
+#: src/pages/list.py:99
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr ""
 
-#: src/pages/list.py:149
+#: src/pages/list.py:150
 msgid "Confirm upgrade"
 msgstr ""
 
-#: src/pages/list.py:150
+#: src/pages/list.py:151
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr ""
@@ -1569,6 +1473,21 @@ msgstr ""
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Swedish translations thanks to @eson57"
+#~ msgstr "Переклад на німецьку дякуючи @thericosanto"
+
+#~ msgid "Updates:"
+#~ msgstr "Оновлення:"
+
+#, fuzzy
+#~ msgid "Croatin translations thanks to @milotype"
+#~ msgstr "Переклад на німецьку дякуючи @thericosanto"
+
+#, fuzzy
+#~ msgid "Ukrain thanslations thanks to @marchellodev"
+#~ msgstr "Переклад на німецьку дякуючи @thericosanto"
 
 #~ msgid "Fix environment selection style on Yaru theme"
 #~ msgstr "Виправити стиль вибору середовища в темі Yaru"

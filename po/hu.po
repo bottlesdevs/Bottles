@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-13 17:38+0200\n"
+"POT-Creation-Date: 2021-07-19 08:07+0200\n"
 "PO-Revision-Date: 2021-07-19 06:06+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:116
+#: src/window.py:137
 msgid "Bottles"
 msgstr "Tárolók"
 
@@ -295,7 +295,6 @@ msgid "Added more information for initial download to the Onboard"
 msgstr "A kezdeti letöltéshez további információkat adott az előkészítésre"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#: data/com.usebottles.bottles.appdata.xml.in:170
 msgid "French translations thanks to @julroy67"
 msgstr "Francia fordítás: @julroy67"
 
@@ -312,7 +311,6 @@ msgid "Chinese (Simplified) translations thanks to Flywater Zh"
 msgstr "Kínai (egyszerűsített) fordítás: Flywater Zh"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#: data/com.usebottles.bottles.appdata.xml.in:169
 msgid "Portuguese translations thanks to @laralem"
 msgstr "Portugál fordítás: @laralem"
 
@@ -321,12 +319,10 @@ msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
 msgstr "Cseh fordítás: @pervoj, Vojtěch Perník"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#: data/com.usebottles.bottles.appdata.xml.in:167
 msgid "Spanish translations thanks to @fitojb"
 msgstr "Spanyol fordítás: @fitojb"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
-#: data/com.usebottles.bottles.appdata.xml.in:166
 msgid "Esperanto translations thanks to @phlostically"
 msgstr "Eszperantó fordítás: @phlostically"
 
@@ -337,96 +333,6 @@ msgstr "Horvát fordítás: @milotype"
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
 msgstr "Új embléma: @jannuary @alvarlagerlof @ZekeSmith"
-
-#: data/com.usebottles.bottles.appdata.xml.in:142
-msgid "Display a crash report on restart if something goes wrong"
-msgstr ""
-"Az újraindításkor jelenjen meg egy összeomlási jelentés, ha valami rosszul "
-"megy"
-
-#: data/com.usebottles.bottles.appdata.xml.in:143
-msgid "Using the new yaml format for the bottle configuration"
-msgstr "Az új yaml-formátum használata a tároló beállításához"
-
-#: data/com.usebottles.bottles.appdata.xml.in:144
-msgid "Using the new yaml repositories for components/dependencies/programs"
-msgstr ""
-"Az új yaml tárak használata az összetevők /függőségek /programok számára"
-
-#: data/com.usebottles.bottles.appdata.xml.in:145
-msgid "Automatic update old bottle configuration to the new model"
-msgstr "A régi tárolóbeállítások önműködő frissítése az új modellre"
-
-#: data/com.usebottles.bottles.appdata.xml.in:146
-msgid "Backup bottle configuration and archive"
-msgstr "Tárolók biztonsági másolata beállítása és archiválása"
-
-#: data/com.usebottles.bottles.appdata.xml.in:147
-msgid "Import backup archives"
-msgstr "Archívumok biztonsági másolata importálása"
-
-#: data/com.usebottles.bottles.appdata.xml.in:148
-msgid "Show onboard if system wine is the only installed runner"
-msgstr "Mutassa a beléptetéskor, ha a wine rendszer az egyetlen telepített futó"
-
-#: data/com.usebottles.bottles.appdata.xml.in:149
-#: data/com.usebottles.bottles.appdata.xml.in:171
-msgid "Swedish translations thanks to @eson57"
-msgstr "Svéd fordítás: @eson57"
-
-#: data/com.usebottles.bottles.appdata.xml.in:155
-msgid "Updates:"
-msgstr "Frissítések:"
-
-#: data/com.usebottles.bottles.appdata.xml.in:157
-msgid "New versioning based on CalVer model"
-msgstr "Új verzió a CalVer modell alapján"
-
-#: data/com.usebottles.bottles.appdata.xml.in:158
-msgid "Create bottles using the wine runner provided by the distribution"
-msgstr "Készítsen tárolókat az elosztó által biztosított wine-futtatóval"
-
-#: data/com.usebottles.bottles.appdata.xml.in:159
-msgid "Enable gamemode for your bottles if installed in the system"
-msgstr ""
-"Engedélyezze a játékmódot tárolójai számára, ha telepítve van a rendszerbe"
-
-#: data/com.usebottles.bottles.appdata.xml.in:160
-msgid "Run .exe/.msi/.bat files with custom arguments"
-msgstr "Futtassa az .exe/.msi /.bat fájlokat egyéni argumentumokkal"
-
-#: data/com.usebottles.bottles.appdata.xml.in:161
-msgid "Fixed the \"bad interpreter\" error on debian package"
-msgstr "Javítva a „rossz tolmács” hiba a debian csomagban"
-
-#: data/com.usebottles.bottles.appdata.xml.in:162
-msgid ""
-"Optionally close Bottles after starting an executable from the file manager"
-msgstr ""
-"Opcionálisan zárja be a Tárolókat, miután elindított egy futtatható fájlt a "
-"fájlkezelőből"
-
-#: data/com.usebottles.bottles.appdata.xml.in:163
-msgid "Added tooltips to understand what some elements of the UI do"
-msgstr ""
-"Tippek hozzáadása, hogy megértsük, mit csinálnak a felhasználói felület "
-"egyes elemei"
-
-#: data/com.usebottles.bottles.appdata.xml.in:164
-msgid "Using portal for file picker"
-msgstr "A portál használata a fájlválasztóhoz"
-
-#: data/com.usebottles.bottles.appdata.xml.in:165
-msgid "Filechooser do not filter by extensions anymore"
-msgstr "A Fájl választó már nem szűr a kiterjesztések alapján"
-
-#: data/com.usebottles.bottles.appdata.xml.in:168
-msgid "Croatin translations thanks to @milotype"
-msgstr "Horvát fordítás: @milotype"
-
-#: data/com.usebottles.bottles.appdata.xml.in:172
-msgid "Ukrain thanslations thanks to @marchellodev"
-msgstr "Ukrán fordítás a @marchellodev jóvoltából"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -570,7 +476,13 @@ msgstr "Engedély"
 msgid "Bug report"
 msgstr "Hibajelentés"
 
-#: src/ui/dependency-entry.ui:166
+#: src/ui/dependency-entry.ui:140
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+
+#: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
 msgstr "Függőség letöltése és telepítése"
 
@@ -630,7 +542,7 @@ msgstr "A verziókészítés aktív ebben a tárolóban."
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:352
+#: src/ui/details.ui:352 src/main.py:99
 msgid "Bottle name"
 msgstr "Tároló neve"
 
@@ -675,7 +587,7 @@ msgid "Kill all wine processes"
 msgstr "Állítsa le az összes wine folyamatot"
 
 #: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:651
+#: src/pages/details.py:679
 msgid "Programs"
 msgstr "Programok"
 
@@ -908,11 +820,11 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "A Wine programban nem végrehajtott naplózási útvonalak."
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:649
+#: src/pages/details.py:677
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:650
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:678
 msgid "Dependencies"
 msgstr "Függőségek"
 
@@ -940,7 +852,7 @@ msgstr "Ezek a tároló Start menüjében található programok"
 msgid "Search for installed programs"
 msgstr "Keresse meg a telepített programokat"
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:656
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:684
 msgid "Installers"
 msgstr "Telepítők"
 
@@ -948,7 +860,7 @@ msgstr "Telepítők"
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:654
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:682
 msgid "Versioning"
 msgstr "Verziókészítés"
 
@@ -962,7 +874,7 @@ msgstr "Ide kerül az üzenet."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1074 src/pages/list.py:123
+#: src/pages/details.py:1102 src/pages/list.py:124
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -1059,7 +971,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "Eltávolítás"
 
-#: src/ui/importer.ui:76 src/window.py:118
+#: src/ui/importer.ui:76 src/window.py:139
 msgid "Importer"
 msgstr "Importőr"
 
@@ -1387,7 +1299,7 @@ msgstr "Ezek a wine/wine-kiszolgáló folyamatok futnak a számítógépén."
 msgid "Check for running processes."
 msgstr "Ellenőrizze a futó folyamatokat."
 
-#: src/ui/window.ui:49 src/window.py:117
+#: src/ui/window.ui:49 src/window.py:138
 msgid "Task manager"
 msgstr "Feladatkezelő"
 
@@ -1429,155 +1341,144 @@ msgstr "Vissza"
 msgid "New bottle"
 msgstr "Új tároló"
 
-#: src/main.py:124
+#: src/main.py:81
+#, fuzzy
+msgid "Show version"
+msgstr "DXVK-verzió"
+
+#: src/main.py:87
+#, fuzzy
+msgid "Executable path"
+msgstr "Végrehajtható futatása"
+
+#: src/main.py:93
+msgid "lnk path"
+msgstr ""
+
+#: src/main.py:177
 msgid "[Quit] request received."
 msgstr "[Kilépési] kérelem érkezett."
 
-#: src/main.py:130
+#: src/main.py:183
 msgid "[Help] request received."
 msgstr "[Segítség] kérés érkezett."
 
-#: src/main.py:136
+#: src/main.py:189
 msgid "[Refresh] request received."
 msgstr "[Frissítési] kérelem érkezett."
 
-#: src/runner.py:970
+#: src/runner.py:879
 msgid "No runners found, please install one."
 msgstr "Nincsenek futók, kérjük, telepítsen egyet."
 
-#: src/runner.py:974
+#: src/runner.py:883
 msgid "No dxvk found, installing the latest version …"
 msgstr "Nem található a dxvk, telepítse a legújabb verziót…"
 
-#: src/runner.py:977
+#: src/runner.py:886
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Nem található a vkd3d, telepítse a legújabb verziót…"
 
-#: src/runner.py:1017
+#. Execute wineboot
+#: src/runner.py:926
 msgid "The wine configuration is being updated …"
 msgstr "A wine konfigurációja frissül…"
 
-#: src/runner.py:1023
+#: src/runner.py:932
 msgid "Wine configuration updated!"
 msgstr "A wine konfigurációja frissítve!"
 
-#: src/runner.py:1047
+#: src/runner.py:956
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Környezet alkalmazása folyamatban van: {0}…"
 
-#: src/runner.py:1066
+#: src/runner.py:975
 msgid "Installing dxvk …"
 msgstr "A dxvk telepítése…"
 
-#: src/runner.py:1072
+#: src/runner.py:981
 msgid "Installing vkd3d …"
 msgstr "A vkd3d telepítése…"
 
-#: src/runner.py:1080
+#: src/runner.py:989
 msgid "Creating versioning state 0 …"
 msgstr "Verziós állapot létrehozása 0…"
 
-#: src/runner.py:1086
+#: src/runner.py:995
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Az új tárolója: {0} készen áll!"
 
-#: src/runner.py:1661
-msgid "Generating state files index …"
-msgstr "Állapotfájlok tárgymutatójának létrehozása…"
-
-#: src/runner.py:1723
-msgid "Creating a restore point …"
-msgstr "Visszaállítási pont létrehozása…"
-
-#: src/runner.py:1745
-msgid "Updating index …"
-msgstr "Tárgymutató frissítése…"
-
-#: src/runner.py:1760
-msgid "Updating states …"
-msgstr "Az állapotok frissítése …"
-
-#: src/runner.py:1980
+#: src/runner.py:1390
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "{0} biztonsági másolata"
 
-#: src/runner.py:2027
+#: src/runner.py:1437
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Biztonsági másolat importálása: {0}"
 
-#: src/utils.py:60
+#: src/utils.py:62
 msgid "You are offline, unable to download."
 msgstr "Nincs online kapcsolat, nem tudja letölteni."
 
-#: src/window.py:115
+#: src/window.py:136
 msgid "Bottle details"
 msgstr "Tároló részletei"
 
-#: src/window.py:145
+#: src/window.py:166
 msgid "Bottles Started!"
 msgstr "Tárolók elindítva!"
 
-#: src/pages/details.py:280 src/pages/details.py:466
+#: src/pages/details.py:299 src/pages/details.py:487
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Jegyzékfájl a következőhöz: {0}"
 
-#: src/pages/details.py:281 src/pages/details.py:467
-#, python-brace-format
-msgid "This is the manifest for {0}."
-msgstr "Ez a(z) {0} jegyzékfájlja."
-
-#: src/pages/details.py:334
+#: src/pages/details.py:354
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Tárgymutató: {0}"
 
-#: src/pages/details.py:335
-#, python-brace-format
-msgid "This is the index for {0}."
-msgstr "Ez a(z) {0} tárgymutatója."
-
-#: src/pages/details.py:641
+#: src/pages/details.py:669
 msgid "Gamemode is either not available on your system or not running."
 msgstr "A játékmód vagy nem érhető el a rendszerén, vagy nem fut."
 
-#: src/pages/details.py:648
+#: src/pages/details.py:676
 msgid "Details & Utilities"
 msgstr "Részletek és segédprogramok"
 
-#: src/pages/details.py:1070 src/pages/list.py:119
+#: src/pages/details.py:1098 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "Válasszon egy Windows futtatható fájlt"
 
-#: src/pages/details.py:1073 src/pages/list.py:122
+#: src/pages/details.py:1101 src/pages/list.py:123
 msgid "Run"
 msgstr "Futtatás"
 
-#: src/pages/details.py:1149
+#: src/pages/details.py:1177
 msgid "Select the location where to save the backup configuration"
 msgstr "Válassza ki a biztonsági másolat beállításainak mentési helyét"
 
-#: src/pages/details.py:1168
+#: src/pages/details.py:1196
 msgid "Select the location where to save the backup archive"
 msgstr "Válassza ki a biztonsági másolat archívum mentésének helyét"
 
-#: src/pages/details.py:1188 src/pages/list.py:171
+#: src/pages/details.py:1216 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "Törlés megerősítése"
 
-#: src/pages/details.py:1189 src/pages/list.py:172
+#: src/pages/details.py:1217 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Biztosan törölni szeretné ezt a Tárolót és az összes fájlt?"
 
-#: src/pages/dialog.py:28 src/pages/dialog.py:64
+#: src/pages/dialog.py:30 src/pages/dialog.py:66
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#: src/pages/dialog.py:29 src/pages/dialog.py:65
+#: src/pages/dialog.py:31
 msgid "An error has occurred."
 msgstr "Hiba történt."
 
@@ -1585,16 +1486,16 @@ msgstr "Hiba történt."
 msgid "Choose a backup archive"
 msgstr "Válasszon egy biztonsági másolat archívumot"
 
-#: src/pages/list.py:98
+#: src/pages/list.py:99
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "A futtatható fájlhoz talált argumentumok: [{{executable}}]."
 
-#: src/pages/list.py:149
+#: src/pages/list.py:150
 msgid "Confirm upgrade"
 msgstr "Frissítés megerősítése"
 
-#: src/pages/list.py:150
+#: src/pages/list.py:151
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
 msgstr "Ez a futót {0} -ról {1} -re változtatja."
@@ -1627,6 +1528,97 @@ msgstr "Tiszta környezet a kísérletekhez."
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "A(z) „%s” tároló sikeresen létrehozva"
+
+#~ msgid "Display a crash report on restart if something goes wrong"
+#~ msgstr ""
+#~ "Az újraindításkor jelenjen meg egy összeomlási jelentés, ha valami "
+#~ "rosszul megy"
+
+#~ msgid "Using the new yaml format for the bottle configuration"
+#~ msgstr "Az új yaml-formátum használata a tároló beállításához"
+
+#~ msgid "Using the new yaml repositories for components/dependencies/programs"
+#~ msgstr ""
+#~ "Az új yaml tárak használata az összetevők /függőségek /programok számára"
+
+#~ msgid "Automatic update old bottle configuration to the new model"
+#~ msgstr "A régi tárolóbeállítások önműködő frissítése az új modellre"
+
+#~ msgid "Backup bottle configuration and archive"
+#~ msgstr "Tárolók biztonsági másolata beállítása és archiválása"
+
+#~ msgid "Import backup archives"
+#~ msgstr "Archívumok biztonsági másolata importálása"
+
+#~ msgid "Show onboard if system wine is the only installed runner"
+#~ msgstr ""
+#~ "Mutassa a beléptetéskor, ha a wine rendszer az egyetlen telepített futó"
+
+#~ msgid "Swedish translations thanks to @eson57"
+#~ msgstr "Svéd fordítás: @eson57"
+
+#~ msgid "Updates:"
+#~ msgstr "Frissítések:"
+
+#~ msgid "New versioning based on CalVer model"
+#~ msgstr "Új verzió a CalVer modell alapján"
+
+#~ msgid "Create bottles using the wine runner provided by the distribution"
+#~ msgstr "Készítsen tárolókat az elosztó által biztosított wine-futtatóval"
+
+#~ msgid "Enable gamemode for your bottles if installed in the system"
+#~ msgstr ""
+#~ "Engedélyezze a játékmódot tárolójai számára, ha telepítve van a rendszerbe"
+
+#~ msgid "Run .exe/.msi/.bat files with custom arguments"
+#~ msgstr "Futtassa az .exe/.msi /.bat fájlokat egyéni argumentumokkal"
+
+#~ msgid "Fixed the \"bad interpreter\" error on debian package"
+#~ msgstr "Javítva a „rossz tolmács” hiba a debian csomagban"
+
+#~ msgid ""
+#~ "Optionally close Bottles after starting an executable from the file "
+#~ "manager"
+#~ msgstr ""
+#~ "Opcionálisan zárja be a Tárolókat, miután elindított egy futtatható fájlt "
+#~ "a fájlkezelőből"
+
+#~ msgid "Added tooltips to understand what some elements of the UI do"
+#~ msgstr ""
+#~ "Tippek hozzáadása, hogy megértsük, mit csinálnak a felhasználói felület "
+#~ "egyes elemei"
+
+#~ msgid "Using portal for file picker"
+#~ msgstr "A portál használata a fájlválasztóhoz"
+
+#~ msgid "Filechooser do not filter by extensions anymore"
+#~ msgstr "A Fájl választó már nem szűr a kiterjesztések alapján"
+
+#~ msgid "Croatin translations thanks to @milotype"
+#~ msgstr "Horvát fordítás: @milotype"
+
+#~ msgid "Ukrain thanslations thanks to @marchellodev"
+#~ msgstr "Ukrán fordítás a @marchellodev jóvoltából"
+
+#~ msgid "Generating state files index …"
+#~ msgstr "Állapotfájlok tárgymutatójának létrehozása…"
+
+#~ msgid "Creating a restore point …"
+#~ msgstr "Visszaállítási pont létrehozása…"
+
+#~ msgid "Updating index …"
+#~ msgstr "Tárgymutató frissítése…"
+
+#~ msgid "Updating states …"
+#~ msgstr "Az állapotok frissítése …"
+
+#, python-brace-format
+#~ msgid "This is the manifest for {0}."
+#~ msgstr "Ez a(z) {0} jegyzékfájlja."
+
+#, python-brace-format
+#~ msgid "This is the index for {0}."
+#~ msgstr "Ez a(z) {0} tárgymutatója."
 
 #~ msgid "Page 1"
 #~ msgstr "1. oldal"
