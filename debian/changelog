@@ -1,7 +1,8 @@
 com.usebottles.bottles (2021.7.28-treviso) precise; urgency=low
 
   * Support for .lnk files
-  * Run any .exe/.msi/.lnk using CLI
+  * Run any .exe/.msi/.lnk using the flags -e/-l in command line
+  * Specify the target bottle using the -b flag in command line
   * Run executables without show the Bottles Window
   * Fix crash log path on Flatpak
   * Fixed an issue causing Bottles to detect downloaded dxvk even when it fails
