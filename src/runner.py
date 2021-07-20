@@ -281,6 +281,7 @@ class BottlesRunner:
         configuration, dependency, widget = args
         self.download_manager = DownloadManager(self.window)
         download_entry = self.download_manager.new_download(dependency[0], False)
+        has_no_uninstaller = False
 
         if configuration["Versioning"]:
             self.versioning_manager.async_create_bottle_state([
@@ -335,6 +336,8 @@ class BottlesRunner:
 
             # Step type: cab_extract
             if step["action"] == "cab_extract":
+                has_no_uninstaller = True # cab extracted has no uninstaller
+
                 if validate_url(step["url"]):
                     download = self.download_component("dependency",
                                             step.get("url"),
@@ -373,6 +376,8 @@ class BottlesRunner:
 
             # Step type: install_cab_fonts
             if step["action"] == "install_cab_fonts":
+                has_no_uninstaller = True # cab extracted has no uninstaller
+
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
                 bottle_path = self.get_bottle_path(configuration)
@@ -384,6 +389,8 @@ class BottlesRunner:
 
             # Step type: copy_cab_dll
             if step["action"] == "copy_cab_dll":
+                has_no_uninstaller = True # cab extracted has no uninstaller
+
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
                 bottle_path = self.get_bottle_path(configuration)
@@ -398,7 +405,7 @@ class BottlesRunner:
                     break
 
             # Step type: override_dll
-            if step["action"] == "override_dll":
+            if step["action"] == "override_dll":                
                 self.reg_add(
                     configuration,
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
@@ -423,13 +430,22 @@ class BottlesRunner:
                     dependency_manifest["Uninstaller"],
                     "Uninstallers")
 
+            if has_no_uninstaller:
+                self.update_configuration(
+                    configuration,
+                    dependency[0],
+                    "NO_UNINSTALLER",
+                    "Uninstallers")
+
         # Remove entry from download manager
         GLib.idle_add(download_entry.remove)
 
         # Hide installation button and show remove button
         GLib.idle_add(widget.btn_install.set_visible, False)
-        GLib.idle_add(widget.btn_remove.set_visible, True)
-        GLib.idle_add(widget.btn_remove.set_sensitive, True)
+
+        if not has_no_uninstaller:
+            GLib.idle_add(widget.btn_remove.set_visible, True)
+            GLib.idle_add(widget.btn_remove.set_sensitive, True)
 
         return True
 

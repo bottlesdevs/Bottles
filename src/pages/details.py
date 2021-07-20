@@ -461,7 +461,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(False)
             return None
-
+        
         '''Populate widgets'''
         self.set_title(dependency[0])
         self.set_subtitle(dependency[1].get("Description"))
@@ -479,6 +479,11 @@ class BottlesDependencyEntry(Handy.ActionRow):
         if dependency[0] in self.configuration.get("Installed_Dependencies"):
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(True)
+        
+        '''If dependency has no uninstaller'''
+        if dependency[0] in self.configuration.get("Uninstallers").keys():
+            if self.configuration["Uninstallers"][dependency[0]] == "NO_UNINSTALLER":
+                self.btn_remove.set_sensitive(False)
 
     '''Open dependency manifest'''
     def open_manifest(self, widget):
