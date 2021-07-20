@@ -234,7 +234,7 @@ class CabExtract():
             write_log(f"{self.path} is not a cab file")
             return False
         
-        if not shutil.which("cabextract2"):
+        if not shutil.which("cabextract"):
             logging.fatal("cabextract utility not found, please install to use dependencies wich need this feature")
             write_log("cabextract utility not found, please install to use dependencies wich need this feature")
             return False
