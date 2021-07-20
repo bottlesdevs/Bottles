@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-19 08:07+0200\n"
+"POT-Creation-Date: 2021-07-20 16:26+0200\n"
 "PO-Revision-Date: 2021-07-11 11:32+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/bottles/"
@@ -564,7 +564,7 @@ msgid "Kill all wine processes"
 msgstr "Ĉesigi ĉiujn procezoj de Wine."
 
 #: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:679
+#: src/pages/details.py:684
 msgid "Programs"
 msgstr "Programoj"
 
@@ -799,11 +799,11 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Protokoli programvojojn ne realigitajn en Wine."
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:677
+#: src/pages/details.py:682
 msgid "Preferences"
 msgstr "Preferencoj"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:678
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:683
 msgid "Dependencies"
 msgstr "Dependaĵoj"
 
@@ -829,7 +829,7 @@ msgstr ""
 msgid "Search for installed programs"
 msgstr "Serĉi instalitajn programojn"
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:684
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:689
 msgid "Installers"
 msgstr "Instaliloj"
 
@@ -837,7 +837,7 @@ msgstr "Instaliloj"
 msgid "Refresh"
 msgstr "Reŝargi"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:682
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:687
 msgid "Versioning"
 msgstr "Administrado de versioj"
 
@@ -851,7 +851,7 @@ msgstr "Jen tajpenda mesaĝo ĉi tie."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1102 src/pages/list.py:124
+#: src/pages/details.py:1107 src/pages/list.py:124
 msgid "Cancel"
 msgstr "Nuligi"
 
@@ -1340,59 +1340,59 @@ msgstr "Riceviĝis peto [Helpo]."
 msgid "[Refresh] request received."
 msgstr "Riceviĝis peto [Reŝargi]."
 
-#: src/runner.py:879
+#: src/runner.py:895
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Neniuj ruliloj troviĝis."
 
-#: src/runner.py:883
+#: src/runner.py:899
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr "Ne troviĝis rulilo kaj/aŭ DXVK; instalante plej novan version…"
 
-#: src/runner.py:886
+#: src/runner.py:902
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Ne troviĝis rulilo kaj/aŭ DXVK; instalante plej novan version…"
 
 #. Execute wineboot
-#: src/runner.py:926
+#: src/runner.py:942
 msgid "The wine configuration is being updated …"
 msgstr "Reagordante Wine…"
 
-#: src/runner.py:932
+#: src/runner.py:948
 msgid "Wine configuration updated!"
 msgstr "Reagordiĝis Wine!"
 
-#: src/runner.py:956
+#: src/runner.py:972
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Efektivigante medion: {0}…"
 
-#: src/runner.py:975
+#: src/runner.py:991
 msgid "Installing dxvk …"
 msgstr "Instalante DXVK…"
 
-#: src/runner.py:981
+#: src/runner.py:997
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Instalante DXVK…"
 
-#: src/runner.py:989
+#: src/runner.py:1005
 msgid "Creating versioning state 0 …"
 msgstr "Kreante versian staton 0…"
 
-#: src/runner.py:995
+#: src/runner.py:1011
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Pretas via nova botelo {0}!"
 
-#: src/runner.py:1390
+#: src/runner.py:1406
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Savkopii {0}"
 
-#: src/runner.py:1437
+#: src/runner.py:1453
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Enportante savkopion: {0}"
@@ -1409,7 +1409,7 @@ msgstr "Detaloj pri botelo"
 msgid "Bottles Started!"
 msgstr "Ekfunkcias botelo!"
 
-#: src/pages/details.py:299 src/pages/details.py:487
+#: src/pages/details.py:299 src/pages/details.py:492
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifesto de {0}"
@@ -1419,36 +1419,36 @@ msgstr "Manifesto de {0}"
 msgid "Index for state {0}"
 msgstr "Indico de stato {0}"
 
-#: src/pages/details.py:669
+#: src/pages/details.py:674
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:676
+#: src/pages/details.py:681
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Ilprogramoj"
 
-#: src/pages/details.py:1098 src/pages/list.py:120
+#: src/pages/details.py:1103 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "Elektu Vindozan programon"
 
-#: src/pages/details.py:1101 src/pages/list.py:123
+#: src/pages/details.py:1106 src/pages/list.py:123
 msgid "Run"
 msgstr "Ruli"
 
-#: src/pages/details.py:1177
+#: src/pages/details.py:1182
 msgid "Select the location where to save the backup configuration"
 msgstr "Elektu la lokon, kie konserviĝos la savkopio de agordoj"
 
-#: src/pages/details.py:1196
+#: src/pages/details.py:1201
 msgid "Select the location where to save the backup archive"
 msgstr "Elektu la lokon, kie konserviĝos la savkopia arkivo"
 
-#: src/pages/details.py:1216 src/pages/list.py:172
+#: src/pages/details.py:1221 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "Konfirmu forviŝon"
 
-#: src/pages/details.py:1217 src/pages/list.py:173
+#: src/pages/details.py:1222 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Ĉu vi certe volas forviŝi ĉi tiun botelon kaj ĝiajn dosierojn?"
 

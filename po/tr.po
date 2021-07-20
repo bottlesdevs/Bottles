@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-19 08:07+0200\n"
+"POT-Creation-Date: 2021-07-20 16:26+0200\n"
 "PO-Revision-Date: 2021-06-28 04:35+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -575,7 +575,7 @@ msgid "Kill all wine processes"
 msgstr "Tüm görevleri sonlandır"
 
 #: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:679
+#: src/pages/details.py:684
 msgid "Programs"
 msgstr "Programlar"
 
@@ -813,11 +813,11 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wine'da uygulanmayan günlük kodu yolları."
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:677
+#: src/pages/details.py:682
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:678
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:683
 msgid "Dependencies"
 msgstr "Bağımlılıklar"
 
@@ -845,7 +845,7 @@ msgstr "Şişe'de yüklü bulunan programlar (hepsi olmayabilir)."
 msgid "Search for installed programs"
 msgstr "Yüklü programları arayın"
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:684
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:689
 msgid "Installers"
 msgstr "Yükleyiciler"
 
@@ -853,7 +853,7 @@ msgstr "Yükleyiciler"
 msgid "Refresh"
 msgstr "Yenile"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:682
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:687
 msgid "Versioning"
 msgstr "Sürüm oluşturma"
 
@@ -867,7 +867,7 @@ msgstr "Mesaj buraya gelecek."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1102 src/pages/list.py:124
+#: src/pages/details.py:1107 src/pages/list.py:124
 msgid "Cancel"
 msgstr "İptal"
 
@@ -1362,59 +1362,59 @@ msgstr "[Yardım] isteği alındı."
 msgid "[Refresh] request received."
 msgstr "[Yenile] isteği alındı."
 
-#: src/runner.py:879
+#: src/runner.py:895
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Çalıştırıcı bulunamadı."
 
-#: src/runner.py:883
+#: src/runner.py:899
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr "Çalıştırıcı ve / veya dxvk bulunamadı, en son sürüm yükleniyor…"
 
-#: src/runner.py:886
+#: src/runner.py:902
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Çalıştırıcı ve / veya dxvk bulunamadı, en son sürüm yükleniyor…"
 
 #. Execute wineboot
-#: src/runner.py:926
+#: src/runner.py:942
 msgid "The wine configuration is being updated …"
 msgstr "Wine yapılandırması güncelleniyor…"
 
-#: src/runner.py:932
+#: src/runner.py:948
 msgid "Wine configuration updated!"
 msgstr "Wine yapılandırması güncellendi!"
 
-#: src/runner.py:956
+#: src/runner.py:972
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Uygulama ortamı: [{0}] …"
 
-#: src/runner.py:975
+#: src/runner.py:991
 msgid "Installing dxvk …"
 msgstr "Dxvk yükleniyor…"
 
-#: src/runner.py:981
+#: src/runner.py:997
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Dxvk yükleniyor…"
 
-#: src/runner.py:989
+#: src/runner.py:1005
 msgid "Creating versioning state 0 …"
 msgstr "Sürüm oluşturma durumu 0 …"
 
-#: src/runner.py:995
+#: src/runner.py:1011
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Yeni şişeniz: {0} artık hazır!"
 
-#: src/runner.py:1390
+#: src/runner.py:1406
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Yedekleme {0}"
 
-#: src/runner.py:1437
+#: src/runner.py:1453
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Yedeği içe aktarılıyor: {0}"
@@ -1431,7 +1431,7 @@ msgstr "Şişe ayrıntıları"
 msgid "Bottles Started!"
 msgstr "Şişe Başlatıldı!"
 
-#: src/pages/details.py:299 src/pages/details.py:487
+#: src/pages/details.py:299 src/pages/details.py:492
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "{0} için manifesto"
@@ -1441,37 +1441,37 @@ msgstr "{0} için manifesto"
 msgid "Index for state {0}"
 msgstr "Dizin durumu {0}"
 
-#: src/pages/details.py:669
+#: src/pages/details.py:674
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:676
+#: src/pages/details.py:681
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Araçlar"
 
-#: src/pages/details.py:1098 src/pages/list.py:120
+#: src/pages/details.py:1103 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "Çalıştırılacak bir Windows dosyası seçin"
 
-#: src/pages/details.py:1101 src/pages/list.py:123
+#: src/pages/details.py:1106 src/pages/list.py:123
 #, fuzzy
 msgid "Run"
 msgstr "Çalıştırıcı"
 
-#: src/pages/details.py:1177
+#: src/pages/details.py:1182
 msgid "Select the location where to save the backup configuration"
 msgstr "Yedekleme dosyası yapılandırmasının kaydedileceği konumu seçin"
 
-#: src/pages/details.py:1196
+#: src/pages/details.py:1201
 msgid "Select the location where to save the backup archive"
 msgstr "Yedek arşivinin kaydedileceği konumu seçin"
 
-#: src/pages/details.py:1216 src/pages/list.py:172
+#: src/pages/details.py:1221 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "Silmeyi onayla"
 
-#: src/pages/details.py:1217 src/pages/list.py:173
+#: src/pages/details.py:1222 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
 

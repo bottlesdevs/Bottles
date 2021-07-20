@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-19 08:07+0200\n"
+"POT-Creation-Date: 2021-07-20 16:26+0200\n"
 "PO-Revision-Date: 2021-05-14 05:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
@@ -606,7 +606,7 @@ msgid "Kill all wine processes"
 msgstr "Drep alle prosesser"
 
 #: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:679
+#: src/pages/details.py:684
 msgid "Programs"
 msgstr "Programmer"
 
@@ -854,11 +854,11 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:677
+#: src/pages/details.py:682
 msgid "Preferences"
 msgstr "Egenskaper"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:678
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:683
 msgid "Dependencies"
 msgstr "Avhengigheter"
 
@@ -889,7 +889,7 @@ msgstr ""
 msgid "Search for installed programs"
 msgstr "Se etter installerte programmer."
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:684
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:689
 msgid "Installers"
 msgstr "Installasjonskandidater"
 
@@ -897,7 +897,7 @@ msgstr "Installasjonskandidater"
 msgid "Refresh"
 msgstr "Gjenoppfrisk"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:682
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:687
 msgid "Versioning"
 msgstr "Versjonering"
 
@@ -912,7 +912,7 @@ msgstr ""
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1102 src/pages/list.py:124
+#: src/pages/details.py:1107 src/pages/list.py:124
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1430,59 +1430,59 @@ msgstr "`Hjelp`-forespørsel mottatt."
 msgid "[Refresh] request received."
 msgstr "`Gjenoppfrisk`-forespørsel mottatt."
 
-#: src/runner.py:879
+#: src/runner.py:895
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Fant ingen springere"
 
-#: src/runner.py:883
+#: src/runner.py:899
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr "Fortsett installasjonen av siste versjon?"
 
-#: src/runner.py:886
+#: src/runner.py:902
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Fortsett installasjonen av siste versjon?"
 
 #. Execute wineboot
-#: src/runner.py:926
+#: src/runner.py:942
 msgid "The wine configuration is being updated …"
 msgstr ""
 
-#: src/runner.py:932
+#: src/runner.py:948
 #, fuzzy
 msgid "Wine configuration updated!"
 msgstr "Oppsett"
 
-#: src/runner.py:956
+#: src/runner.py:972
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr ""
 
-#: src/runner.py:975
+#: src/runner.py:991
 msgid "Installing dxvk …"
 msgstr ""
 
-#: src/runner.py:981
+#: src/runner.py:997
 msgid "Installing vkd3d …"
 msgstr ""
 
-#: src/runner.py:989
+#: src/runner.py:1005
 msgid "Creating versioning state 0 …"
 msgstr ""
 
-#: src/runner.py:995
+#: src/runner.py:1011
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr ""
 
-#: src/runner.py:1390
+#: src/runner.py:1406
 #, fuzzy, python-brace-format
 msgid "Backup {0}"
 msgstr "Sikkerhetskopi {0}"
 
-#: src/runner.py:1437
+#: src/runner.py:1453
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importerer sikkerhetskopi: {0}"
@@ -1499,7 +1499,7 @@ msgstr "Flaskedetaljer"
 msgid "Bottles Started!"
 msgstr "Flasker startet."
 
-#: src/pages/details.py:299 src/pages/details.py:487
+#: src/pages/details.py:299 src/pages/details.py:492
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest for {0}"
@@ -1509,40 +1509,40 @@ msgstr "Manifest for {0}"
 msgid "Index for state {0}"
 msgstr "Indeks for tilstand {0}"
 
-#: src/pages/details.py:669
+#: src/pages/details.py:674
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:676
+#: src/pages/details.py:681
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Verktøy"
 
-#: src/pages/details.py:1098 src/pages/list.py:120
+#: src/pages/details.py:1103 src/pages/list.py:120
 #, fuzzy
 msgid "Choose a Windows executable file"
 msgstr "Velg en kjørbar Windows-fil"
 
-#: src/pages/details.py:1101 src/pages/list.py:123
+#: src/pages/details.py:1106 src/pages/list.py:123
 #, fuzzy
 msgid "Run"
 msgstr "Springer"
 
-#: src/pages/details.py:1177
+#: src/pages/details.py:1182
 #, fuzzy
 msgid "Select the location where to save the backup configuration"
 msgstr "Velg sted å lagre sikkerhetskopi"
 
-#: src/pages/details.py:1196
+#: src/pages/details.py:1201
 #, fuzzy
 msgid "Select the location where to save the backup archive"
 msgstr "Velg sted å lagre sikkerhetskopiert arkiv"
 
-#: src/pages/details.py:1216 src/pages/list.py:172
+#: src/pages/details.py:1221 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "Bekreft sletting"
 
-#: src/pages/details.py:1217 src/pages/list.py:173
+#: src/pages/details.py:1222 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Er du sikker på at du vil slette denne flasken og alle dens filer?"
 

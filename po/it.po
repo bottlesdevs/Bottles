@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-19 08:07+0200\n"
+"POT-Creation-Date: 2021-07-20 16:26+0200\n"
 "PO-Revision-Date: 2021-07-12 16:53+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -585,7 +585,7 @@ msgid "Kill all wine processes"
 msgstr "Uccidi tutti i processi del vino"
 
 #: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:679
+#: src/pages/details.py:684
 msgid "Programs"
 msgstr "Programmi"
 
@@ -818,11 +818,11 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Mostra i log per le funzioni non implementate in Wine."
 
 #: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:677
+#: src/pages/details.py:682
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:678
+#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:683
 msgid "Dependencies"
 msgstr "Dipendenze"
 
@@ -851,7 +851,7 @@ msgstr ""
 msgid "Search for installed programs"
 msgstr "Cerca programmi installati"
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:684
+#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:689
 msgid "Installers"
 msgstr "Installatori"
 
@@ -859,7 +859,7 @@ msgstr "Installatori"
 msgid "Refresh"
 msgstr "Ricarica"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:682
+#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:687
 msgid "Versioning"
 msgstr "Versionamento"
 
@@ -873,7 +873,7 @@ msgstr "Il messaggio va qui."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1102 src/pages/list.py:124
+#: src/pages/details.py:1107 src/pages/list.py:124
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -1373,58 +1373,58 @@ msgstr "Richiesta [Aiuto] ricevuta."
 msgid "[Refresh] request received."
 msgstr "Richiesta [Ricarica] ricevuta."
 
-#: src/runner.py:879
+#: src/runner.py:895
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Nessun runner trovato."
 
-#: src/runner.py:883
+#: src/runner.py:899
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr "Uno o più componenti non trovati, installando l'ultima versione …"
 
-#: src/runner.py:886
+#: src/runner.py:902
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Uno o più componenti non trovati, installando l'ultima versione …"
 
 #. Execute wineboot
-#: src/runner.py:926
+#: src/runner.py:942
 msgid "The wine configuration is being updated …"
 msgstr "La configurazione di wine è in fase di aggiornamento …"
 
-#: src/runner.py:932
+#: src/runner.py:948
 msgid "Wine configuration updated!"
 msgstr "Configurazione Wine aggiornata!"
 
-#: src/runner.py:956
+#: src/runner.py:972
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Applicazione dell'ambiente: {0} …"
 
-#: src/runner.py:975
+#: src/runner.py:991
 msgid "Installing dxvk …"
 msgstr "Installazione di dxvk …"
 
-#: src/runner.py:981
+#: src/runner.py:997
 msgid "Installing vkd3d …"
 msgstr "Installazione di vkd3d …"
 
-#: src/runner.py:989
+#: src/runner.py:1005
 msgid "Creating versioning state 0 …"
 msgstr "Creazione dello stato di controllo delle versioni 0 …"
 
-#: src/runner.py:995
+#: src/runner.py:1011
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "La tua nuova bottiglia: {0} è ora pronta!"
 
-#: src/runner.py:1390
+#: src/runner.py:1406
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Backup {0}"
 
-#: src/runner.py:1437
+#: src/runner.py:1453
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importazione del backup: {0}"
@@ -1441,7 +1441,7 @@ msgstr "Dettagli Bottiglia"
 msgid "Bottles Started!"
 msgstr "Bottles Avviato!"
 
-#: src/pages/details.py:299 src/pages/details.py:487
+#: src/pages/details.py:299 src/pages/details.py:492
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifesto per {0}"
@@ -1451,35 +1451,35 @@ msgstr "Manifesto per {0}"
 msgid "Index for state {0}"
 msgstr "Indice per lo stato {0}"
 
-#: src/pages/details.py:669
+#: src/pages/details.py:674
 msgid "Gamemode is either not available on your system or not running."
 msgstr "La Gamemode non è disponibile sul tuo sistema o non è in esecuzione."
 
-#: src/pages/details.py:676
+#: src/pages/details.py:681
 msgid "Details & Utilities"
 msgstr "Dettagli e utilità"
 
-#: src/pages/details.py:1098 src/pages/list.py:120
+#: src/pages/details.py:1103 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "Scegli un file eseguibile Windows"
 
-#: src/pages/details.py:1101 src/pages/list.py:123
+#: src/pages/details.py:1106 src/pages/list.py:123
 msgid "Run"
 msgstr "Esegui"
 
-#: src/pages/details.py:1177
+#: src/pages/details.py:1182
 msgid "Select the location where to save the backup configuration"
 msgstr "Seleziona la posizione dove salvare il backup della configurazione"
 
-#: src/pages/details.py:1196
+#: src/pages/details.py:1201
 msgid "Select the location where to save the backup archive"
 msgstr "Seleziona la posizione dove salvare l'archivio backup"
 
-#: src/pages/details.py:1216 src/pages/list.py:172
+#: src/pages/details.py:1221 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "Conferma eliminazione"
 
-#: src/pages/details.py:1217 src/pages/list.py:173
+#: src/pages/details.py:1222 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Sei sicuro di voler rimuovere questa Bottiglia e tutti i suoi file?"
 
