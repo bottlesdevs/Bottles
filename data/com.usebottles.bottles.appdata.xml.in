@@ -93,46 +93,21 @@
     <url type="bugtracker">https://github.com/bottlesdevs/Bottles/issues</url>
     <url type="help">https://docs.usebottles.com</url>
     <releases>
-        <release version="2021.7.14-treviso" date="2021-07-14">
+        <release version="2021.7.28-treviso" date="2021-07-28">
           <description>
             <ul>
-                <li>Dependencies can be extracted and installed from a Windows cabinet</li>
-                <li>Dependencies can override and move dll</li>
-                <li>Dependencies can now install fonts without user intervention</li>
-                <li>Dependency/installer manifests, support environment variables and arguments</li>
-                <li>If versioning is active for the bottle, a new state is created before installing a dependency</li>
-                <li>Dependencies and installers now call their uninstaller, if this is declared in the manifest</li>
-                <li>Now you can search for dependencies using the search field</li>
-                <li>Dependencies and installers show the source license</li>
-                <li>When a crash report appears, reporting it the issue is automatically and correctly filled</li>
-                <li>While creating a new state, information about the entire process is shown on the screen</li>
-                <li>Support for vkd3d</li>
-                <li>The search for installed programs has been extended to user AppData</li>
-                <li>Fixed some problems related to the dxvk implementation</li>
-                <li>Now dxvk and vkd3d are installed only after the user presses Install on first start</li>
-                <li>Reduced the amount of logs</li>
-                <li>Flatpak now uses the app directories</li>
-                <li>If there are bottles in the old dir and the app dir is empty then a migration dialog is shown</li>
-                <li>Fixed a bug in Nvidia identification for optimus laptops</li>
-                <li>Fixed a bug in the management of the download manager that resulted in a crash</li>
-                <li>Install dxvk and vkd3d on bottle creation if missing</li>
-                <li>The preferences are organized into sections</li>
-                <li>The program list is hidden if empty</li>
-                <li>The bottle details page now uses a sidebar</li>
-                <li>Added references to documentation for some features</li>
-                <li>Makes the UI more consistent with rounded edges and status pages from libhandy</li>
-                <li>Replacing the name wine with runner, where possible</li>
-                <li>Added more information for initial download to the Onboard</li>
-                <li>French translations thanks to @julroy67</li>
-                <li>Portuguese (Brazil) translations thanks to @LeandroStanger</li>
+                <li>Support for .lnk files</li>
+                <li>Run any .exe/.msi/.lnk using CLI</li>
+                <li>Run executables without show the Bottles Window</li>
+                <li>Fix crash log path on Flatpak</li>
+                <li>Fixed an issue causing Bottles to detect downloaded dxvk even when it fails</li>
+                <li>Disable uninstaller button for dependencies installed from cab files</li>
+                <li>Warning for missing cabextract tool</li>
+                <li>Several improvements in runner management</li>
+                <li>Added icons to the sidebar</li>
+                <li>Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906</li>
+                <li>Japanese translations thanks to @jatin-cbs</li>
                 <li>Hungarian translations thanks to @ovari</li>
-                <li>Chinese (Simplified) translations thanks to Flywater Zh</li>
-                <li>Portuguese translations thanks to @laralem</li>
-                <li>Czech translations thanks to @pervoj and Vojtěch Perník</li>
-                <li>Spanish translations thanks to @fitojb</li>
-                <li>Esperanto translations thanks to @phlostically</li>
-                <li>Croatian translations thanks to @milotype</li>
-                <li>New logo thanks to @jannuary @alvarlagerlof @ZekeSmith</li>
             </ul>
           </description>
         </release>
