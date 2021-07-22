@@ -106,7 +106,6 @@ class BottlesRunner:
                 logging.error("Failed to clear temp path!")
                 self.check_runners_dir()
 
-
     # Update bottles list var and page_list
     def update_bottles(self, silent:bool=False) -> None:
         self.check_bottles(silent)
@@ -185,7 +184,7 @@ class BottlesRunner:
             logging.warning(f"File [{file}] already exists in temp, skipping.")
             GLib.idle_add(update_func, False, False, False, True)
         else:
-            if component not in ["runner", "runner:proton"]: # skip check for big files like runners
+            if component not in ["runner", "runner:proton", "installer"]: # skip check for big files like runners
                 download_url = requests.get(download_url, allow_redirects=True).url
             request = urllib.request.Request(download_url, method='HEAD')
             request = urllib.request.urlopen(download_url)
@@ -332,8 +331,25 @@ class BottlesRunner:
                         arguments=step.get("arguments"),
                         environment=step.get("environment"))
                 else:
-                    widget.btn_install.set_sensitive(True)
+                    if widget is not None:
+                        widget.btn_install.set_sensitive(True)
                     return False
+            
+            # Step type: uninstall
+            if step["action"] == "uninstall":
+                file_name = step["file_name"]
+                command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
+                uuid = RunnerUtilities().run_command(
+                    configuration=configuration,
+                    command=command,
+                    terminal=False,
+                    environment=False,
+                    comunicate=True)
+                uuid = uuid.strip()
+                if uuid != "":
+                    logging.info(f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}].")
+                    RunnerUtilities().run_uninstaller(configuration, uuid)
+                    
 
             # Step type: cab_extract
             if step["action"] == "cab_extract":
@@ -355,13 +371,15 @@ class BottlesRunner:
                             f"{BottlesPaths.temp}/{file}",
                             file
                         ):
-                            GLib.idle_add(widget.set_err)
+                            if widget is not None:
+                                GLib.idle_add(widget.set_err)
                             exit()
                         if not CabExtract().run(
                             f"{BottlesPaths.temp}/{file}",
                             os.path.splitext(f"{file}")[0]
                         ):
-                            GLib.idle_add(widget.set_err)
+                            if widget is not None:
+                                GLib.idle_add(widget.set_err)
                             exit()
 
                 elif step["url"].startswith("temp/"):
@@ -372,7 +390,8 @@ class BottlesRunner:
                         f"{path}/{step.get('file_name')}",
                         os.path.splitext(f"{step.get('file_name')}")[0]
                     ):
-                        GLib.idle_add(widget.set_err)
+                        if widget is not None:
+                            GLib.idle_add(widget.set_err)
                         exit()
 
             # Step type: 7zip_extract
@@ -477,15 +496,16 @@ class BottlesRunner:
         GLib.idle_add(download_entry.remove)
 
         # Hide installation button and show remove button
-        GLib.idle_add(widget.btn_install.set_visible, False)
+        if widget is not None:
+         GLib.idle_add(widget.btn_install.set_visible, False)
 
-        if not has_no_uninstaller:
+        if not has_no_uninstaller and widget is not None:
             GLib.idle_add(widget.btn_remove.set_visible, True)
             GLib.idle_add(widget.btn_remove.set_sensitive, True)
 
         return True
 
-    def install_dependency(self, configuration:BottleConfig, dependency:list, widget:Gtk.Widget) -> None:
+    def install_dependency(self, configuration:BottleConfig, dependency:list, widget:Gtk.Widget = None) -> None:
         if self.utils_conn.check_connection(True):
             RunAsync(self.async_install_dependency, None, [configuration,
                                                            dependency,
@@ -539,11 +559,60 @@ class BottlesRunner:
 
         RunnerUtilities().run_uninstaller(configuration, uuid)
 
-
     # Run installer
     def run_installer(self, configuration:BottleConfig, installer:list, widget:Gtk.Widget) -> None:
-        # TODO: scheduled for Trento
-        print(installer)
+        manifest = self.fetch_installer_manifest(
+            installer_name = installer[0],
+            installer_category = installer[1]["Category"])
+        
+        dependencies = manifest.get("Dependencies")
+        parameters = manifest.get("Parameters")
+        executable = manifest.get("Executable")
+        steps = manifest.get("Steps")
+
+        for dep in dependencies:
+            if dep in configuration.get("Installed_Dependencies"):
+                continue
+            dep_index = [dep, self.supported_dependencies.get(dep)]
+            print(dep_index)
+            self.async_install_dependency([configuration, dep_index, None])
+        
+        for st in steps:
+            # Step type: install_exe, install_msi
+            if st["action"] in ["install_exe", "install_msi"]:
+                download = self.download_component(
+                    "installer",
+                    st.get("url"),
+                    st.get("file_name"),
+                    st.get("rename"),
+                    checksum=st.get("file_checksum"))
+
+                if download:
+                    if st.get("rename"):
+                        file = st.get("rename")
+                    else:
+                        file = st.get("file_name")
+
+                    RunnerUtilities().run_executable(
+                        configuration=configuration,
+                        file_path=f"{BottlesPaths.temp}/{file}",
+                        arguments=st.get("arguments"),
+                        environment=st.get("environment"))
+        
+        # Set parameters
+        for param in parameters:
+            self.update_configuration(
+                configuration=configuration,
+                key=param,
+                value=parameters[param],
+                scope="Parameters")
+
+        # Register executable arguments
+        self.update_configuration(
+            configuration=configuration,
+            key=executable.get("file"),
+            value=executable.get("arguments"),
+            scope="Programs")
 
     # Check local runners
     def check_runners(self, install_latest:bool=True, after=False) -> bool:
@@ -705,7 +774,6 @@ class BottlesRunner:
                     logging.error(F"Cannot find executable for [{path}].")
 
         return installed_programs
-
 
     # Fetch installers
     def fetch_installers(self) -> bool:
@@ -1405,7 +1473,6 @@ class BottlesRunner:
         logging.info(
             f"Wineprefix: [{wineprefix['Name']}] successfully imported!")
         return True
-
 
     def browse_wineprefix(self, wineprefix:dict) -> bool:
         return RunnerUtilities().open_filemanager(path_type="custom",
