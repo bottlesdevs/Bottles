@@ -1370,21 +1370,6 @@ class BottlesRunner:
         else:
             self.reg_delete(configuration, key, "Default")
 
-    # Send status to a bottle
-    def send_status(self, configuration:BottleConfig, status:str) -> None:
-        logging.info(f"Sending Status: [{status}] to the wineprefix …")
-
-        available_status = {
-            "shutdown": "-s",
-            "reboot": "-r",
-            "kill": "-k"
-        }
-
-        option = available_status[status]
-        bottle_name = configuration.get("Name")
-
-        RunnerUtilities().run_command(configuration, "wineboot %s" % option)
-
     '''
     Methods for search and import wineprefixes from other managers
     '''

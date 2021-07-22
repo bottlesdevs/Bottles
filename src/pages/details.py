@@ -1148,13 +1148,13 @@ class BottlesDetails(Handy.Leaflet):
         RunnerUtilities().run_regedit(self.configuration)
 
     def run_shutdown(self, widget):
-        RunnerUtilities.send_status(self.configuration, "shutdown")
+        RunnerUtilities().send_status(self.configuration, "shutdown")
 
     def run_reboot(self, widget):
-        RunnerUtilities.send_status(self.configuration, "reboot")
+        RunnerUtilities().send_status(self.configuration, "reboot")
 
     def run_killall(self, widget):
-        RunnerUtilities.send_status(self.configuration, "kill")
+        RunnerUtilities().send_status(self.configuration, "kill")
 
     '''Validate entry_state input'''
     def check_entry_state_comment(self, widget, event_key):

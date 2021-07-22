@@ -105,6 +105,21 @@ class RunnerUtilities:
         logging.info("Running a Regedit on the wineprefix …")
         RunAsync(self.run_command, None, configuration, "regedit")
 
+    # Send status to a bottle
+    def send_status(self, configuration:BottleConfig, status:str) -> None:
+        logging.info(f"Sending Status: [{status}] to the wineprefix …")
+
+        available_status = {
+            "shutdown": "-s",
+            "reboot": "-r",
+            "kill": "-k"
+        }
+
+        option = available_status[status]
+        bottle_name = configuration.get("Name")
+
+        self.run_command(configuration, "wineboot %s" % option)
+
     # Execute command in a bottle
     def run_command(self, configuration: BottleConfig, command: str, terminal: bool = False, environment: dict = False, comunicate: bool = False) -> bool:
         if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
