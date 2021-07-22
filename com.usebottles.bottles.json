@@ -1,464 +1,496 @@
 {
-  "id": "com.usebottles.bottles",
-  "sdk": "org.gnome.Sdk",
-  "runtime": "org.gnome.Platform",
-  "runtime-version": "40",
-  "command": "bottles",
-  "finish-args": [
-    "--allow=multiarch",
-    "--share=network",
-    "--share=ipc",
-    "--socket=fallback-x11",
-    "--socket=pulseaudio",
-    "--filesystem=~/Games:ro",
-    "--filesystem=~/wineprefixes:ro",
-    "--filesystem=~/.Bottles:ro",
-    "--filesystem=~/.local/share/bottles:ro",
-    "--filesystem=xdg-desktop",
-    "--filesystem=xdg-documents",
-    "--filesystem=xdg-pictures",
-    "--filesystem=xdg-music",
-    "--filesystem=xdg-videos",
-    "--filesystem=xdg-download",
-    "--filesystem=/run/media",
-    "--filesystem=/media",
-    "--filesystem=xdg-run/gvfsd",
-    "--device=all",
-    "--system-talk-name=org.freedesktop.UDisks2",
-    "--talk-name=org.freedesktop.Notifications",
-    "--talk-name=org.gtk.vfs",
-    "--talk-name=org.gtk.vfs.*",
-    "--env=LD_LIBRARY_PATH=/app/lib:/app/lib32",
-    "--env=IS_FLATPAK=1"
-  ],
-  "add-extensions": {
-    "org.gnome.Platform.Compat.i386": {
-      "directory": "lib/i386-linux-gnu",
-      "version": "40"
-    },
-    "org.gnome.Platform.Compat.i386.Debug": {
-      "directory": "lib/debug/lib/i386-linux-gnu",
-      "version": "40",
-      "no-autodownload": true
-    },
-    "org.freedesktop.Platform.GL32": {
-      "directory": "lib/i386-linux-gnu/GL",
-      "version": "1.4",
-      "versions": "20.08;1.4",
-      "subdirectories": true,
-      "no-autodownload": true,
-      "autodelete": false,
-      "add-ld-path": "lib",
-      "merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d",
-      "download-if": "active-gl-driver",
-      "enable-if": "active-gl-driver"
-    },
-    "org.freedesktop.Platform.VAAPI.Intel": {
-      "directory": "lib/dri/intel-vaapi-driver",
-      "autodelete": false,
-      "no-autodownload": true,
-      "download-if": "have-intel-gpu"
-    }
-  },
-  "x-compat-i386-opts": {
-    "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-    "ldflags": "-L/app/lib32",
-    "append-path": "/usr/lib/sdk/toolchain-i386/bin",
-    "env": {
-      "CC": "i686-unknown-linux-gnu-gcc",
-      "CXX": "i686-unknown-linux-gnu-g++"
-    },
-    "libdir": "/app/lib32"
-  },
-  "sdk-extensions": [
-    "org.gnome.Sdk.Compat.i386",
-    "org.freedesktop.Sdk.Extension.toolchain-i386"
-  ],
-  "cleanup": [
-    "/include",
-    "/lib/pkgconfig",
-    "/man",
-    "/share/doc",
-    "/share/gtk-doc",
-    "/share/man",
-    "/share/pkgconfig",
-    "*.la",
-    "*.a"
-  ],
-  "modules": [
-    {
-      "name": "compat",
-      "buildsystem": "simple",
-      "build-commands": [
-        "mkdir -p /app/lib/i386-linux-gnu /app/lib/debug/lib/i386-linux-gnu"
-      ]
-    },
-    {
-      "name": "i386-libs",
-      "buildsystem": "simple",
-      "build-commands": [
-        "mkdir -p /app/lib/i386-linux-gnu",
-        "install -Dm644 ld.so.conf -t /app/etc/"
-      ],
-      "sources": [
-        {
-          "type": "file",
-          "path": "ld.so.conf"
-        }
-      ]
-    },
-    {
-      "name": "PyYAML",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/yaml/pyyaml/archive/5.4.1.tar.gz",
-          "sha256": "75f966559c5f262dfc44da0f958cc2aa18953ae5021f2c3657b415c5a370045f"
-        }
-      ]
-    },
-    {
-      "name": "python-requests",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/requests/requests/archive/v2.25.1.tar.gz",
-          "sha256": "03b192fad682a33964df331d35f90918b1940c89f6c5bcb10060be688ba50315"
-        }
-      ]
-    },
-    {
-      "name": "python-urllib3",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/urllib3/urllib3/archive/1.26.6.tar.gz",
-          "sha256": "ab4582b44fbe33f3e3fc838e3d90dde7f68fa3697aeb075962e0ba4b93020327"
-        }
-      ]
-    },
-    {
-      "name": "python-chardet",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/chardet/chardet/archive/4.0.0.tar.gz",
-          "sha256": "67bbe3eb02691d38831ddf2719c40fe09381bc17f15321946f6cd71dc274e530"
-        }
-      ]
-    },
-    {
-      "name": "python-certifi",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/certifi/python-certifi/archive/2021.05.30.tar.gz",
-          "sha256": "9bffc4826ac0308591e26852a0404548a9e4e30b7214ebfd86360cd214f51dda"
-        }
-      ]
-    },
-    {
-      "name": "python-idna",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/kjd/idna/archive/v3.2.tar.gz",
-          "sha256": "7104cb016a7b2c0d53195e6088abb5cdce03aa0c1b0874a4863c216f647abd29"
-        }
-      ]
-    },
-    {
-      "name": "cabextract",
-      "buildsystem": "autotools",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://www.cabextract.org.uk/cabextract-1.9.1.tar.gz",
-          "sha256": "afc253673c8ef316b4d5c29cc4aa8445844bee14afffbe092ee9469405851ca7"
-        }
-      ]
-    },
-    {
-      "name": "vkd3d",
-      "config-opts": [
-        "--disable-static",
-        "--enable-shared"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz",
-          "sha256": "b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b"
-        }
-      ],
-      "modules": [
-        {
-          "name": "SPIRV-Headers",
-          "buildsystem": "cmake-ninja",
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/KhronosGroup/SPIRV-Headers/archive/1.5.4.tar.gz",
-              "sha256": "fc026b6566167f6db03dc48779f0f986f9ff8c93ed651a557f28cfbe2dff4ede"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "vkd3d-32bit",
-      "config-opts": [
-        "--disable-static",
-        "--enable-shared"
-      ],
-      "build-options": {
-        "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-        "ldflags": "-L/app/lib32",
-        "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
-        "env": {
-          "CC": "i686-unknown-linux-gnu-gcc",
-          "CXX": "i686-unknown-linux-gnu-g++"
+    "id" : "com.usebottles.bottles",
+    "sdk" : "org.gnome.Sdk",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "40",
+    "command" : "bottles",
+    "finish-args" : [
+        "--allow=multiarch",
+        "--share=network",
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=pulseaudio",
+        "--filesystem=~/Games:ro",
+        "--filesystem=~/wineprefixes:ro",
+        "--filesystem=~/.Bottles:ro",
+        "--filesystem=~/.local/share/bottles:ro",
+        "--filesystem=xdg-desktop",
+        "--filesystem=xdg-documents",
+        "--filesystem=xdg-pictures",
+        "--filesystem=xdg-music",
+        "--filesystem=xdg-videos",
+        "--filesystem=xdg-download",
+        "--filesystem=/run/media",
+        "--filesystem=/media",
+        "--filesystem=xdg-run/gvfsd",
+        "--device=all",
+        "--system-talk-name=org.freedesktop.UDisks2",
+        "--talk-name=org.freedesktop.Notifications",
+        "--talk-name=org.gtk.vfs",
+        "--talk-name=org.gtk.vfs.*",
+        "--env=LD_LIBRARY_PATH=/app/lib:/app/lib32",
+        "--env=IS_FLATPAK=1"
+    ],
+    "add-extensions" : {
+        "org.gnome.Platform.Compat.i386" : {
+            "directory" : "lib/i386-linux-gnu",
+            "version" : "40"
         },
-        "libdir": "/app/lib32",
-        "strip": true,
-        "no-debuginfo": true
-      },
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz",
-          "sha256": "b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b"
-        }
-      ],
-      "modules": [
-        {
-          "name": "SPIRV-Headers-32bit",
-          "buildsystem": "cmake-ninja",
-          "build-options": {
-            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-            "ldflags": "-L/app/lib32",
-            "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
-            "env": {
-              "CC": "i686-unknown-linux-gnu-gcc",
-              "CXX": "i686-unknown-linux-gnu-g++"
-            },
-            "libdir": "/app/lib32",
-            "strip": true,
-            "no-debuginfo": true
-          },
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/KhronosGroup/SPIRV-Headers/archive/1.5.4.tar.gz",
-              "sha256": "fc026b6566167f6db03dc48779f0f986f9ff8c93ed651a557f28cfbe2dff4ede"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "vulkan-tools",
-      "buildsystem": "cmake-ninja",
-      "config-opts": [
-        "-DGLSLANG_INSTALL_DIR=/app",
-        "-DVULKAN_HEADERS_INSTALL_DIR=/app",
-        "-DCMAKE_BUILD_TYPE=Release"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.2.162.tar.gz",
-          "sha256": "98a3a00471da65df833b4ffeb1ab29ec1d169d5feab54270cf4cd8f50f82e682"
-        }
-      ]
-    },
-    {
-      "name": "openldap",
-      "config-opts": [
-        "--disable-static",
-        "--enable-shared",
-        "--disable-slapd",
-        "--disable-slurpd",
-        "--disable-bdb",
-        "--disable-hdb"
-      ],
-      "cleanup": [
-        "/bin"
-      ],
-      "build-options": {
-        "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-        "ldflags": "-L/app/lib32",
-        "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
-        "env": {
-          "CC": "i686-unknown-linux-gnu-gcc",
-          "CXX": "i686-unknown-linux-gnu-g++"
+        "org.gnome.Platform.Compat.i386.Debug" : {
+            "directory" : "lib/debug/lib/i386-linux-gnu",
+            "version" : "40",
+            "no-autodownload" : true
         },
-        "libdir": "/app/lib32",
-        "strip": true,
-        "no-debuginfo": true
-      },
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.55.tgz",
-          "sha256": "97357bd6ba8ff73d204c1f8208c5e6ab97d60c9e779f989057aa1229bbe98434"
-        }
-      ]
-    },
-    {
-      "name": "openldap64",
-      "config-opts": [
-        "--disable-static",
-        "--enable-shared",
-        "--disable-slapd",
-        "--disable-slurpd",
-        "--disable-bdb",
-        "--disable-hdb"
-      ],
-      "cleanup": [
-        "/bin"
-      ],
-      "build-options": {
-        "strip": true,
-        "no-debuginfo": true
-      },
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.55.tgz",
-          "sha256": "97357bd6ba8ff73d204c1f8208c5e6ab97d60c9e779f989057aa1229bbe98434"
-        }
-      ]
-    },
-    {
-      "name": "faudio32",
-      "buildsystem": "cmake-ninja",
-      "build-options": {
-        "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-        "ldflags": "-L/app/lib32",
-        "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
-        "env": {
-          "CC": "i686-unknown-linux-gnu-gcc",
-          "CXX": "i686-unknown-linux-gnu-g++"
+        "org.freedesktop.Platform.GL32" : {
+            "directory" : "lib/i386-linux-gnu/GL",
+            "version" : "1.4",
+            "versions" : "20.08;1.4",
+            "subdirectories" : true,
+            "no-autodownload" : true,
+            "autodelete" : false,
+            "add-ld-path" : "lib",
+            "merge-dirs" : "vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d",
+            "download-if" : "active-gl-driver",
+            "enable-if" : "active-gl-driver"
         },
-        "libdir": "/app/lib32",
-        "strip": true,
-        "no-debuginfo": true
-      },
-      "config-opts": [
-        "-DGSTREAMER=ON"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/FNA-XNA/FAudio/archive/21.03.05.tar.gz",
-          "sha256": "c396c7c196e47bcb054cdc94cd3f7f39751fe27774de7eb9749a9608883ad5eb"
+        "org.freedesktop.Platform.VAAPI.Intel" : {
+            "directory" : "lib/dri/intel-vaapi-driver",
+            "autodelete" : false,
+            "no-autodownload" : true,
+            "download-if" : "have-intel-gpu"
         }
-      ]
     },
-    {
-      "name": "faudio64",
-      "buildsystem": "cmake-ninja",
-      "build-options": {
-        "strip": true,
-        "no-debuginfo": true
-      },
-      "config-opts": [
-        "-DGSTREAMER=ON"
-      ],
-      "sources": [
+    "x-compat-i386-opts" : {
+        "prepend-pkg-config-path" : "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+        "ldflags" : "-L/app/lib32",
+        "append-path" : "/usr/lib/sdk/toolchain-i386/bin",
+        "env" : {
+            "CC" : "i686-unknown-linux-gnu-gcc",
+            "CXX" : "i686-unknown-linux-gnu-g++"
+        },
+        "libdir" : "/app/lib32"
+    },
+    "sdk-extensions" : [
+        "org.gnome.Sdk.Compat.i386",
+        "org.freedesktop.Sdk.Extension.toolchain-i386"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
         {
-          "type": "archive",
-          "url": "https://github.com/FNA-XNA/FAudio/archive/21.03.05.tar.gz",
-          "sha256": "c396c7c196e47bcb054cdc94cd3f7f39751fe27774de7eb9749a9608883ad5eb"
+            "name" : "compat",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "mkdir -p /app/lib/i386-linux-gnu /app/lib/debug/lib/i386-linux-gnu"
+            ]
         },
         {
-          "name": "gamemode",
-          "buildsystem": "meson",
-          "config-opts": [
-            "-Dwith-systemd=false",
-            "-Dwith-daemon=false",
-            "-Dwith-examples=false",
-            "-Dwith-util=false",
-            "-Dwith-sd-bus-provider=no-daemon"
-          ],
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/FeralInteractive/gamemode/releases/download/1.6/gamemode-1.6.tar.xz",
-              "sha256": "ede17eb042c1c87f7b35bfe96a00560afaea086f685d25bb3964d794b0af9c80"
-            }
-          ]
+            "name" : "i386-libs",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "mkdir -p /app/lib/i386-linux-gnu",
+                "install -Dm644 ld.so.conf -t /app/etc/"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "path" : "ld.so.conf"
+                }
+            ]
         },
         {
-          "name": "gamemode-32bit",
-          "build-options": {
-            "arch": {
-              "x86_64": {
-                "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-                "ldflags": "-L/app/lib32",
-                "append-path": "/usr/lib/sdk/toolchain-i386/bin",
-                "env": {
-                  "CC": "i686-unknown-linux-gnu-gcc",
-                  "CXX": "i686-unknown-linux-gnu-g++"
+            "name" : "PyYAML",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/yaml/pyyaml/archive/5.4.1.tar.gz",
+                    "sha256" : "75f966559c5f262dfc44da0f958cc2aa18953ae5021f2c3657b415c5a370045f"
+                }
+            ]
+        },
+        {
+            "name" : "python-requests",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/requests/requests/archive/v2.25.1.tar.gz",
+                    "sha256" : "03b192fad682a33964df331d35f90918b1940c89f6c5bcb10060be688ba50315"
+                }
+            ]
+        },
+        {
+            "name" : "python-urllib3",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/urllib3/urllib3/archive/1.26.6.tar.gz",
+                    "sha256" : "ab4582b44fbe33f3e3fc838e3d90dde7f68fa3697aeb075962e0ba4b93020327"
+                }
+            ]
+        },
+        {
+            "name" : "python-chardet",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/chardet/chardet/archive/4.0.0.tar.gz",
+                    "sha256" : "67bbe3eb02691d38831ddf2719c40fe09381bc17f15321946f6cd71dc274e530"
+                }
+            ]
+        },
+        {
+            "name" : "python-certifi",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/certifi/python-certifi/archive/2021.05.30.tar.gz",
+                    "sha256" : "9bffc4826ac0308591e26852a0404548a9e4e30b7214ebfd86360cd214f51dda"
+                }
+            ]
+        },
+        {
+            "name" : "python-idna",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/kjd/idna/archive/v3.2.tar.gz",
+                    "sha256" : "7104cb016a7b2c0d53195e6088abb5cdce03aa0c1b0874a4863c216f647abd29"
+                }
+            ]
+        },
+        {
+            "name" : "pyunpack",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/ponty/pyunpack/archive/refs/tags/0.2.2.tar.gz",
+                    "sha256" : "29687a0a6920733e8edd84e362a48e16350ed5c596f9db21385dfb8e4f74870b"
+                }
+            ]
+        },
+        {
+            "name" : "patool",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/wummel/patool/archive/refs/tags/upstream/1.12.tar.gz",
+                    "sha256" : "582fd4b87c263325958c1550400504799018c88bc3444f249bba304ae1747f1f"
+                }
+            ]
+        },
+        {
+            "name" : "cabextract",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.cabextract.org.uk/cabextract-1.9.1.tar.gz",
+                    "sha256" : "afc253673c8ef316b4d5c29cc4aa8445844bee14afffbe092ee9469405851ca7"
+                }
+            ]
+        },
+        {
+            "name" : "vkd3d",
+            "config-opts" : [
+                "--disable-static",
+                "--enable-shared"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz",
+                    "sha256" : "b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b"
+                }
+            ],
+            "modules" : [
+                {
+                    "name" : "SPIRV-Headers",
+                    "buildsystem" : "cmake-ninja",
+                    "sources" : [
+                        {
+                            "type" : "archive",
+                            "url" : "https://github.com/KhronosGroup/SPIRV-Headers/archive/1.5.4.tar.gz",
+                            "sha256" : "fc026b6566167f6db03dc48779f0f986f9ff8c93ed651a557f28cfbe2dff4ede"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "vkd3d-32bit",
+            "config-opts" : [
+                "--disable-static",
+                "--enable-shared"
+            ],
+            "build-options" : {
+                "prepend-pkg-config-path" : "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+                "ldflags" : "-L/app/lib32",
+                "prepend-path" : "/usr/lib/sdk/toolchain-i386/bin",
+                "env" : {
+                    "CC" : "i686-unknown-linux-gnu-gcc",
+                    "CXX" : "i686-unknown-linux-gnu-g++"
                 },
-                "libdir": "/app/lib32"
-              }
-            }
-          },
-          "buildsystem": "meson",
-          "config-opts": [
-            "-Dwith-systemd=false",
-            "-Dwith-daemon=false",
-            "-Dwith-examples=false",
-            "-Dwith-util=false",
-            "-Dwith-sd-bus-provider=no-daemon"
-          ],
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/FeralInteractive/gamemode/releases/download/1.6/gamemode-1.6.tar.xz",
-              "sha256": "ede17eb042c1c87f7b35bfe96a00560afaea086f685d25bb3964d794b0af9c80"
-            }
-          ]
+                "libdir" : "/app/lib32",
+                "strip" : true,
+                "no-debuginfo" : true
+            },
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz",
+                    "sha256" : "b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b"
+                }
+            ],
+            "modules" : [
+                {
+                    "name" : "SPIRV-Headers-32bit",
+                    "buildsystem" : "cmake-ninja",
+                    "build-options" : {
+                        "prepend-pkg-config-path" : "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+                        "ldflags" : "-L/app/lib32",
+                        "prepend-path" : "/usr/lib/sdk/toolchain-i386/bin",
+                        "env" : {
+                            "CC" : "i686-unknown-linux-gnu-gcc",
+                            "CXX" : "i686-unknown-linux-gnu-g++"
+                        },
+                        "libdir" : "/app/lib32",
+                        "strip" : true,
+                        "no-debuginfo" : true
+                    },
+                    "sources" : [
+                        {
+                            "type" : "archive",
+                            "url" : "https://github.com/KhronosGroup/SPIRV-Headers/archive/1.5.4.tar.gz",
+                            "sha256" : "fc026b6566167f6db03dc48779f0f986f9ff8c93ed651a557f28cfbe2dff4ede"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "vulkan-tools",
+            "buildsystem" : "cmake-ninja",
+            "config-opts" : [
+                "-DGLSLANG_INSTALL_DIR=/app",
+                "-DVULKAN_HEADERS_INSTALL_DIR=/app",
+                "-DCMAKE_BUILD_TYPE=Release"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.2.162.tar.gz",
+                    "sha256" : "98a3a00471da65df833b4ffeb1ab29ec1d169d5feab54270cf4cd8f50f82e682"
+                }
+            ]
+        },
+        {
+            "name" : "openldap",
+            "config-opts" : [
+                "--disable-static",
+                "--enable-shared",
+                "--disable-slapd",
+                "--disable-slurpd",
+                "--disable-bdb",
+                "--disable-hdb"
+            ],
+            "cleanup" : [
+                "/bin"
+            ],
+            "build-options" : {
+                "prepend-pkg-config-path" : "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+                "ldflags" : "-L/app/lib32",
+                "prepend-path" : "/usr/lib/sdk/toolchain-i386/bin",
+                "env" : {
+                    "CC" : "i686-unknown-linux-gnu-gcc",
+                    "CXX" : "i686-unknown-linux-gnu-g++"
+                },
+                "libdir" : "/app/lib32",
+                "strip" : true,
+                "no-debuginfo" : true
+            },
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.55.tgz",
+                    "sha256" : "97357bd6ba8ff73d204c1f8208c5e6ab97d60c9e779f989057aa1229bbe98434"
+                }
+            ]
+        },
+        {
+            "name" : "openldap64",
+            "config-opts" : [
+                "--disable-static",
+                "--enable-shared",
+                "--disable-slapd",
+                "--disable-slurpd",
+                "--disable-bdb",
+                "--disable-hdb"
+            ],
+            "cleanup" : [
+                "/bin"
+            ],
+            "build-options" : {
+                "strip" : true,
+                "no-debuginfo" : true
+            },
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.55.tgz",
+                    "sha256" : "97357bd6ba8ff73d204c1f8208c5e6ab97d60c9e779f989057aa1229bbe98434"
+                }
+            ]
+        },
+        {
+            "name" : "faudio32",
+            "buildsystem" : "cmake-ninja",
+            "build-options" : {
+                "prepend-pkg-config-path" : "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+                "ldflags" : "-L/app/lib32",
+                "prepend-path" : "/usr/lib/sdk/toolchain-i386/bin",
+                "env" : {
+                    "CC" : "i686-unknown-linux-gnu-gcc",
+                    "CXX" : "i686-unknown-linux-gnu-g++"
+                },
+                "libdir" : "/app/lib32",
+                "strip" : true,
+                "no-debuginfo" : true
+            },
+            "config-opts" : [
+                "-DGSTREAMER=ON"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/FNA-XNA/FAudio/archive/21.03.05.tar.gz",
+                    "sha256" : "c396c7c196e47bcb054cdc94cd3f7f39751fe27774de7eb9749a9608883ad5eb"
+                }
+            ]
+        },
+        {
+            "name" : "faudio64",
+            "buildsystem" : "cmake-ninja",
+            "build-options" : {
+                "strip" : true,
+                "no-debuginfo" : true
+            },
+            "config-opts" : [
+                "-DGSTREAMER=ON"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/FNA-XNA/FAudio/archive/21.03.05.tar.gz",
+                    "sha256" : "c396c7c196e47bcb054cdc94cd3f7f39751fe27774de7eb9749a9608883ad5eb"
+                },
+                {
+                    "name" : "gamemode",
+                    "buildsystem" : "meson",
+                    "config-opts" : [
+                        "-Dwith-systemd=false",
+                        "-Dwith-daemon=false",
+                        "-Dwith-examples=false",
+                        "-Dwith-util=false",
+                        "-Dwith-sd-bus-provider=no-daemon"
+                    ],
+                    "sources" : [
+                        {
+                            "type" : "archive",
+                            "url" : "https://github.com/FeralInteractive/gamemode/releases/download/1.6/gamemode-1.6.tar.xz",
+                            "sha256" : "ede17eb042c1c87f7b35bfe96a00560afaea086f685d25bb3964d794b0af9c80"
+                        }
+                    ]
+                },
+                {
+                    "name" : "gamemode-32bit",
+                    "build-options" : {
+                        "arch" : {
+                            "x86_64" : {
+                                "prepend-pkg-config-path" : "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+                                "ldflags" : "-L/app/lib32",
+                                "append-path" : "/usr/lib/sdk/toolchain-i386/bin",
+                                "env" : {
+                                    "CC" : "i686-unknown-linux-gnu-gcc",
+                                    "CXX" : "i686-unknown-linux-gnu-g++"
+                                },
+                                "libdir" : "/app/lib32"
+                            }
+                        }
+                    },
+                    "buildsystem" : "meson",
+                    "config-opts" : [
+                        "-Dwith-systemd=false",
+                        "-Dwith-daemon=false",
+                        "-Dwith-examples=false",
+                        "-Dwith-util=false",
+                        "-Dwith-sd-bus-provider=no-daemon"
+                    ],
+                    "sources" : [
+                        {
+                            "type" : "archive",
+                            "url" : "https://github.com/FeralInteractive/gamemode/releases/download/1.6/gamemode-1.6.tar.xz",
+                            "sha256" : "ede17eb042c1c87f7b35bfe96a00560afaea086f685d25bb3964d794b0af9c80"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "bottles",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "file",
+                    "path" : "."
+                }
+            ]
         }
-      ]
-    },
-    {
-      "name": "bottles",
-      "builddir": true,
-      "buildsystem": "meson",
-      "sources": [{
-        "type": "file",
-        "path": "."
-      }]
+    ],
+    "build-options" : {
+        "env" : {
+            "TESTING_REPOS" : "1"
+        }
     }
-  ],
-  "build-options": {
-    "env": {}
-  }
 }
