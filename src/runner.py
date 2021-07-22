@@ -329,7 +329,8 @@ class BottlesRunner:
                         configuration=configuration,
                         file_path=f"{BottlesPaths.temp}/{file}",
                         arguments=step.get("arguments"),
-                        environment=step.get("environment"))
+                        environment=step.get("environment"),
+                        no_async=True)
                 else:
                     if widget is not None:
                         widget.btn_install.set_sensitive(True)
@@ -350,7 +351,6 @@ class BottlesRunner:
                     logging.info(f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}].")
                     RunnerUtilities().run_uninstaller(configuration, uuid)
                     
-
             # Step type: cab_extract
             if step["action"] == "cab_extract":
                 has_no_uninstaller = True # cab extracted has no uninstaller
@@ -419,7 +419,6 @@ class BottlesRunner:
                         patoolib.extract_archive(
                             f"{BottlesPaths.temp}/{file}", 
                             outdir=f"{BottlesPaths.temp}/{archive_name}")
-
 
             # Step type: install_cab_fonts
             if step["action"] == "install_cab_fonts":

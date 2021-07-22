@@ -47,7 +47,7 @@ class RunnerUtilities:
                  command, False, environment)
 
     # Run wine executables/programs in a bottle
-    def run_executable(self, configuration: BottleConfig, file_path: str, arguments: str = False, environment: dict = False) -> None:
+    def run_executable(self, configuration: BottleConfig, file_path: str, arguments: str = False, environment: dict = False, no_async: bool = False) -> None:
         logging.info("Running an executable on the bottle …")
 
         if "msi" in file_path.split("."):
@@ -60,8 +60,11 @@ class RunnerUtilities:
         if arguments:
             command = "%s %s" % (command, arguments)
 
-        RunAsync(self.run_command, None, configuration,
-                 command, False, environment)
+        if no_async:
+            self.run_command(configuration, command, False, environment)
+        else:
+            RunAsync(self.run_command, None, configuration,
+                    command, False, environment)
 
     def run_wineboot(self, configuration: BottleConfig) -> None:
         logging.info("Running wineboot on the wineprefix …")
