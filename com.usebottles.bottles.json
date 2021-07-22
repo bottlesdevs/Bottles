@@ -192,20 +192,6 @@
             ]
         },
         {
-            "name" : "pyunpack",
-            "buildsystem" : "simple",
-            "build-commands" : [
-                "python3 setup.py install --prefix=/app --root=/"
-            ],
-            "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "https://github.com/ponty/pyunpack/archive/refs/tags/0.2.2.tar.gz",
-                    "sha256" : "29687a0a6920733e8edd84e362a48e16350ed5c596f9db21385dfb8e4f74870b"
-                }
-            ]
-        },
-        {
             "name" : "patool",
             "buildsystem" : "simple",
             "build-commands" : [

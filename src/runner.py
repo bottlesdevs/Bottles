@@ -19,7 +19,7 @@ import os
 import subprocess
 import yaml
 import json
-from pyunpack import Archive
+import patoolib
 import tarfile
 import time
 import shutil
@@ -394,9 +394,12 @@ class BottlesRunner:
 
                         archive_name = os.path.splitext(file)[0]
 
-                        Archive(f"{BottlesPaths.temp}/{file}").extractall(
-                            directory = f"{BottlesPaths.temp}/{archive_name}",
-                            auto_create_dir=True)
+                        if not os.path.exists(f"{BottlesPaths.temp}/{archive_name}"):
+                            os.makedirs(f"{BottlesPaths.temp}/{archive_name}")
+
+                        patoolib.extract_archive(
+                            f"{BottlesPaths.temp}/{file}", 
+                            outdir=f"{BottlesPaths.temp}/{archive_name}")
 
 
             # Step type: install_cab_fonts
