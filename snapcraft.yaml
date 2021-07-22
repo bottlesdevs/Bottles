@@ -42,8 +42,12 @@ parts:
       - libnotify4
       - gamemode
       - libgamemode0
+      - winbind
+      - libfreetype6
       - cabextract
       - wine
+      - p7zip
+      - patool
 
     organize:
       snap/bottles/current/usr: usr
