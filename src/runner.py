@@ -19,6 +19,7 @@ import os
 import subprocess
 import yaml
 import json
+from pyunpack import Archive
 import tarfile
 import time
 import shutil
@@ -373,6 +374,30 @@ class BottlesRunner:
                     ):
                         GLib.idle_add(widget.set_err)
                         exit()
+
+            # Step type: 7zip_extract
+            if step["action"] == "7zip_extract":
+                has_no_uninstaller = True # 7zip extracted has no uninstaller
+
+                if validate_url(step["url"]):
+                    download = self.download_component("dependency",
+                                            step.get("url"),
+                                            step.get("file_name"),
+                                            step.get("rename"),
+                                            checksum=step.get("file_checksum"))
+
+                    if download:
+                        if step.get("rename"):
+                            file = step.get("rename")
+                        else:
+                            file = step.get("file_name")
+
+                        archive_name = os.path.splitext(file)[0]
+
+                        Archive(f"{BottlesPaths.temp}/{file}").extractall(
+                            directory = f"{BottlesPaths.temp}/{archive_name}",
+                            auto_create_dir=True)
+
 
             # Step type: install_cab_fonts
             if step["action"] == "install_cab_fonts":
