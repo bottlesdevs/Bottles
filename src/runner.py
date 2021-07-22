@@ -465,7 +465,8 @@ class BottlesRunner:
                     configuration,
                     key=step.get("key"),
                     value=step.get("value"),
-                    data=step.get("data"))
+                    data=step.get("data"),
+                    keyType=step.get("type"))
 
         # Add dependency to bottle configuration
         if dependency[0] not in configuration.get("Installed_Dependencies"):
@@ -1261,12 +1262,16 @@ class BottlesRunner:
         return processes
 
     # Add key from register
-    def reg_add(self, configuration:BottleConfig, key:str, value:str, data:str) -> None:
+    def reg_add(self, configuration:BottleConfig, key:str, value:str, data:str, keyType:str = False) -> None:
         logging.info(
             f"Adding Key: [{key}] with Value: [{value}] and Data: [{data}] in register bottle: {configuration['Name']}")
 
-        RunnerUtilities().run_command(configuration, "reg add '%s' /v %s /d %s /f" % (
-            key, value, data))
+        command = "reg add '%s' /v %s /d %s /f" % (key, value, data)
+
+        if keyType != False:
+            command = "reg add '%s' /v %s /t %s /d %s /f" % (key, value, keyType, data)
+        
+        RunnerUtilities().run_command(configuration, command)
 
     # Remove key from register
     def reg_delete(self, configuration:BottleConfig, key:str, value:str) -> None:
