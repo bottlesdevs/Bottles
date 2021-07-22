@@ -412,6 +412,14 @@ class BottlesRunner:
                     value=step.get("dll"),
                     data=step.get("type"))
 
+            # Step type:
+            if step["action"] == "set_register_key":
+                self.reg_add(
+                    configuration,
+                    key=step.get("key"),
+                    value=step.get("value"),
+                    data=step.get("data"))
+
         # Add dependency to bottle configuration
         if dependency[0] not in configuration.get("Installed_Dependencies"):
             dependencies = [dependency[0]]
