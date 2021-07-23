@@ -470,7 +470,7 @@ class BottlesRunner:
                     value=step.get("dll"),
                     data=step.get("type"))
 
-            # Step type:
+            # Step type: set_register_key
             if step["action"] == "set_register_key":
                 self.reg_add(
                     configuration,
@@ -478,6 +478,14 @@ class BottlesRunner:
                     value=step.get("value"),
                     data=step.get("data"),
                     keyType=step.get("type"))
+            
+            # Step type: register_font
+            if step["action"] == "register_font":
+                self.reg_add(
+                    configuration,
+                    key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts",
+                    value=step.get("name"),
+                    data=step.get("file"))
 
         # Add dependency to bottle configuration
         if dependency[0] not in configuration.get("Installed_Dependencies"):
