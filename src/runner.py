@@ -419,9 +419,10 @@ class BottlesRunner:
                         if not os.path.exists(f"{BottlesPaths.temp}/{archive_name}"):
                             os.makedirs(f"{BottlesPaths.temp}/{archive_name}")
 
-                        patoolib.extract_archive(
-                            f"{BottlesPaths.temp}/{file}", 
-                            outdir=f"{BottlesPaths.temp}/{archive_name}")
+                        if not os.path.exists(f"{BottlesPaths.temp}/{archive_name}/{file}"):
+                            patoolib.extract_archive(
+                                f"{BottlesPaths.temp}/{file}", 
+                                outdir=f"{BottlesPaths.temp}/{archive_name}")
 
             # Step type: install_cab_fonts
             if step["action"] == "install_cab_fonts":
