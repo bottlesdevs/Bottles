@@ -22,6 +22,7 @@ import webbrowser
 
 from .dialog import BottlesDialog, BottlesMessageDialog
 from ..runner_utilities import RunnerUtilities, gamemode_available
+from ..runner_backup import RunnerBackup
 
 class BottlesDetailsPageRow(Gtk.ListBoxRow):
 
@@ -1189,9 +1190,12 @@ class BottlesDetails(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            self.runner.backup_bottle(self.configuration,
-                                      "configuration",
-                                      file_dialog.get_filename())
+            RunnerBackup().backup_bottle(
+                self.window,
+                self.configuration,
+                "configuration",
+                file_dialog.get_filename()
+            )
 
         file_dialog.destroy()
 
@@ -1209,9 +1213,12 @@ class BottlesDetails(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            self.runner.backup_bottle(self.configuration,
-                                      "full",
-                                      file_dialog.get_filename())
+            RunnerBackup().backup_bottle(
+                self.window,
+                self.configuration,
+                "full",
+                file_dialog.get_filename()
+            )
 
         file_dialog.destroy()
 

@@ -17,6 +17,7 @@
 
 from gi.repository import Gtk, Handy
 
+from ..runner_backup import RunnerBackup
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')
 class BottlesImporterEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesImporterEntry'
@@ -106,6 +107,10 @@ class BottlesImporter(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
-            self.runner.import_backup_bottle("full", file_dialog.get_filename())
+            RunnerBackup().import_backup_bottle(
+                self.window,
+                "full", 
+                file_dialog.get_filename()
+            )
 
         file_dialog.destroy()

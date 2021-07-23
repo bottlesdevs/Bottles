@@ -10,6 +10,7 @@ from datetime import datetime
 
 from .download import DownloadManager
 from .utils import UtilsLogger, UtilsFiles, RunAsync
+from .runner_utilities import RunnerUtilities
 
 logging = UtilsLogger()
 
@@ -35,7 +36,7 @@ class RunnerVersioning:
 
         self.download_manager = DownloadManager(self.window)
 
-        bottle_path = self.runner.get_bottle_path(configuration)
+        bottle_path = RunnerUtilities().get_bottle_path(configuration)
         first = False if os.path.isdir('%s/states/' % bottle_path) else True
 
         # Set UI to not usable
@@ -211,7 +212,7 @@ class RunnerVersioning:
 
     # Get edits for a state
     def get_bottle_state_edits(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
-        bottle_path = self.runner.get_bottle_path(configuration)
+        bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
         try:
             file = open('%s/states/%s/index.yml' % (bottle_path, state_id))
@@ -223,7 +224,7 @@ class RunnerVersioning:
 
     # Get files for a state
     def get_bottle_state_files(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
-        bottle_path = self.runner.get_bottle_path(configuration)
+        bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
         try:
             file = open('%s/states/%s/files.yml' % (bottle_path, state_id))
@@ -235,7 +236,7 @@ class RunnerVersioning:
 
     # Get all bottle files
     def get_bottle_index(self, configuration:BottleConfig):
-        bottle_path = self.runner.get_bottle_path(configuration)
+        bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
         current_index = {
             "Update_Date": str(datetime.now()),
@@ -252,7 +253,7 @@ class RunnerVersioning:
 
     # Set state for a bottle
     def set_bottle_state(self, configuration:BottleConfig, state_id:str) -> bool:
-        bottle_path = self.runner.get_bottle_path(configuration)
+        bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
         logging.info(f"Restoring to state: [{state_id}]")
 
@@ -320,7 +321,7 @@ class RunnerVersioning:
         return True
 
     def list_bottle_states(self, configuration:BottleConfig) -> dict:
-        bottle_path = self.runner.get_bottle_path(configuration)
+        bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
         try:
             states_file = open('%s/states/states.yml' % bottle_path)

@@ -273,7 +273,6 @@ class BottlesRunner:
     def install_component(self, component_type:str, component_name:str, after=False, func=False, checks=True) -> None:
         if self.utils_conn.check_connection(True):
             RunAsync(self.async_install_component, None, [component_type, component_name, after, func, checks])
-
     '''
     Method for dependency installations
     '''
@@ -426,7 +425,7 @@ class BottlesRunner:
 
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
-                bottle_path = self.get_bottle_path(configuration)
+                bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
                 for font in step.get('fonts'):
                     shutil.copyfile(
@@ -439,7 +438,7 @@ class BottlesRunner:
 
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
-                bottle_path = self.get_bottle_path(configuration)
+                bottle_path = RunnerUtilities().get_bottle_path(configuration)
                 
                 try:
                     shutil.copyfile(
@@ -952,18 +951,12 @@ class BottlesRunner:
         if len(self.local_bottles) > 0 and not silent:
             logging.info(f"Bottles found: {'|'.join(self.local_bottles)}")
 
-    # Get bottle path by configuration
-    def get_bottle_path(self, configuration:BottleConfig) -> str:
-        if configuration.get("Custom_Path"):
-            return configuration.get("Path")
-        return "%s/%s" % (BottlesPaths.bottles, configuration.get("Path"))
-
     # Update parameters in bottle configuration
     def update_configuration(self, configuration:BottleConfig, key:str, value:str, scope:str="", no_update:bool=False, remove:bool=False) -> dict:
         logging.info(
             f"Setting Key: [{key}] to [{value}] for bottle: [{configuration['Name']}] …")
 
-        bottle_complete_path = self.get_bottle_path(configuration)
+        bottle_complete_path = RunnerUtilities().get_bottle_path(configuration)
 
         if scope != "":
             configuration[scope][key] = value
@@ -1136,41 +1129,6 @@ class BottlesRunner:
             return [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
         except IndexError:
             return "Undefined"
-
-    # Get human size by a float
-    @staticmethod
-    def get_human_size(size:float) -> str:
-        for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
-            if abs(size) < 1024.0:
-                return "%3.1f%s%s" % (size, unit, 'B')
-            size /= 1024.0
-
-        return "%.1f%s%s" % (size, 'Yi', 'B')
-
-    # Get path size
-    def get_path_size(self, path:str, human:bool=True) -> Union[str, float]:
-        path = Path(path)
-        size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
-
-        if human: return self.get_human_size(size)
-
-        return size
-
-    # Get disk size
-    def get_disk_size(self, human:bool=True) -> dict:
-        # TODO: disk should be taken from configuration Path
-        disk_total, disk_used, disk_free = shutil.disk_usage('/')
-
-        if human:
-            disk_total = self.get_human_size(disk_total)
-            disk_used = self.get_human_size(disk_used)
-            disk_free = self.get_human_size(disk_free)
-
-        return {
-            "total": disk_total,
-            "used": disk_used,
-            "free": disk_free,
-        }
 
     # Get bottle path size
     def get_bottle_size(self, configuration:BottleConfig, human:bool=True) -> Union[str, float]:
@@ -1468,102 +1426,4 @@ class BottlesRunner:
                                      custom_path=wineprefix.get("Path"))
 
     
-    # Make a bottle backup
-    def async_backup_bottle(self, args:list) -> bool:
-        configuration, scope, path = args
-        self.download_manager = DownloadManager(self.window)
-
-        # Set UI to not usable
-        self.window.set_usable_ui(False)
-
-        if scope == "configuration":
-            # Backup type: configuration
-            logging.info(
-                f"Backuping configuration: [{configuration['Name']}] in [{path}]")
-            try:
-                with open(path, "w") as configuration_backup:
-                    yaml.dump(configuration, configuration_backup, indent=4)
-                    configuration_backup.close()
-                backup_created = True
-            except:
-                backup_created = False
-
-        else:
-            # Backup type: full
-            logging.info(
-                f"Backuping bottle: [{configuration['Name']}] in [{path}]")
-
-            # Add entry to download manager
-            download_entry = self.download_manager.new_download(
-                _("Backup {0}").format(configuration.get("Name")), False)
-
-            bottle_path = self.get_bottle_path(configuration)
-
-            try:
-                # Create the archive
-                with tarfile.open(path, "w:gz") as archive_backup:
-                    for root, dirs, files in os.walk(bottle_path):
-                        for file in files:
-                            archive_backup.add(os.path.join(root, file))
-                    archive_backup.close()
-                backup_created = True
-            except:
-                backup_created = False
-
-            # Remove entry from download manager
-            download_entry.remove()
-
-        if backup_created:
-            logging.info(f"Backup saved in path: {path}.")
-            return True
-
-        logging.error(f"Failed to save backup in path: {path}.")
-
-        # Set UI to usable again
-        self.window.set_usable_ui(True)
-
-        return False
-
-    def backup_bottle(self, configuration:BottleConfig, scope:str, path:str) -> None:
-        RunAsync(self.async_backup_bottle, None, [configuration, scope, path])
-
-    def async_import_backup_bottle(self, args:list) -> bool:
-        scope, path = args
-        self.download_manager = DownloadManager(self.window)
-
-        if scope == "configuration":
-            backup_name = path.split("/")[-1].split(".")[-2]
-            backup_imported = False
-        else:
-            backup_name = path.split("/")[-1].split(".")[-3]
-
-            if backup_name.lower().startswith("backup_"):
-                backup_name = backup_name[7:]
-
-            # Add entry to download manager
-            download_entry = self.download_manager.new_download(
-                _("Importing backup: {0}").format(backup_name), False)
-
-            try:
-                archive = tarfile.open(path)
-                archive.extractall("%s/%s" % (BottlesPaths.bottles, backup_name))
-                backup_imported = True
-            except:
-                backup_imported = False
-
-            # Remove entry from download manager
-            download_entry.remove()
-
-        if backup_imported:
-            logging.info(f"Backup: [{path}] imported successfully.")
-
-            # Update bottles
-            self.update_bottles()
-            return True
-
-        logging.error(f"Failed importing backup: [{backup_name}]")
-        return False
-
-    def import_backup_bottle(self, scope:str, path:str) -> None:
-        RunAsync(self.async_import_backup_bottle, None, [scope, path])
 

@@ -233,3 +233,10 @@ class RunnerUtilities:
                 shell=True).communicate()[0].decode("utf-8")
 
         return subprocess.Popen(command, shell=True).communicate()
+
+    # Get bottle path by configuration
+    def get_bottle_path(self, configuration:BottleConfig) -> str:
+        if configuration.get("Custom_Path"):
+            return configuration.get("Path")
+        return "%s/%s" % (BottlesPaths.bottles, configuration.get("Path"))
+    

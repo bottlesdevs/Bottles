@@ -26,6 +26,7 @@ import hashlib
 import threading
 import traceback
 
+from typing import Union, NewType
 from datetime import datetime
 from pathlib import Path
 
@@ -160,6 +161,42 @@ class UtilsFiles():
         ext = string.split('.')[1]
         globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
         return '*.%s' % ''.join(globlist)
+    
+    # Get human size by a float
+    @staticmethod
+    def get_human_size(size:float) -> str:
+        for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+            if abs(size) < 1024.0:
+                return "%3.1f%s%s" % (size, unit, 'B')
+            size /= 1024.0
+
+        return "%.1f%s%s" % (size, 'Yi', 'B')
+    
+
+    # Get path size
+    def get_path_size(self, path:str, human:bool=True) -> Union[str, float]:
+        path = Path(path)
+        size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
+
+        if human: return self.get_human_size(size)
+
+        return size
+
+    # Get disk size
+    def get_disk_size(self, human:bool=True) -> dict:
+        # TODO: disk should be taken from configuration Path
+        disk_total, disk_used, disk_free = shutil.disk_usage('/')
+
+        if human:
+            disk_total = self().get_human_size(disk_total)
+            disk_used = self().get_human_size(disk_used)
+            disk_free = self().get_human_size(disk_free)
+
+        return {
+            "total": disk_total,
+            "used": disk_used,
+            "free": disk_free,
+        }
 
 
 def write_log(data:list):
