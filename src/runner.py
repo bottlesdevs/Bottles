@@ -417,7 +417,7 @@ class BottlesRunner:
                         archive_name = os.path.splitext(file)[0]
 
                         if os.path.exists(f"{BottlesPaths.temp}/{archive_name}"):
-                            os.remove(f"{BottlesPaths.temp}/{archive_name}")
+                            shutil.rmtree(f"{BottlesPaths.temp}/{archive_name}")
 
                         os.makedirs(f"{BottlesPaths.temp}/{archive_name}")
                         patoolib.extract_archive(
