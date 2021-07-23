@@ -247,7 +247,6 @@ class BottlesRunner:
         else:
             archive = manifest["File"][0]["file_name"]
 
-
         self.extract_component(component_type, archive)
 
         # Empty the component lists and repopulate
@@ -385,9 +384,14 @@ class BottlesRunner:
                     path = step["url"]
                     path = path.replace("temp/", f"{BottlesPaths.temp}/")
 
+                    if step.get("rename"):
+                        file_path = os.path.splitext(f"{step.get('rename')}")[0]
+                    else:
+                        file_path = os.path.splitext(f"{step.get('file_name')}")[0]
+
                     if not CabExtract().run(
                         f"{path}/{step.get('file_name')}",
-                        os.path.splitext(f"{step.get('file_name')}")[0]
+                        file_path
                     ):
                         if widget is not None:
                             GLib.idle_add(widget.set_err)
@@ -441,9 +445,17 @@ class BottlesRunner:
                 bottle_path = RunnerUtilities().get_bottle_path(configuration)
                 
                 try:
-                    shutil.copyfile(
-                        f"{path}/{step.get('file_name')}",
-                        f"{bottle_path}/drive_c/{step.get('dest')}")
+                    if "*" in step.get('file_name'):
+                        files = glob(f"{path}/{step.get('file_name')}")
+                        for fg in files:
+                            shutil.copyfile(
+                                fg,
+                                f"{bottle_path}/drive_c/{step.get('dest')}/{os.path.basename(fg)}")
+                    else:
+                        shutil.copyfile(
+                            f"{path}/{step.get('file_name')}",
+                            f"{bottle_path}/drive_c/{step.get('dest')}")
+
                 except FileNotFoundError:
                     logging.error(
                         f"dll {step.get('file_name')} not found in temp directory, there should be other errors from cabextract.")
