@@ -261,7 +261,7 @@ class CabExtract():
         return self.__extract()
 
     def __checks(self):
-        if not os.path.exists(self.path):
+        if not os.path.exists(self.path) and "*" not in self.path:
             logging.error(f"Cab file {self.path} not found")
             write_log(f"Cab file {self.path} not found")
             return False
