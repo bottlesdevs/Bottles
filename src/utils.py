@@ -266,7 +266,7 @@ class CabExtract():
             write_log(f"Cab file {self.path} not found")
             return False
 
-        if not self.path.endswith((".exe", ".msi", ".cab")):
+        if not self.path.lower().endswith((".exe", ".msi", ".cab")):
             logging.error(f"{self.path} is not a cab file")
             write_log(f"{self.path} is not a cab file")
             return False
