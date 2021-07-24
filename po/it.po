@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-20 16:26+0200\n"
-"PO-Revision-Date: 2021-07-12 16:53+0000\n"
+"PO-Revision-Date: 2021-07-24 13:12+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -260,7 +260,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid "Install dxvk and vkd3d on bottle creation if missing"
-msgstr ""
+msgstr "Installare dxvk e vkd3d alla creazione della bottiglia se mancano"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "The preferences are organized into sections"
@@ -478,6 +478,8 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Si è verificato un errore di installazione. Riavvia Bottles per leggere il "
+"Crash Report o eseguilo via terminale per leggere l'output."
 
 #: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
@@ -984,14 +986,12 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Questo wineprefix è già stato importato in Bottles."
 
 #: src/ui/list.ui:73
-#, fuzzy
 msgid "Start off by creating a Bottle."
-msgstr "Inizia creando una bottiglia"
+msgstr "Inizia creando una bottiglia."
 
 #: src/ui/list.ui:76
-#, fuzzy
 msgid "Create a new Bottle"
-msgstr "Crea nuovo stato"
+msgstr "Crea una nuova bottiglia"
 
 #: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
@@ -1087,9 +1087,8 @@ msgid "Creating bottle…"
 msgstr "Creando la bottiglia…"
 
 #: src/ui/new.ui:459
-#, fuzzy
 msgid "Take a break, it may take a while"
-msgstr "Prenditi un drink, richiederà qualche minuto"
+msgstr "Prenditi una pausa, potrebbe volerci un po' di tempo"
 
 #: src/ui/new.ui:527
 msgid "Bottle created"
@@ -1190,7 +1189,7 @@ msgstr "Scaricando…"
 #: src/ui/onboard.ui:391
 #, fuzzy
 msgid "Sit down and relax, it may take a few minutes."
-msgstr "Siediti e prendi un drink, richiederà qualche minuto."
+msgstr "Siediti e rilassati, potrebbe volerci qualche minuto."
 
 #: src/ui/onboard.ui:419
 msgid "Download"
@@ -1348,18 +1347,16 @@ msgid "New bottle"
 msgstr "Nuova bottiglia"
 
 #: src/main.py:81
-#, fuzzy
 msgid "Show version"
-msgstr "Versione DXVK"
+msgstr "Mostra la versione"
 
 #: src/main.py:87
-#, fuzzy
 msgid "Executable path"
-msgstr "Eseguire l'eseguibile"
+msgstr "Percorso eseguibile"
 
 #: src/main.py:93
 msgid "lnk path"
-msgstr ""
+msgstr "percorso lnk"
 
 #: src/main.py:177
 msgid "[Quit] request received."
@@ -1374,19 +1371,16 @@ msgid "[Refresh] request received."
 msgstr "Richiesta [Ricarica] ricevuta."
 
 #: src/runner.py:895
-#, fuzzy
 msgid "No runners found, please install one."
-msgstr "Nessun runner trovato."
+msgstr "Nessun runner trovato, per favore installane uno."
 
 #: src/runner.py:899
-#, fuzzy
 msgid "No dxvk found, installing the latest version …"
-msgstr "Uno o più componenti non trovati, installando l'ultima versione …"
+msgstr "Nessun dxvk trovato, installando l'ultima versione …"
 
 #: src/runner.py:902
-#, fuzzy
 msgid "No vkd3d found, installing the latest version …"
-msgstr "Uno o più componenti non trovati, installando l'ultima versione …"
+msgstr "Nessun vkd3d trovato, installando l'ultima versione …"
 
 #. Execute wineboot
 #: src/runner.py:942
