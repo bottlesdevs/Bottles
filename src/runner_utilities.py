@@ -230,9 +230,13 @@ class RunnerUtilities:
             return subprocess.Popen(
                 command,
                 stdout=subprocess.PIPE,
-                shell=True).communicate()[0].decode("utf-8")
+                shell=True,
+                cwd=self.get_bottle_path(configuration)).communicate()[0].decode("utf-8")
 
-        return subprocess.Popen(command, shell=True).communicate()
+        return subprocess.Popen(
+            command, 
+            shell=True,
+            cwd=self.get_bottle_path(configuration)).communicate()
 
     # Get bottle path by configuration
     def get_bottle_path(self, configuration:BottleConfig) -> str:
