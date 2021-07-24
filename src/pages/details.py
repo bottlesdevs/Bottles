@@ -17,6 +17,7 @@
 
 from gi.repository import Gtk, GLib, Handy
 
+import os
 import re
 import webbrowser
 
@@ -595,6 +596,7 @@ class BottlesDetails(Handy.Leaflet):
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
+    infobar_testing = Gtk.Template.Child()
 
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
@@ -681,6 +683,9 @@ class BottlesDetails(Handy.Leaflet):
             self.switch_gamemode.set_tooltip_text(_("Gamemode is either not available on your system or not running."))
 
         self.build_pages()
+
+        if "TESTING_REPOS" in os.environ and os.environ["TESTING_REPOS"] == "1":
+            self.infobar_testing.set_visible(True)
 
 
     def build_pages(self):
