@@ -58,7 +58,6 @@ class BottlesDetailsPageRow(Gtk.ListBoxRow):
 
         self.show_all()
 
-
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-run-args.ui')
 class BottlesRunArgs(Handy.Window):
     __gtype_name__ = 'BottlesRunArgs'
@@ -454,6 +453,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
         self.runner = window.runner
         self.configuration = configuration
         self.dependency = dependency
+        self.spinner = Gtk.Spinner()
 
         '''If dependency is plain text (placeholder)'''
         if plain:
@@ -507,7 +507,14 @@ class BottlesDependencyEntry(Handy.ActionRow):
 
     '''Install dependency'''
     def install_dependency(self, widget):
-        GLib.idle_add(widget.set_sensitive, False)
+        for w in widget.get_children(): w.destroy()
+
+        widget.set_sensitive(False)
+        widget.add(self.spinner)
+        
+        self.spinner.show()
+        GLib.idle_add(self.spinner.start)
+
         self.runner.install_dependency(self.configuration,
                                        self.dependency,
                                        self)
@@ -524,7 +531,6 @@ class BottlesDependencyEntry(Handy.ActionRow):
         self.btn_install.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
-
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class BottlesDetails(Handy.Leaflet):
