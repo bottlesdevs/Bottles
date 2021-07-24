@@ -233,6 +233,7 @@ class RunnerUtilities:
                 shell=True,
                 cwd=self.get_bottle_path(configuration)).communicate()[0].decode("utf-8")
 
+        # TODO: configure cwd in bottle configuration
         return subprocess.Popen(
             command, 
             shell=True,
