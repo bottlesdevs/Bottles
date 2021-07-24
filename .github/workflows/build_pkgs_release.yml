@@ -8,43 +8,42 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      
+
       # Misc
       # --------------------------------------
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::$(cat VERSION)
-        
+
       # Dependencies
       # --------------------------------------
       - name: Install build dependencies
         run: |
           sudo apt install -y debhelper python3 python3.8-minimal python3-pip python3-setuptools gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind python3-yaml python3-requests
+
       # AppImage Build
       # --------------------------------------
       - name: Install appimagetool
         run: |
            sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
            sudo chmod +x /usr/local/bin/appimagetool
-      
+
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-          
+
       - name: Install appimage-builder tool
         run: yes | sudo pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git
         
       - name: Build AppImage
         run: appimage-builder --recipe AppImageBuilder.yml --skip-test
-      
-      
+
       # Deb Build
       # --------------------------------------
       - name: Build .deb package
         run: dpkg-buildpackage
-      
-      
+
       # Release packages
       # --------------------------------------        
       - uses: "marvinpinto/action-automatic-releases@latest"

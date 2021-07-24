@@ -296,4 +296,3 @@ class BottlesWindow(Handy.ApplicationWindow):
     @staticmethod
     def show_about_dialog(widget):
         BottlesAboutDialog().show_all()
-

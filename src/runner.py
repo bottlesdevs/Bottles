@@ -1246,7 +1246,7 @@ class BottlesRunner:
 
         command = "reg add '%s' /v %s /d %s /f" % (key, value, data)
 
-        if keyType != False:
+        if keyType:
             command = "reg add '%s' /v %s /t %s /d %s /f" % (key, value, keyType, data)
         
         RunnerUtilities().run_command(configuration, command)
@@ -1445,6 +1445,3 @@ class BottlesRunner:
     def browse_wineprefix(self, wineprefix:dict) -> bool:
         return RunnerUtilities().open_filemanager(path_type="custom",
                                      custom_path=wineprefix.get("Path"))
-
-    
-

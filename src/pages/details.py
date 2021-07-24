@@ -849,8 +849,8 @@ class BottlesDetails(Handy.Leaflet):
         if len(programs) == 0:
             self.group_programs.set_visible(False)
             return
-        else:
-            self.group_programs.set_visible(True)
+            
+        self.group_programs.set_visible(True)
 
         i = 0
         for program in programs:

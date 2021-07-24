@@ -97,8 +97,8 @@ AppDir:
     - cabextract
     - patool
     - p7zip
- 
-    exclude: 
+
+    exclude:
     - adwaita-icon-theme
     - humanity-icon-theme
 
@@ -106,7 +106,7 @@ AppDir:
      rm -f $APPDIR/.bundle.yml
      rm -rf $APPDIR/usr/share/doc
      rm -rf $APPDIR/usr/share/man
-     
+
   files:
     include: []
 
@@ -116,7 +116,7 @@ AppDir:
       - AppDir/usr/share/doc/*/README.*
       - AppDir/usr/share/doc/*/changelog.*
       - AppDir/usr/share/doc/*/NEWS.*
-      - AppDir/usr/share/doc/*/TODO.*    
+      - AppDir/usr/share/doc/*/TODO.*
 
   runtime:
     env:
@@ -128,7 +128,7 @@ AppDir:
       SSL_CERT_FILE: "$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem"
       # if you want to use Adwaita just uncomment bellow
       # GTK_THEME: Adwaita
-     
+
   test:
     fedora:
       image: appimagecrafters/tests-env:fedora-30

@@ -213,4 +213,3 @@ GObject.threads_init()
 def main(version):
     app = Application()
     return app.run(sys.argv)
-

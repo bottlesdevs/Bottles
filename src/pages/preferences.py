@@ -329,4 +329,3 @@ class BottlesRunnerEntry(Handy.ActionRow):
 
     def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed, failed)
-
