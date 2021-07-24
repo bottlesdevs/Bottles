@@ -82,6 +82,9 @@ class BottlesPaths:
     # Local paths
     base = f"{Path.home()}/.local/share/bottles"
 
+    # User applications path
+    applications = f"{Path.home()}/.local/share/applications/"
+    
     if "IS_FLATPAK" in os.environ:
         base_n = base
         base = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles"
