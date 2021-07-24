@@ -771,7 +771,7 @@ class BottlesRunner:
         # For any .lnk file, check for executable path
         for program in results:
             path = program.split("/")[-1]
-            if path not in ["Uninstall.lnk"]:
+            if "Uninstall" not in path:
                 executable_path = ""
                 try:
                     with open(program, "r",
