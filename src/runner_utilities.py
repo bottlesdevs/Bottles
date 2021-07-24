@@ -61,7 +61,7 @@ class RunnerUtilities:
             command = "%s %s" % (command, arguments)
 
         if no_async:
-            self.run_command(configuration, command, False, environment)
+            self.run_command(configuration, command, False, environment, True)
         else:
             RunAsync(self.run_command, None, configuration,
                     command, False, environment)
