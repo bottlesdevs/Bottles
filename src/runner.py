@@ -581,6 +581,7 @@ class BottlesRunner:
 
     # Run installer
     def run_installer(self, configuration:BottleConfig, installer:list, widget:Gtk.Widget) -> None:
+        bottle_icons_path = f"{RunnerUtilities().get_bottle_path(configuration)}/icons"
         manifest = self.fetch_installer_manifest(
             installer_name = installer[0],
             installer_category = installer[1]["Category"])
@@ -590,13 +591,24 @@ class BottlesRunner:
         executable = manifest.get("Executable")
         steps = manifest.get("Steps")
 
+        # download icon
+        if executable.get("icon"):
+            icon_url = f"{BottlesRepositories.installers}/data/{manifest.get('Name')}/{executable.get('icon')}"
+            icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
+
+            if not os.path.exists(bottle_icons_path):
+                os.makedirs(bottle_icons_path)
+            if not os.path.isfile(icon_path):
+                urllib.request.urlretrieve(icon_url, icon_path)
+        
+        # install dependencies
         for dep in dependencies:
             if dep in configuration.get("Installed_Dependencies"):
                 continue
             dep_index = [dep, self.supported_dependencies.get(dep)]
-            print(dep_index)
             self.async_install_dependency([configuration, dep_index, None])
         
+        # execute installer steps
         for st in steps:
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
@@ -619,7 +631,7 @@ class BottlesRunner:
                         arguments=st.get("arguments"),
                         environment=st.get("environment"))
         
-        # Set parameters
+        # set parameters
         for param in parameters:
             self.update_configuration(
                 configuration=configuration,
@@ -627,17 +639,47 @@ class BottlesRunner:
                 value=parameters[param],
                 scope="Parameters")
 
-        # Register executable arguments
+        # register executable arguments
         self.update_configuration(
             configuration=configuration,
             key=executable.get("file"),
             value=executable.get("arguments"),
             scope="Programs")
+        
+        # create Desktop entry
+        if "IS_FLATPAK" in os.environ:
+            return None
+        desktop_file = f"{BottlesPaths.applications}/{configuration.get('Name')}--{manifest.get('Name')}--{datetime.now().timestamp()}.desktop"
+        with open(desktop_file, "w") as f:
+            ex_path = f"{BottlesPaths.bottles}/{configuration.get('Path')}/drive_c/{executable.get('path')}/{executable.get('file')}"
+            f.write(f"[Desktop Entry]\n")
+            f.write(f"Name={executable.get('name')}\n")
+            f.write(f"Exec=bottles -e '{ex_path}' -b '{configuration.get('Name')}'\n")
+            f.write(f"Type=Application\n")
+            f.write(f"Terminal=false\n")
+            f.write(f"Categories=Application;\n")
+            if executable.get("icon"):
+                f.write(f"Icon={icon_path}\n")
+            else:
+                f.write(f"Icon=com.usebottles.bottles")
+            f.write(f"Comment={manifest.get('Description')}\n")
 
     # Check local runners
     def check_runners(self, install_latest:bool=True, after=False) -> bool:
         runners = glob("%s/*/" % BottlesPaths.runners)
         self.runners_available = []
+
+        for runner in runners:
+            winemenubuilder_paths = [
+                f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
+                f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
+                f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
+            ]
+            for winemenubuilder in winemenubuilder_paths:
+                if winemenubuilder.startswith("Proton"):
+                    continue
+                if os.path.isfile(winemenubuilder):
+                    os.rename(winemenubuilder, winemenubuilder + ".lock")
 
         # Check system wine
         if shutil.which("wine") is not None:
@@ -1166,19 +1208,21 @@ class BottlesRunner:
 
         configuration = args[0]
 
-        # Delete path with all files
-        path = configuration.get("Path")
+        if configuration.get("Path"):
+            logging.info(f"Removing applications installed with the bottle ..")
+            for inst in glob(f"{BottlesPaths.applications}/{configuration.get('Name')}--*"):
+                os.remove(inst)
 
-        if path != "":
+            logging.info(f"Removing the bottle ..")
             if not configuration.get("Custom_Path"):
-                path = "%s/%s" % (BottlesPaths.bottles, path)
+                path = "%s/%s" % (BottlesPaths.bottles, configuration.get("Path"))
 
             shutil.rmtree(path)
             del self.local_bottles[configuration.get("Path")]
 
+            logging.info(f"Successfully deleted bottle in path: [{path}]")
             self.window.page_list.update_bottles()
 
-            logging.info(f"Successfully deleted bottle in path: [{path}]")
             return True
 
         logging.error("Empty path found, failing to avoid disasters.")
