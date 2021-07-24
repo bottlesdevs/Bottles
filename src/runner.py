@@ -1270,15 +1270,19 @@ class BottlesRunner:
         pids = subprocess.check_output(['bash', '-c', command]).decode("utf-8")
 
         for pid in pids.split("\n"):
+            # workaround https://github.com/bottlesdevs/Bottles/issues/396
+            if pid.startswith("|"):
+                pid = pid[1:]
+
             process_data = pid.split("|")
             if len(process_data) >= 6 and "grep" not in process_data:
                 processes.append({
-                    "pid": process_data[1],
-                    "pmem": process_data[2],
-                    "pcpu": process_data[3],
-                    "stime": process_data[4],
-                    "time": process_data[5],
-                    "cmd": process_data[6]
+                    "pid": process_data[0],
+                    "pmem": process_data[1],
+                    "pcpu": process_data[2],
+                    "stime": process_data[3],
+                    "time": process_data[4],
+                    "cmd": process_data[5]
                 })
 
         return processes
