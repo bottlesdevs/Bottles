@@ -147,8 +147,10 @@ class BottlesRunner:
             root_dir = tar.getnames()[0]
             tar.extractall(path)
         except:
-            os.remove(os.path.join(BottlesPaths.temp, archive))
-            shutil.rmtree(os.path.join(path, archive[:-7]))
+            if os.path.isfile(os.path.join(BottlesPaths.temp, archive)):
+                os.remove(os.path.join(BottlesPaths.temp, archive))
+            if os.path.isdir(os.path.join(path, archive[:-7])):
+                shutil.rmtree(os.path.join(path, archive[:-7]))
             logging.error("Extraction failed! Archive ends earlier than expected.")
             return False
 
