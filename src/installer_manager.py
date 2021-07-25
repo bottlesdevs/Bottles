@@ -17,15 +17,13 @@
 
 import os
 import urllib.request
-
-from typing import Union, NewType
-
-from gi.repository import Gtk
-
+from typing import NewType
 from datetime import datetime
+from gi.repository import Gtk, GLib
 
 from .runner_utilities import RunnerUtilities
 from .runner_globals import BottlesRepositories, BottlesPaths
+from .utils import RunAsync
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
@@ -40,6 +38,7 @@ class InstallerManager:
         self.manifest = self.runner.fetch_installer_manifest(
             installer_name = installer[0],
             installer_category = installer[1]["Category"])
+        self.widget = widget
         self.bottle_icons_path = f"{RunnerUtilities().get_bottle_path(configuration)}/icons"
 
     def __download_icon(self, executable:dict):
@@ -123,7 +122,7 @@ class InstallerManager:
                 f.write(f"Icon=com.usebottles.bottles")
             f.write(f"Comment={self.manifest.get('Description')}\n")
     
-    def install(self) -> None:
+    def __async_install(self) -> None:
         dependencies = self.manifest.get("Dependencies")
         parameters = self.manifest.get("Parameters")
         executable = self.manifest.get("Executable")
@@ -150,3 +149,10 @@ class InstallerManager:
 
         # create Desktop entry
         self.__create_desktop_entry(executable)
+
+        # unlock widget
+        if self.widget is not None:
+            GLib.idle_add(self.widget.set_installed)
+    
+    def install(self) -> None:
+        RunAsync(self.__async_install, False)

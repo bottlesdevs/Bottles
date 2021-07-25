@@ -276,6 +276,7 @@ class BottlesInstallerEntry(Handy.ActionRow):
     '''Get widgets from template'''
     btn_install = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
+    img_installed = Gtk.Template.Child()
 
     def __init__(self, window, configuration, installer, plain=False, **kwargs):
         super().__init__(**kwargs)
@@ -285,6 +286,7 @@ class BottlesInstallerEntry(Handy.ActionRow):
         self.runner = window.runner
         self.configuration = configuration
         self.installer = installer
+        self.spinner = Gtk.Spinner()
 
         '''Populate widgets'''
         self.set_title(installer[0])
@@ -308,12 +310,25 @@ class BottlesInstallerEntry(Handy.ActionRow):
 
     '''Execute installer'''
     def execute_installer(self, widget):
+        for w in widget.get_children(): w.destroy()
+
         widget.set_sensitive(False)
+        widget.add(self.spinner)
+        
+        self.spinner.show()
+        GLib.idle_add(self.spinner.start)
+
         InstallerManager(
             runner=self.runner,
             configuration=self.configuration,
             installer=self.installer,
             widget=self).install()
+    
+    '''Set installed status'''
+    def set_installed(self):
+        self.spinner.stop()
+        self.btn_install.set_visible(False)
+        self.img_installed.set_visible(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
 class BottlesStateEntry(Handy.ActionRow):
@@ -532,9 +547,18 @@ class BottlesDependencyEntry(Handy.ActionRow):
     
     '''Set error status'''
     def set_err(self):
+        self.spinner.stop()
         self.btn_install.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
+    
+    '''Set installed status'''
+    def set_installed(self, has_installer=True):
+        self.spinner.stop()
+        self.btn_install.set_visible(False)
+        if has_installer:
+            self.btn_remove.set_visible(True)
+            self.btn_remove.set_sensitive(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class BottlesDetails(Handy.Leaflet):

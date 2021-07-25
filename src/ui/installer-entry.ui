@@ -91,6 +91,18 @@
           </packing>
         </child>
         <child>
+          <object class="GtkImage" id="img_installed">
+            <property name="can-focus">False</property>
+            <property name="icon-name">object-select-symbolic</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkMenuButton">
             <property name="visible">True</property>
             <property name="can-focus">True</property>

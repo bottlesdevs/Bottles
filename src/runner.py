@@ -529,11 +529,10 @@ class BottlesRunner:
 
         # Hide installation button and show remove button
         if widget is not None:
-         GLib.idle_add(widget.btn_install.set_visible, False)
-
-        if not has_no_uninstaller and widget is not None:
-            GLib.idle_add(widget.btn_remove.set_visible, True)
-            GLib.idle_add(widget.btn_remove.set_sensitive, True)
+            if has_no_uninstaller:
+                GLib.idle_add(widget.set_installed, False)
+            else:
+                GLib.idle_add(widget.set_installed, True)
 
         return True
 
