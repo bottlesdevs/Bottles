@@ -22,6 +22,7 @@ import re
 import webbrowser
 
 from .dialog import BottlesDialog, BottlesMessageDialog
+from ..installer_manager import InstallerManager
 from ..runner_utilities import RunnerUtilities, gamemode_available
 from ..runner_backup import RunnerBackup
 
@@ -300,17 +301,19 @@ class BottlesInstallerEntry(Handy.ActionRow):
             title=_("Manifest for {0}").format(self.installer[0]),
             message=False,
             log=self.runner.fetch_installer_manifest(self.installer[0],
-                                                     self.installer[1]["Category"],
-                                                      plain=True))
+                                                    self.installer[1]["Category"],
+                                                    plain=True))
         dialog_upgrade.run()
         dialog_upgrade.destroy()
 
     '''Execute installer'''
     def execute_installer(self, widget):
         widget.set_sensitive(False)
-        self.runner.run_installer(self.configuration,
-                                  self.installer,
-                                  self)
+        InstallerManager(
+            runner=self.runner,
+            configuration=self.configuration,
+            installer=self.installer,
+            widget=self).install()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
 class BottlesStateEntry(Handy.ActionRow):

@@ -31,6 +31,7 @@ bottles_sources = [
   'runner_globals.py',
   'runner_versioning.py',
   'runner_backup.py',
+  'installer_manager.py',
   'empty.py',
   'utils.py',
 ]

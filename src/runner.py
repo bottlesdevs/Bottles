@@ -592,94 +592,7 @@ class BottlesRunner:
         RunnerUtilities().run_uninstaller(configuration, uuid)
 
     # Run installer
-    def run_installer(self, configuration:BottleConfig, installer:list, widget:Gtk.Widget) -> None:
-        bottle_icons_path = f"{RunnerUtilities().get_bottle_path(configuration)}/icons"
-        manifest = self.fetch_installer_manifest(
-            installer_name = installer[0],
-            installer_category = installer[1]["Category"])
-        
-        dependencies = manifest.get("Dependencies")
-        parameters = manifest.get("Parameters")
-        executable = manifest.get("Executable")
-        steps = manifest.get("Steps")
-
-        # download icon
-        if executable.get("icon"):
-            icon_url = f"{BottlesRepositories.installers}/data/{manifest.get('Name')}/{executable.get('icon')}"
-            icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
-
-            if not os.path.exists(bottle_icons_path):
-                os.makedirs(bottle_icons_path)
-            if not os.path.isfile(icon_path):
-                urllib.request.urlretrieve(icon_url, icon_path)
-        
-        # install dependencies
-        for dep in dependencies:
-            if dep in configuration.get("Installed_Dependencies"):
-                continue
-            dep_index = [dep, self.supported_dependencies.get(dep)]
-            self.async_install_dependency([configuration, dep_index, None])
-        
-        # execute installer steps
-        for st in steps:
-            # Step type: install_exe, install_msi
-            if st["action"] in ["install_exe", "install_msi"]:
-                download = self.download_component(
-                    "installer",
-                    st.get("url"),
-                    st.get("file_name"),
-                    st.get("rename"),
-                    checksum=st.get("file_checksum"))
-
-                if download:
-                    if st.get("rename"):
-                        file = st.get("rename")
-                    else:
-                        file = st.get("file_name")
-
-                    RunnerUtilities().run_executable(
-                        configuration=configuration,
-                        file_path=f"{BottlesPaths.temp}/{file}",
-                        arguments=st.get("arguments"),
-                        environment=st.get("environment"))
-        
-        # set parameters
-        for param in parameters:
-            if parameters.get("dxvk") and not configuration.get("Parameters")["dxvk"]:
-                self.install_dxvk(configuration)
-            if parameters.get("vkd3d") and configuration.get("Parameters")["vkd3d"]:
-                self.install_vkd3d(configuration)
-            self.update_configuration(
-                configuration=configuration,
-                key=param,
-                value=parameters[param],
-                scope="Parameters")
-
-        # register executable arguments
-        if executable.get("arguments"):
-            self.update_configuration(
-                configuration=configuration,
-                key=executable.get("file"),
-                value=executable.get("arguments"),
-                scope="Programs")
-        
-        # create Desktop entry
-        if "IS_FLATPAK" in os.environ:
-            return None
-        desktop_file = f"{BottlesPaths.applications}/{configuration.get('Name')}--{manifest.get('Name')}--{datetime.now().timestamp()}.desktop"
-        with open(desktop_file, "w") as f:
-            ex_path = f"{BottlesPaths.bottles}/{configuration.get('Path')}/drive_c/{executable.get('path')}/{executable.get('file')}"
-            f.write(f"[Desktop Entry]\n")
-            f.write(f"Name={executable.get('name')}\n")
-            f.write(f"Exec=bottles -e '{ex_path}' -b '{configuration.get('Name')}'\n")
-            f.write(f"Type=Application\n")
-            f.write(f"Terminal=false\n")
-            f.write(f"Categories=Application;\n")
-            if executable.get("icon"):
-                f.write(f"Icon={icon_path}\n")
-            else:
-                f.write(f"Icon=com.usebottles.bottles")
-            f.write(f"Comment={manifest.get('Description')}\n")
+    
 
     # Check local runners
     def check_runners(self, install_latest:bool=True, after=False) -> bool:
@@ -877,8 +790,7 @@ class BottlesRunner:
                 if plain:
                     return url.read().decode("utf-8")
                 return yaml.safe_load(url.read())
-
-            return False
+        return False
 
     # Fetch components
     def fetch_components(self) -> bool:
