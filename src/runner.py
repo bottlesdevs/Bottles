@@ -652,11 +652,12 @@ class BottlesRunner:
                 scope="Parameters")
 
         # register executable arguments
-        self.update_configuration(
-            configuration=configuration,
-            key=executable.get("file"),
-            value=executable.get("arguments"),
-            scope="Programs")
+        if executable.get("arguments"):
+            self.update_configuration(
+                configuration=configuration,
+                key=executable.get("file"),
+                value=executable.get("arguments"),
+                scope="Programs")
         
         # create Desktop entry
         if "IS_FLATPAK" in os.environ:
