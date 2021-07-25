@@ -389,6 +389,7 @@ class BottlesProgramEntry(Handy.ActionRow):
     btn_issues = Gtk.Template.Child()
     btn_launch_options = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
+    btn_browse = Gtk.Template.Child()
 
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
@@ -401,6 +402,8 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.program_name = program[0]
         self.program_executable = program[1].split("\\")[-1]
         self.program_executable_path = program[1]
+        self.program_folder = program[3]
+        print(self.program_folder)
 
         '''Populate widgets'''
         self.set_title(self.program_name)
@@ -413,6 +416,7 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.btn_issues.connect('pressed', self.open_issues)
         self.btn_launch_options.connect('pressed', self.show_launch_options_view)
         self.btn_uninstall.connect('pressed', self.remove_program)
+        self.btn_browse.connect('pressed', self.browse_program_folder)
 
         '''Populate entry_arguments by configuration'''
         if self.program_executable in self.configuration["Programs"]:
@@ -438,6 +442,12 @@ class BottlesProgramEntry(Handy.ActionRow):
 
     def remove_program(self, widget):
         self.runner.remove_program(self.configuration, self.program_name)
+
+    def browse_program_folder(self, widget):
+        RunnerUtilities().open_filemanager(
+            configuration=self.configuration, 
+            path_type="custom",
+            custom_path=self.program_folder)
 
     '''Open URLs'''
     def open_winehq(self, widget):

@@ -747,27 +747,34 @@ class BottlesRunner:
         # For any .lnk file, check for executable path
         for program in results:
             path = program.split("/")[-1]
-            if "Uninstall" not in path:
-                executable_path = ""
-                try:
-                    with open(program, "r",
-                              encoding='utf-8',
-                              errors='ignore') as lnk:
-                        lnk = lnk.read()
+            executable_path = ""
 
-                        executable_path = re.search('C:(.*).exe', lnk)
-                        if executable_path is not None:
-                            executable_path = executable_path.group(0)
-                        else:
-                            executable_path = re.search('C:(.*).bat', lnk).group(0)
+            if "Uninstall" in path:
+                continue
 
-                        if executable_path.find("ninstall") < 0:
-                            path = path.replace(".lnk", "")
-                            executable_name = executable_path.split("\\")[-1][:-4]
-                            icon = self.find_program_icon(executable_name)
-                            installed_programs.append([path, executable_path, icon])
-                except:
-                    logging.error(F"Cannot find executable for [{path}].")
+            try:
+                with open(program, "r", encoding='utf-8', errors='ignore') as lnk:
+                    lnk = lnk.read()
+                    executable_path = re.search('C:(.*).exe', lnk)
+                    
+                    if executable_path is not None:
+                        executable_path = executable_path.group(0)
+                    else:
+                        executable_path = re.search('C:(.*).bat', lnk).group(0)
+
+                    if executable_path.find("ninstall") > 0:
+                        continue
+
+                    path = path.replace(".lnk", "")
+                    executable_name = executable_path.split("\\")[-1][:-4]
+                    program_folder = "\\".join(executable_path.split("\\")[:-1])
+                    program_folder = program_folder.replace("C:\\", "\\drive_c\\").replace("\\", "/")
+                    program_folder = RunnerUtilities().get_bottle_path(configuration) + program_folder
+
+                    icon = self.find_program_icon(executable_name)
+                    installed_programs.append([path, executable_path, icon, program_folder])
+            except:
+                logging.error(F"Cannot find executable for [{path}].")
 
         return installed_programs
 

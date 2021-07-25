@@ -36,7 +36,7 @@ class RunnerUtilities:
         if path_type == "custom" and custom_path != "":
             path = custom_path
 
-        command = "xdg-open %s" % path
+        command = f"xdg-open '{path}'"
         return subprocess.Popen(command, shell=True).communicate()
 
     # Run .lnk files in a bottle
