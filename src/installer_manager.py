@@ -121,6 +121,11 @@ class InstallerManager:
             else:
                 f.write(f"Icon=com.usebottles.bottles")
             f.write(f"Comment={self.manifest.get('Description')}\n")
+            # Actions
+            f.write("Actions=Configure;\n")
+            f.write("[Desktop Action Configure]\n")
+            f.write("Name=Configure in Bottles\n")
+            f.write(f"Exec=bottles -b '{self.configuration.get('Name')}'\n")
     
     def __async_install(self) -> None:
         dependencies = self.manifest.get("Dependencies")
