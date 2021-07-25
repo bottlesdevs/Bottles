@@ -645,6 +645,10 @@ class BottlesRunner:
         
         # set parameters
         for param in parameters:
+            if parameters.get("dxvk") and not configuration.get("Parameters")["dxvk"]:
+                self.install_dxvk(configuration)
+            if parameters.get("vkd3d") and configuration.get("Parameters")["vkd3d"]:
+                self.install_vkd3d(configuration)
             self.update_configuration(
                 configuration=configuration,
                 key=param,
