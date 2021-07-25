@@ -296,7 +296,8 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkButton">
+                                  <object class="GtkButton" id="btn_pref_runners">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
                                     <property name="tooltip-text" translatable="yes">Manage runners</property>
@@ -369,7 +370,8 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkButton">
+                                  <object class="GtkButton" id="btn_pref_dxvk">
+                                    <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
                                     <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>

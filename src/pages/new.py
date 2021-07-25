@@ -84,6 +84,8 @@ class BottlesNew(Handy.Window):
     btn_create = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
+    btn_pref_runners = Gtk.Template.Child()
+    btn_pref_dxvk = Gtk.Template.Child()
     list_environments = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
@@ -133,6 +135,8 @@ class BottlesNew(Handy.Window):
         self.btn_create.connect('pressed', self.create_bottle)
         self.list_environments.connect('row-selected', self.set_active_environment)
         self.entry_name.connect('key-release-event', self.check_entry_name)
+        self.btn_pref_runners.connect('pressed', self.window.show_preferences_view)
+        self.btn_pref_dxvk.connect('pressed', self.window.show_preferences_view)
 
         for environment in self.environments:
             env_row = BottlesEnvironmentRow(environment)
