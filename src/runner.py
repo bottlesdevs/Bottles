@@ -186,10 +186,8 @@ class BottlesRunner:
         else:
             if component not in ["runner", "runner:proton", "installer"]: # skip check for big files like runners
                 download_url = requests.get(download_url, allow_redirects=True).url
-            request = urllib.request.Request(download_url, method='HEAD')
             request = urllib.request.urlopen(download_url)
             if request.status == 200:
-                download_size = request.headers['Content-Length']
                 urllib.request.urlretrieve(
                     download_url,
                     f"{BottlesPaths.temp}/{file}",
