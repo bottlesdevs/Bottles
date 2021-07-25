@@ -186,7 +186,12 @@ class BottlesRunner:
         else:
             if component not in ["runner", "runner:proton", "installer"]: # skip check for big files like runners
                 download_url = requests.get(download_url, allow_redirects=True).url
-            request = urllib.request.urlopen(download_url)
+            try:
+                request = urllib.request.urlopen(download_url)
+            except (urllib.error.HTTPError, urllib.error.URLError):
+                GLib.idle_add(download_entry.remove)
+                return False
+
             if request.status == 200:
                 urllib.request.urlretrieve(
                     download_url,
@@ -262,7 +267,7 @@ class BottlesRunner:
 
         # Execute a method at the end if passed
         if after:
-            after()
+            GLib.idle_add(after)
 
         # Re-populate local lists
         self.fetch_components()
