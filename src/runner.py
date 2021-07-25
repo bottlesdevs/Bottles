@@ -398,7 +398,7 @@ class BottlesRunner:
                         exit()
 
             # Step type: archive_extract
-            if step["action"] in ["archive_extract", "7zip_extract"]:
+            if step["action"] == "archive_extract":
                 has_no_uninstaller = True # extracted archives has no uninstaller
 
                 if validate_url(step["url"]):
