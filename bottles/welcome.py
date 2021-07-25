@@ -38,16 +38,16 @@ class Welcome(Gtk.Box):
         self.parent = parent
         self.set_orientation(Gtk.Orientation.VERTICAL)
 
-        v2_infobar = Gtk.InfoBar()
-        v2_infobar.set_show_close_button(False)
-        v2_buttonbox = Gtk.ButtonBox()
-        v2_link = Gtk.Button(label="Information")
-        v2_link.message_type = Gtk.MessageType.INFO
-        v2_link.connect("clicked", self.go_to_v2)
-        v2_buttonbox.add(v2_link)
-        v2_infobar.get_content_area().add(Gtk.Label("Discover the future of Bottles!"))
-        v2_infobar.get_content_area().add(v2_buttonbox)
-        self.add(v2_infobar)
+        v3_infobar = Gtk.InfoBar()
+        v3_infobar.set_show_close_button(False)
+        v3_buttonbox = Gtk.ButtonBox()
+        v3_link = Gtk.Button(label="Information")
+        v3_link.message_type = Gtk.MessageType.INFO
+        v3_link.connect("clicked", self.go_to_v3)
+        v3_buttonbox.add(v3_link)
+        v3_infobar.get_content_area().add(Gtk.Label("Bottles 3 (Treviso) is out!"))
+        v3_infobar.get_content_area().add(v3_buttonbox)
+        self.add(v3_infobar)
 
         try:
             current_locale, encoding = locale.getdefaultlocale()
@@ -70,8 +70,8 @@ class Welcome(Gtk.Box):
 
         self.add(self.welcome)
     
-    def go_to_v2(self, infobar):
-        webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues/39")
+    def go_to_v3(self, infobar):
+        webbrowser.open_new_tab("https://usebottles.com")
 
     def on_welcome_activated(self, widget, index):
         self.parent.parent.hbar.back.show()
