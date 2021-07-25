@@ -403,7 +403,6 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.program_executable = program[1].split("\\")[-1]
         self.program_executable_path = program[1]
         self.program_folder = program[3]
-        print(self.program_folder)
 
         '''Populate widgets'''
         self.set_title(self.program_name)

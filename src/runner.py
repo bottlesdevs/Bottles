@@ -723,12 +723,14 @@ class BottlesRunner:
 
     def find_program_icon(self, program_name):
         logging.debug(f"Searching [{program_name}] icon..")
-        pattern = "*%s*" % program_name
+        pattern = f"*{program_name}*"
+
         for root, dirs, files in os.walk(BottlesPaths.icons_user):
             for name in files:
                 if fnmatch.fnmatch(name.lower(), pattern.lower()):
                     name = name.split("/")[-1][:-4]
                     return name
+
         return "application-x-executable"
 
     # Get installed programs
