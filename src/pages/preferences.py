@@ -137,6 +137,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
         self.window = window
         self.runner = window.runner
         self.dxvk_name = dxvk[0]
+        self.spinner = Gtk.Spinner()
 
         '''Populate widgets'''
         self.set_title(self.dxvk_name)
@@ -156,7 +157,11 @@ class BottlesDxvkEntry(Handy.ActionRow):
     def download_dxvk(self, widget):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
-        self.runner.install_component("dxvk", self.dxvk_name, func=self.update_status)
+        self.runner.install_component(
+            "dxvk", 
+            self.dxvk_name, 
+            func=self.update_status, 
+            after=self.set_installed)
 
     '''Browse dxvk files'''
     def run_browse(self, widget):
@@ -171,21 +176,33 @@ class BottlesDxvkEntry(Handy.ActionRow):
             self.btn_browse.set_visible(False)
             return False
 
-        if not self.label_download_status.get_visible():
-            self.label_download_status.set_visible(True)
+        self.label_download_status.set_visible(True)
 
         if not completed:
             percent = int(count * block_size * 100 / total_size)
             self.label_download_status.set_text(f'{str(percent)}%')
         else:
             percent = 100
-
+        
         if percent == 100:
-            self.box_download_status.set_visible(False)
-            self.btn_browse.set_visible(True)
+            for w in self.box_download_status.get_children(): w.destroy()
+            self.box_download_status.add(self.spinner)
+            self.spinner.set_visible(True)
+            self.spinner.start()
+    
+    def set_installed(self):
+        self.spinner.stop()
+        self.box_download_status.set_visible(False)
+        self.btn_browse.set_visible(True)
 
     def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed, failed)
+        GLib.idle_add(
+            self.idle_update_status, 
+            count, 
+            block_size, 
+            total_size, 
+            completed, 
+            failed)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/vkd3d-entry.ui')
 class BottlesVkd3dEntry(Handy.ActionRow):
@@ -205,6 +222,7 @@ class BottlesVkd3dEntry(Handy.ActionRow):
         self.window = window
         self.runner = window.runner
         self.vkd3d_name = vkd3d[0]
+        self.spinner = Gtk.Spinner()
 
         '''Populate widgets'''
         self.set_title(self.vkd3d_name)
@@ -224,13 +242,18 @@ class BottlesVkd3dEntry(Handy.ActionRow):
     def download_vkd3d(self, widget):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
-        self.runner.install_component("vkd3d", self.vkd3d_name, func=self.update_status)
+        self.runner.install_component(
+            "vkd3d", 
+            self.vkd3d_name, 
+            func=self.update_status, 
+            after=self.set_installed)
 
     '''Browse vkd3d files'''
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
-        RunnerUtilities().open_filemanager(path_type="vkd3d",
-                                     vkd3d=self.vkd3d_name)
+        RunnerUtilities().open_filemanager(
+            path_type="vkd3d", 
+            vkd3d=self.vkd3d_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:
@@ -239,21 +262,33 @@ class BottlesVkd3dEntry(Handy.ActionRow):
             self.btn_browse.set_visible(False)
             return False
 
-        if not self.label_download_status.get_visible():
-            self.label_download_status.set_visible(True)
+        self.label_download_status.set_visible(True)
 
         if not completed:
             percent = int(count * block_size * 100 / total_size)
             self.label_download_status.set_text(f'{str(percent)}%')
         else:
             percent = 100
-
+        
         if percent == 100:
-            self.box_download_status.set_visible(False)
-            self.btn_browse.set_visible(True)
+            for w in self.box_download_status.get_children(): w.destroy()
+            self.box_download_status.add(self.spinner)
+            self.spinner.set_visible(True)
+            self.spinner.start()
+    
+    def set_installed(self):
+        self.spinner.stop()
+        self.box_download_status.set_visible(False)
+        self.btn_browse.set_visible(True)
 
     def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed, failed)
+        GLib.idle_add(
+            self.idle_update_status, 
+            count, 
+            block_size, 
+            total_size, 
+            completed, 
+            failed)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
@@ -274,6 +309,7 @@ class BottlesRunnerEntry(Handy.ActionRow):
         self.window = window
         self.runner = window.runner
         self.runner_name = runner_entry[0]
+        self.spinner = Gtk.Spinner()
 
         '''Populate widgets'''
         self.set_title(self.runner_name)
@@ -299,7 +335,8 @@ class BottlesRunnerEntry(Handy.ActionRow):
 
         self.runner.install_component(component_type,
                                       self.runner_name,
-                                      func=self.update_status)
+                                      func=self.update_status,
+                                      after=self.set_installed)
 
     '''Browse runner files'''
     def run_browse(self, widget):
@@ -314,18 +351,24 @@ class BottlesRunnerEntry(Handy.ActionRow):
             self.btn_browse.set_visible(False)
             return False
 
-        if not self.label_download_status.get_visible():
-            self.label_download_status.set_visible(True)
+        self.label_download_status.set_visible(True)
 
         if not completed:
             percent = int(count * block_size * 100 / total_size)
             self.label_download_status.set_text(f'{str(percent)}%')
         else:
             percent = 100
-
+        
         if percent == 100:
-            self.box_download_status.set_visible(False)
-            self.btn_browse.set_visible(True)
+            for w in self.box_download_status.get_children(): w.destroy()
+            self.box_download_status.add(self.spinner)
+            self.spinner.set_visible(True)
+            self.spinner.start()
+    
+    def set_installed(self):
+        self.spinner.stop()
+        self.box_download_status.set_visible(False)
+        self.btn_browse.set_visible(True)
 
     def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed, failed)
