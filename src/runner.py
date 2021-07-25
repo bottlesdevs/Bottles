@@ -397,9 +397,9 @@ class BottlesRunner:
                             GLib.idle_add(widget.set_err)
                         exit()
 
-            # Step type: 7zip_extract
-            if step["action"] == "7zip_extract":
-                has_no_uninstaller = True # 7zip extracted has no uninstaller
+            # Step type: archive_extract
+            if step["action"] in ["archive_extract", "7zip_extract"]:
+                has_no_uninstaller = True # extracted archives has no uninstaller
 
                 if validate_url(step["url"]):
                     download = self.download_component("dependency",
@@ -463,12 +463,24 @@ class BottlesRunner:
                     break
 
             # Step type: override_dll
-            if step["action"] == "override_dll":                
-                self.reg_add(
-                    configuration,
-                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                    value=step.get("dll"),
-                    data=step.get("type"))
+            if step["action"] == "override_dll":   
+                if step.get("url") and step.get("url").startswith("temp/"):
+                    path = step["url"].replace("temp/", f"{BottlesPaths.temp}/")
+                    path = f"{path}/{step.get('dll')}"
+
+                    for dll in glob(path):
+                        dll_name = os.path.splitext(os.path.basename(dll))[0]
+                        self.reg_add(
+                            configuration,
+                            key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                            value=dll_name,
+                            data=step.get("type"))
+                else:
+                    self.reg_add(
+                        configuration,
+                        key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                        value=step.get("dll"),
+                        data=step.get("type"))
 
             # Step type: set_register_key
             if step["action"] == "set_register_key":
