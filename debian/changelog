@@ -5,7 +5,7 @@ com.usebottles.bottles (2021.7.28-treviso) precise; urgency=low
   * Specify the target bottle using the -b flag in command line
   * Run executables without show the Bottles Window
   * Dependencies can now set register keys
-  * Dependencies can now extract 7zip archives
+  * Dependencies can now extract archives
   * Dependencies can now uninstall other dependencies
   * Dependencies can now install more dll in one step
   * Dependencies can now register fonts in the Bottle Register to make them discoverable by the runner
@@ -19,10 +19,13 @@ com.usebottles.bottles (2021.7.28-treviso) precise; urgency=low
   * Fix crash log path on Flatpak
   * Fixed an issue causing Bottles to detect downloaded dxvk even when it fails
   * Fixed a bug that cause some programs to not be placed in Programs section
+  * Fixed a bug that cause Bottles to crash when a component download fail
   * Uninstallers are now no longer displayed in the Programs list
   * Disable uninstaller button for dependencies installed from cab files
   * Warning for missing cabextract tool
-  * A spinner is now displayed when installing a dependency
+  * Warning for enables testing repository
+  * Access Bottles preferences from the bottle creation view
+  * A spinner is now displayed when installing dependencies, programs and components
   * Warning for experimental features
   * Several improvements in runner management
   * Added icons to the sidebar
