@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+from datetime import datetime
 from gi.repository import Gtk, GLib, Handy
 
 from .dialog import BottlesMessageDialog
@@ -52,6 +53,10 @@ class BottlesListEntry(Handy.ActionRow):
         self.label_environment_context = self.label_environment.get_style_context()
         self.arg_executable = arg_executable
 
+        '''Format update date'''
+        update_date = datetime.strptime(self.configuration.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
+        update_date = update_date.strftime("%b %d %Y %H:%M:%S")
+
         '''Check runner type by name'''
         if self.configuration.get("Runner").startswith("lutris"):
             self.runner_type = "wine"
@@ -72,6 +77,8 @@ class BottlesListEntry(Handy.ActionRow):
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
         self.label_state.set_text(str(self.configuration.get("State")))
         self.set_title(self.configuration.get("Name"))
+        if self.window.settings.get_boolean("update-date"):
+            self.set_subtitle(update_date)
         self.label_environment.set_text(self.configuration.get("Environment"))
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())

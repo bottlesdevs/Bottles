@@ -30,6 +30,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
     switch_versioning = Gtk.Template.Child()
     switch_installers = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
+    switch_update_date = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
@@ -53,6 +54,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.switch_versioning.set_active(self.settings.get_boolean("experiments-versioning"))
         self.switch_installers.set_active(self.settings.get_boolean("experiments-installers"))
         self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
+        self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
 
         '''Signal connections'''
         self.switch_dark.connect('state-set', self.toggle_dark)
@@ -62,6 +64,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.switch_versioning.connect('state-set', self.toggle_experimental_versioning)
         self.switch_installers.connect('state-set', self.toggle_experimental_installers)
         self.switch_auto_close.connect('state-set', self.toggle_auto_close)
+        self.switch_update_date.connect('state-set', self.toggle_update_date)
 
         self.populate_runners_list()
         self.populate_dxvk_list()
@@ -72,6 +75,10 @@ class BottlesPreferences(Handy.PreferencesWindow):
         self.settings.set_boolean("dark-theme", state)
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
                                             state)
+
+    def toggle_update_date(self, widget, state):
+        self.settings.set_boolean("update-date", state)
+        self.window.page_list.update_bottles()
 
     def toggle_notifications(self, widget, state):
         self.settings.set_boolean("notifications", state)
@@ -289,7 +296,6 @@ class BottlesVkd3dEntry(Handy.ActionRow):
             total_size, 
             completed, 
             failed)
-
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
 class BottlesRunnerEntry(Handy.ActionRow):
