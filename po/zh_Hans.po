@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-26 08:38+0200\n"
-"PO-Revision-Date: 2021-07-20 06:33+0000\n"
+"PO-Revision-Date: 2021-07-27 11:33+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -140,178 +140,165 @@ msgid ".. and much more that you can find by installing Bottles!"
 msgstr "……和更多您可以通过安装 Bottles 来发现的功能！"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
-#, fuzzy
 msgid "Support for .lnk files"
-msgstr "vkd3d 支持"
+msgstr "支持 .lnk 文件"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
-msgstr ""
+msgstr "使用 flags -e/-l in 命令行运行任意 .exe/.msi/.lnk 文件"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "Specify the target bottle using the -b flag in command line"
-msgstr ""
+msgstr "使用命令行中的 -b flag 指定目标 bottle"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid "Run executables without show the Bottles Window"
-msgstr ""
+msgstr "运行可执行文件而不显示 Bottles 窗口"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-#, fuzzy
 msgid "Dependencies can now set register keys"
-msgstr "依赖项可以覆盖和移动 dll"
+msgstr "依赖项现在可以设置注册表键"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-#, fuzzy
 msgid "Dependencies can now extract archives"
-msgstr "依赖项可以覆盖和移动 dll"
+msgstr "依赖项现在可以提取压缩文件"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
-#, fuzzy
 msgid "Dependencies can now uninstall other dependencies"
-msgstr "依赖项现在可以安装字体而无需用户干预"
+msgstr "依赖项现在可以卸载其他依赖项"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Dependencies can now install more dll in one step"
-msgstr "依赖项现在可以安装字体而无需用户干预"
+msgstr "依赖项现在可以一步安装更多的dll"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
 "Dependencies can now register fonts in the Bottle Register to make them "
 "discoverable by the runner"
-msgstr ""
+msgstr "依赖项现在可以在 Bottle Register 注册字体让它们可以被 runner 发现"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid "Cab extraction now support wildcards"
-msgstr ""
+msgstr "Cab 提取现在支持通配符"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "Cab extraction now support lowercase extensions"
-msgstr ""
+msgstr "Cab 提取现在支持小写扩展"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid ""
 "When installing a new runner, winemenubuilder is blocked to prevent the "
 "creation of broken desktop entries"
-msgstr ""
+msgstr "安装一个新的运行程序时，winemenubuilder 将被阻止，以防止创建损坏的桌面条目"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid ""
 "The bottle root is now set as the working directory for all executed commands"
-msgstr ""
+msgstr "bottle 根目录现在被设置为所有执行命令的工作目录"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid ""
 "Fixed a bug in the dependency manager showing them installed even though the "
 "process was still running"
-msgstr ""
+msgstr "修复了依赖项管理器中即使进程仍在运行也显示它们已安装的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid ""
 "Fixed a bug that prevented states from being sent to the bottle (kill, "
 "shutdown, reboot, ..)"
-msgstr ""
+msgstr "修正了一个阻止状态发送到 bottle 的错误 (kill\\关闭、重启...)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
-#, fuzzy
 msgid "Fixed a bug on processes listing"
-msgstr "调试 wine 进程。"
+msgstr "修复了进程列举的一个错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "Fix crash log path on Flatpak"
-msgstr ""
+msgstr "修复 Flatpak 崩溃日志路径"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid ""
 "Fixed an issue causing Bottles to detect downloaded dxvk even when it fails"
-msgstr ""
+msgstr "修正了一个问题，导致 Bottle 检测已下载dxvk，即使未下载成功"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid ""
 "Fixed a bug that cause some programs to not be placed in Programs section"
-msgstr ""
+msgstr "修正了一个错误，导致一些程序不被放置在程序部分"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid "Fixed a bug that cause Bottles to crash when a component download fail"
-msgstr ""
+msgstr "修正了当组件下载失败时导致 Bottle 崩溃的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "Uninstallers are now no longer displayed in the Programs list"
-msgstr ""
+msgstr "卸载程序现在不再显示在“程序”列表中"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Disable uninstaller button for dependencies installed from cab files"
-msgstr ""
+msgstr "为从 cab 文件安装的依赖项禁用卸载按钮"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Access Bottles preferences from the bottle creation view"
-msgstr ""
+msgstr "从 bottle 创建视图访问 Bottles 参数设置"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid ""
 "A spinner is now displayed when installing dependencies, programs and "
 "components"
-msgstr ""
+msgstr "在安装依赖项、程序和组件时会显示下拉列表"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Warning for missing cabextract tool"
-msgstr ""
+msgstr "对缺少 cabextract 工具发出警告"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid "Warning for experimental features"
-msgstr "切换实验性的版本控制功能"
+msgstr "实验性功能警告"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Warning for enables testing repository"
-msgstr ""
+msgstr "对启用测试存储库发出警告"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Several improvements in runner management"
-msgstr ""
+msgstr "runner 管理的几处改进"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
 msgid "Added icons to the sidebar"
-msgstr ""
+msgstr "添加图标到侧栏"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
-#, fuzzy
 msgid "Experimantal support for Bottles installers"
-msgstr "实验功能：安装器"
+msgstr "对 Bottles 安装程序的实验支持"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
-#, fuzzy
 msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
-msgstr "感谢 @Flywater Zh 翻译中文（简体）"
+msgstr "感谢 @Yuzaihhhh 和 @sr093906 的简中翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#, fuzzy
 msgid "Japanese translations thanks to @jatin-cbs"
-msgstr "感谢 @fitojb 翻译西班牙语"
+msgstr "感谢 @jatin-cbs 的日文翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 msgid "Hungarian translations thanks to @ovari"
 msgstr "感谢 @ovari 翻译匈牙利语"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Polish translations thanks to Krzysztof Marcinek"
-msgstr "感谢 @eson57 翻译瑞典语"
+msgstr "感谢 Krzysztof Marcinek 的波兰语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
 msgid "French translations thanks to @julroy67"
 msgstr "感谢 @julroy67 翻译法语"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
-#, fuzzy
 msgid "Russian translations thanks to @tacitcoast"
-msgstr "感谢 @ovari 翻译匈牙利语"
+msgstr "感谢 @tacitcoast 的俄语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
-#, fuzzy
 msgid "Italian translations thanks to @blackcat-917"
-msgstr "感谢 @milotype 翻译克罗地亚语"
+msgstr "感谢 @blackcat-917 的意大利语翻译"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -792,7 +779,7 @@ msgstr "首选项"
 
 #: src/ui/details.ui:1814
 msgid "Test mode enabled: only dependencies from testing repository are shown."
-msgstr ""
+msgstr "启用测试模式：只显示来自测试存储库的依赖项。"
 
 #: src/ui/details.ui:1870 src/ui/details.ui:1996 src/pages/details.py:750
 msgid "Dependencies"
@@ -825,6 +812,8 @@ msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
+"这是处于早期开发中的一个实验性功能，小心使用并 <a href=\"https://github.com/bottlesdevs/Bottles/"
+"issues/new/choose\">报告故障</a>。"
 
 #: src/ui/details.ui:2234 src/ui/preferences.ui:261 src/pages/details.py:756
 msgid "Installers"
@@ -1230,9 +1219,8 @@ msgid "Change Launch Options"
 msgstr "更改启动选项"
 
 #: src/ui/program-entry.ui:34
-#, fuzzy
 msgid "Browse Path"
-msgstr "浏览 C:"
+msgstr "浏览路径"
 
 #: src/ui/program-entry.ui:61
 msgid "WineHQ"
