@@ -7,9 +7,17 @@ list.plain {
 }
 
 button {
-  padding: 4px;
+  padding: 4px 8px;
   margin: 0;
   border: 0;
-  border-radius: 0;
+  border-radius: 2px;
   box-shadow: none;
+}
+
+.titlebar {
+  min-height: 0;
+}
+
+.titlebar button {
+  margin: 2px 0;
 }
