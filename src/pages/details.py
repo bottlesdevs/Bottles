@@ -20,6 +20,7 @@ from gi.repository import Gtk, GLib, Handy
 import os
 import re
 import webbrowser
+from datetime import datetime
 
 from .dialog import BottlesDialog, BottlesMessageDialog
 from ..installer_manager import InstallerManager
@@ -350,11 +351,16 @@ class BottlesStateEntry(Handy.ActionRow):
         self.state_name = "State: {0}".format(state[0])
         self.configuration = configuration
         self.versioning_manager = self.runner.versioning_manager
+        self.spinner = Gtk.Spinner()
+
+        '''Format creation date'''
+        creation_date = datetime.strptime(state[1].get("Creation_Date"), "%Y-%m-%d %H:%M:%S.%f")
+        creation_date = creation_date.strftime("%b %d %Y %H:%M:%S")
 
         '''Populate widgets'''
         self.set_title(self.state_name)
         self.set_subtitle(self.state[1].get("Comment"))
-        self.label_creation_date.set_text(self.state[1].get("Creation_Date"))
+        self.label_creation_date.set_text(creation_date)
         if state[0] == configuration.get("State"):
             self.get_style_context().add_class("current-state")
 
@@ -364,7 +370,14 @@ class BottlesStateEntry(Handy.ActionRow):
 
     '''Set bottle state'''
     def set_state(self, widget):
-        self.versioning_manager.set_bottle_state(self.configuration, self.state[0])
+        for w in widget.get_children(): w.destroy()
+
+        widget.set_sensitive(False)
+        widget.add(self.spinner)
+        
+        self.spinner.show()
+        GLib.idle_add(self.spinner.start)
+        self.versioning_manager.set_bottle_state(self.configuration, self.state[0], self.set_completed)
 
     '''Open state index'''
     def open_index(self, widget):
@@ -372,11 +385,17 @@ class BottlesStateEntry(Handy.ActionRow):
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
             message=False,
-            log=self.versioning_manager.get_bottle_state_edits(self.configuration,
-                                                   self.state[0],
-                                                   True))
+            log=self.versioning_manager.get_bottle_state_edits(
+                self.configuration,
+                self.state[0],
+                True))
         dialog_upgrade.run()
         dialog_upgrade.destroy()
+    
+    '''Set installed status'''
+    def set_completed(self):
+        self.spinner.stop()
+        self.btn_restore.set_visible(False)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class BottlesProgramEntry(Handy.ActionRow):

@@ -192,13 +192,6 @@ class BottlesWindow(Handy.ApplicationWindow):
 
         self.check_crash_log()
 
-    # Toggle UI usability preventing user clicks
-    def set_usable_ui(self, status):
-        for widget in [self.btn_back,
-                       self.btn_add,
-                       self.btn_menu]:
-            widget.set_sensitive(status)
-
     # Send new notification
     def send_notification(self, title, text, image="", user_settings=True):
         if user_settings and self.settings.get_boolean("notifications") or not user_settings:
