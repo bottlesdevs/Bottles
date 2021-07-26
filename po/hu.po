@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-26 08:38+0200\n"
-"PO-Revision-Date: 2021-07-21 21:36+0000\n"
+"PO-Revision-Date: 2021-07-27 11:33+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -148,182 +148,185 @@ msgid ".. and much more that you can find by installing Bottles!"
 msgstr "… és még sok minden más, amit megtalál a Tárolók telepítésével!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
-#, fuzzy
 msgid "Support for .lnk files"
-msgstr "vkd3d támogatása"
+msgstr ".lnk fájlkiterjesztések támogatása"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
 msgstr ""
+"Futtasson bármilyen .exe/.msi/.lnk fájlkiterjesztést a -e/-l zászlók "
+"használatával a parancssorban"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 msgid "Specify the target bottle using the -b flag in command line"
-msgstr ""
+msgstr "Adja meg a céltárolót a -b jelzővel a parancssorban"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid "Run executables without show the Bottles Window"
-msgstr ""
+msgstr "Futtassa a futtatható fájlokat a Tároló ablak megjelenítése nélkül"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-#, fuzzy
 msgid "Dependencies can now set register keys"
-msgstr "A függőségek felülírhatják és áthelyezhetik a DLL-eket"
+msgstr "A függőségek most beállíthatják a rendszerleíró kulcsokat"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-#, fuzzy
 msgid "Dependencies can now extract archives"
-msgstr "A függőségek felülírhatják és áthelyezhetik a DLL-eket"
+msgstr "A függőségek most kibonthatják az archív fájlokat"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
-#, fuzzy
 msgid "Dependencies can now uninstall other dependencies"
-msgstr ""
-"A függőségek mostantól felhasználói beavatkozás nélkül telepíthetik a "
-"betűtípusokat"
+msgstr "A függőségek eltávolíthatják a többi függőséget"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "Dependencies can now install more dll in one step"
-msgstr ""
-"A függőségek mostantól felhasználói beavatkozás nélkül telepíthetik a "
-"betűtípusokat"
+msgstr "A függőségek mostantól több DLL-fájlt telepíthetnek egy lépésben"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
 "Dependencies can now register fonts in the Bottle Register to make them "
 "discoverable by the runner"
 msgstr ""
+"A függőségek mostantól regisztrálhatják a betűtípusokat a Tároló "
+"beállításjegyzékben, hogy azok felfedezhetők legyenek a futó számára"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid "Cab extraction now support wildcards"
-msgstr ""
+msgstr "A kabinetfájl kibontása már támogatja a helyettesítő karaktereket"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "Cab extraction now support lowercase extensions"
-msgstr ""
+msgstr "A kabinetfájl kibontása már támogatja a kisbetűs kiterjesztéseket"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid ""
 "When installing a new runner, winemenubuilder is blocked to prevent the "
 "creation of broken desktop entries"
 msgstr ""
+"Új futó telepítésekor a winemenubuilder letiltva megakadályozza a törött "
+"asztali bejegyzések létrehozását"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid ""
 "The bottle root is now set as the working directory for all executed commands"
 msgstr ""
+"A tároló gyökér mostantól az összes végrehajtott parancs munkakönyvtáraként "
+"van beállítva"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid ""
 "Fixed a bug in the dependency manager showing them installed even though the "
 "process was still running"
 msgstr ""
+"Javítva egy hiba a függőségkezelőben, amely megmutatja, hogy telepítve "
+"vannak, annak ellenére, hogy a folyamat még futott"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
 msgid ""
 "Fixed a bug that prevented states from being sent to the bottle (kill, "
 "shutdown, reboot, ..)"
 msgstr ""
+"Javítva egy hiba, amely megakadályozta az államok továbbítását a tárolóba ("
+"törlés, leállítás, újraindítás, …)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
-#, fuzzy
 msgid "Fixed a bug on processes listing"
-msgstr "Hibakereső wine folyamatok."
+msgstr "Javítva a folyamatlista hibája"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "Fix crash log path on Flatpak"
-msgstr ""
+msgstr "Javítsa az ütközési napló elérési útját a Flatpakon"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid ""
 "Fixed an issue causing Bottles to detect downloaded dxvk even when it fails"
 msgstr ""
+"Javítva egy probléma, amely miatt a Tárolók akkor is észleli a letöltött "
+"dxvk fájlt, ha az nem sikerül"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid ""
 "Fixed a bug that cause some programs to not be placed in Programs section"
 msgstr ""
+"Javítva egy hiba, amely miatt egyes programok nem kerülnek a Programok "
+"szakaszba"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid "Fixed a bug that cause Bottles to crash when a component download fail"
 msgstr ""
+"Javítva egy hiba, amely a Tárolók összeomlását okozza, amikor egy összetevő "
+"letöltése sikertelen"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "Uninstallers are now no longer displayed in the Programs list"
-msgstr ""
+msgstr "Az eltávolítóprogramok már nem jelennek meg a Programok listában"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Disable uninstaller button for dependencies installed from cab files"
 msgstr ""
+"Eltávolítóprogram gomb letiltása a kabinet fájlokból telepített függőségeknél"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Access Bottles preferences from the bottle creation view"
-msgstr ""
+msgstr "A Tárolók-beállításokat a tároló létrehozásának nézetéből érheti el"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid ""
 "A spinner is now displayed when installing dependencies, programs and "
 "components"
 msgstr ""
+"A függőségek, programok és összetevők telepítésekor most egy fonó jelenik meg"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Warning for missing cabextract tool"
-msgstr ""
+msgstr "Figyelmeztetés a hiányzó CAB-fájl kicsomagolása eszköz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid "Warning for experimental features"
-msgstr "Váltás a kísérleti verzióváltás funkcióval"
+msgstr "Figyelmeztetés a kísérleti jellemzőkre"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Warning for enables testing repository"
-msgstr ""
+msgstr "Figyelmeztetés az adattár tesztelésének engedélyezésére"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Several improvements in runner management"
-msgstr ""
+msgstr "Számos fejlesztés a futók irányításában"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
 msgid "Added icons to the sidebar"
-msgstr ""
+msgstr "Ikonokat adott az oldalsávhoz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
-#, fuzzy
 msgid "Experimantal support for Bottles installers"
-msgstr "Kísérletek: telepítők"
+msgstr "Kísérleti támogatás Tárolók telepítőknek"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
-#, fuzzy
 msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
-msgstr "Kínai (egyszerűsített) fordítás: Flywater Zh"
+msgstr "Kínai (egyszerűsített) fordítás: @Yuzaihhhh és @sr093906"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#, fuzzy
 msgid "Japanese translations thanks to @jatin-cbs"
-msgstr "Spanyol fordítás: @fitojb"
+msgstr "Japán fordítás: @jatin-cbs"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 msgid "Hungarian translations thanks to @ovari"
 msgstr "Magyar fordítás: @ovari"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Polish translations thanks to Krzysztof Marcinek"
-msgstr "Svéd fordítás: @eson57"
+msgstr "Lengyel fordítás: Marcinek Krzysztof"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
 msgid "French translations thanks to @julroy67"
 msgstr "Francia fordítás: @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
-#, fuzzy
 msgid "Russian translations thanks to @tacitcoast"
-msgstr "Magyar fordítás: @ovari"
+msgstr "Orosz fordítás: @tacitcoast"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
-#, fuzzy
 msgid "Italian translations thanks to @blackcat-917"
-msgstr "Horvát fordítás: @milotype"
+msgstr "Olasz fordítás: @blackcat-917"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -642,7 +645,7 @@ msgstr "Folyamatok kezelése a Wine-feladatkezelővel."
 
 #: src/ui/details.ui:921
 msgid "Uninstaller"
-msgstr "Eltávolítás"
+msgstr "Eltávolítóprogram"
 
 #: src/ui/details.ui:923
 msgid "Uninstall programs using wine uninstaller"
@@ -820,6 +823,7 @@ msgstr "Beállítások"
 #: src/ui/details.ui:1814
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
+"Teszt üzemmód engedélyezve: csak a tesztkészlet függőségei jelennek meg."
 
 #: src/ui/details.ui:1870 src/ui/details.ui:1996 src/pages/details.py:750
 msgid "Dependencies"
@@ -854,6 +858,8 @@ msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
+"Ez a korai fejlesztés kísérleti jellemzője, legyen óvatos és <a href=\"https"
+"://github.com/bottlesdevs/Bottles/issues/new/choose\">jelentse a hibákat</a>."
 
 #: src/ui/details.ui:2234 src/ui/preferences.ui:261 src/pages/details.py:756
 msgid "Installers"
@@ -1267,9 +1273,8 @@ msgid "Change Launch Options"
 msgstr "Indítási opciók módosítása"
 
 #: src/ui/program-entry.ui:34
-#, fuzzy
 msgid "Browse Path"
-msgstr "Tallózás C:"
+msgstr "Útvonalak tallózása"
 
 #: src/ui/program-entry.ui:61
 msgid "WineHQ"
