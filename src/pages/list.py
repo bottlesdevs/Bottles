@@ -179,7 +179,6 @@ class BottlesListEntry(Handy.ActionRow):
 
         dialog_delete.destroy()
 
-
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
 class BottlesList(Gtk.Box):
     __gtype_name__ = 'BottlesList'
