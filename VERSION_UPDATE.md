@@ -4,3 +4,5 @@
 - src/ui/about.ui
 - data/com.usebottles.appdata.xml.in
 - debian/changelog
+- src/bottles.in
+- meson.build
