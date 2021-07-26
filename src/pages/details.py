@@ -408,6 +408,7 @@ class BottlesProgramEntry(Handy.ActionRow):
     btn_issues = Gtk.Template.Child()
     btn_launch_options = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
 
     def __init__(self, window, configuration, program, **kwargs):
@@ -433,7 +434,8 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.btn_protondb.connect('pressed', self.open_protondb)
         self.btn_issues.connect('pressed', self.open_issues)
         self.btn_launch_options.connect('pressed', self.show_launch_options_view)
-        self.btn_uninstall.connect('pressed', self.remove_program)
+        self.btn_uninstall.connect('pressed', self.uninstall_program)
+        self.btn_remove.connect('pressed', self.remove_program)
         self.btn_browse.connect('pressed', self.browse_program_folder)
 
         '''Populate entry_arguments by configuration'''
@@ -458,8 +460,17 @@ class BottlesProgramEntry(Handy.ActionRow):
                                    self.program_executable_path,
                                    arguments)
 
-    def remove_program(self, widget):
+    def uninstall_program(self, widget):
         self.runner.remove_program(self.configuration, self.program_name)
+
+    def remove_program(self, widget):
+        self.runner.update_configuration(
+            configuration=self.configuration,
+            key=self.program_name,
+            value=False,
+            remove=True,
+            scope="External_Programs")
+        self.destroy()
 
     def browse_program_folder(self, widget):
         RunnerUtilities().open_filemanager(
