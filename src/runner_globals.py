@@ -34,9 +34,7 @@ class BottlesSamples:
         "Installed_Dependencies": [],
         "DLL_Overrides": {},
         "Programs": {},
-        "External_Programs": {
-            "iexplorer.exe": "Program Files (x86)/Internet Explorer"
-        },
+        "External_Programs": {},
         "Uninstallers": {}
     }
 
