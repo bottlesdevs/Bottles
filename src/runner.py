@@ -430,7 +430,7 @@ class BottlesRunner:
                             outdir=f"{BottlesPaths.temp}/{archive_name}")
 
             # Step type: install_cab_fonts
-            if step["action"] == "install_cab_fonts":
+            if step["action"] in ["install_cab_fonts", "install_fonts"]:
                 has_no_uninstaller = True # cab extracted has no uninstaller
 
                 path = step["url"]
@@ -443,7 +443,7 @@ class BottlesRunner:
                         f"{bottle_path}/drive_c/windows/Fonts/{font}")
 
             # Step type: copy_cab_dll
-            if step["action"] == "copy_cab_dll":
+            if step["action"] in ["copy_cab_dll", "copy_dll"]:
                 has_no_uninstaller = True # cab extracted has no uninstaller
 
                 path = step["url"]
