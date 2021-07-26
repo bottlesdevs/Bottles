@@ -611,6 +611,7 @@ class BottlesDetails(Handy.Leaflet):
     btn_reboot = Gtk.Template.Child()
     btn_killall = Gtk.Template.Child()
     btn_programs_updates = Gtk.Template.Child()
+    btn_programs_add = Gtk.Template.Child()
     btn_environment_variables = Gtk.Template.Child()
     btn_overrides = Gtk.Template.Child()
     btn_backup_config = Gtk.Template.Child()
@@ -698,6 +699,7 @@ class BottlesDetails(Handy.Leaflet):
         self.btn_reboot.connect('pressed', self.run_reboot)
         self.btn_killall.connect('pressed', self.run_killall)
         self.btn_programs_updates.connect('pressed', self.update_programs)
+        self.btn_programs_add.connect('pressed', self.add_program)
         self.btn_environment_variables.connect('pressed', self.show_environment_variables)
         self.btn_backup_config.connect('pressed', self.backup_config)
         self.btn_backup_full.connect('pressed', self.backup_full)
@@ -904,6 +906,29 @@ class BottlesDetails(Handy.Leaflet):
             value=environment_variables,
             scope="Parameters")
         self.configuration = new_configuration
+
+    '''Add custome executable to the Programs list'''
+    def add_program(self, widget=False):
+        file_dialog = Gtk.FileChooserNative.new(
+            _("Choose an executable path"),
+            self.window,
+            Gtk.FileChooserAction.OPEN,
+            _("Add"),
+            _("Cancel")
+        )
+        file_dialog.set_current_folder(
+            RunnerUtilities().get_bottle_path(self.configuration))
+        response = file_dialog.run()
+
+        if response == -3:
+            self.runner.update_configuration(
+                configuration=self.configuration,
+                key=file_dialog.get_filename().split("/")[-1][:-4],
+                value=file_dialog.get_filename(),
+                scope="External_Programs")
+            self.update_programs()
+
+        file_dialog.destroy()
 
     '''Populate list_programs'''
     def update_programs(self, widget=False):

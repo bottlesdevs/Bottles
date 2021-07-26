@@ -733,6 +733,17 @@ class BottlesRunner:
 
         return "application-x-executable"
 
+    def __get_exe_parent_dir(self, configuration, executable_path):
+        p = ""
+        if "\\" in executable_path:
+            p = "\\".join(executable_path.split("\\")[:-1])
+            p = p.replace("C:\\", "\\drive_c\\").replace("\\", "/")
+            return RunnerUtilities().get_bottle_path(configuration) + p
+            
+        p = "\\".join(executable_path.split("/")[:-1])
+        p = f"/drive_c/{p}"
+        return p.replace("\\", "/")
+
     # Get installed programs
     def get_programs(self, configuration:BottleConfig) -> list:
         '''TODO: Programs found should be stored in a database
@@ -769,14 +780,19 @@ class BottlesRunner:
 
                     path = path.replace(".lnk", "")
                     executable_name = executable_path.split("\\")[-1][:-4]
-                    program_folder = "\\".join(executable_path.split("\\")[:-1])
-                    program_folder = program_folder.replace("C:\\", "\\drive_c\\").replace("\\", "/")
-                    program_folder = RunnerUtilities().get_bottle_path(configuration) + program_folder
+                    program_folder = self.__get_exe_parent_dir(configuration, executable_path)
 
                     icon = self.find_program_icon(executable_name)
                     installed_programs.append([path, executable_path, icon, program_folder])
             except:
                 logging.error(F"Cannot find executable for [{path}].")
+
+        if configuration.get("External_Programs"):
+            ext_programs = configuration.get("External_Programs")
+            for program in ext_programs:
+                program_folder = ext_programs[program].split("/")[-1]
+                icon = self.find_program_icon(program)
+                installed_programs.append([program, ext_programs[program], icon, program_folder])
 
         return installed_programs
 
