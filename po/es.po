@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 16:26+0200\n"
+"POT-Creation-Date: 2021-07-26 08:38+0200\n"
 "PO-Revision-Date: 2021-07-18 12:17+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -148,195 +148,189 @@ msgid ".. and much more that you can find by installing Bottles!"
 msgstr "… y mucho más que puede encontrar instalando Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
-msgid "Dependencies can be extracted and installed from a Windows cabinet"
-msgstr ""
-"Es posible extraer e instalar dependencias desde un archivo CAB de Windows"
+#, fuzzy
+msgid "Support for .lnk files"
+msgstr "Compatibilidad con vkd3d"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-msgid "Dependencies can override and move dll"
-msgstr "Las dependencias pueden sobreponerse a DLL y cambiarlos de sitio"
+msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-msgid "Dependencies can now install fonts without user intervention"
+msgid "Specify the target bottle using the -b flag in command line"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:102
+#, fuzzy
+msgid "Run executables without show the Bottles Window"
+msgstr "Ejecute un archivo ejecutable en esta botella."
+
+#: data/com.usebottles.bottles.appdata.xml.in:103
+#, fuzzy
+msgid "Dependencies can now set register keys"
+msgstr "Las dependencias pueden sobreponerse a DLL y cambiarlos de sitio"
+
+#: data/com.usebottles.bottles.appdata.xml.in:104
+#, fuzzy
+msgid "Dependencies can now extract archives"
+msgstr "Las dependencias pueden sobreponerse a DLL y cambiarlos de sitio"
+
+#: data/com.usebottles.bottles.appdata.xml.in:105
+#, fuzzy
+msgid "Dependencies can now uninstall other dependencies"
 msgstr ""
 "Las dependencias ahora pueden instalar tipos de letra sin intervención por "
 "parte del usuario"
 
-#: data/com.usebottles.bottles.appdata.xml.in:102
-msgid ""
-"Dependency/installer manifests, support environment variables and arguments"
-msgstr ""
-"Manifiestos para dependencias/instaladores; se permiten variables de entorno "
-"y argumentos"
-
-#: data/com.usebottles.bottles.appdata.xml.in:103
-msgid ""
-"If versioning is active for the bottle, a new state is created before "
-"installing a dependency"
-msgstr ""
-"Si el versionado está activo en la botella, se crea un estado nuevo antes de "
-"instalar una dependencia"
-
-#: data/com.usebottles.bottles.appdata.xml.in:104
-msgid ""
-"Dependencies and installers now call their uninstaller, if this is declared "
-"in the manifest"
-msgstr ""
-"Las dependencias y los instaladores ahora invocan su desinstalador, si este "
-"se ha declarado en el manifiesto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:105
-msgid "Now you can search for dependencies using the search field"
-msgstr "Ahora puede buscar dependencias mediante el campo de búsqueda"
-
 #: data/com.usebottles.bottles.appdata.xml.in:106
-msgid "Dependencies and installers show the source license"
-msgstr "Las dependencias y los instaladores muestran la licencia de origen"
+#, fuzzy
+msgid "Dependencies can now install more dll in one step"
+msgstr ""
+"Las dependencias ahora pueden instalar tipos de letra sin intervención por "
+"parte del usuario"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
-"When a crash report appears, reporting it the issue is automatically and "
-"correctly filled"
+"Dependencies can now register fonts in the Bottle Register to make them "
+"discoverable by the runner"
 msgstr ""
-"Cuando aparece un informe de cierre inesperado, se genera el informe "
-"automática y adecuadamente"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
-msgid ""
-"While creating a new state, information about the entire process is shown on "
-"the screen"
+msgid "Cab extraction now support wildcards"
 msgstr ""
-"Cuando se crea un estado nuevo, se muestra en pantalla información sobre "
-"todo el proceso"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-msgid "Support for vkd3d"
-msgstr "Compatibilidad con vkd3d"
+msgid "Cab extraction now support lowercase extensions"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
-msgid "The search for installed programs has been extended to user AppData"
+msgid ""
+"When installing a new runner, winemenubuilder is blocked to prevent the "
+"creation of broken desktop entries"
 msgstr ""
-"La búsqueda de programas instalados se ha ampliado a los AppData de usuario"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
-msgid "Fixed some problems related to the dxvk implementation"
-msgstr "Se corrigieron algunos problemas relativos a la implementación de DXVK"
+msgid ""
+"The bottle root is now set as the working directory for all executed commands"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid ""
-"Now dxvk and vkd3d are installed only after the user presses Install on "
-"first start"
+"Fixed a bug in the dependency manager showing them installed even though the "
+"process was still running"
 msgstr ""
-"Ahora dxvk y vkd3d se instalan únicamente después de que se pulse en "
-"Instalar en el primer inicio"
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
-msgid "Reduced the amount of logs"
-msgstr "Se redujo la cantidad de registros"
+msgid ""
+"Fixed a bug that prevented states from being sent to the bottle (kill, "
+"shutdown, reboot, ..)"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
-msgid "Flatpak now uses the app directories"
-msgstr "Flatpak ahora utiliza los directorios de la aplicación"
+#, fuzzy
+msgid "Fixed a bug on processes listing"
+msgstr "Depure los procesos de Wine."
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
-msgid ""
-"If there are bottles in the old dir and the app dir is empty then a "
-"migration dialog is shown"
+msgid "Fix crash log path on Flatpak"
 msgstr ""
-"Si existen botellas en el directorio viejo y el directorio de la aplicación "
-"está vacío, se muestra un diálogo de migración"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
-msgid "Fixed a bug in Nvidia identification for optimus laptops"
+msgid ""
+"Fixed an issue causing Bottles to detect downloaded dxvk even when it fails"
 msgstr ""
-"Se corrigió un defecto en la identificación de Nvidia de los equipos "
-"portátiles Optimus"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
+#, fuzzy
 msgid ""
-"Fixed a bug in the management of the download manager that resulted in a "
-"crash"
+"Fixed a bug that cause some programs to not be placed in Programs section"
 msgstr ""
-"Se arregló un defecto en el gestor de descargas que provocaba un cese de "
-"funcionamiento"
+"Se corrigió un problema que causaba defectos en todas las botellas aunque "
+"solo una estuviese defectuosa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
-msgid "Install dxvk and vkd3d on bottle creation if missing"
-msgstr "Se instalan DXVK y VKD3D si faltasen al crear botellas"
+#, fuzzy
+msgid "Fixed a bug that cause Bottles to crash when a component download fail"
+msgstr ""
+"Se corrigió un problema que causaba defectos en todas las botellas aunque "
+"solo una estuviese defectuosa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
-msgid "The preferences are organized into sections"
-msgstr "Las preferencias se organizan en secciones"
+msgid "Uninstallers are now no longer displayed in the Programs list"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
-msgid "The program list is hidden if empty"
-msgstr "La lista de programas se oculta si está vacía"
+msgid "Disable uninstaller button for dependencies installed from cab files"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
-msgid "The bottle details page now uses a sidebar"
-msgstr "La página de detalles de la botella ahora utiliza una barra lateral"
+msgid "Access Bottles preferences from the bottle creation view"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
-msgid "Added references to documentation for some features"
+msgid ""
+"A spinner is now displayed when installing dependencies, programs and "
+"components"
 msgstr ""
-"Se añadieron referencias a la documentación para determinadas funcionalidades"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
-msgid ""
-"Makes the UI more consistent with rounded edges and status pages from "
-"libhandy"
+msgid "Warning for missing cabextract tool"
 msgstr ""
-"Hace la interfaz de usuario más coherente, con esquinas redondeadas y "
-"páginas de estado de libhandy"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-msgid "Replacing the name wine with runner, where possible"
-msgstr ""
-"Se sustituye, siempre que es posible, la denominación «wine» por «ejecutor»"
+#, fuzzy
+msgid "Warning for experimental features"
+msgstr "Alternar la función de control de versiones experimental"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-msgid "Added more information for initial download to the Onboard"
-msgstr "Se ha añadido más información para la descarga inicial en el Onboard"
+msgid "Warning for enables testing repository"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-msgid "French translations thanks to @julroy67"
-msgstr "Traducciones al francés gracias a @julroy67"
+msgid "Several improvements in runner management"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
-msgid "Portuguese (Brazil) translations thanks to @LeandroStanger"
-msgstr "Traducciones al portugués (Brasil) gracias a @LeandroStanger"
+msgid "Added icons to the sidebar"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
-msgid "Hungarian translations thanks to @ovari"
-msgstr "Traducciones al húngaro gracias a @ovari"
+#, fuzzy
+msgid "Experimantal support for Bottles installers"
+msgstr "Experimental:instaladores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
-msgid "Chinese (Simplified) translations thanks to Flywater Zh"
+#, fuzzy
+msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
 msgstr "Traducciones al chino (simplificado) gracias a Flywater Zh"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-msgid "Portuguese translations thanks to @laralem"
-msgstr "Traducciones al portugués gracias a @laralem"
-
-#: data/com.usebottles.bottles.appdata.xml.in:131
-msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
-msgstr "Traducciones al checo gracias a @pervoj y Vojtěch Perník"
-
-#: data/com.usebottles.bottles.appdata.xml.in:132
-msgid "Spanish translations thanks to @fitojb"
+#, fuzzy
+msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "Traducciones al español gracias a @fitojb"
 
+#: data/com.usebottles.bottles.appdata.xml.in:131
+msgid "Hungarian translations thanks to @ovari"
+msgstr "Traducciones al húngaro gracias a @ovari"
+
+#: data/com.usebottles.bottles.appdata.xml.in:132
+#, fuzzy
+msgid "Polish translations thanks to Krzysztof Marcinek"
+msgstr "Traducciones al sueco gracias a @eson57"
+
 #: data/com.usebottles.bottles.appdata.xml.in:133
-msgid "Esperanto translations thanks to @phlostically"
-msgstr "Traducciones al esperanto gracias a @phlostically"
+msgid "French translations thanks to @julroy67"
+msgstr "Traducciones al francés gracias a @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
-msgid "Croatian translations thanks to @milotype"
-msgstr "Traducciones al croata gracias a @milotype"
+#, fuzzy
+msgid "Russian translations thanks to @tacitcoast"
+msgstr "Traducciones al húngaro gracias a @ovari"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
-msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
-msgstr "Logotipo nuevo gracias a @jannuary, @alvarlagerlof y @ZekeSmith"
+#, fuzzy
+msgid "Italian translations thanks to @blackcat-917"
+msgstr "Traducciones al croata gracias a @milotype"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -446,22 +440,22 @@ msgstr "© 2017-2021 de los desarrolladores de Bottles"
 msgid "Easily manage wineprefix using environments"
 msgstr "Gestione los prefijos de Wine fácilmente mediante entornos"
 
-#: src/ui/about.ui:101
+#: src/ui/about.ui:104
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Traducir</a>"
 
-#: src/ui/about.ui:114
+#: src/ui/about.ui:117
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Auspiciar</a>"
 
-#: src/ui/about.ui:127
+#: src/ui/about.ui:130
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Informes de error</"
 "a>"
 
-#: src/ui/about.ui:140
+#: src/ui/about.ui:143
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
@@ -545,140 +539,140 @@ msgstr "El control de versiones está activado en esta botella."
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:352 src/main.py:99
+#: src/ui/details.ui:351 src/main.py:99
 msgid "Bottle name"
 msgstr "Nombre de la botella"
 
-#: src/ui/details.ui:356
+#: src/ui/details.ui:355
 msgid "Type a name for your bottle"
 msgstr "Escriba un nombre para su botella"
 
-#: src/ui/details.ui:375
+#: src/ui/details.ui:374
 msgid "Environment"
 msgstr "Entorno"
 
-#: src/ui/details.ui:409
+#: src/ui/details.ui:408
 msgid "64 Bit"
 msgstr "64 bits"
 
-#: src/ui/details.ui:428
+#: src/ui/details.ui:427
 msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
-#: src/ui/details.ui:459
+#: src/ui/details.ui:458
 msgid "Destroy this bottle"
 msgstr "Destruir esta botella"
 
-#: src/ui/details.ui:480
+#: src/ui/details.ui:479
 msgid "Run executable"
 msgstr "Iniciar ejecutable"
 
-#: src/ui/details.ui:521
+#: src/ui/details.ui:520
 msgid "Backup bottle"
 msgstr "Respaldar botella"
 
-#: src/ui/details.ui:547
+#: src/ui/details.ui:546
 msgid "Reboot Windows"
 msgstr "Reiniciar Windows"
 
-#: src/ui/details.ui:572
+#: src/ui/details.ui:571
 msgid "Shutdown Windows"
 msgstr "Apagar Windows"
 
-#: src/ui/details.ui:597
+#: src/ui/details.ui:596
 msgid "Kill all wine processes"
 msgstr "Forzar cierre de todos los procesos de Wine"
 
-#: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:684
+#: src/ui/details.ui:639 src/ui/details.ui:2036 src/ui/details.ui:2131
+#: src/pages/details.py:751
 msgid "Programs"
 msgstr "Programas"
 
-#: src/ui/details.ui:656
+#: src/ui/details.ui:655
 msgid "Utilities"
 msgstr "Utilidades"
 
-#: src/ui/details.ui:661
+#: src/ui/details.ui:660
 msgid "Wine config"
 msgstr "Configuración de Wine"
 
-#: src/ui/details.ui:663
+#: src/ui/details.ui:662
 msgid "Adjust internal settings."
 msgstr "Ajuste la configuración interna."
 
-#: src/ui/details.ui:700 src/ui/list-entry.ui:257
+#: src/ui/details.ui:699 src/ui/list-entry.ui:257
 msgid "Browse C:"
 msgstr "Buscar en C:"
 
-#: src/ui/details.ui:702
+#: src/ui/details.ui:701
 msgid "Browse internal files."
 msgstr "Explore los archivos internos."
 
-#: src/ui/details.ui:739
+#: src/ui/details.ui:738
 msgid "Command Line"
 msgstr "Linea de órdenes"
 
-#: src/ui/details.ui:741
+#: src/ui/details.ui:740
 msgid "Run commands inside the Bottle."
 msgstr "Ejecute órdenes dentro de la botella."
 
-#: src/ui/details.ui:778
+#: src/ui/details.ui:777
 msgid "Registry Editor"
 msgstr "Editor de Registro"
 
-#: src/ui/details.ui:780
+#: src/ui/details.ui:779
 msgid "Edit the internal registry."
 msgstr "Edite el registro interno."
 
-#: src/ui/details.ui:817
+#: src/ui/details.ui:816
 msgid "Debug"
 msgstr "Depurar"
 
-#: src/ui/details.ui:819
+#: src/ui/details.ui:818
 msgid "Debug wine processes."
 msgstr "Depure los procesos de Wine."
 
-#: src/ui/details.ui:853 src/ui/details.ui:1827 src/ui/details.ui:2224
+#: src/ui/details.ui:852 src/ui/details.ui:1889 src/ui/details.ui:2436
 msgid "Read documentation"
 msgstr "Leer documentación"
 
-#: src/ui/details.ui:883
+#: src/ui/details.ui:882
 msgid "Task Manager"
 msgstr "Gestor de tareas"
 
-#: src/ui/details.ui:885
+#: src/ui/details.ui:884
 msgid "Manage processes with the Wine task manager."
 msgstr "Gestione los procesos con el gestor de tareas de Wine."
 
-#: src/ui/details.ui:922
+#: src/ui/details.ui:921
 msgid "Uninstaller"
 msgstr "Desinstalador"
 
-#: src/ui/details.ui:924
+#: src/ui/details.ui:923
 msgid "Uninstall programs using wine uninstaller"
 msgstr "Desinstale programas mediante el desinstalador de Wine"
 
-#: src/ui/details.ui:961
+#: src/ui/details.ui:960
 msgid "Control Panel"
 msgstr "Panel de control"
 
-#: src/ui/details.ui:963
+#: src/ui/details.ui:962
 msgid "Access the internal wine control panel."
 msgstr "Accede al panel de control interno del Wine."
 
-#: src/ui/details.ui:1015
+#: src/ui/details.ui:1014
 msgid "Bottle"
 msgstr "Botella"
 
-#: src/ui/details.ui:1043
+#: src/ui/details.ui:1042
 msgid "Graphics"
 msgstr "Gráficos"
 
-#: src/ui/details.ui:1048
+#: src/ui/details.ui:1047
 msgid "Use DXVK"
 msgstr "Utilizar DXVK"
 
-#: src/ui/details.ui:1049
+#: src/ui/details.ui:1048
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -686,11 +680,11 @@ msgstr ""
 "Mejora el rendimiento en juegos y aplicaciones 3D que utilicen DirectX 11.\n"
 "Desactívelo si ocurren fallos gráficos."
 
-#: src/ui/details.ui:1076
+#: src/ui/details.ui:1075
 msgid "Use VKD3D"
 msgstr "Utilizar VKD3D"
 
-#: src/ui/details.ui:1077
+#: src/ui/details.ui:1076
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -698,19 +692,19 @@ msgstr ""
 "Mejora el rendimiento en juegos y aplicaciones 3D que utilicen DirectX 12.\n"
 "Desactívelo si ocurren fallos gráficos."
 
-#: src/ui/details.ui:1104
+#: src/ui/details.ui:1103
 msgid "Use Gamemode"
 msgstr "Utilizar modo de juego"
 
-#: src/ui/details.ui:1105
+#: src/ui/details.ui:1104
 msgid "Optimise gaming performance on demand"
 msgstr "Optimice el rendimiento al jugar según la exigencia"
 
-#: src/ui/details.ui:1131
+#: src/ui/details.ui:1130
 msgid "Enable ACO shader compiler"
 msgstr "Habilitar el compilador de sombreadores ACO"
 
-#: src/ui/details.ui:1132
+#: src/ui/details.ui:1131
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -718,124 +712,128 @@ msgstr ""
 "Mejora el rendimiento en juegos y aplicaciones 3D.\n"
 "Desactive si experimenta fallos en la gráfica."
 
-#: src/ui/details.ui:1159
+#: src/ui/details.ui:1158
 msgid "Discrete GPU"
 msgstr "GPU discreta"
 
-#: src/ui/details.ui:1160
+#: src/ui/details.ui:1159
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Mejora el rendimiento a costa de un mayor uso de energía."
 
-#: src/ui/details.ui:1186
+#: src/ui/details.ui:1185
 msgid "Use a virtual desktop"
 msgstr "Usar un escritorio virtual"
 
-#: src/ui/details.ui:1187
+#: src/ui/details.ui:1186
 msgid "Use the Wine virtual desktop."
 msgstr "Utilice el escritorio virtual de Wine."
 
-#: src/ui/details.ui:1270 src/ui/details.ui:1283
+#: src/ui/details.ui:1269 src/ui/details.ui:1282
 msgid "System"
 msgstr "Sistema"
 
-#: src/ui/details.ui:1275
+#: src/ui/details.ui:1274
 msgid "Synchronization"
 msgstr "Sincronización"
 
-#: src/ui/details.ui:1276
+#: src/ui/details.ui:1275
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr ""
 "Activar la sincronización para aumentar el rendimiento de los procesadores "
 "multinúcleo."
 
-#: src/ui/details.ui:1297
+#: src/ui/details.ui:1296
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1311
+#: src/ui/details.ui:1310
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1334 src/ui/new.ui:261
+#: src/ui/details.ui:1333 src/ui/new.ui:261
 msgid "Runner"
 msgstr "Ejecutor"
 
-#: src/ui/details.ui:1377 src/ui/new.ui:302
+#: src/ui/details.ui:1376 src/ui/new.ui:303
 msgid "Manage runners"
 msgstr "Gestionar ejecutores"
 
-#: src/ui/details.ui:1409 src/ui/new.ui:334
+#: src/ui/details.ui:1408 src/ui/new.ui:335
 msgid "DXVK Version"
 msgstr "Versión de DXVK"
 
-#: src/ui/details.ui:1452 src/ui/details.ui:1527 src/ui/new.ui:375
+#: src/ui/details.ui:1451 src/ui/details.ui:1526 src/ui/new.ui:377
 msgid "Manage DXVK versions"
 msgstr "Gestionar versiones de DXVK"
 
-#: src/ui/details.ui:1484
+#: src/ui/details.ui:1483
 msgid "VKD3D Version"
 msgstr "Versión de VKD3D"
 
-#: src/ui/details.ui:1560 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1559 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "Anulaciones DLL"
 
-#: src/ui/details.ui:1609
+#: src/ui/details.ui:1608
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details.ui:1614
+#: src/ui/details.ui:1613
 msgid "Reduce PulseAudio latency"
 msgstr "Reduce la latencia de PulseAudio"
 
-#: src/ui/details.ui:1615
+#: src/ui/details.ui:1614
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Establezca la latencia de PulseAudio en 60 milisegundos para aumentar la "
 "calidad del sonido"
 
-#: src/ui/details.ui:1652
+#: src/ui/details.ui:1651
 msgid "Developers & Debug"
 msgstr "Desarrolladores y depuración"
 
-#: src/ui/details.ui:1657
+#: src/ui/details.ui:1656
 msgid "Environment variables"
 msgstr "Variables de entorno"
 
-#: src/ui/details.ui:1695
+#: src/ui/details.ui:1694
 msgid "DXVK HUD"
 msgstr "HUD de DXVK"
 
-#: src/ui/details.ui:1696
+#: src/ui/details.ui:1695
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Alternar la superposición de DXVK que muestra FPS y otros detalles en "
 "aplicaciones D3D."
 
-#: src/ui/details.ui:1722
+#: src/ui/details.ui:1721
 msgid "Enable wine fixme logs"
 msgstr "Activar registros «fixme» de Wine"
 
-#: src/ui/details.ui:1723
+#: src/ui/details.ui:1722
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Registra las rutas de código que no se han implementado en Wine."
 
-#: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:682
+#: src/ui/details.ui:1763 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/pages/details.py:749
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:683
+#: src/ui/details.ui:1814
+msgid "Test mode enabled: only dependencies from testing repository are shown."
+msgstr ""
+
+#: src/ui/details.ui:1870 src/ui/details.ui:1996 src/pages/details.py:750
 msgid "Dependencies"
 msgstr "Dependencias"
 
-#: src/ui/details.ui:1837
+#: src/ui/details.ui:1899
 msgid "Report a missing dependency"
 msgstr "Informar de una dependencia faltante"
 
-#: src/ui/details.ui:1864
+#: src/ui/details.ui:1926
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
@@ -843,31 +841,37 @@ msgstr ""
 "Aunque los archivos de esta página se han verificado, pueden estar "
 "disponibles con una licencia privativa."
 
-#: src/ui/details.ui:1894
+#: src/ui/details.ui:1956
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework 4"
 
-#: src/ui/details.ui:1986
+#: src/ui/details.ui:2055
 msgid "These are the programs found in your bottle's Start menu"
 msgstr "Estos son los programas encontrados en el menú Inicio de la botella"
 
-#: src/ui/details.ui:2006
+#: src/ui/details.ui:2075
 msgid "Search for installed programs"
 msgstr "Compruebe los programas instalados"
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:689
+#: src/ui/details.ui:2183 src/ui/details.ui:2366
+msgid ""
+"This is an experimental feature in early development, be careful and <a href="
+"\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
+msgstr ""
+
+#: src/ui/details.ui:2234 src/ui/preferences.ui:261 src/pages/details.py:756
 msgid "Installers"
 msgstr "Instaladores"
 
-#: src/ui/details.ui:2116 src/ui/importer.ui:95
+#: src/ui/details.ui:2253 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "Actualizar"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:687
+#: src/ui/details.ui:2417 src/ui/preferences.ui:235 src/pages/details.py:754
 msgid "Versioning"
 msgstr "Control de versiones"
 
-#: src/ui/details.ui:2254
+#: src/ui/details.ui:2466
 msgid "Create new state"
 msgstr "Crear estado nuevo"
 
@@ -877,7 +881,7 @@ msgstr "El mensaje va aquí."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1107 src/pages/list.py:124
+#: src/pages/details.py:1174 src/pages/list.py:124
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -971,7 +975,7 @@ msgstr "Buscar archivos"
 msgid "0%"
 msgstr "0 %"
 
-#: src/ui/dxvk-entry.ui:149 src/ui/program-entry.ui:95
+#: src/ui/dxvk-entry.ui:149 src/ui/program-entry.ui:111
 #: src/ui/runner-entry.ui:124
 msgid "Uninstall"
 msgstr "Desinstalar"
@@ -1086,15 +1090,15 @@ msgstr ""
 "Active el control de versiones para guardar y restaurar la botella a un "
 "estado determinado."
 
-#: src/ui/new.ui:440
+#: src/ui/new.ui:442
 msgid "Creating bottle…"
 msgstr "Creando botella…"
 
-#: src/ui/new.ui:459
+#: src/ui/new.ui:461
 msgid "Take a break, it may take a while"
 msgstr "Tómese un descanso, puede llevar un tiempo"
 
-#: src/ui/new.ui:527
+#: src/ui/new.ui:529
 msgid "Bottle created"
 msgstr "Se creó la botella"
 
@@ -1270,15 +1274,20 @@ msgstr "VKD3D"
 msgid "Change Launch Options"
 msgstr "Cambiar las opciones de lanzamiento"
 
-#: src/ui/program-entry.ui:45
+#: src/ui/program-entry.ui:34
+#, fuzzy
+msgid "Browse Path"
+msgstr "Buscar en C:"
+
+#: src/ui/program-entry.ui:61
 msgid "WineHQ"
 msgstr "WineHQ"
 
-#: src/ui/program-entry.ui:58
+#: src/ui/program-entry.ui:74
 msgid "ProtonDB"
 msgstr "ProtonDB"
 
-#: src/ui/program-entry.ui:71
+#: src/ui/program-entry.ui:87
 msgid "Bottles Issues"
 msgstr "Errores de Bottles"
 
@@ -1290,13 +1299,13 @@ msgstr "Descargar e instalar este ejecutor"
 msgid "Delete state"
 msgstr "Eliminar estado"
 
-#: src/ui/state-entry.ui:70
-msgid "Creation date"
-msgstr "Fecha de creación"
-
-#: src/ui/state-entry.ui:92
+#: src/ui/state-entry.ui:71
 msgid "Restore this state"
 msgstr "Restaurar este estado"
+
+#: src/ui/state-entry.ui:98
+msgid "Creation date"
+msgstr "Fecha de creación"
 
 #: src/ui/task-manager.ui:26
 msgid "These are the wine/wineserver processes running on your PC."
@@ -1374,60 +1383,50 @@ msgstr "Se recibió la solicitud [Ayuda]."
 msgid "[Refresh] request received."
 msgstr "Se recibió la solicitud [Actualizar]."
 
-#: src/runner.py:895
+#: src/runner.py:997
 msgid "No runners found, please install one."
 msgstr "No se encontró ningún ejecutor; instale uno."
 
-#: src/runner.py:899
+#: src/runner.py:1001
 msgid "No dxvk found, installing the latest version …"
 msgstr "No se encontró DXVK; instalando la versión más reciente…"
 
-#: src/runner.py:902
+#: src/runner.py:1004
 msgid "No vkd3d found, installing the latest version …"
 msgstr "No se encontró VKD3D; instalando la versión más reciente…"
 
 #. Execute wineboot
-#: src/runner.py:942
+#: src/runner.py:1044
 msgid "The wine configuration is being updated …"
 msgstr "Se está actualizando la configuración del Wine …"
 
-#: src/runner.py:948
+#: src/runner.py:1050
 msgid "Wine configuration updated!"
 msgstr "Se actualizó la configuración de Wine."
 
-#: src/runner.py:972
+#: src/runner.py:1074
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Aplicando entorno: {0} …"
 
-#: src/runner.py:991
+#: src/runner.py:1093
 msgid "Installing dxvk …"
 msgstr "Instalando dxvk…"
 
-#: src/runner.py:997
+#: src/runner.py:1099
 msgid "Installing vkd3d …"
 msgstr "Instalando vkd3d…"
 
-#: src/runner.py:1005
+#: src/runner.py:1107
 msgid "Creating versioning state 0 …"
 msgstr "Creando el estado de control de versiones 0…"
 
-#: src/runner.py:1011
+#: src/runner.py:1113
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Su botella nueva, {0}, ya está lista."
 
-#: src/runner.py:1406
-#, python-brace-format
-msgid "Backup {0}"
-msgstr "Copia de respaldo {0}"
-
-#: src/runner.py:1453
-#, python-brace-format
-msgid "Importing backup: {0}"
-msgstr "Importando copia de respaldo: {0}"
-
-#: src/utils.py:62
+#: src/utils.py:63
 msgid "You are offline, unable to download."
 msgstr "No hay conexión a internet; no se puede descargar."
 
@@ -1439,46 +1438,46 @@ msgstr "Detalles de botella"
 msgid "Bottles Started!"
 msgstr "Ha iniciado Bottles."
 
-#: src/pages/details.py:299 src/pages/details.py:492
+#: src/pages/details.py:304 src/pages/details.py:540
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifiesto de {0}"
 
-#: src/pages/details.py:354
+#: src/pages/details.py:386
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Índice del estado {0}"
 
-#: src/pages/details.py:674
+#: src/pages/details.py:738
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 "El modo juego no está disponible en el sistema o no se está ejecutando."
 
-#: src/pages/details.py:681
+#: src/pages/details.py:748
 msgid "Details & Utilities"
 msgstr "Detalles y utilidades"
 
-#: src/pages/details.py:1103 src/pages/list.py:120
+#: src/pages/details.py:1170 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "Elija un archivo ejecutable de Windows"
 
-#: src/pages/details.py:1106 src/pages/list.py:123
+#: src/pages/details.py:1173 src/pages/list.py:123
 msgid "Run"
 msgstr "Ejecutar"
 
-#: src/pages/details.py:1182
+#: src/pages/details.py:1249
 msgid "Select the location where to save the backup configuration"
 msgstr "Seleccione la ubicación donde guardar la configuración de respaldo"
 
-#: src/pages/details.py:1201
+#: src/pages/details.py:1271
 msgid "Select the location where to save the backup archive"
 msgstr "Seleccione la ubicación donde guardar el archivo de respaldo"
 
-#: src/pages/details.py:1221 src/pages/list.py:172
+#: src/pages/details.py:1294 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "Confirme la eliminación"
 
-#: src/pages/details.py:1222 src/pages/list.py:173
+#: src/pages/details.py:1295 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "¿Confirma que quiere eliminar esta botella y todos sus archivos?"
 
@@ -1490,7 +1489,7 @@ msgstr "Advertencia"
 msgid "An error has occurred."
 msgstr "Se ha producido un error."
 
-#: src/pages/importer.py:96
+#: src/pages/importer.py:97
 msgid "Choose a backup archive"
 msgstr "Elija un archivo de respaldo"
 
@@ -1508,34 +1507,176 @@ msgstr "Confirme actualización"
 msgid "This will change the runner from {0} to {1}."
 msgstr "Esto cambiará el instalador de {0} a {1}."
 
-#: src/pages/new.py:103
+#: src/pages/new.py:105
 msgid "Gaming"
 msgstr "Juegos"
 
-#: src/pages/new.py:104
+#: src/pages/new.py:106
 msgid "An environment improved for Windows games."
 msgstr "Un entorno mejorado para juegos de Windows."
 
-#: src/pages/new.py:109
+#: src/pages/new.py:111
 msgid "Software"
 msgstr "Aplicaciones"
 
-#: src/pages/new.py:110
+#: src/pages/new.py:112
 msgid "An environment improved for Windows software."
 msgstr "Un entorno mejorado para el software de Windows."
 
-#: src/pages/new.py:115
+#: src/pages/new.py:117
 msgid "Custom"
 msgstr "Personalizar"
 
-#: src/pages/new.py:116
+#: src/pages/new.py:118
 msgid "A clear environment for your experiments."
 msgstr "Un entorno limpio para sus experimentos."
 
-#: src/pages/new.py:231
+#: src/pages/new.py:235
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "Se creó una botella llamada «%s» correctamente"
+
+#~ msgid "Dependencies can be extracted and installed from a Windows cabinet"
+#~ msgstr ""
+#~ "Es posible extraer e instalar dependencias desde un archivo CAB de Windows"
+
+#~ msgid ""
+#~ "Dependency/installer manifests, support environment variables and "
+#~ "arguments"
+#~ msgstr ""
+#~ "Manifiestos para dependencias/instaladores; se permiten variables de "
+#~ "entorno y argumentos"
+
+#~ msgid ""
+#~ "If versioning is active for the bottle, a new state is created before "
+#~ "installing a dependency"
+#~ msgstr ""
+#~ "Si el versionado está activo en la botella, se crea un estado nuevo antes "
+#~ "de instalar una dependencia"
+
+#~ msgid ""
+#~ "Dependencies and installers now call their uninstaller, if this is "
+#~ "declared in the manifest"
+#~ msgstr ""
+#~ "Las dependencias y los instaladores ahora invocan su desinstalador, si "
+#~ "este se ha declarado en el manifiesto"
+
+#~ msgid "Now you can search for dependencies using the search field"
+#~ msgstr "Ahora puede buscar dependencias mediante el campo de búsqueda"
+
+#~ msgid "Dependencies and installers show the source license"
+#~ msgstr "Las dependencias y los instaladores muestran la licencia de origen"
+
+#~ msgid ""
+#~ "When a crash report appears, reporting it the issue is automatically and "
+#~ "correctly filled"
+#~ msgstr ""
+#~ "Cuando aparece un informe de cierre inesperado, se genera el informe "
+#~ "automática y adecuadamente"
+
+#~ msgid ""
+#~ "While creating a new state, information about the entire process is shown "
+#~ "on the screen"
+#~ msgstr ""
+#~ "Cuando se crea un estado nuevo, se muestra en pantalla información sobre "
+#~ "todo el proceso"
+
+#~ msgid "The search for installed programs has been extended to user AppData"
+#~ msgstr ""
+#~ "La búsqueda de programas instalados se ha ampliado a los AppData de "
+#~ "usuario"
+
+#~ msgid "Fixed some problems related to the dxvk implementation"
+#~ msgstr ""
+#~ "Se corrigieron algunos problemas relativos a la implementación de DXVK"
+
+#~ msgid ""
+#~ "Now dxvk and vkd3d are installed only after the user presses Install on "
+#~ "first start"
+#~ msgstr ""
+#~ "Ahora dxvk y vkd3d se instalan únicamente después de que se pulse en "
+#~ "Instalar en el primer inicio"
+
+#~ msgid "Reduced the amount of logs"
+#~ msgstr "Se redujo la cantidad de registros"
+
+#~ msgid "Flatpak now uses the app directories"
+#~ msgstr "Flatpak ahora utiliza los directorios de la aplicación"
+
+#~ msgid ""
+#~ "If there are bottles in the old dir and the app dir is empty then a "
+#~ "migration dialog is shown"
+#~ msgstr ""
+#~ "Si existen botellas en el directorio viejo y el directorio de la "
+#~ "aplicación está vacío, se muestra un diálogo de migración"
+
+#~ msgid "Fixed a bug in Nvidia identification for optimus laptops"
+#~ msgstr ""
+#~ "Se corrigió un defecto en la identificación de Nvidia de los equipos "
+#~ "portátiles Optimus"
+
+#~ msgid ""
+#~ "Fixed a bug in the management of the download manager that resulted in a "
+#~ "crash"
+#~ msgstr ""
+#~ "Se arregló un defecto en el gestor de descargas que provocaba un cese de "
+#~ "funcionamiento"
+
+#~ msgid "Install dxvk and vkd3d on bottle creation if missing"
+#~ msgstr "Se instalan DXVK y VKD3D si faltasen al crear botellas"
+
+#~ msgid "The preferences are organized into sections"
+#~ msgstr "Las preferencias se organizan en secciones"
+
+#~ msgid "The program list is hidden if empty"
+#~ msgstr "La lista de programas se oculta si está vacía"
+
+#~ msgid "The bottle details page now uses a sidebar"
+#~ msgstr "La página de detalles de la botella ahora utiliza una barra lateral"
+
+#~ msgid "Added references to documentation for some features"
+#~ msgstr ""
+#~ "Se añadieron referencias a la documentación para determinadas "
+#~ "funcionalidades"
+
+#~ msgid ""
+#~ "Makes the UI more consistent with rounded edges and status pages from "
+#~ "libhandy"
+#~ msgstr ""
+#~ "Hace la interfaz de usuario más coherente, con esquinas redondeadas y "
+#~ "páginas de estado de libhandy"
+
+#~ msgid "Replacing the name wine with runner, where possible"
+#~ msgstr ""
+#~ "Se sustituye, siempre que es posible, la denominación «wine» por "
+#~ "«ejecutor»"
+
+#~ msgid "Added more information for initial download to the Onboard"
+#~ msgstr ""
+#~ "Se ha añadido más información para la descarga inicial en el Onboard"
+
+#~ msgid "Portuguese (Brazil) translations thanks to @LeandroStanger"
+#~ msgstr "Traducciones al portugués (Brasil) gracias a @LeandroStanger"
+
+#~ msgid "Portuguese translations thanks to @laralem"
+#~ msgstr "Traducciones al portugués gracias a @laralem"
+
+#~ msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
+#~ msgstr "Traducciones al checo gracias a @pervoj y Vojtěch Perník"
+
+#~ msgid "Esperanto translations thanks to @phlostically"
+#~ msgstr "Traducciones al esperanto gracias a @phlostically"
+
+#~ msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
+#~ msgstr "Logotipo nuevo gracias a @jannuary, @alvarlagerlof y @ZekeSmith"
+
+#, python-brace-format
+#~ msgid "Backup {0}"
+#~ msgstr "Copia de respaldo {0}"
+
+#, python-brace-format
+#~ msgid "Importing backup: {0}"
+#~ msgstr "Importando copia de respaldo: {0}"
 
 #~ msgid "Display a crash report on restart if something goes wrong"
 #~ msgstr ""
@@ -1565,9 +1706,6 @@ msgstr "Se creó una botella llamada «%s» correctamente"
 #~ msgid "Show onboard if system wine is the only installed runner"
 #~ msgstr ""
 #~ "Mostrar onboard si el Wine del sistema es el único ejecutador instalado"
-
-#~ msgid "Swedish translations thanks to @eson57"
-#~ msgstr "Traducciones al sueco gracias a @eson57"
 
 #~ msgid "Updates:"
 #~ msgstr "Actualizaciones:"
@@ -1705,13 +1843,6 @@ msgstr "Se creó una botella llamada «%s» correctamente"
 
 #~ msgid "DXVK Versions"
 #~ msgstr "Versiones de DXVK"
-
-#~ msgid ""
-#~ "Fixed a bug that caused each bottle to be broken even if only one was "
-#~ "broken"
-#~ msgstr ""
-#~ "Se corrigió un problema que causaba defectos en todas las botellas aunque "
-#~ "solo una estuviese defectuosa"
 
 #~ msgid "Temp path cleaned successfully!"
 #~ msgstr "¡La ruta temporal se limpió con éxito!"
@@ -2063,9 +2194,6 @@ msgstr "Se creó una botella llamada «%s» correctamente"
 #~ msgstr ""
 #~ "Inicie una consola de depuración en esta botella. Lea en nuestra "
 #~ "documentación cómo utilizar la depuración. [F1]"
-
-#~ msgid "Run an executable file in this Bottle."
-#~ msgstr "Ejecute un archivo ejecutable en esta botella."
 
 #~ msgid "Manage the wine subsystem settings."
 #~ msgstr "Gestionar la configuración del subsistema de Wine."

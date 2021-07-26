@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 16:26+0200\n"
+"POT-Creation-Date: 2021-07-26 08:38+0200\n"
 "PO-Revision-Date: 2021-06-28 04:36+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
@@ -148,178 +148,182 @@ msgid ".. and much more that you can find by installing Bottles!"
 msgstr ".. dan banyak lagi yang dapat Anda temukan dengan memasang Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
-msgid "Dependencies can be extracted and installed from a Windows cabinet"
+msgid "Support for .lnk files"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-msgid "Dependencies can override and move dll"
+msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-msgid "Dependencies can now install fonts without user intervention"
+msgid "Specify the target bottle using the -b flag in command line"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
-msgid ""
-"Dependency/installer manifests, support environment variables and arguments"
-msgstr ""
+#, fuzzy
+msgid "Run executables without show the Bottles Window"
+msgstr "Jalankan berkas yang bisa dieksekusi dalam Bottle."
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-msgid ""
-"If versioning is active for the bottle, a new state is created before "
-"installing a dependency"
+msgid "Dependencies can now set register keys"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-msgid ""
-"Dependencies and installers now call their uninstaller, if this is declared "
-"in the manifest"
+msgid "Dependencies can now extract archives"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
-msgid "Now you can search for dependencies using the search field"
+msgid "Dependencies can now uninstall other dependencies"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-msgid "Dependencies and installers show the source license"
+msgid "Dependencies can now install more dll in one step"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
-"When a crash report appears, reporting it the issue is automatically and "
-"correctly filled"
+"Dependencies can now register fonts in the Bottle Register to make them "
+"discoverable by the runner"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
-msgid ""
-"While creating a new state, information about the entire process is shown on "
-"the screen"
+msgid "Cab extraction now support wildcards"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-msgid "Support for vkd3d"
+msgid "Cab extraction now support lowercase extensions"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
-msgid "The search for installed programs has been extended to user AppData"
+msgid ""
+"When installing a new runner, winemenubuilder is blocked to prevent the "
+"creation of broken desktop entries"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
-msgid "Fixed some problems related to the dxvk implementation"
+msgid ""
+"The bottle root is now set as the working directory for all executed commands"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid ""
-"Now dxvk and vkd3d are installed only after the user presses Install on "
-"first start"
+"Fixed a bug in the dependency manager showing them installed even though the "
+"process was still running"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:113
-msgid "Reduced the amount of logs"
+msgid ""
+"Fixed a bug that prevented states from being sent to the bottle (kill, "
+"shutdown, reboot, ..)"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:114
-msgid "Flatpak now uses the app directories"
-msgstr ""
+#, fuzzy
+msgid "Fixed a bug on processes listing"
+msgstr "Debug proses-proses wine."
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
-msgid ""
-"If there are bottles in the old dir and the app dir is empty then a "
-"migration dialog is shown"
+msgid "Fix crash log path on Flatpak"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
-msgid "Fixed a bug in Nvidia identification for optimus laptops"
+msgid ""
+"Fixed an issue causing Bottles to detect downloaded dxvk even when it fails"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
+#, fuzzy
 msgid ""
-"Fixed a bug in the management of the download manager that resulted in a "
-"crash"
+"Fixed a bug that cause some programs to not be placed in Programs section"
 msgstr ""
+"Memperbaiki bug yang menyebabkan setiap botol pecah meskipun hanya satu yang "
+"rusak"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
-msgid "Install dxvk and vkd3d on bottle creation if missing"
+#, fuzzy
+msgid "Fixed a bug that cause Bottles to crash when a component download fail"
 msgstr ""
+"Memperbaiki bug yang menyebabkan setiap botol pecah meskipun hanya satu yang "
+"rusak"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
-msgid "The preferences are organized into sections"
+msgid "Uninstallers are now no longer displayed in the Programs list"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
-msgid "The program list is hidden if empty"
+msgid "Disable uninstaller button for dependencies installed from cab files"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
-msgid "The bottle details page now uses a sidebar"
+msgid "Access Bottles preferences from the bottle creation view"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
-msgid "Added references to documentation for some features"
+msgid ""
+"A spinner is now displayed when installing dependencies, programs and "
+"components"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
-msgid ""
-"Makes the UI more consistent with rounded edges and status pages from "
-"libhandy"
+msgid "Warning for missing cabextract tool"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-msgid "Replacing the name wine with runner, where possible"
-msgstr ""
+#, fuzzy
+msgid "Warning for experimental features"
+msgstr "Beralih ke fitur penerapan versi eksperimental"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-msgid "Added more information for initial download to the Onboard"
+msgid "Warning for enables testing repository"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#, fuzzy
-msgid "French translations thanks to @julroy67"
-msgstr "Terjemahan bahasa Ceko berkat @panmourovaty"
+msgid "Several improvements in runner management"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
-#, fuzzy
-msgid "Portuguese (Brazil) translations thanks to @LeandroStanger"
-msgstr "Terjemahan Portugis (Brasil) oleh @vitor180396"
+msgid "Added icons to the sidebar"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 #, fuzzy
-msgid "Hungarian translations thanks to @ovari"
-msgstr "Terjemahan Jerman oleh @thericosanto"
+msgid "Experimantal support for Bottles installers"
+msgstr "Eksperimen: pemasang"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
 #, fuzzy
-msgid "Chinese (Simplified) translations thanks to Flywater Zh"
+msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
 msgstr "Terjemahan Jerman oleh @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 #, fuzzy
-msgid "Portuguese translations thanks to @laralem"
-msgstr "Terjemahan Portugis oleh @SantosSi"
+msgid "Japanese translations thanks to @jatin-cbs"
+msgstr "Terjemahan Jerman oleh @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 #, fuzzy
-msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
+msgid "Hungarian translations thanks to @ovari"
 msgstr "Terjemahan Jerman oleh @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 #, fuzzy
-msgid "Spanish translations thanks to @fitojb"
+msgid "Polish translations thanks to Krzysztof Marcinek"
 msgstr "Terjemahan Jerman oleh @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
 #, fuzzy
-msgid "Esperanto translations thanks to @phlostically"
-msgstr "Terjemahan Jerman oleh @thericosanto"
+msgid "French translations thanks to @julroy67"
+msgstr "Terjemahan bahasa Ceko berkat @panmourovaty"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
 #, fuzzy
-msgid "Croatian translations thanks to @milotype"
+msgid "Russian translations thanks to @tacitcoast"
 msgstr "Terjemahan Jerman oleh @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
-msgid "New logo thanks to @jannuary @alvarlagerlof @ZekeSmith"
-msgstr ""
+#, fuzzy
+msgid "Italian translations thanks to @blackcat-917"
+msgstr "Terjemahan Jerman oleh @thericosanto"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -429,21 +433,21 @@ msgstr "© 2017-2021 - Pengembang Bottles"
 msgid "Easily manage wineprefix using environments"
 msgstr "Kelola wineprefix dengan mudah menggunakan environments"
 
-#: src/ui/about.ui:101
+#: src/ui/about.ui:104
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Terjemahkan</a>"
 
-#: src/ui/about.ui:114
+#: src/ui/about.ui:117
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Pendanaan</a>"
 
-#: src/ui/about.ui:127
+#: src/ui/about.ui:130
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Laporkan bug</a>"
 
-#: src/ui/about.ui:140
+#: src/ui/about.ui:143
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
@@ -526,147 +530,147 @@ msgstr "Pembuatan versi aktif di bottle ini."
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:352 src/main.py:99
+#: src/ui/details.ui:351 src/main.py:99
 msgid "Bottle name"
 msgstr "Nama bottle"
 
-#: src/ui/details.ui:356
+#: src/ui/details.ui:355
 msgid "Type a name for your bottle"
 msgstr "Ketik nama untuk bottle Anda"
 
-#: src/ui/details.ui:375
+#: src/ui/details.ui:374
 msgid "Environment"
 msgstr "Lingkungan"
 
-#: src/ui/details.ui:409
+#: src/ui/details.ui:408
 msgid "64 Bit"
 msgstr "64 Bit"
 
-#: src/ui/details.ui:428
+#: src/ui/details.ui:427
 msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
-#: src/ui/details.ui:459
+#: src/ui/details.ui:458
 #, fuzzy
 msgid "Destroy this bottle"
 msgstr "Musnahkan bottle"
 
-#: src/ui/details.ui:480
+#: src/ui/details.ui:479
 #, fuzzy
 msgid "Run executable"
 msgstr "Jalankan .exe"
 
-#: src/ui/details.ui:521
+#: src/ui/details.ui:520
 #, fuzzy
 msgid "Backup bottle"
 msgstr "Cadangkan bottle ini"
 
-#: src/ui/details.ui:547
+#: src/ui/details.ui:546
 #, fuzzy
 msgid "Reboot Windows"
 msgstr "Asli (Windows)"
 
-#: src/ui/details.ui:572
+#: src/ui/details.ui:571
 #, fuzzy
 msgid "Shutdown Windows"
 msgstr "Matikan"
 
-#: src/ui/details.ui:597
+#: src/ui/details.ui:596
 #, fuzzy
 msgid "Kill all wine processes"
 msgstr "Bunuh semua proses"
 
-#: src/ui/details.ui:640 src/ui/details.ui:1967 src/ui/details.ui:2062
-#: src/pages/details.py:684
+#: src/ui/details.ui:639 src/ui/details.ui:2036 src/ui/details.ui:2131
+#: src/pages/details.py:751
 msgid "Programs"
 msgstr "Program-program"
 
-#: src/ui/details.ui:656
+#: src/ui/details.ui:655
 msgid "Utilities"
 msgstr "Utilitas"
 
-#: src/ui/details.ui:661
+#: src/ui/details.ui:660
 msgid "Wine config"
 msgstr "Konfigurasi Wine"
 
-#: src/ui/details.ui:663
+#: src/ui/details.ui:662
 msgid "Adjust internal settings."
 msgstr "Sesuaikan pengaturan internal."
 
-#: src/ui/details.ui:700 src/ui/list-entry.ui:257
+#: src/ui/details.ui:699 src/ui/list-entry.ui:257
 msgid "Browse C:"
 msgstr "Jelajahi C:"
 
-#: src/ui/details.ui:702
+#: src/ui/details.ui:701
 msgid "Browse internal files."
 msgstr "Jelajahi berkas-berkas internal."
 
-#: src/ui/details.ui:739
+#: src/ui/details.ui:738
 msgid "Command Line"
 msgstr "Baris Perintah"
 
-#: src/ui/details.ui:741
+#: src/ui/details.ui:740
 msgid "Run commands inside the Bottle."
 msgstr "Jalankan perintah di dalam Bottle."
 
-#: src/ui/details.ui:778
+#: src/ui/details.ui:777
 msgid "Registry Editor"
 msgstr "Editor Registri"
 
-#: src/ui/details.ui:780
+#: src/ui/details.ui:779
 msgid "Edit the internal registry."
 msgstr "Edit registri internal."
 
-#: src/ui/details.ui:817
+#: src/ui/details.ui:816
 msgid "Debug"
 msgstr "Debug"
 
-#: src/ui/details.ui:819
+#: src/ui/details.ui:818
 msgid "Debug wine processes."
 msgstr "Debug proses-proses wine."
 
-#: src/ui/details.ui:853 src/ui/details.ui:1827 src/ui/details.ui:2224
+#: src/ui/details.ui:852 src/ui/details.ui:1889 src/ui/details.ui:2436
 #, fuzzy
 msgid "Read documentation"
 msgstr "Dokumentasi"
 
-#: src/ui/details.ui:883
+#: src/ui/details.ui:882
 msgid "Task Manager"
 msgstr "Pengelola Tugas"
 
-#: src/ui/details.ui:885
+#: src/ui/details.ui:884
 msgid "Manage processes with the Wine task manager."
 msgstr "Kelola proses dengan Wine task manager."
 
-#: src/ui/details.ui:922
+#: src/ui/details.ui:921
 msgid "Uninstaller"
 msgstr "Penghapus Instalasi"
 
-#: src/ui/details.ui:924
+#: src/ui/details.ui:923
 msgid "Uninstall programs using wine uninstaller"
 msgstr "Copot program menggunakan wine uninstaller"
 
-#: src/ui/details.ui:961
+#: src/ui/details.ui:960
 msgid "Control Panel"
 msgstr "Panel Kontrol"
 
-#: src/ui/details.ui:963
+#: src/ui/details.ui:962
 msgid "Access the internal wine control panel."
 msgstr "Akses panel kontrol internal wine."
 
-#: src/ui/details.ui:1015
+#: src/ui/details.ui:1014
 msgid "Bottle"
 msgstr "Bottle"
 
-#: src/ui/details.ui:1043
+#: src/ui/details.ui:1042
 msgid "Graphics"
 msgstr "Grafik"
 
-#: src/ui/details.ui:1048
+#: src/ui/details.ui:1047
 msgid "Use DXVK"
 msgstr "Gunakan DXVK"
 
-#: src/ui/details.ui:1049
+#: src/ui/details.ui:1048
 #, fuzzy
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
@@ -675,12 +679,12 @@ msgstr ""
 "Meningkatkan kinerja game dan aplikasi 3D.\n"
 "Nonaktifkan jika Anda mengalami gangguan grafis."
 
-#: src/ui/details.ui:1076
+#: src/ui/details.ui:1075
 #, fuzzy
 msgid "Use VKD3D"
 msgstr "Gunakan DXVK"
 
-#: src/ui/details.ui:1077
+#: src/ui/details.ui:1076
 #, fuzzy
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
@@ -689,19 +693,19 @@ msgstr ""
 "Meningkatkan kinerja game dan aplikasi 3D.\n"
 "Nonaktifkan jika Anda mengalami gangguan grafis."
 
-#: src/ui/details.ui:1104
+#: src/ui/details.ui:1103
 msgid "Use Gamemode"
 msgstr ""
 
-#: src/ui/details.ui:1105
+#: src/ui/details.ui:1104
 msgid "Optimise gaming performance on demand"
 msgstr ""
 
-#: src/ui/details.ui:1131
+#: src/ui/details.ui:1130
 msgid "Enable ACO shader compiler"
 msgstr "Aktifkan compiler shader ACO"
 
-#: src/ui/details.ui:1132
+#: src/ui/details.ui:1131
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -709,153 +713,163 @@ msgstr ""
 "Meningkatkan kinerja game dan aplikasi 3D.\n"
 "Nonaktifkan jika Anda mengalami gangguan grafis."
 
-#: src/ui/details.ui:1159
+#: src/ui/details.ui:1158
 msgid "Discrete GPU"
 msgstr "GPU Diskrit"
 
-#: src/ui/details.ui:1160
+#: src/ui/details.ui:1159
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Meningkatkan performa akan meningkatkan penggunaan daya."
 
-#: src/ui/details.ui:1186
+#: src/ui/details.ui:1185
 msgid "Use a virtual desktop"
 msgstr "Gunakan desktop virtual"
 
-#: src/ui/details.ui:1187
+#: src/ui/details.ui:1186
 msgid "Use the Wine virtual desktop."
 msgstr "Gunakan desktop virtual Wine."
 
-#: src/ui/details.ui:1270 src/ui/details.ui:1283
+#: src/ui/details.ui:1269 src/ui/details.ui:1282
 msgid "System"
 msgstr "Sistem"
 
-#: src/ui/details.ui:1275
+#: src/ui/details.ui:1274
 msgid "Synchronization"
 msgstr "Sinkronisasi"
 
-#: src/ui/details.ui:1276
+#: src/ui/details.ui:1275
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr "Aktifkan sinkronisasi untuk meningkatkan kinerja prosesor multi-core."
 
-#: src/ui/details.ui:1297
+#: src/ui/details.ui:1296
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1311
+#: src/ui/details.ui:1310
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1334 src/ui/new.ui:261
+#: src/ui/details.ui:1333 src/ui/new.ui:261
 msgid "Runner"
 msgstr "Runner"
 
-#: src/ui/details.ui:1377 src/ui/new.ui:302
+#: src/ui/details.ui:1376 src/ui/new.ui:303
 msgid "Manage runners"
 msgstr "Kelola runner"
 
-#: src/ui/details.ui:1409 src/ui/new.ui:334
+#: src/ui/details.ui:1408 src/ui/new.ui:335
 msgid "DXVK Version"
 msgstr "Versi DXVK"
 
-#: src/ui/details.ui:1452 src/ui/details.ui:1527 src/ui/new.ui:375
+#: src/ui/details.ui:1451 src/ui/details.ui:1526 src/ui/new.ui:377
 msgid "Manage DXVK versions"
 msgstr "Kelola versi DXVK"
 
-#: src/ui/details.ui:1484
+#: src/ui/details.ui:1483
 #, fuzzy
 msgid "VKD3D Version"
 msgstr "Versi DXVK"
 
-#: src/ui/details.ui:1560 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1559 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "Mengganti DLL"
 
-#: src/ui/details.ui:1609
+#: src/ui/details.ui:1608
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details.ui:1614
+#: src/ui/details.ui:1613
 msgid "Reduce PulseAudio latency"
 msgstr "Kurangi latensi PulseAudio"
 
-#: src/ui/details.ui:1615
+#: src/ui/details.ui:1614
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Atur latensi PulseAudio menjadi 60 milidetik untuk meningkatkan kualitas "
 "suara"
 
-#: src/ui/details.ui:1652
+#: src/ui/details.ui:1651
 msgid "Developers & Debug"
 msgstr "Pengembang & debug"
 
-#: src/ui/details.ui:1657
+#: src/ui/details.ui:1656
 msgid "Environment variables"
 msgstr "Variabel lokasi"
 
-#: src/ui/details.ui:1695
+#: src/ui/details.ui:1694
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details.ui:1696
+#: src/ui/details.ui:1695
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Aktifkan overlay DXVK yang memperlihatkan FPS dan detail lainnya dalam "
 "aplikasi D3D."
 
-#: src/ui/details.ui:1722
+#: src/ui/details.ui:1721
 msgid "Enable wine fixme logs"
 msgstr "Aktifkan log wine fixme"
 
-#: src/ui/details.ui:1723
+#: src/ui/details.ui:1722
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Jalur kode log yang tidak diterapkan di Wine."
 
-#: src/ui/details.ui:1764 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:682
+#: src/ui/details.ui:1763 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/pages/details.py:749
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: src/ui/details.ui:1808 src/ui/details.ui:1927 src/pages/details.py:683
+#: src/ui/details.ui:1814
+msgid "Test mode enabled: only dependencies from testing repository are shown."
+msgstr ""
+
+#: src/ui/details.ui:1870 src/ui/details.ui:1996 src/pages/details.py:750
 msgid "Dependencies"
 msgstr "Dependensi"
 
-#: src/ui/details.ui:1837
+#: src/ui/details.ui:1899
 msgid "Report a missing dependency"
 msgstr ""
 
-#: src/ui/details.ui:1864
+#: src/ui/details.ui:1926
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr ""
 
-#: src/ui/details.ui:1894
+#: src/ui/details.ui:1956
 msgid "Microsoft .NET Framework 4 .."
 msgstr ""
 
-#: src/ui/details.ui:1986
+#: src/ui/details.ui:2055
 msgid "These are the programs found in your bottle's Start menu"
 msgstr ""
 
-#: src/ui/details.ui:2006
+#: src/ui/details.ui:2075
 msgid "Search for installed programs"
 msgstr "Cari program yang terpasang"
 
-#: src/ui/details.ui:2097 src/ui/preferences.ui:261 src/pages/details.py:689
+#: src/ui/details.ui:2183 src/ui/details.ui:2366
+msgid ""
+"This is an experimental feature in early development, be careful and <a href="
+"\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
+msgstr ""
+
+#: src/ui/details.ui:2234 src/ui/preferences.ui:261 src/pages/details.py:756
 msgid "Installers"
 msgstr "Pemasang"
 
-#: src/ui/details.ui:2116 src/ui/importer.ui:95
+#: src/ui/details.ui:2253 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "Segarkan"
 
-#: src/ui/details.ui:2205 src/ui/preferences.ui:235 src/pages/details.py:687
+#: src/ui/details.ui:2417 src/ui/preferences.ui:235 src/pages/details.py:754
 msgid "Versioning"
 msgstr "Versi"
 
-#: src/ui/details.ui:2254
+#: src/ui/details.ui:2466
 msgid "Create new state"
 msgstr "Buat status baru"
 
@@ -865,7 +879,7 @@ msgstr "Pesan ditempatkan di sini."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/pages/details.py:1107 src/pages/list.py:124
+#: src/pages/details.py:1174 src/pages/list.py:124
 msgid "Cancel"
 msgstr "Batalkan"
 
@@ -959,7 +973,7 @@ msgstr "Jelajahi Berkas-berkas"
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/dxvk-entry.ui:149 src/ui/program-entry.ui:95
+#: src/ui/dxvk-entry.ui:149 src/ui/program-entry.ui:111
 #: src/ui/runner-entry.ui:124
 msgid "Uninstall"
 msgstr "Hapus Pemasangan"
@@ -1076,16 +1090,16 @@ msgstr ""
 "Aktifkan pem-versi-an untuk menyimpan dan mengembalikan bottle pada keadaan "
 "tertentu."
 
-#: src/ui/new.ui:440
+#: src/ui/new.ui:442
 msgid "Creating bottle…"
 msgstr "Membuat bottle…"
 
-#: src/ui/new.ui:459
+#: src/ui/new.ui:461
 #, fuzzy
 msgid "Take a break, it may take a while"
 msgstr "Minumlah, ini akan memakan sedikit waktu"
 
-#: src/ui/new.ui:527
+#: src/ui/new.ui:529
 msgid "Bottle created"
 msgstr "Bottle telah dibuat"
 
@@ -1257,15 +1271,20 @@ msgstr ""
 msgid "Change Launch Options"
 msgstr "Ubah Pilihan Peluncuran"
 
-#: src/ui/program-entry.ui:45
+#: src/ui/program-entry.ui:34
+#, fuzzy
+msgid "Browse Path"
+msgstr "Jelajahi C:"
+
+#: src/ui/program-entry.ui:61
 msgid "WineHQ"
 msgstr "WineHQ"
 
-#: src/ui/program-entry.ui:58
+#: src/ui/program-entry.ui:74
 msgid "ProtonDB"
 msgstr "ProtonDB"
 
-#: src/ui/program-entry.ui:71
+#: src/ui/program-entry.ui:87
 msgid "Bottles Issues"
 msgstr "Masalah-Masalah Bottles"
 
@@ -1277,13 +1296,13 @@ msgstr "Unduh & Instal pelari ini"
 msgid "Delete state"
 msgstr "Hapus keadaan"
 
-#: src/ui/state-entry.ui:70
-msgid "Creation date"
-msgstr "Tanggal Pembuatan"
-
-#: src/ui/state-entry.ui:92
+#: src/ui/state-entry.ui:71
 msgid "Restore this state"
 msgstr "Kembalikan keadaan ini"
+
+#: src/ui/state-entry.ui:98
+msgid "Creation date"
+msgstr "Tanggal Pembuatan"
 
 #: src/ui/task-manager.ui:26
 msgid "These are the wine/wineserver processes running on your PC."
@@ -1362,64 +1381,54 @@ msgstr "Permintaan [Tolong] diterima."
 msgid "[Refresh] request received."
 msgstr "Permintaan [Segarkan] diterima."
 
-#: src/runner.py:895
+#: src/runner.py:997
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Tiada runner ditemukan."
 
-#: src/runner.py:899
+#: src/runner.py:1001
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr "Runner dan/atau DXVK tidak ditemukan. Memasang versi terbaru…"
 
-#: src/runner.py:902
+#: src/runner.py:1004
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Runner dan/atau DXVK tidak ditemukan. Memasang versi terbaru…"
 
 #. Execute wineboot
-#: src/runner.py:942
+#: src/runner.py:1044
 msgid "The wine configuration is being updated …"
 msgstr "Konfigurasi wine sedang diperbarui…"
 
-#: src/runner.py:948
+#: src/runner.py:1050
 msgid "Wine configuration updated!"
 msgstr "Konfigurasi wine diperbarui!"
 
-#: src/runner.py:972
+#: src/runner.py:1074
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Menerapkan lingkup: {0}…"
 
-#: src/runner.py:991
+#: src/runner.py:1093
 msgid "Installing dxvk …"
 msgstr "Memasang dxvk …"
 
-#: src/runner.py:997
+#: src/runner.py:1099
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Memasang dxvk …"
 
-#: src/runner.py:1005
+#: src/runner.py:1107
 msgid "Creating versioning state 0 …"
 msgstr "Membuat status versi 0…"
 
-#: src/runner.py:1011
+#: src/runner.py:1113
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Bottle baru Anda: {0} sekarang siap!"
 
-#: src/runner.py:1406
-#, python-brace-format
-msgid "Backup {0}"
-msgstr "Cadangan {0}"
-
-#: src/runner.py:1453
-#, python-brace-format
-msgid "Importing backup: {0}"
-msgstr "Mengimpor cadangan: {0}"
-
-#: src/utils.py:62
+#: src/utils.py:63
 msgid "You are offline, unable to download."
 msgstr "Anda sedang offline, tidak dapat mengunduh."
 
@@ -1431,47 +1440,47 @@ msgstr "Rincian Bottle"
 msgid "Bottles Started!"
 msgstr "Bottle dijalankan!"
 
-#: src/pages/details.py:299 src/pages/details.py:492
+#: src/pages/details.py:304 src/pages/details.py:540
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifes untuk {0}"
 
-#: src/pages/details.py:354
+#: src/pages/details.py:386
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indeks untuk keadaan{0}"
 
-#: src/pages/details.py:674
+#: src/pages/details.py:738
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:681
+#: src/pages/details.py:748
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Utilitas"
 
-#: src/pages/details.py:1103 src/pages/list.py:120
+#: src/pages/details.py:1170 src/pages/list.py:120
 msgid "Choose a Windows executable file"
 msgstr "Pilih berkas bisa-eksekusi Windows"
 
-#: src/pages/details.py:1106 src/pages/list.py:123
+#: src/pages/details.py:1173 src/pages/list.py:123
 #, fuzzy
 msgid "Run"
 msgstr "Runner"
 
-#: src/pages/details.py:1182
+#: src/pages/details.py:1249
 msgid "Select the location where to save the backup configuration"
 msgstr "Pilih lokasi tempat menyimpan konfigurasi cadangan"
 
-#: src/pages/details.py:1201
+#: src/pages/details.py:1271
 msgid "Select the location where to save the backup archive"
 msgstr "Pilih lokasi tempat menyimpan arsip cadangan"
 
-#: src/pages/details.py:1221 src/pages/list.py:172
+#: src/pages/details.py:1294 src/pages/list.py:172
 msgid "Confirm deletion"
 msgstr "Konfirmasi penghapusan"
 
-#: src/pages/details.py:1222 src/pages/list.py:173
+#: src/pages/details.py:1295 src/pages/list.py:173
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Anda yakin ingin menghapus Bottle ini berserta seluruh berkasnya?"
 
@@ -1483,7 +1492,7 @@ msgstr "Peringatan"
 msgid "An error has occurred."
 msgstr "Timbul galat."
 
-#: src/pages/importer.py:96
+#: src/pages/importer.py:97
 msgid "Choose a backup archive"
 msgstr "Pilih arsip cadangan"
 
@@ -1501,34 +1510,58 @@ msgstr "Konfirmasi pemutakhiran"
 msgid "This will change the runner from {0} to {1}."
 msgstr "Ini akan mengubah pelari dari {0} menjadi {1}."
 
-#: src/pages/new.py:103
+#: src/pages/new.py:105
 msgid "Gaming"
 msgstr "Gim"
 
-#: src/pages/new.py:104
+#: src/pages/new.py:106
 msgid "An environment improved for Windows games."
 msgstr "Lingkungan ditingkatkan untuk permainan Windows."
 
-#: src/pages/new.py:109
+#: src/pages/new.py:111
 msgid "Software"
 msgstr "Perangkat lunak"
 
-#: src/pages/new.py:110
+#: src/pages/new.py:112
 msgid "An environment improved for Windows software."
 msgstr "Lingkungan yang disempurnakan untuk piranti lunak Windows."
 
-#: src/pages/new.py:115
+#: src/pages/new.py:117
 msgid "Custom"
 msgstr "Kustom"
 
-#: src/pages/new.py:116
+#: src/pages/new.py:118
 msgid "A clear environment for your experiments."
 msgstr "Lingkungan yang jelas untuk eksperimen Anda."
 
-#: src/pages/new.py:231
+#: src/pages/new.py:235
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "Botol bernama \"%s\" berhasil dibuat"
+
+#, fuzzy
+#~ msgid "Portuguese (Brazil) translations thanks to @LeandroStanger"
+#~ msgstr "Terjemahan Portugis (Brasil) oleh @vitor180396"
+
+#, fuzzy
+#~ msgid "Portuguese translations thanks to @laralem"
+#~ msgstr "Terjemahan Portugis oleh @SantosSi"
+
+#, fuzzy
+#~ msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
+#~ msgstr "Terjemahan Jerman oleh @thericosanto"
+
+#, fuzzy
+#~ msgid "Esperanto translations thanks to @phlostically"
+#~ msgstr "Terjemahan Jerman oleh @thericosanto"
+
+#, python-brace-format
+#~ msgid "Backup {0}"
+#~ msgstr "Cadangan {0}"
+
+#, python-brace-format
+#~ msgid "Importing backup: {0}"
+#~ msgstr "Mengimpor cadangan: {0}"
 
 #, fuzzy
 #~ msgid "Backup bottle configuration and archive"
@@ -1537,10 +1570,6 @@ msgstr "Botol bernama \"%s\" berhasil dibuat"
 #, fuzzy
 #~ msgid "Import backup archives"
 #~ msgstr "Pilih arsip cadangan"
-
-#, fuzzy
-#~ msgid "Swedish translations thanks to @eson57"
-#~ msgstr "Terjemahan Jerman oleh @thericosanto"
 
 #~ msgid "Updates:"
 #~ msgstr "Pembaruan-pembaruan:"
@@ -1646,13 +1675,6 @@ msgstr "Botol bernama \"%s\" berhasil dibuat"
 
 #~ msgid "DXVK Versions"
 #~ msgstr "Versi-versi DXVK"
-
-#~ msgid ""
-#~ "Fixed a bug that caused each bottle to be broken even if only one was "
-#~ "broken"
-#~ msgstr ""
-#~ "Memperbaiki bug yang menyebabkan setiap botol pecah meskipun hanya satu "
-#~ "yang rusak"
 
 #~ msgid "Temp path cleaned successfully!"
 #~ msgstr "Path temp berhasil dibersihkan!"
@@ -1967,9 +1989,6 @@ msgstr "Botol bernama \"%s\" berhasil dibuat"
 #~ msgstr ""
 #~ "Luncurkan konsol debug dalam bottle ini. Baca dokumentasi cara "
 #~ "menggunakan debugging. [F1]"
-
-#~ msgid "Run an executable file in this Bottle."
-#~ msgstr "Jalankan berkas yang bisa dieksekusi dalam Bottle."
 
 #~ msgid "Manage the wine subsystem settings."
 #~ msgstr "Kelola pengaturan subsistem wine."
