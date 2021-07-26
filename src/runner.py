@@ -721,7 +721,7 @@ class BottlesRunner:
                 return False
         return True
 
-    def find_program_icon(self, program_name):
+    def __find_program_icon(self, program_name):
         logging.debug(f"Searching [{program_name}] icon..")
         pattern = f"*{program_name}*"
 
@@ -782,7 +782,7 @@ class BottlesRunner:
                     executable_name = executable_path.split("\\")[-1][:-4]
                     program_folder = self.__get_exe_parent_dir(configuration, executable_path)
 
-                    icon = self.find_program_icon(executable_name)
+                    icon = self.__find_program_icon(executable_name)
                     installed_programs.append([path, executable_path, icon, program_folder])
             except:
                 logging.error(F"Cannot find executable for [{path}].")
@@ -791,7 +791,7 @@ class BottlesRunner:
             ext_programs = configuration.get("External_Programs")
             for program in ext_programs:
                 program_folder = ext_programs[program].split("/")[-1]
-                icon = self.find_program_icon(program)
+                icon = self.__find_program_icon(program)
                 installed_programs.append([program, ext_programs[program], icon, program_folder])
 
         return installed_programs
