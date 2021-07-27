@@ -183,12 +183,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         tmp_runners = [x for x in self.runner.runners_available if not x.startswith('sys-')]
         if len(tmp_runners) == 0:
             # Check for flatpak migration
-            if "IS_FLATPAK" in os.environ \
-                and self.settings.get_boolean("flatpak-migration") \
-                and self.runner.check_bottles_n() > 0:
-                self.show_flatpak_migration_view()
-            else:
-                self.show_onboard_view()
+            self.show_onboard_view()
 
         self.check_crash_log()
 
