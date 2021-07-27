@@ -57,6 +57,8 @@ apps:
     command: usr/bin/bottles
     desktop: usr/share/applications/com.usebottles.bottles.desktop
     extensions: [gnome-3-38]
+    environment:
+        PYTHONPATH: ${PYTHONPATH}:$SNAP/usr/lib/python3/dist-packages
     plugs:
       - desktop
       - desktop-legacy
