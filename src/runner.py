@@ -1250,10 +1250,10 @@ class BottlesRunner:
         logging.info(
             f"Adding Key: [{key}] with Value: [{value}] and Data: [{data}] in register bottle: {configuration['Name']}")
 
-        command = "reg add '%s' /v %s /d %s /f" % (key, value, data)
+        command = "reg add '%s' /v '%s' /d %s /f" % (key, value, data)
 
         if keyType:
-            command = "reg add '%s' /v %s /t %s /d %s /f" % (key, value, keyType, data)
+            command = "reg add '%s' /v '%s' /t %s /d %s /f" % (key, value, keyType, data)
         
         RunnerUtilities().run_command(configuration, command)
 
