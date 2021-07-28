@@ -32,6 +32,9 @@
   <a href="https://t.me/usebottles">
     <img src="https://img.shields.io/static/v1?label=Join%20our&message=Telegram%20Group&color=blue&logo=telegram" />
   </a>
+  <a href="https://www.reddit.com/r/usebottles/">
+    <img alt="Subreddit subscribers" src="https://img.shields.io/reddit/subreddit-subscribers/usebottles">
+  </a>
 </div>
 
 <br/>
