@@ -19,11 +19,11 @@
   <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/master">
     <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/master" />
   </a>
-  <a href="https://git.mirko.pm/brombinmirko/Bottles/blob/master/LICENSE">
+  <a href="https://github.com/bottlesdevs/Bottles/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg">
   </a>
   <a href="https://github.com/bottlesdevs/Bottles/actions">
-    <img src="https://github.com/bottlesdevs/Bottles/workflows/AppImage%20Release/badge.svg">
+    <img src="https://github.com/bottlesdevs/Bottles/workflows/Build%20release%20packages/badge.svg">
   </a>
   <a href="https://aur.archlinux.org/packages/bottles/">
     <img alt="AUR version" src="https://img.shields.io/aur/version/bottles">
