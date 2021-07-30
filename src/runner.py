@@ -1203,7 +1203,6 @@ class BottlesRunner:
         new_configuration["Environment"] = "Custom"
         new_configuration["Creation_Date"] = str(datetime.now())
         new_configuration["Update_Date"] = str(datetime.now())
-        del new_configuration["Broken"]
 
         try:
             with open("%s/bottle.yml" % bottle_complete_path,
