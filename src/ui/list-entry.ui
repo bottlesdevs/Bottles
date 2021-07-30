@@ -343,11 +343,13 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="margin-start">5</property>
+                <property name="margin-end">5</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Run in this bottle</property>
+                    <property name="label" translatable="yes">Run here</property>
                     <attributes>
                       <attribute name="font-desc" value="Cantarell 10"/>
                     </attributes>
