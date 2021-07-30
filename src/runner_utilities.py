@@ -47,9 +47,9 @@ class RunnerUtilities:
                  command, False, environment)
 
     # Run wine executables/programs in a bottle
-    def run_executable(self, configuration: BottleConfig, file_path: str, arguments: str = False, environment: dict = False, no_async: bool = False) -> None:
+    def run_executable(self, configuration: BottleConfig, file_path: str, arguments: str = False, environment: dict = False, no_async: bool = False, cwd: str = None) -> None:
         logging.info("Running an executable on the bottle …")
-
+        
         if "msi" in file_path.split("."):
             command = "msiexec /i '%s'" % file_path
         elif "bat" in file_path.split("."):
@@ -61,10 +61,9 @@ class RunnerUtilities:
             command = "%s %s" % (command, arguments)
 
         if no_async:
-            self.run_command(configuration, command, False, environment, True)
+            self.run_command(configuration, command, False, environment, True, cwd)
         else:
-            RunAsync(self.run_command, None, configuration,
-                    command, False, environment)
+            RunAsync(self.run_command, None, configuration, command, False, environment, False, cwd)
 
     def run_wineboot(self, configuration: BottleConfig) -> None:
         logging.info("Running wineboot on the wineprefix …")
@@ -121,12 +120,16 @@ class RunnerUtilities:
         self.run_command(configuration, "wineboot %s" % option)
 
     # Execute command in a bottle
-    def run_command(self, configuration: BottleConfig, command: str, terminal: bool = False, environment: dict = False, comunicate: bool = False) -> bool:
+    def run_command(self, configuration: BottleConfig, command: str, terminal: bool = False, environment: dict = False, comunicate: bool = False, cwd: str = None) -> bool:
         if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
             terminal = False
             if command in ["winedbg", "cmd"]:
                 command = f"wineconsole {command}"
-
+        
+        print(cwd)
+        if not cwd:
+            cwd = self.get_bottle_path(configuration)
+            
         path = configuration.get("Path")
         runner = configuration.get("Runner")
 
@@ -231,13 +234,13 @@ class RunnerUtilities:
                 command,
                 stdout=subprocess.PIPE,
                 shell=True,
-                cwd=self.get_bottle_path(configuration)).communicate()[0].decode("utf-8")
+                cwd=cwd).communicate()[0].decode("utf-8")
 
         # TODO: configure cwd in bottle configuration
         return subprocess.Popen(
             command, 
             shell=True,
-            cwd=self.get_bottle_path(configuration)).communicate()
+            cwd=cwd).communicate()
 
     # Get bottle path by configuration
     def get_bottle_path(self, configuration:BottleConfig) -> str:

@@ -456,9 +456,11 @@ class BottlesProgramEntry(Handy.ActionRow):
             arguments = self.configuration["Programs"][self.program_executable]
         else:
             arguments = False
-        RunnerUtilities().run_executable(self.configuration,
-                                   self.program_executable_path,
-                                   arguments)
+        RunnerUtilities().run_executable(
+            self.configuration,
+            self.program_executable_path,
+            arguments,
+            cwd=self.program_folder)
 
     def uninstall_program(self, widget):
         self.runner.remove_program(self.configuration, self.program_name)
