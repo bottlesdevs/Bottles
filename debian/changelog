@@ -1,49 +1,8 @@
-com.usebottles.bottles (2021.7.28-treviso) precise; urgency=low
+com.usebottles.bottles (2021.7.28-treviso-1) precise; urgency=low
 
-  * Support for .lnk files
-  * Run any .exe/.msi/.lnk using the flags -e/-l in command line
-  * Specify the target bottle using the -b flag in command line
-  * Run executables without show the Bottles Window
-  * Dependencies can now set register keys
-  * Dependencies can now extract archives
-  * Dependencies can now uninstall other dependencies
-  * Dependencies can now install more dll in one step
-  * Dependencies can now register fonts in the Bottle Register to make them discoverable by the runner
-  * Cab extraction now support wildcards
-  * Cab extraction now support lowercase extensions
-  * When installing a new runner, winemenubuilder is blocked to prevent the creation of broken desktop entries
-  * The bottle root is now set as the working directory for all executed commands
-  * Fixed a bug in the dependency manager showing them installed even though the process was still running
-  * Fixed a bug that prevented states from being sent to the bottle (kill, shutdown, reboot, ..)
-  * Fixed a bug on processes listing
-  * Fix crash log path on Flatpak
-  * Fixed an issue causing Bottles to detect downloaded dxvk even when it fails
-  * Fixed a bug that cause some programs to not be placed in Programs section
-  * Fixed a bug that cause Bottles to crash when a component download fail
-  * Fixed a bug in adding registry keys with spaces in name
-  * Uninstallers are now no longer displayed in the Programs list
-  * Disable uninstaller button for dependencies installed from cab files
-  * Warning for missing cabextract tool
-  * Warning for enables testing repository
-  * Access Bottles preferences from the bottle creation view
-  * A spinner is now displayed when installing dependencies, programs and components
-  * Warning for experimental features
-  * Several improvements in runner management
-  * Added icons to the sidebar
-  * Experimantal support for Bottles installers
-  * Better support for Breeze theme
-  * Browse programs path
-  * Generate Bottles compatible desktop entries for programs installed trought Bottles installers
-  * Visual feedback during a state restoring
-  * Add external executable to the program list
-  * Toggle update date on bottles list
-  * Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906
-  * Japanese translations thanks to @jatin-cbs
-  * Hungarian translations thanks to @ovari
-  * Polish translations thanks to Krzysztof Marcinek
-  * French translations thanks to @julroy67
-  * Russian translations thanks to @tacitcoast
-  * Italian translations thanks to @blackcat-917
+  * This is an off-calendar release.
+  * Set working directory to executable path when launching from programs list.
+  * Fix listing when one or more bottles are broken.
 
 
- -- Mirko Brombin <send@mirko.pm>  Wed, 28 Jul 2021 00:00:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Fri, 30 Jul 2021 00:00:00 +0000
