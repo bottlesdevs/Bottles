@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-30 08:09+0200\n"
-"PO-Revision-Date: 2021-07-27 11:33+0000\n"
+"PO-Revision-Date: 2021-07-30 19:29+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -233,7 +233,7 @@ msgstr "修正了当组件下载失败时导致 Bottle 崩溃的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "Fixed a bug in adding registry keys with spaces in name"
-msgstr ""
+msgstr "修正了添加名称中带有空格的注册表项的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Uninstallers are now no longer displayed in the Programs list"
@@ -279,12 +279,11 @@ msgstr "对 Bottles 安装程序的实验支持"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Better support for Breeze theme"
-msgstr ""
+msgstr "更好地支持 Breeze 主题"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
-#, fuzzy
 msgid "Browse programs path"
-msgstr "浏览路径"
+msgstr "浏览程序路径"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 msgid ""
@@ -294,15 +293,15 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
 msgid "Visual feedback during a state restoring"
-msgstr ""
+msgstr "状态恢复期间的视觉反馈"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
 msgid "Add external executable to the program list"
-msgstr ""
+msgstr "将外部可执行文件添加到程序列表中"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Toggle update date on bottles list"
-msgstr ""
+msgstr "在 bottle 清单上隐藏或显示更新日期"
 
 #: data/com.usebottles.bottles.appdata.xml.in:136
 msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
@@ -350,11 +349,11 @@ msgstr "启用深色主题。"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "切换列表中的更新日期"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in bottles list."
-msgstr ""
+msgstr "切换 bottle 清单中的更新日期。"
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
@@ -464,9 +463,8 @@ msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">博客</a>"
 
 #: src/ui/about.ui:156
-#, fuzzy
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
-msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">翻译</a>"
+msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
 #: src/ui/state-entry.ui:21
@@ -849,9 +847,8 @@ msgid "These are the programs found in your bottle's Start menu"
 msgstr "可从Bottles开始菜单中找到的程序"
 
 #: src/ui/details.ui:2079
-#, fuzzy
 msgid "Add a custom executable path"
-msgstr "可执行文件路径"
+msgstr "添加自定义可执行路径"
 
 #: src/ui/details.ui:2106
 msgid "Search for installed programs"
@@ -1038,7 +1035,7 @@ msgstr "在该 bottle 中执行"
 
 #: src/ui/list-entry.ui:352
 msgid "Run here"
-msgstr ""
+msgstr "在此运行"
 
 #: src/ui/new.ui:25
 msgid "Create bottle"
@@ -1226,11 +1223,11 @@ msgstr "Bottles 是否应使用深色主题。"
 
 #: src/ui/preferences.ui:55
 msgid "Show update date"
-msgstr ""
+msgstr "显示更新日期"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "是否在 bottle 清单中显示更新日期。"
 
 #: src/ui/preferences.ui:93
 msgid "Show notifications for downloads and installs."
@@ -1294,7 +1291,7 @@ msgstr "Bottles 问题"
 
 #: src/ui/program-entry.ui:108
 msgid "Remove from Programs"
-msgstr ""
+msgstr "从程序中删除"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
@@ -1459,18 +1456,17 @@ msgid "Details & Utilities"
 msgstr "详情 & 工具"
 
 #: src/pages/details.py:837
-#, fuzzy, python-format
+#, python-format
 msgid "Updated: %s"
-msgstr "更新："
+msgstr "已更新：%s"
 
 #: src/pages/details.py:927
-#, fuzzy
 msgid "Choose an executable path"
-msgstr "选择一个 Windows 可执行文件"
+msgstr "选择一个可执行路径"
 
 #: src/pages/details.py:930
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 #: src/pages/details.py:1209 src/pages/list.py:129
 msgid "Choose a Windows executable file"
