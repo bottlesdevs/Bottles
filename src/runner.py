@@ -155,8 +155,12 @@ class BottlesRunner:
             return False
 
         if root_dir.endswith("x86_64"):
-            shutil.move("%s/%s" % (path, root_dir),
-                        "%s/%s" % (path, root_dir[:-7]))
+            try:
+                shutil.move("%s/%s" % (path, root_dir),
+                            "%s/%s" % (path, root_dir[:-7]))
+            except:
+                logging.error("Extraction failed! Component already exists.")
+                return False
         return True
 
     # Download a specific component release
@@ -166,14 +170,12 @@ class BottlesRunner:
         # Check for missing paths
         self.check_runners_dir()
 
-        # Check if it exists in temp path then don't download
-        file = rename if rename else file
-
         # Add entry to download manager
         download_entry = self.download_manager.new_download(file, False)
         time.sleep(1)
 
         # TODO: In Trento we should check if the resource exists in temp
+        # this check is only performed by dependencies
         if download_url.startswith("temp/"):
             return True
 
@@ -182,8 +184,10 @@ class BottlesRunner:
         else:
             update_func = download_entry.update_status
 
-        if os.path.isfile(f"{BottlesPaths.temp}/{file}"):
-            logging.warning(f"File [{file}] already exists in temp, skipping.")
+        existing_file = rename if rename else file
+        just_downloaded = False
+        if os.path.isfile(f"{BottlesPaths.temp}/{existing_file}"):
+            logging.warning(f"File [{existing_file}] already exists in temp, skipping.")
             GLib.idle_add(update_func, False, False, False, True)
         else:
             if component not in ["runner", "runner:proton", "installer"]: # skip check for big files like runners
@@ -199,17 +203,18 @@ class BottlesRunner:
                     download_url,
                     f"{BottlesPaths.temp}/{file}",
                     reporthook=update_func)
+                just_downloaded = True
             else:
                 GLib.idle_add(download_entry.remove)
                 return False
 
         # Rename the file if required
-        if rename and file != rename:
+        if rename and just_downloaded:
             logging.info(f"Renaming [{file}] to [{rename}].")
-            file_path = "%s/%s" % (BottlesPaths.temp, rename)
-            os.rename("%s/%s" % (BottlesPaths.temp, file), file_path)
+            file_path = f"{BottlesPaths.temp}/{rename}"
+            os.rename(f"{BottlesPaths.temp}/{file}", file_path)
         else:
-            file_path = "%s/%s" % (BottlesPaths.temp, file)
+            file_path = f"{BottlesPaths.temp}/{existing_file}"
 
         # Checksums comparison
         if checksum:
