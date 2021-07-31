@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-30 08:09+0200\n"
-"PO-Revision-Date: 2021-07-27 11:33+0000\n"
+"PO-Revision-Date: 2021-07-31 18:26+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -32,7 +32,7 @@ msgstr "Könnyen kezelheti a wineprefix-et"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
-msgstr "Windows szoftver futatása"
+msgstr "Windows szoftver futtatása"
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
 msgid "Mirko Brombin"
@@ -40,7 +40,7 @@ msgstr "Brombin Mirko"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles🍷!"
-msgstr "Futtassa a Windows szoftvert Linuxon Tárolókkal🍷!"
+msgstr "Windows szoftver futtatása Linuxon Tárolókkal🍷!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -78,7 +78,7 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Futtassa a futtatható fájlokat (.exe /.msi) a tárolókban, közvetlenül a "
+"Végrehajtható fajl (.exe /.msi) futtatása a tárolókban, közvetlenül a "
 "fájlkezelő helyi menüjéből"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
@@ -154,7 +154,7 @@ msgstr ".lnk fájlkiterjesztések támogatása"
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
 msgstr ""
-"Futtasson bármilyen .exe/.msi/.lnk fájlkiterjesztést a -e/-l zászlók "
+"Bármilyen .exe/.msi/.lnk fájlkiterjesztés futtatása a -e/-l zászlók "
 "használatával a parancssorban"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
@@ -163,7 +163,7 @@ msgstr "Adja meg a céltárolót a -b jelzővel a parancssorban"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid "Run executables without show the Bottles Window"
-msgstr "Futtassa a futtatható fájlokat a Tároló ablak megjelenítése nélkül"
+msgstr "Végrehajtható fájlok futtatása a Tároló ablak megjelenítése nélkül"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid "Dependencies can now set register keys"
@@ -259,6 +259,8 @@ msgstr ""
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "Fixed a bug in adding registry keys with spaces in name"
 msgstr ""
+"Javítottuk a hibát a rendszerleíró kulcsok hozzáadásával a szóközökkel a "
+"névben"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Uninstallers are now no longer displayed in the Programs list"
@@ -306,30 +308,31 @@ msgstr "Kísérleti támogatás Tárolók telepítőknek"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Better support for Breeze theme"
-msgstr ""
+msgstr "Jobb támogatás a Breeze témához"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
-#, fuzzy
 msgid "Browse programs path"
-msgstr "Útvonalak tallózása"
+msgstr "Program útvonala tallózása"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
 msgid ""
 "Generate Bottles compatible desktop entries for programs installed trought "
 "Bottles installers"
 msgstr ""
+"Hozzon létre Tárolók kompatibilis asztali bejegyzéseket a Tárolók telepítői "
+"által telepített programokhoz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
 msgid "Visual feedback during a state restoring"
-msgstr ""
+msgstr "Visszajelzés megjelenítése az állapot helyreállítása során"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
 msgid "Add external executable to the program list"
-msgstr ""
+msgstr "Külső végrehajtható fájl hozzáadása a programlistához"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Toggle update date on bottles list"
-msgstr ""
+msgstr "Frissítési dátum ki-/bekapcsolása a tárolólistán"
 
 #: data/com.usebottles.bottles.appdata.xml.in:136
 msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
@@ -365,7 +368,7 @@ msgstr "Flatpak migráció"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the flatpak migration dialog."
-msgstr "Váltsa át a flatpak migrációs párbeszédpanelt."
+msgstr "Flatpak áttelepítése párbeszédpanel ki-/bekapcsolása."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -377,11 +380,11 @@ msgstr "Engedélyezze a sötét témát."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Frissítési dátum ki-/bekapcsolása a listában"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in bottles list."
-msgstr ""
+msgstr "Tárolóklista frissítési dátum ki-/bekapcsolása."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
@@ -421,7 +424,7 @@ msgstr "Kiadás jelölt"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle Release Candidate for Runners"
-msgstr "Ki-/bekapcsolás engedélyezése a futók jelöltjére"
+msgstr "Futók kiadásra jelölt ki-/bekapcsolása"
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
@@ -450,7 +453,7 @@ msgstr "Kísérletek: verziókészítés"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental versioning feature"
-msgstr "Váltás a kísérleti verzióváltás funkcióval"
+msgstr "Kísérleti verziófunkció ki-/bekapcsolása"
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
@@ -458,7 +461,7 @@ msgstr "Kísérletek: telepítők"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Toggle experimental installers feature"
-msgstr "Váltás a kísérleti telepítők funkciójával"
+msgstr "Kísérleti telepítők ki-/bekapcsolása"
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -467,7 +470,8 @@ msgstr "Tárolók önműködő bezárása"
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Close Bottles after starting executable from file manager"
 msgstr ""
-"Zárja be a Tárolókat, miután elindította a futtatható fájlt a fájl kezelőből"
+"Zárja be a Tárolókat, miután elindította a végrehajtható fájlt a "
+"fájlkezelőből"
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -497,9 +501,8 @@ msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
 #: src/ui/about.ui:156
-#, fuzzy
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
-msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Fordítás</a>"
+msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
 #: src/ui/state-entry.ui:21
@@ -548,7 +551,7 @@ msgstr "Teljes archívum"
 
 #: src/ui/details.ui:67
 msgid "Run with arguments"
-msgstr "Futtassa argumentumokkal"
+msgstr "Argumentumokkal futtatása"
 
 #: src/ui/details.ui:94
 msgid "Type a really short comment:"
@@ -608,7 +611,7 @@ msgstr "Tároló megsemmisítése"
 
 #: src/ui/details.ui:479
 msgid "Run executable"
-msgstr "Végrehajtható futatása"
+msgstr "Végrehajtható fájl futtatása"
 
 #: src/ui/details.ui:520
 msgid "Backup bottle"
@@ -657,15 +660,15 @@ msgstr "Parancssor"
 
 #: src/ui/details.ui:740
 msgid "Run commands inside the Bottle."
-msgstr "Futtasson parancsokat a Tároló belsejében."
+msgstr "Parancsok futtatása a Tároló belsejében."
 
 #: src/ui/details.ui:777
 msgid "Registry Editor"
-msgstr "Beállítás szerkesztő"
+msgstr "Beállításszerkesztő"
 
 #: src/ui/details.ui:779
 msgid "Edit the internal registry."
-msgstr "Szerkessze a belső nyilvántartást."
+msgstr "Belső rendszerleíró adatbázis szerkesztése."
 
 #: src/ui/details.ui:816
 msgid "Debug"
@@ -800,7 +803,7 @@ msgstr "Futó"
 
 #: src/ui/details.ui:1376 src/ui/new.ui:303
 msgid "Manage runners"
-msgstr "A futók kezelése"
+msgstr "Futókezelő"
 
 #: src/ui/details.ui:1408 src/ui/new.ui:335
 msgid "DXVK Version"
@@ -848,7 +851,7 @@ msgstr "DXVK HUD"
 #: src/ui/details.ui:1695
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
-"Kapcsolja be a DXVK átfedést, amely az FPS-t és egyéb részleteket jelenít "
+"DXVK átfedés ki-/bekapcsolása, amely az FPS-t és egyéb részleteket jelenít "
 "meg a D3D alkalmazásokban."
 
 #: src/ui/details.ui:1721
@@ -894,9 +897,8 @@ msgid "These are the programs found in your bottle's Start menu"
 msgstr "Ezek a tároló Start menüjében található programok"
 
 #: src/ui/details.ui:2079
-#, fuzzy
 msgid "Add a custom executable path"
-msgstr "Végrehajtható fájl elérési útja"
+msgstr "Egyéni végrehajtható fájl elérési útja hozzáadása"
 
 #: src/ui/details.ui:2106
 msgid "Search for installed programs"
@@ -1052,7 +1054,7 @@ msgstr "Új tároló létrehozása"
 
 #: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
-msgstr "Futatás .exe/.msi ebben a tárolóban"
+msgstr ".exe/.msi futtatása ebben a tárolóban"
 
 #: src/ui/list-entry.ui:149
 msgid "This bottle looks damaged."
@@ -1064,7 +1066,7 @@ msgstr "Segédprogram és beállítások"
 
 #: src/ui/list-entry.ui:202
 msgid "Upgrade runner to the latest localy installed"
-msgstr "Frissítse a futót a legújabb, helyileg telepítettre"
+msgstr "Futó frissítése a legújabb helyileg telepített futóra"
 
 #: src/ui/list-entry.ui:229
 msgid "Destroy bottle"
@@ -1088,7 +1090,7 @@ msgstr "Ennek a tárolónak a végrehajtása"
 
 #: src/ui/list-entry.ui:352
 msgid "Run here"
-msgstr ""
+msgstr "Futtatás ide"
 
 #: src/ui/new.ui:25
 msgid "Create bottle"
@@ -1280,11 +1282,11 @@ msgstr "Akár a Tárolóknak használnia kell a Sötét téma változatot."
 
 #: src/ui/preferences.ui:55
 msgid "Show update date"
-msgstr ""
+msgstr "Frissítési dátum megjelenítése"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "A frissítési dátum megjelenítése a tárolólistában."
 
 #: src/ui/preferences.ui:93
 msgid "Show notifications for downloads and installs."
@@ -1348,7 +1350,7 @@ msgstr "Tárolók problémák"
 
 #: src/ui/program-entry.ui:108
 msgid "Remove from Programs"
-msgstr ""
+msgstr "Programok eltávolítása"
 
 #: src/ui/runner-entry.ui:46
 msgid "Download & Install this runner"
@@ -1514,18 +1516,17 @@ msgid "Details & Utilities"
 msgstr "Részletek és segédprogramok"
 
 #: src/pages/details.py:837
-#, fuzzy, python-format
+#, python-format
 msgid "Updated: %s"
-msgstr "Frissítések:"
+msgstr "Frissítve: %s"
 
 #: src/pages/details.py:927
-#, fuzzy
 msgid "Choose an executable path"
-msgstr "Válasszon egy Windows futtatható fájlt"
+msgstr "Válasszon egy végrehajtható fájl elérési útja"
 
 #: src/pages/details.py:930
 msgid "Add"
-msgstr ""
+msgstr "Hozzáadás"
 
 #: src/pages/details.py:1209 src/pages/list.py:129
 msgid "Choose a Windows executable file"
@@ -1575,7 +1576,7 @@ msgstr "Frissítés megerősítése"
 #: src/pages/list.py:160
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
-msgstr "Ez a futót {0} -ról {1} -re változtatja."
+msgstr "Ez a futót „{0}”-ról „{1}”-re változtatja."
 
 #: src/pages/new.py:105
 msgid "Gaming"
