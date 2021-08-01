@@ -230,17 +230,18 @@ class RunnerUtilities:
             return UtilsTerminal(command)
 
         if comunicate:
-            return subprocess.Popen(
-                command,
-                stdout=subprocess.PIPE,
-                shell=True,
-                cwd=cwd).communicate()[0].decode("utf-8")
+            try:
+                return subprocess.Popen(command, stdout=subprocess.PIPE, shell=True, cwd=cwd).communicate()[0].decode("utf-8")
+            except:
+                # work around for `No such file or directory` error
+                return subprocess.Popen(command, stdout=subprocess.PIPE, shell=True).communicate()[0].decode("utf-8")
 
         # TODO: configure cwd in bottle configuration
-        return subprocess.Popen(
-            command, 
-            shell=True,
-            cwd=cwd).communicate()
+        try:
+            return subprocess.Popen(command, shell=True, cwd=cwd).communicate()
+        except:
+            # work around for `No such file or directory` error
+            return subprocess.Popen(command, shell=True).communicate()
 
     # Get bottle path by configuration
     def get_bottle_path(self, configuration:BottleConfig) -> str:
