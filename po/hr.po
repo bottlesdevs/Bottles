@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-30 08:09+0200\n"
-"PO-Revision-Date: 2021-07-11 11:32+0000\n"
+"PO-Revision-Date: 2021-08-02 09:51+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -151,7 +151,7 @@ msgstr ".. i još mnogo toga što možeš pronaći instaliranjem programa Butelj
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
 msgid "Support for .lnk files"
-msgstr ""
+msgstr "Podrška za .lnk datoteke"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
@@ -1035,9 +1035,8 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Ova je Wine mapa već uvezena u Butelje."
 
 #: src/ui/list.ui:73
-#, fuzzy
 msgid "Start off by creating a Bottle."
-msgstr "Započni sa stvaranjem butelje"
+msgstr "Započni stvaranjem butelje."
 
 #: src/ui/list.ui:76
 #, fuzzy
@@ -1201,7 +1200,6 @@ msgid "We are almost there"
 msgstr "Skoro smo gotovi"
 
 #: src/ui/onboard.ui:319
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -1217,11 +1215,13 @@ msgstr ""
 "Moramo preuzeti i instalirati pokretač koji će omogućiti stvaranje vlastitih "
 "butelja.\n"
 "Veličina preuzimanja je <b>~ 70 MB</b>.\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Saznaj "
+"više o tome što ćemo preuzeti</a>\n"
 "\n"
 "Te datoteke ne možemo ponuditi s programom Butelje jer imaju drugačije "
 "cikluse izdavanja.\n"
 "\n"
-"Kad je sve spremno, pritisni gumb Instaliraj."
+"Kad je sve spremno, pritisni gumb <b>Instaliraj</b>."
 
 #: src/ui/onboard.ui:341 src/ui/preferences.ui:181
 msgid "Runners"
@@ -1509,23 +1509,21 @@ msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
 #: src/pages/details.py:761
-#, fuzzy
 msgid "Details & Utilities"
-msgstr "Uslužni programi"
+msgstr "Detalji i uslužni programi"
 
 #: src/pages/details.py:837
-#, fuzzy, python-format
+#, python-format
 msgid "Updated: %s"
-msgstr "Aktualiziranja:"
+msgstr "Aktualizirano: %s"
 
 #: src/pages/details.py:927
-#, fuzzy
 msgid "Choose an executable path"
-msgstr "Odaberi jednu Windows izvršnu datoteku"
+msgstr "Odaberi jednu izvršnu stazu"
 
 #: src/pages/details.py:930
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
 #: src/pages/details.py:1209 src/pages/list.py:129
 msgid "Choose a Windows executable file"
