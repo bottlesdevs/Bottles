@@ -38,7 +38,6 @@ parts:
     stage-packages:
       - python3-gi
       - python3-gi-cairo
-      - python3-py7zr
       - gir1.2-gtk-3.0
       - libnotify4
       - gamemode
@@ -53,6 +52,13 @@ parts:
 
     organize:
       snap/bottles/current/usr: usr
+
+  fix-p7zip:
+    plugin: nil
+    after: [ bottles ]
+    override-prime: |
+      snapcraftctl prime
+      sed -i -e 's|/usr/lib/p7zip/7z|/snap/bottles/current/usr/lib/p7zip/7z|g' usr/bin/7z
 
 apps:
   bottles:
