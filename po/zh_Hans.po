@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-30 08:09+0200\n"
-"PO-Revision-Date: 2021-07-30 19:29+0000\n"
-"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"PO-Revision-Date: 2021-08-01 17:33+0000\n"
+"Last-Translator: Flywater Zh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -220,24 +220,24 @@ msgstr "修复 Flatpak 崩溃日志路径"
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid ""
 "Fixed an issue causing Bottles to detect downloaded dxvk even when it fails"
-msgstr "修正了一个问题，导致 Bottle 检测已下载dxvk，即使未下载成功"
+msgstr "修正了一个导致即使失败 Bottles 仍检测已下载 dxvk 的问题"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid ""
 "Fixed a bug that cause some programs to not be placed in Programs section"
-msgstr "修正了一个错误，导致一些程序不被放置在程序部分"
+msgstr "修正了一个导致一些程序未被放置在程序部分的缺陷"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid "Fixed a bug that cause Bottles to crash when a component download fail"
-msgstr "修正了当组件下载失败时导致 Bottle 崩溃的错误"
+msgstr "修正了当组件下载失败时导致 Bottles 崩溃的缺陷"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "Fixed a bug in adding registry keys with spaces in name"
-msgstr "修正了添加名称中带有空格的注册表项的错误"
+msgstr "修正了添加名称中带有空格的注册表项的缺陷"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Uninstallers are now no longer displayed in the Programs list"
-msgstr "卸载程序现在不再显示在“程序”列表中"
+msgstr "卸载程序现在不再显示在程序列表中"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Disable uninstaller button for dependencies installed from cab files"
@@ -267,11 +267,11 @@ msgstr "对启用测试存储库发出警告"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
 msgid "Several improvements in runner management"
-msgstr "runner 管理的几处改进"
+msgstr "运行器管理的几处改进"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid "Added icons to the sidebar"
-msgstr "添加图标到侧栏"
+msgstr "添加图标到侧边栏"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
 msgid "Experimantal support for Bottles installers"
@@ -289,7 +289,7 @@ msgstr "浏览程序路径"
 msgid ""
 "Generate Bottles compatible desktop entries for programs installed trought "
 "Bottles installers"
-msgstr ""
+msgstr "为通过 Bottles 安装器安装的程序生成 Bottles 兼容的桌面入口"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
 msgid "Visual feedback during a state restoring"
@@ -301,11 +301,11 @@ msgstr "将外部可执行文件添加到程序列表中"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Toggle update date on bottles list"
-msgstr "在 bottle 清单上隐藏或显示更新日期"
+msgstr "开关 bottles 列表上的更新日期"
 
 #: data/com.usebottles.bottles.appdata.xml.in:136
 msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
-msgstr "感谢 @Yuzaihhhh 和 @sr093906 的简中翻译"
+msgstr "感谢 @Yuzaihhhh 和 @sr093906 的中文（简体）翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
 msgid "Japanese translations thanks to @jatin-cbs"
@@ -337,7 +337,7 @@ msgstr "Flatpak 迁移"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the flatpak migration dialog."
-msgstr "切换 flatpak 迁移对话框。"
+msgstr "开关 flatpak 迁移对话框。"
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -353,7 +353,7 @@ msgstr "切换列表中的更新日期"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in bottles list."
-msgstr "切换 bottle 清单中的更新日期。"
+msgstr "开关 bottles 列表上的更新日期。"
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
@@ -411,7 +411,7 @@ msgstr "实验功能"
 msgid ""
 "Toggle experimental features such as versioning and installers.Release "
 "Candidate for Runners"
-msgstr "切换如版本控制、安装器和运行器的候选版本等实验性功能"
+msgstr "开关如版本控制、安装器和运行器的候选版本等实验性功能"
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:versioning"
@@ -419,7 +419,7 @@ msgstr "实验功能：版本控制"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental versioning feature"
-msgstr "切换实验性的版本控制功能"
+msgstr "开关实验性的版本控制功能"
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
@@ -427,7 +427,7 @@ msgstr "实验功能：安装器"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Toggle experimental installers feature"
-msgstr "切换实验性的安装器功能"
+msgstr "开关实验性的安装器功能"
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -682,7 +682,7 @@ msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"改进Directx 11游戏和3D应用程序的性能。\n"
+"改进 Directx 11 游戏和 3D 应用程序的性能。\n"
 "如果您遭遇图形故障请禁用。"
 
 #: src/ui/details.ui:1075
@@ -694,7 +694,7 @@ msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"改进Directx 12游戏和3D应用程序的性能。\n"
+"改进 Directx 12 游戏和 3D 应用程序的性能。\n"
 "如果您遭遇图形故障请禁用。"
 
 #: src/ui/details.ui:1103
@@ -993,11 +993,11 @@ msgstr "该 wineprefix 已导入 Bottles 中。"
 
 #: src/ui/list.ui:73
 msgid "Start off by creating a Bottle."
-msgstr "新建一个Bottle 以开始。"
+msgstr "新建一个 Bottle 以开始。"
 
 #: src/ui/list.ui:76
 msgid "Create a new Bottle"
-msgstr "新建一个Bottle"
+msgstr "新建一个 Bottle"
 
 #: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
@@ -1127,7 +1127,7 @@ msgstr "Bottles 使在 Linux 上运行 Windows 软件更加容易。"
 
 #: src/ui/onboard.ui:229
 msgid "What are runners?"
-msgstr "什么是 runners？"
+msgstr "什么是运行器？"
 
 #: src/ui/onboard.ui:249
 msgid ""
@@ -1140,12 +1140,11 @@ msgid ""
 "<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
 "runners</a>"
 msgstr ""
-"这些是允许Windows软件在Linux系统上安装并运行的兼容层。\n"
+"这些是允许 Windows 软件在 Linux 系统上安装并运行的兼容层。\n"
 "\n"
-"<b>Bottles</b>是运行器配置系统，和Windows软件安装与运行的环境。\n"
+"<b>Bottles</b>是运行器配置系统，和 Windows 软件安装与运行的环境。\n"
 "\n"
-"<a href=\"https://docs.usebottles.com/components/runners\">阅读更多关于运行器"
-"的信息</a>"
+"<a href=\"https://docs.usebottles.com/components/runners\">阅读更多关于运行器的信息</a>"
 
 #: src/ui/onboard.ui:269
 msgid "Wine"
@@ -1227,7 +1226,7 @@ msgstr "显示更新日期"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
-msgstr "是否在 bottle 清单中显示更新日期。"
+msgstr "是否在 bottle 列表中显示更新日期。"
 
 #: src/ui/preferences.ui:93
 msgid "Show notifications for downloads and installs."
@@ -1453,7 +1452,7 @@ msgstr "游戏模式在你的系统中不可用，或没在运行。"
 
 #: src/pages/details.py:761
 msgid "Details & Utilities"
-msgstr "详情 & 工具"
+msgstr "详情和工具"
 
 #: src/pages/details.py:837
 #, python-format
