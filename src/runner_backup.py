@@ -16,9 +16,10 @@ BottleConfig = NewType('BottleConfig', dict)
 RunnerName = NewType('RunnerName', str)
 RunnerType = NewType('RunnerType', str)
 
+
 class RunnerBackup:
     # Make a bottle backup
-    def async_backup_bottle(self, args:list) -> bool:
+    def async_backup_bottle(self, args: list) -> bool:
         window, configuration, scope, path = args
         self.download_manager = DownloadManager(window)
 
@@ -67,10 +68,16 @@ class RunnerBackup:
 
         return False
 
-    def backup_bottle(self, window, configuration:BottleConfig, scope:str, path:str) -> None:
-        RunAsync(self.async_backup_bottle, None, [window, configuration, scope, path])
+    def backup_bottle(self,
+                      window,
+                      configuration: BottleConfig,
+                      scope: str,
+                      path: str
+                      ) -> None:
+        RunAsync(self.async_backup_bottle, None, [
+                 window, configuration, scope, path])
 
-    def async_import_backup_bottle(self, args:list) -> bool:
+    def async_import_backup_bottle(self, args: list) -> bool:
         window, scope, path = args
         self.download_manager = DownloadManager(window)
         backup_name = path.split("/")[-1].split(".")
@@ -109,5 +116,5 @@ class RunnerBackup:
         logging.error(f"Failed importing backup: [{backup_name}]")
         return False
 
-    def import_backup_bottle(self, window, scope:str, path:str) -> None:
+    def import_backup_bottle(self, window, scope: str, path: str) -> None:
         RunAsync(self.async_import_backup_bottle, None, [window, scope, path])
