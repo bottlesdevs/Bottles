@@ -46,7 +46,7 @@ class RunnerVersioning:
 
         # If it is not the first state, compare files with the previous one
         if not first:
-            states_file = open("{bottle_path}/states/states.yml")
+            states_file = open(f"{bottle_path}/states/states.yml")
             states_file_yaml = yaml.safe_load(states_file)
             states_file.close()
 
