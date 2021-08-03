@@ -26,9 +26,8 @@ class RunnerVersioning:
         self.window = window
         self.runner = runner
 
-        
     # Create new bottle state
-    def async_create_bottle_state(self, args:list) -> bool:
+    def async_create_bottle_state(self, args: list) -> bool:
         configuration, comment, update, no_update, after = args
 
         logging.info(
@@ -37,7 +36,7 @@ class RunnerVersioning:
         self.download_manager = DownloadManager(self.window)
 
         bottle_path = RunnerUtilities().get_bottle_path(configuration)
-        first = False if os.path.isdir('%s/states/' % bottle_path) else True
+        first = False if os.path.isdir(f"{bottle_path}/states/") else True
 
         # List all bottle files
         current_index = self.get_bottle_index(configuration)
@@ -47,21 +46,29 @@ class RunnerVersioning:
 
         # If it is not the first state, compare files with the previous one
         if not first:
-            states_file = open('%s/states/states.yml' % bottle_path)
+            states_file = open("{bottle_path}/states/states.yml")
             states_file_yaml = yaml.safe_load(states_file)
             states_file.close()
 
             state_index_file = open('%s/states/%s/index.yml' % (
-                bottle_path, str(configuration.get("State"))))
+                bottle_path,
+                str(configuration.get("State")))
+            )
             state_index = yaml.safe_load(state_index_file)
             state_index_file.close()
-            state_index_files = state_index["Additions"]+\
-                                state_index["Removed"]+\
-                                state_index["Changes"]
+            state_index_files = state_index["Additions"] +\
+                state_index["Removed"] +\
+                state_index["Changes"]
 
             state_temp_checksums = [f["checksum"] for f in state_index_files]
-            state_temp_files = [tuple([f["file"],f["checksum"]])  for f in state_index_files]
-            current_temp_files = [tuple([f["file"],f["checksum"]])  for f in current_index["Files"]]
+            state_temp_files = [
+                tuple([f["file"], f["checksum"]])
+                for f in state_index_files
+            ]
+            current_temp_files = [
+                tuple([f["file"], f["checksum"]])
+                for f in current_index["Files"]
+            ]
             additions = set(current_temp_files) - set(state_temp_files)
             removed = set(state_temp_files) - set(current_temp_files)
 
@@ -109,7 +116,8 @@ class RunnerVersioning:
 
         try:
             # Make state structured path
-            os.makedirs("%s/states/%s/drive_c" % (bottle_path, state_id), exist_ok=True)
+            os.makedirs("%s/states/%s/drive_c" %
+                        (bottle_path, state_id), exist_ok=True)
 
             # Save index.yml with state edits
             with open("%s/index.yml" % (state_path),
@@ -148,8 +156,8 @@ class RunnerVersioning:
         new_state = {
             "Creation_Date": str(datetime.now()),
             "Comment": comment,
-			# "Files": [file["file"] for file in current_index["Files"]]
-		}
+            # "Files": [file["file"] for file in current_index["Files"]]
+        }
 
         if not first:
             new_state_file = {
@@ -201,11 +209,22 @@ class RunnerVersioning:
 
         return True
 
-    def create_bottle_state(self, configuration:BottleConfig, comment:str="Not commented", update:bool=False, no_update:bool=False, after:bool=False) -> None:
-        RunAsync(self.async_create_bottle_state, None, [configuration, comment, update, no_update, after])
+    def create_bottle_state(self,
+                            configuration: BottleConfig,
+                            comment: str = "Not commented",
+                            update: bool = False,
+                            no_update: bool = False,
+                            after: bool = False
+                            ) -> None:
+        RunAsync(self.async_create_bottle_state, None, [
+                 configuration, comment, update, no_update, after])
 
     # Get edits for a state
-    def get_bottle_state_edits(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
+    def get_bottle_state_edits(self,
+                               configuration: BottleConfig,
+                               state_id: str,
+                               plain: bool = False
+                               ) -> dict:
         bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
         try:
@@ -217,7 +236,11 @@ class RunnerVersioning:
             return {}
 
     # Get files for a state
-    def get_bottle_state_files(self, configuration:BottleConfig, state_id:str, plain:bool=False) -> dict:
+    def get_bottle_state_files(self,
+                               configuration: BottleConfig,
+                               state_id: str,
+                               plain: bool = False
+                               ) -> dict:
         bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
         try:
@@ -229,16 +252,18 @@ class RunnerVersioning:
             return {}
 
     # Get all bottle files
-    def get_bottle_index(self, configuration:BottleConfig):
+    def get_bottle_index(self, configuration: BottleConfig):
         bottle_path = RunnerUtilities().get_bottle_path(configuration)
 
         current_index = {
             "Update_Date": str(datetime.now()),
-            "Files":[]
+            "Files": []
         }
         for file in glob("%s/drive_c/**" % bottle_path, recursive=True):
-            if not os.path.isfile(file): continue
-            if file[len(bottle_path)+9:].split("/")[0] in ["users"]: continue
+            if not os.path.isfile(file):
+                continue
+            if file[len(bottle_path)+9:].split("/")[0] in ["users"]:
+                continue
 
             current_index["Files"].append({
                 "file": file[len(bottle_path)+9:],
@@ -284,17 +309,21 @@ class RunnerVersioning:
 
         for file in add_files:
             for i in search_sources:
-                source = "%s/states/%s/drive_c/%s" % (bottle_path, str(i), file["file"])
-                if os.path.isfile(source): break
+                source = "%s/states/%s/drive_c/%s" % (
+                    bottle_path, str(i), file["file"])
+                if os.path.isfile(source):
+                    break
             target = "%s/drive_c/%s" % (bottle_path, file["file"])
             shutil.copyfile(source, target)
 
         for file in edit_files:
             for i in search_sources:
-                source = "%s/states/%s/drive_c/%s" % (bottle_path, str(i), file["file"])
+                source = "%s/states/%s/drive_c/%s" % (
+                    bottle_path, str(i), file["file"])
                 if os.path.isfile(source):
                     checksum = UtilsFiles().get_checksum(source)
-                    if file["checksum"] == checksum: break
+                    if file["checksum"] == checksum:
+                        break
             target = "%s/drive_c/%s" % (bottle_path, file["file"])
             shutil.copyfile(source, target)
 
@@ -314,10 +343,15 @@ class RunnerVersioning:
 
         return True
 
-    def set_bottle_state(self, configuration:BottleConfig, state_id:str, after=False) -> None:
-        RunAsync(self.async_set_bottle_state, None, [configuration, state_id, after])
+    def set_bottle_state(self,
+                         configuration: BottleConfig,
+                         state_id: str,
+                         after=False
+                         ) -> None:
+        RunAsync(self.async_set_bottle_state, None,
+                 [configuration, state_id, after])
 
-    def list_bottle_states(self, configuration:BottleConfig) -> dict:
+    def list_bottle_states(self, configuration: BottleConfig) -> dict:
         bottle_path = RunnerUtilities().get_bottle_path(configuration)
         states = {}
 
@@ -327,8 +361,10 @@ class RunnerVersioning:
             states_file.close()
             states = states_file_yaml.get("States")
 
-            logging.info(f"Found [{len(states)}] states for bottle: [{configuration['Name']}]")
+            logging.info(
+                f"Found [{len(states)}] states for bottle: [{configuration['Name']}]")
         except:
-            logging.error(f"Cannot find states.yml file for bottle: [{configuration['Name']}]")
+            logging.error(
+                f"Cannot find states.yml file for bottle: [{configuration['Name']}]")
 
         return states
