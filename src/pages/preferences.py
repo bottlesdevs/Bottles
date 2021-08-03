@@ -156,7 +156,6 @@ class BottlesDxvkEntry(Handy.ActionRow):
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
 
-
         '''Signal connections'''
         self.btn_download.connect('pressed', self.download_dxvk)
         self.btn_err.connect('pressed', self.download_dxvk)
@@ -177,8 +176,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
     '''Browse dxvk files'''
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
-        RunnerUtilities().open_filemanager(path_type="dxvk",
-                                     dxvk=self.dxvk_name)
+        RunnerUtilities().open_filemanager(path_type="dxvk", dxvk=self.dxvk_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:
@@ -373,8 +371,7 @@ class BottlesRunnerEntry(Handy.ActionRow):
     '''Browse runner files'''
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
-        RunnerUtilities().open_filemanager(path_type="runner",
-                                     runner=self.runner_name)
+        RunnerUtilities().open_filemanager(path_type="runner", runner=self.runner_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:
