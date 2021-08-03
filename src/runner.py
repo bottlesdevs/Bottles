@@ -49,6 +49,7 @@ BottleConfig = NewType('BottleConfig', dict)
 RunnerName = NewType('RunnerName', str)
 RunnerType = NewType('RunnerType', str)
 
+
 class BottlesRunner:
 
     # Component lists
@@ -96,7 +97,7 @@ class BottlesRunner:
         RunAsync(self.async_checks, None, [after, no_install])
 
     # Clear temp path
-    def clear_temp(self, force:bool=False) -> None:
+    def clear_temp(self, force: bool = False) -> None:
         if self.settings.get_boolean("temp") or force:
             try:
                 for f in os.listdir(BottlesPaths.temp):
@@ -107,7 +108,7 @@ class BottlesRunner:
                 self.check_runners_dir()
 
     # Update bottles list var and page_list
-    def update_bottles(self, silent:bool=False) -> None:
+    def update_bottles(self, silent: bool = False) -> None:
         self.check_bottles(silent)
         try:
             self.window.page_list.update_bottles()
@@ -137,10 +138,13 @@ class BottlesRunner:
             os.makedirs(BottlesPaths.temp, exist_ok=True)
 
     # Extract a component archive
-    def extract_component(self, component:str, archive:str) -> True:
-        if component in ["runner", "runner:proton"]: path = BottlesPaths.runners
-        if component == "dxvk": path = BottlesPaths.dxvk
-        if component == "vkd3d": path = BottlesPaths.vkd3d
+    def extract_component(self, component: str, archive: str) -> True:
+        if component in ["runner", "runner:proton"]:
+            path = BottlesPaths.runners
+        if component == "dxvk":
+            path = BottlesPaths.dxvk
+        if component == "vkd3d":
+            path = BottlesPaths.vkd3d
 
         try:
             tar = tarfile.open("%s/%s" % (BottlesPaths.temp, archive))
@@ -151,7 +155,8 @@ class BottlesRunner:
                 os.remove(os.path.join(BottlesPaths.temp, archive))
             if os.path.isdir(os.path.join(path, archive[:-7])):
                 shutil.rmtree(os.path.join(path, archive[:-7]))
-            logging.error("Extraction failed! Archive ends earlier than expected.")
+            logging.error(
+                "Extraction failed! Archive ends earlier than expected.")
             return False
 
         if root_dir.endswith("x86_64"):
@@ -164,7 +169,7 @@ class BottlesRunner:
         return True
 
     # Download a specific component release
-    def download_component(self, component:str, download_url:str, file:str, rename:bool=False, checksum:bool=False, func=False) -> bool:
+    def download_component(self, component: str, download_url: str, file: str, rename: bool = False, checksum: bool = False, func=False) -> bool:
         self.download_manager = DownloadManager(self.window)
 
         # Check for missing paths
@@ -187,11 +192,14 @@ class BottlesRunner:
         existing_file = rename if rename else file
         just_downloaded = False
         if os.path.isfile(f"{BottlesPaths.temp}/{existing_file}"):
-            logging.warning(f"File [{existing_file}] already exists in temp, skipping.")
+            logging.warning(
+                f"File [{existing_file}] already exists in temp, skipping.")
             GLib.idle_add(update_func, False, False, False, True)
         else:
-            if component not in ["runner", "runner:proton", "installer"]: # skip check for big files like runners
-                download_url = requests.get(download_url, allow_redirects=True).url
+            # skip check for big files like runners
+            if component not in ["runner", "runner:proton", "installer"]:
+                download_url = requests.get(
+                    download_url, allow_redirects=True).url
             try:
                 request = urllib.request.urlopen(download_url)
             except (urllib.error.HTTPError, urllib.error.URLError):
@@ -223,7 +231,8 @@ class BottlesRunner:
 
             if local_checksum != checksum:
                 logging.error(f"Downloaded file [{file}] looks corrupted.")
-                logging.error(f"Source checksum: [{checksum}] downloaded: [{local_checksum}]")
+                logging.error(
+                    f"Source checksum: [{checksum}] downloaded: [{local_checksum}]")
 
                 os.remove(file_path)
                 GLib.idle_add(download_entry.remove)
@@ -233,20 +242,21 @@ class BottlesRunner:
         return True
 
     # Component installation
-    def async_install_component(self, args:list) -> None:
+    def async_install_component(self, args: list) -> None:
         component_type, component_name, after, func, checks = args
 
-        manifest = self.fetch_component_manifest(component_type, component_name)
+        manifest = self.fetch_component_manifest(
+            component_type, component_name)
 
         logging.info(f"Installing component: [{component_name}].")
 
         # Download component
         download = self.download_component(component_type,
-                                manifest["File"][0]["url"],
-                                manifest["File"][0]["file_name"],
-                                manifest["File"][0]["rename"],
-                                checksum=manifest["File"][0]["file_checksum"],
-                                func=func)
+                                           manifest["File"][0]["url"],
+                                           manifest["File"][0]["file_name"],
+                                           manifest["File"][0]["rename"],
+                                           checksum=manifest["File"][0]["file_checksum"],
+                                           func=func)
 
         if not download and func:
             return func(failed=True)
@@ -279,16 +289,19 @@ class BottlesRunner:
         # Re-populate local lists
         self.fetch_components()
 
-    def install_component(self, component_type:str, component_name:str, after=False, func=False, checks=True) -> None:
+    def install_component(self, component_type: str, component_name: str, after=False, func=False, checks=True) -> None:
         if self.utils_conn.check_connection(True):
-            RunAsync(self.async_install_component, None, [component_type, component_name, after, func, checks])
+            RunAsync(self.async_install_component, None, [
+                     component_type, component_name, after, func, checks])
     '''
     Method for dependency installations
     '''
-    def async_install_dependency(self, args:list) -> bool:
+
+    def async_install_dependency(self, args: list) -> bool:
         configuration, dependency, widget = args
         self.download_manager = DownloadManager(self.window)
-        download_entry = self.download_manager.new_download(dependency[0], False)
+        download_entry = self.download_manager.new_download(
+            dependency[0], False)
         has_no_uninstaller = False
 
         if configuration["Versioning"]:
@@ -324,10 +337,10 @@ class BottlesRunner:
             # Step type: install_exe, install_msi
             if step["action"] in ["install_exe", "install_msi"]:
                 download = self.download_component("dependency",
-                                        step.get("url"),
-                                        step.get("file_name"),
-                                        step.get("rename"),
-                                        checksum=step.get("file_checksum"))
+                                                   step.get("url"),
+                                                   step.get("file_name"),
+                                                   step.get("rename"),
+                                                   checksum=step.get("file_checksum"))
                 if download:
                     if step.get("rename"):
                         file = step.get("rename")
@@ -343,7 +356,7 @@ class BottlesRunner:
                     if widget is not None:
                         widget.btn_install.set_sensitive(True)
                     return False
-            
+
             # Step type: uninstall
             if step["action"] == "uninstall":
                 file_name = step["file_name"]
@@ -356,19 +369,20 @@ class BottlesRunner:
                     comunicate=True)
                 uuid = uuid.strip()
                 if uuid != "":
-                    logging.info(f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}].")
+                    logging.info(
+                        f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}].")
                     RunnerUtilities().run_uninstaller(configuration, uuid)
-                    
+
             # Step type: cab_extract
             if step["action"] == "cab_extract":
-                has_no_uninstaller = True # cab extracted has no uninstaller
+                has_no_uninstaller = True  # cab extracted has no uninstaller
 
                 if validate_url(step["url"]):
                     download = self.download_component("dependency",
-                                            step.get("url"),
-                                            step.get("file_name"),
-                                            step.get("rename"),
-                                            checksum=step.get("file_checksum"))
+                                                       step.get("url"),
+                                                       step.get("file_name"),
+                                                       step.get("rename"),
+                                                       checksum=step.get("file_checksum"))
                     if download:
                         if step.get("rename"):
                             file = step.get("rename")
@@ -395,9 +409,11 @@ class BottlesRunner:
                     path = path.replace("temp/", f"{BottlesPaths.temp}/")
 
                     if step.get("rename"):
-                        file_path = os.path.splitext(f"{step.get('rename')}")[0]
+                        file_path = os.path.splitext(
+                            f"{step.get('rename')}")[0]
                     else:
-                        file_path = os.path.splitext(f"{step.get('file_name')}")[0]
+                        file_path = os.path.splitext(
+                            f"{step.get('file_name')}")[0]
 
                     if not CabExtract().run(
                         f"{path}/{step.get('file_name')}",
@@ -409,14 +425,14 @@ class BottlesRunner:
 
             # Step type: archive_extract
             if step["action"] == "archive_extract":
-                has_no_uninstaller = True # extracted archives has no uninstaller
+                has_no_uninstaller = True  # extracted archives has no uninstaller
 
                 if validate_url(step["url"]):
                     download = self.download_component("dependency",
-                                            step.get("url"),
-                                            step.get("file_name"),
-                                            step.get("rename"),
-                                            checksum=step.get("file_checksum"))
+                                                       step.get("url"),
+                                                       step.get("file_name"),
+                                                       step.get("rename"),
+                                                       checksum=step.get("file_checksum"))
 
                     if download:
                         if step.get("rename"):
@@ -427,16 +443,17 @@ class BottlesRunner:
                         archive_name = os.path.splitext(file)[0]
 
                         if os.path.exists(f"{BottlesPaths.temp}/{archive_name}"):
-                            shutil.rmtree(f"{BottlesPaths.temp}/{archive_name}")
+                            shutil.rmtree(
+                                f"{BottlesPaths.temp}/{archive_name}")
 
                         os.makedirs(f"{BottlesPaths.temp}/{archive_name}")
                         patoolib.extract_archive(
-                            f"{BottlesPaths.temp}/{file}", 
+                            f"{BottlesPaths.temp}/{file}",
                             outdir=f"{BottlesPaths.temp}/{archive_name}")
 
             # Step type: install_cab_fonts
             if step["action"] in ["install_cab_fonts", "install_fonts"]:
-                has_no_uninstaller = True # cab extracted has no uninstaller
+                has_no_uninstaller = True  # cab extracted has no uninstaller
 
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
@@ -449,12 +466,12 @@ class BottlesRunner:
 
             # Step type: copy_cab_dll
             if step["action"] in ["copy_cab_dll", "copy_dll"]:
-                has_no_uninstaller = True # cab extracted has no uninstaller
+                has_no_uninstaller = True  # cab extracted has no uninstaller
 
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
                 bottle_path = RunnerUtilities().get_bottle_path(configuration)
-                
+
                 try:
                     if "*" in step.get('file_name'):
                         files = glob(f"{path}/{step.get('file_name')}")
@@ -473,9 +490,10 @@ class BottlesRunner:
                     break
 
             # Step type: override_dll
-            if step["action"] == "override_dll":   
+            if step["action"] == "override_dll":
                 if step.get("url") and step.get("url").startswith("temp/"):
-                    path = step["url"].replace("temp/", f"{BottlesPaths.temp}/")
+                    path = step["url"].replace(
+                        "temp/", f"{BottlesPaths.temp}/")
                     path = f"{path}/{step.get('dll')}"
 
                     for dll in glob(path):
@@ -500,7 +518,7 @@ class BottlesRunner:
                     value=step.get("value"),
                     data=step.get("data"),
                     keyType=step.get("type"))
-            
+
             # Step type: register_font
             if step["action"] == "register_font":
                 self.reg_add(
@@ -513,7 +531,8 @@ class BottlesRunner:
         if dependency[0] not in configuration.get("Installed_Dependencies"):
             dependencies = [dependency[0]]
             if configuration.get("Installed_Dependencies"):
-                dependencies = configuration["Installed_Dependencies"]+[dependency[0]]
+                dependencies = configuration["Installed_Dependencies"] + \
+                    [dependency[0]]
 
             self.update_configuration(
                 configuration,
@@ -546,13 +565,13 @@ class BottlesRunner:
 
         return True
 
-    def install_dependency(self, configuration:BottleConfig, dependency:list, widget:Gtk.Widget = None) -> None:
+    def install_dependency(self, configuration: BottleConfig, dependency: list, widget: Gtk.Widget = None) -> None:
         if self.utils_conn.check_connection(True):
             RunAsync(self.async_install_dependency, None, [configuration,
                                                            dependency,
                                                            widget])
 
-    def remove_dependency(self, configuration:BottleConfig, dependency:list, widget:Gtk.Widget) -> None:
+    def remove_dependency(self, configuration: BottleConfig, dependency: list, widget: Gtk.Widget) -> None:
         logging.info(
             f"Removing dependency: [{ dependency[0]}] from bottle: [{configuration['Name']}] configuration.")
 
@@ -582,7 +601,7 @@ class BottlesRunner:
         GLib.idle_add(widget.btn_install.set_visible, True)
         GLib.idle_add(widget.btn_remove.set_visible, False)
 
-    def remove_program(self, configuration:BottleConfig, program_name: str):
+    def remove_program(self, configuration: BottleConfig, program_name: str):
         logging.info(
             f"Removing program: [{ program_name }] from bottle: [{configuration['Name']}] configuration.")
 
@@ -601,10 +620,9 @@ class BottlesRunner:
         RunnerUtilities().run_uninstaller(configuration, uuid)
 
     # Run installer
-    
 
     # Check local runners
-    def check_runners(self, install_latest:bool=True, after=False) -> bool:
+    def check_runners(self, install_latest: bool = True, after=False) -> bool:
         runners = glob("%s/*/" % BottlesPaths.runners)
         self.runners_available = []
 
@@ -635,7 +653,8 @@ class BottlesRunner:
             self.runners_available.append(runner.split("/")[-2])
 
         if len(self.runners_available) > 0:
-            logging.info(f"Runners found: [{'|'.join(self.runners_available)}]")
+            logging.info(
+                f"Runners found: [{'|'.join(self.runners_available)}]")
 
         '''
         If there are no locally installed runners, download the latest
@@ -643,7 +662,8 @@ class BottlesRunner:
         A very special thanks to Lutris & GloriousEggroll for extra builds <3!
         '''
 
-        tmp_runners = [x for x in self.runners_available if not x.startswith('sys-')]
+        tmp_runners = [
+            x for x in self.runners_available if not x.startswith('sys-')]
 
         if len(tmp_runners) == 0 and install_latest:
             logging.warning("No runners found.")
@@ -673,11 +693,12 @@ class BottlesRunner:
         return True
 
     # Check local dxvks
-    def check_dxvk(self, install_latest:bool=True, no_async:bool=False) -> bool:
+    def check_dxvk(self, install_latest: bool = True, no_async: bool = False) -> bool:
         dxvk_list = glob("%s/*/" % BottlesPaths.dxvk)
         self.dxvk_available = []
 
-        for dxvk in dxvk_list: self.dxvk_available.append(dxvk.split("/")[-2])
+        for dxvk in dxvk_list:
+            self.dxvk_available.append(dxvk.split("/")[-2])
 
         if len(self.dxvk_available) > 0:
             logging.info(f"Dxvk found: [{'|'.join(self.dxvk_available)}]")
@@ -690,9 +711,11 @@ class BottlesRunner:
                 try:
                     dxvk_version = next(iter(self.supported_dxvk))
                     if no_async:
-                        self.async_install_component(["dxvk", dxvk_version, False, False, False])
+                        self.async_install_component(
+                            ["dxvk", dxvk_version, False, False, False])
                     else:
-                        self.install_component("dxvk", dxvk_version, checks=False)
+                        self.install_component(
+                            "dxvk", dxvk_version, checks=False)
                 except StopIteration:
                     return False
             else:
@@ -700,11 +723,12 @@ class BottlesRunner:
         return True
 
     # Check local vkd3d
-    def check_vkd3d(self, install_latest:bool=True, no_async:bool=False) -> bool:
+    def check_vkd3d(self, install_latest: bool = True, no_async: bool = False) -> bool:
         vkd3d_list = glob("%s/*/" % BottlesPaths.vkd3d)
         self.vkd3d_available = []
 
-        for vkd3d in vkd3d_list: self.vkd3d_available.append(vkd3d.split("/")[-2])
+        for vkd3d in vkd3d_list:
+            self.vkd3d_available.append(vkd3d.split("/")[-2])
 
         if len(self.vkd3d_available) > 0:
             logging.info(f"Vkd3d found: [{'|'.join(self.vkd3d_available)}]")
@@ -717,9 +741,11 @@ class BottlesRunner:
                 try:
                     vkd3d_version = next(iter(self.supported_vkd3d))
                     if no_async:
-                        self.async_install_component(["vkd3d", vkd3d_version, False, False, False])
+                        self.async_install_component(
+                            ["vkd3d", vkd3d_version, False, False, False])
                     else:
-                        self.install_component("vkd3d", vkd3d_version, checks=False)
+                        self.install_component(
+                            "vkd3d", vkd3d_version, checks=False)
                 except StopIteration:
                     return False
             else:
@@ -744,18 +770,18 @@ class BottlesRunner:
             p = "\\".join(executable_path.split("\\")[:-1])
             p = p.replace("C:\\", "\\drive_c\\").replace("\\", "/")
             return RunnerUtilities().get_bottle_path(configuration) + p
-            
+
         p = "\\".join(executable_path.split("/")[:-1])
         p = f"/drive_c/{p}"
         return p.replace("\\", "/")
 
     # Get installed programs
-    def get_programs(self, configuration:BottleConfig) -> list:
+    def get_programs(self, configuration: BottleConfig) -> list:
         '''TODO: Programs found should be stored in a database
         TN: Will be fixed in Trento release'''
         bottle = "%s/%s" % (BottlesPaths.bottles, configuration.get("Path"))
-        results =  glob("%s/drive_c/users/*/Start Menu/Programs/**/*.lnk" % bottle,
-                        recursive=True)
+        results = glob("%s/drive_c/users/*/Start Menu/Programs/**/*.lnk" % bottle,
+                       recursive=True)
         results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle,
                         recursive=True)
         results += glob("%s/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle,
@@ -774,7 +800,7 @@ class BottlesRunner:
                 with open(program, "r", encoding='utf-8', errors='ignore') as lnk:
                     lnk = lnk.read()
                     executable_path = re.search('C:(.*).exe', lnk)
-                    
+
                     if executable_path is not None:
                         executable_path = executable_path.group(0)
                     else:
@@ -785,10 +811,12 @@ class BottlesRunner:
 
                     path = path.replace(".lnk", "")
                     executable_name = executable_path.split("\\")[-1][:-4]
-                    program_folder = self.__get_exe_parent_dir(configuration, executable_path)
+                    program_folder = self.__get_exe_parent_dir(
+                        configuration, executable_path)
 
                     icon = self.__find_program_icon(executable_name)
-                    installed_programs.append([path, executable_path, icon, program_folder])
+                    installed_programs.append(
+                        [path, executable_path, icon, program_folder])
             except:
                 logging.error(F"Cannot find executable for [{path}].")
 
@@ -797,7 +825,8 @@ class BottlesRunner:
             for program in ext_programs:
                 program_folder = ext_programs[program].split("/")[-1]
                 icon = self.__find_program_icon(program)
-                installed_programs.append([program, ext_programs[program], icon, program_folder])
+                installed_programs.append(
+                    [program, ext_programs[program], icon, program_folder])
 
         return installed_programs
 
@@ -814,7 +843,7 @@ class BottlesRunner:
         return True
 
     # Fetch installer manifest
-    def fetch_installer_manifest(self, installer_name:str, installer_category:str, plain:bool=False) -> Union[str, dict, bool]:
+    def fetch_installer_manifest(self, installer_name: str, installer_category: str, plain: bool = False) -> Union[str, dict, bool]:
         if self.utils_conn.check_connection():
             with urllib.request.urlopen("%s/%s/%s.yml" % (
                 BottlesRepositories.installers,
@@ -836,29 +865,35 @@ class BottlesRunner:
                     if component[1]["Category"] == "runners":
 
                         if component[1]["Sub-category"] == "wine":
-                            self.supported_wine_runners[component[0]] = component[1]
+                            self.supported_wine_runners[component[0]
+                                                        ] = component[1]
                             if component[0] in self.runners_available:
-                                self.supported_wine_runners[component[0]]["Installed"] = True
+                                self.supported_wine_runners[component[0]
+                                                            ]["Installed"] = True
 
                         if component[1]["Sub-category"] == "proton":
-                            self.supported_proton_runners[component[0]] = component[1]
+                            self.supported_proton_runners[component[0]
+                                                          ] = component[1]
                             if component[0] in self.runners_available:
-                                self.supported_proton_runners[component[0]]["Installed"] = True
+                                self.supported_proton_runners[component[0]
+                                                              ]["Installed"] = True
 
                     if component[1]["Category"] == "dxvk":
                         self.supported_dxvk[component[0]] = component[1]
                         if component[0] in self.dxvk_available:
-                            self.supported_dxvk[component[0]]["Installed"] = True
+                            self.supported_dxvk[component[0]
+                                                ]["Installed"] = True
 
                     if component[1]["Category"] == "vkd3d":
                         self.supported_vkd3d[component[0]] = component[1]
                         if component[0] in self.vkd3d_available:
-                            self.supported_vkd3d[component[0]]["Installed"] = True
+                            self.supported_vkd3d[component[0]
+                                                 ]["Installed"] = True
                 return True
         return False
 
     # Fetch component manifest
-    def fetch_component_manifest(self, component_type:str, component_name:str, plain:bool=False) -> Union[str, dict, bool]:
+    def fetch_component_manifest(self, component_type: str, component_name: str, plain: bool = False) -> Union[str, dict, bool]:
         if component_type == "runner":
             component = self.supported_wine_runners[component_name]
         if component_type == "runner:proton":
@@ -900,7 +935,7 @@ class BottlesRunner:
         return True
 
     # Fetch dependency manifest
-    def fetch_dependency_manifest(self, dependency_name:str, dependency_category:str, plain:bool=False) -> Union[str, dict, bool]:
+    def fetch_dependency_manifest(self, dependency_name: str, dependency_category: str, plain: bool = False) -> Union[str, dict, bool]:
         if self.utils_conn.check_connection():
             with urllib.request.urlopen("%s/%s/%s.yml" % (
                 BottlesRepositories.dependencies,
@@ -919,7 +954,7 @@ class BottlesRunner:
         return len(data)
 
     # Check local bottles
-    def check_bottles(self, silent:bool=False) -> None:
+    def check_bottles(self, silent: bool = False) -> None:
         bottles = glob("%s/*/" % BottlesPaths.bottles)
 
         '''
@@ -956,7 +991,8 @@ class BottlesRunner:
                                               key,
                                               BottlesSamples.configuration[key])
 
-                missing_parameters_keys = BottlesSamples.configuration["Parameters"].keys() - configuration_file_yaml["Parameters"].keys()
+                missing_parameters_keys = BottlesSamples.configuration["Parameters"].keys(
+                ) - configuration_file_yaml["Parameters"].keys()
                 for key in missing_parameters_keys:
                     logging.warning(
                         f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] configuration Parameters, updating.")
@@ -973,12 +1009,11 @@ class BottlesRunner:
                 new_configuration_yaml["Environment"] = "Undefined"
                 self.local_bottles[bottle_name_path] = new_configuration_yaml
 
-
         if len(self.local_bottles) > 0 and not silent:
             logging.info(f"Bottles found: {'|'.join(self.local_bottles)}")
 
     # Update parameters in bottle configuration
-    def update_configuration(self, configuration:BottleConfig, key:str, value:str, scope:str="", no_update:bool=False, remove:bool=False) -> dict:
+    def update_configuration(self, configuration: BottleConfig, key: str, value: str, scope: str = "", no_update: bool = False, remove: bool = False) -> dict:
         logging.info(
             f"Setting Key: [{key}] to [{value}] for bottle: [{configuration['Name']}] …")
 
@@ -1006,10 +1041,10 @@ class BottlesRunner:
         return configuration
 
     # Create new wineprefix
-    def async_create_bottle(self, args:list) -> None:
+    def async_create_bottle(self, args: list) -> None:
         logging.info("Creating the wineprefix …")
 
-        name, environment, path, runner, dxvk, vkd3d, versioning, dialog = args
+        name, environment, path, runner, dxvk, vkd3d, versioning, dialog, arch = args
 
         update_output = dialog.update_output
 
@@ -1025,13 +1060,16 @@ class BottlesRunner:
             update_output(_("No vkd3d found, installing the latest version …"))
             self.check_vkd3d(no_async=True)
 
-        if not runner: runner = self.runners_available[0]
+        if not runner:
+            runner = self.runners_available[0]
         runner_name = runner
 
-        if not dxvk: dxvk = self.dxvk_available[0]
+        if not dxvk:
+            dxvk = self.dxvk_available[0]
         dxvk_name = dxvk
 
-        if not vkd3d: vkd3d = self.vkd3d_available[0]
+        if not vkd3d:
+            vkd3d = self.vkd3d_available[0]
         vkd3d_name = vkd3d
 
         # If runner is proton, files are located to the dist path
@@ -1045,7 +1083,7 @@ class BottlesRunner:
         if runner.startswith("sys-"):
             runner = "wine"
         else:
-            runner = "%s/%s/bin/wine64" % (BottlesPaths.runners, runner)
+            runner = "%s/%s/bin/wine" % (BottlesPaths.runners, runner)
 
         # Define bottle parameters
         bottle_name = name
@@ -1053,7 +1091,8 @@ class BottlesRunner:
 
         if path == "":
             bottle_custom_path = False
-            bottle_complete_path = "%s/%s" % (BottlesPaths.bottles, bottle_name_path)
+            bottle_complete_path = "%s/%s" % (
+                BottlesPaths.bottles, bottle_name_path)
         else:
             bottle_custom_path = True
             bottle_complete_path = path
@@ -1062,10 +1101,11 @@ class BottlesRunner:
         RunAsync(dialog.pulse, None)
 
         # Execute wineboot
-        update_output( _("The wine configuration is being updated …"))
-        command = "DISPLAY=:3.0 WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH=win64 {runner} wineboot /nogui".format(
-            path = bottle_complete_path,
-            runner = runner
+        update_output(_("The wine configuration is being updated …"))
+        command = "DISPLAY=:3.0 WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH={arch} {runner} wineboot /nogui".format(
+            path=bottle_complete_path,
+            arch=arch,
+            runner=runner
         )
         subprocess.Popen(command, shell=True).communicate()
         update_output(_("Wine configuration updated!"))
@@ -1077,6 +1117,7 @@ class BottlesRunner:
 
         configuration = BottlesSamples.configuration
         configuration["Name"] = bottle_name
+        configuration["Arch"] = arch
         configuration["Runner"] = runner_name
         configuration["DXVK"] = dxvk_name
         configuration["VKD3D"] = vkd3d_name
@@ -1088,13 +1129,15 @@ class BottlesRunner:
         configuration["Environment"] = environment
         configuration["Creation_Date"] = str(datetime.now())
         configuration["Update_Date"] = str(datetime.now())
-        if versioning: configuration["Versioning"] = True
+        if versioning:
+            configuration["Versioning"] = True
 
         # Apply environment configuration
         logging.info(f"Applying environment: [{environment}] …")
         update_output(_("Applying environment: {0} …").format(environment))
         if environment != "Custom":
-            environment_parameters = BottlesSamples.environments[environment.lower()]["Parameters"]
+            environment_parameters = BottlesSamples.environments[environment.lower(
+            )]["Parameters"]
             for parameter in configuration["Parameters"]:
                 if parameter in environment_parameters:
                     configuration["Parameters"][parameter] = environment_parameters[parameter]
@@ -1111,13 +1154,13 @@ class BottlesRunner:
         # Perform dxvk installation if configured
         if configuration["Parameters"]["dxvk"]:
             logging.info("Installing dxvk …")
-            update_output( _("Installing dxvk …"))
+            update_output(_("Installing dxvk …"))
             self.install_dxvk(configuration, version=dxvk_name)
 
         # Perform vkd3d installation if configured
         if configuration["Parameters"]["vkd3d"]:
             logging.info("Installing vkd3d …")
-            update_output( _("Installing vkd3d …"))
+            update_output(_("Installing vkd3d …"))
             self.install_vkd3d(configuration, version=vkd3d_name)
 
         time.sleep(1)
@@ -1125,8 +1168,9 @@ class BottlesRunner:
         # Create first state if versioning enabled
         if versioning:
             logging.info("Creating versioning state 0 …")
-            update_output( _("Creating versioning state 0 …"))
-            self.versioning_manager.async_create_bottle_state([configuration, "First boot", False, True, False])
+            update_output(_("Creating versioning state 0 …"))
+            self.versioning_manager.async_create_bottle_state(
+                [configuration, "First boot", False, True, False])
 
         # Set status created and UI usability
         logging.info(f"Bottle: [{bottle_name}] successfully created!")
@@ -1137,7 +1181,17 @@ class BottlesRunner:
 
         dialog.finish()
 
-    def create_bottle(self, name, environment:str, path:str=False, runner:RunnerName=False, dxvk:bool=False, vkd3d:bool=False, versioning:bool=False, dialog:Gtk.Widget=None) -> None:
+    def create_bottle(self,
+                      name,
+                      environment: str,
+                      path: str = False,
+                      runner: RunnerName = False,
+                      dxvk: bool = False,
+                      vkd3d: bool = False,
+                      versioning: bool = False,
+                      dialog: Gtk.Widget = None,
+                      arch: str = "win64"
+                      ) -> None:
         RunAsync(self.async_create_bottle, None, [name,
                                                   environment,
                                                   path,
@@ -1145,10 +1199,11 @@ class BottlesRunner:
                                                   dxvk,
                                                   vkd3d,
                                                   versioning,
-                                                  dialog])
+                                                  dialog,
+                                                  arch])
 
     # Get latest installed runner
-    def get_latest_runner(self, runner_type:RunnerType="wine") -> list:
+    def get_latest_runner(self, runner_type: RunnerType = "wine") -> list:
         try:
             if runner_type in ["", "wine"]:
                 return [idx for idx in self.runners_available if idx.lower().startswith("lutris")][0]
@@ -1157,7 +1212,7 @@ class BottlesRunner:
             return "Undefined"
 
     # Get bottle path size
-    def get_bottle_size(self, configuration:BottleConfig, human:bool=True) -> Union[str, float]:
+    def get_bottle_size(self, configuration: BottleConfig, human: bool = True) -> Union[str, float]:
         path = configuration.get("Path")
 
         if not configuration.get("Custom_Path"):
@@ -1166,7 +1221,7 @@ class BottlesRunner:
         return self.get_path_size(path, human)
 
     # Delete a wineprefix
-    def async_delete_bottle(self, args:list) -> bool:
+    def async_delete_bottle(self, args: list) -> bool:
         logging.info("Deleting a bottle …")
 
         configuration = args[0]
@@ -1178,7 +1233,8 @@ class BottlesRunner:
 
             logging.info(f"Removing the bottle ..")
             if not configuration.get("Custom_Path"):
-                path = "%s/%s" % (BottlesPaths.bottles, configuration.get("Path"))
+                path = "%s/%s" % (BottlesPaths.bottles,
+                                  configuration.get("Path"))
 
             shutil.rmtree(path)
             del self.local_bottles[configuration.get("Path")]
@@ -1191,16 +1247,17 @@ class BottlesRunner:
         logging.error("Empty path found, failing to avoid disasters.")
         return False
 
-    def delete_bottle(self, configuration:BottleConfig) -> None:
+    def delete_bottle(self, configuration: BottleConfig) -> None:
         RunAsync(self.async_delete_bottle, None, [configuration])
 
     #  Repair a bottle generating a new configuration
-    def repair_bottle(self, configuration:BottleConfig) -> bool:
-        logging.info(f"Trying to repair the bottle: [{configuration['Name']}] …")
+    def repair_bottle(self, configuration: BottleConfig) -> bool:
+        logging.info(
+            f"Trying to repair the bottle: [{configuration['Name']}] …")
 
         bottle_complete_path = f"{BottlesPaths.bottles}/{configuration['Name']}"
 
-        # Create new configuration with path as name and Custom environment 
+        # Create new configuration with path as name and Custom environment
         new_configuration = BottlesSamples.configuration
         new_configuration["Name"] = configuration.get("Name")
         new_configuration["Runner"] = self.runners_available[0]
@@ -1250,19 +1307,20 @@ class BottlesRunner:
         return processes
 
     # Add key from register
-    def reg_add(self, configuration:BottleConfig, key:str, value:str, data:str, keyType:str = False) -> None:
+    def reg_add(self, configuration: BottleConfig, key: str, value: str, data: str, keyType: str = False) -> None:
         logging.info(
             f"Adding Key: [{key}] with Value: [{value}] and Data: [{data}] in register bottle: {configuration['Name']}")
 
         command = "reg add '%s' /v '%s' /d %s /f" % (key, value, data)
 
         if keyType:
-            command = "reg add '%s' /v '%s' /t %s /d %s /f" % (key, value, keyType, data)
-        
+            command = "reg add '%s' /v '%s' /t %s /d %s /f" % (
+                key, value, keyType, data)
+
         RunnerUtilities().run_command(configuration, command)
 
     # Remove key from register
-    def reg_delete(self, configuration:BottleConfig, key:str, value:str) -> None:
+    def reg_delete(self, configuration: BottleConfig, key: str, value: str) -> None:
         logging.info(
             f"Removing Value: [{key}] for Key: [{value}] in register bottle: {configuration['Name']}")
 
@@ -1274,7 +1332,8 @@ class BottlesRunner:
     TODO: A good task for the future is to use the built-in methods
     to install the new dlls and register the override for dxvk.
     '''
-    def install_dxvk(self, configuration:BottleConfig, remove:bool=False, version:str=False) -> bool:
+
+    def install_dxvk(self, configuration: BottleConfig, remove: bool = False, version: str = False) -> bool:
         logging.info(f"Installing dxvk for bottle: [{configuration['Name']}].")
 
         if version:
@@ -1284,19 +1343,23 @@ class BottlesRunner:
 
         option = "uninstall" if remove else "install"
 
-        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --with-d3d10'.format (
-            path = "%s/%s" % (BottlesPaths.bottles, configuration.get("Path")),
-            runner = "%s/%s/bin" % (BottlesPaths.runners, configuration.get("Runner")),
-            dxvk_setup = "%s/%s/setup_dxvk.sh" % (BottlesPaths.dxvk, dxvk_version),
-            option = option)
+        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --with-d3d10'.format(
+            path="%s/%s" % (BottlesPaths.bottles, configuration.get("Path")),
+            runner="%s/%s/bin" % (BottlesPaths.runners,
+                                  configuration.get("Runner")),
+            dxvk_setup="%s/%s/setup_dxvk.sh" % (
+                BottlesPaths.dxvk, dxvk_version),
+            option=option)
 
         return subprocess.Popen(command, shell=True).communicate()
 
     '''
     Install vkd3d using official script
     '''
-    def install_vkd3d(self, configuration:BottleConfig, remove:bool=False, version:str=False) -> bool:
-        logging.info(f"Installing vkd3d for bottle: [{configuration['Name']}].")
+
+    def install_vkd3d(self, configuration: BottleConfig, remove: bool = False, version: str = False) -> bool:
+        logging.info(
+            f"Installing vkd3d for bottle: [{configuration['Name']}].")
 
         if version:
             vkd3d_version = version
@@ -1309,28 +1372,30 @@ class BottlesRunner:
 
         option = "uninstall" if remove else "install"
 
-        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {vkd3d_setup} {option}'.format (
-            path = "%s/%s" % (BottlesPaths.bottles, configuration.get("Path")),
-            runner = "%s/%s/bin" % (BottlesPaths.runners, configuration.get("Runner")),
-            vkd3d_setup = "%s/%s/setup_vkd3d_proton.sh" % (BottlesPaths.vkd3d, vkd3d_version),
-            option = option)
+        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {vkd3d_setup} {option}'.format(
+            path="%s/%s" % (BottlesPaths.bottles, configuration.get("Path")),
+            runner="%s/%s/bin" % (BottlesPaths.runners,
+                                  configuration.get("Runner")),
+            vkd3d_setup="%s/%s/setup_vkd3d_proton.sh" % (
+                BottlesPaths.vkd3d, vkd3d_version),
+            option=option)
 
         return subprocess.Popen(command, shell=True).communicate()
 
     # Remove dxvk using official script
-    def remove_dxvk(self, configuration:BottleConfig) -> None:
+    def remove_dxvk(self, configuration: BottleConfig) -> None:
         logging.info(f"Removing dxvk for bottle: [{configuration['Name']}].")
 
         self.install_dxvk(configuration, remove=True)
 
     # Remove vkd3d using official script
-    def remove_vkd3d(self, configuration:BottleConfig) -> None:
+    def remove_vkd3d(self, configuration: BottleConfig) -> None:
         logging.info(f"Removing vkd3d for bottle: [{configuration['Name']}].")
 
         self.install_vkd3d(configuration, remove=True)
 
     # Override dlls in system32/syswow64 paths
-    def dll_override(self, configuration:BottleConfig, arch:str, dlls:list, source:str, revert:bool=False) -> bool:
+    def dll_override(self, configuration: BottleConfig, arch: str, dlls: list, source: str, revert: bool = False) -> bool:
         arch = "system32" if arch == 32 else "syswow64"
         path = "%s/%s/drive_c/windows/%s" % (BottlesPaths.bottles,
                                              configuration.get("Path"),
@@ -1339,20 +1404,22 @@ class BottlesRunner:
         try:
             if revert:
                 for dll in dlls:
-                    shutil.move("%s/%s.back" % (path, dll), "%s/%s" % (path, dll))
+                    shutil.move("%s/%s.back" %
+                                (path, dll), "%s/%s" % (path, dll))
             else:
                 '''
                 Backup old dlls and install new one
                 '''
                 for dll in dlls:
-                    shutil.move("%s/%s" % (path, dll), "%s/%s.old" % (path, dll))
+                    shutil.move("%s/%s" % (path, dll),
+                                "%s/%s.old" % (path, dll))
                     shutil.copy("%s/%s" % (source, dll), "%s/%s" % (path, dll))
         except:
             return False
         return True
 
     # Toggle virtual desktop for a bottle
-    def toggle_virtual_desktop(self, configuration:BottleConfig, state:bool, resolution:str="800x600") -> None:
+    def toggle_virtual_desktop(self, configuration: BottleConfig, state: bool, resolution: str = "800x600") -> None:
         key = "HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops"
         if state:
             self.reg_add(configuration, key, "Default", resolution)
@@ -1362,6 +1429,7 @@ class BottlesRunner:
     '''
     Methods for search and import wineprefixes from other managers
     '''
+
     def search_wineprefixes(self) -> list:
         importer_wineprefixes = []
 
@@ -1375,7 +1443,7 @@ class BottlesRunner:
         # Count results
         is_lutris = len(lutris_results)
         is_playonlinux = is_lutris + len(playonlinux_results)
-        i=1
+        i = 1
 
         for wineprefix in results:
             wineprefix_name = wineprefix.split("/")[-2]
@@ -1383,7 +1451,7 @@ class BottlesRunner:
             # Identify manager by index
             if i <= is_lutris:
                 wineprefix_manager = "Lutris"
-            elif i <=  is_playonlinux:
+            elif i <= is_playonlinux:
                 wineprefix_manager = "PlayOnLinux"
             else:
                 wineprefix_manager = "Bottles v1"
@@ -1398,12 +1466,12 @@ class BottlesRunner:
                         "Path": wineprefix,
                         "Lock": wineprefix_lock
                     })
-            i+=1
+            i += 1
 
         logging.info(f"Found {len(importer_wineprefixes)} wineprefixes ..")
         return importer_wineprefixes
 
-    def import_wineprefix(self, wineprefix:dict, widget:Gtk.Widget) -> bool:
+    def import_wineprefix(self, wineprefix: dict, widget: Gtk.Widget) -> bool:
         logging.info(
             f"Importing wineprefix [{wineprefix['Name']}] in a new bottle …")
 
@@ -1426,7 +1494,8 @@ class BottlesRunner:
         open('%s/bottle.lock' % wineprefix.get("Path"), 'a').close()
 
         # Copy wineprefix files in the new bottle
-        command = "cp -a %s/* %s/" % (wineprefix.get("Path"), bottle_complete_path)
+        command = "cp -a %s/* %s/" % (wineprefix.get("Path"),
+                                      bottle_complete_path)
         subprocess.Popen(command, shell=True).communicate()
 
         # Create bottle configuration
@@ -1447,11 +1516,10 @@ class BottlesRunner:
         # Update bottles
         self.update_bottles(silent=True)
 
-
         logging.info(
             f"Wineprefix: [{wineprefix['Name']}] successfully imported!")
         return True
 
-    def browse_wineprefix(self, wineprefix:dict) -> bool:
+    def browse_wineprefix(self, wineprefix: dict) -> bool:
         return RunnerUtilities().open_filemanager(path_type="custom",
-                                     custom_path=wineprefix.get("Path"))
+                                                  custom_path=wineprefix.get("Path"))

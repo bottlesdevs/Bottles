@@ -7,6 +7,7 @@ class BottlesSamples:
 
     configuration = {
         "Name": "",
+        "Arch": "",
         "Runner": "",
         "DXVK": "",
         "VKD3D": "",

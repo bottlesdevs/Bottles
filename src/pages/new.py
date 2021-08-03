@@ -97,6 +97,7 @@ class BottlesNew(Handy.Window):
     box_advanced = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
+    combo_arch = Gtk.Template.Child()
     progressbar_creating = Gtk.Template.Child()
 
     environments = [
@@ -157,6 +158,7 @@ class BottlesNew(Handy.Window):
             self.combo_dxvk.append(dxvk, dxvk)
 
         self.combo_dxvk.set_active(0)
+        self.combo_arch.set_active_id("win64")
 
     def set_active_environment(self, widget, row):
         for w in self.list_environments.get_children():
@@ -194,8 +196,7 @@ class BottlesNew(Handy.Window):
         '''Show the creating page'''
         self.stack_create.set_visible_child_name("page_creating")
 
-        '''Create bottle
-        TODO: add dxvk version'''
+        '''Create bottle'''
         versioning_state = self.switch_versioning.get_state()
         if self.selected_environment == "Custom":
             runner = self.combo_runner.get_active_id()
@@ -219,7 +220,8 @@ class BottlesNew(Handy.Window):
                                   runner=runner,
                                   dxvk=self.combo_dxvk.get_active_id(),
                                   versioning=versioning_state,
-                                  dialog=self)
+                                  dialog=self,
+                                  arch=self.combo_arch.get_active_id())
 
     '''Concatenate label_output'''
     def idle_update_output(self, text):

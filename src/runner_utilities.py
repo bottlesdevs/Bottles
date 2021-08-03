@@ -158,6 +158,7 @@ class RunnerUtilities:
 
         path = configuration.get("Path")
         runner = configuration.get("Runner")
+        arch = configuration.get("Arch")
 
         # If runner is proton then set path to /dist
         if runner.startswith("Proton"):
@@ -170,7 +171,7 @@ class RunnerUtilities:
         if runner.startswith("sys-"):
             runner = "wine"
         else:
-            runner = "%s/%s/bin/wine64" % (BottlesPaths.runners, runner)
+            runner = f"{BottlesPaths.runners}/{runner}/bin/wine"
 
         if not configuration.get("Custom_Path"):
             path = "%s/%s" % (BottlesPaths.bottles, path)
@@ -247,12 +248,12 @@ class RunnerUtilities:
         environment_vars = " ".join(environment_vars)
 
         command = f"WINEPREFIX={path} "\
-            f"WINEARCH=win64 {environment_vars} {runner} {command}"
+            f"WINEARCH={arch} {environment_vars} {runner} {command}"
 
         # Check for gamemode enabled
         if gamemode_available and configuration["Parameters"]["gamemode"]:
             command = f"gamemoderun {command}"
-
+        print(command)
         if terminal:
             return UtilsTerminal(command)
 
