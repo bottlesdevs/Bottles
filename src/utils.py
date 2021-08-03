@@ -86,6 +86,7 @@ class UtilsTerminal():
                 f"command -v {terminal[0]} > /dev/null && echo 1 || echo 0",
                 shell=True,
                 stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+
             if "1" in terminal_check:
                 subprocess.Popen(
                     ' '.join(terminal) % f"bash -c '{command}'",
@@ -96,7 +97,7 @@ class UtilsTerminal():
 # Custom formatted logger
 class UtilsLogger(logging.getLoggerClass()):
 
-    color_map = {
+    __color_map = {
         "debug": 37,
         "info": 36,
         "warning": 33,
@@ -104,18 +105,18 @@ class UtilsLogger(logging.getLoggerClass()):
         "critical": 41
     }
 
-    format_log = {
+    __format_log = {
         'fmt': '%(asctime)s \033[1m%(levelname)s\033[0m: %(message)s',
         'datefmt': '%Y-%m-%d %H:%M:%S',
     }
 
-    def color(self, level, message):
-        color_id = self.color_map[level]
+    def __color(self, level, message):
+        color_id = self.__color_map[level]
         return "\033[%dm%s\033[0m" % (color_id, message)
 
     def __init__(self, formatter=None):
         if formatter is None:
-            formatter = self.format_log
+            formatter = self.__format_log
         formatter = logging.Formatter(**formatter)
 
         self.root.setLevel(logging.INFO)
@@ -126,19 +127,19 @@ class UtilsLogger(logging.getLoggerClass()):
         self.root.addHandler(handler)
 
     def debug(self, message):
-        self.root.debug(self.color("debug", message))
+        self.root.debug(self.__color("debug", message))
 
     def info(self, message):
-        self.root.info(self.color("info", message))
+        self.root.info(self.__color("info", message))
 
     def warning(self, message):
-        self.root.warning(self.color("warning", message))
+        self.root.warning(self.__color("warning", message))
 
     def error(self, message):
-        self.root.error(self.color("error", message))
+        self.root.error(self.__color("error", message))
 
     def critical(self, message):
-        self.root.critical(self.color("critical", message))
+        self.root.critical(self.__color("critical", message))
 
 # Files utilities
 class UtilsFiles():
@@ -216,7 +217,7 @@ class RunAsync(threading.Thread):
         self.source_id = None
         self.stop_request = threading.Event()
 
-        super(RunAsync, self).__init__(target=self.target, args=args, kwargs=kwargs)
+        super(RunAsync, self).__init__(target=self.__target, args=args, kwargs=kwargs)
 
         self.task_func = task_func
 
@@ -225,7 +226,7 @@ class RunAsync(threading.Thread):
 
         self.start()
 
-    def target(self, *args, **kwargs):
+    def __target(self, *args, **kwargs):
         result = None
         error = None
 

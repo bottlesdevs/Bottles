@@ -17,7 +17,14 @@ RunnerType = NewType('RunnerType', str)
 class RunnerUtilities:
 
     # Open file manager in different paths
-    def open_filemanager(self, configuration: BottleConfig = dict, path_type: str = "bottle", runner: str = "", dxvk: str = "", vkd3d: str = "", custom_path: str = "") -> bool:
+    def open_filemanager(self,
+                         configuration: BottleConfig = dict,
+                         path_type: str = "bottle",
+                         runner: str = "",
+                         dxvk: str = "",
+                         vkd3d: str = "",
+                         custom_path: str = ""
+                         ) -> bool:
         logging.info("Opening the file manager in the path …")
 
         if path_type == "bottle":
@@ -40,30 +47,43 @@ class RunnerUtilities:
         return subprocess.Popen(command, shell=True).communicate()
 
     # Run .lnk files in a bottle
-    def run_lnk(self, configuration: BottleConfig, file_path: str, arguments: str = False, environment: dict = False) -> None:
+    def run_lnk(self,
+                configuration: BottleConfig,
+                file_path: str,
+                arguments: str = False,
+                environment: dict = False
+                ) -> None:
         logging.info("Running link file on the bottle …")
         command = f"start /unix '{file_path}'"
         RunAsync(self.run_command, None, configuration,
                  command, False, environment)
 
     # Run wine executables/programs in a bottle
-    def run_executable(self, configuration: BottleConfig, file_path: str, arguments: str = False, environment: dict = False, no_async: bool = False, cwd: str = None) -> None:
+    def run_executable(self,
+                       configuration: BottleConfig,
+                       file_path: str,
+                       arguments: str = False,
+                       environment: dict = False,
+                       no_async: bool = False,
+                       cwd: str = None
+                       ) -> None:
         logging.info("Running an executable on the bottle …")
-        
+
+        command = f"'{file_path}'"
         if "msi" in file_path.split("."):
-            command = "msiexec /i '%s'" % file_path
+            command = f"msiexec /i '{file_path}'"
         elif "bat" in file_path.split("."):
-            command = "wineconsole cmd /c '%s'" % file_path
-        else:
-            command = "'%s'" % file_path
+            command = f"wineconsole cmd /c '{file_path}'"
 
         if arguments:
-            command = "%s %s" % (command, arguments)
+            command = f"{command} {arguments}"
 
         if no_async:
-            self.run_command(configuration, command, False, environment, True, cwd)
+            self.run_command(configuration, command,
+                             False, environment, True, cwd)
         else:
-            RunAsync(self.run_command, None, configuration, command, False, environment, False, cwd)
+            RunAsync(self.run_command, None, configuration,
+                     command, False, environment, False, cwd)
 
     def run_wineboot(self, configuration: BottleConfig) -> None:
         logging.info("Running wineboot on the wineprefix …")
@@ -93,7 +113,7 @@ class RunnerUtilities:
         logging.info("Running a Control Panel on the wineprefix …")
         RunAsync(self.run_command, None, configuration, "control")
 
-    def run_uninstaller(self, configuration: BottleConfig, uuid: str = False) -> None:
+    def run_uninstaller(self, configuration: BottleConfig, uuid: str = False):
         logging.info("Running an Uninstaller on the wineprefix …")
         command = "uninstaller"
         if uuid:
@@ -105,7 +125,7 @@ class RunnerUtilities:
         RunAsync(self.run_command, None, configuration, "regedit")
 
     # Send status to a bottle
-    def send_status(self, configuration:BottleConfig, status:str) -> None:
+    def send_status(self, configuration: BottleConfig, status: str) -> None:
         logging.info(f"Sending Status: [{status}] to the wineprefix …")
 
         available_status = {
@@ -120,16 +140,22 @@ class RunnerUtilities:
         self.run_command(configuration, "wineboot %s" % option)
 
     # Execute command in a bottle
-    def run_command(self, configuration: BottleConfig, command: str, terminal: bool = False, environment: dict = False, comunicate: bool = False, cwd: str = None) -> bool:
+    def run_command(self,
+                    configuration: BottleConfig,
+                    command: str,
+                    terminal: bool = False,
+                    environment: dict = False,
+                    comunicate: bool = False,
+                    cwd: str = None
+                    ) -> bool:
         if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
             terminal = False
             if command in ["winedbg", "cmd"]:
                 command = f"wineconsole {command}"
-        
-        print(cwd)
+
         if not cwd:
             cwd = self.get_bottle_path(configuration)
-            
+
         path = configuration.get("Path")
         runner = configuration.get("Runner")
 
@@ -204,8 +230,8 @@ class RunnerUtilities:
 
         if parameters["discrete_gpu"]:
             if "nvidia" in subprocess.Popen(
-                "lspci | grep 'VGA'",
-                stdout=subprocess.PIPE,
+                    "lspci | grep 'VGA'",
+                    stdout=subprocess.PIPE,
                     shell=True).communicate()[0].decode("utf-8").lower():
                 environment_vars.append("__NV_PRIME_RENDER_OFFLOAD=1")
                 environment_vars.append("__GLX_VENDOR_LIBRARY_NAME='nvidia'")
@@ -220,12 +246,8 @@ class RunnerUtilities:
                                 ";".join(dll_overrides))
         environment_vars = " ".join(environment_vars)
 
-        command = "WINEPREFIX={path} WINEARCH=win64 {env} {runner} {command}".format(
-            path=path,
-            env=environment_vars,
-            runner=runner,
-            command=command
-        )
+        command = f"WINEPREFIX={path} "\
+            f"WINEARCH=win64 {environment_vars} {runner} {command}"
 
         # Check for gamemode enabled
         if gamemode_available and configuration["Parameters"]["gamemode"]:
@@ -236,10 +258,17 @@ class RunnerUtilities:
 
         if comunicate:
             try:
-                return subprocess.Popen(command, stdout=subprocess.PIPE, shell=True, cwd=cwd).communicate()[0].decode("utf-8")
+                return subprocess.Popen(command,
+                                        stdout=subprocess.PIPE,
+                                        shell=True,
+                                        cwd=cwd
+                                        ).communicate()[0].decode("utf-8")
             except:
                 # work around for `No such file or directory` error
-                return subprocess.Popen(command, stdout=subprocess.PIPE, shell=True).communicate()[0].decode("utf-8")
+                return subprocess.Popen(command,
+                                        stdout=subprocess.PIPE,
+                                        shell=True
+                                        ).communicate()[0].decode("utf-8")
 
         # TODO: configure cwd in bottle configuration
         try:
@@ -249,8 +278,7 @@ class RunnerUtilities:
             return subprocess.Popen(command, shell=True).communicate()
 
     # Get bottle path by configuration
-    def get_bottle_path(self, configuration:BottleConfig) -> str:
+    def get_bottle_path(self, configuration: BottleConfig) -> str:
         if configuration.get("Custom_Path"):
             return configuration.get("Path")
         return "%s/%s" % (BottlesPaths.bottles, configuration.get("Path"))
-    
