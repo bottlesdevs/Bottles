@@ -253,7 +253,7 @@ class RunnerUtilities:
         # Check for gamemode enabled
         if gamemode_available and configuration["Parameters"]["gamemode"]:
             command = f"gamemoderun {command}"
-        print(command)
+            
         if terminal:
             return UtilsTerminal(command)
 
