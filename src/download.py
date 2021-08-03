@@ -21,6 +21,7 @@ import time
 
 from .utils import RunAsync
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/download-entry.ui')
 class BottlesDownloadEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDownloadEntry'
@@ -42,7 +43,8 @@ class BottlesDownloadEntry(Gtk.Box):
 
         # Populate widgets data
         self.label_filename.set_text(file_name)
-        if not stoppable: self.btn_cancel.hide()
+        if not stoppable:
+            self.btn_cancel.hide()
 
         # Start pulsing
         RunAsync(self.pulse, None)
@@ -53,7 +55,12 @@ class BottlesDownloadEntry(Gtk.Box):
             time.sleep(1)
             self.progressbar_download.pulse()
 
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False):
+    def idle_update_status(self,
+                           count=False,
+                           block_size=False,
+                           total_size=False,
+                           completed=False
+                           ):
         if not self.label_download_status.get_visible():
             self.label_download_status.set_visible(True)
 
@@ -66,14 +73,21 @@ class BottlesDownloadEntry(Gtk.Box):
         if percent == 100:
             self.remove()
 
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False):
-        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed)
+    def update_status(self,
+                      count=False,
+                      block_size=False,
+                      total_size=False,
+                      completed=False
+                      ):
+        GLib.idle_add(self.idle_update_status, count,
+                      block_size, total_size, completed)
 
     def remove(self):
         downloads = self.box_downloads.get_children()
         if len(downloads) == 1:
             self.window.btn_downloads.set_visible(False)
         self.destroy()
+
 
 class DownloadManager():
 
@@ -86,7 +100,8 @@ class DownloadManager():
         # self.pop_downloads = window.pop_downloads
 
     def new_download(self, file_name, stoppable=True):
-        download_entry = BottlesDownloadEntry(self.window, file_name, stoppable)
+        download_entry = BottlesDownloadEntry(
+            self.window, file_name, stoppable)
         self.window.box_downloads.add(download_entry)
 
         # GLib.idle_add(self.pop_downloads.popup)
