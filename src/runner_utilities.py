@@ -197,6 +197,11 @@ class RunnerUtilities:
         if parameters["aco_compiler"]:
             environment_vars.append("RADV_PERFTEST=aco")
 
+        if "WAYLAND_DISPLAY" in os.environ:
+            # work around for bottles bug #419
+            # https://github.com/bottlesdevs/Bottles/issues/419
+            environment_vars.append("DISPLAY=:0")
+
         if parameters["discrete_gpu"]:
             if "nvidia" in subprocess.Popen(
                 "lspci | grep 'VGA'",
