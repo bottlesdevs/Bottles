@@ -134,6 +134,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
+    btn_err = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
 
@@ -158,12 +159,15 @@ class BottlesDxvkEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_download.connect('pressed', self.download_dxvk)
+        self.btn_err.connect('pressed', self.download_dxvk)
         self.btn_browse.connect('pressed', self.run_browse)
 
     '''Install dxvk'''
     def download_dxvk(self, widget):
+        self.btn_err.set_visible(False)
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
+        for w in self.box_download_status.get_children(): w.set_visible(True)
         self.runner.install_component(
             "dxvk", 
             self.dxvk_name, 
@@ -178,9 +182,7 @@ class BottlesDxvkEntry(Handy.ActionRow):
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:
-            self.box_download_status.set_visible(False)
-            self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
+            self.set_err()
             return False
 
         self.label_download_status.set_visible(True)
@@ -192,13 +194,22 @@ class BottlesDxvkEntry(Handy.ActionRow):
             percent = 100
         
         if percent == 100:
-            for w in self.box_download_status.get_children(): w.destroy()
+            for w in self.box_download_status.get_children(): w.set_visible(False)
+            self.btn_err.set_visible(False)
             self.box_download_status.add(self.spinner)
             self.spinner.set_visible(True)
             self.spinner.start()
     
+    def set_err(self):
+        self.spinner.stop()
+        self.box_download_status.set_visible(False)
+        self.btn_remove.set_visible(False)
+        self.btn_browse.set_visible(False)
+        self.btn_err.set_visible(True)
+    
     def set_installed(self):
         self.spinner.stop()
+        self.btn_err.set_visible(False)
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
 
@@ -219,6 +230,7 @@ class BottlesVkd3dEntry(Handy.ActionRow):
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
+    btn_err = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
 
@@ -243,12 +255,15 @@ class BottlesVkd3dEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_download.connect('pressed', self.download_vkd3d)
+        self.btn_err.connect('pressed', self.download_vkd3d)
         self.btn_browse.connect('pressed', self.run_browse)
 
     '''Install vkd3d'''
     def download_vkd3d(self, widget):
+        self.btn_err.set_visible(False)
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
+        for w in self.box_download_status.get_children(): w.set_visible(True)
         self.runner.install_component(
             "vkd3d", 
             self.vkd3d_name, 
@@ -264,9 +279,7 @@ class BottlesVkd3dEntry(Handy.ActionRow):
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:
-            self.box_download_status.set_visible(False)
-            self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
+            self.set_err()
             return False
 
         self.label_download_status.set_visible(True)
@@ -278,13 +291,22 @@ class BottlesVkd3dEntry(Handy.ActionRow):
             percent = 100
         
         if percent == 100:
-            for w in self.box_download_status.get_children(): w.destroy()
+            for w in self.box_download_status.get_children(): w.set_visible(False)
+            self.btn_err.set_visible(False)
             self.box_download_status.add(self.spinner)
             self.spinner.set_visible(True)
             self.spinner.start()
     
+    def set_err(self):
+        self.spinner.stop()
+        self.box_download_status.set_visible(False)
+        self.btn_remove.set_visible(False)
+        self.btn_browse.set_visible(False)
+        self.btn_err.set_visible(True)
+    
     def set_installed(self):
         self.spinner.stop()
+        self.btn_err.set_visible(False)
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
 
@@ -305,6 +327,7 @@ class BottlesRunnerEntry(Handy.ActionRow):
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
+    btn_err = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
 
@@ -328,12 +351,15 @@ class BottlesRunnerEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_download.connect('pressed', self.download_runner)
+        self.btn_err.connect('pressed', self.download_runner)
         self.btn_browse.connect('pressed', self.run_browse)
 
     '''Install runner'''
     def download_runner(self, widget):
+        self.btn_err.set_visible(False)
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
+        for w in self.box_download_status.get_children(): w.set_visible(True)
 
         component_type = "runner"
         if self.runner_name.lower().startswith("proton"):
@@ -352,9 +378,7 @@ class BottlesRunnerEntry(Handy.ActionRow):
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:
-            self.box_download_status.set_visible(False)
-            self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
+            self.set_err()
             return False
 
         self.label_download_status.set_visible(True)
@@ -366,13 +390,22 @@ class BottlesRunnerEntry(Handy.ActionRow):
             percent = 100
         
         if percent == 100:
-            for w in self.box_download_status.get_children(): w.destroy()
+            for w in self.box_download_status.get_children(): w.set_visible(False)
+            self.btn_err.set_visible(False)
             self.box_download_status.add(self.spinner)
             self.spinner.set_visible(True)
             self.spinner.start()
     
+    def set_err(self):
+        self.spinner.stop()
+        self.box_download_status.set_visible(False)
+        self.btn_remove.set_visible(False)
+        self.btn_browse.set_visible(False)
+        self.btn_err.set_visible(True)
+    
     def set_installed(self):
         self.spinner.stop()
+        self.btn_err.set_visible(False)
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
 

@@ -13,6 +13,34 @@
         <property name="can-focus">False</property>
         <property name="spacing">5</property>
         <child>
+          <object class="GtkButton" id="btn_err">
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">The installation failed. This may be due to a repository error, partial download or checksum mismatch.
+
+Press to try again.</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">emblem-important-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="circular"/>
+              <class name="image-button"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="btn_cancel">
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
