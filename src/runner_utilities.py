@@ -17,28 +17,29 @@ RunnerType = NewType('RunnerType', str)
 class RunnerUtilities:
 
     # Open file manager in different paths
-    def open_filemanager(self,
-                         configuration: BottleConfig = dict,
-                         path_type: str = "bottle",
-                         runner: str = "",
-                         dxvk: str = "",
-                         vkd3d: str = "",
-                         custom_path: str = ""
-                         ) -> bool:
+    def open_filemanager(
+        self,
+        configuration: BottleConfig = dict,
+        path_type: str = "bottle",
+        runner: str = "",
+        dxvk: str = "",
+        vkd3d: str = "",
+        custom_path: str = ""
+    ) -> bool:
         logging.info("Opening the file manager in the path …")
 
         if path_type == "bottle":
-            path = "%s/%s/drive_c" % (BottlesPaths.bottles,
-                                      configuration.get("Path"))
+            bottle_path = self.get_bottle_path(configuration)
+            path = f"{bottle_path}/drive_c"
 
         if path_type == "runner" and runner != "":
-            path = "%s/%s" % (BottlesPaths.runners, runner)
+            path = self.get_runner_path(runner)
 
         if path_type == "dxvk" and dxvk != "":
-            path = "%s/%s" % (BottlesPaths.dxvk, dxvk)
+            path = self.get_dxvk_path(dxvk)
 
         if path_type == "vkd3d" and vkd3d != "":
-            path = "%s/%s" % (BottlesPaths.vkd3d, vkd3d)
+            path = self.get_vkd3d_path(vkd3d)
 
         if path_type == "custom" and custom_path != "":
             path = custom_path
@@ -47,29 +48,33 @@ class RunnerUtilities:
         return subprocess.Popen(command, shell=True).communicate()
 
     # Run .lnk files in a bottle
-    def run_lnk(self,
-                configuration: BottleConfig,
-                file_path: str,
-                arguments: str = False,
-                environment: dict = False
-                ) -> None:
+    def run_lnk(
+        self,
+        configuration: BottleConfig,
+        file_path: str,
+        arguments: str = False,
+        environment: dict = False
+    ) -> None:
         logging.info("Running link file on the bottle …")
+        
         command = f"start /unix '{file_path}'"
         RunAsync(self.run_command, None, configuration,
                  command, False, environment)
 
     # Run wine executables/programs in a bottle
-    def run_executable(self,
-                       configuration: BottleConfig,
-                       file_path: str,
-                       arguments: str = False,
-                       environment: dict = False,
-                       no_async: bool = False,
-                       cwd: str = None
-                       ) -> None:
+    def run_executable(
+        self,
+        configuration: BottleConfig,
+        file_path: str,
+        arguments: str = False,
+        environment: dict = False,
+        no_async: bool = False,
+        cwd: str = None
+    ) -> None:
         logging.info("Running an executable on the bottle …")
-
+        
         command = f"'{file_path}'"
+
         if "msi" in file_path.split("."):
             command = f"msiexec /i '{file_path}'"
         elif "bat" in file_path.split("."):
@@ -115,6 +120,7 @@ class RunnerUtilities:
 
     def run_uninstaller(self, configuration: BottleConfig, uuid: str = False):
         logging.info("Running an Uninstaller on the wineprefix …")
+        
         command = "uninstaller"
         if uuid:
             command = f"uninstaller --remove '{uuid}'"
@@ -133,21 +139,20 @@ class RunnerUtilities:
             "reboot": "-r",
             "kill": "-k"
         }
-
         option = available_status[status]
-        bottle_name = configuration.get("Name")
-
         self.run_command(configuration, "wineboot %s" % option)
 
     # Execute command in a bottle
-    def run_command(self,
-                    configuration: BottleConfig,
-                    command: str,
-                    terminal: bool = False,
-                    environment: dict = False,
-                    comunicate: bool = False,
-                    cwd: str = None
-                    ) -> bool:
+    def run_command(
+        self,
+        configuration: BottleConfig,
+        command: str,
+        terminal: bool = False,
+        environment: dict = False,
+        comunicate: bool = False,
+        cwd: str = None
+    ) -> bool:
+        # Work around for Flatpak and Snap not able to use system commands
         if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
             terminal = False
             if command in ["winedbg", "cmd"]:
@@ -253,23 +258,25 @@ class RunnerUtilities:
         # Check for gamemode enabled
         if gamemode_available and configuration["Parameters"]["gamemode"]:
             command = f"gamemoderun {command}"
-            
+
         if terminal:
             return UtilsTerminal(command)
 
         if comunicate:
             try:
-                return subprocess.Popen(command,
-                                        stdout=subprocess.PIPE,
-                                        shell=True,
-                                        cwd=cwd
-                                        ).communicate()[0].decode("utf-8")
+                return subprocess.Popen(
+                    command,
+                    stdout=subprocess.PIPE,
+                    shell=True,
+                    cwd=cwd
+                ).communicate()[0].decode("utf-8")
             except:
                 # work around for `No such file or directory` error
-                return subprocess.Popen(command,
-                                        stdout=subprocess.PIPE,
-                                        shell=True
-                                        ).communicate()[0].decode("utf-8")
+                return subprocess.Popen(
+                    command,
+                    stdout=subprocess.PIPE,
+                    shell=True
+                ).communicate()[0].decode("utf-8")
 
         # TODO: configure cwd in bottle configuration
         try:
@@ -278,8 +285,20 @@ class RunnerUtilities:
             # work around for `No such file or directory` error
             return subprocess.Popen(command, shell=True).communicate()
 
-    # Get bottle path by configuration
-    def get_bottle_path(self, configuration: BottleConfig) -> str:
+    @staticmethod
+    def get_bottle_path(configuration: BottleConfig) -> str:
         if configuration.get("Custom_Path"):
             return configuration.get("Path")
-        return "%s/%s" % (BottlesPaths.bottles, configuration.get("Path"))
+        return f"{BottlesPaths.bottles}/{configuration.get('Path')}"
+
+    @staticmethod
+    def get_runner_path(runner: str) -> str:
+        return f"{BottlesPaths.runners}/{runner}"
+
+    @staticmethod
+    def get_dxvk_path(dxvk: str) -> str:
+        return f"{BottlesPaths.dxvk}/{dxvk}"
+
+    @staticmethod
+    def get_vkd3d_path(vkd3d: str) -> str:
+        return f"{BottlesPaths.vkd3d}/{vkd3d}"
