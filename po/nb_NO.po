@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-30 08:09+0200\n"
+"POT-Creation-Date: 2021-08-04 15:10+0200\n"
 "PO-Revision-Date: 2021-05-14 05:41+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
@@ -161,206 +161,225 @@ msgid ".. and much more that you can find by installing Bottles!"
 msgstr "… og mye mer du finner ved å installere Flasker."
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
+#: data/com.usebottles.bottles.appdata.xml.in:107
+msgid "This is an off-calendar release."
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:100
+#, fuzzy
+msgid "Improved download manager"
+msgstr "Oppgavebehandler"
+
+#: data/com.usebottles.bottles.appdata.xml.in:108
+msgid ""
+"Set working directory to executable path when launching from programs list."
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:109
+msgid "Fix listing when one or more bottles are broken."
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:116
 #, fuzzy
 msgid "Support for .lnk files"
 msgstr "Støtte Fasker"
 
-#: data/com.usebottles.bottles.appdata.xml.in:100
+#: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:101
+#: data/com.usebottles.bottles.appdata.xml.in:118
 msgid "Specify the target bottle using the -b flag in command line"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:102
+#: data/com.usebottles.bottles.appdata.xml.in:119
 #, fuzzy
 msgid "Run executables without show the Bottles Window"
 msgstr "Start en kjørbar fil i denne flasken."
 
-#: data/com.usebottles.bottles.appdata.xml.in:103
+#: data/com.usebottles.bottles.appdata.xml.in:120
 #, fuzzy
 msgid "Dependencies can now set register keys"
 msgstr "Fant ingen springere"
 
-#: data/com.usebottles.bottles.appdata.xml.in:104
+#: data/com.usebottles.bottles.appdata.xml.in:121
 #, fuzzy
 msgid "Dependencies can now extract archives"
 msgstr "Fant ingen springere"
 
-#: data/com.usebottles.bottles.appdata.xml.in:105
+#: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Dependencies can now uninstall other dependencies"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:106
+#: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Dependencies can now install more dll in one step"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:107
+#: data/com.usebottles.bottles.appdata.xml.in:124
 msgid ""
 "Dependencies can now register fonts in the Bottle Register to make them "
 "discoverable by the runner"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:108
+#: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Cab extraction now support wildcards"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:109
+#: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Cab extraction now support lowercase extensions"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:110
+#: data/com.usebottles.bottles.appdata.xml.in:127
 msgid ""
 "When installing a new runner, winemenubuilder is blocked to prevent the "
 "creation of broken desktop entries"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:111
+#: data/com.usebottles.bottles.appdata.xml.in:128
 msgid ""
 "The bottle root is now set as the working directory for all executed commands"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:112
+#: data/com.usebottles.bottles.appdata.xml.in:129
 msgid ""
 "Fixed a bug in the dependency manager showing them installed even though the "
 "process was still running"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:113
+#: data/com.usebottles.bottles.appdata.xml.in:130
 msgid ""
 "Fixed a bug that prevented states from being sent to the bottle (kill, "
 "shutdown, reboot, ..)"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:114
+#: data/com.usebottles.bottles.appdata.xml.in:131
 #, fuzzy
 msgid "Fixed a bug on processes listing"
 msgstr "Avlus Wine-prosesser."
 
-#: data/com.usebottles.bottles.appdata.xml.in:115
+#: data/com.usebottles.bottles.appdata.xml.in:132
 msgid "Fix crash log path on Flatpak"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:116
+#: data/com.usebottles.bottles.appdata.xml.in:133
 msgid ""
 "Fixed an issue causing Bottles to detect downloaded dxvk even when it fails"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:117
+#: data/com.usebottles.bottles.appdata.xml.in:134
 msgid ""
 "Fixed a bug that cause some programs to not be placed in Programs section"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:118
+#: data/com.usebottles.bottles.appdata.xml.in:135
 msgid "Fixed a bug that cause Bottles to crash when a component download fail"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:119
+#: data/com.usebottles.bottles.appdata.xml.in:136
 msgid "Fixed a bug in adding registry keys with spaces in name"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:120
+#: data/com.usebottles.bottles.appdata.xml.in:137
 msgid "Uninstallers are now no longer displayed in the Programs list"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:121
+#: data/com.usebottles.bottles.appdata.xml.in:138
 msgid "Disable uninstaller button for dependencies installed from cab files"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:122
+#: data/com.usebottles.bottles.appdata.xml.in:139
 msgid "Access Bottles preferences from the bottle creation view"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:123
+#: data/com.usebottles.bottles.appdata.xml.in:140
 msgid ""
 "A spinner is now displayed when installing dependencies, programs and "
 "components"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:124
+#: data/com.usebottles.bottles.appdata.xml.in:141
 msgid "Warning for missing cabextract tool"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:125
+#: data/com.usebottles.bottles.appdata.xml.in:142
 msgid "Warning for experimental features"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:126
+#: data/com.usebottles.bottles.appdata.xml.in:143
 msgid "Warning for enables testing repository"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:127
+#: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Several improvements in runner management"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:128
+#: data/com.usebottles.bottles.appdata.xml.in:145
 msgid "Added icons to the sidebar"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:129
+#: data/com.usebottles.bottles.appdata.xml.in:146
 #, fuzzy
 msgid "Experimantal support for Bottles installers"
 msgstr "Eksperiementer"
 
-#: data/com.usebottles.bottles.appdata.xml.in:130
+#: data/com.usebottles.bottles.appdata.xml.in:147
 msgid "Better support for Breeze theme"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:131
+#: data/com.usebottles.bottles.appdata.xml.in:148
 #, fuzzy
 msgid "Browse programs path"
 msgstr "Utforsk C:"
 
-#: data/com.usebottles.bottles.appdata.xml.in:132
+#: data/com.usebottles.bottles.appdata.xml.in:149
 msgid ""
 "Generate Bottles compatible desktop entries for programs installed trought "
 "Bottles installers"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:133
+#: data/com.usebottles.bottles.appdata.xml.in:150
 msgid "Visual feedback during a state restoring"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:134
+#: data/com.usebottles.bottles.appdata.xml.in:151
 msgid "Add external executable to the program list"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:135
+#: data/com.usebottles.bottles.appdata.xml.in:152
 msgid "Toggle update date on bottles list"
 msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:136
+#: data/com.usebottles.bottles.appdata.xml.in:153
 #, fuzzy
 msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
 msgstr "Spansk oversettelse ved @fitojb"
 
-#: data/com.usebottles.bottles.appdata.xml.in:137
+#: data/com.usebottles.bottles.appdata.xml.in:154
 #, fuzzy
 msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "Spansk oversettelse ved @fitojb"
 
-#: data/com.usebottles.bottles.appdata.xml.in:138
+#: data/com.usebottles.bottles.appdata.xml.in:155
 #, fuzzy
 msgid "Hungarian translations thanks to @ovari"
 msgstr "Spansk oversettelse ved @fitojb"
 
-#: data/com.usebottles.bottles.appdata.xml.in:139
+#: data/com.usebottles.bottles.appdata.xml.in:156
 #, fuzzy
 msgid "Polish translations thanks to Krzysztof Marcinek"
 msgstr "Tyrksisk oversettelse ved @gunduzhan"
 
-#: data/com.usebottles.bottles.appdata.xml.in:140
+#: data/com.usebottles.bottles.appdata.xml.in:157
 #, fuzzy
 msgid "French translations thanks to @julroy67"
 msgstr "Spansk oversettelse ved @fitojb"
 
-#: data/com.usebottles.bottles.appdata.xml.in:141
+#: data/com.usebottles.bottles.appdata.xml.in:158
 #, fuzzy
 msgid "Russian translations thanks to @tacitcoast"
 msgstr "Spansk oversettelse ved @fitojb"
 
-#: data/com.usebottles.bottles.appdata.xml.in:142
+#: data/com.usebottles.bottles.appdata.xml.in:159
 #, fuzzy
 msgid "Italian translations thanks to @blackcat-917"
 msgstr "Spansk oversettelse ved @fitojb"
@@ -650,7 +669,7 @@ msgid "Kill all wine processes"
 msgstr "Drep alle prosesser"
 
 #: src/ui/details.ui:639 src/ui/details.ui:2036 src/ui/details.ui:2170
-#: src/pages/details.py:764
+#: src/pages/details.py:767
 msgid "Programs"
 msgstr "Programmer"
 
@@ -898,7 +917,7 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
 #: src/ui/details.ui:1763 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:762
+#: src/pages/details.py:765
 msgid "Preferences"
 msgstr "Egenskaper"
 
@@ -906,7 +925,7 @@ msgstr "Egenskaper"
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 
-#: src/ui/details.ui:1870 src/ui/details.ui:1996 src/pages/details.py:763
+#: src/ui/details.ui:1870 src/ui/details.ui:1996 src/pages/details.py:766
 msgid "Dependencies"
 msgstr "Avhengigheter"
 
@@ -948,7 +967,7 @@ msgid ""
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
 
-#: src/ui/details.ui:2273 src/ui/preferences.ui:288 src/pages/details.py:769
+#: src/ui/details.ui:2273 src/ui/preferences.ui:288 src/pages/details.py:772
 msgid "Installers"
 msgstr "Installasjonskandidater"
 
@@ -956,7 +975,7 @@ msgstr "Installasjonskandidater"
 msgid "Refresh"
 msgstr "Gjenoppfrisk"
 
-#: src/ui/details.ui:2456 src/ui/preferences.ui:262 src/pages/details.py:767
+#: src/ui/details.ui:2456 src/ui/preferences.ui:262 src/pages/details.py:770
 msgid "Versioning"
 msgstr "Versjonering"
 
@@ -970,8 +989,8 @@ msgid "Message goes here."
 msgstr ""
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/pages/details.py:931
-#: src/pages/details.py:1213 src/pages/list.py:133
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/pages/details.py:940
+#: src/pages/details.py:1222 src/pages/list.py:133
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1055,23 +1074,31 @@ msgstr ""
 msgid "DXVK version"
 msgstr "Versjonering"
 
-#: src/ui/dxvk-entry.ui:44
+#: src/ui/dxvk-entry.ui:19 src/ui/runner-entry.ui:19
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch.\n"
+"\n"
+"Press to try again."
+msgstr ""
+
+#: src/ui/dxvk-entry.ui:72
 msgid "Download & Install this DXVK"
 msgstr ""
 
-#: src/ui/dxvk-entry.ui:71 src/ui/importer-entry.ui:21
-#: src/ui/runner-entry.ui:19
+#: src/ui/dxvk-entry.ui:99 src/ui/importer-entry.ui:21
+#: src/ui/runner-entry.ui:47
 #, fuzzy
 msgid "Browse files"
 msgstr "Utforsk C:"
 
-#: src/ui/dxvk-entry.ui:113 src/ui/runner-entry.ui:88
+#: src/ui/dxvk-entry.ui:141 src/ui/runner-entry.ui:116
 #, fuzzy
 msgid "0%"
 msgstr "0"
 
-#: src/ui/dxvk-entry.ui:149 src/ui/program-entry.ui:121
-#: src/ui/runner-entry.ui:124
+#: src/ui/dxvk-entry.ui:177 src/ui/program-entry.ui:121
+#: src/ui/runner-entry.ui:152
 #, fuzzy
 msgid "Uninstall"
 msgstr "Avinstaller"
@@ -1196,15 +1223,31 @@ msgstr "Skru på versjonering"
 msgid "Enable versioning to save and restore the bottle to a state."
 msgstr ""
 
-#: src/ui/new.ui:442
+#: src/ui/new.ui:409
+msgid "Architecture"
+msgstr ""
+
+#: src/ui/new.ui:411
+msgid "We recommend using only 32bit if strictly necessary"
+msgstr ""
+
+#: src/ui/new.ui:425
+msgid "64 bit"
+msgstr ""
+
+#: src/ui/new.ui:426
+msgid "32 bit"
+msgstr ""
+
+#: src/ui/new.ui:480
 msgid "Creating bottle…"
 msgstr "Oppretter flaske …"
 
-#: src/ui/new.ui:461
+#: src/ui/new.ui:499
 msgid "Take a break, it may take a while"
 msgstr ""
 
-#: src/ui/new.ui:529
+#: src/ui/new.ui:567
 #, fuzzy
 msgid "Bottle created"
 msgstr "Flasker startet."
@@ -1407,7 +1450,7 @@ msgstr "Flaskestørrelse:"
 msgid "Remove from Programs"
 msgstr ""
 
-#: src/ui/runner-entry.ui:46
+#: src/ui/runner-entry.ui:74
 msgid "Download & Install this runner"
 msgstr ""
 
@@ -1506,49 +1549,49 @@ msgstr "`Hjelp`-forespørsel mottatt."
 msgid "[Refresh] request received."
 msgstr "`Gjenoppfrisk`-forespørsel mottatt."
 
-#: src/runner.py:1013
+#: src/runner.py:1059
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Fant ingen springere"
 
-#: src/runner.py:1017
+#: src/runner.py:1063
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr "Fortsett installasjonen av siste versjon?"
 
-#: src/runner.py:1020
+#: src/runner.py:1066
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Fortsett installasjonen av siste versjon?"
 
 #. Execute wineboot
-#: src/runner.py:1060
+#: src/runner.py:1110
 msgid "The wine configuration is being updated …"
 msgstr ""
 
-#: src/runner.py:1066
+#: src/runner.py:1117
 #, fuzzy
 msgid "Wine configuration updated!"
 msgstr "Oppsett"
 
-#: src/runner.py:1090
+#: src/runner.py:1143
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr ""
 
-#: src/runner.py:1109
+#: src/runner.py:1163
 msgid "Installing dxvk …"
 msgstr ""
 
-#: src/runner.py:1115
+#: src/runner.py:1169
 msgid "Installing vkd3d …"
 msgstr ""
 
-#: src/runner.py:1123
+#: src/runner.py:1177
 msgid "Creating versioning state 0 …"
 msgstr ""
 
-#: src/runner.py:1129
+#: src/runner.py:1184
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr ""
@@ -1565,7 +1608,7 @@ msgstr "Flaskedetaljer"
 msgid "Bottles Started!"
 msgstr "Flasker startet."
 
-#: src/pages/details.py:304 src/pages/details.py:551
+#: src/pages/details.py:304 src/pages/details.py:553
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest for {0}"
@@ -1575,54 +1618,54 @@ msgstr "Manifest for {0}"
 msgid "Index for state {0}"
 msgstr "Indeks for tilstand {0}"
 
-#: src/pages/details.py:751
+#: src/pages/details.py:754
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:761
+#: src/pages/details.py:764
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Verktøy"
 
-#: src/pages/details.py:837
+#: src/pages/details.py:845
 #, fuzzy, python-format
 msgid "Updated: %s"
 msgstr "Oppdateringer:"
 
-#: src/pages/details.py:927
+#: src/pages/details.py:936
 #, fuzzy
 msgid "Choose an executable path"
 msgstr "Velg en kjørbar Windows-fil"
 
-#: src/pages/details.py:930
+#: src/pages/details.py:939
 msgid "Add"
 msgstr ""
 
-#: src/pages/details.py:1209 src/pages/list.py:129
+#: src/pages/details.py:1218 src/pages/list.py:129
 #, fuzzy
 msgid "Choose a Windows executable file"
 msgstr "Velg en kjørbar Windows-fil"
 
-#: src/pages/details.py:1212 src/pages/list.py:132
+#: src/pages/details.py:1221 src/pages/list.py:132
 #, fuzzy
 msgid "Run"
 msgstr "Springer"
 
-#: src/pages/details.py:1288
+#: src/pages/details.py:1297
 #, fuzzy
 msgid "Select the location where to save the backup configuration"
 msgstr "Velg sted å lagre sikkerhetskopi"
 
-#: src/pages/details.py:1310
+#: src/pages/details.py:1319
 #, fuzzy
 msgid "Select the location where to save the backup archive"
 msgstr "Velg sted å lagre sikkerhetskopiert arkiv"
 
-#: src/pages/details.py:1333 src/pages/list.py:181
+#: src/pages/details.py:1342 src/pages/list.py:181
 msgid "Confirm deletion"
 msgstr "Bekreft sletting"
 
-#: src/pages/details.py:1334 src/pages/list.py:182
+#: src/pages/details.py:1343 src/pages/list.py:182
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Er du sikker på at du vil slette denne flasken og alle dens filer?"
 
@@ -1653,32 +1696,32 @@ msgstr "Bekreft oppgradering"
 msgid "This will change the runner from {0} to {1}."
 msgstr "Dette vil endre springeren fra {0} til {1}."
 
-#: src/pages/new.py:105
+#: src/pages/new.py:106
 msgid "Gaming"
 msgstr "Spill"
 
-#: src/pages/new.py:106
+#: src/pages/new.py:107
 msgid "An environment improved for Windows games."
 msgstr ""
 
-#: src/pages/new.py:111
+#: src/pages/new.py:112
 msgid "Software"
 msgstr "Programvare"
 
-#: src/pages/new.py:112
+#: src/pages/new.py:113
 msgid "An environment improved for Windows software."
 msgstr ""
 
-#: src/pages/new.py:117
+#: src/pages/new.py:118
 msgid "Custom"
 msgstr "Egendefinert"
 
-#: src/pages/new.py:118
+#: src/pages/new.py:119
 #, fuzzy
 msgid "A clear environment for your experiments."
 msgstr "Et rent miljø, uten optimiseringer."
 
-#: src/pages/new.py:235
+#: src/pages/new.py:237
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr ""
@@ -1745,10 +1788,6 @@ msgstr ""
 #, fuzzy, python-brace-format
 #~ msgid "This is the index for {0}."
 #~ msgstr "Dette er manifestet for {0}."
-
-#, fuzzy
-#~ msgid "Download manager"
-#~ msgstr "Oppgavebehandler"
 
 #, fuzzy, python-brace-format
 #~ msgid "Installing {0} dependency in bottle {1} …"

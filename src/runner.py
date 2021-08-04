@@ -153,8 +153,10 @@ class BottlesRunner:
         except:
             if os.path.isfile(os.path.join(BottlesPaths.temp, archive)):
                 os.remove(os.path.join(BottlesPaths.temp, archive))
+
             if os.path.isdir(os.path.join(path, archive[:-7])):
                 shutil.rmtree(os.path.join(path, archive[:-7]))
+
             logging.error(
                 "Extraction failed! Archive ends earlier than expected.")
             return False
@@ -191,6 +193,7 @@ class BottlesRunner:
 
         existing_file = rename if rename else file
         just_downloaded = False
+
         if os.path.isfile(f"{BottlesPaths.temp}/{existing_file}"):
             logging.warning(
                 f"File [{existing_file}] already exists in temp, skipping.")
@@ -300,9 +303,9 @@ class BottlesRunner:
     def async_install_dependency(self, args: list) -> bool:
         configuration, dependency, widget = args
         self.download_manager = DownloadManager(self.window)
+        has_no_uninstaller = False
         download_entry = self.download_manager.new_download(
             dependency[0], False)
-        has_no_uninstaller = False
 
         if configuration["Versioning"]:
             self.versioning_manager.async_create_bottle_state([
@@ -346,6 +349,7 @@ class BottlesRunner:
                         file = step.get("rename")
                     else:
                         file = step.get("file_name")
+
                     RunnerUtilities().run_executable(
                         configuration=configuration,
                         file_path=f"{BottlesPaths.temp}/{file}",
@@ -361,6 +365,7 @@ class BottlesRunner:
             if step["action"] == "uninstall":
                 file_name = step["file_name"]
                 command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
+
                 uuid = RunnerUtilities().run_command(
                     configuration=configuration,
                     command=command,
@@ -368,6 +373,7 @@ class BottlesRunner:
                     environment=False,
                     comunicate=True)
                 uuid = uuid.strip()
+
                 if uuid != "":
                     logging.info(
                         f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}].")
