@@ -230,8 +230,7 @@ class RunnerUtilities:
             environment_vars.append("RADV_PERFTEST=aco")
 
         if "WAYLAND_DISPLAY" in os.environ:
-            # work around for bottles bug #419
-            # https://github.com/bottlesdevs/Bottles/issues/419
+            # workaround https://github.com/bottlesdevs/Bottles/issues/419
             environment_vars.append("DISPLAY=:0")
 
         if parameters["discrete_gpu"]:
@@ -271,7 +270,7 @@ class RunnerUtilities:
                     cwd=cwd
                 ).communicate()[0].decode("utf-8")
             except:
-                # work around for `No such file or directory` error
+                # workaround for `No such file or directory` error
                 return subprocess.Popen(
                     command,
                     stdout=subprocess.PIPE,
@@ -282,7 +281,7 @@ class RunnerUtilities:
         try:
             return subprocess.Popen(command, shell=True, cwd=cwd).communicate()
         except:
-            # work around for `No such file or directory` error
+            # workaround for `No such file or directory` error
             return subprocess.Popen(command, shell=True).communicate()
 
     @staticmethod

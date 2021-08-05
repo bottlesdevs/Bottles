@@ -210,10 +210,15 @@ class BottlesRunner:
                 return False
 
             if request.status == 200:
-                urllib.request.urlretrieve(
-                    download_url,
-                    f"{BottlesPaths.temp}/{file}",
-                    reporthook=update_func)
+                try:
+                    urllib.request.urlretrieve(
+                        download_url,
+                        f"{BottlesPaths.temp}/{file}",
+                        reporthook=update_func)
+                except:
+                    # workaround https://github.com/bottlesdevs/Bottles/issues/426
+                    GLib.idle_add(download_entry.remove)
+                    return False
                 just_downloaded = True
             else:
                 GLib.idle_add(download_entry.remove)
