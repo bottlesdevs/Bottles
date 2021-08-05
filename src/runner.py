@@ -988,6 +988,12 @@ class BottlesRunner:
                 configuration_file = open('%s/bottle.yml' % bottle)
                 configuration_file_yaml = yaml.safe_load(configuration_file)
                 configuration_file.close()
+                
+                # Update architecture of old bottles
+                if configuration_file_yaml.get("Arch") in ["", None]:
+                    self.update_configuration(configuration_file_yaml,
+                                              "Arch",
+                                              BottlesSamples.configuration["Arch"])
 
                 missing_keys = BottlesSamples.configuration.keys() - configuration_file_yaml.keys()
                 for key in missing_keys:
@@ -1432,11 +1438,8 @@ class BottlesRunner:
         else:
             self.reg_delete(configuration, key, "Default")
 
-    '''
-    Methods for search and import wineprefixes from other managers
-    '''
-
-    def search_wineprefixes(self) -> list:
+    @staticmethod
+    def search_wineprefixes() -> list:
         importer_wineprefixes = []
 
         # Search wine prefixes in external managers paths
@@ -1526,6 +1529,9 @@ class BottlesRunner:
             f"Wineprefix: [{wineprefix['Name']}] successfully imported!")
         return True
 
-    def browse_wineprefix(self, wineprefix: dict) -> bool:
-        return RunnerUtilities().open_filemanager(path_type="custom",
-                                                  custom_path=wineprefix.get("Path"))
+    @staticmethod
+    def browse_wineprefix(wineprefix: dict) -> bool:
+        return RunnerUtilities().open_filemanager(
+            path_type="custom",
+            custom_path=wineprefix.get("Path")
+        )
