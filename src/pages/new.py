@@ -20,60 +20,19 @@ import time
 
 from gi.repository import Gtk, GLib, Handy
 
-class BottlesEnvironmentRow(Gtk.ListBoxRow):
-
+class BottlesEnvironmentRow(Handy.ActionRow):
     def __init__(self, environment, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
         self.environment = environment
-        self.env_entry = BottlesEnvironmentEntry(environment)
-        self.add(self.env_entry)
-
+        self.set_selectable(True)
+        self.set_title(environment.get("name"))
+        self.set_subtitle(self.environment.get('description'))
+        self.set_icon_name(environment.get("icon"))
         self.set_visible(True)
 
     def get_environment_id(self):
         return self.environment.get("id")
-
-    def select(self):
-        return self.env_entry.show_selection()
-
-    def deselect(self):
-        return self.env_entry.hide_selection()
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/environment-entry.ui')
-class BottlesEnvironmentEntry(Gtk.Box):
-    __gtype_name__ = 'BottlesEnvironmentEntry'
-
-    '''Get widgets from template'''
-    label_title = Gtk.Template.Child()
-    label_subtitle = Gtk.Template.Child()
-    img_icon = Gtk.Template.Child()
-    img_selected = Gtk.Template.Child()
-
-    def __init__(self, environment, **kwargs):
-        super().__init__(**kwargs)
-
-        '''Common variables'''
-        self.environment = environment
-
-        '''Populate'''
-        self.label_title.set_text(environment.get("name"))
-        self.label_subtitle.set_text(environment.get("description"))
-        self.img_icon.set_from_icon_name(environment.get("icon"), Gtk.IconSize.SMALL_TOOLBAR)
-
-        context = self.get_style_context()
-        context.add_class(environment.get("id").lower())
-
-        self.set_visible(True)
-
-    def hide_selection(self):
-        self.label_subtitle.set_visible(False)
-        return self.img_selected.set_visible(False)
-
-    def show_selection(self):
-        self.label_subtitle.set_visible(True)
-        return self.img_selected.set_visible(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
 class BottlesNew(Handy.Window):
@@ -161,10 +120,6 @@ class BottlesNew(Handy.Window):
         self.combo_arch.set_active_id("win64")
 
     def set_active_environment(self, widget, row):
-        for w in self.list_environments.get_children():
-            w.deselect()
-        row.select()
-
         '''Set selected environment'''
         self.selected_environment = row.get_environment_id()
 
