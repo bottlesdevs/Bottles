@@ -116,6 +116,20 @@
             ]
         },
         {
+            "name" : "libwine",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app --root=/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/bottlesdevs/libwine/archive/refs/tags/0.7.tar.gz",
+                    "sha256" : "d1dc163f8d253f164ba994fe02849bac1592ff0a2cedec1b6440bf9facad2670"
+                }
+            ]
+        },
+        {
             "name" : "PyYAML",
             "buildsystem" : "simple",
             "build-commands" : [
