@@ -101,12 +101,13 @@ class BottlesWindow(Handy.ApplicationWindow):
         # Runner instance
         self.runner = BottlesRunner(self)
         self.runner.check_runners_dir()
+        self.runner_utils = RunnerUtilities(None)
 
         # Run executable in a bottle
         if arg_executable and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
-                RunnerUtilities().run_executable(bottle_configuration,
+                self.runner_utils.run_executable(bottle_configuration,
                                            arg_executable)
                 self.proper_close()
 
@@ -114,7 +115,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         if arg_lnk and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
-                RunnerUtilities().run_lnk(bottle_configuration,
+                self.runner_utils.run_lnk(bottle_configuration,
                                     arg_lnk)
                 self.proper_close()
 

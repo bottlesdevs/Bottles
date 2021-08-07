@@ -29,13 +29,14 @@ class RunnerVersioning:
     # Create new bottle state
     def async_create_bottle_state(self, args: list) -> bool:
         configuration, comment, update, no_update, after = args
-
+        runner_utils = RunnerUtilities(configuration)
+        
         logging.info(
             f"Creating new state for bottle: [{configuration['Name']}] …")
 
         self.download_manager = DownloadManager(self.window)
 
-        bottle_path = RunnerUtilities().get_bottle_path(configuration)
+        bottle_path = runner_utils.get_bottle_path(configuration)
         first = False if os.path.isdir(f"{bottle_path}/states/") else True
 
         # List all bottle files
@@ -225,7 +226,8 @@ class RunnerVersioning:
                                state_id: str,
                                plain: bool = False
                                ) -> dict:
-        bottle_path = RunnerUtilities().get_bottle_path(configuration)
+        runner_utils = RunnerUtilities(configuration)
+        bottle_path = runner_utils.get_bottle_path(configuration)
 
         try:
             file = open('%s/states/%s/index.yml' % (bottle_path, state_id))
@@ -241,7 +243,8 @@ class RunnerVersioning:
                                state_id: str,
                                plain: bool = False
                                ) -> dict:
-        bottle_path = RunnerUtilities().get_bottle_path(configuration)
+        runner_utils = RunnerUtilities(configuration)
+        bottle_path = runner_utils.get_bottle_path(configuration)
 
         try:
             file = open('%s/states/%s/files.yml' % (bottle_path, state_id))
@@ -253,7 +256,8 @@ class RunnerVersioning:
 
     # Get all bottle files
     def get_bottle_index(self, configuration: BottleConfig):
-        bottle_path = RunnerUtilities().get_bottle_path(configuration)
+        runner_utils = RunnerUtilities(configuration)
+        bottle_path = runner_utils.get_bottle_path(configuration)
 
         current_index = {
             "Update_Date": str(datetime.now()),
@@ -274,7 +278,8 @@ class RunnerVersioning:
     def async_set_bottle_state(self, args) -> bool:
         configuration, state_id, after = args
 
-        bottle_path = RunnerUtilities().get_bottle_path(configuration)
+        runner_utils = RunnerUtilities(configuration)
+        bottle_path = runner_utils.get_bottle_path(configuration)
 
         logging.info(f"Restoring to state: [{state_id}]")
 
@@ -352,7 +357,8 @@ class RunnerVersioning:
                  [configuration, state_id, after])
 
     def list_bottle_states(self, configuration: BottleConfig) -> dict:
-        bottle_path = RunnerUtilities().get_bottle_path(configuration)
+        runner_utils = RunnerUtilities(configuration)
+        bottle_path = runner_utils.get_bottle_path(configuration)
         states = {}
 
         try:

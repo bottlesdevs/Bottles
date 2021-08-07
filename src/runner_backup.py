@@ -3,6 +3,7 @@ import yaml
 import tarfile
 
 from typing import NewType
+from libwine.wine import Wine
 
 from .utils import UtilsLogger, RunAsync
 from .runner_globals import BottlesPaths
@@ -18,11 +19,13 @@ RunnerType = NewType('RunnerType', str)
 
 
 class RunnerBackup:
+    
     # Make a bottle backup
     def async_backup_bottle(self, args: list) -> bool:
         window, configuration, scope, path = args
         self.download_manager = DownloadManager(window)
-
+        runner_utils = RunnerUtilities(configuration)
+        
         if scope == "configuration":
             # Backup type: configuration
             logging.info(
@@ -44,7 +47,7 @@ class RunnerBackup:
             download_entry = self.download_manager.new_download(
                 _("Backup {0}").format(configuration.get("Name")), False)
 
-            bottle_path = RunnerUtilities().get_bottle_path(configuration)
+            bottle_path = runner_utils.get_bottle_path(configuration)
 
             try:
                 # Create the archive

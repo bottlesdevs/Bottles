@@ -52,6 +52,7 @@ class BottlesListEntry(Handy.ActionRow):
         self.configuration = configuration[1]
         self.label_environment_context = self.label_environment.get_style_context()
         self.arg_executable = arg_executable
+        self.runner_utils = RunnerUtilities(self.configuration)
 
         '''Format update date'''
         update_date = "N/A"
@@ -136,13 +137,13 @@ class BottlesListEntry(Handy.ActionRow):
             response = file_dialog.run()
 
             if response == -3:
-                RunnerUtilities().run_executable(self.configuration,
+                self.runner_utils.run_executable(self.configuration,
                                            file_dialog.get_filename())
 
             file_dialog.destroy()
         else:
             '''Use executable provided as bottles argument'''
-            RunnerUtilities().run_executable(self.configuration, self.arg_executable)
+            self.runner_utils.run_executable(self.configuration, self.arg_executable)
             if self.window.settings.get_boolean("auto-close-bottles"):
                 self.window.proper_close()
             self.arg_executable = False

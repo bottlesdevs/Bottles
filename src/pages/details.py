@@ -456,7 +456,7 @@ class BottlesProgramEntry(Handy.ActionRow):
             arguments = self.configuration["Programs"][self.program_executable]
         else:
             arguments = False
-        RunnerUtilities().run_executable(
+        self.runner_utils.run_executable(
             self.configuration,
             self.program_executable_path,
             arguments,
@@ -475,7 +475,7 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.destroy()
 
     def browse_program_folder(self, widget):
-        RunnerUtilities().open_filemanager(
+        self.runner_utils.open_filemanager(
             configuration=self.configuration, 
             path_type="custom",
             custom_path=self.program_folder)
@@ -668,7 +668,7 @@ class BottlesDetails(Handy.Leaflet):
     stack_bottle = Gtk.Template.Child()
     infobar_testing = Gtk.Template.Child()
 
-    def __init__(self, window, configuration=dict, **kwargs):
+    def __init__(self, window, configuration=None, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
@@ -676,77 +676,7 @@ class BottlesDetails(Handy.Leaflet):
         self.runner = window.runner
         self.versioning_manager = window.runner.versioning_manager
         self.configuration = configuration
-
-        '''Signal connections'''
-        self.entry_name.connect('key-release-event', self.check_entry_name)
-
-        self.btn_winecfg.connect('pressed', self.run_winecfg)
-        self.btn_debug.connect('pressed', self.run_debug)
-        self.btn_execute.connect('pressed', self.run_executable)
-        self.btn_run_args.connect('pressed', self.run_executable_with_args)
-        self.btn_browse.connect('pressed', self.run_browse)
-        self.btn_cmd.connect('pressed', self.run_cmd)
-        self.btn_taskmanager.connect('pressed', self.run_taskmanager)
-        self.btn_controlpanel.connect('pressed', self.run_controlpanel)
-        self.btn_uninstaller.connect('pressed', self.run_uninstaller)
-        self.btn_regedit.connect('pressed', self.run_regedit)
-        self.btn_delete.connect('pressed', self.confirm_delete)
-        self.btn_overrides.connect('pressed', self.show_dll_overrides_view)
-        self.btn_manage_runners.connect('pressed', self.window.show_preferences_view)
-        self.btn_manage_dxvk.connect('pressed', self.window.show_preferences_view)
-        self.btn_manage_vkd3d.connect('pressed', self.window.show_preferences_view)
-
-        self.btn_winecfg.connect('activate', self.run_winecfg)
-        self.btn_debug.connect('activate', self.run_debug)
-        self.btn_execute.connect('activate', self.run_executable)
-        self.btn_run_args.connect('activate', self.run_executable_with_args)
-        self.btn_browse.connect('activate', self.run_browse)
-        self.btn_cmd.connect('activate', self.run_cmd)
-        self.btn_taskmanager.connect('activate', self.run_taskmanager)
-        self.btn_controlpanel.connect('activate', self.run_controlpanel)
-        self.btn_uninstaller.connect('activate', self.run_uninstaller)
-        self.btn_regedit.connect('activate', self.run_regedit)
-        self.btn_overrides.connect('activate', self.show_dll_overrides_view)
-        self.btn_environment_variables.connect('activate', self.show_environment_variables)
-
-        self.btn_shutdown.connect('pressed', self.run_shutdown)
-        self.btn_reboot.connect('pressed', self.run_reboot)
-        self.btn_killall.connect('pressed', self.run_killall)
-        self.btn_programs_updates.connect('pressed', self.update_programs)
-        self.btn_programs_add.connect('pressed', self.add_program)
-        self.btn_environment_variables.connect('pressed', self.show_environment_variables)
-        self.btn_backup_config.connect('pressed', self.backup_config)
-        self.btn_backup_full.connect('pressed', self.backup_full)
-        self.btn_add_state.connect('pressed', self.add_state)
-        self.btn_help_versioning.connect('pressed', self.open_doc_url, "bottles/versioning")
-        self.btn_help_debug.connect('pressed', self.open_doc_url, "utilities/logs-and-debugger#wine-debugger")
-        self.btn_request_dependency.connect('pressed', self.open_doc_url, "contribute/missing-dependencies")
-
-        self.btn_rename.connect('toggled', self.toggle_rename)
-        self.toggle_sync.connect('toggled', self.set_wine_sync)
-        self.toggle_esync.connect('toggled', self.set_esync)
-        self.toggle_fsync.connect('toggled', self.set_fsync)
-
-        self.switch_dxvk.connect('state-set', self.toggle_dxvk)
-        self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
-        self.switch_vkd3d.connect('state-set', self.toggle_vkd3d)
-        self.switch_gamemode.connect('state-set', self.toggle_gamemode)
-        self.switch_aco.connect('state-set', self.toggle_aco)
-        self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
-        self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
-        self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
-        self.switch_fixme.connect('state-set', self.toggle_fixme)
-
-        self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
-        self.combo_runner.connect('changed', self.set_runner)
-        self.combo_dxvk.connect('changed', self.set_dxvk)
-        self.combo_vkd3d.connect('changed', self.set_vkd3d)
-
-        self.entry_search_deps.connect('key-release-event', self.search_dependencies)
-        self.entry_search_deps.connect('changed', self.search_dependencies)
-        self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
-
-        self.list_pages.connect('row-selected', self.change_page)
+        self.runner_utils = RunnerUtilities(self.configuration)
 
         # Toggle gamemode switcher sensitivity
         self.switch_gamemode.set_sensitive(gamemode_available)
@@ -795,9 +725,12 @@ class BottlesDetails(Handy.Leaflet):
         return False
 
     def update_combo_components(self):
-        self.combo_runner.handler_block_by_func(self.set_runner)
-        self.combo_dxvk.handler_block_by_func(self.set_dxvk)
-        self.combo_vkd3d.handler_block_by_func(self.set_vkd3d)
+        try:
+            self.combo_runner.handler_block_by_func(self.set_runner)
+            self.combo_dxvk.handler_block_by_func(self.set_dxvk)
+            self.combo_vkd3d.handler_block_by_func(self.set_vkd3d)
+        except TypeError:
+            pass
 
         '''Populate combo_runner, combo_dxvk, combo_vkd3d'''
         self.combo_runner.remove_all()
@@ -813,13 +746,17 @@ class BottlesDetails(Handy.Leaflet):
         for vkd3d in self.runner.vkd3d_available:
             self.combo_vkd3d.append(vkd3d, vkd3d)
 
-        self.combo_runner.handler_unblock_by_func(self.set_runner)
-        self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
-        self.combo_vkd3d.handler_unblock_by_func(self.set_vkd3d)
+        try:
+            self.combo_runner.handler_unblock_by_func(self.set_runner)
+            self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
+            self.combo_vkd3d.handler_unblock_by_func(self.set_vkd3d)
+        except TypeError:
+            pass
 
     '''Set bottle configuration'''
     def set_configuration(self, configuration):
         self.configuration = configuration
+        self.runner_utils = RunnerUtilities(self.configuration)
 
         '''Format update date'''
         update_date = datetime.strptime(configuration.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
@@ -831,13 +768,16 @@ class BottlesDetails(Handy.Leaflet):
             arch = "32-bit"
         
         '''Lock signals preventing triggering'''
-        self.switch_dxvk.handler_block_by_func(self.toggle_dxvk)
-        self.switch_vkd3d.handler_block_by_func(self.toggle_vkd3d)
-        self.switch_virtual_desktop.handler_block_by_func(self.toggle_virtual_desktop)
-        self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
-        self.combo_runner.handler_block_by_func(self.set_runner)
-        self.combo_dxvk.handler_block_by_func(self.set_dxvk)
-        self.combo_vkd3d.handler_block_by_func(self.set_vkd3d)
+        try:
+            self.switch_dxvk.handler_block_by_func(self.toggle_dxvk)
+            self.switch_vkd3d.handler_block_by_func(self.toggle_vkd3d)
+            self.switch_virtual_desktop.handler_block_by_func(self.toggle_virtual_desktop)
+            self.combo_virtual_resolutions.handler_block_by_func(self.set_virtual_desktop_resolution)
+            self.combo_runner.handler_block_by_func(self.set_runner)
+            self.combo_dxvk.handler_block_by_func(self.set_dxvk)
+            self.combo_vkd3d.handler_block_by_func(self.set_vkd3d)
+        except TypeError:
+            pass
 
         '''Populate widgets from configuration'''
         parameters = self.configuration.get("Parameters")
@@ -867,20 +807,23 @@ class BottlesDetails(Handy.Leaflet):
         self.grid_versioning.set_visible(self.configuration.get("Versioning"))
 
         '''Unlock signals'''
-        self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
-        self.switch_vkd3d.handler_unblock_by_func(self.toggle_vkd3d)
-        self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
-        self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
-        self.combo_runner.handler_unblock_by_func(self.set_runner)
-        self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
-        self.combo_vkd3d.handler_unblock_by_func(self.set_vkd3d)
+        try:
+            self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
+            self.switch_vkd3d.handler_unblock_by_func(self.toggle_vkd3d)
+            self.switch_virtual_desktop.handler_unblock_by_func(self.toggle_virtual_desktop)
+            self.combo_virtual_resolutions.handler_unblock_by_func(self.set_virtual_desktop_resolution)
+            self.combo_runner.handler_unblock_by_func(self.set_runner)
+            self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
+            self.combo_vkd3d.handler_unblock_by_func(self.set_vkd3d)
+        except TypeError:
+            pass
 
         self.update_programs()
         self.update_dependencies()
         self.update_installers()
         self.update_states()
-
-
+        self.connect_signals()
+    
 
     '''Show dialog for launch options'''
     def show_environment_variables(self, widget=False):
@@ -940,7 +883,7 @@ class BottlesDetails(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            RunnerUtilities().get_bottle_path(self.configuration))
+            self.runner_utils.get_bottle_path(self.configuration))
         response = file_dialog.run()
 
         if response == -3:
@@ -1226,50 +1169,14 @@ class BottlesDetails(Handy.Leaflet):
 
         if response == -3:
             if args:
-                RunnerUtilities().run_executable(
-                    configuration=self.configuration,
+                self.runner_utils.run_executable(
                     file_path=file_dialog.get_filename(),
                     arguments=args)
             else:
-                RunnerUtilities().run_executable(
-                    configuration=self.configuration,
+                self.runner_utils.run_executable(
                     file_path=file_dialog.get_filename())
 
         file_dialog.destroy()
-
-    '''Run wine executables and utilities'''
-    def run_winecfg(self, widget):
-        RunnerUtilities().run_winecfg(self.configuration)
-
-    def run_debug(self, widget):
-        RunnerUtilities().run_debug(self.configuration)
-
-    def run_browse(self, widget):
-        RunnerUtilities().open_filemanager(self.configuration)
-
-    def run_cmd(self, widget):
-        RunnerUtilities().run_cmd(self.configuration)
-
-    def run_taskmanager(self, widget):
-        RunnerUtilities().run_taskmanager(self.configuration)
-
-    def run_controlpanel(self, widget):
-        RunnerUtilities().run_controlpanel(self.configuration)
-
-    def run_uninstaller(self, widget):
-        RunnerUtilities().run_uninstaller(self.configuration)
-
-    def run_regedit(self, widget):
-        RunnerUtilities().run_regedit(self.configuration)
-
-    def run_shutdown(self, widget):
-        RunnerUtilities().send_status(self.configuration, "shutdown")
-
-    def run_reboot(self, widget):
-        RunnerUtilities().send_status(self.configuration, "reboot")
-
-    def run_killall(self, widget):
-        RunnerUtilities().send_status(self.configuration, "kill")
 
     '''Validate entry_state input'''
     def check_entry_state_comment(self, widget, event_key):
@@ -1370,3 +1277,76 @@ class BottlesDetails(Handy.Leaflet):
 
     def show_installers_view(self, widget=False):
         self.stack_bottle.set_visible_child_name("installers")
+    
+
+    def connect_signals(self):
+        '''Signal connections'''
+        self.entry_name.connect('key-release-event', self.check_entry_name)
+
+        self.btn_winecfg.connect('pressed', self.runner_utils.run_winecfg)
+        self.btn_debug.connect('pressed', self.runner_utils.run_debug)
+        self.btn_execute.connect('pressed', self.run_executable)
+        self.btn_run_args.connect('pressed', self.run_executable_with_args)
+        self.btn_browse.connect('pressed', self.runner_utils.open_filemanager)
+        self.btn_cmd.connect('pressed', self.runner_utils.run_cmd)
+        self.btn_taskmanager.connect('pressed', self.runner_utils.run_taskmanager)
+        self.btn_controlpanel.connect('pressed', self.runner_utils.run_controlpanel)
+        self.btn_uninstaller.connect('pressed', self.runner_utils.run_uninstaller)
+        self.btn_regedit.connect('pressed', self.runner_utils.run_regedit)
+        self.btn_delete.connect('pressed', self.confirm_delete)
+        self.btn_overrides.connect('pressed', self.show_dll_overrides_view)
+        self.btn_manage_runners.connect('pressed', self.window.show_preferences_view)
+        self.btn_manage_dxvk.connect('pressed', self.window.show_preferences_view)
+        self.btn_manage_vkd3d.connect('pressed', self.window.show_preferences_view)
+
+        self.btn_winecfg.connect('activate', self.runner_utils.run_winecfg)
+        self.btn_debug.connect('activate', self.runner_utils.run_debug)
+        self.btn_execute.connect('activate', self.run_executable)
+        self.btn_run_args.connect('activate', self.run_executable_with_args)
+        self.btn_browse.connect('activate', self.runner_utils.open_filemanager)
+        self.btn_cmd.connect('activate', self.runner_utils.run_cmd)
+        self.btn_taskmanager.connect('activate', self.runner_utils.run_taskmanager)
+        self.btn_controlpanel.connect('activate', self.runner_utils.run_controlpanel)
+        self.btn_uninstaller.connect('activate', self.runner_utils.run_uninstaller)
+        self.btn_regedit.connect('activate', self.runner_utils.run_regedit)
+        self.btn_overrides.connect('activate', self.show_dll_overrides_view)
+        self.btn_environment_variables.connect('activate', self.show_environment_variables)
+
+        self.btn_shutdown.connect('pressed', self.runner_utils.run_shutdown)
+        self.btn_reboot.connect('pressed', self.runner_utils.run_restart)
+        self.btn_killall.connect('pressed', self.runner_utils.run_kill)
+        self.btn_programs_updates.connect('pressed', self.update_programs)
+        self.btn_programs_add.connect('pressed', self.add_program)
+        self.btn_environment_variables.connect('pressed', self.show_environment_variables)
+        self.btn_backup_config.connect('pressed', self.backup_config)
+        self.btn_backup_full.connect('pressed', self.backup_full)
+        self.btn_add_state.connect('pressed', self.add_state)
+        self.btn_help_versioning.connect('pressed', self.open_doc_url, "bottles/versioning")
+        self.btn_help_debug.connect('pressed', self.open_doc_url, "utilities/logs-and-debugger#wine-debugger")
+        self.btn_request_dependency.connect('pressed', self.open_doc_url, "contribute/missing-dependencies")
+
+        self.btn_rename.connect('toggled', self.toggle_rename)
+        self.toggle_sync.connect('toggled', self.set_wine_sync)
+        self.toggle_esync.connect('toggled', self.set_esync)
+        self.toggle_fsync.connect('toggled', self.set_fsync)
+
+        self.switch_dxvk.connect('state-set', self.toggle_dxvk)
+        self.switch_dxvk_hud.connect('state-set', self.toggle_dxvk_hud)
+        self.switch_vkd3d.connect('state-set', self.toggle_vkd3d)
+        self.switch_gamemode.connect('state-set', self.toggle_gamemode)
+        self.switch_aco.connect('state-set', self.toggle_aco)
+        self.switch_discrete.connect('state-set', self.toggle_discrete_graphics)
+        self.switch_virtual_desktop.connect('state-set', self.toggle_virtual_desktop)
+        self.switch_pulseaudio_latency.connect('state-set', self.toggle_pulseaudio_latency)
+        self.switch_fixme.connect('state-set', self.toggle_fixme)
+
+        self.combo_virtual_resolutions.connect('changed', self.set_virtual_desktop_resolution)
+        self.combo_runner.connect('changed', self.set_runner)
+        self.combo_dxvk.connect('changed', self.set_dxvk)
+        self.combo_vkd3d.connect('changed', self.set_vkd3d)
+
+        self.entry_search_deps.connect('key-release-event', self.search_dependencies)
+        self.entry_search_deps.connect('changed', self.search_dependencies)
+        self.entry_state_comment.connect('key-release-event', self.check_entry_state_comment)
+
+        self.list_pages.connect('row-selected', self.change_page)

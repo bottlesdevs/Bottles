@@ -27,6 +27,7 @@ import re
 import urllib.request
 import fnmatch
 import requests
+from libwine.wine import Wine
 
 from typing import Union, NewType
 
@@ -307,6 +308,8 @@ class BottlesRunner:
 
     def async_install_dependency(self, args: list) -> bool:
         configuration, dependency, widget = args
+        runner_utils = RunnerUtilities(configuration)
+
         self.download_manager = DownloadManager(self.window)
         has_no_uninstaller = False
         download_entry = self.download_manager.new_download(
@@ -355,7 +358,7 @@ class BottlesRunner:
                     else:
                         file = step.get("file_name")
 
-                    RunnerUtilities().run_executable(
+                    runner_utils.run_executable(
                         configuration=configuration,
                         file_path=f"{BottlesPaths.temp}/{file}",
                         arguments=step.get("arguments"),
@@ -371,7 +374,7 @@ class BottlesRunner:
                 file_name = step["file_name"]
                 command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
 
-                uuid = RunnerUtilities().run_command(
+                uuid = runner_utils.run_command(
                     configuration=configuration,
                     command=command,
                     terminal=False,
@@ -382,7 +385,7 @@ class BottlesRunner:
                 if uuid != "":
                     logging.info(
                         f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}].")
-                    RunnerUtilities().run_uninstaller(configuration, uuid)
+                    runner_utils.run_uninstaller(configuration, uuid)
 
             # Step type: cab_extract
             if step["action"] == "cab_extract":
@@ -468,7 +471,7 @@ class BottlesRunner:
 
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
-                bottle_path = RunnerUtilities().get_bottle_path(configuration)
+                bottle_path = runner_utils.get_bottle_path(configuration)
 
                 for font in step.get('fonts'):
                     shutil.copyfile(
@@ -481,7 +484,7 @@ class BottlesRunner:
 
                 path = step["url"]
                 path = path.replace("temp/", f"{BottlesPaths.temp}/")
-                bottle_path = RunnerUtilities().get_bottle_path(configuration)
+                bottle_path = runner_utils.get_bottle_path(configuration)
 
                 try:
                     if "*" in step.get('file_name'):
@@ -586,13 +589,14 @@ class BottlesRunner:
         logging.info(
             f"Removing dependency: [{ dependency[0]}] from bottle: [{configuration['Name']}] configuration.")
 
+        runner_utils = RunnerUtilities(configuration)
         uuid = False
 
         # Run uninstaller
         if dependency[0] in configuration["Uninstallers"]:
             uninstaller = configuration["Uninstallers"][dependency[0]]
             command = f"uninstaller --list | grep '{uninstaller}' | cut -f1 -d\|"
-            uuid = RunnerUtilities().run_command(
+            uuid = runner_utils.run_command(
                 configuration=configuration,
                 command=command,
                 terminal=False,
@@ -600,7 +604,7 @@ class BottlesRunner:
                 comunicate=True)
             uuid = uuid.strip()
 
-        RunnerUtilities().run_uninstaller(configuration, uuid)
+        runner_utils.run_uninstaller(configuration, uuid)
 
         # Remove dependency from bottle configuration
         configuration["Installed_Dependencies"].remove(dependency[0])
@@ -616,11 +620,12 @@ class BottlesRunner:
         logging.info(
             f"Removing program: [{ program_name }] from bottle: [{configuration['Name']}] configuration.")
 
+        runner_utils = RunnerUtilities(configuration)
         uuid = False
 
         # Run uninstaller
         command = f"uninstaller --list | grep '{program_name}' | cut -f1 -d\|"
-        uuid = RunnerUtilities().run_command(
+        uuid = runner_utils.run_command(
             configuration=configuration,
             command=command,
             terminal=False,
@@ -628,7 +633,7 @@ class BottlesRunner:
             comunicate=True)
         uuid = uuid.strip()
 
-        RunnerUtilities().run_uninstaller(configuration, uuid)
+        runner_utils.run_uninstaller(configuration, uuid)
 
     # Run installer
 
@@ -776,11 +781,12 @@ class BottlesRunner:
         return "application-x-executable"
 
     def __get_exe_parent_dir(self, configuration, executable_path):
+        runner_utils = RunnerUtilities(configuration)
         p = ""
         if "\\" in executable_path:
             p = "\\".join(executable_path.split("\\")[:-1])
             p = p.replace("C:\\", "\\drive_c\\").replace("\\", "/")
-            return RunnerUtilities().get_bottle_path(configuration) + p
+            return runner_utils.get_bottle_path(configuration) + p
 
         p = "\\".join(executable_path.split("/")[:-1])
         p = f"/drive_c/{p}"
@@ -1034,7 +1040,8 @@ class BottlesRunner:
         logging.info(
             f"Setting Key: [{key}] to [{value}] for bottle: [{configuration['Name']}] …")
 
-        bottle_complete_path = RunnerUtilities().get_bottle_path(configuration)
+        runner_utils = RunnerUtilities(configuration)
+        bottle_complete_path = runner_utils.get_bottle_path(configuration)
 
         if scope != "":
             configuration[scope][key] = value
@@ -1272,6 +1279,7 @@ class BottlesRunner:
         logging.info(
             f"Trying to repair the bottle: [{configuration['Name']}] …")
 
+        runner_utils = RunnerUtilities(configuration)
         bottle_complete_path = f"{BottlesPaths.bottles}/{configuration['Name']}"
 
         # Create new configuration with path as name and Custom environment
@@ -1292,7 +1300,7 @@ class BottlesRunner:
             return False
 
         # Execute wineboot in bottle to generate missing files
-        RunnerUtilities().run_wineboot(new_configuration)
+        runner_utils.run_wineboot(new_configuration)
 
         # Update bottles
         self.update_bottles()
@@ -1328,20 +1336,22 @@ class BottlesRunner:
         logging.info(
             f"Adding Key: [{key}] with Value: [{value}] and Data: [{data}] in register bottle: {configuration['Name']}")
 
+        runner_utils = RunnerUtilities(configuration)
         command = "reg add '%s' /v '%s' /d %s /f" % (key, value, data)
 
         if keyType:
             command = "reg add '%s' /v '%s' /t %s /d %s /f" % (
                 key, value, keyType, data)
 
-        RunnerUtilities().run_command(configuration, command)
+        runner_utils.run_command(configuration, command)
 
     # Remove key from register
     def reg_delete(self, configuration: BottleConfig, key: str, value: str) -> None:
         logging.info(
             f"Removing Value: [{key}] for Key: [{value}] in register bottle: {configuration['Name']}")
 
-        RunnerUtilities().run_command(configuration, "reg delete '%s' /v %s /f" % (
+        runner_utils = RunnerUtilities(configuration)
+        runner_utils.run_command(configuration, "reg delete '%s' /v %s /f" % (
             key, value))
 
     '''
@@ -1536,7 +1546,8 @@ class BottlesRunner:
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict) -> bool:
-        return RunnerUtilities().open_filemanager(
+        runner_utils = RunnerUtilities(configuration)
+        return runner_utils.open_filemanager(
             path_type="custom",
             custom_path=wineprefix.get("Path")
         )

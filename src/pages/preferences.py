@@ -175,8 +175,9 @@ class BottlesDxvkEntry(Handy.ActionRow):
 
     '''Browse dxvk files'''
     def run_browse(self, widget):
+        runner_utils = RunnerUtilities()
         self.btn_download.set_visible(False)
-        RunnerUtilities().open_filemanager(path_type="dxvk", dxvk=self.dxvk_name)
+        runner_utils.open_filemanager(path_type="dxvk", dxvk=self.dxvk_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:
@@ -270,8 +271,9 @@ class BottlesVkd3dEntry(Handy.ActionRow):
 
     '''Browse vkd3d files'''
     def run_browse(self, widget):
+        runner_utils = RunnerUtilities()
         self.btn_download.set_visible(False)
-        RunnerUtilities().open_filemanager(
+        runner_utils.open_filemanager(
             path_type="vkd3d", 
             vkd3d=self.vkd3d_name)
 
@@ -370,8 +372,9 @@ class BottlesRunnerEntry(Handy.ActionRow):
 
     '''Browse runner files'''
     def run_browse(self, widget):
+        runner_utils = RunnerUtilities()
         self.btn_download.set_visible(False)
-        RunnerUtilities().open_filemanager(path_type="runner", runner=self.runner_name)
+        runner_utils.open_filemanager(path_type="runner", runner=self.runner_name)
 
     def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
         if failed:
