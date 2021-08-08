@@ -77,9 +77,6 @@ class BottlesListEntry(Handy.ActionRow):
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
 
-        self.icon_environment.set_tooltip_text(
-            self.configuration.get("Environment")
-        )
         self.icon_environment.set_from_icon_name(
             env_icons.get(self.configuration.get("Environment").lower()),
             Gtk.IconSize.MENU
