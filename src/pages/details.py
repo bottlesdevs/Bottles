@@ -608,8 +608,8 @@ class BottlesDetails(Handy.Leaflet):
     '''Get widgets from template'''
     label_runner = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
-    label_environment = Gtk.Template.Child()
     label_arch = Gtk.Template.Child()
+    icon_environment = Gtk.Template.Child()
     btn_rename = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
@@ -821,6 +821,12 @@ class BottlesDetails(Handy.Leaflet):
     def set_configuration(self, configuration):
         self.configuration = configuration
 
+        env_icons = {
+            'gaming': 'applications-games-symbolic',
+            'software': 'applications-engineering-symbolic',
+            'custom': 'applications-science-symbolic'
+        }
+
         '''Format update date'''
         update_date = datetime.strptime(configuration.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
         update_date = update_date.strftime("%b %d %Y %H:%M:%S")
@@ -845,9 +851,13 @@ class BottlesDetails(Handy.Leaflet):
         self.entry_name.set_tooltip_text(_("Updated: %s" % update_date))
         self.label_runner.set_text(self.configuration.get("Runner"))
         self.label_arch.set_text(arch)
-        self.label_environment.set_text(self.configuration.get("Environment"))
-        self.label_environment.get_style_context().add_class(
-            "tag-%s" % self.configuration.get("Environment").lower())
+        self.icon_environment.set_tooltip_text(
+            self.configuration.get("Environment")
+        )
+        self.icon_environment.set_from_icon_name(
+            env_icons.get(self.configuration.get("Environment").lower()),
+            Gtk.IconSize.MENU
+        )
         self.label_state.set_text(str(self.configuration.get("State")))
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
