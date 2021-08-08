@@ -299,15 +299,15 @@ class BottlesInstallerEntry(Handy.ActionRow):
 
     '''Open installer manifest'''
     def open_manifest(self, widget):
-        dialog_upgrade = BottlesDialog(
+        dialog = BottlesDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
             message=False,
             log=self.runner.fetch_installer_manifest(self.installer[0],
                                                     self.installer[1]["Category"],
                                                     plain=True))
-        dialog_upgrade.run()
-        dialog_upgrade.destroy()
+        dialog.run()
+        dialog.destroy()
 
     '''Execute installer'''
     def execute_installer(self, widget):
@@ -381,7 +381,7 @@ class BottlesStateEntry(Handy.ActionRow):
 
     '''Open state index'''
     def open_index(self, widget):
-        dialog_upgrade = BottlesDialog(
+        dialog = BottlesDialog(
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
             message=False,
@@ -389,8 +389,8 @@ class BottlesStateEntry(Handy.ActionRow):
                 self.configuration,
                 self.state[0],
                 True))
-        dialog_upgrade.run()
-        dialog_upgrade.destroy()
+        dialog.run()
+        dialog.destroy()
     
     '''Set installed status'''
     def set_completed(self):
@@ -548,15 +548,15 @@ class BottlesDependencyEntry(Handy.ActionRow):
 
     '''Open dependency manifest'''
     def open_manifest(self, widget):
-        dialog_upgrade = BottlesDialog(
+        dialog = BottlesDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
             message=False,
             log=self.runner.fetch_dependency_manifest(self.dependency[0],
                                                       self.dependency[1]["Category"],
                                                       plain=True))
-        dialog_upgrade.run()
-        dialog_upgrade.destroy()
+        dialog.run()
+        dialog.destroy()
 
     '''Open dependency license'''
     def open_license(self, widget):
