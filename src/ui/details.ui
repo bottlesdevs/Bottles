@@ -366,16 +366,12 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label_environment">
+                                  <object class="GtkImage" id="icon_environment">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
-                                    <property name="label" translatable="yes">Environment</property>
-                                    <attributes>
-                                      <attribute name="font-desc" value="Cantarell 10"/>
-                                      <attribute name="weight" value="normal"/>
-                                    </attributes>
+                                    <property name="icon-name">applications-science-symbolic</property>
                                     <style>
                                       <class name="tag"/>
                                     </style>
@@ -383,7 +379,6 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="pack-type">end</property>
                                     <property name="position">3</property>
                                   </packing>
                                 </child>
