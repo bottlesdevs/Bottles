@@ -196,113 +196,13 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="btn_upgrade">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Upgrade runner to the latest localy installed</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">software-update-available-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="circular"/>
-              <class name="image-button"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkButton" id="btn_delete">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Destroy bottle</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">user-trash-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="destructive-action"/>
-              <class name="circular"/>
-              <class name="image-button"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">3</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkButton" id="btn_browse">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Browse C:</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">folder-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="circular"/>
-              <class name="image-button"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btn_programs">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Installed programs</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">view-grid-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="circular"/>
-              <class name="image-button"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">6</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
           <object class="GtkButton" id="btn_repair">
@@ -385,6 +285,9 @@
             <property name="pack-type">end</property>
             <property name="position">7</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>

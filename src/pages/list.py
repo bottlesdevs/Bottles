@@ -19,8 +19,6 @@ import logging
 from datetime import datetime
 from gi.repository import Gtk, GLib, Handy
 
-from .dialog import BottlesMessageDialog
-from ..utils import UtilsFiles
 from ..runner_utilities import RunnerUtilities
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
@@ -31,12 +29,8 @@ class BottlesListEntry(Handy.ActionRow):
 
     '''Get widgets from template'''
     btn_details = Gtk.Template.Child()
-    btn_delete = Gtk.Template.Child()
-    btn_browse = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
-    btn_upgrade = Gtk.Template.Child()
     btn_repair = Gtk.Template.Child()
-    btn_programs = Gtk.Template.Child()
     btn_run_executable = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
@@ -68,10 +62,7 @@ class BottlesListEntry(Handy.ActionRow):
         '''Signal connections'''
         self.btn_details.connect('pressed', self.show_details)
         self.btn_details.connect('activate', self.show_details)
-        self.btn_delete.connect('pressed', self.confirm_delete)
-        self.btn_upgrade.connect('pressed', self.upgrade_runner)
         self.btn_run.connect('pressed', self.run_executable)
-        self.btn_browse.connect('pressed', self.run_browse)
         self.btn_repair.connect('pressed', self.repair)
         self.btn_run_executable.connect('pressed', self.run_executable)
 
@@ -85,21 +76,12 @@ class BottlesListEntry(Handy.ActionRow):
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
 
-        '''Toggle btn_upgrade
-        if self.configuration.get("Runner") != self.runner.get_latest_runner(self.runner_type):
-            self.btn_upgrade.set_visible(True)
-        '''
-
         '''If configuration is broken'''
         if self.configuration.get("Broken"):
             for w in [self.btn_repair,self.icon_damaged]:
                 w.set_visible(True)
 
-            for w in [self.btn_details,
-                      self.btn_upgrade,
-                      self.btn_run,
-                      self.btn_browse,
-                      self.btn_programs]:
+            for w in [self.btn_details, self.btn_run]:
                 w.set_sensitive(False)
         else:
             '''Check for arguments from configuration'''
@@ -108,12 +90,7 @@ class BottlesListEntry(Handy.ActionRow):
                     _("Arguments found for executable: [{executable}].").format(
                         executable = self.arg_executable))
 
-                for w in [self.btn_details,
-                          self.btn_upgrade,
-                          self.btn_run,
-                          self.btn_browse,
-                          self.btn_programs,
-                          self.btn_delete]:
+                for w in [self.btn_details, self.btn_run]:
                     w.set_visible(False)
                 self.btn_run_executable.set_visible(True)
 
@@ -148,45 +125,10 @@ class BottlesListEntry(Handy.ActionRow):
             self.arg_executable = False
             self.runner.update_bottles()
 
-    '''Browse bottle drive_c files'''
-    def run_browse(self, widget):
-        self.runner.open_filemanager(self.configuration)
-
-    '''Show dialog to confirm runner upgrade'''
-    def upgrade_runner(self, widget):
-        dialog_upgrade = BottlesMessageDialog(
-            parent=self.window,
-            title=_("Confirm upgrade"),
-            message=_("This will change the runner from {0} to {1}.").format(
-                self.configuration.get("Runner"),
-                self.runner.get_latest_runner(self.runner_type)))
-        response = dialog_upgrade.run()
-
-        if response == Gtk.ResponseType.OK:
-            self.runner.update_configuration(self.configuration,
-                                             "Runner",
-                                             self.runner.get_latest_runner())
-            self.btn_upgrade.set_visible(False)
-
-        dialog_upgrade.destroy()
-
     '''Show details page'''
     def show_details(self, widget):
         self.window.page_details.update_combo_components()
         self.window.show_details_view(configuration=self.configuration)
-
-    '''Show dialog to confirm bottle deletion'''
-    def confirm_delete(self, widget):
-        dialog_delete = BottlesMessageDialog(parent=self.window,
-                                      title=_("Confirm deletion"),
-                                      message=_("Are you sure you want to delete this Bottle and all files?"))
-        response = dialog_delete.run()
-
-        if response == Gtk.ResponseType.OK:
-            self.runner.delete_bottle(self.configuration)
-            self.destroy()
-
-        dialog_delete.destroy()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
 class BottlesList(Gtk.Box):
