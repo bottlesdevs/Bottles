@@ -49,13 +49,16 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <object class="GtkImage" id="icon_environment">
+              <object class="GtkLabel" id="label_environment">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="tooltip-text" translatable="yes">This bottle looks damaged.</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="icon-name">applications-science-symbolic</property>
+                <property name="label">Environment</property>
+                <attributes>
+                  <attribute name="font-desc" value="Cantarell 10"/>
+                  <attribute name="weight" value="normal"/>
+                </attributes>
                 <style>
                   <class name="tag"/>
                 </style>
