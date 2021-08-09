@@ -16,12 +16,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from urllib.parse import quote
+import urllib.request
 import webbrowser
+import json
 import os
 import gi
 
 gi.require_version('Handy', '1')
 from gi.repository import Gtk, Handy, Pango
+
 
 class BottlesMessageDialog(Gtk.MessageDialog):
 
@@ -32,11 +35,11 @@ class BottlesMessageDialog(Gtk.MessageDialog):
                  log=False):
 
         Gtk.MessageDialog.__init__(self,
-                            parent=parent,
-                            flags=Gtk.DialogFlags.USE_HEADER_BAR,
-                            type=Gtk.MessageType.WARNING,
-                            buttons=Gtk.ButtonsType.OK_CANCEL,
-                            message_format=message)
+                                   parent=parent,
+                                   flags=Gtk.DialogFlags.USE_HEADER_BAR,
+                                   type=Gtk.MessageType.WARNING,
+                                   buttons=Gtk.ButtonsType.OK_CANCEL,
+                                   message_format=message)
 
         '''Display log as output if defined'''
         if log:
@@ -54,10 +57,12 @@ class BottlesMessageDialog(Gtk.MessageDialog):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         box.set_border_width(20)
 
-        if log: box.add(message_scroll)
+        if log:
+            box.add(message_scroll)
 
         content.add(box)
         self.show_all()
+
 
 class BottlesDialog(Gtk.Dialog):
 
@@ -98,11 +103,14 @@ class BottlesDialog(Gtk.Dialog):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         box.set_border_width(20)
 
-        if log: box.add(message_scroll)
-        if message: box.add(message_label)
+        if log:
+            box.add(message_scroll)
+        if message:
+            box.add(message_label)
 
         content.add(box)
         self.show_all()
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/about.ui')
 class BottlesAboutDialog(Gtk.AboutDialog):
@@ -110,6 +118,25 @@ class BottlesAboutDialog(Gtk.AboutDialog):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+
+class BottlesSimilarReportEntry(Gtk.Box):
+    def __init__(self, report: dict):
+        super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        self.report = report
+
+        label_report = Gtk.Label(report["title"])
+        btn_report = Gtk.Button(label=_("Show report"))
+
+        self.pack_start(label_report, True, True, 0)
+        self.pack_end(btn_report, False, False, 0)
+
+        btn_report.connect("clicked", self.__on_btn_report_clicked)
+
+        self.show_all()
+    
+    def __on_btn_report_clicked(self, button: Gtk.Button):
+        webbrowser.open(self.report["url"])
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-crash-report.ui')
 class BottlesCrashReport(Handy.Window):
@@ -119,28 +146,63 @@ class BottlesCrashReport(Handy.Window):
     btn_cancel = Gtk.Template.Child()
     btn_send = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
+    box_related = Gtk.Template.Child()
+    check_unlock_send = Gtk.Template.Child()
+    list_reports = Gtk.Template.Child()
 
     def __init__(self, window, log, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
         '''Signal connections'''
-        self.btn_cancel.connect('pressed', self.close_window)
-        self.btn_send.connect('pressed', self.open_github)
+        self.btn_cancel.connect('pressed', self.__close_window)
+        self.btn_send.connect('pressed', self.__open_github)
 
         if type(log) == list:
             log = "".join(log)
 
         self.log = log
-
         self.label_output.set_text(log)
 
+        if len(self.__get_similar_issues()) > 0:
+            self.box_related.set_visible(True)
+            for issue in self.__get_similar_issues():
+                self.list_reports.add(BottlesSimilarReportEntry(issue))
+        else:
+            self.btn_send.set_sensitive(True)
+
+        self.check_unlock_send.connect('toggled', self.__on_unlock_send)
+        
+    def __on_unlock_send(self, widget):
+        self.btn_send.set_sensitive(widget.get_active())
+
+    def __get_similar_issues(self):
+        similar_issues = []
+        url = "https://api.github.com/repos/bottlesdevs/Bottles/issues?filter=all&state=all&labels=crash"
+        try:
+            with urllib.request.urlopen(url) as r:
+                data = r.read().decode("utf-8")
+                data = json.loads(data)
+
+            for d in data:
+                if self.log.split('\n', 1)[0] in d["body"]:
+                    similar_issues.append({
+                        "title": d["title"],
+                        "url": d["html_url"]
+                    })
+        except:
+            pass
+
+        return similar_issues
+
     '''Destroy the window'''
-    def close_window(self, widget=None):
+
+    def __close_window(self, widget=None):
         self.destroy()
 
     '''Run executable with args'''
-    def open_github(self, widget):
+
+    def __open_github(self, widget):
         log = quote(self.log)
         details_list = {}
 
@@ -158,16 +220,18 @@ class BottlesCrashReport(Handy.Window):
 
         details = ""
         for d in details_list:
-            details+=f"* **{d}**: {details_list[d]}"
+            details += f"* **{d}**: {details_list[d]}"
 
         template = f"This crash report was generated by Bottles.%0A%0A"\
-        "**Details**%0A"\
-        f"{details}%0A%0A"\
-        "**Log**%0A"\
-        "```python3%0A"\
-        f"{log}%0A"\
-        "```"
-        webbrowser.open(f"https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin&labels=crash&title=%5BCrash%20report%5D+&body={template}")
+            "**Details**%0A"\
+            f"{details}%0A%0A"\
+            "**Log**%0A"\
+            "```python3%0A"\
+            f"{log}%0A"\
+            "```"
+        webbrowser.open(
+            f"https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin&labels=crash&title=%5BCrash%20report%5D+&body={template}")
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-flatpak-migration.ui')
 class BottlesFlatpakMigration(Handy.Window):
@@ -187,12 +251,15 @@ class BottlesFlatpakMigration(Handy.Window):
         self.btn_migrate.connect('pressed', self.open_documentation)
 
     '''Destroy the window'''
+
     def close_window(self, widget=None):
         self.window.settings.set_boolean("flatpak-migration", False)
         self.window.show_onboard_view()
         self.destroy()
 
     '''Destroy the window'''
+
     def open_documentation(self, widget=None):
-        webbrowser.open("https://docs.usebottles.com/getting-started/migrate-bottles-to-flatpak")
+        webbrowser.open(
+            "https://docs.usebottles.com/getting-started/migrate-bottles-to-flatpak")
         self.destroy()

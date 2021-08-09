@@ -160,7 +160,7 @@ class RunnerUtilities:
 
         if not cwd:
             cwd = self.get_bottle_path(configuration)
-
+        
         path = configuration.get("Path")
         runner = configuration.get("Runner")
         arch = configuration.get("Arch")
