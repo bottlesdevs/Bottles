@@ -107,12 +107,24 @@ class RunnerUtilities:
         RunAsync(self.wine.winecfg, None)
 
     def run_debug(self, widget=None):
-        logging.info("Running a debug console on the wineprefix …")
-        RunAsync(self.wine.debug, None) # TODO: use system terminal
+        logging.info("Running a CMD on the wineprefix …")
+        terminal = UtilsTerminal.get_terminal()
+
+        if "IS_FLATPAK" in os.environ or "SNAP" in os.environ or terminal is None:
+            RunAsync(self.wine.debug, None, None, True)
+            return
+
+        RunAsync(self.wine.debug, None, terminal)
 
     def run_cmd(self, widget=None):
         logging.info("Running a CMD on the wineprefix …")
-        RunAsync(self.wine.cmd, None) # TODO: use system terminal
+        terminal = UtilsTerminal.get_terminal()
+
+        if "IS_FLATPAK" in os.environ or "SNAP" in os.environ or terminal is None:
+            RunAsync(self.wine.cmd, None, None, True)
+            return
+
+        RunAsync(self.wine.cmd, None, terminal)
 
     def run_taskmanager(self, widget=None):
         logging.info("Running a Task Manager on the wineprefix …")
@@ -122,13 +134,9 @@ class RunnerUtilities:
         logging.info("Running a Control Panel on the wineprefix …")
         RunAsync(self.wine.controlpanel, None)
 
-    def run_uninstaller(self, widget=None, uuid: str = False):
+    def run_uninstaller(self, widget=None, uuid: str = None):
         logging.info("Running an Uninstaller on the wineprefix …")
-
-        command = "uninstaller"
-        if uuid:
-            command = f"uninstaller --remove '{uuid}'"
-        RunAsync(self.run_command, None, command)
+        RunAsync(self.wine.uninstaller, None, uuid)
 
     def run_regedit(self, widget=None):
         logging.info("Running a Regedit on the wineprefix …")
@@ -160,6 +168,9 @@ class RunnerUtilities:
         comunicate: bool = False,
         cwd: str = None
     ) -> bool:
+        if terminal:
+            terminal = UtilsTerminal.get_terminal()
+            
         # Work around for Flatpak and Snap not able to use system commands
         if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
             terminal = False
