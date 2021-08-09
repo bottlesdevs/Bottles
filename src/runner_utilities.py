@@ -25,6 +25,87 @@ class RunnerUtilities:
                 wineprefix=self.get_bottle_path(configuration)
             )
             self.configuration = configuration
+            self.__set_envs()
+    
+    def __set_envs(self):
+        envs = {}
+        dll_overrides = []
+        parameters = self.configuration["Parameters"]
+
+        path = self.get_bottle_path(self.configuration)
+        arch = self.configuration.get("Arch")
+
+        if self.configuration.get("DLL_Overrides"):
+            for dll in self.configuration.get("DLL_Overrides").items():
+                dll_overrides.append("%s=%s" % (dll[0], dll[1]))
+
+        if parameters["environment_variables"]:
+            envs.append(parameters["environment_variables"])
+
+        '''
+        if environment.get("WINEDLLOVERRIDES"):
+            dll_overrides.append(environment["WINEDLLOVERRIDES"])
+            del environment["WINEDLLOVERRIDES"]
+        for e in environment:
+            environment_vars[e] = environment[e]
+        '''
+
+        if parameters["dxvk"]:
+            # dll_overrides.append("d3d11,dxgi=n")
+            envs["WINE_LARGE_ADDRESS_AWARE"] = "1"
+            envs["DXVK_STATE_CACHE_PATH"] = f"'{path}'"
+            envs["STAGING_SHARED_MEMORY"] = "1"
+            envs["__GL_DXVK_OPTIMIZATIONS"] = "1"
+            envs["__GL_SHADER_DISK_CACHE"] = "1"
+            envs["__GL_SHADER_DISK_CACHE_PATH"] = f"'{path}'"
+
+        if parameters["dxvk_hud"]:
+            envs["DXVK_HUD"] = "'devinfo,memory,drawcalls,fps,version,api,compiler'"
+        else:
+            envs["DXVK_HUD"] = "'compiler'"
+
+        if parameters["sync"] == "esync":
+            envs["WINEESYNC"] = "1" # WINEDEBUG=+esync
+
+        if parameters["sync"] == "fsync":
+            envs["WINEFSYNC"] = "1"
+
+        if parameters["fixme_logs"]:
+            envs["WINEDEBUG"] = "+fixme-all"
+        else:
+            envs["WINEDEBUG"] = "fixme-all"
+
+        if parameters["aco_compiler"]:
+            envs["RADV_PERFTEST"] = "aco"
+
+        if "WAYLAND_DISPLAY" in os.environ:
+            # workaround https://github.com/bottlesdevs/Bottles/issues/419
+            envs["DISPLAY"] = ":0"
+
+        if parameters["discrete_gpu"]:
+            if "nvidia" in subprocess.Popen(
+                    "lspci | grep 'VGA'",
+                    stdout=subprocess.PIPE,
+                    shell=True).communicate()[0].decode("utf-8").lower():
+                envs["__NV_PRIME_RENDER_OFFLOAD"] = "1"
+                envs["__GLX_VENDOR_LIBRARY_NAME"] = "nvidia"
+                envs["__VK_LAYER_NV_optimus"] = "NVIDIA_only"
+            else:
+                envs["DRI_PRIME"] = "1"
+
+        if parameters["pulseaudio_latency"]:
+            envs["PULSE_LATENCY_MSEC"] = "60"
+
+        envs["WINEDLLOVERRIDES"] = ";".join(dll_overrides)
+        envs["WINEARCH"] = arch
+
+        '''TODO: Gamemode is not supported by libwine
+        if gamemode_available and self.configuration["Parameters"]["gamemode"]:
+            command = f"gamemoderun {command}"
+        '''
+
+        if self.wine is not None:
+            self.wine.set_envs(envs)
 
     # Open file manager in different paths
     def open_filemanager(
@@ -164,7 +245,7 @@ class RunnerUtilities:
         self,
         command: str,
         terminal: bool = False,
-        environment: dict = False,
+        envs: dict = None,
         comunicate: bool = False,
         cwd: str = None
     ) -> bool:
@@ -200,84 +281,11 @@ class RunnerUtilities:
         if not self.configuration.get("Custom_Path"):
             path = "%s/%s" % (BottlesPaths.bottles, path)
 
-        # Check for executable args from bottle configuration
-        environment_vars = {}
-        dll_overrides = []
-        parameters = self.configuration["Parameters"]
-
-        if self.configuration.get("DLL_Overrides"):
-            for dll in self.configuration.get("DLL_Overrides").items():
-                dll_overrides.append("%s=%s" % (dll[0], dll[1]))
-
-        if parameters["environment_variables"]:
-            environment_vars.append(parameters["environment_variables"])
-
-        if environment:
-            if environment.get("WINEDLLOVERRIDES"):
-                dll_overrides.append(environment["WINEDLLOVERRIDES"])
-                del environment["WINEDLLOVERRIDES"]
-            for e in environment:
-                environment_vars[e] = environment[e]
-
-        if parameters["dxvk"]:
-            # dll_overrides.append("d3d11,dxgi=n")
-            environment_vars["WINE_LARGE_ADDRESS_AWARE"] = "1"
-            environment_vars["DXVK_STATE_CACHE_PATH"] = f"'{path}'"
-            environment_vars["STAGING_SHARED_MEMORY"] = "1"
-            environment_vars["__GL_DXVK_OPTIMIZATIONS"] = "1"
-            environment_vars["__GL_SHADER_DISK_CACHE"] = "1"
-            environment_vars["__GL_SHADER_DISK_CACHE_PATH"] = f"'{path}'"
-
-        if parameters["dxvk_hud"]:
-            environment_vars["DXVK_HUD"] = "'devinfo,memory,drawcalls,fps,version,api,compiler'"
-        else:
-            environment_vars["DXVK_HUD"] = "'compiler'"
-
-        if parameters["sync"] == "esync":
-            environment_vars["WINEESYNC"] = "1" # WINEDEBUG=+esync
-
-        if parameters["sync"] == "fsync":
-            environment_vars["WINEFSYNC"] = "1"
-
-        if parameters["fixme_logs"]:
-            environment_vars["WINEDEBUG"] = "+fixme-all"
-        else:
-            environment_vars["WINEDEBUG"] = "fixme-all"
-
-        if parameters["aco_compiler"]:
-            environment_vars["RADV_PERFTEST"] = "aco"
-
-        if "WAYLAND_DISPLAY" in os.environ:
-            # workaround https://github.com/bottlesdevs/Bottles/issues/419
-            environment_vars["DISPLAY"] = ":0"
-
-        if parameters["discrete_gpu"]:
-            if "nvidia" in subprocess.Popen(
-                    "lspci | grep 'VGA'",
-                    stdout=subprocess.PIPE,
-                    shell=True).communicate()[0].decode("utf-8").lower():
-                environment_vars["__NV_PRIME_RENDER_OFFLOAD"] = "1"
-                environment_vars["__GLX_VENDOR_LIBRARY_NAME"] = "nvidia"
-                environment_vars["__VK_LAYER_NV_optimus"] = "NVIDIA_only"
-            else:
-                environment_vars["DRI_PRIME"] = "1"
-
-        if parameters["pulseaudio_latency"]:
-            environment_vars["PULSE_LATENCY_MSEC"] = "60"
-
-        environment_vars["WINEDLLOVERRIDES"] = ";".join(dll_overrides)
-        environment_vars["WINEARCH"] = arch
-
-        '''TODO: Gamemode is not supported by libwine
-        if gamemode_available and self.configuration["Parameters"]["gamemode"]:
-            command = f"gamemoderun {command}"
-        '''
-
         try:
             self.wine.execute(
                 command=command,
                 comunicate=comunicate,
-                envs=environment_vars,
+                envs=envs,
                 terminal=terminal,
                 cwd=cwd
             )
@@ -285,7 +293,7 @@ class RunnerUtilities:
             self.wine.execute(
                 command=command,
                 comunicate=comunicate,
-                envs=environment_vars,
+                envs=envs,
                 terminal=terminal
             )
 
