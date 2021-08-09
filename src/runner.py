@@ -843,15 +843,19 @@ class BottlesRunner:
 
     # Fetch installers
     def fetch_installers(self) -> bool:
-        if self.utils_conn.check_connection():
-            with urllib.request.urlopen(BottlesRepositories.installers_index) as url:
-                index = yaml.safe_load(url.read())
-
-                for installer in index.items():
-                    self.supported_installers[installer[0]] = installer[1]
-        else:
+        if not self.utils_conn.check_connection():
             return False
-        return True
+
+        try:
+            url = urllib.request.urlopen(BottlesRepositories.installers_index)
+            index = yaml.safe_load(url.read())
+
+            for installer in index.items():
+                self.supported_installers[installer[0]] = installer[1]
+        except:
+            logging.error(
+                "Cannot fetch installers index from repository.")
+            return False
 
     # Fetch installer manifest
     def fetch_installer_manifest(self, installer_name: str, installer_category: str, plain: bool = False) -> Union[str, dict, bool]:
@@ -868,40 +872,46 @@ class BottlesRunner:
 
     # Fetch components
     def fetch_components(self) -> bool:
-        if self.utils_conn.check_connection():
-            with urllib.request.urlopen(BottlesRepositories.components_index) as url:
-                index = yaml.safe_load(url.read())
+        if not self.utils_conn.check_connection():
+            return False
 
-                for component in index.items():
-                    if component[1]["Category"] == "runners":
+        try:
+            url = urllib.request.urlopen(BottlesRepositories.components_index)
+            index = yaml.safe_load(url.read())
 
-                        if component[1]["Sub-category"] == "wine":
+            for component in index.items():
+                if component[1]["Category"] == "runners":
+
+                    if component[1]["Sub-category"] == "wine":
+                        self.supported_wine_runners[component[0]
+                                                    ] = component[1]
+                        if component[0] in self.runners_available:
                             self.supported_wine_runners[component[0]
-                                                        ] = component[1]
-                            if component[0] in self.runners_available:
-                                self.supported_wine_runners[component[0]
-                                                            ]["Installed"] = True
+                                                        ]["Installed"] = True
 
-                        if component[1]["Sub-category"] == "proton":
+                    if component[1]["Sub-category"] == "proton":
+                        self.supported_proton_runners[component[0]
+                                                    ] = component[1]
+                        if component[0] in self.runners_available:
                             self.supported_proton_runners[component[0]
-                                                          ] = component[1]
-                            if component[0] in self.runners_available:
-                                self.supported_proton_runners[component[0]
-                                                              ]["Installed"] = True
+                                                        ]["Installed"] = True
 
-                    if component[1]["Category"] == "dxvk":
-                        self.supported_dxvk[component[0]] = component[1]
-                        if component[0] in self.dxvk_available:
-                            self.supported_dxvk[component[0]
-                                                ]["Installed"] = True
+                if component[1]["Category"] == "dxvk":
+                    self.supported_dxvk[component[0]] = component[1]
+                    if component[0] in self.dxvk_available:
+                        self.supported_dxvk[component[0]
+                                            ]["Installed"] = True
 
-                    if component[1]["Category"] == "vkd3d":
-                        self.supported_vkd3d[component[0]] = component[1]
-                        if component[0] in self.vkd3d_available:
-                            self.supported_vkd3d[component[0]
-                                                 ]["Installed"] = True
-                return True
-        return False
+                if component[1]["Category"] == "vkd3d":
+                    self.supported_vkd3d[component[0]] = component[1]
+                    if component[0] in self.vkd3d_available:
+                        self.supported_vkd3d[component[0]
+                                            ]["Installed"] = True
+            url.close()
+            return True
+        except:
+            logging.error(F"Cannot fetch components list.")
+            return False
 
     # Fetch component manifest
     def fetch_component_manifest(self, component_type: str, component_name: str, plain: bool = False) -> Union[str, dict, bool]:
@@ -935,15 +945,19 @@ class BottlesRunner:
 
     # Fetch dependencies
     def fetch_dependencies(self) -> bool:
-        if self.utils_conn.check_connection():
-            with urllib.request.urlopen(BottlesRepositories.dependencies_index) as url:
-                index = yaml.safe_load(url.read())
-
-                for dependency in index.items():
-                    self.supported_dependencies[dependency[0]] = dependency[1]
-        else:
+        if not self.utils_conn.check_connection():
             return False
-        return True
+
+        try:
+            url = urllib.request.urlopen(BottlesRepositories.dependencies_index)
+            index = yaml.safe_load(url.read())
+
+            for dependency in index.items():
+                self.supported_dependencies[dependency[0]] = dependency[1]
+            return True
+        except:
+            logging.error(F"Cannot fetch dependencies list.")
+            return False
 
     # Fetch dependency manifest
     def fetch_dependency_manifest(self, dependency_name: str, dependency_category: str, plain: bool = False) -> Union[str, dict, bool]:
