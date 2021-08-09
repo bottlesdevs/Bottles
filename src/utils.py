@@ -38,6 +38,8 @@ from .pages.dialog import BottlesDialog
 logging.basicConfig(level=logging.DEBUG)
 
 # Check online connection
+
+
 class UtilsConnection():
 
     def __init__(self, window, **kwargs):
@@ -66,35 +68,26 @@ class UtilsConnection():
             self.status = False
 
         return False
-    
+
 
 # Launch commands in system terminal
 class UtilsTerminal():
 
-    terminals = [
-        ['xterm', '-e %s'],
-        ['konsole', '-e %s'],
-        ['gnome-terminal', '-- %s'],
-        ['xfce4-terminal', '--command %s'],
-        ['mate-terminal', '--command %s'],
-        ['tilix', '-- %s'],
-    ]
+    terminals = ['xterm', 'gnome-terminal', 'konsole',
+                 'xfce4-terminal', 'mate-terminal', 'tilix']
 
-    def __init__(self, command):
-        for terminal in self.terminals:
-            terminal_check = subprocess.Popen(
-                f"command -v {terminal[0]} > /dev/null && echo 1 || echo 0",
-                shell=True,
-                stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+    @staticmethod
+    def get_terminal():
+        if "IS_FLATPAK" in os.environ or "SNAP" in os.environ:
+            return None
 
-            if "1" in terminal_check:
-                subprocess.Popen(
-                    ' '.join(terminal) % f"bash -c '{command}'",
-                    shell=True,
-                    stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
-                break
+        for terminal in UtilsTerminal.terminals:
+            if shutil.which(terminal):
+                return terminal
+                
+        return None
 
-# Custom formatted logger
+
 class UtilsLogger(logging.getLoggerClass()):
 
     __color_map = {
@@ -142,6 +135,8 @@ class UtilsLogger(logging.getLoggerClass()):
         self.root.critical(self.__color("critical", message))
 
 # Files utilities
+
+
 class UtilsFiles():
 
     @staticmethod
@@ -162,29 +157,29 @@ class UtilsFiles():
         ext = string.split('.')[1]
         globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
         return '*.%s' % ''.join(globlist)
-    
+
     # Get human size by a float
     @staticmethod
-    def get_human_size(size:float) -> str:
-        for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+    def get_human_size(size: float) -> str:
+        for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
             if abs(size) < 1024.0:
                 return "%3.1f%s%s" % (size, unit, 'B')
             size /= 1024.0
 
         return "%.1f%s%s" % (size, 'Yi', 'B')
-    
 
     # Get path size
-    def get_path_size(self, path:str, human:bool=True) -> Union[str, float]:
+    def get_path_size(self, path: str, human: bool = True) -> Union[str, float]:
         path = Path(path)
         size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
 
-        if human: return self.get_human_size(size)
+        if human:
+            return self.get_human_size(size)
 
         return size
 
     # Get disk size
-    def get_disk_size(self, human:bool=True) -> dict:
+    def get_disk_size(self, human: bool = True) -> dict:
         # TODO: disk should be taken from configuration Path
         disk_total, disk_used, disk_free = shutil.disk_usage('/')
 
@@ -200,7 +195,7 @@ class UtilsFiles():
         }
 
 
-def write_log(data:list):
+def write_log(data: list):
     log_path = f"{Path.home()}/.local/share/bottles/crash.log"
     if "IS_FLATPAK" in os.environ:
         log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
@@ -217,7 +212,8 @@ class RunAsync(threading.Thread):
         self.source_id = None
         self.stop_request = threading.Event()
 
-        super(RunAsync, self).__init__(target=self.__target, args=args, kwargs=kwargs)
+        super(RunAsync, self).__init__(
+            target=self.__target, args=args, kwargs=kwargs)
 
         self.task_func = task_func
 
@@ -235,7 +231,8 @@ class RunAsync(threading.Thread):
         try:
             result = self.task_func(*args, **kwargs)
         except Exception as exception:
-            logging.error(f"Error while running async job: {self.task_func}\nException: {exception}")
+            logging.error(
+                f"Error while running async job: {self.task_func}\nException: {exception}")
 
             error = exception
             _ex_type, _ex_value, trace = sys.exc_info()
@@ -252,7 +249,7 @@ class RunAsync(threading.Thread):
 class CabExtract():
 
     requirements = False
-    
+
     def run(self, path: str, name: str):
         self.path = path
         self.name = name
@@ -271,12 +268,14 @@ class CabExtract():
             logging.error(f"{self.path} is not a cab file")
             write_log(f"{self.path} is not a cab file")
             return False
-        
+
         if not shutil.which("cabextract"):
-            logging.fatal("cabextract utility not found, please install to use dependencies wich need this feature")
-            write_log("cabextract utility not found, please install to use dependencies wich need this feature")
+            logging.fatal(
+                "cabextract utility not found, please install to use dependencies wich need this feature")
+            write_log(
+                "cabextract utility not found, please install to use dependencies wich need this feature")
             return False
-        
+
         return True
 
     def __extract(self) -> bool:
@@ -291,12 +290,12 @@ class CabExtract():
             ).communicate()
             return True
         except Exception as exception:
-            logging.error(f"Error while extracting cab file {self.path}:\n{exception}")
+            logging.error(
+                f"Error while extracting cab file {self.path}:\n{exception}")
 
         return False
 
 
-        
 def validate_url(url: str):
     regex = re.compile(
         r'^(?:http|ftp)s?://'
