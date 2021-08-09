@@ -311,6 +311,7 @@ class BottlesInstallerEntry(Handy.ActionRow):
 
     '''Execute installer'''
     def execute_installer(self, widget):
+        self.get_parent().set_sensitive(False)
         for w in widget.get_children(): w.destroy()
 
         widget.set_sensitive(False)
@@ -330,6 +331,7 @@ class BottlesInstallerEntry(Handy.ActionRow):
         self.spinner.stop()
         self.btn_install.set_visible(False)
         self.img_installed.set_visible(True)
+        self.get_parent().set_sensitive(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
 class BottlesStateEntry(Handy.ActionRow):
@@ -371,6 +373,7 @@ class BottlesStateEntry(Handy.ActionRow):
     '''Set bottle state'''
     def set_state(self, widget):
         for w in widget.get_children(): w.destroy()
+        self.get_parent().set_sensitive(False)
 
         widget.set_sensitive(False)
         widget.add(self.spinner)
@@ -396,6 +399,7 @@ class BottlesStateEntry(Handy.ActionRow):
     def set_completed(self):
         self.spinner.stop()
         self.btn_restore.set_visible(False)
+        self.get_parent().set_sensitive(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class BottlesProgramEntry(Handy.ActionRow):
@@ -567,6 +571,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
 
     '''Install dependency'''
     def install_dependency(self, widget):
+        self.get_parent().set_sensitive(False)
         for w in widget.get_children(): w.destroy()
 
         widget.set_sensitive(False)
@@ -600,6 +605,8 @@ class BottlesDependencyEntry(Handy.ActionRow):
         if has_installer:
             self.btn_remove.set_visible(True)
             self.btn_remove.set_sensitive(True)
+
+        self.get_parent().set_sensitive(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class BottlesDetails(Handy.Leaflet):

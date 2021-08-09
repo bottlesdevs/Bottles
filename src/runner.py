@@ -941,7 +941,7 @@ class BottlesRunner:
                     return url.read().decode("utf-8")
                 return yaml.safe_load(url.read())
 
-            return False
+        return False
 
     # Fetch dependencies
     def fetch_dependencies(self) -> bool:
@@ -971,7 +971,7 @@ class BottlesRunner:
                     return url.read().decode("utf-8")
                 return yaml.safe_load(url.read())
 
-            return False
+        return False
 
     # Check Bottles data from old directory (only Flatpak)
     def check_bottles_n(self):
