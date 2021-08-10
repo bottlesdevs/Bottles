@@ -22,7 +22,7 @@
           <object class="HdyHeaderBar">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="title" translatable="yes">Create bottle</property>
+            <property name="title" translatable="yes">Create Bottle</property>
             <child>
               <object class="GtkButton" id="btn_cancel">
                 <property name="label" translatable="yes">Cancel</property>
@@ -80,12 +80,12 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">center</property>
-                    <property name="margin-left">10</property>
-                    <property name="margin-right">10</property>
-                    <property name="margin-start">10</property>
-                    <property name="margin-end">10</property>
-                    <property name="margin-top">20</property>
-                    <property name="margin-bottom">25</property>
+                    <property name="margin-left">12</property>
+                    <property name="margin-right">12</property>
+                    <property name="margin-start">12</property>
+                    <property name="margin-end">12</property>
+                    <property name="margin-top">24</property>
+                    <property name="margin-bottom">24</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
                     <property name="orientation">vertical</property>
@@ -93,44 +93,23 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="justify">left</property>
                         <property name="halign">center</property>
-                        <property name="margin-top">10</property>
-                        <property name="margin-bottom">10</property>
-                        <property name="label" translatable="yes">New Bottle</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <property name="label" translatable="yes">Sed dolorem impedit inventore. Corporis a voluptatem esse ut vitae dolorem. </property>
                         <property name="wrap">True</property>
-                        <property name="wrap-mode">word-char</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell Bold 20"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
+                        <property name="expand">T</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">Choose a name for your bottle</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell 11"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkListBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-bottom">10</property>
                         <property name="selection-mode">none</property>
                         <child>
                           <object class="HdyActionRow">
@@ -141,20 +120,19 @@
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="margin-bottom">6</property>
+                                <property name="margin-top">6</property>
                                 <child>
                                   <object class="GtkEntry" id="entry_name">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
-                                    <property name="has-frame">False</property>
+                                    <property name="has-frame">True</property>
                                     <property name="primary-icon-tooltip-text" translatable="yes">This field cannot contain special characters!</property>
                                     <property name="placeholder-text" translatable="yes">My beautiful bottle</property>
-                                    <style>
-                                      <class name="borderless"/>
-                                    </style>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
-                                    <property name="fill">True</property>
+                                    <property name="fill">False</property>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
@@ -171,22 +149,6 @@
                         <property name="fill">False</property>
                         <property name="padding">5</property>
                         <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">Choose an environment</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell 11"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">3</property>
                       </packing>
                     </child>
                     <child>
