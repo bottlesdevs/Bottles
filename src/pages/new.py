@@ -135,10 +135,10 @@ class BottlesNew(Handy.Window):
         name = widget.get_text()
 
         if(regex.search(name) is None) and name != "":
-            self.btn_create.set_visible(True)
+            self.btn_create.set_sensitive(True)
             widget.set_icon_from_icon_name(1, "")
         else:
-            self.btn_create.set_visible(False)
+            self.btn_create.set_sensitive(False)
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     '''Create the bottle'''
