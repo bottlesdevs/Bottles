@@ -23,7 +23,7 @@ import webbrowser
 gi.require_version('Handy', '1')
 gi.require_version('Notify', '0.7')
 
-from gi.repository import Gtk, Gio, Notify, Handy
+from gi.repository import Gtk, Gio, Notify, Handy, GLib
 from pathlib import Path
 
 from .params import *
@@ -37,7 +37,7 @@ from .pages.list import BottlesList
 from .pages.preferences import BottlesPreferences
 from .pages.taskmanager import BottlesTaskManager
 from .pages.importer import BottlesImporter
-from .pages.dialog import BottlesAboutDialog, BottlesCrashReport, BottlesFlatpakMigration
+from .pages.dialog import BottlesAboutDialog, BottlesCrashReport
 
 from .utils import UtilsConnection, UtilsLogger
 
@@ -224,10 +224,6 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.page_details.set_configuration(configuration)
         self.stack_main.set_visible_child_name("page_details")
         self.page_details.set_visible_child_name("bottle")
-
-    def show_flatpak_migration_view(self, widget=False):
-        migration_window = BottlesFlatpakMigration(self)
-        migration_window.present()
 
     def show_onboard_view(self, widget=False):
         onboard_window = BottlesOnboard(self)
