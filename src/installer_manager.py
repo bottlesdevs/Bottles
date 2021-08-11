@@ -105,7 +105,7 @@ class InstallerManager:
         icon_path = f"{self.bottle_icons_path}/{executable.get('icon')}"
         desktop_file = f"{BottlesPaths.applications}/{self.configuration.get('Name')}--{self.manifest.get('Name')}--{datetime.now().timestamp()}.desktop"
 
-        if "IS_FLATPAK" in os.environ:
+        if "FLATPAK_ID" in os.environ:
             return None
             
         with open(desktop_file, "w") as f:

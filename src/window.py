@@ -256,7 +256,7 @@ class BottlesWindow(Handy.ApplicationWindow):
 
     def check_crash_log(self):
         log_path = f"{Path.home()}/.local/share/bottles/crash.log"
-        if "IS_FLATPAK" in os.environ:
+        if "FLATPAK_ID" in os.environ:
             log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
         crash_log = False
 

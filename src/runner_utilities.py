@@ -153,7 +153,7 @@ class RunnerUtilities:
         cwd: str = None
     ) -> bool:
         # Work around for Flatpak and Snap not able to use system commands
-        if "IS_FLATPAK" in os.environ or "SNAP" in os.environ and terminal:
+        if "FLATPAK_ID" in os.environ or "SNAP" in os.environ and terminal:
             terminal = False
             if command in ["winedbg", "cmd"]:
                 command = f"wineconsole {command}"
