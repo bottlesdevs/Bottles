@@ -5,7 +5,6 @@
     "runtime-version" : "40",
     "command" : "bottles",
     "finish-args" : [
-  	"--persist=.Bottles",
         "--allow=multiarch",
 
         "--share=network",
@@ -15,26 +14,10 @@
         "--socket=fallback-x11",
         "--socket=pulseaudio",
 
-        "--filesystem=~/Games:ro",
-        "--filesystem=~/wineprefixes:ro",
-        "--filesystem=~/.Bottles:ro",
-        "--filesystem=~/.local/share/bottles:ro",
-        "--filesystem=/run/media",
-        "--filesystem=/media",
-        "--filesystem=xdg-run/gvfsd",
-        "--filesystem=xdg-desktop",
-        "--filesystem=xdg-documents",
-        "--filesystem=xdg-pictures",
-        "--filesystem=xdg-music",
-        "--filesystem=xdg-videos",
-        "--filesystem=xdg-download",
-
         "--device=all",
 
         "--system-talk-name=org.freedesktop.UDisks2",
         "--talk-name=org.freedesktop.Notifications",
-        "--talk-name=org.gtk.vfs",
-        "--talk-name=org.gtk.vfs.*",
 
         "--env=LD_LIBRARY_PATH=/app/lib:/app/lib32",
         "--env=IS_FLATPAK=1"
