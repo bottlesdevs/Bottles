@@ -207,7 +207,7 @@ class BottlesCrashReport(Handy.Window):
         log = quote(self.log)
         details_list = {}
 
-        if "IS_FLATPAK" in os.environ:
+        if "FLATPAK_ID" in os.environ:
             details_list["package"] = "Flatpak"
 
         elif "APPDIR" in os.environ:

@@ -202,7 +202,7 @@ class UtilsFiles():
 
 def write_log(data:list):
     log_path = f"{Path.home()}/.local/share/bottles/crash.log"
-    if "IS_FLATPAK" in os.environ:
+    if "FLATPAK_ID" in os.environ:
         log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
 
     with open(log_path, "w") as crash_log:
@@ -281,7 +281,7 @@ class CabExtract():
 
     def __extract(self) -> bool:
         temp_path = f"{Path.home()}/.local/share/bottles/temp"
-        if "IS_FLATPAK" in os.environ:
+        if "FLATPAK_ID" in os.environ:
             temp_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles/temp"
 
         try:
