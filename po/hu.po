@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-04 15:10+0200\n"
-"PO-Revision-Date: 2021-08-11 14:34+0000\n"
+"PO-Revision-Date: 2021-08-11 20:20+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -222,8 +222,8 @@ msgid ""
 "When installing a new runner, winemenubuilder is blocked to prevent the "
 "creation of broken desktop entries"
 msgstr ""
-"Új futó telepítésekor a winemenubuilder letiltva megakadályozza a törött "
-"asztali bejegyzések létrehozását"
+"Új futtató telepítésekor a winemenubuilder letiltva megakadályozza a törött "
+"asztalbejegyzések létrehozását"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid ""
@@ -316,7 +316,7 @@ msgstr "Figyelmeztetés az adattár tesztelésének engedélyezésére"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Several improvements in runner management"
-msgstr "Számos fejlesztés a futók irányításában"
+msgstr "Számos fejlesztés a futtatók kezelésében"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
 msgid "Added icons to the sidebar"
@@ -819,11 +819,11 @@ msgstr "Fsync"
 
 #: src/ui/details.ui:1333 src/ui/new.ui:261
 msgid "Runner"
-msgstr "Futó"
+msgstr "Futtató"
 
 #: src/ui/details.ui:1376 src/ui/new.ui:303
 msgid "Manage runners"
-msgstr "Futókezelő"
+msgstr "Futtatók kezelése"
 
 #: src/ui/details.ui:1408 src/ui/new.ui:335
 msgid "DXVK Version"
@@ -1097,7 +1097,7 @@ msgstr "Segédprogram és beállítások"
 
 #: src/ui/list-entry.ui:202
 msgid "Upgrade runner to the latest localy installed"
-msgstr "Futó frissítése a legújabb helyileg telepített futóra"
+msgstr "Futtató frissítése a legújabb helyileg telepítettre"
 
 #: src/ui/list-entry.ui:229
 msgid "Destroy bottle"
@@ -1231,7 +1231,7 @@ msgstr "Tárolók megkönnyítik a Windows szoftver futtatását Linuxon."
 
 #: src/ui/onboard.ui:229
 msgid "What are runners?"
-msgstr "Mik a futók?"
+msgstr "Mik a futtatók?"
 
 #: src/ui/onboard.ui:249
 msgid ""
@@ -1247,11 +1247,11 @@ msgstr ""
 "Ezek olyan kompatibilitási rétegek, amelyek lehetővé teszik a Windows "
 "szoftverek telepítését és futtatását Linux rendszereken.\n"
 "\n"
-"<b>Tárolók</b> olyan környezetek, ahol a futó konfigurálja a rendszert, és "
-"ahol a Windows szoftver fut és telepítve van.\n"
+"A <b>tárolók</b> olyan környezetek, ahol a futtató konfigurálja a rendszert, "
+"és ahol a Windows szoftver fut és telepítve van.\n"
 "\n"
 "<a href=\"https://docs.usebottles.com/components/runners\">További "
-"információ a futókról</a>"
+"információ a futtatókról</a>"
 
 #: src/ui/onboard.ui:269
 msgid "Wine"
@@ -1274,8 +1274,8 @@ msgid ""
 "\n"
 "When you are ready press the <b>Install</b> button."
 msgstr ""
-"Le kell töltenünk és telepítenünk kell egy futót, hogy lehetővé tegye saját "
-"tárolók létrehozását.\n"
+"Le kell töltenünk és telepítenünk kell egy futtatót, hogy lehetővé tegyük a "
+"saját tárolók létrehozását.\n"
 "A letöltési méret <b>kb. 70MB</b>.\n"
 "<a href=\"https://docs.usebottles.com/getting-started/first-run\">További "
 "információ arról, hogy mit fogunk letölteni</a>\n"
@@ -1287,7 +1287,7 @@ msgstr ""
 
 #: src/ui/onboard.ui:341 src/ui/preferences.ui:181
 msgid "Runners"
-msgstr "Futók"
+msgstr "Futtatók"
 
 #: src/ui/onboard.ui:371
 msgid "Downloading…"
@@ -1403,7 +1403,7 @@ msgstr "Programok eltávolítása"
 
 #: src/ui/runner-entry.ui:74
 msgid "Download & Install this runner"
-msgstr "Futó letöltése és telepítése"
+msgstr "Futtató letöltése és telepítése"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
@@ -1493,7 +1493,7 @@ msgstr "[Frissítési] kérelem érkezett."
 
 #: src/runner.py:1059
 msgid "No runners found, please install one."
-msgstr "Nincsenek futók, kérjük, telepítsen egyet."
+msgstr "Nincsenek futtatók, kérjük, telepítsen egyet."
 
 #: src/runner.py:1063
 msgid "No dxvk found, installing the latest version …"
@@ -1625,7 +1625,7 @@ msgstr "Frissítés megerősítése"
 #: src/pages/list.py:160
 #, python-brace-format
 msgid "This will change the runner from {0} to {1}."
-msgstr "Ez a futót „{0}”-ról „{1}”-re változtatja."
+msgstr "Ez a futtatót „{0}”-ról „{1}”-re változtatja."
 
 #: src/pages/new.py:106
 msgid "Gaming"
