@@ -32,8 +32,6 @@ from pathlib import Path
 from .params import *
 from .utils import UtilsLogger
 
-VERSION = "Bottles 2021.7.28-treviso-2"
-
 share_dir = os.path.join(sys.prefix, 'share')
 base_dir = '.'
 
