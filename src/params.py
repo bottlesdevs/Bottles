@@ -5,6 +5,3 @@ APP_ID = "com.usebottles.bottles"
 
 # Internal settings not user editable
 ANIM_DURATION = 120
-
-# Default settings
-THEME_DARK = False
