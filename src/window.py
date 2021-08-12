@@ -23,7 +23,7 @@ import webbrowser
 gi.require_version('Handy', '1')
 gi.require_version('Notify', '0.7')
 
-from gi.repository import Gtk, Gio, Notify, Handy, GLib
+from gi.repository import Gtk, Gio, Notify, Handy
 from pathlib import Path
 
 from .params import *
