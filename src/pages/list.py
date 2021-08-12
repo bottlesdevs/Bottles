@@ -50,8 +50,11 @@ class BottlesListEntry(Handy.ActionRow):
         '''Format update date'''
         update_date = "N/A"
         if self.configuration.get("Update_Date"):
-            update_date = datetime.strptime(self.configuration.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
-            update_date = update_date.strftime("%b %d %Y %H:%M:%S")
+            try:
+                update_date = datetime.strptime(self.configuration.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
+                update_date = update_date.strftime("%b %d %Y %H:%M:%S")
+            except ValueError:
+                update_date = "N/A"
 
         '''Check runner type by name'''
         if self.configuration.get("Runner").startswith("lutris"):
