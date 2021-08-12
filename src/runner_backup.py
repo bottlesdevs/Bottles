@@ -1,6 +1,8 @@
 import os
 import yaml
 import tarfile
+import shutil
+from distutils.dir_util import copy_tree
 
 from typing import NewType
 
@@ -118,3 +120,44 @@ class RunnerBackup:
 
     def import_backup_bottle(self, window, scope: str, path: str) -> None:
         RunAsync(self.async_import_backup_bottle, None, [window, scope, path])
+    
+    def duplicate_bottle(self, configuration, name) -> bool:
+        logging.info(f"Duplicating bottle: [{configuration.get('Name')}] to [{name}]")
+
+        source = RunnerUtilities().get_bottle_path(configuration)
+        dest = f"{BottlesPaths.bottles}/{name}"
+
+        source_drive = f"{source}/drive_c"
+        dest_drive = f"{dest}/drive_c"
+
+        source_config = f"{source}/bottle.yml"
+        dest_config = f"{dest}/bottle.yml"
+        
+        if not os.path.exists(dest):
+            os.makedirs(dest)
+        
+        regs = [
+            "system.reg",
+            "user.reg",
+            "userdef.reg"
+        ]
+
+        for reg in regs:
+            source_reg = f"{source}/{reg}"
+            dest_reg = f"{dest}/{reg}"
+            if os.path.exists(source_reg):
+                shutil.copyfile(source_reg, dest_reg)
+
+        shutil.copyfile(source_config, dest_config)
+
+        with open(dest_config, "r") as config_file:
+            config = yaml.safe_load(config_file)
+            config["Name"] = name
+            config["Drive"] = name
+        
+        with open(dest_config, "w") as config_file:
+            yaml.dump(config, config_file, indent=4)
+
+        copy_tree(source_drive, dest_drive)
+
+        return True

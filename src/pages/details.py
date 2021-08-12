@@ -19,6 +19,7 @@ from gi.repository import Gtk, GLib, Handy
 
 import os
 import re
+import time
 import webbrowser
 from datetime import datetime
 
@@ -26,6 +27,7 @@ from .dialog import BottlesDialog, BottlesMessageDialog
 from ..installer_manager import InstallerManager
 from ..runner_utilities import RunnerUtilities, gamemode_available
 from ..runner_backup import RunnerBackup
+from ..utils import RunAsync
 
 class BottlesDetailsPageRow(Gtk.ListBoxRow):
 
@@ -60,6 +62,71 @@ class BottlesDetailsPageRow(Gtk.ListBoxRow):
         self.add(box)
 
         self.show_all()
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
+class BottlesDuplicate(Handy.Window):
+    __gtype_name__ = 'BottlesDuplicate'
+
+    '''Get widgets from template'''
+    entry_name = Gtk.Template.Child()
+    btn_cancel = Gtk.Template.Child()
+    btn_close = Gtk.Template.Child()
+    btn_duplicate = Gtk.Template.Child()
+    stack_switcher = Gtk.Template.Child()
+    progressbar = Gtk.Template.Child()
+
+    def __init__(self, parent, **kwargs):
+        super().__init__(**kwargs)
+        self.set_transient_for(parent.window)
+
+        '''Common variables'''
+        self.parent = parent
+        self.configuration = parent.configuration
+
+        '''Signal connections'''
+        self.btn_cancel.connect('pressed', self.close_window)
+        self.btn_close.connect('pressed', self.close_window)
+        self.btn_duplicate.connect('pressed', self.duplicate_bottle)
+        self.entry_name.connect('key-release-event', self.check_entry_name)
+
+    '''Validate entry_name input'''
+    def check_entry_name(self, widget, event_key):
+        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
+        name = widget.get_text()
+
+        if(regex.search(name) is None) and name != "":
+            self.btn_duplicate.set_sensitive(True)
+            widget.set_icon_from_icon_name(1, "")
+        else:
+            self.btn_duplicate.set_sensitive(False)
+            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+
+    '''Destroy the window'''
+    def close_window(self, widget=None):
+        self.destroy()
+
+    '''Run executable with args'''
+    def duplicate_bottle(self, widget):
+        self.stack_switcher.set_visible_child_name("page_duplicating")
+
+        widget.set_visible(False)
+        RunAsync(self.pulse, None)
+        name = self.entry_name.get_text()
+
+        RunnerBackup().duplicate_bottle(self.configuration, name)
+        self.parent.runner.update_bottles()
+
+        self.stack_switcher.set_visible_child_name("page_duplicated")
+
+        self.btn_close.set_sensitive(True)
+        self.btn_close.set_visible(True)
+        self.btn_cancel.set_visible(False)
+
+    '''Progressbar pulse every 1s'''
+    def pulse(self):
+        while True:
+            time.sleep(1)
+            self.progressbar.pulse()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-run-args.ui')
 class BottlesRunArgs(Handy.Window):
@@ -637,6 +704,7 @@ class BottlesDetails(Handy.Leaflet):
     btn_overrides = Gtk.Template.Child()
     btn_backup_config = Gtk.Template.Child()
     btn_backup_full = Gtk.Template.Child()
+    btn_duplicate = Gtk.Template.Child()
     btn_add_state = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
     btn_manage_runners = Gtk.Template.Child()
@@ -724,6 +792,7 @@ class BottlesDetails(Handy.Leaflet):
         self.btn_environment_variables.connect('pressed', self.show_environment_variables)
         self.btn_backup_config.connect('pressed', self.backup_config)
         self.btn_backup_full.connect('pressed', self.backup_full)
+        self.btn_duplicate.connect('pressed', self.duplicate)
         self.btn_add_state.connect('pressed', self.add_state)
         self.btn_help_versioning.connect('pressed', self.open_doc_url, "bottles/versioning")
         self.btn_help_debug.connect('pressed', self.open_doc_url, "utilities/logs-and-debugger#wine-debugger")
@@ -1342,6 +1411,11 @@ class BottlesDetails(Handy.Leaflet):
             )
 
         file_dialog.destroy()
+    
+    '''Duplicate bottle with another name'''
+    def duplicate(self, widget):
+        new_window = BottlesDuplicate(self)
+        new_window.present()
 
     '''Show dialog to confirm bottle deletion'''
     def confirm_delete(self, widget):
