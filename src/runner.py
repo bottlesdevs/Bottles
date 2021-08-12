@@ -306,6 +306,7 @@ class BottlesRunner:
     '''
 
     def async_install_dependency(self, args: list) -> bool:
+        fail
         configuration, dependency, widget = args
         self.download_manager = DownloadManager(self.window)
         has_no_uninstaller = False
