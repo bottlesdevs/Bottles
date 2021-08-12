@@ -100,8 +100,8 @@ class BottlesRunner:
     def clear_temp(self, force: bool = False) -> None:
         if self.settings.get_boolean("temp") or force:
             try:
-                for f in os.listdir(BottlesPaths.temp):
-                    os.remove(os.path.join(BottlesPaths.temp, f))
+                shutil.rmtree(BottlesPaths.temp)
+                os.makedirs(BottlesPaths.temp, exist_ok=True)
                 logging.info("Temp path cleaned successfully!")
             except FileNotFoundError:
                 logging.error("Failed to clear temp path!")
