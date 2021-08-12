@@ -131,7 +131,7 @@ class BottlesNew(Handy.Window):
 
     '''Validate entry_name input'''
     def check_entry_name(self, widget, event_key):
-        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,]')
+        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         name = widget.get_text()
 
         if(regex.search(name) is None) and name != "":
