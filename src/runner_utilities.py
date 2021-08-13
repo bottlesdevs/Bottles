@@ -159,6 +159,8 @@ class RunnerUtilities:
                 command = f"wineconsole {command}"
 
         if not cwd:
+            cwd = configuration.get("WorkingDir")
+        if cwd == "":
             cwd = self.get_bottle_path(configuration)
         
         path = configuration.get("Path")
