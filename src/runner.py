@@ -989,20 +989,6 @@ class BottlesRunner:
         for bottle in bottles:
             bottle_name_path = bottle.split("/")[-2]
 
-            '''
-            Check for old json bottle configurations and convert to
-            the new yaml format
-            TODO: this check will be removed in the near future
-            '''
-            try:
-                with open(f'{bottle}/bottle.json') as c_json_file:
-                    c_json = json.load(c_json_file)
-                    with open(f'{bottle}/bottle.yml', "w") as c_yaml_file:
-                        yaml.dump(c_json, c_yaml_file, allow_unicode=True)
-                os.remove(f'{bottle}/bottle.json')
-            except FileNotFoundError:
-                pass
-
             try:
                 configuration_file = open('%s/bottle.yml' % bottle)
                 configuration_file_yaml = yaml.safe_load(configuration_file)
