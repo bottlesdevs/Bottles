@@ -878,12 +878,13 @@ class BottlesDetails(Handy.Leaflet):
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose working directory for executables"),
             self.window,
-            Gtk.FileChooserAction.OPEN,
+            Gtk.FileChooserAction.SELECT_FOLDER,
             _("Done"),
             _("Cancel")
         )
         file_dialog.set_current_folder(
             RunnerUtilities().get_bottle_path(self.configuration))
+            
         response = file_dialog.run()
 
         if response == -3:
