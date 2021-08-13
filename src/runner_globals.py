@@ -9,6 +9,7 @@ class BottlesSamples:
         "Name": "",
         "Arch": "win64",
         "Runner": "",
+        "WorkingDir": "",
         "DXVK": "",
         "VKD3D": "",
         "Path": "",
