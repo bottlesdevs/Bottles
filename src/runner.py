@@ -990,34 +990,36 @@ class BottlesRunner:
             bottle_name_path = bottle.split("/")[-2]
 
             try:
-                configuration_file = open('%s/bottle.yml' % bottle)
-                configuration_file_yaml = yaml.safe_load(configuration_file)
-                configuration_file.close()
+                conf_file = open(f"{bottle}/bottle.yml")
+                conf_file_yaml = yaml.safe_load(conf_file)
+                conf_file.close()
                 
                 # Update architecture of old bottles
-                if configuration_file_yaml.get("Arch") in ["", None]:
-                    self.update_configuration(configuration_file_yaml,
+                if conf_file_yaml.get("Arch") in ["", None]:
+                    self.update_configuration(conf_file_yaml,
                                               "Arch",
                                               BottlesSamples.configuration["Arch"])
 
-                missing_keys = BottlesSamples.configuration.keys() - configuration_file_yaml.keys()
-                for key in missing_keys:
+                miss_keys = BottlesSamples.configuration.keys() - conf_file_yaml.keys()
+                for key in miss_keys:
                     logging.warning(
                         f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] configuration, updating.")
-                    self.update_configuration(configuration_file_yaml,
+                    self.update_configuration(conf_file_yaml,
                                               key,
-                                              BottlesSamples.configuration[key])
+                                              BottlesSamples.configuration[key],
+                                              no_update=True)
 
-                missing_parameters_keys = BottlesSamples.configuration["Parameters"].keys(
-                ) - configuration_file_yaml["Parameters"].keys()
-                for key in missing_parameters_keys:
+                miss_params_keys = BottlesSamples.configuration["Parameters"].keys(
+                ) - conf_file_yaml["Parameters"].keys()
+                for key in miss_params_keys:
                     logging.warning(
                         f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] configuration Parameters, updating.")
-                    self.update_configuration(configuration_file_yaml,
+                    self.update_configuration(conf_file_yaml,
                                               key,
                                               BottlesSamples.configuration["Parameters"][key],
-                                              scope="Parameters")
-                self.local_bottles[bottle_name_path] = configuration_file_yaml
+                                              scope="Parameters",
+                                              no_update=True)
+                self.local_bottles[bottle_name_path] = conf_file_yaml
 
             except FileNotFoundError:
                 new_configuration_yaml = BottlesSamples.configuration.copy()
@@ -1046,9 +1048,9 @@ class BottlesRunner:
                 del configuration[key]
 
         with open("%s/bottle.yml" % bottle_complete_path,
-                  "w") as configuration_file:
-            yaml.dump(configuration, configuration_file, indent=4)
-            configuration_file.close()
+                  "w") as conf_file:
+            yaml.dump(configuration, conf_file, indent=4)
+            conf_file.close()
 
         if not no_update:
             self.update_bottles(silent=True)
@@ -1162,9 +1164,9 @@ class BottlesRunner:
         time.sleep(1)
 
         # Save bottle configuration
-        with open(f"{bottle_complete_path}/bottle.yml", "w") as configuration_file:
-            yaml.dump(configuration, configuration_file, indent=4)
-            configuration_file.close()
+        with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
+            yaml.dump(configuration, conf_file, indent=4)
+            conf_file.close()
 
         time.sleep(5)
 
@@ -1285,9 +1287,9 @@ class BottlesRunner:
 
         try:
             with open("%s/bottle.yml" % bottle_complete_path,
-                      "w") as configuration_file:
-                yaml.dump(new_configuration, configuration_file, indent=4)
-                configuration_file.close()
+                      "w") as conf_file:
+                yaml.dump(new_configuration, conf_file, indent=4)
+                conf_file.close()
         except:
             return False
 
@@ -1523,9 +1525,9 @@ class BottlesRunner:
 
         # Save configuration
         with open("%s/bottle.yml" % bottle_complete_path,
-                  "w") as configuration_file:
-            yaml.dump(new_configuration, configuration_file, indent=4)
-            configuration_file.close()
+                  "w") as conf_file:
+            yaml.dump(new_configuration, conf_file, indent=4)
+            conf_file.close()
 
         # Update bottles
         self.update_bottles(silent=True)
