@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-04 15:10+0200\n"
+"POT-Creation-Date: 2021-08-13 19:33+0200\n"
 "PO-Revision-Date: 2021-08-10 15:43+0000\n"
 "Last-Translator: jann <gameroom23@gmail.com>\n"
 "Language-Team: Yiddish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -29,6 +29,14 @@ msgstr "Bottles"
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
 msgstr "גרינגע פאַרוואַלטונג פון \"װײַנפּרעפֿיקסן\""
+
+#: data/com.usebottles.bottles.desktop.in:5
+msgid "com.usebottles.bottles"
+msgstr ""
+
+#: data/com.usebottles.bottles.desktop.in:12
+msgid "wine;windows;"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -511,7 +519,8 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
-#: src/ui/details.ui:36 src/ui/details.ui:66 src/ui/importer.ui:36
+#: src/ui/details.ui:36 src/ui/details.ui:61 src/ui/details.ui:91
+#: src/ui/importer.ui:36
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr ""
 
@@ -519,366 +528,379 @@ msgstr ""
 msgid "Full archive"
 msgstr ""
 
-#: src/ui/details.ui:67
+#: src/ui/details.ui:62
+#, fuzzy
+msgid "Duplicate bottle"
+msgstr "Bottles"
+
+#: src/ui/details.ui:92
 msgid "Run with arguments"
 msgstr ""
 
-#: src/ui/details.ui:94
+#: src/ui/details.ui:119
 msgid "Type a really short comment:"
 msgstr ""
 
-#: src/ui/details.ui:111
+#: src/ui/details.ui:136
 msgid "Special characters are not allowed!"
 msgstr ""
 
-#: src/ui/details.ui:112
+#: src/ui/details.ui:137
 msgid "A really short comment"
 msgstr ""
 
-#: src/ui/details.ui:126
+#: src/ui/details.ui:151
 msgid "Save the bottle state."
 msgstr ""
 
-#: src/ui/details.ui:241
+#: src/ui/details.ui:266
 msgid "Rename bottle"
 msgstr ""
 
-#: src/ui/details.ui:268 src/ui/list-entry.ui:76
+#: src/ui/details.ui:292 src/ui/list-entry.ui:76
 msgid "Versioning enabled for this bottle"
 msgstr ""
 
-#: src/ui/details.ui:279 src/ui/list-entry.ui:83
+#: src/ui/details.ui:303 src/ui/list-entry.ui:83
 msgid "Versioning is active in this bottle."
 msgstr ""
 
-#: src/ui/details.ui:300 src/ui/list-entry.ui:102
+#: src/ui/details.ui:324 src/ui/list-entry.ui:102
 msgid "0"
 msgstr ""
 
-#: src/ui/details.ui:351 src/main.py:99
+#: src/ui/details.ui:354 src/main.py:97
 msgid "Bottle name"
 msgstr ""
 
-#: src/ui/details.ui:355
+#: src/ui/details.ui:358
 msgid "Type a name for your bottle"
 msgstr ""
 
-#: src/ui/details.ui:374
+#: src/ui/details.ui:377
 msgid "Environment"
 msgstr ""
 
-#: src/ui/details.ui:408
+#: src/ui/details.ui:411
 msgid "64 Bit"
 msgstr ""
 
-#: src/ui/details.ui:427
+#: src/ui/details.ui:430
 msgid "lutris-6.0-rc1-x86_64"
 msgstr ""
 
 #: src/ui/details.ui:458
-msgid "Destroy this bottle"
-msgstr ""
-
-#: src/ui/details.ui:479
 msgid "Run executable"
 msgstr ""
 
-#: src/ui/details.ui:520
+#: src/ui/details.ui:477
+msgid "Destroy this bottle"
+msgstr ""
+
+#: src/ui/details.ui:506
 #, fuzzy
 msgid "Backup bottle"
 msgstr "Bottles"
 
-#: src/ui/details.ui:546
+#: src/ui/details.ui:532
 msgid "Reboot Windows"
 msgstr ""
 
-#: src/ui/details.ui:571
+#: src/ui/details.ui:557
 msgid "Shutdown Windows"
 msgstr ""
 
-#: src/ui/details.ui:596
+#: src/ui/details.ui:582
 msgid "Kill all wine processes"
 msgstr ""
 
-#: src/ui/details.ui:639 src/ui/details.ui:2036 src/ui/details.ui:2170
-#: src/pages/details.py:767
+#: src/ui/details.ui:642 src/ui/details.ui:2089 src/ui/details.ui:2223
+#: src/pages/details.py:847
 msgid "Programs"
 msgstr ""
 
-#: src/ui/details.ui:655
+#: src/ui/details.ui:658
 msgid "Utilities"
 msgstr ""
 
-#: src/ui/details.ui:660
+#: src/ui/details.ui:663
 msgid "Wine config"
 msgstr ""
 
-#: src/ui/details.ui:662
+#: src/ui/details.ui:665
 msgid "Adjust internal settings."
 msgstr ""
 
-#: src/ui/details.ui:699 src/ui/list-entry.ui:257
+#: src/ui/details.ui:702
 msgid "Browse C:"
 msgstr ""
 
-#: src/ui/details.ui:701
+#: src/ui/details.ui:704
 msgid "Browse internal files."
 msgstr ""
 
-#: src/ui/details.ui:738
+#: src/ui/details.ui:741
 msgid "Command Line"
 msgstr ""
 
-#: src/ui/details.ui:740
+#: src/ui/details.ui:743
 msgid "Run commands inside the Bottle."
 msgstr ""
 
-#: src/ui/details.ui:777
+#: src/ui/details.ui:780
 msgid "Registry Editor"
 msgstr ""
 
-#: src/ui/details.ui:779
+#: src/ui/details.ui:782
 msgid "Edit the internal registry."
 msgstr ""
 
-#: src/ui/details.ui:816
+#: src/ui/details.ui:819
 msgid "Debug"
 msgstr ""
 
-#: src/ui/details.ui:818
+#: src/ui/details.ui:821
 msgid "Debug wine processes."
 msgstr ""
 
-#: src/ui/details.ui:852 src/ui/details.ui:1889 src/ui/details.ui:2475
+#: src/ui/details.ui:831 src/ui/details.ui:1942 src/ui/details.ui:2528
 msgid "Read documentation"
 msgstr ""
 
-#: src/ui/details.ui:882
+#: src/ui/details.ui:885
 msgid "Task Manager"
 msgstr ""
 
-#: src/ui/details.ui:884
+#: src/ui/details.ui:887
 msgid "Manage processes with the Wine task manager."
 msgstr ""
 
-#: src/ui/details.ui:921
+#: src/ui/details.ui:924
 msgid "Uninstaller"
 msgstr ""
 
-#: src/ui/details.ui:923
+#: src/ui/details.ui:926
 msgid "Uninstall programs using wine uninstaller"
 msgstr ""
 
-#: src/ui/details.ui:960
+#: src/ui/details.ui:963
 msgid "Control Panel"
 msgstr ""
 
-#: src/ui/details.ui:962
+#: src/ui/details.ui:965
 msgid "Access the internal wine control panel."
 msgstr ""
 
-#: src/ui/details.ui:1014
+#: src/ui/details.ui:1017
 msgid "Bottle"
 msgstr ""
 
-#: src/ui/details.ui:1042
+#: src/ui/details.ui:1045
 msgid "Graphics"
 msgstr ""
 
-#: src/ui/details.ui:1047
+#: src/ui/details.ui:1050
 msgid "Use DXVK"
 msgstr ""
 
-#: src/ui/details.ui:1048
+#: src/ui/details.ui:1051
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
 
-#: src/ui/details.ui:1075
+#: src/ui/details.ui:1078
 msgid "Use VKD3D"
 msgstr ""
 
-#: src/ui/details.ui:1076
+#: src/ui/details.ui:1079
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
 
-#: src/ui/details.ui:1103
+#: src/ui/details.ui:1106
 msgid "Use Gamemode"
 msgstr ""
 
-#: src/ui/details.ui:1104
+#: src/ui/details.ui:1107
 msgid "Optimise gaming performance on demand"
 msgstr ""
 
-#: src/ui/details.ui:1130
+#: src/ui/details.ui:1133
 msgid "Enable ACO shader compiler"
 msgstr ""
 
-#: src/ui/details.ui:1131
+#: src/ui/details.ui:1134
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
 
-#: src/ui/details.ui:1158
+#: src/ui/details.ui:1161
 msgid "Discrete GPU"
 msgstr ""
 
-#: src/ui/details.ui:1159
+#: src/ui/details.ui:1162
 msgid "Improves performance at the cost of increased power usage."
 msgstr ""
 
-#: src/ui/details.ui:1185
+#: src/ui/details.ui:1188
 msgid "Use a virtual desktop"
 msgstr ""
 
-#: src/ui/details.ui:1186
+#: src/ui/details.ui:1189
 msgid "Use the Wine virtual desktop."
 msgstr ""
 
-#: src/ui/details.ui:1269 src/ui/details.ui:1282
+#: src/ui/details.ui:1272 src/ui/details.ui:1285
 msgid "System"
 msgstr ""
 
-#: src/ui/details.ui:1274
+#: src/ui/details.ui:1277
 msgid "Synchronization"
 msgstr ""
 
-#: src/ui/details.ui:1275
+#: src/ui/details.ui:1278
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr ""
 
-#: src/ui/details.ui:1296
+#: src/ui/details.ui:1299
 msgid "Esync"
 msgstr ""
 
-#: src/ui/details.ui:1310
+#: src/ui/details.ui:1313
 msgid "Fsync"
 msgstr ""
 
-#: src/ui/details.ui:1333 src/ui/new.ui:261
+#: src/ui/details.ui:1336 src/ui/new.ui:261
 msgid "Runner"
 msgstr ""
 
-#: src/ui/details.ui:1376 src/ui/new.ui:303
+#: src/ui/details.ui:1379 src/ui/details.ui:1618 src/ui/new.ui:303
 msgid "Manage runners"
 msgstr ""
 
-#: src/ui/details.ui:1408 src/ui/new.ui:335
+#: src/ui/details.ui:1411 src/ui/new.ui:335
 msgid "DXVK Version"
 msgstr ""
 
-#: src/ui/details.ui:1451 src/ui/details.ui:1526 src/ui/new.ui:377
+#: src/ui/details.ui:1454 src/ui/details.ui:1529 src/ui/new.ui:377
 msgid "Manage DXVK versions"
 msgstr ""
 
-#: src/ui/details.ui:1483
+#: src/ui/details.ui:1486
 msgid "VKD3D Version"
 msgstr ""
 
-#: src/ui/details.ui:1559 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1562 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr ""
 
-#: src/ui/details.ui:1608
+#: src/ui/details.ui:1600
+msgid "Working directory"
+msgstr ""
+
+#: src/ui/details.ui:1602
+msgid "Point to the bottle path"
+msgstr ""
+
+#: src/ui/details.ui:1661
 msgid "Audio"
 msgstr ""
 
-#: src/ui/details.ui:1613
+#: src/ui/details.ui:1666
 msgid "Reduce PulseAudio latency"
 msgstr ""
 
-#: src/ui/details.ui:1614
+#: src/ui/details.ui:1667
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 
-#: src/ui/details.ui:1651
+#: src/ui/details.ui:1704
 msgid "Developers & Debug"
 msgstr ""
 
-#: src/ui/details.ui:1656
+#: src/ui/details.ui:1709
 msgid "Environment variables"
 msgstr ""
 
-#: src/ui/details.ui:1694
+#: src/ui/details.ui:1747
 msgid "DXVK HUD"
 msgstr ""
 
-#: src/ui/details.ui:1695
+#: src/ui/details.ui:1748
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 
-#: src/ui/details.ui:1721
+#: src/ui/details.ui:1774
 msgid "Enable wine fixme logs"
 msgstr ""
 
-#: src/ui/details.ui:1722
+#: src/ui/details.ui:1775
 msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
-#: src/ui/details.ui:1763 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:765
+#: src/ui/details.ui:1816 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/pages/details.py:845
 msgid "Preferences"
 msgstr ""
 
-#: src/ui/details.ui:1814
+#: src/ui/details.ui:1867
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 
-#: src/ui/details.ui:1870 src/ui/details.ui:1996 src/pages/details.py:766
+#: src/ui/details.ui:1923 src/ui/details.ui:2049 src/pages/details.py:846
 msgid "Dependencies"
 msgstr ""
 
-#: src/ui/details.ui:1899
+#: src/ui/details.ui:1952
 msgid "Report a missing dependency"
 msgstr ""
 
-#: src/ui/details.ui:1926
+#: src/ui/details.ui:1979
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr ""
 
-#: src/ui/details.ui:1956
+#: src/ui/details.ui:2009
 msgid "Microsoft .NET Framework 4 .."
 msgstr ""
 
-#: src/ui/details.ui:2055
+#: src/ui/details.ui:2108
 msgid "These are the programs found in your bottle's Start menu"
 msgstr ""
 
-#: src/ui/details.ui:2079
+#: src/ui/details.ui:2132
 msgid "Add a custom executable path"
 msgstr ""
 
-#: src/ui/details.ui:2106
+#: src/ui/details.ui:2159
 msgid "Search for installed programs"
 msgstr ""
 
-#: src/ui/details.ui:2222 src/ui/details.ui:2405
+#: src/ui/details.ui:2275 src/ui/details.ui:2458
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
 
-#: src/ui/details.ui:2273 src/ui/preferences.ui:288 src/pages/details.py:772
+#: src/ui/details.ui:2326 src/ui/preferences.ui:288 src/pages/details.py:852
 msgid "Installers"
 msgstr ""
 
-#: src/ui/details.ui:2292 src/ui/importer.ui:95
+#: src/ui/details.ui:2345 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr ""
 
-#: src/ui/details.ui:2456 src/ui/preferences.ui:262 src/pages/details.py:770
+#: src/ui/details.ui:2509 src/ui/preferences.ui:262 src/pages/details.py:850
 msgid "Versioning"
 msgstr ""
 
-#: src/ui/details.ui:2505
+#: src/ui/details.ui:2558
 msgid "Create new state"
 msgstr ""
 
@@ -887,8 +909,8 @@ msgid "Message goes here."
 msgstr ""
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/pages/details.py:940
-#: src/pages/details.py:1222 src/pages/list.py:133
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/pages/details.py:883
+#: src/pages/details.py:1041 src/pages/details.py:1323 src/pages/list.py:113
 msgid "Cancel"
 msgstr ""
 
@@ -1023,29 +1045,17 @@ msgstr ""
 msgid "Utility & Preferences"
 msgstr ""
 
-#: src/ui/list-entry.ui:202
-msgid "Upgrade runner to the latest localy installed"
-msgstr ""
-
-#: src/ui/list-entry.ui:229
-msgid "Destroy bottle"
-msgstr ""
-
-#: src/ui/list-entry.ui:284
-msgid "Installed programs"
-msgstr ""
-
-#: src/ui/list-entry.ui:311
+#: src/ui/list-entry.ui:211
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
 
-#: src/ui/list-entry.ui:338
+#: src/ui/list-entry.ui:238
 msgid "Execute in this bottle"
 msgstr ""
 
-#: src/ui/list-entry.ui:352
+#: src/ui/list-entry.ui:252
 msgid "Run here"
 msgstr ""
 
@@ -1370,69 +1380,69 @@ msgstr ""
 msgid "New bottle"
 msgstr ""
 
-#: src/main.py:81
+#: src/main.py:79
 msgid "Show version"
 msgstr ""
 
-#: src/main.py:87
+#: src/main.py:85
 msgid "Executable path"
 msgstr ""
 
-#: src/main.py:93
+#: src/main.py:91
 msgid "lnk path"
 msgstr ""
 
-#: src/main.py:177
+#: src/main.py:175
 msgid "[Quit] request received."
 msgstr ""
 
-#: src/main.py:183
+#: src/main.py:181
 msgid "[Help] request received."
 msgstr ""
 
-#: src/main.py:189
+#: src/main.py:187
 msgid "[Refresh] request received."
 msgstr ""
 
-#: src/runner.py:1059
+#: src/runner.py:1072
 msgid "No runners found, please install one."
 msgstr ""
 
-#: src/runner.py:1063
+#: src/runner.py:1076
 msgid "No dxvk found, installing the latest version …"
 msgstr ""
 
-#: src/runner.py:1066
+#: src/runner.py:1079
 msgid "No vkd3d found, installing the latest version …"
 msgstr ""
 
 #. Execute wineboot
-#: src/runner.py:1110
+#: src/runner.py:1123
 msgid "The wine configuration is being updated …"
 msgstr ""
 
-#: src/runner.py:1117
+#: src/runner.py:1130
 msgid "Wine configuration updated!"
 msgstr ""
 
-#: src/runner.py:1143
+#: src/runner.py:1156
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr ""
 
-#: src/runner.py:1163
+#: src/runner.py:1176
 msgid "Installing dxvk …"
 msgstr ""
 
-#: src/runner.py:1169
+#: src/runner.py:1182
 msgid "Installing vkd3d …"
 msgstr ""
 
-#: src/runner.py:1177
+#: src/runner.py:1190
 msgid "Creating versioning state 0 …"
 msgstr ""
 
-#: src/runner.py:1184
+#: src/runner.py:1197
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr ""
@@ -1449,112 +1459,115 @@ msgstr ""
 msgid "Bottles Started!"
 msgstr ""
 
-#: src/pages/details.py:304 src/pages/details.py:553
+#: src/pages/details.py:371 src/pages/details.py:624
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr ""
 
-#: src/pages/details.py:386
+#: src/pages/details.py:456
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr ""
 
-#: src/pages/details.py:754
+#: src/pages/details.py:834
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/pages/details.py:764
+#: src/pages/details.py:844
 msgid "Details & Utilities"
 msgstr ""
 
-#: src/pages/details.py:845
+#: src/pages/details.py:879
+msgid "Choose working directory for executables"
+msgstr ""
+
+#: src/pages/details.py:882
+msgid "Done"
+msgstr ""
+
+#: src/pages/details.py:946
 #, fuzzy, python-format
 msgid "Updated: %s"
 msgstr "באָנײַען:"
 
-#: src/pages/details.py:936
+#: src/pages/details.py:1037
 msgid "Choose an executable path"
 msgstr ""
 
-#: src/pages/details.py:939
+#: src/pages/details.py:1040
 msgid "Add"
 msgstr ""
 
-#: src/pages/details.py:1218 src/pages/list.py:129
+#: src/pages/details.py:1319 src/pages/list.py:109
 msgid "Choose a Windows executable file"
 msgstr ""
 
-#: src/pages/details.py:1221 src/pages/list.py:132
+#: src/pages/details.py:1322 src/pages/list.py:112
 msgid "Run"
 msgstr ""
 
-#: src/pages/details.py:1297
+#: src/pages/details.py:1398
 msgid "Select the location where to save the backup configuration"
 msgstr ""
 
-#: src/pages/details.py:1319
+#: src/pages/details.py:1420
 msgid "Select the location where to save the backup archive"
 msgstr ""
 
-#: src/pages/details.py:1342 src/pages/list.py:181
+#: src/pages/details.py:1448
 msgid "Confirm deletion"
 msgstr ""
 
-#: src/pages/details.py:1343 src/pages/list.py:182
+#: src/pages/details.py:1449
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr ""
 
-#: src/pages/dialog.py:30 src/pages/dialog.py:66
+#: src/pages/dialog.py:34 src/pages/dialog.py:72
 msgid "Warning"
 msgstr ""
 
-#: src/pages/dialog.py:31
+#: src/pages/dialog.py:35
 msgid "An error has occurred."
+msgstr ""
+
+#: src/pages/dialog.py:130
+msgid "Show report"
 msgstr ""
 
 #: src/pages/importer.py:97
 msgid "Choose a backup archive"
 msgstr ""
 
-#: src/pages/list.py:108
+#: src/pages/list.py:93
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr ""
 
-#: src/pages/list.py:159
-msgid "Confirm upgrade"
-msgstr ""
-
-#: src/pages/list.py:160
-#, python-brace-format
-msgid "This will change the runner from {0} to {1}."
-msgstr ""
-
-#: src/pages/new.py:106
+#: src/pages/new.py:65
 msgid "Gaming"
 msgstr ""
 
-#: src/pages/new.py:107
+#: src/pages/new.py:66
 msgid "An environment improved for Windows games."
 msgstr ""
 
-#: src/pages/new.py:112
+#: src/pages/new.py:71
 msgid "Software"
 msgstr ""
 
-#: src/pages/new.py:113
+#: src/pages/new.py:72
 msgid "An environment improved for Windows software."
 msgstr ""
 
-#: src/pages/new.py:118
+#: src/pages/new.py:77
 msgid "Custom"
 msgstr ""
 
-#: src/pages/new.py:119
+#: src/pages/new.py:78
 msgid "A clear environment for your experiments."
 msgstr ""
 
-#: src/pages/new.py:237
+#: src/pages/new.py:192
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr ""
