@@ -2,7 +2,6 @@ import os
 import yaml
 import tarfile
 import shutil
-from distutils.dir_util import copy_tree
 
 from typing import NewType
 
@@ -158,6 +157,7 @@ class RunnerBackup:
         with open(dest_config, "w") as config_file:
             yaml.dump(config, config_file, indent=4)
 
-        copy_tree(source_drive, dest_drive)
+        shutil.copytree(source_drive, dest_drive)
+
 
         return True
