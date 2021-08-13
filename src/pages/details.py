@@ -713,6 +713,7 @@ class BottlesDetails(Handy.Leaflet):
     btn_help_versioning = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
     btn_request_dependency = Gtk.Template.Child()
+    btn_cwd = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
@@ -742,6 +743,7 @@ class BottlesDetails(Handy.Leaflet):
     group_programs = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
     infobar_testing = Gtk.Template.Child()
+    row_cwd = Gtk.Template.Child()
 
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
@@ -770,6 +772,7 @@ class BottlesDetails(Handy.Leaflet):
         self.btn_manage_runners.connect('pressed', self.window.show_preferences_view)
         self.btn_manage_dxvk.connect('pressed', self.window.show_preferences_view)
         self.btn_manage_vkd3d.connect('pressed', self.window.show_preferences_view)
+        self.btn_cwd.connect('pressed', self.choose_cwd)
 
         self.btn_winecfg.connect('activate', self.run_winecfg)
         self.btn_debug.connect('activate', self.run_debug)
@@ -783,6 +786,7 @@ class BottlesDetails(Handy.Leaflet):
         self.btn_regedit.connect('activate', self.run_regedit)
         self.btn_overrides.connect('activate', self.show_dll_overrides_view)
         self.btn_environment_variables.connect('activate', self.show_environment_variables)
+        self.btn_cwd.connect('activate', self.choose_cwd)
 
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
@@ -869,6 +873,26 @@ class BottlesDetails(Handy.Leaflet):
         if terms.lower() in row.get_title().lower():
             return True
         return False
+
+    def choose_cwd(self, widget):
+        file_dialog = Gtk.FileChooserNative.new(
+            _("Choose working directory for executables"),
+            self.window,
+            Gtk.FileChooserAction.OPEN,
+            _("Done"),
+            _("Cancel")
+        )
+        file_dialog.set_current_folder(
+            RunnerUtilities().get_bottle_path(self.configuration))
+        response = file_dialog.run()
+
+        if response == -3:
+            self.runner.update_configuration(
+                configuration=self.configuration,
+                key="WorkingDir",
+                value=file_dialog.get_filename())
+
+        file_dialog.destroy()
 
     def update_combo_components(self):
         self.combo_runner.handler_block_by_func(self.set_runner)
