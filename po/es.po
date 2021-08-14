@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-13 19:33+0200\n"
-"PO-Revision-Date: 2021-08-10 15:42+0000\n"
-"Last-Translator: Kenneth P. Barquero <kenneth.palma@uned.cr>\n"
+"PO-Revision-Date: 2021-08-15 02:08+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -36,7 +36,7 @@ msgstr "com.usebottles.bottles"
 
 #: data/com.usebottles.bottles.desktop.in:12
 msgid "wine;windows;"
-msgstr ""
+msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -196,11 +196,11 @@ msgstr "Correr ejecutables sin mostrar la Ventana de Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid "Dependencies can now set register keys"
-msgstr "Las dependencias ahora pueden configurar llaves del registro"
+msgstr "Las dependencias ahora pueden establecer claves del Registro"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Dependencies can now extract archives"
-msgstr "Las dependencias ahora pueden extraer archivos"
+msgstr "Las dependencias ahora pueden extraer archivadores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Dependencies can now uninstall other dependencies"
@@ -254,12 +254,12 @@ msgstr ""
 "aunque el proceso no había finalizado"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#, fuzzy
 msgid ""
 "Fixed a bug that prevented states from being sent to the bottle (kill, "
 "shutdown, reboot, ..)"
 msgstr ""
-"Corregido un bug que prevenía enviar estados (kill, shutdown, reboot, ..)"
+"Se corrigió un defecto que evitaba que se enviasen los estados a la botella ("
+"kill, shutdown, reboot…)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
 #, fuzzy
@@ -297,7 +297,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
 msgid "Uninstallers are now no longer displayed in the Programs list"
-msgstr ""
+msgstr "Los desinstaladores ya no figuran en la lista Programas"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
 msgid "Disable uninstaller button for dependencies installed from cab files"
@@ -312,6 +312,8 @@ msgid ""
 "A spinner is now displayed when installing dependencies, programs and "
 "components"
 msgstr ""
+"Ahora se muestra un indicador giratorio cuando se instalan dependencias, "
+"programas y componentes"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
 msgid "Warning for missing cabextract tool"
@@ -328,11 +330,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Several improvements in runner management"
-msgstr ""
+msgstr "Diversas mejoras de gestión de ejecutores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:145
 msgid "Added icons to the sidebar"
-msgstr ""
+msgstr "Se añadieron iconos a la barra lateral"
 
 #: data/com.usebottles.bottles.appdata.xml.in:146
 #, fuzzy
@@ -341,7 +343,7 @@ msgstr "Experimental:instaladores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:147
 msgid "Better support for Breeze theme"
-msgstr ""
+msgstr "Mejor integración con el tema Breeze"
 
 #: data/com.usebottles.bottles.appdata.xml.in:148
 #, fuzzy
@@ -1188,19 +1190,19 @@ msgstr ""
 
 #: src/ui/new.ui:409
 msgid "Architecture"
-msgstr ""
+msgstr "Arquitectura"
 
 #: src/ui/new.ui:411
 msgid "We recommend using only 32bit if strictly necessary"
-msgstr ""
+msgstr "Utilice 32 bits solo si es estrictamente necesario"
 
 #: src/ui/new.ui:425
 msgid "64 bit"
-msgstr ""
+msgstr "64 bits"
 
 #: src/ui/new.ui:426
 msgid "32 bit"
-msgstr ""
+msgstr "32 bits"
 
 #: src/ui/new.ui:480
 msgid "Creating bottle…"
@@ -1344,7 +1346,7 @@ msgstr "Especifica si Bottles debe utilizar la variante oscura del tema."
 
 #: src/ui/preferences.ui:55
 msgid "Show update date"
-msgstr ""
+msgstr "Mostrar fecha de actualización"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
@@ -1413,7 +1415,7 @@ msgstr "Errores de Bottles"
 
 #: src/ui/program-entry.ui:108
 msgid "Remove from Programs"
-msgstr ""
+msgstr "Quitar de Programas"
 
 #: src/ui/runner-entry.ui:74
 msgid "Download & Install this runner"
@@ -1590,7 +1592,7 @@ msgstr ""
 
 #: src/pages/details.py:882
 msgid "Done"
-msgstr ""
+msgstr "Hecho"
 
 #: src/pages/details.py:946
 #, fuzzy, python-format
@@ -1604,7 +1606,7 @@ msgstr "Elija un archivo ejecutable de Windows"
 
 #: src/pages/details.py:1040
 msgid "Add"
-msgstr ""
+msgstr "Añadir"
 
 #: src/pages/details.py:1319 src/pages/list.py:109
 msgid "Choose a Windows executable file"
