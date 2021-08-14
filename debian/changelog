@@ -1,6 +1,42 @@
-com.usebottles.bottles (2021.7.28-treviso-2) precise; urgency=low
+com.usebottles.bottles (2021.8.14-treviso) precise; urgency=low
 
-  * Improved download manager
+  * Toggle the last Update date in the bottles list
+  * Fallback the working directory to the executable path if it fails to run
+  * Now a visual feedback is provided when a download fail the checksum validation
+  * Wine support for Wayland trought XWayland
+  * Support for 32-bit bottles with custom environment
+  * Removed colors from the environments in the bottle creation as these can be interpreted as suggested actions
+  * Now the user can only install one dependency per time to avoid conflicts
+  * Now the Crash Report dialog display similar reports before send a new one
+  * Now it is possible to clone a bottle with a new name, this can also be used for bottles templating
+  * The Bottles version is now provided in the Crash report
+  * Reduced the Flatpak permissions
+  * You can now choose a custom working directory for each bottle
+  * You can see a new button in the bottle details with a folder icon, this helps you expose new directories to Bottles
+  * Fixed a bug in the detection of broken bottles
+  * Fixed a bug that was causing a File Not Found error with broken downloads
+  * Fixed a bug that make Bottles crash when the user goes offline during a download
+  * Same as the above but this handle downloads with wrong sizes than the source
+  * Fixed the File Manager integration in Flatpak
+  * Fixed a bug that make Bottles crash when fail in name resolution during a download
+  * Fixed a bug in temp directory clean up
+  * Fixed a bug that make Bottles crash when the Update Date is not set in the bottle
+  * Fixed a bug in bottle configuration upgrade that was causing a loop
+  * Hungarian translations thanks to @ovari, @zoli111
+  * Chinese (Simplified) translations thanks to Flywater Zh, @sr093906, @Yuzaihhhh
+  * Croatian translations thanks to @milotype
+  * Spanish translations thanks to @kenpb, @oscfdezdz, @fitojb, @Lvaskz
+  * Japanese translations thanks to @jatin-cbs
+  * Frech translations thanks to J. Lavoie, SCOTT-HAMILTON, @julroy67, @yannicka, K. Herbert
+  * Italian translations thanks to @blackcat-917
+  * German translations thanks to @bloomvdomino, @thericosanto
+  * Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, @hugok79
+  * Norwegian Bokmål translations thanks to @comradekingu
+  * Portuguese (Brazil) translations thanks to @farribeiro
+  * Arabic translations thanks to @luxmaroc
+  * Finnish translations thanks to @Ricky-Tigg
+  * Czech translations thanks to @panmourovaty
+  * Polish translations thanks to Krzysztof Marcinek
 
 
- -- Mirko Brombin <send@mirko.pm>  Fri, 30 Jul 2021 22:43:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Sat, 14 Aug 2021 08:32:00 +0000
