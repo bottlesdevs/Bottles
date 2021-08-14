@@ -707,6 +707,7 @@ class BottlesDetails(Handy.Leaflet):
     btn_duplicate = Gtk.Template.Child()
     btn_add_state = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
+    btn_expose_dirs = Gtk.Template.Child()
     btn_manage_runners = Gtk.Template.Child()
     btn_manage_dxvk = Gtk.Template.Child()
     btn_manage_vkd3d = Gtk.Template.Child()
@@ -753,6 +754,11 @@ class BottlesDetails(Handy.Leaflet):
         self.runner = window.runner
         self.versioning_manager = window.runner.versioning_manager
         self.configuration = configuration
+
+        '''If Flatpak, show the btn_expose_dirs widget to reach
+        the documentation on how to expose directories'''
+        if "FLATPAK_ID" in os.environ:
+            self.btn_expose_dirs.set_visible(True)
 
         '''Signal connections'''
         self.entry_name.connect('key-release-event', self.check_entry_name)
@@ -801,6 +807,7 @@ class BottlesDetails(Handy.Leaflet):
         self.btn_help_versioning.connect('pressed', self.open_doc_url, "bottles/versioning")
         self.btn_help_debug.connect('pressed', self.open_doc_url, "utilities/logs-and-debugger#wine-debugger")
         self.btn_request_dependency.connect('pressed', self.open_doc_url, "contribute/missing-dependencies")
+        self.btn_expose_dirs.connect('pressed', self.open_doc_url, "flatpak/expose-directories")
 
         self.btn_rename.connect('toggled', self.toggle_rename)
         self.toggle_sync.connect('toggled', self.set_wine_sync)
