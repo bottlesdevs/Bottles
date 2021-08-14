@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-13 19:33+0200\n"
-"PO-Revision-Date: 2021-08-11 20:20+0000\n"
-"Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
+"PO-Revision-Date: 2021-08-15 02:08+0000\n"
+"Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
 "Language: hu\n"
@@ -32,11 +32,11 @@ msgstr "Könnyen kezelheti a wineprefix-et"
 
 #: data/com.usebottles.bottles.desktop.in:5
 msgid "com.usebottles.bottles"
-msgstr ""
+msgstr "com.usebottles.bottles"
 
 #: data/com.usebottles.bottles.desktop.in:12
 msgid "wine;windows;"
-msgstr ""
+msgstr "tároló;windows;wine;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -579,9 +579,8 @@ msgid "Full archive"
 msgstr "Teljes archívum"
 
 #: src/ui/details.ui:62
-#, fuzzy
 msgid "Duplicate bottle"
-msgstr "Tároló létrehozása"
+msgstr "Ismétlődő tároló"
 
 #: src/ui/details.ui:92
 msgid "Run with arguments"
@@ -858,12 +857,11 @@ msgstr "DLL felülírja"
 
 #: src/ui/details.ui:1600
 msgid "Working directory"
-msgstr ""
+msgstr "Munkakönyvtár"
 
 #: src/ui/details.ui:1602
-#, fuzzy
 msgid "Point to the bottle path"
-msgstr "A tároló állapotának mentése."
+msgstr "Tároló elérési út mutatása"
 
 #: src/ui/details.ui:1661
 msgid "Audio"
@@ -1577,15 +1575,12 @@ msgid "Details & Utilities"
 msgstr "Részletek és segédprogramok"
 
 #: src/pages/details.py:879
-#, fuzzy
 msgid "Choose working directory for executables"
-msgstr ""
-"A tároló gyökér mostantól az összes végrehajtott parancs munkakönyvtáraként "
-"van beállítva"
+msgstr "Végrehajtható fájlok munkakönyvtár kiválasztása"
 
 #: src/pages/details.py:882
 msgid "Done"
-msgstr ""
+msgstr "Befejezve"
 
 #: src/pages/details.py:946
 #, python-format
@@ -1633,9 +1628,8 @@ msgid "An error has occurred."
 msgstr "Hiba történt."
 
 #: src/pages/dialog.py:130
-#, fuzzy
 msgid "Show report"
-msgstr "Hibajelentés"
+msgstr "Jelentés megjelenítése"
 
 #: src/pages/importer.py:97
 msgid "Choose a backup archive"
