@@ -93,70 +93,55 @@
     <url type="bugtracker">https://github.com/bottlesdevs/Bottles/issues</url>
     <url type="help">https://docs.usebottles.com</url>
     <releases>
-        <release version="2021.7.28-treviso-2" date="2021-07-30">
+        <release version="2021.8.14-treviso" date="2021-08-14">
           <description>
+            <b>News</b>
             <ul>
-                <li>This is an off-calendar release.</li>
-                <li>Improved download manager</li>
+                <li>Toggle the last Update date in the bottles list</li>
+                <li>Fallback the working directory to the executable path if it fails to run</li>
+                <li>Now a visual feedback is provided when a download fail the checksum validation</li>
+                <li>Wine support for Wayland trought XWayland</li>
+                <li>Support for 32-bit bottles with custom environment</li>
+                <li>Removed colors from the environments in the bottle creation as these can be interpreted as suggested actions</li>
+                <li>Now the user can only install one dependency per time to avoid conflicts</li>
+                <li>Now the Crash Report dialog display similar reports before send a new one</li>
+                <li>Now it is possible to clone a bottle with a new name, this can also be used for bottles templating</li>
+                <li>The Bottles version is now provided in the Crash report</li>
+                <li>Reduced the Flatpak permissions</li>
+                <li>You can now choose a custom working directory for each bottle</li>
+                <li>You can see a new button in the bottle details with a folder icon, this helps you expose new directories to Bottles</li>
             </ul>
-          </description>
-        </release>
-        <release version="2021.7.28-treviso-1" date="2021-07-30">
-          <description>
+
+            <b>Bug fixes</b>
             <ul>
-                <li>This is an off-calendar release.</li>
-                <li>Set working directory to executable path when launching from programs list.</li>
-                <li>Fix listing when one or more bottles are broken.</li>
+                <li>Fixed a bug in the detection of broken bottles</li>
+                <li>Fixed a bug that was causing a File Not Found error with broken downloads</li>
+                <li>Fixed a bug that make Bottles crash when the user goes offline during a download</li>
+                <li>Same as the above but this handle downloads with wrong sizes than the source</li>
+                <li>Fixed the File Manager integration in Flatpak</li>
+                <li>Fixed a bug that make Bottles crash when fail in name resolution during a download</li>
+                <li>Fixed a bug in temp directory clean up</li>
+                <li>Fixed a bug that make Bottles crash when the Update Date is not set in the bottle</li>
+                <li>Fixed a bug in bottle configuration upgrade that was causing a loop</li>
             </ul>
-          </description>
-        </release>
-        <release version="2021.7.28-treviso" date="2021-07-28">
-          <description>
+
+            <b>Translations</b>
             <ul>
-                <li>Support for .lnk files</li>
-                <li>Run any .exe/.msi/.lnk using the flags -e/-l in command line</li>
-                <li>Specify the target bottle using the -b flag in command line</li>
-                <li>Run executables without show the Bottles Window</li>
-                <li>Dependencies can now set register keys</li>
-                <li>Dependencies can now extract archives</li>
-                <li>Dependencies can now uninstall other dependencies</li>
-                <li>Dependencies can now install more dll in one step</li>
-                <li>Dependencies can now register fonts in the Bottle Register to make them discoverable by the runner</li>
-                <li>Cab extraction now support wildcards</li>
-                <li>Cab extraction now support lowercase extensions</li>
-                <li>When installing a new runner, winemenubuilder is blocked to prevent the creation of broken desktop entries</li>
-                <li>The bottle root is now set as the working directory for all executed commands</li>
-                <li>Fixed a bug in the dependency manager showing them installed even though the process was still running</li>
-                <li>Fixed a bug that prevented states from being sent to the bottle (kill, shutdown, reboot, ..)</li>
-                <li>Fixed a bug on processes listing</li>
-                <li>Fix crash log path on Flatpak</li>
-                <li>Fixed an issue causing Bottles to detect downloaded dxvk even when it fails</li>
-                <li>Fixed a bug that cause some programs to not be placed in Programs section</li>
-                <li>Fixed a bug that cause Bottles to crash when a component download fail</li>
-                <li>Fixed a bug in adding registry keys with spaces in name</li>
-                <li>Uninstallers are now no longer displayed in the Programs list</li>
-                <li>Disable uninstaller button for dependencies installed from cab files</li>
-                <li>Access Bottles preferences from the bottle creation view</li>
-                <li>A spinner is now displayed when installing dependencies, programs and components</li>
-                <li>Warning for missing cabextract tool</li>
-                <li>Warning for experimental features</li>
-                <li>Warning for enables testing repository</li>
-                <li>Several improvements in runner management</li>
-                <li>Added icons to the sidebar</li>
-                <li>Experimantal support for Bottles installers</li>
-                <li>Better support for Breeze theme</li>
-                <li>Browse programs path</li>
-                <li>Generate Bottles compatible desktop entries for programs installed trought Bottles installers</li>
-                <li>Visual feedback during a state restoring</li>
-                <li>Add external executable to the program list</li>
-                <li>Toggle update date on bottles list</li>
-                <li>Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906</li>
+                <li>Hungarian translations thanks to @ovari, @zoli111</li>
+                <li>Chinese (Simplified) translations thanks to Flywater Zh, @sr093906, @Yuzaihhhh</li>
+                <li>Croatian translations thanks to @milotype</li>
+                <li>Spanish translations thanks to @kenpb, @oscfdezdz, @fitojb, @Lvaskz</li>
                 <li>Japanese translations thanks to @jatin-cbs</li>
-                <li>Hungarian translations thanks to @ovari</li>
-                <li>Polish translations thanks to Krzysztof Marcinek</li>
-                <li>French translations thanks to @julroy67</li>
-                <li>Russian translations thanks to @tacitcoast</li>
+                <li>Frech translations thanks to J. Lavoie, SCOTT-HAMILTON, @julroy67, @yannicka, K. Herbert</li>
                 <li>Italian translations thanks to @blackcat-917</li>
+                <li>German translations thanks to @bloomvdomino, @thericosanto</li>
+                <li>Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, @hugok79</li>
+                <li>Norwegian Bokmål translations thanks to @comradekingu</li>
+                <li>Portuguese (Brazil) translations thanks to @farribeiro</li>
+                <li>Arabic translations thanks to @luxmaroc</li>
+                <li>Finnish translations thanks to @Ricky-Tigg</li>
+                <li>Czech translations thanks to @panmourovaty</li>
+                <li>Polish translations thanks to Krzysztof Marcinek</li>
             </ul>
           </description>
         </release>
