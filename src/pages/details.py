@@ -955,7 +955,7 @@ class BottlesDetails(Handy.Leaflet):
         self.label_arch.set_text(arch)
         self.label_environment.set_text(self.configuration.get("Environment"))
         self.label_environment.get_style_context().add_class(
-            "tag-%s" % self.configuration.get("Environment").lower())
+            f"tag-{self.configuration.get('Environment').lower()}")
         self.label_state.set_text(str(self.configuration.get("State")))
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
