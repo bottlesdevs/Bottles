@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-15 09:17+0200\n"
-"PO-Revision-Date: 2021-08-14 06:07+0000\n"
+"PO-Revision-Date: 2021-08-18 12:10+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -149,152 +149,140 @@ msgstr "……和更多您可以通过安装 Bottles 来发现的功能！"
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
 msgid "News"
-msgstr ""
+msgstr "消息"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-#, fuzzy
 msgid "Toggle the last Update date in the bottles list"
-msgstr "开关 bottles 列表上的更新日期。"
+msgstr "开关 bottles 列表上的更新日期"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid ""
 "Fallback the working directory to the executable path if it fails to run"
-msgstr "从程序列表启动时，将工作目录设置为可执行路径。"
+msgstr "如果工作目录无法运行，则将其回退到可执行路径"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid ""
 "Now a visual feedback is provided when a download fail the checksum "
 "validation"
-msgstr ""
+msgstr "当下载未能通过校验和验证时将提供视觉反馈"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid "Wine support for Wayland trought XWayland"
-msgstr ""
+msgstr "通过 XWayland 为 Wayland 提供 Wine 支持"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Support for 32-bit bottles with custom environment"
-msgstr ""
+msgstr "支持带自定义环境的 32 位 bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid ""
 "Removed colors from the environments in the bottle creation as these can be "
 "interpreted as suggested actions"
-msgstr ""
+msgstr "移除了 bottle 创建中的环境颜色，因为这些可被解释为建议的操作"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 msgid ""
 "Now the user can only install one dependency per time to avoid conflicts"
-msgstr ""
+msgstr "允许用户每次只安装一个依赖项，以避免冲突"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
 "Now the Crash Report dialog display similar reports before send a new one"
-msgstr ""
+msgstr "崩溃报告对话框在发送新报告之前会先显示类似的报告"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "Now it is possible to clone a bottle with a new name, this can also be used "
 "for bottles templating"
-msgstr ""
+msgstr "可以用新名称克隆一个 bottle，这也可用于 bottle 制模"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "The Bottles version is now provided in the Crash report"
-msgstr ""
+msgstr "崩溃报告现在包含 Bottles 版本信息"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Reduced the Flatpak permissions"
-msgstr ""
+msgstr "降低了 Flatpak 权限"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
-#, fuzzy
 msgid "You can now choose a custom working directory for each bottle"
-msgstr "选择可执行文件的工作目录"
+msgstr "现在可以为每个 boottle 选择一个自定义的工作目录"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid ""
 "You can see a new button in the bottle details with a folder icon, this "
 "helps you expose new directories to Bottles"
-msgstr ""
+msgstr "你可以在 bottle 详情中看到一个带有文件夹图标的新按钮，这有助于你将新目录暴露给 Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "Bug fixes"
-msgstr ""
+msgstr "错误修复"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
-#, fuzzy
 msgid "Fixed a bug in the detection of broken bottles"
-msgstr "修正了一个Nvidia识别擎天柱笔记本电脑的错误"
+msgstr "修正了检测破损 bootle 的一个错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
-#, fuzzy
 msgid ""
 "Fixed a bug that was causing a File Not Found error with broken downloads"
-msgstr "修正了当组件下载失败时导致 Bottles 崩溃的缺陷"
+msgstr "修正了不正确下载导致“文件未找到”的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when the user goes offline during a "
 "download"
-msgstr "修正了当组件下载失败时导致 Bottles 崩溃的缺陷"
+msgstr "修正了用户在下载期间离线造成 Bottle 崩溃的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid ""
 "Same as the above but this handle downloads with wrong sizes than the source"
-msgstr ""
+msgstr "和上面一样，但这个用来处理与源文件大小不一致的下载"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Fixed the File Manager integration in Flatpak"
-msgstr ""
+msgstr "修复了 Flatpak 中的文件管理器集成"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when fail in name resolution during a "
 "download"
-msgstr "修正了当组件下载失败时导致 Bottles 崩溃的缺陷"
+msgstr "修正了下载期间名称解析失败造成 Bottle 崩溃的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fixed a bug in temp directory clean up"
-msgstr ""
+msgstr "修正了临时目录清理的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when the Update Date is not set in the "
 "bottle"
-msgstr "修正了当组件下载失败时导致 Bottles 崩溃的缺陷"
+msgstr "修正了 bottle 未设置更新日期造成 Bottles 崩溃的错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Fixed a bug in bottle configuration upgrade that was causing a loop"
-msgstr ""
+msgstr "修复了造成循环的 bottle 配置升级错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid "Translations"
-msgstr ""
+msgstr "翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#, fuzzy
 msgid "Hungarian translations thanks to @ovari, @zoli111"
-msgstr "感谢 @ovari 翻译匈牙利语"
+msgstr "感谢 @ovari、@zoli111 的匈牙利语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
-#, fuzzy
 msgid ""
 "Chinese (Simplified) translations thanks to Flywater Zh, @sr093906, "
 "@Yuzaihhhh"
-msgstr "感谢 @Yuzaihhhh 和 @sr093906 的中文（简体）翻译"
+msgstr "感谢 Flywater Zh、@Yuzaihhhh 和 @sr093906 的中文（简体）翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Croatian translations thanks to @milotype"
-msgstr "感谢 @milotype 翻译克罗地亚语"
+msgstr "感谢 @milotype 的克罗地亚语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
-#, fuzzy
 msgid "Spanish translations thanks to @kenpb, @oscfdezdz, @fitojb, @Lvaskz"
-msgstr "感谢 @jatin-cbs 的日文翻译"
+msgstr "感谢 @kenpb、@oscfdezdz、@fitojb 和 @Lvaskz 的西班牙语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
 msgid "Japanese translations thanks to @jatin-cbs"
@@ -304,48 +292,41 @@ msgstr "感谢 @jatin-cbs 的日文翻译"
 msgid ""
 "Frech translations thanks to J. Lavoie, SCOTT-HAMILTON, @julroy67, "
 "@yannicka, K. Herbert"
-msgstr ""
+msgstr "感谢 J. Lavoie、SCOTT-HAMILTON、@julroy67、@yannicka 和 K. Herbert 的法语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:136
 msgid "Italian translations thanks to @blackcat-917"
 msgstr "感谢 @blackcat-917 的意大利语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
-#, fuzzy
 msgid "German translations thanks to @bloomvdomino, @thericosanto"
-msgstr "感谢 @milotype 翻译克罗地亚语"
+msgstr "感谢 @bloomvdomino 和 @thericosanto 的德语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, "
 "@hugok79"
-msgstr "感谢 @laralem 翻译葡萄牙语"
+msgstr "感谢 @laralem、@SantosSI、Pão com omlet 和 @hugok79 的葡萄牙语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
-#, fuzzy
 msgid "Norwegian Bokmål translations thanks to @comradekingu"
-msgstr "感谢 @ovari 翻译匈牙利语"
+msgstr "感谢 @comradekingu 的书面挪威语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @farribeiro"
-msgstr "感谢 @LeandroStanger 翻译葡萄牙语（巴西）"
+msgstr "感谢 @farribeiro 的葡萄牙语（巴西）翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
-#, fuzzy
 msgid "Arabic translations thanks to @luxmaroc"
-msgstr "感谢 @julroy67 翻译法语"
+msgstr "感谢 @luxmaroc 的阿拉伯语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
-#, fuzzy
 msgid "Finnish translations thanks to @Ricky-Tigg"
-msgstr "感谢 @julroy67 翻译法语"
+msgstr "感谢 @Ricky-Tigg 的芬兰语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "感谢 @julroy67 翻译法语"
+msgstr "感谢 @panmourovaty 的捷克语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Polish translations thanks to Krzysztof Marcinek"
@@ -615,7 +596,7 @@ msgstr "杀死所有 wine 进程"
 
 #: src/ui/details.ui:617
 msgid "Are you experiencing problems reaching a directory in Bottles?"
-msgstr ""
+msgstr "您是否遇到访问 Bottle 中目录的问题？"
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
 #: src/pages/details.py:854
@@ -1517,11 +1498,11 @@ msgstr "完成"
 
 #: src/pages/details.py:937
 msgid "64-bit"
-msgstr ""
+msgstr "64 位"
 
 #: src/pages/details.py:939
 msgid "32-bit"
-msgstr ""
+msgstr "32 位"
 
 #: src/pages/details.py:953
 #, python-format
@@ -1578,7 +1559,7 @@ msgstr "选择一个备份归档"
 
 #: src/pages/list.py:51 src/pages/list.py:57
 msgid "N/A"
-msgstr ""
+msgstr "无"
 
 #: src/pages/list.py:93
 #, python-brace-format
