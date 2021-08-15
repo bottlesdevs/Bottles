@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-15 09:17+0200\n"
-"PO-Revision-Date: 2021-08-15 02:08+0000\n"
+"PO-Revision-Date: 2021-08-18 12:10+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -157,162 +157,163 @@ msgstr "… és még sok minden más, amit megtalál a Tárolók telepítéséve
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
 msgid "News"
-msgstr ""
+msgstr "Hírek"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-#, fuzzy
 msgid "Toggle the last Update date in the bottles list"
-msgstr "Tárolóklista frissítési dátum ki-/bekapcsolása."
+msgstr "Tárolóklista utolsó frissítési dátum ki-/bekapcsolása"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid ""
 "Fallback the working directory to the executable path if it fails to run"
 msgstr ""
-"Állítsa a munkakönyvtárat a végrehajtható elérési útra, amikor a programok "
-"listájáról indul."
+"Ha nem fut, a visszatérési hely a végrehajtható elérési út a munkakönyvtárhoz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid ""
 "Now a visual feedback is provided when a download fail the checksum "
 "validation"
 msgstr ""
+"Most egy nézet visszajelzés jelenik meg, ha a letöltés sikertelen az "
+"ellenőrző összeg ellenőrzésén"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid "Wine support for Wayland trought XWayland"
-msgstr ""
+msgstr "Wine támogatása a Wayland számára az XWaylandon keresztül"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Support for 32-bit bottles with custom environment"
-msgstr ""
+msgstr "32 bites tárolók támogatása egyedi környezetben"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid ""
 "Removed colors from the environments in the bottle creation as these can be "
 "interpreted as suggested actions"
 msgstr ""
+"A szín eltávolítva a tároló készítése környezetéből, mivel ezek javasolt "
+"műveletenként értelmezhetők"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 msgid ""
 "Now the user can only install one dependency per time to avoid conflicts"
 msgstr ""
+"Most a felhasználó egyszerre csak egy függőséget telepíthet az ütközés "
+"elkerülése érdekében"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
 "Now the Crash Report dialog display similar reports before send a new one"
 msgstr ""
+"Most az összeomlási jelentés párbeszédpanel hasonló jelentéseket jelenít "
+"meg, mielőtt újat küldene"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "Now it is possible to clone a bottle with a new name, this can also be used "
 "for bottles templating"
 msgstr ""
+"Mostantól lehetőség van egy ismétlődés tároló másolat új névvel, ezzel is "
+"használható a tárolók sablonozása"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "The Bottles version is now provided in the Crash report"
-msgstr ""
+msgstr "Az összeomlási jelentés most tartalmaz a Tárolók verziót"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Reduced the Flatpak permissions"
-msgstr ""
+msgstr "Csökkentette a Flatpak engedélyeket"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
-#, fuzzy
 msgid "You can now choose a custom working directory for each bottle"
-msgstr "Végrehajtható fájlok munkakönyvtár kiválasztása"
+msgstr "Mostantól minden tárolóhoz egyéni munkakönyvtárat választhat"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid ""
 "You can see a new button in the bottle details with a folder icon, this "
 "helps you expose new directories to Bottles"
 msgstr ""
+"A tároló részleteiben új gombot láthat egy mappa ikonnal, ez segít abban, "
+"hogy új könyvtárakat tegyen közzé a Tárolók számára"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "Bug fixes"
-msgstr ""
+msgstr "Hibajavítások"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
-#, fuzzy
 msgid "Fixed a bug in the detection of broken bottles"
-msgstr "Javítottuk az Nvidia azonosító hibáját az optimus laptopoknál"
+msgstr "Megtört tároló észlelése javítva"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
-#, fuzzy
 msgid ""
 "Fixed a bug that was causing a File Not Found error with broken downloads"
 msgstr ""
-"Javítva egy hiba, amely a Tárolók összeomlását okozza, amikor egy összetevő "
-"letöltése sikertelen"
+"Kijavítottuk azt a hibát, amely a fájl nem található hibát okozta a "
+"megszakadt letöltésekkel"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when the user goes offline during a "
 "download"
 msgstr ""
-"Javítva egy hiba, amely a Tárolók összeomlását okozza, amikor egy összetevő "
-"letöltése sikertelen"
+"Javítva egy hiba, amely miatt a Tárolók összeomlik, amikor a felhasználó "
+"kapcsolat nélküli üzemmód állapotba kerül letöltés közben"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid ""
 "Same as the above but this handle downloads with wrong sizes than the source"
 msgstr ""
+"Ugyanaz, mint a fentiek, de ez a fogantyú rossz méretben töltődik le, mint a "
+"forrás"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Fixed the File Manager integration in Flatpak"
-msgstr ""
+msgstr "A Flatpak fájlkezelő beilleszkedése javítva"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when fail in name resolution during a "
 "download"
 msgstr ""
-"Javítva egy hiba, amely a Tárolók összeomlását okozza, amikor egy összetevő "
-"letöltése sikertelen"
+"Javítva egy hiba, amely miatt a Tárolók összeomlik, ha a letöltés során nem "
+"sikerül a névfeloldás"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fixed a bug in temp directory clean up"
-msgstr ""
+msgstr "Ideiglenes könyvtár törlése hibajavítása"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when the Update Date is not set in the "
 "bottle"
 msgstr ""
-"Javítva egy hiba, amely a Tárolók összeomlását okozza, amikor egy összetevő "
-"letöltése sikertelen"
+"Javítva egy hiba, amely miatt a Tárolók összeomlik, ha a frissítés dátuma "
+"nincs beállítva a tárolóban"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Fixed a bug in bottle configuration upgrade that was causing a loop"
-msgstr ""
+msgstr "Tároló beállításainak frissítésében hibajavítva, amely hurkot okozott"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid "Translations"
-msgstr ""
+msgstr "Fordítások"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#, fuzzy
 msgid "Hungarian translations thanks to @ovari, @zoli111"
-msgstr "Magyar fordítás: @ovari"
+msgstr "Magyar fordítás: @ovari, @zoli111"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
-#, fuzzy
 msgid ""
 "Chinese (Simplified) translations thanks to Flywater Zh, @sr093906, "
 "@Yuzaihhhh"
-msgstr "Kínai (egyszerűsített) fordítás: @Yuzaihhhh és @sr093906"
+msgstr "Kínai (egyszerűsített) fordítás: Flywater Zh, @sr093906, @Yuzaihhhh"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Croatian translations thanks to @milotype"
 msgstr "Horvát fordítás: @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
-#, fuzzy
 msgid "Spanish translations thanks to @kenpb, @oscfdezdz, @fitojb, @Lvaskz"
-msgstr "Japán fordítás: @jatin-cbs"
+msgstr "Spanyol fordítás: @kenpb, @oscfdezdz, @fitojb, @Lvaskz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
 msgid "Japanese translations thanks to @jatin-cbs"
@@ -323,47 +324,41 @@ msgid ""
 "Frech translations thanks to J. Lavoie, SCOTT-HAMILTON, @julroy67, "
 "@yannicka, K. Herbert"
 msgstr ""
+"Francia fordítás: J. Lavoie, SCOTT-HAMILTON, @julroy67, @yannicka, K. Herbert"
 
 #: data/com.usebottles.bottles.appdata.xml.in:136
 msgid "Italian translations thanks to @blackcat-917"
 msgstr "Olasz fordítás: @blackcat-917"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
-#, fuzzy
 msgid "German translations thanks to @bloomvdomino, @thericosanto"
-msgstr "Horvát fordítás: @milotype"
+msgstr "Német fordítás: @bloomvdomino, @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, "
 "@hugok79"
-msgstr "Portugál fordítás: @laralem"
+msgstr "Portugál fordítás: @laralem, @SantosSI, Pão com omlet, @hugok79"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
-#, fuzzy
 msgid "Norwegian Bokmål translations thanks to @comradekingu"
-msgstr "Magyar fordítás: @ovari"
+msgstr "Norvég bokmål fordítás: @comradekingu"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @farribeiro"
-msgstr "Portugál (Brazília) fordítás: @LeandroStanger"
+msgstr "Portugál (Brazília) fordítás: @farribeiro"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
-#, fuzzy
 msgid "Arabic translations thanks to @luxmaroc"
-msgstr "Francia fordítás: @julroy67"
+msgstr "Arab fordítás: @luxmaroc"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
-#, fuzzy
 msgid "Finnish translations thanks to @Ricky-Tigg"
-msgstr "Francia fordítás: @julroy67"
+msgstr "Finn fordítás: @Ricky-Tigg"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "Francia fordítás: @julroy67"
+msgstr "Cseh fordítás: @panmourovaty"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
 msgid "Polish translations thanks to Krzysztof Marcinek"
@@ -631,19 +626,19 @@ msgstr "Tárolók biztonsági másolata"
 
 #: src/ui/details.ui:532
 msgid "Reboot Windows"
-msgstr "Indítsa újra a Windows rendszert"
+msgstr "A Windows újraindítása"
 
 #: src/ui/details.ui:557
 msgid "Shutdown Windows"
-msgstr "Windows leállítása"
+msgstr "A Windows leállítása"
 
 #: src/ui/details.ui:582
 msgid "Kill all wine processes"
-msgstr "Állítsa le az összes wine folyamatot"
+msgstr "Minden wine-folyamat leállítása"
 
 #: src/ui/details.ui:617
 msgid "Are you experiencing problems reaching a directory in Bottles?"
-msgstr ""
+msgstr "Problémái vannak a tárolóki könyvtár elérésével?"
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
 #: src/pages/details.py:854
@@ -1567,11 +1562,11 @@ msgstr "Befejezve"
 
 #: src/pages/details.py:937
 msgid "64-bit"
-msgstr ""
+msgstr "64 bites"
 
 #: src/pages/details.py:939
 msgid "32-bit"
-msgstr ""
+msgstr "32 bites"
 
 #: src/pages/details.py:953
 #, python-format
@@ -1588,7 +1583,7 @@ msgstr "Hozzáadás"
 
 #: src/pages/details.py:1326 src/pages/list.py:109
 msgid "Choose a Windows executable file"
-msgstr "Válasszon egy Windows futtatható fájlt"
+msgstr "A Windows futtatható fájl kiválasztása"
 
 #: src/pages/details.py:1329 src/pages/list.py:112
 msgid "Run"
@@ -1628,7 +1623,7 @@ msgstr "Válasszon egy biztonsági másolat archívumot"
 
 #: src/pages/list.py:51 src/pages/list.py:57
 msgid "N/A"
-msgstr ""
+msgstr "Nem alkalmazható"
 
 #: src/pages/list.py:93
 #, python-brace-format
