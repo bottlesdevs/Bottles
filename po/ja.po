@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-13 19:33+0200\n"
+"POT-Creation-Date: 2021-08-15 09:17+0200\n"
 "PO-Revision-Date: 2021-08-11 20:20+0000\n"
 "Last-Translator: Jatin <jatin1812@protonmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -153,239 +153,220 @@ msgstr ""
 "..そしてあなたがBottlesをインストールすることによって見つけることができるはる"
 "かに多く！"
 
-#: data/com.usebottles.bottles.appdata.xml.in:99
-#: data/com.usebottles.bottles.appdata.xml.in:107
-msgid "This is an off-calendar release."
-msgstr "これは予定外のリリースです。"
+#: data/com.usebottles.bottles.appdata.xml.in:98
+msgid "News"
+msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-msgid "Improved download manager"
-msgstr "改善されたダウンロードマネジャー"
+#, fuzzy
+msgid "Toggle the last Update date in the bottles list"
+msgstr "ボトルリストの更新日を切り替えます。"
 
-#: data/com.usebottles.bottles.appdata.xml.in:108
+#: data/com.usebottles.bottles.appdata.xml.in:101
+#, fuzzy
 msgid ""
-"Set working directory to executable path when launching from programs list."
+"Fallback the working directory to the executable path if it fails to run"
 msgstr ""
 "プログラムリストから起動するときは、作業ディレクトリを実行可能パスに設定しま"
 "す。"
 
+#: data/com.usebottles.bottles.appdata.xml.in:102
+msgid ""
+"Now a visual feedback is provided when a download fail the checksum "
+"validation"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:103
+msgid "Wine support for Wayland trought XWayland"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:104
+msgid "Support for 32-bit bottles with custom environment"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:105
+msgid ""
+"Removed colors from the environments in the bottle creation as these can be "
+"interpreted as suggested actions"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:106
+msgid ""
+"Now the user can only install one dependency per time to avoid conflicts"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:107
+msgid ""
+"Now the Crash Report dialog display similar reports before send a new one"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:108
+msgid ""
+"Now it is possible to clone a bottle with a new name, this can also be used "
+"for bottles templating"
+msgstr ""
+
 #: data/com.usebottles.bottles.appdata.xml.in:109
-msgid "Fix listing when one or more bottles are broken."
-msgstr "1つ以上ボトルが壊れたときのリストを修正しました。"
-
-#: data/com.usebottles.bottles.appdata.xml.in:116
-msgid "Support for .lnk files"
-msgstr ".lnkファイルのサポート"
-
-#: data/com.usebottles.bottles.appdata.xml.in:117
-msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
+msgid "The Bottles version is now provided in the Crash report"
 msgstr ""
-"コマンドラインでフラグ-e / -lを使用して、任意の.exe / .msi /.lnkを実行します"
 
-#: data/com.usebottles.bottles.appdata.xml.in:118
-msgid "Specify the target bottle using the -b flag in command line"
-msgstr "コマンドラインで-bフラグを使用してターゲットボトルを指定します"
-
-#: data/com.usebottles.bottles.appdata.xml.in:119
-msgid "Run executables without show the Bottles Window"
-msgstr "Bottlesウィンドウを表示せずに実行可能ファイルを実行します"
-
-#: data/com.usebottles.bottles.appdata.xml.in:120
-msgid "Dependencies can now set register keys"
-msgstr "依存関係はレジスタキーを設定できるようになりました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:121
-msgid "Dependencies can now extract archives"
-msgstr "依存関係はアーカイブを抽出できるようになりました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:122
-msgid "Dependencies can now uninstall other dependencies"
-msgstr "依存関係は他の依存関係をアンインストールできるようになりました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:123
-msgid "Dependencies can now install more dll in one step"
+#: data/com.usebottles.bottles.appdata.xml.in:110
+msgid "Reduced the Flatpak permissions"
 msgstr ""
-"依存関係により、1つのステップでより多くのdllをインストールできるようになりま"
-"した"
 
-#: data/com.usebottles.bottles.appdata.xml.in:124
-msgid ""
-"Dependencies can now register fonts in the Bottle Register to make them "
-"discoverable by the runner"
-msgstr ""
-"依存関係は、フォントをボトルレジスタに登録して、ランナーがフォントを見つけら"
-"れるようにすることができます"
-
-#: data/com.usebottles.bottles.appdata.xml.in:125
-msgid "Cab extraction now support wildcards"
-msgstr "キャブ抽出はワイルドカードをサポートするようになりました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:126
-msgid "Cab extraction now support lowercase extensions"
-msgstr "キャブ抽出は小文字の拡張子をサポートするようになりました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:127
-msgid ""
-"When installing a new runner, winemenubuilder is blocked to prevent the "
-"creation of broken desktop entries"
-msgstr ""
-"新しいランナーをインストールすると、壊れたデスクトップエントリが作成されない"
-"ように、winemenubuilder がブロックされます"
-
-#: data/com.usebottles.bottles.appdata.xml.in:128
-msgid ""
-"The bottle root is now set as the working directory for all executed commands"
+#: data/com.usebottles.bottles.appdata.xml.in:111
+#, fuzzy
+msgid "You can now choose a custom working directory for each bottle"
 msgstr ""
 "ボトルルートは、実行されたすべてのコマンドの作業ディレクトリとして設定されま"
 "す"
 
-#: data/com.usebottles.bottles.appdata.xml.in:129
+#: data/com.usebottles.bottles.appdata.xml.in:112
 msgid ""
-"Fixed a bug in the dependency manager showing them installed even though the "
-"process was still running"
+"You can see a new button in the bottle details with a folder icon, this "
+"helps you expose new directories to Bottles"
 msgstr ""
-"プロセスがまだ実行されているにもかかわらず、それらがインストールされているこ"
-"とを示す依存関係マネージャーのバグを修正しました"
 
-#: data/com.usebottles.bottles.appdata.xml.in:130
-msgid ""
-"Fixed a bug that prevented states from being sent to the bottle (kill, "
-"shutdown, reboot, ..)"
+#: data/com.usebottles.bottles.appdata.xml.in:115
+msgid "Bug fixes"
 msgstr ""
-"状態がボトルに送信されなかったバグを修正しました（キル、シャットダウン、リ"
-"ブート、..）"
 
-#: data/com.usebottles.bottles.appdata.xml.in:131
-msgid "Fixed a bug on processes listing"
-msgstr "プロセスリストのバグを修正しました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:132
-msgid "Fix crash log path on Flatpak"
-msgstr "Flatpakのクラッシュログパスを修正しました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:133
-msgid ""
-"Fixed an issue causing Bottles to detect downloaded dxvk even when it fails"
-msgstr "ダウンロードしたdxvkが失敗してもBottlesが検出する問題を修正しました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:134
-msgid ""
-"Fixed a bug that cause some programs to not be placed in Programs section"
+#: data/com.usebottles.bottles.appdata.xml.in:117
+msgid "Fixed a bug in the detection of broken bottles"
 msgstr ""
-"一部のプログラムが[プログラム]セクションに配置されないバグを修正しました"
 
-#: data/com.usebottles.bottles.appdata.xml.in:135
-msgid "Fixed a bug that cause Bottles to crash when a component download fail"
+#: data/com.usebottles.bottles.appdata.xml.in:118
+#, fuzzy
+msgid ""
+"Fixed a bug that was causing a File Not Found error with broken downloads"
 msgstr ""
 "コンポーネントのダウンロードが失敗したときにBottlesがクラッシュするバグを修正"
 "しました"
 
-#: data/com.usebottles.bottles.appdata.xml.in:136
-msgid "Fixed a bug in adding registry keys with spaces in name"
-msgstr ""
-"名前にスペースが含まれるレジストリキーを追加するときのバグを修正しました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:137
-msgid "Uninstallers are now no longer displayed in the Programs list"
-msgstr "アンインストーラーがプログラムリストに表示されなくなりました"
-
-#: data/com.usebottles.bottles.appdata.xml.in:138
-msgid "Disable uninstaller button for dependencies installed from cab files"
-msgstr ""
-"cabファイルからインストールされた依存関係のアンインストーラーボタンを無効にす"
-"る"
-
-#: data/com.usebottles.bottles.appdata.xml.in:139
-msgid "Access Bottles preferences from the bottle creation view"
-msgstr "ボトル作成ビューからBottles設定にアクセスする"
-
-#: data/com.usebottles.bottles.appdata.xml.in:140
+#: data/com.usebottles.bottles.appdata.xml.in:119
+#, fuzzy
 msgid ""
-"A spinner is now displayed when installing dependencies, programs and "
-"components"
+"Fixed a bug that make Bottles crash when the user goes offline during a "
+"download"
 msgstr ""
-"依存関係、プログラム、コンポーネントをインストールするときにスピナーが表示さ"
-"れるようになりました"
+"コンポーネントのダウンロードが失敗したときにBottlesがクラッシュするバグを修正"
+"しました"
 
-#: data/com.usebottles.bottles.appdata.xml.in:141
-msgid "Warning for missing cabextract tool"
-msgstr "cabextractツールがない場合の警告"
-
-#: data/com.usebottles.bottles.appdata.xml.in:142
-msgid "Warning for experimental features"
-msgstr "実験的機能に関する警告"
-
-#: data/com.usebottles.bottles.appdata.xml.in:143
-msgid "Warning for enables testing repository"
-msgstr "テストリポジトリを有効にするための警告"
-
-#: data/com.usebottles.bottles.appdata.xml.in:144
-msgid "Several improvements in runner management"
-msgstr "ランナー管理の色々な改善"
-
-#: data/com.usebottles.bottles.appdata.xml.in:145
-msgid "Added icons to the sidebar"
-msgstr "サイドバーにアイコンを追加"
-
-#: data/com.usebottles.bottles.appdata.xml.in:146
-msgid "Experimantal support for Bottles installers"
-msgstr "Bottlesインストーラーの実験的サポート"
-
-#: data/com.usebottles.bottles.appdata.xml.in:147
-msgid "Better support for Breeze theme"
-msgstr "Breezeテーマのサポートの向上"
-
-#: data/com.usebottles.bottles.appdata.xml.in:148
-msgid "Browse programs path"
-msgstr "プログラムパスを参照"
-
-#: data/com.usebottles.bottles.appdata.xml.in:149
+#: data/com.usebottles.bottles.appdata.xml.in:120
 msgid ""
-"Generate Bottles compatible desktop entries for programs installed trought "
-"Bottles installers"
+"Same as the above but this handle downloads with wrong sizes than the source"
 msgstr ""
-"ボトルインストーラーを介してインストールされたプログラムのBottles互換デスク"
-"トップエントリを生成します"
 
-#: data/com.usebottles.bottles.appdata.xml.in:150
-msgid "Visual feedback during a state restoring"
-msgstr "状態復元中の視覚的フィードバック"
+#: data/com.usebottles.bottles.appdata.xml.in:121
+msgid "Fixed the File Manager integration in Flatpak"
+msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:151
-msgid "Add external executable to the program list"
-msgstr "プログラムリストに外部実行可能ファイルを追加します"
+#: data/com.usebottles.bottles.appdata.xml.in:122
+#, fuzzy
+msgid ""
+"Fixed a bug that make Bottles crash when fail in name resolution during a "
+"download"
+msgstr ""
+"コンポーネントのダウンロードが失敗したときにBottlesがクラッシュするバグを修正"
+"しました"
 
-#: data/com.usebottles.bottles.appdata.xml.in:152
-msgid "Toggle update date on bottles list"
-msgstr "ボトルリストの更新日を切り替えます"
+#: data/com.usebottles.bottles.appdata.xml.in:123
+msgid "Fixed a bug in temp directory clean up"
+msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:153
-msgid "Chinese (Simplified) translations thanks to @Yuzaihhhh and @sr093906"
+#: data/com.usebottles.bottles.appdata.xml.in:124
+#, fuzzy
+msgid ""
+"Fixed a bug that make Bottles crash when the Update Date is not set in the "
+"bottle"
+msgstr ""
+"コンポーネントのダウンロードが失敗したときにBottlesがクラッシュするバグを修正"
+"しました"
+
+#: data/com.usebottles.bottles.appdata.xml.in:125
+msgid "Fixed a bug in bottle configuration upgrade that was causing a loop"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:128
+msgid "Translations"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:130
+#, fuzzy
+msgid "Hungarian translations thanks to @ovari, @zoli111"
+msgstr "@ovari のおかげでハンガリー語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:131
+#, fuzzy
+msgid ""
+"Chinese (Simplified) translations thanks to Flywater Zh, @sr093906, "
+"@Yuzaihhhh"
 msgstr "@Yuzaihhhh と @sr093906 のおかげでドイツ中国語（簡体字）の翻訳"
 
-#: data/com.usebottles.bottles.appdata.xml.in:154
+#: data/com.usebottles.bottles.appdata.xml.in:132
+#, fuzzy
+msgid "Croatian translations thanks to @milotype"
+msgstr "@thericosantoのおかげでドイツ語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:133
+#, fuzzy
+msgid "Spanish translations thanks to @kenpb, @oscfdezdz, @fitojb, @Lvaskz"
+msgstr "@jatin-cbs のおかげで日本語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:134
 msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "@jatin-cbs のおかげで日本語の翻訳"
 
-#: data/com.usebottles.bottles.appdata.xml.in:155
-msgid "Hungarian translations thanks to @ovari"
-msgstr "@ovari のおかげでハンガリー語の翻訳"
+#: data/com.usebottles.bottles.appdata.xml.in:135
+msgid ""
+"Frech translations thanks to J. Lavoie, SCOTT-HAMILTON, @julroy67, "
+"@yannicka, K. Herbert"
+msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:156
-msgid "Polish translations thanks to Krzysztof Marcinek"
-msgstr "Krzysztof Marcinek のおかげでポーランド語の翻訳"
-
-#: data/com.usebottles.bottles.appdata.xml.in:157
-msgid "French translations thanks to @julroy67"
-msgstr "@julroy67 のおかげでフランス語の翻訳"
-
-#: data/com.usebottles.bottles.appdata.xml.in:158
-msgid "Russian translations thanks to @tacitcoast"
-msgstr "@tacitcoast のおかげでロシア語の翻訳"
-
-#: data/com.usebottles.bottles.appdata.xml.in:159
+#: data/com.usebottles.bottles.appdata.xml.in:136
 msgid "Italian translations thanks to @blackcat-917"
 msgstr "@blackcat-917 のおかげでイタリア語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:137
+#, fuzzy
+msgid "German translations thanks to @bloomvdomino, @thericosanto"
+msgstr "@thericosantoのおかげでドイツ語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:138
+#, fuzzy
+msgid ""
+"Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, "
+"@hugok79"
+msgstr "@SantosSiのおかげでポルトガル語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:139
+#, fuzzy
+msgid "Norwegian Bokmål translations thanks to @comradekingu"
+msgstr "@ovari のおかげでハンガリー語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:140
+#, fuzzy
+msgid "Portuguese (Brazil) translations thanks to @farribeiro"
+msgstr "@vitor180396のおかげでポルトガル語（ブラジル）の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:141
+#, fuzzy
+msgid "Arabic translations thanks to @luxmaroc"
+msgstr "@julroy67 のおかげでフランス語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:142
+#, fuzzy
+msgid "Finnish translations thanks to @Ricky-Tigg"
+msgstr "@julroy67 のおかげでフランス語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:143
+#, fuzzy
+msgid "Czech translations thanks to @panmourovaty"
+msgstr "@julroy67 のおかげでフランス語の翻訳"
+
+#: data/com.usebottles.bottles.appdata.xml.in:144
+msgid "Polish translations thanks to Krzysztof Marcinek"
+msgstr "Krzysztof Marcinek のおかげでポーランド語の翻訳"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -656,96 +637,100 @@ msgstr "Windowsをシャットダウンします"
 msgid "Kill all wine processes"
 msgstr "すべてのワインプロセスを殺す"
 
-#: src/ui/details.ui:642 src/ui/details.ui:2089 src/ui/details.ui:2223
-#: src/pages/details.py:847
+#: src/ui/details.ui:617
+msgid "Are you experiencing problems reaching a directory in Bottles?"
+msgstr ""
+
+#: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
+#: src/pages/details.py:854
 msgid "Programs"
 msgstr "プログラム"
 
-#: src/ui/details.ui:658
+#: src/ui/details.ui:678
 msgid "Utilities"
 msgstr "ユーティリティ"
 
-#: src/ui/details.ui:663
+#: src/ui/details.ui:683
 msgid "Wine config"
 msgstr "Wine 設定"
 
-#: src/ui/details.ui:665
+#: src/ui/details.ui:685
 msgid "Adjust internal settings."
 msgstr "内部設定を調整します。"
 
-#: src/ui/details.ui:702
+#: src/ui/details.ui:722
 msgid "Browse C:"
 msgstr "ブラウズ C："
 
-#: src/ui/details.ui:704
+#: src/ui/details.ui:724
 msgid "Browse internal files."
 msgstr "内部ファイルを参照します。"
 
-#: src/ui/details.ui:741
+#: src/ui/details.ui:761
 msgid "Command Line"
 msgstr "コマンドライン"
 
-#: src/ui/details.ui:743
+#: src/ui/details.ui:763
 msgid "Run commands inside the Bottle."
 msgstr "ボトル内でコマンドを実行します。"
 
-#: src/ui/details.ui:780
+#: src/ui/details.ui:800
 msgid "Registry Editor"
 msgstr "レジストリエディタ"
 
-#: src/ui/details.ui:782
+#: src/ui/details.ui:802
 msgid "Edit the internal registry."
 msgstr "内部レジストリを編集します。"
 
-#: src/ui/details.ui:819
+#: src/ui/details.ui:839
 msgid "Debug"
 msgstr "デバッグ"
 
-#: src/ui/details.ui:821
+#: src/ui/details.ui:841
 msgid "Debug wine processes."
 msgstr "ワインプロセスをデバッグします。"
 
-#: src/ui/details.ui:831 src/ui/details.ui:1942 src/ui/details.ui:2528
+#: src/ui/details.ui:851 src/ui/details.ui:1962 src/ui/details.ui:2548
 msgid "Read documentation"
 msgstr "ドキュメンテーションを読む"
 
-#: src/ui/details.ui:885
+#: src/ui/details.ui:905
 msgid "Task Manager"
 msgstr "タスクマネージャー"
 
-#: src/ui/details.ui:887
+#: src/ui/details.ui:907
 msgid "Manage processes with the Wine task manager."
 msgstr "Wineタスクマネージャーでプロセスを管理します。"
 
-#: src/ui/details.ui:924
+#: src/ui/details.ui:944
 msgid "Uninstaller"
 msgstr "アンインストーラー"
 
-#: src/ui/details.ui:926
+#: src/ui/details.ui:946
 msgid "Uninstall programs using wine uninstaller"
 msgstr "ワインアンインストーラーを使用してプログラムをアンインストールする"
 
-#: src/ui/details.ui:963
+#: src/ui/details.ui:983
 msgid "Control Panel"
 msgstr "コントロールパネル"
 
-#: src/ui/details.ui:965
+#: src/ui/details.ui:985
 msgid "Access the internal wine control panel."
 msgstr "内部のワインコントロールパネルにアクセスします。"
 
-#: src/ui/details.ui:1017
+#: src/ui/details.ui:1037
 msgid "Bottle"
 msgstr "ボトル"
 
-#: src/ui/details.ui:1045
+#: src/ui/details.ui:1065
 msgid "Graphics"
 msgstr "グラフィックス"
 
-#: src/ui/details.ui:1050
+#: src/ui/details.ui:1070
 msgid "Use DXVK"
 msgstr "DXVKを使用する"
 
-#: src/ui/details.ui:1051
+#: src/ui/details.ui:1071
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -753,11 +738,11 @@ msgstr ""
 "Directx 11ゲームおよび3Dアプリケーションのパフォーマンスを向上させます。\n"
 "グラフィカルな不具合が発生している場合には無効にします。"
 
-#: src/ui/details.ui:1078
+#: src/ui/details.ui:1098
 msgid "Use VKD3D"
 msgstr "VKD3Dを使用する"
 
-#: src/ui/details.ui:1079
+#: src/ui/details.ui:1099
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -765,19 +750,19 @@ msgstr ""
 "Directx 12ゲームおよび3Dアプリケーションのパフォーマンスを向上させます。\n"
 "グラフィカルな不具合が発生している場合には無効にします。"
 
-#: src/ui/details.ui:1106
+#: src/ui/details.ui:1126
 msgid "Use Gamemode"
 msgstr "ゲームモードを使用する"
 
-#: src/ui/details.ui:1107
+#: src/ui/details.ui:1127
 msgid "Optimise gaming performance on demand"
 msgstr "オンデマンドでゲームパフォーマンスを最適化する"
 
-#: src/ui/details.ui:1133
+#: src/ui/details.ui:1153
 msgid "Enable ACO shader compiler"
 msgstr "ACOシェーダーコンパイラを有効にする"
 
-#: src/ui/details.ui:1134
+#: src/ui/details.ui:1154
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -785,133 +770,133 @@ msgstr ""
 "ゲームおよび3Dアプリケーションのパフォーマンスを向上させます。\n"
 "グラフィカルな不具合が発生している場合には無効にします。"
 
-#: src/ui/details.ui:1161
+#: src/ui/details.ui:1181
 msgid "Discrete GPU"
 msgstr "ディスクリートGPU"
 
-#: src/ui/details.ui:1162
+#: src/ui/details.ui:1182
 msgid "Improves performance at the cost of increased power usage."
 msgstr "電力使用量の増加を犠牲にしてパフォーマンスを向上させます。"
 
-#: src/ui/details.ui:1188
+#: src/ui/details.ui:1208
 msgid "Use a virtual desktop"
 msgstr "仮想デスクトップを使用する"
 
-#: src/ui/details.ui:1189
+#: src/ui/details.ui:1209
 msgid "Use the Wine virtual desktop."
 msgstr "Wine仮想デスクトップを使用します。"
 
-#: src/ui/details.ui:1272 src/ui/details.ui:1285
+#: src/ui/details.ui:1292 src/ui/details.ui:1305
 msgid "System"
 msgstr "システム"
 
-#: src/ui/details.ui:1277
+#: src/ui/details.ui:1297
 msgid "Synchronization"
 msgstr "同期"
 
-#: src/ui/details.ui:1278
+#: src/ui/details.ui:1298
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr "同期を有効にして、マルチコアプロセッサのパフォーマンスを向上させます。"
 
-#: src/ui/details.ui:1299
+#: src/ui/details.ui:1319
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1313
+#: src/ui/details.ui:1333
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1336 src/ui/new.ui:261
+#: src/ui/details.ui:1356 src/ui/new.ui:261
 msgid "Runner"
 msgstr "ランナー"
 
-#: src/ui/details.ui:1379 src/ui/details.ui:1618 src/ui/new.ui:303
+#: src/ui/details.ui:1399 src/ui/details.ui:1638 src/ui/new.ui:303
 msgid "Manage runners"
 msgstr "ランナーを管理する"
 
-#: src/ui/details.ui:1411 src/ui/new.ui:335
+#: src/ui/details.ui:1431 src/ui/new.ui:335
 msgid "DXVK Version"
 msgstr "DXVKバージョン"
 
-#: src/ui/details.ui:1454 src/ui/details.ui:1529 src/ui/new.ui:377
+#: src/ui/details.ui:1474 src/ui/details.ui:1549 src/ui/new.ui:377
 msgid "Manage DXVK versions"
 msgstr "DXVKバージョンを管理する"
 
-#: src/ui/details.ui:1486
+#: src/ui/details.ui:1506
 msgid "VKD3D Version"
 msgstr "VKD3Dバージョン"
 
-#: src/ui/details.ui:1562 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1582 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "DLLのオーバーライド"
 
-#: src/ui/details.ui:1600
+#: src/ui/details.ui:1620
 msgid "Working directory"
 msgstr ""
 
-#: src/ui/details.ui:1602
+#: src/ui/details.ui:1622
 #, fuzzy
 msgid "Point to the bottle path"
 msgstr "ボトルの状態を保存します。"
 
-#: src/ui/details.ui:1661
+#: src/ui/details.ui:1681
 msgid "Audio"
 msgstr "オーディオ"
 
-#: src/ui/details.ui:1666
+#: src/ui/details.ui:1686
 msgid "Reduce PulseAudio latency"
 msgstr "PulseAudioのレイテンシーを減らす"
 
-#: src/ui/details.ui:1667
+#: src/ui/details.ui:1687
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr "音質を上げるには、PulseAudioのレイテンシーを60ミリ秒に設定します"
 
-#: src/ui/details.ui:1704
+#: src/ui/details.ui:1724
 msgid "Developers & Debug"
 msgstr "開発者とデバッグ"
 
-#: src/ui/details.ui:1709
+#: src/ui/details.ui:1729
 msgid "Environment variables"
 msgstr "環境変数"
 
-#: src/ui/details.ui:1747
+#: src/ui/details.ui:1767
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details.ui:1748
+#: src/ui/details.ui:1768
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "D3DアプリケーションのFPSおよびその他の詳細を表示するDXVKオーバーレイを切り替"
 "えます。"
 
-#: src/ui/details.ui:1774
+#: src/ui/details.ui:1794
 msgid "Enable wine fixme logs"
 msgstr "wine fixmeログを有効にする"
 
-#: src/ui/details.ui:1775
+#: src/ui/details.ui:1795
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wineで実装されていないログコードパス。"
 
-#: src/ui/details.ui:1816 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:845
+#: src/ui/details.ui:1836 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/pages/details.py:852
 msgid "Preferences"
 msgstr "設定"
 
-#: src/ui/details.ui:1867
+#: src/ui/details.ui:1887
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr "テストモードが有効：テストリポジトリからの依存関係のみが表示されます。"
 
-#: src/ui/details.ui:1923 src/ui/details.ui:2049 src/pages/details.py:846
+#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/pages/details.py:853
 msgid "Dependencies"
 msgstr "依存関係"
 
-#: src/ui/details.ui:1952
+#: src/ui/details.ui:1972
 msgid "Report a missing dependency"
 msgstr "欠落している依存関係を報告する"
 
-#: src/ui/details.ui:1979
+#: src/ui/details.ui:1999
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
@@ -919,23 +904,23 @@ msgstr ""
 "このページのファイルは検証済みですが、プロプライエタリライセンスの下にある可"
 "能性があります。"
 
-#: src/ui/details.ui:2009
+#: src/ui/details.ui:2029
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework4。。"
 
-#: src/ui/details.ui:2108
+#: src/ui/details.ui:2128
 msgid "These are the programs found in your bottle's Start menu"
 msgstr "これらは、ボトルのスタートメニューにあるプログラムです"
 
-#: src/ui/details.ui:2132
+#: src/ui/details.ui:2152
 msgid "Add a custom executable path"
 msgstr "カスタム実行可能パスを追加します"
 
-#: src/ui/details.ui:2159
+#: src/ui/details.ui:2179
 msgid "Search for installed programs"
 msgstr "インストールされているプログラムを検索する"
 
-#: src/ui/details.ui:2275 src/ui/details.ui:2458
+#: src/ui/details.ui:2295 src/ui/details.ui:2478
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -943,19 +928,19 @@ msgstr ""
 "これは初期の開発における実験的な機能です。注意して<a href=\"https://github."
 "com/bottlesdevs/Bottles/issues/new/choose\">バグを報告してください</a>。"
 
-#: src/ui/details.ui:2326 src/ui/preferences.ui:288 src/pages/details.py:852
+#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/pages/details.py:859
 msgid "Installers"
 msgstr "インストーラー"
 
-#: src/ui/details.ui:2345 src/ui/importer.ui:95
+#: src/ui/details.ui:2365 src/ui/importer.ui:95
 msgid "Refresh"
 msgstr "リフレッシュ"
 
-#: src/ui/details.ui:2509 src/ui/preferences.ui:262 src/pages/details.py:850
+#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/pages/details.py:857
 msgid "Versioning"
 msgstr "バージョン管理"
 
-#: src/ui/details.ui:2558
+#: src/ui/details.ui:2578
 msgid "Create new state"
 msgstr "新しい状態を作成する"
 
@@ -964,8 +949,8 @@ msgid "Message goes here."
 msgstr "メッセージはここにあります。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/pages/details.py:883
-#: src/pages/details.py:1041 src/pages/details.py:1323 src/pages/list.py:113
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/pages/details.py:890
+#: src/pages/details.py:1048 src/pages/details.py:1330 src/pages/list.py:113
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -1555,59 +1540,67 @@ msgstr "{0}のマニフェスト"
 msgid "Index for state {0}"
 msgstr "状態{0}のインデックス"
 
-#: src/pages/details.py:834
+#: src/pages/details.py:841
 msgid "Gamemode is either not available on your system or not running."
 msgstr "ゲームモードは、システムで使用できないか、実行されていません。"
 
-#: src/pages/details.py:844
+#: src/pages/details.py:851
 msgid "Details & Utilities"
 msgstr "詳細とユーティリティ"
 
-#: src/pages/details.py:879
+#: src/pages/details.py:886
 #, fuzzy
 msgid "Choose working directory for executables"
 msgstr ""
 "ボトルルートは、実行されたすべてのコマンドの作業ディレクトリとして設定されま"
 "す"
 
-#: src/pages/details.py:882
+#: src/pages/details.py:889
 msgid "Done"
 msgstr ""
 
-#: src/pages/details.py:946
+#: src/pages/details.py:937
+msgid "64-bit"
+msgstr ""
+
+#: src/pages/details.py:939
+msgid "32-bit"
+msgstr ""
+
+#: src/pages/details.py:953
 #, python-format
 msgid "Updated: %s"
 msgstr "更新しました：%s"
 
-#: src/pages/details.py:1037
+#: src/pages/details.py:1044
 msgid "Choose an executable path"
 msgstr "実行可能パスを選択します"
 
-#: src/pages/details.py:1040
+#: src/pages/details.py:1047
 msgid "Add"
 msgstr "追加"
 
-#: src/pages/details.py:1319 src/pages/list.py:109
+#: src/pages/details.py:1326 src/pages/list.py:109
 msgid "Choose a Windows executable file"
 msgstr "Windows実行可能ファイルを選択してください"
 
-#: src/pages/details.py:1322 src/pages/list.py:112
+#: src/pages/details.py:1329 src/pages/list.py:112
 msgid "Run"
 msgstr "実行"
 
-#: src/pages/details.py:1398
+#: src/pages/details.py:1405
 msgid "Select the location where to save the backup configuration"
 msgstr "バックアップ構成を保存する場所を選択してください"
 
-#: src/pages/details.py:1420
+#: src/pages/details.py:1427
 msgid "Select the location where to save the backup archive"
 msgstr "バックアップアーカイブを保存する場所を選択してください"
 
-#: src/pages/details.py:1448
+#: src/pages/details.py:1455
 msgid "Confirm deletion"
 msgstr "削除の確認"
 
-#: src/pages/details.py:1449
+#: src/pages/details.py:1456
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
 
@@ -1627,6 +1620,10 @@ msgstr "バグレポート"
 #: src/pages/importer.py:97
 msgid "Choose a backup archive"
 msgstr "バックアップアーカイブを選択してください"
+
+#: src/pages/list.py:51 src/pages/list.py:57
+msgid "N/A"
+msgstr ""
 
 #: src/pages/list.py:93
 #, python-brace-format
@@ -1662,6 +1659,165 @@ msgstr "あなたの実験のための明確な環境。"
 msgid "A bottle named “%s” was created successfully"
 msgstr "「%s」という名前のボトルが正常に作成されました"
 
+#~ msgid "This is an off-calendar release."
+#~ msgstr "これは予定外のリリースです。"
+
+#~ msgid "Improved download manager"
+#~ msgstr "改善されたダウンロードマネジャー"
+
+#~ msgid "Fix listing when one or more bottles are broken."
+#~ msgstr "1つ以上ボトルが壊れたときのリストを修正しました。"
+
+#~ msgid "Support for .lnk files"
+#~ msgstr ".lnkファイルのサポート"
+
+#~ msgid "Run any .exe/.msi/.lnk using the flags -e/-l in command line"
+#~ msgstr ""
+#~ "コマンドラインでフラグ-e / -lを使用して、任意の.exe / .msi /.lnkを実行しま"
+#~ "す"
+
+#~ msgid "Specify the target bottle using the -b flag in command line"
+#~ msgstr "コマンドラインで-bフラグを使用してターゲットボトルを指定します"
+
+#~ msgid "Run executables without show the Bottles Window"
+#~ msgstr "Bottlesウィンドウを表示せずに実行可能ファイルを実行します"
+
+#~ msgid "Dependencies can now set register keys"
+#~ msgstr "依存関係はレジスタキーを設定できるようになりました"
+
+#~ msgid "Dependencies can now extract archives"
+#~ msgstr "依存関係はアーカイブを抽出できるようになりました"
+
+#~ msgid "Dependencies can now uninstall other dependencies"
+#~ msgstr "依存関係は他の依存関係をアンインストールできるようになりました"
+
+#~ msgid "Dependencies can now install more dll in one step"
+#~ msgstr ""
+#~ "依存関係により、1つのステップでより多くのdllをインストールできるようになり"
+#~ "ました"
+
+#~ msgid ""
+#~ "Dependencies can now register fonts in the Bottle Register to make them "
+#~ "discoverable by the runner"
+#~ msgstr ""
+#~ "依存関係は、フォントをボトルレジスタに登録して、ランナーがフォントを見つけ"
+#~ "られるようにすることができます"
+
+#~ msgid "Cab extraction now support wildcards"
+#~ msgstr "キャブ抽出はワイルドカードをサポートするようになりました"
+
+#~ msgid "Cab extraction now support lowercase extensions"
+#~ msgstr "キャブ抽出は小文字の拡張子をサポートするようになりました"
+
+#~ msgid ""
+#~ "When installing a new runner, winemenubuilder is blocked to prevent the "
+#~ "creation of broken desktop entries"
+#~ msgstr ""
+#~ "新しいランナーをインストールすると、壊れたデスクトップエントリが作成されな"
+#~ "いように、winemenubuilder がブロックされます"
+
+#~ msgid ""
+#~ "The bottle root is now set as the working directory for all executed "
+#~ "commands"
+#~ msgstr ""
+#~ "ボトルルートは、実行されたすべてのコマンドの作業ディレクトリとして設定され"
+#~ "ます"
+
+#~ msgid ""
+#~ "Fixed a bug in the dependency manager showing them installed even though "
+#~ "the process was still running"
+#~ msgstr ""
+#~ "プロセスがまだ実行されているにもかかわらず、それらがインストールされている"
+#~ "ことを示す依存関係マネージャーのバグを修正しました"
+
+#~ msgid ""
+#~ "Fixed a bug that prevented states from being sent to the bottle (kill, "
+#~ "shutdown, reboot, ..)"
+#~ msgstr ""
+#~ "状態がボトルに送信されなかったバグを修正しました（キル、シャットダウン、リ"
+#~ "ブート、..）"
+
+#~ msgid "Fixed a bug on processes listing"
+#~ msgstr "プロセスリストのバグを修正しました"
+
+#~ msgid "Fix crash log path on Flatpak"
+#~ msgstr "Flatpakのクラッシュログパスを修正しました"
+
+#~ msgid ""
+#~ "Fixed an issue causing Bottles to detect downloaded dxvk even when it "
+#~ "fails"
+#~ msgstr "ダウンロードしたdxvkが失敗してもBottlesが検出する問題を修正しました"
+
+#~ msgid ""
+#~ "Fixed a bug that cause some programs to not be placed in Programs section"
+#~ msgstr ""
+#~ "一部のプログラムが[プログラム]セクションに配置されないバグを修正しました"
+
+#~ msgid "Fixed a bug in adding registry keys with spaces in name"
+#~ msgstr ""
+#~ "名前にスペースが含まれるレジストリキーを追加するときのバグを修正しました"
+
+#~ msgid "Uninstallers are now no longer displayed in the Programs list"
+#~ msgstr "アンインストーラーがプログラムリストに表示されなくなりました"
+
+#~ msgid "Disable uninstaller button for dependencies installed from cab files"
+#~ msgstr ""
+#~ "cabファイルからインストールされた依存関係のアンインストーラーボタンを無効"
+#~ "にする"
+
+#~ msgid "Access Bottles preferences from the bottle creation view"
+#~ msgstr "ボトル作成ビューからBottles設定にアクセスする"
+
+#~ msgid ""
+#~ "A spinner is now displayed when installing dependencies, programs and "
+#~ "components"
+#~ msgstr ""
+#~ "依存関係、プログラム、コンポーネントをインストールするときにスピナーが表示"
+#~ "されるようになりました"
+
+#~ msgid "Warning for missing cabextract tool"
+#~ msgstr "cabextractツールがない場合の警告"
+
+#~ msgid "Warning for experimental features"
+#~ msgstr "実験的機能に関する警告"
+
+#~ msgid "Warning for enables testing repository"
+#~ msgstr "テストリポジトリを有効にするための警告"
+
+#~ msgid "Several improvements in runner management"
+#~ msgstr "ランナー管理の色々な改善"
+
+#~ msgid "Added icons to the sidebar"
+#~ msgstr "サイドバーにアイコンを追加"
+
+#~ msgid "Experimantal support for Bottles installers"
+#~ msgstr "Bottlesインストーラーの実験的サポート"
+
+#~ msgid "Better support for Breeze theme"
+#~ msgstr "Breezeテーマのサポートの向上"
+
+#~ msgid "Browse programs path"
+#~ msgstr "プログラムパスを参照"
+
+#~ msgid ""
+#~ "Generate Bottles compatible desktop entries for programs installed "
+#~ "trought Bottles installers"
+#~ msgstr ""
+#~ "ボトルインストーラーを介してインストールされたプログラムのBottles互換デス"
+#~ "クトップエントリを生成します"
+
+#~ msgid "Visual feedback during a state restoring"
+#~ msgstr "状態復元中の視覚的フィードバック"
+
+#~ msgid "Add external executable to the program list"
+#~ msgstr "プログラムリストに外部実行可能ファイルを追加します"
+
+#~ msgid "Toggle update date on bottles list"
+#~ msgstr "ボトルリストの更新日を切り替えます"
+
+#~ msgid "Russian translations thanks to @tacitcoast"
+#~ msgstr "@tacitcoast のおかげでロシア語の翻訳"
+
 #~ msgid "Upgrade runner to the latest localy installed"
 #~ msgstr ""
 #~ "ランナーをローカルにインストールされた最新のランナーにアップグレードする"
@@ -1683,14 +1839,6 @@ msgstr "「%s」という名前のボトルが正常に作成されました"
 
 #~ msgid "Dependencies can be extracted and installed from a Windows cabinet"
 #~ msgstr "依存関係は、Windowsキャビネットから抽出してインストールできます"
-
-#, fuzzy
-#~ msgid "Portuguese (Brazil) translations thanks to @LeandroStanger"
-#~ msgstr "@vitor180396のおかげでポルトガル語（ブラジル）の翻訳"
-
-#, fuzzy
-#~ msgid "Portuguese translations thanks to @laralem"
-#~ msgstr "@SantosSiのおかげでポルトガル語の翻訳"
 
 #, fuzzy
 #~ msgid "Czech translations thanks to @pervoj and Vojtěch Perník"
@@ -1716,10 +1864,6 @@ msgstr "「%s」という名前のボトルが正常に作成されました"
 
 #~ msgid "New versioning based on CalVer model"
 #~ msgstr "CalVerモデルに基づいた新しいバージョニング"
-
-#, fuzzy
-#~ msgid "Croatin translations thanks to @milotype"
-#~ msgstr "@thericosantoのおかげでドイツ語の翻訳"
 
 #, fuzzy
 #~ msgid "Ukrain thanslations thanks to @marchellodev"

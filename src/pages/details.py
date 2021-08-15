@@ -934,9 +934,9 @@ class BottlesDetails(Handy.Leaflet):
         update_date = update_date.strftime("%b %d %Y %H:%M:%S")
 
         '''Format arch'''
-        arch = "64-bit"
+        arch = _("64-bit")
         if self.configuration.get("Arch") == "win32":
-            arch = "32-bit"
+            arch = _("32-bit")
         
         '''Lock signals preventing triggering'''
         self.switch_dxvk.handler_block_by_func(self.toggle_dxvk)
