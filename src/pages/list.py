@@ -75,7 +75,7 @@ class BottlesListEntry(Handy.ActionRow):
         self.set_title(self.configuration.get("Name"))
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
-        self.label_environment.set_text(self.configuration.get("Environment"))
+        self.label_environment.set_text(_(self.configuration.get("Environment")))
         self.label_environment_context.add_class(
             "tag-%s" % self.configuration.get("Environment").lower())
 

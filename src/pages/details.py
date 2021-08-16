@@ -953,7 +953,9 @@ class BottlesDetails(Handy.Leaflet):
         self.entry_name.set_tooltip_text(_("Updated: %s" % update_date))
         self.label_runner.set_text(self.configuration.get("Runner"))
         self.label_arch.set_text(arch)
-        self.label_environment.set_text(self.configuration.get("Environment"))
+        self.label_environment.set_text(
+            _(self.configuration.get("Environment"))
+        )
         self.label_environment.get_style_context().add_class(
             f"tag-{self.configuration.get('Environment').lower()}")
         self.label_state.set_text(str(self.configuration.get("State")))
