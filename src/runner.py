@@ -1132,7 +1132,7 @@ class BottlesRunner:
 
         # Generate bottle configuration file
         logging.info("Generating Bottle configuration file …")
-        update_output("Generating Bottle configuration file …")
+        update_output(_("Generating Bottle configuration file …"))
 
         configuration = BottlesSamples.configuration
         configuration["Name"] = bottle_name
