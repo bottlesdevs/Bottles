@@ -91,6 +91,13 @@ modules:
       url: https://github.com/wummel/patool/archive/refs/tags/upstream/1.12.tar.gz
       sha256: 582fd4b87c263325958c1550400504799018c88bc3444f249bba304ae1747f1f
 
+  - name: cabextract
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: 'https://www.cabextract.org.uk/cabextract-1.9.1.tar.gz'
+        sha256: afc253673c8ef316b4d5c29cc4aa8445844bee14afffbe092ee9469405851ca7
+        
   - name: bottles
     buildsystem: simple
     build-commands:
