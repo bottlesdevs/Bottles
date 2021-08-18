@@ -52,21 +52,21 @@ class RunnerUtilities:
         self,
         configuration: BottleConfig,
         file_path: str,
-        arguments: str = False,
+        arguments: str = "",
         environment: dict = False
     ) -> None:
         logging.info("Running link file on the bottle …")
         
         command = f"start /unix '{file_path}'"
         RunAsync(self.run_command, None, configuration,
-                 command, False, environment)
+                 command, False, arguments, environment)
 
     # Run wine executables/programs in a bottle
     def run_executable(
         self,
         configuration: BottleConfig,
         file_path: str,
-        arguments: str = False,
+        arguments: str = "",
         environment: dict = False,
         no_async: bool = False,
         cwd: str = None
@@ -80,15 +80,12 @@ class RunnerUtilities:
         elif "bat" in file_path.split("."):
             command = f"wineconsole cmd /c '{file_path}'"
 
-        if arguments:
-            command = f"{command} {arguments}"
-
         if no_async:
             self.run_command(configuration, command,
-                             False, environment, True, cwd)
+                             False, arguments, environment, True, cwd)
         else:
             RunAsync(self.run_command, None, configuration,
-                     command, False, environment, False, cwd)
+                     command, False, arguments, environment, False, cwd)
 
     def run_wineboot(self, configuration: BottleConfig) -> None:
         logging.info("Running wineboot on the wineprefix …")
@@ -148,6 +145,7 @@ class RunnerUtilities:
         configuration: BottleConfig,
         command: str,
         terminal: bool = False,
+        arguments: str = False,
         environment: dict = False,
         comunicate: bool = False,
         cwd: str = None
@@ -255,6 +253,12 @@ class RunnerUtilities:
 
         command = f"WINEPREFIX={path} "\
             f"WINEARCH={arch} {environment_vars} {runner} {command}"
+
+        if arguments:
+            if "%command%" in arguments:
+                prefix = arguments.split("%command%")[0]
+                suffix = arguments.split("%command%")[1]
+                command = f"{prefix} {command} {suffix}"
 
         # Check for gamemode enabled
         if gamemode_available and configuration["Parameters"]["gamemode"]:
