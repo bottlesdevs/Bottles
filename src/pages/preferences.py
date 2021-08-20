@@ -22,7 +22,7 @@ from ..runner_utilities import RunnerUtilities
 class BottlesPreferences(Handy.PreferencesWindow):
     __gtype_name__ = 'BottlesPreferences'
 
-    '''Get widgets from template'''
+    # region Widgets
     switch_dark = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
@@ -35,6 +35,7 @@ class BottlesPreferences(Handy.PreferencesWindow):
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
     actionrow_prerelease = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -130,13 +131,14 @@ class BottlesPreferences(Handy.PreferencesWindow):
 class BottlesDxvkEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesDxvkEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, dxvk, **kwargs):
         super().__init__(**kwargs)
@@ -224,13 +226,14 @@ class BottlesDxvkEntry(Handy.ActionRow):
 class BottlesVkd3dEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesVkd3dEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, vkd3d, **kwargs):
         super().__init__(**kwargs)
@@ -321,13 +324,14 @@ class BottlesVkd3dEntry(Handy.ActionRow):
 class BottlesRunnerEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesRunnerEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, runner_entry, **kwargs):
         super().__init__(**kwargs)
