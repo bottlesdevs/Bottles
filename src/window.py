@@ -43,7 +43,7 @@ logging = UtilsLogger()
 class BottlesWindow(Handy.ApplicationWindow):
     __gtype_name__ = 'BottlesWindow'
 
-    # Get widgets from template
+    # region Widgets
     grid_main = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
     box_more = Gtk.Template.Child()
@@ -60,14 +60,7 @@ class BottlesWindow(Handy.ApplicationWindow):
     btn_noconnection = Gtk.Template.Child()
     box_downloads = Gtk.Template.Child()
     pop_downloads = Gtk.Template.Child()
-
-    # Define environments and set first
-    envs = [
-        'Gaming',
-        'Software',
-        'Custom'
-    ]
-    env_active = envs[0]
+    # endregion
 
     # Common variables
     previous_page = ""
