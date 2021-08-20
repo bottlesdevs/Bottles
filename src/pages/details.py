@@ -67,13 +67,14 @@ class BottlesDetailsPageRow(Gtk.ListBoxRow):
 class BottlesDuplicate(Handy.Window):
     __gtype_name__ = 'BottlesDuplicate'
 
-    '''Get widgets from template'''
+    # region Widgets
     entry_name = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
     btn_duplicate = Gtk.Template.Child()
     stack_switcher = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)
@@ -132,10 +133,11 @@ class BottlesDuplicate(Handy.Window):
 class BottlesRunArgs(Handy.Window):
     __gtype_name__ = 'BottlesRunArgs'
 
-    '''Get widgets from template'''
+    # region Widgets
     entry_args = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, parent, **kwargs):
         super().__init__(**kwargs)
@@ -162,10 +164,11 @@ class BottlesRunArgs(Handy.Window):
 class BottlesEnvironmentVariables(Handy.Window):
     __gtype_name__ = 'BottlesEnvironmentVariables'
 
-    '''Get widgets from template'''
+    # region Widgets
     entry_variables = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
@@ -202,9 +205,10 @@ class BottlesEnvironmentVariables(Handy.Window):
 class BottlesDLLOverrideEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesDLLOverrideEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     btn_remove = Gtk.Template.Child()
     combo_type = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, override, **kwargs):
         super().__init__(**kwargs)
@@ -246,10 +250,11 @@ class BottlesDLLOverrideEntry(Handy.ActionRow):
 class BottlesDLLOverrides(Handy.Window):
     __gtype_name__ = 'BottlesDLLOverrides'
 
-    '''Get widgets from template'''
+    # region Widgets
     entry_name = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     list_overrides = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, **kwargs):
         super().__init__(**kwargs)
@@ -300,10 +305,11 @@ class BottlesDLLOverrides(Handy.Window):
 class BottlesLaunchOptions(Handy.Window):
     __gtype_name__ = 'BottlesLaunchOptions'
 
-    '''Get widgets from template'''
+    # region Widgets
     entry_arguments = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, program_executable, arguments, **kwargs):
         super().__init__(**kwargs)
@@ -341,10 +347,11 @@ class BottlesLaunchOptions(Handy.Window):
 class BottlesInstallerEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesInstallerEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     btn_install = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     img_installed = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, installer, plain=False, **kwargs):
         super().__init__(**kwargs)
@@ -404,11 +411,12 @@ class BottlesInstallerEntry(Handy.ActionRow):
 class BottlesStateEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesStateEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     label_creation_date = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, state, **kwargs):
         super().__init__(**kwargs)
@@ -472,7 +480,7 @@ class BottlesStateEntry(Handy.ActionRow):
 class BottlesProgramEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesProgramEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     btn_run = Gtk.Template.Child()
     btn_winehq = Gtk.Template.Child()
     btn_protondb = Gtk.Template.Child()
@@ -481,6 +489,7 @@ class BottlesProgramEntry(Handy.ActionRow):
     btn_uninstall = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, program, **kwargs):
         super().__init__(**kwargs)
@@ -568,13 +577,14 @@ class BottlesProgramEntry(Handy.ActionRow):
 class BottlesDependencyEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesDependencyEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     label_category = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     btn_license = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
@@ -679,7 +689,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
 class BottlesDetails(Handy.Leaflet):
     __gtype_name__ = 'BottlesDetails'
 
-    '''Get widgets from template'''
+    # region Widgets
     label_runner = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
@@ -745,6 +755,7 @@ class BottlesDetails(Handy.Leaflet):
     stack_bottle = Gtk.Template.Child()
     infobar_testing = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration=dict, **kwargs):
         super().__init__(**kwargs)
