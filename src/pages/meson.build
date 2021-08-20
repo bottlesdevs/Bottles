@@ -4,7 +4,6 @@ pagesdir = join_paths(pkgdatadir, 'bottles/pages')
 bottles_sources = [
   '__init__.py',
   'new.py',
-  'create.py',
   'list.py',
   'details.py',
   'preferences.py',
