@@ -164,6 +164,9 @@ class RunnerUtilities:
         path = configuration.get("Path")
         runner = configuration.get("Runner")
         arch = configuration.get("Arch")
+        
+        if runner is None:
+            return
 
         # If runner is proton then set path to /dist
         if runner.startswith("Proton"):
