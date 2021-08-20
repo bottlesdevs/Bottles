@@ -39,7 +39,7 @@ class BottlesEnvironmentRow(Handy.ActionRow):
 class BottlesNew(Handy.Window):
     __gtype_name__ = 'BottlesNew'
 
-    '''Get widgets from template'''
+    # region Widgets
     stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
@@ -59,6 +59,7 @@ class BottlesNew(Handy.Window):
     combo_dxvk = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     progressbar_creating = Gtk.Template.Child()
+    # endregion
 
     environments = [
         {
