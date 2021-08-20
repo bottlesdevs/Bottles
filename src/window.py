@@ -77,6 +77,7 @@ class BottlesWindow(Handy.ApplicationWindow):
     previous_page = ""
     default_settings = Gtk.Settings.get_default()
     settings = Gio.Settings.new(APP_ID)
+    argument_executed = False
 
     # Notify instance
     Notify.init(APP_ID)
@@ -144,7 +145,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         # Signal connections
         self.btn_back.connect('pressed', self.go_back)
         self.btn_back.connect('activate', self.go_back)
-        self.btn_add.connect('pressed', self.show_add_view)
+        self.btn_add.connect('pressed', self.show_add_view, arg_executable)
         self.btn_about.connect('pressed', self.show_about_dialog)
         self.btn_docs.connect('pressed', self.open_docs_url)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
@@ -229,8 +230,12 @@ class BottlesWindow(Handy.ApplicationWindow):
         onboard_window = BottlesOnboard(self)
         onboard_window.present()
 
-    def show_add_view(self, widget=False):
-        new_window = BottlesNew(self)
+    def show_add_view(self, widget=False, arg_executable=None, arg_lnk=None):
+        if not self.argument_executed:
+            self.argument_executed = True
+            new_window = BottlesNew(self, arg_executable, arg_lnk)
+        else:
+            new_window = BottlesNew(self)
         new_window.present()
 
     def show_list_view(self, widget=False):

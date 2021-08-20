@@ -19,6 +19,7 @@ import re
 import time
 
 from gi.repository import Gtk, GLib, Handy
+from ..runner_utilities import RunnerUtilities
 
 class BottlesEnvironmentRow(Handy.ActionRow):
     def __init__(self, environment, **kwargs):
@@ -80,14 +81,17 @@ class BottlesNew(Handy.Window):
         }
     ]
 
-    def __init__(self, window, **kwargs):
+    def __init__(self, window, arg_executable=None, arg_lnk=None,**kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
         '''Common variables'''
         self.window = window
         self.runner = window.runner
+        self.arg_executable = arg_executable
+        self.arg_lnk = arg_lnk
         self.selected_environment = "gaming"
+        self.new_bottle_config = {}
 
         '''Signal connections'''
         self.btn_cancel.connect('pressed', self.close_window)
@@ -187,7 +191,8 @@ class BottlesNew(Handy.Window):
     def update_output(self, text):
         GLib.idle_add(self.idle_update_output, text)
 
-    def finish(self):
+    def finish(self, configuration):
+        self.new_bottle_config = configuration
         self.page_created.set_description(
             _("A bottle named “%s” was created successfully") % self.entry_name.get_text())
 
@@ -208,4 +213,12 @@ class BottlesNew(Handy.Window):
 
     '''Destroy the window'''
     def close_window(self, widget):
+        if self.arg_executable:
+            RunnerUtilities().run_executable(
+                configuration=self.new_bottle_config,
+                file_path=self.arg_executable)
+        if self.arg_lnk is not None:
+            RunnerUtilities().run_lnk(
+                configuration=self.new_bottle_config,
+                file_path=self.arg_lnk)
         self.destroy()

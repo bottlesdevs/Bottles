@@ -1198,7 +1198,7 @@ class BottlesRunner:
 
         time.sleep(2)
 
-        dialog.finish()
+        dialog.finish(configuration)
 
     def create_bottle(self,
                       name,
