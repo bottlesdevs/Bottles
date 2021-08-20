@@ -21,9 +21,10 @@ from gi.repository import Gtk
 class BottlesTaskManager(Gtk.Box):
     __gtype_name__ = 'BottlesTaskManager'
 
-    '''Get widgets from template'''
+    # region Widgets
     treeview_processes = Gtk.Template.Child()
     btn_processes_update = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
