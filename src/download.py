@@ -26,11 +26,12 @@ from .utils import RunAsync
 class BottlesDownloadEntry(Gtk.Box):
     __gtype_name__ = 'BottlesDownloadEntry'
 
-    # Get widgets from template
+    # region Widgets
     label_filename = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     progressbar_download = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, file_name, stoppable=True, **kwargs):
         super().__init__(**kwargs)
@@ -97,13 +98,10 @@ class DownloadManager():
         # Common variables
         self.window = window
         self.box_downloads = window.box_downloads
-        # self.pop_downloads = window.pop_downloads
 
     def new_download(self, file_name, stoppable=True):
         download_entry = BottlesDownloadEntry(
             self.window, file_name, stoppable)
         self.window.box_downloads.add(download_entry)
-
-        # GLib.idle_add(self.pop_downloads.popup)
 
         return download_entry
