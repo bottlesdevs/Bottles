@@ -10,8 +10,8 @@ confinement: strict
 grade: stable
 
 architectures:
-  - build-on: [amd64, armhf]
-    run-on: [amd64, armhf]
+  - build-on: [amd64, armhf, i386]
+    run-on: [amd64, armhf, i386]
     
 parts:
 
@@ -49,6 +49,12 @@ parts:
       - p7zip
       - p7zip-full
       - patool
+      - on amd64:
+          - libc6-i386
+          - libglx-mesa0:i386
+          - libgnutls30:i386
+          - libvulkan1:i386
+          - libfreetype6:i386
 
     organize:
       snap/bottles/current/usr: usr
