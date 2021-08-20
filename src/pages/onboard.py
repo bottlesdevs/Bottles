@@ -19,13 +19,13 @@ import time
 
 from gi.repository import Gtk, Handy
 
-from bottles.utils import RunAsync
+from ..utils import RunAsync
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
 class BottlesOnboard(Handy.Window):
     __gtype_name__ = 'BottlesOnboard'
 
-    '''Get widgets from template'''
+    # region Widgets
     stack_onboard = Gtk.Template.Child()
     btn_stack_next = Gtk.Template.Child()
     btn_stack_back = Gtk.Template.Child()
@@ -35,6 +35,7 @@ class BottlesOnboard(Handy.Window):
     btn_install = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
     progressbar_downloading = Gtk.Template.Child()
+    # endregion
 
     stack_pages = [
         "page_welcome",
