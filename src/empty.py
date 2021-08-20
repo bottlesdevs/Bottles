@@ -21,10 +21,11 @@ from gi.repository import Gtk
 class BottlesEmpty(Gtk.Grid):
     __gtype_name__ = 'BottlesEmpty'
 
-    # Get widgets from template
+    # region Widgets
     img_icon = Gtk.Template.Child()
     label_text = Gtk.Template.Child()
     label_tip = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, text=False, icon=False, tip=False, **kwargs):
         super().__init__(**kwargs)
