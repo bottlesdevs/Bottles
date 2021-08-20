@@ -143,13 +143,14 @@ class BottlesSimilarReportEntry(Gtk.Box):
 class BottlesCrashReport(Handy.Window):
     __gtype_name__ = 'BottlesCrashReport'
 
-    '''Get widgets from template'''
+    # region Widgets
     btn_cancel = Gtk.Template.Child()
     btn_send = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     box_related = Gtk.Template.Child()
     check_unlock_send = Gtk.Template.Child()
     list_reports = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, log, **kwargs):
         super().__init__(**kwargs)
