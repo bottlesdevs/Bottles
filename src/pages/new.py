@@ -81,14 +81,14 @@ class BottlesNew(Handy.Window):
         }
     ]
 
-    def __init__(self, window, arg_executable=None, arg_lnk=None,**kwargs):
+    def __init__(self, window, arg_exe=None, arg_lnk=None,**kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
         '''Common variables'''
         self.window = window
         self.runner = window.runner
-        self.arg_executable = arg_executable
+        self.arg_exe = arg_exe
         self.arg_lnk = arg_lnk
         self.selected_environment = "gaming"
         self.new_bottle_config = {}
@@ -213,10 +213,10 @@ class BottlesNew(Handy.Window):
 
     '''Destroy the window'''
     def close_window(self, widget):
-        if self.arg_executable:
+        if self.arg_exe:
             RunnerUtilities().run_executable(
                 configuration=self.new_bottle_config,
-                file_path=self.arg_executable)
+                file_path=self.arg_exe)
         if self.arg_lnk is not None:
             RunnerUtilities().run_lnk(
                 configuration=self.new_bottle_config,

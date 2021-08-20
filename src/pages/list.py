@@ -37,7 +37,7 @@ class BottlesListEntry(Handy.ActionRow):
     icon_damaged = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
 
-    def __init__(self, window, configuration, arg_executable, **kwargs):
+    def __init__(self, window, configuration, arg_exe, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
@@ -45,7 +45,7 @@ class BottlesListEntry(Handy.ActionRow):
         self.runner = window.runner
         self.configuration = configuration[1]
         self.label_environment_context = self.label_environment.get_style_context()
-        self.arg_executable = arg_executable
+        self.arg_exe = arg_exe
 
         '''Format update date'''
         update_date = _("N/A")
@@ -88,10 +88,10 @@ class BottlesListEntry(Handy.ActionRow):
                 w.set_sensitive(False)
         else:
             '''Check for arguments from configuration'''
-            if self.arg_executable:
+            if self.arg_exe:
                 logging.info(
                     _("Arguments found for executable: [{executable}].").format(
-                        executable = self.arg_executable))
+                        executable = self.arg_exe))
 
                 for w in [self.btn_details, self.btn_run]:
                     w.set_visible(False)
@@ -103,7 +103,7 @@ class BottlesListEntry(Handy.ActionRow):
 
     '''Display file dialog for executable'''
     def run_executable(self, widget):
-        if not self.arg_executable:
+        if not self.arg_exe:
             '''If executable is not Bottles argument'''
             file_dialog = Gtk.FileChooserNative.new(
                 _("Choose a Windows executable file"),
@@ -122,10 +122,10 @@ class BottlesListEntry(Handy.ActionRow):
             file_dialog.destroy()
         else:
             '''Use executable provided as bottles argument'''
-            RunnerUtilities().run_executable(self.configuration, self.arg_executable)
+            RunnerUtilities().run_executable(self.configuration, self.arg_exe)
             if self.window.settings.get_boolean("auto-close-bottles"):
                 self.window.proper_close()
-            self.arg_executable = False
+            self.arg_exe = False
             self.runner.update_bottles()
 
     '''Show details page'''
@@ -143,12 +143,12 @@ class BottlesList(Gtk.Box):
     hdy_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
 
-    def __init__(self, window, arg_executable, **kwargs):
+    def __init__(self, window, arg_exe, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
         self.window = window
-        self.arg_executable = arg_executable
+        self.arg_exe = arg_exe
 
         '''Connect signals'''
         self.btn_create.connect("pressed", self.window.show_add_view)
@@ -173,8 +173,8 @@ class BottlesList(Gtk.Box):
         for bottle in bottles:
             self.list_bottles.add(BottlesListEntry(self.window,
                                                    bottle,
-                                                   self.arg_executable))
-        self.arg_executable = False
+                                                   self.arg_exe))
+        self.arg_exe = False
 
     def update_bottles(self):
         GLib.idle_add(self.idle_update_bottles)
