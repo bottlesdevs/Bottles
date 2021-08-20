@@ -242,8 +242,6 @@ class Application(Gtk.Application):
         logging.info(_("[Refresh] request received."))
         self.win.runner.update_bottles()
 
-    # Set application actions
-
     def __register_actions(self):
         '''
         This function registers the application actions.
