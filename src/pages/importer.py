@@ -22,11 +22,12 @@ from ..runner_backup import RunnerBackup
 class BottlesImporterEntry(Handy.ActionRow):
     __gtype_name__ = 'BottlesImporterEntry'
 
-    '''Get widgets from template'''
+    # region Widgets
     label_manager = Gtk.Template.Child()
     btn_import = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     img_lock = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, prefix, **kwargs):
         super().__init__(**kwargs)
@@ -62,11 +63,12 @@ class BottlesImporterEntry(Handy.ActionRow):
 class BottlesImporter(Gtk.ScrolledWindow):
     __gtype_name__ = 'BottlesImporter'
 
-    '''Get widgets from template'''
+    # region Widgets
     list_prefixes = Gtk.Template.Child()
     btn_search_wineprefixes = Gtk.Template.Child()
     btn_import_configuration = Gtk.Template.Child()
     btn_import_full = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
