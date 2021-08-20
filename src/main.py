@@ -15,181 +15,240 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
 import sys
 import gi
 import gettext
 import locale
 import webbrowser
 import subprocess
+from os import path
 
 gi.require_version('Gtk', '3.0')
-
+gi.require_version('Handy', '1')
+gi.require_version('Notify', '0.7')
 from gi.repository import Gtk, Gio, Gdk, GLib, GObject
-
-from pathlib import Path
 
 from .params import *
 from .utils import UtilsLogger
+from .window import BottlesWindow
 
-share_dir = os.path.join(sys.prefix, 'share')
+logging = UtilsLogger()
+
+# region Translations
+'''
+This code snippet searches for and uploads translations to different 
+directories, depending on your production or development environment. 
+The function _() can be used to create and retrieve translations.
+'''
+share_dir = path.join(sys.prefix, 'share')
 base_dir = '.'
 
 if getattr(sys, 'frozen', False):
-    base_dir = os.path.dirname(sys.executable)
-    share_dir = os.path.join(base_dir, 'share')
+    base_dir = path.dirname(sys.executable)
+    share_dir = path.join(base_dir, 'share')
 elif sys.argv[0]:
-    execdir = os.path.dirname(os.path.realpath(sys.argv[0]))
-    base_dir = os.path.dirname(execdir)
-    share_dir = os.path.join(base_dir, 'share')
-    if not os.path.exists(share_dir):
+    exec_dir = path.dirname(path.realpath(sys.argv[0]))
+    base_dir = path.dirname(exec_dir)
+    share_dir = path.join(base_dir, 'share')
+
+    if not path.exists(share_dir):
         share_dir = base_dir
 
-locale_dir = os.path.join(share_dir, 'locale')
+locale_dir = path.join(share_dir, 'locale')
 
-if not os.path.exists(locale_dir): # development
-    locale_dir = os.path.join(base_dir, 'build', 'mo')
+if not path.exists(locale_dir):  # development
+    locale_dir = path.join(base_dir, 'build', 'mo')
 
 locale.bindtextdomain("bottles", locale_dir)
 locale.textdomain("bottles")
 gettext.bindtextdomain("bottles", locale_dir)
 gettext.textdomain("bottles")
 _ = gettext.gettext
+# endregion
 
-logging = UtilsLogger()
-
-from .window import BottlesWindow
 
 class Application(Gtk.Application):
+    arg_exe = False
+    arg_lnk = False
+    arg_bottle = False
 
     def __init__(self):
-        super().__init__(application_id='com.usebottles.bottles',
-                         flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
+        super().__init__(
+            application_id='com.usebottles.bottles',
+            flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE
+        )
+        self.__register_arguments()
 
-        self.arg_executable = False
-        self.arg_lnk = False
-        self.arg_bottle = False
-        self.add_arguments()
-
-    def add_arguments(self):
-        self.add_main_option("version",
-                             ord("v"),
-                             GLib.OptionFlags.NONE,
-                             GLib.OptionArg.NONE,
-                             _("Show version"),
-                             None)
-        self.add_main_option("executable",
-                             ord("e"),
-                             GLib.OptionFlags.NONE,
-                             GLib.OptionArg.STRING,
-                             _("Executable path"),
-                             None)
-        self.add_main_option("lnk",
-                             ord("l"),
-                             GLib.OptionFlags.NONE,
-                             GLib.OptionArg.STRING,
-                             _("lnk path"),
-                             None)
-        self.add_main_option("bottle",
-                             ord("b"),
-                             GLib.OptionFlags.NONE,
-                             GLib.OptionArg.STRING,
-                             _("Bottle name"),
-                             None)
+    def __register_arguments(self):
+        '''
+        This function registers the command line arguments.
+            --version, -v: Prints the version of the application.
+            --executable, -e: The path of the executable to be launched.
+            --lnk, -l: The path of the shortcut to be launched.
+            --bottle, -b: The name of the bottle to be used.
+            --help, -h: Prints the help.
+        '''
+        self.add_main_option(
+            "version",
+            ord("v"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.NONE,
+            _("Show version"),
+            None
+        )
+        self.add_main_option(
+            "executable",
+            ord("e"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            _("Executable path"),
+            None
+        )
+        self.add_main_option(
+            "lnk",
+            ord("l"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            _("lnk path"),
+            None
+        )
+        self.add_main_option(
+            "bottle",
+            ord("b"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            _("Bottle name"),
+            None
+        )
 
     def do_command_line(self, command):
-        options = command.get_options_dict()
-        if options.contains("executable"):
-            executable_path = options.lookup_value("executable").get_string()
-            self.arg_executable = executable_path
+        '''
+        This function is called when the application is launched from the
+        command line. It parses the command line arguments and calls the
+        corresponding functions.
+        See: __register_arguments()
+        '''
+        commands = command.get_options_dict()
 
-        if options.contains("version"):
+        if commands.contains("executable"):
+            self.arg_exe = commands.lookup_value("executable").get_string()
+
+        if commands.contains("version"):
             print(VERSION)
             quit()
 
-        if options.contains("lnk"):
-            lnk_path = options.lookup_value("lnk").get_string()
-            self.arg_lnk = lnk_path
+        if commands.contains("lnk"):
+            self.arg_lnk = commands.lookup_value("lnk").get_string()
 
-        if options.contains("bottle"):
-            bottle_name = options.lookup_value("bottle").get_string()
-            self.arg_bottle = bottle_name
+        if commands.contains("bottle"):
+            self.arg_bottle = commands.lookup_value("bottle").get_string()
 
-        if not self.arg_executable:
+        if not self.arg_exe:
+            '''
+            If no executable is specified, look if it was passed without
+            the --executable argument.
+            '''
             for a in sys.argv:
                 if a.endswith(('.exe', '.msi', '.bat')):
-                    self.arg_executable = a
+                    self.arg_exe = a
 
         self.do_activate()
 
     def do_startup(self):
+        '''
+        This function is called when the application is started.
+        Here we register the application actions (shortcuts).
+        See: __register_actions()
+        '''
         Gtk.Application.do_startup(self)
-        self.set_actions()
+        self.__register_actions()
 
     def do_activate(self):
-        # Load custom CSS
-        data_bytes = Gio.resources_lookup_data(
-            "/com/usebottles/bottles/style.css", 0)
+        '''
+        This function is called when the application is activated.
+        We use this to load the custom css providers and spawn the 
+        main window.
+        '''
+
+        # region css_provider
+        # check the user theme and load the corresponding css
+        user_theme = subprocess.check_output([
+            'gsettings',
+            'get',
+            'org.gnome.desktop.interface',
+            'gtk-theme'
+        ]).decode("utf-8")
+
+        if "Yaru" in user_theme:
+            css_res = Gio.resources_lookup_data(
+                path="/com/usebottles/bottles/yaru.css",
+                lookup_flags=0
+            )
+        elif "Breeze" in user_theme:
+            css_res = Gio.resources_lookup_data(
+                path="/com/usebottles/bottles/breeze.css",
+                lookup_flags=0
+            )
+        else:
+            css_res = Gio.resources_lookup_data(
+                path="/com/usebottles/bottles/style.css",
+                lookup_flags=0
+            )
+
         provider = Gtk.CssProvider()
-        provider.load_from_data(data_bytes.get_data())
-        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
-                                                 provider,
-                                                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        provider.load_from_data(css_res.get_data())
+        Gtk.StyleContext.add_provider_for_screen(
+            screen=Gdk.Screen.get_default(),
+            provider=provider,
+            priority=Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+        # endregion
 
-        gtk_theme = subprocess.check_output(['gsettings',
-                                             'get',
-                                             'org.gnome.desktop.interface',
-                                             'gtk-theme']).decode("utf-8")
-        if "Yaru" in gtk_theme:
-            data_bytes = Gio.resources_lookup_data(
-                "/com/usebottles/bottles/yaru.css", 0)
-            provider = Gtk.CssProvider()
-            provider.load_from_data(data_bytes.get_data())
-            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
-                                                     provider,
-                                                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-        elif "Breeze" in gtk_theme:
-            data_bytes = Gio.resources_lookup_data(
-                "/com/usebottles/bottles/breeze.css", 0)
-            provider = Gtk.CssProvider()
-            provider.load_from_data(data_bytes.get_data())
-            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(),
-                                                     provider,
-                                                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
-        # Window
+        # create the main window
         win = self.props.active_window
-
         if not win:
-            win = BottlesWindow(application=self,
-                                arg_executable=self.arg_executable,
-                                arg_bottle=self.arg_bottle,
-                                arg_lnk=self.arg_lnk)
-
+            win = BottlesWindow(
+                application=self,
+                arg_exe=self.arg_exe,
+                arg_bottle=self.arg_bottle,
+                arg_lnk=self.arg_lnk
+            )
         self.win = win
         win.present()
 
-    # Quit application [CTRL+Q]
-
     def quit(self, action=None, param=None):
+        '''
+        This function close the application.
+        It is used by the [Ctrl+Q] shortcut.
+        '''
         logging.info(_("[Quit] request received."))
         self.win.destroy()
+        quit()
 
-    # Open Help URL [F1]
     @staticmethod
-    def help(action, param):
+    def help(action=None, param=None):
+        '''
+        This function open the documentation in the user's default browser.
+        It is used by the [F1] shortcut.
+        '''
         logging.info(_("[Help] request received."))
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
-    # Refresh Bottles [CTRL+R]
-
-    def refresh(self, action, param):
+    def refresh(self, action=None, param=None):
+        '''
+        This function refresh the user bottle list.
+        It is used by the [Ctrl+R] shortcut.
+        '''
         logging.info(_("[Refresh] request received."))
         self.win.runner.update_bottles()
 
     # Set application actions
 
-    def set_actions(self):
+    def __register_actions(self):
+        '''
+        This function registers the application actions.
+        The actions are the application shortcuts (accellerators).
+        '''
         action_entries = [
             ("quit", self.quit, ("app.quit", ["<Ctrl>Q"])),
             ("help", self.help, ("app.help", ["F1"])),
@@ -204,9 +263,8 @@ class Application(Gtk.Application):
                 self.set_accels_for_action(*accel)
 
 
-# Run Bottles application
-
 GObject.threads_init()
+
 
 def main(version):
     app = Application()
