@@ -27,7 +27,7 @@ class BottlesListEntry(Handy.ActionRow):
 
     Handy.init()
 
-    '''Get widgets from template'''
+    # region Widgets
     btn_details = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
     btn_repair = Gtk.Template.Child()
@@ -36,6 +36,7 @@ class BottlesListEntry(Handy.ActionRow):
     label_state = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, configuration, arg_exe, **kwargs):
         super().__init__(**kwargs)
@@ -137,11 +138,12 @@ class BottlesListEntry(Handy.ActionRow):
 class BottlesList(Gtk.Box):
     __gtype_name__ = 'BottlesList'
 
-    '''Get widgets from template'''
+    # region Widgets
     list_bottles = Gtk.Template.Child()
     clamp_list = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
+    # endregion
 
     def __init__(self, window, arg_exe, **kwargs):
         super().__init__(**kwargs)
