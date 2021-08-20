@@ -15,13 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import gi
 import os
 import time
 import webbrowser
-
-gi.require_version('Handy', '1')
-gi.require_version('Notify', '0.7')
 
 from gi.repository import Gtk, Gio, Notify, Handy
 from pathlib import Path
@@ -82,16 +78,16 @@ class BottlesWindow(Handy.ApplicationWindow):
     # Notify instance
     Notify.init(APP_ID)
 
-    def __init__(self, arg_executable, arg_lnk, arg_bottle, **kwargs):
+    def __init__(self, arg_exe, arg_lnk, arg_bottle, **kwargs):
         super().__init__(**kwargs)
 
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
             self.settings.get_boolean("dark-theme"))
 
-        # Validate arg_executable extension
-        if arg_executable and not arg_executable.endswith(('.exe', '.msi', '.bat')):
-            arg_executable = False
+        # Validate arg_exe extension
+        if arg_exe and not arg_exe.endswith(('.exe', '.msi', '.bat')):
+            arg_exe = False
 
         # Validate arg_lnk extension
         if arg_lnk and not arg_lnk.endswith('.lnk'):
@@ -104,11 +100,11 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.runner.check_runners_dir()
 
         # Run executable in a bottle
-        if arg_executable and arg_bottle:
+        if arg_exe and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
                 RunnerUtilities().run_executable(bottle_configuration,
-                                           arg_executable)
+                                           arg_exe)
                 self.proper_close()
 
         # Run lnk in a bottle
@@ -121,7 +117,7 @@ class BottlesWindow(Handy.ApplicationWindow):
 
         # Pages
         page_details = BottlesDetails(self)
-        page_list = BottlesList(self, arg_executable)
+        page_list = BottlesList(self, arg_exe)
         page_taskmanager = BottlesTaskManager(self)
         page_importer = BottlesImporter(self)
 
@@ -145,7 +141,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         # Signal connections
         self.btn_back.connect('pressed', self.go_back)
         self.btn_back.connect('activate', self.go_back)
-        self.btn_add.connect('pressed', self.show_add_view, arg_executable)
+        self.btn_add.connect('pressed', self.show_add_view, arg_exe)
         self.btn_about.connect('pressed', self.show_about_dialog)
         self.btn_docs.connect('pressed', self.open_docs_url)
         self.btn_preferences.connect('pressed', self.show_preferences_view)
@@ -160,10 +156,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         # Executed on last
         self.on_start()
 
-        if arg_executable:
+        if arg_exe:
             self.show_list_view()
 
-        arg_executable = False
+        arg_exe = False
         logging.info(_("Bottles Started!"))
 
     def on_squeezer_notify(self, widget, event=False):
@@ -230,10 +226,10 @@ class BottlesWindow(Handy.ApplicationWindow):
         onboard_window = BottlesOnboard(self)
         onboard_window.present()
 
-    def show_add_view(self, widget=False, arg_executable=None, arg_lnk=None):
+    def show_add_view(self, widget=False, arg_exe=None, arg_lnk=None):
         if not self.argument_executed:
             self.argument_executed = True
-            new_window = BottlesNew(self, arg_executable, arg_lnk)
+            new_window = BottlesNew(self, arg_exe, arg_lnk)
         else:
             new_window = BottlesNew(self)
         new_window.present()
