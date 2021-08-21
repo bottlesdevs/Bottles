@@ -36,11 +36,11 @@ from glob import glob
 from pathlib import Path
 from datetime import datetime
 
-from .download import DownloadManager
-from .utils import UtilsLogger, UtilsFiles, RunAsync, CabExtract, validate_url
-from .runner_utilities import RunnerUtilities
-from .runner_globals import BottlesSamples, BottlesRepositories, BottlesPaths, TrdyPaths
-from .runner_versioning import RunnerVersioning
+from ..download import DownloadManager
+from ..utils import UtilsLogger, UtilsFiles, RunAsync, CabExtract, validate_url
+from ..backend.utilities import RunnerUtilities
+from ..backend.globals import BottlesSamples, BottlesRepositories, BottlesPaths, TrdyPaths
+from ..backend.versioning import RunnerVersioning
 
 logging = UtilsLogger()
 

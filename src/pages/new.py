@@ -19,7 +19,7 @@ import re
 import time
 
 from gi.repository import Gtk, GLib, Handy
-from ..runner_utilities import RunnerUtilities
+from ..backend.utilities import RunnerUtilities
 
 class BottlesEnvironmentRow(Handy.ActionRow):
     def __init__(self, environment, **kwargs):

@@ -17,8 +17,9 @@ configure_file(
   install_dir: get_option('bindir')
 )
 
-subdir('ui')
+subdir('backend')
 subdir('pages')
+subdir('ui')
 
 bottles_sources = [
   '__init__.py',
@@ -26,12 +27,6 @@ bottles_sources = [
   'window.py',
   'params.py',
   'download.py',
-  'runner.py',
-  'runner_utilities.py',
-  'runner_globals.py',
-  'runner_versioning.py',
-  'runner_backup.py',
-  'installer_manager.py',
   'empty.py',
   'utils.py',
 ]

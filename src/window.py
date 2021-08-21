@@ -23,8 +23,8 @@ from gi.repository import Gtk, Gio, Notify, Handy
 from pathlib import Path
 
 from .params import *
-from .runner import BottlesRunner
-from .runner_utilities import RunnerUtilities
+from .backend.manager import BottlesRunner
+from .backend.utilities import RunnerUtilities
 
 from .pages.new import BottlesNew
 from .pages.onboard import BottlesOnboard

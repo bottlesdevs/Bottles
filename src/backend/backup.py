@@ -5,10 +5,10 @@ import shutil
 
 from typing import NewType
 
-from .utils import UtilsLogger, RunAsync
-from .runner_globals import BottlesPaths
-from .runner_utilities import RunnerUtilities
-from .download import DownloadManager
+from ..utils import UtilsLogger, RunAsync
+from .globals import BottlesPaths
+from .utilities import RunnerUtilities
+from ..download import DownloadManager
 
 logging = UtilsLogger()
 

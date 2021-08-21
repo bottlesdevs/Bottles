@@ -3,8 +3,8 @@ import subprocess
 
 from typing import NewType
 
-from .utils import UtilsTerminal, UtilsLogger, RunAsync
-from .runner_globals import BottlesPaths, gamemode_available
+from ..utils import UtilsTerminal, UtilsLogger, RunAsync
+from .globals import BottlesPaths, gamemode_available
 
 logging = UtilsLogger()
 

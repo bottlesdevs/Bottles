@@ -19,7 +19,7 @@ import logging
 from datetime import datetime
 from gi.repository import Gtk, GLib, Handy
 
-from ..runner_utilities import RunnerUtilities
+from ..backend.utilities import RunnerUtilities
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottlesListEntry(Handy.ActionRow):

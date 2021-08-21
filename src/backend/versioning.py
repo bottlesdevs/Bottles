@@ -8,9 +8,9 @@ from typing import NewType
 from glob import glob
 from datetime import datetime
 
-from .download import DownloadManager
-from .utils import UtilsLogger, UtilsFiles, RunAsync
-from .runner_utilities import RunnerUtilities
+from ..download import DownloadManager
+from ..utils import UtilsLogger, UtilsFiles, RunAsync
+from .utilities import RunnerUtilities
 
 logging = UtilsLogger()
 

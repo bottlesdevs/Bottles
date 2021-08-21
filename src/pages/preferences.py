@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, GLib, Handy
-from ..runner_utilities import RunnerUtilities
+from ..backend.utilities import RunnerUtilities
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class BottlesPreferences(Handy.PreferencesWindow):

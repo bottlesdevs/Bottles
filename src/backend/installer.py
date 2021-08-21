@@ -21,9 +21,9 @@ from typing import NewType
 from datetime import datetime
 from gi.repository import Gtk, GLib
 
-from .runner_utilities import RunnerUtilities
-from .runner_globals import BottlesRepositories, BottlesPaths
-from .utils import RunAsync
+from .utilities import RunnerUtilities
+from .globals import BottlesRepositories, BottlesPaths
+from ..utils import RunAsync
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)

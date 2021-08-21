@@ -24,9 +24,9 @@ import webbrowser
 from datetime import datetime
 
 from .dialog import BottlesDialog, BottlesMessageDialog
-from ..installer_manager import InstallerManager
-from ..runner_utilities import RunnerUtilities, gamemode_available
-from ..runner_backup import RunnerBackup
+from ..backend.installer import InstallerManager
+from ..backend.utilities import RunnerUtilities, gamemode_available
+from ..backend.backup import RunnerBackup
 from ..utils import RunAsync
 
 class BottlesDetailsPageRow(Gtk.ListBoxRow):
