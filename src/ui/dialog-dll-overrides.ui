@@ -3,7 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.0"/>
-  <template class="BottlesDLLOverrides" parent="HdyWindow">
+  <template class="DLLOverridesDialog" parent="HdyWindow">
     <property name="visible">True</property>
     <property name="can-focus">True</property>
     <property name="type">popup</property>

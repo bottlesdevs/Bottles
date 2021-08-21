@@ -30,7 +30,7 @@ from gi.repository import Gtk, Gio, Gdk, GLib, GObject
 
 from .params import *
 from .utils import UtilsLogger
-from .window import BottlesWindow
+from .window import MainWindow
 
 logging = UtilsLogger()
 
@@ -207,7 +207,7 @@ class Application(Gtk.Application):
         # create the main window
         win = self.props.active_window
         if not win:
-            win = BottlesWindow(
+            win = MainWindow(
                 application=self,
                 arg_exe=self.arg_exe,
                 arg_bottle=self.arg_bottle,

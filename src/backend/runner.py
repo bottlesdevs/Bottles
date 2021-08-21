@@ -4,7 +4,7 @@ import subprocess
 from typing import NewType
 
 from ..utils import UtilsTerminal, UtilsLogger, RunAsync
-from .globals import BottlesPaths, gamemode_available
+from .globals import Paths, gamemode_available
 
 logging = UtilsLogger()
 
@@ -170,7 +170,7 @@ class Runner:
 
         # If runner is proton then set path to /dist
         if runner.startswith("Proton"):
-            if os.path.exists("%s/%s/dist" % (BottlesPaths.runners, runner)):
+            if os.path.exists("%s/%s/dist" % (Paths.runners, runner)):
                 runner = "%s/dist" % runner
             else:
                 runner = "%s/files" % runner
@@ -179,10 +179,10 @@ class Runner:
         if runner.startswith("sys-"):
             runner = "wine"
         else:
-            runner = f"{BottlesPaths.runners}/{runner}/bin/wine"
+            runner = f"{Paths.runners}/{runner}/bin/wine"
 
         if not configuration.get("Custom_Path"):
-            path = "%s/%s" % (BottlesPaths.bottles, path)
+            path = "%s/%s" % (Paths.bottles, path)
 
         # Check for executable args from bottle configuration
         environment_vars = []
@@ -297,16 +297,16 @@ class Runner:
     def get_bottle_path(configuration: BottleConfig) -> str:
         if configuration.get("Custom_Path"):
             return configuration.get("Path")
-        return f"{BottlesPaths.bottles}/{configuration.get('Path')}"
+        return f"{Paths.bottles}/{configuration.get('Path')}"
 
     @staticmethod
     def get_runner_path(runner: str) -> str:
-        return f"{BottlesPaths.runners}/{runner}"
+        return f"{Paths.runners}/{runner}"
 
     @staticmethod
     def get_dxvk_path(dxvk: str) -> str:
-        return f"{BottlesPaths.dxvk}/{dxvk}"
+        return f"{Paths.dxvk}/{dxvk}"
 
     @staticmethod
     def get_vkd3d_path(vkd3d: str) -> str:
-        return f"{BottlesPaths.vkd3d}/{vkd3d}"
+        return f"{Paths.vkd3d}/{vkd3d}"

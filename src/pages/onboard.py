@@ -22,8 +22,8 @@ from gi.repository import Gtk, Handy
 from ..utils import RunAsync
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
-class BottlesOnboard(Handy.Window):
-    __gtype_name__ = 'BottlesOnboard'
+class OnboardDialog(Handy.Window):
+    __gtype_name__ = 'OnboardDialog'
 
     # region Widgets
     stack_onboard = Gtk.Template.Child()

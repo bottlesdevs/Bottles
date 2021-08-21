@@ -18,8 +18,8 @@
 from gi.repository import Gtk
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/empty.ui')
-class BottlesEmpty(Gtk.Grid):
-    __gtype_name__ = 'BottlesEmpty'
+class Empty(Gtk.Grid):
+    __gtype_name__ = 'Empty'
 
     # region Widgets
     img_icon = Gtk.Template.Child()

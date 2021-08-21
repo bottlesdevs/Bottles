@@ -3,7 +3,7 @@ import shutil
 from pathlib import Path
 
 
-class BottlesSamples:
+class Samples:
 
     configuration = {
         "Name": "",
@@ -77,7 +77,7 @@ class BottlesRepositories:
             components_index = f"{components}/testing.yml"
 
 
-class BottlesPaths:
+class Paths:
 
     # Icon paths
     icons_user = f"{Path.home()}/.local/share/icons"

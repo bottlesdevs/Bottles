@@ -19,8 +19,8 @@ from gi.repository import Gtk, GLib, Handy
 from ..backend.runner import Runner
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
-class BottlesPreferences(Handy.PreferencesWindow):
-    __gtype_name__ = 'BottlesPreferences'
+class PreferencesWindow(Handy.PreferencesWindow):
+    __gtype_name__ = 'PreferencesWindow'
 
     # region Widgets
     switch_dark = Gtk.Template.Child()
@@ -104,11 +104,11 @@ class BottlesPreferences(Handy.PreferencesWindow):
 
     def populate_dxvk_list(self):
         for dxvk in self.runner.supported_dxvk.items():
-            self.list_dxvk.add(BottlesDxvkEntry(self.window, dxvk))
+            self.list_dxvk.add(DxvkEntry(self.window, dxvk))
 
     def populate_vkd3d_list(self):
         for vkd3d in self.runner.supported_vkd3d.items():
-            self.list_vkd3d.add(BottlesVkd3dEntry(self.window, vkd3d))
+            self.list_vkd3d.add(Vkd3dEntry(self.window, vkd3d))
 
     def populate_runners_list(self):
         for w in self.list_runners:
@@ -119,17 +119,17 @@ class BottlesPreferences(Handy.PreferencesWindow):
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            self.list_runners.add(BottlesManagerEntry(self.window, runner))
+            self.list_runners.add(RunnerEntry(self.window, runner))
 
         for runner in self.runner.supported_proton_runners.items():
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            self.list_runners.add(BottlesManagerEntry(self.window, runner))
+            self.list_runners.add(RunnerEntry(self.window, runner))
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')
-class BottlesDxvkEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesDxvkEntry'
+class DxvkEntry(Handy.ActionRow):
+    __gtype_name__ = 'DxvkEntry'
 
     # region Widgets
     btn_download = Gtk.Template.Child()
@@ -223,8 +223,8 @@ class BottlesDxvkEntry(Handy.ActionRow):
             failed)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/vkd3d-entry.ui')
-class BottlesVkd3dEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesVkd3dEntry'
+class Vkd3dEntry(Handy.ActionRow):
+    __gtype_name__ = 'Vkd3dEntry'
 
     # region Widgets
     btn_download = Gtk.Template.Child()
@@ -321,8 +321,8 @@ class BottlesVkd3dEntry(Handy.ActionRow):
             failed)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
-class BottlesManagerEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesManagerEntry'
+class RunnerEntry(Handy.ActionRow):
+    __gtype_name__ = 'RunnerEntry'
 
     # region Widgets
     btn_download = Gtk.Template.Child()

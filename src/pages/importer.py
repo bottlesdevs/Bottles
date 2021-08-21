@@ -19,8 +19,8 @@ from gi.repository import Gtk, Handy
 
 from ..backend.backup import RunnerBackup
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')
-class BottlesImporterEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesImporterEntry'
+class ImporterEntry(Handy.ActionRow):
+    __gtype_name__ = 'ImporterEntry'
 
     # region Widgets
     label_manager = Gtk.Template.Child()
@@ -60,8 +60,8 @@ class BottlesImporterEntry(Handy.ActionRow):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
-class BottlesImporter(Gtk.ScrolledWindow):
-    __gtype_name__ = 'BottlesImporter'
+class ImporterView(Gtk.ScrolledWindow):
+    __gtype_name__ = 'ImporterView'
 
     # region Widgets
     list_prefixes = Gtk.Template.Child()
@@ -91,7 +91,7 @@ class BottlesImporter(Gtk.ScrolledWindow):
         wineprefixes = self.runner.search_wineprefixes()
         if len(wineprefixes) > 0:
             for wineprefix in wineprefixes:
-                self.list_prefixes.add(BottlesImporterEntry(self.window, wineprefix))
+                self.list_prefixes.add(ImporterEntry(self.window, wineprefix))
 
     '''Display file dialog for backup path'''
     def import_backup_full(self, widget):

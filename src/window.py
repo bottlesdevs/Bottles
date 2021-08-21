@@ -23,25 +23,25 @@ from gi.repository import Gtk, Gio, Notify, Handy
 from pathlib import Path
 
 from .params import *
-from .backend.manager import BottlesManager
+from .backend.manager import Manager
 from .backend.runner import Runner
 
-from .pages.new import BottlesNew
-from .pages.onboard import BottlesOnboard
-from .pages.details import BottlesDetails
-from .pages.list import BottlesList
-from .pages.preferences import BottlesPreferences
-from .pages.taskmanager import BottlesTaskManager
-from .pages.importer import BottlesImporter
-from .pages.dialog import BottlesAboutDialog, BottlesCrashReport
+from .pages.new import NewView
+from .pages.onboard import OnboardDialog
+from .pages.details import DetailsView
+from .pages.list import ListView
+from .pages.preferences import PreferencesWindow
+from .pages.taskmanager import TaskManagerView
+from .pages.importer import ImporterView
+from .pages.dialog import AboutDialog, CrashReportDialog
 
 from .utils import UtilsConnection, UtilsLogger
 
 logging = UtilsLogger()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/window.ui')
-class BottlesWindow(Handy.ApplicationWindow):
-    __gtype_name__ = 'BottlesWindow'
+class MainWindow(Handy.ApplicationWindow):
+    __gtype_name__ = 'MainWindow'
 
     # region Widgets
     grid_main = Gtk.Template.Child()
@@ -89,7 +89,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.utils_conn = UtilsConnection(self)
 
         # Runner instance
-        self.runner = BottlesManager(self)
+        self.runner = Manager(self)
         self.runner.check_runners_dir()
 
         # Run executable in a bottle
@@ -109,10 +109,10 @@ class BottlesWindow(Handy.ApplicationWindow):
                 self.proper_close()
 
         # Pages
-        page_details = BottlesDetails(self)
-        page_list = BottlesList(self, arg_exe)
-        page_taskmanager = BottlesTaskManager(self)
-        page_importer = BottlesImporter(self)
+        page_details = DetailsView(self)
+        page_list = ListView(self, arg_exe)
+        page_taskmanager = TaskManagerView(self)
+        page_importer = ImporterView(self)
 
         # Reusable variables
         self.page_list = page_list
@@ -216,15 +216,15 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.page_details.set_visible_child_name("bottle")
 
     def show_onboard_view(self, widget=False):
-        onboard_window = BottlesOnboard(self)
+        onboard_window = OnboardDialog(self)
         onboard_window.present()
 
     def show_add_view(self, widget=False, arg_exe=None, arg_lnk=None):
         if not self.argument_executed:
             self.argument_executed = True
-            new_window = BottlesNew(self, arg_exe, arg_lnk)
+            new_window = NewView(self, arg_exe, arg_lnk)
         else:
-            new_window = BottlesNew(self)
+            new_window = NewView(self)
         new_window.present()
 
     def show_list_view(self, widget=False):
@@ -239,7 +239,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_importer")
 
     def show_preferences_view(self, widget=False, view=0):
-        preferences_window = BottlesPreferences(self)
+        preferences_window = PreferencesWindow(self)
         preferences_window.present()
 
     def show_download_preferences_view(self, widget=False):
@@ -260,7 +260,7 @@ class BottlesWindow(Handy.ApplicationWindow):
                 os.remove(log_path)
 
             if crash_log:
-                BottlesCrashReport(self, crash_log)
+                CrashReportDialog(self, crash_log)
         except FileNotFoundError:
             pass
 
@@ -273,4 +273,4 @@ class BottlesWindow(Handy.ApplicationWindow):
     # Show about dialog
     @staticmethod
     def show_about_dialog(widget):
-        BottlesAboutDialog().show_all()
+        AboutDialog().show_all()

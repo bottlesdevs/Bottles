@@ -22,8 +22,8 @@ from gi.repository import Gtk, GLib, Handy
 from ..backend.runner import Runner
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
-class BottlesListEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesListEntry'
+class ListViewEntry(Handy.ActionRow):
+    __gtype_name__ = 'ListViewEntry'
 
     Handy.init()
 
@@ -135,8 +135,8 @@ class BottlesListEntry(Handy.ActionRow):
         self.window.show_details_view(configuration=self.configuration)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
-class BottlesList(Gtk.Box):
-    __gtype_name__ = 'BottlesList'
+class ListView(Gtk.Box):
+    __gtype_name__ = 'ListView'
 
     # region Widgets
     list_bottles = Gtk.Template.Child()
@@ -173,7 +173,7 @@ class BottlesList(Gtk.Box):
             self.hdy_status.set_visible(False)
 
         for bottle in bottles:
-            self.list_bottles.add(BottlesListEntry(self.window,
+            self.list_bottles.add(ListViewEntry(self.window,
                                                    bottle,
                                                    self.arg_exe))
         self.arg_exe = False

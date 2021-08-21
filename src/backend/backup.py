@@ -6,7 +6,7 @@ import shutil
 from typing import NewType
 
 from ..utils import UtilsLogger, RunAsync
-from .globals import BottlesPaths
+from .globals import Paths
 from .runner import Runner
 from ..download import DownloadManager
 
@@ -99,7 +99,7 @@ class RunnerBackup:
 
             try:
                 archive = tarfile.open(path)
-                archive.extractall(f"{BottlesPaths.bottles}/{backup_name}")
+                archive.extractall(f"{Paths.bottles}/{backup_name}")
                 backup_imported = True
             except:
                 backup_imported = False
@@ -124,7 +124,7 @@ class RunnerBackup:
         logging.info(f"Duplicating bottle: [{configuration.get('Name')}] to [{name}]")
 
         source = Runner().get_bottle_path(configuration)
-        dest = f"{BottlesPaths.bottles}/{name}"
+        dest = f"{Paths.bottles}/{name}"
 
         source_drive = f"{source}/drive_c"
         dest_drive = f"{dest}/drive_c"

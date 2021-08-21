@@ -18,8 +18,8 @@
 from gi.repository import Gtk
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/task-manager.ui')
-class BottlesTaskManager(Gtk.Box):
-    __gtype_name__ = 'BottlesTaskManager'
+class TaskManagerView(Gtk.Box):
+    __gtype_name__ = 'TaskManagerView'
 
     # region Widgets
     treeview_processes = Gtk.Template.Child()

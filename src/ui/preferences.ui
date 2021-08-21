@@ -3,7 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
-  <template class="BottlesPreferences" parent="HdyPreferencesWindow">
+  <template class="PreferencesWindow" parent="HdyPreferencesWindow">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Preferences</property>
     <property name="modal">True</property>

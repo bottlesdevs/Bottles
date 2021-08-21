@@ -27,7 +27,7 @@ from gi.repository import Gtk, Handy, Pango
 
 from ..params import VERSION
 
-class BottlesMessageDialog(Gtk.MessageDialog):
+class MessageDialog(Gtk.MessageDialog):
 
     def __init__(self,
                  parent,
@@ -65,7 +65,7 @@ class BottlesMessageDialog(Gtk.MessageDialog):
         self.show_all()
 
 
-class BottlesDialog(Gtk.Dialog):
+class Dialog(Gtk.Dialog):
 
     def __init__(self,
                  parent,
@@ -114,14 +114,14 @@ class BottlesDialog(Gtk.Dialog):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/about.ui')
-class BottlesAboutDialog(Gtk.AboutDialog):
-    __gtype_name__ = 'BottlesAboutDialog'
+class AboutDialog(Gtk.AboutDialog):
+    __gtype_name__ = 'AboutDialog'
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
 
-class BottlesSimilarReportEntry(Gtk.Box):
+class SimilarReportEntry(Gtk.Box):
     def __init__(self, report: dict):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         self.report = report
@@ -140,8 +140,8 @@ class BottlesSimilarReportEntry(Gtk.Box):
         webbrowser.open(self.report["url"])
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-crash-report.ui')
-class BottlesCrashReport(Handy.Window):
-    __gtype_name__ = 'BottlesCrashReport'
+class CrashReportDialog(Handy.Window):
+    __gtype_name__ = 'CrashReportDialog'
 
     # region Widgets
     btn_cancel = Gtk.Template.Child()
@@ -169,7 +169,7 @@ class BottlesCrashReport(Handy.Window):
         if len(self.__get_similar_issues()) > 0:
             self.box_related.set_visible(True)
             for issue in self.__get_similar_issues():
-                self.list_reports.add(BottlesSimilarReportEntry(issue))
+                self.list_reports.add(SimilarReportEntry(issue))
         else:
             self.btn_send.set_sensitive(True)
 

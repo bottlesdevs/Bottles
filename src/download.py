@@ -23,8 +23,8 @@ from .utils import RunAsync
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/download-entry.ui')
-class BottlesDownloadEntry(Gtk.Box):
-    __gtype_name__ = 'BottlesDownloadEntry'
+class DownloadEntry(Gtk.Box):
+    __gtype_name__ = 'DownloadEntry'
 
     # region Widgets
     label_filename = Gtk.Template.Child()
@@ -100,7 +100,7 @@ class DownloadManager():
         self.box_downloads = window.box_downloads
 
     def new_download(self, file_name, stoppable=True):
-        download_entry = BottlesDownloadEntry(
+        download_entry = DownloadEntry(
             self.window, file_name, stoppable)
         self.window.box_downloads.add(download_entry)
 

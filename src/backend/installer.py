@@ -22,7 +22,7 @@ from datetime import datetime
 from gi.repository import Gtk, GLib
 
 from .runner import Runner
-from .globals import BottlesRepositories, BottlesPaths
+from .globals import BottlesRepositories, Paths
 from ..utils import RunAsync
 
 # Define custom types for better understanding of the code
@@ -76,7 +76,7 @@ class InstallerManager:
 
                     Runner().run_executable(
                         configuration=self.configuration,
-                        file_path=f"{BottlesPaths.temp}/{file}",
+                        file_path=f"{Paths.temp}/{file}",
                         arguments=st.get("arguments"),
                         environment=st.get("environment"))
     
@@ -103,13 +103,13 @@ class InstallerManager:
 
     def __create_desktop_entry(self, executable:dict):
         icon_path = f"{self.bottle_icons_path}/{executable.get('icon')}"
-        desktop_file = f"{BottlesPaths.applications}/{self.configuration.get('Name')}--{self.manifest.get('Name')}--{datetime.now().timestamp()}.desktop"
+        desktop_file = f"{Paths.applications}/{self.configuration.get('Name')}--{self.manifest.get('Name')}--{datetime.now().timestamp()}.desktop"
 
         if "FLATPAK_ID" in os.environ:
             return None
             
         with open(desktop_file, "w") as f:
-            ex_path = f"{BottlesPaths.bottles}/{self.configuration.get('Path')}/drive_c/{executable.get('path')}/{executable.get('file')}"
+            ex_path = f"{Paths.bottles}/{self.configuration.get('Path')}/drive_c/{executable.get('path')}/{executable.get('file')}"
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={executable.get('name')}\n")
             f.write(f"Exec=bottles -e '{ex_path}' -b '{self.configuration.get('Name')}'\n")

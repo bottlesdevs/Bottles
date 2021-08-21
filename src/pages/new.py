@@ -21,7 +21,7 @@ import time
 from gi.repository import Gtk, GLib, Handy
 from ..backend.runner import Runner
 
-class BottlesEnvironmentRow(Handy.ActionRow):
+class EnvironmentRow(Handy.ActionRow):
     def __init__(self, environment, **kwargs):
         super().__init__(**kwargs)
 
@@ -36,8 +36,8 @@ class BottlesEnvironmentRow(Handy.ActionRow):
         return self.environment.get("id")
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
-class BottlesNew(Handy.Window):
-    __gtype_name__ = 'BottlesNew'
+class NewView(Handy.Window):
+    __gtype_name__ = 'NewView'
 
     # region Widgets
     stack_create = Gtk.Template.Child()
@@ -104,7 +104,7 @@ class BottlesNew(Handy.Window):
         self.btn_pref_dxvk.connect('pressed', self.window.show_preferences_view)
 
         for environment in self.environments:
-            env_row = BottlesEnvironmentRow(environment)
+            env_row = EnvironmentRow(environment)
             self.list_environments.add(env_row)
 
         '''Select the first environment in list'''

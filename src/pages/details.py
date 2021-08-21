@@ -23,13 +23,13 @@ import time
 import webbrowser
 from datetime import datetime
 
-from .dialog import BottlesDialog, BottlesMessageDialog
+from .dialog import Dialog, MessageDialog
 from ..backend.installer import InstallerManager
 from ..backend.runner import Runner, gamemode_available
 from ..backend.backup import RunnerBackup
 from ..utils import RunAsync
 
-class BottlesDetailsPageRow(Gtk.ListBoxRow):
+class PageRow(Gtk.ListBoxRow):
 
     def __init__(self, page_name, title, **kwargs):
         super().__init__(**kwargs)
@@ -64,8 +64,8 @@ class BottlesDetailsPageRow(Gtk.ListBoxRow):
         self.show_all()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
-class BottlesDuplicate(Handy.Window):
-    __gtype_name__ = 'BottlesDuplicate'
+class DuplicateDialog(Handy.Window):
+    __gtype_name__ = 'DuplicateDialog'
 
     # region Widgets
     entry_name = Gtk.Template.Child()
@@ -130,8 +130,8 @@ class BottlesDuplicate(Handy.Window):
             self.progressbar.pulse()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-run-args.ui')
-class BottlesRunArgs(Handy.Window):
-    __gtype_name__ = 'BottlesRunArgs'
+class RunArgsDialog(Handy.Window):
+    __gtype_name__ = 'RunArgsDialog'
 
     # region Widgets
     entry_args = Gtk.Template.Child()
@@ -161,8 +161,8 @@ class BottlesRunArgs(Handy.Window):
         self.close_window()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-environment-variables.ui')
-class BottlesEnvironmentVariables(Handy.Window):
-    __gtype_name__ = 'BottlesEnvironmentVariables'
+class EnvVarsDialog(Handy.Window):
+    __gtype_name__ = 'EnvVarsDialog'
 
     # region Widgets
     entry_variables = Gtk.Template.Child()
@@ -202,8 +202,8 @@ class BottlesEnvironmentVariables(Handy.Window):
         self.window.page_details.update_programs()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
-class BottlesDLLOverrideEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesDLLOverrideEntry'
+class DLLEntry(Handy.ActionRow):
+    __gtype_name__ = 'DLLEntry'
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
@@ -247,8 +247,8 @@ class BottlesDLLOverrideEntry(Handy.ActionRow):
         self.destroy()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
-class BottlesDLLOverrides(Handy.Window):
-    __gtype_name__ = 'BottlesDLLOverrides'
+class DLLOverridesDialog(Handy.Window):
+    __gtype_name__ = 'DLLOverridesDialog'
 
     # region Widgets
     entry_name = Gtk.Template.Child()
@@ -283,7 +283,7 @@ class BottlesDLLOverrides(Handy.Window):
                                              scope="DLL_Overrides")
 
             '''Create new entry in list_overrides'''
-            self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
+            self.list_overrides.add(DLLEntry(self.window,
                                                             self.configuration,
                                                             [dll_name, "n,b"]))
             '''Empty entry_name'''
@@ -294,7 +294,7 @@ class BottlesDLLOverrides(Handy.Window):
 
     def idle_populate_overrides_list(self):
         for override in self.configuration.get("DLL_Overrides").items():
-            self.list_overrides.add(BottlesDLLOverrideEntry(self.window,
+            self.list_overrides.add(DLLEntry(self.window,
                                                             self.configuration,
                                                             override))
 
@@ -302,8 +302,8 @@ class BottlesDLLOverrides(Handy.Window):
         GLib.idle_add(self.idle_populate_overrides_list)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
-class BottlesLaunchOptions(Handy.Window):
-    __gtype_name__ = 'BottlesLaunchOptions'
+class LaunchOptionsDialog(Handy.Window):
+    __gtype_name__ = 'LaunchOptionsDialog'
 
     # region Widgets
     entry_arguments = Gtk.Template.Child()
@@ -344,8 +344,8 @@ class BottlesLaunchOptions(Handy.Window):
         self.window.page_details.update_programs()
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
-class BottlesInstallerEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesInstallerEntry'
+class InstallerEntry(Handy.ActionRow):
+    __gtype_name__ = 'InstallerEntry'
 
     # region Widgets
     btn_install = Gtk.Template.Child()
@@ -373,7 +373,7 @@ class BottlesInstallerEntry(Handy.ActionRow):
 
     '''Open installer manifest'''
     def open_manifest(self, widget):
-        dialog = BottlesDialog(
+        dialog = Dialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
             message=False,
@@ -408,8 +408,8 @@ class BottlesInstallerEntry(Handy.ActionRow):
         self.get_parent().set_sensitive(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
-class BottlesStateEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesStateEntry'
+class StateEntry(Handy.ActionRow):
+    __gtype_name__ = 'StateEntry'
 
     # region Widgets
     label_creation_date = Gtk.Template.Child()
@@ -459,7 +459,7 @@ class BottlesStateEntry(Handy.ActionRow):
 
     '''Open state index'''
     def open_index(self, widget):
-        dialog = BottlesDialog(
+        dialog = Dialog(
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
             message=False,
@@ -477,8 +477,8 @@ class BottlesStateEntry(Handy.ActionRow):
         self.get_parent().set_sensitive(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
-class BottlesProgramEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesProgramEntry'
+class ProgramEntry(Handy.ActionRow):
+    __gtype_name__ = 'ProgramEntry'
 
     # region Widgets
     btn_run = Gtk.Template.Child()
@@ -524,7 +524,7 @@ class BottlesProgramEntry(Handy.ActionRow):
 
     '''Show dialog for launch options'''
     def show_launch_options_view(self, widget=False):
-        new_window = BottlesLaunchOptions(self.window,
+        new_window = LaunchOptionsDialog(self.window,
                                           self.configuration,
                                           self.program_executable,
                                           self.arguments)
@@ -574,8 +574,8 @@ class BottlesProgramEntry(Handy.ActionRow):
         webbrowser.open_new_tab("https://github.com/bottlesdevs/Bottles/issues?q=is:issue%s" % query)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
-class BottlesDependencyEntry(Handy.ActionRow):
-    __gtype_name__ = 'BottlesDependencyEntry'
+class DependencyEntry(Handy.ActionRow):
+    __gtype_name__ = 'DependencyEntry'
 
     # region Widgets
     label_category = Gtk.Template.Child()
@@ -629,7 +629,7 @@ class BottlesDependencyEntry(Handy.ActionRow):
 
     '''Open dependency manifest'''
     def open_manifest(self, widget):
-        dialog = BottlesDialog(
+        dialog = Dialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
             message=False,
@@ -686,8 +686,8 @@ class BottlesDependencyEntry(Handy.ActionRow):
         self.get_parent().set_sensitive(True)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
-class BottlesDetails(Handy.Leaflet):
-    __gtype_name__ = 'BottlesDetails'
+class DetailsView(Handy.Leaflet):
+    __gtype_name__ = 'Details'
 
     # region Widgets
     label_runner = Gtk.Template.Child()
@@ -873,7 +873,7 @@ class BottlesDetails(Handy.Leaflet):
             w.destroy()
 
         for p in pages:
-            self.list_pages.add(BottlesDetailsPageRow(p, pages[p]))
+            self.list_pages.add(PageRow(p, pages[p]))
 
     def change_page(self, widget, row):
         try:
@@ -1005,7 +1005,7 @@ class BottlesDetails(Handy.Leaflet):
 
     '''Show dialog for launch options'''
     def show_environment_variables(self, widget=False):
-        new_window = BottlesEnvironmentVariables(self.window,
+        new_window = EnvVarsDialog(self.window,
                                                  self.configuration)
         new_window.present()
 
@@ -1089,12 +1089,12 @@ class BottlesDetails(Handy.Leaflet):
 
         i = 0
         for program in programs:
-            self.list_programs.add(BottlesProgramEntry(
+            self.list_programs.add(ProgramEntry(
                 self.window, self.configuration, program))
 
             '''Append first 5 entries to group_programs'''
             if i < 5:
-                self.group_programs.add(BottlesProgramEntry(
+                self.group_programs.add(ProgramEntry(
                     self.window, self.configuration, program))
             i =+ 1
 
@@ -1106,7 +1106,7 @@ class BottlesDetails(Handy.Leaflet):
         if len(supported_dependencies) > 0:
             for dependency in supported_dependencies:
                 self.list_dependencies.add(
-                    BottlesDependencyEntry(self.window,
+                    DependencyEntry(self.window,
                                            self.configuration,
                                            dependency))
             return
@@ -1114,7 +1114,7 @@ class BottlesDetails(Handy.Leaflet):
         if len(self.configuration.get("Installed_Dependencies")) > 0:
             for dependency in self.configuration.get("Installed_Dependencies"):
                 self.list_dependencies.add(
-                    BottlesDependencyEntry(self.window,
+                    DependencyEntry(self.window,
                                            self.configuration,
                                            dependency,
                                            plain=True))
@@ -1129,7 +1129,7 @@ class BottlesDetails(Handy.Leaflet):
         if len(supported_installers) > 0:
             for installer in supported_installers:
                 self.list_installers.add(
-                    BottlesInstallerEntry(self.window,
+                    InstallerEntry(self.window,
                                           self.configuration,
                                           installer))
             return
@@ -1143,7 +1143,7 @@ class BottlesDetails(Handy.Leaflet):
             if len(states) > 0:
                 for state in states:
                     self.list_states.add(
-                        BottlesStateEntry(self.window,
+                        StateEntry(self.window,
                                           self.configuration,
                                           state))
 
@@ -1330,7 +1330,7 @@ class BottlesDetails(Handy.Leaflet):
         self.configuration = new_configuration
 
     def run_executable_with_args(self, widget):
-        new_window = BottlesRunArgs(self)
+        new_window = RunArgsDialog(self)
         new_window.present()
 
     '''Display file dialog for executable selection'''
@@ -1459,12 +1459,12 @@ class BottlesDetails(Handy.Leaflet):
     
     '''Duplicate bottle with another name'''
     def duplicate(self, widget):
-        new_window = BottlesDuplicate(self)
+        new_window = DuplicateDialog(self)
         new_window.present()
 
     '''Show dialog to confirm bottle deletion'''
     def confirm_delete(self, widget):
-        dialog_delete = BottlesMessageDialog(parent=self.window,
+        dialog_delete = MessageDialog(parent=self.window,
                                       title=_("Confirm deletion"),
                                       message=_("Are you sure you want to delete this Bottle and all files?"))
         response = dialog_delete.run()
@@ -1477,7 +1477,7 @@ class BottlesDetails(Handy.Leaflet):
 
     '''Show dialog for DLL overrides'''
     def show_dll_overrides_view(self, widget=False):
-        new_window = BottlesDLLOverrides(self.window,
+        new_window = DLLOverridesDialog(self.window,
                                          self.configuration)
         new_window.present()
 

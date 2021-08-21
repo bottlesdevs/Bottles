@@ -3,7 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.2"/>
-  <template class="BottlesList" parent="GtkBox">
+  <template class="ListView" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="hexpand">True</property>
