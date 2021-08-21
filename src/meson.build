@@ -18,8 +18,8 @@ configure_file(
 )
 
 subdir('backend')
-subdir('pages')
 subdir('ui')
+subdir('views')
 
 bottles_sources = [
   '__init__.py',

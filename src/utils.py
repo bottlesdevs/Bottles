@@ -32,7 +32,7 @@ from pathlib import Path
 
 from gi.repository import GLib
 
-from .pages.dialog import Dialog
+from .views.dialog import Dialog
 
 # Set default logging level
 logging.basicConfig(level=logging.DEBUG)

@@ -26,14 +26,14 @@ from .params import *
 from .backend.manager import Manager
 from .backend.runner import Runner
 
-from .pages.new import NewView
-from .pages.onboard import OnboardDialog
-from .pages.details import DetailsView
-from .pages.list import ListView
-from .pages.preferences import PreferencesWindow
-from .pages.taskmanager import TaskManagerView
-from .pages.importer import ImporterView
-from .pages.dialog import AboutDialog, CrashReportDialog
+from .views.new import NewView
+from .views.onboard import OnboardDialog
+from .views.details import DetailsView
+from .views.list import ListView
+from .views.preferences import PreferencesWindow
+from .views.taskmanager import TaskManagerView
+from .views.importer import ImporterView
+from .views.dialog import AboutDialog, CrashReportDialog
 
 from .utils import UtilsConnection, UtilsLogger
 
