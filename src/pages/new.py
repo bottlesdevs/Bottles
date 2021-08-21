@@ -19,7 +19,7 @@ import re
 import time
 
 from gi.repository import Gtk, GLib, Handy
-from ..backend.utilities import RunnerUtilities
+from ..backend.runner import Runner
 
 class BottlesEnvironmentRow(Handy.ActionRow):
     def __init__(self, environment, **kwargs):
@@ -215,11 +215,11 @@ class BottlesNew(Handy.Window):
     '''Destroy the window'''
     def close_window(self, widget):
         if self.arg_exe:
-            RunnerUtilities().run_executable(
+            Runner().run_executable(
                 configuration=self.new_bottle_config,
                 file_path=self.arg_exe)
         if self.arg_lnk is not None:
-            RunnerUtilities().run_lnk(
+            Runner().run_lnk(
                 configuration=self.new_bottle_config,
                 file_path=self.arg_lnk)
         self.destroy()

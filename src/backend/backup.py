@@ -7,7 +7,7 @@ from typing import NewType
 
 from ..utils import UtilsLogger, RunAsync
 from .globals import BottlesPaths
-from .utilities import RunnerUtilities
+from .runner import Runner
 from ..download import DownloadManager
 
 logging = UtilsLogger()
@@ -45,7 +45,7 @@ class RunnerBackup:
             download_entry = self.download_manager.new_download(
                 _("Backup {0}").format(configuration.get("Name")), False)
 
-            bottle_path = RunnerUtilities().get_bottle_path(configuration)
+            bottle_path = Runner().get_bottle_path(configuration)
 
             try:
                 # Create the archive
@@ -123,7 +123,7 @@ class RunnerBackup:
     def duplicate_bottle(self, configuration, name) -> bool:
         logging.info(f"Duplicating bottle: [{configuration.get('Name')}] to [{name}]")
 
-        source = RunnerUtilities().get_bottle_path(configuration)
+        source = Runner().get_bottle_path(configuration)
         dest = f"{BottlesPaths.bottles}/{name}"
 
         source_drive = f"{source}/drive_c"

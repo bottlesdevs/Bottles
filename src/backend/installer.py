@@ -21,7 +21,7 @@ from typing import NewType
 from datetime import datetime
 from gi.repository import Gtk, GLib
 
-from .utilities import RunnerUtilities
+from .runner import Runner
 from .globals import BottlesRepositories, BottlesPaths
 from ..utils import RunAsync
 
@@ -39,7 +39,7 @@ class InstallerManager:
             installer_name = installer[0],
             installer_category = installer[1]["Category"])
         self.widget = widget
-        self.bottle_icons_path = f"{RunnerUtilities().get_bottle_path(configuration)}/icons"
+        self.bottle_icons_path = f"{Runner().get_bottle_path(configuration)}/icons"
 
     def __download_icon(self, executable:dict):
         icon_url = f"{BottlesRepositories.installers}/data/{self.manifest.get('Name')}/{executable.get('icon')}"
@@ -74,7 +74,7 @@ class InstallerManager:
                     else:
                         file = st.get("file_name")
 
-                    RunnerUtilities().run_executable(
+                    Runner().run_executable(
                         configuration=self.configuration,
                         file_path=f"{BottlesPaths.temp}/{file}",
                         arguments=st.get("arguments"),

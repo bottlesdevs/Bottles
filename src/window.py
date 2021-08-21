@@ -23,8 +23,8 @@ from gi.repository import Gtk, Gio, Notify, Handy
 from pathlib import Path
 
 from .params import *
-from .backend.manager import BottlesRunner
-from .backend.utilities import RunnerUtilities
+from .backend.manager import BottlesManager
+from .backend.runner import Runner
 
 from .pages.new import BottlesNew
 from .pages.onboard import BottlesOnboard
@@ -89,14 +89,14 @@ class BottlesWindow(Handy.ApplicationWindow):
         self.utils_conn = UtilsConnection(self)
 
         # Runner instance
-        self.runner = BottlesRunner(self)
+        self.runner = BottlesManager(self)
         self.runner.check_runners_dir()
 
         # Run executable in a bottle
         if arg_exe and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
-                RunnerUtilities().run_executable(bottle_configuration,
+                Runner().run_executable(bottle_configuration,
                                            arg_exe)
                 self.proper_close()
 
@@ -104,7 +104,7 @@ class BottlesWindow(Handy.ApplicationWindow):
         if arg_lnk and arg_bottle:
             if arg_bottle in self.runner.local_bottles.keys():
                 bottle_configuration = self.runner.local_bottles[arg_bottle]
-                RunnerUtilities().run_lnk(bottle_configuration,
+                Runner().run_lnk(bottle_configuration,
                                     arg_lnk)
                 self.proper_close()
 

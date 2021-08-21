@@ -25,7 +25,7 @@ from datetime import datetime
 
 from .dialog import BottlesDialog, BottlesMessageDialog
 from ..backend.installer import InstallerManager
-from ..backend.utilities import RunnerUtilities, gamemode_available
+from ..backend.runner import Runner, gamemode_available
 from ..backend.backup import RunnerBackup
 from ..utils import RunAsync
 
@@ -536,7 +536,7 @@ class BottlesProgramEntry(Handy.ActionRow):
             arguments = self.configuration["Programs"][self.program_executable]
         else:
             arguments = False
-        RunnerUtilities().run_executable(
+        Runner().run_executable(
             self.configuration,
             self.program_executable_path,
             arguments,
@@ -555,7 +555,7 @@ class BottlesProgramEntry(Handy.ActionRow):
         self.destroy()
 
     def browse_program_folder(self, widget):
-        RunnerUtilities().open_filemanager(
+        Runner().open_filemanager(
             configuration=self.configuration, 
             path_type="custom",
             custom_path=self.program_folder)
@@ -901,7 +901,7 @@ class BottlesDetails(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            RunnerUtilities().get_bottle_path(self.configuration))
+            Runner().get_bottle_path(self.configuration))
             
         response = file_dialog.run()
 
@@ -1061,7 +1061,7 @@ class BottlesDetails(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            RunnerUtilities().get_bottle_path(self.configuration))
+            Runner().get_bottle_path(self.configuration))
         response = file_dialog.run()
 
         if response == -3:
@@ -1347,12 +1347,12 @@ class BottlesDetails(Handy.Leaflet):
 
         if response == -3:
             if args:
-                RunnerUtilities().run_executable(
+                Runner().run_executable(
                     configuration=self.configuration,
                     file_path=file_dialog.get_filename(),
                     arguments=args)
             else:
-                RunnerUtilities().run_executable(
+                Runner().run_executable(
                     configuration=self.configuration,
                     file_path=file_dialog.get_filename())
 
@@ -1360,37 +1360,37 @@ class BottlesDetails(Handy.Leaflet):
 
     '''Run wine executables and utilities'''
     def run_winecfg(self, widget):
-        RunnerUtilities().run_winecfg(self.configuration)
+        Runner().run_winecfg(self.configuration)
 
     def run_debug(self, widget):
-        RunnerUtilities().run_debug(self.configuration)
+        Runner().run_debug(self.configuration)
 
     def run_browse(self, widget):
-        RunnerUtilities().open_filemanager(self.configuration)
+        Runner().open_filemanager(self.configuration)
 
     def run_cmd(self, widget):
-        RunnerUtilities().run_cmd(self.configuration)
+        Runner().run_cmd(self.configuration)
 
     def run_taskmanager(self, widget):
-        RunnerUtilities().run_taskmanager(self.configuration)
+        Runner().run_taskmanager(self.configuration)
 
     def run_controlpanel(self, widget):
-        RunnerUtilities().run_controlpanel(self.configuration)
+        Runner().run_controlpanel(self.configuration)
 
     def run_uninstaller(self, widget):
-        RunnerUtilities().run_uninstaller(self.configuration)
+        Runner().run_uninstaller(self.configuration)
 
     def run_regedit(self, widget):
-        RunnerUtilities().run_regedit(self.configuration)
+        Runner().run_regedit(self.configuration)
 
     def run_shutdown(self, widget):
-        RunnerUtilities().send_status(self.configuration, "shutdown")
+        Runner().send_status(self.configuration, "shutdown")
 
     def run_reboot(self, widget):
-        RunnerUtilities().send_status(self.configuration, "reboot")
+        Runner().send_status(self.configuration, "reboot")
 
     def run_killall(self, widget):
-        RunnerUtilities().send_status(self.configuration, "kill")
+        Runner().send_status(self.configuration, "kill")
 
     '''Validate entry_state input'''
     def check_entry_state_comment(self, widget, event_key):

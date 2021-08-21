@@ -14,7 +14,7 @@ RunnerName = NewType('RunnerName', str)
 RunnerType = NewType('RunnerType', str)
 
 
-class RunnerUtilities:
+class Runner:
 
     # Open file manager in different paths
     def open_filemanager(

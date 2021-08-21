@@ -19,7 +19,7 @@ import logging
 from datetime import datetime
 from gi.repository import Gtk, GLib, Handy
 
-from ..backend.utilities import RunnerUtilities
+from ..backend.runner import Runner
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class BottlesListEntry(Handy.ActionRow):
@@ -117,13 +117,13 @@ class BottlesListEntry(Handy.ActionRow):
             response = file_dialog.run()
 
             if response == -3:
-                RunnerUtilities().run_executable(self.configuration,
+                Runner().run_executable(self.configuration,
                                            file_dialog.get_filename())
 
             file_dialog.destroy()
         else:
             '''Use executable provided as bottles argument'''
-            RunnerUtilities().run_executable(self.configuration, self.arg_exe)
+            Runner().run_executable(self.configuration, self.arg_exe)
             if self.window.settings.get_boolean("auto-close-bottles"):
                 self.window.proper_close()
             self.arg_exe = False
