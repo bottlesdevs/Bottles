@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-15 09:17+0200\n"
-"PO-Revision-Date: 2021-08-20 22:17+0000\n"
+"PO-Revision-Date: 2021-08-22 07:48+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -33,11 +33,11 @@ msgstr "Jednostavno upravljaj Wine mapama"
 
 #: data/com.usebottles.bottles.desktop.in:5
 msgid "com.usebottles.bottles"
-msgstr ""
+msgstr "com.usebottles.bottles"
 
 #: data/com.usebottles.bottles.desktop.in:12
 msgid "wine;windows;"
-msgstr ""
+msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -87,8 +87,8 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Pokretanje izvršne datoteke (.exe/.msi) u buteljama izravno iz kontekstnog "
-"izbornika upravljača datoteka"
+"Pokretanje izvršnih datoteka (.exe/.msi) u tvojim buteljama izravno iz "
+"kontekstnog izbornika upravljača datoteka"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
@@ -159,61 +159,70 @@ msgstr ".. i još mnogo toga što možeš pronaći instaliranjem programa Butelj
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
 msgid "News"
-msgstr ""
+msgstr "Novosti"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Toggle the last Update date in the bottles list"
-msgstr ""
+msgstr "Uključi/isključi zadnji datum aktualiziranja u popisu butelja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid ""
 "Fallback the working directory to the executable path if it fails to run"
-msgstr "Odaberi jednu Windows izvršnu datoteku"
+msgstr "Ako se radna mapa ne uspije pokrenuti, koristi stazu izvršnih datoteka"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid ""
 "Now a visual feedback is provided when a download fail the checksum "
 "validation"
 msgstr ""
+"Sada se pružaju vizualne povratne informacije kad postoji greška u provjeri "
+"kontrolnog zbroja preuzimanja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid "Wine support for Wayland trought XWayland"
-msgstr ""
+msgstr "Wine podrška za Wayland putem XWaylanda"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid "Support for 32-bit bottles with custom environment"
-msgstr ""
+msgstr "Podrška za 32-bitne butelje s prilagođenim okruženjem"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid ""
 "Removed colors from the environments in the bottle creation as these can be "
 "interpreted as suggested actions"
 msgstr ""
+"Pri stvaranju butelja boje su uklonjene iz okruženja, jer se mogu tumačiti "
+"kao predložene radnje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
 msgid ""
 "Now the user can only install one dependency per time to avoid conflicts"
 msgstr ""
+"Sada korisnik može instalirati samo jednu ovisnost najednom, kako bi se "
+"izbjegli problemi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
 "Now the Crash Report dialog display similar reports before send a new one"
 msgstr ""
+"Sada dijalog „Izvještaj o rušenju” prikazuje slične izvještaje prije slanja "
+"novog"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid ""
 "Now it is possible to clone a bottle with a new name, this can also be used "
 "for bottles templating"
 msgstr ""
+"Sada je moguće duplicirati butelju s novim imenom, što se može koristiti i "
+"za stvaranje predložaka za butelje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid "The Bottles version is now provided in the Crash report"
-msgstr ""
+msgstr "U izvještaju o rušenju sada se navodi verzija programa Butelje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:110
 msgid "Reduced the Flatpak permissions"
-msgstr ""
+msgstr "Smanjene su dozvole za Flatpak"
 
 #: data/com.usebottles.bottles.appdata.xml.in:111
 msgid "You can now choose a custom working directory for each bottle"
@@ -224,158 +233,151 @@ msgid ""
 "You can see a new button in the bottle details with a folder icon, this "
 "helps you expose new directories to Bottles"
 msgstr ""
+"U detaljima butelje postoji novi gumb s ikonom mape za otkrivanje novih mapa "
+"u programu Butelje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "Bug fixes"
-msgstr ""
+msgstr "Ispravci grešaka"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Fixed a bug in the detection of broken bottles"
-msgstr ""
+msgstr "Ispravljena je greška u otkrivanju pokvarenih butelja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
-#, fuzzy
 msgid ""
 "Fixed a bug that was causing a File Not Found error with broken downloads"
 msgstr ""
-"Ispravljena je greška zbog koje je svaka boca bila pokvarena čak i ako je "
-"bila pokvarena samo jedna boca"
+"Ispravljena je greška koja je uzrokovala grešku „File Not Found” s "
+"pokvarenim datotekama za preuzimanje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when the user goes offline during a "
 "download"
 msgstr ""
-"Ispravljena je greška zbog koje je svaka boca bila pokvarena čak i ako je "
-"bila pokvarena samo jedna boca"
+"Ispravljena je greška zbog koje se program Butelje ruši kad se korisnik "
+"odspoji od mreže za vrijeme preuzimanja datoteke"
 
 #: data/com.usebottles.bottles.appdata.xml.in:120
 msgid ""
 "Same as the above but this handle downloads with wrong sizes than the source"
 msgstr ""
+"Isto kao prethodna točka, ali se odnosi na preuzimanja čija se veličina "
+"razlikuje od izvora"
 
 #: data/com.usebottles.bottles.appdata.xml.in:121
 msgid "Fixed the File Manager integration in Flatpak"
-msgstr ""
+msgstr "Ispravljena je integracija upravljača datoteka u Flatpaku"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when fail in name resolution during a "
 "download"
 msgstr ""
-"Ispravljena je greška zbog koje je svaka boca bila pokvarena čak i ako je "
-"bila pokvarena samo jedna boca"
+"Ispravljena je greška zbog koje se program Butelje ruši kad prevođenje imena "
+"u IP adresu ne uspije tijekom preuzimanja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:123
 msgid "Fixed a bug in temp directory clean up"
-msgstr ""
+msgstr "Ispravljena je greška u pražnjenju mape privremenih datoteka"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid ""
 "Fixed a bug that make Bottles crash when the Update Date is not set in the "
 "bottle"
 msgstr ""
-"Ispravljena je greška zbog koje je svaka boca bila pokvarena čak i ako je "
-"bila pokvarena samo jedna boca"
+"Ispravljena je greška zbog koje se program Butelje ruši kad u butelji nije "
+"postavljen datum aktualiziranja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
 msgid "Fixed a bug in bottle configuration upgrade that was causing a loop"
 msgstr ""
+"Ispravljena je greška u nadogradnji konfiguracije butelje koja je "
+"prouzročila petlju"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
 msgid "Translations"
-msgstr ""
+msgstr "Prijevodi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#, fuzzy
 msgid "Hungarian translations thanks to @ovari, @zoli111"
-msgstr "Prijevod na hrvatski, hvala @milotype"
+msgstr "Prijevod na mađarski, hvala @ovari, @zoli111"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
-#, fuzzy
 msgid ""
 "Chinese (Simplified) translations thanks to Flywater Zh, @sr093906, "
 "@Yuzaihhhh"
-msgstr "Prijevod na hrvatski, hvala @milotype"
+msgstr ""
+"Prijevod na kineski (pojednostavljeni), hvala Flywater Zh, @sr093906, "
+"@Yuzaihhhh"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Croatian translations thanks to @milotype"
 msgstr "Prijevod na hrvatski, hvala @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:133
-#, fuzzy
 msgid "Spanish translations thanks to @kenpb, @oscfdezdz, @fitojb, @Lvaskz"
-msgstr "Prijevod na španjolski, hvala @fitojb"
+msgstr "Prijevod na španjolski, hvala @kenpb, @oscfdezdz, @fitojb, @Lvaskz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:134
-#, fuzzy
 msgid "Japanese translations thanks to @jatin-cbs"
-msgstr "Prijevod na španjolski, hvala @fitojb"
+msgstr "Prijevod na japanski, hvala @jatin-cbs"
 
 #: data/com.usebottles.bottles.appdata.xml.in:135
 msgid ""
 "Frech translations thanks to J. Lavoie, SCOTT-HAMILTON, @julroy67, "
 "@yannicka, K. Herbert"
 msgstr ""
+"Prijevod na francuski, hvala J. Lavoie, SCOTT-HAMILTON, @julroy67, @"
+"yannicka, K. Herbert"
 
 #: data/com.usebottles.bottles.appdata.xml.in:136
-#, fuzzy
 msgid "Italian translations thanks to @blackcat-917"
-msgstr "Prijevod na hrvatski, hvala @milotype"
+msgstr "Prijevod na talijanski, hvala @blackcat-917"
 
 #: data/com.usebottles.bottles.appdata.xml.in:137
-#, fuzzy
 msgid "German translations thanks to @bloomvdomino, @thericosanto"
-msgstr "Prijevod na hrvatski, hvala @milotype"
+msgstr "Prijevod na njemački, hvala @bloomvdomino, @thericosanto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:138
-#, fuzzy
 msgid ""
 "Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, "
 "@hugok79"
-msgstr "Prijevod na portugalski, hvala @laralem"
+msgstr ""
+"Prijevod na portugalski, hvala @laralem, @SantosSI, Pão com omlet, @hugok79"
 
 #: data/com.usebottles.bottles.appdata.xml.in:139
-#, fuzzy
 msgid "Norwegian Bokmål translations thanks to @comradekingu"
-msgstr "Prijevod na hrvatski, hvala @milotype"
+msgstr "Prijevod na norveški (Bokmål), hvala @comradekingu"
 
 #: data/com.usebottles.bottles.appdata.xml.in:140
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @farribeiro"
-msgstr "Portugalski (Brazil) prijevod, hvala @vitor180396"
+msgstr "Prijevod na portugalski (Brazil), hvala @farribeiro"
 
 #: data/com.usebottles.bottles.appdata.xml.in:141
-#, fuzzy
 msgid "Arabic translations thanks to @luxmaroc"
-msgstr "Prijevod na francuski, hvala @julroy67"
+msgstr "Prijevod na arapski, hvala @luxmaroc"
 
 #: data/com.usebottles.bottles.appdata.xml.in:142
-#, fuzzy
 msgid "Finnish translations thanks to @Ricky-Tigg"
-msgstr "Prijevod na francuski, hvala @julroy67"
+msgstr "Prijevod na finski, hvala @Ricky-Tigg"
 
 #: data/com.usebottles.bottles.appdata.xml.in:143
-#, fuzzy
 msgid "Czech translations thanks to @panmourovaty"
-msgstr "Prijevod na francuski, hvala @julroy67"
+msgstr "Prijevod na češki, hvala @panmourovaty"
 
 #: data/com.usebottles.bottles.appdata.xml.in:144
-#, fuzzy
 msgid "Polish translations thanks to Krzysztof Marcinek"
-msgstr "Prijevod na švedski, hvala @eson57"
+msgstr "Prijevod na poljski, hvala Krzysztof Marcinek"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr ""
+msgstr "Flatpak migracija"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the flatpak migration dialog."
-msgstr ""
+msgstr "Uključi/isključi dijalog za Flatpak migraciju."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -387,27 +389,27 @@ msgstr "Aktiviraj tamnu temu."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Uključi/isključi datum aktualiziranja u popisu"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in bottles list."
-msgstr ""
+msgstr "Uključi/isključi datum aktualiziranja u popisu butelja."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
-msgstr ""
+msgstr "Širina prozora"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Change the window width"
-msgstr ""
+msgstr "Promijeni širinu prozora"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
-msgstr ""
+msgstr "Visina prozora"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Change the window height"
-msgstr ""
+msgstr "Promijeni visinu prozora"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
 msgid "Notifications"
@@ -423,7 +425,7 @@ msgstr "Brisanje privremenih datoteka"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Clean Temp path on boot."
-msgstr "Izbriši privremene datoteke pri pokretanju programa."
+msgstr "Izbriši privremene datoteke pri pokretanju."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
@@ -505,9 +507,8 @@ msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
 #: src/ui/about.ui:156
-#, fuzzy
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
-msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Prevedi</a>"
+msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
 #: src/ui/state-entry.ui:21
@@ -516,7 +517,7 @@ msgstr "Pokaži manifest"
 
 #: src/ui/dependency-entry.ui:34
 msgid "License"
-msgstr ""
+msgstr "Licenca"
 
 #: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:45
 msgid "Bug report"
@@ -527,6 +528,8 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Došlo je do greške u instalaciji. Za čitanje izvještaja o rušenju ponovo "
+"pokreni Butelje ili pokreni i pročitaj izvještaj putem terminala."
 
 #: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
@@ -554,9 +557,8 @@ msgid "Full archive"
 msgstr "Potpuni arhiv"
 
 #: src/ui/details.ui:62
-#, fuzzy
 msgid "Duplicate bottle"
-msgstr "Stvori butelju"
+msgstr "Duplikat butelje"
 
 #: src/ui/details.ui:92
 msgid "Run with arguments"
@@ -640,7 +642,7 @@ msgstr "Prekini sve Wine procese"
 
 #: src/ui/details.ui:617
 msgid "Are you experiencing problems reaching a directory in Bottles?"
-msgstr ""
+msgstr "Ne možeš pristupiti određenoj mapi u programu Butelje?"
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
 #: src/pages/details.py:854
@@ -692,9 +694,8 @@ msgid "Debug wine processes."
 msgstr "Otklanjaj greške Wine procesa."
 
 #: src/ui/details.ui:851 src/ui/details.ui:1962 src/ui/details.ui:2548
-#, fuzzy
 msgid "Read documentation"
-msgstr "Dokumentacija"
+msgstr "Pročitaj dokumentaciju"
 
 #: src/ui/details.ui:905
 msgid "Task Manager"
@@ -733,26 +734,23 @@ msgid "Use DXVK"
 msgstr "Koristi DXVK"
 
 #: src/ui/details.ui:1071
-#, fuzzy
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Poboljšava izvođenje igara i 3D programa.\n"
+"Poboljšava izvođenje Directx 11 igara i 3D programa.\n"
 "Deaktiviraj ako se pojave greške u prikazu."
 
 #: src/ui/details.ui:1098
-#, fuzzy
 msgid "Use VKD3D"
-msgstr "Koristi DXVK"
+msgstr "Koristi VKD3D"
 
 #: src/ui/details.ui:1099
-#, fuzzy
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Poboljšava izvođenje igara i 3D programa.\n"
+"Poboljšava izvođenje Directx 12 igara i 3D programa.\n"
 "Deaktiviraj ako se pojave greške u prikazu."
 
 #: src/ui/details.ui:1126
@@ -894,6 +892,8 @@ msgstr "Postavke"
 #: src/ui/details.ui:1887
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
+"Aktiviran je testni način rada: prikazuju se samo ovisnosti iz repozitorija "
+"za testiranje."
 
 #: src/ui/details.ui:1943 src/ui/details.ui:2069 src/pages/details.py:853
 msgid "Dependencies"
@@ -901,26 +901,27 @@ msgstr "Ovisnosti"
 
 #: src/ui/details.ui:1972
 msgid "Report a missing dependency"
-msgstr ""
+msgstr "Prijavi nedostajuću ovisnost"
 
 #: src/ui/details.ui:1999
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr ""
+"Iako su datoteke na ovoj stranici potvrđene, možda se nalaze pod vlasničkom "
+"licencom."
 
 #: src/ui/details.ui:2029
 msgid "Microsoft .NET Framework 4 .."
-msgstr ""
+msgstr "Microsoft .NET Framework 4"
 
 #: src/ui/details.ui:2128
 msgid "These are the programs found in your bottle's Start menu"
-msgstr ""
+msgstr "Ovo su programi koji se nalaze u izborniku Start tvoje butelje"
 
 #: src/ui/details.ui:2152
-#, fuzzy
 msgid "Add a custom executable path"
-msgstr "Pokreni izvršnu datoteku"
+msgstr "Dodaj prilagođenu stazu izvršnih datoteka"
 
 #: src/ui/details.ui:2179
 msgid "Search for installed programs"
@@ -931,6 +932,9 @@ msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
+"Ovo je eksperimentalna funkcija u ranoj fazi razvoja. Koristi s oprezom i <a "
+"href=\"https://github.com/bottlesdevs/Bottles/issues/new/choose\"> prijavi "
+"greške </a>."
 
 #: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/pages/details.py:859
 msgid "Installers"
@@ -938,7 +942,7 @@ msgstr "Instalacijski programi"
 
 #: src/ui/details.ui:2365 src/ui/importer.ui:95
 msgid "Refresh"
-msgstr "Osvježi"
+msgstr "Aktualiziraj"
 
 #: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/pages/details.py:857
 msgid "Versioning"
@@ -1041,6 +1045,10 @@ msgid ""
 "\n"
 "Press to try again."
 msgstr ""
+"Instalacija nije uspjela. Razlog tome može biti greška u repozitoriju, "
+"djelomično preuzimanje ili nepodudaranje kontrolnog zbroja.\n"
+"\n"
+"Pritisni za ponovni pokušaj."
 
 #: src/ui/dxvk-entry.ui:72
 msgid "Download & Install this DXVK"
@@ -1053,7 +1061,7 @@ msgstr "Pregledaj datoteke"
 
 #: src/ui/dxvk-entry.ui:141 src/ui/runner-entry.ui:116
 msgid "0%"
-msgstr "0%"
+msgstr "0 %"
 
 #: src/ui/dxvk-entry.ui:177 src/ui/program-entry.ui:121
 #: src/ui/runner-entry.ui:152
@@ -1077,9 +1085,8 @@ msgid "Start off by creating a Bottle."
 msgstr "Započni stvaranjem butelje."
 
 #: src/ui/list.ui:76
-#, fuzzy
 msgid "Create a new Bottle"
-msgstr "Stvori novo stanje"
+msgstr "Stvori novu butelju"
 
 #: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
@@ -1107,7 +1114,7 @@ msgstr "Izvrši u ovoj butelji"
 
 #: src/ui/list-entry.ui:252
 msgid "Run here"
-msgstr ""
+msgstr "Pokreni ovdje"
 
 #: src/ui/new.ui:25
 msgid "Create bottle"
@@ -1161,28 +1168,27 @@ msgstr ""
 
 #: src/ui/new.ui:409
 msgid "Architecture"
-msgstr ""
+msgstr "Arhitektura"
 
 #: src/ui/new.ui:411
 msgid "We recommend using only 32bit if strictly necessary"
-msgstr ""
+msgstr "Preporučujemo koristiti 32-bitnu verziju samo ako je nužno potrebno"
 
 #: src/ui/new.ui:425
 msgid "64 bit"
-msgstr ""
+msgstr "64 bit"
 
 #: src/ui/new.ui:426
 msgid "32 bit"
-msgstr ""
+msgstr "32 bit"
 
 #: src/ui/new.ui:480
 msgid "Creating bottle…"
 msgstr "Stvaranje butelje …"
 
 #: src/ui/new.ui:499
-#, fuzzy
 msgid "Take a break, it may take a while"
-msgstr "Nabavi si piće. Ovo može potrajati"
+msgstr "Odmori malo. Ovo može potrajati"
 
 #: src/ui/new.ui:567
 msgid "Bottle created"
@@ -1231,6 +1237,14 @@ msgid ""
 "<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
 "runners</a>"
 msgstr ""
+"To su slojevi kompatibilnosti koji omogućuju instalaciju i pokretanje "
+"Windows softvera na Linux sustavima.\n"
+"\n"
+"<b>Butelje</b> su okruženja gdje pokretač konfigurira sustav i gdje se "
+"Windows softver pokreće i instalira.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com/components/runners\">Saznaj više o "
+"pokretačima</a>"
 
 #: src/ui/onboard.ui:269
 msgid "Wine"
@@ -1273,9 +1287,8 @@ msgid "Downloading…"
 msgstr "Preuzimanje …"
 
 #: src/ui/onboard.ui:391
-#, fuzzy
 msgid "Sit down and relax, it may take a few minutes."
-msgstr "Sjedni i nabavi si piće. Ovo može potrajati nekoliko minuta."
+msgstr "Sjedni i opusti se. Ovo može potrajati nekoliko minuta."
 
 #: src/ui/onboard.ui:419
 msgid "Download"
@@ -1311,11 +1324,11 @@ msgstr "Treba li program Butelje koristiti varijantu tamne teme."
 
 #: src/ui/preferences.ui:55
 msgid "Show update date"
-msgstr ""
+msgstr "Pokaži datum aktualiziranja"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "Da li pokazati datum aktualiziranja u popisu butelja."
 
 #: src/ui/preferences.ui:93
 msgid "Show notifications for downloads and installs."
@@ -1449,45 +1462,40 @@ msgid "New bottle"
 msgstr "Nova butelja"
 
 #: src/main.py:79
-#, fuzzy
 msgid "Show version"
-msgstr "DXVK verzija"
+msgstr "Pokaži verziju"
 
 #: src/main.py:85
-#, fuzzy
 msgid "Executable path"
-msgstr "Pokreni izvršnu datoteku"
+msgstr "Staza izvršne datoteke"
 
 #: src/main.py:91
 msgid "lnk path"
-msgstr ""
+msgstr "lnk staza"
 
 #: src/main.py:175
 msgid "[Quit] request received."
-msgstr "Primljen je zahtjev [Zatvori program]."
+msgstr "Primljen je zahtjev za [Zatvori program]."
 
 #: src/main.py:181
 msgid "[Help] request received."
-msgstr "Primljen je zahtjev [Pomoć]."
+msgstr "Primljen je zahtjev za [Pomoć]."
 
 #: src/main.py:187
 msgid "[Refresh] request received."
-msgstr "Primljen je zahtjev [Aktualiziraj]."
+msgstr "Primljen je zahtjev za [Aktualiziraj]."
 
 #: src/runner.py:1072
-#, fuzzy
 msgid "No runners found, please install one."
-msgstr "Nijedan pokretač nije pronađen."
+msgstr "Nijedan pokretač nije pronađen. Instaliraj jedan pokretač."
 
 #: src/runner.py:1076
-#, fuzzy
 msgid "No dxvk found, installing the latest version …"
-msgstr "Pokretač i/ili dxvk nisu pronađeni, instalira se najnovija verzija …"
+msgstr "Dxvk nije pronađen, instalira se najnovija verzija …"
 
 #: src/runner.py:1079
-#, fuzzy
 msgid "No vkd3d found, installing the latest version …"
-msgstr "Pokretač i/ili dxvk nisu pronađeni, instalira se najnovija verzija …"
+msgstr "Vkd3d nije pronađen, instalira se najnovija verzija …"
 
 #. Execute wineboot
 #: src/runner.py:1123
@@ -1508,9 +1516,8 @@ msgid "Installing dxvk …"
 msgstr "Instaliranje dxvk-a …"
 
 #: src/runner.py:1182
-#, fuzzy
 msgid "Installing vkd3d …"
-msgstr "Instaliranje dxvk-a …"
+msgstr "Instaliranje vkd3d-a …"
 
 #: src/runner.py:1190
 msgid "Creating versioning state 0 …"
@@ -1545,28 +1552,27 @@ msgstr "Indeks za stanje {0}"
 
 #: src/pages/details.py:841
 msgid "Gamemode is either not available on your system or not running."
-msgstr ""
+msgstr "Modus za igre nije dostupan na tvom sustavu ili nije pokrenut."
 
 #: src/pages/details.py:851
 msgid "Details & Utilities"
 msgstr "Detalji i uslužni programi"
 
 #: src/pages/details.py:886
-#, fuzzy
 msgid "Choose working directory for executables"
-msgstr "Odaberi jednu Windows izvršnu datoteku"
+msgstr "Odaberi radnu mapu za izvršne datoteke"
 
 #: src/pages/details.py:889
 msgid "Done"
-msgstr ""
+msgstr "Obavljeno"
 
 #: src/pages/details.py:937
 msgid "64-bit"
-msgstr ""
+msgstr "64-bit"
 
 #: src/pages/details.py:939
 msgid "32-bit"
-msgstr ""
+msgstr "32-bit"
 
 #: src/pages/details.py:953
 #, python-format
@@ -1575,7 +1581,7 @@ msgstr "Aktualizirano: %s"
 
 #: src/pages/details.py:1044
 msgid "Choose an executable path"
-msgstr "Odaberi jednu izvršnu stazu"
+msgstr "Odaberi jednu stazu izvršnih datoteka"
 
 #: src/pages/details.py:1047
 msgid "Add"
@@ -1614,9 +1620,8 @@ msgid "An error has occurred."
 msgstr "Došlo je do greške."
 
 #: src/pages/dialog.py:130
-#, fuzzy
 msgid "Show report"
-msgstr "Prijava grešaka"
+msgstr "Pokaži izvještaj"
 
 #: src/pages/importer.py:97
 msgid "Choose a backup archive"
@@ -1624,12 +1629,12 @@ msgstr "Odaberi arhiv sigurnosne kopije"
 
 #: src/pages/list.py:51 src/pages/list.py:57
 msgid "N/A"
-msgstr ""
+msgstr "--"
 
 #: src/pages/list.py:93
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr "Pronađeni argumenti za izvršne datoteke: [{executable}]."
+msgstr "Pronađeni argumenti za izvršnu datoteku: [{executable}]."
 
 #: src/pages/new.py:65
 msgid "Gaming"
