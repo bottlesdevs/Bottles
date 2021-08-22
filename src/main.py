@@ -67,7 +67,7 @@ _ = gettext.gettext
 # endregion
 
 
-class Application(Gtk.Application):
+class Bottles(Gtk.Application):
     arg_exe = False
     arg_lnk = False
     arg_bottle = False
@@ -265,5 +265,5 @@ GObject.threads_init()
 
 
 def main(version):
-    app = Application()
+    app = Bottles()
     return app.run(sys.argv)
