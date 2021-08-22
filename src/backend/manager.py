@@ -881,6 +881,13 @@ class Manager:
 
             for component in index.items():
                 if component[1]["Category"] == "runners":
+                    '''
+                    Hide the lutris-lol runner if Bottles is running as Flatpak
+                    because it is not compatible under sandbox
+                    https://github.com/bottlesdevs/components/issues/54
+                    '''
+                    if "FLATPAK_ID" in os.environ and "-lol" in component[0]:
+                        continue
 
                     if component[1]["Sub-category"] == "wine":
                         self.supported_wine_runners[component[0]
