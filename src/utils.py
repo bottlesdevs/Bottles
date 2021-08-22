@@ -207,6 +207,9 @@ def write_log(data:list):
 
     with open(log_path, "w") as crash_log:
         for d in data:
+            # replace username with "USER" as standard
+            if "/home/" in d:
+                d = re.sub(r"/home/([^/]*)/", r"/home/USER/", d)
             crash_log.write(d)
 
 
