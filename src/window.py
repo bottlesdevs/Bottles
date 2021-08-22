@@ -74,9 +74,11 @@ class MainWindow(Handy.ApplicationWindow):
     def __init__(self, arg_exe, arg_lnk, arg_bottle, **kwargs):
         super().__init__(**kwargs)
 
+        # Set dark theme according to user settings
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
-            self.settings.get_boolean("dark-theme"))
+            self.settings.get_boolean("dark-theme")
+        )
 
         # Validate arg_exe extension
         if arg_exe and not arg_exe.endswith(('.exe', '.msi', '.bat')):
@@ -85,27 +87,25 @@ class MainWindow(Handy.ApplicationWindow):
         # Validate arg_lnk extension
         if arg_lnk and not arg_lnk.endswith('.lnk'):
             arg_lnk = False
-
+        
         self.utils_conn = UtilsConnection(self)
-
-        # Runner instance
         self.manager = Manager(self)
         self.manager.check_runners_dir()
 
         # Run executable in a bottle
-        if arg_exe and arg_bottle:
-            if arg_bottle in self.manager.local_bottles.keys():
-                bottle_configuration = self.manager.local_bottles[arg_bottle]
-                Runner().run_executable(bottle_configuration,
-                                           arg_exe)
+        if arg_bottle and arg_bottle in self.manager.local_bottles.keys():
+            bottle_config = self.manager.local_bottles[arg_bottle]
+            if arg_exe:
+                Runner().run_executable(
+                    configuration=bottle_config,
+                    file_path=arg_exe
+                )
                 self.proper_close()
-
-        # Run lnk in a bottle
-        if arg_lnk and arg_bottle:
-            if arg_bottle in self.manager.local_bottles.keys():
-                bottle_configuration = self.manager.local_bottles[arg_bottle]
-                Runner().run_lnk(bottle_configuration,
-                                    arg_lnk)
+            elif arg_lnk:
+                Runner().run_lnk(
+                    configuration=bottle_config,
+                    file_path=arg_lnk
+                )
                 self.proper_close()
 
         # Pages
