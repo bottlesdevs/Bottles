@@ -34,7 +34,7 @@ class ImporterEntry(Handy.ActionRow):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
         self.prefix = prefix
 
         '''Populate widgets'''
@@ -51,11 +51,11 @@ class ImporterEntry(Handy.ActionRow):
 
     '''Browse wineprefix files'''
     def browse_wineprefix(self, widget):
-        self.runner.browse_wineprefix(self.prefix)
+        self.manager.browse_wineprefix(self.prefix)
 
     '''Import wineprefix'''
     def import_wineprefix(self, widget):
-        if self.runner.import_wineprefix(self.prefix, widget):
+        if self.manager.import_wineprefix(self.prefix, widget):
             self.destroy()
 
 
@@ -75,7 +75,7 @@ class ImporterView(Gtk.ScrolledWindow):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
 
         '''Signal connections'''
         self.btn_search_wineprefixes.connect("pressed", self.search_wineprefixes)
@@ -88,7 +88,7 @@ class ImporterView(Gtk.ScrolledWindow):
             w.destroy()
 
         '''Get wineprefixes and populate list_prefixes'''
-        wineprefixes = self.runner.search_wineprefixes()
+        wineprefixes = self.manager.search_wineprefixes()
         if len(wineprefixes) > 0:
             for wineprefix in wineprefixes:
                 self.list_prefixes.add(ImporterEntry(self.window, wineprefix))

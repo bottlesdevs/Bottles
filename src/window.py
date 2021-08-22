@@ -89,21 +89,21 @@ class MainWindow(Handy.ApplicationWindow):
         self.utils_conn = UtilsConnection(self)
 
         # Runner instance
-        self.runner = Manager(self)
-        self.runner.check_runners_dir()
+        self.manager = Manager(self)
+        self.manager.check_runners_dir()
 
         # Run executable in a bottle
         if arg_exe and arg_bottle:
-            if arg_bottle in self.runner.local_bottles.keys():
-                bottle_configuration = self.runner.local_bottles[arg_bottle]
+            if arg_bottle in self.manager.local_bottles.keys():
+                bottle_configuration = self.manager.local_bottles[arg_bottle]
                 Runner().run_executable(bottle_configuration,
                                            arg_exe)
                 self.proper_close()
 
         # Run lnk in a bottle
         if arg_lnk and arg_bottle:
-            if arg_bottle in self.runner.local_bottles.keys():
-                bottle_configuration = self.runner.local_bottles[arg_bottle]
+            if arg_bottle in self.manager.local_bottles.keys():
+                bottle_configuration = self.manager.local_bottles[arg_bottle]
                 Runner().run_lnk(bottle_configuration,
                                     arg_lnk)
                 self.proper_close()
@@ -161,7 +161,7 @@ class MainWindow(Handy.ApplicationWindow):
 
     def check_for_connection(self, status):
         if self.utils_conn.check_connection():
-            self.runner.checks()
+            self.manager.checks()
 
     # Toggle btn_noconnection visibility
     def toggle_btn_noconnection(self, status):
@@ -170,7 +170,7 @@ class MainWindow(Handy.ApplicationWindow):
     # Execute before window shown
     def on_start(self):
         # Search for at least one local runner
-        tmp_runners = [x for x in self.runner.runners_available if not x.startswith('sys-')]
+        tmp_runners = [x for x in self.manager.runners_available if not x.startswith('sys-')]
         if len(tmp_runners) == 0:
             # Check for flatpak migration
             self.show_onboard_view()

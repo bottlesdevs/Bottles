@@ -43,7 +43,7 @@ class ListViewEntry(Handy.ActionRow):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
         self.configuration = configuration[1]
         self.label_environment_context = self.label_environment.get_style_context()
         self.arg_exe = arg_exe
@@ -100,7 +100,7 @@ class ListViewEntry(Handy.ActionRow):
 
     '''Repair bottle'''
     def repair(self, widget):
-        self.runner.repair_bottle(self.configuration)
+        self.manager.repair_bottle(self.configuration)
 
     '''Display file dialog for executable'''
     def run_executable(self, widget):
@@ -127,7 +127,7 @@ class ListViewEntry(Handy.ActionRow):
             if self.window.settings.get_boolean("auto-close-bottles"):
                 self.window.proper_close()
             self.arg_exe = False
-            self.runner.update_bottles()
+            self.manager.update_bottles()
 
     '''Show details page'''
     def show_details(self, widget):
@@ -163,7 +163,7 @@ class ListView(Gtk.Box):
         for bottle in self.list_bottles.get_children():
             bottle.destroy()
 
-        bottles = self.window.runner.local_bottles.items()
+        bottles = self.window.manager.local_bottles.items()
 
         if len(bottles) == 0:
             self.clamp_list.set_visible(False)

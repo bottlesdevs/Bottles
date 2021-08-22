@@ -111,7 +111,7 @@ class RunnerBackup:
             logging.info(f"Backup: [{path}] imported successfully.")
 
             # Update bottles
-            window.runner.update_bottles()
+            window.manager.update_bottles()
             return True
 
         logging.error(f"Failed importing backup: [{backup_name}]")

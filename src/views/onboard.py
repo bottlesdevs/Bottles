@@ -51,7 +51,7 @@ class OnboardDialog(Handy.Window):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
 
         '''Signal connections'''
         self.stack_onboard.connect('notify::visible-child', self.page_changed)
@@ -102,7 +102,7 @@ class OnboardDialog(Handy.Window):
     def install_runner(self, widget):
         self.next_page()
         RunAsync(self.pulse, None)
-        self.runner.checks(after=self.next_page)
+        self.manager.checks(after=self.next_page)
 
     def previous_page(self, widget=False):
         visible_child = self.stack_onboard.get_visible_child_name()

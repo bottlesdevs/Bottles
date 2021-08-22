@@ -31,7 +31,7 @@ class TaskManagerView(Gtk.Box):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
 
         '''Apply model to treeview_processes'''
         self.liststore_processes = Gtk.ListStore(str, str, str, str, str, str)
@@ -55,7 +55,7 @@ class TaskManagerView(Gtk.Box):
     '''Populate liststore_processes'''
     def update_processes(self, widget=False):
         self.liststore_processes.clear()
-        processes = self.runner.get_running_processes()
+        processes = self.manager.get_running_processes()
 
         if len(processes) > 0:
             for process in processes:

@@ -22,9 +22,9 @@ RunnerType = NewType('RunnerType', str)
 
 class RunnerVersioning:
 
-    def __init__(self, window, runner):
+    def __init__(self, window, manager):
         self.window = window
-        self.runner = runner
+        self.manager = manager
 
     # Create new bottle state
     def async_create_bottle_state(self, args: list) -> bool:
@@ -188,8 +188,8 @@ class RunnerVersioning:
             return False
 
         # Update State in bottle configuration
-        self.runner.update_configuration(configuration, "State", state_id)
-        self.runner.update_configuration(configuration, "Versioning", True)
+        self.manager.update_configuration(configuration, "State", state_id)
+        self.manager.update_configuration(configuration, "Versioning", True)
 
         logging.info(f"New state [{state_id}] created successfully!")
 
@@ -199,7 +199,7 @@ class RunnerVersioning:
 
         # Update bottles
         time.sleep(2)
-        self.runner.update_bottles()
+        self.manager.update_bottles()
 
         download_entry.destroy()
 
@@ -328,14 +328,14 @@ class RunnerVersioning:
             shutil.copyfile(source, target)
 
         # Update State in bottle configuration
-        self.runner.update_configuration(configuration, "State", state_id)
+        self.manager.update_configuration(configuration, "State", state_id)
 
         # Update states
         self.window.page_details.update_states()
 
         # Update bottles
         time.sleep(2)
-        self.runner.update_bottles()
+        self.manager.update_bottles()
 
         # Execute caller function after all
         if after:

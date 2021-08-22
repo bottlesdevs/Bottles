@@ -45,7 +45,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.window = window
         self.settings = window.settings
         self.default_settings = window.default_settings
-        self.runner = window.runner
+        self.manager = window.manager
 
         '''Set widgets status from user settings'''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
@@ -103,11 +103,11 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.settings.set_boolean("auto-close-bottles", state)
 
     def populate_dxvk_list(self):
-        for dxvk in self.runner.supported_dxvk.items():
+        for dxvk in self.manager.supported_dxvk.items():
             self.list_dxvk.add(DxvkEntry(self.window, dxvk))
 
     def populate_vkd3d_list(self):
-        for vkd3d in self.runner.supported_vkd3d.items():
+        for vkd3d in self.manager.supported_vkd3d.items():
             self.list_vkd3d.add(Vkd3dEntry(self.window, vkd3d))
 
     def populate_runners_list(self):
@@ -115,13 +115,13 @@ class PreferencesWindow(Handy.PreferencesWindow):
             if w != self.actionrow_prerelease:
                 w.destroy()
 
-        for runner in self.runner.supported_wine_runners.items():
+        for runner in self.manager.supported_wine_runners.items():
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
             self.list_runners.add(RunnerEntry(self.window, runner))
 
-        for runner in self.runner.supported_proton_runners.items():
+        for runner in self.manager.supported_proton_runners.items():
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
@@ -145,7 +145,7 @@ class DxvkEntry(Handy.ActionRow):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
         self.dxvk_name = dxvk[0]
         self.spinner = Gtk.Spinner()
 
@@ -169,7 +169,7 @@ class DxvkEntry(Handy.ActionRow):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
         for w in self.box_download_status.get_children(): w.set_visible(True)
-        self.runner.install_component(
+        self.manager.install_component(
             "dxvk", 
             self.dxvk_name, 
             func=self.update_status, 
@@ -240,7 +240,7 @@ class Vkd3dEntry(Handy.ActionRow):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
         self.vkd3d_name = vkd3d[0]
         self.spinner = Gtk.Spinner()
 
@@ -265,7 +265,7 @@ class Vkd3dEntry(Handy.ActionRow):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
         for w in self.box_download_status.get_children(): w.set_visible(True)
-        self.runner.install_component(
+        self.manager.install_component(
             "vkd3d", 
             self.vkd3d_name, 
             func=self.update_status, 
@@ -338,7 +338,7 @@ class RunnerEntry(Handy.ActionRow):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
         self.runner_name = runner_entry[0]
         self.spinner = Gtk.Spinner()
 
@@ -367,7 +367,7 @@ class RunnerEntry(Handy.ActionRow):
         if self.runner_name.lower().startswith("proton"):
             component_type = "runner:proton"
 
-        self.runner.install_component(component_type,
+        self.manager.install_component(component_type,
                                       self.runner_name,
                                       func=self.update_status,
                                       after=self.set_installed)

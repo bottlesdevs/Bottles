@@ -1070,7 +1070,7 @@ class Manager:
     def async_create_bottle(self, args: list) -> None:
         logging.info("Creating the wineprefix …")
 
-        name, environment, path, runner, dxvk, vkd3d, versioning, dialog, arch = args
+        name, environment, path, manager, dxvk, vkd3d, versioning, dialog, arch = args
 
         update_output = dialog.update_output
 

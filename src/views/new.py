@@ -88,7 +88,7 @@ class NewView(Handy.Window):
 
         '''Common variables'''
         self.window = window
-        self.runner = window.runner
+        self.manager = window.manager
         self.arg_exe = arg_exe
         self.arg_lnk = arg_lnk
         self.selected_environment = "gaming"
@@ -112,13 +112,13 @@ class NewView(Handy.Window):
             self.list_environments.get_children()[0])
 
         '''Populate combo_runner'''
-        for runner in self.runner.runners_available:
+        for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
 
         self.combo_runner.set_active(0)
 
         '''Populate combo_dxvk'''
-        for dxvk in self.runner.dxvk_available:
+        for dxvk in self.manager.dxvk_available:
             self.combo_dxvk.append(dxvk, dxvk)
 
         self.combo_dxvk.set_active(0)
@@ -161,9 +161,9 @@ class NewView(Handy.Window):
         if self.selected_environment == "Custom":
             runner = self.combo_runner.get_active_id()
         else:
-            rv = [i for i in self.runner.runners_available if i.startswith('vaniglia')]
-            rl = [i for i in self.runner.runners_available if i.startswith('lutris')]
-            rs = [i for i in self.runner.runners_available if i.startswith('sys-')]
+            rv = [i for i in self.manager.runners_available if i.startswith('vaniglia')]
+            rl = [i for i in self.manager.runners_available if i.startswith('lutris')]
+            rs = [i for i in self.manager.runners_available if i.startswith('sys-')]
 
             if len(rv) > 0: # use the latest from vaniglia
                 runner = rv[0]
@@ -172,9 +172,9 @@ class NewView(Handy.Window):
             elif len(rs) > 0: # use the latest from system
                 runner = rs[0]
             else: # use any other runner available
-                runner = self.runner.runners_available[0]
+                runner = self.manager.runners_available[0]
 
-        self.runner.create_bottle(name=self.entry_name.get_text(),
+        self.manager.create_bottle(name=self.entry_name.get_text(),
                                   path="",
                                   environment=self.selected_environment,
                                   runner=runner,
@@ -203,7 +203,7 @@ class NewView(Handy.Window):
         self.stack_create.set_visible_child_name("page_created")
 
         '''Update bottles'''
-        self.runner.check_bottles()
+        self.manager.check_bottles()
         self.window.page_list.update_bottles()
 
     '''Progressbar pulse every 1s'''
