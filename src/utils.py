@@ -26,13 +26,11 @@ import hashlib
 import threading
 import traceback
 
-from typing import Union, NewType
+from typing import Union
 from datetime import datetime
 from pathlib import Path
 
 from gi.repository import GLib
-
-from .views.dialog import Dialog
 
 # Set default logging level
 logging.basicConfig(level=logging.DEBUG)
@@ -59,9 +57,11 @@ class UtilsConnection():
             self.window.toggle_btn_noconnection(True)
 
             if show_notification:
-                self.window.send_notification("Bottles",
-                                              _("You are offline, unable to download."),
-                                              "network-wireless-disabled-symbolic")
+                self.window.send_notification(
+                    title="Bottles",
+                    text=_("You are offline, unable to download."),
+                    image="network-wireless-disabled-symbolic"
+                )
             self.last_check = datetime.now()
             self.status = False
 
@@ -146,6 +146,9 @@ class UtilsFiles():
 
     @staticmethod
     def get_checksum(file):
+        '''
+        This function returns the MD5 checksum of the given file.
+        '''
         checksum = hashlib.md5()
 
         try:
@@ -158,14 +161,19 @@ class UtilsFiles():
 
     @staticmethod
     def use_insensitive_ext(string):
-        # Converts a glob pattern into a case-insensitive glob pattern
+        '''
+        This function converts a glob pattern into a case-insensitive
+        glob pattern
+        '''
         ext = string.split('.')[1]
         globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
         return '*.%s' % ''.join(globlist)
     
-    # Get human size by a float
     @staticmethod
     def get_human_size(size:float) -> str:
+        '''
+        This function returns a human readable size from a given float size.
+        '''
         for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
             if abs(size) < 1024.0:
                 return "%3.1f%s%s" % (size, unit, 'B')
@@ -174,8 +182,12 @@ class UtilsFiles():
         return "%.1f%s%s" % (size, 'Yi', 'B')
     
 
-    # Get path size
     def get_path_size(self, path:str, human:bool=True) -> Union[str, float]:
+        '''
+        This function returns the size of a given path in human readable
+        format or in bytes. Default is human readable, set human to False
+        to get bytes.
+        '''
         path = Path(path)
         size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
 
@@ -183,9 +195,12 @@ class UtilsFiles():
 
         return size
 
-    # Get disk size
     def get_disk_size(self, human:bool=True) -> dict:
-        # TODO: disk should be taken from configuration Path
+        '''
+        This function returns the size of the disk in human readable format
+        or in bytes. Default is human readable, set human to False to get
+        bytes.
+        '''
         disk_total, disk_used, disk_free = shutil.disk_usage('/')
 
         if human:
@@ -201,6 +216,12 @@ class UtilsFiles():
 
 
 def write_log(data:list):
+    '''
+    This function writes a crash.log file.
+    It takes care of the location of the log whether Bottles is running 
+    under Flatpak or not. It also find and replace the user's home directory
+    with "USER" as a proposed standard for crash reports.
+    '''
     log_path = f"{Path.home()}/.local/share/bottles/crash.log"
     if "FLATPAK_ID" in os.environ:
         log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
@@ -210,12 +231,16 @@ def write_log(data:list):
             # replace username with "USER" as standard
             if "/home/" in d:
                 d = re.sub(r"/home/([^/]*)/", r"/home/USER/", d)
+                
             crash_log.write(d)
 
 
-# Execute synchronous tasks
 class RunAsync(threading.Thread):
 
+    '''
+    This class is used to execute a function asynchronously.
+    It take a function, a callback and a list of arguments as input.
+    '''
     def __init__(self, task_func, callback, *args, **kwargs):
         self.source_id = None
         self.stop_request = threading.Event()
@@ -251,9 +276,14 @@ class RunAsync(threading.Thread):
         return self.source_id
 
 
-# Extract a Windows cabinet
 class CabExtract():
 
+    '''
+    This class is used to extract a Windows cabinet file.
+    It takes the cabinet file path and the destination name as input. Then it
+    extracts the file in a new directory with the input name under the Bottles'
+    temp directory.
+    '''
     requirements = False
     
     def run(self, path: str, name: str):
@@ -301,6 +331,10 @@ class CabExtract():
 
         
 def validate_url(url: str):
+    '''
+    This function validates a given URL.
+    It returns True if the URL is valid, False otherwise.
+    '''
     regex = re.compile(
         r'^(?:http|ftp)s?://'
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
