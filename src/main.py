@@ -216,17 +216,17 @@ class Application(Gtk.Application):
         self.win = win
         win.present()
 
-    def quit(self, action=None, param=None):
+    @staticmethod
+    def __quit(action=None, param=None):
         '''
         This function close the application.
         It is used by the [Ctrl+Q] shortcut.
         '''
         logging.info(_("[Quit] request received."))
-        self.win.destroy()
         quit()
 
     @staticmethod
-    def help(action=None, param=None):
+    def __help(action=None, param=None):
         '''
         This function open the documentation in the user's default browser.
         It is used by the [F1] shortcut.
@@ -234,13 +234,13 @@ class Application(Gtk.Application):
         logging.info(_("[Help] request received."))
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
-    def refresh(self, action=None, param=None):
+    def __refresh(self, action=None, param=None):
         '''
         This function refresh the user bottle list.
         It is used by the [Ctrl+R] shortcut.
         '''
         logging.info(_("[Refresh] request received."))
-        self.win.runner.update_bottles()
+        self.win.manager.update_bottles()
 
     def __register_actions(self):
         '''
@@ -248,9 +248,9 @@ class Application(Gtk.Application):
         The actions are the application shortcuts (accellerators).
         '''
         action_entries = [
-            ("quit", self.quit, ("app.quit", ["<Ctrl>Q"])),
-            ("help", self.help, ("app.help", ["F1"])),
-            ("refresh", self.refresh, ("app.refresh", ["<Ctrl>R"]))
+            ("quit", self.__quit, ("app.quit", ["<Ctrl>Q"])),
+            ("help", self.__help, ("app.help", ["F1"])),
+            ("refresh", self.__refresh, ("app.refresh", ["<Ctrl>R"]))
         ]
 
         for action, callback, accel in action_entries:
