@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-15 09:17+0200\n"
+"POT-Creation-Date: 2021-08-22 09:52+0200\n"
 "PO-Revision-Date: 2021-08-22 07:48+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -23,7 +23,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:137
+#: src/window.py:127
 msgid "Bottles"
 msgstr "Butelje"
 
@@ -329,8 +329,8 @@ msgid ""
 "Frech translations thanks to J. Lavoie, SCOTT-HAMILTON, @julroy67, "
 "@yannicka, K. Herbert"
 msgstr ""
-"Prijevod na francuski, hvala J. Lavoie, SCOTT-HAMILTON, @julroy67, @"
-"yannicka, K. Herbert"
+"Prijevod na francuski, hvala J. Lavoie, SCOTT-HAMILTON, @julroy67, "
+"@yannicka, K. Herbert"
 
 #: data/com.usebottles.bottles.appdata.xml.in:136
 msgid "Italian translations thanks to @blackcat-917"
@@ -596,7 +596,7 @@ msgstr "Upravljanje verzijama je aktivno u ovoj butelji."
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:354 src/main.py:97
+#: src/ui/details.ui:354 src/main.py:120
 msgid "Bottle name"
 msgstr "Ime butelje"
 
@@ -645,7 +645,7 @@ msgid "Are you experiencing problems reaching a directory in Bottles?"
 msgstr "Ne možeš pristupiti određenoj mapi u programu Butelje?"
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
-#: src/pages/details.py:854
+#: src/views/details.py:865
 msgid "Programs"
 msgstr "Programi"
 
@@ -885,7 +885,7 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Zapiši putanje kodova koji u Wineu nisu implementirani."
 
 #: src/ui/details.ui:1836 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/pages/details.py:852
+#: src/views/details.py:863
 msgid "Preferences"
 msgstr "Postavke"
 
@@ -895,7 +895,7 @@ msgstr ""
 "Aktiviran je testni način rada: prikazuju se samo ovisnosti iz repozitorija "
 "za testiranje."
 
-#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/pages/details.py:853
+#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:864
 msgid "Dependencies"
 msgstr "Ovisnosti"
 
@@ -936,7 +936,7 @@ msgstr ""
 "href=\"https://github.com/bottlesdevs/Bottles/issues/new/choose\"> prijavi "
 "greške </a>."
 
-#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/pages/details.py:859
+#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:870
 msgid "Installers"
 msgstr "Instalacijski programi"
 
@@ -944,7 +944,7 @@ msgstr "Instalacijski programi"
 msgid "Refresh"
 msgstr "Aktualiziraj"
 
-#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/pages/details.py:857
+#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:868
 msgid "Versioning"
 msgstr "Upravljanje verzijama"
 
@@ -957,8 +957,8 @@ msgid "Message goes here."
 msgstr "Ovdje upiši poruku."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/pages/details.py:890
-#: src/pages/details.py:1048 src/pages/details.py:1330 src/pages/list.py:113
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:901
+#: src/views/details.py:1061 src/views/details.py:1343 src/views/list.py:114
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -1068,7 +1068,7 @@ msgstr "0 %"
 msgid "Uninstall"
 msgstr "Deinstaliraj"
 
-#: src/ui/importer.ui:76 src/window.py:139
+#: src/ui/importer.ui:76 src/window.py:129
 msgid "Importer"
 msgstr "Uvoznik"
 
@@ -1420,7 +1420,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr "Provjeri ima li pokrenutih procesa."
 
-#: src/ui/window.ui:49 src/window.py:138
+#: src/ui/window.ui:49 src/window.py:128
 msgid "Task manager"
 msgstr "Upravljač zadataka"
 
@@ -1461,206 +1461,241 @@ msgstr "Idi natrag"
 msgid "New bottle"
 msgstr "Nova butelja"
 
-#: src/main.py:79
+#: src/main.py:96
 msgid "Show version"
 msgstr "Pokaži verziju"
 
-#: src/main.py:85
+#: src/main.py:104
 msgid "Executable path"
 msgstr "Staza izvršne datoteke"
 
-#: src/main.py:91
+#: src/main.py:112
 msgid "lnk path"
 msgstr "lnk staza"
 
-#: src/main.py:175
+#: src/main.py:225
 msgid "[Quit] request received."
 msgstr "Primljen je zahtjev za [Zatvori program]."
 
-#: src/main.py:181
+#: src/main.py:234
 msgid "[Help] request received."
 msgstr "Primljen je zahtjev za [Pomoć]."
 
-#: src/main.py:187
+#: src/main.py:242
 msgid "[Refresh] request received."
 msgstr "Primljen je zahtjev za [Aktualiziraj]."
-
-#: src/runner.py:1072
-msgid "No runners found, please install one."
-msgstr "Nijedan pokretač nije pronađen. Instaliraj jedan pokretač."
-
-#: src/runner.py:1076
-msgid "No dxvk found, installing the latest version …"
-msgstr "Dxvk nije pronađen, instalira se najnovija verzija …"
-
-#: src/runner.py:1079
-msgid "No vkd3d found, installing the latest version …"
-msgstr "Vkd3d nije pronađen, instalira se najnovija verzija …"
-
-#. Execute wineboot
-#: src/runner.py:1123
-msgid "The wine configuration is being updated …"
-msgstr "Wine konfiguracija se aktualizira …"
-
-#: src/runner.py:1130
-msgid "Wine configuration updated!"
-msgstr "Wine konfiguracija je aktualizirana!"
-
-#: src/runner.py:1156
-#, python-brace-format
-msgid "Applying environment: {0} …"
-msgstr "Primjenjivanje okruženja: {0} …"
-
-#: src/runner.py:1176
-msgid "Installing dxvk …"
-msgstr "Instaliranje dxvk-a …"
-
-#: src/runner.py:1182
-msgid "Installing vkd3d …"
-msgstr "Instaliranje vkd3d-a …"
-
-#: src/runner.py:1190
-msgid "Creating versioning state 0 …"
-msgstr "Stvaranje stanja 0 za upravljanje verzijama …"
-
-#: src/runner.py:1197
-#, python-brace-format
-msgid "Your new bottle: {0} is now ready!"
-msgstr "Tvoja nova butelja: {0} je sada spremna!"
 
 #: src/utils.py:63
 msgid "You are offline, unable to download."
 msgstr "Računalo nije povezano. Preuzimanje nije moguće."
 
-#: src/window.py:136
+#: src/window.py:126
 msgid "Bottle details"
 msgstr "Podaci butelje"
 
-#: src/window.py:166
+#: src/window.py:156
 msgid "Bottles Started!"
 msgstr "Butelje je pokrenut!"
 
-#: src/pages/details.py:371 src/pages/details.py:624
+#: src/backend/backup.py:46
+#, python-brace-format
+msgid "Backup {0}"
+msgstr "Sigurnosna kopija {0}"
+
+#: src/backend/backup.py:97
+#, python-brace-format
+msgid "Importing backup: {0}"
+msgstr "Uvoz sigurnosne kopije: {0}"
+
+#: src/backend/manager.py:1079
+msgid "No runners found, please install one."
+msgstr "Nijedan pokretač nije pronađen. Instaliraj jedan pokretač."
+
+#: src/backend/manager.py:1083
+msgid "No dxvk found, installing the latest version …"
+msgstr "Dxvk nije pronađen, instalira se najnovija verzija …"
+
+#: src/backend/manager.py:1086
+msgid "No vkd3d found, installing the latest version …"
+msgstr "Vkd3d nije pronađen, instalira se najnovija verzija …"
+
+#. Execute wineboot
+#: src/backend/manager.py:1130
+msgid "The wine configuration is being updated …"
+msgstr "Wine konfiguracija se aktualizira …"
+
+#: src/backend/manager.py:1137
+msgid "Wine configuration updated!"
+msgstr "Wine konfiguracija je aktualizirana!"
+
+#: src/backend/manager.py:1142
+#, fuzzy
+msgid "Generating Bottle configuration file …"
+msgstr "Stanje veze: nepovezano …"
+
+#: src/backend/manager.py:1163
+#, python-brace-format
+msgid "Applying environment: {0} …"
+msgstr "Primjenjivanje okruženja: {0} …"
+
+#: src/backend/manager.py:1183
+msgid "Installing dxvk …"
+msgstr "Instaliranje dxvk-a …"
+
+#: src/backend/manager.py:1189
+msgid "Installing vkd3d …"
+msgstr "Instaliranje vkd3d-a …"
+
+#: src/backend/manager.py:1197
+msgid "Creating versioning state 0 …"
+msgstr "Stvaranje stanja 0 za upravljanje verzijama …"
+
+#: src/backend/manager.py:1204
+#, python-brace-format
+msgid "Your new bottle: {0} is now ready!"
+msgstr "Tvoja nova butelja: {0} je sada spremna!"
+
+#: src/backend/versioning.py:45
+#, fuzzy
+msgid "Generating state files index …"
+msgstr "Stanje veze: nepovezano …"
+
+#: src/backend/versioning.py:115
+#, fuzzy
+msgid "Creating a restore point …"
+msgstr "Stvaranje datoteke zaključavanja u putanji izvora …"
+
+#: src/backend/versioning.py:138
+#, fuzzy
+msgid "Updating index …"
+msgstr "Stvaranje Wine mape …"
+
+#: src/backend/versioning.py:153
+#, fuzzy
+msgid "Updating states …"
+msgstr "Stvaranje butelje …"
+
+#: src/views/details.py:378 src/views/details.py:634
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest za {0}"
 
-#: src/pages/details.py:456
+#: src/views/details.py:464
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indeks za stanje {0}"
 
-#: src/pages/details.py:841
+#: src/views/details.py:852
 msgid "Gamemode is either not available on your system or not running."
 msgstr "Modus za igre nije dostupan na tvom sustavu ili nije pokrenut."
 
-#: src/pages/details.py:851
+#: src/views/details.py:862
 msgid "Details & Utilities"
 msgstr "Detalji i uslužni programi"
 
-#: src/pages/details.py:886
+#: src/views/details.py:897
 msgid "Choose working directory for executables"
 msgstr "Odaberi radnu mapu za izvršne datoteke"
 
-#: src/pages/details.py:889
+#: src/views/details.py:900
 msgid "Done"
 msgstr "Obavljeno"
 
-#: src/pages/details.py:937
+#: src/views/details.py:948
 msgid "64-bit"
 msgstr "64-bit"
 
-#: src/pages/details.py:939
+#: src/views/details.py:950
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/pages/details.py:953
+#: src/views/details.py:964
 #, python-format
 msgid "Updated: %s"
 msgstr "Aktualizirano: %s"
 
-#: src/pages/details.py:1044
+#: src/views/details.py:1057
 msgid "Choose an executable path"
 msgstr "Odaberi jednu stazu izvršnih datoteka"
 
-#: src/pages/details.py:1047
+#: src/views/details.py:1060
 msgid "Add"
 msgstr "Dodaj"
 
-#: src/pages/details.py:1326 src/pages/list.py:109
+#: src/views/details.py:1339 src/views/list.py:110
 msgid "Choose a Windows executable file"
 msgstr "Odaberi jednu Windows izvršnu datoteku"
 
-#: src/pages/details.py:1329 src/pages/list.py:112
+#: src/views/details.py:1342 src/views/list.py:113
 msgid "Run"
 msgstr "Pokreni"
 
-#: src/pages/details.py:1405
+#: src/views/details.py:1418
 msgid "Select the location where to save the backup configuration"
 msgstr "Odaberi mjesto za spremanje konfiguracije sigurnosne kopije"
 
-#: src/pages/details.py:1427
+#: src/views/details.py:1440
 msgid "Select the location where to save the backup archive"
 msgstr "Odaberi mjesto za spremanje arhive sigurnosne kopije"
 
-#: src/pages/details.py:1455
+#: src/views/details.py:1468
 msgid "Confirm deletion"
 msgstr "Potvrdi brisanje"
 
-#: src/pages/details.py:1456
+#: src/views/details.py:1469
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Stvarno želiš izbrisati ovu butelju i sve datoteke?"
 
-#: src/pages/dialog.py:34 src/pages/dialog.py:72
+#: src/views/dialog.py:34 src/views/dialog.py:72
 msgid "Warning"
 msgstr "Upozorenje"
 
-#: src/pages/dialog.py:35
+#: src/views/dialog.py:35
 msgid "An error has occurred."
 msgstr "Došlo je do greške."
 
-#: src/pages/dialog.py:130
+#: src/views/dialog.py:130
 msgid "Show report"
 msgstr "Pokaži izvještaj"
 
-#: src/pages/importer.py:97
+#: src/views/importer.py:99
 msgid "Choose a backup archive"
 msgstr "Odaberi arhiv sigurnosne kopije"
 
-#: src/pages/list.py:51 src/pages/list.py:57
+#: src/views/list.py:52 src/views/list.py:58
 msgid "N/A"
 msgstr "--"
 
-#: src/pages/list.py:93
+#: src/views/list.py:94
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Pronađeni argumenti za izvršnu datoteku: [{executable}]."
 
-#: src/pages/new.py:65
+#: src/views/new.py:67
 msgid "Gaming"
 msgstr "Igre"
 
-#: src/pages/new.py:66
+#: src/views/new.py:68
 msgid "An environment improved for Windows games."
 msgstr "Poboljšano okruženje za Windows igre."
 
-#: src/pages/new.py:71
+#: src/views/new.py:73
 msgid "Software"
 msgstr "Softver"
 
-#: src/pages/new.py:72
+#: src/views/new.py:74
 msgid "An environment improved for Windows software."
 msgstr "Poboljšano okruženje za Windows softver."
 
-#: src/pages/new.py:77
+#: src/views/new.py:79
 msgid "Custom"
 msgstr "Prilagođeno"
 
-#: src/pages/new.py:78
+#: src/views/new.py:80
 msgid "A clear environment for your experiments."
 msgstr "Čisto okruženje za tvoje eksperimente."
 
-#: src/pages/new.py:192
+#: src/views/new.py:198
 #, python-format
 msgid "A bottle named “%s” was created successfully"
 msgstr "Butelja s imenom „%s” je uspješno stvorena"
@@ -1724,12 +1759,6 @@ msgstr "Butelja s imenom „%s” je uspješno stvorena"
 #~ msgid "Esperanto translations thanks to @phlostically"
 #~ msgstr "Prijevod na esperanto, hvala @phlostically"
 
-#~ msgid "Backup {0}"
-#~ msgstr "Sigurnosna kopija {0}"
-
-#~ msgid "Importing backup: {0}"
-#~ msgstr "Uvoz sigurnosne kopije: {0}"
-
 #~ msgid "Display a crash report on restart if something goes wrong"
 #~ msgstr "Prikaz izvještaja o prekidu programa prilikom ponovnog pokretanja"
 
@@ -1787,22 +1816,6 @@ msgstr "Butelja s imenom „%s” je uspješno stvorena"
 
 #~ msgid "Ukrain thanslations thanks to @marchellodev"
 #~ msgstr "Prijevod na ukrajinski, hvala @marchellodev"
-
-#, fuzzy
-#~ msgid "Generating state files index …"
-#~ msgstr "Stanje veze: nepovezano …"
-
-#, fuzzy
-#~ msgid "Creating a restore point …"
-#~ msgstr "Stvaranje datoteke zaključavanja u putanji izvora …"
-
-#, fuzzy
-#~ msgid "Updating index …"
-#~ msgstr "Stvaranje Wine mape …"
-
-#, fuzzy
-#~ msgid "Updating states …"
-#~ msgstr "Stvaranje butelje …"
 
 #~ msgid "This is the manifest for {0}."
 #~ msgstr "Ovo je manifest za {0}."

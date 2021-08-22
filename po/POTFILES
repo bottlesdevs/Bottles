@@ -11,7 +11,6 @@ src/ui/dialog-environment-variables.ui
 src/ui/dialog-launch-options.ui
 src/ui/dll-override-entry.ui
 src/ui/dxvk-entry.ui
-src/ui/empty.ui
 src/ui/importer.ui
 src/ui/importer-entry.ui
 src/ui/installer-entry.ui
@@ -27,19 +26,23 @@ src/ui/task-manager.ui
 src/ui/window.ui
 
 src/download.py
-src/empty.py
 src/main.py
 src/params.py
-src/runner.py
 src/utils.py
 src/window.py
 
-src/pages/create.py
-src/pages/details.py
-src/pages/dialog.py
-src/pages/importer.py
-src/pages/list.py
-src/pages/new.py
-src/pages/onboard.py
-src/pages/preferences.py
-src/pages/taskmanager.py
+src/backend/backup.py
+src/backend/globals.py
+src/backend/installer.py
+src/backend/manager.py
+src/backend/runner.py
+src/backend/versioning.py
+
+src/views/details.py
+src/views/dialog.py
+src/views/importer.py
+src/views/list.py
+src/views/new.py
+src/views/onboard.py
+src/views/preferences.py
+src/views/taskmanager.py
