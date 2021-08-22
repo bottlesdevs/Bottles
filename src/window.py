@@ -141,7 +141,6 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
-        # self.squeezer.connect('notify::visible-child', self.on_squeezer_notify)
 
         # If there is at least one page, show the bottles list
         self.stack_main.set_visible_child_name("page_list")
@@ -154,10 +153,6 @@ class MainWindow(Handy.ApplicationWindow):
 
         arg_exe = False
         logging.info(_("Bottles Started!"))
-
-    def on_squeezer_notify(self, widget, event=False):
-        # TODO: this is used for responsive and doesn't work at this time
-        child = widget.get_visible_child()
 
     def check_for_connection(self, status):
         if self.utils_conn.check_connection():
@@ -264,7 +259,10 @@ class MainWindow(Handy.ApplicationWindow):
         except FileNotFoundError:
             pass
 
-    # Properly close Bottles
+    '''
+    Properly close Bottles, giving 1s to the wine process to spawn the window
+    if an executable is passed as argument
+    '''
     @staticmethod
     def proper_close():
         time.sleep(1)
