@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-22 09:52+0200\n"
-"PO-Revision-Date: 2021-08-22 07:48+0000\n"
+"PO-Revision-Date: 2021-08-23 16:14+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -70,7 +70,8 @@ msgstr ""
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Upravljanjem verzijama butelja tvoj se rad čuva i omogućuje njegovo vraćanje!"
+"Verzioniranje butelja čuva tvoj rad te omogućuje obnavljanje određenog "
+"stanja butelje!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
@@ -120,17 +121,17 @@ msgstr "Automatsko instaliranje i upravljanje Wine i Proton pokretačima"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
-msgstr "Automatsko popravljanje butelja u slučaju grešaka"
+msgstr "Automatsko popravljanje butelje u slučaju kvara"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
 msgstr ""
-"Integriran je program za instaliranje potrebnog softvera na osnovi "
-"repozitorija koji vodi zajednica"
+"Integriran program za instaliranje potrebnog softvera na osnovi repozitorija "
+"koji vodi zajednica"
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
 msgid "Integrated Task manager for Wine processes"
-msgstr "Integriran je upravljač zadataka za Wine procese"
+msgstr "Integriran upravljač zadataka za Wine procese"
 
 #: data/com.usebottles.bottles.appdata.xml.in:29
 msgid "Access to ProtonDB and WineHQ for support"
@@ -151,7 +152,7 @@ msgstr "Uvoz Wine mapa iz drugih upravljača"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning (experimental)"
-msgstr "Upravljanje verzijama butelja (eksperimentalno)"
+msgstr "Verzioniranje butelja (eksperimentalno)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid ".. and much more that you can find by installing Bottles!"
@@ -550,11 +551,11 @@ msgstr "Konfiguracija"
 #: src/ui/details.ui:36 src/ui/details.ui:61 src/ui/details.ui:91
 #: src/ui/importer.ui:36
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Ovo je potpuna arhiva tvoje butelje, uključujući osobne datoteke."
+msgstr "Ovo je kompletna arhiva tvoje butelje, uključujući osobne datoteke."
 
 #: src/ui/details.ui:37 src/ui/importer.ui:37
 msgid "Full archive"
-msgstr "Potpuni arhiv"
+msgstr "Kompletna arhiva"
 
 #: src/ui/details.ui:62
 msgid "Duplicate bottle"
@@ -1162,9 +1163,7 @@ msgstr "Koristi upravljanje verzijama"
 
 #: src/ui/new.ui:235
 msgid "Enable versioning to save and restore the bottle to a state."
-msgstr ""
-"Aktiviraj upravljanje verzijama za spremanje i vraćanje butelje u određeno "
-"stanje."
+msgstr "Aktiviraj verzioniranje za spremanje i obnavljanje stanja butelje."
 
 #: src/ui/new.ui:409
 msgid "Architecture"
@@ -1414,7 +1413,8 @@ msgstr "Datum stvaranja"
 #: src/ui/task-manager.ui:26
 msgid "These are the wine/wineserver processes running on your PC."
 msgstr ""
-"Na tvom se računalu pokreču wine procesi ili procesi wine poslužitelja."
+"Ovo su wine procesi ili procesi wine poslužitelja koji se pokreću na tvom "
+"računalu."
 
 #: src/ui/task-manager.ui:45
 msgid "Check for running processes."
@@ -1529,9 +1529,8 @@ msgid "Wine configuration updated!"
 msgstr "Wine konfiguracija je aktualizirana!"
 
 #: src/backend/manager.py:1142
-#, fuzzy
 msgid "Generating Bottle configuration file …"
-msgstr "Stanje veze: nepovezano …"
+msgstr "Generiranje konfiguracijske datoteke butelje …"
 
 #: src/backend/manager.py:1163
 #, python-brace-format
@@ -1556,24 +1555,20 @@ msgid "Your new bottle: {0} is now ready!"
 msgstr "Tvoja nova butelja: {0} je sada spremna!"
 
 #: src/backend/versioning.py:45
-#, fuzzy
 msgid "Generating state files index …"
-msgstr "Stanje veze: nepovezano …"
+msgstr "Generiranje indeksa datoteka stanja …"
 
 #: src/backend/versioning.py:115
-#, fuzzy
 msgid "Creating a restore point …"
-msgstr "Stvaranje datoteke zaključavanja u putanji izvora …"
+msgstr "Stvaranje stanja …"
 
 #: src/backend/versioning.py:138
-#, fuzzy
 msgid "Updating index …"
-msgstr "Stvaranje Wine mape …"
+msgstr "Aktualiziranje indeksa …"
 
 #: src/backend/versioning.py:153
-#, fuzzy
 msgid "Updating states …"
-msgstr "Stvaranje butelje …"
+msgstr "Aktualiziranje stanja …"
 
 #: src/views/details.py:378 src/views/details.py:634
 #, python-brace-format
@@ -1660,7 +1655,7 @@ msgstr "Pokaži izvještaj"
 
 #: src/views/importer.py:99
 msgid "Choose a backup archive"
-msgstr "Odaberi arhiv sigurnosne kopije"
+msgstr "Odaberi arhivu sigurnosne kopije"
 
 #: src/views/list.py:52 src/views/list.py:58
 msgid "N/A"
