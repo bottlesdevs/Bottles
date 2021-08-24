@@ -34,7 +34,7 @@ from pathlib import Path
 from datetime import datetime
 
 from ..download import DownloadManager
-from ..utils import UtilsLogger, UtilsFiles, RunAsync, CabExtract, validate_url
+from ..utils import UtilsLogger, RunAsync, CabExtract, validate_url
 from .runner import Runner
 from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
 from .versioning import RunnerVersioning
@@ -151,7 +151,7 @@ class Manager:
     def async_install_component(self, args: list) -> None:
         component_type, component_name, after, func, checks = args
 
-        manifest = self.fetch_component_manifest(
+        manifest = self.component_manager.get_component(
             component_type, component_name)
         
         if not manifest:
@@ -770,41 +770,6 @@ class Manager:
                     return url.read().decode("utf-8")
                 return yaml.safe_load(url.read())
         return False
-
-    # Fetch component manifest
-    def fetch_component_manifest(self, component_type: str, component_name: str, plain: bool = False) -> Union[str, dict, bool]:
-        if component_type == "runner":
-            component = self.supported_wine_runners[component_name]
-        if component_type == "runner:proton":
-            component = self.supported_proton_runners[component_name]
-        if component_type == "dxvk":
-            component = self.supported_dxvk[component_name]
-        if component_type == "vkd3d":
-            component = self.supported_vkd3d[component_name]
-
-        if self.utils_conn.check_connection():
-            if "Sub-category" in component:
-                manifest_url = "%s/%s/%s/%s.yml" % (
-                    BottlesRepositories.components,
-                    component["Category"],
-                    component["Sub-category"],
-                    component_name)
-            else:
-                manifest_url = "%s/%s/%s.yml" % (
-                    BottlesRepositories.components,
-                    component["Category"],
-                    component_name)
-            try:
-                with urllib.request.urlopen(manifest_url) as url:
-                    if plain:
-                        return url.read().decode("utf-8")
-                    return yaml.safe_load(url.read())
-            except:
-                logging.error(f"Cannot fetch manifest for {component_name}.")
-                return False
-        
-        return False
-                
 
     # Fetch dependencies
     def fetch_dependencies(self) -> bool:

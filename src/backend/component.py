@@ -22,17 +22,12 @@ import shutil
 import tarfile
 import requests
 import urllib.request
-from typing import NewType
 from gi.repository import GLib
+from typing import Union
 
 from ..download import DownloadManager
 from .globals import Paths, BottlesRepositories
 from ..utils import UtilsLogger, UtilsFiles
-
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-RunnerName = NewType('RunnerName', str)
-RunnerType = NewType('RunnerType', str)
 
 logging = UtilsLogger()
 
@@ -43,6 +38,64 @@ class ComponentManager:
         self.__utils_conn = manager.utils_conn
         self.__window = manager.window
         self.__download_manager = DownloadManager(self.__window)
+    
+    def get_component(
+        self, 
+        component_type: str, 
+        component_name: str, 
+        plain: bool = False
+    ) -> Union[str, dict, bool]:
+        '''
+        This function can be used to fetch the manifest for a given
+        component. It can be returned as plain text or as a dictionary.
+        It will return False if the component is not found.
+        '''
+
+        # Make a copy of the lists of available components
+        supported_wine_runners = self.__manager.supported_wine_runners
+        supported_proton_runners = self.__manager.supported_proton_runners
+        supported_dxvk = self.__manager.supported_dxvk
+        supported_vkd3d = self.__manager.supported_vkd3d
+
+        if component_type == "runner":
+            component = supported_wine_runners[component_name]
+        if component_type == "runner:proton":
+            component = supported_proton_runners[component_name]
+        if component_type == "dxvk":
+            component = supported_dxvk[component_name]
+        if component_type == "vkd3d":
+            component = supported_vkd3d[component_name]
+
+        if self.__utils_conn.check_connection():
+            if "Sub-category" in component:
+                manifest_url = "%s/%s/%s/%s.yml" % (
+                    BottlesRepositories.components,
+                    component["Category"],
+                    component["Sub-category"],
+                    component_name
+                )
+            else:
+                manifest_url = "%s/%s/%s.yml" % (
+                    BottlesRepositories.components,
+                    component["Category"],
+                    component_name
+                )
+            try:
+                with urllib.request.urlopen(manifest_url) as url:
+                    if plain:
+                        '''
+                        Caller required the component manifest
+                        as plain text.
+                        '''
+                        return url.read().decode("utf-8")
+                        
+                    # return as dictionary
+                    return yaml.safe_load(url.read())
+            except:
+                logging.error(f"Cannot fetch manifest for {component_name}.")
+                return False
+        
+        return False
     
     def fetch_catalog(self) -> dict:
         '''
