@@ -286,9 +286,10 @@ class CabExtract():
     '''
     requirements = False
     
-    def run(self, path: str, name: str):
+    def run(self, path: str, name: str, files: list = []):
         self.path = path
         self.name = name
+        self.files = files
 
         if not self.__checks():
             return False
@@ -318,10 +319,18 @@ class CabExtract():
             temp_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles/temp"
 
         try:
-            subprocess.Popen(
-                f"cabextract {self.path} -d {temp_path}/{self.name} -q",
-                shell=True
-            ).communicate()
+            if len(self.files) > 0:
+                for file in self.files:
+                    subprocess.Popen(
+                        f"cabextract -F f'*{file}*' -d {temp_path}/{self.name} -q {self.path}",
+                        shell=True
+                    ).communicate()
+            else:
+                subprocess.Popen(
+                    f"cabextract -d {temp_path}/{self.name} -q {self.path}",
+                    shell=True
+                ).communicate()
+
             return True
         except Exception as exception:
             logging.error(f"Error while extracting cab file {self.path}:\n{exception}")
