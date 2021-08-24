@@ -16,15 +16,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import yaml
 import urllib.request
-from typing import NewType
+from typing import Union, NewType
 from datetime import datetime
 from gi.repository import Gtk, GLib
 
 from .runner import Runner
 from .globals import BottlesRepositories, Paths
-from ..utils import RunAsync
+from ..utils import RunAsync, UtilsLogger
 from .component import ComponentManager
+
+logging = UtilsLogger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
@@ -33,35 +36,74 @@ RunnerType = NewType('RunnerType', str)
 
 class InstallerManager:
 
-    def __init__(self, manager, configuration:BottleConfig, installer:list, widget:Gtk.Widget=None):
+    def __init__(
+        self, 
+        manager,
+        widget:Gtk.Widget=None
+    ):
         self.__manager = manager
+        self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
-        self.configuration = configuration
-        self.component_manager = ComponentManager(manager)
-        self.manifest = self.__manager.fetch_installer_manifest(
-            installer_name = installer[0],
-            installer_category = installer[1]["Category"]
+
+    def get_installer(
+        self, 
+        installer_name: str, 
+        installer_category: str, 
+        plain: bool = False
+    ) -> Union[str, dict, bool]:
+        '''
+        This function can be used to fetch the manifest for a given
+        installer. It can be returned as plain text or as a dictionary.
+        It will return False if the installer is not found.
+        '''
+        if self.__utils_conn.check_connection():
+            try:
+                with urllib.request.urlopen("%s/%s/%s.yml" % (
+                    BottlesRepositories.installers,
+                    installer_category,
+                    installer_name
+                )) as url:
+                    if plain:
+                        '''
+                        Caller required the component manifest
+                        as plain text.
+                        '''
+                        return url.read().decode("utf-8")
+
+                    # return as dictionary
+                    return yaml.safe_load(url.read())
+            except:
+                logging.error(f"Cannot fetch manifest for {installer_name}.")
+                return False
+
+        return False
+
+    def __download_icon(self, configuration, executable:dict, manifest):
+        icon_url = "%s/data/%s/%s" % (
+            BottlesRepositories.installers,
+            manifest.get('Name'),
+            executable.get('icon')
         )
-        self.widget = widget
-        self.bottle_icons_path = f"{Runner().get_bottle_path(configuration)}/icons"
+        bottle_icons_path = f"{Runner().get_bottle_path(configuration)}/icons"
+        icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
 
-    def __download_icon(self, executable:dict):
-        icon_url = f"{BottlesRepositories.installers}/data/{self.manifest.get('Name')}/{executable.get('icon')}"
-        icon_path = f"{self.bottle_icons_path}/{executable.get('icon')}"
-
-        if not os.path.exists(self.bottle_icons_path):
-            os.makedirs(self.bottle_icons_path)
+        if not os.path.exists(bottle_icons_path):
+            os.makedirs(bottle_icons_path)
         if not os.path.isfile(icon_path):
             urllib.request.urlretrieve(icon_url, icon_path)
 
-    def __install_dependencies(self, dependencies:list):
+    def __install_dependencies(self, configuration, dependencies:list):
         for dep in dependencies:
-            if dep in self.configuration.get("Installed_Dependencies"):
+            if dep in configuration.get("Installed_Dependencies"):
                 continue
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
-            self.__manager.async_install_dependency([self.configuration, dep_index, None])
+            self.__manager.async_install_dependency([
+                configuration, 
+                dep_index, 
+                None
+            ])
 
-    def __perform_steps(self, steps:list):
+    def __perform_steps(self, configuration, steps:list):
         for st in steps:
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
@@ -79,44 +121,57 @@ class InstallerManager:
                         file = st.get("file_name")
 
                     Runner().run_executable(
-                        configuration=self.configuration,
+                        configuration=configuration,
                         file_path=f"{Paths.temp}/{file}",
                         arguments=st.get("arguments"),
                         environment=st.get("environment"))
     
-    def __set_parameters(self, parameters:dict):
-        if parameters.get("dxvk") and not self.configuration.get("Parameters")["dxvk"]:
-            self.__manager.install_dxvk(self.configuration)
+    def __set_parameters(self, configuration, parameters:dict):
+        if parameters.get("dxvk") and not configuration.get("Parameters")["dxvk"]:
+            self.__manager.install_dxvk(configuration)
 
-        if parameters.get("vkd3d") and self.configuration.get("Parameters")["vkd3d"]:
-            self.__manager.install_vkd3d(self.configuration)
+        if parameters.get("vkd3d") and configuration.get("Parameters")["vkd3d"]:
+            self.__manager.install_vkd3d(configuration)
 
         for param in parameters:
             self.__manager.update_configuration(
-                configuration=self.configuration,
+                configuration=configuration,
                 key=param,
                 value=parameters[param],
-                scope="Parameters")
+                scope="Parameters"
+            )
 
-    def __set_executable_arguments(self, executable:dict):
+    def __set_executable_arguments(self, configuration, executable:dict):
         self.__manager.update_configuration(
-            configuration=self.configuration,
+            configuration=configuration,
             key=executable.get("file"),
             value=executable.get("arguments"),
             scope="Programs")
 
-    def __create_desktop_entry(self, executable:dict):
-        icon_path = f"{self.bottle_icons_path}/{executable.get('icon')}"
-        desktop_file = f"{Paths.applications}/{self.configuration.get('Name')}--{self.manifest.get('Name')}--{datetime.now().timestamp()}.desktop"
+    def __create_desktop_entry(self, configuration, manifest, executable:dict):
+        bottle_icons_path = f"{Runner().get_bottle_path(configuration)}/icons"
+
+        icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
+        desktop_file = "%s/%s--%s--%s.desktop" % (
+            Paths.applications,
+            configuration.get('Name'),
+            manifest.get('Name'),
+            datetime.now().timestamp()
+        )
 
         if "FLATPAK_ID" in os.environ:
             return None
             
         with open(desktop_file, "w") as f:
-            ex_path = f"{Paths.bottles}/{self.configuration.get('Path')}/drive_c/{executable.get('path')}/{executable.get('file')}"
+            ex_path = "%s/%s/drive_c/%s/%s" % (
+                Paths.bottles,
+                configuration.get('Path'),
+                executable.get('path'),
+                executable.get('file')
+            )
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={executable.get('name')}\n")
-            f.write(f"Exec=bottles -e '{ex_path}' -b '{self.configuration.get('Name')}'\n")
+            f.write(f"Exec=bottles -e '{ex_path}' -b '{configuration.get('Name')}'\n")
             f.write(f"Type=Application\n")
             f.write(f"Terminal=false\n")
             f.write(f"Categories=Application;\n")
@@ -124,44 +179,50 @@ class InstallerManager:
                 f.write(f"Icon={icon_path}\n")
             else:
                 f.write(f"Icon=com.usebottles.bottles")
-            f.write(f"Comment={self.manifest.get('Description')}\n")
+            f.write(f"Comment={manifest.get('Description')}\n")
             # Actions
             f.write("Actions=Configure;\n")
             f.write("[Desktop Action Configure]\n")
             f.write("Name=Configure in Bottles\n")
-            f.write(f"Exec=bottles -b '{self.configuration.get('Name')}'\n")
+            f.write(f"Exec=bottles -b '{configuration.get('Name')}'\n")
     
-    def __async_install(self) -> None:
-        dependencies = self.manifest.get("Dependencies")
-        parameters = self.manifest.get("Parameters")
-        executable = self.manifest.get("Executable")
-        steps = self.manifest.get("Steps")
+    def __async_install(self, args) -> None:
+        configuration, installer, widget = args
+
+        manifest = self.get_installer(
+            installer_name = installer[0],
+            installer_category = installer[1]["Category"]
+        )
+        dependencies = manifest.get("Dependencies")
+        parameters = manifest.get("Parameters")
+        executable = manifest.get("Executable")
+        steps = manifest.get("Steps")
 
         # download icon
         if executable.get("icon"):
-            self.__download_icon(executable)
+            self.__download_icon(configuration, executable, manifest)
         
         # install dependencies
         if dependencies:
-            self.__install_dependencies(dependencies)
+            self.__install_dependencies(configuration, dependencies)
         
         if steps:
-            self.__perform_steps(steps)
+            self.__perform_steps(configuration, steps)
         
         # set parameters
         if parameters:
-            self.__set_parameters(parameters)
+            self.__set_parameters(configuration, parameters)
 
         # register executable arguments
         if executable.get("arguments"):
-            self.__set_executable_arguments(executable)
+            self.__set_executable_arguments(configuration, executable)
 
         # create Desktop entry
-        self.__create_desktop_entry(executable)
+        self.__create_desktop_entry(configuration, manifest, executable)
 
         # unlock widget
-        if self.widget is not None:
-            GLib.idle_add(self.widget.set_installed)
+        if widget is not None:
+            GLib.idle_add(widget.set_installed)
     
-    def install(self) -> None:
-        RunAsync(self.__async_install, False)
+    def install(self, configuration, installer, widget) -> None:
+        RunAsync(self.__async_install, False, [configuration, installer, widget])

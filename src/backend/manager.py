@@ -39,6 +39,7 @@ from .runner import Runner
 from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
 from .versioning import RunnerVersioning
 from .component import ComponentManager
+from .installer import InstallerManager
 
 logging = UtilsLogger()
 
@@ -70,6 +71,7 @@ class Manager:
         self.utils_conn = window.utils_conn
         self.versioning_manager = RunnerVersioning(window, self)
         self.component_manager = ComponentManager(self)
+        self.installer_manager = InstallerManager(self)
 
         self.check_runners_dir()
         self.check_dxvk(install_latest=False)
@@ -702,19 +704,6 @@ class Manager:
             logging.error(
                 "Cannot fetch installers index from repository.")
             return False
-
-    # Fetch installer manifest
-    def fetch_installer_manifest(self, installer_name: str, installer_category: str, plain: bool = False) -> Union[str, dict, bool]:
-        if self.utils_conn.check_connection():
-            with urllib.request.urlopen("%s/%s/%s.yml" % (
-                BottlesRepositories.installers,
-                installer_category,
-                installer_name
-            )) as url:
-                if plain:
-                    return url.read().decode("utf-8")
-                return yaml.safe_load(url.read())
-        return False
 
     # Fetch dependencies
     def fetch_dependencies(self) -> bool:

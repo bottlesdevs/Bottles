@@ -24,7 +24,6 @@ import webbrowser
 from datetime import datetime
 
 from .dialog import Dialog, MessageDialog
-from ..backend.installer import InstallerManager
 from ..backend.runner import Runner, gamemode_available
 from ..backend.backup import RunnerBackup
 from ..utils import RunAsync
@@ -377,9 +376,12 @@ class InstallerEntry(Handy.ActionRow):
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
             message=False,
-            log=self.manager.fetch_installer_manifest(self.installer[0],
-                                                    self.installer[1]["Category"],
-                                                    plain=True))
+            log=self.manager.installer_manager.get_installer(
+                installer_name=self.installer[0],
+                installer_category=self.installer[1]["Category"],
+                plain=True
+            )
+        )
         dialog.run()
         dialog.destroy()
 
@@ -394,11 +396,11 @@ class InstallerEntry(Handy.ActionRow):
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
 
-        InstallerManager(
-            manager=self.manager,
+        self.manager.installer_manager.install(
             configuration=self.configuration,
             installer=self.installer,
-            widget=self).install()
+            widget=self
+        )
     
     '''Set installed status'''
     def set_installed(self):
