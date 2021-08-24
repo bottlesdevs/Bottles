@@ -147,61 +147,6 @@ class Manager:
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
 
-    # Component installation
-    def async_install_component(self, args: list) -> None:
-        component_type, component_name, after, func, checks = args
-
-        manifest = self.component_manager.get_component(
-            component_type, component_name)
-        
-        if not manifest:
-            return func(failed=True)
-
-        logging.info(f"Installing component: [{component_name}].")
-
-        # Download component
-        download = self.component_manager.download(component_type,
-                                           manifest["File"][0]["url"],
-                                           manifest["File"][0]["file_name"],
-                                           manifest["File"][0]["rename"],
-                                           checksum=manifest["File"][0]["file_checksum"],
-                                           func=func)
-
-        if not download and func:
-            return func(failed=True)
-
-        # Extract component archive
-        if manifest["File"][0]["rename"]:
-            archive = manifest["File"][0]["rename"]
-        else:
-            archive = manifest["File"][0]["file_name"]
-
-        self.component_manager.extract(component_type, archive)
-
-        # Empty the component lists and repopulate
-        if component_type in ["runner", "runner:proton"]:
-            self.runners_available = []
-            self.check_runners()
-
-        if component_type == "dxvk":
-            self.dxvk_available = []
-            self.check_dxvk()
-
-        if component_type == "vkd3d":
-            self.vkd3d_available = []
-            self.check_vkd3d()
-
-        # Execute a method at the end if passed
-        if after:
-            GLib.idle_add(after)
-
-        # Re-populate local lists
-        self.component_manager.fetch_catalog()
-
-    def install_component(self, component_type: str, component_name: str, after=False, func=False, checks=True) -> None:
-        if self.utils_conn.check_connection(True):
-            RunAsync(self.async_install_component, None, [
-                     component_type, component_name, after, func, checks])
     '''
     Method for dependency installations
     '''
@@ -592,7 +537,7 @@ class Manager:
                     else:
                         tmp_runners = self.supported_wine_runners
                         runner_name = next(iter(tmp_runners))
-                    self.install_component("runner", runner_name, after=after)
+                    self.component_manager.install("runner", runner_name, after=after)
                 except StopIteration:
                     return False
             else:
@@ -623,10 +568,10 @@ class Manager:
                 try:
                     dxvk_version = next(iter(self.supported_dxvk))
                     if no_async:
-                        self.async_install_component(
+                        self.async_component_manager.install(
                             ["dxvk", dxvk_version, False, False, False])
                     else:
-                        self.install_component(
+                        self.component_manager.install(
                             "dxvk", dxvk_version, checks=False)
                 except StopIteration:
                     return False
@@ -653,10 +598,10 @@ class Manager:
                 try:
                     vkd3d_version = next(iter(self.supported_vkd3d))
                     if no_async:
-                        self.async_install_component(
+                        self.async_component_manager.install(
                             ["vkd3d", vkd3d_version, False, False, False])
                     else:
-                        self.install_component(
+                        self.component_manager.install(
                             "vkd3d", vkd3d_version, checks=False)
                 except StopIteration:
                     return False

@@ -146,6 +146,7 @@ class DxvkEntry(Handy.ActionRow):
         '''Common variables'''
         self.window = window
         self.manager = window.manager
+        self.component_manager = self.manager.component_manager
         self.dxvk_name = dxvk[0]
         self.spinner = Gtk.Spinner()
 
@@ -169,7 +170,7 @@ class DxvkEntry(Handy.ActionRow):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
         for w in self.box_download_status.get_children(): w.set_visible(True)
-        self.manager.install_component(
+        self.component_manager.install(
             "dxvk", 
             self.dxvk_name, 
             func=self.update_status, 
@@ -241,6 +242,7 @@ class Vkd3dEntry(Handy.ActionRow):
         '''Common variables'''
         self.window = window
         self.manager = window.manager
+        self.component_manager = self.manager.component_manager
         self.vkd3d_name = vkd3d[0]
         self.spinner = Gtk.Spinner()
 
@@ -265,7 +267,7 @@ class Vkd3dEntry(Handy.ActionRow):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
         for w in self.box_download_status.get_children(): w.set_visible(True)
-        self.manager.install_component(
+        self.component_manager.install(
             "vkd3d", 
             self.vkd3d_name, 
             func=self.update_status, 
@@ -339,6 +341,7 @@ class RunnerEntry(Handy.ActionRow):
         '''Common variables'''
         self.window = window
         self.manager = window.manager
+        self.component_manager = self.manager.component_manager
         self.runner_name = runner_entry[0]
         self.spinner = Gtk.Spinner()
 
@@ -367,7 +370,7 @@ class RunnerEntry(Handy.ActionRow):
         if self.runner_name.lower().startswith("proton"):
             component_type = "runner:proton"
 
-        self.manager.install_component(component_type,
+        self.component_manager.install(component_type,
                                       self.runner_name,
                                       func=self.update_status,
                                       after=self.set_installed)

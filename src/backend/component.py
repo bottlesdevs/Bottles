@@ -27,7 +27,7 @@ from typing import Union
 
 from ..download import DownloadManager
 from .globals import Paths, BottlesRepositories
-from ..utils import UtilsLogger, UtilsFiles
+from ..utils import UtilsLogger, UtilsFiles, RunAsync
 
 logging = UtilsLogger()
 
@@ -341,6 +341,12 @@ class ComponentManager:
         get the manifest from the givven component and then calls the
         download and extract functions.
         '''
+        if self.__utils_conn.check_connection(True):
+            RunAsync(self.async_install, None, [
+                     component_type, component_name, after, func, checks])
+
+    def async_install(self, args: list) -> None:
+        component_type, component_name, after, func, checks = args
         manifest = self.get_component(component_type, component_name)
         
         if not manifest:
@@ -353,7 +359,7 @@ class ComponentManager:
             component=component_type,
             download_url=manifest["File"][0]["url"],
             file=manifest["File"][0]["file_name"],
-            reame=manifest["File"][0]["rename"],
+            rename=manifest["File"][0]["rename"],
             checksum=manifest["File"][0]["file_checksum"],
             func=func
         )
