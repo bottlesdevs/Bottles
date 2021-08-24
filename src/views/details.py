@@ -395,7 +395,7 @@ class InstallerEntry(Handy.ActionRow):
         GLib.idle_add(self.spinner.start)
 
         InstallerManager(
-            runner=self.runner,
+            manager=self.manager,
             configuration=self.configuration,
             installer=self.installer,
             widget=self).install()

@@ -33,7 +33,7 @@ class DownloadEntry(Gtk.Box):
     label_download_status = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, file_name, stoppable=True, **kwargs):
+    def __init__(self, window, file_name, cancellable=True, **kwargs):
         super().__init__(**kwargs)
 
         self.window = window
@@ -44,7 +44,7 @@ class DownloadEntry(Gtk.Box):
 
         # Populate widgets data
         self.label_filename.set_text(file_name)
-        if not stoppable:
+        if not cancellable:
             self.btn_cancel.hide()
 
         # Start pulsing
@@ -99,9 +99,9 @@ class DownloadManager():
         self.window = window
         self.box_downloads = window.box_downloads
 
-    def new_download(self, file_name, stoppable=True):
+    def new_download(self, file_name, cancellable=True):
         download_entry = DownloadEntry(
-            self.window, file_name, stoppable)
+            self.window, file_name, cancellable)
         self.window.box_downloads.add(download_entry)
 
         return download_entry

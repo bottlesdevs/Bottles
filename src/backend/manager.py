@@ -18,15 +18,12 @@
 import os
 import subprocess
 import yaml
-import json
 import patoolib
-import tarfile
 import time
 import shutil
 import re
 import urllib.request
 import fnmatch
-import requests
 
 from typing import Union, NewType
 
@@ -38,9 +35,10 @@ from datetime import datetime
 
 from ..download import DownloadManager
 from ..utils import UtilsLogger, UtilsFiles, RunAsync, CabExtract, validate_url
-from ..backend.runner import Runner
-from ..backend.globals import Samples, BottlesRepositories, Paths, TrdyPaths
-from ..backend.versioning import RunnerVersioning
+from .runner import Runner
+from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
+from .versioning import RunnerVersioning
+from .component import ComponentManager
 
 logging = UtilsLogger()
 
@@ -48,7 +46,6 @@ logging = UtilsLogger()
 BottleConfig = NewType('BottleConfig', dict)
 RunnerName = NewType('RunnerName', str)
 RunnerType = NewType('RunnerType', str)
-
 
 class Manager:
 
@@ -72,12 +69,13 @@ class Manager:
         self.settings = window.settings
         self.utils_conn = window.utils_conn
         self.versioning_manager = RunnerVersioning(window, self)
+        self.component_manager = ComponentManager(self)
 
         self.check_runners_dir()
         self.check_dxvk(install_latest=False)
         self.check_vkd3d(install_latest=False)
         self.check_runners(install_latest=False)
-        self.fetch_components()
+        self.organize_components()
         self.fetch_dependencies()
         self.fetch_installers()
         self.check_bottles()
@@ -137,118 +135,17 @@ class Manager:
         if not os.path.isdir(Paths.temp):
             logging.info("Temp path doens't exist, creating now.")
             os.makedirs(Paths.temp, exist_ok=True)
-
-    # Extract a component archive
-    def extract_component(self, component: str, archive: str) -> True:
-        if component in ["runner", "runner:proton"]:
-            path = Paths.runners
-        if component == "dxvk":
-            path = Paths.dxvk
-        if component == "vkd3d":
-            path = Paths.vkd3d
-
-        try:
-            tar = tarfile.open("%s/%s" % (Paths.temp, archive))
-            root_dir = tar.getnames()[0]
-            tar.extractall(path)
-        except:
-            if os.path.isfile(os.path.join(Paths.temp, archive)):
-                os.remove(os.path.join(Paths.temp, archive))
-
-            if os.path.isdir(os.path.join(path, archive[:-7])):
-                shutil.rmtree(os.path.join(path, archive[:-7]))
-
-            logging.error(
-                "Extraction failed! Archive ends earlier than expected.")
-            return False
-
-        if root_dir.endswith("x86_64"):
-            try:
-                shutil.move("%s/%s" % (path, root_dir),
-                            "%s/%s" % (path, root_dir[:-7]))
-            except:
-                logging.error("Extraction failed! Component already exists.")
-                return False
-        return True
-
-    # Download a specific component release
-    def download_component(self, component: str, download_url: str, file: str, rename: bool = False, checksum: bool = False, func=False) -> bool:
-        self.download_manager = DownloadManager(self.window)
-
-        # Check for missing paths
-        self.check_runners_dir()
-
-        # Add entry to download manager
-        download_entry = self.download_manager.new_download(file, False)
-        time.sleep(1)
-
-        # TODO: In Trento we should check if the resource exists in temp
-        # this check is only performed by dependencies
-        if download_url.startswith("temp/"):
-            return True
-
-        if func:
-            update_func = func
-        else:
-            update_func = download_entry.update_status
-
-        existing_file = rename if rename else file
-        just_downloaded = False
-
-        if os.path.isfile(f"{Paths.temp}/{existing_file}"):
-            logging.warning(
-                f"File [{existing_file}] already exists in temp, skipping.")
-            GLib.idle_add(update_func, False, False, False, True)
-        else:
-            # skip check for big files like runners
-            if component not in ["runner", "runner:proton", "installer"]:
-                download_url = requests.get(
-                    download_url, allow_redirects=True).url
-            try:
-                request = urllib.request.urlopen(download_url)
-            except (urllib.error.HTTPError, urllib.error.URLError):
-                GLib.idle_add(download_entry.remove)
-                return False
-
-            if request.status == 200:
-                try:
-                    urllib.request.urlretrieve(
-                        download_url,
-                        f"{Paths.temp}/{file}",
-                        reporthook=update_func)
-                except:
-                    # workaround https://github.com/bottlesdevs/Bottles/issues/426
-                    GLib.idle_add(download_entry.remove)
-                    return False
-                just_downloaded = True
-            else:
-                GLib.idle_add(download_entry.remove)
-                return False
-
-        # Rename the file if required
-        if rename and just_downloaded:
-            logging.info(f"Renaming [{file}] to [{rename}].")
-            file_path = f"{Paths.temp}/{rename}"
-            os.rename(f"{Paths.temp}/{file}", file_path)
-        else:
-            file_path = f"{Paths.temp}/{existing_file}"
-
-        # Checksums comparison
-        if checksum:
-            checksum = checksum.lower()
-            local_checksum = UtilsFiles().get_checksum(file_path)
-
-            if local_checksum != checksum:
-                logging.error(f"Downloaded file [{file}] looks corrupted.")
-                logging.error(
-                    f"Source checksum: [{checksum}] downloaded: [{local_checksum}]")
-
-                os.remove(file_path)
-                GLib.idle_add(download_entry.remove)
-                return False
-
-        GLib.idle_add(download_entry.remove)
-        return True
+    
+    def organize_components(self):
+        catalog = self.component_manager.fetch_catalog()
+        if len(catalog) == 0:
+            logging.info("No components found!")
+            return
+        
+        self.supported_wine_runners = catalog["wine"]
+        self.supported_proton_runners = catalog["proton"]
+        self.supported_dxvk = catalog["dxvk"]
+        self.supported_vkd3d = catalog["vkd3d"]
 
     # Component installation
     def async_install_component(self, args: list) -> None:
@@ -263,7 +160,7 @@ class Manager:
         logging.info(f"Installing component: [{component_name}].")
 
         # Download component
-        download = self.download_component(component_type,
+        download = self.component_manager.download(component_type,
                                            manifest["File"][0]["url"],
                                            manifest["File"][0]["file_name"],
                                            manifest["File"][0]["rename"],
@@ -279,7 +176,7 @@ class Manager:
         else:
             archive = manifest["File"][0]["file_name"]
 
-        self.extract_component(component_type, archive)
+        self.component_manager.extract(component_type, archive)
 
         # Empty the component lists and repopulate
         if component_type in ["runner", "runner:proton"]:
@@ -299,7 +196,7 @@ class Manager:
             GLib.idle_add(after)
 
         # Re-populate local lists
-        self.fetch_components()
+        self.component_manager.fetch_catalog()
 
     def install_component(self, component_type: str, component_name: str, after=False, func=False, checks=True) -> None:
         if self.utils_conn.check_connection(True):
@@ -348,7 +245,7 @@ class Manager:
 
             # Step type: install_exe, install_msi
             if step["action"] in ["install_exe", "install_msi"]:
-                download = self.download_component("dependency",
+                download = self.component_manager.download("dependency",
                                                    step.get("url"),
                                                    step.get("file_name"),
                                                    step.get("rename"),
@@ -393,7 +290,7 @@ class Manager:
                 has_no_uninstaller = True  # cab extracted has no uninstaller
 
                 if validate_url(step["url"]):
-                    download = self.download_component("dependency",
+                    download = self.component_manager.download("dependency",
                                                        step.get("url"),
                                                        step.get("file_name"),
                                                        step.get("rename"),
@@ -443,7 +340,7 @@ class Manager:
                 has_no_uninstaller = True  # extracted archives has no uninstaller
 
                 if validate_url(step["url"]):
-                    download = self.download_component("dependency",
+                    download = self.component_manager.download("dependency",
                                                        step.get("url"),
                                                        step.get("file_name"),
                                                        step.get("rename"),
@@ -873,56 +770,6 @@ class Manager:
                     return url.read().decode("utf-8")
                 return yaml.safe_load(url.read())
         return False
-
-    # Fetch components
-    def fetch_components(self) -> bool:
-        if not self.utils_conn.check_connection():
-            return False
-
-        try:
-            url = urllib.request.urlopen(BottlesRepositories.components_index)
-            index = yaml.safe_load(url.read())
-
-            for component in index.items():
-                if component[1]["Category"] == "runners":
-                    '''
-                    Hide the lutris-lol runner if Bottles is running as Flatpak
-                    because it is not compatible under sandbox
-                    https://github.com/bottlesdevs/components/issues/54
-                    '''
-                    if "FLATPAK_ID" in os.environ and "-lol" in component[0]:
-                        continue
-
-                    if component[1]["Sub-category"] == "wine":
-                        self.supported_wine_runners[component[0]
-                                                    ] = component[1]
-                        if component[0] in self.runners_available:
-                            self.supported_wine_runners[component[0]
-                                                        ]["Installed"] = True
-
-                    if component[1]["Sub-category"] == "proton":
-                        self.supported_proton_runners[component[0]
-                                                    ] = component[1]
-                        if component[0] in self.runners_available:
-                            self.supported_proton_runners[component[0]
-                                                        ]["Installed"] = True
-
-                if component[1]["Category"] == "dxvk":
-                    self.supported_dxvk[component[0]] = component[1]
-                    if component[0] in self.dxvk_available:
-                        self.supported_dxvk[component[0]
-                                            ]["Installed"] = True
-
-                if component[1]["Category"] == "vkd3d":
-                    self.supported_vkd3d[component[0]] = component[1]
-                    if component[0] in self.vkd3d_available:
-                        self.supported_vkd3d[component[0]
-                                            ]["Installed"] = True
-            url.close()
-            return True
-        except:
-            logging.error(f"Cannot fetch components list.")
-            return False
 
     # Fetch component manifest
     def fetch_component_manifest(self, component_type: str, component_name: str, plain: bool = False) -> Union[str, dict, bool]:

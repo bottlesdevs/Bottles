@@ -24,6 +24,7 @@ from gi.repository import Gtk, GLib
 from .runner import Runner
 from .globals import BottlesRepositories, Paths
 from ..utils import RunAsync
+from .component import ComponentManager
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
@@ -35,9 +36,11 @@ class InstallerManager:
     def __init__(self, manager, configuration:BottleConfig, installer:list, widget:Gtk.Widget=None):
         self.manager = manager
         self.configuration = configuration
+        self.component_manager = ComponentManager(manager)
         self.manifest = self.manager.fetch_installer_manifest(
             installer_name = installer[0],
-            installer_category = installer[1]["Category"])
+            installer_category = installer[1]["Category"]
+        )
         self.widget = widget
         self.bottle_icons_path = f"{Runner().get_bottle_path(configuration)}/icons"
 
