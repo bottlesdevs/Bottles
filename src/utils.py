@@ -319,7 +319,7 @@ class CabExtract():
 
         try:
             subprocess.Popen(
-                f"cabextract {self.path} -d {temp_path}/{self.name}",
+                f"cabextract {self.path} -d {temp_path}/{self.name} -q",
                 shell=True
             ).communicate()
             return True
