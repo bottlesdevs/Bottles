@@ -88,7 +88,7 @@ class ComponentManager:
                         as plain text.
                         '''
                         return url.read().decode("utf-8")
-                        
+
                     # return as dictionary
                     return yaml.safe_load(url.read())
             except:
@@ -336,4 +336,64 @@ class ComponentManager:
         func=False, 
         checks=True
     ) -> None:
-        return
+        '''
+        This function is used to install a component. It automatically
+        get the manifest from the givven component and then calls the
+        download and extract functions.
+        '''
+        manifest = self.get_component(component_type, component_name)
+        
+        if not manifest:
+            return func(failed=True)
+
+        logging.info(f"Installing component: [{component_name}].")
+
+        # Download component
+        download = self.download(
+            component=component_type,
+            download_url=manifest["File"][0]["url"],
+            file=manifest["File"][0]["file_name"],
+            reame=manifest["File"][0]["rename"],
+            checksum=manifest["File"][0]["file_checksum"],
+            func=func
+        )
+
+        if not download and func:
+            '''
+            If the download fails, execute the given func passing
+            failed=True as a parameter.
+            '''
+            return func(failed=True)
+
+        archive = manifest["File"][0]["file_name"]
+
+        if manifest["File"][0]["rename"]:
+            '''
+            If the component has a rename, rename the downloaded file
+            to the required name.
+            '''
+            archive = manifest["File"][0]["rename"]
+            archive = manifest["File"][0]["rename"]
+
+        self.extract(component_type, archive)
+
+        '''
+        Ask the manager to re-organize its components.
+        Note: I know that this is not the most efficient way to do this,
+        please give feedback if you know a better way to avoid this.
+        '''
+        if component_type in ["runner", "runner:proton"]:
+            self.__manager.check_runners()
+
+        if component_type == "dxvk":
+            self.__manager.check_dxvk()
+
+        if component_type == "vkd3d":
+            self.__manager.check_vkd3d()
+
+        self.__manager.organize_components()
+
+        # Execute a method at the end if passed
+        if after:
+            GLib.idle_add(after)
+
