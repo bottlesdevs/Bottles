@@ -255,6 +255,9 @@ class Manager:
 
         manifest = self.fetch_component_manifest(
             component_type, component_name)
+        
+        if not manifest:
+            return func(failed=True)
 
         logging.info(f"Installing component: [{component_name}].")
 
@@ -917,7 +920,7 @@ class Manager:
             url.close()
             return True
         except:
-            logging.error(F"Cannot fetch components list.")
+            logging.error(f"Cannot fetch components list.")
             return False
 
     # Fetch component manifest
@@ -943,12 +946,17 @@ class Manager:
                     BottlesRepositories.components,
                     component["Category"],
                     component_name)
-            with urllib.request.urlopen(manifest_url) as url:
-                if plain:
-                    return url.read().decode("utf-8")
-                return yaml.safe_load(url.read())
-
+            try:
+                with urllib.request.urlopen(manifest_url) as url:
+                    if plain:
+                        return url.read().decode("utf-8")
+                    return yaml.safe_load(url.read())
+            except:
+                logging.error(f"Cannot fetch manifest for {component_name}.")
+                return False
+        
         return False
+                
 
     # Fetch dependencies
     def fetch_dependencies(self) -> bool:
