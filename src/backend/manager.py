@@ -73,6 +73,7 @@ class Manager:
         self.utils_conn = window.utils_conn
         self.versioning_manager = RunnerVersioning(window, self)
 
+        self.check_runners_dir()
         self.check_dxvk(install_latest=False)
         self.check_vkd3d(install_latest=False)
         self.check_runners(install_latest=False)
@@ -832,7 +833,7 @@ class Manager:
                     installed_programs.append(
                         [path, executable_path, icon, program_folder])
             except:
-                logging.error(F"Cannot find executable for [{path}].")
+                pass
 
         if configuration.get("External_Programs"):
             ext_programs = configuration.get("External_Programs")
