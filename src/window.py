@@ -39,6 +39,7 @@ from .utils import UtilsConnection, UtilsLogger
 
 logging = UtilsLogger()
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/window.ui')
 class MainWindow(Handy.ApplicationWindow):
     __gtype_name__ = 'MainWindow'
@@ -74,6 +75,9 @@ class MainWindow(Handy.ApplicationWindow):
     def __init__(self, arg_exe, arg_lnk, arg_bottle, **kwargs):
         super().__init__(**kwargs)
 
+        self.utils_conn = UtilsConnection(self)
+        self.manager = Manager(self)
+
         # Set dark theme according to user settings
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
@@ -81,19 +85,18 @@ class MainWindow(Handy.ApplicationWindow):
         )
 
         # Validate arg_exe extension
-        if arg_exe and not arg_exe.endswith(('.exe', '.msi', '.bat')):
+        if not str(arg_exe).endswith(EXECUTABLE_EXTS):
             arg_exe = False
 
         # Validate arg_lnk extension
-        if arg_lnk and not arg_lnk.endswith('.lnk'):
+        if not str(arg_lnk).endswith(LNK_EXTS):
             arg_lnk = False
-        
-        self.utils_conn = UtilsConnection(self)
-        self.manager = Manager(self)
-        self.manager.check_runners_dir()
 
-        # Run executable in a bottle
         if arg_bottle and arg_bottle in self.manager.local_bottles.keys():
+            '''
+            If Bottles was started with a bottle and an executable as
+            arguments, then the executable will be run in the bottle.
+            '''
             bottle_config = self.manager.local_bottles[arg_bottle]
             if arg_exe:
                 Runner().run_executable(
@@ -123,12 +126,28 @@ class MainWindow(Handy.ApplicationWindow):
         # Populate stack
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
-        self.stack_main.add_titled(page_details, "page_details", _("Bottle details"))
-        self.stack_main.add_titled(page_list, "page_list", _("Bottles"))
-        self.stack_main.add_titled(page_taskmanager, "page_taskmanager", _("Task manager"))
-        self.stack_main.add_titled(page_importer, "page_importer", _("Importer"))
+        self.stack_main.add_titled(
+            child=page_details, 
+            name="page_details", 
+            title=_("Bottle details")
+        )
+        self.stack_main.add_titled(
+            child=page_list, 
+            name="page_list", 
+            title=_("Bottles")
+        )
+        self.stack_main.add_titled(
+            child=page_taskmanager, 
+            name="page_taskmanager", 
+            title=_("Task manager")
+        )
+        self.stack_main.add_titled(
+            child=page_importer, 
+            name="page_importer", 
+            title=_("Importer")
+        )
 
-        # Populate grid
+        # Add the main stack to the main grid
         self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
 
         # Signal connections
@@ -142,57 +161,75 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
 
-        # If there is at least one page, show the bottles list
+        # Set the bottles list page as the default page
         self.stack_main.set_visible_child_name("page_list")
 
-        # Executed on last
-        self.on_start()
+        self.__on_start()
 
         if arg_exe:
+            '''
+            If Bottles was started with an executable as argument, without
+            a bottle, the user will be prompted to select a bottle from the
+            bottles list.
+            '''
             self.show_list_view()
 
         arg_exe = False
         logging.info(_("Bottles Started!"))
 
     def check_for_connection(self, status):
+        '''
+        This method checks if the client has an internet connection.
+        If true, the manager checks will be performed, unlocking all the
+        features locked for no internet connection.
+        '''
         if self.utils_conn.check_connection():
             self.manager.checks()
 
-    # Toggle btn_noconnection visibility
     def toggle_btn_noconnection(self, status):
         self.btn_noconnection.set_visible(status)
 
-    # Execute before window shown
-    def on_start(self):
-        # Search for at least one local runner
-        tmp_runners = [x for x in self.manager.runners_available if not x.startswith('sys-')]
+    def __on_start(self):
+        '''
+        This method is called before the window is shown. This check if there
+        is at least one local runner installed. If not, the user will be
+        prompted with the onboard dialog.
+        '''
+        tmp_runners = [
+            x for x in self.manager.runners_available if not x.startswith('sys-')]
         if len(tmp_runners) == 0:
-            # Check for flatpak migration
             self.show_onboard_view()
 
         self.check_crash_log()
 
-    # Send new notification
     def send_notification(self, title, text, image="", user_settings=True):
+        '''
+        This method is used to send a notification to the user using
+        the Notify instance. The notification is sent only if the
+        user has enabled it in the settings. It is possibile to ignore the
+        user settings by passing the argument user_settings=False.
+        '''
         if user_settings and self.settings.get_boolean("notifications") or not user_settings:
             notification = Notify.Notification.new(title, text, image)
             notification.show()
 
-    # Save pevious page for back button
     def set_previous_page_status(self):
+        '''
+        This method set the previous page status according to the
+        current page, so that the previous page is correctly
+        selected when the user goes back to the previous page.
+        '''
         self.previous_page = self.stack_main.get_visible_child_name()
         self.btn_add.set_visible(False)
         self.btn_menu.set_visible(False)
         self.btn_back.set_visible(True)
 
-    # Open URLs
-    @staticmethod
-    def open_docs_url(widget):
-        webbrowser.open_new_tab("https://docs.usebottles.com")
-
-    # Go back to previous page
     def go_back(self, widget=False):
-
+        '''
+        This method is called when the user presses the back button.
+        It will toggle some widget visibility and show the previous
+        page (previous_page).
+        '''
         for w in [self.btn_add, self.btn_menu]:
             w.set_visible(True)
 
@@ -259,16 +296,19 @@ class MainWindow(Handy.ApplicationWindow):
         except FileNotFoundError:
             pass
 
-    '''
-    Properly close Bottles, giving 1s to the wine process to spawn the window
-    if an executable is passed as argument
-    '''
     @staticmethod
     def proper_close():
+        '''
+        Properly close Bottles, giving 1s to the wine process to spawn the window
+        if an executable is passed as argument
+        '''
         time.sleep(1)
         quit()
 
-    # Show about dialog
     @staticmethod
     def show_about_dialog(widget):
         AboutDialog().show_all()
+
+    @staticmethod
+    def open_docs_url(widget):
+        webbrowser.open_new_tab("https://docs.usebottles.com")
