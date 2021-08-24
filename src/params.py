@@ -6,3 +6,7 @@ VERSION = "2021.8.14-treviso"
 
 # Internal settings not user editable
 ANIM_DURATION = 120
+
+# General purpuse definitions
+EXECUTABLE_EXTS = ('.exe', '.msi', '.bat')
+LNK_EXTS = ('.lnk')
