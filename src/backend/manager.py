@@ -85,18 +85,6 @@ class Manager:
         self.check_bottles()
         self.clear_temp()
 
-    # Performs all checks in one async shot
-    # TODO: this should be removed as the caller should already be async
-    def async_checks(self, args=False, no_install=False):
-        after, no_install = args
-        self.check_runners_dir()
-        self.check_dxvk()
-        self.check_vkd3d()
-        self.check_runners(install_latest=not no_install, after=after)
-        self.check_bottles()
-        self.fetch_dependencies()
-        self.fetch_installers()
-
     def checks(self, after=False, no_install=False):
         RunAsync(self.async_checks, None, [after, no_install])
 

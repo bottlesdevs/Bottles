@@ -40,6 +40,11 @@ class DependencyManager:
         self.__utils_conn = manager.utils_conn
 
     def fetch_catalog(self) -> list:
+        '''
+        This function fetch all dependencies from the Bottles repository
+        and return these as a dictionary. It also returns an empty dictionary
+        if there are no dependencies or fails to fetch them.
+        '''
         catalog = {}
         if not self.__utils_conn.check_connection():
             return {}
