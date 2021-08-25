@@ -714,11 +714,6 @@ class Manager:
 
         return False
 
-    # Check Bottles data from old directory (only Flatpak)
-    def check_bottles_n(self):
-        data = glob(f"{base_path_n}/*")
-        return len(data)
-
     # Check local bottles
     def check_bottles(self, silent: bool = False) -> None:
         bottles = glob("%s/*/" % Paths.bottles)
