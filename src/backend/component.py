@@ -116,52 +116,51 @@ class ComponentManager:
                 BottlesRepositories.components_index
             ) as req:
                 index = yaml.safe_load(req.read())
-
-            for component in index.items():
-                '''
-                For each component, append it to the corresponding
-                catalog and mark it as installed if it is.
-                '''
-
-                if component[1]["Category"] == "runners":
-                    if "FLATPAK_ID" in os.environ and "-lol" in component[0]:
-                        '''
-                        Hide the lutris-lol runner if Bottles is running as 
-                        Flatpak  because it is not compatible under sandbox
-                        https://github.com/bottlesdevs/components/issues/54
-                        '''
-                        continue
-
-                    if component[1]["Sub-category"] == "wine":
-                        catalog_wine[component[0]] = component[1]
-                        if component[0] in self.__manager.runners_available:
-                            catalog_wine[component[0]]["Installed"] = True
-
-                    if component[1]["Sub-category"] == "proton":
-                        catalog_proton[component[0]] = component[1]
-                        if component[0] in self.__manager.runners_available:
-                            catalog_proton[component[0]]["Installed"] = True
-
-                if component[1]["Category"] == "dxvk":
-                    catalog_dxvk[component[0]] = component[1]
-                    if component[0] in self.__manager.dxvk_available:
-                        catalog_dxvk[component[0]]["Installed"] = True
-
-                if component[1]["Category"] == "vkd3d":
-                    catalog_vkd3d[component[0]] = component[1]
-                    if component[0] in self.__manager.vkd3d_available:
-                        catalog_vkd3d[component[0]]["Installed"] = True
-            req.close()
-
-            return {
-                "wine": catalog_wine,
-                "proton": catalog_proton,
-                "dxvk": catalog_dxvk,
-                "vkd3d": catalog_vkd3d
-            }
         except:
             logging.error(f"Cannot fetch components list.")
             return {}
+
+        for component in index.items():
+            '''
+            For each component, append it to the corresponding
+            catalog and mark it as installed if it is.
+            '''
+
+            if component[1]["Category"] == "runners":
+                if "FLATPAK_ID" in os.environ and "-lol" in component[0]:
+                    '''
+                    Hide the lutris-lol runner if Bottles is running as 
+                    Flatpak  because it is not compatible under sandbox
+                    https://github.com/bottlesdevs/components/issues/54
+                    '''
+                    continue
+
+                if component[1]["Sub-category"] == "wine":
+                    catalog_wine[component[0]] = component[1]
+                    if component[0] in self.__manager.runners_available:
+                        catalog_wine[component[0]]["Installed"] = True
+
+                if component[1]["Sub-category"] == "proton":
+                    catalog_proton[component[0]] = component[1]
+                    if component[0] in self.__manager.runners_available:
+                        catalog_proton[component[0]]["Installed"] = True
+
+            if component[1]["Category"] == "dxvk":
+                catalog_dxvk[component[0]] = component[1]
+                if component[0] in self.__manager.dxvk_available:
+                    catalog_dxvk[component[0]]["Installed"] = True
+
+            if component[1]["Category"] == "vkd3d":
+                catalog_vkd3d[component[0]] = component[1]
+                if component[0] in self.__manager.vkd3d_available:
+                    catalog_vkd3d[component[0]]["Installed"] = True
+
+        return {
+            "wine": catalog_wine,
+            "proton": catalog_proton,
+            "dxvk": catalog_dxvk,
+            "vkd3d": catalog_vkd3d
+        }
 
     def download(
         self,
@@ -402,4 +401,3 @@ class ComponentManager:
         # Execute a method at the end if passed
         if after:
             GLib.idle_add(after)
-

@@ -206,6 +206,7 @@ class InstallerManager:
         if dependencies:
             self.__install_dependencies(configuration, dependencies)
         
+        # execute steps
         if steps:
             self.__perform_steps(configuration, steps)
         

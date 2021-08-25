@@ -40,6 +40,7 @@ from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
 from .versioning import RunnerVersioning
 from .component import ComponentManager
 from .installer import InstallerManager
+from .dependency import DependencyManager
 
 logging = UtilsLogger()
 
@@ -72,18 +73,20 @@ class Manager:
         self.versioning_manager = RunnerVersioning(window, self)
         self.component_manager = ComponentManager(self)
         self.installer_manager = InstallerManager(self)
+        self.dependency_manager = DependencyManager(self)
 
         self.check_runners_dir()
         self.check_dxvk(install_latest=False)
         self.check_vkd3d(install_latest=False)
         self.check_runners(install_latest=False)
         self.organize_components()
-        self.fetch_dependencies()
+        self.organize_dependencies()
         self.fetch_installers()
         self.check_bottles()
         self.clear_temp()
 
     # Performs all checks in one async shot
+    # TODO: this should be removed as the caller should already be async
     def async_checks(self, args=False, no_install=False):
         after, no_install = args
         self.check_runners_dir()
@@ -148,10 +151,14 @@ class Manager:
         self.supported_proton_runners = catalog["proton"]
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
-
-    '''
-    Method for dependency installations
-    '''
+    
+    def organize_dependencies(self):
+        catalog = self.dependency_manager.fetch_catalog()
+        if len(catalog) == 0:
+            logging.info("No dependencies found!")
+            return
+        
+        self.supported_dependencies = catalog
 
     def async_install_dependency(self, args: list) -> bool:
         configuration, dependency, widget = args
@@ -703,22 +710,6 @@ class Manager:
         except:
             logging.error(
                 "Cannot fetch installers index from repository.")
-            return False
-
-    # Fetch dependencies
-    def fetch_dependencies(self) -> bool:
-        if not self.utils_conn.check_connection():
-            return False
-
-        try:
-            url = urllib.request.urlopen(BottlesRepositories.dependencies_index)
-            index = yaml.safe_load(url.read())
-
-            for dependency in index.items():
-                self.supported_dependencies[dependency[0]] = dependency[1]
-            return True
-        except:
-            logging.error(F"Cannot fetch dependencies list.")
             return False
 
     # Fetch dependency manifest
