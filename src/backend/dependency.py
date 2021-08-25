@@ -145,221 +145,67 @@ class DependencyManager:
             Steps are the actions performed to install the dependency.
             '''
 
-            # Step type: delete_sys32_dlls
             if step["action"] == "delete_sys32_dlls":
-                for dll in step["dlls"]:
-                    try:
-                        logging.info(
-                            f"Removing [{dll}] from system32 in bottle: [{configuration['Name']}]"
-                        )
-                        os.remove("%s/%s/drive_c/windows/system32/%s" % (
-                            Paths.bottles, configuration.get("Name"), dll))
-                    except FileNotFoundError:
-                        logging.error(
-                            f"[{dll}] not found in bottle: [{configuration['Name']}], failed removing from system32."
-                        )
-
-            # Step type: install_exe, install_msi
-            if step["action"] in ["install_exe", "install_msi"]:
-                download = self.__manager.component_manager.download(
-                    component="dependency",
-                    download_url=step.get("url"),
-                    file=step.get("file_name"),
-                    rename=step.get("rename"),
-                    checksum=step.get("file_checksum")
-                )
-                if download:
-                    if step.get("rename"):
-                        file = step.get("rename")
-                    else:
-                        file = step.get("file_name")
-
-                    Runner().run_executable(
-                        configuration=configuration,
-                        file_path=f"{Paths.temp}/{file}",
-                        arguments=step.get("arguments"),
-                        environment=step.get("environment"),
-                        no_async=True)
-                else:
-                    if widget is not None:
-                        widget.btn_install.set_sensitive(True)
-                    return False
-
-            # Step type: uninstall
-            if step["action"] == "uninstall":
-                file_name = step["file_name"]
-                command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
-
-                uuid = Runner().run_command(
+                self.__step_delete_sys32_dlls(
                     configuration=configuration,
-                    command=command,
-                    terminal=False,
-                    environment=False,
-                    comunicate=True)
-                uuid = uuid.strip()
+                    dlls=step["dlls"]
+                )
 
-                if uuid != "":
-                    logging.info(
-                        f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}].")
-                    Runner().run_uninstaller(configuration, uuid)
+            if step["action"] in ["install_exe", "install_msi"]:
+                self.__step_install_exe_msi(
+                    configuration=configuration,
+                    step=step,
+                    widget=widget
+                )
 
-            # Step type: cab_extract
+            if step["action"] == "uninstall":
+                self.__step_uninstall(
+                    configuration=configuration,
+                    file_name=step["file_name"]
+                )
+
             if step["action"] == "cab_extract":
-                has_no_uninstaller = True  # cab extracted has no uninstaller
+                has_no_uninstaller = True
+                self.__step_cab_extract(
+                    step=step,
+                    widget=widget
+                )
 
-                if validate_url(step["url"]):
-                    download = self.__manager.component_manager.download(
-                        component="dependency",
-                        download_url=step.get("url"),
-                        file=step.get("file_name"),
-                        rename=step.get("rename"),
-                        checksum=step.get("file_checksum")
-                    )
-                    if download:
-                        if step.get("rename"):
-                            file = step.get("rename")
-                        else:
-                            file = step.get("file_name")
-
-                        if not CabExtract().run(
-                            f"{Paths.temp}/{file}",
-                            file
-                        ):
-                            if widget is not None:
-                                GLib.idle_add(widget.set_err)
-                            exit()
-                        if not CabExtract().run(
-                            f"{Paths.temp}/{file}",
-                            os.path.splitext(f"{file}")[0]
-                        ):
-                            if widget is not None:
-                                GLib.idle_add(widget.set_err)
-                            exit()
-
-                elif step["url"].startswith("temp/"):
-                    path = step["url"]
-                    path = path.replace("temp/", f"{Paths.temp}/")
-
-                    if step.get("rename"):
-                        file_path = os.path.splitext(
-                            f"{step.get('rename')}")[0]
-                    else:
-                        file_path = os.path.splitext(
-                            f"{step.get('file_name')}")[0]
-
-                    if not CabExtract().run(
-                        f"{path}/{step.get('file_name')}",
-                        file_path
-                    ):
-                        if widget is not None:
-                            GLib.idle_add(widget.set_err)
-                        exit()
-
-            # Step type: archive_extract
             if step["action"] == "archive_extract":
-                has_no_uninstaller = True  # extracted archives has no uninstaller
+                has_no_uninstaller = True
+                self.__step_archive_extract(step)
 
-                if validate_url(step["url"]):
-                    download = self.__manager.component_manager.download(
-                        component="dependency",
-                        download_url=step.get("url"),
-                        file=step.get("file_name"),
-                        rename=step.get("rename"),
-                        checksum=step.get("file_checksum")
-                    )
-
-                    if download:
-                        if step.get("rename"):
-                            file = step.get("rename")
-                        else:
-                            file = step.get("file_name")
-
-                        archive_name = os.path.splitext(file)[0]
-
-                        if os.path.exists(f"{Paths.temp}/{archive_name}"):
-                            shutil.rmtree(
-                                f"{Paths.temp}/{archive_name}")
-
-                        os.makedirs(f"{Paths.temp}/{archive_name}")
-                        patoolib.extract_archive(
-                            f"{Paths.temp}/{file}",
-                            outdir=f"{Paths.temp}/{archive_name}")
-
-            # Step type: install_cab_fonts
             if step["action"] in ["install_cab_fonts", "install_fonts"]:
-                has_no_uninstaller = True  # cab extracted has no uninstaller
+                has_no_uninstaller = True
+                self.__step_install_fonts(
+                    configuration=configuration,
+                    step=step
+                )
 
-                path = step["url"]
-                path = path.replace("temp/", f"{Paths.temp}/")
-                bottle_path = Runner().get_bottle_path(configuration)
-
-                for font in step.get('fonts'):
-                    shutil.copyfile(
-                        f"{path}/{font}",
-                        f"{bottle_path}/drive_c/windows/Fonts/{font}")
-
-            # Step type: copy_cab_dll
             if step["action"] in ["copy_cab_dll", "copy_dll"]:
-                has_no_uninstaller = True  # cab extracted has no uninstaller
+                has_no_uninstaller = True
+                self.__step_copy_dll(
+                    configuration=configuration,
+                    step=step
+                )
 
-                path = step["url"]
-                path = path.replace("temp/", f"{Paths.temp}/")
-                bottle_path = Runner().get_bottle_path(configuration)
-
-                try:
-                    if "*" in step.get('file_name'):
-                        files = glob(f"{path}/{step.get('file_name')}")
-                        for fg in files:
-                            shutil.copyfile(
-                                fg,
-                                f"{bottle_path}/drive_c/{step.get('dest')}/{os.path.basename(fg)}")
-                    else:
-                        shutil.copyfile(
-                            f"{path}/{step.get('file_name')}",
-                            f"{bottle_path}/drive_c/{step.get('dest')}")
-
-                except FileNotFoundError:
-                    logging.error(
-                        f"dll {step.get('file_name')} not found in temp directory, there should be other errors from cabextract.")
-                    break
-
-            # Step type: override_dll
             if step["action"] == "override_dll":
-                if step.get("url") and step.get("url").startswith("temp/"):
-                    path = step["url"].replace(
-                        "temp/", f"{Paths.temp}/")
-                    path = f"{path}/{step.get('dll')}"
+                self.__step_override_dll(
+                    configuration=configuration,
+                    step=step
+                )
 
-                    for dll in glob(path):
-                        dll_name = os.path.splitext(os.path.basename(dll))[0]
-                        self.__manager.reg_add(
-                            configuration,
-                            key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                            value=dll_name,
-                            data=step.get("type"))
-                else:
-                    self.__manager.reg_add(
-                        configuration,
-                        key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                        value=step.get("dll"),
-                        data=step.get("type"))
-
-            # Step type: set_register_key
             if step["action"] == "set_register_key":
-                self.__manager.reg_add(
-                    configuration,
-                    key=step.get("key"),
-                    value=step.get("value"),
-                    data=step.get("data"),
-                    keyType=step.get("type"))
+                self.set_register_key(
+                    configuration=configuration,
+                    step=step
+                )
 
-            # Step type: register_font
             if step["action"] == "register_font":
-                self.__manager.reg_add(
-                    configuration,
-                    key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts",
-                    value=step.get("name"),
-                    data=step.get("file"))
+                self.__step_set_register_key(
+                    configuration=configuration,
+                    step=step
+                )
 
         # Add dependency to bottle configuration
         if dependency[0] not in configuration.get("Installed_Dependencies"):
@@ -407,3 +253,196 @@ class DependencyManager:
                     widget
                 ]
             )
+    
+    def __step_delete_sys32_dlls(self, configuration: BottleConfig, dlls: list) -> None:
+        for dll in dlls:
+            try:
+                logging.info(
+                    f"Removing [{dll}] from system32 in bottle: [{configuration['Name']}]"
+                )
+                os.remove("%s/%s/drive_c/windows/system32/%s" % (
+                    Paths.bottles, configuration.get("Name"), dll))
+            except FileNotFoundError:
+                logging.error(
+                    f"[{dll}] not found in bottle: [{configuration['Name']}], failed removing from system32."
+                )
+    
+    def __step_install_exe_msi(self, configuration:BottleConfig, step:dict, widget:Gtk.Widget) -> Union[None, bool]:
+        download = self.__manager.component_manager.download(
+            component="dependency",
+            download_url=step.get("url"),
+            file=step.get("file_name"),
+            rename=step.get("rename"),
+            checksum=step.get("file_checksum")
+        )
+        if download:
+            if step.get("rename"):
+                file = step.get("rename")
+            else:
+                file = step.get("file_name")
+
+            Runner().run_executable(
+                configuration=configuration,
+                file_path=f"{Paths.temp}/{file}",
+                arguments=step.get("arguments"),
+                environment=step.get("environment"),
+                no_async=True)
+        else:
+            if widget is not None:
+                widget.btn_install.set_sensitive(True)
+            return False
+
+    def __step_uninstall(self, configuration:BottleConfig, file_name:str) -> None:
+        command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
+
+        uuid = Runner().run_command(
+            configuration=configuration,
+            command=command,
+            terminal=False,
+            environment=False,
+            comunicate=True
+        )
+        uuid = uuid.strip()
+
+        if uuid != "":
+            logging.info(
+                f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}]."
+            )
+            Runner().run_uninstaller(configuration, uuid)
+    
+    def __step_cab_extract(self, step:dict, widget:Gtk.Widget) -> None: 
+        if validate_url(step["url"]):
+            download = self.__manager.component_manager.download(
+                component="dependency",
+                download_url=step.get("url"),
+                file=step.get("file_name"),
+                rename=step.get("rename"),
+                checksum=step.get("file_checksum")
+            )
+            if download:
+                if step.get("rename"):
+                    file = step.get("rename")
+                else:
+                    file = step.get("file_name")
+
+                if not CabExtract().run(
+                    f"{Paths.temp}/{file}",
+                    file
+                ):
+                    if widget is not None:
+                        GLib.idle_add(widget.set_err)
+                    exit()
+                if not CabExtract().run(
+                    f"{Paths.temp}/{file}",
+                    os.path.splitext(f"{file}")[0]
+                ):
+                    if widget is not None:
+                        GLib.idle_add(widget.set_err)
+                    exit()
+
+        elif step["url"].startswith("temp/"):
+            path = step["url"]
+            path = path.replace("temp/", f"{Paths.temp}/")
+
+            if step.get("rename"):
+                file_path = os.path.splitext(
+                    f"{step.get('rename')}")[0]
+            else:
+                file_path = os.path.splitext(
+                    f"{step.get('file_name')}")[0]
+
+            if not CabExtract().run(
+                f"{path}/{step.get('file_name')}",
+                file_path
+            ):
+                if widget is not None:
+                    GLib.idle_add(widget.set_err)
+                exit()
+    
+    def __step_archive_extract(self, step:dict) -> None:
+        download = self.__manager.component_manager.download(
+            component="dependency",
+            download_url=step.get("url"),
+            file=step.get("file_name"),
+            rename=step.get("rename"),
+            checksum=step.get("file_checksum")
+        )
+
+        if download:
+            if step.get("rename"):
+                file = step.get("rename")
+            else:
+                file = step.get("file_name")
+
+            archive_name = os.path.splitext(file)[0]
+
+            if os.path.exists(f"{Paths.temp}/{archive_name}"):
+                shutil.rmtree(
+                    f"{Paths.temp}/{archive_name}")
+
+            os.makedirs(f"{Paths.temp}/{archive_name}")
+            patoolib.extract_archive(
+                f"{Paths.temp}/{file}",
+                outdir=f"{Paths.temp}/{archive_name}")
+
+    def __step_install_fonts(self, configuration:BottleConfig, step:dict) -> None:
+        path = step["url"]
+        path = path.replace("temp/", f"{Paths.temp}/")
+        bottle_path = Runner().get_bottle_path(configuration)
+
+        for font in step.get('fonts'):
+            shutil.copyfile(
+                f"{path}/{font}",
+                f"{bottle_path}/drive_c/windows/Fonts/{font}")
+
+    def __step_copy_dll(self, configuration:BottleConfig, step:dict) -> None:
+        path = step["url"]
+        path = path.replace("temp/", f"{Paths.temp}/")
+        bottle_path = Runner().get_bottle_path(configuration)
+
+        try:
+            if "*" in step.get('file_name'):
+                files = glob(f"{path}/{step.get('file_name')}")
+                for fg in files:
+                    shutil.copyfile(
+                        fg,
+                        f"{bottle_path}/drive_c/{step.get('dest')}/{os.path.basename(fg)}")
+            else:
+                shutil.copyfile(
+                    f"{path}/{step.get('file_name')}",
+                    f"{bottle_path}/drive_c/{step.get('dest')}")
+
+        except FileNotFoundError:
+            logging.error(
+                f"dll {step.get('file_name')} not found in temp directory, there should be other errors from cabextract.")
+            return False
+
+    def __step_override_dll(self, configuration:BottleConfig, step:dict) -> None:
+        if step.get("url") and step.get("url").startswith("temp/"):
+            path = step["url"].replace(
+                "temp/", f"{Paths.temp}/")
+            path = f"{path}/{step.get('dll')}"
+
+            for dll in glob(path):
+                dll_name = os.path.splitext(os.path.basename(dll))[0]
+                self.__manager.reg_add(
+                    configuration,
+                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                    value=dll_name,
+                    data=step.get("type"))
+            return
+
+        self.__manager.reg_add(
+            configuration,
+            key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+            value=step.get("dll"),
+            data=step.get("type"))
+
+    def __step_set_register_key(self, configuration:BottleConfig, step:dict) -> None:
+        self.__manager.reg_add(
+            configuration,
+            key=step.get("key"),
+            value=step.get("value"),
+            data=step.get("data"),
+            keyType=step.get("type")
+        )
