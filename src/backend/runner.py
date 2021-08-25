@@ -232,9 +232,9 @@ class Runner:
         if parameters["aco_compiler"]:
             environment_vars.append("RADV_PERFTEST=aco")
 
-        if "WAYLAND_DISPLAY" in os.environ:
+        if "WAYLAND_DISPLAY" in os.environ and "DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
-            environment_vars.append("DISPLAY=:0")
+            environment_vars.append(f"DISPLAY={os.environ['DISPLAY']}")
 
         if parameters["discrete_gpu"]:
             if "nvidia" in subprocess.Popen(
