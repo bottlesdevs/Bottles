@@ -18,7 +18,7 @@
 
 import yaml
 import urllib.request
-from typing import NewType
+from typing import Union, NewType
 from datetime import datetime
 from gi.repository import Gtk, GLib
 
@@ -30,8 +30,6 @@ logging = UtilsLogger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
-RunnerName = NewType('RunnerName', str)
-RunnerType = NewType('RunnerType', str)
 
 class DependencyManager:
 
@@ -39,6 +37,38 @@ class DependencyManager:
         self.__manager = manager
         self.__utils_conn = manager.utils_conn
 
+    def get_dependency(
+        self, 
+        dependency_name: str, 
+        dependency_category: str, 
+        plain: bool = False
+    ) -> Union[str, dict, bool]:
+        '''
+        This function can be used to fetch the manifest for a given
+        dependency. It can be returned as plain text or as a dictionary.
+        It will return False if the dependency is not found.
+        '''
+        if self.__utils_conn.check_connection():
+            try:
+                with urllib.request.urlopen("%s/%s/%s.yml" % (
+                    BottlesRepositories.dependencies,
+                    dependency_category,
+                    dependency_name
+                )) as url:
+                    if plain:
+                        '''
+                        Caller required the component manifest
+                        as plain text.
+                        '''
+                        return url.read().decode("utf-8")
+
+                    # return as dictionary
+                    return yaml.safe_load(url.read())
+            except:
+                logging.error(f"Cannot fetch manifest for {dependency_name}.")
+                return False
+
+        return False
     def fetch_catalog(self) -> list:
         '''
         This function fetch all dependencies from the Bottles repository

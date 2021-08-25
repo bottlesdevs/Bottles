@@ -166,9 +166,13 @@ class Manager:
             f"Installing dependency: [{dependency[0]}] in bottle: [{configuration['Name']}].")
 
         # Get dependency manifest
-        dependency_manifest = self.fetch_dependency_manifest(
-            dependency[0],
-            dependency[1]["Category"])
+        dependency_manifest = self.dependency_manager.get_dependency(
+            dependency_name=dependency[0],
+            dependency_category=dependency[1]["Category"]
+        )
+        if not dependency_manifest:
+            GLib.idle_add(widget.set_installed, False)
+            return False
 
         # Execute installation steps
         for step in dependency_manifest.get("Steps"):
@@ -699,20 +703,6 @@ class Manager:
             logging.error(
                 "Cannot fetch installers index from repository.")
             return False
-
-    # Fetch dependency manifest
-    def fetch_dependency_manifest(self, dependency_name: str, dependency_category: str, plain: bool = False) -> Union[str, dict, bool]:
-        if self.utils_conn.check_connection():
-            with urllib.request.urlopen("%s/%s/%s.yml" % (
-                BottlesRepositories.dependencies,
-                dependency_category,
-                dependency_name
-            )) as url:
-                if plain:
-                    return url.read().decode("utf-8")
-                return yaml.safe_load(url.read())
-
-        return False
 
     # Check local bottles
     def check_bottles(self, silent: bool = False) -> None:

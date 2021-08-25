@@ -635,17 +635,21 @@ class DependencyEntry(Handy.ActionRow):
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
             message=False,
-            log=self.manager.fetch_dependency_manifest(self.dependency[0],
-                                                      self.dependency[1]["Category"],
-                                                      plain=True))
+            log=self.manager.dependency_manager.get_dependency(
+                dependency_name=self.dependency[0],
+                dependency_category=self.dependency[1]["Category"],
+                plain=True
+            )
+        )
         dialog.run()
         dialog.destroy()
 
     '''Open dependency license'''
     def open_license(self, widget):
-        manifest = self.manager.fetch_dependency_manifest(
-            self.dependency[0],
-            self.dependency[1]["Category"])
+        manifest = self.manager.dependency_manager.get_dependency(
+            dependency_name=self.dependency[0],
+            dependency_category=self.dependency[1]["Category"]
+        )
         webbrowser.open(manifest["License_url"])
 
     '''Install dependency'''
