@@ -15,16 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+import os
 import yaml
+import shutil
+import patoolib
+from glob import glob
 import urllib.request
 from typing import Union, NewType
-from datetime import datetime
 from gi.repository import Gtk, GLib
 
+from ..download import DownloadManager
 from .runner import Runner
 from .globals import BottlesRepositories, Paths
-from ..utils import RunAsync, UtilsLogger
+from ..utils import RunAsync, UtilsLogger, CabExtract, validate_url
 
 logging = UtilsLogger()
 
@@ -35,7 +38,9 @@ class DependencyManager:
 
     def __init__(self, manager):
         self.__manager = manager
+        self.__window = manager.window
         self.__utils_conn = manager.utils_conn
+        self.__download_manager = DownloadManager(self.__window)
 
     def get_dependency(
         self, 
@@ -69,6 +74,7 @@ class DependencyManager:
                 return False
 
         return False
+
     def fetch_catalog(self) -> list:
         '''
         This function fetch all dependencies from the Bottles repository
@@ -92,5 +98,312 @@ class DependencyManager:
             catalog[dependency[0]] = dependency[1]
         return catalog
 
-    def install(self, bottle: BottleConfig) -> list:
-        return
+    def async_install(self, args: list) -> bool:
+        '''
+        This function install a given dependency in a bottle. It will
+        return True if the installation was successful and update the
+        widget status.
+        '''
+        configuration, dependency, widget = args
+        has_no_uninstaller = False
+
+        if configuration["Versioning"]:
+            '''
+            If the bottle has the versioning system enabled, we need
+            to create a new version of the bottle, before installing
+            the dependency.
+            '''
+            self.__manager.versioning_manager.async_create_bottle_state([
+                configuration,
+                f"before {dependency[0]}",
+                True, False, None
+            ])
+
+        download_entry = self.__download_manager.new_download(
+            file_name=dependency[0], 
+            cancellable=False
+        )
+
+        logging.info(
+            f"Installing dependency: [{dependency[0]}] in bottle: [{configuration['Name']}]."
+        )
+        manifest = self.get_dependency(
+            dependency_name=dependency[0],
+            dependency_category=dependency[1]["Category"]
+        )
+        if not manifest:
+            '''
+            If the manifest is not found, update the widget status to
+            not installed and return False.
+            '''
+            GLib.idle_add(widget.set_installed, False)
+            return False
+
+        for step in manifest.get("Steps"):
+            '''
+            Here we execute all steps in the manifest.
+            Steps are the actions performed to install the dependency.
+            '''
+
+            # Step type: delete_sys32_dlls
+            if step["action"] == "delete_sys32_dlls":
+                for dll in step["dlls"]:
+                    try:
+                        logging.info(
+                            f"Removing [{dll}] from system32 in bottle: [{configuration['Name']}]"
+                        )
+                        os.remove("%s/%s/drive_c/windows/system32/%s" % (
+                            Paths.bottles, configuration.get("Name"), dll))
+                    except FileNotFoundError:
+                        logging.error(
+                            f"[{dll}] not found in bottle: [{configuration['Name']}], failed removing from system32."
+                        )
+
+            # Step type: install_exe, install_msi
+            if step["action"] in ["install_exe", "install_msi"]:
+                download = self.__manager.component_manager.download(
+                    component="dependency",
+                    download_url=step.get("url"),
+                    file=step.get("file_name"),
+                    rename=step.get("rename"),
+                    checksum=step.get("file_checksum")
+                )
+                if download:
+                    if step.get("rename"):
+                        file = step.get("rename")
+                    else:
+                        file = step.get("file_name")
+
+                    Runner().run_executable(
+                        configuration=configuration,
+                        file_path=f"{Paths.temp}/{file}",
+                        arguments=step.get("arguments"),
+                        environment=step.get("environment"),
+                        no_async=True)
+                else:
+                    if widget is not None:
+                        widget.btn_install.set_sensitive(True)
+                    return False
+
+            # Step type: uninstall
+            if step["action"] == "uninstall":
+                file_name = step["file_name"]
+                command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
+
+                uuid = Runner().run_command(
+                    configuration=configuration,
+                    command=command,
+                    terminal=False,
+                    environment=False,
+                    comunicate=True)
+                uuid = uuid.strip()
+
+                if uuid != "":
+                    logging.info(
+                        f"Uninstalling [{file_name}] from bottle: [{configuration['Name']}].")
+                    Runner().run_uninstaller(configuration, uuid)
+
+            # Step type: cab_extract
+            if step["action"] == "cab_extract":
+                has_no_uninstaller = True  # cab extracted has no uninstaller
+
+                if validate_url(step["url"]):
+                    download = self.__manager.component_manager.download(
+                        component="dependency",
+                        download_url=step.get("url"),
+                        file=step.get("file_name"),
+                        rename=step.get("rename"),
+                        checksum=step.get("file_checksum")
+                    )
+                    if download:
+                        if step.get("rename"):
+                            file = step.get("rename")
+                        else:
+                            file = step.get("file_name")
+
+                        if not CabExtract().run(
+                            f"{Paths.temp}/{file}",
+                            file
+                        ):
+                            if widget is not None:
+                                GLib.idle_add(widget.set_err)
+                            exit()
+                        if not CabExtract().run(
+                            f"{Paths.temp}/{file}",
+                            os.path.splitext(f"{file}")[0]
+                        ):
+                            if widget is not None:
+                                GLib.idle_add(widget.set_err)
+                            exit()
+
+                elif step["url"].startswith("temp/"):
+                    path = step["url"]
+                    path = path.replace("temp/", f"{Paths.temp}/")
+
+                    if step.get("rename"):
+                        file_path = os.path.splitext(
+                            f"{step.get('rename')}")[0]
+                    else:
+                        file_path = os.path.splitext(
+                            f"{step.get('file_name')}")[0]
+
+                    if not CabExtract().run(
+                        f"{path}/{step.get('file_name')}",
+                        file_path
+                    ):
+                        if widget is not None:
+                            GLib.idle_add(widget.set_err)
+                        exit()
+
+            # Step type: archive_extract
+            if step["action"] == "archive_extract":
+                has_no_uninstaller = True  # extracted archives has no uninstaller
+
+                if validate_url(step["url"]):
+                    download = self.__manager.component_manager.download(
+                        component="dependency",
+                        download_url=step.get("url"),
+                        file=step.get("file_name"),
+                        rename=step.get("rename"),
+                        checksum=step.get("file_checksum")
+                    )
+
+                    if download:
+                        if step.get("rename"):
+                            file = step.get("rename")
+                        else:
+                            file = step.get("file_name")
+
+                        archive_name = os.path.splitext(file)[0]
+
+                        if os.path.exists(f"{Paths.temp}/{archive_name}"):
+                            shutil.rmtree(
+                                f"{Paths.temp}/{archive_name}")
+
+                        os.makedirs(f"{Paths.temp}/{archive_name}")
+                        patoolib.extract_archive(
+                            f"{Paths.temp}/{file}",
+                            outdir=f"{Paths.temp}/{archive_name}")
+
+            # Step type: install_cab_fonts
+            if step["action"] in ["install_cab_fonts", "install_fonts"]:
+                has_no_uninstaller = True  # cab extracted has no uninstaller
+
+                path = step["url"]
+                path = path.replace("temp/", f"{Paths.temp}/")
+                bottle_path = Runner().get_bottle_path(configuration)
+
+                for font in step.get('fonts'):
+                    shutil.copyfile(
+                        f"{path}/{font}",
+                        f"{bottle_path}/drive_c/windows/Fonts/{font}")
+
+            # Step type: copy_cab_dll
+            if step["action"] in ["copy_cab_dll", "copy_dll"]:
+                has_no_uninstaller = True  # cab extracted has no uninstaller
+
+                path = step["url"]
+                path = path.replace("temp/", f"{Paths.temp}/")
+                bottle_path = Runner().get_bottle_path(configuration)
+
+                try:
+                    if "*" in step.get('file_name'):
+                        files = glob(f"{path}/{step.get('file_name')}")
+                        for fg in files:
+                            shutil.copyfile(
+                                fg,
+                                f"{bottle_path}/drive_c/{step.get('dest')}/{os.path.basename(fg)}")
+                    else:
+                        shutil.copyfile(
+                            f"{path}/{step.get('file_name')}",
+                            f"{bottle_path}/drive_c/{step.get('dest')}")
+
+                except FileNotFoundError:
+                    logging.error(
+                        f"dll {step.get('file_name')} not found in temp directory, there should be other errors from cabextract.")
+                    break
+
+            # Step type: override_dll
+            if step["action"] == "override_dll":
+                if step.get("url") and step.get("url").startswith("temp/"):
+                    path = step["url"].replace(
+                        "temp/", f"{Paths.temp}/")
+                    path = f"{path}/{step.get('dll')}"
+
+                    for dll in glob(path):
+                        dll_name = os.path.splitext(os.path.basename(dll))[0]
+                        self.__manager.reg_add(
+                            configuration,
+                            key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                            value=dll_name,
+                            data=step.get("type"))
+                else:
+                    self.__manager.reg_add(
+                        configuration,
+                        key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                        value=step.get("dll"),
+                        data=step.get("type"))
+
+            # Step type: set_register_key
+            if step["action"] == "set_register_key":
+                self.__manager.reg_add(
+                    configuration,
+                    key=step.get("key"),
+                    value=step.get("value"),
+                    data=step.get("data"),
+                    keyType=step.get("type"))
+
+            # Step type: register_font
+            if step["action"] == "register_font":
+                self.__manager.reg_add(
+                    configuration,
+                    key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts",
+                    value=step.get("name"),
+                    data=step.get("file"))
+
+        # Add dependency to bottle configuration
+        if dependency[0] not in configuration.get("Installed_Dependencies"):
+            dependencies = [dependency[0]]
+            if configuration.get("Installed_Dependencies"):
+                dependencies = configuration["Installed_Dependencies"] + \
+                    [dependency[0]]
+
+            self.__manager.update_configuration(
+                configuration,
+                "Installed_Dependencies",
+                dependencies)
+
+            if manifest.get("Uninstaller"):
+                self.__manager.update_configuration(
+                    configuration,
+                    dependency[0],
+                    manifest["Uninstaller"],
+                    "Uninstallers")
+
+            if has_no_uninstaller:
+                self.__manager.update_configuration(
+                    configuration,
+                    dependency[0],
+                    "NO_UNINSTALLER",
+                    "Uninstallers")
+
+        # Remove entry from download manager
+        GLib.idle_add(download_entry.remove)
+
+        # Hide installation button and show remove button
+        if widget is not None:
+            if has_no_uninstaller:
+                GLib.idle_add(widget.set_installed, False)
+            else:
+                GLib.idle_add(widget.set_installed, True)
+
+        return True
+
+    def install(self, configuration: BottleConfig, dependency: list, widget: Gtk.Widget = None) -> None:
+        if self.__utils_conn.check_connection(True):
+            RunAsync(self.async_install, None, [
+                    configuration,
+                    dependency,
+                    widget
+                ]
+            )

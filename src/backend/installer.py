@@ -95,7 +95,7 @@ class InstallerManager:
             if dep in configuration.get("Installed_Dependencies"):
                 continue
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
-            self.__manager.async_install_dependency([
+            self.__manager.dependency_manager.async_install([
                 configuration, 
                 dep_index, 
                 None

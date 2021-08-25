@@ -663,9 +663,11 @@ class DependencyEntry(Handy.ActionRow):
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
 
-        self.manager.install_dependency(self.configuration,
-                                       self.dependency,
-                                       self)
+        self.manager.dependency_manager.install(
+            configuration=self.configuration,
+            dependency=self.dependency,
+            widget=self
+        )
 
     '''Remove dependency'''
     def remove_dependency(self, widget):
