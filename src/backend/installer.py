@@ -76,13 +76,13 @@ class InstallerManager:
 
         return False
 
-    def __download_icon(self, configuration, executable:dict, manifest):
+    def __download_icon(self, config, executable:dict, manifest):
         icon_url = "%s/data/%s/%s" % (
             BottlesRepositories.installers,
             manifest.get('Name'),
             executable.get('icon')
         )
-        bottle_icons_path = f"{Runner().get_bottle_path(configuration)}/icons"
+        bottle_icons_path = f"{Runner().get_bottle_path(config)}/icons"
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
 
         if not os.path.exists(bottle_icons_path):
@@ -90,18 +90,18 @@ class InstallerManager:
         if not os.path.isfile(icon_path):
             urllib.request.urlretrieve(icon_url, icon_path)
 
-    def __install_dependencies(self, configuration, dependencies:list):
+    def __install_dependencies(self, config, dependencies:list):
         for dep in dependencies:
-            if dep in configuration.get("Installed_Dependencies"):
+            if dep in config.get("Installed_Dependencies"):
                 continue
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
             self.__manager.dependency_manager.async_install([
-                configuration, 
+                config, 
                 dep_index, 
                 None
             ])
 
-    def __perform_steps(self, configuration, steps:list):
+    def __perform_steps(self, config, steps:list):
         for st in steps:
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
@@ -119,40 +119,40 @@ class InstallerManager:
                         file = st.get("file_name")
 
                     Runner().run_executable(
-                        configuration=configuration,
+                        config=config,
                         file_path=f"{Paths.temp}/{file}",
                         arguments=st.get("arguments"),
                         environment=st.get("environment"))
     
-    def __set_parameters(self, configuration, parameters:dict):
-        if parameters.get("dxvk") and not configuration.get("Parameters")["dxvk"]:
-            self.__manager.install_dxvk(configuration)
+    def __set_parameters(self, config, parameters:dict):
+        if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:
+            self.__manager.install_dxvk(config)
 
-        if parameters.get("vkd3d") and configuration.get("Parameters")["vkd3d"]:
-            self.__manager.install_vkd3d(configuration)
+        if parameters.get("vkd3d") and config.get("Parameters")["vkd3d"]:
+            self.__manager.install_vkd3d(config)
 
         for param in parameters:
-            self.__manager.update_configuration(
-                configuration=configuration,
+            self.__manager.update_config(
+                config=config,
                 key=param,
                 value=parameters[param],
                 scope="Parameters"
             )
 
-    def __set_executable_arguments(self, configuration, executable:dict):
-        self.__manager.update_configuration(
-            configuration=configuration,
+    def __set_executable_arguments(self, config, executable:dict):
+        self.__manager.update_config(
+            config=config,
             key=executable.get("file"),
             value=executable.get("arguments"),
             scope="Programs")
 
-    def __create_desktop_entry(self, configuration, manifest, executable:dict):
-        bottle_icons_path = f"{Runner().get_bottle_path(configuration)}/icons"
+    def __create_desktop_entry(self, config, manifest, executable:dict):
+        bottle_icons_path = f"{Runner().get_bottle_path(config)}/icons"
 
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
         desktop_file = "%s/%s--%s--%s.desktop" % (
             Paths.applications,
-            configuration.get('Name'),
+            config.get('Name'),
             manifest.get('Name'),
             datetime.now().timestamp()
         )
@@ -163,13 +163,13 @@ class InstallerManager:
         with open(desktop_file, "w") as f:
             ex_path = "%s/%s/drive_c/%s/%s" % (
                 Paths.bottles,
-                configuration.get('Path'),
+                config.get('Path'),
                 executable.get('path'),
                 executable.get('file')
             )
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={executable.get('name')}\n")
-            f.write(f"Exec=bottles -e '{ex_path}' -b '{configuration.get('Name')}'\n")
+            f.write(f"Exec=bottles -e '{ex_path}' -b '{config.get('Name')}'\n")
             f.write(f"Type=Application\n")
             f.write(f"Terminal=false\n")
             f.write(f"Categories=Application;\n")
@@ -182,10 +182,10 @@ class InstallerManager:
             f.write("Actions=Configure;\n")
             f.write("[Desktop Action Configure]\n")
             f.write("Name=Configure in Bottles\n")
-            f.write(f"Exec=bottles -b '{configuration.get('Name')}'\n")
+            f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
     
     def __async_install(self, args) -> None:
-        configuration, installer, widget = args
+        config, installer, widget = args
 
         manifest = self.get_installer(
             installer_name = installer[0],
@@ -198,30 +198,30 @@ class InstallerManager:
 
         # download icon
         if executable.get("icon"):
-            self.__download_icon(configuration, executable, manifest)
+            self.__download_icon(config, executable, manifest)
         
         # install dependencies
         if dependencies:
-            self.__install_dependencies(configuration, dependencies)
+            self.__install_dependencies(config, dependencies)
         
         # execute steps
         if steps:
-            self.__perform_steps(configuration, steps)
+            self.__perform_steps(config, steps)
         
         # set parameters
         if parameters:
-            self.__set_parameters(configuration, parameters)
+            self.__set_parameters(config, parameters)
 
         # register executable arguments
         if executable.get("arguments"):
-            self.__set_executable_arguments(configuration, executable)
+            self.__set_executable_arguments(config, executable)
 
         # create Desktop entry
-        self.__create_desktop_entry(configuration, manifest, executable)
+        self.__create_desktop_entry(config, manifest, executable)
 
         # unlock widget
         if widget is not None:
             GLib.idle_add(widget.set_installed)
     
-    def install(self, configuration, installer, widget) -> None:
-        RunAsync(self.__async_install, False, [configuration, installer, widget])
+    def install(self, config, installer, widget) -> None:
+        RunAsync(self.__async_install, False, [config, installer, widget])

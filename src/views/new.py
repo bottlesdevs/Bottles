@@ -192,8 +192,8 @@ class NewView(Handy.Window):
     def update_output(self, text):
         GLib.idle_add(self.idle_update_output, text)
 
-    def finish(self, configuration):
-        self.new_bottle_config = configuration
+    def finish(self, config):
+        self.new_bottle_config = config
         self.page_created.set_description(
             _("A bottle named “%s” was created successfully") % self.entry_name.get_text())
 
@@ -216,10 +216,10 @@ class NewView(Handy.Window):
     def close_window(self, widget):
         if self.arg_exe:
             Runner().run_executable(
-                configuration=self.new_bottle_config,
+                config=self.new_bottle_config,
                 file_path=self.arg_exe)
         if self.arg_lnk is not None:
             Runner().run_lnk(
-                configuration=self.new_bottle_config,
+                config=self.new_bottle_config,
                 file_path=self.arg_lnk)
         self.destroy()

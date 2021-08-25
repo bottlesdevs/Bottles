@@ -5,7 +5,7 @@ from pathlib import Path
 
 class Samples:
 
-    configuration = {
+    config = {
         "Name": "",
         "Arch": "win64",
         "Runner": "",

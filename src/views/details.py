@@ -81,7 +81,7 @@ class DuplicateDialog(Handy.Window):
 
         '''Common variables'''
         self.parent = parent
-        self.configuration = parent.configuration
+        self.config = parent.config
 
         '''Signal connections'''
         self.btn_cancel.connect('pressed', self.close_window)
@@ -113,7 +113,7 @@ class DuplicateDialog(Handy.Window):
         RunAsync(self.pulse, None)
         name = self.entry_name.get_text()
 
-        RunnerBackup().duplicate_bottle(self.configuration, name)
+        RunnerBackup().duplicate_bottle(self.config, name)
         self.parent.runner.update_bottles()
 
         self.stack_switcher.set_visible_child_name("page_duplicated")
@@ -169,15 +169,15 @@ class EnvVarsDialog(Handy.Window):
     btn_save = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
-        self.configuration = configuration
-        self.variables = configuration["Parameters"]["environment_variables"]
+        self.config = config
+        self.variables = config["Parameters"]["environment_variables"]
 
         '''Populate widgets'''
         self.entry_variables.set_text(self.variables)
@@ -193,7 +193,7 @@ class EnvVarsDialog(Handy.Window):
     '''Save launch options'''
     def save_variables(self, widget):
         self.variables = self.entry_variables.get_text()
-        self.manager.update_configuration(configuration=self.configuration,
+        self.manager.update_config(config=self.config,
                                          key="environment_variables",
                                          value=self.variables,
                                          scope="Parameters")
@@ -209,13 +209,13 @@ class DLLEntry(Handy.ActionRow):
     combo_type = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, override, **kwargs):
+    def __init__(self, window, config, override, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
-        self.configuration = configuration
+        self.config = config
         self.override = override
 
         '''Populate widgets'''
@@ -228,15 +228,15 @@ class DLLEntry(Handy.ActionRow):
 
     def set_override_type(self, widget):
         override_type = widget.get_active_id()
-        self.manager.update_configuration(configuration=self.configuration,
+        self.manager.update_config(config=self.config,
                                          key=self.override[0],
                                          value=override_type,
                                          scope="DLL_Overrides")
 
     '''Remove DLL override'''
     def remove_override(self, widget):
-        '''Remove override from bottle configuration'''
-        self.manager.update_configuration(configuration=self.configuration,
+        '''Remove override from bottle config'''
+        self.manager.update_config(config=self.config,
                                          key=self.override[0],
                                          value=False,
                                          scope="DLL_Overrides",
@@ -255,14 +255,14 @@ class DLLOverridesDialog(Handy.Window):
     list_overrides = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
-        self.configuration = configuration
+        self.config = config
 
         '''Populate widgets'''
         self.populate_overrides_list()
@@ -275,15 +275,15 @@ class DLLOverridesDialog(Handy.Window):
         dll_name = self.entry_name.get_text()
 
         if dll_name !=  "":
-            '''Store new override in bottle configuration'''
-            self.manager.update_configuration(configuration=self.configuration,
+            '''Store new override in bottle config'''
+            self.manager.update_config(config=self.config,
                                              key=dll_name,
                                              value="n,b",
                                              scope="DLL_Overrides")
 
             '''Create new entry in list_overrides'''
             self.list_overrides.add(DLLEntry(self.window,
-                                                            self.configuration,
+                                                            self.config,
                                                             [dll_name, "n,b"]))
             '''Empty entry_name'''
             self.entry_name.set_text("")
@@ -292,9 +292,9 @@ class DLLOverridesDialog(Handy.Window):
         GLib.idle_add(self.idle_save_override)
 
     def idle_populate_overrides_list(self):
-        for override in self.configuration.get("DLL_Overrides").items():
+        for override in self.config.get("DLL_Overrides").items():
             self.list_overrides.add(DLLEntry(self.window,
-                                                            self.configuration,
+                                                            self.config,
                                                             override))
 
     def populate_overrides_list(self):
@@ -310,14 +310,14 @@ class LaunchOptionsDialog(Handy.Window):
     btn_save = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, program_executable, arguments, **kwargs):
+    def __init__(self, window, config, program_executable, arguments, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
-        self.configuration = configuration
+        self.config = config
         self.program_executable = program_executable
         self.arguments = arguments
 
@@ -335,7 +335,7 @@ class LaunchOptionsDialog(Handy.Window):
     '''Save launch options'''
     def save_options(self, widget):
         self.arguments = self.entry_arguments.get_text()
-        self.manager.update_configuration(configuration=self.configuration,
+        self.manager.update_config(config=self.config,
                                          key=self.program_executable,
                                          value=self.arguments,
                                          scope="Programs")
@@ -352,13 +352,13 @@ class InstallerEntry(Handy.ActionRow):
     img_installed = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, installer, plain=False, **kwargs):
+    def __init__(self, window, config, installer, plain=False, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
-        self.configuration = configuration
+        self.config = config
         self.installer = installer
         self.spinner = Gtk.Spinner()
 
@@ -397,7 +397,7 @@ class InstallerEntry(Handy.ActionRow):
         GLib.idle_add(self.spinner.start)
 
         self.manager.installer_manager.install(
-            configuration=self.configuration,
+            config=self.config,
             installer=self.installer,
             widget=self
         )
@@ -420,7 +420,7 @@ class StateEntry(Handy.ActionRow):
     btn_manifest = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, state, **kwargs):
+    def __init__(self, window, config, state, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
@@ -428,7 +428,7 @@ class StateEntry(Handy.ActionRow):
         self.manager = window.manager
         self.state = state
         self.state_name = "State: {0}".format(state[0])
-        self.configuration = configuration
+        self.config = config
         self.versioning_manager = self.manager.versioning_manager
         self.spinner = Gtk.Spinner()
 
@@ -440,7 +440,7 @@ class StateEntry(Handy.ActionRow):
         self.set_title(self.state_name)
         self.set_subtitle(self.state[1].get("Comment"))
         self.label_creation_date.set_text(creation_date)
-        if state[0] == configuration.get("State"):
+        if state[0] == config.get("State"):
             self.get_style_context().add_class("current-state")
 
         '''Signal connections'''
@@ -457,7 +457,7 @@ class StateEntry(Handy.ActionRow):
         
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
-        self.versioning_manager.set_bottle_state(self.configuration, self.state[0], self.set_completed)
+        self.versioning_manager.set_bottle_state(self.config, self.state[0], self.set_completed)
 
     '''Open state index'''
     def open_index(self, widget):
@@ -466,7 +466,7 @@ class StateEntry(Handy.ActionRow):
             title=_("Index for state {0}").format(self.state[0]),
             message=False,
             log=self.versioning_manager.get_bottle_state_edits(
-                self.configuration,
+                self.config,
                 self.state[0],
                 True))
         dialog.run()
@@ -493,13 +493,13 @@ class ProgramEntry(Handy.ActionRow):
     btn_browse = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, program, **kwargs):
+    def __init__(self, window, config, program, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
-        self.configuration = configuration
+        self.config = config
         self.arguments = ""
         self.program_name = program[0]
         self.program_executable = program[1].split("\\")[-1]
@@ -520,36 +520,36 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_remove.connect('pressed', self.remove_program)
         self.btn_browse.connect('pressed', self.browse_program_folder)
 
-        '''Populate entry_arguments by configuration'''
-        if self.program_executable in self.configuration["Programs"]:
-            self.arguments = self.configuration["Programs"][self.program_executable]
+        '''Populate entry_arguments by config'''
+        if self.program_executable in self.config["Programs"]:
+            self.arguments = self.config["Programs"][self.program_executable]
 
     '''Show dialog for launch options'''
     def show_launch_options_view(self, widget=False):
         new_window = LaunchOptionsDialog(self.window,
-                                          self.configuration,
+                                          self.config,
                                           self.program_executable,
                                           self.arguments)
         new_window.present()
 
     '''Run executable'''
     def run_executable(self, widget):
-        if self.program_executable in self.configuration["Programs"]:
-            arguments = self.configuration["Programs"][self.program_executable]
+        if self.program_executable in self.config["Programs"]:
+            arguments = self.config["Programs"][self.program_executable]
         else:
             arguments = False
         Runner().run_executable(
-            self.configuration,
+            self.config,
             self.program_executable_path,
             arguments,
             cwd=self.program_folder)
 
     def uninstall_program(self, widget):
-        self.manager.remove_program(self.configuration, self.program_name)
+        self.manager.remove_program(self.config, self.program_name)
 
     def remove_program(self, widget):
-        self.manager.update_configuration(
-            configuration=self.configuration,
+        self.manager.update_config(
+            config=self.config,
             key=self.program_name,
             value=False,
             remove=True,
@@ -558,7 +558,7 @@ class ProgramEntry(Handy.ActionRow):
 
     def browse_program_folder(self, widget):
         Runner().open_filemanager(
-            configuration=self.configuration, 
+            config=self.config, 
             path_type="custom",
             custom_path=self.program_folder)
 
@@ -588,13 +588,13 @@ class DependencyEntry(Handy.ActionRow):
     btn_err = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, dependency, plain=False, **kwargs):
+    def __init__(self, window, config, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
-        self.configuration = configuration
+        self.config = config
         self.dependency = dependency
         self.spinner = Gtk.Spinner()
 
@@ -618,15 +618,15 @@ class DependencyEntry(Handy.ActionRow):
         self.btn_license.connect('pressed', self.open_license)
 
         '''
-        Set widgets status from configuration
+        Set widgets status from config
         '''
-        if dependency[0] in self.configuration.get("Installed_Dependencies"):
+        if dependency[0] in self.config.get("Installed_Dependencies"):
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(True)
         
         '''If dependency has no uninstaller'''
-        if dependency[0] in self.configuration.get("Uninstallers").keys():
-            if self.configuration["Uninstallers"][dependency[0]] == "NO_UNINSTALLER":
+        if dependency[0] in self.config.get("Uninstallers").keys():
+            if self.config["Uninstallers"][dependency[0]] == "NO_UNINSTALLER":
                 self.btn_remove.set_sensitive(False)
 
     '''Open dependency manifest'''
@@ -664,7 +664,7 @@ class DependencyEntry(Handy.ActionRow):
         GLib.idle_add(self.spinner.start)
 
         self.manager.dependency_manager.install(
-            configuration=self.configuration,
+            config=self.config,
             dependency=self.dependency,
             widget=self
         )
@@ -672,7 +672,7 @@ class DependencyEntry(Handy.ActionRow):
     '''Remove dependency'''
     def remove_dependency(self, widget):
         GLib.idle_add(widget.set_sensitive, False)
-        self.manager.remove_dependency(self.configuration,
+        self.manager.remove_dependency(self.config,
                                       self.dependency,
                                       self)
     
@@ -765,14 +765,14 @@ class DetailsView(Handy.Leaflet):
     row_cwd = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration=dict, **kwargs):
+    def __init__(self, window, config=dict, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
         self.versioning_manager = window.manager.versioning_manager
-        self.configuration = configuration
+        self.config = config
 
         '''If Flatpak, show the btn_expose_dirs widget to reach
         the documentation on how to expose directories'''
@@ -909,13 +909,13 @@ class DetailsView(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            Runner().get_bottle_path(self.configuration))
+            Runner().get_bottle_path(self.config))
             
         response = file_dialog.run()
 
         if response == -3:
-            self.manager.update_configuration(
-                configuration=self.configuration,
+            self.manager.update_config(
+                config=self.config,
                 key="WorkingDir",
                 value=file_dialog.get_filename())
 
@@ -944,17 +944,17 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.handler_unblock_by_func(self.set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.set_vkd3d)
 
-    '''Set bottle configuration'''
-    def set_configuration(self, configuration):
-        self.configuration = configuration
+    '''Set bottle config'''
+    def set_config(self, config):
+        self.config = config
 
         '''Format update date'''
-        update_date = datetime.strptime(configuration.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
+        update_date = datetime.strptime(config.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
         update_date = update_date.strftime("%b %d %Y %H:%M:%S")
 
         '''Format arch'''
         arch = _("64-bit")
-        if self.configuration.get("Arch") == "win32":
+        if self.config.get("Arch") == "win32":
             arch = _("32-bit")
         
         '''Lock signals preventing triggering'''
@@ -966,18 +966,18 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.handler_block_by_func(self.set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.set_vkd3d)
 
-        '''Populate widgets from configuration'''
-        parameters = self.configuration.get("Parameters")
-        self.entry_name.set_text(self.configuration.get("Name"))
+        '''Populate widgets from config'''
+        parameters = self.config.get("Parameters")
+        self.entry_name.set_text(self.config.get("Name"))
         self.entry_name.set_tooltip_text(_("Updated: %s" % update_date))
-        self.label_runner.set_text(self.configuration.get("Runner"))
+        self.label_runner.set_text(self.config.get("Runner"))
         self.label_arch.set_text(arch)
         self.label_environment.set_text(
-            _(self.configuration.get("Environment"))
+            _(self.config.get("Environment"))
         )
         self.label_environment.get_style_context().add_class(
-            f"tag-{self.configuration.get('Environment').lower()}")
-        self.label_state.set_text(str(self.configuration.get("State")))
+            f"tag-{self.config.get('Environment').lower()}")
+        self.label_state.set_text(str(self.config.get("State")))
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_vkd3d.set_active(parameters["vkd3d"])
@@ -990,10 +990,10 @@ class DetailsView(Handy.Leaflet):
         self.switch_virtual_desktop.set_active(parameters["virtual_desktop"])
         self.switch_pulseaudio_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virtual_resolutions.set_active_id(parameters["virtual_desktop_res"])
-        self.combo_runner.set_active_id(self.configuration.get("Runner"))
-        self.combo_dxvk.set_active_id(self.configuration.get("DXVK"))
-        self.combo_vkd3d.set_active_id(self.configuration.get("VKD3D"))
-        self.grid_versioning.set_visible(self.configuration.get("Versioning"))
+        self.combo_runner.set_active_id(self.config.get("Runner"))
+        self.combo_dxvk.set_active_id(self.config.get("DXVK"))
+        self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
+        self.grid_versioning.set_visible(self.config.get("Versioning"))
 
         '''Unlock signals'''
         self.switch_dxvk.handler_unblock_by_func(self.toggle_dxvk)
@@ -1014,7 +1014,7 @@ class DetailsView(Handy.Leaflet):
     '''Show dialog for launch options'''
     def show_environment_variables(self, widget=False):
         new_window = EnvVarsDialog(self.window,
-                                                 self.configuration)
+                                                 self.config)
         new_window.present()
 
     '''Validate entry_name input'''
@@ -1037,7 +1037,7 @@ class DetailsView(Handy.Leaflet):
         if status:
             self.entry_name.grab_focus()
         else:
-            self.manager.update_configuration(configuration=self.configuration,
+            self.manager.update_config(config=self.config,
                                              key="Name",
                                              value=self.entry_name.get_text())
 
@@ -1052,12 +1052,12 @@ class DetailsView(Handy.Leaflet):
     '''Save environment variables'''
     def save_environment_variables(self, widget):
         environment_variables = self.entry_environment_variables.get_text()
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="environment_variables",
             value=environment_variables,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Add custome executable to the Programs list'''
     def add_program(self, widget=False):
@@ -1069,12 +1069,12 @@ class DetailsView(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            Runner().get_bottle_path(self.configuration))
+            Runner().get_bottle_path(self.config))
         response = file_dialog.run()
 
         if response == -3:
-            self.manager.update_configuration(
-                configuration=self.configuration,
+            self.manager.update_config(
+                config=self.config,
                 key=file_dialog.get_filename().split("/")[-1][:-4],
                 value=file_dialog.get_filename(),
                 scope="External_Programs")
@@ -1087,7 +1087,7 @@ class DetailsView(Handy.Leaflet):
         for w in self.list_programs: w.destroy()
         for w in self.group_programs: w.destroy()
 
-        programs = self.manager.get_programs(self.configuration)
+        programs = self.manager.get_programs(self.config)
 
         if len(programs) == 0:
             self.group_programs.set_visible(False)
@@ -1098,12 +1098,12 @@ class DetailsView(Handy.Leaflet):
         i = 0
         for program in programs:
             self.list_programs.add(ProgramEntry(
-                self.window, self.configuration, program))
+                self.window, self.config, program))
 
             '''Append first 5 entries to group_programs'''
             if i < 5:
                 self.group_programs.add(ProgramEntry(
-                    self.window, self.configuration, program))
+                    self.window, self.config, program))
             i =+ 1
 
     '''Populate list_dependencies'''
@@ -1115,15 +1115,15 @@ class DetailsView(Handy.Leaflet):
             for dependency in supported_dependencies:
                 self.list_dependencies.add(
                     DependencyEntry(self.window,
-                                           self.configuration,
+                                           self.config,
                                            dependency))
             return
 
-        if len(self.configuration.get("Installed_Dependencies")) > 0:
-            for dependency in self.configuration.get("Installed_Dependencies"):
+        if len(self.config.get("Installed_Dependencies")) > 0:
+            for dependency in self.config.get("Installed_Dependencies"):
                 self.list_dependencies.add(
                     DependencyEntry(self.window,
-                                           self.configuration,
+                                           self.config,
                                            dependency,
                                            plain=True))
             return
@@ -1138,21 +1138,21 @@ class DetailsView(Handy.Leaflet):
             for installer in supported_installers:
                 self.list_installers.add(
                     InstallerEntry(self.window,
-                                          self.configuration,
+                                          self.config,
                                           installer))
             return
 
     '''Populate list_states'''
     def idle_update_states(self, widget=False):
-        if self.configuration.get("Versioning"):
+        if self.config.get("Versioning"):
             for w in self.list_states: w.destroy()
 
-            states = self.versioning_manager.list_bottle_states(self.configuration).items()
+            states = self.versioning_manager.list_bottle_states(self.config).items()
             if len(states) > 0:
                 for state in states:
                     self.list_states.add(
                         StateEntry(self.window,
-                                          self.configuration,
+                                          self.config,
                                           state))
 
     def update_states(self, widget=False):
@@ -1161,57 +1161,57 @@ class DetailsView(Handy.Leaflet):
     '''Toggle DXVK'''
     def toggle_dxvk(self, widget=False, state=False):
         if state:
-            self.manager.install_dxvk(self.configuration)
+            self.manager.install_dxvk(self.config)
         else:
-            self.manager.remove_dxvk(self.configuration)
+            self.manager.remove_dxvk(self.config)
 
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="dxvk",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Toggle DXVK HUD'''
     def toggle_dxvk_hud(self, widget, state):
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="dxvk_hud",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Toggle VKD3D'''
     def toggle_vkd3d(self, widget=False, state=False):
         if state:
-            self.manager.install_vkd3d(self.configuration)
+            self.manager.install_vkd3d(self.config)
         else:
-            self.manager.remove_vkd3d(self.configuration)
+            self.manager.remove_vkd3d(self.config)
 
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="vkd3d",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Toggle Gamemode'''
     def toggle_gamemode(self, widget=False, state=False):
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="gamemode",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Set Wine synchronization type'''
     def set_sync_type(self, sync):
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="sync",
             value=sync,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
         if sync in ["esync", "fsync"]:
             self.toggle_sync.handler_block_by_func(self.set_wine_sync)
@@ -1237,57 +1237,57 @@ class DetailsView(Handy.Leaflet):
 
     '''Toggle ACO compiler'''
     def toggle_aco(self, widget, state):
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="aco_compiler",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Toggle discrete graphics usage'''
     def toggle_discrete_graphics(self, widget, state):
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="discrete_gpu",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Toggle virtual desktop'''
     def toggle_virtual_desktop(self, widget, state):
         resolution = self.combo_virtual_resolutions.get_active_id()
-        self.manager.toggle_virtual_desktop(self.configuration,
+        self.manager.toggle_virtual_desktop(self.config,
                                            state,
                                            resolution)
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="virtual_desktop",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Set virtual desktop resolution'''
     def set_virtual_desktop_resolution(self, widget):
         resolution = widget.get_active_id()
         if self.switch_virtual_desktop.get_active():
-            self.manager.toggle_virtual_desktop(self.configuration,
+            self.manager.toggle_virtual_desktop(self.config,
                                                True,
                                                resolution)
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="virtual_desktop_res",
             value=resolution,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Set (change) runner'''
     def set_runner(self, widget):
         runner = widget.get_active_id()
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="Runner",
             value=runner)
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Set (change) dxvk'''
     def set_dxvk(self, widget):
@@ -1295,11 +1295,11 @@ class DetailsView(Handy.Leaflet):
         self.toggle_dxvk(state=False)
 
         dxvk = widget.get_active_id()
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="DXVK",
             value=dxvk)
-        self.configuration = new_configuration
+        self.config = new_config
 
         # install new dxvk
         self.toggle_dxvk(state=True)
@@ -1310,32 +1310,32 @@ class DetailsView(Handy.Leaflet):
         self.toggle_vkd3d(state=False)
 
         vkd3d = widget.get_active_id()
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="VKD3D",
             value=vkd3d)
-        self.configuration = new_configuration
+        self.config = new_config
 
         # install new vkd3d
         self.toggle_vkd3d(state=True)
 
     '''Toggle pulseaudio latency'''
     def toggle_pulseaudio_latency(self, widget, state):
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="pulseaudio_latency",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     '''Toggle fixme wine logs'''
     def toggle_fixme(self, widget, state):
-        new_configuration = self.manager.update_configuration(
-            configuration=self.configuration,
+        new_config = self.manager.update_config(
+            config=self.config,
             key="fixme_logs",
             value=state,
             scope="Parameters")
-        self.configuration = new_configuration
+        self.config = new_config
 
     def run_executable_with_args(self, widget):
         new_window = RunArgsDialog(self)
@@ -1356,49 +1356,49 @@ class DetailsView(Handy.Leaflet):
         if response == -3:
             if args:
                 Runner().run_executable(
-                    configuration=self.configuration,
+                    config=self.config,
                     file_path=file_dialog.get_filename(),
                     arguments=args)
             else:
                 Runner().run_executable(
-                    configuration=self.configuration,
+                    config=self.config,
                     file_path=file_dialog.get_filename())
 
         file_dialog.destroy()
 
     '''Run wine executables and utilities'''
     def run_winecfg(self, widget):
-        Runner().run_winecfg(self.configuration)
+        Runner().run_winecfg(self.config)
 
     def run_debug(self, widget):
-        Runner().run_debug(self.configuration)
+        Runner().run_debug(self.config)
 
     def run_browse(self, widget):
-        Runner().open_filemanager(self.configuration)
+        Runner().open_filemanager(self.config)
 
     def run_cmd(self, widget):
-        Runner().run_cmd(self.configuration)
+        Runner().run_cmd(self.config)
 
     def run_taskmanager(self, widget):
-        Runner().run_taskmanager(self.configuration)
+        Runner().run_taskmanager(self.config)
 
     def run_controlpanel(self, widget):
-        Runner().run_controlpanel(self.configuration)
+        Runner().run_controlpanel(self.config)
 
     def run_uninstaller(self, widget):
-        Runner().run_uninstaller(self.configuration)
+        Runner().run_uninstaller(self.config)
 
     def run_regedit(self, widget):
-        Runner().run_regedit(self.configuration)
+        Runner().run_regedit(self.config)
 
     def run_shutdown(self, widget):
-        Runner().send_status(self.configuration, "shutdown")
+        Runner().send_status(self.config, "shutdown")
 
     def run_reboot(self, widget):
-        Runner().send_status(self.configuration, "reboot")
+        Runner().send_status(self.config, "reboot")
 
     def run_killall(self, widget):
-        Runner().send_status(self.configuration, "kill")
+        Runner().send_status(self.config, "kill")
 
     '''Validate entry_state input'''
     def check_entry_state_comment(self, widget, event_key):
@@ -1416,27 +1416,27 @@ class DetailsView(Handy.Leaflet):
     def add_state(self, widget):
         comment = self.entry_state_comment.get_text()
         if comment != "":
-            self.versioning_manager.create_bottle_state(self.configuration, comment, after=self.update_states)
+            self.versioning_manager.create_bottle_state(self.config, comment, after=self.update_states)
             self.entry_state_comment.set_text("")
             self.pop_state.popdown()
 
-    '''Display file dialog for backup configuration'''
+    '''Display file dialog for backup config'''
     def backup_config(self, widget):
         file_dialog = Gtk.FileChooserDialog(
-            _("Select the location where to save the backup configuration"),
+            _("Select the location where to save the backup config"),
             self.window,
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
-        file_dialog.set_current_name("backup_%s.yml" % self.configuration.get("Path"))
+        file_dialog.set_current_name("backup_%s.yml" % self.config.get("Path"))
 
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
             RunnerBackup().backup_bottle(
                 self.window,
-                self.configuration,
-                "configuration",
+                self.config,
+                "config",
                 file_dialog.get_filename()
             )
 
@@ -1451,14 +1451,14 @@ class DetailsView(Handy.Leaflet):
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
         file_dialog.set_current_name(
-            "backup_%s.tar.gz" % self.configuration.get("Path"))
+            "backup_%s.tar.gz" % self.config.get("Path"))
 
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
             RunnerBackup().backup_bottle(
                 self.window,
-                self.configuration,
+                self.config,
                 "full",
                 file_dialog.get_filename()
             )
@@ -1478,7 +1478,7 @@ class DetailsView(Handy.Leaflet):
         response = dialog_delete.run()
 
         if response == Gtk.ResponseType.OK:
-            self.manager.delete_bottle(self.configuration)
+            self.manager.delete_bottle(self.config)
             self.window.go_back()
 
         dialog_delete.destroy()
@@ -1486,7 +1486,7 @@ class DetailsView(Handy.Leaflet):
     '''Show dialog for DLL overrides'''
     def show_dll_overrides_view(self, widget=False):
         new_window = DLLOverridesDialog(self.window,
-                                         self.configuration)
+                                         self.config)
         new_window.present()
 
     '''Open URLs'''

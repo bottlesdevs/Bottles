@@ -100,13 +100,13 @@ class MainWindow(Handy.ApplicationWindow):
             bottle_config = self.manager.local_bottles[arg_bottle]
             if arg_exe:
                 Runner().run_executable(
-                    configuration=bottle_config,
+                    config=bottle_config,
                     file_path=arg_exe
                 )
                 self.proper_close()
             elif arg_lnk:
                 Runner().run_lnk(
-                    configuration=bottle_config,
+                    config=bottle_config,
                     file_path=arg_lnk
                 )
                 self.proper_close()
@@ -238,12 +238,12 @@ class MainWindow(Handy.ApplicationWindow):
 
         self.stack_main.set_visible_child_name(self.previous_page)
 
-    def show_details_view(self, widget=False, configuration=dict):
+    def show_details_view(self, widget=False, config=dict):
         self.set_previous_page_status()
 
         if True in [w.get_visible() for w in self.box_more.get_children()]:
             self.btn_more.set_visible(True)
-        self.page_details.set_configuration(configuration)
+        self.page_details.set_config(config)
         self.stack_main.set_visible_child_name("page_details")
         self.page_details.set_visible_child_name("bottle")
 

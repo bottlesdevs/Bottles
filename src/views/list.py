@@ -38,27 +38,27 @@ class ListViewEntry(Handy.ActionRow):
     grid_versioning = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, configuration, arg_exe, **kwargs):
+    def __init__(self, window, config, arg_exe, **kwargs):
         super().__init__(**kwargs)
 
         '''Common variables'''
         self.window = window
         self.manager = window.manager
-        self.configuration = configuration[1]
+        self.config = config[1]
         self.label_environment_context = self.label_environment.get_style_context()
         self.arg_exe = arg_exe
 
         '''Format update date'''
         update_date = _("N/A")
-        if self.configuration.get("Update_Date"):
+        if self.config.get("Update_Date"):
             try:
-                update_date = datetime.strptime(self.configuration.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
+                update_date = datetime.strptime(self.config.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
                 update_date = update_date.strftime("%b %d %Y %H:%M:%S")
             except ValueError:
                 update_date = _("N/A")
 
         '''Check runner type by name'''
-        if self.configuration.get("Runner").startswith("lutris"):
+        if self.config.get("Runner").startswith("lutris"):
             self.runner_type = "wine"
         else:
             self.runner_type = "proton"
@@ -71,24 +71,24 @@ class ListViewEntry(Handy.ActionRow):
         self.btn_run_executable.connect('pressed', self.run_executable)
 
         '''Populate widgets'''
-        self.grid_versioning.set_visible(self.configuration.get("Versioning"))
-        self.label_state.set_text(str(self.configuration.get("State")))
-        self.set_title(self.configuration.get("Name"))
+        self.grid_versioning.set_visible(self.config.get("Versioning"))
+        self.label_state.set_text(str(self.config.get("State")))
+        self.set_title(self.config.get("Name"))
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
-        self.label_environment.set_text(_(self.configuration.get("Environment")))
+        self.label_environment.set_text(_(self.config.get("Environment")))
         self.label_environment_context.add_class(
-            "tag-%s" % self.configuration.get("Environment").lower())
+            "tag-%s" % self.config.get("Environment").lower())
 
-        '''If configuration is broken'''
-        if self.configuration.get("Broken"):
+        '''If config is broken'''
+        if self.config.get("Broken"):
             for w in [self.btn_repair,self.icon_damaged]:
                 w.set_visible(True)
 
             for w in [self.btn_details, self.btn_run]:
                 w.set_sensitive(False)
         else:
-            '''Check for arguments from configuration'''
+            '''Check for arguments from config'''
             if self.arg_exe:
                 logging.info(
                     _("Arguments found for executable: [{executable}].").format(
@@ -100,7 +100,7 @@ class ListViewEntry(Handy.ActionRow):
 
     '''Repair bottle'''
     def repair(self, widget):
-        self.manager.repair_bottle(self.configuration)
+        self.manager.repair_bottle(self.config)
 
     '''Display file dialog for executable'''
     def run_executable(self, widget):
@@ -117,13 +117,13 @@ class ListViewEntry(Handy.ActionRow):
             response = file_dialog.run()
 
             if response == -3:
-                Runner().run_executable(self.configuration,
+                Runner().run_executable(self.config,
                                            file_dialog.get_filename())
 
             file_dialog.destroy()
         else:
             '''Use executable provided as bottles argument'''
-            Runner().run_executable(self.configuration, self.arg_exe)
+            Runner().run_executable(self.config, self.arg_exe)
             if self.window.settings.get_boolean("auto-close-bottles"):
                 self.window.proper_close()
             self.arg_exe = False
@@ -132,7 +132,7 @@ class ListViewEntry(Handy.ActionRow):
     '''Show details page'''
     def show_details(self, widget):
         self.window.page_details.update_combo_components()
-        self.window.show_details_view(configuration=self.configuration)
+        self.window.show_details_view(config=self.config)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
 class ListView(Gtk.Box):

@@ -21,17 +21,17 @@ RunnerType = NewType('RunnerType', str)
 class RunnerBackup:
     # Make a bottle backup
     def async_backup_bottle(self, args: list) -> bool:
-        window, configuration, scope, path = args
+        window, config, scope, path = args
         self.download_manager = DownloadManager(window)
 
-        if scope == "configuration":
-            # Backup type: configuration
+        if scope == "config":
+            # Backup type: config
             logging.info(
-                f"Backuping configuration: [{configuration['Name']}] in [{path}]")
+                f"Backuping config: [{config['Name']}] in [{path}]")
             try:
-                with open(path, "w") as configuration_backup:
-                    yaml.dump(configuration, configuration_backup, indent=4)
-                    configuration_backup.close()
+                with open(path, "w") as config_backup:
+                    yaml.dump(config, config_backup, indent=4)
+                    config_backup.close()
                 backup_created = True
             except:
                 backup_created = False
@@ -39,13 +39,13 @@ class RunnerBackup:
         else:
             # Backup type: full
             logging.info(
-                f"Backuping bottle: [{configuration['Name']}] in [{path}]")
+                f"Backuping bottle: [{config['Name']}] in [{path}]")
 
             # Add entry to download manager
             download_entry = self.download_manager.new_download(
-                _("Backup {0}").format(configuration.get("Name")), False)
+                _("Backup {0}").format(config.get("Name")), False)
 
-            bottle_path = Runner().get_bottle_path(configuration)
+            bottle_path = Runner().get_bottle_path(config)
 
             try:
                 # Create the archive
@@ -71,12 +71,12 @@ class RunnerBackup:
 
     def backup_bottle(self,
                       window,
-                      configuration: BottleConfig,
+                      config: BottleConfig,
                       scope: str,
                       path: str
                       ) -> None:
         RunAsync(self.async_backup_bottle, None, [
-                 window, configuration, scope, path])
+                 window, config, scope, path])
 
     def async_import_backup_bottle(self, args: list) -> bool:
         window, scope, path = args
@@ -84,7 +84,7 @@ class RunnerBackup:
         backup_name = path.split("/")[-1].split(".")
         backup_imported = False
 
-        if scope == "configuration":
+        if scope == "config":
             backup_name = backup_name[-2]
         else:
             backup_name = backup_name[-3]
@@ -120,10 +120,10 @@ class RunnerBackup:
     def import_backup_bottle(self, window, scope: str, path: str) -> None:
         RunAsync(self.async_import_backup_bottle, None, [window, scope, path])
     
-    def duplicate_bottle(self, configuration, name) -> bool:
-        logging.info(f"Duplicating bottle: [{configuration.get('Name')}] to [{name}]")
+    def duplicate_bottle(self, config, name) -> bool:
+        logging.info(f"Duplicating bottle: [{config.get('Name')}] to [{name}]")
 
-        source = Runner().get_bottle_path(configuration)
+        source = Runner().get_bottle_path(config)
         dest = f"{Paths.bottles}/{name}"
 
         source_drive = f"{source}/drive_c"

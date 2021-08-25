@@ -19,7 +19,7 @@ class Runner:
     # Open file manager in different paths
     def open_filemanager(
         self,
-        configuration: BottleConfig = dict,
+        config: BottleConfig = dict,
         path_type: str = "bottle",
         runner: str = "",
         dxvk: str = "",
@@ -29,7 +29,7 @@ class Runner:
         logging.info("Opening the file manager in the path …")
 
         if path_type == "bottle":
-            bottle_path = self.get_bottle_path(configuration)
+            bottle_path = self.get_bottle_path(config)
             path = f"{bottle_path}/drive_c"
 
         if path_type == "runner" and runner != "":
@@ -50,7 +50,7 @@ class Runner:
     # Run .lnk files in a bottle
     def run_lnk(
         self,
-        configuration: BottleConfig,
+        config: BottleConfig,
         file_path: str,
         arguments: str = "",
         environment: dict = False
@@ -58,13 +58,13 @@ class Runner:
         logging.info("Running link file on the bottle …")
         
         command = f"start /unix '{file_path}'"
-        RunAsync(self.run_command, None, configuration,
+        RunAsync(self.run_command, None, config,
                  command, False, arguments, environment)
 
     # Run wine executables/programs in a bottle
     def run_executable(
         self,
-        configuration: BottleConfig,
+        config: BottleConfig,
         file_path: str,
         arguments: str = "",
         environment: dict = False,
@@ -81,54 +81,54 @@ class Runner:
             command = f"wineconsole cmd /c '{file_path}'"
 
         if no_async:
-            self.run_command(configuration, command,
+            self.run_command(config, command,
                              False, arguments, environment, True, cwd)
         else:
-            RunAsync(self.run_command, None, configuration,
+            RunAsync(self.run_command, None, config,
                      command, False, arguments, environment, False, cwd)
 
-    def run_wineboot(self, configuration: BottleConfig) -> None:
+    def run_wineboot(self, config: BottleConfig) -> None:
         logging.info("Running wineboot on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "wineboot -u")
+        RunAsync(self.run_command, None, config, "wineboot -u")
 
-    def run_winecfg(self, configuration: BottleConfig) -> None:
+    def run_winecfg(self, config: BottleConfig) -> None:
         logging.info("Running winecfg on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "winecfg")
+        RunAsync(self.run_command, None, config, "winecfg")
 
-    def run_winetricks(self, configuration: BottleConfig) -> None:
+    def run_winetricks(self, config: BottleConfig) -> None:
         logging.info("Running winetricks on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "winetricks")
+        RunAsync(self.run_command, None, config, "winetricks")
 
-    def run_debug(self, configuration: BottleConfig) -> None:
+    def run_debug(self, config: BottleConfig) -> None:
         logging.info("Running a debug console on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "winedbg", True)
+        RunAsync(self.run_command, None, config, "winedbg", True)
 
-    def run_cmd(self, configuration: BottleConfig) -> None:
+    def run_cmd(self, config: BottleConfig) -> None:
         logging.info("Running a CMD on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "cmd", True)
+        RunAsync(self.run_command, None, config, "cmd", True)
 
-    def run_taskmanager(self, configuration: BottleConfig) -> None:
+    def run_taskmanager(self, config: BottleConfig) -> None:
         logging.info("Running a Task Manager on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "taskmgr")
+        RunAsync(self.run_command, None, config, "taskmgr")
 
-    def run_controlpanel(self, configuration: BottleConfig) -> None:
+    def run_controlpanel(self, config: BottleConfig) -> None:
         logging.info("Running a Control Panel on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "control")
+        RunAsync(self.run_command, None, config, "control")
 
-    def run_uninstaller(self, configuration: BottleConfig, uuid: str = False):
+    def run_uninstaller(self, config: BottleConfig, uuid: str = False):
         logging.info("Running an Uninstaller on the wineprefix …")
         
         command = "uninstaller"
         if uuid:
             command = f"uninstaller --remove '{uuid}'"
-        RunAsync(self.run_command, None, configuration, command)
+        RunAsync(self.run_command, None, config, command)
 
-    def run_regedit(self, configuration: BottleConfig) -> None:
+    def run_regedit(self, config: BottleConfig) -> None:
         logging.info("Running a Regedit on the wineprefix …")
-        RunAsync(self.run_command, None, configuration, "regedit")
+        RunAsync(self.run_command, None, config, "regedit")
 
     # Send status to a bottle
-    def send_status(self, configuration: BottleConfig, status: str) -> None:
+    def send_status(self, config: BottleConfig, status: str) -> None:
         logging.info(f"Sending Status: [{status}] to the wineprefix …")
 
         available_status = {
@@ -137,12 +137,12 @@ class Runner:
             "kill": "-k"
         }
         option = available_status[status]
-        self.run_command(configuration, "wineboot %s" % option)
+        self.run_command(config, "wineboot %s" % option)
 
     # Execute command in a bottle
     def run_command(
         self,
-        configuration: BottleConfig,
+        config: BottleConfig,
         command: str,
         terminal: bool = False,
         arguments: str = False,
@@ -157,13 +157,13 @@ class Runner:
                 command = f"wineconsole {command}"
 
         if not cwd:
-            cwd = configuration.get("WorkingDir")
+            cwd = config.get("WorkingDir")
         if cwd == "":
-            cwd = self.get_bottle_path(configuration)
+            cwd = self.get_bottle_path(config)
         
-        path = configuration.get("Path")
-        runner = configuration.get("Runner")
-        arch = configuration.get("Arch")
+        path = config.get("Path")
+        runner = config.get("Runner")
+        arch = config.get("Arch")
         
         if runner is None:
             return
@@ -181,16 +181,16 @@ class Runner:
         else:
             runner = f"{Paths.runners}/{runner}/bin/wine"
 
-        if not configuration.get("Custom_Path"):
+        if not config.get("Custom_Path"):
             path = "%s/%s" % (Paths.bottles, path)
 
-        # Check for executable args from bottle configuration
+        # Check for executable args from bottle config
         environment_vars = []
         dll_overrides = []
-        parameters = configuration["Parameters"]
+        parameters = config["Parameters"]
 
-        if configuration.get("DLL_Overrides"):
-            for dll in configuration.get("DLL_Overrides").items():
+        if config.get("DLL_Overrides"):
+            for dll in config.get("DLL_Overrides").items():
                 dll_overrides.append("%s=%s" % (dll[0], dll[1]))
 
         if parameters["environment_variables"]:
@@ -264,7 +264,7 @@ class Runner:
                 command = f"{prefix} {command} {suffix}"
 
         # Check for gamemode enabled
-        if gamemode_available and configuration["Parameters"]["gamemode"]:
+        if gamemode_available and config["Parameters"]["gamemode"]:
             command = f"gamemoderun {command}"
 
         if terminal:
@@ -286,7 +286,7 @@ class Runner:
                     shell=True
                 ).communicate()[0].decode("utf-8")
 
-        # TODO: configure cwd in bottle configuration
+        # TODO: configure cwd in bottle config
         try:
             return subprocess.Popen(command, shell=True, cwd=cwd).communicate()
         except:
@@ -294,10 +294,10 @@ class Runner:
             return subprocess.Popen(command, shell=True).communicate()
 
     @staticmethod
-    def get_bottle_path(configuration: BottleConfig) -> str:
-        if configuration.get("Custom_Path"):
-            return configuration.get("Path")
-        return f"{Paths.bottles}/{configuration.get('Path')}"
+    def get_bottle_path(config: BottleConfig) -> str:
+        if config.get("Custom_Path"):
+            return config.get("Path")
+        return f"{Paths.bottles}/{config.get('Path')}"
 
     @staticmethod
     def get_runner_path(runner: str) -> str:

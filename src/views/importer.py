@@ -66,7 +66,7 @@ class ImporterView(Gtk.ScrolledWindow):
     # region Widgets
     list_prefixes = Gtk.Template.Child()
     btn_search_wineprefixes = Gtk.Template.Child()
-    btn_import_configuration = Gtk.Template.Child()
+    btn_import_config = Gtk.Template.Child()
     btn_import_full = Gtk.Template.Child()
     # endregion
 
