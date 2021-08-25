@@ -415,6 +415,10 @@ class DependencyManager:
                 exit()
 
     def __step_archive_extract(self, step: dict) -> None:
+        '''
+        This function download and extract the archive declared
+        in the step, in the temp folder.
+        '''
         download = self.__manager.component_manager.download(
             component="dependency",
             download_url=step.get("url"),
@@ -441,6 +445,10 @@ class DependencyManager:
                 outdir=f"{Paths.temp}/{archive_name}")
 
     def __step_install_fonts(self, config: BottleConfig, step: dict) -> None:
+        '''
+        This function copy the fonts declared in the step in
+        the bottle drive_c/windows/Fonts path.
+        '''
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
         bottle_path = Runner().get_bottle_path(config)
@@ -452,6 +460,11 @@ class DependencyManager:
             )
 
     def __step_copy_dll(self, config: BottleConfig, step: dict) -> None:
+        '''
+        This function copy dlls from temp folder to a directory
+        declared in the step. The bottle drive_c path will be used as
+        root path.
+        '''
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
         bottle_path = Runner().get_bottle_path(config)
@@ -460,23 +473,35 @@ class DependencyManager:
             if "*" in step.get('file_name'):
                 files = glob(f"{path}/{step.get('file_name')}")
                 for fg in files:
-                    shutil.copyfile(
-                        fg,
-                        f"{bottle_path}/drive_c/{step.get('dest')}/{os.path.basename(fg)}")
+                    destination = "%s/drive_c/%s/%s" % (
+                        bottle_path,
+                        step.get('dest'),
+                        os.path.basename(fg)
+                    )
+                    shutil.copyfile(fg, destination)
             else:
                 shutil.copyfile(
                     f"{path}/{step.get('file_name')}",
-                    f"{bottle_path}/drive_c/{step.get('dest')}")
+                    f"{bottle_path}/drive_c/{step.get('dest')}"
+                )
 
         except FileNotFoundError:
             logging.error(
-                f"dll {step.get('file_name')} not found in temp directory, there should be other errors from cabextract.")
+                f"dll {step.get('file_name')} not found in temp, \
+                    there should be other errors from cabextract."
+            )
             return False
 
     def __step_override_dll(self, config: BottleConfig, step: dict) -> None:
+        '''
+        This function register a new override for each dll declared
+        in the step, for a bottle.
+        '''
         if step.get("url") and step.get("url").startswith("temp/"):
             path = step["url"].replace(
-                "temp/", f"{Paths.temp}/")
+                "temp/", 
+                f"{Paths.temp}/"
+            )
             path = f"{path}/{step.get('dll')}"
 
             for dll in glob(path):
@@ -485,16 +510,22 @@ class DependencyManager:
                     config,
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                     value=dll_name,
-                    data=step.get("type"))
+                    data=step.get("type")
+                )
             return
 
         self.__manager.reg_add(
             config,
             key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
             value=step.get("dll"),
-            data=step.get("type"))
+            data=step.get("type")
+        )
 
     def __step_set_register_key(self, config: BottleConfig, step: dict) -> None:
+        '''
+        This function set a register key in the bottle registry. It is
+        just a mirror of the reg_add function from the manager. 
+        '''
         self.__manager.reg_add(
             config,
             key=step.get("key"),
@@ -504,6 +535,10 @@ class DependencyManager:
         )
 
     def __step_register_font(self, config: BottleConfig, step: dict) -> None:
+        '''
+        This function register a font in the bottle registry. It is
+        important to make the font available in the system.
+        '''
         self.__manager.reg_add(
             config,
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts",
