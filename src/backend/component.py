@@ -104,7 +104,7 @@ class ComponentManager:
         the components, divided by type.
         '''
         if not self.__utils_conn.check_connection():
-            return False
+            return {}
         
         catalog_wine = {}
         catalog_proton = {}
