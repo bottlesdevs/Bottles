@@ -288,7 +288,9 @@ class Runner:
 
         # TODO: configure cwd in bottle config
         try:
-            return subprocess.Popen(command, shell=True, cwd=cwd).communicate()
+            res = subprocess.Popen(command, shell=True, cwd=cwd).communicate()
+            if "ShellExecuteEx" in res[0]:
+                raise Exception("ShellExecuteEx")
         except:
             # workaround for `No such file or directory` error
             return subprocess.Popen(command, shell=True).communicate()
