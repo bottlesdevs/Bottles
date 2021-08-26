@@ -149,6 +149,9 @@ class DependencyManager:
             Steps are the actions performed to install the dependency.
             '''
 
+            if step["action"] == "downlaod_archive":
+                self.__step_downlaod_archive(step)
+
             if step["action"] == "delete_sys32_dlls":
                 self.__step_delete_sys32_dlls(
                     config=config,
@@ -270,6 +273,24 @@ class DependencyManager:
                 dependency,
                 widget
             ])
+
+    def __step_downlaod_archive(self, step: dict) -> None:
+        '''
+        This function download an archive from the givven step.
+        Can be used for any file type (cab, zip, ..). Please don't
+        use this method for exe/msi files as the install_exe already
+        download the exe/msi file before installation.
+        '''
+        download = self.__manager.component_manager.download(
+            component="dependency",
+            download_url=step.get("url"),
+            file=step.get("file_name"),
+            rename=step.get("rename"),
+            checksum=step.get("file_checksum")
+        )
+
+        return download
+
 
     def __step_delete_sys32_dlls(self, config: BottleConfig, dlls: list):
         '''
