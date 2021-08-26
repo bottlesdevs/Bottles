@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 09:52+0200\n"
+"POT-Creation-Date: 2021-08-26 17:49+0200\n"
 "PO-Revision-Date: 2021-08-26 15:34+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:127
+#: src/window.py:137
 msgid "Bottles"
 msgstr "Bouteilles"
 
@@ -659,7 +659,7 @@ msgid "Are you experiencing problems reaching a directory in Bottles?"
 msgstr "Des problèmes pour atteindre un répertoire dans Bottles ?"
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
-#: src/views/details.py:865
+#: src/views/details.py:873
 msgid "Programs"
 msgstr "Programmes"
 
@@ -900,7 +900,7 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Enregistrer les chemins de code qui ne sont pas implémentés dans Wine."
 
 #: src/ui/details.ui:1836 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/views/details.py:863
+#: src/views/details.py:871
 msgid "Preferences"
 msgstr "Préférences"
 
@@ -909,7 +909,7 @@ msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 "Mode test activé : seules les dépendances du dépôt de test sont affichées."
 
-#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:864
+#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:872
 msgid "Dependencies"
 msgstr "Dépendances"
 
@@ -951,7 +951,7 @@ msgstr ""
 "soyez prudent et <a href=\"https://github.com/bottlesdevs/Bottles/issues/new/"
 "choose\">signalez les bogues</a>."
 
-#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:870
+#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:878
 msgid "Installers"
 msgstr "Installateurs"
 
@@ -959,7 +959,7 @@ msgstr "Installateurs"
 msgid "Refresh"
 msgstr "Rafraîchir"
 
-#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:868
+#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:876
 msgid "Versioning"
 msgstr "Gestion des versions"
 
@@ -972,8 +972,8 @@ msgid "Message goes here."
 msgstr "Le message vient ici."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:901
-#: src/views/details.py:1061 src/views/details.py:1343 src/views/list.py:114
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:909
+#: src/views/details.py:1069 src/views/details.py:1351 src/views/list.py:114
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -1071,11 +1071,11 @@ msgid "Download & Install this DXVK"
 msgstr "Télécharger et installer cette version de DXVK"
 
 #: src/ui/dxvk-entry.ui:99 src/ui/importer-entry.ui:21
-#: src/ui/runner-entry.ui:47
+#: src/ui/runner-entry.ui:74
 msgid "Browse files"
 msgstr "Parcourir le lecteur C"
 
-#: src/ui/dxvk-entry.ui:141 src/ui/runner-entry.ui:116
+#: src/ui/dxvk-entry.ui:129 src/ui/runner-entry.ui:104
 msgid "0%"
 msgstr "0%"
 
@@ -1084,7 +1084,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "Désinstaller"
 
-#: src/ui/importer.ui:76 src/window.py:129
+#: src/ui/importer.ui:76 src/window.py:147
 msgid "Importer"
 msgstr "Importateur"
 
@@ -1418,7 +1418,7 @@ msgstr "Bogues de Bouteilles"
 msgid "Remove from Programs"
 msgstr "Retirer des programmes"
 
-#: src/ui/runner-entry.ui:74
+#: src/ui/runner-entry.ui:47
 msgid "Download & Install this runner"
 msgstr "Télécharger et installer cet exécuteur"
 
@@ -1443,7 +1443,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr "Vérifier les processus en cours d’exécution."
 
-#: src/ui/window.ui:49 src/window.py:128
+#: src/ui/window.ui:49 src/window.py:142
 msgid "Task manager"
 msgstr "Gestionnaire des tâches"
 
@@ -1509,15 +1509,15 @@ msgstr "[Help] requête reçue."
 msgid "[Refresh] request received."
 msgstr "[Refresh] requête reçue."
 
-#: src/utils.py:63
+#: src/utils.py:62
 msgid "You are offline, unable to download."
 msgstr "Vous êtes hors ligne, impossible de télécharger."
 
-#: src/window.py:126
+#: src/window.py:132
 msgid "Bottle details"
 msgstr "Détails de la Bouteille"
 
-#: src/window.py:156
+#: src/window.py:178
 msgid "Bottles Started!"
 msgstr "Bouteilles démarré !"
 
@@ -1531,49 +1531,52 @@ msgstr "Sauvegarde {0}"
 msgid "Importing backup: {0}"
 msgstr "Importation de la sauvegarde : {0}"
 
-#: src/backend/manager.py:1079
+#: src/backend/manager.py:516
 msgid "No runners found, please install one."
 msgstr "Aucun exécuteur trouvé, veuillez en installer un."
 
-#: src/backend/manager.py:1083
+#: src/backend/manager.py:520
 msgid "No dxvk found, installing the latest version …"
 msgstr "Dxvk non trouvé, installation de la dernière version…"
 
-#: src/backend/manager.py:1086
+#: src/backend/manager.py:523
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Vkd3d non trouvé, installation de la dernière version…"
 
 #. Execute wineboot
-#: src/backend/manager.py:1130
-msgid "The wine configuration is being updated …"
+#: src/backend/manager.py:567
+#, fuzzy
+msgid "The wine config is being updated …"
 msgstr "La configuration de Wine est cours de mise à jour…"
 
-#: src/backend/manager.py:1137
-msgid "Wine configuration updated!"
+#: src/backend/manager.py:574
+#, fuzzy
+msgid "Wine config updated!"
 msgstr "Configuration de Wine mise à jour !"
 
-#: src/backend/manager.py:1142
-msgid "Generating Bottle configuration file …"
+#: src/backend/manager.py:579
+#, fuzzy
+msgid "Generating Bottle config file …"
 msgstr "Génération du fichier de configuration de la Bouteille…"
 
-#: src/backend/manager.py:1163
+#: src/backend/manager.py:600
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Mise en place de l’environnement : {0}…"
 
-#: src/backend/manager.py:1183
+#: src/backend/manager.py:620
 msgid "Installing dxvk …"
 msgstr "Installation de dxvk…"
 
-#: src/backend/manager.py:1189
+#: src/backend/manager.py:626
 msgid "Installing vkd3d …"
 msgstr "Installation de vkd3d…"
 
-#: src/backend/manager.py:1197
+#: src/backend/manager.py:634
 msgid "Creating versioning state 0 …"
 msgstr "Création de l’état version 0…"
 
-#: src/backend/manager.py:1204
+#: src/backend/manager.py:641
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Votre nouvelle bouteille : {0} est maintenant prête !"
@@ -1594,77 +1597,78 @@ msgstr "Mise à jour de l’index…"
 msgid "Updating states …"
 msgstr "Mise à jour des états…"
 
-#: src/views/details.py:378 src/views/details.py:634
+#: src/views/details.py:377 src/views/details.py:636
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifeste pour {0}"
 
-#: src/views/details.py:464
+#: src/views/details.py:466
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Index pour l’état {0}"
 
-#: src/views/details.py:852
+#: src/views/details.py:860
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 "Le mode de jeu n’est pas disponible sur votre système ou n’est pas en cours "
 "d’exécution."
 
-#: src/views/details.py:862
+#: src/views/details.py:870
 msgid "Details & Utilities"
 msgstr "Détails et utilitaires"
 
-#: src/views/details.py:897
+#: src/views/details.py:905
 msgid "Choose working directory for executables"
 msgstr "Choisissez le répertoire de travail pour les exécutables"
 
-#: src/views/details.py:900
+#: src/views/details.py:908
 msgid "Done"
 msgstr "Terminé"
 
-#: src/views/details.py:948
+#: src/views/details.py:956
 msgid "64-bit"
 msgstr "64 bits"
 
-#: src/views/details.py:950
+#: src/views/details.py:958
 msgid "32-bit"
 msgstr "32 bits"
 
-#: src/views/details.py:964
+#: src/views/details.py:972
 #, python-format
 msgid "Updated: %s"
 msgstr "Mis à jour : %s"
 
-#: src/views/details.py:1057
+#: src/views/details.py:1065
 msgid "Choose an executable path"
 msgstr "Choisir un chemin d’exécutable"
 
-#: src/views/details.py:1060
+#: src/views/details.py:1068
 msgid "Add"
 msgstr "Ajouter"
 
-#: src/views/details.py:1339 src/views/list.py:110
+#: src/views/details.py:1347 src/views/list.py:110
 msgid "Choose a Windows executable file"
 msgstr "Choisissez un fichier exécutable Windows"
 
-#: src/views/details.py:1342 src/views/list.py:113
+#: src/views/details.py:1350 src/views/list.py:113
 msgid "Run"
 msgstr "Exécuter"
 
-#: src/views/details.py:1418
-msgid "Select the location where to save the backup configuration"
+#: src/views/details.py:1426
+#, fuzzy
+msgid "Select the location where to save the backup config"
 msgstr ""
 "Sélectionnez l’emplacement où enregistrer la configuration de sauvegarde"
 
-#: src/views/details.py:1440
+#: src/views/details.py:1448
 msgid "Select the location where to save the backup archive"
 msgstr "Sélectionnez l’emplacement où enregistrer l’archive de sauvegarde"
 
-#: src/views/details.py:1468
+#: src/views/details.py:1476
 msgid "Confirm deletion"
 msgstr "Confirmer la suppression"
 
-#: src/views/details.py:1469
+#: src/views/details.py:1477
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr ""
 "Êtes-vous sûr de vouloir supprimer cette Bouteille ainsi que tous ses "

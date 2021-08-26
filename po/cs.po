@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 09:52+0200\n"
+"POT-Creation-Date: 2021-08-26 17:49+0200\n"
 "PO-Revision-Date: 2021-08-10 15:43+0000\n"
 "Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:127
+#: src/window.py:137
 msgid "Bottles"
 msgstr "Láhve"
 
@@ -628,7 +628,7 @@ msgid "Are you experiencing problems reaching a directory in Bottles?"
 msgstr ""
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
-#: src/views/details.py:865
+#: src/views/details.py:873
 msgid "Programs"
 msgstr "Programy"
 
@@ -871,7 +871,7 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Protokolujte cesty kódu, které nejsou ve Wine implementovány."
 
 #: src/ui/details.ui:1836 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/views/details.py:863
+#: src/views/details.py:871
 msgid "Preferences"
 msgstr "Předvolby"
 
@@ -879,7 +879,7 @@ msgstr "Předvolby"
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 
-#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:864
+#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:872
 msgid "Dependencies"
 msgstr "Závislosti"
 
@@ -916,7 +916,7 @@ msgid ""
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
 
-#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:870
+#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:878
 msgid "Installers"
 msgstr "Instalátory"
 
@@ -924,7 +924,7 @@ msgstr "Instalátory"
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:868
+#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:876
 msgid "Versioning"
 msgstr "Správa verzí"
 
@@ -937,8 +937,8 @@ msgid "Message goes here."
 msgstr "Zpráva jde sem."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:901
-#: src/views/details.py:1061 src/views/details.py:1343 src/views/list.py:114
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:909
+#: src/views/details.py:1069 src/views/details.py:1351 src/views/list.py:114
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -1030,11 +1030,11 @@ msgid "Download & Install this DXVK"
 msgstr "Stáhnout a nainstalovat tento DXVK"
 
 #: src/ui/dxvk-entry.ui:99 src/ui/importer-entry.ui:21
-#: src/ui/runner-entry.ui:47
+#: src/ui/runner-entry.ui:74
 msgid "Browse files"
 msgstr "Procházet soubory"
 
-#: src/ui/dxvk-entry.ui:141 src/ui/runner-entry.ui:116
+#: src/ui/dxvk-entry.ui:129 src/ui/runner-entry.ui:104
 msgid "0%"
 msgstr "0%"
 
@@ -1043,7 +1043,7 @@ msgstr "0%"
 msgid "Uninstall"
 msgstr "Odinstalovat"
 
-#: src/ui/importer.ui:76 src/window.py:129
+#: src/ui/importer.ui:76 src/window.py:147
 msgid "Importer"
 msgstr "Importovat"
 
@@ -1364,7 +1364,7 @@ msgstr "Problémy s Láhvemi"
 msgid "Remove from Programs"
 msgstr ""
 
-#: src/ui/runner-entry.ui:74
+#: src/ui/runner-entry.ui:47
 msgid "Download & Install this runner"
 msgstr "Stáhnout a nainstalovat tento runner"
 
@@ -1388,7 +1388,7 @@ msgstr "Zde jsou wine/wineserver procesy které běží na vašem PC."
 msgid "Check for running processes."
 msgstr "Zkontrolovat spuštěné procesy."
 
-#: src/ui/window.ui:49 src/window.py:128
+#: src/ui/window.ui:49 src/window.py:142
 msgid "Task manager"
 msgstr "Správce úloh"
 
@@ -1455,15 +1455,15 @@ msgstr "[Help] žádost přijata."
 msgid "[Refresh] request received."
 msgstr "[Refresh] žádost přijata."
 
-#: src/utils.py:63
+#: src/utils.py:62
 msgid "You are offline, unable to download."
 msgstr "Jste offline, nemohu stahovat."
 
-#: src/window.py:126
+#: src/window.py:132
 msgid "Bottle details"
 msgstr "Detaily láhve"
 
-#: src/window.py:156
+#: src/window.py:178
 msgid "Bottles Started!"
 msgstr "Láhve Spuštěny!"
 
@@ -1477,54 +1477,56 @@ msgstr "Záloha {0}"
 msgid "Importing backup: {0}"
 msgstr "Importuji zálohu: {0}"
 
-#: src/backend/manager.py:1079
+#: src/backend/manager.py:516
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Nebyly nalezeny žádné runnery."
 
-#: src/backend/manager.py:1083
+#: src/backend/manager.py:520
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr "Runner a/nebo DXVK nebylo nalezeno, instaluji nejnovější verzi…"
 
-#: src/backend/manager.py:1086
+#: src/backend/manager.py:523
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Runner a/nebo DXVK nebylo nalezeno, instaluji nejnovější verzi…"
 
 #. Execute wineboot
-#: src/backend/manager.py:1130
-msgid "The wine configuration is being updated …"
+#: src/backend/manager.py:567
+#, fuzzy
+msgid "The wine config is being updated …"
 msgstr "Konfigurace wine je aktualizována …"
 
-#: src/backend/manager.py:1137
-msgid "Wine configuration updated!"
+#: src/backend/manager.py:574
+#, fuzzy
+msgid "Wine config updated!"
 msgstr "Konfigurace wine byla aktualizována!"
 
-#: src/backend/manager.py:1142
+#: src/backend/manager.py:579
 #, fuzzy
-msgid "Generating Bottle configuration file …"
+msgid "Generating Bottle config file …"
 msgstr "Stav Připojení: offline …"
 
-#: src/backend/manager.py:1163
+#: src/backend/manager.py:600
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Aplikuji prostředí: [{0}] …"
 
-#: src/backend/manager.py:1183
+#: src/backend/manager.py:620
 msgid "Installing dxvk …"
 msgstr "Instaluji DXVK …"
 
-#: src/backend/manager.py:1189
+#: src/backend/manager.py:626
 #, fuzzy
 msgid "Installing vkd3d …"
 msgstr "Instaluji DXVK …"
 
-#: src/backend/manager.py:1197
+#: src/backend/manager.py:634
 msgid "Creating versioning state 0 …"
 msgstr "Vytvářím verzovací stav 0 …"
 
-#: src/backend/manager.py:1204
+#: src/backend/manager.py:641
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Vaše nová láhev: {0} je nyní připravena!"
@@ -1549,77 +1551,78 @@ msgstr "Vytvářím wineprefix…"
 msgid "Updating states …"
 msgstr "Vytvářím láhev…"
 
-#: src/views/details.py:378 src/views/details.py:634
+#: src/views/details.py:377 src/views/details.py:636
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest pro {0}"
 
-#: src/views/details.py:464
+#: src/views/details.py:466
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Index pro stav {0}"
 
-#: src/views/details.py:852
+#: src/views/details.py:860
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/views/details.py:862
+#: src/views/details.py:870
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Nástroje"
 
-#: src/views/details.py:897
+#: src/views/details.py:905
 #, fuzzy
 msgid "Choose working directory for executables"
 msgstr "Vyberte spustitelný soubor Windows"
 
-#: src/views/details.py:900
+#: src/views/details.py:908
 msgid "Done"
 msgstr ""
 
-#: src/views/details.py:948
+#: src/views/details.py:956
 msgid "64-bit"
 msgstr ""
 
-#: src/views/details.py:950
+#: src/views/details.py:958
 msgid "32-bit"
 msgstr ""
 
-#: src/views/details.py:964
+#: src/views/details.py:972
 #, fuzzy, python-format
 msgid "Updated: %s"
 msgstr "Aktualizace:"
 
-#: src/views/details.py:1057
+#: src/views/details.py:1065
 #, fuzzy
 msgid "Choose an executable path"
 msgstr "Vyberte spustitelný soubor Windows"
 
-#: src/views/details.py:1060
+#: src/views/details.py:1068
 msgid "Add"
 msgstr ""
 
-#: src/views/details.py:1339 src/views/list.py:110
+#: src/views/details.py:1347 src/views/list.py:110
 msgid "Choose a Windows executable file"
 msgstr "Vyberte spustitelný soubor Windows"
 
-#: src/views/details.py:1342 src/views/list.py:113
+#: src/views/details.py:1350 src/views/list.py:113
 msgid "Run"
 msgstr "Spustit"
 
-#: src/views/details.py:1418
-msgid "Select the location where to save the backup configuration"
+#: src/views/details.py:1426
+#, fuzzy
+msgid "Select the location where to save the backup config"
 msgstr "Vyberte lokaci do které chcete uložit konfiguraci záloh"
 
-#: src/views/details.py:1440
+#: src/views/details.py:1448
 msgid "Select the location where to save the backup archive"
 msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
 
-#: src/views/details.py:1468
+#: src/views/details.py:1476
 msgid "Confirm deletion"
 msgstr "Potvrďte odstranění"
 
-#: src/views/details.py:1469
+#: src/views/details.py:1477
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
 

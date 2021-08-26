@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 09:52+0200\n"
+"POT-Creation-Date: 2021-08-26 17:49+0200\n"
 "PO-Revision-Date: 2021-08-10 15:42+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:127
+#: src/window.py:137
 msgid "Bottles"
 msgstr "Flasker"
 
@@ -668,7 +668,7 @@ msgid "Are you experiencing problems reaching a directory in Bottles?"
 msgstr ""
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
-#: src/views/details.py:865
+#: src/views/details.py:873
 msgid "Programs"
 msgstr "Programmer"
 
@@ -925,7 +925,7 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
 #: src/ui/details.ui:1836 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/views/details.py:863
+#: src/views/details.py:871
 msgid "Preferences"
 msgstr "Egenskaper"
 
@@ -933,7 +933,7 @@ msgstr "Egenskaper"
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 
-#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:864
+#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:872
 msgid "Dependencies"
 msgstr "Avhengigheter"
 
@@ -975,7 +975,7 @@ msgid ""
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
 
-#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:870
+#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:878
 msgid "Installers"
 msgstr "Installasjonskandidater"
 
@@ -983,7 +983,7 @@ msgstr "Installasjonskandidater"
 msgid "Refresh"
 msgstr "Gjenoppfrisk"
 
-#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:868
+#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:876
 msgid "Versioning"
 msgstr "Versjonering"
 
@@ -997,8 +997,8 @@ msgid "Message goes here."
 msgstr ""
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:901
-#: src/views/details.py:1061 src/views/details.py:1343 src/views/list.py:114
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:909
+#: src/views/details.py:1069 src/views/details.py:1351 src/views/list.py:114
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1095,12 +1095,12 @@ msgid "Download & Install this DXVK"
 msgstr ""
 
 #: src/ui/dxvk-entry.ui:99 src/ui/importer-entry.ui:21
-#: src/ui/runner-entry.ui:47
+#: src/ui/runner-entry.ui:74
 #, fuzzy
 msgid "Browse files"
 msgstr "Utforsk C:"
 
-#: src/ui/dxvk-entry.ui:141 src/ui/runner-entry.ui:116
+#: src/ui/dxvk-entry.ui:129 src/ui/runner-entry.ui:104
 #, fuzzy
 msgid "0%"
 msgstr "0"
@@ -1111,7 +1111,7 @@ msgstr "0"
 msgid "Uninstall"
 msgstr "Avinstaller"
 
-#: src/ui/importer.ui:76 src/window.py:129
+#: src/ui/importer.ui:76 src/window.py:147
 msgid "Importer"
 msgstr "Importerer"
 
@@ -1445,7 +1445,7 @@ msgstr "Flaskestørrelse:"
 msgid "Remove from Programs"
 msgstr ""
 
-#: src/ui/runner-entry.ui:74
+#: src/ui/runner-entry.ui:47
 msgid "Download & Install this runner"
 msgstr ""
 
@@ -1472,7 +1472,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr "Se etter installerte programmer."
 
-#: src/ui/window.ui:49 src/window.py:128
+#: src/ui/window.ui:49 src/window.py:142
 msgid "Task manager"
 msgstr "Oppgavebehandler"
 
@@ -1544,15 +1544,15 @@ msgstr "`Hjelp`-forespørsel mottatt."
 msgid "[Refresh] request received."
 msgstr "`Gjenoppfrisk`-forespørsel mottatt."
 
-#: src/utils.py:63
+#: src/utils.py:62
 msgid "You are offline, unable to download."
 msgstr ""
 
-#: src/window.py:126
+#: src/window.py:132
 msgid "Bottle details"
 msgstr "Flaskedetaljer"
 
-#: src/window.py:156
+#: src/window.py:178
 msgid "Bottles Started!"
 msgstr "Flasker startet."
 
@@ -1566,54 +1566,55 @@ msgstr "Sikkerhetskopi {0}"
 msgid "Importing backup: {0}"
 msgstr "Importerer sikkerhetskopi: {0}"
 
-#: src/backend/manager.py:1079
+#: src/backend/manager.py:516
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Fant ingen springere"
 
-#: src/backend/manager.py:1083
+#: src/backend/manager.py:520
 #, fuzzy
 msgid "No dxvk found, installing the latest version …"
 msgstr "Fortsett installasjonen av siste versjon?"
 
-#: src/backend/manager.py:1086
+#: src/backend/manager.py:523
 #, fuzzy
 msgid "No vkd3d found, installing the latest version …"
 msgstr "Fortsett installasjonen av siste versjon?"
 
 #. Execute wineboot
-#: src/backend/manager.py:1130
-msgid "The wine configuration is being updated …"
-msgstr ""
-
-#: src/backend/manager.py:1137
+#: src/backend/manager.py:567
 #, fuzzy
-msgid "Wine configuration updated!"
+msgid "The wine config is being updated …"
 msgstr "Oppsett"
 
-#: src/backend/manager.py:1142
+#: src/backend/manager.py:574
 #, fuzzy
-msgid "Generating Bottle configuration file …"
+msgid "Wine config updated!"
+msgstr "Oppsett"
+
+#: src/backend/manager.py:579
+#, fuzzy
+msgid "Generating Bottle config file …"
 msgstr "Oppretter wineprefiks …"
 
-#: src/backend/manager.py:1163
+#: src/backend/manager.py:600
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr ""
 
-#: src/backend/manager.py:1183
+#: src/backend/manager.py:620
 msgid "Installing dxvk …"
 msgstr ""
 
-#: src/backend/manager.py:1189
+#: src/backend/manager.py:626
 msgid "Installing vkd3d …"
 msgstr ""
 
-#: src/backend/manager.py:1197
+#: src/backend/manager.py:634
 msgid "Creating versioning state 0 …"
 msgstr ""
 
-#: src/backend/manager.py:1204
+#: src/backend/manager.py:641
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr ""
@@ -1638,81 +1639,81 @@ msgstr "Oppretter wineprefiks …"
 msgid "Updating states …"
 msgstr "Oppretter flaske …"
 
-#: src/views/details.py:378 src/views/details.py:634
+#: src/views/details.py:377 src/views/details.py:636
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest for {0}"
 
-#: src/views/details.py:464
+#: src/views/details.py:466
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indeks for tilstand {0}"
 
-#: src/views/details.py:852
+#: src/views/details.py:860
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
-#: src/views/details.py:862
+#: src/views/details.py:870
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Verktøy"
 
-#: src/views/details.py:897
+#: src/views/details.py:905
 #, fuzzy
 msgid "Choose working directory for executables"
 msgstr "Velg en kjørbar Windows-fil"
 
-#: src/views/details.py:900
+#: src/views/details.py:908
 msgid "Done"
 msgstr ""
 
-#: src/views/details.py:948
+#: src/views/details.py:956
 msgid "64-bit"
 msgstr ""
 
-#: src/views/details.py:950
+#: src/views/details.py:958
 msgid "32-bit"
 msgstr ""
 
-#: src/views/details.py:964
+#: src/views/details.py:972
 #, fuzzy, python-format
 msgid "Updated: %s"
 msgstr "Oppdateringer:"
 
-#: src/views/details.py:1057
+#: src/views/details.py:1065
 #, fuzzy
 msgid "Choose an executable path"
 msgstr "Velg en kjørbar Windows-fil"
 
-#: src/views/details.py:1060
+#: src/views/details.py:1068
 msgid "Add"
 msgstr ""
 
-#: src/views/details.py:1339 src/views/list.py:110
+#: src/views/details.py:1347 src/views/list.py:110
 #, fuzzy
 msgid "Choose a Windows executable file"
 msgstr "Velg en kjørbar Windows-fil"
 
-#: src/views/details.py:1342 src/views/list.py:113
+#: src/views/details.py:1350 src/views/list.py:113
 #, fuzzy
 msgid "Run"
 msgstr "Springer"
 
-#: src/views/details.py:1418
+#: src/views/details.py:1426
 #, fuzzy
-msgid "Select the location where to save the backup configuration"
+msgid "Select the location where to save the backup config"
 msgstr "Velg sted å lagre sikkerhetskopi"
 
-#: src/views/details.py:1440
+#: src/views/details.py:1448
 #, fuzzy
 msgid "Select the location where to save the backup archive"
 msgstr "Velg sted å lagre sikkerhetskopiert arkiv"
 
-#: src/views/details.py:1468
+#: src/views/details.py:1476
 msgid "Confirm deletion"
 msgstr "Bekreft sletting"
 
-#: src/views/details.py:1469
+#: src/views/details.py:1477
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Er du sikker på at du vil slette denne flasken og alle dens filer?"
 
