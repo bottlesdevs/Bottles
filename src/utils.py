@@ -80,19 +80,32 @@ class UtilsTerminal():
         ['tilix', '-- %s'],
     ]
 
-    def __init__(self, command):
+    def check_support(self):
         for terminal in self.terminals:
             terminal_check = subprocess.Popen(
                 f"command -v {terminal[0]} > /dev/null && echo 1 || echo 0",
                 shell=True,
-                stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+                stdout=subprocess.PIPE
+            ).communicate()[0].decode("utf-8")
 
             if "1" in terminal_check:
-                subprocess.Popen(
-                    ' '.join(terminal) % f"bash -c '{command}'",
-                    shell=True,
-                    stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
-                break
+                self.terminal = terminal[0]
+                return True
+        
+        return False
+
+    def execute(self, command):
+        if not self.check_support():
+            logging.warning("Terminal not supported.")
+            return False
+
+        subprocess.Popen(
+            ' '.join(self.terminal) % f"bash -c '{command}'",
+            shell=True,
+            stdout=subprocess.PIPE
+        ).communicate()[0].decode("utf-8")
+        
+        return True
 
 # Custom formatted logger
 class UtilsLogger(logging.getLoggerClass()):

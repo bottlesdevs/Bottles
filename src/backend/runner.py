@@ -151,7 +151,10 @@ class Runner:
         cwd: str = None
     ) -> bool:
         # Work around for Flatpak and Snap not able to use system commands
-        if "FLATPAK_ID" in os.environ or "SNAP" in os.environ and terminal:
+        if "FLATPAK_ID" in os.environ \
+            or "SNAP" in os.environ \
+            or not UtilsTerminal().check_support() \
+            and terminal:
             terminal = False
             if command in ["winedbg", "cmd"]:
                 command = f"wineconsole {command}"
@@ -268,7 +271,7 @@ class Runner:
             command = f"gamemoderun {command}"
 
         if terminal:
-            return UtilsTerminal(command)
+            return UtilsTerminal().execute(command)
 
         if comunicate:
             try:
@@ -288,10 +291,16 @@ class Runner:
 
         # TODO: configure cwd in bottle config
         try:
-            res = subprocess.Popen(command, shell=True, cwd=cwd).communicate()
-            if "ShellExecuteEx" in res[0]:
+            res = subprocess.Popen(
+                    command,
+                    stdout=subprocess.PIPE,
+                    cwd=cwd,
+                    shell=True
+            ).communicate()[0].decode("utf-8")
+            if "ShellExecuteEx" in res:
                 raise Exception("ShellExecuteEx")
-        except:
+        except Exception as e:
+            print(e)
             # workaround for `No such file or directory` error
             return subprocess.Popen(command, shell=True).communicate()
 
