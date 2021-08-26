@@ -97,17 +97,38 @@
           <description>
             <p>News</p>
             <ul>
-                <li>text</li>
+                <li>Use %command% in launch options to set prefixes and suffixes</li>
+                <li>Create a bottle where to launch the executable choosed from your file manager</li>
+                <li>Rewrited the manager to be less recursive and more user-friendly to developers</li>
+                <li>The dependencies/components/installers has now they own managers, indipendent from the main one</li>
+                <li>The dependencies manager can now extract single files from Windows Cabinet files</li>
+                <li>Now the user need to accept the notice in the crash report, before submiting new reports</li>
+                <li>The user homedir is now removed from the reports</li>
+                <li>The lutris-lol runner is now hidden when Bottles is running under flatpak, as it is not compatible with it</li>
+                <li>The Windows Cabinet extraction is now quiet and only show relavant logs</li>
+                <li>The download status icon in the preferencies dialog, is now on the right of the percentage, so it will be no more moved by the percentage</li>
             </ul>
 
             <p>Bug fixes</p>
             <ul>
-                <li>text</li>
+                <li>Fixed a bug in name resolution that could cause Bottles to crash if it cannot reach a resource</li>
+                <li>Prevent Bottles from running executables when the runner is not available</li>
+                <li>Environment names are now translated again</li>
+                <li>Added missing translations in bottle creation</li>
+                <li>Fixed a problem in Wayland support that was setting DISPLAY to the wrong parameter</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>text</li>
+                <li>Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz</li>
+                <li>Portuguese (Brazil) translations thanks to @farribeiro, @swyknox</li>
+                <li>Hungarian translations thanks to @ovari</li>
+                <li>French translations thanks to @julroy67</li>
+                <li>Swedish translations thanks to @bittin</li>
+                <li>Chinese (Simplified) translations thanks to @sr093906</li>
+                <li>Japanese translations thanks to @jatin-cbs</li>
+                <li>Croatian translations thanks to @milotype</li>
+                <li>Indonesian translations thanks to @liimee</li>
             </ul>
           </description>
         </release>
