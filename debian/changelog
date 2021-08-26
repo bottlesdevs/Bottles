@@ -1,6 +1,30 @@
 com.usebottles.bottles (2021.8.28-treviso) precise; urgency=low
 
   * text
+  * Use %command% in launch options to set prefixes and suffixes
+  * Create a bottle where to launch the executable choosed from your file manager
+  * Rewrited the manager to be less recursive and more user-friendly to developers
+  * The dependencies/components/installers has now they own managers, indipendent from the main one
+  * The dependencies manager can now extract single files from Windows Cabinet files
+  * Now the user need to accept the notice in the crash report, before submiting new reports
+  * The user homedir is now removed from the reports
+  * The lutris-lol runner is now hidden when Bottles is running under flatpak, as it is not compatible with it
+  * The Windows Cabinet extraction is now quiet and only show relavant logs
+  * The download status icon in the preferencies dialog, is now on the right of the percentage, so it will be no more moved by the percentage
+  * Fixed a bug in name resolution that could cause Bottles to crash if it cannot reach a resource
+  * Prevent Bottles from running executables when the runner is not available
+  * Environment names are now translated again
+  * Added missing translations in bottle creation
+  * Fixed a problem in Wayland support that was setting DISPLAY to the wrong parameter
+  * Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz
+  * Portuguese (Brazil) translations thanks to @farribeiro, @swyknox
+  * Hungarian translations thanks to @ovari
+  * French translations thanks to @julroy67
+  * Swedish translations thanks to @bittin
+  * Chinese (Simplified) translations thanks to @sr093906
+  * Japanese translations thanks to @jatin-cbs
+  * Croatian translations thanks to @milotype
+  * Indonesian translations thanks to @liimee
 
 
  -- Mirko Brombin <send@mirko.pm>  Sat, 28 Aug 2021 08:32:00 +0000
