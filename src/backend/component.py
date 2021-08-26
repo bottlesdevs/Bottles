@@ -225,7 +225,7 @@ class ComponentManager:
                 ).url
             try:
                 request = urllib.request.urlopen(download_url)
-            except (urllib.error.HTTPError, urllib.error.URLError):
+            except:
                 GLib.idle_add(download_entry.remove)
                 return False
 
