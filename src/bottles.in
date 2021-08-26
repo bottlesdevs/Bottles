@@ -24,14 +24,14 @@ import gettext
 
 if "APPDIR" in os.environ:
 	APPDIR = os.environ["APPDIR"]
-	VERSION = "2021.8.14"
+	VERSION = "2021.8.28"
 	pkgdatadir = "/usr/local/share/bottles"
 	localedir = "/usr/local/share/locale"
 	gresource_path = f"{APPDIR}/{pkgdatadir}/bottles.gresource"
 	sys.path.insert(1, f"{APPDIR}/{pkgdatadir}")
 elif "SNAP" in os.environ:
 	SNAP = os.environ["SNAP"]
-	VERSION = "2021.8.14"
+	VERSION = "2021.8.28"
 	pkgdatadir = "usr/share/bottles"
 	localedir = "usr/share/locale"
 	gresource_path = f"{SNAP}/{pkgdatadir}/bottles.gresource"
