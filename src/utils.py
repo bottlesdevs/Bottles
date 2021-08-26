@@ -286,7 +286,7 @@ class CabExtract():
     '''
     requirements = False
     
-    def run(self, path: str, name: str, files: list = []):
+    def run(self, path: str, name: str="", files: list = []):
         self.path = path
         self.name = name
         self.files = files
@@ -322,7 +322,7 @@ class CabExtract():
             if len(self.files) > 0:
                 for file in self.files:
                     subprocess.Popen(
-                        f"cabextract -F f'*{file}*' -d {temp_path}/{self.name} -q {self.path}",
+                        f"cabextract -F '*{file}*' -d {temp_path}/{self.name} -q {self.path}",
                         shell=True
                     ).communicate()
             else:

@@ -17,6 +17,7 @@
 
 import os
 import yaml
+import uuid
 import shutil
 import patoolib
 from glob import glob
@@ -24,9 +25,9 @@ import urllib.request
 from typing import Union, NewType
 from gi.repository import Gtk, GLib
 
-from ..download import DownloadManager
 from .runner import Runner
 from .globals import BottlesRepositories, Paths
+from ..download import DownloadManager
 from ..utils import RunAsync, UtilsLogger, CabExtract, validate_url
 
 logging = UtilsLogger()
@@ -149,8 +150,8 @@ class DependencyManager:
             Steps are the actions performed to install the dependency.
             '''
 
-            if step["action"] == "downlaod_archive":
-                self.__step_downlaod_archive(step)
+            if step["action"] == "download_archive":
+                self.__step_download_archive(step)
 
             if step["action"] == "delete_sys32_dlls":
                 self.__step_delete_sys32_dlls(
@@ -174,6 +175,14 @@ class DependencyManager:
             if step["action"] == "cab_extract":
                 has_no_uninstaller = True
                 self.__step_cab_extract(
+                    step=step,
+                    widget=widget
+                )
+
+            if step["action"] == "get_from_cab":
+                has_no_uninstaller = True
+                self.__step_get_from_cab(
+                    config=config,
                     step=step,
                     widget=widget
                 )
@@ -266,7 +275,7 @@ class DependencyManager:
         config: BottleConfig,
         dependency: list,
         widget: Gtk.Widget = None
-    ) -> None:
+    ):
         if self.__utils_conn.check_connection(True):
             RunAsync(self.async_install, None, [
                 config,
@@ -274,7 +283,7 @@ class DependencyManager:
                 widget
             ])
 
-    def __step_downlaod_archive(self, step: dict) -> None:
+    def __step_download_archive(self, step: dict):
         '''
         This function download an archive from the givven step.
         Can be used for any file type (cab, zip, ..). Please don't
@@ -290,7 +299,6 @@ class DependencyManager:
         )
 
         return download
-
 
     def __step_delete_sys32_dlls(self, config: BottleConfig, dlls: list):
         '''
@@ -356,7 +364,7 @@ class DependencyManager:
                 widget.btn_install.set_sensitive(True)
             return False
 
-    def __step_uninstall(self, config: BottleConfig, file_name: str) -> None:
+    def __step_uninstall(self, config: BottleConfig, file_name: str):
         '''
         This function find an uninstaller in the bottle by the given
         file name and execute it.
@@ -381,7 +389,7 @@ class DependencyManager:
             )
             Runner().run_uninstaller(config, uuid)
 
-    def __step_cab_extract(self, step: dict, widget: Gtk.Widget) -> None:
+    def __step_cab_extract(self, step: dict, widget: Gtk.Widget):
         '''
         This function download and extract a Windows Cabinet to the
         temp folder. If a widget is given, it will be to the error
@@ -434,8 +442,56 @@ class DependencyManager:
                 if widget is not None:
                     GLib.idle_add(widget.set_err)
                 exit()
+    
+    def __step_get_from_cab(
+        self, 
+        config:BottleConfig, 
+        step: dict, 
+        widget: Gtk.Widget
+    ):
+        '''
+        This function take a file from a cab file and extract it to
+        the defined path.
+        '''
+        source = step.get("source")
+        file_name = step.get("file_name")
 
-    def __step_archive_extract(self, step: dict) -> None:
+        res = CabExtract().run(
+            path=f"{Paths.temp}/{source}",
+            files=[file_name]
+        )
+
+        if not res and widget is not None:
+            GLib.idle_add(widget.set_err)
+            exit()
+
+        if step.get("dest"):
+            dest = step.get("dest")
+            dest_file_name = step.get("file_name")
+            
+            if step.get("rename"):
+                dest_file_name = step.get("rename")
+
+            if dest.startswith("temp/"):
+                dest = dest.replace("temp/", f"{Paths.temp}/")
+            
+            if dest.startswith("drive_c/"):
+                bottle_path = Runner().get_bottle_path(config)
+                dest = dest.replace(
+                    "drive_c/", 
+                    f"{bottle_path}/drive_c/"
+                )
+            elif dest.startswith("temp/"):
+                dest = dest.replace("temp/", f"{Paths.temp}/")
+            else:
+                dest = f"{Paths.temp}/{dest}"
+        
+            shutil.copy(
+                f"{Paths.temp}/{file_name}",
+                f"{dest}/{dest_file_name}"
+            )
+
+    def __step_archive_extract(self, step: dict):
         '''
         This function download and extract the archive declared
         in the step, in the temp folder.
@@ -465,7 +521,7 @@ class DependencyManager:
                 f"{Paths.temp}/{file}",
                 outdir=f"{Paths.temp}/{archive_name}")
 
-    def __step_install_fonts(self, config: BottleConfig, step: dict) -> None:
+    def __step_install_fonts(self, config: BottleConfig, step: dict):
         '''
         This function copy the fonts declared in the step in
         the bottle drive_c/windows/Fonts path.
@@ -480,7 +536,7 @@ class DependencyManager:
                 f"{bottle_path}/drive_c/windows/Fonts/{font}"
             )
 
-    def __step_copy_dll(self, config: BottleConfig, step: dict) -> None:
+    def __step_copy_dll(self, config: BottleConfig, step: dict):
         '''
         This function copy dlls from temp folder to a directory
         declared in the step. The bottle drive_c path will be used as
@@ -494,12 +550,12 @@ class DependencyManager:
             if "*" in step.get('file_name'):
                 files = glob(f"{path}/{step.get('file_name')}")
                 for fg in files:
-                    destination = "%s/drive_c/%s/%s" % (
+                    dest = "%s/drive_c/%s/%s" % (
                         bottle_path,
                         step.get('dest'),
                         os.path.basename(fg)
                     )
-                    shutil.copyfile(fg, destination)
+                    shutil.copyfile(fg, dest)
             else:
                 shutil.copyfile(
                     f"{path}/{step.get('file_name')}",
@@ -513,7 +569,7 @@ class DependencyManager:
             )
             return False
 
-    def __step_override_dll(self, config: BottleConfig, step: dict) -> None:
+    def __step_override_dll(self, config: BottleConfig, step: dict):
         '''
         This function register a new override for each dll declared
         in the step, for a bottle.
@@ -542,7 +598,7 @@ class DependencyManager:
             data=step.get("type")
         )
 
-    def __step_set_register_key(self, config: BottleConfig, step: dict) -> None:
+    def __step_set_register_key(self, config: BottleConfig, step: dict):
         '''
         This function set a register key in the bottle registry. It is
         just a mirror of the reg_add function from the manager. 
@@ -555,7 +611,7 @@ class DependencyManager:
             keyType=step.get("type")
         )
 
-    def __step_register_font(self, config: BottleConfig, step: dict) -> None:
+    def __step_register_font(self, config: BottleConfig, step: dict):
         '''
         This function register a font in the bottle registry. It is
         important to make the font available in the system.
