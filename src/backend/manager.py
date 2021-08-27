@@ -409,7 +409,7 @@ class Manager:
         if config.get("External_Programs"):
             ext_programs = config.get("External_Programs")
             for program in ext_programs:
-                program_folder = ext_programs[program].split("/")[-1]
+                program_folder = os.path.dirname(ext_programs[program])
                 icon = self.__find_program_icon(program)
                 installed_programs.append(
                     [program, ext_programs[program], icon, program_folder])
