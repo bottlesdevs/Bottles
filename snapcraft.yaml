@@ -16,6 +16,7 @@ architectures:
 parts:
 
   bottles:
+    after: [enable-i386]
     plugin: meson
     meson-parameters: [ --prefix=/usr ]
     source: https://github.com/bottlesdevs/Bottles.git
@@ -58,6 +59,15 @@ parts:
 
     organize:
       snap/bottles/current/usr: usr
+  
+  enable-i386:
+    plugin: nil
+    override-build: |
+      snapcraftctl build
+      if [ "$SNAPCRAFT_ARCH_TRIPLET" = "x86_64-linux-gnu" ]; then
+        dpkg --add-architecture i386
+        apt update
+      fi
 
   fix-p7zip:
     plugin: nil
