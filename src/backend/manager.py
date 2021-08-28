@@ -266,7 +266,11 @@ class Manager:
                     else:
                         tmp_runners = self.supported_wine_runners
                         runner_name = next(iter(tmp_runners))
-                    self.component_manager.install("runner", runner_name, after=after)
+                    self.component_manager.install(
+                        component_type="runner", 
+                        component_name=runner_name, 
+                        after=after
+                    )
                 except StopIteration:
                     return False
             else:
@@ -297,7 +301,7 @@ class Manager:
                 try:
                     dxvk_version = next(iter(self.supported_dxvk))
                     if no_async:
-                        self.async_component_manager.install(
+                        self.component_manager.async_install(
                             ["dxvk", dxvk_version, False, False, False])
                     else:
                         self.component_manager.install(
@@ -327,7 +331,7 @@ class Manager:
                 try:
                     vkd3d_version = next(iter(self.supported_vkd3d))
                     if no_async:
-                        self.async_component_manager.install(
+                        self.component_manager.async_install(
                             ["vkd3d", vkd3d_version, False, False, False])
                     else:
                         self.component_manager.install(
