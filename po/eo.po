@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-26 17:49+0200\n"
-"PO-Revision-Date: 2021-08-28 12:33+0000\n"
+"PO-Revision-Date: 2021-08-29 18:33+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/bottles/"
 "bottles/eo/>\n"
@@ -1046,9 +1046,8 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Ĉi tiu Wine-prefikso jam estis enportita en botelojn."
 
 #: src/ui/list.ui:73
-#, fuzzy
 msgid "Start off by creating a Bottle."
-msgstr "Komenci per kreo de botelo"
+msgstr "Komencu per kreo de botelo."
 
 #: src/ui/list.ui:76
 msgid "Create a new Bottle"
@@ -1137,7 +1136,7 @@ msgstr "Arkitekturo"
 
 #: src/ui/new.ui:411
 msgid "We recommend using only 32bit if strictly necessary"
-msgstr ""
+msgstr "Ni rekomendas uzi la 32-bitan nur se tio necesas"
 
 #: src/ui/new.ui:425
 msgid "64 bit"
@@ -1152,9 +1151,8 @@ msgid "Creating bottle…"
 msgstr "Kreante botelon…"
 
 #: src/ui/new.ui:499
-#, fuzzy
 msgid "Take a break, it may take a while"
-msgstr "Trinku ion, eble tio iom daŭros"
+msgstr "Ripozu, eble tio iom daŭros"
 
 #: src/ui/new.ui:567
 msgid "Bottle created"
@@ -1189,9 +1187,8 @@ msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr "Boteloj faciligas ruladon de Vindozaj programoj sur Linukso."
 
 #: src/ui/onboard.ui:229
-#, fuzzy
 msgid "What are runners?"
-msgstr "Administri rulilojn"
+msgstr "Kio estas ruliloj?"
 
 #: src/ui/onboard.ui:249
 msgid ""
@@ -1214,7 +1211,6 @@ msgid "We are almost there"
 msgstr "Preskaŭ finite"
 
 #: src/ui/onboard.ui:319
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -1229,11 +1225,13 @@ msgid ""
 msgstr ""
 "Ni bezonas elŝuti kaj instali rulilon por krei viajn proprajn botelojn.\n"
 "La grando de la elŝuto estas <b>~70 megabajtoj</b>.\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Legu pli "
+"pri la elŝutotaĵo.</a>\n"
 "\n"
 "Tiuj dosieroj ne estas kunpakeblaj en ĉi tiun programon pro siaj malsamaj "
 "versicikloj.\n"
 "\n"
-"Se vi pretas, premu la butonon «Instali»."
+"Se vi pretas, premu la butonon <b>«Instali»</b>."
 
 #: src/ui/onboard.ui:341 src/ui/preferences.ui:181
 msgid "Runners"
@@ -1244,9 +1242,8 @@ msgid "Downloading…"
 msgstr "Elŝutante…"
 
 #: src/ui/onboard.ui:391
-#, fuzzy
 msgid "Sit down and relax, it may take a few minutes."
-msgstr "Trinku ion, eble tio daŭros kelkajn minutojn."
+msgstr "Sidiĝu kaj ripozu; eble tio daŭros kelkajn minutojn."
 
 #: src/ui/onboard.ui:419
 msgid "Download"
@@ -1318,16 +1315,15 @@ msgstr "Ĉu la ĉi-supra listo montru nestabilajn versiojn."
 
 #: src/ui/preferences.ui:225
 msgid "DXVK/VKD3D"
-msgstr ""
+msgstr "DXVK/VKD3D"
 
 #: src/ui/preferences.ui:230
-#, fuzzy
 msgid "DXVK"
-msgstr "Uzi DXVK"
+msgstr "DXVK"
 
 #: src/ui/preferences.ui:240
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: src/ui/program-entry.ui:21
 msgid "Change Launch Options"
@@ -1480,12 +1476,10 @@ msgstr "Ne troviĝis VKD3D; instalante plej novan version…"
 
 #. Execute wineboot
 #: src/backend/manager.py:567
-#, fuzzy
 msgid "The wine config is being updated …"
 msgstr "Reagordante Wine…"
 
 #: src/backend/manager.py:574
-#, fuzzy
 msgid "Wine config updated!"
 msgstr "Reagordiĝis Wine!"
 
@@ -1504,9 +1498,8 @@ msgid "Installing dxvk …"
 msgstr "Instalante DXVK…"
 
 #: src/backend/manager.py:626
-#, fuzzy
 msgid "Installing vkd3d …"
-msgstr "Instalante DXVK…"
+msgstr "Instalante VKD3D…"
 
 #: src/backend/manager.py:634
 msgid "Creating versioning state 0 …"
@@ -1528,14 +1521,12 @@ msgid "Creating a restore point …"
 msgstr "Kreante ŝlosdosieron en fonta dosierujo…"
 
 #: src/backend/versioning.py:138
-#, fuzzy
 msgid "Updating index …"
-msgstr "Kreante la Wine-prefikson…"
+msgstr "Ĝisdatigante indekson…"
 
 #: src/backend/versioning.py:153
-#, fuzzy
 msgid "Updating states …"
-msgstr "Kreante botelon…"
+msgstr "Ĝisdatigante statojn…"
 
 #: src/views/details.py:377 src/views/details.py:636
 #, python-brace-format
@@ -1552,9 +1543,8 @@ msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 
 #: src/views/details.py:870
-#, fuzzy
 msgid "Details & Utilities"
-msgstr "Ilprogramoj"
+msgstr "Detaloj & ilprogramoj"
 
 #: src/views/details.py:905
 #, fuzzy
