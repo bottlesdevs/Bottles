@@ -60,14 +60,7 @@ jobs:
           mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
           mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: actions/upload-artifact@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          draft: false
-          prerelease: false
-          automatic_release_tag: unstable
-          title: Unstable build
-          files: |
-            Bottles-*-x86_64.AppImage*
-            com.usebottles.bottles-unstable.deb
-            com.usebottles.bottles-unstable.flatpak
+          name: Unstable Build
+          path: ./*
