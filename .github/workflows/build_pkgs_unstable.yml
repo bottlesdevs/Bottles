@@ -42,6 +42,7 @@ jobs:
       # --------------------------------------
       #- name: Build .deb package
       #  run: dpkg-buildpackage
+      # com.usebottles.bottles-unstable.deb
 
 
       # Flatpak
@@ -69,5 +70,4 @@ jobs:
           title: Unstable build
           files: |
             Bottles-*-x86_64.AppImage*
-            com.usebottles.bottles-unstable.deb
             com.usebottles.bottles-unstable.flatpak
