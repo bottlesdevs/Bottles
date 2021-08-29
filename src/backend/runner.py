@@ -235,11 +235,12 @@ class Runner:
         if parameters["aco_compiler"]:
             environment_vars.append("RADV_PERFTEST=aco")
 
-        if "WAYLAND_DISPLAY" in os.environ and "DISPLAY" in os.environ:
+        if "WAYLAND_DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
             logging.info("Using Xwayland..")
+            display = os.environ.get("DISPLAY", ":0")
             environment_vars.append("GDK_BACKEND=x11")
-            environment_vars.append(f"DISPLAY={os.environ['DISPLAY']}")
+            environment_vars.append(f"DISPLAY={display}")
 
         if parameters["discrete_gpu"]:
             if "nvidia" in subprocess.Popen(
