@@ -237,6 +237,8 @@ class Runner:
 
         if "WAYLAND_DISPLAY" in os.environ and "DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
+            logging.info("Using Xwayland..")
+            environment_vars.append("GDK_BACKEND=x11")
             environment_vars.append(f"DISPLAY={os.environ['DISPLAY']}")
 
         if parameters["discrete_gpu"]:
