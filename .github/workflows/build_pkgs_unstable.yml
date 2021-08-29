@@ -64,4 +64,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Unstable Build
-          path: ./*
+          path: |
+            Bottles-devel-x86_64.AppImage
+            Bottles-devel-x86_64.AppImage.zsync
+            com.usebottles.bottles-unstable.deb
