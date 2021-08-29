@@ -70,6 +70,11 @@ jobs:
         with:
           name: Unstable Build - Debian Package
           path: com.usebottles.bottles-unstable.deb
+      - name: Upload Flatpak to Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Unstable Build - Flatpak
+          path: com.usebottles.bottles-unstable.flatpak
       - name: Upload zsync to Artifacts
         uses: actions/upload-artifact@v2
         with:
