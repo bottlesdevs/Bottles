@@ -127,13 +127,14 @@ class ComponentManager:
             '''
 
             if component[1]["Category"] == "runners":
-                if "FLATPAK_ID" in os.environ and "-lol" in component[0]:
-                    '''
-                    Hide the lutris-lol runner if Bottles is running as 
-                    Flatpak  because it is not compatible under sandbox
-                    https://github.com/bottlesdevs/components/issues/54
-                    '''
-                    continue
+                if "FLATPAK_ID" in os.environ:
+                    if "-lol" in component[0] or "-LoL" in component[0]:
+                        '''
+                        Hide the lutris-lol runner if Bottles is running as 
+                        Flatpak  because it is not compatible under sandbox
+                        https://github.com/bottlesdevs/components/issues/54
+                        '''
+                        continue
 
                 if component[1]["Sub-category"] == "wine":
                     catalog_wine[component[0]] = component[1]
