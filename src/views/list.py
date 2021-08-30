@@ -41,7 +41,7 @@ class ListViewEntry(Handy.ActionRow):
     def __init__(self, window, config, arg_exe, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config[1]
@@ -63,7 +63,7 @@ class ListViewEntry(Handy.ActionRow):
         else:
             self.runner_type = "proton"
 
-        '''Signal connections'''
+        # connect signals
         self.btn_details.connect('pressed', self.show_details)
         self.btn_details.connect('activate', self.show_details)
         self.btn_run.connect('pressed', self.run_executable)
@@ -148,7 +148,7 @@ class ListView(Gtk.Box):
     def __init__(self, window, arg_exe, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.arg_exe = arg_exe
 

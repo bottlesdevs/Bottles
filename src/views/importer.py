@@ -32,7 +32,7 @@ class ImporterEntry(Handy.ActionRow):
     def __init__(self, window, prefix, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.prefix = prefix
@@ -45,7 +45,7 @@ class ImporterEntry(Handy.ActionRow):
         self.label_manager.get_style_context().add_class(
             "tag-%s" % prefix.get("Manager").lower())
 
-        '''Signal connections'''
+        # connect signals
         self.btn_browse.connect("pressed", self.browse_wineprefix)
         self.btn_import.connect("pressed", self.import_wineprefix)
 
@@ -73,11 +73,11 @@ class ImporterView(Gtk.ScrolledWindow):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
 
-        '''Signal connections'''
+        # connect signals
         self.btn_search_wineprefixes.connect("pressed", self.search_wineprefixes)
         self.btn_import_full.connect("pressed", self.import_backup_full)
 

@@ -156,7 +156,7 @@ class CrashReportDialog(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        '''Signal connections'''
+        # connect signals
         self.btn_cancel.connect('pressed', self.__close_window)
         self.btn_send.connect('pressed', self.__open_github)
 

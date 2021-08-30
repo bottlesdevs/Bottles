@@ -41,7 +41,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.settings = window.settings
         self.default_settings = window.default_settings
@@ -57,7 +57,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
         self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
 
-        '''Signal connections'''
+        # connect signals
         self.switch_dark.connect('state-set', self.toggle_dark)
         self.switch_notifications.connect('state-set', self.toggle_notifications)
         self.switch_temp.connect('state-set', self.toggle_temp)
@@ -143,7 +143,7 @@ class DxvkEntry(Handy.ActionRow):
     def __init__(self, window, dxvk, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.component_manager = self.manager.component_manager
@@ -159,7 +159,7 @@ class DxvkEntry(Handy.ActionRow):
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
 
-        '''Signal connections'''
+        # connect signals
         self.btn_download.connect('pressed', self.download_dxvk)
         self.btn_err.connect('pressed', self.download_dxvk)
         self.btn_browse.connect('pressed', self.run_browse)
@@ -239,7 +239,7 @@ class Vkd3dEntry(Handy.ActionRow):
     def __init__(self, window, vkd3d, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.component_manager = self.manager.component_manager
@@ -256,7 +256,7 @@ class Vkd3dEntry(Handy.ActionRow):
             self.btn_browse.set_visible(False)
 
 
-        '''Signal connections'''
+        # connect signals
         self.btn_download.connect('pressed', self.download_vkd3d)
         self.btn_err.connect('pressed', self.download_vkd3d)
         self.btn_browse.connect('pressed', self.run_browse)
@@ -338,7 +338,7 @@ class RunnerEntry(Handy.ActionRow):
     def __init__(self, window, runner_entry, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.component_manager = self.manager.component_manager
@@ -354,7 +354,7 @@ class RunnerEntry(Handy.ActionRow):
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
 
-        '''Signal connections'''
+        # connect signals
         self.btn_download.connect('pressed', self.download_runner)
         self.btn_err.connect('pressed', self.download_runner)
         self.btn_browse.connect('pressed', self.run_browse)

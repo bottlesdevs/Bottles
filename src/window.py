@@ -156,7 +156,7 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_add.connect('pressed', self.show_add_view, arg_exe)
         self.btn_about.connect('pressed', self.show_about_dialog)
         self.btn_docs.connect('pressed', self.open_docs_url)
-        self.btn_preferences.connect('pressed', self.show_preferences_view)
+        self.btn_preferences.connect('pressed', self.show_prefs_view)
         self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
@@ -270,15 +270,15 @@ class MainWindow(Handy.ApplicationWindow):
         self.set_previous_page_status()
         self.stack_main.set_visible_child_name("page_importer")
 
-    def show_preferences_view(self, widget=False, view=0):
+    def show_prefs_view(self, widget=False, view=0):
         preferences_window = PreferencesWindow(self)
         preferences_window.present()
 
     def show_download_preferences_view(self, widget=False):
-        self.show_preferences_view(widget, view=1)
+        self.show_prefs_view(widget, view=1)
 
     def show_runners_preferences_view(self, widget=False):
-        self.show_preferences_view(widget, view=2)
+        self.show_prefs_view(widget, view=2)
 
     def check_crash_log(self):
         log_path = f"{Path.home()}/.local/share/bottles/crash.log"

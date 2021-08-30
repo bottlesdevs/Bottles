@@ -29,7 +29,7 @@ class TaskManagerView(Gtk.Box):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
 
@@ -46,7 +46,7 @@ class TaskManagerView(Gtk.Box):
             self.treeview_processes.append_column(column)
             i += 1
 
-        '''Signal connections'''
+        # connect signals
         self.btn_processes_update.connect('pressed', self.update_processes)
 
         '''Run updates'''

@@ -79,11 +79,11 @@ class DuplicateDialog(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(parent.window)
 
-        '''Common variables'''
+        # common variables and references
         self.parent = parent
         self.config = parent.config
 
-        '''Signal connections'''
+        # connect signals
         self.btn_cancel.connect('pressed', self.close_window)
         self.btn_close.connect('pressed', self.close_window)
         self.btn_duplicate.connect('pressed', self.duplicate_bottle)
@@ -142,10 +142,10 @@ class RunArgsDialog(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(parent.window)
 
-        '''Common variables'''
+        # common variables and references
         self.parent = parent
 
-        '''Signal connections'''
+        # connect signals
         self.btn_cancel.connect('pressed', self.close_window)
         self.btn_run.connect('pressed', self.run_executable)
 
@@ -173,7 +173,7 @@ class EnvVarsDialog(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config
@@ -182,7 +182,7 @@ class EnvVarsDialog(Handy.Window):
         '''Populate widgets'''
         self.entry_variables.set_text(self.variables)
 
-        '''Signal connections'''
+        # connect signals
         self.btn_cancel.connect('pressed', self.close_window)
         self.btn_save.connect('pressed', self.save_variables)
 
@@ -212,7 +212,7 @@ class DLLEntry(Handy.ActionRow):
     def __init__(self, window, config, override, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config
@@ -222,7 +222,7 @@ class DLLEntry(Handy.ActionRow):
         self.set_title(self.override[0])
         self.combo_type.set_active_id(self.override[1])
 
-        '''Signal connections'''
+        # connect signals
         self.btn_remove.connect('pressed', self.remove_override)
         self.combo_type.connect('changed', self.set_override_type)
 
@@ -259,7 +259,7 @@ class DLLOverridesDialog(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config
@@ -267,7 +267,7 @@ class DLLOverridesDialog(Handy.Window):
         '''Populate widgets'''
         self.populate_overrides_list()
 
-        '''Signal connections'''
+        # connect signals
         self.btn_save.connect('pressed', self.save_override)
 
     '''Save new DLL override'''
@@ -314,7 +314,7 @@ class LaunchOptionsDialog(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config
@@ -324,7 +324,7 @@ class LaunchOptionsDialog(Handy.Window):
         '''Populate widgets'''
         self.entry_arguments.set_text(self.arguments)
 
-        '''Signal connections'''
+        # connect signals
         self.btn_cancel.connect('pressed', self.close_window)
         self.btn_save.connect('pressed', self.save_options)
 
@@ -355,7 +355,7 @@ class InstallerEntry(Handy.ActionRow):
     def __init__(self, window, config, installer, plain=False, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config
@@ -366,7 +366,7 @@ class InstallerEntry(Handy.ActionRow):
         self.set_title(installer[0])
         self.set_subtitle(installer[1].get("Description"))
 
-        '''Signal connections'''
+        # connect signals
         self.btn_install.connect('pressed', self.execute_installer)
         self.btn_manifest.connect('pressed', self.open_manifest)
 
@@ -423,7 +423,7 @@ class StateEntry(Handy.ActionRow):
     def __init__(self, window, config, state, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.state = state
@@ -443,7 +443,7 @@ class StateEntry(Handy.ActionRow):
         if state[0] == config.get("State"):
             self.get_style_context().add_class("current-state")
 
-        '''Signal connections'''
+        # connect signals
         self.btn_restore.connect('pressed', self.set_state)
         self.btn_manifest.connect('pressed', self.open_index)
 
@@ -496,7 +496,7 @@ class ProgramEntry(Handy.ActionRow):
     def __init__(self, window, config, program, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config
@@ -591,7 +591,7 @@ class DependencyEntry(Handy.ActionRow):
     def __init__(self, window, config, dependency, plain=False, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.config = config
@@ -611,7 +611,7 @@ class DependencyEntry(Handy.ActionRow):
         self.set_subtitle(dependency[1].get("Description"))
         self.label_category.set_text(dependency[1].get("Category"))
 
-        '''Signal connections'''
+        # connect signals
         self.btn_install.connect('pressed', self.install_dependency)
         self.btn_remove.connect('pressed', self.remove_dependency)
         self.btn_manifest.connect('pressed', self.open_manifest)
@@ -768,7 +768,7 @@ class DetailsView(Handy.Leaflet):
     def __init__(self, window, config=dict, **kwargs):
         super().__init__(**kwargs)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
         self.versioning_manager = window.manager.versioning_manager
@@ -779,7 +779,7 @@ class DetailsView(Handy.Leaflet):
         if "FLATPAK_ID" in os.environ:
             self.btn_expose_dirs.set_visible(True)
 
-        '''Signal connections'''
+        # connect signals
         self.entry_name.connect('key-release-event', self.check_entry_name)
 
         self.btn_winecfg.connect('pressed', self.run_winecfg)
@@ -794,9 +794,9 @@ class DetailsView(Handy.Leaflet):
         self.btn_regedit.connect('pressed', self.run_regedit)
         self.btn_delete.connect('pressed', self.confirm_delete)
         self.btn_overrides.connect('pressed', self.show_dll_overrides_view)
-        self.btn_manage_runners.connect('pressed', self.window.show_preferences_view)
-        self.btn_manage_dxvk.connect('pressed', self.window.show_preferences_view)
-        self.btn_manage_vkd3d.connect('pressed', self.window.show_preferences_view)
+        self.btn_manage_runners.connect('pressed', self.window.show_prefs_view)
+        self.btn_manage_dxvk.connect('pressed', self.window.show_prefs_view)
+        self.btn_manage_vkd3d.connect('pressed', self.window.show_prefs_view)
         self.btn_cwd.connect('pressed', self.choose_cwd)
 
         self.btn_winecfg.connect('activate', self.run_winecfg)

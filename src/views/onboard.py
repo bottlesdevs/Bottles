@@ -49,11 +49,11 @@ class OnboardDialog(Handy.Window):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
-        '''Common variables'''
+        # common variables and references
         self.window = window
         self.manager = window.manager
 
-        '''Signal connections'''
+        # connect signals
         self.stack_onboard.connect('notify::visible-child', self.page_changed)
         self.btn_close.connect('pressed', self.close_window)
         self.btn_quit.connect('pressed', self.quit)

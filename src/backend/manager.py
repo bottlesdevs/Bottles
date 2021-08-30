@@ -528,7 +528,7 @@ class Manager:
         # If there are no local runners, dxvks, vkd3ds, install them
         if len(self.runners_available) == 0:
             update_output(_("No runners found, please install one."))
-            self.window.show_preferences_view()
+            self.window.show_prefs_view()
             dialog.destroy()
         if len(self.dxvk_available) == 0:
             update_output(_("No dxvk found, installing the latest version …"))
