@@ -577,6 +577,10 @@ class Manager:
         # Make progressbar pulsing
         RunAsync(dialog.pulse, None)
 
+        # Create bottle directory
+        if not os.path.exists(bottle_complete_path):
+            os.makedirs(bottle_complete_path)
+            
         # Execute wineboot
         update_output(_("The wine config is being updated …"))
         command = "DISPLAY=:3.0 WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH={arch} {runner} wineboot /nogui".format(
