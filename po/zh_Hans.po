@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 14:44+0200\n"
-"PO-Revision-Date: 2021-08-27 06:50+0000\n"
+"PO-Revision-Date: 2021-09-01 17:14+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -153,59 +153,56 @@ msgstr "消息"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Use %command% in launch options to set prefixes and suffixes"
-msgstr ""
+msgstr "在启动选项中使用 %command% 来设置前缀和后缀"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid ""
 "Create a bottle where to launch the executable choosed from your file manager"
-msgstr "从文件管理器启动可执行文件后关闭 Bottles"
+msgstr "创建一个 bottle，在其中启动从文件管理器中选择的可执行文件"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid ""
 "Rewrited the manager to be less recursive and more user-friendly to "
 "developers"
-msgstr ""
+msgstr "重写管理器以减少递归并且对开发人员更加用户友好"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid ""
 "The dependencies/components/installers has now they own managers, "
 "indipendent from the main one"
-msgstr ""
+msgstr "依赖项/组件/安装程序现在拥有自己的管理器，独立于主管理器"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-#, fuzzy
 msgid ""
 "The dependencies manager can now extract single files from Windows Cabinet "
 "files"
-msgstr "可以从Windows cabinet 中提取和安装依赖项"
+msgstr "依赖项管理器现在可以从 Windows Cabinet 文件中提取单个文件"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid ""
 "Now the user need to accept the notice in the crash report, before submiting "
 "new reports"
-msgstr ""
+msgstr "现在用户需要接受崩溃报告中的通知，然后才能提交新报告"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "The user homedir is now removed from the reports"
-msgstr "崩溃报告现在包含 Bottles 版本信息"
+msgstr "用户 homedir 已从报告中删除"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
 "The lutris-lol runner is now hidden when Bottles is running under flatpak, "
 "as it is not compatible with it"
-msgstr ""
+msgstr "当 Bottles 在 flatpak 下运行时，因为兼容性问题，lutris-lol runner 现在被隐藏"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid "The Windows Cabinet extraction is now quiet and only show relavant logs"
-msgstr ""
+msgstr "静默提取 Windows Cabinet，只显示相关的日志"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid ""
 "The download status icon in the preferencies dialog, is now on the right of "
 "the percentage, so it will be no more moved by the percentage"
-msgstr ""
+msgstr "首选项对话框中的下载状态图标，现在位于百分比的右侧，因此不会再被百分比移动"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "Bug fixes"
@@ -215,64 +212,58 @@ msgstr "错误修复"
 msgid ""
 "Fixed a bug in name resolution that could cause Bottles to crash if it "
 "cannot reach a resource"
-msgstr ""
+msgstr "修复了名称解析中的错误，如果无法访问资源，可能会导致 Bottles 崩溃"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid ""
 "Prevent Bottles from running executables when the runner is not available"
-msgstr ""
+msgstr "当运行器不可用时，防止 Bottles 运行可执行文件"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Environment names are now translated again"
-msgstr ""
+msgstr "再次翻译环境名称"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Added missing translations in bottle creation"
-msgstr ""
+msgstr "添加了 bottle 创建中缺失的翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid ""
 "Fixed a problem in Wayland support that was setting DISPLAY to the wrong "
 "parameter"
-msgstr ""
+msgstr "修复了 Wayland 支持中将 DISPLAY 设置为错误参数的问题"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "The directory for added custom programs was wrong"
-msgstr ""
+msgstr "添加的自定义程序的目录错误"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Translations"
 msgstr "翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid "Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz"
-msgstr "感谢 @kenpb、@oscfdezdz、@fitojb 和 @Lvaskz 的西班牙语翻译"
+msgstr "感谢 @fitojb, @kenpb, @oscfdezdz 的西班牙语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @farribeiro, @swyknox"
-msgstr "感谢 @farribeiro 的葡萄牙语（巴西）翻译"
+msgstr "感谢 @farribeiro, @swyknox 的葡萄牙语（巴西）翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#, fuzzy
 msgid "Hungarian translations thanks to @ovari"
-msgstr "感谢 @ovari、@zoli111 的匈牙利语翻译"
+msgstr "感谢 @ovari 的匈牙利语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
-#, fuzzy
 msgid "French translations thanks to @julroy67"
-msgstr "感谢 @panmourovaty 的捷克语翻译"
+msgstr "感谢 @julroy67 的法语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
-#, fuzzy
 msgid "Swedish translations thanks to @bittin"
-msgstr "感谢 @Ricky-Tigg 的芬兰语翻译"
+msgstr "感谢 @bittin 的瑞典语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
-#, fuzzy
 msgid "Chinese (Simplified) translations thanks to @sr093906"
-msgstr "感谢 Flywater Zh、@Yuzaihhhh 和 @sr093906 的中文（简体）翻译"
+msgstr "感谢 @sr093906 的中文（简体）翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Japanese translations thanks to @jatin-cbs"
@@ -283,9 +274,8 @@ msgid "Croatian translations thanks to @milotype"
 msgstr "感谢 @milotype 的克罗地亚语翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Indonesian translations thanks to @liimee"
-msgstr "感谢 @milotype 的克罗地亚语翻译"
+msgstr "感谢 @liimee 的印尼语翻译"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -1576,9 +1566,9 @@ msgid "A clear environment for your experiments."
 msgstr "为您的实验提供的清洁环境。"
 
 #: src/views/new.py:211
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "名为“%s”的 bottle 创建成功"
+msgstr "成功创建了名为“{0}”的 bottle"
 
 #~ msgid "Toggle the last Update date in the bottles list"
 #~ msgstr "开关 bottles 列表上的更新日期"
