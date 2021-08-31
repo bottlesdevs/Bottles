@@ -17,6 +17,7 @@
 
 import os
 import subprocess
+import random
 import yaml
 import time
 import shutil
@@ -578,8 +579,11 @@ class Manager:
         RunAsync(dialog.pulse, None)
 
         # Create bottle directory
-        if not os.path.exists(bottle_complete_path):
-            os.makedirs(bottle_complete_path)
+        if os.path.exists(bottle_complete_path):
+            rnd = random.randint(100,200)
+            bottle_complete_path = f"{bottle_complete_path}__{rnd}"
+
+        os.makedirs(bottle_complete_path)
             
         # Execute wineboot
         update_output(_("The wine config is being updated …"))

@@ -760,9 +760,11 @@ class DetailsView(Handy.Leaflet):
         if status:
             self.entry_name.grab_focus()
         else:
-            self.manager.update_config(config=self.config,
-                                             key="Name",
-                                             value=self.entry_name.get_text())
+            self.manager.update_config(
+                config=self.config,
+                key="Name",
+                value=self.entry_name.get_text()
+            )
 
     '''Set active page'''
     def set_page(self, page):
@@ -779,7 +781,8 @@ class DetailsView(Handy.Leaflet):
             config=self.config,
             key="environment_variables",
             value=environment_variables,
-            scope="Parameters")
+            scope="Parameters"
+        )
         self.config = new_config
 
     '''Add custome executable to the Programs list'''
