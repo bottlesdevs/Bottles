@@ -46,6 +46,10 @@ class SimilarReportEntry(Gtk.Box):
 
     @staticmethod
     def __on_btn_report_clicked(button: Gtk.Button, report):
+        '''
+        This function opens the report in the default browser, it will
+        use the active instance if there is one.
+        '''
         webbrowser.open(report["url"])
 
 
@@ -72,24 +76,37 @@ class CrashReportDialog(Handy.Window):
         # connect signals
         self.btn_cancel.connect('pressed', self.__close_window)
         self.btn_send.connect('pressed', self.__open_github, log)
+        self.check_unlock_send.connect('toggled', self.__on_unlock_send)
 
         self.label_output.set_text(log)
         __similar_reports = self.__get_similar_issues(log)
 
         if len(__similar_reports) > 0:
+            '''
+            If there are similar reports, show the box_related and
+            append them to list_reports. Otherwise, make the btn_send
+            sensitive, so the user can send the report.
+            '''
             self.box_related.set_visible(True)
             for issue in __similar_reports:
                 self.list_reports.add(SimilarReportEntry(issue))
         else:
             self.btn_send.set_sensitive(True)
 
-        self.check_unlock_send.connect('toggled', self.__on_unlock_send)
-
     def __on_unlock_send(self, widget):
+        '''
+        This function make the btn_send sensitive, so the user can send
+        the new report.
+        '''
         self.btn_send.set_sensitive(widget.get_active())
 
     @staticmethod
     def __get_similar_issues(log):
+        '''
+        This function will get the similar reports from the github
+        api and return them as a list. It will return an empty list
+        if there are no similar reports.
+        '''
         similar_issues = []
         try:
             with urllib.request.urlopen(api_url) as r:
@@ -107,8 +124,6 @@ class CrashReportDialog(Handy.Window):
 
         return similar_issues
 
-    '''Destroy the window'''
-
     def __close_window(self, widget=None):
         self.destroy()
 
@@ -116,6 +131,10 @@ class CrashReportDialog(Handy.Window):
 
     @staticmethod
     def __open_github(widget, log):
+        '''
+        This function opens the page for creating a new issue on github,
+        with the form filled in with the report details and log.
+        '''
         log = quote(log)
         details_list = {}
 
@@ -145,4 +164,5 @@ class CrashReportDialog(Handy.Window):
             f"{log}%0A"\
             "```"
         webbrowser.open(
-            f"https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin&labels=crash&title=%5BCrash%20report%5D+&body={template}")
+            f"https://github.com/bottlesdevs/Bottles/issues/new?assignees=mirkobrombin&labels=crash&title=%5BCrash%20report%5D+&body={template}"
+        )
