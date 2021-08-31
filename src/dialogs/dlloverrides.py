@@ -17,6 +17,7 @@
 
 from gi.repository import Gtk, GLib, Handy
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
 class DLLEntry(Handy.ActionRow):
     __gtype_name__ = 'DLLEntry'
@@ -35,32 +36,44 @@ class DLLEntry(Handy.ActionRow):
         self.config = config
         self.override = override
 
-        '''Populate widgets'''
+        '''
+        Set the DLL name as ActionRow title and set the
+        combo_type to the type of override
+        '''
         self.set_title(self.override[0])
         self.combo_type.set_active_id(self.override[1])
 
         # connect signals
-        self.btn_remove.connect('pressed', self.remove_override)
-        self.combo_type.connect('changed', self.set_override_type)
+        self.btn_remove.connect('pressed', self.__remove_override)
+        self.combo_type.connect('changed', self.__set_override_type)
 
-    def set_override_type(self, widget):
+    def __set_override_type(self, widget):
+        '''
+        Change the override type according to the selected
+        and update the bottle configuration
+        '''
         override_type = widget.get_active_id()
-        self.manager.update_config(config=self.config,
-                                         key=self.override[0],
-                                         value=override_type,
-                                         scope="DLL_Overrides")
+        self.manager.update_config(
+            config=self.config,
+            key=self.override[0],
+            value=override_type,
+            scope="DLL_Overrides"
+        )
 
-    '''Remove DLL override'''
-    def remove_override(self, widget):
-        '''Remove override from bottle config'''
-        self.manager.update_config(config=self.config,
-                                         key=self.override[0],
-                                         value=False,
-                                         scope="DLL_Overrides",
-                                         remove=True)
-
-        '''Remove entry from list_overrides'''
+    def __remove_override(self, widget):
+        '''
+        Remove the override from the bottle configuration and
+        destroy the widget
+        '''
+        self.manager.update_config(
+            config=self.config,
+            key=self.override[0],
+            value=False,
+            scope="DLL_Overrides",
+            remove=True
+        )
         self.destroy()
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
 class DLLOverridesDialog(Handy.Window):
@@ -81,38 +94,53 @@ class DLLOverridesDialog(Handy.Window):
         self.manager = window.manager
         self.config = config
 
-        '''Populate widgets'''
-        self.populate_overrides_list()
+        self.__populate_overrides_list()
 
         # connect signals
-        self.btn_save.connect('pressed', self.save_override)
+        self.btn_save.connect('pressed', self.__save_override)
 
-    '''Save new DLL override'''
-    def idle_save_override(self, widget=False):
+    def __idle_save_override(self, widget=False):
+        '''
+        This function check if the override name is not empty, then 
+        store it in the bottle configuration and add a new entry to 
+        the list. It also clear the entry field
+        '''
         dll_name = self.entry_name.get_text()
 
-        if dll_name !=  "":
-            '''Store new override in bottle config'''
-            self.manager.update_config(config=self.config,
-                                             key=dll_name,
-                                             value="n,b",
-                                             scope="DLL_Overrides")
+        if dll_name != "":
+            self.manager.update_config(
+                config=self.config,
+                key=dll_name,
+                value="n,b",
+                scope="DLL_Overrides"
+            )
 
-            '''Create new entry in list_overrides'''
-            self.list_overrides.add(DLLEntry(self.window,
-                                                            self.config,
-                                                            [dll_name, "n,b"]))
-            '''Empty entry_name'''
+            self.list_overrides.add(
+                DLLEntry(
+                    window=self.window,
+                    config=self.config,
+                    override=[dll_name, "n,b"]
+                )
+            )
+
             self.entry_name.set_text("")
 
-    def save_override(self,widget=False):
-        GLib.idle_add(self.idle_save_override)
+    def __save_override(self, widget=False):
+        GLib.idle_add(self.__idle_save_override)
 
-    def idle_populate_overrides_list(self):
+    def __idle_populate_overrides_list(self):
+        '''
+        This function populate the list of overrides
+        with the existing overrides from the bottle configuration
+        '''
         for override in self.config.get("DLL_Overrides").items():
-            self.list_overrides.add(DLLEntry(self.window,
-                                                            self.config,
-                                                            override))
+            self.list_overrides.add(
+                DLLEntry(
+                    window=self.window,
+                    config=self.config,
+                    override=override
+                )
+            )
 
-    def populate_overrides_list(self):
-        GLib.idle_add(self.idle_populate_overrides_list)
+    def __populate_overrides_list(self):
+        GLib.idle_add(self.__idle_populate_overrides_list)
