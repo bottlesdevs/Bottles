@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-26 17:49+0200\n"
+"POT-Creation-Date: 2021-08-31 14:44+0200\n"
 "PO-Revision-Date: 2021-08-30 21:32+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:137
+#: src/window.py:138
 msgid "Bottles"
 msgstr "Pullot"
 
@@ -158,200 +158,139 @@ msgid "News"
 msgstr "Uutiset"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
-msgid "Toggle the last Update date in the bottles list"
+msgid "Use %command% in launch options to set prefixes and suffixes"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
 #, fuzzy
 msgid ""
-"Fallback the working directory to the executable path if it fails to run"
-msgstr "Valitse Windowsin suoritettava tiedosto"
+"Create a bottle where to launch the executable choosed from your file manager"
+msgstr "Sulje Pullot, kun suoritustiedosto käynnistetään tiedostonhallinnasta"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid ""
-"Now a visual feedback is provided when a download fail the checksum "
-"validation"
+"Rewrited the manager to be less recursive and more user-friendly to "
+"developers"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-msgid "Wine support for Wayland trought XWayland"
+msgid ""
+"The dependencies/components/installers has now they own managers, "
+"indipendent from the main one"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-msgid "Support for 32-bit bottles with custom environment"
+msgid ""
+"The dependencies manager can now extract single files from Windows Cabinet "
+"files"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid ""
-"Removed colors from the environments in the bottle creation as these can be "
-"interpreted as suggested actions"
+"Now the user need to accept the notice in the crash report, before submiting "
+"new reports"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-msgid ""
-"Now the user can only install one dependency per time to avoid conflicts"
+msgid "The user homedir is now removed from the reports"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
-"Now the Crash Report dialog display similar reports before send a new one"
+"The lutris-lol runner is now hidden when Bottles is running under flatpak, "
+"as it is not compatible with it"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
-msgid ""
-"Now it is possible to clone a bottle with a new name, this can also be used "
-"for bottles templating"
+msgid "The Windows Cabinet extraction is now quiet and only show relavant logs"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
-msgid "The Bottles version is now provided in the Crash report"
+msgid ""
+"The download status icon in the preferencies dialog, is now on the right of "
+"the percentage, so it will be no more moved by the percentage"
 msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:110
-msgid "Reduced the Flatpak permissions"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:111
-#, fuzzy
-msgid "You can now choose a custom working directory for each bottle"
-msgstr "Valitse Windowsin suoritettava tiedosto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
-msgid ""
-"You can see a new button in the bottle details with a folder icon, this "
-"helps you expose new directories to Bottles"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:115
 msgid "Bug fixes"
 msgstr "Bugikorjaukset"
 
+#: data/com.usebottles.bottles.appdata.xml.in:114
+msgid ""
+"Fixed a bug in name resolution that could cause Bottles to crash if it "
+"cannot reach a resource"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:115
+msgid ""
+"Prevent Bottles from running executables when the runner is not available"
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:116
+msgid "Environment names are now translated again"
+msgstr ""
+
 #: data/com.usebottles.bottles.appdata.xml.in:117
-msgid "Fixed a bug in the detection of broken bottles"
+msgid "Added missing translations in bottle creation"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid ""
-"Fixed a bug that was causing a File Not Found error with broken downloads"
+"Fixed a problem in Wayland support that was setting DISPLAY to the wrong "
+"parameter"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
-msgid ""
-"Fixed a bug that make Bottles crash when the user goes offline during a "
-"download"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:120
-msgid ""
-"Same as the above but this handle downloads with wrong sizes than the source"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:121
-msgid "Fixed the File Manager integration in Flatpak"
+msgid "The directory for added custom programs was wrong"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
-msgid ""
-"Fixed a bug that make Bottles crash when fail in name resolution during a "
-"download"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:123
-msgid "Fixed a bug in temp directory clean up"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:124
-msgid ""
-"Fixed a bug that make Bottles crash when the Update Date is not set in the "
-"bottle"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:125
-msgid "Fixed a bug in bottle configuration upgrade that was causing a loop"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:128
 msgid "Translations"
 msgstr "Käännökset"
 
+#: data/com.usebottles.bottles.appdata.xml.in:124
+#, fuzzy
+msgid "Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:125
+#, fuzzy
+msgid "Portuguese (Brazil) translations thanks to @farribeiro, @swyknox"
+msgstr "Portugali (Brasilia) käännökset kiitos @vitor180396"
+
+#: data/com.usebottles.bottles.appdata.xml.in:126
+#, fuzzy
+msgid "Hungarian translations thanks to @ovari"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
+#: data/com.usebottles.bottles.appdata.xml.in:127
+#, fuzzy
+msgid "French translations thanks to @julroy67"
+msgstr "Ranskan käännökset kiitos @julroy67"
+
+#: data/com.usebottles.bottles.appdata.xml.in:128
+#, fuzzy
+msgid "Swedish translations thanks to @bittin"
+msgstr "Ranskan käännökset kiitos @julroy67"
+
+#: data/com.usebottles.bottles.appdata.xml.in:129
+#, fuzzy
+msgid "Chinese (Simplified) translations thanks to @sr093906"
+msgstr "Saksan käännökset kiitos @thericosanto"
+
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#, fuzzy
-msgid "Hungarian translations thanks to @ovari, @zoli111"
-msgstr "Saksan käännökset kiitos @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:131
-#, fuzzy
-msgid ""
-"Chinese (Simplified) translations thanks to Flywater Zh, @sr093906, "
-"@Yuzaihhhh"
-msgstr "Saksan käännökset kiitos @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
-msgid "Croatian translations thanks to @milotype"
-msgstr "Saksan käännökset kiitos @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:133
-#, fuzzy
-msgid "Spanish translations thanks to @kenpb, @oscfdezdz, @fitojb, @Lvaskz"
-msgstr "Saksan käännökset kiitos @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:134
 #, fuzzy
 msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "Saksan käännökset kiitos @thericosanto"
 
-#: data/com.usebottles.bottles.appdata.xml.in:135
-msgid ""
-"Frech translations thanks to J. Lavoie, SCOTT-HAMILTON, @julroy67, "
-"@yannicka, K. Herbert"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:136
+#: data/com.usebottles.bottles.appdata.xml.in:131
 #, fuzzy
-msgid "Italian translations thanks to @blackcat-917"
+msgid "Croatian translations thanks to @milotype"
 msgstr "Saksan käännökset kiitos @thericosanto"
 
-#: data/com.usebottles.bottles.appdata.xml.in:137
+#: data/com.usebottles.bottles.appdata.xml.in:132
 #, fuzzy
-msgid "German translations thanks to @bloomvdomino, @thericosanto"
-msgstr "Saksan käännökset kiitos @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:138
-#, fuzzy
-msgid ""
-"Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, "
-"@hugok79"
-msgstr "Portugalin käännökset kiitos @SantosSi"
-
-#: data/com.usebottles.bottles.appdata.xml.in:139
-#, fuzzy
-msgid "Norwegian Bokmål translations thanks to @comradekingu"
-msgstr "Saksan käännökset kiitos @thericosanto"
-
-#: data/com.usebottles.bottles.appdata.xml.in:140
-#, fuzzy
-msgid "Portuguese (Brazil) translations thanks to @farribeiro"
-msgstr "Portugali (Brasilia) käännökset kiitos @vitor180396"
-
-#: data/com.usebottles.bottles.appdata.xml.in:141
-#, fuzzy
-msgid "Arabic translations thanks to @luxmaroc"
-msgstr "Ranskan käännökset kiitos @julroy67"
-
-#: data/com.usebottles.bottles.appdata.xml.in:142
-#, fuzzy
-msgid "Finnish translations thanks to @Ricky-Tigg"
-msgstr "Ranskan käännökset kiitos @julroy67"
-
-#: data/com.usebottles.bottles.appdata.xml.in:143
-#, fuzzy
-msgid "Czech translations thanks to @panmourovaty"
-msgstr "Ranskan käännökset kiitos @julroy67"
-
-#: data/com.usebottles.bottles.appdata.xml.in:144
-#, fuzzy
-msgid "Polish translations thanks to Krzysztof Marcinek"
+msgid "Indonesian translations thanks to @liimee"
 msgstr "Saksan käännökset kiitos @thericosanto"
 
 #: data/com.usebottles.bottles.gschema.xml:6
@@ -470,25 +409,25 @@ msgstr "© 2017–2021 – Bottles-kehittäjät"
 msgid "Easily manage wineprefix using environments"
 msgstr "Hallitse helposti wine-etuliitettä ympäristöjä käyttäen"
 
-#: src/ui/about.ui:104
+#: src/ui/about.ui:109
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Käännä</a>"
 
-#: src/ui/about.ui:117
+#: src/ui/about.ui:122
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Rahoitus</a>"
 
-#: src/ui/about.ui:130
+#: src/ui/about.ui:135
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Virheraportti</a>"
 
-#: src/ui/about.ui:143
+#: src/ui/about.ui:148
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blogi</a>"
 
-#: src/ui/about.ui:156
+#: src/ui/about.ui:161
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
@@ -628,7 +567,7 @@ msgid "Are you experiencing problems reaching a directory in Bottles?"
 msgstr ""
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
-#: src/views/details.py:873
+#: src/views/details.py:596
 msgid "Programs"
 msgstr "Ohjelmat"
 
@@ -839,7 +778,8 @@ msgstr "Vähennä PulseAudion viivettä"
 
 #: src/ui/details.ui:1687
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
-msgstr "Aseta PulseAudion viiveeksi 60 millisekuntia äänenlaadun parantamiseksi"
+msgstr ""
+"Aseta PulseAudion viiveeksi 60 millisekuntia äänenlaadun parantamiseksi"
 
 #: src/ui/details.ui:1724
 msgid "Developers & Debug"
@@ -868,7 +808,7 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Lokita koodipolut, joita ei ole toteutettu Winessä."
 
 #: src/ui/details.ui:1836 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/views/details.py:871
+#: src/views/details.py:594
 msgid "Preferences"
 msgstr "Asetukset"
 
@@ -876,7 +816,7 @@ msgstr "Asetukset"
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 
-#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:872
+#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:595
 msgid "Dependencies"
 msgstr "Riippuvuudet"
 
@@ -913,7 +853,7 @@ msgid ""
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
 
-#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:878
+#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:601
 msgid "Installers"
 msgstr "Asentajat"
 
@@ -921,7 +861,7 @@ msgstr "Asentajat"
 msgid "Refresh"
 msgstr "Päivitä"
 
-#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:876
+#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:599
 msgid "Versioning"
 msgstr "Versiointi"
 
@@ -934,8 +874,8 @@ msgid "Message goes here."
 msgstr "Viesti menee tänne."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:909
-#: src/views/details.py:1069 src/views/details.py:1351 src/views/list.py:114
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:632
+#: src/views/details.py:792 src/views/details.py:1074 src/views/list.py:114
 msgid "Cancel"
 msgstr "Peru"
 
@@ -1040,7 +980,7 @@ msgstr "0 %"
 msgid "Uninstall"
 msgstr "Poista asennus"
 
-#: src/ui/importer.ui:76 src/window.py:147
+#: src/ui/importer.ui:76 src/window.py:148
 msgid "Importer"
 msgstr "Tuoja"
 
@@ -1241,8 +1181,8 @@ msgid ""
 msgstr ""
 "Ajaja tulee ladata ja asentaa, jotta voit luoda omia pulloja.\n"
 "Latauksen koko on noin <b>70 Mt</b>.\n"
-"<a href=\"https://docs.usebottles.com/getting-started/first-run\""
-">Lisätietoja ladattavasta sisällöstä</a>\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run"
+"\">Lisätietoja ladattavasta sisällöstä</a>\n"
 "\n"
 "Emme voi tarjota näitä tiedostoja Pullot-sovelluksen kanssa, koska niillä on "
 "eri julkaisuaikataulut.\n"
@@ -1391,7 +1331,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr "Tarkista käynnissä olevat prosessit."
 
-#: src/ui/window.ui:49 src/window.py:142
+#: src/ui/window.ui:49 src/window.py:143
 msgid "Task manager"
 msgstr "Tehtävienhallinta"
 
@@ -1462,11 +1402,11 @@ msgstr "[Refresh]-pyyntö vastaanotettu."
 msgid "You are offline, unable to download."
 msgstr "Olet offline-tilassa, et voi ladata."
 
-#: src/window.py:132
+#: src/window.py:133
 msgid "Bottle details"
 msgstr "Pullon tiedot"
 
-#: src/window.py:178
+#: src/window.py:179
 msgid "Bottles Started!"
 msgstr "Pullot aloitettu!"
 
@@ -1480,49 +1420,49 @@ msgstr "Varmuuskopio {0}"
 msgid "Importing backup: {0}"
 msgstr "Varmuuskopion tuominen: {0}"
 
-#: src/backend/manager.py:516
+#: src/backend/manager.py:530
 msgid "No runners found, please install one."
 msgstr "Ajajia ei löytynyt. Asenna sellainen."
 
-#: src/backend/manager.py:520
+#: src/backend/manager.py:534
 msgid "No dxvk found, installing the latest version …"
 msgstr "dxvk:ta ei löytynyt, asennetaan uusin versio…"
 
-#: src/backend/manager.py:523
+#: src/backend/manager.py:537
 msgid "No vkd3d found, installing the latest version …"
 msgstr "vkd3d:ta ei löytynyt, asennetaan uusin versio…"
 
 #. Execute wineboot
-#: src/backend/manager.py:567
+#: src/backend/manager.py:585
 msgid "The wine config is being updated …"
 msgstr "Winen kokoonpanoa päivitetään…"
 
-#: src/backend/manager.py:574
+#: src/backend/manager.py:592
 msgid "Wine config updated!"
 msgstr "Winen kokoonpano päivitetty!"
 
-#: src/backend/manager.py:579
+#: src/backend/manager.py:597
 msgid "Generating Bottle config file …"
 msgstr "Luodaan Pullo-kokoonpanotiedostoa…"
 
-#: src/backend/manager.py:600
+#: src/backend/manager.py:618
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Toteutetaan ympäristö: {0} …"
 
-#: src/backend/manager.py:620
+#: src/backend/manager.py:638
 msgid "Installing dxvk …"
 msgstr "dxvk:n asentaminen …"
 
-#: src/backend/manager.py:626
+#: src/backend/manager.py:644
 msgid "Installing vkd3d …"
 msgstr "Asennetaan vkd3d…"
 
-#: src/backend/manager.py:634
+#: src/backend/manager.py:652
 msgid "Creating versioning state 0 …"
 msgstr "Versionointitilan 0 luominen …"
 
-#: src/backend/manager.py:641
+#: src/backend/manager.py:659
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "Uusi pullosi: {0} on nyt valmis!"
@@ -1543,90 +1483,91 @@ msgstr "Päivitetään indeksi…"
 msgid "Updating states …"
 msgstr "Päivitetään tilat…"
 
-#: src/views/details.py:377 src/views/details.py:636
+#: src/dialogs/crash.py:38
+msgid "Show report"
+msgstr "Näytä raportti"
+
+#: src/dialogs/generic.py:24 src/dialogs/generic.py:62
+msgid "Warning"
+msgstr "Varoitus"
+
+#: src/dialogs/generic.py:25
+msgid "An error has occurred."
+msgstr "On tapahtunut virhe."
+
+#: src/views/details.py:100 src/views/details.py:359
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest for {0}"
 
-#: src/views/details.py:466
+#: src/views/details.py:189
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indeksi tilalle {0}"
 
-#: src/views/details.py:860
+#: src/views/details.py:583
 msgid "Gamemode is either not available on your system or not running."
-msgstr "Pelitila ei ole käytettävissä järjestelmässäsi tai se ei ole käynnissä."
+msgstr ""
+"Pelitila ei ole käytettävissä järjestelmässäsi tai se ei ole käynnissä."
 
-#: src/views/details.py:870
+#: src/views/details.py:593
 msgid "Details & Utilities"
 msgstr "Tiedot ja työkalut"
 
-#: src/views/details.py:905
+#: src/views/details.py:628
 msgid "Choose working directory for executables"
 msgstr "Valitse työskentelyhakemisto suoritettaville tiedostoille"
 
-#: src/views/details.py:908
+#: src/views/details.py:631
 msgid "Done"
 msgstr "Valmis"
 
-#: src/views/details.py:956
+#: src/views/details.py:679
 msgid "64-bit"
 msgstr "64-bit"
 
-#: src/views/details.py:958
+#: src/views/details.py:681
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/views/details.py:972
+#: src/views/details.py:695
 #, python-format
 msgid "Updated: %s"
 msgstr "Päivitetty: %s"
 
-#: src/views/details.py:1065
+#: src/views/details.py:788
 #, fuzzy
 msgid "Choose an executable path"
 msgstr "Valitse Windowsin suoritettava tiedosto"
 
-#: src/views/details.py:1068
+#: src/views/details.py:791
 msgid "Add"
 msgstr "Lisää"
 
-#: src/views/details.py:1347 src/views/list.py:110
+#: src/views/details.py:1070 src/views/list.py:110
 msgid "Choose a Windows executable file"
 msgstr "Valitse Windowsin suoritettava tiedosto"
 
-#: src/views/details.py:1350 src/views/list.py:113
+#: src/views/details.py:1073 src/views/list.py:113
 msgid "Run"
 msgstr "Suorita"
 
-#: src/views/details.py:1426
+#: src/views/details.py:1149
 #, fuzzy
 msgid "Select the location where to save the backup config"
 msgstr "Valitse sijainti, johon varmuuskopioitu kokoonpano tallennetaan"
 
-#: src/views/details.py:1448
+#: src/views/details.py:1171
 msgid "Select the location where to save the backup archive"
 msgstr "Valitse sijainti, johon varmuuskopioarkisto tallennetaan"
 
-#: src/views/details.py:1476
+#: src/views/details.py:1199
 msgid "Confirm deletion"
 msgstr "Vahvista poisto"
 
-#: src/views/details.py:1477
+#: src/views/details.py:1200
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Haluatko varmasti poistaa tämän pullon ja kaikki tiedostot?"
-
-#: src/views/dialog.py:34 src/views/dialog.py:72
-msgid "Warning"
-msgstr "Varoitus"
-
-#: src/views/dialog.py:35
-msgid "An error has occurred."
-msgstr "On tapahtunut virhe."
-
-#: src/views/dialog.py:130
-msgid "Show report"
-msgstr "Näytä raportti"
 
 #: src/views/importer.py:99
 msgid "Choose a backup archive"
@@ -1665,10 +1606,45 @@ msgstr "Mukautettu"
 msgid "A clear environment for your experiments."
 msgstr "Tyhjä ympäristö kokeiluillesi."
 
-#: src/views/new.py:198
-#, python-format
-msgid "A bottle named “%s” was created successfully"
+#: src/views/new.py:211
+#, fuzzy, python-brace-format
+msgid "A bottle named “{0}” was created successfully"
 msgstr "Pullo nimeltä \"%s\" luotiin onnistuneesti."
+
+#, fuzzy
+#~ msgid ""
+#~ "Fallback the working directory to the executable path if it fails to run"
+#~ msgstr "Valitse Windowsin suoritettava tiedosto"
+
+#, fuzzy
+#~ msgid "You can now choose a custom working directory for each bottle"
+#~ msgstr "Valitse Windowsin suoritettava tiedosto"
+
+#, fuzzy
+#~ msgid "Italian translations thanks to @blackcat-917"
+#~ msgstr "Saksan käännökset kiitos @thericosanto"
+
+#, fuzzy
+#~ msgid "German translations thanks to @bloomvdomino, @thericosanto"
+#~ msgstr "Saksan käännökset kiitos @thericosanto"
+
+#, fuzzy
+#~ msgid ""
+#~ "Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, "
+#~ "@hugok79"
+#~ msgstr "Portugalin käännökset kiitos @SantosSi"
+
+#, fuzzy
+#~ msgid "Norwegian Bokmål translations thanks to @comradekingu"
+#~ msgstr "Saksan käännökset kiitos @thericosanto"
+
+#, fuzzy
+#~ msgid "Arabic translations thanks to @luxmaroc"
+#~ msgstr "Ranskan käännökset kiitos @julroy67"
+
+#, fuzzy
+#~ msgid "Polish translations thanks to Krzysztof Marcinek"
+#~ msgstr "Saksan käännökset kiitos @thericosanto"
 
 #, fuzzy
 #~ msgid "Improved download manager"
