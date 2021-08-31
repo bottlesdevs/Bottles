@@ -17,23 +17,28 @@
 
 from gi.repository import Gtk, Pango
 
+
 class MessageDialog(Gtk.MessageDialog):
 
-    def __init__(self,
-                 parent,
-                 title=_("Warning"),
-                 message=_("An error has occurred."),
-                 log=False):
+    def __init__(
+        self,
+        parent,
+        title=_("Warning"),
+        message=_("An error has occurred."),
+        log=False
+    ):
 
-        Gtk.MessageDialog.__init__(self,
-                                   parent=parent,
-                                   flags=Gtk.DialogFlags.USE_HEADER_BAR,
-                                   type=Gtk.MessageType.WARNING,
-                                   buttons=Gtk.ButtonsType.OK_CANCEL,
-                                   message_format=message)
+        Gtk.MessageDialog.__init__(
+            self,
+            parent=parent,
+            flags=Gtk.DialogFlags.USE_HEADER_BAR,
+            type=Gtk.MessageType.WARNING,
+            buttons=Gtk.ButtonsType.OK_CANCEL,
+            message_format=message
+        )
 
-        '''Display log as output if defined'''
         if log:
+            # display log as output if defined
             message_scroll = Gtk.ScrolledWindow()
             message_scroll.set_hexpand(True)
             message_scroll.set_vexpand(True)
@@ -57,23 +62,32 @@ class MessageDialog(Gtk.MessageDialog):
 
 class Dialog(Gtk.Dialog):
 
-    def __init__(self,
-                 parent,
-                 title=_("Warning"),
-                 message=False,
-                 log=False):
+    def __init__(
+        self,
+        parent,
+        title=_("Warning"),
+        message=False,
+        log=False
+    ):
 
-        Gtk.Dialog.__init__(self,
-                            title=title,
-                            parent=parent,
-                            flags=Gtk.DialogFlags.USE_HEADER_BAR)
+        Gtk.Dialog.__init__(
+            self,
+            title=title,
+            parent=parent,
+            flags=Gtk.DialogFlags.USE_HEADER_BAR
+        )
 
-        '''Display log as output if defined'''
         if log:
+            '''
+            If log is defined, display it as output, also change the
+            the foreground according to the user preferences.
+            '''
             self.resize(600, 700)
             color = "#3e0622"
+
             if parent is not None and parent.settings.get_boolean("dark-theme"):
                 color = "#d4036d"
+
             message_scroll = Gtk.ScrolledWindow()
             message_scroll.set_hexpand(True)
             message_scroll.set_vexpand(True)
@@ -82,7 +96,10 @@ class Dialog(Gtk.Dialog):
             message_buffer = message_view.get_buffer()
             buffer_iter = message_buffer.get_end_iter()
             message_buffer.insert_markup(
-                buffer_iter, "<span foreground='%s'>%s</span>" % (color, log), -1)
+                buffer_iter, 
+                f"<span foreground='{color}'>{log}</span>",
+                -1
+            )
             message_scroll.add(message_view)
         else:
             message_label = Gtk.Label(label=message)
@@ -101,6 +118,7 @@ class Dialog(Gtk.Dialog):
 
         content.add(box)
         self.show_all()
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/about.ui')
 class AboutDialog(Gtk.AboutDialog):

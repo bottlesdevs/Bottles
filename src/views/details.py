@@ -1195,9 +1195,11 @@ class DetailsView(Handy.Leaflet):
 
     '''Show dialog to confirm bottle deletion'''
     def confirm_delete(self, widget):
-        dialog_delete = MessageDialog(parent=self.window,
-                                      title=_("Confirm deletion"),
-                                      message=_("Are you sure you want to delete this Bottle and all files?"))
+        dialog_delete = MessageDialog(
+            parent=self.window,
+            title=_("Confirm deletion"),
+            message=_("Are you sure you want to delete this Bottle and all files?")
+        )
         response = dialog_delete.run()
 
         if response == Gtk.ResponseType.OK:
