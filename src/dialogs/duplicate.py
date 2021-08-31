@@ -1,4 +1,4 @@
-# details.py
+# duplicate.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #

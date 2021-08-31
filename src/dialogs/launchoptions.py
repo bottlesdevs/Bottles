@@ -1,4 +1,4 @@
-# details.py
+# launchoptions.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
