@@ -35,15 +35,17 @@ class RunArgsDialog(Handy.Window):
         self.parent = parent
 
         # connect signals
-        self.btn_cancel.connect('pressed', self.close_window)
-        self.btn_run.connect('pressed', self.run_executable)
+        self.btn_cancel.connect('pressed', self.__close_window)
+        self.btn_run.connect('pressed', self.__run_executable)
 
-    '''Destroy the window'''
-    def close_window(self, widget=None):
-        self.destroy()
-
-    '''Run executable with args'''
-    def run_executable(self, widget):
+    def __run_executable(self, widget):
+        '''
+        This function return the user to the executable selection with
+        the new typed arguments, then close the window.
+        '''
         args = self.entry_args.get_text()
         self.parent.run_executable(False, args)
-        self.close_window()
+        self.__close_window()
+
+    def __close_window(self, widget=None):
+        self.destroy()
