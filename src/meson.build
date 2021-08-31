@@ -18,6 +18,7 @@ configure_file(
 )
 
 subdir('backend')
+subdir('dialogs')
 subdir('ui')
 subdir('views')
 

@@ -27,13 +27,14 @@ from .backend.manager import Manager
 from .backend.runner import Runner
 
 from .views.new import NewView
-from .views.onboard import OnboardDialog
 from .views.details import DetailsView
 from .views.list import ListView
 from .views.preferences import PreferencesWindow
 from .views.taskmanager import TaskManagerView
 from .views.importer import ImporterView
-from .views.dialog import AboutDialog, CrashReportDialog
+from .dialogs.crash import CrashReportDialog
+from .dialogs.generic import AboutDialog
+from .dialogs.onboard import OnboardDialog
 
 from .utils import UtilsConnection, UtilsLogger
 

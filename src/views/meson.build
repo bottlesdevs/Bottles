@@ -8,9 +8,7 @@ bottles_sources = [
   'details.py',
   'preferences.py',
   'taskmanager.py',
-  'importer.py',
-  'dialog.py',
-  'onboard.py'
+  'importer.py'
 ]
 
 install_data(bottles_sources, install_dir: viewsdir)
