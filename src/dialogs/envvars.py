@@ -35,25 +35,29 @@ class EnvVarsDialog(Handy.Window):
         self.window = window
         self.manager = window.manager
         self.config = config
-        self.variables = config["Parameters"]["environment_variables"]
+        variables = config["Parameters"]["environment_variables"]
 
-        '''Populate widgets'''
-        self.entry_variables.set_text(self.variables)
+        # set the default values
+        self.entry_variables.set_text(variables)
 
         # connect signals
-        self.btn_cancel.connect('pressed', self.close_window)
-        self.btn_save.connect('pressed', self.save_variables)
+        self.btn_cancel.connect('pressed', self.__close_window)
+        self.btn_save.connect('pressed', self.__save_variables)
 
-    '''Destroy the window'''
-    def close_window(self, widget):
+    def __close_window(self, widget):
         self.destroy()
 
-    '''Save launch options'''
-    def save_variables(self, widget):
-        self.variables = self.entry_variables.get_text()
-        self.manager.update_config(config=self.config,
-                                         key="environment_variables",
-                                         value=self.variables,
-                                         scope="Parameters")
-        self.close_window(widget)
-        self.window.page_details.update_programs()
+    def __save_variables(self, widget):
+        '''
+        This function take the new variables from the entry
+        and save them to the bottle configuration. It will also
+        close the window.
+        '''
+        variables = self.entry_variables.get_text()
+        self.manager.update_config(
+            config=self.config,
+            key="environment_variables",
+            value=variables,
+            scope="Parameters"
+        )
+        self.__close_window(widget)
