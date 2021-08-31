@@ -29,6 +29,7 @@ class LaunchOptionsDialog(Handy.Window):
 
     def __init__(self, window, config, program_executable, arguments, **kwargs):
         super().__init__(**kwargs)
+
         self.set_transient_for(window)
 
         # common variables and references
@@ -38,23 +39,28 @@ class LaunchOptionsDialog(Handy.Window):
         self.program_executable = program_executable
         self.arguments = arguments
 
-        '''Populate widgets'''
+        # set widget defaults
         self.entry_arguments.set_text(self.arguments)
 
         # connect signals
-        self.btn_cancel.connect('pressed', self.close_window)
-        self.btn_save.connect('pressed', self.save_options)
+        self.btn_cancel.connect('pressed', self.__close_window)
+        self.btn_save.connect('pressed', self.__save_options)
 
-    '''Destroy the window'''
-    def close_window(self, widget):
+    def __close_window(self, widget):
         self.destroy()
 
-    '''Save launch options'''
-    def save_options(self, widget):
+    def __save_options(self, widget):
+        '''
+        This function save the launch options in the bottle
+        configuration. It also close the window and update the
+        programs list.
+        '''
         self.arguments = self.entry_arguments.get_text()
-        self.manager.update_config(config=self.config,
-                                         key=self.program_executable,
-                                         value=self.arguments,
-                                         scope="Programs")
-        self.close_window(widget)
+        self.manager.update_config(
+            config=self.config,
+            key=self.program_executable,
+            value=self.arguments,
+            scope="Programs"
+        )
+        self.__close_window(widget)
         self.window.page_details.update_programs()
