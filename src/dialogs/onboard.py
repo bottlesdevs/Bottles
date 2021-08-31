@@ -54,16 +54,21 @@ class OnboardDialog(Handy.Window):
         self.manager = window.manager
 
         # connect signals
-        self.stack_onboard.connect('notify::visible-child', self.page_changed)
-        self.btn_close.connect('pressed', self.close_window)
-        self.btn_quit.connect('pressed', self.quit)
-        self.btn_back.connect('pressed', self.previous_page)
-        self.btn_next.connect('pressed', self.next_page)
-        self.btn_install.connect('pressed', self.install_runner)
+        self.stack_onboard.connect('notify::visible-child', self.__page_changed)
+        self.btn_close.connect('pressed', self.__close_window)
+        self.btn_quit.connect('pressed', self.__quit)
+        self.btn_back.connect('pressed', self.__previous_page)
+        self.btn_next.connect('pressed', self.__next_page)
+        self.btn_install.connect('pressed', self.__install_runner)
 
-        self.page_changed()
+        self.__page_changed()
 
-    def page_changed(self, widget=False, event=False):
+    def __page_changed(self, widget=False, event=False):
+        '''
+        This function is called on first load and when the user require
+        to change the page. It sets the widgets status according to
+        the step of the onboad progress.
+        '''
         page = self.stack_onboard.get_visible_child_name()
 
         if page == "page_welcome":
@@ -96,30 +101,34 @@ class OnboardDialog(Handy.Window):
             self.btn_stack_back.set_visible(False)
             self.btn_stack_back.set_visible_child(self.btn_quit)
 
-    def quit(self, widget=False):
+    @staticmethod
+    def __quit(widget=False):
         quit()
 
-    def install_runner(self, widget):
-        self.next_page()
+    def __install_runner(self, widget):
+        '''
+        This method ask the manager to performs its checks, then
+        it will install the latest runner if there is no one installed.
+        '''
+        self.__next_page()
         RunAsync(self.pulse, None)
-        self.manager.checks(after=self.next_page)
+        self.manager.checks(after=self.__next_page)
 
-    def previous_page(self, widget=False):
+    def __previous_page(self, widget=False):
         visible_child = self.stack_onboard.get_visible_child_name()
         previous_page = self.stack_pages[self.stack_pages.index(visible_child) - 1]
         self.stack_onboard.set_visible_child_name(previous_page)
 
-    def next_page(self, widget=False):
+    def __next_page(self, widget=False):
         visible_child = self.stack_onboard.get_visible_child_name()
         next_page = self.stack_pages[self.stack_pages.index(visible_child) + 1]
         self.stack_onboard.set_visible_child_name(next_page)
 
-    '''Progressbar pulse every 1s'''
     def pulse(self):
+        # This function update the progress bar every 1s.
         while True:
             time.sleep(1)
             self.progressbar_downloading.pulse()
 
-    '''Destroy the window'''
-    def close_window(self, widget):
+    def __close_window(self, widget):
         self.destroy()
