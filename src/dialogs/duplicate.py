@@ -44,13 +44,17 @@ class DuplicateDialog(Handy.Window):
         self.config = parent.config
 
         # connect signals
-        self.btn_cancel.connect('pressed', self.close_window)
-        self.btn_close.connect('pressed', self.close_window)
-        self.btn_duplicate.connect('pressed', self.duplicate_bottle)
-        self.entry_name.connect('key-release-event', self.check_entry_name)
+        self.btn_cancel.connect('pressed', self.__close_window)
+        self.btn_close.connect('pressed', self.__close_window)
+        self.btn_duplicate.connect('pressed', self.__duplicate_bottle)
+        self.entry_name.connect('key-release-event', self.__check_entry_name)
 
-    '''Validate entry_name input'''
-    def check_entry_name(self, widget, event_key):
+    def __check_entry_name(self, widget, event_key):
+        '''
+        This function check if the entry name contains no
+        special characters. The widget icon will be toggled
+        according to the result.
+        '''
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         name = widget.get_text()
 
@@ -61,12 +65,15 @@ class DuplicateDialog(Handy.Window):
             self.btn_duplicate.set_sensitive(False)
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
-    '''Destroy the window'''
-    def close_window(self, widget=None):
+    def __close_window(self, widget=None):
         self.destroy()
 
-    '''Run executable with args'''
-    def duplicate_bottle(self, widget):
+    def __duplicate_bottle(self, widget):
+        '''
+        This function take the new bottle name from the entry
+        and create a new duplicate of the bottle. It also change the
+        stack_switcher page when the process is finished.
+        '''
         self.stack_switcher.set_visible_child_name("page_duplicating")
 
         widget.set_visible(False)
@@ -82,8 +89,8 @@ class DuplicateDialog(Handy.Window):
         self.btn_close.set_visible(True)
         self.btn_cancel.set_visible(False)
 
-    '''Progressbar pulse every 1s'''
     def pulse(self):
+        # This function update the progress bar every 1s.
         while True:
             time.sleep(1)
             self.progressbar.pulse()
