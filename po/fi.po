@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 14:44+0200\n"
-"PO-Revision-Date: 2021-08-30 21:32+0000\n"
+"PO-Revision-Date: 2021-09-01 17:14+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -48,11 +48,11 @@ msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles🍷!"
-msgstr "Aja Windows-ohjelmistoja Linuxissa Pullot-sovelluksen kanssa🍷!"
+msgstr "Aja Windows-ohjelmistoja Linuxissa Pullot-sovelluksen avulla🍷!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
-msgstr "Laita ohjelmistoja pulloihin ja nauti niistä vapaa-ajallasi!"
+msgstr "Laita ohjelmistoja pulloihin ja ota ilo irti niistä!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -60,9 +60,9 @@ msgid ""
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
-"Sisäänrakennettu riippuvuusasennusjärjestelmä myöntää automaattisen pääsyn "
-"ohjelmistojen yhteensopivuuteen. Lataa viralliset komponentit "
-"latauksenhallinnalla: ajaja (Wine, Proton), DXVK, riippuvuudet jne."
+"Sisäänrakennettu riippuvuusasennusjärjestelmä mahdollistaa ohjelmistojen "
+"yhteensopivuuden. Lataa viralliset komponentit lataushallinnalla: ajaja ("
+"Wine, Proton), DXVK, riippuvuudet jne."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
@@ -123,7 +123,7 @@ msgstr "Automaattinen pullonkorjaus rikkoutuessa"
 msgid "Integrated dependency-installer based on a community-driven repository"
 msgstr ""
 "Integroitu riippuvuuden asennusohjelma, joka perustuu yhteisöohjattuun "
-"arkistoon"
+"tietovarastoon"
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
 msgid "Integrated Task manager for Wine processes"
@@ -131,15 +131,15 @@ msgstr "Integroitu tehtävänhallinta Wine-prosesseja varten"
 
 #: data/com.usebottles.bottles.appdata.xml.in:29
 msgid "Access to ProtonDB and WineHQ for support"
-msgstr "Pääsy ProtonDB:n ja WineHQ:n tukeen"
+msgstr "Pääsy ProtonDB:hen ja WineHQ:iin tuen osalta"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr "Järjestelmä kokoonpanon tuomiseksi uusiin Pullot:n versioihin"
+msgstr "Järjestelmä asetusten tuomiseksi uusiin Pullot-versioihin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
 msgid "Back up and import bottles"
-msgstr "Varmuuskopioi ja tuo pullot"
+msgstr "Varmuuskopioi ja tuo pulloja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
 msgid "Import Wine prefixes from other managers"
@@ -151,7 +151,7 @@ msgstr "Pullojen versiointi (kokeellinen)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid ".. and much more that you can find by installing Bottles!"
-msgstr ".. ja paljon muuta, jonka löydät asentamalla Pullot!"
+msgstr ".. ja paljon muuta, mitä löydät asentamalla Pullot!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
 msgid "News"
@@ -459,8 +459,8 @@ msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
 msgstr ""
-"Tämä on vain pullon kokoonpano, se on täydellinen, jos haluat luoda uuden, "
-"mutta ilman henkilökohtaisia tiedostoja."
+"Tämä on vain pullon kokoonpano. Se on hyvä lähtökohta, jos haluat luoda "
+"uuden kokoonpanon ilman henkilökohtaisia tiedostoja."
 
 #: src/ui/details.ui:23 src/ui/importer.ui:23
 msgid "Configuration"
@@ -478,13 +478,12 @@ msgid "Full archive"
 msgstr "Täydellinen arkisto"
 
 #: src/ui/details.ui:62
-#, fuzzy
 msgid "Duplicate bottle"
-msgstr "Luo pullo"
+msgstr "Monista pullo"
 
 #: src/ui/details.ui:92
 msgid "Run with arguments"
-msgstr ""
+msgstr "Suorita argumenteilla"
 
 #: src/ui/details.ui:119
 msgid "Type a really short comment:"
@@ -512,7 +511,7 @@ msgstr "Versiointi on käytössä tälle pullolle"
 
 #: src/ui/details.ui:303 src/ui/list-entry.ui:83
 msgid "Versioning is active in this bottle."
-msgstr "Versiointi on käytössä tässä pullossa."
+msgstr "Versiointi on aktiivisena tässä pullossa."
 
 #: src/ui/details.ui:324 src/ui/list-entry.ui:102
 msgid "0"
@@ -656,26 +655,26 @@ msgid "Use DXVK"
 msgstr "Käytä DXVK:ta"
 
 #: src/ui/details.ui:1071
-#, fuzzy
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Parantaa suorituskykyä peleissä ja 3D-sovelluksissa.\n"
-"Poista käytöstä kohdatessasi graafisia häiriöitä."
+"Parantaa suorituskykyä DirectX 11 -pohjaisissa peleissä ja 3D-sovelluksissa."
+"\n"
+"Poista käytöstä jos havaitset graafisia ongelmia."
 
 #: src/ui/details.ui:1098
 msgid "Use VKD3D"
 msgstr "Käytä VKD3D:tä"
 
 #: src/ui/details.ui:1099
-#, fuzzy
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Parantaa suorituskykyä peleissä ja 3D-sovelluksissa.\n"
-"Poista käytöstä kohdatessasi graafisia häiriöitä."
+"Parantaa suorituskykyä DirectX 12 -pohjaisissa peleissä ja 3D-sovelluksissa."
+"\n"
+"Poista käytöstä jos havaitset graafisia ongelmia."
 
 #: src/ui/details.ui:1126
 msgid "Use Gamemode"
@@ -695,7 +694,7 @@ msgid ""
 "Disable if you're experiencing graphical glitches."
 msgstr ""
 "Parantaa suorituskykyä peleissä ja 3D-sovelluksissa.\n"
-"Poista käytöstä kohdatessasi graafisia häiriöitä."
+"Poista käytöstä jos havaitset graafisia ongelmia."
 
 #: src/ui/details.ui:1181
 msgid "Discrete GPU"
@@ -737,7 +736,7 @@ msgstr "Fsync"
 
 #: src/ui/details.ui:1356 src/ui/new.ui:261
 msgid "Runner"
-msgstr "Ajo"
+msgstr "Ajaja"
 
 #: src/ui/details.ui:1399 src/ui/details.ui:1638 src/ui/new.ui:303
 msgid "Manage runners"
@@ -814,7 +813,7 @@ msgstr "Asetukset"
 
 #: src/ui/details.ui:1887
 msgid "Test mode enabled: only dependencies from testing repository are shown."
-msgstr ""
+msgstr "Testitila käytössä: vain riippuvuudet testaustietovarastosta näytetään."
 
 #: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:595
 msgid "Dependencies"
@@ -852,6 +851,9 @@ msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
+"Tämä on kokeellinen ominaisuus, joka on vielä varhaisessa kehitysvaiheessa. "
+"Ole varovainen ja <a href=\"https://github.com/bottlesdevs/Bottles/issues/"
+"new/choose\">ilmoita ongelmista</a>."
 
 #: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:601
 msgid "Installers"
@@ -924,11 +926,11 @@ msgstr "esim .: -esimerkki1 -esimerkki2 -esimerkki3=hei"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
-msgstr "esim .: VAR1 = arvo VAR2 = arvo .."
+msgstr "esim. VAR1=arvo VAR2=arvo ..."
 
 #: src/ui/dialog-launch-options.ui:25
 msgid "Change launch options"
-msgstr "Muuta käynnistysvaihtoehtoja"
+msgstr "Muuta käynnistysvalintoja"
 
 #: src/ui/dialog-launch-options.ui:75
 msgid "These arguments are passed on program launch:"
@@ -961,6 +963,10 @@ msgid ""
 "\n"
 "Press to try again."
 msgstr ""
+"Asennus epäonnistui. Tämä saattaa johtua tietovaraston virheestä, "
+"osittaisesta latauksesta tai ettei tarkistussumma vastaa odotettua arvoa.\n"
+"\n"
+"Yritä uudelleen."
 
 #: src/ui/dxvk-entry.ui:72
 msgid "Download & Install this DXVK"
@@ -1132,7 +1138,8 @@ msgstr "Tervetuloa, tämä on Pullot"
 #: src/ui/onboard.ui:171
 msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr ""
-"Pullot tekee Windows-ohjelmistojen suorittamisen Linuxissa paljon helpompaa."
+"Pullot tekee Windows-ohjelmistojen suorittamisesta Linuxissa paljon "
+"helpompaa."
 
 #: src/ui/onboard.ui:229
 msgid "What are runners?"
@@ -1149,7 +1156,7 @@ msgid ""
 "<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
 "runners</a>"
 msgstr ""
-"Ne ovat yhteensopivuustasoja, jotka sallivat Windows-ohjelmistojen "
+"Ne ovat yhteensopivuustasoja, jotka mahdollistavat Windows-ohjelmistojen "
 "asentamisen ja suorittamisen Linux-järjestelmissä.\n"
 "\n"
 "<b>Pullot</b> ovat ympäristöjä, missä ajaja määrittää järjestelmän asetukset "
@@ -1164,7 +1171,7 @@ msgstr "Wine"
 
 #: src/ui/onboard.ui:299
 msgid "We are almost there"
-msgstr "Olemme melkein siellä"
+msgstr "Melkein valmista"
 
 #: src/ui/onboard.ui:319
 msgid ""
@@ -1211,7 +1218,7 @@ msgstr "Kaikki valmiina!"
 
 #: src/ui/onboard.ui:483
 msgid "You are now ready to create your first bottles."
-msgstr "Olet nyt valmis luomaan ensimmäiset pullot."
+msgstr "Olet nyt valmis luodaksesi ensimmäiset pullot."
 
 #: src/ui/onboard.ui:498
 msgid "Finish"
@@ -1239,7 +1246,7 @@ msgstr "Näytä päivityspäivä"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "Näytetäänkö pulloluettelossa päivityspäivä vai ei."
 
 #: src/ui/preferences.ui:93
 msgid "Show notifications for downloads and installs."
@@ -1283,7 +1290,7 @@ msgstr "VKD3D"
 
 #: src/ui/program-entry.ui:21
 msgid "Change Launch Options"
-msgstr "Vaihda käynnistysvaihtoehdot"
+msgstr "Muuta käynnistysvalintoja"
 
 #: src/ui/program-entry.ui:34
 #, fuzzy
@@ -1324,8 +1331,7 @@ msgstr "Luomispäivä"
 
 #: src/ui/task-manager.ui:26
 msgid "These are the wine/wineserver processes running on your PC."
-msgstr ""
-"Nämä ovat tietokoneellasi käynnissä olevat wine-/winepalvelinprosessit."
+msgstr "Nämä ovat tietokoneellasi käynnissä olevat wine-/wineserver-prosessit."
 
 #: src/ui/task-manager.ui:45
 msgid "Check for running processes."
@@ -1361,13 +1367,13 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
-"Et näytä olevan yhteydessä Internetiin. Ilman sitä et voi ladata "
+"Et näytä olevan yhteydessä internetiin. Ilman internetyhteyttä et voi ladata "
 "välttämättömiä komponentteja. Napsauta tätä kuvaketta, kun yhteys on "
 "muodostettu uudelleen."
 
 #: src/ui/window.ui:255
 msgid "Go back"
-msgstr "Mene takaisin"
+msgstr "Siirry takaisin"
 
 #: src/ui/window.ui:276
 msgid "New bottle"
@@ -1452,7 +1458,7 @@ msgstr "Toteutetaan ympäristö: {0} …"
 
 #: src/backend/manager.py:638
 msgid "Installing dxvk …"
-msgstr "dxvk:n asentaminen …"
+msgstr "Asennetaan dxvk…"
 
 #: src/backend/manager.py:644
 msgid "Installing vkd3d …"
@@ -1460,7 +1466,7 @@ msgstr "Asennetaan vkd3d…"
 
 #: src/backend/manager.py:652
 msgid "Creating versioning state 0 …"
-msgstr "Versionointitilan 0 luominen …"
+msgstr "Versionointitilan 0 luominen…"
 
 #: src/backend/manager.py:659
 #, python-brace-format
@@ -1607,9 +1613,9 @@ msgid "A clear environment for your experiments."
 msgstr "Tyhjä ympäristö kokeiluillesi."
 
 #: src/views/new.py:211
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "Pullo nimeltä \"%s\" luotiin onnistuneesti."
+msgstr "Pullo nimeltä “{0}” luotiin onnistuneesti"
 
 #, fuzzy
 #~ msgid ""
