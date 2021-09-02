@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 14:44+0200\n"
-"PO-Revision-Date: 2021-08-24 21:37+0000\n"
+"PO-Revision-Date: 2021-09-01 17:14+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -166,11 +166,11 @@ msgid "Use %command% in launch options to set prefixes and suffixes"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid ""
 "Create a bottle where to launch the executable choosed from your file manager"
 msgstr ""
-"Zatvori Butelje nakon pokretanja izvršne datoteke iz upravljača datoteka"
+"Stvori butelju gdje će se pokrenuti izvršna datoteka koja se odabere u "
+"upravljaču datoteka"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid ""
@@ -197,9 +197,8 @@ msgid ""
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "The user homedir is now removed from the reports"
-msgstr "U izvještaju o rušenju sada se navodi verzija programa Butelje"
+msgstr "Korisnička početna mapa se sada uklanja iz izvještaja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
@@ -255,36 +254,28 @@ msgid "Translations"
 msgstr "Prijevodi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid "Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz"
-msgstr "Prijevod na španjolski, hvala @kenpb, @oscfdezdz, @fitojb, @Lvaskz"
+msgstr "Prijevod na španjolski, hvala @fitojb, @kenpb, @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @farribeiro, @swyknox"
-msgstr "Prijevod na portugalski (Brazil), hvala @farribeiro"
+msgstr "Prijevod na portugalski (Brazil), hvala @farribeiro, @swyknox"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#, fuzzy
 msgid "Hungarian translations thanks to @ovari"
-msgstr "Prijevod na mađarski, hvala @ovari, @zoli111"
+msgstr "Prijevod na mađarski, hvala @ovari"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
-#, fuzzy
 msgid "French translations thanks to @julroy67"
-msgstr "Prijevod na češki, hvala @panmourovaty"
+msgstr "Prijevod na francuski, hvala @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
-#, fuzzy
 msgid "Swedish translations thanks to @bittin"
-msgstr "Prijevod na finski, hvala @Ricky-Tigg"
+msgstr "Prijevod na švedski, hvala @bittin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
-#, fuzzy
 msgid "Chinese (Simplified) translations thanks to @sr093906"
-msgstr ""
-"Prijevod na kineski (pojednostavljeni), hvala Flywater Zh, @sr093906, "
-"@Yuzaihhhh"
+msgstr "Prijevod na kineski (pojednostavljeni), hvala @sr093906"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Japanese translations thanks to @jatin-cbs"
@@ -295,9 +286,8 @@ msgid "Croatian translations thanks to @milotype"
 msgstr "Prijevod na hrvatski, hvala @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Indonesian translations thanks to @liimee"
-msgstr "Prijevod na hrvatski, hvala @milotype"
+msgstr "Prijevod na indonezijski, hvala @liimee"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -1448,17 +1438,14 @@ msgstr "Vkd3d nije pronađen, instalira se najnovija verzija …"
 
 #. Execute wineboot
 #: src/backend/manager.py:585
-#, fuzzy
 msgid "The wine config is being updated …"
 msgstr "Wine konfiguracija se aktualizira …"
 
 #: src/backend/manager.py:592
-#, fuzzy
 msgid "Wine config updated!"
 msgstr "Wine konfiguracija je aktualizirana!"
 
 #: src/backend/manager.py:597
-#, fuzzy
 msgid "Generating Bottle config file …"
 msgstr "Generiranje konfiguracijske datoteke butelje …"
 
@@ -1568,7 +1555,6 @@ msgid "Run"
 msgstr "Pokreni"
 
 #: src/views/details.py:1149
-#, fuzzy
 msgid "Select the location where to save the backup config"
 msgstr "Odaberi mjesto za spremanje konfiguracije sigurnosne kopije"
 
@@ -1622,9 +1608,9 @@ msgid "A clear environment for your experiments."
 msgstr "Čisto okruženje za tvoje eksperimente."
 
 #: src/views/new.py:211
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "Butelja s imenom „%s” je uspješno stvorena"
+msgstr "Butelja s imenom „{0}” je uspješno stvorena"
 
 #~ msgid "Toggle the last Update date in the bottles list"
 #~ msgstr "Uključi/isključi zadnji datum aktualiziranja u popisu butelja"
