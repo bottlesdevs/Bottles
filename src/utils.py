@@ -89,7 +89,7 @@ class UtilsTerminal():
             ).communicate()[0].decode("utf-8")
 
             if "1" in terminal_check:
-                self.terminal = terminal[0]
+                self.terminal = terminal
                 return True
         
         return False
