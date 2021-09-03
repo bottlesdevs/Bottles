@@ -15,48 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk
 
 from ..backend.backup import RunnerBackup
-@Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')
-class ImporterEntry(Handy.ActionRow):
-    __gtype_name__ = 'ImporterEntry'
 
-    # region Widgets
-    label_manager = Gtk.Template.Child()
-    btn_import = Gtk.Template.Child()
-    btn_browse = Gtk.Template.Child()
-    img_lock = Gtk.Template.Child()
-    # endregion
-
-    def __init__(self, window, prefix, **kwargs):
-        super().__init__(**kwargs)
-
-        # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.prefix = prefix
-
-        '''Populate widgets'''
-        self.set_title(prefix.get("Name"))
-        self.label_manager.set_text(prefix.get("Manager"))
-        if prefix.get("Lock"):
-            self.img_lock.set_visible(True)
-        self.label_manager.get_style_context().add_class(
-            "tag-%s" % prefix.get("Manager").lower())
-
-        # connect signals
-        self.btn_browse.connect("pressed", self.browse_wineprefix)
-        self.btn_import.connect("pressed", self.import_wineprefix)
-
-    '''Browse wineprefix files'''
-    def browse_wineprefix(self, widget):
-        self.manager.browse_wineprefix(self.prefix)
-
-    '''Import wineprefix'''
-    def import_wineprefix(self, widget):
-        if self.manager.import_wineprefix(self.prefix, widget):
-            self.destroy()
+from ..widgets.importer import ImporterEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
@@ -78,10 +41,12 @@ class ImporterView(Gtk.ScrolledWindow):
         self.manager = window.manager
 
         # connect signals
-        self.btn_search_wineprefixes.connect("pressed", self.search_wineprefixes)
+        self.btn_search_wineprefixes.connect(
+            "pressed", self.search_wineprefixes)
         self.btn_import_full.connect("pressed", self.import_backup_full)
 
     '''Search for wineprefixes from other managers'''
+
     def search_wineprefixes(self, widget):
         '''Empty list_prefixes'''
         for w in self.list_prefixes.get_children():
@@ -94,6 +59,7 @@ class ImporterView(Gtk.ScrolledWindow):
                 self.list_prefixes.add(ImporterEntry(self.window, wineprefix))
 
     '''Display file dialog for backup path'''
+
     def import_backup_full(self, widget):
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a backup archive"),
@@ -111,7 +77,7 @@ class ImporterView(Gtk.ScrolledWindow):
         if response == -3:
             RunnerBackup().import_backup_bottle(
                 self.window,
-                "full", 
+                "full",
                 file_dialog.get_filename()
             )
 
