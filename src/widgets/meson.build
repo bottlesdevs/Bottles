@@ -5,6 +5,7 @@ bottles_sources = [
   '__init__.py',
   'dependency.py',
   'dxvk.py',
+  'importer.py',
   'installer.py',
   'page.py',
   'program.py',

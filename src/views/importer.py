@@ -28,7 +28,7 @@ class ImporterView(Gtk.ScrolledWindow):
 
     # region Widgets
     list_prefixes = Gtk.Template.Child()
-    btn_search_wineprefixes = Gtk.Template.Child()
+    btn___find_prefixes = Gtk.Template.Child()
     btn_import_config = Gtk.Template.Child()
     btn_import_full = Gtk.Template.Child()
     # endregion
@@ -41,26 +41,29 @@ class ImporterView(Gtk.ScrolledWindow):
         self.manager = window.manager
 
         # connect signals
-        self.btn_search_wineprefixes.connect(
-            "pressed", self.search_wineprefixes)
-        self.btn_import_full.connect("pressed", self.import_backup_full)
+        self.btn___find_prefixes.connect("pressed", self.__find_prefixes)
+        self.btn_import_full.connect("pressed", self.__import_full_bck)
 
-    '''Search for wineprefixes from other managers'''
-
-    def search_wineprefixes(self, widget):
-        '''Empty list_prefixes'''
+    def __find_prefixes(self, widget):
+        '''
+        This function remove all entries from the list_prefixes, ask the
+        manager to find all prefixes in the system and add them to the list
+        '''
         for w in self.list_prefixes.get_children():
             w.destroy()
 
-        '''Get wineprefixes and populate list_prefixes'''
-        wineprefixes = self.manager.search_wineprefixes()
+        wineprefixes = self.manager.__find_prefixes()
         if len(wineprefixes) > 0:
             for wineprefix in wineprefixes:
                 self.list_prefixes.add(ImporterEntry(self.window, wineprefix))
 
-    '''Display file dialog for backup path'''
-
-    def import_backup_full(self, widget):
+    def __import_full_bck(self, widget):
+        '''
+        This function show a dialog to the user, from wich it can choose an
+        archive backup to import into Bottles. It support only .tar.gz files
+        as Bottles export bottles in this format. Once selected, it will
+        be imported.
+        '''
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a backup archive"),
             self.window,
