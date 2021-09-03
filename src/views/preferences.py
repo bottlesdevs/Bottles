@@ -51,70 +51,75 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.default_settings = window.default_settings
         self.manager = window.manager
 
-        '''Set widgets status from user settings'''
-        self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
+        # set widget defaults
+        self.switch_dark.set_active(
+            self.settings.get_boolean("dark-theme")
+        )
         self.switch_notifications.set_active(
-            self.settings.get_boolean("notifications"))
-        self.switch_temp.set_active(self.settings.get_boolean("temp"))
+            self.settings.get_boolean("notifications")
+        )
+        self.switch_temp.set_active(
+            self.settings.get_boolean("temp")
+        )
         self.switch_release_candidate.set_active(
-            self.settings.get_boolean("release-candidate"))
+            self.settings.get_boolean("release-candidate")
+        )
         self.switch_versioning.set_active(
-            self.settings.get_boolean("experiments-versioning"))
+            self.settings.get_boolean("experiments-versioning")
+        )
         self.switch_installers.set_active(
-            self.settings.get_boolean("experiments-installers"))
+            self.settings.get_boolean("experiments-installers")
+        )
         self.switch_auto_close.set_active(
-            self.settings.get_boolean("auto-close-bottles"))
+            self.settings.get_boolean("auto-close-bottles")
+        )
         self.switch_update_date.set_active(
-            self.settings.get_boolean("update-date"))
-
-        # connect signals
-        self.switch_dark.connect('state-set', self.toggle_dark)
-        self.switch_notifications.connect(
-            'state-set', self.toggle_notifications)
-        self.switch_temp.connect('state-set', self.toggle_temp)
-        self.switch_release_candidate.connect(
-            'state-set', self.toggle_release_candidate)
-        self.switch_versioning.connect(
-            'state-set', self.toggle_experimental_versioning)
-        self.switch_installers.connect(
-            'state-set', self.toggle_experimental_installers)
-        self.switch_auto_close.connect('state-set', self.toggle_auto_close)
-        self.switch_update_date.connect('state-set', self.toggle_update_date)
-
+            self.settings.get_boolean("update-date")
+        )
         self.populate_runners_list()
         self.populate_dxvk_list()
         self.populate_vkd3d_list()
 
-    '''Toggle dark mode and store in user settings'''
+        # connect signals
+        self.switch_dark.connect('state-set', self.__toggle_dark)
+        self.switch_notifications.connect('state-set', self.__toggle_notify)
+        self.switch_temp.connect('state-set', self.__toggle_temp)
+        self.switch_release_candidate.connect('state-set', self.__toggle_rc)
+        self.switch_versioning.connect('state-set', self.__toggle_versioning)
+        self.switch_installers.connect('state-set', self.__toggle_installers)
+        self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
+        self.switch_update_date.connect('state-set', self.__toggle_update_date)
 
-    def toggle_dark(self, widget, state):
+    def __toggle_dark(self, widget, state):
         self.settings.set_boolean("dark-theme", state)
-        self.default_settings.set_property("gtk-application-prefer-dark-theme",
-                                           state)
+        self.default_settings.set_property(
+            "gtk-application-prefer-dark-theme",
+            state
+        )
 
-    def toggle_update_date(self, widget, state):
+    def __toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)
         self.window.page_list.update_bottles()
 
-    def toggle_notifications(self, widget, state):
+    def __toggle_notify(self, widget, state):
         self.settings.set_boolean("notifications", state)
 
-    def toggle_release_candidate(self, widget, state):
+    def __toggle_rc(self, widget, state):
         self.settings.set_boolean("release-candidate", state)
         self.populate_runners_list()
 
-    def toggle_temp(self, widget, state):
+    def __toggle_temp(self, widget, state):
         self.settings.set_boolean("temp", state)
 
-    def toggle_experimental_versioning(self, widget, state):
+    def __toggle_versioning(self, widget, state):
         self.settings.set_boolean("experiments-versioning", state)
         self.window.page_details.build_pages()
 
-    def toggle_experimental_installers(self, widget, state):
+    def __toggle_installers(self, widget, state):
         self.settings.set_boolean("experiments-installers", state)
         self.window.page_details.build_pages()
 
-    def toggle_auto_close(self, widget, state):
+    def __toggle_autoclose(self, widget, state):
         self.settings.set_boolean("auto-close-bottles", state)
 
     def populate_dxvk_list(self):
