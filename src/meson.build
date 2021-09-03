@@ -21,6 +21,7 @@ subdir('backend')
 subdir('dialogs')
 subdir('ui')
 subdir('views')
+subdir('widgets')
 
 bottles_sources = [
   '__init__.py',

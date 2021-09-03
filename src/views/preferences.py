@@ -15,8 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, Handy
-from ..backend.runner import Runner
+from gi.repository import Gtk, Handy
+
+from ..widgets.dxvk import DxvkEntry
+from ..widgets.vkd3d import Vkd3dEntry
+from ..widgets.runner import RunnerEntry
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class PreferencesWindow(Handy.PreferencesWindow):
@@ -49,21 +53,31 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
         '''Set widgets status from user settings'''
         self.switch_dark.set_active(self.settings.get_boolean("dark-theme"))
-        self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
+        self.switch_notifications.set_active(
+            self.settings.get_boolean("notifications"))
         self.switch_temp.set_active(self.settings.get_boolean("temp"))
-        self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
-        self.switch_versioning.set_active(self.settings.get_boolean("experiments-versioning"))
-        self.switch_installers.set_active(self.settings.get_boolean("experiments-installers"))
-        self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
-        self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
+        self.switch_release_candidate.set_active(
+            self.settings.get_boolean("release-candidate"))
+        self.switch_versioning.set_active(
+            self.settings.get_boolean("experiments-versioning"))
+        self.switch_installers.set_active(
+            self.settings.get_boolean("experiments-installers"))
+        self.switch_auto_close.set_active(
+            self.settings.get_boolean("auto-close-bottles"))
+        self.switch_update_date.set_active(
+            self.settings.get_boolean("update-date"))
 
         # connect signals
         self.switch_dark.connect('state-set', self.toggle_dark)
-        self.switch_notifications.connect('state-set', self.toggle_notifications)
+        self.switch_notifications.connect(
+            'state-set', self.toggle_notifications)
         self.switch_temp.connect('state-set', self.toggle_temp)
-        self.switch_release_candidate.connect('state-set', self.toggle_release_candidate)
-        self.switch_versioning.connect('state-set', self.toggle_experimental_versioning)
-        self.switch_installers.connect('state-set', self.toggle_experimental_installers)
+        self.switch_release_candidate.connect(
+            'state-set', self.toggle_release_candidate)
+        self.switch_versioning.connect(
+            'state-set', self.toggle_experimental_versioning)
+        self.switch_installers.connect(
+            'state-set', self.toggle_experimental_installers)
         self.switch_auto_close.connect('state-set', self.toggle_auto_close)
         self.switch_update_date.connect('state-set', self.toggle_update_date)
 
@@ -72,10 +86,11 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.populate_vkd3d_list()
 
     '''Toggle dark mode and store in user settings'''
+
     def toggle_dark(self, widget, state):
         self.settings.set_boolean("dark-theme", state)
         self.default_settings.set_property("gtk-application-prefer-dark-theme",
-                                            state)
+                                           state)
 
     def toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)
@@ -126,292 +141,3 @@ class PreferencesWindow(Handy.PreferencesWindow):
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
             self.list_runners.add(RunnerEntry(self.window, runner))
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')
-class DxvkEntry(Handy.ActionRow):
-    __gtype_name__ = 'DxvkEntry'
-
-    # region Widgets
-    btn_download = Gtk.Template.Child()
-    btn_browse = Gtk.Template.Child()
-    btn_remove = Gtk.Template.Child()
-    btn_err = Gtk.Template.Child()
-    box_download_status = Gtk.Template.Child()
-    label_download_status = Gtk.Template.Child()
-    # endregion
-
-    def __init__(self, window, dxvk, **kwargs):
-        super().__init__(**kwargs)
-
-        # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.component_manager = self.manager.component_manager
-        self.dxvk_name = dxvk[0]
-        self.spinner = Gtk.Spinner()
-
-        '''Populate widgets'''
-        self.set_title(self.dxvk_name)
-
-        if dxvk[1].get("Installed"):
-            self.btn_browse.set_visible(True)
-        else:
-            self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
-
-        # connect signals
-        self.btn_download.connect('pressed', self.download_dxvk)
-        self.btn_err.connect('pressed', self.download_dxvk)
-        self.btn_browse.connect('pressed', self.run_browse)
-
-    '''Install dxvk'''
-    def download_dxvk(self, widget):
-        self.btn_err.set_visible(False)
-        self.btn_download.set_visible(False)
-        self.box_download_status.set_visible(True)
-        for w in self.box_download_status.get_children(): w.set_visible(True)
-        self.component_manager.install(
-            "dxvk", 
-            self.dxvk_name, 
-            func=self.update_status, 
-            after=self.set_installed)
-
-    '''Browse dxvk files'''
-    def run_browse(self, widget):
-        self.btn_download.set_visible(False)
-        Runner().open_filemanager(path_type="dxvk", dxvk=self.dxvk_name)
-
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        if failed:
-            self.set_err()
-            return False
-
-        self.label_download_status.set_visible(True)
-
-        if not completed:
-            percent = int(count * block_size * 100 / total_size)
-            self.label_download_status.set_text(f'{str(percent)}%')
-        else:
-            percent = 100
-        
-        if percent == 100:
-            for w in self.box_download_status.get_children(): w.set_visible(False)
-            self.btn_err.set_visible(False)
-            self.box_download_status.add(self.spinner)
-            self.spinner.set_visible(True)
-            self.spinner.start()
-    
-    def set_err(self):
-        self.spinner.stop()
-        self.box_download_status.set_visible(False)
-        self.btn_remove.set_visible(False)
-        self.btn_browse.set_visible(False)
-        self.btn_err.set_visible(True)
-    
-    def set_installed(self):
-        self.spinner.stop()
-        self.btn_err.set_visible(False)
-        self.box_download_status.set_visible(False)
-        self.btn_browse.set_visible(True)
-
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        GLib.idle_add(
-            self.idle_update_status, 
-            count, 
-            block_size, 
-            total_size, 
-            completed, 
-            failed)
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/vkd3d-entry.ui')
-class Vkd3dEntry(Handy.ActionRow):
-    __gtype_name__ = 'Vkd3dEntry'
-
-    # region Widgets
-    btn_download = Gtk.Template.Child()
-    btn_browse = Gtk.Template.Child()
-    btn_remove = Gtk.Template.Child()
-    btn_err = Gtk.Template.Child()
-    box_download_status = Gtk.Template.Child()
-    label_download_status = Gtk.Template.Child()
-    # endregion
-
-    def __init__(self, window, vkd3d, **kwargs):
-        super().__init__(**kwargs)
-
-        # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.component_manager = self.manager.component_manager
-        self.vkd3d_name = vkd3d[0]
-        self.spinner = Gtk.Spinner()
-
-        '''Populate widgets'''
-        self.set_title(self.vkd3d_name)
-
-        if vkd3d[1].get("Installed"):
-            self.btn_browse.set_visible(True)
-        else:
-            self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
-
-
-        # connect signals
-        self.btn_download.connect('pressed', self.download_vkd3d)
-        self.btn_err.connect('pressed', self.download_vkd3d)
-        self.btn_browse.connect('pressed', self.run_browse)
-
-    '''Install vkd3d'''
-    def download_vkd3d(self, widget):
-        self.btn_err.set_visible(False)
-        self.btn_download.set_visible(False)
-        self.box_download_status.set_visible(True)
-        for w in self.box_download_status.get_children(): w.set_visible(True)
-        self.component_manager.install(
-            "vkd3d", 
-            self.vkd3d_name, 
-            func=self.update_status, 
-            after=self.set_installed)
-
-    '''Browse vkd3d files'''
-    def run_browse(self, widget):
-        self.btn_download.set_visible(False)
-        Runner().open_filemanager(
-            path_type="vkd3d", 
-            vkd3d=self.vkd3d_name)
-
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        if failed:
-            self.set_err()
-            return False
-
-        self.label_download_status.set_visible(True)
-
-        if not completed:
-            percent = int(count * block_size * 100 / total_size)
-            self.label_download_status.set_text(f'{str(percent)}%')
-        else:
-            percent = 100
-        
-        if percent == 100:
-            for w in self.box_download_status.get_children(): w.set_visible(False)
-            self.btn_err.set_visible(False)
-            self.box_download_status.add(self.spinner)
-            self.spinner.set_visible(True)
-            self.spinner.start()
-    
-    def set_err(self):
-        self.spinner.stop()
-        self.box_download_status.set_visible(False)
-        self.btn_remove.set_visible(False)
-        self.btn_browse.set_visible(False)
-        self.btn_err.set_visible(True)
-    
-    def set_installed(self):
-        self.spinner.stop()
-        self.btn_err.set_visible(False)
-        self.box_download_status.set_visible(False)
-        self.btn_browse.set_visible(True)
-
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        GLib.idle_add(
-            self.idle_update_status, 
-            count, 
-            block_size, 
-            total_size, 
-            completed, 
-            failed)
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/runner-entry.ui')
-class RunnerEntry(Handy.ActionRow):
-    __gtype_name__ = 'RunnerEntry'
-
-    # region Widgets
-    btn_download = Gtk.Template.Child()
-    btn_browse = Gtk.Template.Child()
-    btn_remove = Gtk.Template.Child()
-    btn_err = Gtk.Template.Child()
-    box_download_status = Gtk.Template.Child()
-    label_download_status = Gtk.Template.Child()
-    # endregion
-
-    def __init__(self, window, runner_entry, **kwargs):
-        super().__init__(**kwargs)
-
-        # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.component_manager = self.manager.component_manager
-        self.runner_name = runner_entry[0]
-        self.spinner = Gtk.Spinner()
-
-        '''Populate widgets'''
-        self.set_title(self.runner_name)
-
-        if runner_entry[1].get("Installed"):
-            self.btn_browse.set_visible(True)
-        else:
-            self.btn_download.set_visible(True)
-            self.btn_browse.set_visible(False)
-
-        # connect signals
-        self.btn_download.connect('pressed', self.download_runner)
-        self.btn_err.connect('pressed', self.download_runner)
-        self.btn_browse.connect('pressed', self.run_browse)
-
-    '''Install runner'''
-    def download_runner(self, widget):
-        self.btn_err.set_visible(False)
-        self.btn_download.set_visible(False)
-        self.box_download_status.set_visible(True)
-        for w in self.box_download_status.get_children(): w.set_visible(True)
-
-        component_type = "runner"
-        if self.runner_name.lower().startswith("proton"):
-            component_type = "runner:proton"
-
-        self.component_manager.install(component_type,
-                                      self.runner_name,
-                                      func=self.update_status,
-                                      after=self.set_installed)
-
-    '''Browse runner files'''
-    def run_browse(self, widget):
-        self.btn_download.set_visible(False)
-        Runner().open_filemanager(path_type="runner", runner=self.runner_name)
-
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        if failed:
-            self.set_err()
-            return False
-
-        self.label_download_status.set_visible(True)
-
-        if not completed:
-            percent = int(count * block_size * 100 / total_size)
-            self.label_download_status.set_text(f'{str(percent)}%')
-        else:
-            percent = 100
-        
-        if percent == 100:
-            for w in self.box_download_status.get_children(): w.set_visible(False)
-            self.btn_err.set_visible(False)
-            self.box_download_status.add(self.spinner)
-            self.spinner.set_visible(True)
-            self.spinner.start()
-    
-    def set_err(self):
-        self.spinner.stop()
-        self.box_download_status.set_visible(False)
-        self.btn_remove.set_visible(False)
-        self.btn_browse.set_visible(False)
-        self.btn_err.set_visible(True)
-    
-    def set_installed(self):
-        self.spinner.stop()
-        self.btn_err.set_visible(False)
-        self.box_download_status.set_visible(False)
-        self.btn_browse.set_visible(True)
-
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        GLib.idle_add(self.idle_update_status, count, block_size, total_size, completed, failed)
