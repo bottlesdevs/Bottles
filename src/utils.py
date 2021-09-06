@@ -304,6 +304,8 @@ class CabExtract():
         self.name = name
         self.files = files
 
+        self.name = self.name.replace(".", "_")
+
         if not self.__checks():
             return False
         return self.__extract()
