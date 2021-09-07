@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 14:44+0200\n"
-"PO-Revision-Date: 2021-08-29 18:33+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2021-09-09 15:22+0000\n"
+"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
 #: src/window.py:138
 msgid "Bottles"
-msgstr "Bottles"
+msgstr "Botellas"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
@@ -48,7 +48,7 @@ msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles🍷!"
-msgstr "Ejecute fácilmente programas de Windows en Linux con Bottles 🍷"
+msgstr "Ejecute fácilmente programas de Windows en Linux con Botellas 🍷"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -69,8 +69,8 @@ msgstr ""
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Características como el versionado de botellas le permiten mantener su "
-"trabajo seguro y restaurarlo más tarde!"
+"¡El versionado de botellas mantiene tu trabajo a salvo ahora y te permite "
+"restaurarlo más tarde!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
@@ -137,7 +137,7 @@ msgstr "Acceso a ProtonDB y WineHQ para asistencia"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr "Sistema para llevar su configuración a versiones nuevas de Bottles"
+msgstr "Sistema para llevar su configuración a versiones nuevas de Botellas"
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
 msgid "Back up and import bottles"
@@ -153,7 +153,7 @@ msgstr "Control de versiones de botellas (experimental)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid ".. and much more that you can find by installing Bottles!"
-msgstr "… y mucho más que puede encontrar instalando Bottles"
+msgstr "…  ¡y mucho más que puede encontrar instalando Botellas!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
 msgid "News"
@@ -162,59 +162,74 @@ msgstr "Noticias"
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Use %command% in launch options to set prefixes and suffixes"
 msgstr ""
+"Utilice %command% en las opciones de lanzamiento para establecer prefijos y "
+"sufijos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid ""
 "Create a bottle where to launch the executable choosed from your file manager"
-msgstr "Cerrar Bottles tras iniciar el ejecutable en el gestor de archivos"
+msgstr ""
+"Cree una bottle donde lanzar el ejecutable elegido desde su gestor de "
+"archivos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid ""
 "Rewrited the manager to be less recursive and more user-friendly to "
 "developers"
 msgstr ""
+"Se ha reescrito el gestor para que sea menos recursivo y más fácil de usar "
+"para los desarrolladores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
 msgid ""
 "The dependencies/components/installers has now they own managers, "
 "indipendent from the main one"
 msgstr ""
+"Las dependencias/componentes/instaladores tienen ahora sus propios gestores, "
+"independientes del principal"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
-#, fuzzy
 msgid ""
 "The dependencies manager can now extract single files from Windows Cabinet "
 "files"
 msgstr ""
-"Es posible extraer e instalar dependencias desde un archivo CAB de Windows"
+"El gestor de dependencias ahora puede extraer archivos individuales de los "
+"archivos de Windows Cabinet"
 
 #: data/com.usebottles.bottles.appdata.xml.in:105
 msgid ""
 "Now the user need to accept the notice in the crash report, before submiting "
 "new reports"
 msgstr ""
+"Ahora el usuario tiene que aceptar el aviso en el informe del fallo, antes "
+"de enviar nuevos informes"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "The user homedir is now removed from the reports"
-msgstr "La versión de Bottles se ofrece ahora en el informe del fallo"
+msgstr "El usuario homedir se ha eliminado de los informes"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
 "The lutris-lol runner is now hidden when Bottles is running under flatpak, "
 "as it is not compatible with it"
 msgstr ""
+"El ejecutor lutris-lol está ahora oculto cuando Botellas se ejecuta bajo "
+"Flatpak, ya que no es compatible con él"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid "The Windows Cabinet extraction is now quiet and only show relavant logs"
 msgstr ""
+"La extracción de Windows Cabinet es ahora silenciosa y sólo muestra los "
+"registros relevantes"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid ""
 "The download status icon in the preferencies dialog, is now on the right of "
 "the percentage, so it will be no more moved by the percentage"
 msgstr ""
+"El icono del estado de la descarga en el cuadro de diálogo de preferencias, "
+"está ahora a la derecha del porcentaje, por lo que ya no se moverá por el "
+"porcentaje"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
 msgid "Bug fixes"
@@ -225,65 +240,63 @@ msgid ""
 "Fixed a bug in name resolution that could cause Bottles to crash if it "
 "cannot reach a resource"
 msgstr ""
+"Se ha corregido un error en la resolución de nombres que podía hacer que "
+"Botellas se bloqueara si no podía llegar a un recurso"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid ""
 "Prevent Bottles from running executables when the runner is not available"
 msgstr ""
+"Impedir que Botellas ejecute los ejecutables cuando el ejecutor no está "
+"disponible"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Environment names are now translated again"
-msgstr ""
+msgstr "Los nombres de los entornos vuelven a estar traducidos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Added missing translations in bottle creation"
-msgstr ""
+msgstr "Se han añadido las traducciones que faltaban en la creación de botellas"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid ""
 "Fixed a problem in Wayland support that was setting DISPLAY to the wrong "
 "parameter"
 msgstr ""
+"Se ha corregido un problema en el soporte de Wayland que establecía DISPLAY "
+"en el parámetro incorrecto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "The directory for added custom programs was wrong"
-msgstr ""
+msgstr "El directorio para los programas personalizados añadidos era incorrecto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
 msgid "Translations"
 msgstr "Traducciones"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid "Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz"
-msgstr "Traducciones al español gracias a kenpb, @oscfdezdz, @fitojb y @Lvaskz"
+msgstr "Traducciones al español gracias a @fitojb, @kenpb, @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @farribeiro, @swyknox"
-msgstr "Traducciones al portugués (Brasil) gracias a @farribeiro"
+msgstr "Traducciones al portugués (Brasil) gracias a @farribeiro, @swyknox"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#, fuzzy
 msgid "Hungarian translations thanks to @ovari"
-msgstr "Traducciones al húngaro gracias a @ovari y @zoli111"
+msgstr "Traducciones al húngaro gracias a @ovari"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
-#, fuzzy
 msgid "French translations thanks to @julroy67"
-msgstr "Traducciones al checo gracias a @panmourovaty"
+msgstr "Traducciones al francés gracias a @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
-#, fuzzy
 msgid "Swedish translations thanks to @bittin"
-msgstr "Traducciones al finlandés gracias a @Ricky-Tigg"
+msgstr "Traducciones al finlandés gracias a @bittin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
-#, fuzzy
 msgid "Chinese (Simplified) translations thanks to @sr093906"
-msgstr ""
-"Traducciones al chino (simplificado) gracias a Flywater Zh, @sr093906 y "
-"@Yuzaihhhh"
+msgstr "Traducciones al chino (simplificado) gracias a @sr093906"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
 msgid "Japanese translations thanks to @jatin-cbs"
@@ -294,9 +307,8 @@ msgid "Croatian translations thanks to @milotype"
 msgstr "Traducciones al croata gracias a @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Indonesian translations thanks to @liimee"
-msgstr "Traducciones al croata gracias a @milotype"
+msgstr "Traducciones al indonesio gracias a @liimee"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -320,7 +332,7 @@ msgstr "Alternar la fecha de actualización en la lista"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in bottles list."
-msgstr "Alternar la fecha de actualización en la lista de bottles."
+msgstr "Alternar la fecha de actualización en la lista de botellas."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
@@ -400,15 +412,15 @@ msgstr "Alternar la función de instaladores experimentales"
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
-msgstr "Cerrar Bottles automáticamente"
+msgstr "Cerrar Botellas automáticamente"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Close Bottles after starting executable from file manager"
-msgstr "Cerrar Bottles tras iniciar el ejecutable en el gestor de archivos"
+msgstr "Cerrar Botellas tras iniciar el ejecutable en el gestor de archivos"
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
-msgstr "© 2017-2021 de los desarrolladores de Bottles"
+msgstr "© 2017-2021 - Desarrolladores de Botellas"
 
 #: src/ui/about.ui:12
 msgid "Easily manage wineprefix using environments"
@@ -420,14 +432,14 @@ msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Traducir</a>"
 
 #: src/ui/about.ui:122
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
-msgstr "<a href=\"https://usebottles.com/funding/\">Auspiciar</a>"
+msgstr "<a href=\"https://usebottles.com/funding/\">Donar</a>"
 
 #: src/ui/about.ui:135
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
-"<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Informes de error</"
-"a>"
+"<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Informar de un "
+"error</a>"
 
 #: src/ui/about.ui:148
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
@@ -455,8 +467,8 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"Se produjo un error de instalación. Reinicie Bottles para leer el informe de "
-"cierre inesperado o ejecútelo en la terminal para consultar la salida."
+"Se produjo un error de instalación. Reinicie Botellas para leer el informe "
+"de fallo o ejecútelo en la terminal para consultar la salida."
 
 #: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
@@ -486,7 +498,7 @@ msgstr "Archivo completo"
 
 #: src/ui/details.ui:62
 msgid "Duplicate bottle"
-msgstr "Bottle duplicada"
+msgstr "Botella duplicada"
 
 #: src/ui/details.ui:92
 msgid "Run with arguments"
@@ -510,7 +522,7 @@ msgstr "Guarde el estado de la botella."
 
 #: src/ui/details.ui:266
 msgid "Rename bottle"
-msgstr "Cambiar nombre de botella"
+msgstr "Cambiar nombre de la botella"
 
 #: src/ui/details.ui:292 src/ui/list-entry.ui:76
 msgid "Versioning enabled for this bottle"
@@ -570,7 +582,7 @@ msgstr "Forzar cierre de todos los procesos de Wine"
 
 #: src/ui/details.ui:617
 msgid "Are you experiencing problems reaching a directory in Bottles?"
-msgstr "¿Tiene problemas para llegar a un directorio en Bottles?"
+msgstr "¿Tiene problemas para llegar a un directorio en Botellas?"
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
 #: src/views/details.py:596
@@ -771,7 +783,7 @@ msgstr "Directorio de trabajo"
 
 #: src/ui/details.ui:1622
 msgid "Point to the bottle path"
-msgstr "Apuntar a la ruta de la bottle"
+msgstr "Apuntar a la ruta de la botella"
 
 #: src/ui/details.ui:1681
 msgid "Audio"
@@ -1004,11 +1016,11 @@ msgstr "Importador"
 
 #: src/ui/importer.ui:122
 msgid "Import Bottles backup"
-msgstr "Importar respaldo de Bottles"
+msgstr "Importar respaldo de Botellas"
 
 #: src/ui/importer-entry.ui:69
 msgid "This wineprefix was already imported in Bottles."
-msgstr "Este prefijo de Wine ya se importó en Bottles."
+msgstr "Este prefijo de Wine ya se ha sido importado en Botellas."
 
 #: src/ui/list.ui:73
 msgid "Start off by creating a Bottle."
@@ -1122,7 +1134,7 @@ msgstr "Tómese un descanso, puede llevar un tiempo"
 
 #: src/ui/new.ui:567
 msgid "Bottle created"
-msgstr "Se creó la botella"
+msgstr "Botella creada"
 
 #: src/ui/onboard.ui:24 src/ui/onboard.ui:200
 msgid "Welcome"
@@ -1146,11 +1158,11 @@ msgstr "Atrás"
 
 #: src/ui/onboard.ui:152
 msgid "Welcome to Bottles"
-msgstr "Le damos la bienvenida a Bottles"
+msgstr "Le damos la bienvenida a Botellas"
 
 #: src/ui/onboard.ui:171
 msgid "Bottles makes running Windows Software on Linux much easier."
-msgstr "Bottles facilita la ejecución de programas de Windows en Linux."
+msgstr "Botellas facilita la ejecución de programas de Windows en Linux."
 
 #: src/ui/onboard.ui:229
 msgid "What are runners?"
@@ -1203,8 +1215,8 @@ msgstr ""
 "<a href=\"https://docs.usebottles.com/getting-started/first-run\">Más "
 "información sobre el contenido de la descarga.</a>\n"
 "\n"
-"No podemos ofrecer estos archivos con Bottles debido a que tienen diferentes "
-"ciclos de desarrollo.\n"
+"No podemos ofrecer estos archivos con Botellas debido a que tienen "
+"diferentes ciclos de desarrollo.\n"
 "\n"
 "Cuando esté preparado, pulse el botón <b>Instalar</b>."
 
@@ -1250,7 +1262,7 @@ msgstr "Modo oscuro"
 
 #: src/ui/preferences.ui:29 src/ui/preferences.ui:322
 msgid "Whether Bottles should use the Dark theme variant."
-msgstr "Especifica si Bottles debe utilizar la variante oscura del tema."
+msgstr "Si Botellas debe utilizar la variante oscura del tema."
 
 #: src/ui/preferences.ui:55
 msgid "Show update date"
@@ -1270,15 +1282,15 @@ msgstr "Archivos temporales"
 
 #: src/ui/preferences.ui:120
 msgid "Clean temp files when Bottles launches?"
-msgstr "¿Limpiar archivos temporales cuando se lance Bottles?"
+msgstr "¿Limpiar archivos temporales cuando se lance Botellas?"
 
 #: src/ui/preferences.ui:146
 msgid "Close Bottles after starting a program"
-msgstr "Cerrar Bottles tras iniciar un programa"
+msgstr "Cerrar Botellas tras iniciar un programa"
 
 #: src/ui/preferences.ui:147
 msgid "Close Bottles after starting a program from the file manager"
-msgstr "Cerrar Bottles tras iniciar un programa en el gestor de archivos"
+msgstr "Cerrar Botellas tras iniciar un programa en el gestor de archivos"
 
 #: src/ui/preferences.ui:190
 msgid "Pre-release"
@@ -1318,7 +1330,7 @@ msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
 msgid "Bottles Issues"
-msgstr "Errores de Bottles"
+msgstr "Errores de Botellas"
 
 #: src/ui/program-entry.ui:108
 msgid "Remove from Programs"
@@ -1362,7 +1374,7 @@ msgstr "Documentación"
 
 #: src/ui/window.ui:112
 msgid "About Bottles"
-msgstr "Acerca de Bottles"
+msgstr "Acerca de Botellas"
 
 #: src/ui/window.ui:169 src/ui/window.ui:212
 msgid "Open menu"
@@ -1424,7 +1436,7 @@ msgstr "Detalles de botella"
 
 #: src/window.py:179
 msgid "Bottles Started!"
-msgstr "Ha iniciado Bottles."
+msgstr "¡Botellas iniciadas!"
 
 #: src/backend/backup.py:46
 #, python-brace-format
@@ -1455,7 +1467,7 @@ msgstr "Se está actualizando la configuración de Wine…"
 
 #: src/backend/manager.py:592
 msgid "Wine config updated!"
-msgstr "Se actualizó la configuración de Wine."
+msgstr "¡Configuración de Wine actualizada!"
 
 #: src/backend/manager.py:597
 msgid "Generating Bottle config file …"
@@ -1481,7 +1493,7 @@ msgstr "Creando el estado de control de versiones 0…"
 #: src/backend/manager.py:659
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
-msgstr "Su botella nueva, {0}, ya está lista."
+msgstr "¡Su botella nueva: {0} ya está lista!"
 
 #: src/backend/versioning.py:45
 msgid "Generating state files index …"
@@ -1621,9 +1633,9 @@ msgid "A clear environment for your experiments."
 msgstr "Un entorno limpio para sus experimentos."
 
 #: src/views/new.py:211
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "Se creó una botella llamada «%s» correctamente"
+msgstr "Se ha creado con éxito una botella llamada \"{0}\""
 
 #~ msgid "Toggle the last Update date in the bottles list"
 #~ msgstr "Alternar la última fecha de actualización en la lista de bottles"
