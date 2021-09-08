@@ -28,24 +28,42 @@ class RunnerVersioning:
 
     # Create new bottle state
     def async_create_bottle_state(self, args: list) -> bool:
+        '''
+        This function creates a new bottle state.
+        It will list all files in the bottle and compare them with the
+        current index, looking for differences. So it will create a new
+        state with the differences and its index/files yaml files. If 
+        this is the first state, it will create the states folder and
+        the index file. It will return True if the state was created, 
+        False otherwise.
+        '''
         config, comment, update, no_update, after = args
 
         logging.info(
-            f"Creating new state for bottle: [{config['Name']}] …")
-
-        self.download_manager = DownloadManager(self.window)
+            f"Creating new state for bottle: [{config['Name']}] …"
+        )
 
         bottle_path = Runner().get_bottle_path(config)
-        first = False if os.path.isdir(f"{bottle_path}/states/") else True
-
-        # List all bottle files
-        current_index = self.get_bottle_index(config)
-
+        self.download_manager = DownloadManager(self.window)
         download_entry = self.download_manager.new_download(
-            _("Generating state files index …"), False)
+            file_name=_("Generating state files index …"),
+            cancellable=False
+        )
 
-        # If it is not the first state, compare files with the previous one
+        # check if this is the first state
+        first = True
+        if os.path.isdir(f"{bottle_path}/states/"):
+            first = False
+
+        # get the current index (all files list)
+        cur_index = self.get_bottle_index(config)
+
         if not first:
+            '''
+            If this is not the first state, we will compare the current
+            index with the previous one. Otherwise, we will create a new
+            state with the current index.
+            '''
             states_file = open(f"{bottle_path}/states/states.yml")
             states_file_yaml = yaml.safe_load(states_file)
             states_file.close()
@@ -65,12 +83,12 @@ class RunnerVersioning:
                 tuple([f["file"], f["checksum"]])
                 for f in state_index_files
             ]
-            current_temp_files = [
+            cur_temp_files = [
                 tuple([f["file"], f["checksum"]])
-                for f in current_index["Files"]
+                for f in cur_index["Files"]
             ]
-            additions = set(current_temp_files) - set(state_temp_files)
-            removed = set(state_temp_files) - set(current_temp_files)
+            additions = set(cur_temp_files) - set(state_temp_files)
+            removed = set(state_temp_files) - set(cur_temp_files)
 
             new_state_index = {
                 "Update_Date": str(datetime.now()),
@@ -91,7 +109,7 @@ class RunnerVersioning:
                     "checksum": file[1]
                 })
 
-            for file in current_index["Files"]:
+            for file in cur_index["Files"]:
                 if file["checksum"] not in state_temp_checksums:
                     new_state_index["Changes"].append({
                         "file": file["file"],
@@ -102,33 +120,33 @@ class RunnerVersioning:
         else:
             new_state_index = {
                 "Update_Date": str(datetime.now()),
-                "Additions": current_index["Files"],
+                "Additions": cur_index["Files"],
                 "Removed": [],
                 "Changes": []
             }
             state_id = "0"
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
-
         download_entry.destroy()
         download_entry = self.download_manager.new_download(
             _("Creating a restore point …"), False)
 
         try:
-            # Make state structured path
-            os.makedirs("%s/states/%s/drive_c" %
-                        (bottle_path, state_id), exist_ok=True)
+            '''
+            Try to create the state folder and place the index.yml and
+            files.yml files inside it. If it fails, it will return False.
+            '''
+            os.makedirs(
+                f"{bottle_path}/states/{state_id}/drive_c",
+                exist_ok=True
+            )
 
-            # Save index.yml with state edits
-            with open("%s/index.yml" % (state_path),
-                      "w") as state_index_file:
+            with open(f"{state_path}/index.yml", "w") as state_index_file:
                 yaml.dump(new_state_index, state_index_file, indent=4)
                 state_index_file.close()
 
-            # Save files.yml with bottle files
-            with open("%s/files.yml" % (state_path),
-                      "w") as state_files_file:
-                yaml.dump(current_index, state_files_file, indent=4)
+            with open(f"{state_path}/files.yml", "w") as state_files_file:
+                yaml.dump(cur_index, state_files_file, indent=4)
                 state_files_file.close()
         except:
             return False
@@ -137,26 +155,33 @@ class RunnerVersioning:
         download_entry = self.download_manager.new_download(
             _("Updating index …"), False)
 
-        # Copy indexed files in the new state path
-        for file in current_index["Files"]:
-            os.makedirs("{0}/drive_c/{1}".format(
-                state_path,
-                "/".join(file["file"].split("/")[:-1])), exist_ok=True)
+        for file in cur_index["Files"]:
+            '''
+            For each file in the current index, we will copy it to the
+            new state path.
+            '''
+            os.makedirs(
+                "{0}/drive_c/{1}".format(
+                    state_path,
+                    "/".join(file["file"].split("/")[:-1])
+                ),
+                exist_ok=True
+            )
             source = "{0}/drive_c/{1}".format(bottle_path, file["file"])
             target = "{0}/drive_c/{1}".format(state_path, file["file"])
             shutil.copyfile(source, target)
 
-        time.sleep(5)
+        # wait 2s to let the process free the files
+        time.sleep(2)
 
         download_entry.destroy()
         download_entry = self.download_manager.new_download(
             _("Updating states …"), False)
 
-        # Update the states.yml file
+        # update the states.yml file, appending the new state
         new_state = {
             "Creation_Date": str(datetime.now()),
-            "Comment": comment,
-            # "Files": [file["file"] for file in current_index["Files"]]
+            "Comment": comment
         }
 
         if not first:
@@ -178,55 +203,72 @@ class RunnerVersioning:
         except:
             return False
 
-        # Create new index.yml in the states root
         try:
-            with open('%s/states/index.yml' % bottle_path,
-                      "w") as current_index_file:
-                yaml.dump(current_index, current_index_file, indent=4)
-                current_index_file.close()
+            '''
+            Try to create the new index.yml in the bottle's root folder.
+            If it fails, it will return False.
+            '''
+            with open(f'{bottle_path}/states/index.yml', "w") as cur_index_file:
+                yaml.dump(cur_index, cur_index_file, indent=4)
+                cur_index_file.close()
         except:
             return False
 
-        # Update State in bottle config
+        # update bottle configuation
         self.manager.update_config(config, "State", state_id)
         self.manager.update_config(config, "Versioning", True)
 
         logging.info(f"New state [{state_id}] created successfully!")
 
-        # Update states
         if update:
+            '''
+            If the update flag is set, we will update the bottle's 
+            states list.
+            '''
             self.window.page_details.update_states()
 
-        # Update bottles
+        # update the bottles' list
         time.sleep(2)
         self.manager.update_bottles()
 
         download_entry.destroy()
 
-        # Execute caller function after all
         if after:
+            '''
+            If the caller defined a function to be called after the
+            process, we will call it.
+            '''
             after()
 
         return True
 
-    def create_bottle_state(self,
-                            config: BottleConfig,
-                            comment: str = "Not commented",
-                            update: bool = False,
-                            no_update: bool = False,
-                            after: bool = False
-                            ) -> None:
-        RunAsync(self.async_create_bottle_state, None, [
-                 config, comment, update, no_update, after])
+    def create_bottle_state(
+        self,
+        config: BottleConfig,
+        comment: str = "Not commented",
+        update: bool = False,
+        no_update: bool = False,
+        after: bool = False
+    ) -> None:
+        RunAsync(
+            self.async_create_bottle_state, 
+            None, 
+            [config, comment, update, no_update, after]
+        )
 
-    # Get edits for a state
-    def get_bottle_state_edits(self,
-                               config: BottleConfig,
-                               state_id: str,
-                               plain: bool = False
-                               ) -> dict:
+    def get_bottle_state_edits(
+        self,
+        config: BottleConfig,
+        state_id: str,
+        plain: bool = False
+    ) -> dict:
+        '''
+        This function will return the index.yml content for the given
+        state. It will be returned as plain text if the plain flag is
+        set, otherwise it will be returned as a dictionary.
+        NOTE: maybe this function should be called get_bottle_state_index
+        '''
         bottle_path = Runner().get_bottle_path(config)
-
         try:
             file = open('%s/states/%s/index.yml' % (bottle_path, state_id))
             files = file.read() if plain else yaml.safe_load(file.read())
@@ -235,12 +277,17 @@ class RunnerVersioning:
         except:
             return {}
 
-    # Get files for a state
-    def get_bottle_state_files(self,
-                               config: BottleConfig,
-                               state_id: str,
-                               plain: bool = False
-                               ) -> dict:
+    def get_bottle_state_files(
+        self,
+        config: BottleConfig,
+        state_id: str,
+        plain: bool = False
+    ) -> dict:
+        '''
+        This function will return the files.yml content for the given
+        state. It will be returned as plain text if the plain flag is
+        set, otherwise it will be returned as a dictionary.
+        '''
         bottle_path = Runner().get_bottle_path(config)
 
         try:
@@ -251,41 +298,54 @@ class RunnerVersioning:
         except:
             return {}
 
-    # Get all bottle files
     def get_bottle_index(self, config: BottleConfig):
+        '''
+        This function list all files in a bottle and return them
+        in a dict (index).
+        '''
         bottle_path = Runner().get_bottle_path(config)
 
-        current_index = {
+        cur_index = {
             "Update_Date": str(datetime.now()),
             "Files": []
         }
         for file in glob("%s/drive_c/**" % bottle_path, recursive=True):
             if not os.path.isfile(file):
                 continue
+
             if file[len(bottle_path)+9:].split("/")[0] in ["users"]:
                 continue
 
-            current_index["Files"].append({
+            cur_index["Files"].append({
                 "file": file[len(bottle_path)+9:],
-                "checksum": UtilsFiles().get_checksum(file)})
-        return current_index
+                "checksum": UtilsFiles().get_checksum(file)
+            })
+        return cur_index
 
-    # Set state for a bottle
     def async_set_bottle_state(self, args) -> bool:
+        '''
+        This function restore the given state to the bottle.
+        It compare the state files with bottle ones and restore
+        all differences. It will return True if the state is 
+        restored successfully, False otherwise.
+        NOTE: I know this function is not very optimized and
+        well documented, but I'm a bit scared to put my hands
+        on it again °_°
+        '''
         config, state_id, after = args
 
         bottle_path = Runner().get_bottle_path(config)
 
         logging.info(f"Restoring to state: [{state_id}]")
 
-        # Get indexes
+        # get bottle and state indexes
         bottle_index = self.get_bottle_index(config)
         state_index = self.get_bottle_state_files(config, state_id)
 
         search_sources = list(range(int(state_id)+1))
         search_sources.reverse()
 
-        # Check for removed and chaged files
+        # check for removed and chaged files
         remove_files = []
         edit_files = []
         for file in bottle_index.get("Files"):
@@ -296,14 +356,14 @@ class RunnerVersioning:
         logging.info(f"[{len(remove_files)}] files to remove.")
         logging.info(f"[{len(edit_files)}] files to replace.")
 
-        # Check for new files
+        # check for new files
         add_files = []
         for file in state_index.get("Files"):
             if file["file"] not in [file["file"] for file in bottle_index.get("Files")]:
                 add_files.append(file)
         logging.info(f"[{len(add_files)}] files to add.")
 
-        # Perform file updates
+        # perform file updates
         for file in remove_files:
             os.remove("%s/drive_c/%s" % (bottle_path, file["file"]))
 
@@ -327,31 +387,39 @@ class RunnerVersioning:
             target = "%s/drive_c/%s" % (bottle_path, file["file"])
             shutil.copyfile(source, target)
 
-        # Update State in bottle config
+        # update State in bottle config
         self.manager.update_config(config, "State", state_id)
 
-        # Update states
+        # update states
         self.window.page_details.update_states()
 
-        # Update bottles
+        # update bottles
         time.sleep(2)
         self.manager.update_bottles()
 
-        # Execute caller function after all
+        # execute caller function after all
         if after:
             after()
 
         return True
 
-    def set_bottle_state(self,
-                         config: BottleConfig,
-                         state_id: str,
-                         after=False
-                         ) -> None:
-        RunAsync(self.async_set_bottle_state, None,
-                 [config, state_id, after])
+    def set_bottle_state(
+        self, 
+        config: BottleConfig, 
+        state_id: str, 
+        after=False
+    ):
+        RunAsync(
+            self.async_set_bottle_state,
+            None,
+            [config, state_id, after]
+        )
 
     def list_bottle_states(self, config: BottleConfig) -> dict:
+        '''
+        This function take all the states from the states.yml file
+        of the given bottle and return them as a dict.
+        '''
         bottle_path = Runner().get_bottle_path(config)
         states = {}
 
@@ -362,9 +430,11 @@ class RunnerVersioning:
             states = states_file_yaml.get("States")
 
             logging.info(
-                f"Found [{len(states)}] states for bottle: [{config['Name']}]")
+                f"Found [{len(states)}] states for bottle: [{config['Name']}]"
+            )
         except:
             logging.error(
-                f"Cannot find states.yml file for bottle: [{config['Name']}]")
+                f"Cannot find states.yml file for bottle: [{config['Name']}]"
+            )
 
         return states
