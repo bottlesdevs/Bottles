@@ -78,7 +78,7 @@ class ImporterView(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
-            RunnerBackup().import_backup_bottle(
+            RunnerBackup().import_backup(
                 self.window,
                 "full",
                 file_dialog.get_filename()

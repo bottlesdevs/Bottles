@@ -838,7 +838,7 @@ class DetailsView(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            RunnerBackup().backup_bottle(
+            RunnerBackup().export_backup(
                 self.window,
                 self.config,
                 "config",
@@ -862,7 +862,7 @@ class DetailsView(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            RunnerBackup().backup_bottle(
+            RunnerBackup().export_backup(
                 self.window,
                 self.config,
                 "full",
