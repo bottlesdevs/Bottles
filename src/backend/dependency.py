@@ -222,6 +222,12 @@ class DependencyManager:
                     config=config,
                     step=step
                 )
+            
+            if step["action"] == "replace_font":
+                self.__step_replace_font(
+                    config=config,
+                    step=step
+                )
 
         if dependency[0] not in config.get("Installed_Dependencies"):
             '''
@@ -622,3 +628,26 @@ class DependencyManager:
             value=step.get("name"),
             data=step.get("file")
         )
+    
+    def __step_replace_font(self, config: BottleConfig, step: dict):
+        '''
+        This function replace the font declared in the step in
+        the bottle registry.
+        '''
+        replaces = step.get("replace")
+
+        if len(replaces) == 1:
+            self.__manager.reg_add(
+                config,
+                key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
+                value=step.get("font"),
+                data=step.get("replace")
+            )
+        else:
+            for r in replaces:
+                self.__manager.reg_add(
+                    config,
+                    key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
+                    value=step.get("font"),
+                    data=r
+                )
