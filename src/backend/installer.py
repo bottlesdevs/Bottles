@@ -25,7 +25,6 @@ from gi.repository import Gtk, GLib
 from .runner import Runner
 from .globals import BottlesRepositories, Paths
 from ..utils import RunAsync, UtilsLogger
-from .component import ComponentManager
 
 logging = UtilsLogger()
 

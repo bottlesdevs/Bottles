@@ -24,17 +24,13 @@ import shutil
 import re
 import urllib.request
 import fnmatch
-
+from glob import glob
+from datetime import datetime
+from gettext import gettext as _
 from typing import Union, NewType
-
 from gi.repository import Gtk, GLib
 
-from glob import glob
-from pathlib import Path
-from datetime import datetime
-
-from ..download import DownloadManager
-from ..utils import UtilsLogger, RunAsync, CabExtract, validate_url
+from ..utils import UtilsLogger, RunAsync
 from .runner import Runner
 from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
 from .versioning import RunnerVersioning
