@@ -17,7 +17,7 @@
 
 import re
 import time
-
+from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 from ..backend.runner import Runner
 

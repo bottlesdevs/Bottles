@@ -17,6 +17,7 @@
 
 import logging
 from datetime import datetime
+from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 
 from ..backend.runner import Runner

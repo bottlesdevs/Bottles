@@ -18,7 +18,7 @@
 import os
 import time
 import webbrowser
-
+from gettext import gettext as _
 from gi.repository import Gtk, Gio, Notify, Handy
 from pathlib import Path
 

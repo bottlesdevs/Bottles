@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from gettext import gettext as _
 from gi.repository import Gtk
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/task-manager.ui')

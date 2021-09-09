@@ -19,6 +19,7 @@ import os
 import re
 import webbrowser
 from datetime import datetime
+from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 
 from ..dialogs.generic import MessageDialog
@@ -35,7 +36,6 @@ from ..widgets.dependency import DependencyEntry
 
 from ..backend.runner import Runner, gamemode_available
 from ..backend.backup import RunnerBackup
-
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class DetailsView(Handy.Leaflet):

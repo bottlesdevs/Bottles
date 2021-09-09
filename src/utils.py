@@ -29,6 +29,7 @@ import traceback
 from typing import Union
 from datetime import datetime
 from pathlib import Path
+from gettext import gettext as _
 
 from gi.repository import GLib
 
