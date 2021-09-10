@@ -29,7 +29,7 @@ class DownloadEntry(Gtk.Box):
     # region Widgets
     label_filename = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
-    progressbar_download = Gtk.Template.Child()
+    spinner_download = Gtk.Template.Child()
     label_download_status = Gtk.Template.Child()
     # endregion
 
@@ -47,21 +47,15 @@ class DownloadEntry(Gtk.Box):
         if not cancellable:
             self.btn_cancel.hide()
 
-        # Start pulsing
-        RunAsync(self.pulse, None)
+        self.spinner_download.start()
 
-    # Progressbar pulse every 1s
-    def pulse(self):
-        while True:
-            time.sleep(1)
-            self.progressbar_download.pulse()
-
-    def idle_update_status(self,
-                           count=False,
-                           block_size=False,
-                           total_size=False,
-                           completed=False
-                           ):
+    def idle_update_status(
+        self,
+        count=False,
+        block_size=False,
+        total_size=False,
+        completed=False
+    ):
         if not self.label_download_status.get_visible():
             self.label_download_status.set_visible(True)
 
@@ -72,16 +66,23 @@ class DownloadEntry(Gtk.Box):
             percent = 100
 
         if percent == 100:
+            self.spinner_download.stop()
             self.remove()
 
-    def update_status(self,
-                      count=False,
-                      block_size=False,
-                      total_size=False,
-                      completed=False
-                      ):
-        GLib.idle_add(self.idle_update_status, count,
-                      block_size, total_size, completed)
+    def update_status(
+        self,
+        count=False,
+        block_size=False,
+        total_size=False,
+        completed=False
+    ):
+        GLib.idle_add(
+            self.idle_update_status, 
+            count,
+            block_size, 
+            total_size, 
+            completed
+        )
 
     def remove(self):
         downloads = self.box_downloads.get_children()
