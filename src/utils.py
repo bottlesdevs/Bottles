@@ -273,7 +273,7 @@ class RunAsync(threading.Thread):
     def __init__(self, task_func, callback, *args, **kwargs):
         self.source_id = None
         self.stop_request = threading.Event()
-        assert threading.current_thread() is threading.main_thread()
+        # assert threading.current_thread() is threading.main_thread()
 
         super(RunAsync, self).__init__(
             target=self.__target, args=args, kwargs=kwargs)
