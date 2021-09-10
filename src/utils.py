@@ -273,6 +273,7 @@ class RunAsync(threading.Thread):
     def __init__(self, task_func, callback, *args, **kwargs):
         self.source_id = None
         self.stop_request = threading.Event()
+        assert threading.current_thread() is threading.main_thread()
 
         super(RunAsync, self).__init__(
             target=self.__target, args=args, kwargs=kwargs)
@@ -294,7 +295,8 @@ class RunAsync(threading.Thread):
             result = self.task_func(*args, **kwargs)
         except Exception as exception:
             logging.error(
-                f"Error while running async job: {self.task_func}\nException: {exception}")
+                f"Error while running async job: {self.task_func}\nException: {exception}"
+            )
 
             error = exception
             _ex_type, _ex_value, trace = sys.exc_info()
