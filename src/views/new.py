@@ -58,7 +58,6 @@ class NewView(Handy.Window):
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
-    progressbar_creating = Gtk.Template.Child()
     # endregion
 
     environments = [
@@ -224,12 +223,6 @@ class NewView(Handy.Window):
         '''
         self.manager.check_bottles()
         self.window.page_list.update_bottles()
-
-    def pulse(self):
-        # This function update the progress bar every 1s.
-        while True:
-            time.sleep(1)
-            self.progressbar_creating.pulse()
 
     def __close_window(self, widget):
         '''
