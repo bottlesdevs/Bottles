@@ -571,9 +571,6 @@ class Manager:
             bottle_custom_path = True
             bottle_complete_path = path
 
-        # Make progressbar pulsing
-        RunAsync(dialog.pulse, None)
-
         # Create bottle directory
         if os.path.exists(bottle_complete_path):
             rnd = random.randint(100,200)
@@ -673,15 +670,21 @@ class Manager:
                       dialog: Gtk.Widget = None,
                       arch: str = "win64"
                       ) -> None:
-        RunAsync(self.async_create_bottle, None, [name,
-                                                  environment,
-                                                  path,
-                                                  runner,
-                                                  dxvk,
-                                                  vkd3d,
-                                                  versioning,
-                                                  dialog,
-                                                  arch])
+        RunAsync(
+            self.async_create_bottle, 
+            None, 
+            [
+                name,
+                environment,
+                path,
+                runner,
+                dxvk,
+                vkd3d,
+                versioning,
+                dialog,
+                arch
+            ]
+        )
 
     # Get latest installed runner
     def get_latest_runner(self, runner_type: RunnerType = "wine") -> list:
