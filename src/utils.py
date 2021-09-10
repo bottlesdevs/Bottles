@@ -36,8 +36,13 @@ from gi.repository import GLib
 # Set default logging level
 logging.basicConfig(level=logging.DEBUG)
 
-# Check online connection
+
 class UtilsConnection():
+    '''
+    This class is used to check the connection, pinging the official
+    Bottles's website. If the connection is offline, the user will be
+    notified and False will be returned, otherwise True.
+    '''
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -67,11 +72,15 @@ class UtilsConnection():
             self.status = False
 
         return False
-    
+
 
 # Launch commands in system terminal
 class UtilsTerminal():
-
+    '''
+    This class is used to launch commands in the system terminal.
+    It will loop all the "supported" terminals to find the one
+    that is available, so it will be used to launch the command.
+    '''
     terminals = [
         ['xterm', '-e %s'],
         ['konsole', '-e %s'],
@@ -92,7 +101,7 @@ class UtilsTerminal():
             if "1" in terminal_check:
                 self.terminal = terminal
                 return True
-        
+
         return False
 
     def execute(self, command):
@@ -105,12 +114,15 @@ class UtilsTerminal():
             shell=True,
             stdout=subprocess.PIPE
         ).communicate()[0].decode("utf-8")
-        
+
         return True
 
-# Custom formatted logger
-class UtilsLogger(logging.getLoggerClass()):
 
+class UtilsLogger(logging.getLoggerClass()):
+    '''
+    This class is a wrapper for the logging module. It provide
+    custom fotmats for the log messages.
+    '''
     __color_map = {
         "debug": 37,
         "info": 36,
@@ -155,9 +167,12 @@ class UtilsLogger(logging.getLoggerClass()):
     def critical(self, message):
         self.root.critical(self.__color("critical", message))
 
-# Files utilities
-class UtilsFiles():
 
+class UtilsFiles():
+    '''
+    This class provide some useful methods to work with files.
+    Like get checksum, human size, etc.
+    '''
     @staticmethod
     def get_checksum(file):
         '''
@@ -182,21 +197,20 @@ class UtilsFiles():
         ext = string.split('.')[1]
         globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
         return '*.%s' % ''.join(globlist)
-    
+
     @staticmethod
-    def get_human_size(size:float) -> str:
+    def get_human_size(size: float) -> str:
         '''
         This function returns a human readable size from a given float size.
         '''
-        for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+        for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
             if abs(size) < 1024.0:
                 return "%3.1f%s%s" % (size, unit, 'B')
             size /= 1024.0
 
         return "%.1f%s%s" % (size, 'Yi', 'B')
-    
 
-    def get_path_size(self, path:str, human:bool=True) -> Union[str, float]:
+    def get_path_size(self, path: str, human: bool = True) -> Union[str, float]:
         '''
         This function returns the size of a given path in human readable
         format or in bytes. Default is human readable, set human to False
@@ -205,11 +219,12 @@ class UtilsFiles():
         path = Path(path)
         size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
 
-        if human: return self.get_human_size(size)
+        if human:
+            return self.get_human_size(size)
 
         return size
 
-    def get_disk_size(self, human:bool=True) -> dict:
+    def get_disk_size(self, human: bool = True) -> dict:
         '''
         This function returns the size of the disk in human readable format
         or in bytes. Default is human readable, set human to False to get
@@ -229,7 +244,7 @@ class UtilsFiles():
         }
 
 
-def write_log(data:list):
+def write_log(data: list):
     '''
     This function writes a crash.log file.
     It takes care of the location of the log whether Bottles is running 
@@ -245,21 +260,22 @@ def write_log(data:list):
             # replace username with "USER" as standard
             if "/home/" in d:
                 d = re.sub(r"/home/([^/]*)/", r"/home/USER/", d)
-                
+
             crash_log.write(d)
 
 
 class RunAsync(threading.Thread):
-
     '''
     This class is used to execute a function asynchronously.
     It take a function, a callback and a list of arguments as input.
     '''
+
     def __init__(self, task_func, callback, *args, **kwargs):
         self.source_id = None
         self.stop_request = threading.Event()
 
-        super(RunAsync, self).__init__(target=self.__target, args=args, kwargs=kwargs)
+        super(RunAsync, self).__init__(
+            target=self.__target, args=args, kwargs=kwargs)
 
         self.task_func = task_func
 
@@ -277,7 +293,8 @@ class RunAsync(threading.Thread):
         try:
             result = self.task_func(*args, **kwargs)
         except Exception as exception:
-            logging.error(f"Error while running async job: {self.task_func}\nException: {exception}")
+            logging.error(
+                f"Error while running async job: {self.task_func}\nException: {exception}")
 
             error = exception
             _ex_type, _ex_value, trace = sys.exc_info()
@@ -291,7 +308,6 @@ class RunAsync(threading.Thread):
 
 
 class CabExtract():
-
     '''
     This class is used to extract a Windows cabinet file.
     It takes the cabinet file path and the destination name as input. Then it
@@ -299,8 +315,8 @@ class CabExtract():
     temp directory.
     '''
     requirements = False
-    
-    def run(self, path: str, name: str="", files: list = []):
+
+    def run(self, path: str, name: str = "", files: list = []):
         self.path = path
         self.name = name
         self.files = files
@@ -321,12 +337,14 @@ class CabExtract():
             logging.error(f"{self.path} is not a cab file")
             write_log(f"{self.path} is not a cab file")
             return False
-        
+
         if not shutil.which("cabextract"):
-            logging.fatal("cabextract utility not found, please install to use dependencies wich need this feature")
-            write_log("cabextract utility not found, please install to use dependencies wich need this feature")
+            logging.fatal(
+                "cabextract utility not found, please install to use dependencies wich need this feature")
+            write_log(
+                "cabextract utility not found, please install to use dependencies wich need this feature")
             return False
-        
+
         return True
 
     def __extract(self) -> bool:
@@ -349,12 +367,12 @@ class CabExtract():
 
             return True
         except Exception as exception:
-            logging.error(f"Error while extracting cab file {self.path}:\n{exception}")
+            logging.error(
+                f"Error while extracting cab file {self.path}:\n{exception}")
 
         return False
 
 
-        
 def validate_url(url: str):
     '''
     This function validates a given URL.
@@ -366,6 +384,8 @@ def validate_url(url: str):
         r'localhost|'
         r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
         r'(?::\d+)?'
-        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+        r'(?:/?|[/?]\S+)$', 
+        re.IGNORECASE
+    )
 
     return re.match(regex, url) is not None
