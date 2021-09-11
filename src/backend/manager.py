@@ -47,7 +47,7 @@ RunnerType = NewType('RunnerType', str)
 
 class Manager:
 
-    # Component lists
+    # component lists
     runners_available = []
     dxvk_available = []
     vkd3d_available = []
@@ -62,7 +62,7 @@ class Manager:
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
-        # Common variables
+        # common variables
         self.window = window
         self.settings = window.settings
         self.utils_conn = window.utils_conn
@@ -79,9 +79,9 @@ class Manager:
         self.organize_dependencies()
         self.fetch_installers()
         self.check_bottles()
-        self.clear_temp()
+        self.__clear_temp()
 
-    def async_checks(self, args=False, no_install=False):
+    def __async_checks(self, args=False, no_install=False):
         after, no_install = args
         self.check_runners_dir()
         self.check_dxvk()
@@ -92,10 +92,22 @@ class Manager:
         self.fetch_installers()
 
     def checks(self, after=False, no_install=False):
-        RunAsync(self.async_checks, None, [after, no_install])
+        '''
+        This function performs multiple checks and updates, like
+        checking for installed components, bottles' paths, populate
+        catalogs, etc.
+        '''
+        RunAsync(self.__async_checks, None, [after, no_install])
 
-    # Clear temp path
-    def clear_temp(self, force: bool = False) -> None:
+    def __clear_temp(self, force: bool = False):
+        '''
+        This function clears the temp folder if the user
+        settings allow it, otherwise it can be forced using
+        the force argument. If a FileNotFoundError is raised
+        it means that the temp folder is empty or not exists,
+        so the bottles' paths check is performed and the
+        missing paths will be created.
+        '''
         if self.settings.get_boolean("temp") or force:
             try:
                 shutil.rmtree(Paths.temp)
@@ -105,16 +117,22 @@ class Manager:
                 logging.error("Failed to clear temp path!")
                 self.check_runners_dir()
 
-    # Update bottles list var and page_list
-    def update_bottles(self, silent: bool = False) -> None:
+    def update_bottles(self, silent: bool = False):
+        '''
+        This function check for new bottles and updates the
+        bottles list view.
+        '''
         self.check_bottles(silent)
         try:
             self.window.page_list.update_bottles()
         except AttributeError:
-            return
+            pass
 
-    # Checks if paths exists, else create
     def check_runners_dir(self) -> None:
+        '''
+        This function che if the Bottles' default directories 
+        exists, if not they will be created.
+        '''
         if not os.path.isdir(Paths.runners):
             logging.info("Runners path doens't exist, creating now.")
             os.makedirs(Paths.runners, exist_ok=True)
@@ -136,6 +154,10 @@ class Manager:
             os.makedirs(Paths.temp, exist_ok=True)
     
     def organize_components(self):
+        '''
+        This function get the components catalog and organize
+        them into the supported_* lists.
+        '''
         catalog = self.component_manager.fetch_catalog()
         if len(catalog) == 0:
             logging.info("No components found!")
@@ -147,6 +169,10 @@ class Manager:
         self.supported_vkd3d = catalog["vkd3d"]
     
     def organize_dependencies(self):
+        '''
+        This function get the dependencies catalog and organize
+        them into the supported_dependencies list.
+        '''
         catalog = self.dependency_manager.fetch_catalog()
         if len(catalog) == 0:
             logging.info("No dependencies found!")
@@ -154,61 +180,88 @@ class Manager:
         
         self.supported_dependencies = catalog
 
-    def remove_dependency(self, config: BottleConfig, dependency: list, widget: Gtk.Widget) -> None:
+    def remove_dependency(
+        self, 
+        config: BottleConfig, 
+        dependency: list, 
+        widget: Gtk.Widget
+    ):
+        '''
+        This function removes a dependency, it will call its 
+        uninstaller if it exists and remove the dependency from
+        the bottle configuration.
+        '''
         logging.info(
-            f"Removing dependency: [{ dependency[0]}] from bottle: [{config['Name']}] config.")
+            f"Removing dependency: [{dependency[0]}] from " +
+            f"bottle: [{config['Name']}] config."
+        )
 
+        # run dependency uninstaller if available
         uuid = False
 
-        # Run uninstaller
         if dependency[0] in config["Uninstallers"]:
-            uninstaller = config["Uninstallers"][dependency[0]]
-            command = f"uninstaller --list | grep '{uninstaller}' | cut -f1 -d\|"
+            uninst = config["Uninstallers"][dependency[0]]
+            command = f"uninstaller --list | grep '{uninst}' | cut -f1 -d\|"
             uuid = Runner().run_command(
                 config=config,
                 command=command,
                 terminal=False,
                 environment=False,
-                comunicate=True)
+                comunicate=True
+            )
             uuid = uuid.strip()
 
         Runner().run_uninstaller(config, uuid)
 
-        # Remove dependency from bottle config
+        # remove dependency from bottle configuration
         config["Installed_Dependencies"].remove(dependency[0])
-        self.update_config(config,
-                                  "Installed_Dependencies",
-                                  config["Installed_Dependencies"])
+        self.update_config(
+            config,
+            key="Installed_Dependencies",
+            value=config["Installed_Dependencies"]
+        )
 
-        # Show installation button and hide remove button
         GLib.idle_add(widget.btn_install.set_visible, True)
         GLib.idle_add(widget.btn_remove.set_visible, False)
 
     def remove_program(self, config: BottleConfig, program_name: str):
+        '''
+        This function find and execute the uninstaller of a program
+        and remove the program from the bottle configuration.
+        '''
         logging.info(
-            f"Removing program: [{ program_name }] from bottle: [{config['Name']}] config.")
+            f"Removing program: [{ program_name }] from " + 
+            f"bottle: [{config['Name']}] config."
+        )
 
         uuid = False
-
-        # Run uninstaller
         command = f"uninstaller --list | grep '{program_name}' | cut -f1 -d\|"
         uuid = Runner().run_command(
             config=config,
             command=command,
             terminal=False,
             environment=False,
-            comunicate=True)
+            comunicate=True
+        )
         uuid = uuid.strip()
 
         Runner().run_uninstaller(config, uuid)
 
-    # Run installer
-
-    # Check local runners
     def check_runners(self, install_latest: bool = True, after=False) -> bool:
+        '''
+        This function check for installed Bottles and system runners and
+        append them to the runners_available list. If there are no runners
+        available (the sys-wine cannot be the only one), it will install
+        the latest vaniglia runner from the repository if connection is
+        available, then update the list with the new one. It also lock the 
+        winemenubuilder.exe for the Bottles' runners, to prevent they to
+        create invalid desktop and menu entries.
+        A very special thanks to Lutris & GloriousEggroll for extra builds <3!
+        '''
         runners = glob("%s/*/" % Paths.runners)
         self.runners_available = []
 
+        # lock winemenubuilder.exe
         for runner in runners:
             winemenubuilder_paths = [
                 f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
@@ -221,38 +274,38 @@ class Manager:
                 if os.path.isfile(winemenubuilder):
                     os.rename(winemenubuilder, winemenubuilder + ".lock")
 
-        # Check system wine
+        # check system wine
         if shutil.which("wine") is not None:
+            '''
+            If the wine command is available, get the runner version
+            and add to the runners_available list.
+            '''
             version = subprocess.Popen(
                 "wine --version",
                 stdout=subprocess.PIPE,
-                shell=True).communicate()[0].decode("utf-8")
+                shell=True
+            ).communicate()[0].decode("utf-8")
             version = f'sys-{version.split(" ")[0]}'
             self.runners_available.append(version)
 
-        # Check Bottles runners
-
+        # check bottles runners
         for runner in runners:
             self.runners_available.append(runner.split("/")[-2])
 
         if len(self.runners_available) > 0:
             logging.info(
-                f"Runners found: [{'|'.join(self.runners_available)}]")
-
-        '''
-        If there are no locally installed runners, download the latest
-        build for vaniglia from the components repository.
-        A very special thanks to Lutris & GloriousEggroll for extra builds <3!
-        '''
+                f"Runners found: [{'|'.join(self.runners_available)}]"
+            )
 
         tmp_runners = [
-            x for x in self.runners_available if not x.startswith('sys-')]
+            x for x in self.runners_available if not x.startswith('sys-')
+        ]
 
         if len(tmp_runners) == 0 and install_latest:
             logging.warning("No runners found.")
 
-            # If connected, install latest runner from repository
             if self.utils_conn.check_connection():
+                 # if connected, install latest runner from repository
                 try:
                     if not self.window.settings.get_boolean("release-candidate"):
                         tmp_runners = []
@@ -273,14 +326,24 @@ class Manager:
             else:
                 return False
 
-        # Sort component lists alphabetically
+        # sort component lists alphabetically
         self.runners_available = sorted(self.runners_available)
         self.dxvk_available = sorted(self.dxvk_available)
 
         return True
 
     # Check local dxvks
-    def check_dxvk(self, install_latest: bool = True, no_async: bool = False) -> bool:
+    def check_dxvk(
+        self, 
+        install_latest: bool = True, 
+        no_async: bool = False
+    ) -> bool:
+        '''
+        This function check for installed dxvks and append them to the
+        dxvk_available list. If there are no dxvks available, it will
+        install the latest dxvk from the repository if connection is
+        available, then update the list with the new one.
+        '''
         dxvk_list = glob("%s/*/" % Paths.dxvk)
         self.dxvk_available = []
 
@@ -293,16 +356,18 @@ class Manager:
         if len(self.dxvk_available) == 0 and install_latest:
             logging.warning("No dxvk found.")
 
-            # If connected, install latest dxvk from repository
             if self.utils_conn.check_connection():
+                # if connected, install latest dxvk from repository
                 try:
                     dxvk_version = next(iter(self.supported_dxvk))
                     if no_async:
                         self.component_manager.async_install(
-                            ["dxvk", dxvk_version, False, False, False])
+                            ["dxvk", dxvk_version, False, False, False]
+                        )
                     else:
                         self.component_manager.install(
-                            "dxvk", dxvk_version, checks=False)
+                            "dxvk", dxvk_version, checks=False
+                        )
                 except StopIteration:
                     return False
             else:
@@ -310,7 +375,17 @@ class Manager:
         return True
 
     # Check local vkd3d
-    def check_vkd3d(self, install_latest: bool = True, no_async: bool = False) -> bool:
+    def check_vkd3d(
+        self, 
+        install_latest: bool = True, 
+        no_async: bool = False
+    ) -> bool:
+        '''
+        This function check for installed vkd3ds and append them to the
+        vkd3d_available list. If there are no vkd3ds available, it will
+        install the latest vkd3d from the repository if connection is
+        available, then update the list with the new one.
+        '''
         vkd3d_list = glob("%s/*/" % Paths.vkd3d)
         self.vkd3d_available = []
 
@@ -323,16 +398,18 @@ class Manager:
         if len(self.vkd3d_available) == 0 and install_latest:
             logging.warning("No vkd3d found.")
 
-            # If connected, install latest vkd3d from repository
             if self.utils_conn.check_connection():
+                # if connected, install latest vkd3d from repository
                 try:
                     vkd3d_version = next(iter(self.supported_vkd3d))
                     if no_async:
                         self.component_manager.async_install(
-                            ["vkd3d", vkd3d_version, False, False, False])
+                            ["vkd3d", vkd3d_version, False, False, False]
+                        )
                     else:
                         self.component_manager.install(
-                            "vkd3d", vkd3d_version, checks=False)
+                            "vkd3d", vkd3d_version, checks=False
+                        )
                 except StopIteration:
                     return False
             else:
@@ -340,6 +417,11 @@ class Manager:
         return True
 
     def __find_program_icon(self, program_name):
+        '''
+        This function search for a icon by program name, in the
+        user's home icons directory. If the icon is not found, it
+        will return the default "application-x-executable".
+        '''
         logging.debug(f"Searching [{program_name}] icon..")
         pattern = f"*{program_name}*"
 
@@ -352,6 +434,10 @@ class Manager:
         return "application-x-executable"
 
     def __get_exe_parent_dir(self, config, executable_path):
+        '''
+        This function get the parent directory for the given
+        executable path.
+        '''
         p = ""
         if "\\" in executable_path:
             p = "\\".join(executable_path.split("\\")[:-1])
@@ -364,19 +450,32 @@ class Manager:
 
     # Get installed programs
     def get_programs(self, config: BottleConfig) -> list:
-        '''TODO: Programs found should be stored in a database
-        TN: Will be fixed in Trento release'''
+        '''
+        This function return the list of installed programs in common
+        Windows' paths, with their icons and paths. It also check for 
+        external programs from the bottle configuration.
+        '''
         bottle = "%s/%s" % (Paths.bottles, config.get("Path"))
-        results = glob("%s/drive_c/users/*/Start Menu/Programs/**/*.lnk" % bottle,
-                       recursive=True)
-        results += glob("%s/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle,
-                        recursive=True)
-        results += glob("%s/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk" % bottle,
-                        recursive=True)
+        results = glob(
+            f"{bottle}/drive_c/users/*/Start Menu/Programs/**/*.lnk",
+            recursive=True
+        )
+        results += glob(
+            f"{bottle}/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
+            recursive=True
+        )
+        results += glob(
+            f"{bottle}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
+            recursive=True
+        )
         installed_programs = []
 
-        # For any .lnk file, check for executable path
         for program in results:
+            '''
+            for each .lnk file, try to get the executable path and
+            append it to the installed_programs list with its icon, 
+            skip if the path contains the "Uninstall" word.
+            '''
             path = program.split("/")[-1]
             executable_path = ""
 
@@ -399,26 +498,39 @@ class Manager:
                     path = path.replace(".lnk", "")
                     executable_name = executable_path.split("\\")[-1][:-4]
                     program_folder = self.__get_exe_parent_dir(
-                        config, executable_path)
+                        config, 
+                        executable_path
+                    )
 
                     icon = self.__find_program_icon(executable_name)
                     installed_programs.append(
-                        [path, executable_path, icon, program_folder])
+                        [path, executable_path, icon, program_folder]
+                    )
             except:
                 pass
 
         if config.get("External_Programs"):
+            '''
+            if the bottle has external programs in the configuration,
+            append them to the installed_programs list.
+            '''
             ext_programs = config.get("External_Programs")
             for program in ext_programs:
                 program_folder = os.path.dirname(ext_programs[program])
                 icon = self.__find_program_icon(program)
                 installed_programs.append(
-                    [program, ext_programs[program], icon, program_folder])
+                    [program, ext_programs[program], icon, program_folder]
+                )
 
         return installed_programs
 
-    # Fetch installers
     def fetch_installers(self) -> bool:
+        '''
+        This function fetch the installers from the repository and
+        append them to the supported_installers list. It will return
+        True if the installers are found, False otherwise.
+        TODO: this function should be moved to the installer manager.
+        '''
         if not self.utils_conn.check_connection():
             return False
 
@@ -430,18 +542,24 @@ class Manager:
                 self.supported_installers[installer[0]] = installer[1]
         except:
             logging.error(
-                "Cannot fetch installers index from repository.")
+                "Cannot fetch installers index from repository."
+            )
             return False
 
-    # Check local bottles
     def check_bottles(self, silent: bool = False) -> None:
+        '''
+        This function check for local bottles and append them to the
+        local_bottles list. If silent is True, it will not update the
+        bottles list view. It also try to update old bottles configuration
+        and set them to broken if the configuration is missing.
+        '''
         bottles = glob("%s/*/" % Paths.bottles)
 
-        '''
-        For each bottle add the path name to the `local_bottles` variable
-        and append the config
-        '''
         for bottle in bottles:
+            '''
+            for each bottle add the path name to the `local_bottles` variable
+            and append the config
+            '''
             bottle_name_path = bottle.split("/")[-2]
 
             try:
@@ -451,29 +569,45 @@ class Manager:
                 
                 # Update architecture of old bottles
                 if conf_file_yaml.get("Arch") in ["", None]:
-                    self.update_config(conf_file_yaml,
-                                              "Arch",
-                                              Samples.config["Arch"])
+                    self.update_config(
+                        config=conf_file_yaml,
+                        key="Arch",
+                        value=Samples.config["Arch"]
+                    )
 
                 miss_keys = Samples.config.keys() - conf_file_yaml.keys()
                 for key in miss_keys:
                     logging.warning(
-                        f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] config, updating.")
-                    self.update_config(conf_file_yaml,
-                                              key,
-                                              Samples.config[key],
-                                              no_update=True)
+                        f"Key: [{key}] not in bottle: "
+                        f"[{bottle.split('/')[-2]}] config, updating."
+                    )
+                    self.update_config(
+                        config=conf_file_yaml,
+                        key=key,
+                        value=Samples.config[key],
+                        no_update=True
+                    )
 
                 miss_params_keys = Samples.config["Parameters"].keys(
-                ) - conf_file_yaml["Parameters"].keys()
+                    ) - conf_file_yaml["Parameters"].keys()
+
                 for key in miss_params_keys:
+                    '''
+                    for each missing key in the bottle configuration, set
+                    it to the default value.
+                    '''
                     logging.warning(
-                        f"Key: [{key}] not in bottle: [{bottle.split('/')[-2]}] config Parameters, updating.")
-                    self.update_config(conf_file_yaml,
-                                              key,
-                                              Samples.config["Parameters"][key],
-                                              scope="Parameters",
-                                              no_update=True)
+                        f"Key: [{key}] not in bottle: "
+                        f"[{bottle.split('/')[-2]}] config Parameters, "
+                        "updating."
+                    )
+                    self.update_config(
+                        config=conf_file_yaml,
+                        key=key,
+                        value=Samples.config["Parameters"][key],
+                        scope="Parameters",
+                        no_update=True
+                    )
                 self.local_bottles[bottle_name_path] = conf_file_yaml
 
             except FileNotFoundError:
@@ -487,9 +621,28 @@ class Manager:
             logging.info(f"Bottles found: {'|'.join(self.local_bottles)}")
 
     # Update parameters in bottle config
-    def update_config(self, config: BottleConfig, key: str, value: str, scope: str = "", no_update: bool = False, remove: bool = False) -> dict:
+    def update_config(
+        self, 
+        config: BottleConfig, 
+        key: str, 
+        value: str, 
+        scope: str = "", 
+        no_update: bool = False, 
+        remove: bool = False
+    ) -> dict:
+        '''
+        This function can be used to update parameters in a bottle
+        configuration. It will return the updated bottle configuration.
+        It require the key and the value to update. If the scope is
+        specified, it will update the parameter in the specified scope.
+        With the remove flag, it will remove the parameter from the
+        configuration. Use no_update to avoid updating the local bottles
+        list and view. It also update the Update_Date key.
+        '''
         logging.info(
-            f"Setting Key: [{key}] to [{value}] for bottle: [{config['Name']}] …")
+            f"Setting Key: [{key}] to [{value}] for "
+            f"bottle: [{config['Name']}] …"
+        )
 
         bottle_complete_path = Runner().get_bottle_path(config)
 
@@ -502,94 +655,106 @@ class Manager:
             if remove:
                 del config[key]
 
-        with open("%s/bottle.yml" % bottle_complete_path,
-                  "w") as conf_file:
+        with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
 
         if not no_update:
             self.update_bottles(silent=True)
 
-        # Update Update_Date in config
         config["Update_Date"] = str(datetime.now())
         return config
 
-    # Create new wineprefix
     def async_create_bottle(self, args: list) -> None:
+        '''
+        This function is used to create a new bottle. It is
+        called by the create_bottle function.
+        '''
         logging.info("Creating the wineprefix …")
 
         name, environment, path, runner, dxvk, vkd3d, versioning, dialog, arch = args
-
         update_output = dialog.update_output
 
-        # If there are no local runners, dxvks, vkd3ds, install them
         if len(self.runners_available) == 0:
+            # if there are no local runners, show preferences
             update_output(_("No runners found, please install one."))
             self.window.show_prefs_view()
             dialog.destroy()
         if len(self.dxvk_available) == 0:
+            # if there are no local dxvks, install latest
             update_output(_("No dxvk found, installing the latest version …"))
             self.check_dxvk(no_async=True)
         if len(self.vkd3d_available) == 0:
+            # if there are no local vkd3ds, install latest
             update_output(_("No vkd3d found, installing the latest version …"))
             self.check_vkd3d(no_async=True)
 
         if not runner:
+            # if no runner is specified, use the first one from available
             runner = self.runners_available[0]
         runner_name = runner
 
         if not dxvk:
+            # if no dxvk is specified, use the first one from available
             dxvk = self.dxvk_available[0]
         dxvk_name = dxvk
 
         if not vkd3d:
+            # if no vkd3d is specified, use the first one from available
             vkd3d = self.vkd3d_available[0]
         vkd3d_name = vkd3d
 
-        # If runner is proton, files are located to the dist path
         if runner.startswith("Proton"):
+            # if runner is proton, files are located to the dist path
             if os.path.exists("%s/%s/dist" % (Paths.runners, runner)):
                 runner = "%s/dist" % runner
             else:
                 runner = "%s/files" % runner
 
-        # If runner is system
         if runner.startswith("sys-"):
+            # if runner is system, get its path
             runner = "wine"
         else:
             runner = "%s/%s/bin/wine" % (Paths.runners, runner)
 
-        # Define bottle parameters
+        # define bottle parameters
         bottle_name = name
         bottle_name_path = bottle_name.replace(" ", "-")
 
         if path == "":
+            # if no path is specified, use the name as path
             bottle_custom_path = False
-            bottle_complete_path = "%s/%s" % (
-                Paths.bottles, bottle_name_path)
+            bottle_complete_path = f"{Paths.bottles}/{bottle_name_path}"
         else:
             bottle_custom_path = True
             bottle_complete_path = path
 
-        # Create bottle directory
         if os.path.exists(bottle_complete_path):
+            '''
+            if bottle path already exists, create a new one
+            using the name and a random number.
+            '''
             rnd = random.randint(100,200)
             bottle_complete_path = f"{bottle_complete_path}__{rnd}"
 
+        # create the bottle directory
         os.makedirs(bottle_complete_path)
             
-        # Execute wineboot
+        # execute wineboot on the bottle path
         update_output(_("The wine config is being updated …"))
-        command = "DISPLAY=:3.0 WINEDEBUG=fixme-all WINEPREFIX={path} WINEARCH={arch} {runner} wineboot /nogui".format(
-            path=bottle_complete_path,
-            arch=arch,
-            runner=runner
-        )
+        command = [
+            "DISPLAY=:3.0",
+            "WINEDEBUG=fixme-all",
+            f"WINEPREFIX={bottle_complete_path}",
+            f"WINEARCH={arch}",
+            f"{runner} wineboot /nogui"
+        ]
+        command = " ".join(command)
         subprocess.Popen(command, shell=True).communicate()
         update_output(_("Wine config updated!"))
         time.sleep(1)
 
-        # Generate bottle config file
+        # generate bottle config file
         logging.info("Generating Bottle config file …")
         update_output(_("Generating Bottle config file …"))
 
@@ -599,9 +764,8 @@ class Manager:
         config["Runner"] = runner_name
         config["DXVK"] = dxvk_name
         config["VKD3D"] = vkd3d_name
-        if path == "":
-            config["Path"] = bottle_name_path
-        else:
+        config["Path"] = bottle_name_path
+        if path != "":
             config["Path"] = bottle_complete_path
         config["Custom_Path"] = bottle_custom_path
         config["Environment"] = environment
@@ -610,66 +774,77 @@ class Manager:
         if versioning:
             config["Versioning"] = True
 
-        # Apply environment config
+        # apply environment config
         logging.info(f"Applying environment: [{environment}] …")
         update_output(_("Applying environment: {0} …").format(environment))
         if environment != "Custom":
-            environment_parameters = Samples.environments[environment.lower(
-            )]["Parameters"]
+            environment_parameters = Samples.environments[
+                environment.lower()
+            ]["Parameters"]
             for parameter in config["Parameters"]:
                 if parameter in environment_parameters:
-                    config["Parameters"][parameter] = environment_parameters[parameter]
+                    config["Parameters"][parameter] = environment_parameters[
+                        parameter
+                    ]
 
         time.sleep(1)
 
-        # Save bottle config
+        # save bottle config
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
 
         time.sleep(5)
 
-        # Perform dxvk installation if configured
         if config["Parameters"]["dxvk"]:
+            # perform dxvk installation if configured
             logging.info("Installing dxvk …")
             update_output(_("Installing dxvk …"))
             self.install_dxvk(config, version=dxvk_name)
 
-        # Perform vkd3d installation if configured
         if config["Parameters"]["vkd3d"]:
+            # perform vkd3d installation if configured
             logging.info("Installing vkd3d …")
             update_output(_("Installing vkd3d …"))
             self.install_vkd3d(config, version=vkd3d_name)
 
         time.sleep(1)
 
-        # Create first state if versioning enabled
         if versioning:
+            # create first state if versioning enabled
             logging.info("Creating versioning state 0 …")
             update_output(_("Creating versioning state 0 …"))
             self.versioning_manager.async_create_bottle_state(
                 [config, "First boot", False, True, False])
 
-        # Set status created and UI usability
+        # set status created and UI usability
         logging.info(f"Bottle: [{bottle_name}] successfully created!")
         update_output(
-            _("Your new bottle: {0} is now ready!").format(bottle_name))
+            _("Your new bottle: {0} is now ready!").format(bottle_name)
+        )
 
         time.sleep(2)
 
         dialog.finish(config)
 
-    def create_bottle(self,
-                      name,
-                      environment: str,
-                      path: str = False,
-                      runner: RunnerName = False,
-                      dxvk: bool = False,
-                      vkd3d: bool = False,
-                      versioning: bool = False,
-                      dialog: Gtk.Widget = None,
-                      arch: str = "win64"
-                      ) -> None:
+    def create_bottle(
+        self,
+        name,
+        environment: str,
+        path: str = False,
+        runner: RunnerName = False,
+        dxvk: bool = False,
+        vkd3d: bool = False,
+        versioning: bool = False,
+        dialog: Gtk.Widget = None,
+        arch: str = "win64"
+    ) -> None:
+        '''
+        This function creates a new bottle, generate the wineprefix
+        with the givven runner and arch, install DXVK and VKD3D and
+        create a new state if versioning is enabled. It also creates
+        the configuration file on bottle root.
+        '''
         RunAsync(
             self.async_create_bottle, 
             None, 
@@ -686,26 +861,23 @@ class Manager:
             ]
         )
 
-    # Get latest installed runner
     def get_latest_runner(self, runner_type: RunnerType = "wine") -> list:
+        '''
+        This function returns the latest version of the given runner, 
+        from the runners_available list.
+        '''
         try:
             if runner_type in ["", "wine"]:
-                return [idx for idx in self.runners_available if idx.lower().startswith("lutris")][0]
+                return [idx for idx in self.runners_available if idx.lower().startswith("vaniglia")][0]
             return [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
         except IndexError:
             return "Undefined"
 
-    # Get bottle path size
-    def get_bottle_size(self, config: BottleConfig, human: bool = True) -> Union[str, float]:
-        path = config.get("Path")
-
-        if not config.get("Custom_Path"):
-            path = "%s/%s" % (Paths.bottles, path)
-
-        return self.get_path_size(path, human)
-
-    # Delete a wineprefix
     def async_delete_bottle(self, args: list) -> bool:
+        '''
+        This function deletes the given bottle. It is called
+        from the delete_bottle function.
+        '''
         logging.info("Deleting a bottle …")
 
         config = args[0]
@@ -717,8 +889,7 @@ class Manager:
 
             logging.info(f"Removing the bottle ..")
             if not config.get("Custom_Path"):
-                path = "%s/%s" % (Paths.bottles,
-                                  config.get("Path"))
+                path = f"{Paths.bottles}/{config.get('Path')}"
 
             shutil.rmtree(path)
             del self.local_bottles[config.get("Path")]
@@ -732,16 +903,25 @@ class Manager:
         return False
 
     def delete_bottle(self, config: BottleConfig) -> None:
+        '''
+        This function deletes the given bottle, comprensive of
+        the configuration and files.
+        '''
         RunAsync(self.async_delete_bottle, None, [config])
 
-    #  Repair a bottle generating a new config
     def repair_bottle(self, config: BottleConfig) -> bool:
+        '''
+        This function try to repair a broken bottle, creating a
+        new bottle configuration with latest runner. Each fixed
+        bottle will use the Custom environment.
+        '''
         logging.info(
-            f"Trying to repair the bottle: [{config['Name']}] …")
+            f"Trying to repair the bottle: [{config['Name']}] …"
+        )
 
         bottle_complete_path = f"{Paths.bottles}/{config['Name']}"
 
-        # Create new config with path as name and Custom environment
+        # create new config with path as name and Custom environment
         new_config = Samples.config
         new_config["Name"] = config.get("Name")
         new_config["Runner"] = self.runners_available[0]
@@ -765,9 +945,12 @@ class Manager:
         self.update_bottles()
         return True
 
-    # Get running wine processes
     @staticmethod
     def get_running_processes() -> list:
+        '''
+        This function get all wine running processes and return
+        them as a list of dictionaries.
+        '''
         processes = []
         command = "ps -eo pid,pmem,pcpu,stime,time,cmd | grep wine | tr -s ' ' '|'"
         pids = subprocess.check_output(['bash', '-c', command]).decode("utf-8")
@@ -790,10 +973,15 @@ class Manager:
 
         return processes
 
-    # Add key from register
     def reg_add(self, config: BottleConfig, key: str, value: str, data: str, keyType: str = False) -> None:
+        '''
+        This function add a value with its data in the given 
+        bottle registry key.
+        '''
         logging.info(
-            f"Adding Key: [{key}] with Value: [{value}] and Data: [{data}] in register bottle: {config['Name']}")
+            f"Adding Key: [{key}] with Value: [{value}] and "
+            f"Data: [{data}] in register bottle: {config['Name']}"
+        )
 
         command = "reg add '%s' /v '%s' /d %s /f" % (key, value, data)
 
@@ -803,21 +991,28 @@ class Manager:
 
         Runner().run_command(config, command)
 
-    # Remove key from register
     def reg_delete(self, config: BottleConfig, key: str, value: str) -> None:
+        '''
+        This function delete a value with its data in the given
+        bottle registry key.
+        '''
         logging.info(
-            f"Removing Value: [{key}] for Key: [{value}] in register bottle: {config['Name']}")
+            f"Removing Value: [{key}] for Key: [{value}] in "
+            f"register bottle: {config['Name']}"
+        )
 
-        Runner().run_command(config, "reg delete '%s' /v %s /f" % (
-            key, value))
+        Runner().run_command(config, f"reg delete '{key}' /v {value} /f")
 
-    '''
-    Install dxvk using official script
-    TODO: A good task for the future is to use the built-in methods
-    to install the new dlls and register the override for dxvk.
-    '''
-
-    def install_dxvk(self, config: BottleConfig, remove: bool = False, version: str = False) -> bool:
+    def install_dxvk(
+        self, 
+        config: BottleConfig, 
+        remove: bool = False, 
+        version: str = False
+    ) -> bool:
+        '''
+        This function install the givven DXVK version in a bottle. It can
+        also be used to remove the DXVK version if remove is set to True.
+        '''
         logging.info(f"Installing dxvk for bottle: [{config['Name']}].")
 
         if version:
@@ -827,28 +1022,35 @@ class Manager:
 
         option = "uninstall" if remove else "install"
 
-        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {dxvk_setup} {option} --with-d3d10'.format(
-            path="%s/%s" % (Paths.bottles, config.get("Path")),
-            runner="%s/%s/bin" % (Paths.runners,
-                                  config.get("Runner")),
-            dxvk_setup="%s/%s/setup_dxvk.sh" % (
-                Paths.dxvk, dxvk_version),
-            option=option)
-
+        command = [
+            'DISPLAY=:3.0',
+            f'WINEPREFIX="{Paths.bottles}/{config.get("Path")}"',
+            f'PATH="{Paths.runners}/{config.get("Runner")}/bin:$PATH"',
+            f'{Paths.dxvk}/{dxvk_version}/setup_dxvk.sh',
+            option,
+            '--with-d3d10'
+        ]
+        command = " ".join(command)
+        print(command)
         return subprocess.Popen(command, shell=True).communicate()
 
-    '''
-    Install vkd3d using official script
-    '''
-
-    def install_vkd3d(self, config: BottleConfig, remove: bool = False, version: str = False) -> bool:
+    def install_vkd3d(
+        self, 
+        config: BottleConfig, 
+        remove: bool = False, 
+        version: str = False
+    ) -> bool:
+        '''
+        This function install the givven VKD3D version in a bottle. It can
+        also be used to remove the VKD3D version if remove is set to True.
+        '''
         logging.info(
-            f"Installing vkd3d for bottle: [{config['Name']}].")
+            f"Installing vkd3d for bottle: [{config['Name']}]."
+        )
 
+        vkd3d_version = config.get("VKD3D")
         if version:
             vkd3d_version = version
-        else:
-            vkd3d_version = config.get("VKD3D")
 
         if not vkd3d_version:
             vkd3d_version = self.vkd3d_available[0]
@@ -856,54 +1058,91 @@ class Manager:
 
         option = "uninstall" if remove else "install"
 
-        command = 'DISPLAY=:3.0 WINEPREFIX="{path}" PATH="{runner}:$PATH" {vkd3d_setup} {option}'.format(
-            path="%s/%s" % (Paths.bottles, config.get("Path")),
-            runner="%s/%s/bin" % (Paths.runners,
-                                  config.get("Runner")),
-            vkd3d_setup="%s/%s/setup_vkd3d_proton.sh" % (
-                Paths.vkd3d, vkd3d_version),
-            option=option)
-
+        command = [
+            'DISPLAY=:3.0',
+            f'WINEPREFIX="{Paths.bottles}/{config.get("Path")}"',
+            f'PATH="{Paths.runners}/{config.get("Runner")}/bin:$PATH"',
+            f'{Paths.vkd3d}/{vkd3d_version}/setup_vkd3d_proton.sh',
+            option
+        ]
+        command = " ".join(command)
         return subprocess.Popen(command, shell=True).communicate()
 
-    # Remove dxvk using official script
     def remove_dxvk(self, config: BottleConfig) -> None:
+        '''
+        This is a wrapper function for the install_dxvk function,
+        using the remove option.
+        '''
         logging.info(f"Removing dxvk for bottle: [{config['Name']}].")
 
         self.install_dxvk(config, remove=True)
 
-    # Remove vkd3d using official script
     def remove_vkd3d(self, config: BottleConfig) -> None:
+        '''
+        This is a wrapper function for the install_vkd3d function,
+        using the remove option.
+        '''
         logging.info(f"Removing vkd3d for bottle: [{config['Name']}].")
 
         self.install_vkd3d(config, remove=True)
 
-    # Override dlls in system32/syswow64 paths
-    def dll_override(self, config: BottleConfig, arch: str, dlls: list, source: str, revert: bool = False) -> bool:
+    def dll_override(
+        self, 
+        config: BottleConfig, 
+        arch: str, 
+        dlls: list, 
+        source: str, 
+        revert: bool = False
+    ) -> bool:
+        '''
+        This function replace a DLL in a bottle (this is not a wine
+        DLL override). It also make a backup of the original DLL, that
+        can be reverted with the revert option.
+        '''
         arch = "system32" if arch == 32 else "syswow64"
-        path = "%s/%s/drive_c/windows/%s" % (Paths.bottles,
-                                             config.get("Path"),
-                                             arch)
-        # Restore dll from backup
+        path = "{0}/{1}/drive_c/windows/{2}".format(
+            Paths.bottles,
+            config.get("Path"),
+            arch
+        )
+        
         try:
             if revert:
+                # restore the backup
                 for dll in dlls:
-                    shutil.move("%s/%s.back" %
-                                (path, dll), "%s/%s" % (path, dll))
+                    shutil.move(
+                        f"{path}/{dll}.back",
+                        f"{path}/{dll}"
+                    )
             else:
-                '''
-                Backup old dlls and install new one
-                '''
                 for dll in dlls:
-                    shutil.move("%s/%s" % (path, dll),
-                                "%s/%s.old" % (path, dll))
-                    shutil.copy("%s/%s" % (source, dll), "%s/%s" % (path, dll))
+                    '''
+                    for each DLL in the list, we create a backup of the
+                    original one and replace it with the new one.
+                    '''
+                    shutil.move(
+                        f"{path}/{dll}",
+                        f"{path}/{dll}.back"
+                    )
+                    shutil.copy(
+                        f"{source}/{dll}",
+                        f"{path}/{dll}"
+                    )
         except:
             return False
         return True
 
     # Toggle virtual desktop for a bottle
-    def toggle_virtual_desktop(self, config: BottleConfig, state: bool, resolution: str = "800x600") -> None:
+    def toggle_virtual_desktop(
+        self, 
+        config: BottleConfig, 
+        state: bool, 
+        resolution: str = "800x600"
+    ):
+        '''
+        This function toggle the virtual desktop for a bottle, updating
+        the Desktops registry key.
+        '''
         key = "HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops"
         if state:
             self.reg_add(config, key, "Default", resolution)
@@ -914,14 +1153,14 @@ class Manager:
     def search_wineprefixes() -> list:
         importer_wineprefixes = []
 
-        # Search wine prefixes in external managers paths
+        # search wine prefixes in external managers paths
         lutris_results = glob(f"{TrdyPaths.lutris}/*/")
         playonlinux_results = glob(f"{TrdyPaths.playonlinux}/*/")
         bottlesv1_results = glob(f"{TrdyPaths.bottlesv1}/*/")
 
         results = lutris_results + playonlinux_results + bottlesv1_results
 
-        # Count results
+        # count results
         is_lutris = len(lutris_results)
         is_playonlinux = is_lutris + len(playonlinux_results)
         i = 1
@@ -929,7 +1168,7 @@ class Manager:
         for wineprefix in results:
             wineprefix_name = wineprefix.split("/")[-2]
 
-            # Identify manager by index
+            # identify manager by index
             if i <= is_lutris:
                 wineprefix_manager = "Lutris"
             elif i <= is_playonlinux:
@@ -937,9 +1176,9 @@ class Manager:
             else:
                 wineprefix_manager = "Bottles v1"
 
-            # Check the drive_c path exists
-            if os.path.isdir("%s/drive_c" % wineprefix):
-                wineprefix_lock = os.path.isfile("%s/bottle.lock" % wineprefix)
+            # check the drive_c path exists
+            if os.path.isdir(f"{wineprefix}/drive_c"):
+                wineprefix_lock = os.path.isfile(f"{wineprefix}/bottle.lock")
                 importer_wineprefixes.append(
                     {
                         "Name": wineprefix_name,
@@ -953,13 +1192,19 @@ class Manager:
         return importer_wineprefixes
 
     def import_wineprefix(self, wineprefix: dict, widget: Gtk.Widget) -> bool:
+        '''
+        This function import a wineprefix from an external wineprefix
+        manager and convert it into a bottle. It also create a lock file
+        in the source path to prevent multiple imports.
+        '''
         logging.info(
-            f"Importing wineprefix [{wineprefix['Name']}] in a new bottle …")
+            f"Importing wineprefix [{wineprefix['Name']}] in a new bottle …"
+        )
 
-        # Hide btn_import to prevent double imports
+        # hide btn_import to prevent double imports
         widget.set_visible(False)
 
-        # Prepare bottle path for the wine prefix
+        # prepare bottle path for the wine prefix
         bottle_path = "Imported_%s" % wineprefix.get("Name")
         bottle_complete_path = "%s/%s" % (Paths.bottles, bottle_path)
 
@@ -967,19 +1212,20 @@ class Manager:
             os.makedirs(bottle_complete_path, exist_ok=False)
         except:
             logging.error(
-                f"Error creating bottle path for wineprefix [{wineprefix['Name']}], aborting.")
+                "Error creating bottle path for wineprefix "
+                f"[{wineprefix['Name']}], aborting."
+            )
             return False
 
-        # Create lockfile in source path
+        # create lockfile in source path
         logging.info("Creating lock file in source path …")
-        open('%s/bottle.lock' % wineprefix.get("Path"), 'a').close()
+        open(f'{wineprefix.get("Path")}/bottle.lock', 'a').close()
 
-        # Copy wineprefix files in the new bottle
-        command = "cp -a %s/* %s/" % (wineprefix.get("Path"),
-                                      bottle_complete_path)
+        # copy wineprefix files in the new bottle
+        command = f"cp -a {wineprefix.get('Path')}/* {bottle_complete_path}/"
         subprocess.Popen(command, shell=True).communicate()
 
-        # Create bottle config
+        # create bottle config
         new_config = Samples.config
         new_config["Name"] = wineprefix["Name"]
         new_config["Runner"] = self.get_latest_runner()
@@ -988,21 +1234,25 @@ class Manager:
         new_config["Creation_Date"] = str(datetime.now())
         new_config["Update_Date"] = str(datetime.now())
 
-        # Save config
-        with open("%s/bottle.yml" % bottle_complete_path,
-                  "w") as conf_file:
+        # save config
+        with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(new_config, conf_file, indent=4)
             conf_file.close()
 
-        # Update bottles
+        # update bottles view
         self.update_bottles(silent=True)
 
         logging.info(
-            f"Wineprefix: [{wineprefix['Name']}] successfully imported!")
+            f"Wineprefix: [{wineprefix['Name']}] successfully imported!"
+        )
         return True
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict) -> bool:
+        '''
+        This function popup the system file manager to browse
+        the wineprefix path.
+        '''
         return Runner().open_filemanager(
             path_type="custom",
             custom_path=wineprefix.get("Path")
