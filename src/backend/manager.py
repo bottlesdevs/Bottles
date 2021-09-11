@@ -1031,7 +1031,6 @@ class Manager:
             '--with-d3d10'
         ]
         command = " ".join(command)
-        print(command)
         return subprocess.Popen(command, shell=True).communicate()
 
     def install_vkd3d(
