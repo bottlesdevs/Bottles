@@ -1,4 +1,4 @@
-# runner.py
+# manager.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -1142,11 +1142,25 @@ class Manager:
         This function toggle the virtual desktop for a bottle, updating
         the Desktops registry key.
         '''
-        key = "HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops"
         if state:
-            self.reg_add(config, key, "Default", resolution)
+            self.reg_add(
+                config, 
+                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer", 
+                value="Desktop", 
+                data="Default"
+            )
+            self.reg_add(
+                config, 
+                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops", 
+                value="Default", 
+                data=resolution
+            )
         else:
-            self.reg_delete(config, key, "Default")
+            self.reg_delete(
+                config, 
+                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer", 
+                value="Desktop"
+            )
 
     @staticmethod
     def search_wineprefixes() -> list:
