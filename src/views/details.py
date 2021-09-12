@@ -550,9 +550,16 @@ class DetailsView(Handy.Leaflet):
         for w in self.list_dependencies:
             w.destroy()
 
-        supported_dependencies = self.manager.supported_dependencies.items()
-        if len(supported_dependencies) > 0:
-            for dependency in supported_dependencies:
+        supported_dependencies = self.manager.supported_dependencies
+        if len(supported_dependencies.items()) > 0:
+            for dependency in supported_dependencies.items():
+                if dependency[0] in self.config.get("Installed_Dependencies"):
+                    '''
+                    If the dependency is already installed, do not
+                    list it in the list. It will be listed in the
+                    installed dependencies list.
+                    '''
+                    continue
                 self.list_dependencies.add(
                     DependencyEntry(
                         window=self.window,
@@ -563,12 +570,20 @@ class DetailsView(Handy.Leaflet):
 
         if len(self.config.get("Installed_Dependencies")) > 0:
             for dependency in self.config.get("Installed_Dependencies"):
+                plain = True
+                if dependency in supported_dependencies:
+                    dependency = (
+                        dependency, 
+                        supported_dependencies[dependency]
+                    )
+                    plain = False
+
                 self.list_dependencies.add(
                     DependencyEntry(
                         window=self.window,
                         config=self.config,
                         dependency=dependency,
-                        plain=True
+                        plain=plain
                     )
                 )
 

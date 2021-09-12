@@ -295,7 +295,8 @@ class RunAsync(threading.Thread):
             result = self.task_func(*args, **kwargs)
         except Exception as exception:
             logging.error(
-                f"Error while running async job: {self.task_func}\nException: {exception}"
+                "Error while running async job: "
+                f"{self.task_func}\nException: {exception}"
             )
 
             error = exception
@@ -342,9 +343,13 @@ class CabExtract():
 
         if not shutil.which("cabextract"):
             logging.fatal(
-                "cabextract utility not found, please install to use dependencies wich need this feature")
+                "cabextract utility not found, please install to use "
+                "dependencies wich need this feature"
+            )
             write_log(
-                "cabextract utility not found, please install to use dependencies wich need this feature")
+                "cabextract utility not found, please install to use "
+                "dependencies wich need this feature"
+            )
             return False
 
         return True
@@ -357,13 +362,26 @@ class CabExtract():
         try:
             if len(self.files) > 0:
                 for file in self.files:
+                    command = [
+                        "cabextract",
+                        f"-F '*{file}*'",
+                        f"-d {temp_path}/{self.name}",
+                        f"-q {self.path}"
+                    ]
+                    command = " ".join(command)
                     subprocess.Popen(
-                        f"cabextract -F '*{file}*' -d {temp_path}/{self.name} -q {self.path}",
+                        command,
                         shell=True
                     ).communicate()
             else:
+                command = [
+                    "cabextract",
+                    f"-d {temp_path}/{self.name}",
+                    f"-q {self.path}"
+                ]
+                command = " ".join(command)
                 subprocess.Popen(
-                    f"cabextract -d {temp_path}/{self.name} -q {self.path}",
+                    command,
                     shell=True
                 ).communicate()
 
