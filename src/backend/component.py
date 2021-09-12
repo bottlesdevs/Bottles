@@ -218,12 +218,12 @@ class ComponentManager:
             and make sure to use the final url. This check should be
             skipped for large files (e.g. runners).
             '''
-            if component not in ["runner", "runner:proton", "installer"]:
-                download_url = requests.get(
-                    url=download_url, 
-                    allow_redirects=True
-                ).url
             try:
+                if component not in ["runner", "runner:proton", "installer"]:
+                    download_url = requests.get(
+                        url=download_url, 
+                        allow_redirects=True
+                    ).url
                 request = urllib.request.urlopen(download_url)
             except:
                 GLib.idle_add(download_entry.remove)
