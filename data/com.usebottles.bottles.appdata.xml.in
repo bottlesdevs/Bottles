@@ -76,43 +76,42 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2021.8.28-treviso-4" date="2021-08-28">
+        <release version="2021.9.14-treviso" date="2021-09-13">
           <description>
             <p>News</p>
             <ul>
-                <li>Use %command% in launch options to set prefixes and suffixes</li>
-                <li>Create a bottle where to launch the executable choosed from your file manager</li>
-                <li>Rewrited the manager to be less recursive and more user-friendly to developers</li>
-                <li>The dependencies/components/installers has now they own managers, indipendent from the main one</li>
-                <li>The dependencies manager can now extract single files from Windows Cabinet files</li>
-                <li>Now the user need to accept the notice in the crash report, before submiting new reports</li>
-                <li>The user homedir is now removed from the reports</li>
-                <li>The lutris-lol runner is now hidden when Bottles is running under flatpak, as it is not compatible with it</li>
-                <li>The Windows Cabinet extraction is now quiet and only show relavant logs</li>
-                <li>The download status icon in the preferencies dialog, is now on the right of the percentage, so it will be no more moved by the percentage</li>
+                <li>This release completes the second part of the Bottles code remake. Generally improves performance and fixes a series of anomalous crashes. For more information, please read the full log on GitHub.</li>
+                <li>Now dependencies manager can replace fonts in a bottle</li>
+                <li>The download manager icon is replaced by a spinner, also the progress bars are replaced by a spinners</li>
+                <li>Now Bottles manage some failures on components download</li>
+                <li>The dependencies list now show the installed ones on the bottom of the list</li>
             </ul>
 
             <p>Bug fixes</p>
             <ul>
-                <li>Fixed a bug in name resolution that could cause Bottles to crash if it cannot reach a resource</li>
-                <li>Prevent Bottles from running executables when the runner is not available</li>
-                <li>Environment names are now translated again</li>
-                <li>Added missing translations in bottle creation</li>
-                <li>Fixed a problem in Wayland support that was setting DISPLAY to the wrong parameter</li>
-                <li>The directory for added custom programs was wrong</li>
+                <li>Fixed a bug of the main manager, could not find the component manager</li>
+                <li>Fixed a bug that caused Bottles to run on xwayland instead of wayland</li>
+                <li>Fixed a bug in checking for special characters in the bottle name that allowed the use of single quotes</li>
+                <li>Fixed a bug that caused a "no such file or directory" when deleting a bottle</li>
+                <li>Fixed a bug in bottle renaming (I didn't really fully understand the problem but we know it has been fixed)</li>
+                <li>Fixed a bug that prevented the use of Wine command line trouhg the system terminal</li>
+                <li>Fixed a bug in the dependencies manager that was not able to create new directories in some cases</li>
+                <li>Fixed a bug in backup manager that was using wrong directories for export</li>
+                <li>Fixed a bug that was causing Bottles' window to not display the icon</li>
+                <li>Fixed a bug in toggling virtual desktop mode</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz</li>
-                <li>Portuguese (Brazil) translations thanks to @farribeiro, @swyknox</li>
-                <li>Hungarian translations thanks to @ovari</li>
+                <li>Esperanto translations thanks to @phlostically, @phlostically</li>
+                <li>Hungarian translations thanks to @zoli111, @ovari</li>
+                <li>Portuguese translations thanks to @SantosSi</li>
+                <li>Spanish translations thanks to @fitjob, @oscfdezdz</li>
+                <li>Finnish translations thanks to Jiri Grönroos</li>
                 <li>French translations thanks to @julroy67</li>
-                <li>Swedish translations thanks to @bittin</li>
                 <li>Chinese (Simplified) translations thanks to @sr093906</li>
-                <li>Japanese translations thanks to @jatin-cbs</li>
                 <li>Croatian translations thanks to @milotype</li>
-                <li>Indonesian translations thanks to @liimee</li>
+                <li>Turkish translations thanks to @ersen0</li>
             </ul>
           </description>
         </release>
