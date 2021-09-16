@@ -383,6 +383,17 @@ class ComponentManager:
         self.extract(component_type, archive)
 
         '''
+        Execute Post Install if the component has it defined
+        in the manifest.
+        '''
+        if "Post" in manifest:
+            print(f"Executing post install for [{component_name}].")
+
+            for post in manifest.get("Post", []):
+                if post["action"] == "rename":
+                    self.__post_rename(component_type, post)
+
+        '''
         Ask the manager to re-organize its components.
         Note: I know that this is not the most efficient way to do this,
         please give feedback if you know a better way to avoid this.
@@ -401,3 +412,23 @@ class ComponentManager:
         # Execute a method at the end if passed
         if after:
             GLib.idle_add(after)
+
+
+    def __post_rename(self, component_type: str, post: dict):
+        source = post.get("source")
+        dest = post.get("dest")
+
+        if component_type in ["runner", "runner:proton"]:
+            path = Paths.runners
+
+        if component_type == "dxvk":
+            path = Paths.dxvk
+
+        if component_type == "vkd3d":
+            path = Paths.vkd3d
+        
+        if not os.path.isdir(os.path.join(path, dest)):
+            shutil.move(
+                src=os.path.join(path, source),
+                dst=os.path.join(path, dest)
+            )
