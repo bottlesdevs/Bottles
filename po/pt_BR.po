@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 14:44+0200\n"
-"PO-Revision-Date: 2021-08-19 15:42+0000\n"
-"Last-Translator: SWYK <swyknox@gmail.com>\n"
+"PO-Revision-Date: 2021-09-18 21:17+0000\n"
+"Last-Translator: Ricardo Porto <racporto@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -161,13 +161,14 @@ msgstr "Notícias"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Use %command% in launch options to set prefixes and suffixes"
-msgstr ""
+msgstr "Use %command% nas opções de lançamento para definir prefixos e sufixos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid ""
 "Create a bottle where to launch the executable choosed from your file manager"
-msgstr "Feche o Bottles após iniciar o executável no gerenciador de arquivos"
+msgstr ""
+"Criar uma bottle onde será lançado o executável escolhido no seu gerenciador "
+"de arquivos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
 msgid ""
@@ -180,6 +181,8 @@ msgid ""
 "The dependencies/components/installers has now they own managers, "
 "indipendent from the main one"
 msgstr ""
+"As dependências/componentes/instaladores agora têm os seus próprios "
+"gerenciadores, independentes do principal"
 
 #: data/com.usebottles.bottles.appdata.xml.in:104
 msgid ""
@@ -192,30 +195,36 @@ msgid ""
 "Now the user need to accept the notice in the crash report, before submiting "
 "new reports"
 msgstr ""
+"Agora o usuário precisa aceitar a notificação no relatório de erro, antes de "
+"submeter novos relatórios"
 
 #: data/com.usebottles.bottles.appdata.xml.in:106
-#, fuzzy
 msgid "The user homedir is now removed from the reports"
-msgstr "A versão Bottles está agora fornecida no relatório de falhas"
+msgstr "O diretório home do usuário agora é removido dos relatórios"
 
 #: data/com.usebottles.bottles.appdata.xml.in:107
 msgid ""
 "The lutris-lol runner is now hidden when Bottles is running under flatpak, "
 "as it is not compatible with it"
 msgstr ""
+"O executor lutris-lol agora é ocultado quando Bottles está rodando sob "
+"flatpak, devido a incompatibilidade"
 
 #: data/com.usebottles.bottles.appdata.xml.in:108
 msgid "The Windows Cabinet extraction is now quiet and only show relavant logs"
 msgstr ""
+"A extração do Windows Cabinet agora é silenciosa e apenas exibe logs "
+"relevantes"
 
 #: data/com.usebottles.bottles.appdata.xml.in:109
 msgid ""
 "The download status icon in the preferencies dialog, is now on the right of "
 "the percentage, so it will be no more moved by the percentage"
 msgstr ""
+"O ícone de status de download, no diálogo de preferências, agora fica à "
+"direita da percentagem, não sendo mais deslocado pela percentagem"
 
 #: data/com.usebottles.bottles.appdata.xml.in:112
-#, fuzzy
 msgid "Bug fixes"
 msgstr "Correções de bugs"
 
@@ -224,79 +233,75 @@ msgid ""
 "Fixed a bug in name resolution that could cause Bottles to crash if it "
 "cannot reach a resource"
 msgstr ""
+"Corrigido um bug na resolução de nome que poderia provocar o travamento de "
+"Bottles, caso não encontrasse um recurso"
 
 #: data/com.usebottles.bottles.appdata.xml.in:115
 msgid ""
 "Prevent Bottles from running executables when the runner is not available"
 msgstr ""
+"Prevenir Bottles de rodar executáveis quando o executor não estiver "
+"disponível"
 
 #: data/com.usebottles.bottles.appdata.xml.in:116
 msgid "Environment names are now translated again"
-msgstr ""
+msgstr "Nomes de ambiente agora são novamente traduzidos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:117
 msgid "Added missing translations in bottle creation"
-msgstr ""
+msgstr "Adicionadas traduções que faltavam na criação de bottle"
 
 #: data/com.usebottles.bottles.appdata.xml.in:118
 msgid ""
 "Fixed a problem in Wayland support that was setting DISPLAY to the wrong "
 "parameter"
 msgstr ""
+"Corrigido um problema no suporte a Wayland que estava configurando DISPLAY "
+"com o parâmetro errado"
 
 #: data/com.usebottles.bottles.appdata.xml.in:119
 msgid "The directory for added custom programs was wrong"
-msgstr ""
+msgstr "O diretório para os programas persnalizados adicionados estava errado"
 
 #: data/com.usebottles.bottles.appdata.xml.in:122
-#, fuzzy
 msgid "Translations"
 msgstr "Traduções"
 
 #: data/com.usebottles.bottles.appdata.xml.in:124
-#, fuzzy
 msgid "Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz"
-msgstr "Traduções para o japonês graças a @jatin-cbs"
+msgstr "Traduções para o espanhol graças a @fitojb, @kenpb, @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @farribeiro, @swyknox"
-msgstr "Traduções para o português (Brasil) graças a @LeandroStanger"
+msgstr "Traduções para o português (Brasil) graças a @LeandroStanger, @rporto"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
-#, fuzzy
 msgid "Hungarian translations thanks to @ovari"
 msgstr "Traduções para húngaro graças a @ovari"
 
 #: data/com.usebottles.bottles.appdata.xml.in:127
-#, fuzzy
 msgid "French translations thanks to @julroy67"
-msgstr "Traduções para o Francês graças a @julroy67"
+msgstr "Traduções para o francês graças a @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:128
-#, fuzzy
 msgid "Swedish translations thanks to @bittin"
-msgstr "Traduções para o Francês graças a @julroy67"
+msgstr "Traduções para o suéco graças a @julroy67"
 
 #: data/com.usebottles.bottles.appdata.xml.in:129
-#, fuzzy
 msgid "Chinese (Simplified) translations thanks to @sr093906"
-msgstr "Traduções em chinês (simplificado) graças a @Yuzaihhhh e @ sr093906"
+msgstr "Traduções em chinês (simplificado) graças a @ sr093906"
 
 #: data/com.usebottles.bottles.appdata.xml.in:130
-#, fuzzy
 msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "Traduções para o japonês graças a @jatin-cbs"
 
 #: data/com.usebottles.bottles.appdata.xml.in:131
-#, fuzzy
 msgid "Croatian translations thanks to @milotype"
-msgstr "Traduções Croatas graças a @milotype"
+msgstr "Traduções para o croata graças a @milotype"
 
 #: data/com.usebottles.bottles.appdata.xml.in:132
-#, fuzzy
 msgid "Indonesian translations thanks to @liimee"
-msgstr "Traduções Croatas graças a @milotype"
+msgstr "Traduções para o indonêsio graças a @liimee"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -304,7 +309,7 @@ msgstr "Migração Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the flatpak migration dialog."
-msgstr ""
+msgstr "Ativar/desativar o diálogo de migração de flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
@@ -316,27 +321,27 @@ msgstr "Ativa o tema escuro."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Alternar a data de atualização na lista"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in bottles list."
-msgstr ""
+msgstr "Alternar a data de atualização na lista de bottles."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
-msgstr ""
+msgstr "Largura da janela"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Change the window width"
-msgstr ""
+msgstr "Alterar a largura da janela"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
-msgstr ""
+msgstr "Altura da janela"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Change the window height"
-msgstr ""
+msgstr "Alterar a altura da janela"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
 msgid "Notifications"
@@ -456,6 +461,8 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Ocorreu um erro de instalação. Reinicie Bottles para ler o relatório de "
+"erros ou execute-o via terminal para ler a saída."
 
 #: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
@@ -483,9 +490,8 @@ msgid "Full archive"
 msgstr "Arquivo completo"
 
 #: src/ui/details.ui:62
-#, fuzzy
 msgid "Duplicate bottle"
-msgstr "Garrafa duplicada"
+msgstr "Bottle duplicada"
 
 #: src/ui/details.ui:92
 msgid "Run with arguments"
@@ -569,7 +575,7 @@ msgstr "Mate todos os processos"
 
 #: src/ui/details.ui:617
 msgid "Are you experiencing problems reaching a directory in Bottles?"
-msgstr ""
+msgstr "Está com dificuldade de acessar um diretório em Bottles?"
 
 #: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
 #: src/views/details.py:596
@@ -766,7 +772,7 @@ msgstr "Substituições de DLL"
 
 #: src/ui/details.ui:1620
 msgid "Working directory"
-msgstr ""
+msgstr "Diretório de trabalho"
 
 #: src/ui/details.ui:1622
 msgid "Point to the bottle path"
@@ -820,6 +826,8 @@ msgstr "Preferências"
 #: src/ui/details.ui:1887
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
+"Modo de teste ativado: apenas são exibidas as dependências do repositório de "
+"teste."
 
 #: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:595
 msgid "Dependencies"
@@ -847,7 +855,6 @@ msgstr ""
 "Estes são os programas ou jogos encontrados no menu Iniciar do seus Bottles"
 
 #: src/ui/details.ui:2152
-#, fuzzy
 msgid "Add a custom executable path"
 msgstr "Adicionar um caminho executável personalizado"
 
@@ -860,6 +867,9 @@ msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
+"Esta é uma funcionalidade experimenta em estágio inicial, seja cuidadoso e "
+"<a href=\"https://github.com/bottlesdevs/Bottles/issues/new/choose\""
+">comunique bugs</a>."
 
 #: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:601
 msgid "Installers"
@@ -971,6 +981,10 @@ msgid ""
 "\n"
 "Press to try again."
 msgstr ""
+"A instalação falhou. Isso pode ser devido a um erro no repositório, download "
+"parcial ou erro de checksum.\n"
+"\n"
+"Clique para tentar novamente."
 
 #: src/ui/dxvk-entry.ui:72
 msgid "Download & Install this DXVK"
@@ -1036,7 +1050,7 @@ msgstr "Execute neste Bottle"
 
 #: src/ui/list-entry.ui:252
 msgid "Run here"
-msgstr ""
+msgstr "Executar aqui"
 
 #: src/ui/new.ui:25
 msgid "Create bottle"
@@ -1088,26 +1102,25 @@ msgstr "Ative o controle de versão para salvar e restaurar o estado do Bottle."
 
 #: src/ui/new.ui:409
 msgid "Architecture"
-msgstr ""
+msgstr "Arquitetura"
 
 #: src/ui/new.ui:411
 msgid "We recommend using only 32bit if strictly necessary"
-msgstr ""
+msgstr "Recomenda-se usar 32bit apenas se estritamente necessário"
 
 #: src/ui/new.ui:425
 msgid "64 bit"
-msgstr ""
+msgstr "64 bits"
 
 #: src/ui/new.ui:426
 msgid "32 bit"
-msgstr ""
+msgstr "32 bits"
 
 #: src/ui/new.ui:480
 msgid "Creating bottle…"
 msgstr "Criando Bottle…"
 
 #: src/ui/new.ui:499
-#, fuzzy
 msgid "Take a break, it may take a while"
 msgstr "Faça uma pausa, pode demorar um pouco"
 
@@ -1218,7 +1231,7 @@ msgstr "Download"
 
 #: src/ui/onboard.ui:463
 msgid "Everything is ready!"
-msgstr "Tudo está pronto!"
+msgstr "Tudo pronto!"
 
 #: src/ui/onboard.ui:483
 msgid "You are now ready to create your first bottles."
@@ -1246,11 +1259,11 @@ msgstr "Se os seus Bottles devem usar uma variante de tema escuro."
 
 #: src/ui/preferences.ui:55
 msgid "Show update date"
-msgstr ""
+msgstr "Exibir data de atualização"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "Se deseja exibir a data de atualização na lista de bottles."
 
 #: src/ui/preferences.ui:93
 msgid "Show notifications for downloads and installs."
@@ -1316,11 +1329,11 @@ msgstr "Problemas com Bottles"
 
 #: src/ui/program-entry.ui:108
 msgid "Remove from Programs"
-msgstr ""
+msgstr "Remover de Programas"
 
 #: src/ui/runner-entry.ui:47
 msgid "Download & Install this runner"
-msgstr "Descarregar e instalar este corredor"
+msgstr "Descarregar e instalar este executor"
 
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
@@ -1385,18 +1398,16 @@ msgid "New bottle"
 msgstr "Crie um novo bottle"
 
 #: src/main.py:96
-#, fuzzy
 msgid "Show version"
-msgstr "Mostrar versão"
+msgstr "Exibir versão"
 
 #: src/main.py:104
-#, fuzzy
 msgid "Executable path"
-msgstr "Executar .exe/.msi/.bat"
+msgstr "Caminho executável"
 
 #: src/main.py:112
 msgid "lnk path"
-msgstr ""
+msgstr "Caminho lnk"
 
 #: src/main.py:225
 msgid "[Quit] request received."
@@ -1433,37 +1444,29 @@ msgid "Importing backup: {0}"
 msgstr "Importando backup: {0}"
 
 #: src/backend/manager.py:530
-#, fuzzy
 msgid "No runners found, please install one."
-msgstr "Nenhum runners encontrado."
+msgstr "Nenhum executor encontrado."
 
 #: src/backend/manager.py:534
-#, fuzzy
 msgid "No dxvk found, installing the latest version …"
-msgstr ""
-"Um ou mais componentes não encontrados, instalando a versão mais recente…"
+msgstr "DXVK não encontrado, instalando a versão mais recente…"
 
 #: src/backend/manager.py:537
-#, fuzzy
 msgid "No vkd3d found, installing the latest version …"
-msgstr ""
-"Um ou mais componentes não encontrados, instalando a versão mais recente…"
+msgstr "VKD3D não encontrados, instalando a versão mais recente…"
 
 #. Execute wineboot
 #: src/backend/manager.py:585
-#, fuzzy
 msgid "The wine config is being updated …"
 msgstr "A configuração do wine está sendo atualizada …"
 
 #: src/backend/manager.py:592
-#, fuzzy
 msgid "Wine config updated!"
 msgstr "Configuração do Wine atualizada!"
 
 #: src/backend/manager.py:597
-#, fuzzy
 msgid "Generating Bottle config file …"
-msgstr "Gerando índice de arquivos de estado…"
+msgstr "Gerando o arquivo de config de bottle…"
 
 #: src/backend/manager.py:618
 #, python-brace-format
@@ -1504,9 +1507,8 @@ msgid "Updating states …"
 msgstr "Atualizando estados…"
 
 #: src/dialogs/crash.py:38
-#, fuzzy
 msgid "Show report"
-msgstr "Relatório de erro"
+msgstr "Exibir relatório"
 
 #: src/dialogs/generic.py:24 src/dialogs/generic.py:62
 msgid "Warning"
@@ -1535,21 +1537,20 @@ msgid "Details & Utilities"
 msgstr "Detalhes e utilitários"
 
 #: src/views/details.py:628
-#, fuzzy
 msgid "Choose working directory for executables"
-msgstr "Escolha um arquivo executável do Windows"
+msgstr "Escolha um diretório de trabalho para executáveis"
 
 #: src/views/details.py:631
 msgid "Done"
-msgstr ""
+msgstr "Feito"
 
 #: src/views/details.py:679
 msgid "64-bit"
-msgstr ""
+msgstr "64-bits"
 
 #: src/views/details.py:681
 msgid "32-bit"
-msgstr ""
+msgstr "32-bits"
 
 #: src/views/details.py:695
 #, python-format
@@ -1557,13 +1558,12 @@ msgid "Updated: %s"
 msgstr "Atualizado: %s"
 
 #: src/views/details.py:788
-#, fuzzy
 msgid "Choose an executable path"
-msgstr "Escolha um arquivo executável do Windows"
+msgstr "Escolha um caminho executável"
 
 #: src/views/details.py:791
 msgid "Add"
-msgstr ""
+msgstr "Incluir"
 
 #: src/views/details.py:1070 src/views/list.py:110
 msgid "Choose a Windows executable file"
@@ -1574,13 +1574,12 @@ msgid "Run"
 msgstr "Executar"
 
 #: src/views/details.py:1149
-#, fuzzy
 msgid "Select the location where to save the backup config"
-msgstr "Selecione o local onde salvar a configuração de backup"
+msgstr "Selecione o local onde gravar a configuração de backup"
 
 #: src/views/details.py:1171
 msgid "Select the location where to save the backup archive"
-msgstr "Selecione o local onde salvar o arquivo de backup"
+msgstr "Selecione o local onde gravar o arquivo de backup"
 
 #: src/views/details.py:1199
 msgid "Confirm deletion"
@@ -1596,7 +1595,7 @@ msgstr "Escolha um arquivo de backup"
 
 #: src/views/list.py:52 src/views/list.py:58
 msgid "N/A"
-msgstr ""
+msgstr "N/D"
 
 #: src/views/list.py:94
 #, python-brace-format
@@ -1628,9 +1627,9 @@ msgid "A clear environment for your experiments."
 msgstr "Um ambiente limpo para seus experimentos."
 
 #: src/views/new.py:211
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "Um bottle chamado “%s” foi criado com sucesso"
+msgstr "Um bottle chamado “{0}” foi criado com exito"
 
 #, fuzzy
 #~ msgid "Toggle the last Update date in the bottles list"
