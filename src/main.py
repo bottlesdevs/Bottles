@@ -178,7 +178,6 @@ class Bottles(Gtk.Application):
             'org.gnome.desktop.interface',
             'gtk-theme'
         ]).decode("utf-8")
-
         if "Yaru" in user_theme:
             css_res = Gio.resources_lookup_data(
                 path="/com/usebottles/bottles/yaru.css",
@@ -187,6 +186,11 @@ class Bottles(Gtk.Application):
         elif "Breeze" in user_theme:
             css_res = Gio.resources_lookup_data(
                 path="/com/usebottles/bottles/breeze.css",
+                lookup_flags=0
+            )
+        elif "io.elementary.stylesheet" in user_theme:
+            css_res = Gio.resources_lookup_data(
+                path="/com/usebottles/bottles/elementary.css",
                 lookup_flags=0
             )
         else:
