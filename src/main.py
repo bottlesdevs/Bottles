@@ -193,14 +193,17 @@ class Bottles(Gtk.Application):
                 path="/com/usebottles/bottles/elementary.css",
                 lookup_flags=0
             )
-        else:
-            css_res = Gio.resources_lookup_data(
-                path="/com/usebottles/bottles/style.css",
-                lookup_flags=0
-            )
+
+        css_def = Gio.resources_lookup_data(
+            path="/com/usebottles/bottles/style.css",
+            lookup_flags=0
+        )
 
         provider = Gtk.CssProvider()
-        provider.load_from_data(css_res.get_data())
+        if css_res:
+            provider.load_from_data(css_def.get_data() + css_res.get_data())
+        else:
+            provider.load_from_data(css_def.get_data())
         Gtk.StyleContext.add_provider_for_screen(
             screen=Gdk.Screen.get_default(),
             provider=provider,
