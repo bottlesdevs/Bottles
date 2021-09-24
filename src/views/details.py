@@ -675,10 +675,17 @@ class DetailsView(Handy.Leaflet):
         to the widget state. It will also update the bottle configuration
         once the process is finished.
         '''
+        widget.set_sensitive(False)
         if state:
-            self.manager.install_dxvk(self.config)
+            self.manager.install_dxvk(
+                config=self.config, 
+                widget=widget
+            )
         else:
-            self.manager.remove_dxvk(self.config)
+            self.manager.remove_dxvk(
+                config=self.config, 
+                widget=widget
+            )
 
         new_config = self.manager.update_config(
             config=self.config,
@@ -707,10 +714,17 @@ class DetailsView(Handy.Leaflet):
         to the widget state. It will also update the bottle configuration
         once the process is finished.
         '''
+        widget.set_sensitive(False)
         if state:
-            self.manager.install_vkd3d(self.config)
+            self.manager.install_vkd3d(
+                config=self.config, 
+                widget=widget
+            )
         else:
-            self.manager.remove_vkd3d(self.config)
+            self.manager.remove_vkd3d(
+                config=self.config, 
+                widget=widget
+            )
 
         new_config = self.manager.update_config(
             config=self.config,

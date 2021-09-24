@@ -800,13 +800,13 @@ class Manager:
             # perform dxvk installation if configured
             logging.info("Installing dxvk …")
             update_output(_("Installing dxvk …"))
-            self.install_dxvk(config, version=dxvk_name)
+            self.async_install_dxvk([config, False, dxvk_name, None])
 
         if config["Parameters"]["vkd3d"]:
             # perform vkd3d installation if configured
             logging.info("Installing vkd3d …")
             update_output(_("Installing vkd3d …"))
-            self.install_vkd3d(config, version=vkd3d_name)
+            self.async_install_vkd3d([config, False, vkd3d_name, None])
 
         time.sleep(1)
 
@@ -1003,16 +1003,12 @@ class Manager:
 
         Runner().run_command(config, f"reg delete '{key}' /v {value} /f")
 
-    def install_dxvk(
-        self, 
-        config: BottleConfig, 
-        remove: bool = False, 
-        version: str = False
-    ) -> bool:
+    def async_install_dxvk(self, args: list):
         '''
         This function install the givven DXVK version in a bottle. It can
         also be used to remove the DXVK version if remove is set to True.
         '''
+        config, remove, version, widget = args
         logging.info(f"Installing dxvk for bottle: [{config['Name']}].")
 
         if version:
@@ -1031,18 +1027,31 @@ class Manager:
             '--with-d3d10'
         ]
         command = " ".join(command)
-        return subprocess.Popen(command, shell=True).communicate()
+        res = subprocess.Popen(command, shell=True).communicate()
 
-    def install_vkd3d(
+        if widget is None:
+            return res
+        return widget.set_sensitive(True)
+
+    def install_dxvk(
         self, 
         config: BottleConfig, 
         remove: bool = False, 
-        version: str = False
+        version: str = False,
+        widget: Gtk.Widget = None
     ) -> bool:
+        RunAsync(
+            self.async_install_dxvk, 
+            None, 
+            [config, remove, version, widget]
+        )
+
+    def async_install_vkd3d(self, args):
         '''
         This function install the givven VKD3D version in a bottle. It can
         also be used to remove the VKD3D version if remove is set to True.
         '''
+        config, remove, version, widget = args
         logging.info(
             f"Installing vkd3d for bottle: [{config['Name']}]."
         )
@@ -1064,26 +1073,41 @@ class Manager:
             f'{Paths.vkd3d}/{vkd3d_version}/setup_vkd3d_proton.sh',
             option
         ]
-        command = " ".join(command)
-        return subprocess.Popen(command, shell=True).communicate()
+        res = subprocess.Popen(command, shell=True).communicate()
+        if widget is None:
+            return res
+        return widget.set_sensitive(True)
 
-    def remove_dxvk(self, config: BottleConfig) -> None:
+    def install_vkd3d(
+        self, 
+        config: BottleConfig, 
+        remove: bool = False, 
+        version: str = False,
+        widget: Gtk.Widget = None
+    ) -> bool:
+        RunAsync(
+            self.async_install_vkd3d, 
+            None, 
+            [config, remove, version, widget]
+        )
+
+    def remove_dxvk(self, config: BottleConfig, widget: Gtk.Widget = None):
         '''
         This is a wrapper function for the install_dxvk function,
         using the remove option.
         '''
         logging.info(f"Removing dxvk for bottle: [{config['Name']}].")
 
-        self.install_dxvk(config, remove=True)
+        self.install_dxvk(config, remove=True, widget=widget)
 
-    def remove_vkd3d(self, config: BottleConfig) -> None:
+    def remove_vkd3d(self, config: BottleConfig, widget: Gtk.Widget = None):
         '''
         This is a wrapper function for the install_vkd3d function,
         using the remove option.
         '''
         logging.info(f"Removing vkd3d for bottle: [{config['Name']}].")
 
-        self.install_vkd3d(config, remove=True)
+        self.install_vkd3d(config, remove=True, widget=widget)
 
     def dll_override(
         self, 
