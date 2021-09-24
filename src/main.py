@@ -178,6 +178,7 @@ class Bottles(Gtk.Application):
             'org.gnome.desktop.interface',
             'gtk-theme'
         ]).decode("utf-8")
+        css_res = False
         if "Yaru" in user_theme:
             css_res = Gio.resources_lookup_data(
                 path="/com/usebottles/bottles/yaru.css",
