@@ -130,7 +130,7 @@ class DetailsView(Handy.Leaflet):
 
         self.btn_winecfg.connect('activate', self.run_winecfg)
         self.btn_debug.connect('activate', self.run_debug)
-        self.btn_execute.connect('activate', self.__run_executable)
+        self.btn_execute.connect('activate', self.run_executable)
         self.btn_run_args.connect('activate', self.__run_executable_with_args)
         self.btn_browse.connect('activate', self.run_browse)
         self.btn_cmd.connect('activate', self.run_cmd)
@@ -146,7 +146,7 @@ class DetailsView(Handy.Leaflet):
 
         self.btn_winecfg.connect('pressed', self.run_winecfg)
         self.btn_debug.connect('pressed', self.run_debug)
-        self.btn_execute.connect('pressed', self.__run_executable)
+        self.btn_execute.connect('pressed', self.run_executable)
         self.btn_run_args.connect('pressed', self.__run_executable_with_args)
         self.btn_browse.connect('pressed', self.run_browse)
         self.btn_cmd.connect('pressed', self.run_cmd)
@@ -896,7 +896,7 @@ class DetailsView(Handy.Leaflet):
         new_window = RunArgsDialog(self)
         new_window.present()
 
-    def __run_executable(self, widget, args=False):
+    def run_executable(self, widget, args=False):
         '''
         This function pop up the dialog to run an executable.
         The file will be executed by the runner after the
