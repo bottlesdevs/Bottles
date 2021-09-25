@@ -49,7 +49,7 @@ jobs:
       - name: Build flatpak
         run: |
           flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak-builder --user  --force-clean --repo=repo --install-deps-from=flathub flatpak com.usebottles.bottles.dev.json
+          flatpak-builder --user  --force-clean --repo=repo --install-deps-from=flathub flatpak com.usebottles.bottles.dev.yml
           flatpak build-bundle repo com.usebottles.bottles-unstable.flatpak com.usebottles.bottles --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
 
       # Rename and release packages
