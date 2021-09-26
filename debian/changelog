@@ -1,29 +1,17 @@
 com.usebottles.bottles (2021.9.28-treviso) precise; urgency=low
 
-  * This release completes the second part of the Bottles code remake. Generally improves performance and fixes a series of anomalous crashes. For more information, please read the full log on GitHub.
-  * Now dependencies manager can replace fonts in a bottle
-  * The download manager icon is replaced by a spinner, also the progress bars are replaced by a spinners
-  * Now Bottles manage some failures on components download
-  * The dependencies list now show the installed ones on the bottom of the list
-  * Fixed a bug of the main manager, could not find the component manager
-  * Fixed a bug that caused Bottles to run on xwayland instead of wayland
-  * Fixed a bug in checking for special characters in the bottle name that allowed the use of single quotes
-  * Fixed a bug that caused a "no such file or directory" when deleting a bottle
-  * Fixed a bug in bottle renaming (I didn't really fully understand the problem but we know it has been fixed)
-  * Fixed a bug that prevented the use of Wine command line trouhg the system terminal
-  * Fixed a bug in the dependencies manager that was not able to create new directories in some cases
-  * Fixed a bug in backup manager that was using wrong directories for export
-  * Fixed a bug that was causing Bottles' window to not display the icon
-  * Fixed a bug in toggling virtual desktop mode
-  * Esperanto translations thanks to @phlostically, @phlostically
-  * Hungarian translations thanks to @zoli111, @ovari
-  * Portuguese translations thanks to @SantosSi
-  * Spanish translations thanks to @fitjob, @oscfdezdz
-  * Finnish translations thanks to Jiri Grönroos
-  * French translations thanks to @julroy67
-  * Chinese (Simplified) translations thanks to @sr093906
-  * Croatian translations thanks to @milotype
-  * Turkish translations thanks to @ersen0
+  * Improved the Download manager
+  * Update to GNOME Runtime 41.
+  * The DXVK and VKD3D installation are now performed in asynchronous mode
+  * UI improvements for elementary OS
+  * Fixed a bug in component installation that was assigning the wrong name after download.
+  * Fixed the wrong text for cwd label.
+  * Fixed a bug that was causing Bottles crash when running executables with arguments.
+  * Indonesian translations thanks to @rezaalmanda
+  * Spanish translations thanks to @oscfdezdz
+  * Japanese translations thanks to @jatin-cbs
+  * Portuguese translations thanks to @hugok79
+  * Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, @davipatricio
+  * German translations thanks to @thericosanto
 
-
- -- Mirko Brombin <send@mirko.pm>  Sat, 14 Sep 2021 08:32:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Thu, 28 Sep 2021 08:32:00 +0000
