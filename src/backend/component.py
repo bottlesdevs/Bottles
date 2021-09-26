@@ -245,6 +245,14 @@ class ComponentManager:
                     GLib.idle_add(download_entry.remove)
                     return False
 
+                if not os.path.isfile(f"{Paths.temp}/{file}"):
+                    '''
+                    If the file is not available in the /temp directory,
+                    then the download failed.
+                    '''
+                    GLib.idle_add(download_entry.remove)
+                    return False
+                    
                 just_downloaded = True
             else:
                 GLib.idle_add(download_entry.remove)
