@@ -100,7 +100,7 @@ Once the package is published, you can open a [Pull Request](https://github.com/
 | `Esc` | Go back |
 
 ## FAQ
-- [Why Bottles?](hhttps://docs.usebottles.com/faq/why-bottles)
+- [Why Bottles?](https://docs.usebottles.com/faq/why-bottles)
 - [Where is Winetricks?](https://docs.usebottles.com/faq/where-is-winetricks)
 - [Older versions will be deprecated?](https://docs.usebottles.com/faq/updates-and-old-versions#older-versions-will-be-deprecated)
 - [Backward compatibility?](https://docs.usebottles.com/faq/updates-and-old-versions#backward-compatibility)
