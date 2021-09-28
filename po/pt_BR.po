@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 14:44+0200\n"
-"PO-Revision-Date: 2021-09-27 18:47+0000\n"
+"PO-Revision-Date: 2021-09-29 11:37+0000\n"
 "Last-Translator: Davi Patricio <davipatricio@pm.me>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
@@ -60,17 +60,17 @@ msgid ""
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
-"Nosso sistema de instalação de dependência integrado permite fácil acesso a "
-"um amplo nível de compatibilidade de software. Também incluímos um "
-"gerenciador de download para baixar os componentes oficiais: runner (wine, "
-"proton), dxvk, dependências, etc."
+"Nosso sistema de instalação de dependências permite fácil acesso a um amplo "
+"nível de compatibilidade de software. Use o gerenciador de download para "
+"baixar os componentes oficiais: o executor (Wine, Proton), DXVK, "
+"dependências, etc."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Recursos como controle de versão do Bottle permitem que você mantenha seu "
-"trabalho seguro e restaure-o mais tarde!"
+"O controle de versão do Bottle mantém seu trabalho seguro agora e permite "
+"que você o restaure mais tarde!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
@@ -79,19 +79,19 @@ msgstr "Características:"
 #: data/com.usebottles.bottles.appdata.xml.in:18
 msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
-"Crie seus bottles usando ambientes pré-configurados ou crie seus próprios"
+"Crie suas garrafas usando ambientes pré-configurados ou crie seus próprios"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
 msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Execute todos os executáveis (.exe/.msi) em seus bottles, diretamente do "
+"Execute todos os executáveis (.exe/.msi) em suas garrafas, diretamente do "
 "menu de contexto de seu gerenciador de arquivos"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr "Detecção automatizada de aplicativos instalados em seus bottles"
+msgstr "Detecção automatizada de aplicativos instalados em suas garrafas"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -99,11 +99,11 @@ msgstr "Adicione variáveis de ambiente facilmente"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
-msgstr "Substitua DLLs diretamente nas preferências do bottle"
+msgstr "Substitua DLLs diretamente nas preferências por garrafa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
-msgstr "Mudança de runner em tempo real para qualquer Bottle"
+msgstr "Mudança de executor em tempo real para qualquer Bottle"
 
 #: data/com.usebottles.bottles.appdata.xml.in:24
 msgid ""
@@ -115,7 +115,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:25
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr "Instalação automática e gerenciamento de runners Wine e Proton"
+msgstr "Instalação automática e gerenciamento de executores Wine e Proton"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
@@ -369,7 +369,7 @@ msgstr "Candidato a Lançamento"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle Release Candidate for Runners"
-msgstr "Ativa Candidato a Lançamento para runners"
+msgstr "Alternar Candidato a Lançamento para executores"
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
@@ -389,8 +389,8 @@ msgid ""
 "Toggle experimental features such as versioning and installers.Release "
 "Candidate for Runners"
 msgstr ""
-"Alterna recursos experimentais, como controle de versão e instaladores."
-"Candidato a Lançamento para Runners"
+"Alterna recursos experimentais, como controle de versão e "
+"instaladores.Candidato a Lançamento para executores"
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:versioning"
@@ -856,7 +856,7 @@ msgstr "Microsoft .NET Framework 4..."
 #: src/ui/details.ui:2128
 msgid "These are the programs found in your bottle's Start menu"
 msgstr ""
-"Estes são os programas ou jogos encontrados no menu Iniciar do seus Bottles"
+"Estes são os programas ou jogos encontrados no menu Iniciar da sua garrafa"
 
 #: src/ui/details.ui:2152
 msgid "Add a custom executable path"
@@ -1239,7 +1239,7 @@ msgstr "Tudo pronto!"
 
 #: src/ui/onboard.ui:483
 msgid "You are now ready to create your first bottles."
-msgstr "Agora você está pronto para criar seus primeiros bottles."
+msgstr "Agora você está pronto para criar suas primeiras garrafa."
 
 #: src/ui/onboard.ui:498
 msgid "Finish"
@@ -1259,7 +1259,7 @@ msgstr "Tema escuro"
 
 #: src/ui/preferences.ui:29 src/ui/preferences.ui:322
 msgid "Whether Bottles should use the Dark theme variant."
-msgstr "Se os seus Bottles devem usar uma variante de tema escuro."
+msgstr "Se o Bottles deve usar uma variante de tema escuro."
 
 #: src/ui/preferences.ui:55
 msgid "Show update date"
@@ -1435,7 +1435,7 @@ msgstr "Detalhes do Bottle"
 
 #: src/window.py:179
 msgid "Bottles Started!"
-msgstr "Bottles iniciadas!"
+msgstr "Garrafas iniciadas!"
 
 #: src/backend/backup.py:46
 #, python-brace-format
