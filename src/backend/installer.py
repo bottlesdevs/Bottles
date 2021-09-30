@@ -89,10 +89,18 @@ class InstallerManager:
         if not os.path.isfile(icon_path):
             urllib.request.urlretrieve(icon_url, icon_path)
 
-    def __install_dependencies(self, config, dependencies:list):
+    def __install_dependencies(
+        self, 
+        config, 
+        dependencies:list, 
+        widget:Gtk.Widget
+    ):
         for dep in dependencies:
+            widget.next_step()
+
             if dep in config.get("Installed_Dependencies"):
                 continue
+
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
             self.__manager.dependency_manager.async_install([
                 config, 
@@ -190,6 +198,17 @@ class InstallerManager:
             installer_name = installer[0],
             installer_category = installer[1]["Category"]
         )
+        steps = 0
+        if manifest.get("Dependencies"):
+            steps += int(len(manifest.get("Dependencies")))
+        if manifest.get("Parameters"):
+            steps += 1
+        if manifest.get("Steps"):
+            steps += int(len(manifest.get("Steps")))
+        if manifest.get("Executable"):
+            steps += 1
+        widget.set_steps(steps)
+        
         dependencies = manifest.get("Dependencies")
         parameters = manifest.get("Parameters")
         executable = manifest.get("Executable")
@@ -201,14 +220,16 @@ class InstallerManager:
         
         # install dependencies
         if dependencies:
-            self.__install_dependencies(config, dependencies)
+            self.__install_dependencies(config, dependencies, widget)
         
         # execute steps
         if steps:
+            widget.next_step()
             self.__perform_steps(config, steps)
         
         # set parameters
         if parameters:
+            widget.next_step()
             self.__set_parameters(config, parameters)
 
         # register executable arguments
@@ -216,6 +237,7 @@ class InstallerManager:
             self.__set_executable_arguments(config, executable)
 
         # create Desktop entry
+        widget.next_step()
         self.__create_desktop_entry(config, manifest, executable)
 
         # unlock widget

@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, GLib, Handy
+from gettext import gettext as _
 
 from ..dialogs.generic import Dialog
 
@@ -28,6 +29,7 @@ class InstallerEntry(Handy.ActionRow):
     btn_install = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     img_installed = Gtk.Template.Child()
+    label_step = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, installer, plain=False, **kwargs):
@@ -39,6 +41,8 @@ class InstallerEntry(Handy.ActionRow):
         self.config = config
         self.installer = installer
         self.spinner = Gtk.Spinner()
+        self.__step = 0
+        self.steps = 0
 
         '''Populate widgets'''
         self.set_title(installer[0])
@@ -48,9 +52,8 @@ class InstallerEntry(Handy.ActionRow):
         self.btn_install.connect('pressed', self.execute_installer)
         self.btn_manifest.connect('pressed', self.open_manifest)
 
-    '''Open installer manifest'''
-
     def open_manifest(self, widget):
+        '''Open installer manifest'''
         dialog = Dialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
@@ -64,10 +67,10 @@ class InstallerEntry(Handy.ActionRow):
         dialog.run()
         dialog.destroy()
 
-    '''Execute installer'''
-
     def execute_installer(self, widget):
+        '''Execute installer'''
         self.get_parent().set_sensitive(False)
+        self.label_step.set_visible(True)
         for w in widget.get_children():
             w.destroy()
 
@@ -83,10 +86,21 @@ class InstallerEntry(Handy.ActionRow):
             widget=self
         )
 
-    '''Set installed status'''
-
     def set_installed(self):
+        '''Set installed status'''
         self.spinner.stop()
         self.btn_install.set_visible(False)
+        self.label_step.set_visible(False)
         self.img_installed.set_visible(True)
         self.get_parent().set_sensitive(True)
+    
+    def next_step(self):
+        '''Next step'''
+        self.__step += 1
+        self.label_step.set_text(
+            _(f"Step {self.__step} of {self.steps}")
+        )
+    
+    def set_steps(self, steps):
+        '''Set steps'''
+        self.steps = steps
