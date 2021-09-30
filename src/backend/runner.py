@@ -304,7 +304,10 @@ class Runner:
                 raise Exception("ShellExecuteEx")
         except Exception as e:
             # workaround for `No such file or directory` error
-            return subprocess.Popen(command, shell=True).communicate()
+            res = subprocess.Popen(command, shell=True)
+            if comunicate:
+                return res.communicate()
+            return res
 
     @staticmethod
     def get_bottle_path(config: BottleConfig) -> str:
