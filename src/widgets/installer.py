@@ -17,6 +17,7 @@
 
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
+import webbrowser
 
 from ..dialogs.generic import Dialog
 
@@ -28,6 +29,7 @@ class InstallerEntry(Handy.ActionRow):
     # region Widgets
     btn_install = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
+    btn_report = Gtk.Template.Child()
     img_installed = Gtk.Template.Child()
     label_step = Gtk.Template.Child()
     # endregion
@@ -49,10 +51,11 @@ class InstallerEntry(Handy.ActionRow):
         self.set_subtitle(installer[1].get("Description"))
 
         # connect signals
-        self.btn_install.connect('pressed', self.execute_installer)
-        self.btn_manifest.connect('pressed', self.open_manifest)
+        self.btn_install.connect('pressed', self.__execute_installer)
+        self.btn_manifest.connect('pressed', self.__open_manifest)
+        self.btn_report.connect('pressed', self.__open_bug_report)
 
-    def open_manifest(self, widget):
+    def __open_manifest(self, widget):
         '''Open installer manifest'''
         dialog = Dialog(
             parent=self.window,
@@ -66,8 +69,12 @@ class InstallerEntry(Handy.ActionRow):
         )
         dialog.run()
         dialog.destroy()
+    
+    def __open_bug_report(self, widget):
+        '''Open bug report'''
+        webbrowser.open("https://github.com/bottlesdevs/programs/issues")
 
-    def execute_installer(self, widget):
+    def __execute_installer(self, widget):
         '''Execute installer'''
         self.get_parent().set_sensitive(False)
         self.label_step.set_visible(True)
