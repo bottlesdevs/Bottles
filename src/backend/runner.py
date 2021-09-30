@@ -303,7 +303,6 @@ class Runner:
             if "ShellExecuteEx" in res:
                 raise Exception("ShellExecuteEx")
         except Exception as e:
-            print(e)
             # workaround for `No such file or directory` error
             return subprocess.Popen(command, shell=True).communicate()
 
