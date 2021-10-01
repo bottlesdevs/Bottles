@@ -219,17 +219,13 @@ class ComponentManager:
             skipped for large files (e.g. runners).
             '''
             try:
-                if component not in ["runner", "runner:proton", "installer"]:
-                    download_url = requests.get(
-                        url=download_url, 
-                        allow_redirects=True
-                    ).url
-                request = urllib.request.urlopen(download_url)
+                download_url = urllib.request.urlopen(download_url).geturl()
+                req_code = urllib.request.urlopen(download_url).getcode()
             except:
                 GLib.idle_add(download_entry.remove)
                 return False
 
-            if request.status == 200:
+            if req_code == 200:
                 '''
                 If the status code is 200, the resource should be available
                 and the download should be started. Any exceptions return
@@ -237,7 +233,7 @@ class ComponentManager:
                 '''
                 try:
                     urllib.request.urlretrieve(
-                        url= download_url,
+                        url=download_url,
                         filename=f"{Paths.temp}/{file}",
                         reporthook=update_func
                     )
