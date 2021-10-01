@@ -35,9 +35,12 @@ class DownloadEntry(Gtk.Box):
 
     def __init__(self, window, file_name, cancellable=True, **kwargs):
         super().__init__(**kwargs)
-
+        
         self.window = window
         self.box_downloads = window.box_downloads
+
+        if len(file_name) > 30:
+            file_name = f"{file_name[:20]}..."
 
         # Set btn_downloads visible
         self.window.btn_downloads.set_visible(True)
