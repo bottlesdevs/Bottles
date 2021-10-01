@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 14:44+0200\n"
-"PO-Revision-Date: 2021-10-01 20:38+0000\n"
+"PO-Revision-Date: 2021-10-02 17:45+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/bottles/"
 "bottles/eo/>\n"
@@ -251,9 +251,8 @@ msgid "Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz"
 msgstr "Hispana traduko dank’ al @fitojb, @kenpb, @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:125
-#, fuzzy
 msgid "Portuguese (Brazil) translations thanks to @farribeiro, @swyknox"
-msgstr "Brazilportugala traduko dank’ al @farribeiro"
+msgstr "Brazilportugala traduko dank’ al @farribeiro, @swyknox"
 
 #: data/com.usebottles.bottles.appdata.xml.in:126
 msgid "Hungarian translations thanks to @ovari"
@@ -644,12 +643,12 @@ msgid "Use DXVK"
 msgstr "Uzi DXVK"
 
 #: src/ui/details.ui:1071
-#, fuzzy
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Plibonigas rendimenton de videoludoj kaj programoj de tridimensia grafiko.\n"
+"Plibonigas rendimenton de videoludoj uzantaj DirectX 11 kaj programoj de "
+"tridimensia grafiko.\n"
 "Malŝaltu tion, se vi spertas grafikajn problemojn."
 
 #: src/ui/details.ui:1098
@@ -657,12 +656,12 @@ msgid "Use VKD3D"
 msgstr "Uzi VKD3D"
 
 #: src/ui/details.ui:1099
-#, fuzzy
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Plibonigas rendimenton de videoludoj kaj programoj de tridimensia grafiko.\n"
+"Plibonigas rendimenton de videoludoj uzantaj DirectX 12 kaj programoj de "
+"tridimensia grafiko.\n"
 "Malŝaltu tion, se vi spertas grafikajn problemojn."
 
 #: src/ui/details.ui:1126
@@ -827,9 +826,8 @@ msgid "These are the programs found in your bottle's Start menu"
 msgstr ""
 
 #: src/ui/details.ui:2152
-#, fuzzy
 msgid "Add a custom executable path"
-msgstr "Ruli ruleblaĵon"
+msgstr "Aldoni propran dosierindikon de ruleblaĵo"
 
 #: src/ui/details.ui:2179
 msgid "Search for installed programs"
@@ -1214,7 +1212,7 @@ msgstr "Ĉu uzi malhelan etoson por boteloj."
 
 #: src/ui/preferences.ui:55
 msgid "Show update date"
-msgstr ""
+msgstr "Montri daton de ĝisdatigo"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
@@ -1265,9 +1263,8 @@ msgid "Change Launch Options"
 msgstr "Ŝanĝi Opciojn pri Lanĉado"
 
 #: src/ui/program-entry.ui:34
-#, fuzzy
 msgid "Browse Path"
-msgstr "Foliumi C:"
+msgstr "Foliumi dosierindikojn"
 
 #: src/ui/program-entry.ui:58
 msgid "WineHQ"
@@ -1283,7 +1280,7 @@ msgstr "Problemoj pri Boteloj"
 
 #: src/ui/program-entry.ui:108
 msgid "Remove from Programs"
-msgstr ""
+msgstr "Forigi el Programo-dosierujo"
 
 #: src/ui/runner-entry.ui:47
 msgid "Download & Install this runner"
@@ -1355,13 +1352,12 @@ msgid "Show version"
 msgstr "Montri version"
 
 #: src/main.py:104
-#, fuzzy
 msgid "Executable path"
-msgstr "Ruli ruleblaĵon"
+msgstr "Dosierindiko de ruleblaĵo"
 
 #: src/main.py:112
 msgid "lnk path"
-msgstr ""
+msgstr "Dosierindiko de simbola ligo"
 
 #: src/main.py:225
 msgid "[Quit] request received."
@@ -1487,16 +1483,15 @@ msgstr "Indico de stato {0}"
 
 #: src/views/details.py:583
 msgid "Gamemode is either not available on your system or not running."
-msgstr ""
+msgstr "Gamemode estas aŭ ne havebla aŭ ne ruliĝanta en via sistemo."
 
 #: src/views/details.py:593
 msgid "Details & Utilities"
 msgstr "Detaloj & ilprogramoj"
 
 #: src/views/details.py:628
-#, fuzzy
 msgid "Choose working directory for executables"
-msgstr "Elektu Vindozan programon"
+msgstr "Elektu labordosierujon por ruleblaĵoj"
 
 #: src/views/details.py:631
 msgid "Done"
@@ -1516,9 +1511,8 @@ msgid "Updated: %s"
 msgstr "Ĝisdatigoj: %s"
 
 #: src/views/details.py:788
-#, fuzzy
 msgid "Choose an executable path"
-msgstr "Elektu Vindozan programon"
+msgstr "Elektu dosierindikon de ruleblaĵo"
 
 #: src/views/details.py:791
 msgid "Add"
@@ -1533,7 +1527,6 @@ msgid "Run"
 msgstr "Ruli"
 
 #: src/views/details.py:1149
-#, fuzzy
 msgid "Select the location where to save the backup config"
 msgstr "Elektu la lokon, kie konserviĝos la savkopio de agordoj"
 
@@ -1587,9 +1580,9 @@ msgid "A clear environment for your experiments."
 msgstr "Medio por viaj eksperimentoj."
 
 #: src/views/new.py:211
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "Sukcese kreiĝis botelo “%s”"
+msgstr "Sukcese kreiĝis botelo nomita “{0}”"
 
 #, fuzzy
 #~ msgid ""
