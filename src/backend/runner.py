@@ -150,36 +150,58 @@ class Runner:
         comunicate: bool = False,
         cwd: str = None
     ) -> bool:
-        # Work around for Flatpak and Snap not able to use system commands
+        path = config.get("Path")
+        runner = config.get("Runner")
+        arch = config.get("Arch")
+
         if "FLATPAK_ID" in os.environ \
             or "SNAP" in os.environ \
             or not UtilsTerminal().check_support() \
             and terminal:
+            '''
+            Work around for Flatpak and Snap not able to 
+            use system host commands. Disable terminal to
+            force the wineconsole, then append the comamnd
+            as arguments.
+            '''
             terminal = False
             if command in ["winedbg", "cmd"]:
                 command = f"wineconsole {command}"
 
         if not cwd:
+            '''
+            If no cwd is given, use the WorkingDir from the
+            bottle configuration.
+            '''
             cwd = config.get("WorkingDir")
         if cwd == "":
+            '''
+            If the WorkingDir is empty, use the bottle path as
+            working directory.
+            '''
             cwd = self.get_bottle_path(config)
         
-        path = config.get("Path")
-        runner = config.get("Runner")
-        arch = config.get("Arch")
-        
         if runner is None:
+            '''
+            If there is no runner declared in the bottle
+            configuration, return None.
+            '''
             return
 
-        # If runner is proton then set path to /dist
         if runner.startswith("Proton"):
+            '''
+            If the runner is Proton, set the pat to /dist or /files 
+            based on check if files exists.
+            '''
+            runner = "%s/files" % runner
             if os.path.exists("%s/%s/dist" % (Paths.runners, runner)):
                 runner = "%s/dist" % runner
-            else:
-                runner = "%s/files" % runner
 
-        # If runner is system
         if runner.startswith("sys-"):
+            '''
+            If the runner type is system, set the runner binary
+            path to the system command. Else set it to the full path.
+            '''
             runner = "wine"
         else:
             runner = f"{Paths.runners}/{runner}/bin/wine"
@@ -188,7 +210,7 @@ class Runner:
             path = "%s/%s" % (Paths.bottles, path)
 
         # Check for executable args from bottle config
-        environment_vars = []
+        env = os.environ.copy()
         dll_overrides = []
         parameters = config["Parameters"]
 
@@ -197,114 +219,128 @@ class Runner:
                 dll_overrides.append("%s=%s" % (dll[0], dll[1]))
 
         if parameters["environment_variables"]:
-            environment_vars.append(parameters["environment_variables"])
+            for env_var in parameters["environment_variables"].items():
+                env[env_var[0]] = env_var[1]
 
         if environment:
             if environment.get("WINEDLLOVERRIDES"):
                 dll_overrides.append(environment["WINEDLLOVERRIDES"])
                 del environment["WINEDLLOVERRIDES"]
             for e in environment:
-                environment_vars.append(e)
+                e = e.split("=")
+                env[e[0]] = e[1]
 
         if parameters["dxvk"]:
-            # dll_overrides.append("d3d11,dxgi=n")
-            environment_vars.append("WINE_LARGE_ADDRESS_AWARE=1")
-            environment_vars.append("DXVK_STATE_CACHE_PATH='%s'" % path)
-            environment_vars.append("STAGING_SHARED_MEMORY=1")
-            environment_vars.append("__GL_DXVK_OPTIMIZATIONS=1")
-            environment_vars.append("__GL_SHADER_DISK_CACHE=1")
-            environment_vars.append("__GL_SHADER_DISK_CACHE_PATH='%s'" % path)
+            env["WINE_LARGE_ADDRESS_AWARE"] = "1"
+            env["DXVK_STATE_CACHE_PATH"] = path
+            env["STAGING_SHARED_MEMORY"] = "1"
+            env["__GL_DXVK_OPTIMIZATIONS"] = "1"
+            env["__GL_SHADER_DISK_CACHE"] = "1"
+            env["__GL_SHADER_DISK_CACHE_PATH"] = path
 
         if parameters["dxvk_hud"]:
-            environment_vars.append(
-                "DXVK_HUD='devinfo,memory,drawcalls,fps,version,api,compiler'")
+            env["DXVK_HUD"] = "devinfo,memory,drawcalls,fps,version,api,compiler"
         else:
-            environment_vars.append("DXVK_HUD='compiler'")
+            env["DXVK_HUD"] = "compiler"
 
         if parameters["sync"] == "esync":
-            environment_vars.append("WINEESYNC=1")  # WINEDEBUG=+esync
+            env["WINEESYNC"] = "1"
 
         if parameters["sync"] == "fsync":
-            environment_vars.append("WINEFSYNC=1")
+            env["WINEFSYNC"] = "1"
 
         if parameters["fixme_logs"]:
-            environment_vars.append("WINEDEBUG=+fixme-all")
+            env["WINEDEBUG"] = "+fixme-all"
         else:
-            environment_vars.append("WINEDEBUG=fixme-all")
+            env["WINEDEBUG"] = "fixme-all"
 
         if parameters["aco_compiler"]:
-            environment_vars.append("RADV_PERFTEST=aco")
+            env["ACO_COMPILER"] = "aco"
 
         if "WAYLAND_DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
             logging.info("Using Xwayland..")
             display = os.environ.get("DISPLAY", ":0")
-            environment_vars.append("GDK_BACKEND=x11")
-            environment_vars.append(f"DISPLAY={display}")
+            env["GDK_BACKEND"] = "x11"
+            env["GDK_SDISPLAYALE"] = display
 
         if parameters["discrete_gpu"]:
             if "nvidia" in subprocess.Popen(
                     "lspci | grep 'VGA'",
                     stdout=subprocess.PIPE,
-                    shell=True).communicate()[0].decode("utf-8").lower():
-                environment_vars.append("__NV_PRIME_RENDER_OFFLOAD=1")
-                environment_vars.append("__GLX_VENDOR_LIBRARY_NAME='nvidia'")
-                environment_vars.append("__VK_LAYER_NV_optimus='NVIDIA_only'")
+                    shell=True
+                ).communicate()[0].decode("utf-8").lower():
+                env["__NV_PRIME_RENDER_OFFLOAD"] = "1"
+                env["__GLX_VENDOR_LIBRARY_NAME"] = "nvidia"
+                env["__VK_LAYER_NV_optimus"] = "NVIDIA_only"
             else:
-                environment_vars.append("DRI_PRIME=1")
+                env["DRI_PRIME"] = "1"
 
         if parameters["pulseaudio_latency"]:
-            environment_vars.append("PULSE_LATENCY_MSEC=60")
+            env["PULSE_LATENCY_MSEC"] = "60"
 
-        environment_vars.append("WINEDLLOVERRIDES='%s'" %
-                                ";".join(dll_overrides))
-        environment_vars = " ".join(environment_vars)
-
-        command = f"WINEPREFIX={path} "\
-            f"WINEARCH={arch} {environment_vars} {runner} {command}"
+        env["WINEDLLOVERRIDES"] = ";".join(dll_overrides)
+        env["WINEPREFIX"] = path
+        env["WINEARCH"] = arch
+            
+        command = f"{runner} {command}"
 
         if arguments:
             if "%command%" in arguments:
                 prefix = arguments.split("%command%")[0]
                 suffix = arguments.split("%command%")[1]
                 command = f"{prefix} {command} {suffix}"
+            else:
+                command = f"{command} {arguments}"
 
-        # Check for gamemode enabled
         if gamemode_available and config["Parameters"]["gamemode"]:
+            # check for gamemode enabled
             command = f"gamemoderun {command}"
 
         if terminal:
-            return UtilsTerminal().execute(command)
-
+            return UtilsTerminal().execute(command, env)
+            
         if comunicate:
             try:
                 return subprocess.Popen(
                     command,
                     stdout=subprocess.PIPE,
                     shell=True,
+                    env=env,
                     cwd=cwd
                 ).communicate()[0].decode("utf-8")
             except:
-                # workaround for `No such file or directory` error
+                '''
+                If return an exception, try to execute the command
+                without the cwd argument
+                '''
                 return subprocess.Popen(
                     command,
                     stdout=subprocess.PIPE,
-                    shell=True
+                    shell=True,
+                    env=env
                 ).communicate()[0].decode("utf-8")
 
-        # TODO: configure cwd in bottle config
         try:
+            '''
+            If the comunicate flag is not set, still try to execute the
+            command in comunicate mode, then read the output to catch the
+            wine ShellExecuteEx exception, so we can raise it as a bottles
+            exception and handle it in other parts of the code.
+            '''
             res = subprocess.Popen(
                     command,
                     stdout=subprocess.PIPE,
                     cwd=cwd,
-                    shell=True
+                    shell=True,
+                    env=env
             ).communicate()[0].decode("utf-8")
+
             if "ShellExecuteEx" in res:
                 raise Exception("ShellExecuteEx")
         except Exception as e:
             # workaround for `No such file or directory` error
-            res = subprocess.Popen(command, shell=True)
+            res = subprocess.Popen(command, shell=True, env=env)
             if comunicate:
                 return res.communicate()
             return res

@@ -104,7 +104,7 @@ class UtilsTerminal():
 
         return False
 
-    def execute(self, command):
+    def execute(self, command, env={}):
         if not self.check_support():
             logging.warning("Terminal not supported.")
             return False
@@ -112,6 +112,7 @@ class UtilsTerminal():
         subprocess.Popen(
             ' '.join(self.terminal) % f"bash -c '{command}'",
             shell=True,
+            env=env,
             stdout=subprocess.PIPE
         ).communicate()[0].decode("utf-8")
 
