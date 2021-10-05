@@ -71,7 +71,7 @@ class ListViewEntry(Handy.ActionRow):
         self.btn_repair.connect('pressed', self.repair)
         self.btn_run_executable.connect('pressed', self.run_executable)
 
-        '''Populate widgets'''
+        # populate widgets
         self.grid_versioning.set_visible(self.config.get("Versioning"))
         self.label_state.set_text(str(self.config.get("State")))
         self.set_title(self.config.get("Name"))

@@ -56,7 +56,7 @@ class Runner:
         environment: dict = False
     ) -> None:
         logging.info("Running link file on the bottle …")
-        
+
         command = f"start /unix '{file_path}'"
         RunAsync(self.run_command, None, config,
                  command, False, arguments, environment)
@@ -72,7 +72,7 @@ class Runner:
         cwd: str = None
     ) -> None:
         logging.info("Running an executable on the bottle …")
-        
+
         command = f"'{file_path}'"
 
         if "msi" in file_path.split("."):
@@ -117,7 +117,7 @@ class Runner:
 
     def run_uninstaller(self, config: BottleConfig, uuid: str = False):
         logging.info("Running an Uninstaller on the wineprefix …")
-        
+
         command = "uninstaller"
         if uuid:
             command = f"uninstaller --remove '{uuid}'"
@@ -155,9 +155,9 @@ class Runner:
         arch = config.get("Arch")
 
         if "FLATPAK_ID" in os.environ \
-            or "SNAP" in os.environ \
-            or not UtilsTerminal().check_support() \
-            and terminal:
+                or "SNAP" in os.environ \
+                or not UtilsTerminal().check_support() \
+                and terminal:
             '''
             Work around for Flatpak and Snap not able to 
             use system host commands. Disable terminal to
@@ -180,7 +180,7 @@ class Runner:
             working directory.
             '''
             cwd = self.get_bottle_path(config)
-        
+
         if runner is None:
             '''
             If there is no runner declared in the bottle
@@ -266,10 +266,10 @@ class Runner:
 
         if parameters["discrete_gpu"]:
             if "nvidia" in subprocess.Popen(
-                    "lspci | grep 'VGA'",
-                    stdout=subprocess.PIPE,
-                    shell=True
-                ).communicate()[0].decode("utf-8").lower():
+                "lspci | grep 'VGA'",
+                stdout=subprocess.PIPE,
+                shell=True
+            ).communicate()[0].decode("utf-8").lower():
                 env["__NV_PRIME_RENDER_OFFLOAD"] = "1"
                 env["__GLX_VENDOR_LIBRARY_NAME"] = "nvidia"
                 env["__VK_LAYER_NV_optimus"] = "NVIDIA_only"
@@ -282,7 +282,7 @@ class Runner:
         env["WINEDLLOVERRIDES"] = ";".join(dll_overrides)
         env["WINEPREFIX"] = path
         env["WINEARCH"] = arch
-            
+
         command = f"{runner} {command}"
 
         if arguments:
@@ -299,7 +299,7 @@ class Runner:
 
         if terminal:
             return UtilsTerminal().execute(command, env)
-            
+
         if comunicate:
             try:
                 return subprocess.Popen(
@@ -329,11 +329,11 @@ class Runner:
             exception and handle it in other parts of the code.
             '''
             res = subprocess.Popen(
-                    command,
-                    stdout=subprocess.PIPE,
-                    cwd=cwd,
-                    shell=True,
-                    env=env
+                command,
+                stdout=subprocess.PIPE,
+                cwd=cwd,
+                shell=True,
+                env=env
             ).communicate()[0].decode("utf-8")
 
             if "ShellExecuteEx" in res:

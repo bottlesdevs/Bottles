@@ -25,7 +25,6 @@ class RunnerVersioning:
         self.window = window
         self.manager = manager
 
-    # Create new bottle state
     def async_create_bottle_state(self, args: list) -> bool:
         '''
         This function creates a new bottle state.

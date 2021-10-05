@@ -128,23 +128,23 @@ class MainWindow(Handy.ApplicationWindow):
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
         self.stack_main.add_titled(
-            child=page_details, 
-            name="page_details", 
+            child=page_details,
+            name="page_details",
             title=_("Bottle details")
         )
         self.stack_main.add_titled(
-            child=page_list, 
-            name="page_list", 
+            child=page_list,
+            name="page_list",
             title=_("Bottles")
         )
         self.stack_main.add_titled(
-            child=page_taskmanager, 
-            name="page_taskmanager", 
+            child=page_taskmanager,
+            name="page_taskmanager",
             title=_("Task manager")
         )
         self.stack_main.add_titled(
-            child=page_importer, 
-            name="page_importer", 
+            child=page_importer,
+            name="page_importer",
             title=_("Importer")
         )
 
@@ -197,7 +197,8 @@ class MainWindow(Handy.ApplicationWindow):
         prompted with the onboard dialog.
         '''
         tmp_runners = [
-            x for x in self.manager.runners_available if not x.startswith('sys-')]
+            x for x in self.manager.runners_available if not x.startswith('sys-')
+        ]
         if len(tmp_runners) == 0:
             self.show_onboard_view()
 
@@ -300,8 +301,8 @@ class MainWindow(Handy.ApplicationWindow):
     @staticmethod
     def proper_close():
         '''
-        Properly close Bottles, giving 1s to the wine process to spawn the window
-        if an executable is passed as argument
+        Properly close Bottles, giving 1s to the wine process to spawn the 
+        window if an executable is passed as argument
         '''
         time.sleep(1)
         quit()

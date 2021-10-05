@@ -43,7 +43,7 @@ class Vkd3dEntry(Handy.ActionRow):
         self.vkd3d_name = vkd3d[0]
         self.spinner = Gtk.Spinner()
 
-        '''Populate widgets'''
+        # populate widgets
         self.set_title(self.vkd3d_name)
 
         if vkd3d[1].get("Installed"):
@@ -113,11 +113,19 @@ class Vkd3dEntry(Handy.ActionRow):
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
 
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+    def update_status(
+        self,
+        count=False,
+        block_size=False,
+        total_size=False,
+        completed=False,
+        failed=False
+    ):
         GLib.idle_add(
             self.idle_update_status,
             count,
             block_size,
             total_size,
             completed,
-            failed)
+            failed
+        )

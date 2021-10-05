@@ -46,7 +46,7 @@ class InstallerEntry(Handy.ActionRow):
         self.__step = 0
         self.steps = 0
 
-        '''Populate widgets'''
+        # populate widgets
         self.set_title(installer[0])
         self.set_subtitle(installer[1].get("Description"))
 
@@ -69,7 +69,7 @@ class InstallerEntry(Handy.ActionRow):
         )
         dialog.run()
         dialog.destroy()
-    
+
     def __open_bug_report(self, widget):
         '''Open bug report'''
         webbrowser.open("https://github.com/bottlesdevs/programs/issues")
@@ -100,14 +100,14 @@ class InstallerEntry(Handy.ActionRow):
         self.label_step.set_visible(False)
         self.img_installed.set_visible(True)
         self.get_parent().set_sensitive(True)
-    
+
     def next_step(self):
         '''Next step'''
         self.__step += 1
         self.label_step.set_text(
             _(f"Step {self.__step} of {self.steps}")
         )
-    
+
     def set_steps(self, steps):
         '''Set steps'''
         self.steps = steps

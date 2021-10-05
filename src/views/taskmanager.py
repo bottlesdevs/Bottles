@@ -18,6 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/task-manager.ui')
 class TaskManagerView(Gtk.Box):
     __gtype_name__ = 'TaskManagerView'
@@ -34,15 +35,17 @@ class TaskManagerView(Gtk.Box):
         self.window = window
         self.manager = window.manager
 
-        '''Apply model to treeview_processes'''
+        # apply model to treeview_processes
         self.liststore_processes = Gtk.ListStore(str, str, str, str, str, str)
         self.treeview_processes.set_model(self.liststore_processes)
 
         cell_renderer = Gtk.CellRendererText()
         i = 0
 
-        '''Add columns to treeview_processes'''
         for column in ["PID", "Memory", "CPU", "Start", "Time", "Command"]:
+            '''
+            For each column, add it to the treeview_processes
+            '''
             column = Gtk.TreeViewColumn(column, cell_renderer, text=i)
             self.treeview_processes.append_column(column)
             i += 1
@@ -50,17 +53,19 @@ class TaskManagerView(Gtk.Box):
         # connect signals
         self.btn_processes_update.connect('pressed', self.update_processes)
 
-        '''Run updates'''
         self.update_processes()
 
-    '''Populate liststore_processes'''
     def update_processes(self, widget=False):
+        '''
+        This function scan for new processed and update the
+        liststore_processes with the new data
+        '''
         self.liststore_processes.clear()
         processes = self.manager.get_running_processes()
 
         if len(processes) > 0:
             for process in processes:
-                self.liststore_processes.append ([
+                self.liststore_processes.append([
                     process["pid"],
                     process["pmem"],
                     process["pcpu"],

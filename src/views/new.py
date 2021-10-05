@@ -21,6 +21,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 from ..backend.runner import Runner
 
+
 class EnvironmentRow(Handy.ActionRow):
     def __init__(self, environment, **kwargs):
         super().__init__(**kwargs)
@@ -34,6 +35,7 @@ class EnvironmentRow(Handy.ActionRow):
 
     def get_env_id(self):
         return self.environment.get("id")
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
 class NewView(Handy.Window):
@@ -81,7 +83,7 @@ class NewView(Handy.Window):
         }
     ]
 
-    def __init__(self, window, arg_exe=None, arg_lnk=None,**kwargs):
+    def __init__(self, window, arg_exe=None, arg_lnk=None, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
@@ -152,6 +154,7 @@ class NewView(Handy.Window):
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     '''Create the bottle'''
+
     def create_bottle(self, widget):
         # set widgets states
         self.btn_cancel.set_sensitive(False)
@@ -168,17 +171,23 @@ class NewView(Handy.Window):
         if self.selected_env == "Custom":
             runner = self.combo_runner.get_active_id()
         else:
-            rv = [i for i in self.manager.runners_available if i.startswith('vaniglia')]
-            rl = [i for i in self.manager.runners_available if i.startswith('lutris')]
-            rs = [i for i in self.manager.runners_available if i.startswith('sys-')]
+            rv = [
+                i for i in self.manager.runners_available if i.startswith('vaniglia')
+            ]
+            rl = [
+                i for i in self.manager.runners_available if i.startswith('lutris')
+            ]
+            rs = [
+                i for i in self.manager.runners_available if i.startswith('sys-')
+            ]
 
-            if len(rv) > 0: # use the latest from vaniglia
+            if len(rv) > 0:  # use the latest from vaniglia
                 runner = rv[0]
-            elif len(rl) > 0: # use the latest from lutris
+            elif len(rl) > 0:  # use the latest from lutris
                 runner = rl[0]
-            elif len(rs) > 0: # use the latest from system
+            elif len(rs) > 0:  # use the latest from system
                 runner = rs[0]
-            else: # use any other runner available
+            else:  # use any other runner available
                 runner = self.manager.runners_available[0]
 
         self.manager.create_bottle(

@@ -19,7 +19,7 @@ RunnerType = NewType('RunnerType', str)
 
 
 class RunnerBackup:
-    
+
     def async_export_backup(self, args: list) -> bool:
         '''
         This function is used to make a backup of a bottle.

@@ -44,15 +44,18 @@ class DependencyEntry(Handy.ActionRow):
         self.dependency = dependency
         self.spinner = Gtk.Spinner()
 
-        '''If dependency is plain text (placeholder)'''
         if plain:
+            '''
+            If the depedency is plain, treat it as a placeholder, it
+            can be used to display "fake" elements on the list
+            '''
             self.set_title(dependency)
             self.set_subtitle("")
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(False)
             return None
 
-        '''Populate widgets'''
+        # populate widgets
         self.set_title(dependency[0])
         self.set_subtitle(dependency[1].get("Description"))
         self.label_category.set_text(dependency[1].get("Category"))
@@ -63,21 +66,27 @@ class DependencyEntry(Handy.ActionRow):
         self.btn_manifest.connect('pressed', self.open_manifest)
         self.btn_license.connect('pressed', self.open_license)
 
-        '''
-        Set widgets status from config
-        '''
         if dependency[0] in self.config.get("Installed_Dependencies"):
+            '''
+            If the dependency is installed, hide the btn_install
+            button and show the btn_remove button
+            '''
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(True)
 
-        '''If dependency has no uninstaller'''
         if dependency[0] in self.config.get("Uninstallers").keys():
+            '''
+            If the dependency has no uninstaller, disable the
+            btn_remove button
+            '''
             if self.config["Uninstallers"][dependency[0]] == "NO_UNINSTALLER":
                 self.btn_remove.set_sensitive(False)
 
-    '''Open dependency manifest'''
-
     def open_manifest(self, widget):
+        '''
+        This function pop up a dialog with the manifest
+        of the dependency
+        '''
         dialog = Dialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
@@ -91,18 +100,25 @@ class DependencyEntry(Handy.ActionRow):
         dialog.run()
         dialog.destroy()
 
-    '''Open dependency license'''
-
     def open_license(self, widget):
+        '''
+        This function pop up a dialog with the license
+        of the dependency
+        '''
         manifest = self.manager.dependency_manager.get_dependency(
             dependency_name=self.dependency[0],
             dependency_category=self.dependency[1]["Category"]
         )
         webbrowser.open(manifest["License_url"])
 
-    '''Install dependency'''
-
     def install_dependency(self, widget):
+        '''
+        This function install the dependency in the bottle, it
+        will also prevent user from installing other dependencies
+        during the installation process, will show a spinner
+        and set the dependency as installed in the bottle
+        configuration
+        '''
         self.get_parent().set_sensitive(False)
         for w in widget.get_children():
             w.destroy()
@@ -119,25 +135,32 @@ class DependencyEntry(Handy.ActionRow):
             widget=self
         )
 
-    '''Remove dependency'''
-
     def remove_dependency(self, widget):
+        '''
+        This function remove the dependency from the bottle
+        configuration
+        '''
         GLib.idle_add(widget.set_sensitive, False)
-        self.manager.remove_dependency(self.config,
-                                       self.dependency,
-                                       self)
-
-    '''Set error status'''
+        self.manager.remove_dependency(
+            config=self.config,
+            dependency=self.dependency,
+            widget=self
+        )
 
     def set_err(self):
+        '''
+        This function set the dependency as not installed
+        if errors occur during installation
+        '''
         self.spinner.stop()
         self.btn_install.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
 
-    '''Set installed status'''
-
     def set_installed(self, has_installer=True):
+        '''
+        This function set the dependency as installed
+        '''
         self.spinner.stop()
         self.btn_install.set_visible(False)
         if has_installer:

@@ -43,7 +43,7 @@ class DxvkEntry(Handy.ActionRow):
         self.dxvk_name = dxvk[0]
         self.spinner = Gtk.Spinner()
 
-        '''Populate widgets'''
+        # populate widgets
         self.set_title(self.dxvk_name)
 
         if dxvk[1].get("Installed"):
@@ -77,7 +77,14 @@ class DxvkEntry(Handy.ActionRow):
         self.btn_download.set_visible(False)
         Runner().open_filemanager(path_type="dxvk", dxvk=self.dxvk_name)
 
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+    def idle_update_status(
+        self,
+        count=False,
+        block_size=False,
+        total_size=False,
+        completed=False,
+        failed=False
+    ):
         if failed:
             self.set_err()
             return False
@@ -111,11 +118,19 @@ class DxvkEntry(Handy.ActionRow):
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
 
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+    def update_status(
+        self,
+        count=False,
+        block_size=False,
+        total_size=False,
+        completed=False,
+        failed=False
+    ):
         GLib.idle_add(
             self.idle_update_status,
             count,
             block_size,
             total_size,
             completed,
-            failed)
+            failed
+        )

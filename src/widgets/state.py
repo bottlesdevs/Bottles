@@ -17,6 +17,7 @@
 
 from datetime import datetime
 from gi.repository import Gtk, GLib, Handy
+from gettext import gettext as _
 
 from ..dialogs.generic import Dialog
 
@@ -49,7 +50,7 @@ class StateEntry(Handy.ActionRow):
             "Creation_Date"), "%Y-%m-%d %H:%M:%S.%f")
         creation_date = creation_date.strftime("%b %d %Y %H:%M:%S")
 
-        '''Populate widgets'''
+        # populate widgets
         self.set_title(self.state_name)
         self.set_subtitle(self.state[1].get("Comment"))
         self.label_creation_date.set_text(creation_date)

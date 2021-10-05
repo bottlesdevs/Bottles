@@ -50,7 +50,7 @@ class ProgramEntry(Handy.ActionRow):
         self.program_executable_path = program[1]
         self.program_folder = program[3]
 
-        '''Populate widgets'''
+        # populate widgets
         self.set_title(self.program_name)
         self.set_icon_name(program[2])
 
@@ -72,10 +72,12 @@ class ProgramEntry(Handy.ActionRow):
     '''Show dialog for launch options'''
 
     def show_launch_options_view(self, widget=False):
-        new_window = LaunchOptionsDialog(self.window,
-                                         self.config,
-                                         self.program_executable,
-                                         self.arguments)
+        new_window = LaunchOptionsDialog(
+            self.window,
+            self.config,
+            self.program_executable,
+            self.arguments
+        )
         new_window.present()
 
     '''Run executable'''
@@ -101,26 +103,29 @@ class ProgramEntry(Handy.ActionRow):
             key=self.program_name,
             value=False,
             remove=True,
-            scope="External_Programs")
+            scope="External_Programs"
+        )
         self.destroy()
 
     def browse_program_folder(self, widget):
         Runner().open_filemanager(
             config=self.config,
             path_type="custom",
-            custom_path=self.program_folder)
+            custom_path=self.program_folder
+        )
 
     '''Open URLs'''
 
     def open_winehq(self, widget):
         query = self.program_name.replace(" ", "+")
-        webbrowser.open_new_tab("https://www.winehq.org/search?q=%s" % query)
+        webbrowser.open_new_tab(f"https://www.winehq.org/search?q={query}")
 
     def open_protondb(self, widget):
         query = self.program_name
-        webbrowser.open_new_tab("https://www.protondb.com/search?q=%s" % query)
+        webbrowser.open_new_tab(f"https://www.protondb.com/search?q={query}")
 
     def open_issues(self, widget):
         query = self.program_name.replace(" ", "+")
         webbrowser.open_new_tab(
-            "https://github.com/bottlesdevs/Bottles/issues?q=is:issue%s" % query)
+            f"https://github.com/bottlesdevs/Bottles/issues?q=is:issue{query}"
+        )

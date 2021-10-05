@@ -222,7 +222,7 @@ class DependencyManager:
                     config=config,
                     step=step
                 )
-            
+
             if step["action"] == "replace_font":
                 self.__step_replace_font(
                     config=config,
@@ -253,7 +253,7 @@ class DependencyManager:
             Set it to NO_UNINSTALLER if the dependency cannot be uninstalled.
             '''
             uninstaller = manifest.get("Uninstaller")
-            
+
             if has_no_uninstaller:
                 uninstaller = "NO_UNINSTALLER"
 
@@ -448,11 +448,11 @@ class DependencyManager:
                 if widget is not None:
                     GLib.idle_add(widget.set_err)
                 exit()
-    
+
     def __step_get_from_cab(
-        self, 
-        config:BottleConfig, 
-        step: dict, 
+        self,
+        config: BottleConfig,
+        step: dict,
         widget: Gtk.Widget
     ):
         '''
@@ -474,24 +474,24 @@ class DependencyManager:
         if step.get("dest"):
             dest = step.get("dest")
             dest_file_name = step.get("file_name")
-            
+
             if step.get("rename"):
                 dest_file_name = step.get("rename")
 
             if dest.startswith("temp/"):
                 dest = dest.replace("temp/", f"{Paths.temp}/")
-            
+
             if dest.startswith("drive_c/"):
                 bottle_path = Runner().get_bottle_path(config)
                 dest = dest.replace(
-                    "drive_c/", 
+                    "drive_c/",
                     f"{bottle_path}/drive_c/"
                 )
             elif dest.startswith("temp/"):
                 dest = dest.replace("temp/", f"{Paths.temp}/")
             else:
                 dest = f"{Paths.temp}/{dest}"
-        
+
             shutil.copy(
                 f"{Paths.temp}/{file_name}",
                 f"{dest}/{dest_file_name}"
@@ -582,7 +582,7 @@ class DependencyManager:
         '''
         if step.get("url") and step.get("url").startswith("temp/"):
             path = step["url"].replace(
-                "temp/", 
+                "temp/",
                 f"{Paths.temp}/"
             )
             path = f"{path}/{step.get('dll')}"
@@ -628,7 +628,7 @@ class DependencyManager:
             value=step.get("name"),
             data=step.get("file")
         )
-    
+
     def __step_replace_font(self, config: BottleConfig, step: dict):
         '''
         This function replace the font declared in the step in

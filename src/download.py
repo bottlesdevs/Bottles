@@ -35,7 +35,7 @@ class DownloadEntry(Gtk.Box):
 
     def __init__(self, window, file_name, cancellable=True, **kwargs):
         super().__init__(**kwargs)
-        
+
         self.window = window
         self.box_downloads = window.box_downloads
 
@@ -80,10 +80,10 @@ class DownloadEntry(Gtk.Box):
         completed=False
     ):
         GLib.idle_add(
-            self.idle_update_status, 
+            self.idle_update_status,
             count,
-            block_size, 
-            total_size, 
+            block_size,
+            total_size,
             completed
         )
 

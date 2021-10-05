@@ -37,6 +37,7 @@ from ..widgets.dependency import DependencyEntry
 from ..backend.runner import Runner, gamemode_available
 from ..backend.backup import RunnerBackup
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class DetailsView(Handy.Leaflet):
     __gtype_name__ = 'Details'
@@ -176,8 +177,8 @@ class DetailsView(Handy.Leaflet):
             'pressed', self.open_doc_url, "bottles/versioning"
         )
         self.btn_help_debug.connect(
-            'pressed', 
-            self.open_doc_url, 
+            'pressed',
+            self.open_doc_url,
             "utilities/logs-and-debugger#wine-debugger"
         )
         self.btn_request_dependency.connect(
@@ -357,7 +358,7 @@ class DetailsView(Handy.Leaflet):
 
         # format update_date
         update_date = datetime.strptime(
-            config.get("Update_Date"), 
+            config.get("Update_Date"),
             "%Y-%m-%d %H:%M:%S.%f"
         )
         update_date = update_date.strftime("%b %d %Y %H:%M:%S")
@@ -573,7 +574,7 @@ class DetailsView(Handy.Leaflet):
                 plain = True
                 if dependency in supported_dependencies:
                     dependency = (
-                        dependency, 
+                        dependency,
                         supported_dependencies[dependency]
                     )
                     plain = False
@@ -606,7 +607,6 @@ class DetailsView(Handy.Leaflet):
                         installer=installer
                     )
                 )
-
 
     def __idle_update_states(self, widget=False):
         '''
@@ -678,12 +678,12 @@ class DetailsView(Handy.Leaflet):
         widget.set_sensitive(False)
         if state:
             self.manager.install_dxvk(
-                config=self.config, 
+                config=self.config,
                 widget=widget
             )
         else:
             self.manager.remove_dxvk(
-                config=self.config, 
+                config=self.config,
                 widget=widget
             )
 
@@ -717,12 +717,12 @@ class DetailsView(Handy.Leaflet):
         widget.set_sensitive(False)
         if state:
             self.manager.install_vkd3d(
-                config=self.config, 
+                config=self.config,
                 widget=widget
             )
         else:
             self.manager.remove_vkd3d(
-                config=self.config, 
+                config=self.config,
                 widget=widget
             )
 
@@ -951,8 +951,8 @@ class DetailsView(Handy.Leaflet):
         comment = self.entry_state_comment.get_text()
         if comment != "":
             self.versioning_manager.create_bottle_state(
-                config=self.config, 
-                comment=comment, 
+                config=self.config,
+                comment=comment,
                 after=self.update_states
             )
             self.entry_state_comment.set_text("")
@@ -1055,11 +1055,12 @@ class DetailsView(Handy.Leaflet):
             config=self.config
         )
         new_window.present()
-    
+
     '''
     The following functions are used like wrappers for the
     runner utilities.
     '''
+
     def run_winecfg(self, widget):
         Runner().run_winecfg(self.config)
 

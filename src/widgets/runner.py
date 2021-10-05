@@ -43,7 +43,7 @@ class RunnerEntry(Handy.ActionRow):
         self.runner_name = runner_entry[0]
         self.spinner = Gtk.Spinner()
 
-        '''Populate widgets'''
+        # populate widgets
         self.set_title(self.runner_name)
 
         if runner_entry[1].get("Installed"):
@@ -70,10 +70,12 @@ class RunnerEntry(Handy.ActionRow):
         if self.runner_name.lower().startswith("proton"):
             component_type = "runner:proton"
 
-        self.component_manager.install(component_type,
-                                       self.runner_name,
-                                       func=self.update_status,
-                                       after=self.set_installed)
+        self.component_manager.install(
+            component_type,
+            self.runner_name,
+            func=self.update_status,
+            after=self.set_installed
+        )
 
     '''Browse runner files'''
 
@@ -81,7 +83,14 @@ class RunnerEntry(Handy.ActionRow):
         self.btn_download.set_visible(False)
         Runner().open_filemanager(path_type="runner", runner=self.runner_name)
 
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+    def idle_update_status(
+        self,
+        count=False,
+        block_size=False,
+        total_size=False,
+        completed=False,
+        failed=False
+    ):
         if failed:
             self.set_err()
             return False
@@ -115,6 +124,19 @@ class RunnerEntry(Handy.ActionRow):
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
 
-    def update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
-        GLib.idle_add(self.idle_update_status, count,
-                      block_size, total_size, completed, failed)
+    def update_status(
+        self,
+        count=False,
+        block_size=False,
+        total_size=False,
+        completed=False,
+        failed=False
+    ):
+        GLib.idle_add(
+            self.idle_update_status,
+            count,
+            block_size,
+            total_size,
+            completed,
+            failed
+        )

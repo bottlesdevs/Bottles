@@ -37,13 +37,16 @@ class ImporterEntry(Handy.ActionRow):
         self.manager = window.manager
         self.prefix = prefix
 
-        '''Populate widgets'''
+        # populate widgets
         self.set_title(prefix.get("Name"))
         self.label_manager.set_text(prefix.get("Manager"))
+
         if prefix.get("Lock"):
             self.img_lock.set_visible(True)
+
         self.label_manager.get_style_context().add_class(
-            "tag-%s" % prefix.get("Manager").lower())
+            "tag-%s" % prefix.get("Manager").lower()
+        )
 
         # connect signals
         self.btn_browse.connect("pressed", self.browse_wineprefix)

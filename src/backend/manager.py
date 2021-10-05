@@ -48,6 +48,7 @@ BottleConfig = NewType('BottleConfig', dict)
 RunnerName = NewType('RunnerName', str)
 RunnerType = NewType('RunnerType', str)
 
+
 class Manager:
 
     # component lists
@@ -155,7 +156,7 @@ class Manager:
         if not os.path.isdir(Paths.temp):
             logging.info("Temp path doens't exist, creating now.")
             os.makedirs(Paths.temp, exist_ok=True)
-    
+
     def organize_components(self):
         '''
         This function get the components catalog and organize
@@ -165,12 +166,12 @@ class Manager:
         if len(catalog) == 0:
             logging.info("No components found!")
             return
-        
+
         self.supported_wine_runners = catalog["wine"]
         self.supported_proton_runners = catalog["proton"]
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
-    
+
     def organize_dependencies(self):
         '''
         This function get the dependencies catalog and organize
@@ -180,13 +181,13 @@ class Manager:
         if len(catalog) == 0:
             logging.info("No dependencies found!")
             return
-        
+
         self.supported_dependencies = catalog
 
     def remove_dependency(
-        self, 
-        config: BottleConfig, 
-        dependency: list, 
+        self,
+        config: BottleConfig,
+        dependency: list,
         widget: Gtk.Widget
     ):
         '''
@@ -233,7 +234,7 @@ class Manager:
         and remove the program from the bottle configuration.
         '''
         logging.info(
-            f"Removing program: [{ program_name }] from " + 
+            f"Removing program: [{ program_name }] from " +
             f"bottle: [{config['Name']}] config."
         )
 
@@ -308,7 +309,7 @@ class Manager:
             logging.warning("No runners found.")
 
             if self.utils_conn.check_connection():
-                 # if connected, install latest runner from repository
+                # if connected, install latest runner from repository
                 try:
                     if not self.window.settings.get_boolean("release-candidate"):
                         tmp_runners = []
@@ -320,8 +321,8 @@ class Manager:
                         tmp_runners = self.supported_wine_runners
                         runner_name = next(iter(tmp_runners))
                     self.component_manager.install(
-                        component_type="runner", 
-                        component_name=runner_name, 
+                        component_type="runner",
+                        component_name=runner_name,
                         after=after
                     )
                 except StopIteration:
@@ -337,8 +338,8 @@ class Manager:
 
     # Check local dxvks
     def check_dxvk(
-        self, 
-        install_latest: bool = True, 
+        self,
+        install_latest: bool = True,
         no_async: bool = False
     ) -> bool:
         '''
@@ -379,8 +380,8 @@ class Manager:
 
     # Check local vkd3d
     def check_vkd3d(
-        self, 
-        install_latest: bool = True, 
+        self,
+        install_latest: bool = True,
         no_async: bool = False
     ) -> bool:
         '''
@@ -489,7 +490,7 @@ class Manager:
             # go to the LocalBasePath position
             lbpos = struct.unpack('I', content[position:position+0x04])[0]
             position = last_pos + lbpos
-            
+
             # read the string at the given position of the determined length
             size = (length + last_pos) - position - 0x02
             content = content[position:position+size].split(b'\x00', 1)
@@ -500,7 +501,6 @@ class Manager:
 
             return content[-1].decode(decode)
 
-        
     def get_programs(self, config: BottleConfig) -> list:
         '''
         This function return the list of installed programs in common
@@ -532,7 +532,7 @@ class Manager:
             executable_path = self.__getLnkData(program)
             executable_name = executable_path.split("\\")[-1][:-4]
             program_folder = self.__get_exe_parent_dir(
-                config, 
+                config,
                 executable_path
             )
             icon = self.__find_program_icon(executable_name)
@@ -541,10 +541,10 @@ class Manager:
                 continue
 
             path_check = os.path.join(
-                bottle, 
+                bottle,
                 executable_path.replace("C:\\", "drive_c\\").replace("\\", "/")
             )
-            
+
             if os.path.exists(path_check):
                 if executable_path not in installed_programs:
                     installed_programs.append(
@@ -608,7 +608,7 @@ class Manager:
                 conf_file = open(f"{bottle}/bottle.yml")
                 conf_file_yaml = yaml.safe_load(conf_file)
                 conf_file.close()
-                
+
                 # Update architecture of old bottles
                 if conf_file_yaml.get("Arch") in ["", None]:
                     self.update_config(
@@ -631,7 +631,7 @@ class Manager:
                     )
 
                 miss_params_keys = Samples.config["Parameters"].keys(
-                    ) - conf_file_yaml["Parameters"].keys()
+                ) - conf_file_yaml["Parameters"].keys()
 
                 for key in miss_params_keys:
                     '''
@@ -664,12 +664,12 @@ class Manager:
 
     # Update parameters in bottle config
     def update_config(
-        self, 
-        config: BottleConfig, 
-        key: str, 
-        value: str, 
-        scope: str = "", 
-        no_update: bool = False, 
+        self,
+        config: BottleConfig,
+        key: str,
+        value: str,
+        scope: str = "",
+        no_update: bool = False,
         remove: bool = False
     ) -> dict:
         '''
@@ -776,12 +776,12 @@ class Manager:
             if bottle path already exists, create a new one
             using the name and a random number.
             '''
-            rnd = random.randint(100,200)
+            rnd = random.randint(100, 200)
             bottle_complete_path = f"{bottle_complete_path}__{rnd}"
 
         # create the bottle directory
         os.makedirs(bottle_complete_path)
-            
+
         # execute wineboot on the bottle path
         update_output(_("The wine config is being updated …"))
         command = [
@@ -888,8 +888,8 @@ class Manager:
         the configuration file on bottle root.
         '''
         RunAsync(
-            self.async_create_bottle, 
-            None, 
+            self.async_create_bottle,
+            None,
             [
                 name,
                 environment,
@@ -1076,15 +1076,15 @@ class Manager:
         return widget.set_sensitive(True)
 
     def install_dxvk(
-        self, 
-        config: BottleConfig, 
-        remove: bool = False, 
+        self,
+        config: BottleConfig,
+        remove: bool = False,
         version: str = False,
         widget: Gtk.Widget = None
     ) -> bool:
         RunAsync(
-            self.async_install_dxvk, 
-            None, 
+            self.async_install_dxvk,
+            None,
             [config, remove, version, widget]
         )
 
@@ -1121,15 +1121,15 @@ class Manager:
         return widget.set_sensitive(True)
 
     def install_vkd3d(
-        self, 
-        config: BottleConfig, 
-        remove: bool = False, 
+        self,
+        config: BottleConfig,
+        remove: bool = False,
         version: str = False,
         widget: Gtk.Widget = None
     ) -> bool:
         RunAsync(
-            self.async_install_vkd3d, 
-            None, 
+            self.async_install_vkd3d,
+            None,
             [config, remove, version, widget]
         )
 
@@ -1152,11 +1152,11 @@ class Manager:
         self.install_vkd3d(config, remove=True, widget=widget)
 
     def dll_override(
-        self, 
-        config: BottleConfig, 
-        arch: str, 
-        dlls: list, 
-        source: str, 
+        self,
+        config: BottleConfig,
+        arch: str,
+        dlls: list,
+        source: str,
         revert: bool = False
     ) -> bool:
         '''
@@ -1170,7 +1170,7 @@ class Manager:
             config.get("Path"),
             arch
         )
-        
+
         try:
             if revert:
                 # restore the backup
@@ -1199,9 +1199,9 @@ class Manager:
 
     # Toggle virtual desktop for a bottle
     def toggle_virtual_desktop(
-        self, 
-        config: BottleConfig, 
-        state: bool, 
+        self,
+        config: BottleConfig,
+        state: bool,
         resolution: str = "800x600"
     ):
         '''
@@ -1210,21 +1210,21 @@ class Manager:
         '''
         if state:
             self.reg_add(
-                config, 
-                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer", 
-                value="Desktop", 
+                config,
+                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer",
+                value="Desktop",
                 data="Default"
             )
             self.reg_add(
-                config, 
-                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops", 
-                value="Default", 
+                config,
+                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops",
+                value="Default",
                 data=resolution
             )
         else:
             self.reg_delete(
-                config, 
-                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer", 
+                config,
+                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer",
                 value="Desktop"
             )
 

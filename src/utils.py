@@ -405,7 +405,7 @@ def validate_url(url: str):
         r'localhost|'
         r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
         r'(?::\d+)?'
-        r'(?:/?|[/?]\S+)$', 
+        r'(?:/?|[/?]\S+)$',
         re.IGNORECASE
     )
 

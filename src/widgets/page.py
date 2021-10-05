@@ -41,10 +41,15 @@ class PageRow(Gtk.ListBoxRow):
         icon.set_from_icon_name(icons[page_name], Gtk.IconSize.SMALL_TOOLBAR)
         box.pack_start(icon, False, False, 0)
 
-        box.pack_start(Gtk.Label(
-            label=title,
-            xalign=0.0
-        ), False, False, 0)
+        box.pack_start(
+            Gtk.Label(
+                label=title,
+                xalign=0.0
+            ),
+            False,
+            False,
+            0
+        )
 
         self.get_style_context().add_class("page-row")
 

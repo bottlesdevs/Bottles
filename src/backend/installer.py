@@ -31,21 +31,22 @@ logging = UtilsLogger()
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
 
+
 class InstallerManager:
 
     def __init__(
-        self, 
+        self,
         manager,
-        widget:Gtk.Widget=None
+        widget: Gtk.Widget = None
     ):
         self.__manager = manager
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
 
     def get_installer(
-        self, 
-        installer_name: str, 
-        installer_category: str, 
+        self,
+        installer_name: str,
+        installer_category: str,
         plain: bool = False
     ) -> Union[str, dict, bool]:
         '''
@@ -75,7 +76,7 @@ class InstallerManager:
 
         return False
 
-    def __download_icon(self, config, executable:dict, manifest):
+    def __download_icon(self, config, executable: dict, manifest):
         icon_url = "%s/data/%s/%s" % (
             BottlesRepositories.installers,
             manifest.get('Name'),
@@ -90,10 +91,10 @@ class InstallerManager:
             urllib.request.urlretrieve(icon_url, icon_path)
 
     def __install_dependencies(
-        self, 
-        config, 
-        dependencies:list, 
-        widget:Gtk.Widget
+        self,
+        config,
+        dependencies: list,
+        widget: Gtk.Widget
     ):
         for dep in dependencies:
             widget.next_step()
@@ -103,12 +104,12 @@ class InstallerManager:
 
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
             self.__manager.dependency_manager.async_install([
-                config, 
-                dep_index, 
+                config,
+                dep_index,
                 None
             ])
 
-    def __perform_steps(self, config, steps:list):
+    def __perform_steps(self, config, steps: list):
         for st in steps:
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
@@ -130,8 +131,8 @@ class InstallerManager:
                         file_path=f"{Paths.temp}/{file}",
                         arguments=st.get("arguments"),
                         environment=st.get("environment"))
-    
-    def __set_parameters(self, config, parameters:dict):
+
+    def __set_parameters(self, config, parameters: dict):
         if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:
             self.__manager.install_dxvk(config)
 
@@ -146,14 +147,14 @@ class InstallerManager:
                 scope="Parameters"
             )
 
-    def __set_executable_arguments(self, config, executable:dict):
+    def __set_executable_arguments(self, config, executable: dict):
         self.__manager.update_config(
             config=config,
             key=executable.get("file"),
             value=executable.get("arguments"),
             scope="Programs")
 
-    def __create_desktop_entry(self, config, manifest, executable:dict):
+    def __create_desktop_entry(self, config, manifest, executable: dict):
         bottle_icons_path = f"{Runner().get_bottle_path(config)}/icons"
 
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
@@ -166,7 +167,7 @@ class InstallerManager:
 
         if "FLATPAK_ID" in os.environ:
             return None
-            
+
         with open(desktop_file, "w") as f:
             ex_path = "%s/%s/drive_c/%s/%s" % (
                 Paths.bottles,
@@ -190,13 +191,13 @@ class InstallerManager:
             f.write("[Desktop Action Configure]\n")
             f.write("Name=Configure in Bottles\n")
             f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
-    
+
     def __async_install(self, args) -> None:
         config, installer, widget = args
 
         manifest = self.get_installer(
-            installer_name = installer[0],
-            installer_category = installer[1]["Category"]
+            installer_name=installer[0],
+            installer_category=installer[1]["Category"]
         )
         steps = 0
         if manifest.get("Dependencies"):
@@ -208,7 +209,7 @@ class InstallerManager:
         if manifest.get("Executable"):
             steps += 1
         widget.set_steps(steps)
-        
+
         dependencies = manifest.get("Dependencies")
         parameters = manifest.get("Parameters")
         executable = manifest.get("Executable")
@@ -217,16 +218,16 @@ class InstallerManager:
         # download icon
         if executable.get("icon"):
             self.__download_icon(config, executable, manifest)
-        
+
         # install dependencies
         if dependencies:
             self.__install_dependencies(config, dependencies, widget)
-        
+
         # execute steps
         if steps:
             widget.next_step()
             self.__perform_steps(config, steps)
-        
+
         # set parameters
         if parameters:
             widget.next_step()
@@ -243,6 +244,6 @@ class InstallerManager:
         # unlock widget
         if widget is not None:
             GLib.idle_add(widget.set_installed)
-    
+
     def install(self, config, installer, widget) -> None:
         RunAsync(self.__async_install, False, [config, installer, widget])
