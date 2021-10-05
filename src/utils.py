@@ -305,6 +305,10 @@ class RunAsync(threading.Thread):
             traceback.print_tb(trace)
             traceback_info = '\n'.join(traceback.format_tb(trace))
 
+            if "embedded null byte" in traceback_info:
+                # workaround for #584
+                pass
+
             write_log([str(exception), traceback_info])
 
         self.source_id = GLib.idle_add(self.callback, result, error)
