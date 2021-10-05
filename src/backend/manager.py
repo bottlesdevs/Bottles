@@ -16,12 +16,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+from posixpath import join
 import subprocess
 import random
 import yaml
 import time
 import shutil
 import re
+import struct
+import locale
 import urllib.request
 import fnmatch
 from glob import glob
@@ -448,7 +451,56 @@ class Manager:
         p = f"/drive_c/{p}"
         return p.replace("\\", "/")
 
-    # Get installed programs
+    @staticmethod
+    def __getLnkData(path):
+        '''
+        This function get the data from a .lnk file, and return
+        them in a dictionary. Thanks to @Winand and @Jared for the code.
+        <https://gist.github.com/Winand/997ed38269e899eb561991a0c663fa49>
+        '''
+        with open(path, 'rb') as stream:
+            content = stream.read()
+            '''
+            Skip first 20 bytes (HeaderSize and LinkCLSID)
+            read the LinkFlags structure (4 bytes)
+            '''
+            lflags = struct.unpack('I', content[0x14:0x18])[0]
+            position = 0x18
+
+            if (lflags & 0x01) == 1:
+                '''
+                If the HasLinkTargetIDList bit is set then skip the stored IDList 
+                structure and header
+                '''
+                position = struct.unpack('H', content[0x4C:0x4E])[0] + 0x4E
+
+            last_pos = position
+            position += 0x04
+
+            # get how long the file information is (LinkInfoSize)
+            length = struct.unpack('I', content[last_pos:position])[0]
+
+            '''
+            Skip 12 bytes (LinkInfoHeaderSize, LinkInfoFlags and 
+            VolumeIDOffset)
+            '''
+            position += 0x0C
+
+            # go to the LocalBasePath position
+            lbpos = struct.unpack('I', content[position:position+0x04])[0]
+            position = last_pos + lbpos
+            
+            # read the string at the given position of the determined length
+            size = (length + last_pos) - position - 0x02
+            content = content[position:position+size].split(b'\x00', 1)
+
+            decode = locale.getdefaultlocale()[1]
+            if len(content) > 1:
+                decode = 'utf-16'
+
+            return content[-1].decode(decode)
+
+        
     def get_programs(self, config: BottleConfig) -> list:
         '''
         This function return the list of installed programs in common
@@ -476,42 +528,28 @@ class Manager:
             append it to the installed_programs list with its icon, 
             skip if the path contains the "Uninstall" word.
             '''
-            path = program.split("/")[-1]
-            executable_path = ""
+            path = program.split("/")[-1].replace(".lnk", "")
+            executable_path = self.__getLnkData(program)
+            executable_name = executable_path.split("\\")[-1][:-4]
+            program_folder = self.__get_exe_parent_dir(
+                config, 
+                executable_path
+            )
+            icon = self.__find_program_icon(executable_name)
 
             if "Uninstall" in path:
                 continue
 
-            try:
-                with open(program, "r", encoding='utf-8', errors='ignore') as lnk:
-                    lnk = lnk.read()
-                    executable_path = re.search('C:(.*).exe', lnk)
-
-                    if executable_path is not None:
-                        executable_path = executable_path.group(0)
-                    else:
-                        executable_path = re.search('C:(.*).bat', lnk).group(0)
-
-                    if executable_path.find("ninstall") > 0:
-                        continue
-                    
-                    if any(x in executable_path for x in ["`", "x00"]):
-                        continue
-
-                    path = path.replace(".lnk", "")
-                    executable_name = executable_path.split("\\")[-1][:-4]
-                    program_folder = self.__get_exe_parent_dir(
-                        config, 
-                        executable_path
-                    )
-
-                    icon = self.__find_program_icon(executable_name)
-
+            path_check = os.path.join(
+                bottle, 
+                executable_path.replace("C:\\", "drive_c\\").replace("\\", "/")
+            )
+            
+            if os.path.exists(path_check):
+                if executable_path not in installed_programs:
                     installed_programs.append(
                         [path, executable_path, icon, program_folder]
                     )
-            except:
-                pass
 
         if config.get("External_Programs"):
             '''
