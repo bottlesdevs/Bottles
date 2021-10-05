@@ -31,6 +31,7 @@ from ..utils import UtilsLogger, UtilsFiles, RunAsync
 
 logging = UtilsLogger()
 
+
 class ComponentManager:
 
     def __init__(self, manager):
@@ -38,11 +39,11 @@ class ComponentManager:
         self.__utils_conn = manager.utils_conn
         self.__window = manager.window
         self.__download_manager = DownloadManager(self.__window)
-    
+
     def get_component(
-        self, 
-        component_type: str, 
-        component_name: str, 
+        self,
+        component_type: str,
+        component_name: str,
         plain: bool = False
     ) -> Union[str, dict, bool]:
         '''
@@ -94,9 +95,9 @@ class ComponentManager:
             except:
                 logging.error(f"Cannot fetch manifest for {component_name}.")
                 return False
-        
+
         return False
-    
+
     def fetch_catalog(self) -> dict:
         '''
         This function fetch all components from the Bottles repository
@@ -105,7 +106,7 @@ class ComponentManager:
         '''
         if not self.__utils_conn.check_connection():
             return {}
-        
+
         catalog_wine = {}
         catalog_proton = {}
         catalog_dxvk = {}
@@ -179,7 +180,7 @@ class ComponentManager:
         to the download_entry update_status function by default.
         '''
         download_entry = self.__download_manager.new_download(
-            file_name=file, 
+            file_name=file,
             cancellable=False
         )
         update_func = download_entry.update_status
@@ -219,7 +220,9 @@ class ComponentManager:
             skipped for large files (e.g. runners).
             '''
             try:
-                download_url = urllib.request.urlopen(download_url).geturl()
+                requests.packages.urllib3.disable_warnings()
+                response = requests.head(download_url, allow_redirects=True, verify=False)
+                download_url = response.url
                 req_code = urllib.request.urlopen(download_url).getcode()
             except:
                 GLib.idle_add(download_entry.remove)
@@ -248,7 +251,7 @@ class ComponentManager:
                     '''
                     GLib.idle_add(download_entry.remove)
                     return False
-                    
+
                 just_downloaded = True
             else:
                 GLib.idle_add(download_entry.remove)
@@ -278,7 +281,7 @@ class ComponentManager:
                     f"Source cksum: [{checksum}] downloaded: [{local_checksum}]"
                 )
 
-                os.remove(file_path)
+                #os.remove(file_path)
                 GLib.idle_add(download_entry.remove)
                 return False
 
@@ -332,11 +335,11 @@ class ComponentManager:
         return True
 
     def install(
-        self, 
-        component_type: str, 
-        component_name: str, 
-        after=False, 
-        func=False, 
+        self,
+        component_type: str,
+        component_name: str,
+        after=False,
+        func=False,
         checks=True
     ) -> None:
         '''
@@ -351,7 +354,7 @@ class ComponentManager:
     def async_install(self, args: list) -> None:
         component_type, component_name, after, func, checks = args
         manifest = self.get_component(component_type, component_name)
-        
+
         if not manifest:
             return func(failed=True)
 
@@ -417,7 +420,6 @@ class ComponentManager:
         if after:
             GLib.idle_add(after)
 
-
     def __post_rename(self, component_type: str, post: dict):
         source = post.get("source")
         dest = post.get("dest")
@@ -430,7 +432,7 @@ class ComponentManager:
 
         if component_type == "vkd3d":
             path = Paths.vkd3d
-        
+
         if not os.path.isdir(os.path.join(path, dest)):
             shutil.move(
                 src=os.path.join(path, source),
