@@ -494,6 +494,9 @@ class Manager:
 
                     if executable_path.find("ninstall") > 0:
                         continue
+                    
+                    if any(x in executable_path for x in ["`", "x00"]):
+                        continue
 
                     path = path.replace(".lnk", "")
                     executable_name = executable_path.split("\\")[-1][:-4]
@@ -503,6 +506,7 @@ class Manager:
                     )
 
                     icon = self.__find_program_icon(executable_name)
+
                     installed_programs.append(
                         [path, executable_path, icon, program_folder]
                     )

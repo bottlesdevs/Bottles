@@ -89,7 +89,8 @@ class ProgramEntry(Handy.ActionRow):
             self.config,
             self.program_executable_path,
             arguments,
-            cwd=self.program_folder)
+            cwd=self.program_folder
+        )
 
     def uninstall_program(self, widget):
         self.manager.remove_program(self.config, self.program_name)
