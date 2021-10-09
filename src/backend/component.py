@@ -221,7 +221,7 @@ class ComponentManager:
             '''
             try:
                 requests.packages.urllib3.disable_warnings()
-                response = requests.head(download_url, allow_redirects=True, verify=False)
+                response = requests.head(download_url, allow_redirects=True)
                 download_url = response.url
                 req_code = urllib.request.urlopen(download_url).getcode()
             except:
