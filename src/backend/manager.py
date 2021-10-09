@@ -796,6 +796,23 @@ class Manager:
         update_output(_("Wine config updated!"))
         time.sleep(1)
 
+        if "FLATPAK_ID" in os.environ:
+            '''
+            if running as flatpak, unlink home directories 
+            and make them as folders
+            '''
+            update_output(_("Running as flatpak, creating sandboxed folders …"))
+            users_dir = glob(f"{bottle_complete_path}/drive_c/users/*/*")
+
+            for path in users_dir:
+                if os.path.islink(path):
+                    try:
+                        os.unlink(path)
+                        os.makedirs(path)
+                    except:
+                        pass
+            time.sleep(1)
+
         # generate bottle config file
         logging.info("Generating Bottle config file …")
         update_output(_("Generating Bottle config file …"))
@@ -886,6 +903,8 @@ class Manager:
         with the givven runner and arch, install DXVK and VKD3D and
         create a new state if versioning is enabled. It also creates
         the configuration file on bottle root.
+        On Flatpak, it also unlink all folders from the users directory
+        and create these as normal folders instead.
         '''
         RunAsync(
             self.async_create_bottle,
