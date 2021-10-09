@@ -195,4 +195,3 @@ class CrashReportDialog(Handy.Window):
         ]
         webbrowser.open("".join(issue_url))
         self.__close_window()
-
