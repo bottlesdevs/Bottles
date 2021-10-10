@@ -45,9 +45,10 @@ class StateEntry(Handy.ActionRow):
         self.versioning_manager = self.manager.versioning_manager
         self.spinner = Gtk.Spinner()
 
-        '''Format creation date'''
-        creation_date = datetime.strptime(state[1].get(
-            "Creation_Date"), "%Y-%m-%d %H:%M:%S.%f")
+        # format creation date
+        creation_date = datetime.strptime(
+            state[1].get("Creation_Date"), "%Y-%m-%d %H:%M:%S.%f"
+        )
         creation_date = creation_date.strftime("%b %d %Y %H:%M:%S")
 
         # populate widgets
@@ -61,12 +62,12 @@ class StateEntry(Handy.ActionRow):
         self.btn_restore.connect('pressed', self.set_state)
         self.btn_manifest.connect('pressed', self.open_index)
 
-    '''Set bottle state'''
-
     def set_state(self, widget):
+        '''
+        Set the bottle state to this one.
+        '''
         for w in widget.get_children():
             w.destroy()
-        self.get_parent().set_sensitive(False)
 
         widget.set_sensitive(False)
         widget.add(self.spinner)
@@ -76,9 +77,11 @@ class StateEntry(Handy.ActionRow):
         self.versioning_manager.set_bottle_state(
             self.config, self.state[0], self.set_completed)
 
-    '''Open state index'''
-
     def open_index(self, widget):
+        '''
+        Open the manifest for the state index in a new
+        dialog.
+        '''
         dialog = Dialog(
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
@@ -90,9 +93,10 @@ class StateEntry(Handy.ActionRow):
         dialog.run()
         dialog.destroy()
 
-    '''Set installed status'''
-
     def set_completed(self):
+        '''
+        Set completed status to the widget.
+        '''
         self.spinner.stop()
         self.btn_restore.set_visible(False)
-        self.get_parent().set_sensitive(True)
+        self.set_sensitive(True)
