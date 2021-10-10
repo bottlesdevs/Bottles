@@ -17,6 +17,7 @@
 
 import webbrowser
 from gi.repository import Gtk, GLib, Handy
+from gettext import gettext as _
 
 from ..dialogs.generic import Dialog
 
