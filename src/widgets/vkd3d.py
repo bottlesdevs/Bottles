@@ -79,7 +79,14 @@ class Vkd3dEntry(Handy.ActionRow):
             path_type="vkd3d",
             vkd3d=self.vkd3d_name)
 
-    def idle_update_status(self, count=False, block_size=False, total_size=False, completed=False, failed=False):
+    def idle_update_status(
+        self, 
+        count=False, 
+        block_size=False, 
+        total_size=False, 
+        completed=False, 
+        failed=False
+    ):
         if failed:
             self.set_err()
             return False
