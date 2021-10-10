@@ -1,4 +1,4 @@
-# download.py
+# operation.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -15,42 +15,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import time
 from gettext import gettext as _
 from gi.repository import Gtk, GLib
 
-from .utils import RunAsync
 
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/download-entry.ui')
-class DownloadEntry(Gtk.Box):
-    __gtype_name__ = 'DownloadEntry'
+@Gtk.Template(resource_path='/com/usebottles/bottles/task-entry.ui')
+class TaskEntry(Gtk.Box):
+    __gtype_name__ = 'TaskEntry'
 
     # region Widgets
     label_filename = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
-    spinner_download = Gtk.Template.Child()
-    label_download_status = Gtk.Template.Child()
+    spinner_task = Gtk.Template.Child()
+    label_task_status = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, file_name, cancellable=True, **kwargs):
         super().__init__(**kwargs)
 
         self.window = window
-        self.box_downloads = window.box_downloads
+        self.box_tasks = window.box_tasks
 
         if len(file_name) > 30:
             file_name = f"{file_name[:20]}..."
 
-        # Set btn_downloads visible
-        self.window.btn_downloads.set_visible(True)
+        # Set btn_operations visible
+        self.window.btn_operations.set_visible(True)
 
         # Populate widgets data
         self.label_filename.set_text(file_name)
         if not cancellable:
             self.btn_cancel.hide()
 
-        self.spinner_download.start()
+        self.spinner_task.start()
 
     def idle_update_status(
         self,
@@ -59,17 +56,17 @@ class DownloadEntry(Gtk.Box):
         total_size=False,
         completed=False
     ):
-        if not self.label_download_status.get_visible():
-            self.label_download_status.set_visible(True)
+        if not self.label_task_status.get_visible():
+            self.label_task_status.set_visible(True)
 
         if not completed:
             percent = int(count * block_size * 100 / total_size)
-            self.label_download_status.set_text(f'{str(percent)}%')
+            self.label_task_status.set_text(f'{str(percent)}%')
         else:
             percent = 100
 
         if percent == 100:
-            self.spinner_download.stop()
+            self.spinner_task.stop()
             self.remove()
 
     def update_status(
@@ -88,24 +85,24 @@ class DownloadEntry(Gtk.Box):
         )
 
     def remove(self):
-        downloads = self.box_downloads.get_children()
-        if len(downloads) <= 1:
-            self.window.btn_downloads.set_visible(False)
+        tasks = self.box_tasks.get_children()
+        if len(tasks) <= 1:
+            self.window.btn_operations.set_visible(False)
         self.destroy()
 
 
-class DownloadManager():
+class OperationManager():
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
 
         # Common variables
         self.window = window
-        self.box_downloads = window.box_downloads
+        self.box_tasks = window.box_tasks
 
-    def new_download(self, file_name, cancellable=True):
-        download_entry = DownloadEntry(
+    def new_task(self, file_name, cancellable=True):
+        task_entry = TaskEntry(
             self.window, file_name, cancellable)
-        self.window.box_downloads.add(download_entry)
+        self.window.box_tasks.add(task_entry)
 
-        return download_entry
+        return task_entry

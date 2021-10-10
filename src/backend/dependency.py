@@ -27,7 +27,7 @@ from gi.repository import Gtk, GLib
 
 from .runner import Runner
 from .globals import BottlesRepositories, Paths
-from ..download import DownloadManager
+from ..operation import OperationManager
 from ..utils import RunAsync, UtilsLogger, CabExtract, validate_url
 
 logging = UtilsLogger()
@@ -42,7 +42,7 @@ class DependencyManager:
         self.__manager = manager
         self.__window = manager.window
         self.__utils_conn = manager.utils_conn
-        self.__download_manager = DownloadManager(self.__window)
+        self.__operation_manager = OperationManager(self.__window)
 
     def get_dependency(
         self,
@@ -121,7 +121,7 @@ class DependencyManager:
                 True, False, None
             ])
 
-        download_entry = self.__download_manager.new_download(
+        task_entry = self.__operation_manager.new_task(
             file_name=dependency[0],
             cancellable=False
         )
@@ -265,7 +265,7 @@ class DependencyManager:
             )
 
         # Remove entry from download manager
-        GLib.idle_add(download_entry.remove)
+        GLib.idle_add(task_entry.remove)
 
         # Hide installation button and show remove button
         if widget is not None:

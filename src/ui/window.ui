@@ -3,7 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.0"/>
-  <object class="GtkPopover" id="pop_downloads">
+  <object class="GtkPopover" id="pop_tasks">
     <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
@@ -14,7 +14,7 @@
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
-          <object class="GtkBox" id="box_downloads">
+          <object class="GtkBox" id="box_tasks">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
@@ -183,14 +183,14 @@
               </packing>
             </child>
             <child>
-              <object class="GtkMenuButton" id="btn_downloads">
+              <object class="GtkMenuButton" id="btn_operations">
                 <property name="can_focus">True</property>
                 <property name="focus_on_click">False</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Operations</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="popover">pop_downloads</property>
+                <property name="popover">pop_tasks</property>
                 <child>
                   <object class="GtkSpinner">
                     <property name="visible">True</property>

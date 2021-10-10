@@ -30,7 +30,7 @@ class RunnerEntry(Handy.ActionRow):
     btn_remove = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
-    label_download_status = Gtk.Template.Child()
+    label_task_status = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, runner_entry, **kwargs):
@@ -95,11 +95,11 @@ class RunnerEntry(Handy.ActionRow):
             self.set_err()
             return False
 
-        self.label_download_status.set_visible(True)
+        self.label_task_status.set_visible(True)
 
         if not completed:
             percent = int(count * block_size * 100 / total_size)
-            self.label_download_status.set_text(f'{str(percent)}%')
+            self.label_task_status.set_text(f'{str(percent)}%')
         else:
             percent = 100
 

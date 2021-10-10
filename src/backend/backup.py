@@ -8,7 +8,7 @@ from gettext import gettext as _
 from ..utils import UtilsLogger, RunAsync
 from .globals import Paths
 from .runner import Runner
-from ..download import DownloadManager
+from ..operation import OperationManager
 
 logging = UtilsLogger()
 
@@ -30,7 +30,7 @@ class RunnerBackup:
         It returns True if the backup was successful, False otherwise.
         '''
         window, config, scope, path = args
-        self.download_manager = DownloadManager(window)
+        self.operation_manager = OperationManager(window)
 
         if scope == "config":
             logging.info(
@@ -48,7 +48,7 @@ class RunnerBackup:
             logging.info(
                 f"Backuping bottle: [{config['Name']}] in [{path}]"
             )
-            download_entry = self.download_manager.new_download(
+            task_entry = self.operation_manager.new_task(
                 file_name=_("Backup {0}").format(config.get("Name")),
                 cancellable=False
             )
@@ -63,7 +63,7 @@ class RunnerBackup:
             except:
                 backup_created = False
 
-            download_entry.remove()
+            task_entry.remove()
 
         if backup_created:
             logging.info(f"Backup saved in path: {path}.")
@@ -91,7 +91,7 @@ class RunnerBackup:
         will also update the bottles' list), False otherwise.
         '''
         window, scope, path = args
-        self.download_manager = DownloadManager(window)
+        self.operation_manager = OperationManager(window)
         backup_name = path.split("/")[-1].split(".")
         backup_imported = False
 
@@ -103,7 +103,7 @@ class RunnerBackup:
             if backup_name.lower().startswith("backup_"):
                 backup_name = backup_name[7:]
 
-            download_entry = self.download_manager.new_download(
+            task_entry = self.operation_manager.new_task(
                 _("Importing backup: {0}").format(backup_name), False
             )
             logging.info(f"Importing backup: {backup_name}")
@@ -115,7 +115,7 @@ class RunnerBackup:
             except:
                 backup_imported = False
 
-            download_entry.remove()
+            task_entry.remove()
 
         if backup_imported:
             window.manager.update_bottles()

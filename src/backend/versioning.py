@@ -7,7 +7,7 @@ from typing import NewType
 from datetime import datetime
 from gettext import gettext as _
 
-from ..download import DownloadManager
+from ..operation import OperationManager
 from ..utils import UtilsLogger, UtilsFiles, RunAsync
 from .runner import Runner
 
@@ -42,8 +42,8 @@ class RunnerVersioning:
         )
 
         bottle_path = Runner().get_bottle_path(config)
-        self.download_manager = DownloadManager(self.window)
-        download_entry = self.download_manager.new_download(
+        self.operation_manager = OperationManager(self.window)
+        task_entry = self.operation_manager.new_task(
             file_name=_("Generating state files index …"),
             cancellable=False
         )
@@ -125,8 +125,8 @@ class RunnerVersioning:
             state_id = "0"
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
-        download_entry.remove()
-        download_entry = self.download_manager.new_download(
+        task_entry.remove()
+        task_entry = self.operation_manager.new_task(
             _("Creating a restore point …"), False)
 
         try:
@@ -149,8 +149,8 @@ class RunnerVersioning:
         except:
             return False
 
-        download_entry.remove()
-        download_entry = self.download_manager.new_download(
+        task_entry.remove()
+        task_entry = self.operation_manager.new_task(
             _("Updating index …"), False)
 
         for file in cur_index["Files"]:
@@ -172,8 +172,8 @@ class RunnerVersioning:
         # wait 2s to let the process free the files
         time.sleep(2)
 
-        download_entry.remove()
-        download_entry = self.download_manager.new_download(
+        task_entry.remove()
+        task_entry = self.operation_manager.new_task(
             _("Updating states …"), False)
 
         # update the states.yml file, appending the new state
@@ -229,7 +229,7 @@ class RunnerVersioning:
         time.sleep(2)
         self.manager.update_bottles()
 
-        download_entry.remove()
+        task_entry.remove()
 
         if after:
             '''

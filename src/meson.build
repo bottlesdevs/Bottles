@@ -28,7 +28,7 @@ bottles_sources = [
   'main.py',
   'window.py',
   'params.py',
-  'download.py',
+  'operation.py',
   'utils.py',
 ]
 

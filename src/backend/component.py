@@ -25,7 +25,7 @@ import urllib.request
 from gi.repository import GLib
 from typing import Union
 
-from ..download import DownloadManager
+from ..operation import OperationManager
 from .globals import Paths, BottlesRepositories
 from ..utils import UtilsLogger, UtilsFiles, RunAsync
 
@@ -38,7 +38,7 @@ class ComponentManager:
         self.__manager = manager
         self.__utils_conn = manager.utils_conn
         self.__window = manager.window
-        self.__download_manager = DownloadManager(self.__window)
+        self.__operation_manager = OperationManager(self.__window)
 
     def get_component(
         self,
@@ -177,13 +177,13 @@ class ComponentManager:
 
         '''
         Add new entry to the download manager and set the update_func
-        to the download_entry update_status function by default.
+        to the task_entry update_status function by default.
         '''
-        download_entry = self.__download_manager.new_download(
+        task_entry = self.__operation_manager.new_task(
             file_name=file,
             cancellable=False
         )
-        update_func = download_entry.update_status
+        update_func = task_entry.update_status
         time.sleep(1)
 
         if download_url.startswith("temp/"):
@@ -225,7 +225,7 @@ class ComponentManager:
                 download_url = response.url
                 req_code = urllib.request.urlopen(download_url).getcode()
             except:
-                GLib.idle_add(download_entry.remove)
+                GLib.idle_add(task_entry.remove)
                 return False
 
             if req_code == 200:
@@ -241,7 +241,7 @@ class ComponentManager:
                         reporthook=update_func
                     )
                 except:
-                    GLib.idle_add(download_entry.remove)
+                    GLib.idle_add(task_entry.remove)
                     return False
 
                 if not os.path.isfile(f"{Paths.temp}/{file}"):
@@ -249,12 +249,12 @@ class ComponentManager:
                     If the file is not available in the /temp directory,
                     then the download failed.
                     '''
-                    GLib.idle_add(download_entry.remove)
+                    GLib.idle_add(task_entry.remove)
                     return False
 
                 just_downloaded = True
             else:
-                GLib.idle_add(download_entry.remove)
+                GLib.idle_add(task_entry.remove)
                 return False
 
         if rename and just_downloaded:
@@ -282,10 +282,10 @@ class ComponentManager:
                 )
 
                 #os.remove(file_path)
-                GLib.idle_add(download_entry.remove)
+                GLib.idle_add(task_entry.remove)
                 return False
 
-        GLib.idle_add(download_entry.remove)
+        GLib.idle_add(task_entry.remove)
         return True
 
     def extract(self, component: str, archive: str) -> True:

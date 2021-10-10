@@ -53,15 +53,15 @@ class MainWindow(Handy.ApplicationWindow):
     btn_add = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
-    btn_downloads = Gtk.Template.Child()
+    btn_operations = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
     btn_more = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
     btn_taskmanager = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
-    box_downloads = Gtk.Template.Child()
-    pop_downloads = Gtk.Template.Child()
+    box_tasks = Gtk.Template.Child()
+    pop_tasks = Gtk.Template.Child()
     # endregion
 
     # Common variables

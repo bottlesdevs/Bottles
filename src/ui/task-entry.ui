@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <template class="DownloadEntry" parent="GtkBox">
+  <template class="TaskEntry" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
@@ -11,7 +11,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkSpinner" id="spinner_download">
+          <object class="GtkSpinner" id="spinner_task">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
@@ -78,7 +78,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label_download_status">
+          <object class="GtkLabel" id="label_task_status">
             <property name="can_focus">False</property>
             <property name="label">n/a</property>
             <property name="width_chars">5</property>
