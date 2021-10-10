@@ -1032,6 +1032,28 @@ class Manager:
             ]
         )
 
+    def __sort_runners(self, prefix: str, fallback: bool = True) -> sorted:
+        '''
+        This function returns a list of runners filtering by the givven
+        prefix, also sort the list by name (so the first one is the
+        major one). If fallback is True, it will return the first in list
+        if there is no runner for the prefix.
+        ''' 
+        runners = sorted(
+            [
+                runner
+                for runner in self.runners_available
+                if runner.startswith(prefix)
+            ],
+            key=lambda x: x.split("-")[1],
+            reverse=True
+        )
+
+        if len(runners) > 0:
+            return runners[0]
+        
+        return self.runners_available[0] if fallback else []
+        
     def get_latest_runner(self, runner_type: RunnerType = "wine") -> list:
         '''
         This function returns the latest version of the given runner, 
@@ -1039,8 +1061,8 @@ class Manager:
         '''
         try:
             if runner_type in ["", "wine"]:
-                return [idx for idx in self.runners_available if idx.lower().startswith("vaniglia")][0]
-            return [idx for idx in self.runners_available if idx.lower().startswith("proton")][0]
+                return self.__sort_runners("vaniglia")
+            return self.__sort_runners("proton")
         except IndexError:
             return "Undefined"
 
