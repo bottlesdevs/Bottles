@@ -70,7 +70,10 @@ class DetailsView(Handy.Leaflet):
     btn_duplicate = Gtk.Template.Child()
     btn_add_state = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
-    btn_expose_dirs = Gtk.Template.Child()
+    btn_flatpak_doc = Gtk.Template.Child()
+    btn_flatpak_doc_home = Gtk.Template.Child()
+    btn_flatpak_doc_expose = Gtk.Template.Child()
+    btn_flatpak_doc_upgrade = Gtk.Template.Child()
     btn_manage_runners = Gtk.Template.Child()
     btn_manage_dxvk = Gtk.Template.Child()
     btn_manage_vkd3d = Gtk.Template.Child()
@@ -121,10 +124,10 @@ class DetailsView(Handy.Leaflet):
 
         if "FLATPAK_ID" in os.environ:
             '''
-            If Flatpak, show the btn_expose_dirs widget to reach
+            If Flatpak, show the btn_flatpak_doc widget to reach
             the documentation on how to expose directories
             '''
-            self.btn_expose_dirs.set_visible(True)
+            self.btn_flatpak_doc.set_visible(True)
 
         # region signals
         self.entry_name.connect('key-release-event', self.__check_entry_name)
@@ -182,10 +185,24 @@ class DetailsView(Handy.Leaflet):
             "utilities/logs-and-debugger#wine-debugger"
         )
         self.btn_request_dependency.connect(
-            'pressed', self.open_doc_url, "contribute/missing-dependencies"
+            'pressed', 
+            self.open_doc_url, 
+            "contribute/missing-dependencies"
         )
-        self.btn_expose_dirs.connect(
-            'pressed', self.open_doc_url, "flatpak/expose-directories"
+        self.btn_flatpak_doc_home.connect(
+            'pressed', 
+            self.open_doc_url, 
+            "flatpak/expose-directories/use-system-home"
+        )
+        self.btn_flatpak_doc_expose.connect(
+            'pressed', 
+            self.open_doc_url, 
+            "flatpak/expose-directories"
+        )
+        self.btn_flatpak_doc_upgrade.connect(
+            'pressed', 
+            self.open_doc_url, 
+            "flatpak/migrate-bottles-to-flatpak"
         )
 
         self.btn_rename.connect('toggled', self.__toggle_rename)
