@@ -125,7 +125,7 @@ class RunnerVersioning:
             state_id = "0"
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
-        download_entry.destroy()
+        download_entry.remove()
         download_entry = self.download_manager.new_download(
             _("Creating a restore point …"), False)
 
@@ -149,7 +149,7 @@ class RunnerVersioning:
         except:
             return False
 
-        download_entry.destroy()
+        download_entry.remove()
         download_entry = self.download_manager.new_download(
             _("Updating index …"), False)
 
@@ -172,7 +172,7 @@ class RunnerVersioning:
         # wait 2s to let the process free the files
         time.sleep(2)
 
-        download_entry.destroy()
+        download_entry.remove()
         download_entry = self.download_manager.new_download(
             _("Updating states …"), False)
 
@@ -229,7 +229,7 @@ class RunnerVersioning:
         time.sleep(2)
         self.manager.update_bottles()
 
-        download_entry.destroy()
+        download_entry.remove()
 
         if after:
             '''
