@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-31 14:44+0200\n"
+"POT-Creation-Date: 2021-10-10 11:33+0200\n"
 "PO-Revision-Date: 2021-09-01 17:14+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -30,11 +30,7 @@ msgstr "Bottles"
 msgid "Easily manage wineprefix"
 msgstr "轻松地管理 wineprefix"
 
-#: data/com.usebottles.bottles.desktop.in:5
-msgid "com.usebottles.bottles"
-msgstr "com.usebottles.bottles"
-
-#: data/com.usebottles.bottles.desktop.in:12
+#: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
 msgstr "wine;windows;"
 
@@ -147,135 +143,82 @@ msgstr "Bottles 版本控制（实验功能）"
 msgid ".. and much more that you can find by installing Bottles!"
 msgstr "……和更多您可以通过安装 Bottles 来发现的功能！"
 
-#: data/com.usebottles.bottles.appdata.xml.in:98
+#: data/com.usebottles.bottles.appdata.xml.in:81
 msgid "News"
 msgstr "消息"
 
-#: data/com.usebottles.bottles.appdata.xml.in:100
-msgid "Use %command% in launch options to set prefixes and suffixes"
-msgstr "在启动选项中使用 %command% 来设置前缀和后缀"
+#: data/com.usebottles.bottles.appdata.xml.in:83
+#, fuzzy
+msgid "Improved the Download manager"
+msgstr "改进了下载管理器"
 
-#: data/com.usebottles.bottles.appdata.xml.in:101
-msgid ""
-"Create a bottle where to launch the executable choosed from your file manager"
-msgstr "创建一个 bottle，在其中启动从文件管理器中选择的可执行文件"
+#: data/com.usebottles.bottles.appdata.xml.in:84
+msgid "Update to GNOME Runtime 41."
+msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:102
-msgid ""
-"Rewrited the manager to be less recursive and more user-friendly to "
-"developers"
-msgstr "重写管理器以减少递归并且对开发人员更加用户友好"
+#: data/com.usebottles.bottles.appdata.xml.in:85
+msgid "The DXVK and VKD3D installation are now performed in asynchronous mode"
+msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:103
-msgid ""
-"The dependencies/components/installers has now they own managers, "
-"indipendent from the main one"
-msgstr "依赖项/组件/安装程序现在拥有自己的管理器，独立于主管理器"
+#: data/com.usebottles.bottles.appdata.xml.in:86
+msgid "UI improvements for elementary OS"
+msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:104
-msgid ""
-"The dependencies manager can now extract single files from Windows Cabinet "
-"files"
-msgstr "依赖项管理器现在可以从 Windows Cabinet 文件中提取单个文件"
-
-#: data/com.usebottles.bottles.appdata.xml.in:105
-msgid ""
-"Now the user need to accept the notice in the crash report, before submiting "
-"new reports"
-msgstr "现在用户需要接受崩溃报告中的通知，然后才能提交新报告"
-
-#: data/com.usebottles.bottles.appdata.xml.in:106
-msgid "The user homedir is now removed from the reports"
-msgstr "用户 homedir 已从报告中删除"
-
-#: data/com.usebottles.bottles.appdata.xml.in:107
-msgid ""
-"The lutris-lol runner is now hidden when Bottles is running under flatpak, "
-"as it is not compatible with it"
-msgstr "当 Bottles 在 flatpak 下运行时，因为兼容性问题，lutris-lol runner 现在被隐藏"
-
-#: data/com.usebottles.bottles.appdata.xml.in:108
-msgid "The Windows Cabinet extraction is now quiet and only show relavant logs"
-msgstr "静默提取 Windows Cabinet，只显示相关的日志"
-
-#: data/com.usebottles.bottles.appdata.xml.in:109
-msgid ""
-"The download status icon in the preferencies dialog, is now on the right of "
-"the percentage, so it will be no more moved by the percentage"
-msgstr "首选项对话框中的下载状态图标，现在位于百分比的右侧，因此不会再被百分比移动"
-
-#: data/com.usebottles.bottles.appdata.xml.in:112
+#: data/com.usebottles.bottles.appdata.xml.in:89
 msgid "Bug fixes"
 msgstr "错误修复"
 
-#: data/com.usebottles.bottles.appdata.xml.in:114
+#: data/com.usebottles.bottles.appdata.xml.in:91
 msgid ""
-"Fixed a bug in name resolution that could cause Bottles to crash if it "
-"cannot reach a resource"
-msgstr "修复了名称解析中的错误，如果无法访问资源，可能会导致 Bottles 崩溃"
+"Fixed a bug in component installation that was assigning the wrong name "
+"after download."
+msgstr ""
 
-#: data/com.usebottles.bottles.appdata.xml.in:115
+#: data/com.usebottles.bottles.appdata.xml.in:92
+msgid "Fixed the wrong text for cwd label."
+msgstr ""
+
+#: data/com.usebottles.bottles.appdata.xml.in:93
+#, fuzzy
 msgid ""
-"Prevent Bottles from running executables when the runner is not available"
-msgstr "当运行器不可用时，防止 Bottles 运行可执行文件"
+"Fixed a bug that was causing Bottles crash when running executables with "
+"arguments."
+msgstr "修正了下载期间名称解析失败造成 Bottle 崩溃的错误"
 
-#: data/com.usebottles.bottles.appdata.xml.in:116
-msgid "Environment names are now translated again"
-msgstr "再次翻译环境名称"
-
-#: data/com.usebottles.bottles.appdata.xml.in:117
-msgid "Added missing translations in bottle creation"
-msgstr "添加了 bottle 创建中缺失的翻译"
-
-#: data/com.usebottles.bottles.appdata.xml.in:118
-msgid ""
-"Fixed a problem in Wayland support that was setting DISPLAY to the wrong "
-"parameter"
-msgstr "修复了 Wayland 支持中将 DISPLAY 设置为错误参数的问题"
-
-#: data/com.usebottles.bottles.appdata.xml.in:119
-msgid "The directory for added custom programs was wrong"
-msgstr "添加的自定义程序的目录错误"
-
-#: data/com.usebottles.bottles.appdata.xml.in:122
+#: data/com.usebottles.bottles.appdata.xml.in:96
 msgid "Translations"
 msgstr "翻译"
 
-#: data/com.usebottles.bottles.appdata.xml.in:124
-msgid "Spanish translations thanks to @fitojb, @kenpb, @oscfdezdz"
+#: data/com.usebottles.bottles.appdata.xml.in:98
+#, fuzzy
+msgid "Indonesian translations thanks to @rezaalmanda"
+msgstr "感谢 @liimee 的印尼语翻译"
+
+#: data/com.usebottles.bottles.appdata.xml.in:99
+#, fuzzy
+msgid "Spanish translations thanks to @oscfdezdz"
 msgstr "感谢 @fitojb, @kenpb, @oscfdezdz 的西班牙语翻译"
 
-#: data/com.usebottles.bottles.appdata.xml.in:125
-msgid "Portuguese (Brazil) translations thanks to @farribeiro, @swyknox"
-msgstr "感谢 @farribeiro, @swyknox 的葡萄牙语（巴西）翻译"
-
-#: data/com.usebottles.bottles.appdata.xml.in:126
-msgid "Hungarian translations thanks to @ovari"
-msgstr "感谢 @ovari 的匈牙利语翻译"
-
-#: data/com.usebottles.bottles.appdata.xml.in:127
-msgid "French translations thanks to @julroy67"
-msgstr "感谢 @julroy67 的法语翻译"
-
-#: data/com.usebottles.bottles.appdata.xml.in:128
-msgid "Swedish translations thanks to @bittin"
-msgstr "感谢 @bittin 的瑞典语翻译"
-
-#: data/com.usebottles.bottles.appdata.xml.in:129
-msgid "Chinese (Simplified) translations thanks to @sr093906"
-msgstr "感谢 @sr093906 的中文（简体）翻译"
-
-#: data/com.usebottles.bottles.appdata.xml.in:130
+#: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "感谢 @jatin-cbs 的日文翻译"
 
-#: data/com.usebottles.bottles.appdata.xml.in:131
-msgid "Croatian translations thanks to @milotype"
-msgstr "感谢 @milotype 的克罗地亚语翻译"
+#: data/com.usebottles.bottles.appdata.xml.in:101
+#, fuzzy
+msgid "Portuguese translations thanks to @hugok79"
+msgstr "感谢 @julroy67 的法语翻译"
 
-#: data/com.usebottles.bottles.appdata.xml.in:132
-msgid "Indonesian translations thanks to @liimee"
-msgstr "感谢 @liimee 的印尼语翻译"
+#: data/com.usebottles.bottles.appdata.xml.in:102
+#, fuzzy
+msgid ""
+"Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, "
+"@davipatricio"
+msgstr "感谢 @farribeiro, @swyknox 的葡萄牙语（巴西）翻译"
+
+#: data/com.usebottles.bottles.appdata.xml.in:103
+#, fuzzy
+msgid "German translations thanks to @thericosanto"
+msgstr "感谢 @bloomvdomino 和 @thericosanto 的德语翻译"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -391,24 +334,24 @@ msgstr "© 2017-2021 - Bottles 开发者"
 msgid "Easily manage wineprefix using environments"
 msgstr "使用环境轻松管理 wineprefix"
 
-#: src/ui/about.ui:109
+#: src/ui/about.ui:112
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">翻译</a>"
 
-#: src/ui/about.ui:122
+#: src/ui/about.ui:125
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">捐助</a>"
 
-#: src/ui/about.ui:135
+#: src/ui/about.ui:138
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">缺陷报告</a>"
 
-#: src/ui/about.ui:148
+#: src/ui/about.ui:151
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">博客</a>"
 
-#: src/ui/about.ui:161
+#: src/ui/about.ui:164
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
@@ -446,8 +389,7 @@ msgstr "这仅仅是 bottle 配置，是您想要新建不带个人文件的 bot
 msgid "Configuration"
 msgstr "配置"
 
-#: src/ui/details.ui:36 src/ui/details.ui:61 src/ui/details.ui:91
-#: src/ui/importer.ui:36
+#: src/ui/details.ui:36 src/ui/importer.ui:36
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr "这是您的 bottle 的完整归档，包含个人文件。"
 
@@ -455,184 +397,196 @@ msgstr "这是您的 bottle 的完整归档，包含个人文件。"
 msgid "Full archive"
 msgstr "完全归档"
 
-#: src/ui/details.ui:62
+#: src/ui/details.ui:61
 msgid "Duplicate bottle"
 msgstr "复制 bottle"
 
-#: src/ui/details.ui:92
+#: src/ui/details.ui:87
+msgid "Flatpak help"
+msgstr ""
+
+#: src/ui/details.ui:111
+msgid "I can't see my old bottles after upgrade."
+msgstr ""
+
+#: src/ui/details.ui:124
+msgid "I don't see some directories."
+msgstr ""
+
+#: src/ui/details.ui:137
+msgid "I can't see the files in my home."
+msgstr ""
+
+#: src/ui/details.ui:166
 msgid "Run with arguments"
 msgstr "带有参数运行"
 
-#: src/ui/details.ui:119
+#: src/ui/details.ui:193
 msgid "Type a really short comment:"
 msgstr "键入一条简短注释："
 
-#: src/ui/details.ui:136
+#: src/ui/details.ui:210
 msgid "Special characters are not allowed!"
 msgstr "不允许特殊字符！"
 
-#: src/ui/details.ui:137
+#: src/ui/details.ui:211
 msgid "A really short comment"
 msgstr "简短注释"
 
-#: src/ui/details.ui:151
+#: src/ui/details.ui:225
 msgid "Save the bottle state."
 msgstr "保存 bottle 状态。"
 
-#: src/ui/details.ui:266
+#: src/ui/details.ui:341
 msgid "Rename bottle"
 msgstr "重命名 bottle"
 
-#: src/ui/details.ui:292 src/ui/list-entry.ui:76
+#: src/ui/details.ui:368 src/ui/list-entry.ui:76
 msgid "Versioning enabled for this bottle"
 msgstr "该 bottle 已启用版本控制"
 
-#: src/ui/details.ui:303 src/ui/list-entry.ui:83
+#: src/ui/details.ui:379 src/ui/list-entry.ui:83
 msgid "Versioning is active in this bottle."
 msgstr "该 bottle 已激活版本控制。"
 
-#: src/ui/details.ui:324 src/ui/list-entry.ui:102
+#: src/ui/details.ui:400 src/ui/list-entry.ui:102
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:354 src/main.py:120
+#: src/ui/details.ui:451 src/main.py:120
 msgid "Bottle name"
 msgstr "Bottle 名称"
 
-#: src/ui/details.ui:358
+#: src/ui/details.ui:455
 msgid "Type a name for your bottle"
 msgstr "为您的 bottle 命名"
 
-#: src/ui/details.ui:377
+#: src/ui/details.ui:474
 msgid "Environment"
 msgstr "环境"
 
-#: src/ui/details.ui:411
+#: src/ui/details.ui:508
 msgid "64 Bit"
 msgstr "64 位"
 
-#: src/ui/details.ui:430
+#: src/ui/details.ui:527
 msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
-#: src/ui/details.ui:458
+#: src/ui/details.ui:555
 msgid "Run executable"
 msgstr "运行可执行文件"
 
-#: src/ui/details.ui:477
-msgid "Destroy this bottle"
-msgstr "销毁该 bottle"
-
-#: src/ui/details.ui:506
+#: src/ui/details.ui:596
 msgid "Backup bottle"
 msgstr "备份 bottle"
 
-#: src/ui/details.ui:532
+#: src/ui/details.ui:622
 msgid "Reboot Windows"
 msgstr "重启 Windows"
 
-#: src/ui/details.ui:557
+#: src/ui/details.ui:647
 msgid "Shutdown Windows"
 msgstr "关闭 Windows"
 
-#: src/ui/details.ui:582
+#: src/ui/details.ui:672
 msgid "Kill all wine processes"
 msgstr "杀死所有 wine 进程"
 
-#: src/ui/details.ui:617
-msgid "Are you experiencing problems reaching a directory in Bottles?"
-msgstr "您是否遇到访问 Bottle 中目录的问题？"
+#: src/ui/details.ui:708
+msgid "Destroy this bottle"
+msgstr "销毁该 bottle"
 
-#: src/ui/details.ui:662 src/ui/details.ui:2109 src/ui/details.ui:2243
-#: src/views/details.py:596
+#: src/ui/details.ui:760 src/ui/details.ui:2207 src/ui/details.ui:2341
+#: src/views/details.py:268
 msgid "Programs"
 msgstr "程序"
 
-#: src/ui/details.ui:678
+#: src/ui/details.ui:776
 msgid "Utilities"
 msgstr "工具"
 
-#: src/ui/details.ui:683
+#: src/ui/details.ui:781
 msgid "Wine config"
 msgstr "Wine 配置"
 
-#: src/ui/details.ui:685
+#: src/ui/details.ui:783
 msgid "Adjust internal settings."
 msgstr "调整内部设置。"
 
-#: src/ui/details.ui:722
+#: src/ui/details.ui:820
 msgid "Browse C:"
 msgstr "浏览 C:"
 
-#: src/ui/details.ui:724
+#: src/ui/details.ui:822
 msgid "Browse internal files."
 msgstr "浏览内部文件。"
 
-#: src/ui/details.ui:761
+#: src/ui/details.ui:859
 msgid "Command Line"
 msgstr "命令行"
 
-#: src/ui/details.ui:763
+#: src/ui/details.ui:861
 msgid "Run commands inside the Bottle."
 msgstr "在 Bottle 内运行命令。"
 
-#: src/ui/details.ui:800
+#: src/ui/details.ui:898
 msgid "Registry Editor"
 msgstr "注册表编辑器"
 
-#: src/ui/details.ui:802
+#: src/ui/details.ui:900
 msgid "Edit the internal registry."
 msgstr "编辑内部注册表。"
 
-#: src/ui/details.ui:839
+#: src/ui/details.ui:937
 msgid "Debug"
 msgstr "调试"
 
-#: src/ui/details.ui:841
+#: src/ui/details.ui:939
 msgid "Debug wine processes."
 msgstr "调试 wine 进程。"
 
-#: src/ui/details.ui:851 src/ui/details.ui:1962 src/ui/details.ui:2548
+#: src/ui/details.ui:973 src/ui/details.ui:2060 src/ui/details.ui:2463
 msgid "Read documentation"
 msgstr "阅读文档"
 
-#: src/ui/details.ui:905
+#: src/ui/details.ui:1003
 msgid "Task Manager"
 msgstr "任务管理器"
 
-#: src/ui/details.ui:907
+#: src/ui/details.ui:1005
 msgid "Manage processes with the Wine task manager."
 msgstr "用 Wine 任务管理器管理进程。"
 
-#: src/ui/details.ui:944
+#: src/ui/details.ui:1042
 msgid "Uninstaller"
 msgstr "卸载器"
 
-#: src/ui/details.ui:946
+#: src/ui/details.ui:1044
 msgid "Uninstall programs using wine uninstaller"
 msgstr "使用 wine 卸载器卸载程序"
 
-#: src/ui/details.ui:983
+#: src/ui/details.ui:1081
 msgid "Control Panel"
 msgstr "控制面板"
 
-#: src/ui/details.ui:985
+#: src/ui/details.ui:1083
 msgid "Access the internal wine control panel."
 msgstr "访问内部 wine 控制面板。"
 
-#: src/ui/details.ui:1037
+#: src/ui/details.ui:1135
 msgid "Bottle"
 msgstr "Bottle"
 
-#: src/ui/details.ui:1065
+#: src/ui/details.ui:1163
 msgid "Graphics"
 msgstr "图形"
 
-#: src/ui/details.ui:1070
+#: src/ui/details.ui:1168
 msgid "Use DXVK"
 msgstr "使用 DXVK"
 
-#: src/ui/details.ui:1071
+#: src/ui/details.ui:1169
 msgid ""
 "Improves performance for Directx 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -640,11 +594,11 @@ msgstr ""
 "改进 Directx 11 游戏和 3D 应用程序的性能。\n"
 "如果您遭遇图形故障请禁用。"
 
-#: src/ui/details.ui:1098
+#: src/ui/details.ui:1196
 msgid "Use VKD3D"
 msgstr "使用 VKD3D"
 
-#: src/ui/details.ui:1099
+#: src/ui/details.ui:1197
 msgid ""
 "Improves performance for Directx 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -652,19 +606,19 @@ msgstr ""
 "改进 Directx 12 游戏和 3D 应用程序的性能。\n"
 "如果您遭遇图形故障请禁用。"
 
-#: src/ui/details.ui:1126
+#: src/ui/details.ui:1224
 msgid "Use Gamemode"
 msgstr "使用游戏模式"
 
-#: src/ui/details.ui:1127
+#: src/ui/details.ui:1225
 msgid "Optimise gaming performance on demand"
 msgstr "根据需要优化游戏性能"
 
-#: src/ui/details.ui:1153
+#: src/ui/details.ui:1251
 msgid "Enable ACO shader compiler"
 msgstr "启用 ACO 着色编译器"
 
-#: src/ui/details.ui:1154
+#: src/ui/details.ui:1252
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -672,152 +626,162 @@ msgstr ""
 "在游戏和 3D 应用程序中提高性能。\n"
 "如果您遭遇图形故障请禁用。"
 
-#: src/ui/details.ui:1181
+#: src/ui/details.ui:1279
 msgid "Discrete GPU"
 msgstr "独立显卡"
 
-#: src/ui/details.ui:1182
+#: src/ui/details.ui:1280
 msgid "Improves performance at the cost of increased power usage."
 msgstr "以增加功耗为代价提升性能。"
 
-#: src/ui/details.ui:1208
+#: src/ui/details.ui:1306
 msgid "Use a virtual desktop"
 msgstr "使用虚拟桌面"
 
-#: src/ui/details.ui:1209
+#: src/ui/details.ui:1307
 msgid "Use the Wine virtual desktop."
 msgstr "使用 Wine 虚拟桌面。"
 
-#: src/ui/details.ui:1292 src/ui/details.ui:1305
+#: src/ui/details.ui:1390 src/ui/details.ui:1403
 msgid "System"
 msgstr "系统"
 
-#: src/ui/details.ui:1297
+#: src/ui/details.ui:1395
 msgid "Synchronization"
 msgstr "同步"
 
-#: src/ui/details.ui:1298
+#: src/ui/details.ui:1396
 msgid ""
 "Enable synchronization to increase performance for multi-core processors."
 msgstr "为多核心处理器启用同步以增强性能。"
 
-#: src/ui/details.ui:1319
+#: src/ui/details.ui:1417
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1333
+#: src/ui/details.ui:1431
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1356 src/ui/new.ui:261
+#: src/ui/details.ui:1454 src/ui/new.ui:261
 msgid "Runner"
 msgstr "运行器"
 
-#: src/ui/details.ui:1399 src/ui/details.ui:1638 src/ui/new.ui:303
+#: src/ui/details.ui:1497 src/ui/new.ui:303
 msgid "Manage runners"
 msgstr "管理运行器"
 
-#: src/ui/details.ui:1431 src/ui/new.ui:335
+#: src/ui/details.ui:1529 src/ui/new.ui:335
 msgid "DXVK Version"
 msgstr "DXVK 版本"
 
-#: src/ui/details.ui:1474 src/ui/details.ui:1549 src/ui/new.ui:377
+#: src/ui/details.ui:1572 src/ui/new.ui:377
 msgid "Manage DXVK versions"
 msgstr "管理 DXVK 版本"
 
-#: src/ui/details.ui:1506
+#: src/ui/details.ui:1604
 msgid "VKD3D Version"
 msgstr "VKD3D 版本"
 
-#: src/ui/details.ui:1582 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1647
+#, fuzzy
+msgid "Manage VKD3D versions"
+msgstr "管理 DXVK 版本"
+
+#: src/ui/details.ui:1680 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "DLL 覆盖"
 
-#: src/ui/details.ui:1620
+#: src/ui/details.ui:1718
 msgid "Working directory"
 msgstr "工作目录"
 
-#: src/ui/details.ui:1622
+#: src/ui/details.ui:1720
 msgid "Point to the bottle path"
 msgstr "指向 bottle 路径"
 
-#: src/ui/details.ui:1681
+#: src/ui/details.ui:1736
+#, fuzzy
+msgid "Choose a directory"
+msgstr "选择环境"
+
+#: src/ui/details.ui:1779
 msgid "Audio"
 msgstr "音频"
 
-#: src/ui/details.ui:1686
+#: src/ui/details.ui:1784
 msgid "Reduce PulseAudio latency"
 msgstr "降低 PulseAudio 延迟"
 
-#: src/ui/details.ui:1687
+#: src/ui/details.ui:1785
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音频质量"
 
-#: src/ui/details.ui:1724
+#: src/ui/details.ui:1822
 msgid "Developers & Debug"
 msgstr "开发者与调试"
 
-#: src/ui/details.ui:1729
+#: src/ui/details.ui:1827
 msgid "Environment variables"
 msgstr "环境变量"
 
-#: src/ui/details.ui:1767
+#: src/ui/details.ui:1865
 msgid "DXVK HUD"
 msgstr "DXVK 抬头显示"
 
-#: src/ui/details.ui:1768
+#: src/ui/details.ui:1866
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr "切换 DXVK 在 D3D 应用程序中叠加显示帧率和其它详情。"
 
-#: src/ui/details.ui:1794
+#: src/ui/details.ui:1892
 msgid "Enable wine fixme logs"
 msgstr "启用 wine fixme 日志"
 
-#: src/ui/details.ui:1795
+#: src/ui/details.ui:1893
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "记录未在 Wine 中实现的代码路径。"
 
-#: src/ui/details.ui:1836 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/views/details.py:594
+#: src/ui/details.ui:1934 src/ui/preferences.ui:8 src/ui/window.ui:75
+#: src/views/details.py:266
 msgid "Preferences"
 msgstr "首选项"
 
-#: src/ui/details.ui:1887
+#: src/ui/details.ui:1985
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr "启用测试模式：只显示来自测试存储库的依赖项。"
 
-#: src/ui/details.ui:1943 src/ui/details.ui:2069 src/views/details.py:595
+#: src/ui/details.ui:2041 src/ui/details.ui:2167 src/views/details.py:267
 msgid "Dependencies"
 msgstr "依赖"
 
-#: src/ui/details.ui:1972
+#: src/ui/details.ui:2070
 msgid "Report a missing dependency"
 msgstr "报告丢失的依赖项"
 
-#: src/ui/details.ui:1999
+#: src/ui/details.ui:2097
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr "虽然此页面上的文件已验证，但可能属于专有许可证。"
 
-#: src/ui/details.ui:2029
+#: src/ui/details.ui:2127
 msgid "Microsoft .NET Framework 4 .."
 msgstr "微软 .NET Framework 4 .."
 
-#: src/ui/details.ui:2128
+#: src/ui/details.ui:2226
 msgid "These are the programs found in your bottle's Start menu"
 msgstr "可从Bottles开始菜单中找到的程序"
 
-#: src/ui/details.ui:2152
+#: src/ui/details.ui:2250
 msgid "Add a custom executable path"
 msgstr "添加自定义可执行路径"
 
-#: src/ui/details.ui:2179
+#: src/ui/details.ui:2277
 msgid "Search for installed programs"
 msgstr "搜索已安装的程序"
 
-#: src/ui/details.ui:2295 src/ui/details.ui:2478
+#: src/ui/details.ui:2393 src/ui/details.ui:2608
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -825,29 +789,29 @@ msgstr ""
 "这是处于早期开发中的一个实验性功能，小心使用并 <a href=\"https://github.com/"
 "bottlesdevs/Bottles/issues/new/choose\">报告故障</a>。"
 
-#: src/ui/details.ui:2346 src/ui/preferences.ui:288 src/views/details.py:601
-msgid "Installers"
-msgstr "安装器"
-
-#: src/ui/details.ui:2365 src/ui/importer.ui:95
-msgid "Refresh"
-msgstr "刷新"
-
-#: src/ui/details.ui:2529 src/ui/preferences.ui:262 src/views/details.py:599
+#: src/ui/details.ui:2444 src/ui/preferences.ui:262 src/views/details.py:272
 msgid "Versioning"
 msgstr "版本控制"
 
-#: src/ui/details.ui:2578
+#: src/ui/details.ui:2493
 msgid "Create new state"
 msgstr "创建新状态"
+
+#: src/ui/details.ui:2659 src/ui/preferences.ui:288 src/views/details.py:275
+msgid "Installers"
+msgstr "安装器"
+
+#: src/ui/details.ui:2678 src/ui/importer.ui:95
+msgid "Refresh"
+msgstr "刷新"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
 msgstr "消息在这里。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:632
-#: src/views/details.py:792 src/views/details.py:1074 src/views/list.py:114
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:322
+#: src/views/details.py:516 src/views/details.py:927 src/views/list.py:115
 msgid "Cancel"
 msgstr "取消"
 
@@ -1071,7 +1035,7 @@ msgstr "正在创建 bottle…"
 msgid "Take a break, it may take a while"
 msgstr "喝杯茶，它可能会花一点时间"
 
-#: src/ui/new.ui:567
+#: src/ui/new.ui:558
 msgid "Bottle created"
 msgstr "Bottle 已创建"
 
@@ -1316,8 +1280,9 @@ msgid "Open menu"
 msgstr "打开菜单"
 
 #: src/ui/window.ui:190
-msgid "Downloads"
-msgstr "下载"
+#, fuzzy
+msgid "Operations"
+msgstr "翻译"
 
 #: src/ui/window.ui:234
 msgid ""
@@ -1348,19 +1313,19 @@ msgstr "可执行文件路径"
 msgid "lnk path"
 msgstr "lnk 路径"
 
-#: src/main.py:225
+#: src/main.py:233
 msgid "[Quit] request received."
 msgstr "[退出] 请求已收到。"
 
-#: src/main.py:234
+#: src/main.py:242
 msgid "[Help] request received."
 msgstr "[帮助] 请求已收到。"
 
-#: src/main.py:242
+#: src/main.py:250
 msgid "[Refresh] request received."
 msgstr "[刷新] 请求已收到。"
 
-#: src/utils.py:62
+#: src/utils.py:68
 msgid "You are offline, unable to download."
 msgstr "您已离线，无法下载。"
 
@@ -1372,203 +1337,301 @@ msgstr "Bottle 详情"
 msgid "Bottles Started!"
 msgstr "Bottles 已启动！"
 
-#: src/backend/backup.py:46
+#: src/backend/backup.py:52
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "备份 {0}"
 
-#: src/backend/backup.py:97
+#: src/backend/backup.py:107
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "正在导入备份：{0}"
 
-#: src/backend/manager.py:530
+#. if there are no local runners, show preferences
+#: src/backend/manager.py:722
 msgid "No runners found, please install one."
 msgstr "未找到运行器，请安装一个。"
 
-#: src/backend/manager.py:534
+#. if there are no local dxvks, install latest
+#: src/backend/manager.py:727
 msgid "No dxvk found, installing the latest version …"
 msgstr "未找到 dxvk，正在安装最新版本…"
 
-#: src/backend/manager.py:537
+#. if there are no local vkd3ds, install latest
+#: src/backend/manager.py:731
 msgid "No vkd3d found, installing the latest version …"
 msgstr "未找到 vkd3d，正在安装最新版本…"
 
-#. Execute wineboot
-#: src/backend/manager.py:585
+#. execute wineboot on the bottle path
+#: src/backend/manager.py:786
 msgid "The wine config is being updated …"
 msgstr "正在更新 wine 配置…"
 
-#: src/backend/manager.py:592
+#: src/backend/manager.py:796
 msgid "Wine config updated!"
 msgstr "Wine 配置已更新！"
 
-#: src/backend/manager.py:597
+#: src/backend/manager.py:804
+msgid "Running as flatpak, creating sandboxed folders …"
+msgstr ""
+
+#: src/backend/manager.py:818
 msgid "Generating Bottle config file …"
 msgstr "正在生成 Bottle 配置文件…"
 
-#: src/backend/manager.py:618
+#: src/backend/manager.py:838
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "正在应用环境：{0} …"
 
-#: src/backend/manager.py:638
+#: src/backend/manager.py:861
 msgid "Installing dxvk …"
 msgstr "正在安装 dxvk …"
 
-#: src/backend/manager.py:644
+#: src/backend/manager.py:867
 msgid "Installing vkd3d …"
 msgstr "正在安装 vkd3d …"
 
-#: src/backend/manager.py:652
+#: src/backend/manager.py:875
 msgid "Creating versioning state 0 …"
 msgstr "正在创建版本状态 0 …"
 
-#: src/backend/manager.py:659
+#: src/backend/manager.py:882
 #, python-brace-format
 msgid "Your new bottle: {0} is now ready!"
 msgstr "您的新 bottle：{0} 准备就绪！"
 
-#: src/backend/versioning.py:45
+#: src/backend/versioning.py:47
 msgid "Generating state files index …"
 msgstr "正在生成状态文件索引…"
 
-#: src/backend/versioning.py:115
+#: src/backend/versioning.py:130
 msgid "Creating a restore point …"
 msgstr "正在创建还原点…"
 
-#: src/backend/versioning.py:138
+#: src/backend/versioning.py:154
 msgid "Updating index …"
 msgstr "正在更新索引…"
 
-#: src/backend/versioning.py:153
+#: src/backend/versioning.py:177
 msgid "Updating states …"
 msgstr "正在更新状态…"
 
-#: src/dialogs/crash.py:38
+#: src/dialogs/crash.py:36
 msgid "Show report"
 msgstr "显示报告"
 
-#: src/dialogs/generic.py:24 src/dialogs/generic.py:62
+#: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
 msgstr "警告"
 
-#: src/dialogs/generic.py:25
+#: src/dialogs/generic.py:27
 msgid "An error has occurred."
 msgstr "发生了错误。"
 
-#: src/views/details.py:100 src/views/details.py:359
-#, python-brace-format
-msgid "Manifest for {0}"
-msgstr "{0} 的清单"
-
-#: src/views/details.py:189
-#, python-brace-format
-msgid "Index for state {0}"
-msgstr "状态 {0} 的索引"
-
-#: src/views/details.py:583
+#: src/views/details.py:251
 msgid "Gamemode is either not available on your system or not running."
 msgstr "游戏模式在你的系统中不可用，或没在运行。"
 
-#: src/views/details.py:593
+#: src/views/details.py:265
 msgid "Details & Utilities"
 msgstr "详情和工具"
 
-#: src/views/details.py:628
+#: src/views/details.py:318
 msgid "Choose working directory for executables"
 msgstr "选择可执行文件的工作目录"
 
-#: src/views/details.py:631
+#: src/views/details.py:321
 msgid "Done"
 msgstr "完成"
 
-#: src/views/details.py:679
+#. format arch
+#: src/views/details.py:384
 msgid "64-bit"
 msgstr "64 位"
 
-#: src/views/details.py:681
+#: src/views/details.py:386
 msgid "32-bit"
 msgstr "32 位"
 
-#: src/views/details.py:695
+#: src/views/details.py:404
 #, python-format
 msgid "Updated: %s"
 msgstr "已更新：%s"
 
-#: src/views/details.py:788
+#: src/views/details.py:512
 msgid "Choose an executable path"
 msgstr "选择一个可执行路径"
 
-#: src/views/details.py:791
+#: src/views/details.py:515
 msgid "Add"
 msgstr "添加"
 
-#: src/views/details.py:1070 src/views/list.py:110
+#: src/views/details.py:923 src/views/list.py:111
 msgid "Choose a Windows executable file"
 msgstr "选择一个 Windows 可执行文件"
 
-#: src/views/details.py:1073 src/views/list.py:113
+#: src/views/details.py:926 src/views/list.py:114
 msgid "Run"
 msgstr "运行"
 
-#: src/views/details.py:1149
+#: src/views/details.py:986
 msgid "Select the location where to save the backup config"
 msgstr "选择保存备份配置的位置"
 
-#: src/views/details.py:1171
+#: src/views/details.py:1014
 msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
-#: src/views/details.py:1199
+#: src/views/details.py:1052
 msgid "Confirm deletion"
 msgstr "确认删除"
 
-#: src/views/details.py:1200
+#: src/views/details.py:1054
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
-#: src/views/importer.py:99
+#: src/views/importer.py:69
 msgid "Choose a backup archive"
 msgstr "选择一个备份归档"
 
-#: src/views/list.py:52 src/views/list.py:58
+#: src/views/list.py:53 src/views/list.py:59
 msgid "N/A"
 msgstr "无"
 
-#: src/views/list.py:94
+#: src/views/list.py:95
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "发现可执行文件：[{executable}] 的变量。"
 
-#: src/views/new.py:67
+#: src/views/new.py:68
 msgid "Gaming"
 msgstr "游戏"
 
-#: src/views/new.py:68
+#: src/views/new.py:69
 msgid "An environment improved for Windows games."
 msgstr "为 Windows 游戏优化的环境。"
 
-#: src/views/new.py:73
+#: src/views/new.py:74
 msgid "Software"
 msgstr "软件"
 
-#: src/views/new.py:74
+#: src/views/new.py:75
 msgid "An environment improved for Windows software."
 msgstr "为 Windows 软件优化的环境。"
 
-#: src/views/new.py:79
+#: src/views/new.py:80
 msgid "Custom"
 msgstr "自定义"
 
-#: src/views/new.py:80
+#: src/views/new.py:81
 msgid "A clear environment for your experiments."
 msgstr "为您的实验提供的清洁环境。"
 
-#: src/views/new.py:211
+#: src/views/new.py:219
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "成功创建了名为“{0}”的 bottle"
+
+#~ msgid "com.usebottles.bottles"
+#~ msgstr "com.usebottles.bottles"
+
+#~ msgid "Use %command% in launch options to set prefixes and suffixes"
+#~ msgstr "在启动选项中使用 %command% 来设置前缀和后缀"
+
+#~ msgid ""
+#~ "Create a bottle where to launch the executable choosed from your file "
+#~ "manager"
+#~ msgstr "创建一个 bottle，在其中启动从文件管理器中选择的可执行文件"
+
+#~ msgid ""
+#~ "Rewrited the manager to be less recursive and more user-friendly to "
+#~ "developers"
+#~ msgstr "重写管理器以减少递归并且对开发人员更加用户友好"
+
+#~ msgid ""
+#~ "The dependencies/components/installers has now they own managers, "
+#~ "indipendent from the main one"
+#~ msgstr "依赖项/组件/安装程序现在拥有自己的管理器，独立于主管理器"
+
+#~ msgid ""
+#~ "The dependencies manager can now extract single files from Windows "
+#~ "Cabinet files"
+#~ msgstr "依赖项管理器现在可以从 Windows Cabinet 文件中提取单个文件"
+
+#~ msgid ""
+#~ "Now the user need to accept the notice in the crash report, before "
+#~ "submiting new reports"
+#~ msgstr "现在用户需要接受崩溃报告中的通知，然后才能提交新报告"
+
+#~ msgid "The user homedir is now removed from the reports"
+#~ msgstr "用户 homedir 已从报告中删除"
+
+#~ msgid ""
+#~ "The lutris-lol runner is now hidden when Bottles is running under "
+#~ "flatpak, as it is not compatible with it"
+#~ msgstr ""
+#~ "当 Bottles 在 flatpak 下运行时，因为兼容性问题，lutris-lol runner 现在被隐"
+#~ "藏"
+
+#~ msgid ""
+#~ "The Windows Cabinet extraction is now quiet and only show relavant logs"
+#~ msgstr "静默提取 Windows Cabinet，只显示相关的日志"
+
+#~ msgid ""
+#~ "The download status icon in the preferencies dialog, is now on the right "
+#~ "of the percentage, so it will be no more moved by the percentage"
+#~ msgstr ""
+#~ "首选项对话框中的下载状态图标，现在位于百分比的右侧，因此不会再被百分比移动"
+
+#~ msgid ""
+#~ "Fixed a bug in name resolution that could cause Bottles to crash if it "
+#~ "cannot reach a resource"
+#~ msgstr "修复了名称解析中的错误，如果无法访问资源，可能会导致 Bottles 崩溃"
+
+#~ msgid ""
+#~ "Prevent Bottles from running executables when the runner is not available"
+#~ msgstr "当运行器不可用时，防止 Bottles 运行可执行文件"
+
+#~ msgid "Environment names are now translated again"
+#~ msgstr "再次翻译环境名称"
+
+#~ msgid "Added missing translations in bottle creation"
+#~ msgstr "添加了 bottle 创建中缺失的翻译"
+
+#~ msgid ""
+#~ "Fixed a problem in Wayland support that was setting DISPLAY to the wrong "
+#~ "parameter"
+#~ msgstr "修复了 Wayland 支持中将 DISPLAY 设置为错误参数的问题"
+
+#~ msgid "The directory for added custom programs was wrong"
+#~ msgstr "添加的自定义程序的目录错误"
+
+#~ msgid "Hungarian translations thanks to @ovari"
+#~ msgstr "感谢 @ovari 的匈牙利语翻译"
+
+#~ msgid "Swedish translations thanks to @bittin"
+#~ msgstr "感谢 @bittin 的瑞典语翻译"
+
+#~ msgid "Chinese (Simplified) translations thanks to @sr093906"
+#~ msgstr "感谢 @sr093906 的中文（简体）翻译"
+
+#~ msgid "Croatian translations thanks to @milotype"
+#~ msgstr "感谢 @milotype 的克罗地亚语翻译"
+
+#~ msgid "Are you experiencing problems reaching a directory in Bottles?"
+#~ msgstr "您是否遇到访问 Bottle 中目录的问题？"
+
+#~ msgid "Downloads"
+#~ msgstr "下载"
+
+#, python-brace-format
+#~ msgid "Manifest for {0}"
+#~ msgstr "{0} 的清单"
+
+#, python-brace-format
+#~ msgid "Index for state {0}"
+#~ msgstr "状态 {0} 的索引"
 
 #~ msgid "Toggle the last Update date in the bottles list"
 #~ msgstr "开关 bottles 列表上的更新日期"
@@ -1639,11 +1702,6 @@ msgstr "成功创建了名为“{0}”的 bottle"
 #~ msgid "Fixed the File Manager integration in Flatpak"
 #~ msgstr "修复了 Flatpak 中的文件管理器集成"
 
-#~ msgid ""
-#~ "Fixed a bug that make Bottles crash when fail in name resolution during a "
-#~ "download"
-#~ msgstr "修正了下载期间名称解析失败造成 Bottle 崩溃的错误"
-
 #~ msgid "Fixed a bug in temp directory clean up"
 #~ msgstr "修正了临时目录清理的错误"
 
@@ -1665,9 +1723,6 @@ msgstr "成功创建了名为“{0}”的 bottle"
 #~ msgid "Italian translations thanks to @blackcat-917"
 #~ msgstr "感谢 @blackcat-917 的意大利语翻译"
 
-#~ msgid "German translations thanks to @bloomvdomino, @thericosanto"
-#~ msgstr "感谢 @bloomvdomino 和 @thericosanto 的德语翻译"
-
 #~ msgid ""
 #~ "Portuguese translations thanks to @laralem, @SantosSI, Pão com omlet, "
 #~ "@hugok79"
@@ -1684,9 +1739,6 @@ msgstr "成功创建了名为“{0}”的 bottle"
 
 #~ msgid "This is an off-calendar release."
 #~ msgstr "这是一个计划外版本。"
-
-#~ msgid "Improved download manager"
-#~ msgstr "改进了下载管理器"
 
 #~ msgid "Fix listing when one or more bottles are broken."
 #~ msgstr "当一个或多个 Bottle 损坏时修复列表。"
