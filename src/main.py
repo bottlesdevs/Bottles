@@ -34,9 +34,6 @@ from .window import MainWindow
 
 logging = UtilsLogger()
 
-
-logging = UtilsLogger()
-
 # region Translations
 '''
 This code snippet searches for and uploads translations to different 
