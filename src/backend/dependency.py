@@ -17,7 +17,6 @@
 
 import os
 import yaml
-import uuid
 import shutil
 import patoolib
 from glob import glob
