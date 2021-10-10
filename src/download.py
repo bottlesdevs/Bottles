@@ -89,7 +89,7 @@ class DownloadEntry(Gtk.Box):
 
     def remove(self):
         downloads = self.box_downloads.get_children()
-        if len(downloads) == 1:
+        if len(downloads) <= 1:
             self.window.btn_downloads.set_visible(False)
         self.destroy()
 
