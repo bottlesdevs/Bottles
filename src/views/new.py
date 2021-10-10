@@ -60,6 +60,7 @@ class NewView(Handy.Window):
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
+    revealer_advanced = Gtk.Template.Child()
     # endregion
 
     environments = [
@@ -133,9 +134,15 @@ class NewView(Handy.Window):
         self.selected_env = row.get_env_id()
 
         status = row.get_env_id() == "Custom"
-        for w in [self.label_advanced, self.box_advanced]:
-            w.set_visible(status)
-            w.set_visible(status)
+        if status:
+            self.revealer_advanced.set_transition_type(
+                Gtk.RevealerTransitionType.SLIDE_DOWN
+            )
+        else:
+            self.revealer_advanced.set_transition_type(
+                Gtk.RevealerTransitionType.SLIDE_UP
+            )
+        self.revealer_advanced.set_reveal_child(status)
 
     def check_entry_name(self, widget, event_key):
         '''
