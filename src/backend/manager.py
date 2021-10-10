@@ -707,7 +707,117 @@ class Manager:
         config["Update_Date"] = str(datetime.now())
         return config
 
-    def async_create_bottle(self, args: list) -> None:
+    def create_bottle_from_config(self, config: dict) -> bool:
+        '''
+        This function create a new bottle from a configuration. It will
+        return the path of the new bottle.
+        '''
+        logging.info(
+            f"Creating new bottle from config: {config['Name']} …"
+        )
+
+        for key in Samples.config.keys():
+            '''
+            If the key is not in the configuration sample, set it to the
+            default value.
+            '''
+            if key not in config.keys():
+                self.update_config(
+                    config=config,
+                    key=key,
+                    value=Samples.config[key],
+                    no_update=True
+                )
+        
+        if config["Runner"] not in self.runners_available:
+            '''
+            If the runner is not in the list of available runners, set it
+            to latest Vaniglia. If there is no Vaniglia, set it to the
+            first one.
+            '''
+            config["Runner"] = sorted(
+                [
+                    runner
+                    for runner in self.runners_available
+                    if runner.startswith("vaniglia")
+                ],
+                key=lambda x: x.split("-")[-1]
+            )[-1]     
+        
+        if config["DXVK"] not in self.dxvk_available:
+            '''
+            If the DXVK is not in the list of available DXVK, set it to
+            highest version.
+            '''
+            config["DXVK"] = sorted(
+                [dxvk for dxvk in self.dxvk_available],
+                key=lambda x: x.split("-")[-1]
+            )[-1]
+        
+        if config["VKD3D"] not in self.vkd3d_available:
+            '''
+            If the VKD3D is not in the list of available VKD3D, set it to
+            highest version.
+            '''
+            config["VKD3D"] = sorted(
+                [vkd3d for vkd3d in self.vkd3d_available],
+                key=lambda x: x.split("-")[-1]
+            )[-1]
+
+        # create the bottle path
+        bottle_path = f"{Paths.bottles}/{config['Name']}"
+
+        if not os.path.exists(bottle_path):
+            '''
+            If the bottle does not exist, create it, else
+            append a random number to the name.
+            '''
+            os.makedirs(bottle_path)
+        else:
+            rnd = random.randint(100, 200)
+            bottle_path = f"{bottle_path}__{rnd}"
+            config["Name"] = f"{config['Name']}__{rnd}"
+            config["Path"] = f"{config['Path']}__{rnd}"
+            os.makedirs(bottle_path)
+
+        # write the bottle config file
+        try:
+            with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
+                yaml.dump(config, conf_file, indent=4)
+                conf_file.close()
+        except:
+            logging.error("Error while writing the bottle config file.")
+            return False
+        
+        if config["Parameters"]["dxvk"]:
+            '''
+            If dxvk is enabled, execute the installation script.
+            '''
+            self.install_dxvk(config)
+        
+        if config["Parameters"]["vkd3d"]:
+            '''
+            If the vkd3d parameter is set to True, install it
+            in the new bottle.
+            '''
+            self.install_vkd3d(config)
+        
+        for dependency in config["Installed_Dependencies"]:
+            '''
+            Install each declared dependency in the new bottle.
+            '''
+            if dependency in self.supported_dependencies.keys():
+                dep = [
+                    dependency,
+                    self.supported_dependencies[dependency]
+                ]
+                self.dependency_manager.async_install([config, dep, None])
+
+        self.update_bottles(silent=True)
+
+        return True
+
+    def async_create_bottle(self, args: list):
         '''
         This function is used to create a new bottle. It is
         called by the create_bottle function.

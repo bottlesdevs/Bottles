@@ -44,6 +44,7 @@ class ImporterView(Gtk.ScrolledWindow):
         # connect signals
         self.btn_find_prefixes.connect("pressed", self.__find_prefixes)
         self.btn_import_full.connect("pressed", self.__import_full_bck)
+        self.btn_import_config.connect("pressed", self.__import_config_bck)
 
     def __find_prefixes(self, widget):
         '''
@@ -82,7 +83,38 @@ class ImporterView(Gtk.ScrolledWindow):
             RunnerBackup().import_backup(
                 self.window,
                 "full",
-                file_dialog.get_filename()
+                file_dialog.get_filename(),
+                self.manager
+            )
+
+        file_dialog.destroy()
+    
+    def __import_config_bck(self, widget):
+        '''
+        This function show a dialog to the user, from wich it can choose an
+        archive backup to import into Bottles. It support only .yml files
+        which are the Bottles configuration file. Once selected, it will
+        be imported.
+        '''
+        file_dialog = Gtk.FileChooserNative.new(
+            _("Choose a configuration file"),
+            self.window,
+            Gtk.FileChooserAction.OPEN
+        )
+
+        filter_yml = Gtk.FileFilter()
+        filter_yml.set_name(".yml")
+        filter_yml.add_pattern("*.yml")
+        file_dialog.add_filter(filter_yml)
+
+        response = file_dialog.run()
+
+        if response == -3:
+            RunnerBackup().import_backup(
+                self.window,
+                "config",
+                file_dialog.get_filename(),
+                self.manager
             )
 
         file_dialog.destroy()

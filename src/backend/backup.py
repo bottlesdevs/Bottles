@@ -5,6 +5,8 @@ import shutil
 from typing import NewType
 from gettext import gettext as _
 
+from .manager import Manager
+
 from ..utils import UtilsLogger, RunAsync
 from .globals import Paths
 from .runner import Runner
@@ -90,34 +92,49 @@ class RunnerBackup:
         directory. It returns True if the backup was successful (it 
         will also update the bottles' list), False otherwise.
         '''
-        window, scope, path = args
+        window, scope, path, manager = args
         self.operation_manager = OperationManager(window)
         backup_name = path.split("/")[-1].split(".")
-        backup_imported = False
+        import_status = False
+
+        task_entry = self.operation_manager.new_task(
+            _("Importing backup: {0}").format(backup_name), False
+        )
+        logging.info(f"Importing backup: {backup_name}")
 
         if scope == "config":
+            '''
+            If the backup type is "config", the backup will be used
+            to replicate the bottle configuration, else the backup
+            will be used to extract the bottle's directory.
+            '''
             backup_name = backup_name[-2]
+            try:
+                with open(path, "r") as config_backup:
+                    config = yaml.safe_load(config_backup)
+                    config_backup.close()
+                
+                if manager.create_bottle_from_config(config):
+                    import_status = True
+            except:
+                import_status = False
         else:
             backup_name = backup_name[-3]
 
             if backup_name.lower().startswith("backup_"):
+                # remove the "backup_" prefix if it exists
                 backup_name = backup_name[7:]
-
-            task_entry = self.operation_manager.new_task(
-                _("Importing backup: {0}").format(backup_name), False
-            )
-            logging.info(f"Importing backup: {backup_name}")
 
             try:
                 archive = tarfile.open(path)
                 archive.extractall(f"{Paths.bottles}/{backup_name}")
-                backup_imported = True
+                import_status = True
             except:
-                backup_imported = False
+                import_status = False
 
-            task_entry.remove()
+        task_entry.remove()
 
-        if backup_imported:
+        if import_status:
             window.manager.update_bottles()
             logging.info(f"Backup: [{path}] imported successfully.")
             return True
@@ -125,8 +142,10 @@ class RunnerBackup:
         logging.error(f"Failed importing backup: [{backup_name}]")
         return False
 
-    def import_backup(self, window, scope: str, path: str) -> None:
-        RunAsync(self.async_import_backup, None, [window, scope, path])
+    def import_backup(self, window, scope: str, path: str, manager: Manager):
+        RunAsync(
+            self.async_import_backup, None, [window, scope, path, manager]
+        )
 
     def duplicate_bottle(self, config, name) -> bool:
         '''
