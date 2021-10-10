@@ -192,7 +192,7 @@ class InstallerManager:
             f.write("Name=Configure in Bottles\n")
             f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
 
-    def __async_install(self, args) -> None:
+    def __async_install(self, args):
         config, installer, widget = args
 
         manifest = self.get_installer(
@@ -245,5 +245,5 @@ class InstallerManager:
         if widget is not None:
             GLib.idle_add(widget.set_installed)
 
-    def install(self, config, installer, widget) -> None:
+    def install(self, config, installer, widget):
         RunAsync(self.__async_install, False, [config, installer, widget])

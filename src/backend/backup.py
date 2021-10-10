@@ -80,7 +80,7 @@ class RunnerBackup:
         config: BottleConfig,
         scope: str,
         path: str
-    ) -> None:
+    ):
         RunAsync(self.async_export_backup, None, [window, config, scope, path])
 
     def async_import_backup(self, args: list) -> bool:

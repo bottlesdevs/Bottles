@@ -341,7 +341,7 @@ class ComponentManager:
         after=False,
         func=False,
         checks=True
-    ) -> None:
+    ):
         '''
         This function is used to install a component. It automatically
         get the manifest from the givven component and then calls the
@@ -351,7 +351,7 @@ class ComponentManager:
             RunAsync(self.async_install, None, [
                      component_type, component_name, after, func, checks])
 
-    def async_install(self, args: list) -> None:
+    def async_install(self, args: list):
         component_type, component_name, after, func, checks = args
         manifest = self.get_component(component_type, component_name)
 

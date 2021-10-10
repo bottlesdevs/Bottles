@@ -247,7 +247,7 @@ class RunnerVersioning:
         update: bool = False,
         no_update: bool = False,
         after: bool = False
-    ) -> None:
+    ):
         RunAsync(
             self.async_create_bottle_state, 
             None, 

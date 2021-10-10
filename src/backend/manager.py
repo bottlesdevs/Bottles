@@ -132,7 +132,7 @@ class Manager:
         except AttributeError:
             pass
 
-    def check_runners_dir(self) -> None:
+    def check_runners_dir(self):
         '''
         This function che if the Bottles' default directories 
         exists, if not they will be created.
@@ -588,7 +588,7 @@ class Manager:
             )
             return False
 
-    def check_bottles(self, silent: bool = False) -> None:
+    def check_bottles(self, silent: bool = False):
         '''
         This function check for local bottles and append them to the
         local_bottles list. If silent is True, it will not update the
@@ -1007,7 +1007,7 @@ class Manager:
         versioning: bool = False,
         dialog: Gtk.Widget = None,
         arch: str = "win64"
-    ) -> None:
+    ):
         '''
         This function creates a new bottle, generate the wineprefix
         with the givven runner and arch, install DXVK and VKD3D and
@@ -1095,7 +1095,7 @@ class Manager:
         logging.error("Empty path found, failing to avoid disasters.")
         return False
 
-    def delete_bottle(self, config: BottleConfig) -> None:
+    def delete_bottle(self, config: BottleConfig):
         '''
         This function deletes the given bottle, comprensive of
         the configuration and files.
@@ -1166,7 +1166,14 @@ class Manager:
 
         return processes
 
-    def reg_add(self, config: BottleConfig, key: str, value: str, data: str, keyType: str = False) -> None:
+    def reg_add(
+        self, 
+        config: BottleConfig, 
+        key: str, 
+        value: str, 
+        data: str, 
+        keyType: str = False
+    ):
         '''
         This function add a value with its data in the given 
         bottle registry key.
@@ -1184,7 +1191,7 @@ class Manager:
 
         Runner().run_command(config, command)
 
-    def reg_delete(self, config: BottleConfig, key: str, value: str) -> None:
+    def reg_delete(self, config: BottleConfig, key: str, value: str):
         '''
         This function delete a value with its data in the given
         bottle registry key.

@@ -54,7 +54,7 @@ class Runner:
         file_path: str,
         arguments: str = "",
         environment: dict = False
-    ) -> None:
+    ):
         logging.info("Running link file on the bottle …")
 
         command = f"start /unix '{file_path}'"
@@ -70,7 +70,7 @@ class Runner:
         environment: dict = False,
         no_async: bool = False,
         cwd: str = None
-    ) -> None:
+    ):
         logging.info("Running an executable on the bottle …")
 
         command = f"'{file_path}'"
@@ -87,31 +87,31 @@ class Runner:
             RunAsync(self.run_command, None, config,
                      command, False, arguments, environment, False, cwd)
 
-    def run_wineboot(self, config: BottleConfig) -> None:
+    def run_wineboot(self, config: BottleConfig):
         logging.info("Running wineboot on the wineprefix …")
         RunAsync(self.run_command, None, config, "wineboot -u")
 
-    def run_winecfg(self, config: BottleConfig) -> None:
+    def run_winecfg(self, config: BottleConfig):
         logging.info("Running winecfg on the wineprefix …")
         RunAsync(self.run_command, None, config, "winecfg")
 
-    def run_winetricks(self, config: BottleConfig) -> None:
+    def run_winetricks(self, config: BottleConfig):
         logging.info("Running winetricks on the wineprefix …")
         RunAsync(self.run_command, None, config, "winetricks")
 
-    def run_debug(self, config: BottleConfig) -> None:
+    def run_debug(self, config: BottleConfig):
         logging.info("Running a debug console on the wineprefix …")
         RunAsync(self.run_command, None, config, "winedbg", True)
 
-    def run_cmd(self, config: BottleConfig) -> None:
+    def run_cmd(self, config: BottleConfig):
         logging.info("Running a CMD on the wineprefix …")
         RunAsync(self.run_command, None, config, "cmd", True)
 
-    def run_taskmanager(self, config: BottleConfig) -> None:
+    def run_taskmanager(self, config: BottleConfig):
         logging.info("Running a Task Manager on the wineprefix …")
         RunAsync(self.run_command, None, config, "taskmgr")
 
-    def run_controlpanel(self, config: BottleConfig) -> None:
+    def run_controlpanel(self, config: BottleConfig):
         logging.info("Running a Control Panel on the wineprefix …")
         RunAsync(self.run_command, None, config, "control")
 
@@ -123,12 +123,12 @@ class Runner:
             command = f"uninstaller --remove '{uuid}'"
         RunAsync(self.run_command, None, config, command)
 
-    def run_regedit(self, config: BottleConfig) -> None:
+    def run_regedit(self, config: BottleConfig):
         logging.info("Running a Regedit on the wineprefix …")
         RunAsync(self.run_command, None, config, "regedit")
 
     # Send status to a bottle
-    def send_status(self, config: BottleConfig, status: str) -> None:
+    def send_status(self, config: BottleConfig, status: str):
         logging.info(f"Sending Status: [{status}] to the wineprefix …")
 
         available_status = {
