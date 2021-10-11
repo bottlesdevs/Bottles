@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-10 11:33+0200\n"
-"PO-Revision-Date: 2021-09-01 17:14+0000\n"
+"PO-Revision-Date: 2021-10-11 18:53+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -148,21 +148,20 @@ msgid "News"
 msgstr "消息"
 
 #: data/com.usebottles.bottles.appdata.xml.in:83
-#, fuzzy
 msgid "Improved the Download manager"
 msgstr "改进了下载管理器"
 
 #: data/com.usebottles.bottles.appdata.xml.in:84
 msgid "Update to GNOME Runtime 41."
-msgstr ""
+msgstr "更新至 GNOME Runtime 41。"
 
 #: data/com.usebottles.bottles.appdata.xml.in:85
 msgid "The DXVK and VKD3D installation are now performed in asynchronous mode"
-msgstr ""
+msgstr "DXVK 和 VKD3D 安装现在在异步模式下执行"
 
 #: data/com.usebottles.bottles.appdata.xml.in:86
 msgid "UI improvements for elementary OS"
-msgstr ""
+msgstr "elementary OS 用户界面改进"
 
 #: data/com.usebottles.bottles.appdata.xml.in:89
 msgid "Bug fixes"
@@ -172,53 +171,47 @@ msgstr "错误修复"
 msgid ""
 "Fixed a bug in component installation that was assigning the wrong name "
 "after download."
-msgstr ""
+msgstr "修正了组件安装的一处故障，导致在下载后分配错误的名称。"
 
 #: data/com.usebottles.bottles.appdata.xml.in:92
 msgid "Fixed the wrong text for cwd label."
-msgstr ""
+msgstr "修正了 cwd 标签的错误文本。"
 
 #: data/com.usebottles.bottles.appdata.xml.in:93
-#, fuzzy
 msgid ""
 "Fixed a bug that was causing Bottles crash when running executables with "
 "arguments."
-msgstr "修正了下载期间名称解析失败造成 Bottle 崩溃的错误"
+msgstr "修正了一处带参数运行可执行文件时导致 Bottles 崩溃的故障。"
 
 #: data/com.usebottles.bottles.appdata.xml.in:96
 msgid "Translations"
 msgstr "翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
-#, fuzzy
 msgid "Indonesian translations thanks to @rezaalmanda"
-msgstr "感谢 @liimee 的印尼语翻译"
+msgstr "印尼语翻译，感谢 @rezaalmanda"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
-#, fuzzy
 msgid "Spanish translations thanks to @oscfdezdz"
-msgstr "感谢 @fitojb, @kenpb, @oscfdezdz 的西班牙语翻译"
+msgstr "西班牙语翻译，感谢 @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "感谢 @jatin-cbs 的日文翻译"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Portuguese translations thanks to @hugok79"
-msgstr "感谢 @julroy67 的法语翻译"
+msgstr "葡萄牙语翻译，感谢 @hugok79"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
-#, fuzzy
 msgid ""
 "Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, "
 "@davipatricio"
-msgstr "感谢 @farribeiro, @swyknox 的葡萄牙语（巴西）翻译"
+msgstr "葡萄牙语（巴西）翻译，感谢 Ricardo Porto、@swyknox、@davipatricio"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-#, fuzzy
 msgid "German translations thanks to @thericosanto"
-msgstr "感谢 @bloomvdomino 和 @thericosanto 的德语翻译"
+msgstr "德语翻译，感谢 @thericosanto"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -403,19 +396,19 @@ msgstr "复制 bottle"
 
 #: src/ui/details.ui:87
 msgid "Flatpak help"
-msgstr ""
+msgstr "Flatpak 帮助"
 
 #: src/ui/details.ui:111
 msgid "I can't see my old bottles after upgrade."
-msgstr ""
+msgstr "我的旧 bottle 升级后就看不到了。"
 
 #: src/ui/details.ui:124
 msgid "I don't see some directories."
-msgstr ""
+msgstr "我看不到某些目录。"
 
 #: src/ui/details.ui:137
 msgid "I can't see the files in my home."
-msgstr ""
+msgstr "我在主页中看不到文件。"
 
 #: src/ui/details.ui:166
 msgid "Run with arguments"
@@ -684,9 +677,8 @@ msgid "VKD3D Version"
 msgstr "VKD3D 版本"
 
 #: src/ui/details.ui:1647
-#, fuzzy
 msgid "Manage VKD3D versions"
-msgstr "管理 DXVK 版本"
+msgstr "管理 VKD3D 版本"
 
 #: src/ui/details.ui:1680 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -702,9 +694,8 @@ msgid "Point to the bottle path"
 msgstr "指向 bottle 路径"
 
 #: src/ui/details.ui:1736
-#, fuzzy
 msgid "Choose a directory"
-msgstr "选择环境"
+msgstr "选择一个目录"
 
 #: src/ui/details.ui:1779
 msgid "Audio"
@@ -1280,9 +1271,8 @@ msgid "Open menu"
 msgstr "打开菜单"
 
 #: src/ui/window.ui:190
-#, fuzzy
 msgid "Operations"
-msgstr "翻译"
+msgstr "操作"
 
 #: src/ui/window.ui:234
 msgid ""
@@ -1373,7 +1363,7 @@ msgstr "Wine 配置已更新！"
 
 #: src/backend/manager.py:804
 msgid "Running as flatpak, creating sandboxed folders …"
-msgstr ""
+msgstr "正作为 flatpak 运行，创建沙箱文件夹中…"
 
 #: src/backend/manager.py:818
 msgid "Generating Bottle config file …"
