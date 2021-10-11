@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-10 11:33+0200\n"
-"PO-Revision-Date: 2021-09-16 14:34+0000\n"
+"PO-Revision-Date: 2021-10-12 21:30+0000\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
@@ -156,21 +156,20 @@ msgid "News"
 msgstr "Noticias"
 
 #: data/com.usebottles.bottles.appdata.xml.in:83
-#, fuzzy
 msgid "Improved the Download manager"
-msgstr "Gestor de descargas"
+msgstr "Mejorado el gestor de descargas"
 
 #: data/com.usebottles.bottles.appdata.xml.in:84
 msgid "Update to GNOME Runtime 41."
-msgstr ""
+msgstr "Actualizado a GNOME Runtime 41."
 
 #: data/com.usebottles.bottles.appdata.xml.in:85
 msgid "The DXVK and VKD3D installation are now performed in asynchronous mode"
-msgstr ""
+msgstr "La instalación de DXVK y VKD3D se realiza ahora en modo asíncrono"
 
 #: data/com.usebottles.bottles.appdata.xml.in:86
 msgid "UI improvements for elementary OS"
-msgstr ""
+msgstr "Mejoras en la interfaz de usuario para elementary OS"
 
 #: data/com.usebottles.bottles.appdata.xml.in:89
 msgid "Bug fixes"
@@ -181,54 +180,52 @@ msgid ""
 "Fixed a bug in component installation that was assigning the wrong name "
 "after download."
 msgstr ""
+"Corregido un error en la instalación de componentes que asignaba un nombre "
+"incorrecto tras la descarga."
 
 #: data/com.usebottles.bottles.appdata.xml.in:92
 msgid "Fixed the wrong text for cwd label."
-msgstr ""
+msgstr "Corregido el texto erróneo de la etiqueta cwd."
 
 #: data/com.usebottles.bottles.appdata.xml.in:93
-#, fuzzy
 msgid ""
 "Fixed a bug that was causing Bottles crash when running executables with "
 "arguments."
 msgstr ""
-"Se ha corregido un error que hacía que Bottles se bloqueara cuando fallaba "
-"la resolución de nombres durante una descarga"
+"Corregido un error que provocaba el bloqueo de Bottles al ejecutar "
+"ejecutables con argumentos."
 
 #: data/com.usebottles.bottles.appdata.xml.in:96
 msgid "Translations"
 msgstr "Traducciones"
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
-#, fuzzy
 msgid "Indonesian translations thanks to @rezaalmanda"
-msgstr "Traducciones al indonesio gracias a @liimee"
+msgstr "Traducciones al indonesio gracias a @rezaalmanda"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
-#, fuzzy
 msgid "Spanish translations thanks to @oscfdezdz"
-msgstr "Traducciones al español gracias a @fitojb, @kenpb, @oscfdezdz"
+msgstr "Traducciones al español gracias a @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "Traducciones al japonés gracias a @jatin-cbs"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Portuguese translations thanks to @hugok79"
-msgstr "Traducciones al francés gracias a @julroy67"
+msgstr "Traducciones al portugués gracias a @hugok79"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
-#, fuzzy
 msgid ""
 "Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, "
 "@davipatricio"
-msgstr "Traducciones al portugués (Brasil) gracias a @farribeiro, @swyknox"
+msgstr ""
+"Traducciones al portugués (Brasil) gracias a Ricardo Porto, @swyknox, "
+"@davipatricio"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-#, fuzzy
 msgid "German translations thanks to @thericosanto"
-msgstr "Traducciones al alemán gracias a @bloomvdomino y @thericosanto"
+msgstr "Traducciones al alemán gracias a @thericosanto"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -421,19 +418,19 @@ msgstr "Botella duplicada"
 
 #: src/ui/details.ui:87
 msgid "Flatpak help"
-msgstr ""
+msgstr "Ayuda de Flatpak"
 
 #: src/ui/details.ui:111
 msgid "I can't see my old bottles after upgrade."
-msgstr ""
+msgstr "No puedo ver mis antiguas botellas después de la actualización."
 
 #: src/ui/details.ui:124
 msgid "I don't see some directories."
-msgstr ""
+msgstr "No veo algunos directorios."
 
 #: src/ui/details.ui:137
 msgid "I can't see the files in my home."
-msgstr ""
+msgstr "No puedo ver los archivos en mi carpeta personal."
 
 #: src/ui/details.ui:166
 msgid "Run with arguments"
@@ -704,9 +701,8 @@ msgid "VKD3D Version"
 msgstr "Versión de VKD3D"
 
 #: src/ui/details.ui:1647
-#, fuzzy
 msgid "Manage VKD3D versions"
-msgstr "Gestionar versiones de DXVK"
+msgstr "Gestionar las versiones de VKD3D"
 
 #: src/ui/details.ui:1680 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -722,9 +718,8 @@ msgid "Point to the bottle path"
 msgstr "Apuntar a la ruta de la botella"
 
 #: src/ui/details.ui:1736
-#, fuzzy
 msgid "Choose a directory"
-msgstr "Elija un entorno"
+msgstr "Elija un directorio"
 
 #: src/ui/details.ui:1779
 msgid "Audio"
@@ -1322,9 +1317,8 @@ msgid "Open menu"
 msgstr "Abrir menú"
 
 #: src/ui/window.ui:190
-#, fuzzy
 msgid "Operations"
-msgstr "Traducciones"
+msgstr "Operaciones"
 
 #: src/ui/window.ui:234
 msgid ""
@@ -1416,7 +1410,7 @@ msgstr "¡Configuración de Wine actualizada!"
 
 #: src/backend/manager.py:804
 msgid "Running as flatpak, creating sandboxed folders …"
-msgstr ""
+msgstr "Ejecutando como flatpak, creando carpetas aisladas…"
 
 #: src/backend/manager.py:818
 msgid "Generating Bottle config file …"
