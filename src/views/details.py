@@ -38,6 +38,8 @@ from ..backend.runner import Runner, gamemode_available
 from ..backend.backup import RunnerBackup
 
 
+pages = {}
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class DetailsView(Handy.Leaflet):
     __gtype_name__ = 'Details'
@@ -111,9 +113,15 @@ class DetailsView(Handy.Leaflet):
     stack_bottle = Gtk.Template.Child()
     infobar_testing = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
+    row_uninstaller = Gtk.Template.Child()
+    row_regedit = Gtk.Template.Child()
+    row_browse = Gtk.Template.Child()
+    actions_programs = Gtk.Template.Child()
+    actions_versioning = Gtk.Template.Child()
+    actions_installers = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, config=dict, **kwargs):
+    def __init__(self, window, config={}, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -238,6 +246,7 @@ class DetailsView(Handy.Leaflet):
         )
 
         self.list_pages.connect('row-selected', self.__change_page)
+        self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
         # endregion
 
         '''
@@ -255,24 +264,73 @@ class DetailsView(Handy.Leaflet):
         if "TESTING_REPOS" in os.environ and os.environ["TESTING_REPOS"] == "1":
             self.infobar_testing.set_visible(True)
 
+    def __on_page_change(self, *args):
+        '''
+        Update headerbar title according to the current page.
+        '''
+        global pages
+        page = self.stack_bottle.get_visible_child_name()
+        self.window.set_title(pages[page]['title'], pages[page]['description'])
+        if page == "programs":
+            self.window.set_actions(self.actions_programs)
+        elif page == "versioning":
+            self.window.set_actions(self.actions_versioning)
+        elif page == "installers":
+            self.window.set_actions(self.actions_installers)
+        else:
+            self.window.set_actions(None)
+
+    def __update_by_env(self):
+        widgets = [
+            self.row_uninstaller,
+            self.row_regedit,
+            self.row_browse
+        ]
+        for widget in widgets:
+            if self.config.get("Environment") == "Layered":
+                widget.set_visible(False)
+            else:
+                widget.set_visible(True)
+
     def build_pages(self):
         '''
         This function build the pages list according to the
         user settings (some pages are shown only if experimental
         features are enabled).
         '''
+        global pages
         pages = {
-            "bottle": _("Details & Utilities"),
-            "preferences": _("Preferences"),
-            "dependencies": _("Dependencies"),
-            "programs": _("Programs")
+            "bottle": {
+                "title": _("Details & Utilities"),
+                "description": "",
+            },
+            "preferences": {
+                "title": _("Preferences"),
+                "description": "",
+            },
+            "dependencies": {
+                "title": _("Dependencies"),
+                "description": "",
+            },
+            "programs": {
+                "title": _("Programs"),
+                "description": _("Found in your bottle's Start menu.")
+            },
+            "versioning": {
+                "title": _("Versioning"),
+                "description": "",
+            },
+            "installers": {
+                "title": _("Installers"),
+                "description": "",
+            }
         }
 
-        if self.window.settings.get_boolean("experiments-versioning"):
-            pages["versioning"] = _("Versioning")
+        if not self.window.settings.get_boolean("experiments-versioning"):
+            del pages["versioning"]
 
-        if self.window.settings.get_boolean("experiments-installers"):
-            pages["installers"] = _("Installers")
+        if not self.window.settings.get_boolean("experiments-installers"):
+            del pages["installers"]
 
         for w in self.list_pages.get_children():
             w.destroy()
@@ -372,6 +430,7 @@ class DetailsView(Handy.Leaflet):
         to be updated during this process.
         '''
         self.config = config
+        self.__update_by_env()
 
         # format update_date
         update_date = datetime.strptime(

@@ -57,7 +57,11 @@ class Samples:
                 "dxvk": True,
                 "vkd3d": True
             }
-        }
+        },
+        # "layered": {
+        #     "Runner": "wine",
+        #     "Parameters": {}
+        # },
     }
 
 

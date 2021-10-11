@@ -20,7 +20,7 @@ from gi.repository import Gtk
 
 class PageRow(Gtk.ListBoxRow):
 
-    def __init__(self, page_name, title, **kwargs):
+    def __init__(self, page_name, page, **kwargs):
         super().__init__(**kwargs)
         self.page_name = page_name
 
@@ -43,7 +43,7 @@ class PageRow(Gtk.ListBoxRow):
 
         box.pack_start(
             Gtk.Label(
-                label=title,
+                label=page["title"],
                 xalign=0.0
             ),
             False,

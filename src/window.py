@@ -62,6 +62,8 @@ class MainWindow(Handy.ApplicationWindow):
     btn_noconnection = Gtk.Template.Child()
     box_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
+    headerbar = Gtk.Template.Child()
+    box_actions = Gtk.Template.Child()
     # endregion
 
     # Common variables
@@ -161,6 +163,7 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
+        self.stack_main.connect('notify::visible-child', self.on_page_changed)
 
         # Set the bottles list page as the default page
         self.stack_main.set_visible_child_name("page_list")
@@ -177,6 +180,39 @@ class MainWindow(Handy.ApplicationWindow):
 
         arg_exe = False
         logging.info(_("Bottles Started!"))
+
+    def on_page_changed(self, stack, param):
+        '''
+        When the user changes the page, update the window title
+        according to the page.
+        '''
+        self.set_actions(None)
+        page = self.stack_main.get_visible_child_name()
+        if page == "page_details":
+            self.set_title(_("Bottle details"))
+        elif page == "page_list":
+            self.set_title(_("Bottles"))
+        elif page == "page_taskmanager":
+            self.set_title(_("Task manager"))
+        elif page == "page_importer":
+            self.set_title(_("Import & export"))
+
+    def set_title(self, title, subtitle: str = False):
+        self.headerbar.set_title(title)
+        if subtitle:
+            self.headerbar.set_subtitle(subtitle)
+        else:
+            self.headerbar.set_subtitle("")
+    
+    def set_actions(self, widget: Gtk.Widget = False):
+        '''
+        This function is used to set the actions buttons in the headerbar.
+        '''
+        for w in self.box_actions.get_children():
+            self.box_actions.remove(w)
+        
+        if widget:
+            self.box_actions.add(widget)
 
     def check_for_connection(self, status):
         '''

@@ -75,6 +75,12 @@ class NewView(Handy.Window):
             "description": _("An environment improved for Windows software."),
             "icon": "applications-engineering-symbolic"
         },
+        # {
+        #     "id": "Layered",
+        #     "name": _("Layered"),
+        #     "description": _("A layered environment, where every app is a layer."),
+        #     "icon": "emoji-symbols-symbolic"
+        # },
         {
             "id": "Custom",
             "name": _("Custom"),
