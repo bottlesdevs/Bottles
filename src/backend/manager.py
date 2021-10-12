@@ -914,11 +914,11 @@ class Manager:
             update_output(_("Running as flatpak, creating sandboxed folders …"))
             users_dir = glob(f"{bottle_complete_path}/drive_c/users/*/*")
 
-            for path in users_dir:
-                if os.path.islink(path):
+            for user_path in users_dir:
+                if os.path.islink(user_path):
                     try:
-                        os.unlink(path)
-                        os.makedirs(path)
+                        os.unlink(user_path)
+                        os.makedirs(user_path)
                     except:
                         pass
             time.sleep(1)
