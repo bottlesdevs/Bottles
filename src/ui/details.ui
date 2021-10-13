@@ -1282,6 +1282,34 @@ Disable if you're experiencing graphical glitches.</property>
                                   <object class="HdyActionRow">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
+                                    <property name="title" translatable="yes">Enable FSR AMD FidelityFX Super Resolution</property>
+                                    <property name="subtitle" translatable="yes">FSR uses cutting-edge upscaling technologies to help boost your framerates.
+Disable if you're experiencing graphical glitches.</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <child>
+                                          <object class="GtkSwitch" id="switch_fsr">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="halign">start</property>
+                                            <property name="valign">center</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="HdyActionRow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
                                     <property name="title" translatable="yes">Enable ACO shader compiler</property>
                                     <property name="subtitle" translatable="yes">Improves performance in games and 3D applications.
 Disable if you're experiencing graphical glitches.</property>
