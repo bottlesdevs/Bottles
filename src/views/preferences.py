@@ -20,6 +20,7 @@ from gi.repository import Gtk, Handy
 
 from ..widgets.dxvk import DxvkEntry
 from ..widgets.vkd3d import Vkd3dEntry
+from ..widgets.nvapi import NvapiEntry
 from ..widgets.runner import RunnerEntry
 
 
@@ -39,6 +40,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
+    list_nvapi = Gtk.Template.Child()
     actionrow_prerelease = Gtk.Template.Child()
     # endregion
 
@@ -80,6 +82,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.populate_runners_list()
         self.populate_dxvk_list()
         self.populate_vkd3d_list()
+        self.populate_nvapi_list()
 
         # connect signals
         self.switch_dark.connect('state-set', self.__toggle_dark)
@@ -130,6 +133,10 @@ class PreferencesWindow(Handy.PreferencesWindow):
     def populate_vkd3d_list(self):
         for vkd3d in self.manager.supported_vkd3d.items():
             self.list_vkd3d.add(Vkd3dEntry(self.window, vkd3d))
+
+    def populate_nvapi_list(self):
+        for nvapi in self.manager.supported_nvapi.items():
+            self.list_nvapi.add(NvapiEntry(self.window, nvapi))
 
     def populate_runners_list(self):
         for w in self.list_runners:

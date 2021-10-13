@@ -79,6 +79,7 @@ class DetailsView(Handy.Leaflet):
     btn_manage_runners = Gtk.Template.Child()
     btn_manage_dxvk = Gtk.Template.Child()
     btn_manage_vkd3d = Gtk.Template.Child()
+    btn_manage_nvapi = Gtk.Template.Child()
     btn_help_versioning = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
     btn_request_dependency = Gtk.Template.Child()
@@ -86,6 +87,7 @@ class DetailsView(Handy.Leaflet):
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
+    switch_nvapi = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_aco = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
@@ -101,6 +103,7 @@ class DetailsView(Handy.Leaflet):
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
+    combo_nvapi = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     list_installers = Gtk.Template.Child()
@@ -173,6 +176,7 @@ class DetailsView(Handy.Leaflet):
         self.btn_manage_runners.connect('pressed', self.window.show_prefs_view)
         self.btn_manage_dxvk.connect('pressed', self.window.show_prefs_view)
         self.btn_manage_vkd3d.connect('pressed', self.window.show_prefs_view)
+        self.btn_manage_nvapi.connect('pressed', self.window.show_prefs_view)
         self.btn_cwd.connect('pressed', self.choose_cwd)
         self.btn_shutdown.connect('pressed', self.run_shutdown)
         self.btn_reboot.connect('pressed', self.run_reboot)
@@ -223,6 +227,7 @@ class DetailsView(Handy.Leaflet):
         self.switch_dxvk.connect('state-set', self.__toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.__toggle_dxvk_hud)
         self.switch_vkd3d.connect('state-set', self.__toggle_vkd3d)
+        self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
         self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
         self.switch_aco.connect('state-set', self.__toggle_aco)
         self.switch_fsr.connect('state-set', self.__toggle_fsr)
@@ -240,6 +245,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_runner.connect('changed', self.__set_runner)
         self.combo_dxvk.connect('changed', self.__set_dxvk)
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
+        self.combo_nvapi.connect('changed', self.__set_nvapi)
 
         self.entry_search_deps.connect(
             'key-release-event', self.__search_dependencies
@@ -408,10 +414,12 @@ class DetailsView(Handy.Leaflet):
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
+        self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
 
         self.combo_runner.remove_all()
         self.combo_dxvk.remove_all()
         self.combo_vkd3d.remove_all()
+        self.combo_nvapi.remove_all()
 
         for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
@@ -422,9 +430,13 @@ class DetailsView(Handy.Leaflet):
         for vkd3d in self.manager.vkd3d_available:
             self.combo_vkd3d.append(vkd3d, vkd3d)
 
+        for nvapi in self.manager.nvapi_available:
+            self.combo_nvapi.append(nvapi, nvapi)
+
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
+        self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
 
     def set_config(self, config):
         '''
@@ -451,6 +463,7 @@ class DetailsView(Handy.Leaflet):
         # temporary lcok functions connected to the widgets
         self.switch_dxvk.handler_block_by_func(self.__toggle_dxvk)
         self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
+        self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
         self.switch_virt_desktop.handler_block_by_func(
             self.__toggle_virt_desktop
         )
@@ -461,6 +474,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
+        self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
 
         # update widgets data with bottle configuration
         parameters = self.config.get("Parameters")
@@ -478,6 +492,7 @@ class DetailsView(Handy.Leaflet):
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_vkd3d.set_active(parameters["vkd3d"])
+        self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_fsr.set_active(parameters["fsr"])
         self.switch_aco.set_active(parameters["aco_compiler"])
@@ -501,11 +516,13 @@ class DetailsView(Handy.Leaflet):
         self.combo_runner.set_active_id(self.config.get("Runner"))
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
+        self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
         self.grid_versioning.set_visible(self.config.get("Versioning"))
 
         # unlock functions connected to the widgets
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
         self.switch_vkd3d.handler_unblock_by_func(self.__toggle_vkd3d)
+        self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
         self.switch_virt_desktop.handler_unblock_by_func(
             self.__toggle_virt_desktop
         )
@@ -518,6 +535,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
+        self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
 
         self.update_programs()
         self.__update_dependencies()
@@ -761,7 +779,8 @@ class DetailsView(Handy.Leaflet):
         to the widget state. It will also update the bottle configuration
         once the process is finished.
         '''
-        widget.set_sensitive(False)
+        if widget:
+            widget.set_sensitive(False)
         if state:
             self.manager.install_dxvk(
                 config=self.config,
@@ -800,7 +819,8 @@ class DetailsView(Handy.Leaflet):
         to the widget state. It will also update the bottle configuration
         once the process is finished.
         '''
-        widget.set_sensitive(False)
+        if widget:
+            widget.set_sensitive(False)
         if state:
             self.manager.install_vkd3d(
                 config=self.config,
@@ -815,6 +835,33 @@ class DetailsView(Handy.Leaflet):
         new_config = self.manager.update_config(
             config=self.config,
             key="vkd3d",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+
+    def __toggle_nvapi(self, widget=False, state=False):
+        '''
+        This function perform DXVK-NVAPI installation or removal, according
+        to the widget state. It will also update the bottle configuration
+        once the process is finished.
+        '''
+        if widget:
+            widget.set_sensitive(False)
+        if state:
+            self.manager.install_nvapi(
+                config=self.config,
+                widget=widget
+            )
+        else:
+            self.manager.remove_nvapi(
+                config=self.config,
+                widget=widget
+            )
+
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="nvapi",
             value=state,
             scope="Parameters"
         )
@@ -944,7 +991,7 @@ class DetailsView(Handy.Leaflet):
         also trigger the toggle_dxvk method to force the
         installation of the new version.
         '''
-        self.__toggle_dxvk(state=False)
+        self.__toggle_dxvk(widget=self.switch_dxvk, state=False)
 
         dxvk = widget.get_active_id()
         new_config = self.manager.update_config(
@@ -955,8 +1002,6 @@ class DetailsView(Handy.Leaflet):
         self.config = new_config
         self.__toggle_dxvk(state=True)
 
-    '''Set (change) vkd3d'''
-
     def __set_vkd3d(self, widget):
         '''
         This function update the vkd3d version on the bottle 
@@ -964,7 +1009,7 @@ class DetailsView(Handy.Leaflet):
         also trigger the toggle_vkd3d method to force the
         installation of the new version.
         '''
-        self.__toggle_vkd3d(state=False)
+        self.__toggle_vkd3d(widget=self.switch_vkd3d, state=False)
 
         vkd3d = widget.get_active_id()
         new_config = self.manager.update_config(
@@ -974,6 +1019,24 @@ class DetailsView(Handy.Leaflet):
         )
         self.config = new_config
         self.__toggle_vkd3d(state=True)
+
+    def __set_nvapi(self, widget):
+        '''
+        This function update the dxvk-nvapi version on the bottle 
+        configuration according to the selected one. It will
+        also trigger the toggle_dxvk method to force the
+        installation of the new version.
+        '''
+        self.__toggle_nvapi(widget=self.switch_nvapi, state=False)
+
+        nvapi = widget.get_active_id()
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="NVAPI",
+            value=nvapi
+        )
+        self.config = new_config
+        self.__toggle_nvapi(state=True)
 
     def __toggle_pulse_latency(self, widget, state):
         '''

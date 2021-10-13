@@ -11,7 +11,8 @@ bottles_sources = [
   'program.py',
   'runner.py',
   'state.py',
-  'vkd3d.py'
+  'vkd3d.py',
+  'nvapi.py'
 ]
 
 install_data(bottles_sources, install_dir: widgetsdir)
