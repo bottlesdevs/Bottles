@@ -257,6 +257,9 @@ class Runner:
         if parameters["aco_compiler"]:
             env["ACO_COMPILER"] = "aco"
 
+        if parameters["fsr"]:
+            env["WINE_FULLSCREEN_FSR"] = "1"
+
         if "WAYLAND_DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
             logging.info("Using Xwayland..")
