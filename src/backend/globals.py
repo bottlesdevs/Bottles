@@ -25,6 +25,7 @@ class Samples:
             "vkd3d": False,
             "gamemode": False,
             "sync": "wine",
+            "fsr": False,
             "aco_compiler": False,
             "discrete_gpu": False,
             "virtual_desktop": False,
@@ -47,6 +48,7 @@ class Samples:
                 "dxvk": True,
                 "vkd3d": True,
                 "sync": "esync",
+                "fsr": True
                 "discrete_gpu": True,
                 "pulseaudio_latency": True
             }
