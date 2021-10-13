@@ -48,7 +48,7 @@ class Samples:
                 "dxvk": True,
                 "vkd3d": True,
                 "sync": "esync",
-                "fsr": True
+                "fsr": True,
                 "discrete_gpu": True,
                 "pulseaudio_latency": True
             }
