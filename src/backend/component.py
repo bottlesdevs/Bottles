@@ -57,6 +57,7 @@ class ComponentManager:
         supported_proton_runners = self.__manager.supported_proton_runners
         supported_dxvk = self.__manager.supported_dxvk
         supported_vkd3d = self.__manager.supported_vkd3d
+        supported_nvapi = self.__manager.supported_nvapi
 
         if component_type == "runner":
             component = supported_wine_runners[component_name]
@@ -66,6 +67,8 @@ class ComponentManager:
             component = supported_dxvk[component_name]
         if component_type == "vkd3d":
             component = supported_vkd3d[component_name]
+        if component_type == "nvapi":
+            component = supported_nvapi[component_name]
 
         if self.__utils_conn.check_connection():
             if "Sub-category" in component:
@@ -111,6 +114,7 @@ class ComponentManager:
         catalog_proton = {}
         catalog_dxvk = {}
         catalog_vkd3d = {}
+        catalog_nvapi = {}
 
         try:
             with urllib.request.urlopen(
@@ -156,11 +160,17 @@ class ComponentManager:
                 if component[0] in self.__manager.vkd3d_available:
                     catalog_vkd3d[component[0]]["Installed"] = True
 
+            if component[1]["Category"] == "nvapi":
+                catalog_nvapi[component[0]] = component[1]
+                if component[0] in self.__manager.nvapi_available:
+                    catalog_nvapi[component[0]]["Installed"] = True
+
         return {
             "wine": catalog_wine,
             "proton": catalog_proton,
             "dxvk": catalog_dxvk,
-            "vkd3d": catalog_vkd3d
+            "vkd3d": catalog_vkd3d,
+            "nvapi": catalog_nvapi
         }
 
     def download(
@@ -288,7 +298,7 @@ class ComponentManager:
         GLib.idle_add(task_entry.remove)
         return True
 
-    def extract(self, component: str, archive: str) -> True:
+    def extract(self, name: str, component: str, archive: str) -> True:
         # Set the destination path according to the component type
         if component in ["runner", "runner:proton"]:
             path = Paths.runners
@@ -296,6 +306,8 @@ class ComponentManager:
             path = Paths.dxvk
         if component == "vkd3d":
             path = Paths.vkd3d
+        if component == "nvapi":
+            path = Paths.nvapi
 
         try:
             '''
@@ -306,7 +318,16 @@ class ComponentManager:
             '''
             tar = tarfile.open(f"{Paths.temp}/{archive}")
             root_dir = tar.getnames()[0]
-            tar.extractall(path)
+            if component == "nvapi":
+                '''
+                TODO: this check should be make on archive root, so other
+                components can benefit from it.
+                '''
+                xtr_path = f"{path}/{name}"
+                tar.extractall(xtr_path)
+            else:
+                tar.extractall(path)
+            tar.close()
         except:
             if os.path.isfile(os.path.join(Paths.temp, archive)):
                 os.remove(os.path.join(Paths.temp, archive))
@@ -387,7 +408,7 @@ class ComponentManager:
             archive = manifest["File"][0]["rename"]
             archive = manifest["File"][0]["rename"]
 
-        self.extract(component_type, archive)
+        self.extract(component_name, component_type, archive)
 
         '''
         Execute Post Install if the component has it defined
@@ -414,6 +435,9 @@ class ComponentManager:
         if component_type == "vkd3d":
             self.__manager.check_vkd3d()
 
+        if component_type == "nvapi":
+            self.__manager.check_nvapi()
+
         self.__manager.organize_components()
 
         # Execute a method at the end if passed
@@ -432,6 +456,9 @@ class ComponentManager:
 
         if component_type == "vkd3d":
             path = Paths.vkd3d
+
+        if component_type == "nvapi":
+            path = Paths.nvapi
 
         if not os.path.isdir(os.path.join(path, dest)):
             shutil.move(
