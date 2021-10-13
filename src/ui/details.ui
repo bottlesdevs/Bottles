@@ -1290,16 +1290,57 @@ Disable if you're experiencing graphical glitches.</property>
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkSwitch" id="switch_fsr">
+                                          <object class="GtkComboBoxText" id="combo_fsr">
                                             <property name="visible">True</property>
-                                            <property name="can-focus">True</property>
+                                            <property name="can-focus">False</property>
                                             <property name="halign">start</property>
                                             <property name="valign">center</property>
+                                            <property name="margin-right">5</property>
+                                            <property name="margin-end">5</property>
+                                            <property name="active-id">add</property>
+                                            <items>
+                                              <item id="5" translatable="yes">Ultra Quality</item>
+                                              <item id="4" translatable="yes">Quality</item>
+                                              <item id="3" translatable="yes">Balanced</item>
+                                              <item id="2" translatable="yes">Performance</item>
+                                            </items>
+                                            <style>
+                                              <class name="borderless"/>
+                                              <class name="plain"/>
+                                            </style>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
                                             <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkSwitch" id="switch_fsr">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="halign">start</property>
+                                            <property name="valign">center</property>
+                                            <property name="margin-left">5</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack-type">end</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkSeparator">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="margin-top">5</property>
+                                            <property name="margin-bottom">5</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">2</property>
                                           </packing>
                                         </child>
                                       </object>

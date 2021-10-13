@@ -26,6 +26,7 @@ class Samples:
             "gamemode": False,
             "sync": "wine",
             "fsr": False,
+            "fsr_level": 5,
             "aco_compiler": False,
             "discrete_gpu": False,
             "virtual_desktop": False,

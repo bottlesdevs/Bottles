@@ -96,6 +96,7 @@ class DetailsView(Handy.Leaflet):
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
+    combo_fsr = Gtk.Template.Child()
     combo_virt_res = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
@@ -234,6 +235,7 @@ class DetailsView(Handy.Leaflet):
         )
         self.switch_fixme.connect('state-set', self.__toggle_fixme)
 
+        self.combo_fsr.connect('changed', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_runner.connect('changed', self.__set_runner)
         self.combo_dxvk.connect('changed', self.__set_dxvk)
@@ -452,6 +454,7 @@ class DetailsView(Handy.Leaflet):
         self.switch_virt_desktop.handler_block_by_func(
             self.__toggle_virt_desktop
         )
+        self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
         self.combo_virt_res.handler_block_by_func(
             self.__set_virtual_desktop_res
         )
@@ -494,6 +497,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_virt_res.set_active_id(
             parameters["virtual_desktop_res"]
         )
+        self.combo_fsr.set_active_id(str(parameters["fsr_level"]))
         self.combo_runner.set_active_id(self.config.get("Runner"))
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
@@ -504,6 +508,9 @@ class DetailsView(Handy.Leaflet):
         self.switch_vkd3d.handler_unblock_by_func(self.__toggle_vkd3d)
         self.switch_virt_desktop.handler_unblock_by_func(
             self.__toggle_virt_desktop
+        )
+        self.combo_fsr.handler_unblock_by_func(
+            self.__set_fsr_level
         )
         self.combo_virt_res.handler_unblock_by_func(
             self.__set_virtual_desktop_res
@@ -899,6 +906,20 @@ class DetailsView(Handy.Leaflet):
             config=self.config,
             key="virtual_desktop_res",
             value=resolution,
+            scope="Parameters"
+        )
+        self.config = new_config
+
+    def __set_fsr_level(self, widget):
+        '''
+        This function update the AMD FSR level of sharpness
+        (from 0 to 5, where 5 is the default).
+        '''
+        level = widget.get_active_id()
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="fsr_level",
+            value=level,
             scope="Parameters"
         )
         self.config = new_config

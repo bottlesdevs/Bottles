@@ -259,6 +259,7 @@ class Runner:
 
         if parameters["fsr"]:
             env["WINE_FULLSCREEN_FSR"] = "1"
+            env["WINE_FULLSCREEN_FSR_STRENGHT"] = str(parameters["fsr_level"])
 
         if "WAYLAND_DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
