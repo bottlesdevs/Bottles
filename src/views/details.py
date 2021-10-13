@@ -88,6 +88,7 @@ class DetailsView(Handy.Leaflet):
     switch_vkd3d = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_aco = Gtk.Template.Child()
+    switch_fsr = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
     switch_virt_desktop = Gtk.Template.Child()
     switch_pulse_latency = Gtk.Template.Child()
@@ -223,6 +224,7 @@ class DetailsView(Handy.Leaflet):
         self.switch_vkd3d.connect('state-set', self.__toggle_vkd3d)
         self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
         self.switch_aco.connect('state-set', self.__toggle_aco)
+        self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
         self.switch_virt_desktop.connect(
             'state-set', self.__toggle_virt_desktop
@@ -474,6 +476,7 @@ class DetailsView(Handy.Leaflet):
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_vkd3d.set_active(parameters["vkd3d"])
         self.switch_gamemode.set_active(parameters["gamemode"])
+        self.switch_fsr.set_active(parameters["fsr"])
         self.switch_aco.set_active(parameters["aco_compiler"])
 
         if parameters["sync"] == "wine":
@@ -818,6 +821,19 @@ class DetailsView(Handy.Leaflet):
         new_config = self.manager.update_config(
             config=self.config,
             key="gamemode",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+
+    def __toggle_fsr(self, widget, state):
+        '''
+        This function update the aco status on the bottle
+        configuration according to the widget state.
+        '''
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="fsr",
             value=state,
             scope="Parameters"
         )
