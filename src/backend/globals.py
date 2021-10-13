@@ -11,6 +11,7 @@ class Samples:
         "Runner": "",
         "WorkingDir": "",
         "DXVK": "",
+        "NVAPI": "",
         "VKD3D": "",
         "Path": "",
         "Custom_Path": False,
@@ -22,6 +23,7 @@ class Samples:
         "Parameters": {
             "dxvk": False,
             "dxvk_hud": False,
+            "dxvk_nvapi": False,
             "vkd3d": False,
             "gamemode": False,
             "sync": "wine",
@@ -47,6 +49,7 @@ class Samples:
             "Runner": "wine",
             "Parameters": {
                 "dxvk": True,
+                # "nvapi": True,
                 "vkd3d": True,
                 "sync": "esync",
                 "fsr": True,
@@ -104,6 +107,7 @@ class Paths:
     bottles = f"{base}/bottles"
     dxvk = f"{base}/dxvk"
     vkd3d = f"{base}/vkd3d"
+    nvapi = f"{base}/nvapi"
 
 
 class TrdyPaths:
