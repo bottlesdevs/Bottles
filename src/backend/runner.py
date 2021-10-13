@@ -24,6 +24,7 @@ class Runner:
         runner: str = "",
         dxvk: str = "",
         vkd3d: str = "",
+        nvapi: str = "",
         custom_path: str = ""
     ) -> bool:
         logging.info("Opening the file manager in the path …")
@@ -40,6 +41,9 @@ class Runner:
 
         if path_type == "vkd3d" and vkd3d != "":
             path = self.get_vkd3d_path(vkd3d)
+
+        if path_type == "nvapi" and nvapi != "":
+            path = self.get_nvapi_path(nvapi)
 
         if path_type == "custom" and custom_path != "":
             path = custom_path
@@ -366,3 +370,7 @@ class Runner:
     @staticmethod
     def get_vkd3d_path(vkd3d: str) -> str:
         return f"{Paths.vkd3d}/{vkd3d}"
+
+    @staticmethod
+    def get_nvapi_path(nvapi: str) -> str:
+        return f"{Paths.nvapi}/{nvapi}"
