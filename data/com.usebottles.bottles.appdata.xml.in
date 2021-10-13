@@ -82,31 +82,47 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2021.9.28-treviso" date="2021-09-27">
+        <release version="2021.10.14-treviso" date="2021-10-14">
           <description>
             <p>News</p>
             <ul>
-                <li>Improved the Download manager</li>
-                <li>Update to GNOME Runtime 41.</li>
-                <li>The DXVK and VKD3D installation are now performed in asynchronous mode</li>
-                <li>UI improvements for elementary OS</li>
+                <li>Support for AMD FSR (FidelityFX Super Resolution)</li>
+                <li>Support for DLSS with DXVK-NVAPI</li>
+                <li>Show current step during installation using our installer</li>
+                <li>Improved download manager for faster downloads</li>
+                <li>Improved the way we handle the environment on command execution</li>
+                <li>Better .lnk file handler, thanks to Winand and Jared</li>
+                <li>Now the crash reporter show similar reports based on similarity</li>
+                <li>Now under flatpak, the homedir is also sandboxed inside the bottle itself</li>
+                <li>Added easy FAQ menu for beginners (only Flatpak)</li>
+                <li>The download manager is now the operation manager</li>
+                <li>Automatically hide the operation manager if there is no pending task</li>
+                <li>Improved the bottle creation dialog, with less duplicated texts</li>
+                <li>Using transitions in bottle creation dialog</li>
+                <li>Now it is possible to replicate a bottle by importing its bottle.yml as backup</li>
+                <li>Improved the component manager and the way we handle the catalogs</li>
+                <li>Actions are now located in the headerbar</li>
             </ul>
 
             <p>Bug fixes</p>
             <ul>
-                <li>Fixed a bug in component installation that was assigning the wrong name after download.</li>
-                <li>Fixed the wrong text for cwd label.</li>
-                <li>Fixed a bug that was causing Bottles crash when running executables with arguments.</li>
+                <li>Fixed the embedded null byte error</li>
+                <li>Fixed a bug that showed duplicate logs</li>
+                <li>Fixed wrong page order that was causing wrong transitions</li>
+                <li>Fixed a bug that was causing the reports to being sent without title</li>
+                <li>Fixed a bug in bottle deletion that was resulting in a directory not found error</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Indonesian translations thanks to @rezaalmanda</li>
+                <li>Portuguese (Brazil) translations thanks to @davipatricio</li>
+                <li>Esperanto translations thanks to @phlostically</li>
+                <li>Dutch translations thanks to Tim Visee</li>
+                <li>Swedish translations thanks to @bittin</li>
+                <li>Turkish translations thanks to @ersen0</li>
+                <li>Chinese (Simplified) translations thanks to @sr093906</li>
                 <li>Spanish translations thanks to @oscfdezdz</li>
-                <li>Japanese translations thanks to @jatin-cbs</li>
-                <li>Portuguese translations thanks to @hugok79</li>
-                <li>Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, @davipatricio</li>
-                <li>German translations thanks to @thericosanto</li>
+                <li>Hungarian translations thanks to @ovari</li>
             </ul>
           </description>
         </release>

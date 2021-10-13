@@ -1,17 +1,33 @@
-com.usebottles.bottles (2021.9.28-treviso) precise; urgency=low
+com.usebottles.bottles (2021.10.14-treviso) precise; urgency=low
 
-  * Improved the Download manager
-  * Update to GNOME Runtime 41.
-  * The DXVK and VKD3D installation are now performed in asynchronous mode
-  * UI improvements for elementary OS
-  * Fixed a bug in component installation that was assigning the wrong name after download.
-  * Fixed the wrong text for cwd label.
-  * Fixed a bug that was causing Bottles crash when running executables with arguments.
-  * Indonesian translations thanks to @rezaalmanda
+  * Support for AMD FSR (FidelityFX Super Resolution)
+  * Support for DLSS with DXVK-NVAPI
+  * Show current step during installation using our installer
+  * Improved download manager for faster downloads
+  * Improved the way we handle the environment on command execution
+  * Better .lnk file handler, thanks to Winand and Jared
+  * Now the crash reporter show similar reports based on similarity
+  * Now under flatpak, the homedir is also sandboxed inside the bottle itself
+  * Added easy FAQ menu for beginners (only Flatpak)
+  * The download manager is now the operation manager
+  * Automatically hide the operation manager if there is no pending task
+  * Improved the bottle creation dialog, with less duplicated texts
+  * Using transitions in bottle creation dialog
+  * Now it is possible to replicate a bottle by importing its bottle.yml as backup
+  * Improved the component manager and the way we handle the catalogs
+  * Actions are now located in the headerbar
+  * Fixed the embedded null byte error
+  * Fixed a bug that showed duplicate logs
+  * Fixed wrong page order that was causing wrong transitions
+  * Fixed a bug that was causing the reports to being sent without title
+  * Fixed a bug in bottle deletion that was resulting in a directory not found error
+  * Portuguese (Brazil) translations thanks to @davipatricio
+  * Esperanto translations thanks to @phlostically
+  * Dutch translations thanks to Tim Visee
+  * Swedish translations thanks to @bittin
+  * Turkish translations thanks to @ersen0
+  * Chinese (Simplified) translations thanks to @sr093906
   * Spanish translations thanks to @oscfdezdz
-  * Japanese translations thanks to @jatin-cbs
-  * Portuguese translations thanks to @hugok79
-  * Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, @davipatricio
-  * German translations thanks to @thericosanto
+  * Hungarian translations thanks to @ovari
 
- -- Mirko Brombin <send@mirko.pm>  Thu, 28 Sep 2021 08:32:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Thu, 14 Oct 2021 22:04:00 +0000
