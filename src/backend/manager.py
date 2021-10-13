@@ -55,11 +55,13 @@ class Manager:
     runners_available = []
     dxvk_available = []
     vkd3d_available = []
+    nvapi_available = []
     local_bottles = {}
     supported_wine_runners = {}
     supported_proton_runners = {}
     supported_dxvk = {}
     supported_vkd3d = {}
+    supported_nvapi = {}
     supported_dependencies = {}
     supported_installers = {}
 
@@ -78,6 +80,7 @@ class Manager:
         self.check_runners_dir()
         self.check_dxvk(install_latest=False)
         self.check_vkd3d(install_latest=False)
+        self.check_nvapi(install_latest=False)
         self.check_runners(install_latest=False)
         self.organize_components()
         self.organize_dependencies()
@@ -90,6 +93,7 @@ class Manager:
         self.check_runners_dir()
         self.check_dxvk()
         self.check_vkd3d()
+        self.check_nvapi()
         self.check_runners(install_latest=not no_install, after=after)
         self.check_bottles()
         self.organize_dependencies()
@@ -153,6 +157,10 @@ class Manager:
             logging.info("Vkd3d path doens't exist, creating now.")
             os.makedirs(Paths.vkd3d, exist_ok=True)
 
+        if not os.path.isdir(Paths.nvapi):
+            logging.info("Nvapi path doens't exist, creating now.")
+            os.makedirs(Paths.nvapi, exist_ok=True)
+
         if not os.path.isdir(Paths.temp):
             logging.info("Temp path doens't exist, creating now.")
             os.makedirs(Paths.temp, exist_ok=True)
@@ -171,6 +179,7 @@ class Manager:
         self.supported_proton_runners = catalog["proton"]
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
+        self.supported_nvapi = catalog["nvapi"]
 
     def organize_dependencies(self):
         '''
@@ -333,10 +342,10 @@ class Manager:
         # sort component lists alphabetically
         self.runners_available = sorted(self.runners_available)
         self.dxvk_available = sorted(self.dxvk_available)
+        self.nvapi_available = sorted(self.nvapi_available)
 
         return True
 
-    # Check local dxvks
     def check_dxvk(
         self,
         install_latest: bool = True,
@@ -378,7 +387,6 @@ class Manager:
                 return False
         return True
 
-    # Check local vkd3d
     def check_vkd3d(
         self,
         install_latest: bool = True,
@@ -413,6 +421,47 @@ class Manager:
                     else:
                         self.component_manager.install(
                             "vkd3d", vkd3d_version, checks=False
+                        )
+                except StopIteration:
+                    return False
+            else:
+                return False
+        return True
+
+    def check_nvapi(
+        self,
+        install_latest: bool = True,
+        no_async: bool = False
+    ) -> bool:
+        '''
+        This function check for installed nvapis and append them to the
+        nvapi_available list. If there are no nvapis available, it will
+        install the latest nvapi from the repository if connection is
+        available, then update the list with the new one.
+        '''
+        nvapi_list = glob("%s/*/" % Paths.nvapi)
+        self.nvapi_available = []
+
+        for nvapi in nvapi_list:
+            self.nvapi_available.append(nvapi.split("/")[-2])
+
+        if len(self.nvapi_available) > 0:
+            logging.info(f"Nvapi found: [{'|'.join(self.nvapi_available)}]")
+
+        if len(self.nvapi_available) == 0 and install_latest:
+            logging.warning("No nvapi found.")
+
+            if self.utils_conn.check_connection():
+                # if connected, install latest nvapi from repository
+                try:
+                    nvapi_version = next(iter(self.supported_nvapi))
+                    if no_async:
+                        self.component_manager.async_install(
+                            ["nvapi", nvapi_version, False, False, False]
+                        )
+                    else:
+                        self.component_manager.install(
+                            "nvapi", nvapi_version, checks=False
                         )
                 except StopIteration:
                     return False
@@ -762,6 +811,16 @@ class Manager:
             config["VKD3D"] = sorted(
                 [vkd3d for vkd3d in self.vkd3d_available],
                 key=lambda x: x.split("-")[-1]
+            )[-1]     
+        
+        if config["NVAPI"] not in self.dxvk_available:
+            '''
+            If the NVAPI is not in the list of available NVAPI, set it to
+            highest version.
+            '''
+            config["NVAPI"] = sorted(
+                [nvapi for nvapi in self.nvapi_available],
+                key=lambda x: x.split("-")[-1]
             )[-1]
 
         # create the bottle path
@@ -795,6 +854,12 @@ class Manager:
             '''
             self.install_dxvk(config)
         
+        if config["Parameters"]["dxvk_nvapi"]:
+            '''
+            If nvapi is enabled, execute the DLLs substitution.
+            '''
+            self.install_nvapi(config)
+        
         if config["Parameters"]["vkd3d"]:
             '''
             If the vkd3d parameter is set to True, install it
@@ -824,7 +889,7 @@ class Manager:
         '''
         logging.info("Creating the wineprefix …")
 
-        name, environment, path, runner, dxvk, vkd3d, versioning, dialog, arch = args
+        name, environment, path, runner, dxvk, vkd3d, nvapi, versioning, dialog, arch = args
         update_output = dialog.update_output
 
         if len(self.runners_available) == 0:
@@ -840,6 +905,10 @@ class Manager:
             # if there are no local vkd3ds, install latest
             update_output(_("No vkd3d found, installing the latest version …"))
             self.check_vkd3d(no_async=True)
+        if len(self.nvapi_available) == 0:
+            # if there are no local nvapis, install latest
+            update_output(_("No nvapi found, installing the latest version …"))
+            self.check_nvapi(no_async=True)
 
         if not runner:
             # if no runner is specified, use the first one from available
@@ -855,6 +924,11 @@ class Manager:
             # if no vkd3d is specified, use the first one from available
             vkd3d = self.vkd3d_available[0]
         vkd3d_name = vkd3d
+
+        if not nvapi:
+            # if no nvapi is specified, use the first one from available
+            nvapi = self.nvapi_available[0]
+        nvapi_name = nvapi
 
         if runner.startswith("Proton"):
             # if runner is proton, files are located to the dist path
@@ -933,6 +1007,7 @@ class Manager:
         config["Runner"] = runner_name
         config["DXVK"] = dxvk_name
         config["VKD3D"] = vkd3d_name
+        config["NVAPI"] = nvapi_name
         config["Path"] = bottle_name_path
         if path != "":
             config["Path"] = bottle_complete_path
@@ -977,6 +1052,12 @@ class Manager:
             update_output(_("Installing vkd3d …"))
             self.async_install_vkd3d([config, False, vkd3d_name, None])
 
+        if config["Parameters"]["dxvk_nvapi"]:
+            # perform nvapi installation if configured
+            logging.info("Installing dxvk-nvapi …")
+            update_output(_("Installing dxvk-nvapi …"))
+            self.async_install_nvapi([config, False, nvapi_name, None])
+
         time.sleep(1)
 
         if versioning:
@@ -1004,6 +1085,7 @@ class Manager:
         runner: RunnerName = False,
         dxvk: bool = False,
         vkd3d: bool = False,
+        nvapi: bool = False,
         versioning: bool = False,
         dialog: Gtk.Widget = None,
         arch: str = "win64"
@@ -1026,6 +1108,7 @@ class Manager:
                 runner,
                 dxvk,
                 vkd3d,
+                nvapi,
                 versioning,
                 dialog,
                 arch
@@ -1229,9 +1312,9 @@ class Manager:
         command = " ".join(command)
         res = subprocess.Popen(command, shell=True).communicate()
 
-        if widget is None:
-            return res
-        return widget.set_sensitive(True)
+        if widget:
+            return GLib.idle_add(widget.set_sensitive, True)
+        return res
 
     def install_dxvk(
         self,
@@ -1274,9 +1357,10 @@ class Manager:
             option
         ]
         res = subprocess.Popen(command, shell=True).communicate()
-        if widget is None:
-            return res
-        return widget.set_sensitive(True)
+
+        if widget:
+            return GLib.idle_add(widget.set_sensitive, True)
+        return res
 
     def install_vkd3d(
         self,
@@ -1287,6 +1371,61 @@ class Manager:
     ) -> bool:
         RunAsync(
             self.async_install_vkd3d,
+            None,
+            [config, remove, version, widget]
+        )
+
+    def async_install_nvapi(self, args: list):
+        '''
+        This function install the givven DXVK-NVAPI version in a bottle. It
+        can also be used to remove it if remove is set to True.
+        '''
+        config, remove, version, widget = args
+
+        if version:
+            nvapi_version = version
+        else:
+            nvapi_version = config.get("NVAPI")
+
+        win_path = f"{Paths.bottles}/{config['Path']}/drive_c/windows/"
+        nvapi_path = f"{Paths.nvapi}/{nvapi_version}"
+        dlls = {
+            "x32": ["nvapi.dll"],
+            "x64": ["nvapi64.dll"]
+        }
+        
+        for dll in dlls:
+            if dll == "x32":
+                inst_path = f"{win_path}system32/"
+            else:
+                inst_path = f"{win_path}syswow64/"
+            
+            for dll_file in dlls[dll]:
+                _dll = f"{inst_path}{dll_file}"
+                _dll_bck = f"{_dll}.bck"
+                if remove:
+                    if os.path.exists(_dll_bck):
+                        os.rename(_dll_bck, _dll)
+                    if os.path.exists(_dll):
+                        os.remove(_dll)
+                else:
+                    if os.path.exists(_dll):
+                        os.rename(_dll, _dll_bck)
+                    shutil.copy(f"{nvapi_path}/{dll}/{dll_file}", inst_path)
+
+        if widget:
+            return GLib.idle_add(widget.set_sensitive, True)
+        return True
+
+    def install_nvapi(
+        self,
+        config: BottleConfig,
+        remove: bool = False,
+        version: str = False,
+        widget: Gtk.Widget = None
+    ) -> bool:
+        RunAsync(
+            self.async_install_nvapi,
             None,
             [config, remove, version, widget]
         )
@@ -1308,6 +1447,15 @@ class Manager:
         logging.info(f"Removing vkd3d for bottle: [{config['Name']}].")
 
         self.install_vkd3d(config, remove=True, widget=widget)
+
+    def remove_nvapi(self, config: BottleConfig, widget: Gtk.Widget = None):
+        '''
+        This is a wrapper function for the install_nvapi function,
+        using the remove option.
+        '''
+        logging.info(f"Removing dxvk-nvapi for bottle: [{config['Name']}].")
+
+        self.install_nvapi(config, remove=True, widget=widget)
 
     def dll_override(
         self,
