@@ -35,6 +35,6 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. Fedora]
  - Version [e.g. 33]
-
+ - Display server: [e.g. Xorg, Wayland]
 **Additional context**
 Add any other context about the problem here.
