@@ -269,6 +269,7 @@ class Runner:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
             logging.info("Using Xwayland..")
             display = os.environ.get("DISPLAY", ":0")
+            env["DISPLAY"] = display
             env["GDK_BACKEND"] = "x11"
             env["GDK_SDISPLAYALE"] = display
 
@@ -307,7 +308,7 @@ class Runner:
 
         if terminal:
             return UtilsTerminal().execute(command, env)
-
+            
         if comunicate:
             try:
                 return subprocess.Popen(

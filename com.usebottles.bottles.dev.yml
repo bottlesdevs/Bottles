@@ -6,31 +6,17 @@ runtime-version: '41'
 command: bottles
 
 finish-args:
-  - '--allow=multiarch'
-  - '--share=network'
-  - '--share=ipc'
-  - '--socket=fallback-x11'
-  - '--socket=pulseaudio'
-  - '--filesystem=~/Games:ro'
-  - '--filesystem=~/wineprefixes:ro'
-  - '--filesystem=~/.Bottles:ro'
-  - '--filesystem=~/.local/share/bottles:ro'
-  - '--filesystem=xdg-desktop'
-  - '--filesystem=xdg-documents'
-  - '--filesystem=xdg-pictures'
-  - '--filesystem=xdg-music'
-  - '--filesystem=xdg-videos'
-  - '--filesystem=xdg-download'
-  - '--filesystem=/run/media'
-  - '--filesystem=/media'
-  - '--filesystem=xdg-run/gvfsd'
-  - '--device=all'
-  - '--system-talk-name=org.freedesktop.UDisks2'
-  - '--talk-name=org.freedesktop.Notifications'
-  - '--talk-name=org.gtk.vfs'
-  - '--talk-name=org.gtk.vfs.*'
-  - '--env=LD_LIBRARY_PATH=/app/lib:/app/lib32'
-  - '--env=IS_FLATPAK=1'
+  - --allow=multiarch
+  - --share=network
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=all
+  - --system-talk-name=org.freedesktop.UDisks2
+  - --talk-name=org.freedesktop.Notifications
+  - --env=LD_LIBRARY_PATH=/app/lib:/app/lib32
+  - --require-version=1.1.2
 
 add-extensions:
   org.gnome.Platform.Compat.i386:
