@@ -10,7 +10,9 @@ bottles_sources = [
   'installer.py',
   'manager.py',
   'runner.py',
-  'versioning.py'
+  'versioning.py',
+  'data.py',
+  'notifications.py'
 ]
 
 install_data(bottles_sources, install_dir: backenddir)
