@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-10 11:33+0200\n"
-"PO-Revision-Date: 2021-09-01 17:14+0000\n"
+"PO-Revision-Date: 2021-10-17 23:35+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -158,21 +158,20 @@ msgid "News"
 msgstr "Novosti"
 
 #: data/com.usebottles.bottles.appdata.xml.in:83
-#, fuzzy
 msgid "Improved the Download manager"
-msgstr "Upravljač preuzimanja"
+msgstr "Ispravljen upravljač preuzimanja"
 
 #: data/com.usebottles.bottles.appdata.xml.in:84
 msgid "Update to GNOME Runtime 41."
-msgstr ""
+msgstr "Aktualiziraj na GNOME Runtime 41."
 
 #: data/com.usebottles.bottles.appdata.xml.in:85
 msgid "The DXVK and VKD3D installation are now performed in asynchronous mode"
-msgstr ""
+msgstr "DXVK i VKD3D instalacija sada se izvode u asinkronom načinu rada"
 
 #: data/com.usebottles.bottles.appdata.xml.in:86
 msgid "UI improvements for elementary OS"
-msgstr ""
+msgstr "Poboljšanja korisničkog sučelja za elementary OS"
 
 #: data/com.usebottles.bottles.appdata.xml.in:89
 msgid "Bug fixes"
@@ -183,54 +182,52 @@ msgid ""
 "Fixed a bug in component installation that was assigning the wrong name "
 "after download."
 msgstr ""
+"Ispravljena je greška u instalaciji komponente koja je dodijeljivala "
+"pogrešan naziv nakon preuzimanja."
 
 #: data/com.usebottles.bottles.appdata.xml.in:92
 msgid "Fixed the wrong text for cwd label."
-msgstr ""
+msgstr "Ispravljen je pogrešan tekst za cwd etiketu."
 
 #: data/com.usebottles.bottles.appdata.xml.in:93
-#, fuzzy
 msgid ""
 "Fixed a bug that was causing Bottles crash when running executables with "
 "arguments."
 msgstr ""
-"Ispravljena je greška zbog koje se program Butelje ruši kad prevođenje imena "
-"u IP adresu ne uspije tijekom preuzimanja"
+"Ispravljena je greška koja je uzrokovala rušenje programa Butelja pri "
+"pokretanju izvršnih datoteka s argumentima."
 
 #: data/com.usebottles.bottles.appdata.xml.in:96
 msgid "Translations"
 msgstr "Prijevodi"
 
 #: data/com.usebottles.bottles.appdata.xml.in:98
-#, fuzzy
 msgid "Indonesian translations thanks to @rezaalmanda"
-msgstr "Prijevod na indonezijski, hvala @liimee"
+msgstr "Prijevod na indonezijski, hvala @rezaalmanda"
 
 #: data/com.usebottles.bottles.appdata.xml.in:99
-#, fuzzy
 msgid "Spanish translations thanks to @oscfdezdz"
-msgstr "Prijevod na španjolski, hvala @fitojb, @kenpb, @oscfdezdz"
+msgstr "Prijevod na španjolski, hvala @oscfdezdz"
 
 #: data/com.usebottles.bottles.appdata.xml.in:100
 msgid "Japanese translations thanks to @jatin-cbs"
 msgstr "Prijevod na japanski, hvala @jatin-cbs"
 
 #: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
 msgid "Portuguese translations thanks to @hugok79"
-msgstr "Prijevod na francuski, hvala @julroy67"
+msgstr "Prijevod na portugalski, hvala @hugok79"
 
 #: data/com.usebottles.bottles.appdata.xml.in:102
-#, fuzzy
 msgid ""
 "Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, "
 "@davipatricio"
-msgstr "Prijevod na portugalski (Brazil), hvala @farribeiro, @swyknox"
+msgstr ""
+"Prijevod na portugalski (Brazil), hvala Ricardo Porto, @swyknox, "
+"@davipatricio"
 
 #: data/com.usebottles.bottles.appdata.xml.in:103
-#, fuzzy
 msgid "German translations thanks to @thericosanto"
-msgstr "Prijevod na njemački, hvala @bloomvdomino, @thericosanto"
+msgstr "Prijevod na njemački, hvala @thericosanto"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -422,19 +419,19 @@ msgstr "Duplikat butelje"
 
 #: src/ui/details.ui:87
 msgid "Flatpak help"
-msgstr ""
+msgstr "Flatpak pomoć"
 
 #: src/ui/details.ui:111
 msgid "I can't see my old bottles after upgrade."
-msgstr ""
+msgstr "Nakon nadogradnje ne mogu vidjeti svoje stare butelje."
 
 #: src/ui/details.ui:124
 msgid "I don't see some directories."
-msgstr ""
+msgstr "Ne vidim neke mape."
 
 #: src/ui/details.ui:137
 msgid "I can't see the files in my home."
-msgstr ""
+msgstr "Ne mogu vidjeti datoteke u svojoj početnoj mapi."
 
 #: src/ui/details.ui:166
 msgid "Run with arguments"
@@ -704,9 +701,8 @@ msgid "VKD3D Version"
 msgstr "VKD3D verzija"
 
 #: src/ui/details.ui:1647
-#, fuzzy
 msgid "Manage VKD3D versions"
-msgstr "Upravljaj DXVK verzijama"
+msgstr "Upravljaj VKD3D verzijama"
 
 #: src/ui/details.ui:1680 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -722,9 +718,8 @@ msgid "Point to the bottle path"
 msgstr "Pokaži na stazu butelje"
 
 #: src/ui/details.ui:1736
-#, fuzzy
 msgid "Choose a directory"
-msgstr "Odaberi okruženje"
+msgstr "Odaberi mapu"
 
 #: src/ui/details.ui:1779
 msgid "Audio"
@@ -1322,9 +1317,8 @@ msgid "Open menu"
 msgstr "Otvori izbornik"
 
 #: src/ui/window.ui:190
-#, fuzzy
 msgid "Operations"
-msgstr "Prijevodi"
+msgstr "Operacije"
 
 #: src/ui/window.ui:234
 msgid ""
@@ -1415,7 +1409,7 @@ msgstr "Wine konfiguracija je aktualizirana!"
 
 #: src/backend/manager.py:804
 msgid "Running as flatpak, creating sandboxed folders …"
-msgstr ""
+msgstr "Pokretanje kao flatpak, stvaraje mapa testnih okruženja …"
 
 #: src/backend/manager.py:818
 msgid "Generating Bottle config file …"
