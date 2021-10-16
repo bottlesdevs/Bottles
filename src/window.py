@@ -25,6 +25,7 @@ from pathlib import Path
 from .params import *
 from .backend.manager import Manager
 from .backend.runner import Runner
+from .backend.notifications import NotificationsManager
 
 from .views.new import NewView
 from .views.details import DetailsView
@@ -35,6 +36,7 @@ from .views.importer import ImporterView
 from .dialogs.crash import CrashReportDialog
 from .dialogs.generic import AboutDialog
 from .dialogs.onboard import OnboardDialog
+from .widgets.message import MessageEntry
 
 from .utils import UtilsConnection, UtilsLogger
 
@@ -54,16 +56,19 @@ class MainWindow(Handy.ApplicationWindow):
     btn_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
     btn_operations = Gtk.Template.Child()
+    btn_notifications = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
     btn_more = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
     btn_taskmanager = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
+    box_actions = Gtk.Template.Child()
     box_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
+    pop_notifications = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    box_actions = Gtk.Template.Child()
+    list_notifications = Gtk.Template.Child()
     # endregion
 
     # Common variables
@@ -239,6 +244,7 @@ class MainWindow(Handy.ApplicationWindow):
             self.show_onboard_view()
 
         self.check_crash_log()
+        self.check_notifications()
 
     def send_notification(self, title, text, image="", user_settings=True):
         '''
@@ -333,6 +339,25 @@ class MainWindow(Handy.ApplicationWindow):
                 CrashReportDialog(self, crash_log)
         except FileNotFoundError:
             pass
+    
+    def check_notifications(self):
+        if not self.utils_conn.check_connection():
+            return
+            
+        messages = NotificationsManager().messages
+        if len(messages) > 0:
+            for message in messages:
+                entry = MessageEntry(
+                    id=message["id"],
+                    title=message["title"],
+                    body=message["body"],
+                    url=message["url"],
+                    message_type=message["type"],
+                )
+                entry.set_visible(True)
+                self.list_notifications.add(entry)
+            
+            self.btn_notifications.set_visible(True)
 
     @staticmethod
     def proper_close():
