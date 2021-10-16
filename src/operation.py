@@ -16,15 +16,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gettext import gettext as _
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk, GLib, Handy
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/task-entry.ui')
-class TaskEntry(Gtk.Box):
+class TaskEntry(Handy.ActionRow):
     __gtype_name__ = 'TaskEntry'
 
     # region Widgets
-    label_filename = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     spinner_task = Gtk.Template.Child()
     label_task_status = Gtk.Template.Child()
@@ -34,7 +33,7 @@ class TaskEntry(Gtk.Box):
         super().__init__(**kwargs)
 
         self.window = window
-        self.box_tasks = window.box_tasks
+        self.list_tasks = window.list_tasks
 
         if len(file_name) > 30:
             file_name = f"{file_name[:20]}..."
@@ -43,7 +42,7 @@ class TaskEntry(Gtk.Box):
         self.window.btn_operations.set_visible(True)
 
         # Populate widgets data
-        self.label_filename.set_text(file_name)
+        self.set_title(file_name)
         if not cancellable:
             self.btn_cancel.hide()
 
@@ -85,7 +84,7 @@ class TaskEntry(Gtk.Box):
         )
 
     def remove(self):
-        tasks = self.box_tasks.get_children()
+        tasks = self.list_tasks.get_children()
         if len(tasks) <= 1:
             self.window.btn_operations.set_visible(False)
         self.destroy()
@@ -98,11 +97,11 @@ class OperationManager():
 
         # Common variables
         self.window = window
-        self.box_tasks = window.box_tasks
+        self.list_tasks = window.list_tasks
 
     def new_task(self, file_name, cancellable=True):
         task_entry = TaskEntry(
             self.window, file_name, cancellable)
-        self.window.box_tasks.add(task_entry)
+        self.window.list_tasks.add(task_entry)
 
         return task_entry

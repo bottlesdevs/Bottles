@@ -1,67 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <template class="TaskEntry" parent="GtkBox">
+  <requires lib="libhandy" version="0.0"/>
+  <template class="TaskEntry" parent="HdyActionRow">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="orientation">vertical</property>
+    <property name="can-focus">True</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">6</property>
+        <property name="margin-right">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
         <child>
           <object class="GtkSpinner" id="spinner_task">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label_filename">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="margin_left">5</property>
-            <property name="margin_right">5</property>
-            <property name="margin_start">5</property>
-            <property name="margin_end">5</property>
-            <property name="label">Runner x.y</property>
-            <attributes>
-              <attribute name="weight" value="semibold"/>
-              <attribute name="scale" value="1.1000000000000001"/>
-            </attributes>
+          <object class="GtkLabel" id="label_task_status">
+            <property name="can-focus">False</property>
+            <property name="label">n/a</property>
+            <property name="width-chars">5</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="padding">5</property>
+            <property name="pack-type">end</property>
             <property name="position">1</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="btn_cancel">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Cancel download</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Delete message</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="margin_top">5</property>
-            <property name="margin_bottom">5</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">edit-delete-symbolic</property>
-                <property name="icon_size">2</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">edit-delete-symbolic</property>
               </object>
             </child>
             <style>
@@ -71,43 +65,15 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="padding">5</property>
-            <property name="pack_type">end</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
             <property name="position">2</property>
           </packing>
         </child>
-        <child>
-          <object class="GtkLabel" id="label_task_status">
-            <property name="can_focus">False</property>
-            <property name="label">n/a</property>
-            <property name="width_chars">5</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
       </object>
-      <packing>
-        <property name="expand">True</property>
-        <property name="fill">True</property>
-        <property name="padding">5</property>
-        <property name="position">0</property>
-      </packing>
     </child>
-    <child>
-      <object class="GtkSeparator">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
-    </child>
+    <style>
+      <class name="message-entry"/>
+    </style>
   </template>
 </interface>

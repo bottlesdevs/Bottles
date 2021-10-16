@@ -64,7 +64,7 @@ class MainWindow(Handy.ApplicationWindow):
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
-    box_tasks = Gtk.Template.Child()
+    list_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
     pop_notifications = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
