@@ -1,3 +1,4 @@
+import re
 import os
 import subprocess
 
@@ -223,8 +224,12 @@ class Runner:
                 dll_overrides.append("%s=%s" % (dll[0], dll[1]))
 
         if parameters["environment_variables"]:
-            for env_var in parameters["environment_variables"].items():
-                env[env_var[0]] = env_var[1]
+            for env_var in re.findall(
+                r'(?:[^\s,"]|"(?:\\.|[^"])*"|\'(?:\\.|[^\'])*\')+',
+                parameters["environment_variables"]
+            ):
+                key, value = env_var.split("=")
+                env[key] = value
 
         if environment:
             if environment.get("WINEDLLOVERRIDES"):
