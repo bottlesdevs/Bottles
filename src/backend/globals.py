@@ -3,7 +3,14 @@ import shutil
 from pathlib import Path
 
 
+class API:
+    notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
+    
 class Samples:
+
+    data = {
+        "notifications": []
+    }
 
     config = {
         "Name": "",
@@ -108,6 +115,7 @@ class Paths:
     dxvk = f"{base}/dxvk"
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
+    data = f"{base}/data.yml"
 
 
 class TrdyPaths:
