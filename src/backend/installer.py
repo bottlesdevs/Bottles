@@ -17,6 +17,7 @@
 
 import os
 import yaml
+import markdown
 import urllib.request
 from typing import Union, NewType
 from datetime import datetime
@@ -42,6 +43,24 @@ class InstallerManager:
         self.__manager = manager
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
+
+    def get_review(self, installer_name):
+        '''
+        This function fetch the review for a given installer. It return
+        the HTML formatted text if the review is found, else it will
+        return an empty text.
+        '''
+        review = ""
+        review_url = f"{BottlesRepositories.installers}Reviews/{installer_name}.md"
+
+        try:
+            with urllib.request.urlopen(review_url) as response:
+                review = response.read().decode('utf-8')
+                review = markdown.markdown(review)
+        except:
+            logging.error(f"Cannot fetch review for {installer_name}.")
+
+        return review
 
     def get_installer(
         self,

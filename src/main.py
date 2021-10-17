@@ -26,6 +26,7 @@ from os import path
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 gi.require_version('Notify', '0.7')
+gi.require_version('WebKit2', '4.0')
 from gi.repository import Gtk, Gio, Gdk, GLib, GObject
 
 from .params import *

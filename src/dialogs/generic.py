@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk, Pango, WebKit2
 
 
 class MessageDialog(Gtk.MessageDialog):
@@ -67,7 +67,8 @@ class Dialog(Gtk.Dialog):
         parent,
         title=_("Warning"),
         message=False,
-        log=False
+        log=False,
+        html=False
     ):
 
         Gtk.Dialog.__init__(
@@ -77,30 +78,52 @@ class Dialog(Gtk.Dialog):
             flags=Gtk.DialogFlags.USE_HEADER_BAR
         )
 
-        if log:
+        if log or html:
             '''
             If log is defined, display it as output, also change the
             the foreground according to the user preferences.
             '''
+            is_dark = False
+            if parent is not None and parent.settings.get_boolean("dark-theme"):
+                is_dark = True
+
             self.resize(600, 700)
             color = "#3e0622"
 
-            if parent is not None and parent.settings.get_boolean("dark-theme"):
+            if is_dark:
                 color = "#d4036d"
+                stylesheet = WebKit2.UserStyleSheet(
+                    "body { color: #fff; background-color: #242424; }",
+                    WebKit2.UserContentInjectedFrames.TOP_FRAME,
+                    WebKit2.UserStyleLevel.USER,
+                    None, None
+                )
 
             message_scroll = Gtk.ScrolledWindow()
             message_scroll.set_hexpand(True)
             message_scroll.set_vexpand(True)
 
-            message_view = Gtk.TextView()
-            message_buffer = message_view.get_buffer()
-            buffer_iter = message_buffer.get_end_iter()
-            message_buffer.insert_markup(
-                buffer_iter, 
-                f"<span foreground='{color}'>{log}</span>",
-                -1
-            )
-            message_scroll.add(message_view)
+            if log:
+                message_view = Gtk.TextView()
+                message_buffer = message_view.get_buffer()
+                buffer_iter = message_buffer.get_end_iter()
+                message_buffer.insert_markup(
+                    buffer_iter, 
+                    f"<span foreground='{color}'>{log}</span>",
+                    -1
+                )
+                message_scroll.add(message_view)
+
+            if html:
+                ucntm = WebKit2.UserContentManager()
+                if is_dark:
+                    ucntm.add_style_sheet(stylesheet)
+                webview = WebKit2.WebView(
+                    user_content_manager=ucntm
+                )
+                webview.load_html(html, "file://")
+                message_scroll.add(webview)
+
         else:
             message_label = Gtk.Label(label=message)
             message_label.wrap_width = 500
@@ -111,7 +134,7 @@ class Dialog(Gtk.Dialog):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         box.set_border_width(20)
 
-        if log:
+        if log or html:
             box.add(message_scroll)
         if message:
             box.add(message_label)

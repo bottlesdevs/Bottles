@@ -28,6 +28,7 @@ class InstallerEntry(Handy.ActionRow):
 
     # region Widgets
     btn_install = Gtk.Template.Child()
+    btn_review = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     btn_report = Gtk.Template.Child()
     img_installed = Gtk.Template.Child()
@@ -53,22 +54,40 @@ class InstallerEntry(Handy.ActionRow):
         # connect signals
         self.btn_install.connect('pressed', self.__execute_installer)
         self.btn_manifest.connect('pressed', self.__open_manifest)
+        self.btn_review.connect('pressed', self.__open_review)
         self.btn_report.connect('pressed', self.__open_bug_report)
 
     def __open_manifest(self, widget):
         '''Open installer manifest'''
+        plain_manifest = self.manager.installer_manager.get_installer(
+            installer_name=self.installer[0],
+            installer_category=self.installer[1]["Category"],
+            plain=True
+        )
         dialog = Dialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
             message=False,
-            log=self.manager.installer_manager.get_installer(
-                installer_name=self.installer[0],
-                installer_category=self.installer[1]["Category"],
-                plain=True
-            )
+            log=plain_manifest
         )
         dialog.run()
         dialog.destroy()
+
+    def __open_review(self, widget):
+        '''Open review'''
+        html_review = self.manager.installer_manager.get_review(
+            installer_name=self.installer[0],
+        )
+        dialog = Dialog(
+            parent=self.window,
+            title=_("Review for {0}").format(self.installer[0]),
+            message=False,
+            log=False,
+            html=html_review
+        )
+        dialog.run()
+        dialog.destroy()
+
 
     def __open_bug_report(self, widget):
         '''Open bug report'''

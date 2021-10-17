@@ -1,5 +1,6 @@
 from .globals import Paths, Samples
 from ..utils import UtilsLogger
+import os
 import yaml
 
 logging = UtilsLogger()
@@ -25,6 +26,8 @@ class DataManager:
             self.__create_data_file()
     
     def __create_data_file(self):
+        if not os.path.exists(Paths.base):
+            os.makedirs(Paths.base)
         with open(Paths.data, 'w') as s:
             yaml.dump(Samples.data, s)
         self.__get_data()
