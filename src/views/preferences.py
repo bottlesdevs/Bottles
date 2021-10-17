@@ -150,4 +150,9 @@ class PreferencesWindow(Handy.PreferencesWindow):
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            self.list_runners.add(ComponentEntry(self.window, runner, "runner"))
+            self.list_runners.add(ComponentEntry(
+                self.window, 
+                runner, 
+                "runner:proton"
+                )
+            )
