@@ -861,7 +861,7 @@ class DetailsView(Handy.Leaflet):
 
         new_config = self.manager.update_config(
             config=self.config,
-            key="nvapi",
+            key="dxvk_nvapi",
             value=state,
             scope="Parameters"
         )
