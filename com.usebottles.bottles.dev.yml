@@ -106,8 +106,17 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: 'https://github.com/urllib3/urllib3/archive/1.26.6.tar.gz'
-        sha256: ab4582b44fbe33f3e3fc838e3d90dde7f68fa3697aeb075962e0ba4b93020327
+        url: 'https://github.com/urllib3/urllib3/releases/download/1.26.7/urllib3-1.26.7.tar.gz'
+        sha256: 4987c65554f7a2dbf30c18fd48778ef124af6fab771a377103da0585e2336ece
+
+  - name: python-markdown
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: 'https://github.com/Python-Markdown/markdown/archive/refs/tags/3.3.4.tar.gz'
+        sha256: dcba963ea6d47d845aaa5d169911052985eec90d50267850c5c4c4fb4b05eff7
 
   - name: python-chardet
     buildsystem: simple
