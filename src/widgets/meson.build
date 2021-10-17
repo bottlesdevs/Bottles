@@ -8,7 +8,6 @@ bottles_sources = [
   'installer.py',
   'page.py',
   'program.py',
-  'runner.py',
   'state.py',
   'message.py',
   'component.py'
