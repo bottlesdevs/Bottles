@@ -97,6 +97,8 @@ class DependencyManager:
 
         for dependency in index.items():
             catalog[dependency[0]] = dependency[1]
+            
+        catalog = dict(sorted(catalog.items()))
         return catalog
 
     def async_install(self, args: list) -> bool:
