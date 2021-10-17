@@ -81,7 +81,7 @@ class RunnerEntry(Handy.ActionRow):
 
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
-        Runner().open_filemanager(path_type="runner", runner=self.runner_name)
+        Runner().open_filemanager(path_type="runner", component=self.runner_name)
 
     def idle_update_status(
         self,

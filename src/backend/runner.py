@@ -22,10 +22,7 @@ class Runner:
         self,
         config: BottleConfig = dict,
         path_type: str = "bottle",
-        runner: str = "",
-        dxvk: str = "",
-        vkd3d: str = "",
-        nvapi: str = "",
+        component: str = "",
         custom_path: str = ""
     ) -> bool:
         logging.info("Opening the file manager in the path …")
@@ -34,20 +31,21 @@ class Runner:
             bottle_path = self.get_bottle_path(config)
             path = f"{bottle_path}/drive_c"
 
-        if path_type == "runner" and runner != "":
-            path = self.get_runner_path(runner)
+        if component != "":
+            if path_type == "runner":
+                path = self.get_runner_path(component)
 
-        if path_type == "dxvk" and dxvk != "":
-            path = self.get_dxvk_path(dxvk)
+            if path_type == "dxvk":
+                path = self.get_dxvk_path(component)
 
-        if path_type == "vkd3d" and vkd3d != "":
-            path = self.get_vkd3d_path(vkd3d)
+            if path_type == "vkd3d":
+                path = self.get_vkd3d_path(component)
 
-        if path_type == "nvapi" and nvapi != "":
-            path = self.get_nvapi_path(nvapi)
+            if path_type == "nvapi":
+                path = self.get_nvapi_path(component)
 
-        if path_type == "custom" and custom_path != "":
-            path = custom_path
+            if path_type == "custom" and custom_path != "":
+                path = custom_path
 
         command = f"xdg-open '{path}'"
         return subprocess.Popen(command, shell=True).communicate()

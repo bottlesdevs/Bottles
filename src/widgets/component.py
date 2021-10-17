@@ -1,4 +1,4 @@
-# dxvk.py
+# component.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -15,14 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, GObject, Handy
 
 from ..backend.runner import Runner
 
-
-@Gtk.Template(resource_path='/com/usebottles/bottles/dxvk-entry.ui')
-class DxvkEntry(Handy.ActionRow):
-    __gtype_name__ = 'DxvkEntry'
+@Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
+class ComponentEntry(Handy.ActionRow):
+    __gtype_name__ = 'ComponentEntry'
+    __gsignals__ = {
+        'component-installed': (GObject.SIGNAL_RUN_FIRST, None, ()),
+        'component-error': (GObject.SIGNAL_RUN_FIRST, None, ())
+    }
 
     # region Widgets
     btn_download = Gtk.Template.Child()
@@ -33,49 +36,53 @@ class DxvkEntry(Handy.ActionRow):
     label_task_status = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, dxvk, **kwargs):
+    def __init__(self, window, component, component_type, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         self.window = window
         self.manager = window.manager
         self.component_manager = self.manager.component_manager
-        self.dxvk_name = dxvk[0]
+        self.name = component[0]
+        self.component_type = component_type
         self.spinner = Gtk.Spinner()
 
         # populate widgets
-        self.set_title(self.dxvk_name)
+        self.set_title(self.name)
 
-        if dxvk[1].get("Installed"):
+        if component[1].get("Installed"):
             self.btn_browse.set_visible(True)
         else:
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
 
         # connect signals
-        self.btn_download.connect('pressed', self.download_dxvk)
-        self.btn_err.connect('pressed', self.download_dxvk)
+        self.btn_download.connect('pressed', self.download)
+        self.btn_err.connect('pressed', self.download)
         self.btn_browse.connect('pressed', self.run_browse)
 
-    '''Install dxvk'''
-
-    def download_dxvk(self, widget):
+    def download(self, widget):
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
+
         for w in self.box_download_status.get_children():
             w.set_visible(True)
-        self.component_manager.install(
-            "dxvk",
-            self.dxvk_name,
-            func=self.update_status,
-            after=self.set_installed)
 
-    '''Browse dxvk files'''
+        self.component_manager.install(
+            self.component_type,
+            self.name,
+            func=self.update_status,
+            after=self.set_installed
+        )
 
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
-        Runner().open_filemanager(path_type="dxvk", dxvk=self.dxvk_name)
+
+        Runner().open_filemanager(
+            path_type=self.component_type,
+            component=self.name
+        )
 
     def idle_update_status(
         self,

@@ -18,9 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
-from ..widgets.dxvk import DxvkEntry
-from ..widgets.vkd3d import Vkd3dEntry
-from ..widgets.nvapi import NvapiEntry
+from ..widgets.component import ComponentEntry
 from ..widgets.runner import RunnerEntry
 
 
@@ -128,15 +126,15 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
     def populate_dxvk_list(self):
         for dxvk in self.manager.supported_dxvk.items():
-            self.list_dxvk.add(DxvkEntry(self.window, dxvk))
+            self.list_dxvk.add(ComponentEntry(self.window, dxvk, "dxvk"))
 
     def populate_vkd3d_list(self):
         for vkd3d in self.manager.supported_vkd3d.items():
-            self.list_vkd3d.add(Vkd3dEntry(self.window, vkd3d))
+            self.list_vkd3d.add(ComponentEntry(self.window, vkd3d, "vkd3d"))
 
     def populate_nvapi_list(self):
         for nvapi in self.manager.supported_nvapi.items():
-            self.list_nvapi.add(NvapiEntry(self.window, nvapi))
+            self.list_nvapi.add(ComponentEntry(self.window, nvapi, "nvapi"))
 
     def populate_runners_list(self):
         for w in self.list_runners:
