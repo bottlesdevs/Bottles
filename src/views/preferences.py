@@ -19,7 +19,6 @@ from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
 from ..widgets.component import ComponentEntry
-from ..widgets.runner import RunnerEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
@@ -145,10 +144,10 @@ class PreferencesWindow(Handy.PreferencesWindow):
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            self.list_runners.add(RunnerEntry(self.window, runner))
+            self.list_runners.add(ComponentEntry(self.window, runner, "runner"))
 
         for runner in self.manager.supported_proton_runners.items():
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            self.list_runners.add(RunnerEntry(self.window, runner))
+            self.list_runners.add(ComponentEntry(self.window, runner, "runner"))
