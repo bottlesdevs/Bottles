@@ -20,6 +20,7 @@ import yaml
 import markdown
 import urllib.request
 from typing import Union, NewType
+from functools import lru_cache
 from datetime import datetime
 from gi.repository import Gtk, GLib
 
@@ -44,6 +45,7 @@ class InstallerManager:
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
 
+    @lru_cache
     def get_review(self, installer_name):
         '''
         This function fetch the review for a given installer. It return
@@ -62,6 +64,7 @@ class InstallerManager:
 
         return review
 
+    @lru_cache
     def get_installer(
         self,
         installer_name: str,

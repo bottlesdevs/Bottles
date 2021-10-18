@@ -21,6 +21,7 @@ import shutil
 import patoolib
 from glob import glob
 import urllib.request
+from functools import lru_cache
 from typing import Union, NewType
 from gi.repository import Gtk, GLib
 
@@ -43,6 +44,7 @@ class DependencyManager:
         self.__utils_conn = manager.utils_conn
         self.__operation_manager = OperationManager(self.__window)
 
+    @lru_cache
     def get_dependency(
         self,
         dependency_name: str,
@@ -76,6 +78,7 @@ class DependencyManager:
 
         return False
 
+    @lru_cache
     def fetch_catalog(self) -> list:
         '''
         This function fetch all dependencies from the Bottles repository

@@ -3,6 +3,7 @@ from .data import DataManager
 from ..params import VERSION
 import yaml
 import urllib.request
+from functools import lru_cache
 from datetime import datetime, timedelta
 
 class NotificationsManager:
@@ -17,6 +18,7 @@ class NotificationsManager:
     def __init__(self):
         self.__get_messages()
     
+    @lru_cache
     def __get_messages(self):
         _messages = []
 

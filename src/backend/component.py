@@ -22,6 +22,7 @@ import shutil
 import tarfile
 import requests
 import urllib.request
+from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
 
@@ -40,6 +41,7 @@ class ComponentManager:
         self.__window = manager.window
         self.__operation_manager = OperationManager(self.__window)
 
+    @lru_cache
     def get_component(
         self,
         component_type: str,
@@ -101,6 +103,7 @@ class ComponentManager:
 
         return False
 
+    @lru_cache
     def fetch_catalog(self) -> dict:
         '''
         This function fetch all components from the Bottles repository
