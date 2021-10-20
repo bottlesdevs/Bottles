@@ -89,6 +89,7 @@ class UtilsTerminal():
         ['mate-terminal', '--command %s'],
         ['tilix', '-- %s'],
         ['qterminal', '--execute %s'],
+        ['lxterminal', '-e %s'], 
     ]
 
     def check_support(self):
