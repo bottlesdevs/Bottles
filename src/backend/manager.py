@@ -1167,7 +1167,7 @@ class Manager:
             if not config.get("Custom_Path"):
                 path = f"{Paths.bottles}/{config.get('Path')}"
 
-            shutil.rmtree(path)
+            shutil.rmtree(path, ignore_errors=True)
             del self.local_bottles[config.get("Path")]
 
             logging.info(f"Successfully deleted bottle in path: [{path}]")
