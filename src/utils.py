@@ -85,7 +85,7 @@ class UtilsTerminal():
         ['xterm', '-e %s'],
         ['konsole', '-e %s'],
         ['gnome-terminal', '-- %s'],
-        ['xfce4-terminal', '--command %s'],
+        ['xfce4-terminal', '-e %s'],
         ['mate-terminal', '--command %s'],
         ['tilix', '-- %s'],
         ['qterminal', '--execute %s'],
