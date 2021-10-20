@@ -88,6 +88,7 @@ class UtilsTerminal():
         ['xfce4-terminal', '--command %s'],
         ['mate-terminal', '--command %s'],
         ['tilix', '-- %s'],
+        ['qterminal', '--execute %s'],
     ]
 
     def check_support(self):
