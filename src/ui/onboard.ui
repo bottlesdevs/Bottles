@@ -111,89 +111,11 @@
             <property name="can-focus">False</property>
             <property name="transition-type">slide-left-right</property>
             <child>
-              <object class="HdyClamp" id="page_welcome">
+              <object class="HdyStatusPage" id="page_welcome">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="maximum-size">500</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="margin-left">10</property>
-                    <property name="margin-right">10</property>
-                    <property name="margin-start">10</property>
-                    <property name="margin-end">10</property>
-                    <property name="margin-top">20</property>
-                    <property name="margin-bottom">25</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="pixel-size">128</property>
-                        <property name="icon-name">com.usebottles.bottles</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="margin-top">10</property>
-                        <property name="margin-bottom">10</property>
-                        <property name="label" translatable="yes">Welcome to Bottles</property>
-                        <property name="wrap">True</property>
-                        <property name="wrap-mode">word-char</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell Bold 20"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">Bottles makes running Windows Software on Linux much easier.</property>
-                        <property name="max-width-chars">60</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell 11"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </object>
-                </child>
+                <property name="icon-name">com.usebottles.bottles</property>
+                <property name="title" translatable="yes">Welcome to Bottles</property>
+                <property name="description" translatable="yes">Bottles makes running Windows Software on Linux much easier.</property>
               </object>
               <packing>
                 <property name="name">page_welcome</property>
@@ -210,6 +132,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">center</property>
+                    <property name="valign">center</property>
                     <property name="margin-left">10</property>
                     <property name="margin-right">10</property>
                     <property name="margin-start">10</property>
@@ -226,13 +149,12 @@
                         <property name="halign">center</property>
                         <property name="margin-top">10</property>
                         <property name="margin-bottom">10</property>
-                        <property name="label" translatable="yes">What are runners?</property>
+                        <property name="label" translatable="yes">What Are Runners?</property>
                         <property name="wrap">True</property>
                         <property name="wrap-mode">word-char</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell Bold 20"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
+                        <style>
+                          <class name="large-title"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -280,6 +202,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">center</property>
+                    <property name="valign">center</property>
                     <property name="margin-left">10</property>
                     <property name="margin-right">10</property>
                     <property name="margin-start">10</property>
@@ -296,13 +219,12 @@
                         <property name="halign">center</property>
                         <property name="margin-top">10</property>
                         <property name="margin-bottom">10</property>
-                        <property name="label" translatable="yes">We are almost there</property>
+                        <property name="label" translatable="yes">We Are Almost There</property>
                         <property name="wrap">True</property>
                         <property name="wrap-mode">word-char</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell Bold 20"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
+                        <style>
+                          <class name="large-title"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -352,6 +274,7 @@ When you are ready press the &lt;b&gt;Install&lt;/b&gt; button.</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">center</property>
+                    <property name="valign">center</property>
                     <property name="margin-left">10</property>
                     <property name="margin-right">10</property>
                     <property name="margin-start">10</property>
@@ -371,10 +294,9 @@ When you are ready press the &lt;b&gt;Install&lt;/b&gt; button.</property>
                         <property name="label" translatable="yes">Downloading…</property>
                         <property name="wrap">True</property>
                         <property name="wrap-mode">word-char</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell Bold 20"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
+                        <style>
+                          <class name="large-title"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -421,77 +343,11 @@ When you are ready press the &lt;b&gt;Install&lt;/b&gt; button.</property>
               </packing>
             </child>
             <child>
-              <object class="HdyClamp" id="page_finish">
+              <object class="HdyStatusPage" id="page_finish">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="maximum-size">500</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="margin-left">10</property>
-                    <property name="margin-right">10</property>
-                    <property name="margin-start">10</property>
-                    <property name="margin-end">10</property>
-                    <property name="margin-top">20</property>
-                    <property name="margin-bottom">25</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="pixel-size">110</property>
-                        <property name="icon-name">object-select-symbolic</property>
-                        <property name="icon_size">3</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="margin-top">10</property>
-                        <property name="margin-bottom">10</property>
-                        <property name="label" translatable="yes">Everything is ready!</property>
-                        <property name="wrap">True</property>
-                        <property name="wrap-mode">word-char</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell Bold 20"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-top">5</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">You are now ready to create your first bottles.</property>
-                        <property name="use-markup">True</property>
-                        <property name="wrap">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
+                <property name="icon-name">object-select-symbolic</property>
+                <property name="title" translatable="yes">Everything Is Ready!</property>
+                <property name="description" translatable="yes">You are now ready to create your first bottles.</property>
               </object>
               <packing>
                 <property name="name">page_finish</property>
