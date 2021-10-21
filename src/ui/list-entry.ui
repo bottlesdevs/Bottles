@@ -101,24 +101,21 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Run here</property>
-                <attributes>
-                  <attribute name="font-desc" value="Cantarell 10"/>
-                </attributes>
-              </object>
-            </child>
+            <property name="margin-start">6</property>
+            <property name="margin-end">6</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-start">5</property>
+                <property name="margin-end">6</property>
                 <property name="icon-name">media-playback-start-symbolic</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Run Here</property>
               </object>
             </child>
           </object>
