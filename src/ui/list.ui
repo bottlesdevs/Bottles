@@ -29,10 +29,9 @@
                 <property name="label" translatable="yes">Bottles</property>
                 <property name="wrap">True</property>
                 <property name="wrap-mode">word-char</property>
-                <attributes>
-                  <attribute name="font-desc" value="Cantarell Bold 16"/>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
+                <style>
+                  <class name="large-title"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">False</property>
