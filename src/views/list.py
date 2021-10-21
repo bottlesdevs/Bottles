@@ -29,10 +29,10 @@ class ListViewEntry(Handy.ActionRow):
     Handy.init()
 
     # region Widgets
-    btn_details = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
     btn_repair = Gtk.Template.Child()
     btn_run_executable = Gtk.Template.Child()
+    details_image = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
@@ -65,8 +65,7 @@ class ListViewEntry(Handy.ActionRow):
             self.runner_type = "proton"
 
         # connect signals
-        self.btn_details.connect('pressed', self.show_details)
-        self.btn_details.connect('activate', self.show_details)
+        activate_handler = self.connect('activated', self.show_details)
         self.btn_run.connect('pressed', self.run_executable)
         self.btn_repair.connect('pressed', self.repair)
         self.btn_run_executable.connect('pressed', self.run_executable)
@@ -86,7 +85,7 @@ class ListViewEntry(Handy.ActionRow):
             for w in [self.btn_repair,self.icon_damaged]:
                 w.set_visible(True)
 
-            for w in [self.btn_details, self.btn_run]:
+            for w in [self, self.btn_run]:
                 w.set_sensitive(False)
         else:
             '''Check for arguments from config'''
@@ -95,7 +94,10 @@ class ListViewEntry(Handy.ActionRow):
                     _("Arguments found for executable: [{executable}].").format(
                         executable = self.arg_exe))
 
-                for w in [self.btn_details, self.btn_run]:
+                self.disconnect(activate_handler)
+                self.connect('activated', self.run_executable)
+
+                for w in [self.details_image, self.btn_run]:
                     w.set_visible(False)
                 self.btn_run_executable.set_visible(True)
 
