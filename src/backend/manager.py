@@ -889,7 +889,7 @@ class Manager:
         '''
         logging.info("Creating the wineprefix …")
 
-        name, environment, path, runner, dxvk, vkd3d, nvapi, versioning, dialog, arch = args
+        name, environment, path, runner, dxvk, vkd3d, nvapi, versioning, sandbox, dialog, arch = args
         update_output = dialog.update_output
 
         if len(self.runners_available) == 0:
@@ -980,12 +980,15 @@ class Manager:
         update_output(_("Wine config updated!"))
         time.sleep(1)
 
-        if "FLATPAK_ID" in os.environ:
+        if "FLATPAK_ID" in os.environ or sandbox:
             '''
-            if running as flatpak, unlink home directories 
-            and make them as folders
+            if running as flatpak, or sandbox flag is set to True, unlink home 
+            directories and make them as folders
             '''
-            update_output(_("Running as flatpak, creating sandboxed folders …"))
+            if "FLATPAK_ID":
+                update_output(_("Running as flatpak, creating sandboxed folders …"))
+            if sandbox:
+                update_output(_("Creating sandboxed folders …"))
             users_dir = glob(f"{bottle_complete_path}/drive_c/users/*/*")
 
             for user_path in users_dir:
@@ -1087,6 +1090,7 @@ class Manager:
         vkd3d: bool = False,
         nvapi: bool = False,
         versioning: bool = False,
+        sandbox: bool = False,
         dialog: Gtk.Widget = None,
         arch: str = "win64"
     ):
@@ -1110,6 +1114,7 @@ class Manager:
                 vkd3d,
                 nvapi,
                 versioning,
+                sandbox,
                 dialog,
                 arch
             ]

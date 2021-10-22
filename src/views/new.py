@@ -53,6 +53,7 @@ class NewView(Handy.Window):
     page_created = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     switch_versioning = Gtk.Template.Child()
+    switch_sandbox = Gtk.Template.Child()
     label_advanced = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     box_advanced = Gtk.Template.Child()
@@ -175,11 +176,12 @@ class NewView(Handy.Window):
         self.stack_create.set_visible_child_name("page_creating")
 
         '''
-        Check if versioning is enabled and get the selected runner. If the
-        selected environment is not "Custom", the runner is taken from the
+        Check if versioning and sandbox are enabled and get the selected runner. 
+        If the selected env. is not "Custom", the runner is taken from the
         runners available list, else it is taken from the user selection.
         '''
         versioning_state = self.switch_versioning.get_state()
+        sandbox_state = self.switch_sandbox.get_state()
         if self.selected_env == "Custom":
             runner = self.combo_runner.get_active_id()
         else:
@@ -209,6 +211,7 @@ class NewView(Handy.Window):
             runner=runner,
             dxvk=self.combo_dxvk.get_active_id(),
             versioning=versioning_state,
+            sandbox=sandbox_state,
             dialog=self,
             arch=self.combo_arch.get_active_id()
         )
