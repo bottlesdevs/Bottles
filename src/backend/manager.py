@@ -22,7 +22,6 @@ import random
 import yaml
 import time
 import shutil
-import re
 import struct
 import locale
 import urllib.request
