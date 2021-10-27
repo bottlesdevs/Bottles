@@ -379,7 +379,7 @@ class ComponentManager:
         component_type, component_name, after, func, checks = args
         manifest = self.get_component(component_type, component_name)
 
-        if not manifest:
+        if not manifest and not isinstance(func, bool):
             return func(failed=True)
 
         logging.info(f"Installing component: [{component_name}].")
