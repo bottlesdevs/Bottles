@@ -1158,9 +1158,12 @@ class Manager:
         This function deletes the given bottle. It is called
         from the delete_bottle function.
         '''
-        logging.info("Deleting a bottle …")
-
         config = args[0]
+
+        logging.info("Stopping bottle …")
+        Runner().send_status(config, "kill")
+
+        logging.info("Deleting bottle …")
 
         if config.get("Path"):
             logging.info(f"Removing applications installed with the bottle ..")
