@@ -82,47 +82,40 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2021.10.28-treviso-2" date="2021-10-14">
+        <release version="2021.10.28-treviso" date="2021-10-28">
           <description>
             <p>News</p>
             <ul>
-                <li>Support for AMD FSR (FidelityFX Super Resolution)</li>
-                <li>Support for DLSS with DXVK-NVAPI</li>
-                <li>Show current step during installation using our installer</li>
-                <li>Improved download manager for faster downloads</li>
-                <li>Improved the way we handle the environment on command execution</li>
-                <li>Better .lnk file handler, thanks to Winand and Jared</li>
-                <li>Now the crash reporter show similar reports based on similarity</li>
-                <li>Now under flatpak, the homedir is also sandboxed inside the bottle itself</li>
-                <li>Added easy FAQ menu for beginners (only Flatpak)</li>
-                <li>The download manager is now the operation manager</li>
-                <li>Automatically hide the operation manager if there is no pending task</li>
-                <li>Improved the bottle creation dialog, with less duplicated texts</li>
-                <li>Using transitions in bottle creation dialog</li>
-                <li>Now it is possible to replicate a bottle by importing its bottle.yml as backup</li>
-                <li>Improved the component manager and the way we handle the catalogs</li>
-                <li>Actions are now located in the headerbar</li>
+                <li>Now there is an internal Notifications manager, so we can keep in touch with the community!</li>
+                <li>Implement DataManager to store and manage internal data</li>
+                <li>Migrate components to the new ComponentEntry widget</li>
+                <li>Dependencies catalog is now sorted alphabetically</li>
+                <li>Now it is possible to read the installer review</li>
+                <li>Now all HTTP requests are cached after the first time</li>
+                <li>Support for QTerminal and LXTerminal</li>
+                <li>Allow also other packages to use the sandboxed userdir in bottles (currenty thi is not a full sandbox, just the userdir is not linked to the homedir)</li>
+                <li>General UI Cleanups (thanks to @BrainBlasted)</li>
             </ul>
 
             <p>Bug fixes</p>
             <ul>
-                <li>Fixed the embedded null byte error</li>
-                <li>Fixed a bug that showed duplicate logs</li>
-                <li>Fixed wrong page order that was causing wrong transitions</li>
-                <li>Fixed a bug that was causing the reports to being sent without title</li>
-                <li>Fixed a bug in bottle deletion that was resulting in a directory not found error</li>
+                <li>Fixed a regression in Wayland support</li>
+                <li>Fixed a bug in environment variables storing</li>
+                <li>Fixed the wrong dxvk_nvapi flag in bottle configuration</li>
+                <li>Fixed a bug with Proton component installation</li>
+                <li>Fixed a bug that was causing the Versioning system executing methods in the main thread in a non safe way</li>
+                <li>Fixed "Directory not empty" bug on bottle deletion</li>
+                <li>Fixed "'bool' object is not callable" bug on component installation failure</li>
+                <li>Fixed mispelling in translations (thanks to @Martinligabue, @comradekingu)</li>
             </ul>
 
             <p>Translations</p>
             <ul>
+                <li>Finnish translations thanks to Jiri Grönroos</li>
+                <li>Hindi translations thanks to @ExistingProgrammer, @gauthamkrishna9991</li>
+                <li>Croatian translations thanks to @milotype</li>
+                <li>Japanese translations thanks to @jatin-cbs</li>
                 <li>Portuguese (Brazil) translations thanks to @davipatricio</li>
-                <li>Esperanto translations thanks to @phlostically</li>
-                <li>Dutch translations thanks to Tim Visee</li>
-                <li>Swedish translations thanks to @bittin</li>
-                <li>Turkish translations thanks to @ersen0</li>
-                <li>Chinese (Simplified) translations thanks to @sr093906</li>
-                <li>Spanish translations thanks to @oscfdezdz</li>
-                <li>Hungarian translations thanks to @ovari</li>
             </ul>
           </description>
         </release>
