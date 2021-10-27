@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-10 11:33+0200\n"
-"PO-Revision-Date: 2021-10-26 02:41+0000\n"
+"PO-Revision-Date: 2021-10-27 09:59+0000\n"
 "Last-Translator: Davi Patricio <davipatricio@pm.me>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
@@ -99,7 +99,7 @@ msgstr "Substitua DLLs diretamente nas preferências por garrafa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
-msgstr "Mudança de executor em tempo real para qualquer Bottle"
+msgstr "Mudança de executor em tempo real para qualquer garrafa"
 
 #: data/com.usebottles.bottles.appdata.xml.in:24
 msgid ""
@@ -145,7 +145,7 @@ msgstr "Importe facilmente o wineprefix de outros gerenciadores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning (experimental)"
-msgstr "Controle de versão dos Bottles (Experimental)"
+msgstr "Controle de versão de garrafas (Experimental)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid ".. and much more that you can find by installing Bottles!"
@@ -157,7 +157,7 @@ msgstr "Notícias"
 
 #: data/com.usebottles.bottles.appdata.xml.in:83
 msgid "Improved the Download manager"
-msgstr "Melhorado o Gerenciador de download"
+msgstr "Gerenciador de download melhorado"
 
 #: data/com.usebottles.bottles.appdata.xml.in:84
 msgid "Update to GNOME Runtime 41."
@@ -385,7 +385,7 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
-"Ocorreu um erro de instalação. Reinicie Bottles para ler o relatório de "
+"Ocorreu um erro de instalação. Reinicie o Bottles para ler o relatório de "
 "erros ou execute-o via terminal para ler a saída."
 
 #: src/ui/dependency-entry.ui:193
@@ -470,11 +470,11 @@ msgstr "0"
 
 #: src/ui/details.ui:451 src/main.py:120
 msgid "Bottle name"
-msgstr "Nome do Bottle"
+msgstr "Nome da garrafa"
 
 #: src/ui/details.ui:455
 msgid "Type a name for your bottle"
-msgstr "Digite um nome para a seu Bottle"
+msgstr "Digite um nome para a sua garrafa"
 
 #: src/ui/details.ui:474
 msgid "Environment"
@@ -543,7 +543,7 @@ msgstr "Linha de comando"
 
 #: src/ui/details.ui:861
 msgid "Run commands inside the Bottle."
-msgstr "Execute comandos dentro do Bottle."
+msgstr "Execute comandos dentro da garrafa."
 
 #: src/ui/details.ui:898
 msgid "Registry Editor"
@@ -957,15 +957,15 @@ msgstr "Importar backup do Bottles"
 
 #: src/ui/importer-entry.ui:69
 msgid "This wineprefix was already imported in Bottles."
-msgstr "Esta configuração (wineprefix) já foi importada para o Bottles."
+msgstr "Este wineprefix já foi importado no Bottles."
 
 #: src/ui/list.ui:73
 msgid "Start off by creating a Bottle."
-msgstr "Comece criando um Bottle."
+msgstr "Comece criando uma garrafa."
 
 #: src/ui/list.ui:76
 msgid "Create a new Bottle"
-msgstr "Crie um novo Bottle"
+msgstr "Crie uma nova garrafa"
 
 #: src/ui/list-entry.ui:24
 msgid "Run .exe/.msi in this bottle"
@@ -984,8 +984,8 @@ msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
 msgstr ""
-"Esta garafa parece danificada, o arquivo de configuração não foi encontrado. "
-"Posso tentar resolver criando uma nova configuração."
+"Esta garrafa parece danificada, o arquivo de configuração não foi "
+"encontrado. Posso tentar resolver criando uma nova configuração."
 
 #: src/ui/list-entry.ui:238
 msgid "Execute in this bottle"
@@ -1041,7 +1041,7 @@ msgstr "Controle de versão"
 
 #: src/ui/new.ui:235
 msgid "Enable versioning to save and restore the bottle to a state."
-msgstr "Ative o controle de versão para salvar e restaurar o estado do Bottle."
+msgstr "Ative o controle de versão para salvar e restaurar o estado da garrafa."
 
 #: src/ui/new.ui:409
 msgid "Architecture"
@@ -1117,7 +1117,7 @@ msgstr ""
 "Camadas de compatibilidade permitem que o software Windows seja instalado e "
 "executado em sistemas Linux.\n"
 "\n"
-"<b> Bottles </b> são ambientes onde o executor configura o sistema e onde o "
+"<b> Garrafas </b> são ambientes onde o executor configura o sistema e onde o "
 "software Windows é executado e instalado.\n"
 "\n"
 "<a href=\"https://docs.usebottles.com/components/runners\"> Leia mais sobre "
@@ -1146,7 +1146,7 @@ msgid ""
 msgstr ""
 "Precisamos baixar e instalar um executor para permitir que você crie suas "
 "próprias garrafas.\n"
-"O tamanho do download é <b>~70 MB</b>.\n"
+"O tamanho do download é <b>~70MB</b>.\n"
 "<a href=\"https://docs.usebottles.com/getting-started/first-run\">Leia mais "
 "sobre o que vamos baixar</a>\n"
 "\n"
@@ -1205,7 +1205,7 @@ msgstr "Exibir data de atualização"
 
 #: src/ui/preferences.ui:56
 msgid "Whether to show the update date in the bottle list."
-msgstr "Se deseja exibir a data de atualização na lista de bottles."
+msgstr "Se deseja exibir a data de atualização na lista de garrafas."
 
 #: src/ui/preferences.ui:93
 msgid "Show notifications for downloads and installs."
@@ -1221,7 +1221,7 @@ msgstr "Limpar arquivos temporários quando o Bottles for aberto?"
 
 #: src/ui/preferences.ui:146
 msgid "Close Bottles after starting a program"
-msgstr "Fechar Bottles automaticamente após iniciar um programa"
+msgstr "Fechar o Bottles automaticamente após iniciar um programa"
 
 #: src/ui/preferences.ui:147
 msgid "Close Bottles after starting a program from the file manager"
@@ -1515,11 +1515,11 @@ msgstr "Executar"
 
 #: src/views/details.py:986
 msgid "Select the location where to save the backup config"
-msgstr "Selecione o local onde gravar a configuração de backup"
+msgstr "Selecione o local onde salvar a configuração de backup"
 
 #: src/views/details.py:1014
 msgid "Select the location where to save the backup archive"
-msgstr "Selecione o local onde gravar o arquivo de backup"
+msgstr "Selecione o local onde salvar o arquivo de backup"
 
 #: src/views/details.py:1052
 msgid "Confirm deletion"
@@ -1569,7 +1569,7 @@ msgstr "Um ambiente limpo para seus experimentos."
 #: src/views/new.py:219
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "Um bottle chamado “{0}” foi criado com exito"
+msgstr "Uma garrafa chamada “{0}” foi criada com exito"
 
 #~ msgid "com.usebottles.bottles"
 #~ msgstr "com.usebottles.bottles"
