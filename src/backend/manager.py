@@ -966,7 +966,7 @@ class Manager:
         os.makedirs(bottle_complete_path)
 
         # execute wineboot on the bottle path
-        update_output(_("The WWINE config is being updated …"))
+        update_output(_("The WINE config is being updated …"))
         command = [
             "DISPLAY=:3.0",
             "WINEDEBUG=fixme-all",
