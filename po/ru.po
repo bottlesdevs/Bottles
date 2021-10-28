@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-10 11:33+0200\n"
-"PO-Revision-Date: 2021-08-22 08:03+0000\n"
-"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"PO-Revision-Date: 2021-10-29 00:32+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -1127,7 +1127,7 @@ msgstr ""
 "Это уровень совместимости, которй позволяет устанавливать и запускать "
 "программное обеспечение Windows на системах Linux.\n"
 "\n"
-"<b>Bottles</b>  это среда, в которой исполнитель настраивает систему и в "
+"<b>Bottles</b> это среда, в которой исполнитель настраивает систему и в "
 "которой запускается и устанавливается программное обеспечение Windows.\n"
 "\n"
 "<a href=\"https://docs.usebottles.com/components/runners\">Подробнее о "
@@ -1142,6 +1142,7 @@ msgid "We are almost there"
 msgstr "Мы почти готовы"
 
 #: src/ui/onboard.ui:319
+#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -1157,6 +1158,8 @@ msgstr ""
 "Нужно скачать и установить бегунок, позволяющий создавать собственные "
 "бутылки.\n"
 "Размер загрузки составляет <b>~70MB</b>.\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Подробнее "
+"о том, что мы будем скачивать</a>.\n"
 "\n"
 "Мы не можем предложить эти файлы вместе с Bottles, так как у них разные "
 "циклы выпуска.\n"
@@ -1584,9 +1587,9 @@ msgid "A clear environment for your experiments."
 msgstr "Чистая среда для ваших экспериментов."
 
 #: src/views/new.py:219
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr "Бутылка с названием “%s” была успешно создана"
+msgstr "Бутылка с названием “{0}” была успешно создана"
 
 #, fuzzy
 #~ msgid ""
