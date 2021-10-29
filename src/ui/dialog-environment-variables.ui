@@ -72,7 +72,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">Here you can change the environment variables for the commands that are executed.</property>
+                <property name="label" translatable="yes">Here you can change environment variables for executed commands.</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -84,7 +84,7 @@
               <object class="GtkEntry" id="entry_variables">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="tooltip-text" translatable="yes">e.g.: -example1 -example2 -example3=hello</property>
+                <property name="tooltip-text" translatable="yes">e.g: -example1 -example2 -example3=hello</property>
                 <property name="hexpand">True</property>
                 <property name="primary-icon-name">utilities-terminal-symbolic</property>
                 <property name="placeholder-text" translatable="yes">e.g: VAR1=value VAR2=value ..</property>
