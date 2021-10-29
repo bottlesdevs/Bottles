@@ -263,11 +263,11 @@ class Manager:
         '''
         This function checks for installed Bottles and system runners and
         appends them to the runners_available list. If there are no runners
-        available (the sys-wine cannot be the only one), it will install
-        the latest vaniglia runner from the repository if connection is
+        available (the system Wine cannot be the only one), it will install
+        the latest Vaniglia runner from the repository if a connection is
         available, then update the list with the new one. It also locks the 
         winemenubuilder.exe for the Bottles' runners, to prevent them from
-        creating invalid desktop and menu entries.
+        creating invalid desktop- and menu entries.
         A very special thanks to Lutris & GloriousEggroll for extra builds <3!
         '''
         runners = glob("%s/*/" % Paths.runners)
@@ -289,7 +289,7 @@ class Manager:
         # check system wine
         if shutil.which("wine") is not None:
             '''
-            If the WINE command is available, get the runner version
+            If the \"wine\" command is available, get the runner version
             and add it to the runners_available list.
             '''
             version = subprocess.Popen(
@@ -966,7 +966,7 @@ class Manager:
         os.makedirs(bottle_complete_path)
 
         # execute wineboot on the bottle path
-        update_output(_("The WINE config is being updated …"))
+        update_output(_("The Wine config is being updated …"))
         command = [
             "DISPLAY=:3.0",
             "WINEDEBUG=fixme-all",
@@ -976,7 +976,7 @@ class Manager:
         ]
         command = " ".join(command)
         subprocess.Popen(command, shell=True).communicate()
-        update_output(_("WINE config updated!"))
+        update_output(_("Wine config updated!"))
         time.sleep(1)
 
         if "FLATPAK_ID" in os.environ or sandbox:
@@ -1231,7 +1231,7 @@ class Manager:
     @staticmethod
     def get_running_processes() -> list:
         '''
-        This function gets all running WINE processes and returns
+        This function gets all running Wine processes and returns
         them as a list of dictionaries.
         '''
         processes = []
@@ -1473,7 +1473,7 @@ class Manager:
         revert: bool = False
     ) -> bool:
         '''
-        This function replace a DLL in a bottle (this is not a wine
+        This function replace a DLL in a bottle (this is not a Wine
         DLL override). It also make a backup of the original DLL, that
         can be reverted with the revert option.
         '''
@@ -1495,8 +1495,8 @@ class Manager:
             else:
                 for dll in dlls:
                     '''
-                    for each DLL in the list, we create a backup of the
-                    original one and replace it with the new one.
+                    For each DLL in the list, a backup of the original
+                    one is created, and replaced with the new.
                     '''
                     shutil.move(
                         f"{path}/{dll}",
@@ -1580,7 +1580,7 @@ class Manager:
                     })
             i += 1
 
-        logging.info(f"Found {len(importer_wineprefixes)} wineprefixes ..")
+        logging.info(f"Found {len(importer_wineprefixes)} wineprefixes…")
         return importer_wineprefixes
 
     def import_wineprefix(self, wineprefix: dict, widget: Gtk.Widget) -> bool:
@@ -1590,13 +1590,13 @@ class Manager:
         in the source path to prevent multiple imports.
         '''
         logging.info(
-            f"Importing wineprefix [{wineprefix['Name']}] in a new bottle …"
+            f"Importing wineprefix [{wineprefix['Name']}] in a new bottle…"
         )
 
         # hide btn_import to prevent double imports
         widget.set_visible(False)
 
-        # prepare bottle path for the wine prefix
+        # prepare bottle path for the wineprefix
         bottle_path = "Imported_%s" % wineprefix.get("Name")
         bottle_complete_path = "%s/%s" % (Paths.bottles, bottle_path)
 
