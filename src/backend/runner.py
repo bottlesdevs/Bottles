@@ -226,8 +226,12 @@ class Runner:
                 r'(?:[^\s,"]|"(?:\\.|[^"])*"|\'(?:\\.|[^\'])*\')+',
                 parameters["environment_variables"]
             ):
-                key, value = env_var.split("=")
-                env[key] = value
+                try:
+                    key, value = env_var.split("=")
+                    env[key] = value
+                except:
+                    # ref: https://github.com/bottlesdevs/Bottles/issues/668
+                    continue
 
         if environment:
             if environment.get("WINEDLLOVERRIDES"):
