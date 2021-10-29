@@ -32,7 +32,7 @@ class Runner:
             path = f"{bottle_path}/drive_c"
 
         if component != "":
-            if path_type == "runner":
+            if path_type in ["runner", "runner:proton"]:
                 path = self.get_runner_path(component)
 
             if path_type == "dxvk":
