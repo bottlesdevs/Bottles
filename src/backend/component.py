@@ -409,7 +409,6 @@ class ComponentManager:
             to the required name.
             '''
             archive = manifest["File"][0]["rename"]
-            archive = manifest["File"][0]["rename"]
 
         self.extract(component_name, component_type, archive)
 
