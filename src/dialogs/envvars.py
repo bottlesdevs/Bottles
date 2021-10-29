@@ -41,8 +41,33 @@ class EnvVarsDialog(Handy.Window):
         self.entry_variables.set_text(variables)
 
         # connect signals
+        self.entry_variables.connect('key-release-event', self.__check_entries)
         self.btn_cancel.connect('pressed', self.__close_window)
         self.btn_save.connect('pressed', self.__save_variables)
+
+    def __check_entries(self, widget, event_key):
+        '''
+        This function checks if entries in entry_variables are valid, by
+        splitting the content by space and "=". If it raises an exception,
+        the warning symbolic icon will be shown and the save button will be
+        disabled preventing the user to save the invalid entries.
+        '''
+        entries = widget.get_text()
+        entries = entries.split(" ")
+        for entry in entries:
+            if entry == "":
+                continue
+            try:
+                entry = entry.split("=")
+                if len(entry) != 2:
+                    raise Exception
+            except:
+                self.btn_save.set_sensitive(False)
+                widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+                return
+        
+        self.btn_save.set_sensitive(True)
+        widget.set_icon_from_icon_name(1, "")
 
     def __close_window(self, widget):
         self.destroy()
