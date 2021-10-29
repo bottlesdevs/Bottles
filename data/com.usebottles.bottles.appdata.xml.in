@@ -15,23 +15,23 @@
         <p>Bottle versioning keeps your work safe now and lets you restore it later!</p>
         <p>Features:</p>
         <ul>
-          <li>Create bottles using preconfigured environments or create your own</li>
+          <li>Create bottles using preconfigured environments, or create your own</li>
           <li>Run executables (.exe/.msi) in your bottles, directly from the context menu of your file-manager</li>
           <li>Automated detection of applications installed in your bottles</li>
           <li>Add environment variables quickly</li>
           <li>Override DLLs directly from per-bottle preferences</li>
           <li>On-the-fly runner change for any Bottle</li>
-          <li>Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader compiler, offload … and much more.)</li>
-          <li>Automatic installation and management of Wine and Proton runners</li>
+          <li>Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader compiler, offloading … and much more.)</li>
+          <li>Automatic installation and management of Wine- and Proton runners</li>
           <li>Automatic bottle repair in case of breakage</li>
           <li>Integrated dependency-installer based on a community-driven repository</li>
           <li>Integrated Task manager for Wine processes</li>
           <li>Access to ProtonDB and WineHQ for support</li>
           <li>System for bringing your configuration to new versions of Bottles</li>
           <li>Back up and import bottles</li>
-          <li>Import Wine prefixes from other managers</li>
+          <li>Import wineprefixes from other managers</li>
           <li>Bottles versioning (experimental)</li>
-          <li>.. and much more that you can find by installing Bottles!</li>
+          <li>… and much more that you can find by installing Bottles!</li>
         </ul>
     </description>
     ​<mimetypes>
@@ -86,15 +86,15 @@
           <description>
             <p>News</p>
             <ul>
-                <li>Now there is an internal Notifications manager, so we can keep in touch with the community!</li>
+                <li>Now there is an internal notification manager, so we can keep in touch with the community!</li>
                 <li>Implement DataManager to store and manage internal data</li>
                 <li>Migrate components to the new ComponentEntry widget</li>
-                <li>Dependencies catalog is now sorted alphabetically</li>
+                <li>Dependencies catalog now sorted alphabetically</li>
                 <li>Now it is possible to read the installer review</li>
                 <li>Now all HTTP requests are cached after the first time</li>
                 <li>Support for QTerminal and LXTerminal</li>
-                <li>Allow also other packages to use the sandboxed userdir in bottles (currenty thi is not a full sandbox, just the userdir is not linked to the homedir)</li>
-                <li>General UI Cleanups (thanks to @BrainBlasted)</li>
+                <li>Allow also other packages to use the sandboxed userdir in bottles (currenty this is not a full sandbox, just the userdir is not linked to the homedir)</li>
+                <li>General UI cleanups (thanks to @BrainBlasted)</li>
             </ul>
 
             <p>Bug fixes</p>
@@ -106,7 +106,7 @@
                 <li>Fixed a bug that was causing the Versioning system executing methods in the main thread in a non safe way</li>
                 <li>Fixed "Directory not empty" bug on bottle deletion</li>
                 <li>Fixed "'bool' object is not callable" bug on component installation failure</li>
-                <li>Fixed mispelling in translations (thanks to @Martinligabue, @comradekingu)</li>
+                <li>Fixed source string errors (thanks to @Martinligabue, and Allan Nordhøy)</li>
             </ul>
 
             <p>Translations</p>
