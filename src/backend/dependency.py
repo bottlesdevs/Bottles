@@ -296,7 +296,7 @@ class DependencyManager:
     def __step_download_archive(self, step: dict):
         '''
         This function download an archive from the givven step.
-        Can be used for any file type (cab, zip, ..). Please don't
+        Can be used for any file type (cab, zip, ...). Please don't
         use this method for exe/msi files as the install_exe already
         download the exe/msi file before installation.
         '''
