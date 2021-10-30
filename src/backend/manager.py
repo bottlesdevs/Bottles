@@ -1175,7 +1175,11 @@ class Manager:
                 path = f"{Paths.bottles}/{config.get('Path')}"
 
             shutil.rmtree(path, ignore_errors=True)
-            del self.local_bottles[config.get("Path")]
+            try:
+                del self.local_bottles[config.get("Path")]
+            except KeyError:
+                # ref: #676
+                pass
 
             logging.info(f"Deleted the bottle in the [{path}] path")
             self.window.page_list.update_bottles()
