@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import re
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
@@ -61,6 +62,7 @@ class NewView(Handy.Window):
     combo_dxvk = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     revealer_advanced = Gtk.Template.Child()
+    row_sandbox = Gtk.Template.Child()
     # endregion
 
     environments = [
@@ -130,6 +132,10 @@ class NewView(Handy.Window):
 
         self.combo_dxvk.set_active(0)
         self.combo_arch.set_active_id("win64")
+
+        # if running under Flatpak, hide row_sandbox
+        if "FLATPAK_ID" in os.environ:
+            self.row_sandbox.set_visible(False)
 
     def set_active_env(self, widget, row):
         '''
