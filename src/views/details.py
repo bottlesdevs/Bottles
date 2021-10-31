@@ -33,6 +33,7 @@ from ..widgets.installer import InstallerEntry
 from ..widgets.state import StateEntry
 from ..widgets.program import ProgramEntry
 from ..widgets.dependency import DependencyEntry
+from ..widgets.executable import ExecButton
 
 from ..backend.runner import Runner, gamemode_available
 from ..backend.backup import RunnerBackup
@@ -124,6 +125,7 @@ class DetailsView(Handy.Leaflet):
     actions_programs = Gtk.Template.Child()
     actions_versioning = Gtk.Template.Child()
     actions_installers = Gtk.Template.Child()
+    box_run_extra = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config={}, **kwargs):
@@ -447,6 +449,7 @@ class DetailsView(Handy.Leaflet):
         '''
         self.config = config
         self.__update_by_env()
+        self.__update_latest_executables()
 
         # format update_date
         update_date = datetime.strptime(
@@ -1087,6 +1090,7 @@ class DetailsView(Handy.Leaflet):
         )
 
         response = file_dialog.run()
+        _execs = self.config.get("Latest_Executables")
 
         if response == -3:
             if args:
@@ -1095,13 +1099,49 @@ class DetailsView(Handy.Leaflet):
                     file_path=file_dialog.get_filename(),
                     arguments=args
                 )
+                self.manager.update_config(
+                    config=self.config,
+                    key="Latest_Executables",
+                    value=_execs+[{
+                        "name": file_dialog.get_filename().split("/")[-1],
+                        "file": file_dialog.get_filename(), 
+                        "args": args
+                    }]
+                )
             else:
                 Runner().run_executable(
                     config=self.config,
                     file_path=file_dialog.get_filename()
                 )
+                self.manager.update_config(
+                    config=self.config,
+                    key="Latest_Executables",
+                    value=_execs+[{
+                        "name": file_dialog.get_filename().split("/")[-1],
+                        "file": file_dialog.get_filename(), 
+                        "args": ""
+                    }]
+                )
+
+        self.__update_latest_executables()
 
         file_dialog.destroy()
+    
+    def __update_latest_executables(self):
+        '''
+        This function update the latest executables list.
+        '''
+        for w in self.box_run_extra.get_children():
+            if w != self.btn_run_args:
+                w.destroy()
+
+        _execs = self.config.get("Latest_Executables", [])[-5:]
+        for exe in _execs:
+            _btn = ExecButton(
+                data=exe,
+                config=self.config
+            )
+            self.box_run_extra.add(_btn)
 
     def check_entry_state_comment(self, widget, event_key):
         '''

@@ -657,13 +657,9 @@ class Manager:
                 conf_file_yaml = yaml.safe_load(conf_file)
                 conf_file.close()
 
-                # Update architecture of old bottles
-                if conf_file_yaml.get("Arch") in ["", None]:
-                    self.update_config(
-                        config=conf_file_yaml,
-                        key="Arch",
-                        value=Samples.config["Arch"]
-                    )
+                # Clear Latest_Executables on new session start
+                if conf_file_yaml.get("Latest_Executables"):
+                    conf_file_yaml["Latest_Executables"] = []
 
                 miss_keys = Samples.config.keys() - conf_file_yaml.keys()
                 for key in miss_keys:
