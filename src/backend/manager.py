@@ -983,7 +983,7 @@ class Manager:
         )
         command = [
             "DISPLAY=:3.0",
-            "WINEDEBUG=fixme-all",
+            "WINEDEBUG=-all",
             f"WINEPREFIX={bottle_complete_path}",
             f"WINEARCH={arch}",
             f"{runner} wineboot /nogui"
