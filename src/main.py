@@ -22,7 +22,6 @@ import locale
 import webbrowser
 import subprocess
 from os import path
-
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 gi.require_version('Notify', '0.7')
