@@ -1107,7 +1107,7 @@ class Manager:
                 dialog.update_output, 
                 _("Creating versioning state 0…")
             )
-            self.versioning_manager.async_create_bottle_state(
+            self.versioning_manager.async_create_state(
                 [config, "First boot", False, True, False])
 
         # set status created and UI usability

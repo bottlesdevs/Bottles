@@ -119,7 +119,7 @@ class DependencyManager:
             to create a new version of the bottle, before installing
             the dependency.
             '''
-            self.__manager.versioning_manager.async_create_bottle_state([
+            self.__manager.versioning_manager.async_create_state([
                 config,
                 f"before {dependency[0]}",
                 True, False, None

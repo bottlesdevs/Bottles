@@ -26,7 +26,7 @@ class RunnerVersioning:
         self.window = window
         self.manager = manager
 
-    def async_create_bottle_state(self, args: list) -> bool:
+    def async_create_state(self, args: list) -> bool:
         '''
         This function creates a new bottle state.
         It will list all files in the bottle and compare them with the
@@ -55,7 +55,7 @@ class RunnerVersioning:
             first = False
 
         # get the current index (all files list)
-        cur_index = self.get_bottle_index(config)
+        cur_index = self.get_index(config)
 
         if not first:
             '''
@@ -237,7 +237,7 @@ class RunnerVersioning:
 
         return True
 
-    def create_bottle_state(
+    def create_state(
         self,
         config: BottleConfig,
         comment: str = "Not commented",
@@ -246,12 +246,12 @@ class RunnerVersioning:
         after: bool = False
     ):
         RunAsync(
-            self.async_create_bottle_state, 
+            self.async_create_state, 
             None, 
             [config, comment, update, no_update, after]
         )
 
-    def get_bottle_state_edits(
+    def get_state_edits(
         self,
         config: BottleConfig,
         state_id: str,
@@ -261,7 +261,7 @@ class RunnerVersioning:
         This function will return the index.yml content for the given
         state. It will be returned as plain text if the plain flag is
         set, otherwise it will be returned as a dictionary.
-        NOTE: maybe this function should be called get_bottle_state_index
+        NOTE: maybe this function should be called get_state_index
         '''
         bottle_path = Runner().get_bottle_path(config)
         try:
@@ -272,7 +272,7 @@ class RunnerVersioning:
         except:
             return {}
 
-    def get_bottle_state_files(
+    def get_state_files(
         self,
         config: BottleConfig,
         state_id: str,
@@ -293,7 +293,7 @@ class RunnerVersioning:
         except:
             return {}
 
-    def get_bottle_index(self, config: BottleConfig):
+    def get_index(self, config: BottleConfig):
         '''
         This function list all files in a bottle and return them
         in a dict (index).
@@ -317,7 +317,7 @@ class RunnerVersioning:
             })
         return cur_index
 
-    def async_set_bottle_state(self, args) -> bool:
+    def async_set_state(self, args) -> bool:
         '''
         This function restore the given state to the bottle.
         It compare the state files with bottle ones and restore
@@ -334,8 +334,8 @@ class RunnerVersioning:
         logging.info(f"Restoring to state: [{state_id}]")
 
         # get bottle and state indexes
-        bottle_index = self.get_bottle_index(config)
-        state_index = self.get_bottle_state_files(config, state_id)
+        bottle_index = self.get_index(config)
+        state_index = self.get_state_files(config, state_id)
 
         search_sources = list(range(int(state_id)+1))
         search_sources.reverse()
@@ -397,19 +397,19 @@ class RunnerVersioning:
 
         return True
 
-    def set_bottle_state(
+    def set_state(
         self, 
         config: BottleConfig, 
         state_id: str, 
         after=False
     ):
         RunAsync(
-            self.async_set_bottle_state,
+            self.async_set_state,
             None,
             [config, state_id, after]
         )
 
-    def list_bottle_states(self, config: BottleConfig) -> dict:
+    def list_states(self, config: BottleConfig) -> dict:
         '''
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.

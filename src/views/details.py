@@ -721,7 +721,7 @@ class DetailsView(Handy.Leaflet):
             for w in self.list_states:
                 w.destroy()
 
-            states = self.versioning_manager.list_bottle_states(
+            states = self.versioning_manager.list_states(
                 self.config
             ).items()
 
@@ -1126,7 +1126,7 @@ class DetailsView(Handy.Leaflet):
         '''
         comment = self.entry_state_comment.get_text()
         if comment != "":
-            self.versioning_manager.create_bottle_state(
+            self.versioning_manager.create_state(
                 config=self.config,
                 comment=comment,
                 after=self.update_states

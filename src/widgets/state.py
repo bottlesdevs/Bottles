@@ -74,7 +74,7 @@ class StateEntry(Handy.ActionRow):
 
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
-        self.versioning_manager.set_bottle_state(
+        self.versioning_manager.set_state(
             self.config, self.state[0], self.set_completed)
 
     def open_index(self, widget):
@@ -86,7 +86,7 @@ class StateEntry(Handy.ActionRow):
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
             message=False,
-            log=self.versioning_manager.get_bottle_state_edits(
+            log=self.versioning_manager.get_state_edits(
                 self.config,
                 self.state[0],
                 True))
