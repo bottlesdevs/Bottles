@@ -170,9 +170,6 @@ class RunnerVersioning:
             target = "{0}/drive_c/{1}".format(state_path, file["file"])
             shutil.copyfile(source, target)
 
-        # wait 2s to let the process free the files
-        time.sleep(2)
-
         task_entry.remove()
         task_entry = self.operation_manager.new_task(
             _("Updating states …"), False)
@@ -227,7 +224,6 @@ class RunnerVersioning:
             self.window.page_details.update_states()
 
         # update the bottles' list
-        time.sleep(2)
         self.manager.update_bottles()
 
         task_entry.remove()
@@ -393,7 +389,6 @@ class RunnerVersioning:
         self.window.page_details.update_states()
 
         # update bottles
-        time.sleep(2)
         self.manager.update_bottles()
 
         # execute caller function after all
