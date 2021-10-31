@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-30 23:20+0200\n"
-"PO-Revision-Date: 2021-10-11 18:53+0000\n"
+"PO-Revision-Date: 2021-10-31 06:02+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -56,15 +56,15 @@ msgid ""
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
-"Yerleşik bağımlılık yükleme sistemimiz otomatik yazılım uyumluluğu erişimi "
+"Yerleşik bağımlılık kurulum sistemimiz otomatik yazılım uyumluluğu erişimi "
 "sağlar. Resmi bileşenleri indirmek için indirme yöneticisini kullanın: "
-"koşucu (Wine, Proton), DXVK, bağımlılıklar vb."
+"Çalıştırıcı (Wine, Proton), DXVK, bağımlılıklar vb."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Şişe versiyonlama, çalışmalarınızı güvende tutar ve daha sonra geri "
+"Şişe sürümü oluşturma, çalışmalarınızı güvende tutar ve daha sonra geri "
 "yüklemenize olanak tanır!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
@@ -87,7 +87,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr "Şişelerinize yüklenen uygulamaların otomatik tespiti"
+msgstr "Şişelerinize kurulu uygulamaların otomatik tespiti"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -119,7 +119,7 @@ msgstr "Şişelerin kırılması durumunda otomatik tamirat"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
-msgstr "Topluluk odaklı bir depoya dayalı entegre bağımlılık yükleyicisi"
+msgstr "Topluluk odaklı bir depoya dayalı entegre bağımlılık kurucusu"
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
 msgid "Integrated Task manager for Wine processes"
@@ -143,19 +143,17 @@ msgstr "Wineprefix'leri diğer yöneticilerden içe aktarın"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning (experimental)"
-msgstr "Şişe versiyonlama (deneysel)"
+msgstr "Şişe sürümü oluşturma (deneysel)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
-#, fuzzy
 msgid "... and much more that you can find by installing Bottles!"
-msgstr "...ve çok daha fazlasına Şişeler'i yükleyerek ulaşacaksınız!"
+msgstr "... ve Şişeleri kurarak bulabileceğiniz çok daha fazlası!"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
 msgstr "Flatpak geçişi"
 
 #: data/com.usebottles.bottles.gschema.xml:7
-#, fuzzy
 msgid "Toggle the Flatpak migration dialog."
 msgstr "Flatpak geçişi iletişim kutusunu aç/kapat."
 
@@ -165,14 +163,13 @@ msgstr "Koyu tema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Use a dark application theme."
-msgstr ""
+msgstr "Koyu bir uygulama teması kullan."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
 msgstr "Listede güncelleme tarihini göster/gizle"
 
 #: data/com.usebottles.bottles.gschema.xml:17
-#, fuzzy
 msgid "Toggle the update date in list of bottles."
 msgstr "Şişe listesinde güncelleme tarihini göster/gizle."
 
@@ -181,18 +178,16 @@ msgid "Window width"
 msgstr "Pencere genişliği"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Change the window width."
-msgstr "Pencere genişliğini değiştir"
+msgstr "Pencere genişliğini değiştir."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
 msgstr "Pencere yüksekliği"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Change the window height."
-msgstr "Pencere yüksekliğini değiştir"
+msgstr "Pencere yüksekliğini değiştir."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
 #: src/ui/window.ui:336
@@ -200,78 +195,70 @@ msgid "Notifications"
 msgstr "Bildirimler"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Show notifications."
-msgstr "Bildirimleri açın."
+msgstr "Bildirimleri göster."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
 msgstr "Geçiçi verileri temizleme"
 
 #: data/com.usebottles.bottles.gschema.xml:37
-#, fuzzy
 msgid "Clean the temp path when booting the system."
-msgstr "Önyüklemede geçiçi dosyaları temizle."
+msgstr "Sistemi başlatırken geçici yolu temizle."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
 msgstr "Sürüm Adayı"
 
 #: data/com.usebottles.bottles.gschema.xml:42
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "Çalıştırıcılar için sürüm adayını değiştir"
+msgstr "Çalıştırıcılar için sürüm adayını değiştir."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
 msgstr "Başlangıç görünümü"
 
 #: data/com.usebottles.bottles.gschema.xml:47
-#, fuzzy
 msgid "Choose which view the application should be started in."
-msgstr "Uygulamanın ilk açılışında hangi görünümün yükleneceğini seçin."
+msgstr "Uygulamanın hangi görünümde başlatılacağını seçin."
 
 #: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:263
 msgid "Experiments"
 msgstr "Deneyler"
 
 #: data/com.usebottles.bottles.gschema.xml:52
-#, fuzzy
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Versiyon oluşturma ve yükleyiciler gibi deneysel özellikleri değiştir. "
-"Çalıştırıcılar için Sürüm Adayı"
+"Sürüm oluşturma ve kurucular gibi deneysel özellikleri aç/kapat. "
+"Çalıştırıcılar için sürüm adayı."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:versioning"
 msgstr "Deneyler: sürüm oluşturma"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental versioning feature."
-msgstr "Deneysel sürüm oluşturma özelliğini değiştir"
+msgstr "Deneysel sürüm oluşturma özelliğini aç/kapat."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
-msgstr "Deneyler: yükleyiciler"
+msgstr "Deneyler: kurucular"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental installer features."
-msgstr "Deneysel yükleyiciler özelliğini değiştir"
+msgstr "Deneysel kurucu özelliklerini aç/kapat."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
 msgstr "Şişeler'i otomatik olarak kapat"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
 "Dosya yöneticisinden çalıştırılabilir dosyayı başlattıktan sonra Şişeler'i "
-"kapat"
+"kapat."
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -326,7 +313,7 @@ msgstr ""
 
 #: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
-msgstr "Bu bağımlılığı karşıdan yükleme ve yükleme"
+msgstr "Bu bağımlılığı indir ve kur"
 
 #: src/ui/details.ui:17 src/ui/importer.ui:94
 msgid "Refresh"
@@ -338,7 +325,7 @@ msgstr "Özel bir çalıştırılabilir yol ekle"
 
 #: src/ui/details.ui:76
 msgid "Search for installed programs"
-msgstr "Yüklü programları arayın"
+msgstr "Kurulu programları arayın"
 
 #: src/ui/details.ui:117 src/ui/importer.ui:21
 msgid ""
@@ -406,15 +393,15 @@ msgstr "Şişe adı"
 
 #: src/ui/details.ui:473
 msgid "Type a name for your bottle"
-msgstr "Şişeniz için bir isim yazın"
+msgstr "Şişeniz için bir ad yazın"
 
 #: src/ui/details.ui:492 src/ui/new.ui:161
 msgid "Environment"
-msgstr "Çevre"
+msgstr "Ortam"
 
 #: src/ui/details.ui:519
 msgid "Layers"
-msgstr ""
+msgstr "Katmanlar"
 
 #: src/ui/details.ui:542
 msgid "64 Bit"
@@ -537,12 +524,11 @@ msgid "Use DXVK"
 msgstr "DXVK kullan"
 
 #: src/ui/details.ui:1203
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Directx 11 oyunlarında ve 3B uygulamalarda performansı artırır.\n"
+"DirectX 11 oyunlarında ve 3B uygulamalarda performansı artırır.\n"
 "Grafiksel sorunlar yaşıyorsanız devre dışı bırakın."
 
 #: src/ui/details.ui:1230
@@ -550,12 +536,11 @@ msgid "Use VKD3D"
 msgstr "VKD3D kullan"
 
 #: src/ui/details.ui:1231
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Directx 12 oyunlarında ve 3B uygulamalarda performansı artırır.\n"
+"DirectX 12 oyunlarında ve 3B uygulamalarda performansı artırır.\n"
 "Grafiksel sorunlar yaşıyorsanız devre dışı bırakın."
 
 #: src/ui/details.ui:1258
@@ -568,38 +553,40 @@ msgstr "İsteğe bağlı olarak oyun performansını iyileştirir"
 
 #: src/ui/details.ui:1285
 msgid "Enable DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "DLSS'yi (DXVK-NVAPI) etkinleştir"
 
 #: src/ui/details.ui:1286
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr ""
+msgstr "Varsa DLSS desteği ve Nvidia'nın NVAPI'sini sağla."
 
 #: src/ui/details.ui:1314
 msgid "Enable FSR"
-msgstr ""
+msgstr "FSR'yi etkinleştir"
 
 #: src/ui/details.ui:1315
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
 msgstr ""
+"FSR, kare hızlarınızı artırmanıza yardımcı olmak için en son yükseltme "
+"teknolojilerini kullanır.\n"
+"Grafiksel sorunlarla karşılaşırsanız bunu kapatın."
 
 #: src/ui/details.ui:1331
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Çok Kaliteli"
 
 #: src/ui/details.ui:1332
 msgid "Quality"
-msgstr ""
+msgstr "Kaliteli"
 
 #: src/ui/details.ui:1333
 msgid "Balanced"
-msgstr ""
+msgstr "Dengeli"
 
 #: src/ui/details.ui:1334
-#, fuzzy
 msgid "Performance"
-msgstr "Görünüm"
+msgstr "Performans"
 
 #: src/ui/details.ui:1383
 msgid "Enable ACO shader compiler"
@@ -635,15 +622,14 @@ msgstr "Sistem"
 
 #: src/ui/details.ui:1527
 msgid "Synchronization"
-msgstr "Senkronizasyon"
+msgstr "Eşzamanlama"
 
 #: src/ui/details.ui:1528
-#, fuzzy
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr ""
-"Çok çekirdekli işlemcilerin performansını artırmak için senkronizasyonu "
-"etkinleştirin."
+"Çok çekirdekli işlemcilerin performansını artırmak için eşzamanlamayı "
+"etkinleştir."
 
 #: src/ui/details.ui:1549
 msgid "Esync"
@@ -678,9 +664,8 @@ msgid "Manage VKD3D versions"
 msgstr "VKD3D sürümlerini yönetin"
 
 #: src/ui/details.ui:1811
-#, fuzzy
 msgid "NVAPI Version"
-msgstr "DXVK Sürümü"
+msgstr "NVAPI Sürümü"
 
 #: src/ui/details.ui:1887 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -729,7 +714,7 @@ msgstr "DXVK GÖSTERGESİ"
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "D3D uygulamalarında FPS ve diğer ayrıntıları gösteren DXVK kaplamasını "
-"değiştirin."
+"aç/kapat."
 
 #: src/ui/details.ui:2099
 msgid "Enable wine fixme logs"
@@ -882,9 +867,8 @@ msgid "Native then Builtin"
 msgstr "Yerel sonra Yerleşik"
 
 #: src/ui/component-entry.ui:9
-#, fuzzy
 msgid "Component version"
-msgstr "Sürümü göster"
+msgstr "Bileşen sürümü"
 
 #: src/ui/component-entry.ui:19
 msgid ""
@@ -899,9 +883,8 @@ msgstr ""
 "Tekrar denemek için basın."
 
 #: src/ui/component-entry.ui:72
-#, fuzzy
 msgid "Download & Install"
-msgstr "Bu DXVK'yi karşıdan yükle ve yükle"
+msgstr "İndir ve Kur"
 
 #: src/ui/component-entry.ui:99 src/ui/importer-entry.ui:21
 msgid "Browse files"
@@ -929,7 +912,7 @@ msgstr "Bu wineprefix zaten Şişeler'e aktarılmıştı."
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
-msgstr ""
+msgstr "İncelemeyi oku"
 
 #: src/ui/list.ui:72
 msgid "Start off by creating a Bottle."
@@ -948,9 +931,8 @@ msgid "Execute in this bottle"
 msgstr "Bu şişede çalıştır"
 
 #: src/ui/list-entry.ui:118
-#, fuzzy
 msgid "Run Here"
-msgstr "Burada çalıştır"
+msgstr "Burada Çalıştır"
 
 #: src/ui/list-entry.ui:132
 msgid ""
@@ -977,17 +959,16 @@ msgid "Close"
 msgstr "Kapat"
 
 #: src/ui/new.ui:97
-#, fuzzy
 msgid "Bottle information"
-msgstr "Şişe bilgilerini girin"
+msgstr "Şişe bilgileri"
 
 #: src/ui/new.ui:118
 msgid "Name"
-msgstr "İsim"
+msgstr "Ad"
 
 #: src/ui/new.ui:119
 msgid "Choose a name for your bottle"
-msgstr "Şişeniz için bir isim seçin"
+msgstr "Şişeniz için bir ad seçin"
 
 #: src/ui/new.ui:129
 msgid "This field cannot contain special characters!"
@@ -1013,20 +994,19 @@ msgstr ""
 
 #: src/ui/new.ui:257
 msgid "Unlinked homedir"
-msgstr ""
+msgstr "Bağlantısız ev dizini"
 
 #: src/ui/new.ui:258
 msgid "Do not link the userdir to the homedir"
-msgstr ""
+msgstr "Kullanıcı dizinini ev dizinine bağlama"
 
 #: src/ui/new.ui:432
 msgid "Architecture"
 msgstr "Mimari"
 
 #: src/ui/new.ui:434
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary"
-msgstr "Kesinlikle gerekliyse yalnızca 32 bit kullanmanızı tavsiye ediyoruz"
+msgstr "32 bit'i yalnızca kesinlikle gerekliyse kullanmanızı tavsiye ediyoruz"
 
 #: src/ui/new.ui:448
 msgid "64 bit"
@@ -1058,7 +1038,7 @@ msgstr "Sonraki"
 
 #: src/ui/onboard.ui:42
 msgid "Install"
-msgstr "Yükle"
+msgstr "Kur"
 
 #: src/ui/onboard.ui:79
 msgid "Quit"
@@ -1079,9 +1059,8 @@ msgstr ""
 "getirir."
 
 #: src/ui/onboard.ui:152
-#, fuzzy
 msgid "What Are Runners?"
-msgstr "Çalıştırıcılar nedir?"
+msgstr "Çalıştırıcılar Nedir?"
 
 #: src/ui/onboard.ui:171
 msgid ""
@@ -1108,9 +1087,8 @@ msgid "Wine"
 msgstr "Wine"
 
 #: src/ui/onboard.ui:222
-#, fuzzy
 msgid "We Are Almost There"
-msgstr "Neredeyse geldik"
+msgstr "Neredeyse Geldik"
 
 #: src/ui/onboard.ui:241
 msgid ""
@@ -1153,13 +1131,12 @@ msgid "Download"
 msgstr "İndir"
 
 #: src/ui/onboard.ui:349
-#, fuzzy
 msgid "Everything Is Ready!"
-msgstr "Herşey hazır!"
+msgstr "Herşey Hazır!"
 
 #: src/ui/onboard.ui:350
 msgid "You are now ready to create your first bottles."
-msgstr "Artık ilk şişelerinizi yaratmaya hazırsınız."
+msgstr "Artık ilk şişelerinizi oluşturmaya hazırsınız."
 
 #: src/ui/onboard.ui:354
 msgid "Finish"
@@ -1191,7 +1168,7 @@ msgstr "Şişe listesinde güncelleme tarihinin gösterilip gösterilmeyeceği."
 
 #: src/ui/preferences.ui:93
 msgid "Show notifications for downloads and installs."
-msgstr "İndirmeler ve yüklemeler için bildirimleri göster."
+msgstr "İndirmeler ve kurmalar için bildirimleri göster."
 
 #: src/ui/preferences.ui:119
 msgid "Temp files"
@@ -1231,7 +1208,7 @@ msgstr "VKD3D"
 
 #: src/ui/preferences.ui:250
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:272 src/views/details.py:330
 msgid "Versioning"
@@ -1239,7 +1216,7 @@ msgstr "Sürüm oluşturma"
 
 #: src/ui/preferences.ui:298 src/views/details.py:334
 msgid "Installers"
-msgstr "Yükleyiciler"
+msgstr "Kurucular"
 
 #: src/ui/program-entry.ui:21
 msgid "Change Launch Options"
@@ -1295,7 +1272,7 @@ msgstr "İçe aktar / Dışa aktar"
 
 #: src/ui/window.ui:71
 msgid "Documentation"
-msgstr "Belgeleme"
+msgstr "Belgelendirme"
 
 #: src/ui/window.ui:84
 msgid "About Bottles"
@@ -1356,22 +1333,21 @@ msgstr "Şişe ayrıntıları"
 
 #: src/window.py:187
 msgid "Bottles Started!"
-msgstr "Şişe Başlatıldı!"
+msgstr "Şişeler Başlatıldı!"
 
 #: src/window.py:203
-#, fuzzy
 msgid "Import & export"
-msgstr "İçe aktar / Dışa aktar"
+msgstr "İçe ve dışa aktar"
 
 #: src/backend/backup.py:54
 #, python-brace-format
 msgid "Backup {0}"
-msgstr "Yedekleme {0}"
+msgstr "{0} yedeklemesi"
 
 #: src/backend/backup.py:101
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "Yedeği içe aktarılıyor: {0}"
+msgstr "Yedekleme içe aktarılıyor: {0}"
 
 #. if there are no local runners, show preferences
 #: src/backend/manager.py:896
@@ -1380,77 +1356,65 @@ msgstr "Çalıştırıcı bulunamadı, lütfen bir tane kurun."
 
 #. if there are no local dxvks, install latest
 #: src/backend/manager.py:901
-#, fuzzy
 msgid "No DXVK found, installing the latest version …"
-msgstr "dxvk bulunamadı, en son sürüm kuruluyor…"
+msgstr "DXVK bulunamadı, en son sürüm kuruluyor…"
 
 #. if there are no local vkd3ds, install latest
 #: src/backend/manager.py:905
-#, fuzzy
 msgid "No VKD3D found, installing the latest version …"
-msgstr "vkd3d bulunamadı, en son sürüm kuruluyor…"
+msgstr "VKD3D bulunamadı, en son sürüm kuruluyor…"
 
 #. if there are no local nvapis, install latest
 #: src/backend/manager.py:909
-#, fuzzy
 msgid "No NVAPI found, installing the latest version …"
-msgstr "dxvk bulunamadı, en son sürüm kuruluyor…"
+msgstr "NVAPI bulunamadı, en son sürüm kuruluyor…"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:969
-#, fuzzy
 msgid "The WINE config is being updated …"
-msgstr "Wine yapılandırması güncelleniyor…"
+msgstr "WINE yapılandırması güncelleniyor…"
 
 #: src/backend/manager.py:979
-#, fuzzy
 msgid "WINE config updated!"
-msgstr "Wine yapılandırması güncellendi!"
+msgstr "WINE yapılandırması güncellendi!"
 
 #: src/backend/manager.py:988
-#, fuzzy
 msgid "Running as Flatpak, creating sandboxed folders…"
 msgstr "Flatpak olarak çalışıyor, korumalı klasörler oluşturuluyor…"
 
 #: src/backend/manager.py:990
-#, fuzzy
 msgid "Creating sandboxed folders…"
-msgstr "Flatpak olarak çalışıyor, korumalı klasörler oluşturuluyor…"
+msgstr "Korumalı klasörler oluşturuluyor…"
 
 #: src/backend/manager.py:1004
-#, fuzzy
 msgid "Generating bottle config file…"
 msgstr "Şişe yapılandırma dosyası oluşturuluyor…"
 
 #: src/backend/manager.py:1025
 #, python-brace-format
 msgid "Applying environment: {0} …"
-msgstr "Uygulama ortamı: [{0}] …"
+msgstr "Ortam uygulanıyor: [{0}] …"
 
 #: src/backend/manager.py:1048
-#, fuzzy
 msgid "Installing DXVK…"
-msgstr "Dxvk yükleniyor…"
+msgstr "DXVK kuruluyor…"
 
 #: src/backend/manager.py:1054
-#, fuzzy
 msgid "Installing VKD3D…"
-msgstr "vkd3d kuruluyor…"
+msgstr "VKD3D kuruluyor…"
 
 #: src/backend/manager.py:1060
-#, fuzzy
 msgid "Installing DXVK-NVAPI…"
-msgstr "Dxvk yükleniyor…"
+msgstr "DXVK-NVAPI kuruluyor…"
 
 #: src/backend/manager.py:1068
-#, fuzzy
 msgid "Creating versioning state 0…"
-msgstr "Sürüm oluşturma durumu 0 …"
+msgstr "Sürüm oluşturma durumu 0 oluşturuluyor…"
 
 #: src/backend/manager.py:1075
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Your new {0} bottle is now ready."
-msgstr "Yeni şişeniz: {0} artık hazır!"
+msgstr "Yeni şişeniz: {0} artık hazır."
 
 #: src/backend/versioning.py:48
 msgid "Generating state files index …"
@@ -1489,9 +1453,8 @@ msgid "Details & Utilities"
 msgstr "Ayrıntılar ve Araçlar"
 
 #: src/views/details.py:327
-#, fuzzy
 msgid "Found in your bottle's Start menu."
-msgstr "Bunlar, şişenizin Başlat menüsünde bulunan programlardır"
+msgstr "Şişenizin Başlat menüsünde bulunur."
 
 #: src/views/details.py:386
 msgid "Choose working directory for executables"
@@ -1552,9 +1515,8 @@ msgid "Choose a backup archive"
 msgstr "Bir yedekleme arşivi seçin"
 
 #: src/views/importer.py:100
-#, fuzzy
 msgid "Choose a configuration file"
-msgstr "Yapılandırma"
+msgstr "Bir yapılandırma dosyası seçin"
 
 #: src/views/list.py:53 src/views/list.py:59
 msgid "N/A"
