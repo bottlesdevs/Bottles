@@ -216,7 +216,7 @@ class NewView(Handy.Window):
             arch=self.combo_arch.get_active_id()
         )
 
-    def idle_update_output(self, text):
+    def update_output(self, text):
         '''
         This function update the label_output with the givven text.
         It will be concatenated with the previous one.
@@ -224,9 +224,6 @@ class NewView(Handy.Window):
         current_text = self.label_output.get_text()
         text = f"{current_text}{text}\n"
         self.label_output.set_text(text)
-
-    def update_output(self, text):
-        GLib.idle_add(self.idle_update_output, text)
 
     def finish(self, config):
         self.new_bottle_config = config

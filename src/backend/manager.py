@@ -731,7 +731,7 @@ class Manager:
         '''
         logging.info(
             f"Setting Key: [{key}] to [{value}] for "
-            f"bottle: [{config['Name']}] …"
+            f"bottle: [{config['Name']}]…"
         )
 
         bottle_complete_path = Runner().get_bottle_path(config)
@@ -886,27 +886,38 @@ class Manager:
         This function is used to create a new bottle. It is
         called by the create_bottle function.
         '''
-        logging.info("Creating the wineprefix …")
+        logging.info("Creating the wineprefix…")
 
         name, environment, path, runner, dxvk, vkd3d, nvapi, versioning, sandbox, dialog, arch = args
-        update_output = dialog.update_output
 
         if len(self.runners_available) == 0:
             # if there are no local runners, show preferences
-            update_output(_("No runners found, please install one."))
+            GLib.idle_add(
+                dialog.update_output, 
+                _("No runners found, please install one.")
+            )
             self.window.show_prefs_view()
             dialog.destroy()
         if len(self.dxvk_available) == 0:
             # if there are no local dxvks, install latest
-            update_output(_("No DXVK found, installing the latest version …"))
+            GLib.idle_add(
+                dialog.update_output, 
+                _("No DXVK found, installing the latest version…")
+            )
             self.check_dxvk(no_async=True)
         if len(self.vkd3d_available) == 0:
             # if there are no local vkd3ds, install latest
-            update_output(_("No VKD3D found, installing the latest version …"))
+            GLib.idle_add(
+                dialog.update_output, 
+                _("No VKD3D found, installing the latest version…")
+            )
             self.check_vkd3d(no_async=True)
         if len(self.nvapi_available) == 0:
             # if there are no local nvapis, install latest
-            update_output(_("No NVAPI found, installing the latest version …"))
+            GLib.idle_add(
+                dialog.update_output, 
+                _("No NVAPI found, installing the latest version…")
+            )
             self.check_nvapi(no_async=True)
 
         if not runner:
@@ -966,7 +977,10 @@ class Manager:
         os.makedirs(bottle_complete_path)
 
         # execute wineboot on the bottle path
-        update_output(_("The WINE config is being updated …"))
+        GLib.idle_add(
+            dialog.update_output, 
+            _("The WINE config is being updated…")
+        )
         command = [
             "DISPLAY=:3.0",
             "WINEDEBUG=fixme-all",
@@ -976,8 +990,11 @@ class Manager:
         ]
         command = " ".join(command)
         subprocess.Popen(command, shell=True).communicate()
-        update_output(_("WINE config updated!"))
-        time.sleep(1)
+        GLib.idle_add(
+            dialog.update_output, 
+            _("WINE config updated!")
+        )
+        time.sleep(.5)
 
         if "FLATPAK_ID" in os.environ or sandbox:
             '''
@@ -985,9 +1002,15 @@ class Manager:
             directories and make them as folders.
             '''
             if "FLATPAK_ID":
-                update_output(_("Running as Flatpak, creating sandboxed folders…"))
+                GLib.idle_add(
+                    dialog.update_output, 
+                    _("Running as Flatpak, creating sandboxed folders…")
+                )
             if sandbox:
-                update_output(_("Creating sandboxed folders…"))
+                GLib.idle_add(
+                    dialog.update_output, 
+                    _("Creating sandboxed folders…")
+                )
             users_dir = glob(f"{bottle_complete_path}/drive_c/users/*/*")
 
             for user_path in users_dir:
@@ -997,11 +1020,14 @@ class Manager:
                         os.makedirs(user_path)
                     except:
                         pass
-            time.sleep(1)
+            time.sleep(.5)
 
         # generate bottle config file
         logging.info("Generating bottle config file…")
-        update_output(_("Generating bottle config file…"))
+        GLib.idle_add(
+            dialog.update_output, 
+            _("Generating bottle config file…")
+        )
 
         config = Samples.config
         config["Name"] = bottle_name
@@ -1021,8 +1047,11 @@ class Manager:
             config["Versioning"] = True
 
         # apply environment config
-        logging.info(f"Applying environment: [{environment}] …")
-        update_output(_("Applying environment: {0} …").format(environment))
+        logging.info(f"Applying environment: [{environment}]…")
+        GLib.idle_add(
+            dialog.update_output, 
+            _("Applying environment: {0}…").format(environment)
+        )
         if environment != "Custom":
             environment_parameters = Samples.environments[
                 environment.lower()
@@ -1033,49 +1062,62 @@ class Manager:
                         parameter
                     ]
 
-        time.sleep(1)
+        time.sleep(.5)
 
         # save bottle config
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
 
-        time.sleep(5)
+        time.sleep(.5)
 
         if config["Parameters"]["dxvk"]:
             # perform dxvk installation if configured
             logging.info("Installing DXVK…")
-            update_output(_("Installing DXVK…"))
+            GLib.idle_add(
+                dialog.update_output, 
+                _("Installing DXVK…")
+            )
             self.async_install_dxvk([config, False, dxvk_name, None])
 
         if config["Parameters"]["vkd3d"]:
             # perform vkd3d installation if configured
             logging.info("Installing VKD3D…")
-            update_output(_("Installing VKD3D…"))
+            GLib.idle_add(
+                dialog.update_output, 
+                _("Installing VKD3D…")
+            )
             self.async_install_vkd3d([config, False, vkd3d_name, None])
 
         if config["Parameters"]["dxvk_nvapi"]:
             # perform nvapi installation if configured
             logging.info("Installing DXVK-NVAPI…")
-            update_output(_("Installing DXVK-NVAPI…"))
+            GLib.idle_add(
+                dialog.update_output, 
+                _("Installing DXVK-NVAPI…")
+            )
             self.async_install_nvapi([config, False, nvapi_name, None])
 
-        time.sleep(1)
+        time.sleep(.5)
 
         if versioning:
             # create first state if versioning enabled
             logging.info("Creating versioning state 0…")
-            update_output(_("Creating versioning state 0…"))
+            GLib.idle_add(
+                dialog.update_output, 
+                _("Creating versioning state 0…")
+            )
             self.versioning_manager.async_create_bottle_state(
                 [config, "First boot", False, True, False])
 
         # set status created and UI usability
         logging.info(f"[{bottle_name}] is now bottled.")
-        update_output(
+        GLib.idle_add(
+            dialog.update_output, 
             _("Your new {0} bottle is now ready.").format(bottle_name)
         )
 
-        time.sleep(2)
+        time.sleep(.5)
 
         dialog.finish(config)
 
@@ -1160,7 +1202,7 @@ class Manager:
         '''
         config = args[0]
 
-        logging.info("Stopping bottle …")
+        logging.info("Stopping bottle…")
         Runner().send_status(config, "kill")
 
         logging.info("Deleting bottle…")
@@ -1203,7 +1245,7 @@ class Manager:
         bottle will use the Custom environment.
         '''
         logging.info(
-            f"Trying to repair the bottle: [{config['Name']}] …"
+            f"Trying to repair the bottle: [{config['Name']}]…"
         )
 
         bottle_complete_path = f"{Paths.bottles}/{config['Name']}"
@@ -1594,7 +1636,7 @@ class Manager:
         in the source path to prevent multiple imports.
         '''
         logging.info(
-            f"Importing wineprefix [{wineprefix['Name']}] in a new bottle …"
+            f"Importing wineprefix [{wineprefix['Name']}] in a new bottle…"
         )
 
         # hide btn_import to prevent double imports
@@ -1614,7 +1656,7 @@ class Manager:
             return False
 
         # create lockfile in source path
-        logging.info("Creating lock file in source path …")
+        logging.info("Creating lock file in source path…")
         open(f'{wineprefix.get("Path")}/bottle.lock', 'a').close()
 
         # copy wineprefix files in the new bottle
