@@ -127,7 +127,7 @@ class OnboardDialog(Handy.Window):
     def pulse(self):
         # This function update the progress bar every 1s.
         while True:
-            time.sleep(1)
+            time.sleep(.5)
             self.progressbar_downloading.pulse()
 
     def __close_window(self, widget):
