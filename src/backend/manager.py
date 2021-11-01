@@ -39,6 +39,7 @@ from .versioning import RunnerVersioning
 from .component import ComponentManager
 from .installer import InstallerManager
 from .dependency import DependencyManager
+from .manager_utils import ManagerUtils
 
 logging = UtilsLogger()
 
@@ -49,6 +50,18 @@ RunnerType = NewType('RunnerType', str)
 
 
 class Manager:
+    '''
+    This is the core of Bottles, everything starts from here. There should
+    be only one instance of this class, as it checks for the existence of
+    the bottles' directories and creates them if they don't exist. Also
+    check for components, dependencies, and installers so this check should
+    not be performed every time the manager is initialized.
+    ---
+    TODO: a good task for the future can be splitting out all the Bottle
+          related code (like, install dxvk, vkd3d, remove ecc) into a
+          separate class. So each bottle can be handled separately, reducing
+          this class to only checks purposes and to keep the catalogs.
+    '''
 
     # component lists
     runners_available = []
@@ -214,7 +227,7 @@ class Manager:
         if dependency[0] in config["Uninstallers"]:
             uninst = config["Uninstallers"][dependency[0]]
             command = f"uninstaller --list | grep '{uninst}' | cut -f1 -d\|"
-            uuid = Runner().run_command(
+            uuid = Runner.run_command(
                 config=config,
                 command=command,
                 terminal=False,
@@ -223,7 +236,7 @@ class Manager:
             )
             uuid = uuid.strip()
 
-        Runner().run_uninstaller(config, uuid)
+        Runner.run_uninstaller(config, uuid)
 
         # remove dependency from bottle configuration
         config["Installed_Dependencies"].remove(dependency[0])
@@ -248,7 +261,7 @@ class Manager:
 
         uuid = False
         command = f"uninstaller --list | grep '{program_name}' | cut -f1 -d\|"
-        uuid = Runner().run_command(
+        uuid = Runner.run_command(
             config=config,
             command=command,
             terminal=False,
@@ -257,7 +270,7 @@ class Manager:
         )
         uuid = uuid.strip()
 
-        Runner().run_uninstaller(config, uuid)
+        Runner.run_uninstaller(config, uuid)
 
     def check_runners(self, install_latest: bool = True, after=False) -> bool:
         '''
@@ -494,7 +507,7 @@ class Manager:
         if "\\" in executable_path:
             p = "\\".join(executable_path.split("\\")[:-1])
             p = p.replace("C:\\", "\\drive_c\\").replace("\\", "/")
-            return Runner().get_bottle_path(config) + p
+            return ManagerUtils.get_bottle_path(config) + p
 
         p = "\\".join(executable_path.split("/")[:-1])
         p = f"/drive_c/{p}"
@@ -730,7 +743,7 @@ class Manager:
             f"bottle: [{config['Name']}]…"
         )
 
-        bottle_complete_path = Runner().get_bottle_path(config)
+        bottle_complete_path = ManagerUtils.get_bottle_path(config)
 
         if scope != "":
             config[scope][key] = value
@@ -1199,7 +1212,7 @@ class Manager:
         config = args[0]
 
         logging.info("Stopping bottle…")
-        Runner().send_status(config, "kill")
+        Runner.send_status(config, "kill")
 
         logging.info("Deleting bottle…")
 
@@ -1264,76 +1277,11 @@ class Manager:
             return False
 
         # Execute wineboot in bottle to generate missing files
-        Runner().run_wineboot(new_config)
+        Runner.run_wineboot(new_config)
 
         # Update bottles
         self.update_bottles()
         return True
-
-    @staticmethod
-    def get_running_processes() -> list:
-        '''
-        This function gets all running WINE processes and returns
-        them as a list of dictionaries.
-        '''
-        processes = []
-        command = "ps -eo pid,pmem,pcpu,stime,time,cmd | grep wine | tr -s ' ' '|'"
-        pids = subprocess.check_output(['bash', '-c', command]).decode("utf-8")
-
-        for pid in pids.split("\n"):
-            # workaround https://github.com/bottlesdevs/Bottles/issues/396
-            if pid.startswith("|"):
-                pid = pid[1:]
-
-            process_data = pid.split("|")
-            if len(process_data) >= 6 and "grep" not in process_data:
-                processes.append({
-                    "pid": process_data[0],
-                    "pmem": process_data[1],
-                    "pcpu": process_data[2],
-                    "stime": process_data[3],
-                    "time": process_data[4],
-                    "cmd": process_data[5]
-                })
-
-        return processes
-
-    def reg_add(
-        self, 
-        config: BottleConfig, 
-        key: str, 
-        value: str, 
-        data: str, 
-        keyType: str = False
-    ):
-        '''
-        This function adds a value with its data in the given 
-        bottle registry key.
-        '''
-        logging.info(
-            f"Adding Key: [{key}] with Value: [{value}] and "
-            f"Data: [{data}] in register bottle: {config['Name']}"
-        )
-
-        command = "reg add '%s' /v '%s' /d %s /f" % (key, value, data)
-
-        if keyType:
-            command = "reg add '%s' /v '%s' /t %s /d %s /f" % (
-                key, value, keyType, data)
-
-        Runner().run_command(config, command)
-
-    def reg_delete(self, config: BottleConfig, key: str, value: str):
-        '''
-        This function deletes a value with its data in the given
-        bottle registry key.
-        '''
-        logging.info(
-            f"Removing Value: [{key}] for Key: [{value}] in "
-            f"register bottle: {config['Name']}"
-        )
-
-        Runner().run_command(config, f"reg delete '{key}' /v {value} /f")
 
     def async_install_dxvk(self, args: list):
         '''
@@ -1506,83 +1454,6 @@ class Manager:
 
         self.install_nvapi(config, remove=True, widget=widget)
 
-    def dll_override(
-        self,
-        config: BottleConfig,
-        arch: str,
-        dlls: list,
-        source: str,
-        revert: bool = False
-    ) -> bool:
-        '''
-        This function replace a DLL in a bottle (this is not a wine
-        DLL override). It also make a backup of the original DLL, that
-        can be reverted with the revert option.
-        '''
-        arch = "system32" if arch == 32 else "syswow64"
-        path = "{0}/{1}/drive_c/windows/{2}".format(
-            Paths.bottles,
-            config.get("Path"),
-            arch
-        )
-
-        try:
-            if revert:
-                # restore the backup
-                for dll in dlls:
-                    shutil.move(
-                        f"{path}/{dll}.back",
-                        f"{path}/{dll}"
-                    )
-            else:
-                for dll in dlls:
-                    '''
-                    for each DLL in the list, we create a backup of the
-                    original one and replace it with the new one.
-                    '''
-                    shutil.move(
-                        f"{path}/{dll}",
-                        f"{path}/{dll}.back"
-                    )
-                    shutil.copy(
-                        f"{source}/{dll}",
-                        f"{path}/{dll}"
-                    )
-        except:
-            return False
-        return True
-
-    # Toggle virtual desktop for a bottle
-    def toggle_virtual_desktop(
-        self,
-        config: BottleConfig,
-        state: bool,
-        resolution: str = "800x600"
-    ):
-        '''
-        This function toggles the virtual desktop for a bottle, updating
-        the Desktops registry key.
-        '''
-        if state:
-            self.reg_add(
-                config,
-                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer",
-                value="Desktop",
-                data="Default"
-            )
-            self.reg_add(
-                config,
-                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer\\Desktops",
-                value="Default",
-                data=resolution
-            )
-        else:
-            self.reg_delete(
-                config,
-                key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer",
-                value="Desktop"
-            )
-
     @staticmethod
     def search_wineprefixes() -> list:
         importer_wineprefixes = []
@@ -1687,7 +1558,7 @@ class Manager:
         This function popup the system file manager to browse
         the wineprefix path.
         '''
-        return Runner().open_filemanager(
+        return ManagerUtils.open_filemanager(
             path_type="custom",
             custom_path=wineprefix.get("Path")
         )

@@ -28,6 +28,7 @@ from gi.repository import Gtk, GLib
 from .runner import Runner
 from .globals import BottlesRepositories, Paths
 from ..operation import OperationManager
+from .manager_utils import ManagerUtils
 from ..utils import RunAsync, UtilsLogger, CabExtract, validate_url
 
 logging = UtilsLogger()
@@ -362,7 +363,7 @@ class DependencyManager:
             else:
                 file = step.get("file_name")
 
-            Runner().run_executable(
+            Runner.run_executable(
                 config=config,
                 file_path=f"{Paths.temp}/{file}",
                 arguments=step.get("arguments"),
@@ -381,7 +382,7 @@ class DependencyManager:
         '''
         command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
 
-        uuid = Runner().run_command(
+        uuid = Runner.run_command(
             config=config,
             command=command,
             terminal=False,
@@ -397,7 +398,7 @@ class DependencyManager:
                     config['Name']
                 )
             )
-            Runner().run_uninstaller(config, uuid)
+            Runner.run_uninstaller(config, uuid)
 
     def __step_cab_extract(self, step: dict, widget: Gtk.Widget):
         '''
@@ -486,7 +487,7 @@ class DependencyManager:
                 dest = dest.replace("temp/", f"{Paths.temp}/")
 
             if dest.startswith("drive_c/"):
-                bottle_path = Runner().get_bottle_path(config)
+                bottle_path = ManagerUtils.get_bottle_path(config)
                 dest = dest.replace(
                     "drive_c/",
                     f"{bottle_path}/drive_c/"
@@ -538,7 +539,7 @@ class DependencyManager:
         '''
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
-        bottle_path = Runner().get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
 
         for font in step.get('fonts'):
             shutil.copyfile(
@@ -554,7 +555,7 @@ class DependencyManager:
         '''
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
-        bottle_path = Runner().get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
 
         try:
             if "*" in step.get('file_name'):
@@ -593,7 +594,7 @@ class DependencyManager:
 
             for dll in glob(path):
                 dll_name = os.path.splitext(os.path.basename(dll))[0]
-                self.__manager.reg_add(
+                Runner.reg_add(
                     config,
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                     value=dll_name,
@@ -601,7 +602,7 @@ class DependencyManager:
                 )
             return
 
-        self.__manager.reg_add(
+        Runner.reg_add(
             config,
             key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
             value=step.get("dll"),
@@ -613,7 +614,7 @@ class DependencyManager:
         This function set a register key in the bottle registry. It is
         just a mirror of the reg_add function from the manager. 
         '''
-        self.__manager.reg_add(
+        Runner.reg_add(
             config,
             key=step.get("key"),
             value=step.get("value"),
@@ -626,7 +627,7 @@ class DependencyManager:
         This function register a font in the bottle registry. It is
         important to make the font available in the system.
         '''
-        self.__manager.reg_add(
+        Runner.reg_add(
             config,
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts",
             value=step.get("name"),
@@ -641,7 +642,7 @@ class DependencyManager:
         replaces = step.get("replace")
 
         if len(replaces) == 1:
-            self.__manager.reg_add(
+            Runner.reg_add(
                 config,
                 key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
                 value=step.get("font"),
@@ -649,7 +650,7 @@ class DependencyManager:
             )
         else:
             for r in replaces:
-                self.__manager.reg_add(
+                Runner.reg_add(
                     config,
                     key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
                     value=step.get("font"),

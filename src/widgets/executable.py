@@ -32,7 +32,7 @@ class ExecButton(Gtk.ModelButton):
         self.show_all()
 
     def on_clicked(self, widget):
-        Runner().run_executable(
+        Runner.run_executable(
             config=self.config,
             file_path=self.data.get("file"),
             arguments=self.data.get("args"),

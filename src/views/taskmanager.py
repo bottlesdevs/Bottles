@@ -17,6 +17,7 @@
 
 from gettext import gettext as _
 from gi.repository import Gtk
+from ..backend.runner import Runner
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/task-manager.ui')
@@ -61,7 +62,7 @@ class TaskManagerView(Gtk.Box):
         liststore_processes with the new data
         '''
         self.liststore_processes.clear()
-        processes = self.manager.get_running_processes()
+        processes = Runner.get_running_processes()
 
         if len(processes) > 0:
             for process in processes:

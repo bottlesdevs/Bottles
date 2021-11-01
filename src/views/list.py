@@ -120,13 +120,13 @@ class ListViewEntry(Handy.ActionRow):
             response = file_dialog.run()
 
             if response == -3:
-                Runner().run_executable(self.config,
+                Runner.run_executable(self.config,
                                            file_dialog.get_filename())
 
             file_dialog.destroy()
         else:
             '''Use executable provided as bottles argument'''
-            Runner().run_executable(self.config, self.arg_exe)
+            Runner.run_executable(self.config, self.arg_exe)
             if self.window.settings.get_boolean("auto-close-bottles"):
                 self.window.proper_close()
             self.arg_exe = False

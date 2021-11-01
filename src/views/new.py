@@ -259,13 +259,13 @@ class NewView(Handy.Window):
         no arguments, it will simply close the dialog.
         '''
         if self.arg_exe:
-            Runner().run_executable(
+            Runner.run_executable(
                 config=self.new_bottle_config,
                 file_path=self.arg_exe
             )
 
         if self.arg_lnk is not None:
-            Runner().run_lnk(
+            Runner.run_lnk(
                 config=self.new_bottle_config,
                 file_path=self.arg_lnk
             )

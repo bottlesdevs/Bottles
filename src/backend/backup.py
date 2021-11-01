@@ -10,6 +10,7 @@ from .manager import Manager
 from ..utils import UtilsLogger, RunAsync
 from .globals import Paths
 from .runner import Runner
+from .manager_utils import ManagerUtils
 from ..operation import OperationManager
 
 logging = UtilsLogger()
@@ -54,7 +55,7 @@ class RunnerBackup:
                 file_name=_("Backup {0}").format(config.get("Name")),
                 cancellable=False
             )
-            bottle_path = Runner().get_bottle_path(config)
+            bottle_path = ManagerUtils.get_bottle_path(config)
             try:
                 with tarfile.open(path, "w:gz") as archive_backup:
                     for root, dirs, files in os.walk(bottle_path):
@@ -155,7 +156,7 @@ class RunnerBackup:
         '''
         logging.info(f"Duplicating bottle: [{config.get('Name')}] to [{name}]")
 
-        source = Runner().get_bottle_path(config)
+        source = ManagerUtils.get_bottle_path(config)
         dest = f"{Paths.bottles}/{name}"
 
         source_drive = f"{source}/drive_c"

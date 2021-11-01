@@ -20,6 +20,7 @@ from gi.repository import Gtk, Handy
 
 from ..dialogs.launchoptions import LaunchOptionsDialog
 from ..backend.runner import Runner
+from ..backend.manager_utils import ManagerUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
@@ -87,7 +88,7 @@ class ProgramEntry(Handy.ActionRow):
             arguments = self.config["Programs"][self.program_executable]
         else:
             arguments = False
-        Runner().run_executable(
+        Runner.run_executable(
             self.config,
             self.program_executable_path,
             arguments,
@@ -108,7 +109,7 @@ class ProgramEntry(Handy.ActionRow):
         self.destroy()
 
     def browse_program_folder(self, widget):
-        Runner().open_filemanager(
+        ManagerUtils.open_filemanager(
             config=self.config,
             path_type="custom",
             custom_path=self.program_folder

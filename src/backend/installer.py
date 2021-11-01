@@ -104,7 +104,7 @@ class InstallerManager:
             manifest.get('Name'),
             executable.get('icon')
         )
-        bottle_icons_path = f"{Runner().get_bottle_path(config)}/icons"
+        bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
 
         if not os.path.exists(bottle_icons_path):
@@ -148,7 +148,7 @@ class InstallerManager:
                     else:
                         file = st.get("file_name")
 
-                    Runner().run_executable(
+                    Runner.run_executable(
                         config=config,
                         file_path=f"{Paths.temp}/{file}",
                         arguments=st.get("arguments"),
@@ -177,7 +177,7 @@ class InstallerManager:
             scope="Programs")
 
     def __create_desktop_entry(self, config, manifest, executable: dict):
-        bottle_icons_path = f"{Runner().get_bottle_path(config)}/icons"
+        bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
 
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
         desktop_file = "%s/%s--%s--%s.desktop" % (

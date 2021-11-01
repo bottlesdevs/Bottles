@@ -10,7 +10,7 @@ from gi.repository import GLib
 
 from ..operation import OperationManager
 from ..utils import UtilsLogger, UtilsFiles, RunAsync
-from .runner import Runner
+from .manager_utils import ManagerUtils
 
 logging = UtilsLogger()
 
@@ -42,7 +42,7 @@ class RunnerVersioning:
             f"Creating new state for bottle: [{config['Name']}] …"
         )
 
-        bottle_path = Runner().get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
         self.operation_manager = OperationManager(self.window)
         task_entry = self.operation_manager.new_task(
             file_name=_("Generating state files index …"),
@@ -263,7 +263,7 @@ class RunnerVersioning:
         set, otherwise it will be returned as a dictionary.
         NOTE: maybe this function should be called get_state_index
         '''
-        bottle_path = Runner().get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
         try:
             file = open('%s/states/%s/index.yml' % (bottle_path, state_id))
             files = file.read() if plain else yaml.safe_load(file.read())
@@ -283,7 +283,7 @@ class RunnerVersioning:
         state. It will be returned as plain text if the plain flag is
         set, otherwise it will be returned as a dictionary.
         '''
-        bottle_path = Runner().get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
 
         try:
             file = open('%s/states/%s/files.yml' % (bottle_path, state_id))
@@ -298,7 +298,7 @@ class RunnerVersioning:
         This function list all files in a bottle and return them
         in a dict (index).
         '''
-        bottle_path = Runner().get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
 
         cur_index = {
             "Update_Date": str(datetime.now()),
@@ -329,7 +329,7 @@ class RunnerVersioning:
         '''
         config, state_id, after = args
 
-        bottle_path = Runner().get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
 
         logging.info(f"Restoring to state: [{state_id}]")
 
@@ -414,7 +414,7 @@ class RunnerVersioning:
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.
         '''
-        bottle_path = Runner().get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
         states = {}
 
         try:

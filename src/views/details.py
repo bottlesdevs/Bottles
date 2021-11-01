@@ -36,6 +36,7 @@ from ..widgets.dependency import DependencyEntry
 from ..widgets.executable import ExecButton
 
 from ..backend.runner import Runner, gamemode_available
+from ..backend.manager_utils import ManagerUtils
 from ..backend.backup import RunnerBackup
 
 
@@ -392,7 +393,7 @@ class DetailsView(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            Runner().get_bottle_path(self.config)
+            ManagerUtils.get_bottle_path(self.config)
         )
 
         response = file_dialog.run()
@@ -606,7 +607,7 @@ class DetailsView(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            Runner().get_bottle_path(self.config)
+            ManagerUtils.get_bottle_path(self.config)
         )
         response = file_dialog.run()
 
@@ -928,7 +929,7 @@ class DetailsView(Handy.Leaflet):
         configuration according to the widget state.
         '''
         resolution = self.combo_virt_res.get_active_id()
-        self.manager.toggle_virtual_desktop(
+        Runner.toggle_virtual_desktop(
             config=self.config,
             state=state,
             resolution=resolution
@@ -947,7 +948,7 @@ class DetailsView(Handy.Leaflet):
         '''
         resolution = widget.get_active_id()
         if self.switch_virt_desktop.get_active():
-            self.manager.toggle_virtual_desktop(
+            Runner.toggle_virtual_desktop(
                 config=self.config,
                 state=True,
                 resolution=resolution
@@ -1094,7 +1095,7 @@ class DetailsView(Handy.Leaflet):
 
         if response == -3:
             if args:
-                Runner().run_executable(
+                Runner.run_executable(
                     config=self.config,
                     file_path=file_dialog.get_filename(),
                     arguments=args
@@ -1109,7 +1110,7 @@ class DetailsView(Handy.Leaflet):
                     }]
                 )
             else:
-                Runner().run_executable(
+                Runner.run_executable(
                     config=self.config,
                     file_path=file_dialog.get_filename()
                 )
@@ -1278,37 +1279,37 @@ class DetailsView(Handy.Leaflet):
     '''
 
     def run_winecfg(self, widget):
-        Runner().run_winecfg(self.config)
+        Runner.run_winecfg(self.config)
 
     def run_debug(self, widget):
-        Runner().run_debug(self.config)
+        Runner.run_debug(self.config)
 
     def run_browse(self, widget):
-        Runner().open_filemanager(self.config)
+        ManagerUtils.open_filemanager(self.config)
 
     def run_cmd(self, widget):
-        Runner().run_cmd(self.config)
+        Runner.run_cmd(self.config)
 
     def run_taskmanager(self, widget):
-        Runner().run_taskmanager(self.config)
+        Runner.run_taskmanager(self.config)
 
     def run_controlpanel(self, widget):
-        Runner().run_controlpanel(self.config)
+        Runner.run_controlpanel(self.config)
 
     def run_uninstaller(self, widget):
-        Runner().run_uninstaller(self.config)
+        Runner.run_uninstaller(self.config)
 
     def run_regedit(self, widget):
-        Runner().run_regedit(self.config)
+        Runner.run_regedit(self.config)
 
     def run_shutdown(self, widget):
-        Runner().send_status(self.config, "shutdown")
+        Runner.send_status(self.config, "shutdown")
 
     def run_reboot(self, widget):
-        Runner().send_status(self.config, "reboot")
+        Runner.send_status(self.config, "reboot")
 
     def run_killall(self, widget):
-        Runner().send_status(self.config, "kill")
+        Runner.send_status(self.config, "kill")
 
     '''
     The following methods open resources (URLs) in the

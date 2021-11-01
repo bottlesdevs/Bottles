@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk, GLib, GObject, Handy
 
-from ..backend.runner import Runner
+from ..backend.manager_utils import ManagerUtils
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
 class ComponentEntry(Handy.ActionRow):
@@ -79,7 +79,7 @@ class ComponentEntry(Handy.ActionRow):
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
 
-        Runner().open_filemanager(
+        ManagerUtils.open_filemanager(
             path_type=self.component_type,
             component=self.name
         )

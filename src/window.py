@@ -107,13 +107,13 @@ class MainWindow(Handy.ApplicationWindow):
             '''
             bottle_config = self.manager.local_bottles[arg_bottle]
             if arg_exe:
-                Runner().run_executable(
+                Runner.run_executable(
                     config=bottle_config,
                     file_path=arg_exe
                 )
                 self.proper_close()
             elif arg_lnk:
-                Runner().run_lnk(
+                Runner.run_lnk(
                     config=bottle_config,
                     file_path=arg_lnk
                 )
