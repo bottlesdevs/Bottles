@@ -1029,6 +1029,33 @@ class Manager:
                         os.makedirs(user_path)
                     except:
                         pass
+            
+            GLib.idle_add(
+                dialog.update_output, 
+                _("Removing old registry…")
+            )
+            reg_files = [
+                "system.reg",
+                "user.reg",
+                "userdef.reg"
+            ]
+            for register in reg_files:
+                try:
+                    shutil.rmtree(f"{bottle_complete_path}/{register}")
+                except:
+                    pass
+            
+            GLib.idle_add(
+                dialog.update_output,
+                _("Re-initializing registry…")
+            )
+            command = [
+                "DISPLAY=:3.0",
+                "WINEDEBUG=-all",
+                f"WINEPREFIX={bottle_complete_path}",
+                f"WINEARCH={arch}",
+                f"{runner} wineboot -u /nogui"
+            ]
             time.sleep(.5)
 
         # generate bottle config file
