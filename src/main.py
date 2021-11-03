@@ -71,6 +71,7 @@ class Bottles(Gtk.Application):
     arg_exe = False
     arg_lnk = False
     arg_bottle = False
+    arg_passed = False
 
     def __init__(self):
         super().__init__(
