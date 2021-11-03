@@ -106,6 +106,7 @@ class DetailsView(Handy.Leaflet):
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
     combo_nvapi = Gtk.Template.Child()
+    combo_windows = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     list_installers = Gtk.Template.Child()
@@ -249,6 +250,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.connect('changed', self.__set_dxvk)
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
+        self.combo_windows.connect('changed', self.__set_windows)
 
         self.entry_search_deps.connect(
             'key-release-event', self.__search_dependencies
@@ -479,6 +481,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
+        self.combo_windows.handler_block_by_func(self.__set_windows)
 
         # update widgets data with bottle configuration
         parameters = self.config.get("Parameters")
@@ -521,6 +524,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
+        self.combo_windows.set_active_id(self.config.get("Windows"))
         self.grid_versioning.set_visible(self.config.get("Versioning"))
 
         # unlock functions connected to the widgets
@@ -540,6 +544,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
+        self.combo_windows.handler_unblock_by_func(self.__set_windows)
 
         self.update_programs()
         self.__update_dependencies()
@@ -1041,6 +1046,20 @@ class DetailsView(Handy.Leaflet):
         )
         self.config = new_config
         self.__toggle_nvapi(state=True)
+
+    def __set_windows(self, widget):
+        '''
+        This function update the Windows version on the bottle 
+        configuration according to the selected one.
+        '''
+        win = widget.get_active_id()
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="Windows",
+            value=win
+        )
+        Runner.set_windows(config=new_config, version=win)
+        self.config = new_config
 
     def __toggle_pulse_latency(self, widget, state):
         '''
