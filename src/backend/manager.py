@@ -1029,42 +1029,39 @@ class Manager:
                         os.makedirs(user_path)
                     except:
                         pass
-            
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Removing old registry…")
-            )
-            reg_files = [
-                "system.reg",
-                "user.reg",
-                "userdef.reg"
-            ]
-            for register in reg_files:
-                try:
-                    shutil.rmtree(f"{bottle_complete_path}/{register}")
-                except:
-                    pass
-            
-            GLib.idle_add(
-                dialog.update_output,
-                _("Re-initializing registry…")
-            )
-            command = [
-                "DISPLAY=:3.0",
-                "WINEDEBUG=-all",
-                f"WINEPREFIX={bottle_complete_path}",
-                f"WINEARCH={arch}",
-                f"{runner} wineboot -u /nogui"
-            ]
             time.sleep(.5)
 
+        # re-initialize register (due to a bug, registry has wrong keys)
+        GLib.idle_add(
+            dialog.update_output,
+            _("Re-initializing registry…")
+        )
+        command = [
+            "DISPLAY=:3.0",
+            "WINEDEBUG=-all",
+            f"WINEPREFIX={bottle_complete_path}",
+            f"WINEARCH={arch}",
+            f"{runner} wineboot -k /nogui"
+        ]
+        command = " ".join(command)
+        subprocess.Popen(command, shell=True).communicate()
+        reg_files = [
+            "system.reg",
+            "user.reg",
+            "userdef.reg"
+        ]
+        for register in reg_files:
+            try:
+                shutil.rmtree(f"{bottle_complete_path}/{register}")
+            except:
+                pass
+        
         # generate bottle config file
         logging.info("Generating bottle config file…")
         GLib.idle_add(
             dialog.update_output, 
             _("Generating bottle config file…")
         )
-
         config = Samples.config
         config["Name"] = bottle_name
         config["Arch"] = arch
@@ -1081,6 +1078,14 @@ class Manager:
         config["Update_Date"] = str(datetime.now())
         if versioning:
             config["Versioning"] = True
+
+        # apply Windows version
+        logging.info("Setting Windows version…")
+        GLib.idle_add(
+            dialog.update_output, 
+            _("Setting Windows version…")
+        )
+        Runner.set_windows(config, config["Windows"])
 
         # apply environment config
         logging.info(f"Applying environment: [{environment}]…")
