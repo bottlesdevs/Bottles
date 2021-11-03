@@ -2,7 +2,6 @@ import re
 import os
 import shutil
 import subprocess
-
 from typing import NewType
 
 from ..utils import UtilsTerminal, UtilsLogger, RunAsync
@@ -481,10 +480,7 @@ class Runner:
             data=Runner._windows_versions.get(version)["CurrentVersion"]
         ) 
 
-        Runner.send_status(
-            config=config,
-            status="reboot"
-        )
+        RunAsync(Runner.send_status, None, config, "reboot")
     
     @staticmethod
     def reg_add(
