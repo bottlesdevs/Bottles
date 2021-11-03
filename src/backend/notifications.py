@@ -34,8 +34,7 @@ class NotificationsManager:
             _date = message.get("date")
             _date =  datetime(_date.year, _date.month, _date.day)
 
-            if _date < datetime.today() - timedelta(days=1):
-                if not message.get("recurrent"):
+            if _date < datetime.today() - timedelta(days=1) and not message.get("recurrent"):
                     continue
             
             if message.get("id") in self.data.list().get("notifications"):
