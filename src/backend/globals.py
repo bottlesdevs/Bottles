@@ -15,6 +15,7 @@ class Samples:
     config = {
         "Name": "",
         "Arch": "win64",
+        "Windows": "win10",
         "Runner": "",
         "WorkingDir": "",
         "DXVK": "",
