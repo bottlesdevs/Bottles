@@ -86,6 +86,7 @@ class Bottles(Gtk.Application):
             --executable, -e: The path of the executable to be launched.
             --lnk, -l: The path of the shortcut to be launched.
             --bottle, -b: The name of the bottle to be used.
+            --arguments, -a: The arguments to be passed to the executable.
             --help, -h: Prints the help.
         '''
         self.add_main_option(
@@ -120,6 +121,14 @@ class Bottles(Gtk.Application):
             _("Bottle name"),
             None
         )
+        self.add_main_option(
+            "arguments",
+            ord("a"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING,
+            _("Pass arguments"),
+            None
+        )
 
     def do_command_line(self, command):
         '''
@@ -142,6 +151,9 @@ class Bottles(Gtk.Application):
 
         if commands.contains("bottle"):
             self.arg_bottle = commands.lookup_value("bottle").get_string()
+        
+        if commands.contains("arguments"):
+            self.arg_passed = commands.lookup_value("arguments").get_string()
 
         if not self.arg_exe:
             '''
@@ -219,7 +231,8 @@ class Bottles(Gtk.Application):
                 application=self,
                 arg_exe=self.arg_exe,
                 arg_bottle=self.arg_bottle,
-                arg_lnk=self.arg_lnk
+                arg_lnk=self.arg_lnk,
+                arg_passed=self.arg_passed
             )
         self.win = win
         win.present()
