@@ -483,6 +483,39 @@ class Runner:
         RunAsync(Runner.send_status, None, config, "reboot")
     
     @staticmethod
+    def set_app_default(config: BottleConfig, executable: str, version: str):
+        '''
+        Change default Windows version per application
+        Parameters
+        ----------
+        executable : str
+            a valid executable name (e.g. wmplayer.exe)
+        version : str
+            the Windows version to be setted:
+            win10 (Microsoft Windows 10)
+            win81 (Microsoft Windows 8.1)
+            win8 (Microsoft Windows 8)
+            win7 (Microsoft Windows 7)
+            win2008r2 (Microsoft Windows 2008 R1)
+            win2008 (Microsoft Windows 2008)
+            winxp (Microsoft Windows XP)
+        Raises
+        ------
+        ValueError
+            If the given version is invalid.
+        '''
+
+        if version not in Runner._windows_versions:
+            raise ValueError("Given version is not supported.")
+            
+        Runner.reg_add(
+            config=config,
+            key=f"HKEY_CURRENT_USER\\Software\\Wine\\AppDefaults\\{executable}",
+            value="Version",
+            data=version
+        )
+    
+    @staticmethod
     def reg_add(
         config: BottleConfig, 
         key: str, 
