@@ -154,85 +154,7 @@ class DependencyManager:
             Here we execute all steps in the manifest.
             Steps are the actions performed to install the dependency.
             '''
-
-            if step["action"] == "download_archive":
-                self.__step_download_archive(step)
-
-            if step["action"] == "delete_sys32_dlls":
-                self.__step_delete_sys32_dlls(
-                    config=config,
-                    dlls=step["dlls"]
-                )
-
-            if step["action"] in ["install_exe", "install_msi"]:
-                self.__step_install_exe_msi(
-                    config=config,
-                    step=step,
-                    widget=widget
-                )
-
-            if step["action"] == "uninstall":
-                self.__step_uninstall(
-                    config=config,
-                    file_name=step["file_name"]
-                )
-
-            if step["action"] == "cab_extract":
-                has_no_uninstaller = True
-                self.__step_cab_extract(
-                    step=step,
-                    widget=widget
-                )
-
-            if step["action"] == "get_from_cab":
-                has_no_uninstaller = True
-                self.__step_get_from_cab(
-                    config=config,
-                    step=step,
-                    widget=widget
-                )
-
-            if step["action"] == "archive_extract":
-                has_no_uninstaller = True
-                self.__step_archive_extract(step)
-
-            if step["action"] in ["install_cab_fonts", "install_fonts"]:
-                has_no_uninstaller = True
-                self.__step_install_fonts(
-                    config=config,
-                    step=step
-                )
-
-            if step["action"] in ["copy_cab_dll", "copy_dll"]:
-                has_no_uninstaller = True
-                self.__step_copy_dll(
-                    config=config,
-                    step=step
-                )
-
-            if step["action"] == "override_dll":
-                self.__step_override_dll(
-                    config=config,
-                    step=step
-                )
-
-            if step["action"] == "set_register_key":
-                self.__step_set_register_key(
-                    config=config,
-                    step=step
-                )
-
-            if step["action"] == "register_font":
-                self.__step_register_font(
-                    config=config,
-                    step=step
-                )
-
-            if step["action"] == "replace_font":
-                self.__step_replace_font(
-                    config=config,
-                    step=step
-                )
+            has_no_uninstaller = self.__perform_steps(config, step)
 
         if dependency[0] not in config.get("Installed_Dependencies"):
             '''
@@ -293,6 +215,108 @@ class DependencyManager:
                 dependency,
                 widget
             ])
+
+    def __perform_steps(
+        self, 
+        config:BottleConfig, 
+        step:dict, 
+        widget: Gtk.Widget
+    ) -> bool:
+        """
+        This method execute a step in the bottle (e.g. changing the Windows
+        version, installing fonts, etc.)
+        ---
+        Returns True if the dependency cannot be uninstalled.
+        """
+        has_no_uninstaller = False
+        
+        if step["action"] == "download_archive":
+            self.__step_download_archive(step)
+
+        if step["action"] == "delete_sys32_dlls":
+            self.__step_delete_sys32_dlls(
+                config=config,
+                dlls=step["dlls"]
+            )
+
+        if step["action"] in ["install_exe", "install_msi"]:
+            self.__step_install_exe_msi(
+                config=config,
+                step=step,
+                widget=widget
+            )
+
+        if step["action"] == "uninstall":
+            self.__step_uninstall(
+                config=config,
+                file_name=step["file_name"]
+            )
+
+        if step["action"] == "cab_extract":
+            has_no_uninstaller = True
+            self.__step_cab_extract(
+                step=step,
+                widget=widget
+            )
+
+        if step["action"] == "get_from_cab":
+            has_no_uninstaller = True
+            self.__step_get_from_cab(
+                config=config,
+                step=step,
+                widget=widget
+            )
+
+        if step["action"] == "archive_extract":
+            has_no_uninstaller = True
+            self.__step_archive_extract(step)
+
+        if step["action"] in ["install_cab_fonts", "install_fonts"]:
+            has_no_uninstaller = True
+            self.__step_install_fonts(
+                config=config,
+                step=step
+            )
+
+        if step["action"] in ["copy_cab_dll", "copy_dll"]:
+            has_no_uninstaller = True
+            self.__step_copy_dll(
+                config=config,
+                step=step
+            )
+
+        if step["action"] == "override_dll":
+            self.__step_override_dll(
+                config=config,
+                step=step
+            )
+
+        if step["action"] == "set_register_key":
+            self.__step_set_register_key(
+                config=config,
+                step=step
+            )
+
+        if step["action"] == "register_font":
+            self.__step_register_font(
+                config=config,
+                step=step
+            )
+
+        if step["action"] == "replace_font":
+            self.__step_replace_font(
+                config=config,
+                step=step
+            )
+
+        if step["action"] == "set_windows":
+            self.__step_set_windows(
+                config=config,
+                step=step
+            )
+        
+        return has_no_uninstaller
+
 
     def __step_download_archive(self, step: dict):
         '''
@@ -656,3 +680,9 @@ class DependencyManager:
                     value=step.get("font"),
                     data=r
                 )
+
+    def __step_set_windows(self, config: BottleConfig, step: dict):
+        '''
+        This function set the windows version in the bottle registry.
+        '''
+        Runner.set_windows(config, step.get("version"))
