@@ -897,7 +897,8 @@ class Manager:
         '''
         logging.info("Creating the wineprefix…")
 
-        name, environment, path, runner, dxvk, vkd3d, nvapi, versioning, sandbox, dialog, arch = args
+        name, environment, path, runner, dxvk, vkd3d, \
+            nvapi, versioning, sandbox, dialog, arch = args
 
         if len(self.runners_available) == 0:
             # if there are no local runners, show preferences
@@ -1047,8 +1048,7 @@ class Manager:
         subprocess.Popen(command, shell=True).communicate()
         reg_files = [
             "system.reg",
-            "user.reg",
-            "userdef.reg"
+            "user.reg"
         ]
         for register in reg_files:
             while not os.path.exists(f"{bottle_complete_path}/{register}"):
@@ -1157,7 +1157,7 @@ class Manager:
         logging.info(f"[{bottle_name}] is now bottled.")
         GLib.idle_add(
             dialog.update_output, 
-            _("Your new {0} bottle is now ready.").format(bottle_name)
+            _("Finalizing…")
         )
 
         # wait for all registry changes to be applied
