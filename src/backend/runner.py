@@ -25,6 +25,58 @@ class Runner:
     <https://github.com/bottlesdevs/libwine>
     '''
 
+    _windows_versions = {
+        "win10": {
+            "ProductName": "Microsoft Windows 10",
+            "CSDVersion": "",
+            "CurrentBuild": "17763",
+            "CurrentBuildNumber": "17763",
+            "CurrentVersion": "10.0",
+        },
+        "win81": {
+            "ProductName": "Microsoft Windows 8.1",
+            "CSDVersion": "",
+            "CurrentBuild": "9600",
+            "CurrentBuildNumber": "9600",
+            "CurrentVersion": "6.3",
+        },
+        "win8": {
+            "ProductName": "Microsoft Windows 8",
+            "CSDVersion": "",
+            "CurrentBuild": "9200",
+            "CurrentBuildNumber": "9200",
+            "CurrentVersion": "6.2",
+        },
+        "win7": {
+            "ProductName": "Microsoft Windows 7",
+            "CSDVersion": "Service Pack 1",
+            "CurrentBuild": "7601",
+            "CurrentBuildNumber": "7601",
+            "CurrentVersion": "6.1",
+        },
+        "win2008r2": {
+            "ProductName": "Microsoft Windows 2008 R2",
+            "CSDVersion": "Service Pack 1",
+            "CurrentBuild": "7601",
+            "CurrentBuildNumber": "7601",
+            "CurrentVersion": "6.1",
+        },
+        "win2008": {
+            "ProductName": "Microsoft Windows 2008",
+            "CSDVersion": "Service Pack 2",
+            "CurrentBuild": "6002",
+            "CurrentBuildNumber": "6002",
+            "CurrentVersion": "6.0",
+        },
+        "winxp": {
+            "ProductName": "Microsoft Windows XP",
+            "CSDVersion": "Service Pack 2",
+            "CurrentBuild": "3790",
+            "CurrentBuildNumber": "3790",
+            "CurrentVersion": "5.2",
+        },
+    }
+
     @staticmethod
     def run_lnk(
         config: BottleConfig,
@@ -371,6 +423,70 @@ class Runner:
         return processes
 
     @staticmethod
+    def set_windows(config: BottleConfig, version: str):
+        '''
+        Change Windows version of the wineprefix.
+        Parameters
+        ----------
+        version : str
+            the Windows version to be setted:
+            win10 (Microsoft Windows 10)
+            win81 (Microsoft Windows 8.1)
+            win8 (Microsoft Windows 8)
+            win7 (Microsoft Windows 7)
+            win2008r2 (Microsoft Windows 2008 R1)
+            win2008 (Microsoft Windows 2008)
+            winxp (Microsoft Windows XP)
+        Raises
+        ------
+        ValueError
+            If the given version is invalid.
+        '''
+
+        if version not in Runner._windows_versions:
+            raise ValueError("Given version is not supported.")
+
+        Runner.reg_add(
+            config=config,
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="ProductName",
+            data=Runner._windows_versions.get(version)["ProductName"]
+        )
+
+        Runner.reg_add(
+            config=config,
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="CSDVersion",
+            data=Runner._windows_versions.get(version)["CSDVersion"]
+        )
+
+        Runner.reg_add(
+            config=config,
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="CurrentBuild",
+            data=Runner._windows_versions.get(version)["CurrentBuild"]
+        )
+
+        Runner.reg_add(
+            config=config,
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="CurrentBuildNumber",
+            data=Runner._windows_versions.get(version)["CurrentBuildNumber"]
+        )
+
+        Runner.reg_add(
+            config=config,
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="CurrentVersion",
+            data=Runner._windows_versions.get(version)["CurrentVersion"]
+        ) 
+
+        Runner.send_status(
+            config=config,
+            status="reboot"
+        )
+    
+    @staticmethod
     def reg_add(
         config: BottleConfig, 
         key: str, 
@@ -387,10 +503,10 @@ class Runner:
             f"Data: [{data}] in register bottle: {config['Name']}"
         )
 
-        command = "reg add '%s' /v '%s' /d %s /f" % (key, value, data)
-
+        command = "reg add '%s' /v '%s' /d '%s' /f" % (key, value, data)
+        
         if keyType:
-            command = "reg add '%s' /v '%s' /t %s /d %s /f" % (
+            command = "reg add '%s' /v '%s' /t %s /d '%s' /f" % (
                 key, value, keyType, data)
 
         Runner.run_command(config, command)
