@@ -154,7 +154,7 @@ class DependencyManager:
             Here we execute all steps in the manifest.
             Steps are the actions performed to install the dependency.
             '''
-            has_no_uninstaller = self.__perform_steps(config, step)
+            has_no_uninstaller = self.__perform_steps(config, step, widget)
 
         if dependency[0] not in config.get("Installed_Dependencies"):
             '''
@@ -316,7 +316,7 @@ class DependencyManager:
             )
 
         if step["action"] == "use_windows":
-            self.use_windows(
+            self.__step_use_windows(
                 config=config,
                 step=step
             )
