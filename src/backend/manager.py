@@ -1051,8 +1051,10 @@ class Manager:
             "userdef.reg"
         ]
         for register in reg_files:
+            while not os.path.exists(f"{bottle_complete_path}/{register}"):
+                time.sleep(.5)
             try:
-                shutil.rmtree(f"{bottle_complete_path}/{register}")
+                os.remove(f"{bottle_complete_path}/{register}")
             except:
                 pass
         
@@ -1158,7 +1160,10 @@ class Manager:
             _("Your new {0} bottle is now ready.").format(bottle_name)
         )
 
-        time.sleep(.5)
+        # wait for all registry changes to be applied
+        for register in reg_files:
+            while not os.path.exists(f"{bottle_complete_path}/{register}"):
+                time.sleep(.5)
 
         dialog.finish(config)
 
