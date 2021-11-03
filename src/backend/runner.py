@@ -483,7 +483,7 @@ class Runner:
         RunAsync(Runner.send_status, None, config, "reboot")
     
     @staticmethod
-    def set_app_default(config: BottleConfig, executable: str, version: str):
+    def set_app_default(config: BottleConfig, version: str, executable: str):
         '''
         Change default Windows version per application
         Parameters
@@ -504,7 +504,6 @@ class Runner:
         ValueError
             If the given version is invalid.
         '''
-
         if version not in Runner._windows_versions:
             raise ValueError("Given version is not supported.")
             
