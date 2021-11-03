@@ -314,6 +314,12 @@ class DependencyManager:
                 config=config,
                 step=step
             )
+
+        if step["action"] == "use_windows":
+            self.use_windows(
+                config=config,
+                step=step
+            )
         
         return has_no_uninstaller
 
@@ -686,3 +692,10 @@ class DependencyManager:
         This function set the windows version in the bottle registry.
         '''
         Runner.set_windows(config, step.get("version"))
+
+    def __step_use_windows(self, config: BottleConfig, step: dict):
+        '''
+        This function set the windows version for a specifc executable 
+        in the bottle registry.
+        '''
+        Runner.use_windows(config, step.get("version"), step.get("executable"))
