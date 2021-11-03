@@ -48,7 +48,7 @@ class TaskEntry(Handy.ActionRow):
 
         self.spinner_task.start()
 
-    def idle_update_status(
+    def update_status(
         self,
         count=False,
         block_size=False,
@@ -67,21 +67,6 @@ class TaskEntry(Handy.ActionRow):
         if percent == 100:
             self.spinner_task.stop()
             self.remove()
-
-    def update_status(
-        self,
-        count=False,
-        block_size=False,
-        total_size=False,
-        completed=False
-    ):
-        GLib.idle_add(
-            self.idle_update_status,
-            count,
-            block_size,
-            total_size,
-            completed
-        )
 
     def remove(self):
         tasks = self.list_tasks.get_children()

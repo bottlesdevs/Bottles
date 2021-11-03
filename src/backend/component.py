@@ -196,8 +196,7 @@ class ComponentManager:
             file_name=file,
             cancellable=False
         )
-        update_func = task_entry.update_status
-        time.sleep(1)
+        _update_func = task_entry.update_status
 
         if download_url.startswith("temp/"):
             '''
@@ -211,7 +210,15 @@ class ComponentManager:
             Set a function to be executing during the downlaod. This 
             can be used to check the download status or update progress bars.
             '''
-            update_func = func
+            _update_func = func
+        
+        def update_func(
+            count=False,
+            block_size=False,
+            total_size=False,
+            completed=False
+        ):
+            GLib.idle_add(_update_func, count, block_size, total_size, completed)
 
         existing_file = rename if rename else file
         just_downloaded = False
@@ -408,7 +415,6 @@ class ComponentManager:
             If the component has a rename, rename the downloaded file
             to the required name.
             '''
-            archive = manifest["File"][0]["rename"]
             archive = manifest["File"][0]["rename"]
 
         self.extract(component_name, component_type, archive)

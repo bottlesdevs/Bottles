@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-10 11:33+0200\n"
+"POT-Creation-Date: 2021-10-30 23:20+0200\n"
 "PO-Revision-Date: 2021-10-29 00:32+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,8 +22,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:72 src/ui/window.ui:145 src/ui/window.ui:160
-#: src/window.py:138
+#: src/ui/list.ui:71 src/ui/window.ui:185 src/ui/window.ui:200
+#: src/window.py:145 src/window.py:199
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -152,91 +152,17 @@ msgid "Bottles versioning (experimental)"
 msgstr "Wersjonowanie Butelek (eksperymentalne)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
-msgid ".. and much more that you can find by installing Bottles!"
+#, fuzzy
+msgid "... and much more that you can find by installing Bottles!"
 msgstr "...i wiele więcej, co można odkryć instalując Bottles!"
-
-#: data/com.usebottles.bottles.appdata.xml.in:81
-msgid "News"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:83
-msgid "Improved the Download manager"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:84
-msgid "Update to GNOME Runtime 41."
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:85
-msgid "The DXVK and VKD3D installation are now performed in asynchronous mode"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:86
-msgid "UI improvements for elementary OS"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:89
-msgid "Bug fixes"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:91
-msgid ""
-"Fixed a bug in component installation that was assigning the wrong name "
-"after download."
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:92
-msgid "Fixed the wrong text for cwd label."
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:93
-msgid ""
-"Fixed a bug that was causing Bottles crash when running executables with "
-"arguments."
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:96
-msgid "Translations"
-msgstr ""
-
-#: data/com.usebottles.bottles.appdata.xml.in:98
-#, fuzzy
-msgid "Indonesian translations thanks to @rezaalmanda"
-msgstr "Tłumaczenia z języka węgierskiego dzięki @ovari"
-
-#: data/com.usebottles.bottles.appdata.xml.in:99
-#, fuzzy
-msgid "Spanish translations thanks to @oscfdezdz"
-msgstr "Tłumaczenia na hiszpański dzięki @fitojb"
-
-#: data/com.usebottles.bottles.appdata.xml.in:100
-#, fuzzy
-msgid "Japanese translations thanks to @jatin-cbs"
-msgstr "Tłumaczenia na hiszpański dzięki @fitojb"
-
-#: data/com.usebottles.bottles.appdata.xml.in:101
-#, fuzzy
-msgid "Portuguese translations thanks to @hugok79"
-msgstr "Tłumaczenie na francuski dzięki @julroy67"
-
-#: data/com.usebottles.bottles.appdata.xml.in:102
-#, fuzzy
-msgid ""
-"Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, "
-"@davipatricio"
-msgstr "Tłumaczenie na język portugalski (Brazylia) dzięki @LeandroStanger"
-
-#: data/com.usebottles.bottles.appdata.xml.in:103
-#, fuzzy
-msgid "German translations thanks to @thericosanto"
-msgstr "Tłumaczenia na esperanto dzięki @phlostically"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
 msgstr "Migracja Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:7
-msgid "Toggle the flatpak migration dialog."
+#, fuzzy
+msgid "Toggle the Flatpak migration dialog."
 msgstr "Przełącz okno dialogowe migracji Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
@@ -244,15 +170,15 @@ msgid "Dark theme"
 msgstr "Motyw ciemny"
 
 #: data/com.usebottles.bottles.gschema.xml:12
-msgid "Enable the dark theme."
-msgstr "Włącz motyw ciemny."
+msgid "Use a dark application theme."
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:17
-msgid "Toggle the update date in bottles list."
+msgid "Toggle the update date in list of bottles."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:21
@@ -260,7 +186,8 @@ msgid "Window width"
 msgstr "Szerokość okna"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-msgid "Change the window width"
+#, fuzzy
+msgid "Change the window width."
 msgstr "Zmień szerokość okna"
 
 #: data/com.usebottles.bottles.gschema.xml:26
@@ -268,15 +195,18 @@ msgid "Window height"
 msgstr "Wysokość okna"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-msgid "Change the window height"
+#, fuzzy
+msgid "Change the window height."
 msgstr "Zmień wysokość okna"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
+#: src/ui/window.ui:336
 msgid "Notifications"
 msgstr "Powiadomienia"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-msgid "Enable notifications."
+#, fuzzy
+msgid "Show notifications."
 msgstr "Włącz powiadomienia."
 
 #: data/com.usebottles.bottles.gschema.xml:36
@@ -284,7 +214,8 @@ msgid "Temp cleaning"
 msgstr "Czyszczenie plików tymczasowych"
 
 #: data/com.usebottles.bottles.gschema.xml:37
-msgid "Clean Temp path on boot."
+#, fuzzy
+msgid "Clean the temp path when booting the system."
 msgstr "Wyczyść ścieżkę Temp podczas uruchomienia."
 
 #: data/com.usebottles.bottles.gschema.xml:41
@@ -292,7 +223,8 @@ msgid "Release Candidate"
 msgstr "Kandydat wydania (RC)"
 
 #: data/com.usebottles.bottles.gschema.xml:42
-msgid "Toggle Release Candidate for Runners"
+#, fuzzy
+msgid "Toggle release candidate for runners."
 msgstr "Wybierz kandydata wydania (RC) dla programów uruchamiających"
 
 #: data/com.usebottles.bottles.gschema.xml:46
@@ -300,17 +232,19 @@ msgid "Startup view"
 msgstr "Widok startowy"
 
 #: data/com.usebottles.bottles.gschema.xml:47
-msgid "Choose which view should be loaded on application startup."
+#, fuzzy
+msgid "Choose which view the application should be started in."
 msgstr "Określ, który widok ma być ładowany podczas uruchamiania aplikacji."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:253
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:263
 msgid "Experiments"
 msgstr "Eksperymenty"
 
 #: data/com.usebottles.bottles.gschema.xml:52
+#, fuzzy
 msgid ""
-"Toggle experimental features such as versioning and installers.Release "
-"Candidate for Runners"
+"Toggle experimental features such as versioning and installers. Release "
+"candidate for runners."
 msgstr ""
 "Włącz eksperymentalne funkcje, takie jak wersjonowanie i instalatory. "
 "Kandydat wydania (RC) dla programów uruchamiających"
@@ -320,7 +254,8 @@ msgid "Experiments:versioning"
 msgstr "Eksperymenty:wersjonowanie"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-msgid "Toggle experimental versioning feature"
+#, fuzzy
+msgid "Toggle experimental versioning feature."
 msgstr "Włącz eksperymentalną funkcję wersjonowania"
 
 #: data/com.usebottles.bottles.gschema.xml:61
@@ -328,7 +263,8 @@ msgid "Experiments:installers"
 msgstr "Eksperymenty:instalatory"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-msgid "Toggle experimental installers feature"
+#, fuzzy
+msgid "Toggle experimental installer features."
 msgstr "Włącz eksperymentalną funkcję instalatorów"
 
 #: data/com.usebottles.bottles.gschema.xml:66
@@ -336,7 +272,8 @@ msgid "Automatically close Bottles"
 msgstr "Automatycznie zamykaj Bottles"
 
 #: data/com.usebottles.bottles.gschema.xml:67
-msgid "Close Bottles after starting executable from file manager"
+#, fuzzy
+msgid "Close Bottles after starting an executable from the file manager."
 msgstr "Zamknij Bottles po uruchomieniu pliku wykonywalnego z menedżera plików"
 
 #: src/ui/about.ui:11
@@ -347,26 +284,26 @@ msgstr "© 2017-2021 - Deweloperzy Bottles"
 msgid "Easily manage wineprefix using environments"
 msgstr "Łatwo zarządzaj wineprefix przy użyciu środowisk"
 
-#: src/ui/about.ui:112
+#: src/ui/about.ui:117
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Tłumacz</a>"
 
-#: src/ui/about.ui:125
+#: src/ui/about.ui:130
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Finansowanie</a>"
 
-#: src/ui/about.ui:138
+#: src/ui/about.ui:143
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Zgłaszanie błędów</"
 "a>"
 
-#: src/ui/about.ui:151
+#: src/ui/about.ui:156
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
-#: src/ui/about.ui:164
+#: src/ui/about.ui:169
 #, fuzzy
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Tłumacz</a>"
@@ -380,7 +317,7 @@ msgstr "Pokaż manifest"
 msgid "License"
 msgstr "Licencja"
 
-#: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:45
+#: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
 msgid "Bug report"
 msgstr "Zgłaszanie błędów"
 
@@ -396,7 +333,20 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Pobierz i zainstaluj tę zależność"
 
-#: src/ui/details.ui:22 src/ui/importer.ui:22
+#: src/ui/details.ui:17 src/ui/importer.ui:94
+msgid "Refresh"
+msgstr "Odśwież"
+
+#: src/ui/details.ui:50
+#, fuzzy
+msgid "Add a custom executable path"
+msgstr "Ścieżka pliku wykonywalnego"
+
+#: src/ui/details.ui:76
+msgid "Search for installed programs"
+msgstr "Szukaj zainstalowanych programów"
+
+#: src/ui/details.ui:117 src/ui/importer.ui:21
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
@@ -404,242 +354,266 @@ msgstr ""
 "To jest tylko konfiguracja Butelki. Jest to idealne rozwiązanie, jeśli "
 "chcesz utworzyć nową, ale bez plików osobistych."
 
-#: src/ui/details.ui:23 src/ui/importer.ui:23
+#: src/ui/details.ui:118 src/ui/importer.ui:22
 msgid "Configuration"
 msgstr "Konfiguracja"
 
-#: src/ui/details.ui:36 src/ui/importer.ui:36
+#: src/ui/details.ui:131 src/ui/importer.ui:35
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr ""
 "Jest to kompletne archiwum Twojej Butelki, łącznie z plikami osobistymi."
 
-#: src/ui/details.ui:37 src/ui/importer.ui:37
+#: src/ui/details.ui:132 src/ui/importer.ui:36
 msgid "Full archive"
 msgstr "Pełne archiwum"
 
-#: src/ui/details.ui:61
+#: src/ui/details.ui:156
 #, fuzzy
 msgid "Duplicate bottle"
 msgstr "Stwórz Butelkę"
 
-#: src/ui/details.ui:87
+#: src/ui/details.ui:182
 msgid "Flatpak help"
 msgstr ""
 
-#: src/ui/details.ui:111
+#: src/ui/details.ui:206
 msgid "I can't see my old bottles after upgrade."
 msgstr ""
 
-#: src/ui/details.ui:124
+#: src/ui/details.ui:219
 msgid "I don't see some directories."
 msgstr ""
 
-#: src/ui/details.ui:137
+#: src/ui/details.ui:232
 msgid "I can't see the files in my home."
 msgstr ""
 
-#: src/ui/details.ui:166
+#: src/ui/details.ui:261
 msgid "Run with arguments"
 msgstr "Uruchom z argumentami"
 
-#: src/ui/details.ui:193
-msgid "Type a really short comment:"
-msgstr "Wpisz naprawdę krótki komentarz:"
-
-#: src/ui/details.ui:210
-msgid "Special characters are not allowed!"
-msgstr "Znaki specjalne są niedozwolone!"
-
-#: src/ui/details.ui:211
-msgid "A really short comment"
-msgstr "Naprawdę krótki komentarz"
-
-#: src/ui/details.ui:225
-msgid "Save the bottle state."
-msgstr "Zapisz stan Butelki."
-
-#: src/ui/details.ui:341
+#: src/ui/details.ui:359
 msgid "Rename bottle"
 msgstr "Zmień nazwę Butelki"
 
-#: src/ui/details.ui:368 src/ui/list-entry.ui:76
+#: src/ui/details.ui:386 src/ui/list-entry.ui:35
 msgid "Versioning enabled for this bottle"
 msgstr "Wersjonowanie włączone dla tej Butelki"
 
-#: src/ui/details.ui:379 src/ui/list-entry.ui:83
+#: src/ui/details.ui:397 src/ui/list-entry.ui:42
 msgid "Versioning is active in this bottle."
 msgstr "Wersjonowanie w tej Butelce jest aktywne."
 
-#: src/ui/details.ui:400 src/ui/list-entry.ui:102
+#: src/ui/details.ui:418 src/ui/list-entry.ui:61
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:451 src/main.py:120
+#: src/ui/details.ui:469 src/main.py:121
 msgid "Bottle name"
 msgstr "Nazwa Butelki"
 
-#: src/ui/details.ui:455
+#: src/ui/details.ui:473
 msgid "Type a name for your bottle"
 msgstr "Wpisz nazwę dla swojej Butelki"
 
-#: src/ui/details.ui:474
+#: src/ui/details.ui:492 src/ui/new.ui:161
 msgid "Environment"
 msgstr "Środowisko"
 
-#: src/ui/details.ui:508
+#: src/ui/details.ui:519
+msgid "Layers"
+msgstr ""
+
+#: src/ui/details.ui:542
 msgid "64 Bit"
 msgstr "64-bitowe"
 
-#: src/ui/details.ui:527
+#: src/ui/details.ui:561
 msgid "lutris-6.0-rc1-x86_64"
 msgstr "lutris-6.0-rc1-x86_64"
 
-#: src/ui/details.ui:555
+#: src/ui/details.ui:589
 msgid "Run executable"
 msgstr "Uruchom plik wykonywalny (.exe)"
 
-#: src/ui/details.ui:596
+#: src/ui/details.ui:630
 msgid "Backup bottle"
 msgstr "Zrób kopię zapasową Butelki"
 
-#: src/ui/details.ui:622
+#: src/ui/details.ui:656
 msgid "Reboot Windows"
 msgstr "Uruchom ponownie Windows"
 
-#: src/ui/details.ui:647
+#: src/ui/details.ui:681
 msgid "Shutdown Windows"
 msgstr "Wyłącz Windows"
 
-#: src/ui/details.ui:672
+#: src/ui/details.ui:706
 msgid "Kill all wine processes"
 msgstr "Zabij wszystkie procesy wine"
 
-#: src/ui/details.ui:708
+#: src/ui/details.ui:742
 msgid "Destroy this bottle"
 msgstr "Zniszcz tą Butelkę"
 
-#: src/ui/details.ui:760 src/ui/details.ui:2207 src/ui/details.ui:2341
-#: src/views/details.py:268
+#: src/ui/details.ui:794 src/ui/details.ui:2424 src/views/details.py:326
 msgid "Programs"
 msgstr "Programy"
 
-#: src/ui/details.ui:776
+#: src/ui/details.ui:810
 msgid "Utilities"
 msgstr "Narzędzia"
 
-#: src/ui/details.ui:781
+#: src/ui/details.ui:815
 msgid "Wine config"
 msgstr "Konfiguracja Wine"
 
-#: src/ui/details.ui:783
+#: src/ui/details.ui:817
 msgid "Adjust internal settings."
 msgstr "Dostosuj ustawienia wewnętrzne."
 
-#: src/ui/details.ui:820
+#: src/ui/details.ui:854
 msgid "Browse C:"
 msgstr "Przeglądaj dysk C:"
 
-#: src/ui/details.ui:822
+#: src/ui/details.ui:856
 msgid "Browse internal files."
 msgstr "Przeglądaj pliki wewnętrzne."
 
-#: src/ui/details.ui:859
+#: src/ui/details.ui:893
 msgid "Command Line"
 msgstr "Wiersz Poleceń"
 
-#: src/ui/details.ui:861
+#: src/ui/details.ui:895
 msgid "Run commands inside the Bottle."
 msgstr "Uruchom polecenia wewnątrz Butelki."
 
-#: src/ui/details.ui:898
+#: src/ui/details.ui:932
 msgid "Registry Editor"
 msgstr "Edytor Rejestru"
 
-#: src/ui/details.ui:900
+#: src/ui/details.ui:934
 msgid "Edit the internal registry."
 msgstr "Edytuj wewnętrzny rejestr."
 
-#: src/ui/details.ui:937
+#: src/ui/details.ui:971
 msgid "Debug"
 msgstr "Odpluskwianie"
 
-#: src/ui/details.ui:939
+#: src/ui/details.ui:973
 msgid "Debug wine processes."
 msgstr "Odpluskwiaj procesy wine."
 
-#: src/ui/details.ui:973 src/ui/details.ui:2060 src/ui/details.ui:2463
+#: src/ui/details.ui:1007 src/ui/details.ui:2261 src/ui/details.ui:2781
 msgid "Read documentation"
 msgstr "Przeczytaj dokumentację"
 
-#: src/ui/details.ui:1003
+#: src/ui/details.ui:1037
 msgid "Task Manager"
 msgstr "Menedżer Zadań"
 
-#: src/ui/details.ui:1005
+#: src/ui/details.ui:1039
 msgid "Manage processes with the Wine task manager."
 msgstr "Zarządzaj procesami za pomocą menedżera zadań Wine."
 
-#: src/ui/details.ui:1042
+#: src/ui/details.ui:1076
 msgid "Uninstaller"
 msgstr "Dezinstalator"
 
-#: src/ui/details.ui:1044
+#: src/ui/details.ui:1078
 msgid "Uninstall programs using wine uninstaller"
 msgstr "Odinstaluj programy za pomocą dezinstalatora wine"
 
-#: src/ui/details.ui:1081
+#: src/ui/details.ui:1115
 msgid "Control Panel"
 msgstr "Panel Sterowania"
 
-#: src/ui/details.ui:1083
+#: src/ui/details.ui:1117
 msgid "Access the internal wine control panel."
 msgstr "Otwórz wewnętrzny panel sterowania wine."
 
-#: src/ui/details.ui:1135
+#: src/ui/details.ui:1169
 msgid "Bottle"
 msgstr "Butelka"
 
-#: src/ui/details.ui:1163
+#: src/ui/details.ui:1197
 msgid "Graphics"
 msgstr "Grafika"
 
-#: src/ui/details.ui:1168
+#: src/ui/details.ui:1202
 msgid "Use DXVK"
 msgstr "Użyj DXVK"
 
-#: src/ui/details.ui:1169
+#: src/ui/details.ui:1203
+#, fuzzy
 msgid ""
-"Improves performance for Directx 11 games and 3D applications.\n"
+"Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
 "Zwiększa wydajność gier DirectX 11 i aplikacji 3D.\n"
 "Wyłącz, jeśli doświadczasz problemów z grafiką."
 
-#: src/ui/details.ui:1196
+#: src/ui/details.ui:1230
 msgid "Use VKD3D"
 msgstr "Użyj VKD3D"
 
-#: src/ui/details.ui:1197
+#: src/ui/details.ui:1231
+#, fuzzy
 msgid ""
-"Improves performance for Directx 12 games and 3D applications.\n"
+"Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
 "Zwiększa wydajność gier DirectX 12 i aplikacji 3D.\n"
 "Wyłącz, jeśli doświadczasz problemów z grafiką."
 
-#: src/ui/details.ui:1224
+#: src/ui/details.ui:1258
 msgid "Use Gamemode"
 msgstr "Użyj Gamemode"
 
-#: src/ui/details.ui:1225
+#: src/ui/details.ui:1259
 msgid "Optimise gaming performance on demand"
 msgstr "Optymalizuj wydajność gier na żądanie"
 
-#: src/ui/details.ui:1251
+#: src/ui/details.ui:1285
+msgid "Enable DLSS (DXVK-NVAPI)"
+msgstr ""
+
+#: src/ui/details.ui:1286
+msgid "Provide DLSS support if available and Nvidia's NVAPI."
+msgstr ""
+
+#: src/ui/details.ui:1314
+msgid "Enable FSR"
+msgstr ""
+
+#: src/ui/details.ui:1315
+msgid ""
+"FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
+"Turn this off if you experience graphical glitches."
+msgstr ""
+
+#: src/ui/details.ui:1331
+msgid "Ultra Quality"
+msgstr ""
+
+#: src/ui/details.ui:1332
+msgid "Quality"
+msgstr ""
+
+#: src/ui/details.ui:1333
+msgid "Balanced"
+msgstr ""
+
+#: src/ui/details.ui:1334
+#, fuzzy
+msgid "Performance"
+msgstr "Wygląd"
+
+#: src/ui/details.ui:1383
 msgid "Enable ACO shader compiler"
 msgstr "Włącz kompilator shaderów ACO"
 
-#: src/ui/details.ui:1252
+#: src/ui/details.ui:1384
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -647,146 +621,144 @@ msgstr ""
 "Zwiększa wydajność w grach i aplikacjach 3D.\n"
 "Wyłącz, jeśli doświadczasz problemów z grafiką."
 
-#: src/ui/details.ui:1279
+#: src/ui/details.ui:1411
 msgid "Discrete GPU"
 msgstr "Dedykowane GPU"
 
-#: src/ui/details.ui:1280
+#: src/ui/details.ui:1412
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Zwiększa wydajność kosztem zwiększonego zużycia energii."
 
-#: src/ui/details.ui:1306
+#: src/ui/details.ui:1438
 msgid "Use a virtual desktop"
 msgstr "Użyj wirtualnego pulpitu"
 
-#: src/ui/details.ui:1307
+#: src/ui/details.ui:1439
 msgid "Use the Wine virtual desktop."
 msgstr "Użyj pulpitu wirtualnego Wine."
 
-#: src/ui/details.ui:1390 src/ui/details.ui:1403
+#: src/ui/details.ui:1522 src/ui/details.ui:1535
 msgid "System"
 msgstr "System"
 
-#: src/ui/details.ui:1395
+#: src/ui/details.ui:1527
 msgid "Synchronization"
 msgstr "Synchronizacja"
 
-#: src/ui/details.ui:1396
+#: src/ui/details.ui:1528
+#, fuzzy
 msgid ""
-"Enable synchronization to increase performance for multi-core processors."
+"Enable synchronization to increase performance of multi-core processors."
 msgstr ""
 "Włącz synchronizację, aby zwiększyć wydajność dla procesorów "
 "wielordzeniowych."
 
-#: src/ui/details.ui:1417
+#: src/ui/details.ui:1549
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1431
+#: src/ui/details.ui:1563
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1454 src/ui/new.ui:261
+#: src/ui/details.ui:1586 src/ui/new.ui:284
 msgid "Runner"
 msgstr "Program uruchamiający"
 
-#: src/ui/details.ui:1497 src/ui/new.ui:303
+#: src/ui/details.ui:1629 src/ui/new.ui:326
 msgid "Manage runners"
 msgstr "Zarządzaj programami uruchamiającymi"
 
-#: src/ui/details.ui:1529 src/ui/new.ui:335
+#: src/ui/details.ui:1661 src/ui/new.ui:358
 msgid "DXVK Version"
 msgstr "Wersja DXVK"
 
-#: src/ui/details.ui:1572 src/ui/new.ui:377
+#: src/ui/details.ui:1704 src/ui/details.ui:1854 src/ui/new.ui:400
 msgid "Manage DXVK versions"
 msgstr "Zarządzaj wersjami DXVK"
 
-#: src/ui/details.ui:1604
+#: src/ui/details.ui:1736
 msgid "VKD3D Version"
 msgstr "Wersja VKD3D"
 
-#: src/ui/details.ui:1647
+#: src/ui/details.ui:1779
 #, fuzzy
 msgid "Manage VKD3D versions"
 msgstr "Zarządzaj wersjami DXVK"
 
-#: src/ui/details.ui:1680 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1811
+#, fuzzy
+msgid "NVAPI Version"
+msgstr "Wersja DXVK"
+
+#: src/ui/details.ui:1887 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "Nadpisania DLL"
 
-#: src/ui/details.ui:1718
+#: src/ui/details.ui:1925
 msgid "Working directory"
 msgstr ""
 
-#: src/ui/details.ui:1720
+#: src/ui/details.ui:1927
 #, fuzzy
 msgid "Point to the bottle path"
 msgstr "Zapisz stan Butelki."
 
-#: src/ui/details.ui:1736
+#: src/ui/details.ui:1943
 #, fuzzy
 msgid "Choose a directory"
 msgstr "Wybierz środowisko"
 
-#: src/ui/details.ui:1779
+#: src/ui/details.ui:1986
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details.ui:1784
+#: src/ui/details.ui:1991
 msgid "Reduce PulseAudio latency"
 msgstr "Zmniejsz opóźnienie PulseAudio"
 
-#: src/ui/details.ui:1785
+#: src/ui/details.ui:1992
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Ustaw opóźnienie PulseAudio do 60 milisekund, aby zwiększyć jakość dźwięku"
 
-#: src/ui/details.ui:1822
+#: src/ui/details.ui:2029
 msgid "Developers & Debug"
 msgstr "Deweloperzy & Odpluskwianie"
 
-#: src/ui/details.ui:1827
+#: src/ui/details.ui:2034
 msgid "Environment variables"
 msgstr "Zmienne środowiskowe"
 
-#: src/ui/details.ui:1865
+#: src/ui/details.ui:2072
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details.ui:1866
+#: src/ui/details.ui:2073
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Włącz nakładkę DXVK pokazującą klatkaż (FPS) i inne szczegóły w aplikacjach "
 "D3D."
 
-#: src/ui/details.ui:1892
+#: src/ui/details.ui:2099
 msgid "Enable wine fixme logs"
 msgstr "Włącz logi wine fixme"
 
-#: src/ui/details.ui:1893
+#: src/ui/details.ui:2100
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Rejestruj ścieżki kodu, które nie są zaimplementowane w Wine."
 
-#: src/ui/details.ui:1934 src/ui/preferences.ui:8 src/ui/window.ui:75
-#: src/views/details.py:266
+#: src/ui/details.ui:2141 src/ui/preferences.ui:8 src/ui/window.ui:47
+#: src/views/details.py:318
 msgid "Preferences"
 msgstr "Ustawienia"
 
-#: src/ui/details.ui:1985
+#: src/ui/details.ui:2192
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 
-#: src/ui/details.ui:2041 src/ui/details.ui:2167 src/views/details.py:267
-msgid "Dependencies"
-msgstr "Zależności"
-
-#: src/ui/details.ui:2070
-msgid "Report a missing dependency"
-msgstr "Zgłoś brakującą zależność"
-
-#: src/ui/details.ui:2097
+#: src/ui/details.ui:2248
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
@@ -794,52 +766,51 @@ msgstr ""
 "Chociaż pliki na tej stronie zostały zweryfikowane, mogą być objęte "
 "własnościową licencją."
 
-#: src/ui/details.ui:2127
+#: src/ui/details.ui:2271
+msgid "Report a missing dependency"
+msgstr "Zgłoś brakującą zależność"
+
+#: src/ui/details.ui:2315
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework 4 ..."
 
-#: src/ui/details.ui:2226
-msgid "These are the programs found in your bottle's Start menu"
-msgstr "Są to programy znajdujące się w menu Start Twojej Butelki"
+#: src/ui/details.ui:2355 src/views/details.py:322
+msgid "Dependencies"
+msgstr "Zależności"
 
-#: src/ui/details.ui:2250
-#, fuzzy
-msgid "Add a custom executable path"
-msgstr "Ścieżka pliku wykonywalnego"
-
-#: src/ui/details.ui:2277
-msgid "Search for installed programs"
-msgstr "Szukaj zainstalowanych programów"
-
-#: src/ui/details.ui:2393 src/ui/details.ui:2608
+#: src/ui/details.ui:2476 src/ui/details.ui:2603
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
 
-#: src/ui/details.ui:2444 src/ui/preferences.ui:262 src/views/details.py:272
-msgid "Versioning"
-msgstr "Wersjonowanie"
+#: src/ui/details.ui:2712
+msgid "Type a really short comment:"
+msgstr "Wpisz naprawdę krótki komentarz:"
 
-#: src/ui/details.ui:2493
+#: src/ui/details.ui:2729
+msgid "Special characters are not allowed!"
+msgstr "Znaki specjalne są niedozwolone!"
+
+#: src/ui/details.ui:2730
+msgid "A really short comment"
+msgstr "Naprawdę krótki komentarz"
+
+#: src/ui/details.ui:2744
+msgid "Save the bottle state."
+msgstr "Zapisz stan Butelki."
+
+#: src/ui/details.ui:2808
 msgid "Create new state"
 msgstr "Stwórz nowy stan"
-
-#: src/ui/details.ui:2659 src/ui/preferences.ui:288 src/views/details.py:275
-msgid "Installers"
-msgstr "Instalatory"
-
-#: src/ui/details.ui:2678 src/ui/importer.ui:95
-msgid "Refresh"
-msgstr "Odśwież"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
 msgstr "Wiadomość trafia tutaj."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:322
-#: src/views/details.py:516 src/views/details.py:927 src/views/list.py:115
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:390
+#: src/views/details.py:603 src/views/details.py:1086 src/views/list.py:117
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -915,11 +886,12 @@ msgstr "Wbudowane potem Natywne"
 msgid "Native then Builtin"
 msgstr "Natywne potem Wbudowane"
 
-#: src/ui/dxvk-entry.ui:9
-msgid "DXVK version"
-msgstr "Wersja DXVK"
+#: src/ui/component-entry.ui:9
+#, fuzzy
+msgid "Component version"
+msgstr "Pokaż wersję"
 
-#: src/ui/dxvk-entry.ui:19 src/ui/runner-entry.ui:19
+#: src/ui/component-entry.ui:19
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch.\n"
@@ -927,29 +899,28 @@ msgid ""
 "Press to try again."
 msgstr ""
 
-#: src/ui/dxvk-entry.ui:72
-msgid "Download & Install this DXVK"
+#: src/ui/component-entry.ui:72
+#, fuzzy
+msgid "Download & Install"
 msgstr "Pobierz i zainstaluj tą wersję DXVK"
 
-#: src/ui/dxvk-entry.ui:99 src/ui/importer-entry.ui:21
-#: src/ui/runner-entry.ui:74
+#: src/ui/component-entry.ui:99 src/ui/importer-entry.ui:21
 msgid "Browse files"
 msgstr "Przeglądaj pliki"
 
-#: src/ui/dxvk-entry.ui:129 src/ui/runner-entry.ui:104
+#: src/ui/component-entry.ui:129
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/dxvk-entry.ui:177 src/ui/program-entry.ui:121
-#: src/ui/runner-entry.ui:152
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:121
 msgid "Uninstall"
 msgstr "Odinstaluj"
 
-#: src/ui/importer.ui:76 src/window.py:148
+#: src/ui/importer.ui:75 src/window.py:155
 msgid "Importer"
 msgstr "Importer"
 
-#: src/ui/importer.ui:122
+#: src/ui/importer.ui:121
 msgid "Import Bottles backup"
 msgstr "Importuj kopię zapasową Bottles"
 
@@ -957,27 +928,31 @@ msgstr "Importuj kopię zapasową Bottles"
 msgid "This wineprefix was already imported in Bottles."
 msgstr "Ten wineprefix był już importowany w Bottles."
 
-#: src/ui/list.ui:73
+#: src/ui/installer-entry.ui:48
+msgid "Read review"
+msgstr ""
+
+#: src/ui/list.ui:72
 msgid "Start off by creating a Bottle."
 msgstr "Zacznij od utworzenia Butelki."
 
-#: src/ui/list.ui:76
+#: src/ui/list.ui:75
 msgid "Create a new Bottle"
 msgstr "Stwórz nową Butelkę"
 
-#: src/ui/list-entry.ui:24
-msgid "Run .exe/.msi in this bottle"
-msgstr "Uruchom .exe/.msi w tej Butelce"
-
-#: src/ui/list-entry.ui:149
+#: src/ui/list-entry.ui:82
 msgid "This bottle looks damaged."
 msgstr "Ta Butelka wygląda na uszkodzoną."
 
-#: src/ui/list-entry.ui:176
-msgid "Utility & Preferences"
-msgstr "Narzędzia i preferencje"
+#: src/ui/list-entry.ui:97
+msgid "Execute in this bottle"
+msgstr "Wykonaj w tej Butelce"
 
-#: src/ui/list-entry.ui:211
+#: src/ui/list-entry.ui:118
+msgid "Run Here"
+msgstr ""
+
+#: src/ui/list-entry.ui:132
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
@@ -985,17 +960,13 @@ msgstr ""
 "Ta Butelka wygląda na uszkodzoną, brakuje pliku konfiguracyjnego. Mogę "
 "spróbować to naprawić poprzez utworzenie nowej konfiguracji."
 
-#: src/ui/list-entry.ui:238
-msgid "Execute in this bottle"
-msgstr "Wykonaj w tej Butelce"
+#: src/ui/list-entry.ui:153
+msgid "Run .exe/.msi in this bottle"
+msgstr "Uruchom .exe/.msi w tej Butelce"
 
-#: src/ui/list-entry.ui:252
-msgid "Run here"
-msgstr ""
-
-#: src/ui/new.ui:25
-msgid "Create bottle"
-msgstr "Stwórz Butelkę"
+#: src/ui/new.ui:25 src/ui/window.ui:316
+msgid "New bottle"
+msgstr "Nowa Butelka"
 
 #: src/ui/new.ui:36
 msgid "Create"
@@ -1005,72 +976,77 @@ msgstr "Stwórz"
 msgid "Close"
 msgstr "Zamknij"
 
-#: src/ui/new.ui:99
-msgid "New Bottle"
-msgstr "Nowa Butelka"
+#: src/ui/new.ui:97
+#, fuzzy
+msgid "Bottle information"
+msgstr "Butelka utworzona"
 
 #: src/ui/new.ui:118
-msgid "Choose a name for your bottle"
-msgstr "Wybierz nazwę dla Twojej Butelki"
-
-#: src/ui/new.ui:139
 msgid "Name"
 msgstr "Nazwa"
 
-#: src/ui/new.ui:149
+#: src/ui/new.ui:119
+msgid "Choose a name for your bottle"
+msgstr "Wybierz nazwę dla Twojej Butelki"
+
+#: src/ui/new.ui:129
 msgid "This field cannot contain special characters!"
 msgstr "To pole nie może zawierać znaków specjalnych!"
 
-#: src/ui/new.ui:150
+#: src/ui/new.ui:130
 msgid "My beautiful bottle"
 msgstr "Moja przepiękna Butelka"
 
-#: src/ui/new.ui:181
-msgid "Choose an environment"
-msgstr "Wybierz środowisko"
-
-#: src/ui/new.ui:213
+#: src/ui/new.ui:209
 msgid "Advanced options"
 msgstr "Opcje zaawansowane"
 
-#: src/ui/new.ui:234
+#: src/ui/new.ui:230
 msgid "Use versioning"
 msgstr "Skorzystaj z wersjonowania"
 
-#: src/ui/new.ui:235
+#: src/ui/new.ui:231
 msgid "Enable versioning to save and restore the bottle to a state."
 msgstr ""
 "Włącz wersjonowanie, aby zapisać i przywrócić Butelkę do określonego stanu."
 
-#: src/ui/new.ui:409
+#: src/ui/new.ui:257
+msgid "Unlinked homedir"
+msgstr ""
+
+#: src/ui/new.ui:258
+msgid "Do not link the userdir to the homedir"
+msgstr ""
+
+#: src/ui/new.ui:432
 msgid "Architecture"
 msgstr ""
 
-#: src/ui/new.ui:411
-msgid "We recommend using only 32bit if strictly necessary"
+#: src/ui/new.ui:434
+msgid "We recommend using 32bit only if strictly necessary"
 msgstr ""
 
-#: src/ui/new.ui:425
+#: src/ui/new.ui:448
 msgid "64 bit"
 msgstr ""
 
-#: src/ui/new.ui:426
+#: src/ui/new.ui:449
 msgid "32 bit"
 msgstr ""
 
-#: src/ui/new.ui:480
+#: src/ui/new.ui:514
 msgid "Creating bottle…"
 msgstr "Tworzę Butelkę…"
 
-#: src/ui/new.ui:499
+#: src/ui/new.ui:533
 msgid "Take a break, it may take a while"
 msgstr "Zrób sobie przerwę, to może trochę potrwać"
 
-#: src/ui/new.ui:558
+#: src/ui/new.ui:583
 msgid "Bottle created"
 msgstr "Butelka utworzona"
 
-#: src/ui/onboard.ui:24 src/ui/onboard.ui:200
+#: src/ui/onboard.ui:24 src/ui/onboard.ui:122
 msgid "Welcome"
 msgstr "Zapraszamy"
 
@@ -1090,19 +1066,20 @@ msgstr "Wyjdź"
 msgid "Back"
 msgstr "Wróć"
 
-#: src/ui/onboard.ui:152
+#: src/ui/onboard.ui:117
 msgid "Welcome to Bottles"
 msgstr "Witamy w Bottles"
 
-#: src/ui/onboard.ui:171
+#: src/ui/onboard.ui:118
 msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr "Bottles znacznie ułatwia uruchamianie programów Windows na Linuksie."
 
-#: src/ui/onboard.ui:229
-msgid "What are runners?"
+#: src/ui/onboard.ui:152
+#, fuzzy
+msgid "What Are Runners?"
 msgstr "Czym są programy uruchamiające?"
 
-#: src/ui/onboard.ui:249
+#: src/ui/onboard.ui:171
 msgid ""
 "These are compatibility layers which allows Windows software to be installed "
 "and run on Linux systems.\n"
@@ -1123,15 +1100,16 @@ msgstr ""
 "<a href=\"https://docs.usebottles.com/components/runners\">Dowiedz się "
 "więcej o programach uruchamiających</a>"
 
-#: src/ui/onboard.ui:269
+#: src/ui/onboard.ui:191
 msgid "Wine"
 msgstr "Wine"
 
-#: src/ui/onboard.ui:299
-msgid "We are almost there"
+#: src/ui/onboard.ui:222
+#, fuzzy
+msgid "We Are Almost There"
 msgstr "Prawie skończyliśmy"
 
-#: src/ui/onboard.ui:319
+#: src/ui/onboard.ui:241
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -1155,31 +1133,32 @@ msgstr ""
 "\n"
 "Kiedy jesteś gotowy, naciśnij przycisk <b>Instaluj</b>."
 
-#: src/ui/onboard.ui:341 src/ui/preferences.ui:181
+#: src/ui/onboard.ui:263 src/ui/preferences.ui:181
 msgid "Runners"
 msgstr "Programy uruchamiające"
 
-#: src/ui/onboard.ui:371
+#: src/ui/onboard.ui:294
 msgid "Downloading…"
 msgstr "Pobieram…"
 
-#: src/ui/onboard.ui:391
+#: src/ui/onboard.ui:313
 msgid "Sit down and relax, it may take a few minutes."
 msgstr "Usiądź i zrelaksuj się, może to potrwać kilka minut."
 
-#: src/ui/onboard.ui:419
+#: src/ui/onboard.ui:341
 msgid "Download"
 msgstr "Pobierz"
 
-#: src/ui/onboard.ui:463
-msgid "Everything is ready!"
+#: src/ui/onboard.ui:349
+#, fuzzy
+msgid "Everything Is Ready!"
 msgstr "Wszystko jest gotowe!"
 
-#: src/ui/onboard.ui:483
+#: src/ui/onboard.ui:350
 msgid "You are now ready to create your first bottles."
 msgstr "Teraz jesteś gotowy do tworzenia swoich pierwszych butelek."
 
-#: src/ui/onboard.ui:498
+#: src/ui/onboard.ui:354
 msgid "Finish"
 msgstr "Zakończ"
 
@@ -1191,11 +1170,11 @@ msgstr "Ogólne"
 msgid "Apperance"
 msgstr "Wygląd"
 
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:321
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:331
 msgid "Dark Mode"
 msgstr "Tryb ciemny"
 
-#: src/ui/preferences.ui:29 src/ui/preferences.ui:322
+#: src/ui/preferences.ui:29 src/ui/preferences.ui:332
 msgid "Whether Bottles should use the Dark theme variant."
 msgstr "Pozwala na to, czy Bottles powinno używać ciemnego wariantu motywu."
 
@@ -1249,6 +1228,18 @@ msgstr "DXVK"
 msgid "VKD3D"
 msgstr "VKD3D"
 
+#: src/ui/preferences.ui:250
+msgid "DXVK-NVAPI"
+msgstr ""
+
+#: src/ui/preferences.ui:272 src/views/details.py:330
+msgid "Versioning"
+msgstr "Wersjonowanie"
+
+#: src/ui/preferences.ui:298 src/views/details.py:334
+msgid "Installers"
+msgstr "Instalatory"
+
 #: src/ui/program-entry.ui:21
 msgid "Change Launch Options"
 msgstr "Zmień opcje uruchamiania"
@@ -1274,10 +1265,6 @@ msgstr "Problemy Bottles"
 msgid "Remove from Programs"
 msgstr ""
 
-#: src/ui/runner-entry.ui:47
-msgid "Download & Install this runner"
-msgstr "Pobierz i zainstaluj ten program uruchamiający"
-
 #: src/ui/state-entry.ui:45
 msgid "Delete state"
 msgstr "Usuń stan"
@@ -1298,31 +1285,31 @@ msgstr "Są to procesy wine/wineserver działające na Twoim komputerze."
 msgid "Check for running processes."
 msgstr "Sprawdź działające procesy."
 
-#: src/ui/window.ui:49 src/window.py:143
+#: src/ui/window.ui:21 src/window.py:150 src/window.py:201
 msgid "Task manager"
 msgstr "Menedżer zadań"
 
-#: src/ui/window.ui:62
+#: src/ui/window.ui:34
 msgid "Import and export"
 msgstr "Importuj i eksportuj"
 
-#: src/ui/window.ui:99
+#: src/ui/window.ui:71
 msgid "Documentation"
 msgstr "Dokumentacja"
 
-#: src/ui/window.ui:112
+#: src/ui/window.ui:84
 msgid "About Bottles"
 msgstr "O Bottles"
 
-#: src/ui/window.ui:169 src/ui/window.ui:212
+#: src/ui/window.ui:209 src/ui/window.ui:252
 msgid "Open menu"
 msgstr "Otwórz menu"
 
-#: src/ui/window.ui:190
+#: src/ui/window.ui:230
 msgid "Operations"
 msgstr ""
 
-#: src/ui/window.ui:234
+#: src/ui/window.ui:274
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1332,35 +1319,31 @@ msgstr ""
 "stanie pobrać niezbędnych komponentów. Kliknij tę ikonę po przywróceniu "
 "połączenia."
 
-#: src/ui/window.ui:255
+#: src/ui/window.ui:295
 msgid "Go back"
 msgstr "Wstecz"
 
-#: src/ui/window.ui:276
-msgid "New bottle"
-msgstr "Nowa Butelka"
-
-#: src/main.py:96
+#: src/main.py:97
 msgid "Show version"
 msgstr "Pokaż wersję"
 
-#: src/main.py:104
+#: src/main.py:105
 msgid "Executable path"
 msgstr "Ścieżka pliku wykonywalnego"
 
-#: src/main.py:112
+#: src/main.py:113
 msgid "lnk path"
 msgstr "Ścieżka skrótu"
 
-#: src/main.py:233
+#: src/main.py:234
 msgid "[Quit] request received."
 msgstr "[Wyjdź] otrzymano żądanie."
 
-#: src/main.py:242
+#: src/main.py:243
 msgid "[Help] request received."
 msgstr "[Pomoc] otrzymano żądanie."
 
-#: src/main.py:250
+#: src/main.py:251
 msgid "[Refresh] request received."
 msgstr "[Odśwież] otrzymano żądanie."
 
@@ -1368,96 +1351,122 @@ msgstr "[Odśwież] otrzymano żądanie."
 msgid "You are offline, unable to download."
 msgstr "Jesteś offline, nie można pobrać."
 
-#: src/window.py:133
+#: src/window.py:140 src/window.py:197
 msgid "Bottle details"
 msgstr "Detale Butelki"
 
-#: src/window.py:179
+#: src/window.py:187
 msgid "Bottles Started!"
 msgstr "Bottles uruchomione!"
 
-#: src/backend/backup.py:52
+#: src/window.py:203
+#, fuzzy
+msgid "Import & export"
+msgstr "Importuj i eksportuj"
+
+#: src/backend/backup.py:54
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Zrób kopię zapasową {0}"
 
-#: src/backend/backup.py:107
+#: src/backend/backup.py:101
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importuję kopię zapasową: {0}"
 
 #. if there are no local runners, show preferences
-#: src/backend/manager.py:722
+#: src/backend/manager.py:896
 msgid "No runners found, please install one."
 msgstr ""
 "Nie znaleziono programów uruchamiających, prosimy zainstalować jeden z nich."
 
 #. if there are no local dxvks, install latest
-#: src/backend/manager.py:727
-msgid "No dxvk found, installing the latest version …"
+#: src/backend/manager.py:901
+#, fuzzy
+msgid "No DXVK found, installing the latest version …"
 msgstr "Nie znaleziono DXVK, instalujemy najnowszą wersję…"
 
 #. if there are no local vkd3ds, install latest
-#: src/backend/manager.py:731
-msgid "No vkd3d found, installing the latest version …"
+#: src/backend/manager.py:905
+#, fuzzy
+msgid "No VKD3D found, installing the latest version …"
 msgstr "Nie znaleziono VKD3D, instalujemy najnowszą wersję…"
 
-#. execute wineboot on the bottle path
-#: src/backend/manager.py:786
+#. if there are no local nvapis, install latest
+#: src/backend/manager.py:909
 #, fuzzy
-msgid "The wine config is being updated …"
+msgid "No NVAPI found, installing the latest version …"
+msgstr "Nie znaleziono DXVK, instalujemy najnowszą wersję…"
+
+#. execute wineboot on the bottle path
+#: src/backend/manager.py:969
+#, fuzzy
+msgid "The WINE config is being updated …"
 msgstr "Konfiguracja wine jest aktualizowana…"
 
-#: src/backend/manager.py:796
+#: src/backend/manager.py:979
 #, fuzzy
-msgid "Wine config updated!"
+msgid "WINE config updated!"
 msgstr "Konfiguracja Wine zaktualizowana!"
 
-#: src/backend/manager.py:804
-msgid "Running as flatpak, creating sandboxed folders …"
+#: src/backend/manager.py:988
+msgid "Running as Flatpak, creating sandboxed folders…"
 msgstr ""
 
-#: src/backend/manager.py:818
+#: src/backend/manager.py:990
 #, fuzzy
-msgid "Generating Bottle config file …"
+msgid "Creating sandboxed folders…"
+msgstr "Tworzę Butelkę…"
+
+#: src/backend/manager.py:1004
+#, fuzzy
+msgid "Generating bottle config file…"
 msgstr "Konfiguracja wine jest aktualizowana…"
 
-#: src/backend/manager.py:838
+#: src/backend/manager.py:1025
 #, python-brace-format
 msgid "Applying environment: {0} …"
 msgstr "Stosuję środowisko: {0} …"
 
-#: src/backend/manager.py:861
-msgid "Installing dxvk …"
+#: src/backend/manager.py:1048
+#, fuzzy
+msgid "Installing DXVK…"
 msgstr "Instaluję DXVK…"
 
-#: src/backend/manager.py:867
-msgid "Installing vkd3d …"
+#: src/backend/manager.py:1054
+#, fuzzy
+msgid "Installing VKD3D…"
 msgstr "Instaluję VKD3D…"
 
-#: src/backend/manager.py:875
-msgid "Creating versioning state 0 …"
+#: src/backend/manager.py:1060
+#, fuzzy
+msgid "Installing DXVK-NVAPI…"
+msgstr "Instaluję DXVK…"
+
+#: src/backend/manager.py:1068
+#, fuzzy
+msgid "Creating versioning state 0…"
 msgstr "Tworzę stan {0} wersjonowania …"
 
-#: src/backend/manager.py:882
-#, python-brace-format
-msgid "Your new bottle: {0} is now ready!"
+#: src/backend/manager.py:1075
+#, fuzzy, python-brace-format
+msgid "Your new {0} bottle is now ready."
 msgstr "Twoja nowa Butelka: {0} jest już gotowa!"
 
-#: src/backend/versioning.py:47
+#: src/backend/versioning.py:48
 msgid "Generating state files index …"
 msgstr ""
 
-#: src/backend/versioning.py:130
+#: src/backend/versioning.py:131
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Tworzę stan {0} wersjonowania …"
 
-#: src/backend/versioning.py:154
+#: src/backend/versioning.py:155
 msgid "Updating index …"
 msgstr ""
 
-#: src/backend/versioning.py:177
+#: src/backend/versioning.py:178
 #, fuzzy
 msgid "Updating states …"
 msgstr "Tworzę Butelkę…"
@@ -1475,114 +1484,171 @@ msgstr "Ostrzeżenie"
 msgid "An error has occurred."
 msgstr "Wystąpił błąd."
 
-#: src/views/details.py:251
+#: src/views/details.py:270
 msgid "Gamemode is either not available on your system or not running."
 msgstr "Gamemode nie jest dostępny na Twoim systemie lub nie jest uruchomiony."
 
-#: src/views/details.py:265
+#: src/views/details.py:314
 msgid "Details & Utilities"
 msgstr "Detale i narzędzia"
 
-#: src/views/details.py:318
+#: src/views/details.py:327
+#, fuzzy
+msgid "Found in your bottle's Start menu."
+msgstr "Są to programy znajdujące się w menu Start Twojej Butelki"
+
+#: src/views/details.py:386
 #, fuzzy
 msgid "Choose working directory for executables"
 msgstr "Wybierz plik wykonywalny Windows"
 
-#: src/views/details.py:321
+#: src/views/details.py:389
 msgid "Done"
 msgstr ""
 
 #. format arch
-#: src/views/details.py:384
+#: src/views/details.py:459
 msgid "64-bit"
 msgstr ""
 
-#: src/views/details.py:386
+#: src/views/details.py:461
 msgid "32-bit"
 msgstr ""
 
-#: src/views/details.py:404
+#: src/views/details.py:482
 #, python-format
 msgid "Updated: %s"
 msgstr ""
 
-#: src/views/details.py:512
+#: src/views/details.py:599
 #, fuzzy
 msgid "Choose an executable path"
 msgstr "Wybierz plik wykonywalny Windows"
 
-#: src/views/details.py:515
+#: src/views/details.py:602
 msgid "Add"
 msgstr ""
 
-#: src/views/details.py:923 src/views/list.py:111
+#: src/views/details.py:1082 src/views/list.py:113
 msgid "Choose a Windows executable file"
 msgstr "Wybierz plik wykonywalny Windows"
 
-#: src/views/details.py:926 src/views/list.py:114
+#: src/views/details.py:1085 src/views/list.py:116
 msgid "Run"
 msgstr "Uruchom"
 
-#: src/views/details.py:986
+#: src/views/details.py:1145
 #, fuzzy
 msgid "Select the location where to save the backup config"
 msgstr ""
 "Wybierz lokalizację, w której ma zostać zapisana konfiguracja kopii zapasowej"
 
-#: src/views/details.py:1014
+#: src/views/details.py:1173
 msgid "Select the location where to save the backup archive"
 msgstr ""
 "Wybierz lokalizację, w której ma zostać zapisane archiwum kopii zapasowej"
 
-#: src/views/details.py:1052
+#: src/views/details.py:1211
 msgid "Confirm deletion"
 msgstr "Potwierdź usunięcie"
 
-#: src/views/details.py:1054
+#: src/views/details.py:1213
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Czy na pewno chcesz usunąć tę Butelkę i wszystkie pliki?"
 
-#: src/views/importer.py:69
+#: src/views/importer.py:70
 msgid "Choose a backup archive"
 msgstr "Wybierz archiwum kopii zapasowej"
+
+#: src/views/importer.py:100
+#, fuzzy
+msgid "Choose a configuration file"
+msgstr "Konfiguracja"
 
 #: src/views/list.py:53 src/views/list.py:59
 msgid "N/A"
 msgstr ""
 
-#: src/views/list.py:95
+#: src/views/list.py:94
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumenty znalezione dla pliku wykonywalnego: [{executable}]."
 
-#: src/views/new.py:68
+#: src/views/new.py:69
 msgid "Gaming"
 msgstr "Gaming"
 
-#: src/views/new.py:69
+#: src/views/new.py:70
 msgid "An environment improved for Windows games."
 msgstr "Środowisko ulepszone dla gier Windows."
 
-#: src/views/new.py:74
+#: src/views/new.py:75
 msgid "Software"
 msgstr "Oprogramowanie"
 
-#: src/views/new.py:75
+#: src/views/new.py:76
 msgid "An environment improved for Windows software."
 msgstr "Środowisko ulepszone dla oprogramowania Windows."
 
-#: src/views/new.py:80
+#: src/views/new.py:87
 msgid "Custom"
 msgstr "Własne"
 
-#: src/views/new.py:81
+#: src/views/new.py:88
 msgid "A clear environment for your experiments."
 msgstr "Proste środowisko dla Twoich eksperymentów."
 
-#: src/views/new.py:219
+#: src/views/new.py:234
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Butelka o nazwie “{0}” została utworzona pomyślnie"
+
+#, fuzzy
+#~ msgid "Indonesian translations thanks to @rezaalmanda"
+#~ msgstr "Tłumaczenia z języka węgierskiego dzięki @ovari"
+
+#, fuzzy
+#~ msgid "Spanish translations thanks to @oscfdezdz"
+#~ msgstr "Tłumaczenia na hiszpański dzięki @fitojb"
+
+#, fuzzy
+#~ msgid "Japanese translations thanks to @jatin-cbs"
+#~ msgstr "Tłumaczenia na hiszpański dzięki @fitojb"
+
+#, fuzzy
+#~ msgid "Portuguese translations thanks to @hugok79"
+#~ msgstr "Tłumaczenie na francuski dzięki @julroy67"
+
+#, fuzzy
+#~ msgid ""
+#~ "Portuguese (Brazil) translations thanks to Ricardo Porto, @swyknox, "
+#~ "@davipatricio"
+#~ msgstr "Tłumaczenie na język portugalski (Brazylia) dzięki @LeandroStanger"
+
+#, fuzzy
+#~ msgid "German translations thanks to @thericosanto"
+#~ msgstr "Tłumaczenia na esperanto dzięki @phlostically"
+
+#~ msgid "Enable the dark theme."
+#~ msgstr "Włącz motyw ciemny."
+
+#~ msgid "DXVK version"
+#~ msgstr "Wersja DXVK"
+
+#~ msgid "Utility & Preferences"
+#~ msgstr "Narzędzia i preferencje"
+
+#~ msgid "Create bottle"
+#~ msgstr "Stwórz Butelkę"
+
+#~ msgid "New Bottle"
+#~ msgstr "Nowa Butelka"
+
+#~ msgid "Choose an environment"
+#~ msgstr "Wybierz środowisko"
+
+#~ msgid "Download & Install this runner"
+#~ msgstr "Pobierz i zainstaluj ten program uruchamiający"
 
 #, fuzzy
 #~ msgid ""

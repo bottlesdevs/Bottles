@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import re
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
@@ -61,6 +62,7 @@ class NewView(Handy.Window):
     combo_dxvk = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     revealer_advanced = Gtk.Template.Child()
+    row_sandbox = Gtk.Template.Child()
     # endregion
 
     environments = [
@@ -130,6 +132,10 @@ class NewView(Handy.Window):
 
         self.combo_dxvk.set_active(0)
         self.combo_arch.set_active_id("win64")
+
+        # if running under Flatpak, hide row_sandbox
+        if "FLATPAK_ID" in os.environ:
+            self.row_sandbox.set_visible(False)
 
     def set_active_env(self, widget, row):
         '''
@@ -216,7 +222,7 @@ class NewView(Handy.Window):
             arch=self.combo_arch.get_active_id()
         )
 
-    def idle_update_output(self, text):
+    def update_output(self, text):
         '''
         This function update the label_output with the givven text.
         It will be concatenated with the previous one.
@@ -224,9 +230,6 @@ class NewView(Handy.Window):
         current_text = self.label_output.get_text()
         text = f"{current_text}{text}\n"
         self.label_output.set_text(text)
-
-    def update_output(self, text):
-        GLib.idle_add(self.idle_update_output, text)
 
     def finish(self, config):
         self.new_bottle_config = config
@@ -256,13 +259,13 @@ class NewView(Handy.Window):
         no arguments, it will simply close the dialog.
         '''
         if self.arg_exe:
-            Runner().run_executable(
+            Runner.run_executable(
                 config=self.new_bottle_config,
                 file_path=self.arg_exe
             )
 
         if self.arg_lnk is not None:
-            Runner().run_lnk(
+            Runner.run_lnk(
                 config=self.new_bottle_config,
                 file_path=self.arg_lnk
             )

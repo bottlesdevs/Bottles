@@ -80,7 +80,7 @@ class MainWindow(Handy.ApplicationWindow):
     # Notify instance
     Notify.init(APP_ID)
 
-    def __init__(self, arg_exe, arg_lnk, arg_bottle, **kwargs):
+    def __init__(self, arg_exe, arg_lnk, arg_bottle, arg_passed, **kwargs):
         super().__init__(**kwargs)
 
         self.utils_conn = UtilsConnection(self)
@@ -106,16 +106,19 @@ class MainWindow(Handy.ApplicationWindow):
             arguments, then the executable will be run in the bottle.
             '''
             bottle_config = self.manager.local_bottles[arg_bottle]
+            arg_passed = arg_passed or ""
             if arg_exe:
-                Runner().run_executable(
+                Runner.run_executable(
                     config=bottle_config,
-                    file_path=arg_exe
+                    file_path=arg_exe,
+                    arguments=arg_passed
                 )
                 self.proper_close()
             elif arg_lnk:
-                Runner().run_lnk(
+                Runner.run_lnk(
                     config=bottle_config,
-                    file_path=arg_lnk
+                    file_path=arg_lnk,
+                    arguments=arg_passed
                 )
                 self.proper_close()
 

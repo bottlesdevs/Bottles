@@ -33,8 +33,10 @@ from ..widgets.installer import InstallerEntry
 from ..widgets.state import StateEntry
 from ..widgets.program import ProgramEntry
 from ..widgets.dependency import DependencyEntry
+from ..widgets.executable import ExecButton
 
 from ..backend.runner import Runner, gamemode_available
+from ..backend.manager_utils import ManagerUtils
 from ..backend.backup import RunnerBackup
 
 
@@ -104,6 +106,7 @@ class DetailsView(Handy.Leaflet):
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
     combo_nvapi = Gtk.Template.Child()
+    combo_windows = Gtk.Template.Child()
     list_dependencies = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     list_installers = Gtk.Template.Child()
@@ -124,6 +127,7 @@ class DetailsView(Handy.Leaflet):
     actions_programs = Gtk.Template.Child()
     actions_versioning = Gtk.Template.Child()
     actions_installers = Gtk.Template.Child()
+    box_run_extra = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config={}, **kwargs):
@@ -246,6 +250,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.connect('changed', self.__set_dxvk)
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
+        self.combo_windows.connect('changed', self.__set_windows)
 
         self.entry_search_deps.connect(
             'key-release-event', self.__search_dependencies
@@ -390,7 +395,7 @@ class DetailsView(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            Runner().get_bottle_path(self.config)
+            ManagerUtils.get_bottle_path(self.config)
         )
 
         response = file_dialog.run()
@@ -447,6 +452,7 @@ class DetailsView(Handy.Leaflet):
         '''
         self.config = config
         self.__update_by_env()
+        self.__update_latest_executables()
 
         # format update_date
         update_date = datetime.strptime(
@@ -475,6 +481,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
+        self.combo_windows.handler_block_by_func(self.__set_windows)
 
         # update widgets data with bottle configuration
         parameters = self.config.get("Parameters")
@@ -517,6 +524,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
+        self.combo_windows.set_active_id(self.config.get("Windows"))
         self.grid_versioning.set_visible(self.config.get("Versioning"))
 
         # unlock functions connected to the widgets
@@ -536,6 +544,7 @@ class DetailsView(Handy.Leaflet):
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
+        self.combo_windows.handler_unblock_by_func(self.__set_windows)
 
         self.update_programs()
         self.__update_dependencies()
@@ -603,7 +612,7 @@ class DetailsView(Handy.Leaflet):
             _("Cancel")
         )
         file_dialog.set_current_folder(
-            Runner().get_bottle_path(self.config)
+            ManagerUtils.get_bottle_path(self.config)
         )
         response = file_dialog.run()
 
@@ -721,7 +730,7 @@ class DetailsView(Handy.Leaflet):
             for w in self.list_states:
                 w.destroy()
 
-            states = self.versioning_manager.list_bottle_states(
+            states = self.versioning_manager.list_states(
                 self.config
             ).items()
 
@@ -925,7 +934,7 @@ class DetailsView(Handy.Leaflet):
         configuration according to the widget state.
         '''
         resolution = self.combo_virt_res.get_active_id()
-        self.manager.toggle_virtual_desktop(
+        Runner.toggle_virtual_desktop(
             config=self.config,
             state=state,
             resolution=resolution
@@ -944,7 +953,7 @@ class DetailsView(Handy.Leaflet):
         '''
         resolution = widget.get_active_id()
         if self.switch_virt_desktop.get_active():
-            self.manager.toggle_virtual_desktop(
+            Runner.toggle_virtual_desktop(
                 config=self.config,
                 state=True,
                 resolution=resolution
@@ -1038,6 +1047,20 @@ class DetailsView(Handy.Leaflet):
         self.config = new_config
         self.__toggle_nvapi(state=True)
 
+    def __set_windows(self, widget):
+        '''
+        This function update the Windows version on the bottle 
+        configuration according to the selected one.
+        '''
+        win = widget.get_active_id()
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="Windows",
+            value=win
+        )
+        Runner.set_windows(config=new_config, version=win)
+        self.config = new_config
+
     def __toggle_pulse_latency(self, widget, state):
         '''
         This function update the pulseaudio latency status on the bottle
@@ -1087,21 +1110,58 @@ class DetailsView(Handy.Leaflet):
         )
 
         response = file_dialog.run()
+        _execs = self.config.get("Latest_Executables")
 
         if response == -3:
             if args:
-                Runner().run_executable(
+                Runner.run_executable(
                     config=self.config,
                     file_path=file_dialog.get_filename(),
                     arguments=args
                 )
+                self.manager.update_config(
+                    config=self.config,
+                    key="Latest_Executables",
+                    value=_execs+[{
+                        "name": file_dialog.get_filename().split("/")[-1],
+                        "file": file_dialog.get_filename(), 
+                        "args": args
+                    }]
+                )
             else:
-                Runner().run_executable(
+                Runner.run_executable(
                     config=self.config,
                     file_path=file_dialog.get_filename()
                 )
+                self.manager.update_config(
+                    config=self.config,
+                    key="Latest_Executables",
+                    value=_execs+[{
+                        "name": file_dialog.get_filename().split("/")[-1],
+                        "file": file_dialog.get_filename(), 
+                        "args": ""
+                    }]
+                )
+
+        self.__update_latest_executables()
 
         file_dialog.destroy()
+    
+    def __update_latest_executables(self):
+        '''
+        This function update the latest executables list.
+        '''
+        for w in self.box_run_extra.get_children():
+            if w != self.btn_run_args:
+                w.destroy()
+
+        _execs = self.config.get("Latest_Executables", [])[-5:]
+        for exe in _execs:
+            _btn = ExecButton(
+                data=exe,
+                config=self.config
+            )
+            self.box_run_extra.add(_btn)
 
     def check_entry_state_comment(self, widget, event_key):
         '''
@@ -1126,7 +1186,7 @@ class DetailsView(Handy.Leaflet):
         '''
         comment = self.entry_state_comment.get_text()
         if comment != "":
-            self.versioning_manager.create_bottle_state(
+            self.versioning_manager.create_state(
                 config=self.config,
                 comment=comment,
                 after=self.update_states
@@ -1238,37 +1298,37 @@ class DetailsView(Handy.Leaflet):
     '''
 
     def run_winecfg(self, widget):
-        Runner().run_winecfg(self.config)
+        Runner.run_winecfg(self.config)
 
     def run_debug(self, widget):
-        Runner().run_debug(self.config)
+        Runner.run_debug(self.config)
 
     def run_browse(self, widget):
-        Runner().open_filemanager(self.config)
+        ManagerUtils.open_filemanager(self.config)
 
     def run_cmd(self, widget):
-        Runner().run_cmd(self.config)
+        Runner.run_cmd(self.config)
 
     def run_taskmanager(self, widget):
-        Runner().run_taskmanager(self.config)
+        Runner.run_taskmanager(self.config)
 
     def run_controlpanel(self, widget):
-        Runner().run_controlpanel(self.config)
+        Runner.run_controlpanel(self.config)
 
     def run_uninstaller(self, widget):
-        Runner().run_uninstaller(self.config)
+        Runner.run_uninstaller(self.config)
 
     def run_regedit(self, widget):
-        Runner().run_regedit(self.config)
+        Runner.run_regedit(self.config)
 
     def run_shutdown(self, widget):
-        Runner().send_status(self.config, "shutdown")
+        Runner.send_status(self.config, "shutdown")
 
     def run_reboot(self, widget):
-        Runner().send_status(self.config, "reboot")
+        Runner.send_status(self.config, "reboot")
 
     def run_killall(self, widget):
-        Runner().send_status(self.config, "kill")
+        Runner.send_status(self.config, "kill")
 
     '''
     The following methods open resources (URLs) in the

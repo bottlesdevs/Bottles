@@ -274,6 +274,10 @@ class RunAsync(threading.Thread):
     '''
 
     def __init__(self, task_func, callback, *args, **kwargs):
+        if "DEBUG_MODE" in os.environ:
+            import faulthandler
+            faulthandler.enable()
+
         self.source_id = None
         self.stop_request = threading.Event()
         # assert threading.current_thread() is threading.main_thread()

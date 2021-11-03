@@ -58,7 +58,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Support for custom environment variables
 - Simplified DLL overrides
 - Manage and install multiple wine/proton/dxvk versions and on-the-fly change
-- Various optimizations for better gaming performance (esync, fsync, dxvk, cache, shader compiler, offload .. and much more.)
+- Various optimizations for better gaming performance (esync, fsync, dxvk, cache, shader compiler, offload ... and much more.)
 - Tweak different wine prefix settings, without leaving Bottles
 - Automated dxvk installation
 - System for checking runner updates for the bottle and automatic repair in case of breakage
@@ -69,7 +69,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Configurations update system across Bottles versions
 - Backup and Import bottles from older version and from other managers (Lutris, POL, ..)
 - Bottles versioning (experimental)
-- .. and much more that you can find by installing Bottles!
+- ... and much more that you can find by installing Bottles!
 
 ### 🚧 Work in progress
 - Installer manager [#55](https://github.com/bottlesdevs/Bottles/issues/55)

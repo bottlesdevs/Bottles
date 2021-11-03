@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk, GLib, GObject, Handy
 
-from ..backend.runner import Runner
+from ..backend.manager_utils import ManagerUtils
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
 class ComponentEntry(Handy.ActionRow):
@@ -79,12 +79,12 @@ class ComponentEntry(Handy.ActionRow):
     def run_browse(self, widget):
         self.btn_download.set_visible(False)
 
-        Runner().open_filemanager(
+        ManagerUtils.open_filemanager(
             path_type=self.component_type,
             component=self.name
         )
 
-    def idle_update_status(
+    def update_status(
         self,
         count=False,
         block_size=False,
@@ -124,20 +124,3 @@ class ComponentEntry(Handy.ActionRow):
         self.btn_err.set_visible(False)
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
-
-    def update_status(
-        self,
-        count=False,
-        block_size=False,
-        total_size=False,
-        completed=False,
-        failed=False
-    ):
-        GLib.idle_add(
-            self.idle_update_status,
-            count,
-            block_size,
-            total_size,
-            completed,
-            failed
-        )

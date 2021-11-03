@@ -15,6 +15,7 @@ class Samples:
     config = {
         "Name": "",
         "Arch": "win64",
+        "Windows": "win10",
         "Runner": "",
         "WorkingDir": "",
         "DXVK": "",
@@ -48,7 +49,8 @@ class Samples:
         "DLL_Overrides": {},
         "Programs": {},
         "External_Programs": {},
-        "Uninstallers": {}
+        "Uninstallers": {},
+        "Latest_Executables": []
     }
 
     environments = {
@@ -88,8 +90,7 @@ class BottlesRepositories:
     installers = "https://raw.githubusercontent.com/bottlesdevs/programs/main/"
     installers_index = f"{installers}/index.yml"
 
-    if "TESTING_REPOS" in os.environ:
-        if int(os.environ["TESTING_REPOS"]) == 1:
+    if "TESTING_REPOS" in os.environ and int(os.environ["TESTING_REPOS"]) == 1:
             dependencies_index = f"{dependencies}/testing.yml"
             components_index = f"{components}/testing.yml"
 
