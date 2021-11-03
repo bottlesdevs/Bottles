@@ -698,4 +698,4 @@ class DependencyManager:
         This function set the windows version for a specifc executable 
         in the bottle registry.
         '''
-        Runner.use_windows(config, step.get("version"), step.get("executable"))
+        Runner.set_app_default(config, step.get("version"), step.get("executable"))
