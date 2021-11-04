@@ -1322,13 +1322,13 @@ class DetailsView(Handy.Leaflet):
         Runner.run_regedit(self.config)
 
     def run_shutdown(self, widget):
-        Runner.send_status(self.config, "shutdown")
+        Runner.wineboot(self.config, status=2, silent=False)
 
     def run_reboot(self, widget):
-        Runner.send_status(self.config, "reboot")
+        Runner.wineboot(self.config, status=1, silent=False)
 
     def run_killall(self, widget):
-        Runner.send_status(self.config, "kill")
+        Runner.wineboot(self.config, status=0, silent=False)
 
     '''
     The following methods open resources (URLs) in the

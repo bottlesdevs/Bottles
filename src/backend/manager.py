@@ -985,21 +985,36 @@ class Manager:
 
         # create the bottle directory
         os.makedirs(bottle_complete_path)
+        
+        # generate bottle config file
+        logging.info("Generating bottle config file…")
+        GLib.idle_add(
+            dialog.update_output, 
+            _("Generating bottle config file…")
+        )
+        config = Samples.config
+        config["Name"] = bottle_name
+        config["Arch"] = arch
+        config["Runner"] = runner_name
+        config["DXVK"] = dxvk_name
+        config["VKD3D"] = vkd3d_name
+        config["NVAPI"] = nvapi_name
+        config["Path"] = bottle_name_path
+        if path != "":
+            config["Path"] = bottle_complete_path
+        config["Custom_Path"] = bottle_custom_path
+        config["Environment"] = environment
+        config["Creation_Date"] = str(datetime.now())
+        config["Update_Date"] = str(datetime.now())
+        if versioning:
+            config["Versioning"] = True
 
         # execute wineboot on the bottle path
         GLib.idle_add(
             dialog.update_output, 
             _("The WINE config is being updated…")
         )
-        command = [
-            "DISPLAY=:3.0",
-            "WINEDEBUG=-all",
-            f"WINEPREFIX={bottle_complete_path}",
-            f"WINEARCH={arch}",
-            f"{runner} wineboot /nogui"
-        ]
-        command = " ".join(command)
-        subprocess.Popen(command, shell=True).communicate()
+        Runner.wineboot(config, status=3, comunicate=True)
         GLib.idle_add(
             dialog.update_output, 
             _("WINE config updated!")
@@ -1037,15 +1052,7 @@ class Manager:
             dialog.update_output,
             _("Re-initializing registry…")
         )
-        command = [
-            "DISPLAY=:3.0",
-            "WINEDEBUG=-all",
-            f"WINEPREFIX={bottle_complete_path}",
-            f"WINEARCH={arch}",
-            f"{runner} wineboot -k /nogui"
-        ]
-        command = " ".join(command)
-        subprocess.Popen(command, shell=True).communicate()
+        Runner.wineboot(config, status=0, comunicate=True)
         reg_files = [
             "system.reg",
             "user.reg"
@@ -1057,29 +1064,6 @@ class Manager:
                 os.remove(f"{bottle_complete_path}/{register}")
             except:
                 pass
-        
-        # generate bottle config file
-        logging.info("Generating bottle config file…")
-        GLib.idle_add(
-            dialog.update_output, 
-            _("Generating bottle config file…")
-        )
-        config = Samples.config
-        config["Name"] = bottle_name
-        config["Arch"] = arch
-        config["Runner"] = runner_name
-        config["DXVK"] = dxvk_name
-        config["VKD3D"] = vkd3d_name
-        config["NVAPI"] = nvapi_name
-        config["Path"] = bottle_name_path
-        if path != "":
-            config["Path"] = bottle_complete_path
-        config["Custom_Path"] = bottle_custom_path
-        config["Environment"] = environment
-        config["Creation_Date"] = str(datetime.now())
-        config["Update_Date"] = str(datetime.now())
-        if versioning:
-            config["Versioning"] = True
 
         # apply Windows version
         logging.info("Setting Windows version…")
@@ -1249,7 +1233,7 @@ class Manager:
         config = args[0]
 
         logging.info("Stopping bottle…")
-        Runner.send_status(config, "kill")
+        Runner.run_wineboot(config, status=0, comunicate=True)
 
         logging.info("Deleting bottle…")
 

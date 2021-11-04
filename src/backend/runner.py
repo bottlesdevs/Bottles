@@ -168,12 +168,64 @@ class Runner:
         logging.info(f"Sending Status: [{status}] to the wineprefix…")
 
         available_status = {
+            "update": "-u",
+            "update": "-u",
             "shutdown": "-s",
             "reboot": "-r",
             "kill": "-k"
         }
         option = available_status[status]
         Runner.run_command(config, "wineboot %s" % option)
+
+    @staticmethod
+    def wineboot(
+        config: BottleConfig, 
+        status: int, 
+        silent: bool = True, 
+        comunicate: bool = False
+    ):
+        '''
+        Manage Wine server uptime using wineboot
+        Parameters
+        ----------
+        status : int
+            the state ID to set in wineboot:
+            0 (kill): Kill running processes without any cleanup
+            1 (restart): Restart only, don't do normal startup operations
+            2 (shutdown): Shutdown only, don't reboot
+            3 (update): Update the wineprefix directory
+        silent: bool, optional
+            if the command should not display on display (default True)
+        Raises
+        ------
+        Exception
+            If the given state is invalid.
+        '''
+        states = {
+            0: "-k",
+            1: "-r",
+            2: "-s",
+            3: "-u",
+            4: "-i"
+        }
+        envs = {"WINEDEBUG": "-all"}
+
+        if status in states:
+            status = states[status]
+            command = f"wineboot {status}"
+            command = f"{command} /nogui"
+        
+            if silent:
+                envs["DISPLAY"] = ":3.0"
+                
+            Runner.run_command(
+                config, 
+                command, 
+                environment=envs,
+                comunicate=comunicate
+            )
+        else:
+            raise ValueError(f"[{status}] is not a valid status for wineboot!")
 
     @staticmethod
     def run_command(
@@ -270,8 +322,10 @@ class Runner:
                 dll_overrides.append(environment["WINEDLLOVERRIDES"])
                 del environment["WINEDLLOVERRIDES"]
             for e in environment:
-                e = e.split("=")
-                env[e[0]] = e[1]
+                env[e] = environment[e]
+            # for e in environment:
+            #     e = e.split("=")
+            #     env[e[0]] = e[1]
 
         if parameters["dxvk"]:
             env["WINE_LARGE_ADDRESS_AWARE"] = "1"
@@ -292,10 +346,11 @@ class Runner:
         if parameters["sync"] == "fsync":
             env["WINEFSYNC"] = "1"
 
-        if parameters["fixme_logs"]:
-            env["WINEDEBUG"] = "+fixme-all"
-        else:
-            env["WINEDEBUG"] = "fixme-all"
+        if not env.get("WINEDEBUG"):
+            if parameters["fixme_logs"]:
+                env["WINEDEBUG"] = "+fixme-all"
+            else:
+                env["WINEDEBUG"] = "fixme-all"
 
         if parameters["aco_compiler"]:
             env["ACO_COMPILER"] = "aco"
@@ -480,7 +535,7 @@ class Runner:
             data=Runner._windows_versions.get(version)["CurrentVersion"]
         ) 
 
-        RunAsync(Runner.send_status, None, config, "reboot")
+        RunAsync(Runner.wineboot, None, config, 1)
     
     @staticmethod
     def set_app_default(config: BottleConfig, version: str, executable: str):
