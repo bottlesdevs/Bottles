@@ -199,10 +199,10 @@ class Runner:
         if status in states:
             status = states[status]
             command = f"wineboot {status}"
-            command = f"{command} /nogui"
         
             if silent:
                 envs["DISPLAY"] = ":3.0"
+                command = f"{command} /nogui"
                 
             Runner.run_command(
                 config, 
