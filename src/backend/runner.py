@@ -164,20 +164,6 @@ class Runner:
         RunAsync(Runner.run_command, None, config, "regedit")
 
     @staticmethod
-    def send_status(config: BottleConfig, status: str):
-        logging.info(f"Sending Status: [{status}] to the wineprefix…")
-
-        available_status = {
-            "init": "-i",
-            "update": "-u",
-            "shutdown": "-s",
-            "reboot": "-r",
-            "kill": "-k"
-        }
-        option = available_status[status]
-        Runner.run_command(config, "wineboot %s" % option)
-
-    @staticmethod
     def wineboot(
         config: BottleConfig, 
         status: int, 
