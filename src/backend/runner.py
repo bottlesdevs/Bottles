@@ -168,7 +168,7 @@ class Runner:
         logging.info(f"Sending Status: [{status}] to the wineprefix…")
 
         available_status = {
-            "update": "-u",
+            "init": "-i",
             "update": "-u",
             "shutdown": "-s",
             "reboot": "-r",
