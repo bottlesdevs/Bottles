@@ -274,7 +274,7 @@ class DetailsView(Handy.Leaflet):
             self.switch_gamemode.set_tooltip_text(
                 _("Gamemode is either not available on your system or not running."))
 
-        self.build_pages()
+        # self.build_pages()
 
         if "TESTING_REPOS" in os.environ and os.environ["TESTING_REPOS"] == "1":
             self.infobar_testing.set_visible(True)
@@ -346,6 +346,12 @@ class DetailsView(Handy.Leaflet):
 
         if not self.window.settings.get_boolean("experiments-installers"):
             del pages["installers"]
+
+        if self.config.get("Environment") == "Layered":
+            print("ciao")
+            del pages["dependencies"]
+            del pages["preferences"]
+            del pages["versioning"]
 
         for w in self.list_pages.get_children():
             w.destroy()
@@ -550,6 +556,7 @@ class DetailsView(Handy.Leaflet):
         self.__update_dependencies()
         self.__update_installers()
         self.update_states()
+        self.build_pages()
 
     def __show_environment_variables(self, widget=False):
         '''
@@ -665,9 +672,9 @@ class DetailsView(Handy.Leaflet):
             w.destroy()
 
         supported_dependencies = self.manager.supported_dependencies
-        if len(supported_dependencies.items()) > 0:
-            for dependency in supported_dependencies.items():
-                if dependency[0] in self.config.get("Installed_Dependencies"):
+        if len(supported_dependencies.keys()) > 0:
+            for dep in supported_dependencies.items():
+                if dep[0] in self.config.get("Installed_Dependencies"):
                     '''
                     If the dependency is already installed, do not
                     list it in the list. It will be listed in the
@@ -678,17 +685,17 @@ class DetailsView(Handy.Leaflet):
                     DependencyEntry(
                         window=self.window,
                         config=self.config,
-                        dependency=dependency
+                        dependency=dep
                     )
                 )
 
         if len(self.config.get("Installed_Dependencies")) > 0:
-            for dependency in self.config.get("Installed_Dependencies"):
+            for dep in self.config.get("Installed_Dependencies"):
                 plain = True
-                if dependency in supported_dependencies:
-                    dependency = (
-                        dependency,
-                        supported_dependencies[dependency]
+                if dep in supported_dependencies:
+                    dep = (
+                        dep,
+                        supported_dependencies[dep]
                     )
                     plain = False
 
@@ -696,7 +703,7 @@ class DetailsView(Handy.Leaflet):
                     DependencyEntry(
                         window=self.window,
                         config=self.config,
-                        dependency=dependency,
+                        dependency=dep,
                         plain=plain
                     )
                 )

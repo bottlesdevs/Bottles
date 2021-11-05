@@ -1080,14 +1080,24 @@ class Manager:
             _("Applying environment: {0}…").format(environment)
         )
         if environment != "Custom":
-            environment_parameters = Samples.environments[
-                environment.lower()
-            ]["Parameters"]
-            for parameter in config["Parameters"]:
-                if parameter in environment_parameters:
-                    config["Parameters"][parameter] = environment_parameters[
-                        parameter
-                    ]
+            env = Samples.environments[environment.lower()]
+            for prm in config["Parameters"]:
+                if prm in env["Parameters"]:
+                    config["Parameters"][prm] = env["Parameters"][prm]
+
+            for dep in env["Installed_Dependencies"]:
+                _dep = self.supported_dependencies[dep]
+                GLib.idle_add(
+                    dialog.update_output, 
+                    _("Installing dependency: {0}…").format(
+                        _dep["Description"]
+                    )
+                )
+                self.dependency_manager.async_install([
+                    config, 
+                    [dep, _dep],
+                    None
+                ])
 
         time.sleep(.5)
 
