@@ -25,6 +25,7 @@ from datetime import datetime
 from gi.repository import Gtk, GLib
 
 from .runner import Runner
+from .manager_utils import ManagerUtils
 from .globals import BottlesRepositories, Paths
 from ..utils import RunAsync, UtilsLogger
 
