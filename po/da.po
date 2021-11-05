@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-30 23:20+0200\n"
-"PO-Revision-Date: 2021-10-30 21:15+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2021-11-08 22:03+0000\n"
+"Last-Translator: Joe Osborne <reachjoe.o@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bottles/bottles/"
 "da/>\n"
 "Language: da\n"
@@ -218,9 +218,8 @@ msgid "Release Candidate"
 msgstr "Udgivelseskandidat"
 
 #: data/com.usebottles.bottles.gschema.xml:42
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "Slå Udgivelseskandidat til eller fra for Kørere"
+msgstr "Slå Udgivelseskandidat til eller fra for kørere."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
@@ -236,31 +235,29 @@ msgid "Experiments"
 msgstr "Eksperimenter"
 
 #: data/com.usebottles.bottles.gschema.xml:52
-#, fuzzy
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Slå eksperimentielle funktioner, så som versionering og installatorer, til "
-"eller fra.Udgivelseskandidat for Kørere"
+"Slå eksperimentielle funktioner, så som versionering og "
+"installationsprogrammer, til eller fra. Udgivelseskandidat for Kørere."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:versioning"
 msgstr "Eksperimenter:versioning"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental versioning feature."
-msgstr "Eksperimenter:versioning"
+msgstr "Slå ekpperimentel versioneringfunktion til eller fra."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
 msgstr "Eksperimenter:installers"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental installer features."
-msgstr "Eksperimenter:installers"
+msgstr ""
+"Slå eksperimentelle funktioner for installationsprogrammer til eller fra."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -280,7 +277,7 @@ msgstr "Administrer nemt wine-præfiks"
 
 #: src/ui/about.ui:117
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
-msgstr ""
+msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Oversæt</a>"
 
 #: src/ui/about.ui:130
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
@@ -293,11 +290,11 @@ msgstr ""
 
 #: src/ui/about.ui:156
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
 #: src/ui/about.ui:169
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
-msgstr ""
+msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
 #: src/ui/state-entry.ui:21
@@ -306,7 +303,7 @@ msgstr ""
 
 #: src/ui/dependency-entry.ui:34
 msgid "License"
-msgstr ""
+msgstr "Licens"
 
 #: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
 msgid "Bug report"
@@ -333,7 +330,7 @@ msgstr "Før .exe"
 
 #: src/ui/details.ui:76
 msgid "Search for installed programs"
-msgstr "Kontroller for installerede programmer."
+msgstr "Søg efter installerede programmer"
 
 #: src/ui/details.ui:117 src/ui/importer.ui:21
 msgid ""
@@ -362,7 +359,7 @@ msgstr "Opret Flaske"
 
 #: src/ui/details.ui:182
 msgid "Flatpak help"
-msgstr ""
+msgstr "Flatpak-hjælp"
 
 #: src/ui/details.ui:206
 msgid "I can't see my old bottles after upgrade."
@@ -511,7 +508,7 @@ msgstr "Administrer de kørende processer i denne Flaske."
 
 #: src/ui/details.ui:1076
 msgid "Uninstaller"
-msgstr "Afinstaller"
+msgstr "Afinstallationsprogram"
 
 #: src/ui/details.ui:1078
 msgid "Uninstall programs using wine uninstaller"
@@ -823,25 +820,23 @@ msgid "Existing overrides"
 msgstr "DLL-overskrivninger"
 
 #: src/ui/dialog-environment-variables.ui:25
-#, fuzzy
 msgid "Change environment variables"
-msgstr "Gem miljøvariabler"
+msgstr "Ændre miljøvariabler"
 
 #: src/ui/dialog-environment-variables.ui:36 src/ui/dialog-launch-options.ui:36
 msgid "Save"
-msgstr ""
+msgstr "Gem"
 
 #: src/ui/dialog-environment-variables.ui:75
-#, fuzzy
 msgid ""
 "Here you can change the environment variables for the commands that are "
 "executed."
-msgstr "Føj miljøvariabler til kommandoer, som eksekveres af køreren."
+msgstr "Her kan man ændre miljøvariablerne, for kommandoerne, som skal køre."
 
 #: src/ui/dialog-environment-variables.ui:87 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
 msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "f.x.: -eksempel1 -eksempel2 -eksempel3=halløj"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
@@ -1436,9 +1431,8 @@ msgid "Creating a restore point …"
 msgstr "Administrer nemt wine-præfiks"
 
 #: src/backend/versioning.py:155
-#, fuzzy
 msgid "Updating index …"
-msgstr "Administrer nemt wine-præfiks"
+msgstr "Opdatere indekset…"
 
 #: src/backend/versioning.py:178
 #, fuzzy
@@ -1452,7 +1446,7 @@ msgstr "Fejlrapportering"
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
-msgstr ""
+msgstr "Advarsel"
 
 #: src/dialogs/generic.py:27
 msgid "An error has occurred."
@@ -1461,6 +1455,7 @@ msgstr ""
 #: src/views/details.py:270
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
+"Spilletilstand er enten ikke tilgængelig på dit system, eller kører ikke."
 
 #: src/views/details.py:314
 #, fuzzy
@@ -1478,16 +1473,16 @@ msgstr "Vælg en eksekverbar Windows-fil"
 
 #: src/views/details.py:389
 msgid "Done"
-msgstr ""
+msgstr "Færdig"
 
 #. format arch
 #: src/views/details.py:459
 msgid "64-bit"
-msgstr ""
+msgstr "64 bit"
 
 #: src/views/details.py:461
 msgid "32-bit"
-msgstr ""
+msgstr "32 bit"
 
 #: src/views/details.py:482
 #, python-format
@@ -1501,22 +1496,20 @@ msgstr "Vælg en eksekverbar Windows-fil"
 
 #: src/views/details.py:602
 msgid "Add"
-msgstr ""
+msgstr "Tilføj"
 
 #: src/views/details.py:1082 src/views/list.py:113
 msgid "Choose a Windows executable file"
 msgstr "Vælg en eksekverbar Windows-fil"
 
 #: src/views/details.py:1085 src/views/list.py:116
-#, fuzzy
 msgid "Run"
-msgstr "Kører"
+msgstr "Køre"
 
 #: src/views/details.py:1145
-#, fuzzy
 msgid "Select the location where to save the backup config"
 msgstr ""
-"Vælg placeringen, hvor konfigurationen for sikkerhedskopiering skal gemmes"
+"Vælg placeringen, hvor sikkerhedskopieringen af konfigurationsfil skal gemmes"
 
 #: src/views/details.py:1173
 msgid "Select the location where to save the backup archive"
@@ -1535,9 +1528,8 @@ msgid "Choose a backup archive"
 msgstr "Vælg en sikkerhedskopi"
 
 #: src/views/importer.py:100
-#, fuzzy
 msgid "Choose a configuration file"
-msgstr "Konfiguration"
+msgstr "Vælg konfigurationsfil"
 
 #: src/views/list.py:53 src/views/list.py:59
 msgid "N/A"
