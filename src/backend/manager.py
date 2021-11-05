@@ -1159,7 +1159,7 @@ class Manager:
             while not os.path.exists(f"{bottle_complete_path}/{register}"):
                 time.sleep(.5)
 
-        dialog.finish(config)
+        GLib.idle_add(dialog.finish, config)
 
     def create_bottle(
         self,
