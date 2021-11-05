@@ -1233,7 +1233,7 @@ class Manager:
         config = args[0]
 
         logging.info("Stopping bottle…")
-        Runner.run_wineboot(config, status=0, comunicate=True)
+        Runner.wineboot(config, status=0, comunicate=True)
 
         logging.info("Deleting bottle…")
 
