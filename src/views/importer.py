@@ -61,7 +61,7 @@ class ImporterView(Gtk.ScrolledWindow):
 
     def __import_full_bck(self, widget):
         '''
-        This function show a dialog to the user, from wich it can choose an
+        This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It support only .tar.gz files
         as Bottles export bottles in this format. Once selected, it will
         be imported.
@@ -91,7 +91,7 @@ class ImporterView(Gtk.ScrolledWindow):
     
     def __import_config_bck(self, widget):
         '''
-        This function show a dialog to the user, from wich it can choose an
+        This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It support only .yml files
         which are the Bottles configuration file. Once selected, it will
         be imported.

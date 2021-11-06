@@ -47,7 +47,7 @@ class DependencyEntry(Handy.ActionRow):
 
         if plain:
             '''
-            If the depedency is plain, treat it as a placeholder, it
+            If the dependency is plain, treat it as a placeholder, it
             can be used to display "fake" elements on the list
             '''
             self.set_title(dependency)

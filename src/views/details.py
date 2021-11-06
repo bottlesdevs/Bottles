@@ -472,7 +472,7 @@ class DetailsView(Handy.Leaflet):
         if self.config.get("Arch") == "win32":
             arch = _("32-bit")
 
-        # temporary lcok functions connected to the widgets
+        # temporary lock functions connected to the widgets
         self.switch_dxvk.handler_block_by_func(self.__toggle_dxvk)
         self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)

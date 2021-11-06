@@ -19,7 +19,7 @@ class Runner:
     This class handle everything related to the runner (e.g. WINE, Proton).
     It should not contain any manager logic (e.g. catalogs, checks, etc.) or
     any bottle related stuff (e.g. config handling, etc.), also DXVK, VKD3D,
-    NVAPI handling should not performed from here. This class should be keeped
+    NVAPI handling should not performed from here. This class should be kept
     as clean as possible to easily migrate to the libwine in the future.
     <https://github.com/bottlesdevs/libwine>
     '''
@@ -234,7 +234,7 @@ class Runner:
             '''
             Work around for Flatpak and Snap not able to 
             use system host commands. Disable terminal to
-            force the wineconsole, then append the comamnd
+            force the wineconsole, then append the command
             as arguments.
             '''
             terminal = False

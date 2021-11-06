@@ -210,7 +210,7 @@ class RunnerVersioning:
         except:
             return False
 
-        # update bottle configuation
+        # update bottle configuration
         self.manager.update_config(config, "State", state_id)
         self.manager.update_config(config, "Versioning", True)
 

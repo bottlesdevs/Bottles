@@ -55,7 +55,7 @@ class ProgramEntry(Handy.ActionRow):
         self.set_title(self.program_name)
         self.set_icon_name(program[2])
 
-        '''Signal conenctions'''
+        '''Signal connections'''
         self.btn_run.connect('pressed', self.run_executable)
         self.btn_winehq.connect('pressed', self.open_winehq)
         self.btn_protondb.connect('pressed', self.open_protondb)

@@ -88,7 +88,7 @@ class RunnerBackup:
         '''
         This function is used to import a backup of a bottle.
         If the backup type is "config", the configuration will be
-        used to replicate the bottle's environement. If the backup
+        used to replicate the bottle's environment. If the backup
         type is "full", the backup will be extracted in the bottle's
         directory. It returns True if the backup was successful (it 
         will also update the bottles' list), False otherwise.
