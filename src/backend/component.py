@@ -207,7 +207,7 @@ class ComponentManager:
 
         if func:
             '''
-            Set a function to be executing during the downlaod. This 
+            Set a function to be executing during the download. This 
             can be used to check the download status or update progress bars.
             '''
             _update_func = func
@@ -375,7 +375,7 @@ class ComponentManager:
     ):
         '''
         This function is used to install a component. It automatically
-        get the manifest from the givven component and then calls the
+        get the manifest from the given component and then calls the
         download and extract functions.
         '''
         if self.__utils_conn.check_connection(True):

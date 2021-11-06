@@ -123,8 +123,8 @@ class UtilsTerminal():
 
 class UtilsLogger(logging.getLoggerClass()):
     '''
-    This class is a wrapper for the logging module. It provide
-    custom fotmats for the log messages.
+    This class is a wrapper for the logging module. It provides
+    custom formats for the log messages.
     '''
     __color_map = {
         "debug": 37,
@@ -351,11 +351,11 @@ class CabExtract():
         if not shutil.which("cabextract"):
             logging.fatal(
                 "cabextract utility not found, please install to use "
-                "dependencies wich need this feature"
+                "dependencies which need this feature"
             )
             write_log(
                 "cabextract utility not found, please install to use "
-                "dependencies wich need this feature"
+                "dependencies which need this feature"
             )
             return False
 

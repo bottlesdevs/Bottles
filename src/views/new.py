@@ -224,7 +224,7 @@ class NewView(Handy.Window):
 
     def update_output(self, text):
         '''
-        This function update the label_output with the givven text.
+        This function update the label_output with the given text.
         It will be concatenated with the previous one.
         '''
         current_text = self.label_output.get_text()

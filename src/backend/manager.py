@@ -154,27 +154,27 @@ class Manager:
         exists, if not, they will be created.
         '''
         if not os.path.isdir(Paths.runners):
-            logging.info("Runners path doens't exist, creating now.")
+            logging.info("Runners path doesn't exist, creating now.")
             os.makedirs(Paths.runners, exist_ok=True)
 
         if not os.path.isdir(Paths.bottles):
-            logging.info("Bottles path doens't exist, creating now.")
+            logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
 
         if not os.path.isdir(Paths.dxvk):
-            logging.info("Dxvk path doens't exist, creating now.")
+            logging.info("Dxvk path doesn't exist, creating now.")
             os.makedirs(Paths.dxvk, exist_ok=True)
 
         if not os.path.isdir(Paths.vkd3d):
-            logging.info("Vkd3d path doens't exist, creating now.")
+            logging.info("Vkd3d path doesn't exist, creating now.")
             os.makedirs(Paths.vkd3d, exist_ok=True)
 
         if not os.path.isdir(Paths.nvapi):
-            logging.info("Nvapi path doens't exist, creating now.")
+            logging.info("Nvapi path doesn't exist, creating now.")
             os.makedirs(Paths.nvapi, exist_ok=True)
 
         if not os.path.isdir(Paths.temp):
-            logging.info("Temp path doens't exist, creating now.")
+            logging.info("Temp path doesn't exist, creating now.")
             os.makedirs(Paths.temp, exist_ok=True)
 
     def organize_components(self):
