@@ -83,11 +83,17 @@ class Runner:
         arguments: str = "",
         environment: dict = False
     ):
+        '''
+        Run a .lnk file with arguments and environment variables, inside
+        a bottle using the config provided.
+        '''
         logging.info("Running link file on the bottle…")
 
         command = f"start /unix '{file_path}'"
-        RunAsync(Runner.run_command, None, config,
-                 command, False, arguments, environment)
+        RunAsync(
+            Runner.run_command, None, 
+            config, command, False, arguments, environment
+        )
 
     @staticmethod
     def run_executable(
@@ -98,6 +104,10 @@ class Runner:
         no_async: bool = False,
         cwd: str = None
     ):
+        '''
+        Run an executable file with arguments and environment variables, inside
+        a bottle using the config provided.
+        '''
         logging.info("Running an executable on the bottle…")
 
         command = f"'{file_path}'"
@@ -108,16 +118,20 @@ class Runner:
             command = f"wineconsole cmd /c '{file_path}'"
 
         if no_async:
-            Runner.run_command(config, command,
-                             False, arguments, environment, True, cwd)
+            Runner.run_command(
+                config, 
+                command,
+                terminal=False, 
+                arguments=arguments, 
+                environment=environment, 
+                comunicate=True, 
+                cwd=cwd
+            )
         else:
-            RunAsync(Runner.run_command, None, config,
-                     command, False, arguments, environment, False, cwd)
-
-    @staticmethod
-    def run_wineboot(config: BottleConfig):
-        logging.info("Running wineboot on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "wineboot -u")
+            RunAsync(
+                Runner.run_command, None, 
+                config, command, False, arguments, environment, False, cwd
+            )
 
     @staticmethod
     def run_winecfg(config: BottleConfig):
@@ -152,8 +166,8 @@ class Runner:
     @staticmethod
     def run_uninstaller(config: BottleConfig, uuid: str = False):
         logging.info("Running an Uninstaller on the wineprefix…")
-
         command = "uninstaller"
+
         if uuid:
             command = f"uninstaller --remove '{uuid}'"
         RunAsync(Runner.run_command, None, config, command)
@@ -171,21 +185,18 @@ class Runner:
         comunicate: bool = False
     ):
         '''
-        Manage Wine server uptime using wineboot
-        Parameters
-        ----------
-        status : int
-            the state ID to set in wineboot:
-            0 (kill): Kill running processes without any cleanup
-            1 (restart): Restart only, don't do normal startup operations
-            2 (shutdown): Shutdown only, don't reboot
-            3 (update): Update the wineprefix directory
-        silent: bool, optional
-            if the command should not display on display (default True)
-        Raises
-        ------
-        Exception
-            If the given state is invalid.
+        Manage Wine server uptime using wineboot, inside a bottle using the
+        given configuraton.
+        ---
+        supported statues:
+            - 0: kill
+            - 1: restart
+            - 2: shutdown
+            - 3: update
+            - 4: init
+        ---
+        raises: ValueError
+            if the status is not supported.
         '''
         states = {
             0: "-k",
@@ -222,7 +233,12 @@ class Runner:
         environment: dict = False,
         comunicate: bool = False,
         cwd: str = None
-    ) -> bool:
+    ):
+        '''
+        Run a command inside a bottle using the config provided, supports
+        the comunicate argument to wait for the command to finish and
+        catch the output.
+        '''
         path = config.get("Path")
         runner = config.get("Runner")
         arch = config.get("Arch")
@@ -465,21 +481,19 @@ class Runner:
     @staticmethod
     def set_windows(config: BottleConfig, version: str):
         '''
-        Change Windows version of the wineprefix.
-        Parameters
+        Change Windows version in a bottle from the given
+        configuration.
         ----------
-        version : str
-            the Windows version to be setted:
-            win10 (Microsoft Windows 10)
-            win81 (Microsoft Windows 8.1)
-            win8 (Microsoft Windows 8)
-            win7 (Microsoft Windows 7)
-            win2008r2 (Microsoft Windows 2008 R1)
-            win2008 (Microsoft Windows 2008)
-            winxp (Microsoft Windows XP)
-        Raises
+        supported versions:
+            - win10 (Microsoft Windows 10)
+            - win81 (Microsoft Windows 8.1)
+            - win8 (Microsoft Windows 8)
+            - win7 (Microsoft Windows 7)
+            - win2008r2 (Microsoft Windows 2008 R1)
+            - win2008 (Microsoft Windows 2008)
+            - winxp (Microsoft Windows XP)
         ------
-        ValueError
+        raises: ValueError
             If the given version is invalid.
         '''
 
@@ -526,23 +540,19 @@ class Runner:
     @staticmethod
     def set_app_default(config: BottleConfig, version: str, executable: str):
         '''
-        Change default Windows version per application
-        Parameters
+        Change default Windows version per application in a bottle
+        from the given configuration.
         ----------
-        executable : str
-            a valid executable name (e.g. wmplayer.exe)
-        version : str
-            the Windows version to be setted:
-            win10 (Microsoft Windows 10)
-            win81 (Microsoft Windows 8.1)
-            win8 (Microsoft Windows 8)
-            win7 (Microsoft Windows 7)
-            win2008r2 (Microsoft Windows 2008 R1)
-            win2008 (Microsoft Windows 2008)
-            winxp (Microsoft Windows XP)
-        Raises
+        supported versions:
+            - win10 (Microsoft Windows 10)
+            - win81 (Microsoft Windows 8.1)
+            - win8 (Microsoft Windows 8)
+            - win7 (Microsoft Windows 7)
+            - win2008r2 (Microsoft Windows 2008 R1)
+            - win2008 (Microsoft Windows 2008)
+            - winxp (Microsoft Windows XP)
         ------
-        ValueError
+        raises: ValueError
             If the given version is invalid.
         '''
         if version not in Runner._windows_versions:

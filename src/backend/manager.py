@@ -1308,7 +1308,7 @@ class Manager:
             return False
 
         # Execute wineboot in bottle to generate missing files
-        Runner.run_wineboot(new_config)
+        Runner.wineboot(config=new_config, status=3, comunicate=True)
 
         # Update bottles
         self.update_bottles()
