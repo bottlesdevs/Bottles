@@ -105,13 +105,17 @@ class DependencyManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
-    def async_install(self, args: list) -> bool:
+    def install(
+        self,
+        config: BottleConfig,
+        dependency: list,
+        widget: Gtk.Widget = None
+    ) -> bool:
         '''
         This function install a given dependency in a bottle. It will
         return True if the installation was successful and update the
         widget status.
         '''
-        config, dependency, widget = args
         has_no_uninstaller = False
 
         if config["Versioning"]:
@@ -120,7 +124,7 @@ class DependencyManager:
             to create a new version of the bottle, before installing
             the dependency.
             '''
-            self.__manager.versioning_manager.async_create_state([
+            self.__manager.versioning_manager.create_state([
                 config,
                 f"before {dependency[0]}",
                 True, False, None
@@ -202,19 +206,6 @@ class DependencyManager:
                 GLib.idle_add(widget.set_installed, True)
 
         return True
-
-    def install(
-        self,
-        config: BottleConfig,
-        dependency: list,
-        widget: Gtk.Widget = None
-    ):
-        if self.__utils_conn.check_connection(True):
-            RunAsync(self.async_install, None, [
-                config,
-                dependency,
-                widget
-            ])
 
     def __perform_steps(
         self, 

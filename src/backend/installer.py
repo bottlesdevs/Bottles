@@ -126,11 +126,10 @@ class InstallerManager:
                 continue
 
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
-            self.__manager.dependency_manager.async_install([
-                config,
-                dep_index,
-                None
-            ])
+            RunAsync(
+                self.__manager.dependency_manager, None,
+                config, dep_index, None
+            )
 
     def __perform_steps(self, config, steps: list):
         for st in steps:
@@ -215,9 +214,7 @@ class InstallerManager:
             f.write("Name=Configure in Bottles\n")
             f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
 
-    def __async_install(self, args):
-        config, installer, widget = args
-
+    def install(self, config, installer, widget):
         manifest = self.get_installer(
             installer_name=installer[0],
             installer_category=installer[1]["Category"]
@@ -267,6 +264,3 @@ class InstallerManager:
         # unlock widget
         if widget is not None:
             GLib.idle_add(widget.set_installed)
-
-    def install(self, config, installer, widget):
-        RunAsync(self.__async_install, False, [config, installer, widget])

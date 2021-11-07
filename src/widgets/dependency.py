@@ -18,7 +18,7 @@
 import webbrowser
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
-
+from ..utils import RunAsync
 from ..dialogs.generic import Dialog
 
 
@@ -80,6 +80,7 @@ class DependencyEntry(Handy.ActionRow):
             If the dependency has no uninstaller, disable the
             btn_remove button
             '''
+            print("si")
             if self.config["Uninstallers"][dependency[0]] == "NO_UNINSTALLER":
                 self.btn_remove.set_sensitive(False)
 
@@ -130,7 +131,8 @@ class DependencyEntry(Handy.ActionRow):
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
 
-        self.manager.dependency_manager.install(
+        RunAsync(
+            self.manager.dependency_manager.install, None,
             config=self.config,
             dependency=self.dependency,
             widget=self

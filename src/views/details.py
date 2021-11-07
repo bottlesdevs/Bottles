@@ -21,6 +21,7 @@ import webbrowser
 from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
+from ..utils import RunAsync
 
 from ..dialogs.generic import MessageDialog
 from ..dialogs.duplicate import DuplicateDialog
@@ -798,12 +799,14 @@ class DetailsView(Handy.Leaflet):
         if widget:
             widget.set_sensitive(False)
         if state:
-            self.manager.install_dxvk(
+            RunAsync(
+                self.manager.install_dxvk, None,
                 config=self.config,
                 widget=widget
             )
         else:
-            self.manager.remove_dxvk(
+            RunAsync(
+                self.manager.remove_dxvk, None,
                 config=self.config,
                 widget=widget
             )
@@ -838,12 +841,14 @@ class DetailsView(Handy.Leaflet):
         if widget:
             widget.set_sensitive(False)
         if state:
-            self.manager.install_vkd3d(
+            RunAsync(
+                self.manager.install_vkd3d, None,
                 config=self.config,
                 widget=widget
             )
         else:
-            self.manager.remove_vkd3d(
+            RunAsync(
+                self.manager.remove_vkd3d, None,
                 config=self.config,
                 widget=widget
             )
@@ -865,12 +870,14 @@ class DetailsView(Handy.Leaflet):
         if widget:
             widget.set_sensitive(False)
         if state:
-            self.manager.install_nvapi(
+            RunAsync(
+                self.manager.install_nvapi, None,
                 config=self.config,
                 widget=widget
             )
         else:
-            self.manager.remove_nvapi(
+            RunAsync(
+                self.manager.remove_nvapi, None,
                 config=self.config,
                 widget=widget
             )
@@ -1193,7 +1200,8 @@ class DetailsView(Handy.Leaflet):
         '''
         comment = self.entry_state_comment.get_text()
         if comment != "":
-            self.versioning_manager.create_state(
+            RunAsync(
+                self.versioning_manager.create_state, None,
                 config=self.config,
                 comment=comment,
                 after=self.update_states
@@ -1220,7 +1228,8 @@ class DetailsView(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            BackupManager.export_backup(
+            RunAsync(
+                BackupManager.export_backup, None,
                 self.window,
                 self.config,
                 "config",
@@ -1250,7 +1259,8 @@ class DetailsView(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            BackupManager.export_backup(
+            RunAsync(
+                BackupManager.export_backup, None,
                 self.window,
                 self.config,
                 "full",
@@ -1283,7 +1293,10 @@ class DetailsView(Handy.Leaflet):
         response = dialog_delete.run()
 
         if response == Gtk.ResponseType.OK:
-            self.manager.delete_bottle(self.config)
+            RunAsync(
+                self.manager.delete_bottle, None,
+                self.config
+            )
             self.window.go_back()
 
         dialog_delete.destroy()

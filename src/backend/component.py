@@ -28,7 +28,7 @@ from typing import Union
 
 from ..operation import OperationManager
 from .globals import Paths, BottlesRepositories
-from ..utils import UtilsLogger, UtilsFiles, RunAsync
+from ..utils import UtilsLogger, UtilsFiles
 
 logging = UtilsLogger()
 
@@ -373,17 +373,6 @@ class ComponentManager:
         func=False,
         checks=True
     ):
-        '''
-        This function is used to install a component. It automatically
-        get the manifest from the given component and then calls the
-        download and extract functions.
-        '''
-        if self.__utils_conn.check_connection(True):
-            RunAsync(self.async_install, None, [
-                     component_type, component_name, after, func, checks])
-
-    def async_install(self, args: list):
-        component_type, component_name, after, func, checks = args
         manifest = self.get_component(component_type, component_name)
 
         if not manifest and not isinstance(func, bool):

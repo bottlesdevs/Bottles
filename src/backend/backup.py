@@ -24,7 +24,12 @@ RunnerType = NewType('RunnerType', str)
 class BackupManager:
 
     @staticmethod
-    def async_export_backup(args: list) -> bool:
+    def export_backup(
+        window,
+        config: BottleConfig,
+        scope: str,
+        path: str
+    ) -> bool:
         '''
         This function is used to make a backup of a bottle.
         If the backup type is "config", the backup will be done
@@ -33,7 +38,6 @@ class BackupManager:
         bottle's directory as a tar.gz file.
         It returns True if the backup was successful, False otherwise.
         '''
-        window, config, scope, path = args
         BackupManager.operation_manager = OperationManager(window)
 
         if scope == "config":
@@ -77,16 +81,7 @@ class BackupManager:
         return False
 
     @staticmethod
-    def export_backup(
-        window,
-        config: BottleConfig,
-        scope: str,
-        path: str
-    ):
-        RunAsync(BackupManager.async_export_backup, None, [window, config, scope, path])
-
-    @staticmethod
-    def async_import_backup(args: list) -> bool:
+    def import_backup(window, scope: str, path: str, manager: Manager) -> bool:
         '''
         This function is used to import a backup of a bottle.
         If the backup type is "config", the configuration will be
@@ -95,7 +90,6 @@ class BackupManager:
         directory. It returns True if the backup was successful (it 
         will also update the bottles' list), False otherwise.
         '''
-        window, scope, path, manager = args
         BackupManager.operation_manager = OperationManager(window)
         backup_name = path.split("/")[-1].split(".")
         import_status = False
@@ -144,12 +138,6 @@ class BackupManager:
 
         logging.error(f"Failed importing backup: [{backup_name}]")
         return False
-
-    @staticmethod
-    def import_backup(window, scope: str, path: str, manager: Manager):
-        RunAsync(
-            BackupManager.async_import_backup, None, [window, scope, path, manager]
-        )
 
     @staticmethod
     def duplicate_bottle(config, name) -> bool:

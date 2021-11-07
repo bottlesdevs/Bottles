@@ -18,7 +18,7 @@
 from datetime import datetime
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
-
+from ..utils import RunAsync
 from ..dialogs.generic import Dialog
 
 
@@ -74,8 +74,10 @@ class StateEntry(Handy.ActionRow):
 
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
-        self.versioning_manager.set_state(
-            self.config, self.state[0], self.set_completed)
+        RunAsync(
+            self.versioning_manager.set_state, None,
+            self.config, self.state[0], self.set_completed
+        )
 
     def open_index(self, widget):
         '''

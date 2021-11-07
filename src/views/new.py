@@ -20,6 +20,7 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 from ..backend.runner import Runner
+from ..utils import RunAsync
 
 
 class EnvironmentRow(Handy.ActionRow):
@@ -210,7 +211,8 @@ class NewView(Handy.Window):
             else:  # use any other runner available
                 runner = self.manager.runners_available[0]
 
-        self.manager.create_bottle(
+        RunAsync(
+            self.manager.create_bottle, None,
             name=self.entry_name.get_text(),
             path="",
             environment=self.selected_env,
