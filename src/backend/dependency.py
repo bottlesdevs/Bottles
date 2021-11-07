@@ -116,7 +116,7 @@ class DependencyManager:
         return True if the installation was successful and update the
         widget status.
         '''
-        has_no_uninstaller = False
+        uninstaller = "NO_UNINSTALLER"
 
         if config["Versioning"]:
             '''
@@ -124,11 +124,11 @@ class DependencyManager:
             to create a new version of the bottle, before installing
             the dependency.
             '''
-            self.__manager.versioning_manager.create_state([
+            self.__manager.versioning_manager.create_state(
                 config,
                 f"before {dependency[0]}",
                 True, False, None
-            ])
+            )
 
         task_entry = self.__operation_manager.new_task(
             file_name=dependency[0],
@@ -158,7 +158,7 @@ class DependencyManager:
             Here we execute all steps in the manifest.
             Steps are the actions performed to install the dependency.
             '''
-            has_no_uninstaller = self.__perform_steps(config, step, widget)
+            self.__perform_steps(config, step, widget)
 
         if dependency[0] not in config.get("Installed_Dependencies"):
             '''
@@ -177,7 +177,7 @@ class DependencyManager:
                 value=dependencies
             )
 
-        if manifest.get("Uninstaller") or has_no_uninstaller:
+        if manifest.get("Uninstaller"):
             '''
             If the manifest has an uninstaller, add it to the
             uninstaller list in the bottle config.
@@ -185,22 +185,19 @@ class DependencyManager:
             '''
             uninstaller = manifest.get("Uninstaller")
 
-            if has_no_uninstaller:
-                uninstaller = "NO_UNINSTALLER"
-
-            self.__manager.update_config(
-                config,
-                dependency[0],
-                uninstaller,
-                "Uninstallers"
-            )
+        self.__manager.update_config(
+            config,
+            dependency[0],
+            uninstaller,
+            "Uninstallers"
+        )
 
         # Remove entry from download manager
         GLib.idle_add(task_entry.remove)
 
         # Hide installation button and show remove button
         if widget is not None:
-            if has_no_uninstaller:
+            if uninstaller == "NO_UNINSTALLER":
                 GLib.idle_add(widget.set_installed, False)
             else:
                 GLib.idle_add(widget.set_installed, True)

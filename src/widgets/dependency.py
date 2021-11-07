@@ -80,7 +80,6 @@ class DependencyEntry(Handy.ActionRow):
             If the dependency has no uninstaller, disable the
             btn_remove button
             '''
-            print("si")
             if self.config["Uninstallers"][dependency[0]] == "NO_UNINSTALLER":
                 self.btn_remove.set_sensitive(False)
 
