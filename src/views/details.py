@@ -37,7 +37,7 @@ from ..widgets.executable import ExecButton
 
 from ..backend.runner import Runner, gamemode_available
 from ..backend.manager_utils import ManagerUtils
-from ..backend.backup import RunnerBackup
+from ..backend.backup import BackupManager
 
 
 pages = {}
@@ -1205,7 +1205,7 @@ class DetailsView(Handy.Leaflet):
         '''
         This function pop up the a file chooser where the user
         can select the path where to export the bottle configuration
-        backup. It will also ask the RunnerBackup to export the new
+        backup. It will also ask the BackupManager to export the new
         backup after the user confirmation.
         '''
         file_dialog = Gtk.FileChooserDialog(
@@ -1220,7 +1220,7 @@ class DetailsView(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            RunnerBackup().export_backup(
+            BackupManager.export_backup(
                 self.window,
                 self.config,
                 "config",
@@ -1233,7 +1233,7 @@ class DetailsView(Handy.Leaflet):
         '''
         This function pop up the a file chooser where the user
         can select the path where to export the bottle full backup. 
-        It will also ask the RunnerBackup to export the backup
+        It will also ask the BackupManager to export the backup
         after the user confirmation.
         '''
         file_dialog = Gtk.FileChooserDialog(
@@ -1250,7 +1250,7 @@ class DetailsView(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            RunnerBackup().export_backup(
+            BackupManager.export_backup(
                 self.window,
                 self.config,
                 "full",

@@ -18,7 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..backend.backup import RunnerBackup
+from ..backend.backup import BackupManager
 
 from ..widgets.importer import ImporterEntry
 
@@ -80,7 +80,7 @@ class ImporterView(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
-            RunnerBackup().import_backup(
+            BackupManager.import_backup(
                 self.window,
                 "full",
                 file_dialog.get_filename(),
@@ -110,7 +110,7 @@ class ImporterView(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
-            RunnerBackup().import_backup(
+            BackupManager.import_backup(
                 self.window,
                 "config",
                 file_dialog.get_filename(),
