@@ -902,8 +902,12 @@ class Manager:
         arch: str = "win64"
     ):
         '''
-        This function is used to create a new bottle. It is
-        called by the create_bottle function.
+        This function creates a new bottle, generate the wineprefix
+        with the given runner and arch, install DXVK and VKD3D and
+        create a new state if versioning is enabled. It also creates
+        the configuration file in the bottle root.
+        On Flatpak, it also unlinks all folders from the user directory
+        and creates these as normal folders instead.
         '''
         logging.info("Creating the wineprefix…")
 
@@ -1207,8 +1211,8 @@ class Manager:
 
     def delete_bottle(self, config: BottleConfig) -> bool:
         '''
-        This function deletes the given bottle. It is called
-        from the delete_bottle function.
+        This function deletes the given bottle, consisting of
+        the configuration and files.
         '''
         logging.info("Stopping bottle…")
         Runner.wineboot(config, status=0, comunicate=True)

@@ -373,6 +373,11 @@ class ComponentManager:
         func=False,
         checks=True
     ):
+        '''
+        This function is used to install a component. It automatically
+        get the manifest from the given component and then calls the
+        download and extract functions.
+        '''
         manifest = self.get_component(component_type, component_name)
 
         if not manifest and not isinstance(func, bool):
