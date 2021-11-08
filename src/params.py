@@ -10,3 +10,7 @@ ANIM_DURATION = 120
 # General purpose definitions
 EXECUTABLE_EXTS = ('.exe', '.msi', '.bat')
 LNK_EXTS = ('.lnk')
+
+# URLs
+DOC_URL = "https://docs.usebottles.com"
+FORUMS_URL = "https://forums.usebottles.com"

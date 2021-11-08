@@ -60,6 +60,7 @@ class MainWindow(Handy.ApplicationWindow):
     btn_menu = Gtk.Template.Child()
     btn_more = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
+    btn_forum = Gtk.Template.Child()
     btn_taskmanager = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
@@ -166,7 +167,8 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_back.connect('activate', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view, arg_exe)
         self.btn_about.connect('pressed', self.show_about_dialog)
-        self.btn_docs.connect('pressed', self.open_docs_url)
+        self.btn_docs.connect('pressed', self.open_url, DOC_URL)
+        self.btn_forum.connect('pressed', self.open_url, FORUMS_URL)
         self.btn_preferences.connect('pressed', self.show_prefs_view)
         self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
@@ -376,5 +378,5 @@ class MainWindow(Handy.ApplicationWindow):
         AboutDialog().show_all()
 
     @staticmethod
-    def open_docs_url(widget):
-        webbrowser.open_new_tab("https://docs.usebottles.com")
+    def open_url(widget, url):
+        webbrowser.open_new_tab(url)

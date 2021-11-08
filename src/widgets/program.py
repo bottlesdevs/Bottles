@@ -31,6 +31,7 @@ class ProgramEntry(Handy.ActionRow):
     btn_run = Gtk.Template.Child()
     btn_winehq = Gtk.Template.Child()
     btn_protondb = Gtk.Template.Child()
+    btn_forum = Gtk.Template.Child()
     btn_issues = Gtk.Template.Child()
     btn_launch_options = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
@@ -57,9 +58,10 @@ class ProgramEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_run.connect('pressed', self.run_executable)
-        self.btn_winehq.connect('pressed', self.open_winehq)
-        self.btn_protondb.connect('pressed', self.open_protondb)
-        self.btn_issues.connect('pressed', self.open_issues)
+        self.btn_winehq.connect('pressed', self.open_search_url, "winehq")
+        self.btn_protondb.connect('pressed', self.open_search_url, "protondb")
+        self.btn_forum.connect('pressed', self.open_search_url, "forum")
+        self.btn_issues.connect('pressed', self.open_search_url, "issues")
         self.btn_launch_options.connect(
             'pressed', self.show_launch_options_view)
         self.btn_uninstall.connect('pressed', self.uninstall_program)
@@ -116,17 +118,12 @@ class ProgramEntry(Handy.ActionRow):
         )
 
     '''Open URLs'''
-
-    def open_winehq(self, widget):
+    def open_search_url(self, widget, site):
         query = self.program_name.replace(" ", "+")
-        webbrowser.open_new_tab(f"https://www.winehq.org/search?q={query}")
-
-    def open_protondb(self, widget):
-        query = self.program_name
-        webbrowser.open_new_tab(f"https://www.protondb.com/search?q={query}")
-
-    def open_issues(self, widget):
-        query = self.program_name.replace(" ", "+")
-        webbrowser.open_new_tab(
-            f"https://github.com/bottlesdevs/Bottles/issues?q=is:issue{query}"
-        )
+        sites = {
+            "winehq": f"https://www.winehq.org/search?q={query}",
+            "protondb": f"https://www.protondb.com/search?q={query}",
+            "forum": f"https://forums.usebottles.com/?q={query}",
+            "issues": f"https://github.com/bottlesdevs/Bottles/issues?q=is:issue{query}"
+        }
+        webbrowser.open_new_tab(sites[site])
