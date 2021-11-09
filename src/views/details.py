@@ -21,6 +21,7 @@ import webbrowser
 from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
+from ..utils import RunAsync
 
 from ..dialogs.generic import MessageDialog
 from ..dialogs.duplicate import DuplicateDialog
@@ -37,7 +38,7 @@ from ..widgets.executable import ExecButton
 
 from ..backend.runner import Runner, gamemode_available
 from ..backend.manager_utils import ManagerUtils
-from ..backend.backup import RunnerBackup
+from ..backend.backup import BackupManager
 
 
 pages = {}
@@ -274,7 +275,7 @@ class DetailsView(Handy.Leaflet):
             self.switch_gamemode.set_tooltip_text(
                 _("Gamemode is either not available on your system or not running."))
 
-        self.build_pages()
+        # self.build_pages()
 
         if "TESTING_REPOS" in os.environ and os.environ["TESTING_REPOS"] == "1":
             self.infobar_testing.set_visible(True)
@@ -346,6 +347,12 @@ class DetailsView(Handy.Leaflet):
 
         if not self.window.settings.get_boolean("experiments-installers"):
             del pages["installers"]
+
+        if self.config.get("Environment") == "Layered":
+            print("ciao")
+            del pages["dependencies"]
+            del pages["preferences"]
+            del pages["versioning"]
 
         for w in self.list_pages.get_children():
             w.destroy()
@@ -466,7 +473,7 @@ class DetailsView(Handy.Leaflet):
         if self.config.get("Arch") == "win32":
             arch = _("32-bit")
 
-        # temporary lcok functions connected to the widgets
+        # temporary lock functions connected to the widgets
         self.switch_dxvk.handler_block_by_func(self.__toggle_dxvk)
         self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
@@ -550,6 +557,7 @@ class DetailsView(Handy.Leaflet):
         self.__update_dependencies()
         self.__update_installers()
         self.update_states()
+        self.build_pages()
 
     def __show_environment_variables(self, widget=False):
         '''
@@ -665,9 +673,9 @@ class DetailsView(Handy.Leaflet):
             w.destroy()
 
         supported_dependencies = self.manager.supported_dependencies
-        if len(supported_dependencies.items()) > 0:
-            for dependency in supported_dependencies.items():
-                if dependency[0] in self.config.get("Installed_Dependencies"):
+        if len(supported_dependencies.keys()) > 0:
+            for dep in supported_dependencies.items():
+                if dep[0] in self.config.get("Installed_Dependencies"):
                     '''
                     If the dependency is already installed, do not
                     list it in the list. It will be listed in the
@@ -678,17 +686,17 @@ class DetailsView(Handy.Leaflet):
                     DependencyEntry(
                         window=self.window,
                         config=self.config,
-                        dependency=dependency
+                        dependency=dep
                     )
                 )
 
         if len(self.config.get("Installed_Dependencies")) > 0:
-            for dependency in self.config.get("Installed_Dependencies"):
+            for dep in self.config.get("Installed_Dependencies"):
                 plain = True
-                if dependency in supported_dependencies:
-                    dependency = (
-                        dependency,
-                        supported_dependencies[dependency]
+                if dep in supported_dependencies:
+                    dep = (
+                        dep,
+                        supported_dependencies[dep]
                     )
                     plain = False
 
@@ -696,7 +704,7 @@ class DetailsView(Handy.Leaflet):
                     DependencyEntry(
                         window=self.window,
                         config=self.config,
-                        dependency=dependency,
+                        dependency=dep,
                         plain=plain
                     )
                 )
@@ -791,12 +799,14 @@ class DetailsView(Handy.Leaflet):
         if widget:
             widget.set_sensitive(False)
         if state:
-            self.manager.install_dxvk(
+            RunAsync(
+                self.manager.install_dxvk, None,
                 config=self.config,
                 widget=widget
             )
         else:
-            self.manager.remove_dxvk(
+            RunAsync(
+                self.manager.remove_dxvk, None,
                 config=self.config,
                 widget=widget
             )
@@ -831,12 +841,14 @@ class DetailsView(Handy.Leaflet):
         if widget:
             widget.set_sensitive(False)
         if state:
-            self.manager.install_vkd3d(
+            RunAsync(
+                self.manager.install_vkd3d, None,
                 config=self.config,
                 widget=widget
             )
         else:
-            self.manager.remove_vkd3d(
+            RunAsync(
+                self.manager.remove_vkd3d, None,
                 config=self.config,
                 widget=widget
             )
@@ -858,12 +870,14 @@ class DetailsView(Handy.Leaflet):
         if widget:
             widget.set_sensitive(False)
         if state:
-            self.manager.install_nvapi(
+            RunAsync(
+                self.manager.install_nvapi, None,
                 config=self.config,
                 widget=widget
             )
         else:
-            self.manager.remove_nvapi(
+            RunAsync(
+                self.manager.remove_nvapi, None,
                 config=self.config,
                 widget=widget
             )
@@ -1186,7 +1200,8 @@ class DetailsView(Handy.Leaflet):
         '''
         comment = self.entry_state_comment.get_text()
         if comment != "":
-            self.versioning_manager.create_state(
+            RunAsync(
+                self.versioning_manager.create_state, None,
                 config=self.config,
                 comment=comment,
                 after=self.update_states
@@ -1198,7 +1213,7 @@ class DetailsView(Handy.Leaflet):
         '''
         This function pop up the a file chooser where the user
         can select the path where to export the bottle configuration
-        backup. It will also ask the RunnerBackup to export the new
+        backup. It will also ask the BackupManager to export the new
         backup after the user confirmation.
         '''
         file_dialog = Gtk.FileChooserDialog(
@@ -1213,7 +1228,8 @@ class DetailsView(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            RunnerBackup().export_backup(
+            RunAsync(
+                BackupManager.export_backup, None,
                 self.window,
                 self.config,
                 "config",
@@ -1226,7 +1242,7 @@ class DetailsView(Handy.Leaflet):
         '''
         This function pop up the a file chooser where the user
         can select the path where to export the bottle full backup. 
-        It will also ask the RunnerBackup to export the backup
+        It will also ask the BackupManager to export the backup
         after the user confirmation.
         '''
         file_dialog = Gtk.FileChooserDialog(
@@ -1243,7 +1259,8 @@ class DetailsView(Handy.Leaflet):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            RunnerBackup().export_backup(
+            RunAsync(
+                BackupManager.export_backup, None,
                 self.window,
                 self.config,
                 "full",
@@ -1276,7 +1293,10 @@ class DetailsView(Handy.Leaflet):
         response = dialog_delete.run()
 
         if response == Gtk.ResponseType.OK:
-            self.manager.delete_bottle(self.config)
+            RunAsync(
+                self.manager.delete_bottle, None,
+                self.config
+            )
             self.window.go_back()
 
         dialog_delete.destroy()

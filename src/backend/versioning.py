@@ -1,6 +1,5 @@
 import os
 import yaml
-import time
 import shutil
 from glob import glob
 from typing import NewType
@@ -9,7 +8,7 @@ from gettext import gettext as _
 from gi.repository import GLib
 
 from ..operation import OperationManager
-from ..utils import UtilsLogger, UtilsFiles, RunAsync
+from ..utils import UtilsLogger, UtilsFiles
 from .manager_utils import ManagerUtils
 
 logging = UtilsLogger()
@@ -26,7 +25,14 @@ class RunnerVersioning:
         self.window = window
         self.manager = manager
 
-    def async_create_state(self, args: list) -> bool:
+    def create_state(
+        self,
+        config: BottleConfig,
+        comment: str = "Not commented",
+        update: bool = False,
+        no_update: bool = False,
+        after: bool = False
+    ):
         '''
         This function creates a new bottle state.
         It will list all files in the bottle and compare them with the
@@ -36,8 +42,6 @@ class RunnerVersioning:
         the index file. It will return True if the state was created, 
         False otherwise.
         '''
-        config, comment, update, no_update, after = args
-
         logging.info(
             f"Creating new state for bottle: [{config['Name']}] …"
         )
@@ -210,7 +214,7 @@ class RunnerVersioning:
         except:
             return False
 
-        # update bottle configuation
+        # update bottle configuration
         self.manager.update_config(config, "State", state_id)
         self.manager.update_config(config, "Versioning", True)
 
@@ -236,20 +240,6 @@ class RunnerVersioning:
             GLib.idle_add(after)
 
         return True
-
-    def create_state(
-        self,
-        config: BottleConfig,
-        comment: str = "Not commented",
-        update: bool = False,
-        no_update: bool = False,
-        after: bool = False
-    ):
-        RunAsync(
-            self.async_create_state, 
-            None, 
-            [config, comment, update, no_update, after]
-        )
 
     def get_state_edits(
         self,
@@ -317,7 +307,12 @@ class RunnerVersioning:
             })
         return cur_index
 
-    def async_set_state(self, args) -> bool:
+    def set_state(
+        self, 
+        config: BottleConfig, 
+        state_id: str, 
+        after=False
+    ):
         '''
         This function restore the given state to the bottle.
         It compare the state files with bottle ones and restore
@@ -327,7 +322,6 @@ class RunnerVersioning:
         well documented, but I'm a bit scared to put my hands
         on it again °_°
         '''
-        config, state_id, after = args
 
         bottle_path = ManagerUtils.get_bottle_path(config)
 
@@ -396,18 +390,6 @@ class RunnerVersioning:
             GLib.idle_add(after)
 
         return True
-
-    def set_state(
-        self, 
-        config: BottleConfig, 
-        state_id: str, 
-        after=False
-    ):
-        RunAsync(
-            self.async_set_state,
-            None,
-            [config, state_id, after]
-        )
 
     def list_states(self, config: BottleConfig) -> dict:
         '''

@@ -17,7 +17,6 @@
 
 import os
 import yaml
-import time
 import shutil
 import tarfile
 import requests
@@ -28,7 +27,7 @@ from typing import Union
 
 from ..operation import OperationManager
 from .globals import Paths, BottlesRepositories
-from ..utils import UtilsLogger, UtilsFiles, RunAsync
+from ..utils import UtilsLogger, UtilsFiles
 
 logging = UtilsLogger()
 
@@ -207,7 +206,7 @@ class ComponentManager:
 
         if func:
             '''
-            Set a function to be executing during the downlaod. This 
+            Set a function to be executing during the download. This 
             can be used to check the download status or update progress bars.
             '''
             _update_func = func
@@ -375,15 +374,9 @@ class ComponentManager:
     ):
         '''
         This function is used to install a component. It automatically
-        get the manifest from the givven component and then calls the
+        get the manifest from the given component and then calls the
         download and extract functions.
         '''
-        if self.__utils_conn.check_connection(True):
-            RunAsync(self.async_install, None, [
-                     component_type, component_name, after, func, checks])
-
-    def async_install(self, args: list):
-        component_type, component_name, after, func, checks = args
         manifest = self.get_component(component_type, component_name)
 
         if not manifest and not isinstance(func, bool):

@@ -64,19 +64,32 @@ class Samples:
                 "fsr": True,
                 "discrete_gpu": True,
                 "pulseaudio_latency": True
-            }
+            },
+            "Installed_Dependencies": [
+                "d3dx9",
+                "msls31",
+                "riched20",
+                "allfonts",
+                "d3dcompiler_43",
+                "d3dcompiler_47"
+            ]
         },
         "software": {
             "Runner": "wine",
             "Parameters": {
                 "dxvk": True,
                 "vkd3d": True
-            }
+            },
+            "Installed_Dependencies": [
+                "riched20",
+                "dotnet48"
+            ]
         },
-        # "layered": {
-        #     "Runner": "wine",
-        #     "Parameters": {}
-        # },
+        "layered": {
+            "Runner": "wine",
+            "Parameters": {},
+            "Installed_Dependencies": []
+        },
     }
 
 

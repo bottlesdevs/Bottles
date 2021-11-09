@@ -18,7 +18,7 @@
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
 import webbrowser
-
+from ..utils import RunAsync
 from ..dialogs.generic import Dialog
 
 
@@ -106,7 +106,8 @@ class InstallerEntry(Handy.ActionRow):
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
 
-        self.manager.installer_manager.install(
+        RunAsync(
+            self.manager.installer_manager.install, None,
             config=self.config,
             installer=self.installer,
             widget=self

@@ -18,7 +18,7 @@
 import webbrowser
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
-
+from ..utils import RunAsync
 from ..dialogs.generic import Dialog
 
 
@@ -47,7 +47,7 @@ class DependencyEntry(Handy.ActionRow):
 
         if plain:
             '''
-            If the depedency is plain, treat it as a placeholder, it
+            If the dependency is plain, treat it as a placeholder, it
             can be used to display "fake" elements on the list
             '''
             self.set_title(dependency)
@@ -130,7 +130,8 @@ class DependencyEntry(Handy.ActionRow):
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
 
-        self.manager.dependency_manager.install(
+        RunAsync(
+            self.manager.dependency_manager.install, None,
             config=self.config,
             dependency=self.dependency,
             widget=self

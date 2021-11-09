@@ -7,9 +7,8 @@ from gettext import gettext as _
 
 from .manager import Manager
 
-from ..utils import UtilsLogger, RunAsync
+from ..utils import UtilsLogger
 from .globals import Paths
-from .runner import Runner
 from .manager_utils import ManagerUtils
 from ..operation import OperationManager
 
@@ -21,9 +20,15 @@ RunnerName = NewType('RunnerName', str)
 RunnerType = NewType('RunnerType', str)
 
 
-class RunnerBackup:
+class BackupManager:
 
-    def async_export_backup(self, args: list) -> bool:
+    @staticmethod
+    def export_backup(
+        window,
+        config: BottleConfig,
+        scope: str,
+        path: str
+    ) -> bool:
         '''
         This function is used to make a backup of a bottle.
         If the backup type is "config", the backup will be done
@@ -32,8 +37,7 @@ class RunnerBackup:
         bottle's directory as a tar.gz file.
         It returns True if the backup was successful, False otherwise.
         '''
-        window, config, scope, path = args
-        self.operation_manager = OperationManager(window)
+        BackupManager.operation_manager = OperationManager(window)
 
         if scope == "config":
             logging.info(
@@ -51,7 +55,7 @@ class RunnerBackup:
             logging.info(
                 f"Backuping bottle: [{config['Name']}] in [{path}]"
             )
-            task_entry = self.operation_manager.new_task(
+            task_entry = BackupManager.operation_manager.new_task(
                 file_name=_("Backup {0}").format(config.get("Name")),
                 cancellable=False
             )
@@ -75,30 +79,21 @@ class RunnerBackup:
         logging.error(f"Failed to save backup in path: {path}.")
         return False
 
-    def export_backup(
-        self,
-        window,
-        config: BottleConfig,
-        scope: str,
-        path: str
-    ):
-        RunAsync(self.async_export_backup, None, [window, config, scope, path])
-
-    def async_import_backup(self, args: list) -> bool:
+    @staticmethod
+    def import_backup(window, scope: str, path: str, manager: Manager) -> bool:
         '''
         This function is used to import a backup of a bottle.
         If the backup type is "config", the configuration will be
-        used to replicate the bottle's environement. If the backup
+        used to replicate the bottle's environment. If the backup
         type is "full", the backup will be extracted in the bottle's
         directory. It returns True if the backup was successful (it 
         will also update the bottles' list), False otherwise.
         '''
-        window, scope, path, manager = args
-        self.operation_manager = OperationManager(window)
+        BackupManager.operation_manager = OperationManager(window)
         backup_name = path.split("/")[-1].split(".")
         import_status = False
 
-        task_entry = self.operation_manager.new_task(
+        task_entry = BackupManager.operation_manager.new_task(
             _("Importing backup: {0}").format(backup_name), False
         )
         logging.info(f"Importing backup: {backup_name}")
@@ -143,12 +138,8 @@ class RunnerBackup:
         logging.error(f"Failed importing backup: [{backup_name}]")
         return False
 
-    def import_backup(self, window, scope: str, path: str, manager: Manager):
-        RunAsync(
-            self.async_import_backup, None, [window, scope, path, manager]
-        )
-
-    def duplicate_bottle(self, config, name) -> bool:
+    @staticmethod
+    def duplicate_bottle(config, name) -> bool:
         '''
         This function is used to duplicate a bottle.
         The new bottle will be created in the bottles' directory

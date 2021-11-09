@@ -18,8 +18,9 @@
 import os
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, Handy
 from ..backend.runner import Runner
+from ..utils import RunAsync
 
 
 class EnvironmentRow(Handy.ActionRow):
@@ -210,7 +211,8 @@ class NewView(Handy.Window):
             else:  # use any other runner available
                 runner = self.manager.runners_available[0]
 
-        self.manager.create_bottle(
+        RunAsync(
+            self.manager.create_bottle, None,
             name=self.entry_name.get_text(),
             path="",
             environment=self.selected_env,
@@ -224,7 +226,7 @@ class NewView(Handy.Window):
 
     def update_output(self, text):
         '''
-        This function update the label_output with the givven text.
+        This function update the label_output with the given text.
         It will be concatenated with the previous one.
         '''
         current_text = self.label_output.get_text()

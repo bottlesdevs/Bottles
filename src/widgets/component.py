@@ -18,6 +18,7 @@
 from gi.repository import Gtk, GLib, GObject, Handy
 
 from ..backend.manager_utils import ManagerUtils
+from ..utils import RunAsync
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
 class ComponentEntry(Handy.ActionRow):
@@ -69,7 +70,8 @@ class ComponentEntry(Handy.ActionRow):
         for w in self.box_download_status.get_children():
             w.set_visible(True)
 
-        self.component_manager.install(
+        RunAsync(
+            self.component_manager.install, None,
             self.component_type,
             self.name,
             func=self.update_status,

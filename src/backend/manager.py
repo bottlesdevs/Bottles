@@ -16,7 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from posixpath import join
 import subprocess
 import random
 import yaml
@@ -29,7 +28,7 @@ import fnmatch
 from glob import glob
 from datetime import datetime
 from gettext import gettext as _
-from typing import Union, NewType
+from typing import NewType
 from gi.repository import Gtk, GLib
 
 from ..utils import UtilsLogger, RunAsync
@@ -100,8 +99,7 @@ class Manager:
         self.check_bottles()
         self.__clear_temp()
 
-    def __async_checks(self, args=False, no_install=False):
-        after, no_install = args
+    def checks(self, after, no_install=False):
         self.check_runners_dir()
         self.check_dxvk()
         self.check_vkd3d()
@@ -110,14 +108,6 @@ class Manager:
         self.check_bottles()
         self.organize_dependencies()
         self.fetch_installers()
-
-    def checks(self, after=False, no_install=False):
-        '''
-        This function performs multiple checks and updates, like
-        checking for installed components, bottles' paths, populate
-        catalogs, etc.
-        '''
-        RunAsync(self.__async_checks, None, [after, no_install])
 
     def __clear_temp(self, force: bool = False):
         '''
@@ -154,27 +144,27 @@ class Manager:
         exists, if not, they will be created.
         '''
         if not os.path.isdir(Paths.runners):
-            logging.info("Runners path doens't exist, creating now.")
+            logging.info("Runners path doesn't exist, creating now.")
             os.makedirs(Paths.runners, exist_ok=True)
 
         if not os.path.isdir(Paths.bottles):
-            logging.info("Bottles path doens't exist, creating now.")
+            logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
 
         if not os.path.isdir(Paths.dxvk):
-            logging.info("Dxvk path doens't exist, creating now.")
+            logging.info("Dxvk path doesn't exist, creating now.")
             os.makedirs(Paths.dxvk, exist_ok=True)
 
         if not os.path.isdir(Paths.vkd3d):
-            logging.info("Vkd3d path doens't exist, creating now.")
+            logging.info("Vkd3d path doesn't exist, creating now.")
             os.makedirs(Paths.vkd3d, exist_ok=True)
 
         if not os.path.isdir(Paths.nvapi):
-            logging.info("Nvapi path doens't exist, creating now.")
+            logging.info("Nvapi path doesn't exist, creating now.")
             os.makedirs(Paths.nvapi, exist_ok=True)
 
         if not os.path.isdir(Paths.temp):
-            logging.info("Temp path doens't exist, creating now.")
+            logging.info("Temp path doesn't exist, creating now.")
             os.makedirs(Paths.temp, exist_ok=True)
 
     def organize_components(self):
@@ -386,12 +376,13 @@ class Manager:
                 try:
                     dxvk_version = next(iter(self.supported_dxvk))
                     if no_async:
-                        self.component_manager.async_install(
-                            ["dxvk", dxvk_version, False, False, False]
-                        )
-                    else:
                         self.component_manager.install(
                             "dxvk", dxvk_version, checks=False
+                        )
+                    else:
+                        RunAsync(
+                            self.component_manager.install, None,
+                            "dxvk", dxvk_version, False, False, False
                         )
                 except StopIteration:
                     return False
@@ -427,12 +418,13 @@ class Manager:
                 try:
                     vkd3d_version = next(iter(self.supported_vkd3d))
                     if no_async:
-                        self.component_manager.async_install(
-                            ["vkd3d", vkd3d_version, False, False, False]
-                        )
-                    else:
                         self.component_manager.install(
                             "vkd3d", vkd3d_version, checks=False
+                        )
+                    else:
+                        RunAsync(
+                            self.component_manager.install, None,
+                            "vkd3d", vkd3d_version, False, False, False
                         )
                 except StopIteration:
                     return False
@@ -468,11 +460,12 @@ class Manager:
                 try:
                     nvapi_version = next(iter(self.supported_nvapi))
                     if no_async:
-                        self.component_manager.async_install(
-                            ["nvapi", nvapi_version, False, False, False]
+                        self.component_manager.install(
+                            "nvapi", nvapi_version, False, False, False
                         )
                     else:
-                        self.component_manager.install(
+                        RunAsync(
+                            self.component_manager.install, None,
                             "nvapi", nvapi_version, checks=False
                         )
                 except StopIteration:
@@ -884,21 +877,38 @@ class Manager:
                     dependency,
                     self.supported_dependencies[dependency]
                 ]
-                self.dependency_manager.async_install([config, dep, None])
+                RunAsync(
+                    self.__manager.dependency_manager, None,
+                    config, dep, None
+                )
 
         self.update_bottles(silent=True)
 
         return True
 
-    def async_create_bottle(self, args: list):
+    def create_bottle(
+        self,
+        name,
+        environment: str,
+        path: str = False,
+        runner: RunnerName = False,
+        dxvk: bool = False,
+        vkd3d: bool = False,
+        nvapi: bool = False,
+        versioning: bool = False,
+        sandbox: bool = False,
+        dialog: Gtk.Widget = None,
+        arch: str = "win64"
+    ):
         '''
-        This function is used to create a new bottle. It is
-        called by the create_bottle function.
+        This function creates a new bottle, generate the wineprefix
+        with the given runner and arch, install DXVK and VKD3D and
+        create a new state if versioning is enabled. It also creates
+        the configuration file in the bottle root.
+        On Flatpak, it also unlinks all folders from the user directory
+        and creates these as normal folders instead.
         '''
         logging.info("Creating the wineprefix…")
-
-        name, environment, path, runner, dxvk, vkd3d, \
-            nvapi, versioning, sandbox, dialog, arch = args
 
         if len(self.runners_available) == 0:
             # if there are no local runners, show preferences
@@ -1080,14 +1090,23 @@ class Manager:
             _("Applying environment: {0}…").format(environment)
         )
         if environment != "Custom":
-            environment_parameters = Samples.environments[
-                environment.lower()
-            ]["Parameters"]
-            for parameter in config["Parameters"]:
-                if parameter in environment_parameters:
-                    config["Parameters"][parameter] = environment_parameters[
-                        parameter
-                    ]
+            env = Samples.environments[environment.lower()]
+            for prm in config["Parameters"]:
+                if prm in env["Parameters"]:
+                    config["Parameters"][prm] = env["Parameters"][prm]
+
+            for dep in env["Installed_Dependencies"]:
+                _dep = self.supported_dependencies[dep]
+                GLib.idle_add(
+                    dialog.update_output, 
+                    _("Installing dependency: {0}…").format(
+                        _dep["Description"]
+                    )
+                )
+                RunAsync(
+                    self.__manager.dependency_manager, None,
+                    config, [dep, _dep], None
+                )
 
         time.sleep(.5)
 
@@ -1105,7 +1124,10 @@ class Manager:
                 dialog.update_output, 
                 _("Installing DXVK…")
             )
-            self.async_install_dxvk([config, False, dxvk_name, None])
+            RunAsync(
+                self.install_dxvk, None,
+                config, False, dxvk_name, None
+            )
 
         if config["Parameters"]["vkd3d"]:
             # perform vkd3d installation if configured
@@ -1114,7 +1136,7 @@ class Manager:
                 dialog.update_output, 
                 _("Installing VKD3D…")
             )
-            self.async_install_vkd3d([config, False, vkd3d_name, None])
+            self.install_vkd3d(config, False, vkd3d_name, None)
 
         if config["Parameters"]["dxvk_nvapi"]:
             # perform nvapi installation if configured
@@ -1123,7 +1145,7 @@ class Manager:
                 dialog.update_output, 
                 _("Installing DXVK-NVAPI…")
             )
-            self.async_install_nvapi([config, False, nvapi_name, None])
+            self.install_nvapi(config, False, nvapi_name, None)
 
         time.sleep(.5)
 
@@ -1134,8 +1156,9 @@ class Manager:
                 dialog.update_output, 
                 _("Creating versioning state 0…")
             )
-            self.versioning_manager.async_create_state(
-                [config, "First boot", False, True, False])
+            self.versioning_manager.create_state(
+                config, "First boot", False, True, False
+            )
 
         # set status created and UI usability
         logging.info(f"[{bottle_name}] is now bottled.")
@@ -1149,47 +1172,7 @@ class Manager:
             while not os.path.exists(f"{bottle_complete_path}/{register}"):
                 time.sleep(.5)
 
-        dialog.finish(config)
-
-    def create_bottle(
-        self,
-        name,
-        environment: str,
-        path: str = False,
-        runner: RunnerName = False,
-        dxvk: bool = False,
-        vkd3d: bool = False,
-        nvapi: bool = False,
-        versioning: bool = False,
-        sandbox: bool = False,
-        dialog: Gtk.Widget = None,
-        arch: str = "win64"
-    ):
-        '''
-        This function creates a new bottle, generate the wineprefix
-        with the given runner and arch, install DXVK and VKD3D and
-        create a new state if versioning is enabled. It also creates
-        the configuration file in the bottle root.
-        On Flatpak, it also unlinks all folders from the user directory
-        and creates these as normal folders instead.
-        '''
-        RunAsync(
-            self.async_create_bottle,
-            None,
-            [
-                name,
-                environment,
-                path,
-                runner,
-                dxvk,
-                vkd3d,
-                nvapi,
-                versioning,
-                sandbox,
-                dialog,
-                arch
-            ]
-        )
+        GLib.idle_add(dialog.finish, config)
 
     def __sort_runners(self, prefix: str, fallback: bool = True) -> sorted:
         '''
@@ -1225,15 +1208,13 @@ class Manager:
         except IndexError:
             return "Undefined"
 
-    def async_delete_bottle(self, args: list) -> bool:
+    def delete_bottle(self, config: BottleConfig) -> bool:
         '''
-        This function deletes the given bottle. It is called
-        from the delete_bottle function.
+        This function deletes the given bottle, consisting of
+        the configuration and files.
         '''
-        config = args[0]
-
         logging.info("Stopping bottle…")
-        Runner.run_wineboot(config, status=0, comunicate=True)
+        Runner.wineboot(config, status=0, comunicate=True)
 
         logging.info("Deleting bottle…")
 
@@ -1260,13 +1241,6 @@ class Manager:
 
         logging.error("Empty path found. Disasters unavoidable.")
         return False
-
-    def delete_bottle(self, config: BottleConfig):
-        '''
-        This function deletes the given bottle, consisting of
-        the configuration and files.
-        '''
-        RunAsync(self.async_delete_bottle, None, [config])
 
     def repair_bottle(self, config: BottleConfig) -> bool:
         '''
@@ -1298,18 +1272,23 @@ class Manager:
             return False
 
         # Execute wineboot in bottle to generate missing files
-        Runner.run_wineboot(new_config)
+        Runner.wineboot(config=new_config, status=3, comunicate=True)
 
         # Update bottles
         self.update_bottles()
         return True
 
-    def async_install_dxvk(self, args: list):
+    def install_dxvk(
+        self,
+        config: BottleConfig,
+        remove: bool = False,
+        version: str = False,
+        widget: Gtk.Widget = None
+    ) -> bool:
         '''
         This function installs the givven DXVK version in a bottle. It can
         also be used to remove the DXVK version if remove is set to True.
         '''
-        config, remove, version, widget = args
         logging.info(f"Installing dxvk for bottle: [{config['Name']}].")
 
         if version:
@@ -1334,25 +1313,17 @@ class Manager:
             return GLib.idle_add(widget.set_sensitive, True)
         return res
 
-    def install_dxvk(
+    def install_vkd3d(
         self,
         config: BottleConfig,
         remove: bool = False,
         version: str = False,
         widget: Gtk.Widget = None
     ) -> bool:
-        RunAsync(
-            self.async_install_dxvk,
-            None,
-            [config, remove, version, widget]
-        )
-
-    def async_install_vkd3d(self, args):
         '''
         This function installs the givven VKD3D version in a bottle. It can
         also be used to remove the VKD3D version if remove is set to True.
         '''
-        config, remove, version, widget = args
         logging.info(
             f"Installing vkd3d for bottle: [{config['Name']}]."
         )
@@ -1380,26 +1351,17 @@ class Manager:
             return GLib.idle_add(widget.set_sensitive, True)
         return res
 
-    def install_vkd3d(
+    def install_nvapi(
         self,
         config: BottleConfig,
         remove: bool = False,
         version: str = False,
         widget: Gtk.Widget = None
     ) -> bool:
-        RunAsync(
-            self.async_install_vkd3d,
-            None,
-            [config, remove, version, widget]
-        )
-
-    def async_install_nvapi(self, args: list):
         '''
         This function installs the givven DXVK-NVAPI version in a bottle. It
         can also be used to remove it if remove is set to True.
         '''
-        config, remove, version, widget = args
-
         if version:
             nvapi_version = version
         else:
@@ -1434,19 +1396,6 @@ class Manager:
         if widget:
             return GLib.idle_add(widget.set_sensitive, True)
         return True
-
-    def install_nvapi(
-        self,
-        config: BottleConfig,
-        remove: bool = False,
-        version: str = False,
-        widget: Gtk.Widget = None
-    ) -> bool:
-        RunAsync(
-            self.async_install_nvapi,
-            None,
-            [config, remove, version, widget]
-        )
 
     def remove_dxvk(self, config: BottleConfig, widget: Gtk.Widget = None):
         '''

@@ -18,8 +18,8 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..backend.backup import RunnerBackup
-
+from ..backend.backup import BackupManager
+from ..utils import RunAsync
 from ..widgets.importer import ImporterEntry
 
 
@@ -61,7 +61,7 @@ class ImporterView(Gtk.ScrolledWindow):
 
     def __import_full_bck(self, widget):
         '''
-        This function show a dialog to the user, from wich it can choose an
+        This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It support only .tar.gz files
         as Bottles export bottles in this format. Once selected, it will
         be imported.
@@ -80,7 +80,8 @@ class ImporterView(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
-            RunnerBackup().import_backup(
+            RunAsync(
+                BackupManager.import_backup, None,
                 self.window,
                 "full",
                 file_dialog.get_filename(),
@@ -91,7 +92,7 @@ class ImporterView(Gtk.ScrolledWindow):
     
     def __import_config_bck(self, widget):
         '''
-        This function show a dialog to the user, from wich it can choose an
+        This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It support only .yml files
         which are the Bottles configuration file. Once selected, it will
         be imported.
@@ -110,7 +111,8 @@ class ImporterView(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
-            RunnerBackup().import_backup(
+            RunAsync(
+                BackupManager.import_backup, None,
                 self.window,
                 "config",
                 file_dialog.get_filename(),

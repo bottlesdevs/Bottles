@@ -20,7 +20,7 @@ import time
 from gi.repository import Gtk, Handy
 
 from ..utils import RunAsync
-from ..backend.backup import RunnerBackup
+from ..backend.backup import BackupManager
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
 class DuplicateDialog(Handy.Window):
@@ -80,7 +80,7 @@ class DuplicateDialog(Handy.Window):
         RunAsync(self.pulse, None)
         name = self.entry_name.get_text()
 
-        RunnerBackup().duplicate_bottle(self.config, name)
+        BackupManager.duplicate_bottle(self.config, name)
         self.parent.manager.update_bottles()
 
         self.stack_switcher.set_visible_child_name("page_duplicated")
