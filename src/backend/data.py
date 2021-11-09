@@ -58,4 +58,3 @@ class DataManager:
         This function returns the value of a key in the data dictionary.
         '''
         return self.__data[key]
-

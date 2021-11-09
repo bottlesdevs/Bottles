@@ -30,7 +30,7 @@ class MessageEntry(Handy.ActionRow):
     btn_details = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, id, title, body, url, message_type, **kwargs):
+    def __init__(self, nid, title, body, url, message_type, **kwargs):
         super().__init__(**kwargs)
 
         '''
@@ -44,7 +44,7 @@ class MessageEntry(Handy.ActionRow):
             "special": "⭐"
         }
 
-        self.id = id
+        self.nid = nid
         self.url = url
         self.set_title(f"{icons[message_type]} {title}")
         self.set_subtitle(body)
@@ -59,5 +59,5 @@ class MessageEntry(Handy.ActionRow):
         webbrowser.open(self.url)
     
     def __mark_as_read(self, widget):
-        NotificationsManager().mark_as_read(self.id)
+        NotificationsManager().mark_as_read(self.nid)
         self.destroy()

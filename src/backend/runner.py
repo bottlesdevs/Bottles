@@ -317,7 +317,7 @@ class Runner:
                     env[key] = value
                 except:
                     # ref: https://github.com/bottlesdevs/Bottles/issues/668
-                    continue
+                    logging.debug(f"Invalid environment variable: {env_var}")
 
         if environment:
             if environment.get("WINEDLLOVERRIDES"):

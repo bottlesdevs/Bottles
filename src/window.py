@@ -353,7 +353,7 @@ class MainWindow(Handy.ApplicationWindow):
         if len(messages) > 0:
             for message in messages:
                 entry = MessageEntry(
-                    id=message["id"],
+                    nid=message["id"],
                     title=message["title"],
                     body=message["body"],
                     url=message["url"],
