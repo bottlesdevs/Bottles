@@ -248,14 +248,14 @@ class MainWindow(Handy.ApplicationWindow):
         self.check_crash_log()
         self.check_notifications()
 
-    def send_notification(self, title, text, image="", user_settings=True):
+    def send_notification(self, title, text, image="", ignore_user=True):
         '''
         This method is used to send a notification to the user using
         the Notify instance. The notification is sent only if the
         user has enabled it in the settings. It is possibile to ignore the
-        user settings by passing the argument user_settings=False.
+        user settings by passing the argument ignore_user=False.
         '''
-        if user_settings and self.settings.get_boolean("notifications") or not user_settings:
+        if ignore_user or self.settings.get_boolean("notifications"):
             notification = Notify.Notification.new(title, text, image)
             notification.show()
 
