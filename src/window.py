@@ -207,12 +207,9 @@ class MainWindow(Handy.ApplicationWindow):
         elif page == "page_importer":
             self.set_title(_("Import & export"))
 
-    def set_title(self, title, subtitle: str = False):
+    def set_title(self, title, subtitle: str = ""):
         self.headerbar.set_title(title)
-        if subtitle:
-            self.headerbar.set_subtitle(subtitle)
-        else:
-            self.headerbar.set_subtitle("")
+        self.headerbar.set_subtitle(subtitle)
     
     def set_actions(self, widget: Gtk.Widget = False):
         '''
