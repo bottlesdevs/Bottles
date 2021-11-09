@@ -37,11 +37,7 @@ BottleConfig = NewType('BottleConfig', dict)
 
 class InstallerManager:
 
-    def __init__(
-        self,
-        manager,
-        widget: Gtk.Widget = None
-    ):
+    def __init__(self, manager):
         self.__manager = manager
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
@@ -54,7 +50,7 @@ class InstallerManager:
         return an empty text.
         '''
         review = ""
-        review_url = f"{BottlesRepositories.installers}Reviews/{installer_name}.md"
+        review_url = f"\{BottlesRepositories.installers}Reviews/{installer_name}.md"
 
         try:
             with urllib.request.urlopen(review_url) as response:

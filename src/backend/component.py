@@ -17,7 +17,6 @@
 
 import os
 import yaml
-import time
 import shutil
 import tarfile
 import requests

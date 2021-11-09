@@ -29,7 +29,7 @@ from .runner import Runner
 from .globals import BottlesRepositories, Paths
 from ..operation import OperationManager
 from .manager_utils import ManagerUtils
-from ..utils import RunAsync, UtilsLogger, CabExtract, validate_url
+from ..utils import UtilsLogger, CabExtract, validate_url
 
 logging = UtilsLogger()
 

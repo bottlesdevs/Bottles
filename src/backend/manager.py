@@ -16,7 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from posixpath import join
 import subprocess
 import random
 import yaml
@@ -29,7 +28,7 @@ import fnmatch
 from glob import glob
 from datetime import datetime
 from gettext import gettext as _
-from typing import Union, NewType
+from typing import NewType
 from gi.repository import Gtk, GLib
 
 from ..utils import UtilsLogger, RunAsync

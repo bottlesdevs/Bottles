@@ -7,9 +7,8 @@ from gettext import gettext as _
 
 from .manager import Manager
 
-from ..utils import UtilsLogger, RunAsync
+from ..utils import UtilsLogger
 from .globals import Paths
-from .runner import Runner
 from .manager_utils import ManagerUtils
 from ..operation import OperationManager
 

@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, Handy
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/task-entry.ui')

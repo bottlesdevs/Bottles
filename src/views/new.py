@@ -18,7 +18,7 @@
 import os
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, Handy
 from ..backend.runner import Runner
 from ..utils import RunAsync
 

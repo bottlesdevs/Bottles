@@ -1,6 +1,5 @@
 import os
 import yaml
-import time
 import shutil
 from glob import glob
 from typing import NewType
@@ -9,7 +8,7 @@ from gettext import gettext as _
 from gi.repository import GLib
 
 from ..operation import OperationManager
-from ..utils import UtilsLogger, UtilsFiles, RunAsync
+from ..utils import UtilsLogger, UtilsFiles
 from .manager_utils import ManagerUtils
 
 logging = UtilsLogger()
