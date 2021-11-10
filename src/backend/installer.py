@@ -50,7 +50,7 @@ class InstallerManager:
         return an empty text.
         '''
         review = ""
-        review_url = f"\{BottlesRepositories.installers}Reviews/{installer_name}.md"
+        review_url = f"{BottlesRepositories.installers}Reviews/{installer_name}.md"
 
         try:
             with urllib.request.urlopen(review_url) as response:
