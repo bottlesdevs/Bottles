@@ -878,7 +878,7 @@ class Manager:
                     self.supported_dependencies[dependency]
                 ]
                 RunAsync(
-                    self.__manager.dependency_manager, None,
+                    self.dependency_manager, None,
                     config, dep, None
                 )
 
@@ -1104,7 +1104,7 @@ class Manager:
                     )
                 )
                 RunAsync(
-                    self.__manager.dependency_manager, None,
+                    self.dependency_manager, None,
                     config, [dep, _dep], None
                 )
 
