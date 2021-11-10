@@ -32,6 +32,9 @@
   <a href="https://www.reddit.com/r/usebottles/">
     <img alt="Subreddit subscribers" src="https://img.shields.io/reddit/subreddit-subscribers/usebottles">
   </a>
+  <a href="https://forums.usebottles.com/">
+    <img src="https://img.shields.io/static/v1?label=Join%20our&message=Forum&color=blue">
+  </a>
 </div>
 
 <br/>
