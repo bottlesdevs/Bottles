@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-30 23:20+0200\n"
+"POT-Creation-Date: 2021-11-11 18:13+0100\n"
 "PO-Revision-Date: 2021-10-31 06:02+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:185 src/ui/window.ui:200
-#: src/window.py:145 src/window.py:199
+#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
+#: src/window.py:149 src/window.py:204
 msgid "Bottles"
 msgstr "Şişeler"
 
@@ -190,7 +190,7 @@ msgid "Change the window height."
 msgstr "Pencere yüksekliğini değiştir."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:336
+#: src/ui/window.ui:349
 msgid "Notifications"
 msgstr "Bildirimler"
 
@@ -387,7 +387,7 @@ msgstr "Sürüm oluşturma bu şişede etkin."
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:469 src/main.py:121
+#: src/ui/details.ui:469 src/main.py:122
 msgid "Bottle name"
 msgstr "Şişe adı"
 
@@ -435,7 +435,7 @@ msgstr "Tüm wine işlemlerini sonlandır"
 msgid "Destroy this bottle"
 msgstr "Bu şişeyi yok et"
 
-#: src/ui/details.ui:794 src/ui/details.ui:2424 src/views/details.py:326
+#: src/ui/details.ui:794 src/ui/details.ui:2466 src/views/details.py:332
 msgid "Programs"
 msgstr "Programlar"
 
@@ -483,7 +483,7 @@ msgstr "Hata ayıklama"
 msgid "Debug wine processes."
 msgstr "Wine işlemlerinde hata ayıklayın."
 
-#: src/ui/details.ui:1007 src/ui/details.ui:2261 src/ui/details.ui:2781
+#: src/ui/details.ui:1007 src/ui/details.ui:2303 src/ui/details.ui:2823
 msgid "Read documentation"
 msgstr "Belgelendirmeyi oku"
 
@@ -667,75 +667,80 @@ msgstr "VKD3D sürümlerini yönetin"
 msgid "NVAPI Version"
 msgstr "NVAPI Sürümü"
 
-#: src/ui/details.ui:1887 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1886
+#, fuzzy
+msgid "Windows Version"
+msgstr "Sürümü göster"
+
+#: src/ui/details.ui:1929 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "DLL Geçersiz Kılmaları"
 
-#: src/ui/details.ui:1925
+#: src/ui/details.ui:1967
 msgid "Working directory"
 msgstr "Çalışma dizini"
 
-#: src/ui/details.ui:1927
+#: src/ui/details.ui:1969
 msgid "Point to the bottle path"
 msgstr "Şişe yolunu göster"
 
-#: src/ui/details.ui:1943
+#: src/ui/details.ui:1985
 msgid "Choose a directory"
 msgstr "Bir dizin seçin"
 
-#: src/ui/details.ui:1986
+#: src/ui/details.ui:2028
 msgid "Audio"
 msgstr "Ses"
 
-#: src/ui/details.ui:1991
+#: src/ui/details.ui:2033
 msgid "Reduce PulseAudio latency"
 msgstr "PulseAudio gecikmesini azalt"
 
-#: src/ui/details.ui:1992
+#: src/ui/details.ui:2034
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Ses kalitesini artırmak için PulseAudio ses gecikmesini 60 milisaniyeye "
 "ayarla"
 
-#: src/ui/details.ui:2029
+#: src/ui/details.ui:2071
 msgid "Developers & Debug"
 msgstr "Geliştiriciler ve Hata Ayıklama"
 
-#: src/ui/details.ui:2034
+#: src/ui/details.ui:2076
 msgid "Environment variables"
 msgstr "Ortam değişkenleri"
 
-#: src/ui/details.ui:2072
+#: src/ui/details.ui:2114
 msgid "DXVK HUD"
 msgstr "DXVK GÖSTERGESİ"
 
-#: src/ui/details.ui:2073
+#: src/ui/details.ui:2115
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
-"D3D uygulamalarında FPS ve diğer ayrıntıları gösteren DXVK kaplamasını "
-"aç/kapat."
+"D3D uygulamalarında FPS ve diğer ayrıntıları gösteren DXVK kaplamasını aç/"
+"kapat."
 
-#: src/ui/details.ui:2099
+#: src/ui/details.ui:2141
 msgid "Enable wine fixme logs"
 msgstr "Wine fixme günlüklerini etkinleştir"
 
-#: src/ui/details.ui:2100
+#: src/ui/details.ui:2142
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wine'da uygulanmayan günlük kodu yolları."
 
-#: src/ui/details.ui:2141 src/ui/preferences.ui:8 src/ui/window.ui:47
-#: src/views/details.py:318
+#: src/ui/details.ui:2183 src/ui/preferences.ui:8 src/ui/window.ui:47
+#: src/views/details.py:324
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: src/ui/details.ui:2192
+#: src/ui/details.ui:2234
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 "Test modu etkinleştirildi: yalnızca test deposundaki bağımlılıklar "
 "gösterilir."
 
-#: src/ui/details.ui:2248
+#: src/ui/details.ui:2290
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
@@ -743,19 +748,19 @@ msgstr ""
 "Bu sayfadaki dosyalar doğrulanmış olsa da, sahipli lisans altında "
 "olabilirler."
 
-#: src/ui/details.ui:2271
+#: src/ui/details.ui:2313
 msgid "Report a missing dependency"
 msgstr "Eksik bağımlılık bildir"
 
-#: src/ui/details.ui:2315
+#: src/ui/details.ui:2357
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework 4 .."
 
-#: src/ui/details.ui:2355 src/views/details.py:322
+#: src/ui/details.ui:2397 src/views/details.py:328
 msgid "Dependencies"
 msgstr "Bağımlılıklar"
 
-#: src/ui/details.ui:2476 src/ui/details.ui:2603
+#: src/ui/details.ui:2518 src/ui/details.ui:2645
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -764,23 +769,23 @@ msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues/new/choose"
 "\">hataları bildirin</a>."
 
-#: src/ui/details.ui:2712
+#: src/ui/details.ui:2754
 msgid "Type a really short comment:"
 msgstr "Kısa bir yorum yazın:"
 
-#: src/ui/details.ui:2729
+#: src/ui/details.ui:2771
 msgid "Special characters are not allowed!"
 msgstr "Özel karakterler kullanmayınız!"
 
-#: src/ui/details.ui:2730
+#: src/ui/details.ui:2772
 msgid "A really short comment"
 msgstr "Gerçekten kısa bir yorum"
 
-#: src/ui/details.ui:2744
+#: src/ui/details.ui:2786
 msgid "Save the bottle state."
 msgstr "Şişenin durumunu kaydet."
 
-#: src/ui/details.ui:2808
+#: src/ui/details.ui:2850
 msgid "Create new state"
 msgstr "Yeni durum oluştur"
 
@@ -789,8 +794,8 @@ msgid "Message goes here."
 msgstr "Mesaj buraya gelecek."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:390
-#: src/views/details.py:603 src/views/details.py:1086 src/views/list.py:117
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:402
+#: src/views/details.py:620 src/views/details.py:1123 src/views/list.py:117
 msgid "Cancel"
 msgstr "İptal"
 
@@ -894,11 +899,11 @@ msgstr "Dosyalara göz atın"
 msgid "0%"
 msgstr "% 0"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:121
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:134
 msgid "Uninstall"
 msgstr "Kaldır"
 
-#: src/ui/importer.ui:75 src/window.py:155
+#: src/ui/importer.ui:75 src/window.py:159
 msgid "Importer"
 msgstr "İçe aktarıcı"
 
@@ -946,7 +951,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Bu şişede .exe/.msi çalıştır"
 
-#: src/ui/new.ui:25 src/ui/window.ui:316
+#: src/ui/new.ui:25 src/ui/window.ui:329
 msgid "New bottle"
 msgstr "Yeni şişe"
 
@@ -1210,11 +1215,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:330
+#: src/ui/preferences.ui:272 src/views/details.py:336
 msgid "Versioning"
 msgstr "Sürüm oluşturma"
 
-#: src/ui/preferences.ui:298 src/views/details.py:334
+#: src/ui/preferences.ui:298 src/views/details.py:340
 msgid "Installers"
 msgstr "Kurucular"
 
@@ -1235,10 +1240,16 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
-msgid "Bottles Issues"
+#, fuzzy
+msgid "Bottles' Forums"
 msgstr "Şişeler Sorunları"
 
-#: src/ui/program-entry.ui:108
+#: src/ui/program-entry.ui:97
+#, fuzzy
+msgid "Bottles' Issues"
+msgstr "Şişeler Sorunları"
+
+#: src/ui/program-entry.ui:121
 msgid "Remove from Programs"
 msgstr "Programlardan kaldır"
 
@@ -1262,7 +1273,7 @@ msgstr "Bunlar, bilgisayarınızda çalışan wine / wine sunucusu işlemleridir
 msgid "Check for running processes."
 msgstr "Çalışan işlemleri kontrol edin."
 
-#: src/ui/window.ui:21 src/window.py:150 src/window.py:201
+#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
 msgid "Task manager"
 msgstr "Görev yöneticisi"
 
@@ -1275,18 +1286,22 @@ msgid "Documentation"
 msgstr "Belgelendirme"
 
 #: src/ui/window.ui:84
+msgid "Forums"
+msgstr ""
+
+#: src/ui/window.ui:97
 msgid "About Bottles"
 msgstr "Şişeler Hakkında"
 
-#: src/ui/window.ui:209 src/ui/window.ui:252
+#: src/ui/window.ui:222 src/ui/window.ui:265
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-#: src/ui/window.ui:230
+#: src/ui/window.ui:243
 msgid "Operations"
 msgstr "İşlemler"
 
-#: src/ui/window.ui:274
+#: src/ui/window.ui:287
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1295,31 +1310,36 @@ msgstr ""
 "İnternete bağlı değilsiniz, internet bağlantısı olmadan temel bileşenleri "
 "indiremezsiniz. Bağlantıyı yeniden kurduğunuzda bu simgeye tıklayın."
 
-#: src/ui/window.ui:295
+#: src/ui/window.ui:308
 msgid "Go back"
 msgstr "Geri git"
 
-#: src/main.py:97
+#: src/main.py:98
 msgid "Show version"
 msgstr "Sürümü göster"
 
-#: src/main.py:105
+#: src/main.py:106
 msgid "Executable path"
 msgstr "Çalıştırılabilir dosya yolu"
 
-#: src/main.py:113
+#: src/main.py:114
 msgid "lnk path"
 msgstr "lnk yolu"
 
-#: src/main.py:234
+#: src/main.py:130
+#, fuzzy
+msgid "Pass arguments"
+msgstr "Argümanlarla çalıştır"
+
+#: src/main.py:247
 msgid "[Quit] request received."
 msgstr "[Çık] isteği alındı."
 
-#: src/main.py:243
+#: src/main.py:256
 msgid "[Help] request received."
 msgstr "[Yardım] isteği alındı."
 
-#: src/main.py:251
+#: src/main.py:264
 msgid "[Refresh] request received."
 msgstr "[Yenile] isteği alındı."
 
@@ -1327,108 +1347,119 @@ msgstr "[Yenile] isteği alındı."
 msgid "You are offline, unable to download."
 msgstr "Çevrimdışısınız, karşıdan yükleyemiyorsunuz."
 
-#: src/window.py:140 src/window.py:197
+#: src/window.py:144 src/window.py:202
 msgid "Bottle details"
 msgstr "Şişe ayrıntıları"
 
-#: src/window.py:187
+#: src/window.py:192
 msgid "Bottles Started!"
 msgstr "Şişeler Başlatıldı!"
 
-#: src/window.py:203
+#: src/window.py:208
 msgid "Import & export"
 msgstr "İçe ve dışa aktar"
 
-#: src/backend/backup.py:54
+#: src/backend/backup.py:59
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "{0} yedeklemesi"
 
-#: src/backend/backup.py:101
+#: src/backend/backup.py:97
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Yedekleme içe aktarılıyor: {0}"
 
-#. if there are no local runners, show preferences
-#: src/backend/manager.py:896
+#: src/backend/manager.py:916
 msgid "No runners found, please install one."
 msgstr "Çalıştırıcı bulunamadı, lütfen bir tane kurun."
 
-#. if there are no local dxvks, install latest
-#: src/backend/manager.py:901
-msgid "No DXVK found, installing the latest version …"
+#: src/backend/manager.py:924
+#, fuzzy
+msgid "No DXVK found, installing the latest version…"
 msgstr "DXVK bulunamadı, en son sürüm kuruluyor…"
 
-#. if there are no local vkd3ds, install latest
-#: src/backend/manager.py:905
-msgid "No VKD3D found, installing the latest version …"
+#: src/backend/manager.py:931
+#, fuzzy
+msgid "No VKD3D found, installing the latest version…"
 msgstr "VKD3D bulunamadı, en son sürüm kuruluyor…"
 
-#. if there are no local nvapis, install latest
-#: src/backend/manager.py:909
-msgid "No NVAPI found, installing the latest version …"
+#: src/backend/manager.py:938
+#, fuzzy
+msgid "No NVAPI found, installing the latest version…"
 msgstr "NVAPI bulunamadı, en son sürüm kuruluyor…"
 
-#. execute wineboot on the bottle path
-#: src/backend/manager.py:969
-msgid "The WINE config is being updated …"
-msgstr "WINE yapılandırması güncelleniyor…"
-
-#: src/backend/manager.py:979
-msgid "WINE config updated!"
-msgstr "WINE yapılandırması güncellendi!"
-
-#: src/backend/manager.py:988
-msgid "Running as Flatpak, creating sandboxed folders…"
-msgstr "Flatpak olarak çalışıyor, korumalı klasörler oluşturuluyor…"
-
-#: src/backend/manager.py:990
-msgid "Creating sandboxed folders…"
-msgstr "Korumalı klasörler oluşturuluyor…"
-
-#: src/backend/manager.py:1004
+#: src/backend/manager.py:1002
 msgid "Generating bottle config file…"
 msgstr "Şişe yapılandırma dosyası oluşturuluyor…"
 
-#: src/backend/manager.py:1025
-#, python-brace-format
-msgid "Applying environment: {0} …"
+#: src/backend/manager.py:1024
+#, fuzzy
+msgid "The WINE config is being updated…"
+msgstr "WINE yapılandırması güncelleniyor…"
+
+#: src/backend/manager.py:1029
+msgid "WINE config updated!"
+msgstr "WINE yapılandırması güncellendi!"
+
+#: src/backend/manager.py:1041
+msgid "Running as Flatpak, creating sandboxed folders…"
+msgstr "Flatpak olarak çalışıyor, korumalı klasörler oluşturuluyor…"
+
+#: src/backend/manager.py:1046
+msgid "Creating sandboxed folders…"
+msgstr "Korumalı klasörler oluşturuluyor…"
+
+#: src/backend/manager.py:1062
+msgid "Re-initializing registry…"
+msgstr ""
+
+#: src/backend/manager.py:1081
+msgid "Setting Windows version…"
+msgstr ""
+
+#: src/backend/manager.py:1089
+#, fuzzy, python-brace-format
+msgid "Applying environment: {0}…"
 msgstr "Ortam uygulanıyor: [{0}] …"
 
-#: src/backend/manager.py:1048
+#: src/backend/manager.py:1101
+#, fuzzy, python-brace-format
+msgid "Installing dependency: {0}…"
+msgstr "{1} şişesine bağımlılığı olan {0} yükleniyor…"
+
+#: src/backend/manager.py:1121
 msgid "Installing DXVK…"
 msgstr "DXVK kuruluyor…"
 
-#: src/backend/manager.py:1054
+#: src/backend/manager.py:1133
 msgid "Installing VKD3D…"
 msgstr "VKD3D kuruluyor…"
 
-#: src/backend/manager.py:1060
+#: src/backend/manager.py:1142
 msgid "Installing DXVK-NVAPI…"
 msgstr "DXVK-NVAPI kuruluyor…"
 
-#: src/backend/manager.py:1068
+#: src/backend/manager.py:1153
 msgid "Creating versioning state 0…"
 msgstr "Sürüm oluşturma durumu 0 oluşturuluyor…"
 
-#: src/backend/manager.py:1075
-#, python-brace-format
-msgid "Your new {0} bottle is now ready."
-msgstr "Yeni şişeniz: {0} artık hazır."
+#: src/backend/manager.py:1163
+msgid "Finalizing…"
+msgstr ""
 
-#: src/backend/versioning.py:48
+#: src/backend/versioning.py:52
 msgid "Generating state files index …"
 msgstr "Durum dosyaları dizini oluşturuluyor…"
 
-#: src/backend/versioning.py:131
+#: src/backend/versioning.py:135
 msgid "Creating a restore point …"
 msgstr "Geri yükleme noktası oluşturuluyor…"
 
-#: src/backend/versioning.py:155
+#: src/backend/versioning.py:159
 msgid "Updating index …"
 msgstr "Dizin güncelleniyor…"
 
-#: src/backend/versioning.py:178
+#: src/backend/versioning.py:179
 msgid "Updating states …"
 msgstr "Durumlar güncelleniyor…"
 
@@ -1444,69 +1475,69 @@ msgstr "Uyarı"
 msgid "An error has occurred."
 msgstr "Bir hata oluştu."
 
-#: src/views/details.py:270
+#: src/views/details.py:276
 msgid "Gamemode is either not available on your system or not running."
 msgstr "Oyun modu ya sisteminizde kullanılabilir değil ya da çalışmıyor."
 
-#: src/views/details.py:314
+#: src/views/details.py:320
 msgid "Details & Utilities"
 msgstr "Ayrıntılar ve Araçlar"
 
-#: src/views/details.py:327
+#: src/views/details.py:333
 msgid "Found in your bottle's Start menu."
 msgstr "Şişenizin Başlat menüsünde bulunur."
 
-#: src/views/details.py:386
+#: src/views/details.py:398
 msgid "Choose working directory for executables"
 msgstr "Çalıştırılabilir dosyalar için çalışma dizini seç"
 
-#: src/views/details.py:389
+#: src/views/details.py:401
 msgid "Done"
 msgstr "Bitti"
 
 #. format arch
-#: src/views/details.py:459
+#: src/views/details.py:472
 msgid "64-bit"
 msgstr "64-bit"
 
-#: src/views/details.py:461
+#: src/views/details.py:474
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/views/details.py:482
+#: src/views/details.py:496
 #, python-format
 msgid "Updated: %s"
 msgstr "Güncellendi: %s"
 
-#: src/views/details.py:599
+#: src/views/details.py:616
 msgid "Choose an executable path"
 msgstr "Çalıştırılabilir dosya yolu seç"
 
-#: src/views/details.py:602
+#: src/views/details.py:619
 msgid "Add"
 msgstr "Ekle"
 
-#: src/views/details.py:1082 src/views/list.py:113
+#: src/views/details.py:1119 src/views/list.py:113
 msgid "Choose a Windows executable file"
 msgstr "Çalıştırılacak bir Windows dosyası seçin"
 
-#: src/views/details.py:1085 src/views/list.py:116
+#: src/views/details.py:1122 src/views/list.py:116
 msgid "Run"
 msgstr "Çalıştır"
 
-#: src/views/details.py:1145
+#: src/views/details.py:1220
 msgid "Select the location where to save the backup config"
 msgstr "Yedekleme yapılandırmasının kaydedileceği konumu seç"
 
-#: src/views/details.py:1173
+#: src/views/details.py:1249
 msgid "Select the location where to save the backup archive"
 msgstr "Yedek arşivinin kaydedileceği konumu seçin"
 
-#: src/views/details.py:1211
+#: src/views/details.py:1288
 msgid "Confirm deletion"
 msgstr "Silmeyi onayla"
 
-#: src/views/details.py:1213
+#: src/views/details.py:1290
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
 
@@ -1514,7 +1545,7 @@ msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
 msgid "Choose a backup archive"
 msgstr "Bir yedekleme arşivi seçin"
 
-#: src/views/importer.py:100
+#: src/views/importer.py:101
 msgid "Choose a configuration file"
 msgstr "Bir yapılandırma dosyası seçin"
 
@@ -1527,34 +1558,38 @@ msgstr "Yok"
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Yürütebilir dosya için bulunan bağımsız değişkenler: [{executable}]."
 
-#: src/views/new.py:69
+#: src/views/new.py:72
 msgid "Gaming"
 msgstr "Oyun"
 
-#: src/views/new.py:70
+#: src/views/new.py:73
 msgid "An environment improved for Windows games."
 msgstr "Windows oyunları için geliştirilmiş bir ortam."
 
-#: src/views/new.py:75
+#: src/views/new.py:78
 msgid "Software"
 msgstr "Uygulama"
 
-#: src/views/new.py:76
+#: src/views/new.py:79
 msgid "An environment improved for Windows software."
 msgstr "Windows yazılımı için geliştirilmiş bir ortam."
 
-#: src/views/new.py:87
+#: src/views/new.py:90
 msgid "Custom"
 msgstr "Özel"
 
-#: src/views/new.py:88
+#: src/views/new.py:91
 msgid "A clear environment for your experiments."
 msgstr "Deneyleriniz için temiz bir ortam."
 
-#: src/views/new.py:234
+#: src/views/new.py:239
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "“{0}” adlı bir şişe başarıyla oluşturuldu"
+
+#, python-brace-format
+#~ msgid "Your new {0} bottle is now ready."
+#~ msgstr "Yeni şişeniz: {0} artık hazır."
 
 #~ msgid "News"
 #~ msgstr "Haberler"
@@ -1912,9 +1947,6 @@ msgstr "“{0}” adlı bir şişe başarıyla oluşturuldu"
 
 #~ msgid "Component {0} successfully installed!"
 #~ msgstr "Bileşen {0} başarıyla kuruldu!"
-
-#~ msgid "Installing {0} dependency in bottle {1} …"
-#~ msgstr "{1} şişesine bağımlılığı olan {0} yükleniyor…"
 
 #~ msgid "{0} completed for {1}."
 #~ msgstr "{0}, {1} için tamamlandı."
