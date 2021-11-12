@@ -489,6 +489,15 @@ class Manager:
                     name = name.split("/")[-1][:-4]
                     return name
 
+        if "FLATPAK_ID" in os.environ:
+            '''
+            Flatpak has no access to the user's home directory, so
+            no icons can be found. Returning an empty string to
+            hide the icon instead of returning the default one for
+            all the entries in the Programs list.
+            '''
+            return ""
+
         return "application-x-executable"
 
     def __get_exe_parent_dir(self, config, executable_path):
