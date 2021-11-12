@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-30 23:20+0200\n"
+"POT-Creation-Date: 2021-11-11 18:13+0100\n"
 "PO-Revision-Date: 2021-10-31 06:02+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:185 src/ui/window.ui:200
-#: src/window.py:145 src/window.py:199
+#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
+#: src/window.py:149 src/window.py:204
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -184,7 +184,7 @@ msgid "Change the window height."
 msgstr "更改窗口高度。"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:336
+#: src/ui/window.ui:349
 msgid "Notifications"
 msgstr "通知"
 
@@ -373,7 +373,7 @@ msgstr "该 bottle 已激活版本控制。"
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:469 src/main.py:121
+#: src/ui/details.ui:469 src/main.py:122
 msgid "Bottle name"
 msgstr "Bottle 名称"
 
@@ -421,7 +421,7 @@ msgstr "杀死所有 wine 进程"
 msgid "Destroy this bottle"
 msgstr "销毁该 bottle"
 
-#: src/ui/details.ui:794 src/ui/details.ui:2424 src/views/details.py:326
+#: src/ui/details.ui:794 src/ui/details.ui:2466 src/views/details.py:332
 msgid "Programs"
 msgstr "程序"
 
@@ -469,7 +469,7 @@ msgstr "调试"
 msgid "Debug wine processes."
 msgstr "调试 wine 进程。"
 
-#: src/ui/details.ui:1007 src/ui/details.ui:2261 src/ui/details.ui:2781
+#: src/ui/details.ui:1007 src/ui/details.ui:2303 src/ui/details.ui:2823
 msgid "Read documentation"
 msgstr "阅读文档"
 
@@ -650,87 +650,92 @@ msgstr "管理 VKD3D 版本"
 msgid "NVAPI Version"
 msgstr "NVAPI 版本"
 
-#: src/ui/details.ui:1887 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1886
+#, fuzzy
+msgid "Windows Version"
+msgstr "显示版本"
+
+#: src/ui/details.ui:1929 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "DLL 覆盖"
 
-#: src/ui/details.ui:1925
+#: src/ui/details.ui:1967
 msgid "Working directory"
 msgstr "工作目录"
 
-#: src/ui/details.ui:1927
+#: src/ui/details.ui:1969
 msgid "Point to the bottle path"
 msgstr "指向 bottle 路径"
 
-#: src/ui/details.ui:1943
+#: src/ui/details.ui:1985
 msgid "Choose a directory"
 msgstr "选择一个目录"
 
-#: src/ui/details.ui:1986
+#: src/ui/details.ui:2028
 msgid "Audio"
 msgstr "音频"
 
-#: src/ui/details.ui:1991
+#: src/ui/details.ui:2033
 msgid "Reduce PulseAudio latency"
 msgstr "降低 PulseAudio 延迟"
 
-#: src/ui/details.ui:1992
+#: src/ui/details.ui:2034
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音频质量"
 
-#: src/ui/details.ui:2029
+#: src/ui/details.ui:2071
 msgid "Developers & Debug"
 msgstr "开发者与调试"
 
-#: src/ui/details.ui:2034
+#: src/ui/details.ui:2076
 msgid "Environment variables"
 msgstr "环境变量"
 
-#: src/ui/details.ui:2072
+#: src/ui/details.ui:2114
 msgid "DXVK HUD"
 msgstr "DXVK 抬头显示"
 
-#: src/ui/details.ui:2073
+#: src/ui/details.ui:2115
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr "切换 DXVK 在 D3D 应用程序中叠加显示帧率和其它详情。"
 
-#: src/ui/details.ui:2099
+#: src/ui/details.ui:2141
 msgid "Enable wine fixme logs"
 msgstr "启用 wine fixme 日志"
 
-#: src/ui/details.ui:2100
+#: src/ui/details.ui:2142
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "记录未在 Wine 中实现的代码路径。"
 
-#: src/ui/details.ui:2141 src/ui/preferences.ui:8 src/ui/window.ui:47
-#: src/views/details.py:318
+#: src/ui/details.ui:2183 src/ui/preferences.ui:8 src/ui/window.ui:47
+#: src/views/details.py:324
 msgid "Preferences"
 msgstr "首选项"
 
-#: src/ui/details.ui:2192
+#: src/ui/details.ui:2234
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr "启用测试模式：只显示来自测试存储库的依赖项。"
 
-#: src/ui/details.ui:2248
+#: src/ui/details.ui:2290
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr "虽然此页面上的文件已验证，但可能属于专有许可证。"
 
-#: src/ui/details.ui:2271
+#: src/ui/details.ui:2313
 msgid "Report a missing dependency"
 msgstr "报告丢失的依赖项"
 
-#: src/ui/details.ui:2315
+#: src/ui/details.ui:2357
 msgid "Microsoft .NET Framework 4 .."
 msgstr "微软 .NET Framework 4 .."
 
-#: src/ui/details.ui:2355 src/views/details.py:322
+#: src/ui/details.ui:2397 src/views/details.py:328
 msgid "Dependencies"
 msgstr "依赖"
 
-#: src/ui/details.ui:2476 src/ui/details.ui:2603
+#: src/ui/details.ui:2518 src/ui/details.ui:2645
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -738,23 +743,23 @@ msgstr ""
 "这是处于早期开发中的一个实验性功能，小心使用并 <a href=\"https://github.com/"
 "bottlesdevs/Bottles/issues/new/choose\">报告故障</a>。"
 
-#: src/ui/details.ui:2712
+#: src/ui/details.ui:2754
 msgid "Type a really short comment:"
 msgstr "键入一条简短注释："
 
-#: src/ui/details.ui:2729
+#: src/ui/details.ui:2771
 msgid "Special characters are not allowed!"
 msgstr "不允许特殊字符！"
 
-#: src/ui/details.ui:2730
+#: src/ui/details.ui:2772
 msgid "A really short comment"
 msgstr "简短注释"
 
-#: src/ui/details.ui:2744
+#: src/ui/details.ui:2786
 msgid "Save the bottle state."
 msgstr "保存 bottle 状态。"
 
-#: src/ui/details.ui:2808
+#: src/ui/details.ui:2850
 msgid "Create new state"
 msgstr "创建新状态"
 
@@ -763,8 +768,8 @@ msgid "Message goes here."
 msgstr "消息在这里。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:390
-#: src/views/details.py:603 src/views/details.py:1086 src/views/list.py:117
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:402
+#: src/views/details.py:620 src/views/details.py:1123 src/views/list.py:117
 msgid "Cancel"
 msgstr "取消"
 
@@ -864,11 +869,11 @@ msgstr "浏览文件"
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:121
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:134
 msgid "Uninstall"
 msgstr "卸载"
 
-#: src/ui/importer.ui:75 src/window.py:155
+#: src/ui/importer.ui:75 src/window.py:159
 msgid "Importer"
 msgstr "导入器"
 
@@ -914,7 +919,7 @@ msgstr "该 bottle 看起来已损坏，配置文件丢失。我可以尝试通�
 msgid "Run .exe/.msi in this bottle"
 msgstr "在该 bottle 中运行 .exe/.msi"
 
-#: src/ui/new.ui:25 src/ui/window.ui:316
+#: src/ui/new.ui:25 src/ui/window.ui:329
 msgid "New bottle"
 msgstr "新建 bottle"
 
@@ -1170,11 +1175,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:330
+#: src/ui/preferences.ui:272 src/views/details.py:336
 msgid "Versioning"
 msgstr "版本控制"
 
-#: src/ui/preferences.ui:298 src/views/details.py:334
+#: src/ui/preferences.ui:298 src/views/details.py:340
 msgid "Installers"
 msgstr "安装器"
 
@@ -1195,10 +1200,16 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
-msgid "Bottles Issues"
+#, fuzzy
+msgid "Bottles' Forums"
 msgstr "Bottles 问题"
 
-#: src/ui/program-entry.ui:108
+#: src/ui/program-entry.ui:97
+#, fuzzy
+msgid "Bottles' Issues"
+msgstr "Bottles 问题"
+
+#: src/ui/program-entry.ui:121
 msgid "Remove from Programs"
 msgstr "从程序中删除"
 
@@ -1222,7 +1233,7 @@ msgstr "这些是正在您的电脑上运行的 wine/wineserver 进程。"
 msgid "Check for running processes."
 msgstr "检查正在运行的进程。"
 
-#: src/ui/window.ui:21 src/window.py:150 src/window.py:201
+#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
 msgid "Task manager"
 msgstr "任务管理器"
 
@@ -1235,18 +1246,22 @@ msgid "Documentation"
 msgstr "文档"
 
 #: src/ui/window.ui:84
+msgid "Forums"
+msgstr ""
+
+#: src/ui/window.ui:97
 msgid "About Bottles"
 msgstr "关于 Bottles"
 
-#: src/ui/window.ui:209 src/ui/window.ui:252
+#: src/ui/window.ui:222 src/ui/window.ui:265
 msgid "Open menu"
 msgstr "打开菜单"
 
-#: src/ui/window.ui:230
+#: src/ui/window.ui:243
 msgid "Operations"
 msgstr "操作"
 
-#: src/ui/window.ui:274
+#: src/ui/window.ui:287
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1255,31 +1270,36 @@ msgstr ""
 "您似乎没有连接互联网。没有网络您无法下载必需的组件。当您恢复连接时点击该图"
 "标。"
 
-#: src/ui/window.ui:295
+#: src/ui/window.ui:308
 msgid "Go back"
 msgstr "返回"
 
-#: src/main.py:97
+#: src/main.py:98
 msgid "Show version"
 msgstr "显示版本"
 
-#: src/main.py:105
+#: src/main.py:106
 msgid "Executable path"
 msgstr "可执行文件路径"
 
-#: src/main.py:113
+#: src/main.py:114
 msgid "lnk path"
 msgstr "lnk 路径"
 
-#: src/main.py:234
+#: src/main.py:130
+#, fuzzy
+msgid "Pass arguments"
+msgstr "带有参数运行"
+
+#: src/main.py:247
 msgid "[Quit] request received."
 msgstr "[退出] 请求已收到。"
 
-#: src/main.py:243
+#: src/main.py:256
 msgid "[Help] request received."
 msgstr "[帮助] 请求已收到。"
 
-#: src/main.py:251
+#: src/main.py:264
 msgid "[Refresh] request received."
 msgstr "[刷新] 请求已收到。"
 
@@ -1287,108 +1307,119 @@ msgstr "[刷新] 请求已收到。"
 msgid "You are offline, unable to download."
 msgstr "您已离线，无法下载。"
 
-#: src/window.py:140 src/window.py:197
+#: src/window.py:144 src/window.py:202
 msgid "Bottle details"
 msgstr "Bottle 详情"
 
-#: src/window.py:187
+#: src/window.py:192
 msgid "Bottles Started!"
 msgstr "Bottles 已启动！"
 
-#: src/window.py:203
+#: src/window.py:208
 msgid "Import & export"
 msgstr "导入和导出"
 
-#: src/backend/backup.py:54
+#: src/backend/backup.py:59
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "备份 {0}"
 
-#: src/backend/backup.py:101
+#: src/backend/backup.py:97
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "正在导入备份：{0}"
 
-#. if there are no local runners, show preferences
-#: src/backend/manager.py:896
+#: src/backend/manager.py:916
 msgid "No runners found, please install one."
 msgstr "未找到运行器，请安装一个。"
 
-#. if there are no local dxvks, install latest
-#: src/backend/manager.py:901
-msgid "No DXVK found, installing the latest version …"
+#: src/backend/manager.py:924
+#, fuzzy
+msgid "No DXVK found, installing the latest version…"
 msgstr "未找到 DXVK，正在安装最新版本…"
 
-#. if there are no local vkd3ds, install latest
-#: src/backend/manager.py:905
-msgid "No VKD3D found, installing the latest version …"
+#: src/backend/manager.py:931
+#, fuzzy
+msgid "No VKD3D found, installing the latest version…"
 msgstr "未找到 VKD3D，正在安装最新版本…"
 
-#. if there are no local nvapis, install latest
-#: src/backend/manager.py:909
-msgid "No NVAPI found, installing the latest version …"
+#: src/backend/manager.py:938
+#, fuzzy
+msgid "No NVAPI found, installing the latest version…"
 msgstr "未找到 NVAPI，正在安装最新版本…"
 
-#. execute wineboot on the bottle path
-#: src/backend/manager.py:969
-msgid "The WINE config is being updated …"
-msgstr "正在更新 WINE 配置…"
-
-#: src/backend/manager.py:979
-msgid "WINE config updated!"
-msgstr "WINE 配置已更新！"
-
-#: src/backend/manager.py:988
-msgid "Running as Flatpak, creating sandboxed folders…"
-msgstr "正运行为 Flatpak，创建沙箱文件夹中…"
-
-#: src/backend/manager.py:990
-msgid "Creating sandboxed folders…"
-msgstr "创建沙箱文件夹中…"
-
-#: src/backend/manager.py:1004
+#: src/backend/manager.py:1002
 msgid "Generating bottle config file…"
 msgstr "正在生成 bottle 配置文件…"
 
-#: src/backend/manager.py:1025
-#, python-brace-format
-msgid "Applying environment: {0} …"
+#: src/backend/manager.py:1024
+#, fuzzy
+msgid "The WINE config is being updated…"
+msgstr "正在更新 WINE 配置…"
+
+#: src/backend/manager.py:1029
+msgid "WINE config updated!"
+msgstr "WINE 配置已更新！"
+
+#: src/backend/manager.py:1041
+msgid "Running as Flatpak, creating sandboxed folders…"
+msgstr "正运行为 Flatpak，创建沙箱文件夹中…"
+
+#: src/backend/manager.py:1046
+msgid "Creating sandboxed folders…"
+msgstr "创建沙箱文件夹中…"
+
+#: src/backend/manager.py:1062
+msgid "Re-initializing registry…"
+msgstr ""
+
+#: src/backend/manager.py:1081
+msgid "Setting Windows version…"
+msgstr ""
+
+#: src/backend/manager.py:1089
+#, fuzzy, python-brace-format
+msgid "Applying environment: {0}…"
 msgstr "正在应用环境：{0} …"
 
-#: src/backend/manager.py:1048
+#: src/backend/manager.py:1101
+#, fuzzy, python-brace-format
+msgid "Installing dependency: {0}…"
+msgstr "正在 bottle {1} 中安装依赖 {0} …"
+
+#: src/backend/manager.py:1121
 msgid "Installing DXVK…"
 msgstr "正在安装 DXVK …"
 
-#: src/backend/manager.py:1054
+#: src/backend/manager.py:1133
 msgid "Installing VKD3D…"
 msgstr "正在安装 VKD3D …"
 
-#: src/backend/manager.py:1060
+#: src/backend/manager.py:1142
 msgid "Installing DXVK-NVAPI…"
 msgstr "正在安装 DXVK-NVAPI …"
 
-#: src/backend/manager.py:1068
+#: src/backend/manager.py:1153
 msgid "Creating versioning state 0…"
 msgstr "正在创建版本状态 0 …"
 
-#: src/backend/manager.py:1075
-#, python-brace-format
-msgid "Your new {0} bottle is now ready."
-msgstr "新的 {0} bottle 已就绪。"
+#: src/backend/manager.py:1163
+msgid "Finalizing…"
+msgstr ""
 
-#: src/backend/versioning.py:48
+#: src/backend/versioning.py:52
 msgid "Generating state files index …"
 msgstr "正在生成状态文件索引…"
 
-#: src/backend/versioning.py:131
+#: src/backend/versioning.py:135
 msgid "Creating a restore point …"
 msgstr "正在创建还原点…"
 
-#: src/backend/versioning.py:155
+#: src/backend/versioning.py:159
 msgid "Updating index …"
 msgstr "正在更新索引…"
 
-#: src/backend/versioning.py:178
+#: src/backend/versioning.py:179
 msgid "Updating states …"
 msgstr "正在更新状态…"
 
@@ -1404,69 +1435,69 @@ msgstr "警告"
 msgid "An error has occurred."
 msgstr "发生了错误。"
 
-#: src/views/details.py:270
+#: src/views/details.py:276
 msgid "Gamemode is either not available on your system or not running."
 msgstr "游戏模式在你的系统中不可用，或没在运行。"
 
-#: src/views/details.py:314
+#: src/views/details.py:320
 msgid "Details & Utilities"
 msgstr "详情和工具"
 
-#: src/views/details.py:327
+#: src/views/details.py:333
 msgid "Found in your bottle's Start menu."
 msgstr "在 bottle 的开始菜单中找到。"
 
-#: src/views/details.py:386
+#: src/views/details.py:398
 msgid "Choose working directory for executables"
 msgstr "选择可执行文件的工作目录"
 
-#: src/views/details.py:389
+#: src/views/details.py:401
 msgid "Done"
 msgstr "完成"
 
 #. format arch
-#: src/views/details.py:459
+#: src/views/details.py:472
 msgid "64-bit"
 msgstr "64 位"
 
-#: src/views/details.py:461
+#: src/views/details.py:474
 msgid "32-bit"
 msgstr "32 位"
 
-#: src/views/details.py:482
+#: src/views/details.py:496
 #, python-format
 msgid "Updated: %s"
 msgstr "已更新：%s"
 
-#: src/views/details.py:599
+#: src/views/details.py:616
 msgid "Choose an executable path"
 msgstr "选择一个可执行路径"
 
-#: src/views/details.py:602
+#: src/views/details.py:619
 msgid "Add"
 msgstr "添加"
 
-#: src/views/details.py:1082 src/views/list.py:113
+#: src/views/details.py:1119 src/views/list.py:113
 msgid "Choose a Windows executable file"
 msgstr "选择一个 Windows 可执行文件"
 
-#: src/views/details.py:1085 src/views/list.py:116
+#: src/views/details.py:1122 src/views/list.py:116
 msgid "Run"
 msgstr "运行"
 
-#: src/views/details.py:1145
+#: src/views/details.py:1220
 msgid "Select the location where to save the backup config"
 msgstr "选择保存备份配置的位置"
 
-#: src/views/details.py:1173
+#: src/views/details.py:1249
 msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
-#: src/views/details.py:1211
+#: src/views/details.py:1288
 msgid "Confirm deletion"
 msgstr "确认删除"
 
-#: src/views/details.py:1213
+#: src/views/details.py:1290
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
@@ -1474,7 +1505,7 @@ msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 msgid "Choose a backup archive"
 msgstr "选择一个备份归档"
 
-#: src/views/importer.py:100
+#: src/views/importer.py:101
 msgid "Choose a configuration file"
 msgstr "选择一个配置文件"
 
@@ -1487,34 +1518,38 @@ msgstr "无"
 msgid "Arguments found for executable: [{executable}]."
 msgstr "发现可执行文件：[{executable}] 的变量。"
 
-#: src/views/new.py:69
+#: src/views/new.py:72
 msgid "Gaming"
 msgstr "游戏"
 
-#: src/views/new.py:70
+#: src/views/new.py:73
 msgid "An environment improved for Windows games."
 msgstr "为 Windows 游戏优化的环境。"
 
-#: src/views/new.py:75
+#: src/views/new.py:78
 msgid "Software"
 msgstr "软件"
 
-#: src/views/new.py:76
+#: src/views/new.py:79
 msgid "An environment improved for Windows software."
 msgstr "为 Windows 软件优化的环境。"
 
-#: src/views/new.py:87
+#: src/views/new.py:90
 msgid "Custom"
 msgstr "自定义"
 
-#: src/views/new.py:88
+#: src/views/new.py:91
 msgid "A clear environment for your experiments."
 msgstr "为您的实验提供的清洁环境。"
 
-#: src/views/new.py:234
+#: src/views/new.py:239
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "成功创建了名为“{0}”的 bottle"
+
+#, python-brace-format
+#~ msgid "Your new {0} bottle is now ready."
+#~ msgstr "新的 {0} bottle 已就绪。"
 
 #~ msgid "News"
 #~ msgstr "消息"
@@ -2109,9 +2144,6 @@ msgstr "成功创建了名为“{0}”的 bottle"
 
 #~ msgid "Component {0} successfully installed!"
 #~ msgstr "组件 {0} 已成功安装！"
-
-#~ msgid "Installing {0} dependency in bottle {1} …"
-#~ msgstr "正在 bottle {1} 中安装依赖 {0} …"
 
 #~ msgid "{0} completed for {1}."
 #~ msgstr "已为 {1} 完成 {0}。"

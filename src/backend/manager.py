@@ -877,8 +877,7 @@ class Manager:
                     dependency,
                     self.supported_dependencies[dependency]
                 ]
-                RunAsync(
-                    self.__manager.dependency_manager, None,
+                RunAsync(self.dependency_manager.install, None,
                     config, dep, None
                 )
 
@@ -1103,10 +1102,7 @@ class Manager:
                         _dep["Description"]
                     )
                 )
-                RunAsync(
-                    self.__manager.dependency_manager, None,
-                    config, [dep, _dep], None
-                )
+                self.dependency_manager.install(config, [dep, _dep])
 
         time.sleep(.5)
 

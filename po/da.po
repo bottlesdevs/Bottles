@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-30 23:20+0200\n"
+"POT-Creation-Date: 2021-11-11 18:13+0100\n"
 "PO-Revision-Date: 2021-11-08 22:03+0000\n"
 "Last-Translator: Joe Osborne <reachjoe.o@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:185 src/ui/window.ui:200
-#: src/window.py:145 src/window.py:199
+#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
+#: src/window.py:149 src/window.py:204
 msgid "Bottles"
 msgstr "Flasker"
 
@@ -195,7 +195,7 @@ msgid "Change the window height."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:336
+#: src/ui/window.ui:349
 msgid "Notifications"
 msgstr "Notifikationer"
 
@@ -393,7 +393,7 @@ msgstr "Versionering er aktiv i denne flaske."
 msgid "0"
 msgstr "0"
 
-#: src/ui/details.ui:469 src/main.py:121
+#: src/ui/details.ui:469 src/main.py:122
 msgid "Bottle name"
 msgstr "Flaskenavn"
 
@@ -445,7 +445,7 @@ msgstr ""
 msgid "Destroy this bottle"
 msgstr "Destruer flaske"
 
-#: src/ui/details.ui:794 src/ui/details.ui:2424 src/views/details.py:326
+#: src/ui/details.ui:794 src/ui/details.ui:2466 src/views/details.py:332
 msgid "Programs"
 msgstr "Programmer"
 
@@ -493,7 +493,7 @@ msgstr "Fejlfinding"
 msgid "Debug wine processes."
 msgstr ""
 
-#: src/ui/details.ui:1007 src/ui/details.ui:2261 src/ui/details.ui:2781
+#: src/ui/details.ui:1007 src/ui/details.ui:2303 src/ui/details.ui:2823
 #, fuzzy
 msgid "Read documentation"
 msgstr "Dokumentation"
@@ -674,114 +674,119 @@ msgstr "Versionering"
 msgid "NVAPI Version"
 msgstr "Versionering"
 
-#: src/ui/details.ui:1887 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details.ui:1886
+#, fuzzy
+msgid "Windows Version"
+msgstr "Versionering"
+
+#: src/ui/details.ui:1929 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL Overrides"
 msgstr "DLL-overskrivninger"
 
-#: src/ui/details.ui:1925
+#: src/ui/details.ui:1967
 msgid "Working directory"
 msgstr ""
 
-#: src/ui/details.ui:1927
+#: src/ui/details.ui:1969
 #, fuzzy
 msgid "Point to the bottle path"
 msgstr "Gem flaskens status."
 
-#: src/ui/details.ui:1943
+#: src/ui/details.ui:1985
 #, fuzzy
 msgid "Choose a directory"
 msgstr "Vælg miljø"
 
-#: src/ui/details.ui:1986
+#: src/ui/details.ui:2028
 msgid "Audio"
 msgstr "Lyd"
 
-#: src/ui/details.ui:1991
+#: src/ui/details.ui:2033
 msgid "Reduce PulseAudio latency"
 msgstr "Reducer PulseAudio-forsinkelse"
 
-#: src/ui/details.ui:1992
+#: src/ui/details.ui:2034
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Indstil PulseAudio-forsinkelse til 60 milisekunder, for at øge lydkvalitet."
 
-#: src/ui/details.ui:2029
+#: src/ui/details.ui:2071
 msgid "Developers & Debug"
 msgstr "Udviklere og fejlfinding"
 
-#: src/ui/details.ui:2034
+#: src/ui/details.ui:2076
 msgid "Environment variables"
 msgstr "Miljøvariabler"
 
-#: src/ui/details.ui:2072
+#: src/ui/details.ui:2114
 msgid "DXVK HUD"
 msgstr "DXVK Heads-up-skærm"
 
-#: src/ui/details.ui:2073
+#: src/ui/details.ui:2115
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Aktiver DXVK-overlægningen, som viser BPS og andre detaljer i D3D-"
 "applikationer."
 
-#: src/ui/details.ui:2099
+#: src/ui/details.ui:2141
 msgid "Enable wine fixme logs"
 msgstr ""
 
-#: src/ui/details.ui:2100
+#: src/ui/details.ui:2142
 msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
-#: src/ui/details.ui:2141 src/ui/preferences.ui:8 src/ui/window.ui:47
-#: src/views/details.py:318
+#: src/ui/details.ui:2183 src/ui/preferences.ui:8 src/ui/window.ui:47
+#: src/views/details.py:324
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: src/ui/details.ui:2192
+#: src/ui/details.ui:2234
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
 
-#: src/ui/details.ui:2248
+#: src/ui/details.ui:2290
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr ""
 
-#: src/ui/details.ui:2271
+#: src/ui/details.ui:2313
 msgid "Report a missing dependency"
 msgstr ""
 
-#: src/ui/details.ui:2315
+#: src/ui/details.ui:2357
 msgid "Microsoft .NET Framework 4 .."
 msgstr ""
 
-#: src/ui/details.ui:2355 src/views/details.py:322
+#: src/ui/details.ui:2397 src/views/details.py:328
 msgid "Dependencies"
 msgstr "Afhængigheder"
 
-#: src/ui/details.ui:2476 src/ui/details.ui:2603
+#: src/ui/details.ui:2518 src/ui/details.ui:2645
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
 
-#: src/ui/details.ui:2712
+#: src/ui/details.ui:2754
 msgid "Type a really short comment:"
 msgstr "Indtast en kort kommentar:"
 
-#: src/ui/details.ui:2729
+#: src/ui/details.ui:2771
 msgid "Special characters are not allowed!"
 msgstr "Specialtegn er ikke tilladt!"
 
-#: src/ui/details.ui:2730
+#: src/ui/details.ui:2772
 msgid "A really short comment"
 msgstr "En meget kort kommentar"
 
-#: src/ui/details.ui:2744
+#: src/ui/details.ui:2786
 msgid "Save the bottle state."
 msgstr "Gem flaskens status."
 
-#: src/ui/details.ui:2808
+#: src/ui/details.ui:2850
 msgid "Create new state"
 msgstr "Opret ny flaske"
 
@@ -790,8 +795,8 @@ msgid "Message goes here."
 msgstr ""
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:390
-#: src/views/details.py:603 src/views/details.py:1086 src/views/list.py:117
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:402
+#: src/views/details.py:620 src/views/details.py:1123 src/views/list.py:117
 msgid "Cancel"
 msgstr "Afbryd"
 
@@ -894,11 +899,11 @@ msgstr "Gennemse C:"
 msgid "0%"
 msgstr "0"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:121
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:134
 msgid "Uninstall"
 msgstr "Afinstaller"
 
-#: src/ui/importer.ui:75 src/window.py:155
+#: src/ui/importer.ui:75 src/window.py:159
 msgid "Importer"
 msgstr "Importering"
 
@@ -948,7 +953,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Kør .exe/.msi i denne flaske"
 
-#: src/ui/new.ui:25 src/ui/window.ui:316
+#: src/ui/new.ui:25 src/ui/window.ui:329
 msgid "New bottle"
 msgstr "Ny flaske"
 
@@ -1199,11 +1204,11 @@ msgstr ""
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:330
+#: src/ui/preferences.ui:272 src/views/details.py:336
 msgid "Versioning"
 msgstr "Versionering"
 
-#: src/ui/preferences.ui:298 src/views/details.py:334
+#: src/ui/preferences.ui:298 src/views/details.py:340
 msgid "Installers"
 msgstr "Installeringer"
 
@@ -1226,10 +1231,15 @@ msgstr ""
 
 #: src/ui/program-entry.ui:84
 #, fuzzy
-msgid "Bottles Issues"
+msgid "Bottles' Forums"
 msgstr "Flaskestørrelse:"
 
-#: src/ui/program-entry.ui:108
+#: src/ui/program-entry.ui:97
+#, fuzzy
+msgid "Bottles' Issues"
+msgstr "Flaskestørrelse:"
+
+#: src/ui/program-entry.ui:121
 msgid "Remove from Programs"
 msgstr ""
 
@@ -1255,7 +1265,7 @@ msgstr ""
 msgid "Check for running processes."
 msgstr "Kontroller for installerede programmer."
 
-#: src/ui/window.ui:21 src/window.py:150 src/window.py:201
+#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
 msgid "Task manager"
 msgstr "Opgavehåndtering"
 
@@ -1269,18 +1279,22 @@ msgid "Documentation"
 msgstr "Dokumentation"
 
 #: src/ui/window.ui:84
+msgid "Forums"
+msgstr ""
+
+#: src/ui/window.ui:97
 msgid "About Bottles"
 msgstr "Om Flasker"
 
-#: src/ui/window.ui:209 src/ui/window.ui:252
+#: src/ui/window.ui:222 src/ui/window.ui:265
 msgid "Open menu"
 msgstr "Åbn menu"
 
-#: src/ui/window.ui:230
+#: src/ui/window.ui:243
 msgid "Operations"
 msgstr ""
 
-#: src/ui/window.ui:274
+#: src/ui/window.ui:287
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1290,33 +1304,37 @@ msgstr ""
 "kunne hente essentielle komponenter. Klik på dette ikon, når du har "
 "genetableret forbindelsen."
 
-#: src/ui/window.ui:295
+#: src/ui/window.ui:308
 msgid "Go back"
 msgstr "Gå tilbage"
 
-#: src/main.py:97
+#: src/main.py:98
 #, fuzzy
 msgid "Show version"
 msgstr "Versionering"
 
-#: src/main.py:105
+#: src/main.py:106
 #, fuzzy
 msgid "Executable path"
 msgstr "Før .exe"
 
-#: src/main.py:113
+#: src/main.py:114
 msgid "lnk path"
 msgstr ""
 
-#: src/main.py:234
+#: src/main.py:130
+msgid "Pass arguments"
+msgstr ""
+
+#: src/main.py:247
 msgid "[Quit] request received."
 msgstr "[Afslut] anmodning modtaget."
 
-#: src/main.py:243
+#: src/main.py:256
 msgid "[Help] request received."
 msgstr "[Hjælp] anmodning modtaget."
 
-#: src/main.py:251
+#: src/main.py:264
 msgid "[Refresh] request received."
 msgstr "[Genopfrisk] anmodning modtaget."
 
@@ -1324,117 +1342,124 @@ msgstr "[Genopfrisk] anmodning modtaget."
 msgid "You are offline, unable to download."
 msgstr ""
 
-#: src/window.py:140 src/window.py:197
+#: src/window.py:144 src/window.py:202
 msgid "Bottle details"
 msgstr "Detaljer om Flaske"
 
-#: src/window.py:187
+#: src/window.py:192
 msgid "Bottles Started!"
 msgstr "Flasker Startet!"
 
-#: src/window.py:203
+#: src/window.py:208
 #, fuzzy
 msgid "Import & export"
 msgstr "Importering"
 
-#: src/backend/backup.py:54
+#: src/backend/backup.py:59
 #, fuzzy, python-brace-format
 msgid "Backup {0}"
 msgstr "Sikkerhedskopiering {0}"
 
-#: src/backend/backup.py:101
+#: src/backend/backup.py:97
 #, fuzzy, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importer fra sikkerhedskopi: {0}"
 
-#. if there are no local runners, show preferences
-#: src/backend/manager.py:896
+#: src/backend/manager.py:916
 #, fuzzy
 msgid "No runners found, please install one."
 msgstr "Ingen kørere fundet"
 
-#. if there are no local dxvks, install latest
-#: src/backend/manager.py:901
-msgid "No DXVK found, installing the latest version …"
+#: src/backend/manager.py:924
+msgid "No DXVK found, installing the latest version…"
 msgstr ""
 
-#. if there are no local vkd3ds, install latest
-#: src/backend/manager.py:905
-msgid "No VKD3D found, installing the latest version …"
+#: src/backend/manager.py:931
+msgid "No VKD3D found, installing the latest version…"
 msgstr ""
 
-#. if there are no local nvapis, install latest
-#: src/backend/manager.py:909
-msgid "No NVAPI found, installing the latest version …"
+#: src/backend/manager.py:938
+msgid "No NVAPI found, installing the latest version…"
 msgstr ""
 
-#. execute wineboot on the bottle path
-#: src/backend/manager.py:969
-#, fuzzy
-msgid "The WINE config is being updated …"
-msgstr "Konfiguration"
-
-#: src/backend/manager.py:979
-#, fuzzy
-msgid "WINE config updated!"
-msgstr "Konfiguration"
-
-#: src/backend/manager.py:988
-msgid "Running as Flatpak, creating sandboxed folders…"
-msgstr ""
-
-#: src/backend/manager.py:990
-#, fuzzy
-msgid "Creating sandboxed folders…"
-msgstr "Opret ny flaske"
-
-#: src/backend/manager.py:1004
+#: src/backend/manager.py:1002
 #, fuzzy
 msgid "Generating bottle config file…"
 msgstr "Administrer nemt wine-præfiks"
 
-#: src/backend/manager.py:1025
-#, python-brace-format
-msgid "Applying environment: {0} …"
+#: src/backend/manager.py:1024
+#, fuzzy
+msgid "The WINE config is being updated…"
+msgstr "Konfiguration"
+
+#: src/backend/manager.py:1029
+#, fuzzy
+msgid "WINE config updated!"
+msgstr "Konfiguration"
+
+#: src/backend/manager.py:1041
+msgid "Running as Flatpak, creating sandboxed folders…"
 msgstr ""
 
-#: src/backend/manager.py:1048
+#: src/backend/manager.py:1046
+#, fuzzy
+msgid "Creating sandboxed folders…"
+msgstr "Opret ny flaske"
+
+#: src/backend/manager.py:1062
+msgid "Re-initializing registry…"
+msgstr ""
+
+#: src/backend/manager.py:1081
+msgid "Setting Windows version…"
+msgstr ""
+
+#: src/backend/manager.py:1089
+#, python-brace-format
+msgid "Applying environment: {0}…"
+msgstr ""
+
+#: src/backend/manager.py:1101
+#, fuzzy, python-brace-format
+msgid "Installing dependency: {0}…"
+msgstr "Afhængigheder"
+
+#: src/backend/manager.py:1121
 msgid "Installing DXVK…"
 msgstr ""
 
-#: src/backend/manager.py:1054
+#: src/backend/manager.py:1133
 msgid "Installing VKD3D…"
 msgstr ""
 
-#: src/backend/manager.py:1060
+#: src/backend/manager.py:1142
 msgid "Installing DXVK-NVAPI…"
 msgstr ""
 
-#: src/backend/manager.py:1068
+#: src/backend/manager.py:1153
 #, fuzzy
 msgid "Creating versioning state 0…"
 msgstr "Opret ny flaske"
 
-#: src/backend/manager.py:1075
-#, python-brace-format
-msgid "Your new {0} bottle is now ready."
+#: src/backend/manager.py:1163
+msgid "Finalizing…"
 msgstr ""
 
-#: src/backend/versioning.py:48
+#: src/backend/versioning.py:52
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Administrer nemt wine-præfiks"
 
-#: src/backend/versioning.py:131
+#: src/backend/versioning.py:135
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Administrer nemt wine-præfiks"
 
-#: src/backend/versioning.py:155
+#: src/backend/versioning.py:159
 msgid "Updating index …"
 msgstr "Opdatere indekset…"
 
-#: src/backend/versioning.py:178
+#: src/backend/versioning.py:179
 #, fuzzy
 msgid "Updating states …"
 msgstr "Opret ny flaske"
@@ -1452,74 +1477,74 @@ msgstr "Advarsel"
 msgid "An error has occurred."
 msgstr ""
 
-#: src/views/details.py:270
+#: src/views/details.py:276
 msgid "Gamemode is either not available on your system or not running."
 msgstr ""
 "Spilletilstand er enten ikke tilgængelig på dit system, eller kører ikke."
 
-#: src/views/details.py:314
+#: src/views/details.py:320
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Hjælpeprogram"
 
-#: src/views/details.py:327
+#: src/views/details.py:333
 msgid "Found in your bottle's Start menu."
 msgstr ""
 
-#: src/views/details.py:386
+#: src/views/details.py:398
 #, fuzzy
 msgid "Choose working directory for executables"
 msgstr "Vælg en eksekverbar Windows-fil"
 
-#: src/views/details.py:389
+#: src/views/details.py:401
 msgid "Done"
 msgstr "Færdig"
 
 #. format arch
-#: src/views/details.py:459
+#: src/views/details.py:472
 msgid "64-bit"
 msgstr "64 bit"
 
-#: src/views/details.py:461
+#: src/views/details.py:474
 msgid "32-bit"
 msgstr "32 bit"
 
-#: src/views/details.py:482
+#: src/views/details.py:496
 #, python-format
 msgid "Updated: %s"
 msgstr ""
 
-#: src/views/details.py:599
+#: src/views/details.py:616
 #, fuzzy
 msgid "Choose an executable path"
 msgstr "Vælg en eksekverbar Windows-fil"
 
-#: src/views/details.py:602
+#: src/views/details.py:619
 msgid "Add"
 msgstr "Tilføj"
 
-#: src/views/details.py:1082 src/views/list.py:113
+#: src/views/details.py:1119 src/views/list.py:113
 msgid "Choose a Windows executable file"
 msgstr "Vælg en eksekverbar Windows-fil"
 
-#: src/views/details.py:1085 src/views/list.py:116
+#: src/views/details.py:1122 src/views/list.py:116
 msgid "Run"
 msgstr "Køre"
 
-#: src/views/details.py:1145
+#: src/views/details.py:1220
 msgid "Select the location where to save the backup config"
 msgstr ""
 "Vælg placeringen, hvor sikkerhedskopieringen af konfigurationsfil skal gemmes"
 
-#: src/views/details.py:1173
+#: src/views/details.py:1249
 msgid "Select the location where to save the backup archive"
 msgstr "Vælg placeringen, hvor sikkerhedskopiens arkiv skal gemmes"
 
-#: src/views/details.py:1211
+#: src/views/details.py:1288
 msgid "Confirm deletion"
 msgstr "Bekræft sletning"
 
-#: src/views/details.py:1213
+#: src/views/details.py:1290
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Er du sikker på, at du vil slette denne Flaske og alle filer?"
 
@@ -1527,7 +1552,7 @@ msgstr "Er du sikker på, at du vil slette denne Flaske og alle filer?"
 msgid "Choose a backup archive"
 msgstr "Vælg en sikkerhedskopi"
 
-#: src/views/importer.py:100
+#: src/views/importer.py:101
 msgid "Choose a configuration file"
 msgstr "Vælg konfigurationsfil"
 
@@ -1540,31 +1565,31 @@ msgstr ""
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumenter fundet til eksekverbar genstand: [{executable}]."
 
-#: src/views/new.py:69
+#: src/views/new.py:72
 msgid "Gaming"
 msgstr "Spil"
 
-#: src/views/new.py:70
+#: src/views/new.py:73
 msgid "An environment improved for Windows games."
 msgstr ""
 
-#: src/views/new.py:75
+#: src/views/new.py:78
 msgid "Software"
 msgstr "Programvare"
 
-#: src/views/new.py:76
+#: src/views/new.py:79
 msgid "An environment improved for Windows software."
 msgstr ""
 
-#: src/views/new.py:87
+#: src/views/new.py:90
 msgid "Custom"
 msgstr "Tilpasset"
 
-#: src/views/new.py:88
+#: src/views/new.py:91
 msgid "A clear environment for your experiments."
 msgstr "Et rent miljø, uden nogen optimeringer."
 
-#: src/views/new.py:234
+#: src/views/new.py:239
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr ""
@@ -1652,10 +1677,6 @@ msgstr ""
 
 #~ msgid "This is the index for {0}."
 #~ msgstr "Dette er indekset for {0}."
-
-#, fuzzy
-#~ msgid "Installing {0} dependency in bottle {1} …"
-#~ msgstr "Afhængigheder"
 
 #, fuzzy
 #~ msgid "Wine Runners"

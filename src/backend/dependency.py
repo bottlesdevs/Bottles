@@ -548,7 +548,8 @@ class DependencyManager:
             os.makedirs(f"{Paths.temp}/{archive_name}")
             patoolib.extract_archive(
                 f"{Paths.temp}/{file}",
-                outdir=f"{Paths.temp}/{archive_name}")
+                outdir=f"{Paths.temp}/{archive_name}"
+            )
 
     def __step_install_fonts(self, config: BottleConfig, step: dict):
         '''
