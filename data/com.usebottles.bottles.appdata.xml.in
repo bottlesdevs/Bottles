@@ -82,40 +82,49 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2021.11.14-treviso" date="2021-10-28">
+        <release version="2021.11.14-treviso" date="2021-11-12">
           <description>
             <p>News</p>
             <ul>
-                <li>Now there is an internal Notifications manager, so we can keep in touch with the community!</li>
-                <li>Implement DataManager to store and manage internal data</li>
-                <li>Migrate components to the new ComponentEntry widget</li>
-                <li>Dependencies catalog is now sorted alphabetically</li>
-                <li>Now it is possible to read the installer review</li>
-                <li>Now all HTTP requests are cached after the first time</li>
-                <li>Support for QTerminal and LXTerminal</li>
-                <li>Allow also other packages to use the sandboxed userdir in bottles (currenty thi is not a full sandbox, just the userdir is not linked to the homedir)</li>
-                <li>General UI Cleanups (thanks to @BrainBlasted)</li>
+                <li>Now environments install several common dependencies to increase the out-of-the-box compatibility level of the bottle.</li>
+                <li>Now the new bottles are created by setting Windows 10 as the version.</li>
+                <li>Added a new menu showing all executables launched during the session, to reach them easily</li>
+                <li>Now it is possible to change Windows version for a bottle (doesn't work for old bottles)</li>
+                <li>Dependencies can now use specific Windows version during packages installation</li>
+                <li>The sandbox switcher is hidden from Flatpak and automatically enabled</li>
+                <li>New wineboot management</li>
+                <li>Now the runner only shows useful logs during bottle creation</li>
+                <li>Gamemode support also for Flatpak thanks to @BigmenPixel0</li>
+                <li>Now it is possible to pass executable arguments using the Bottles CLI using the -a option thanks to @Rerumus</li>
+                <li>Programs icons are now hidden in Flatpak</li>
+                <li>General code/UI cleanup and improvements</li>
             </ul>
 
             <p>Bug fixes</p>
             <ul>
-                <li>Fixed a regression in Wayland support</li>
-                <li>Fixed a bug in environment variables storing</li>
-                <li>Fixed the wrong dxvk_nvapi flag in bottle configuration</li>
-                <li>Fixed a bug with Proton component installation</li>
-                <li>Fixed a bug that was causing the Versioning system executing methods in the main thread in a non safe way</li>
-                <li>Fixed "Directory not empty" bug on bottle deletion</li>
-                <li>Fixed "'bool' object is not callable" bug on component installation failure</li>
-                <li>Fixed mispelling in translations (thanks to @Martinligabue, @comradekingu)</li>
+                <li>Fixed a series of random crashes due to mixing threads</li>
+                <li>Fixed a bug in environment variables check that result in crash</li>
+                <li>Fixed a bug that prevented the user from opening the file manager on Proton runners</li>
+                <li>Fixed a bug that was causing a crash when Bottles fails on removing a bottle</li>
+                <li>Fixed incomplete translations in Flatpak</li>
             </ul>
 
             <p>Translations</p>
             <ul>
+                <li>German translations thanks to Lasse Palm</li>
                 <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Hindi translations thanks to @ExistingProgrammer, @gauthamkrishna9991</li>
-                <li>Croatian translations thanks to @milotype</li>
-                <li>Japanese translations thanks to @jatin-cbs</li>
-                <li>Portuguese (Brazil) translations thanks to @davipatricio</li>
+                <li>Czech translations thanks to @SoongVilda</li>
+                <li>Spanish translations thanks to @oscfdezdz</li>
+                <li>Turkish translations thanks to @ersen0</li>
+                <li>Chinese (Simplified) translations thanks to @sr093906</li>
+                <li>Japanese translations thanks to @CheesersY5</li>
+                <li>Hungarian translations thanks to @ovari</li>
+                <li>Italian translations thanks to @seldon1000</li>
+                <li>Esperanto translations thanks to @phlostically</li>
+                <li>Indonesian translations thanks to @liimee, @rezaalmanda</li>
+                <li>Danish translations thanks to @ettmetal</li>
+                <li>Polish translations thanks to Krzysztof Marcinek</li>
+                <li>General translations fixes thanks to @comradekingu, @Martinligabue, @AmeyShrivastava</li>
             </ul>
           </description>
         </release>

@@ -1,27 +1,35 @@
 com.usebottles.bottles (2021.11.14-treviso) precise; urgency=low
 
-  * Support for AMD FSR (FidelityFX Super Resolution)
-  * Now there is an internal Notifications manager, so we can keep in touch with the community!
-  * Implement DataManager to store and manage internal data
-  * Migrate components to the new ComponentEntry widget
-  * Dependencies catalog is now sorted alphabetically
-  * Now it is possible to read the installer review
-  * Now all HTTP requests are cached after the first time
-  * Support for QTerminal and LXTerminal
-  * Allow also other packages to use the sandboxed userdir in bottles (currently this is not a full sandbox, just the userdir is not linked to the homedir)
-  * General UI Cleanups (thanks to @BrainBlasted)
-  * Fixed a regression in Wayland support
-  * Fixed a bug in environment variables storing
-  * Fixed the wrong dxvk_nvapi flag in bottle configuration
-  * Fixed a bug with Proton component installation
-  * Fixed a bug that was causing the Versioning system executing methods in the main thread in a non safe way
-  * Fixed "Directory not empty" bug on bottle deletion
-  * Fixed "'bool' object is not callable" bug on component installation failure
-  * Fixed misspelling in translations (thanks to @Martinligabue, @comradekingu)
+  * Now environments install several common dependencies to increase the out-of-the-box compatibility level of the bottle.
+  * Now the new bottles are created by setting Windows 10 as the version.
+  * Added a new menu showing all executables launched during the session, to reach them easily
+  * Now it is possible to change Windows version for a bottle (doesn't work for old bottles)
+  * Dependencies can now use specific Windows version during packages installation
+  * The sandbox switcher is hidden from Flatpak and automatically enabled
+  * New wineboot management
+  * Now the runner only shows useful logs during bottle creation
+  * Gamemode support also for Flatpak thanks to @BigmenPixel0
+  * Now it is possible to pass executable arguments using the Bottles CLI using the -a option thanks to @Rerumus
+  * Programs icons are now hidden in Flatpak
+  * General code/UI cleanup and improvements
+  * Fixed a series of random crashes due to mixing threads
+  * Fixed a bug in environment variables check that result in crash
+  * Fixed a bug that prevented the user from opening the file manager on Proton runners
+  * Fixed a bug that was causing a crash when Bottles fails on removing a bottle
+  * Fixed incomplete translations in Flatpak
+  * German translations thanks to Lasse Palm
   * Finnish translations thanks to Jiri Grönroos
-  * Hindi translations thanks to @ExistingProgrammer, @gauthamkrishna9991
-  * Croatian translations thanks to @milotype
-  * Japanese translations thanks to @jatin-cbs
-  * Portuguese (Brazil) translations thanks to @davipatricio
+  * Czech translations thanks to @SoongVilda
+  * Spanish translations thanks to @oscfdezdz
+  * Turkish translations thanks to @ersen0
+  * Chinese (Simplified) translations thanks to @sr093906
+  * Japanese translations thanks to @CheesersY5
+  * Hungarian translations thanks to @ovari
+  * Italian translations thanks to @seldon1000
+  * Esperanto translations thanks to @phlostically
+  * Indonesian translations thanks to @liimee, @rezaalmanda
+  * Danish translations thanks to @ettmetal
+  * Polish translations thanks to Krzysztof Marcinek
+  * General translations fixes thanks to @comradekingu, @Martinligabue, @AmeyShrivastava
 
- -- Mirko Brombin <send@mirko.pm>  Wed, 27 Oct 2021 19:56:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Fri, 12 Nov 2021 23:06:00 +0000
