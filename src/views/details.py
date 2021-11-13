@@ -349,7 +349,6 @@ class DetailsView(Handy.Leaflet):
             del pages["installers"]
 
         if self.config.get("Environment") == "Layered":
-            print("ciao")
             del pages["dependencies"]
             del pages["preferences"]
             del pages["versioning"]
@@ -404,7 +403,6 @@ class DetailsView(Handy.Leaflet):
         file_dialog.set_current_folder(
             ManagerUtils.get_bottle_path(self.config)
         )
-
         response = file_dialog.run()
 
         if response == -3:
