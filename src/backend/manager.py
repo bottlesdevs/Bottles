@@ -342,9 +342,9 @@ class Manager:
                 return False
 
         # sort component lists alphabetically
-        self.runners_available = sorted(self.runners_available)
-        self.dxvk_available = sorted(self.dxvk_available)
-        self.nvapi_available = sorted(self.nvapi_available)
+        self.runners_available = sorted(self.runners_available, reverse=True)
+        self.dxvk_available = sorted(self.dxvk_available, reverse=True)
+        self.nvapi_available = sorted(self.nvapi_available, reverse=True)
 
         return True
 
