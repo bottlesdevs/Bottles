@@ -717,6 +717,8 @@ class Manager:
                 new_config_yaml["Name"] = bottle_name_path
                 new_config_yaml["Environment"] = "Undefined"
                 self.local_bottles[bottle_name_path] = new_config_yaml
+            except AttributeError:
+                pass
 
         if len(self.local_bottles) > 0 and not silent:
             logging.info(f"Bottles found: {'|'.join(self.local_bottles)}")
