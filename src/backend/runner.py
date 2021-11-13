@@ -189,6 +189,7 @@ class Runner:
         given configuraton.
         ---
         supported statues:
+            - -1: force
             - 0: kill
             - 1: restart
             - 2: shutdown
@@ -199,6 +200,7 @@ class Runner:
             if the status is not supported.
         '''
         states = {
+            -1: "force",
             0: "-k",
             1: "-r",
             2: "-s",

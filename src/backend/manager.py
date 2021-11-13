@@ -1219,9 +1219,7 @@ class Manager:
         the configuration and files.
         '''
         logging.info("Stopping bottle…")
-        Runner.wineboot(config, status=0, comunicate=True)
-
-        logging.info("Deleting bottle…")
+        Runner.wineboot(config, status=-1, comunicate=True)
 
         if config.get("Path"):
             logging.info(f"Removing applications installed with the bottle ..")
@@ -1257,27 +1255,26 @@ class Manager:
             f"Trying to repair the bottle: [{config['Name']}]…"
         )
 
-        bottle_complete_path = f"{Paths.bottles}/{config['Name']}"
+        bottle_path = f"{Paths.bottles}/{config['Name']}"
 
         # create new config with path as name and Custom environment
         new_config = Samples.config
         new_config["Name"] = config.get("Name")
-        new_config["Runner"] = self.runners_available[0]
+        new_config["Runner"] = self.get_latest_runner()
         new_config["Path"] = config.get("Name")
         new_config["Environment"] = "Custom"
         new_config["Creation_Date"] = str(datetime.now())
         new_config["Update_Date"] = str(datetime.now())
 
         try:
-            with open("%s/bottle.yml" % bottle_complete_path,
-                      "w") as conf_file:
+            with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
                 yaml.dump(new_config, conf_file, indent=4)
                 conf_file.close()
         except:
             return False
 
         # Execute wineboot in bottle to generate missing files
-        Runner.wineboot(config=new_config, status=3, comunicate=True)
+        Runner.wineboot(config=new_config, status=4, comunicate=True)
 
         # Update bottles
         self.update_bottles()
