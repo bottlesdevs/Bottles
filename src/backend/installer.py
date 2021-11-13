@@ -123,7 +123,7 @@ class InstallerManager:
 
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
             RunAsync(
-                self.__manager.dependency_manager, None,
+                self.__manager.dependency_manager.install, None,
                 config, dep_index, None
             )
 
