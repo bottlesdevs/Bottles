@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-11 18:13+0100\n"
-"PO-Revision-Date: 2021-10-31 06:02+0000\n"
+"PO-Revision-Date: 2021-11-15 00:13+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.9.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -373,7 +373,7 @@ msgstr "Nem látom a fájlokat a saját könyvtáromban."
 
 #: src/ui/details.ui:261
 msgid "Run with arguments"
-msgstr "Argumentumokkal futtatása"
+msgstr "Érvekkel futtatása"
 
 #: src/ui/details.ui:359
 msgid "Rename bottle"
@@ -473,7 +473,7 @@ msgstr "Parancsok futtatása a Tároló belsejében."
 
 #: src/ui/details.ui:932
 msgid "Registry Editor"
-msgstr "Beállításszerkesztő"
+msgstr "Rendszerleíró-szerkesztő"
 
 #: src/ui/details.ui:934
 msgid "Edit the internal registry."
@@ -672,9 +672,8 @@ msgid "NVAPI Version"
 msgstr "NVAPI-verzió"
 
 #: src/ui/details.ui:1886
-#, fuzzy
 msgid "Windows Version"
-msgstr "Verzió megjelenítése"
+msgstr "Windows verzió"
 
 #: src/ui/details.ui:1929 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -1238,14 +1237,12 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
-#, fuzzy
 msgid "Bottles' Forums"
-msgstr "Tárolók problémák"
+msgstr "Tárolók fórumai"
 
 #: src/ui/program-entry.ui:97
-#, fuzzy
 msgid "Bottles' Issues"
-msgstr "Tárolók problémák"
+msgstr "Tárolók kérdései"
 
 #: src/ui/program-entry.ui:121
 msgid "Remove from Programs"
@@ -1285,7 +1282,7 @@ msgstr "Dokumentáció"
 
 #: src/ui/window.ui:84
 msgid "Forums"
-msgstr ""
+msgstr "Fórumok"
 
 #: src/ui/window.ui:97
 msgid "About Bottles"
@@ -1326,9 +1323,8 @@ msgid "lnk path"
 msgstr "hivatkozásútvonal"
 
 #: src/main.py:130
-#, fuzzy
 msgid "Pass arguments"
-msgstr "Argumentumokkal futtatása"
+msgstr "Érvek továbbítása"
 
 #: src/main.py:247
 msgid "[Quit] request received."
@@ -1373,28 +1369,24 @@ msgid "No runners found, please install one."
 msgstr "Nincsenek futtatók, kérjük, telepítsen egyet."
 
 #: src/backend/manager.py:924
-#, fuzzy
 msgid "No DXVK found, installing the latest version…"
-msgstr "Nem található a DXVK, a legújabb verzió telepítése…"
+msgstr "Nem található a DXVK, a legújabb verzió telepítése folyamatban van…"
 
 #: src/backend/manager.py:931
-#, fuzzy
 msgid "No VKD3D found, installing the latest version…"
-msgstr "Nem található a VKD3D, a legújabb verzió telepítése…"
+msgstr "Nem található a VKD3D, a legújabb verzió telepítése folyamatban van…"
 
 #: src/backend/manager.py:938
-#, fuzzy
 msgid "No NVAPI found, installing the latest version…"
-msgstr "Nem található a NVAPI, a legújabb verzió telepítése…"
+msgstr "Nem található a NVAPI, a legújabb verzió telepítése folyamatban van…"
 
 #: src/backend/manager.py:1002
 msgid "Generating bottle config file…"
 msgstr "Tároló beállításfájl készítése folyamatban van…"
 
 #: src/backend/manager.py:1024
-#, fuzzy
 msgid "The WINE config is being updated…"
-msgstr "WINE beállításainak frissítése folyamatban…"
+msgstr "WINE beállításainak frissítése folyamatban van…"
 
 #: src/backend/manager.py:1029
 msgid "WINE config updated!"
@@ -1414,21 +1406,21 @@ msgstr ""
 
 #: src/backend/manager.py:1062
 msgid "Re-initializing registry…"
-msgstr ""
+msgstr "Rendszerleíró ujraüzembeállása folyamatban van…"
 
 #: src/backend/manager.py:1081
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "A Windows verzió beállítása folyamatban van…"
 
 #: src/backend/manager.py:1089
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Környezet alkalmazása folyamatban van: {0}…"
 
 #: src/backend/manager.py:1101
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing dependency: {0}…"
-msgstr "Függőség letöltése és telepítése"
+msgstr "Függőség telepítése folyamatban van: {0}…"
 
 #: src/backend/manager.py:1121
 msgid "Installing DXVK…"
@@ -1448,7 +1440,7 @@ msgstr "A(z) 0 verziószámozási állapot létrehozása folyamatban van…"
 
 #: src/backend/manager.py:1163
 msgid "Finalizing…"
-msgstr ""
+msgstr "Véglegesítés folyamatban van…"
 
 #: src/backend/versioning.py:52
 msgid "Generating state files index …"
@@ -1559,7 +1551,7 @@ msgstr "Nem alkalmazható"
 #: src/views/list.py:94
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr "A futtatható fájlhoz talált argumentumok: [{{executable}}]."
+msgstr "A futtatható fájlhoz talált érvekek: [{{executable}}]."
 
 #: src/views/new.py:72
 msgid "Gaming"
