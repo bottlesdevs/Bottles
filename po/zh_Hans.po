@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-11 18:13+0100\n"
-"PO-Revision-Date: 2021-10-31 06:02+0000\n"
+"PO-Revision-Date: 2021-11-15 00:13+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.9.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -651,9 +651,8 @@ msgid "NVAPI Version"
 msgstr "NVAPI 版本"
 
 #: src/ui/details.ui:1886
-#, fuzzy
 msgid "Windows Version"
-msgstr "显示版本"
+msgstr "Windows 版本"
 
 #: src/ui/details.ui:1929 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -1200,12 +1199,10 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
-#, fuzzy
 msgid "Bottles' Forums"
-msgstr "Bottles 问题"
+msgstr "Bottles 论坛"
 
 #: src/ui/program-entry.ui:97
-#, fuzzy
 msgid "Bottles' Issues"
 msgstr "Bottles 问题"
 
@@ -1247,7 +1244,7 @@ msgstr "文档"
 
 #: src/ui/window.ui:84
 msgid "Forums"
-msgstr ""
+msgstr "论坛"
 
 #: src/ui/window.ui:97
 msgid "About Bottles"
@@ -1287,9 +1284,8 @@ msgid "lnk path"
 msgstr "lnk 路径"
 
 #: src/main.py:130
-#, fuzzy
 msgid "Pass arguments"
-msgstr "带有参数运行"
+msgstr "传递参数"
 
 #: src/main.py:247
 msgid "[Quit] request received."
@@ -1334,17 +1330,14 @@ msgid "No runners found, please install one."
 msgstr "未找到运行器，请安装一个。"
 
 #: src/backend/manager.py:924
-#, fuzzy
 msgid "No DXVK found, installing the latest version…"
 msgstr "未找到 DXVK，正在安装最新版本…"
 
 #: src/backend/manager.py:931
-#, fuzzy
 msgid "No VKD3D found, installing the latest version…"
 msgstr "未找到 VKD3D，正在安装最新版本…"
 
 #: src/backend/manager.py:938
-#, fuzzy
 msgid "No NVAPI found, installing the latest version…"
 msgstr "未找到 NVAPI，正在安装最新版本…"
 
@@ -1353,7 +1346,6 @@ msgid "Generating bottle config file…"
 msgstr "正在生成 bottle 配置文件…"
 
 #: src/backend/manager.py:1024
-#, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "正在更新 WINE 配置…"
 
@@ -1371,21 +1363,21 @@ msgstr "创建沙箱文件夹中…"
 
 #: src/backend/manager.py:1062
 msgid "Re-initializing registry…"
-msgstr ""
+msgstr "重新初始化注册表…"
 
 #: src/backend/manager.py:1081
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "设置 Windows 版本…"
 
 #: src/backend/manager.py:1089
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "正在应用环境：{0} …"
 
 #: src/backend/manager.py:1101
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing dependency: {0}…"
-msgstr "正在 bottle {1} 中安装依赖 {0} …"
+msgstr "正在安装依赖项：{0} …"
 
 #: src/backend/manager.py:1121
 msgid "Installing DXVK…"
@@ -1405,7 +1397,7 @@ msgstr "正在创建版本状态 0 …"
 
 #: src/backend/manager.py:1163
 msgid "Finalizing…"
-msgstr ""
+msgstr "完成中…"
 
 #: src/backend/versioning.py:52
 msgid "Generating state files index …"
