@@ -167,6 +167,8 @@ class Bottles(Gtk.Application):
 
         self.do_activate()
 
+        return 0
+
     def do_startup(self):
         '''
         This function is called when the application is started.
