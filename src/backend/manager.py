@@ -31,7 +31,7 @@ from gettext import gettext as _
 from typing import NewType
 from gi.repository import Gtk, GLib
 
-from ..utils import UtilsLogger, RunAsync
+from ..utils import UtilsFiles, UtilsLogger, RunAsync
 from .runner import Runner
 from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
 from .versioning import RunnerVersioning
@@ -1074,14 +1074,13 @@ class Manager:
         )
         Runner.wineboot(config, status=0, comunicate=True)
         reg_files = [
-            "system.reg",
-            "user.reg"
+            f"{bottle_complete_path}/system.reg",
+            f"{bottle_complete_path}/user.reg"
         ]
+        UtilsFiles.wait_for_files(reg_files)
         for register in reg_files:
-            while not os.path.exists(f"{bottle_complete_path}/{register}"):
-                time.sleep(.5)
             try:
-                os.remove(f"{bottle_complete_path}/{register}")
+                os.remove(register)
             except:
                 pass
 
@@ -1092,6 +1091,9 @@ class Manager:
             _("Setting Windows version…")
         )
         Runner.set_windows(config, config["Windows"])
+        Runner.wineboot(config, status=3, comunicate=True)
+        
+        UtilsFiles.wait_for_files(reg_files)
 
         # apply environment config
         logging.info(f"Applying environment: [{environment}]…")
@@ -1131,10 +1133,7 @@ class Manager:
                 dialog.update_output, 
                 _("Installing DXVK…")
             )
-            RunAsync(
-                self.install_dxvk, None,
-                config, False, dxvk_name, None
-            )
+            self.install_dxvk(config, version=dxvk_name)
 
         if config["Parameters"]["vkd3d"]:
             # perform vkd3d installation if configured
@@ -1143,7 +1142,7 @@ class Manager:
                 dialog.update_output, 
                 _("Installing VKD3D…")
             )
-            self.install_vkd3d(config, False, vkd3d_name, None)
+            self.install_vkd3d(config, version=vkd3d_name)
 
         if config["Parameters"]["dxvk_nvapi"]:
             # perform nvapi installation if configured
@@ -1152,7 +1151,7 @@ class Manager:
                 dialog.update_output, 
                 _("Installing DXVK-NVAPI…")
             )
-            self.install_nvapi(config, False, nvapi_name, None)
+            self.install_nvapi(config, version=nvapi_name)
 
         time.sleep(.5)
 
@@ -1175,9 +1174,10 @@ class Manager:
         )
 
         # wait for all registry changes to be applied
-        for register in reg_files:
-            while not os.path.exists(f"{bottle_complete_path}/{register}"):
-                time.sleep(.5)
+        UtilsFiles.wait_for_files(reg_files)
+        
+        # perform wineboot
+        Runner.wineboot(config, status=3, comunicate=True)
 
         GLib.idle_add(dialog.finish, config)
 
@@ -1294,14 +1294,12 @@ class Manager:
         also be used to remove the DXVK version if remove is set to True.
         '''
         logging.info(f"Installing dxvk for bottle: [{config['Name']}].")
-
+        
+        dxvk_version = config.get("DXVK")
         if version:
             dxvk_version = version
-        else:
-            dxvk_version = config.get("DXVK")
 
         option = "uninstall" if remove else "install"
-
         command = [
             'DISPLAY=:3.0',
             f'WINEPREFIX="{Paths.bottles}/{config.get("Path")}"',
