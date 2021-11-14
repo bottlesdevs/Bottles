@@ -80,7 +80,7 @@ class Samples:
                 "vkd3d": True
             },
             "Installed_Dependencies": [
-                "riched20",
+                "allfonts",
                 "dotnet48"
             ]
         },
