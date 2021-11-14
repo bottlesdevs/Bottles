@@ -537,7 +537,7 @@ class Runner:
             data=Runner._windows_versions.get(version)["CurrentVersion"]
         ) 
 
-        RunAsync(Runner.wineboot, None, config, 1)
+        Runner.wineboot(config, status=1, comunicate=True)
     
     @staticmethod
     def set_app_default(config: BottleConfig, version: str, executable: str):
