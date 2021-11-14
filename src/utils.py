@@ -18,6 +18,7 @@
 import os
 import re
 import sys
+import time
 import shutil
 import logging
 import socket
@@ -245,6 +246,20 @@ class UtilsFiles():
             "used": disk_used,
             "free": disk_free,
         }
+    
+    @staticmethod
+    def wait_for_files(files: list, timeout: int = .5) -> bool:
+        '''
+        This function waits for a list of files to be created or modified.
+        '''
+        for file in files:
+            if not os.path.isfile(file):
+                return False
+            
+            while not os.path.exists(file):
+                time.sleep(timeout)
+
+        return True
 
 
 def write_log(data: list):
