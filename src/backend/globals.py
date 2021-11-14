@@ -68,7 +68,6 @@ class Samples:
             "Installed_Dependencies": [
                 "d3dx9",
                 "msls31",
-                "riched20",
                 "allfonts",
                 "d3dcompiler_43",
                 "d3dcompiler_47"
