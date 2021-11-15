@@ -535,7 +535,7 @@ class Runner:
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
             value="CurrentVersion",
             data=Runner._windows_versions.get(version)["CurrentVersion"]
-        ) 
+        )
 
         Runner.wineboot(config, status=1, comunicate=True)
     
