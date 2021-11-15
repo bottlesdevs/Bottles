@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-11 18:13+0100\n"
-"PO-Revision-Date: 2021-10-31 06:02+0000\n"
+"PO-Revision-Date: 2021-11-15 00:13+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.9.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -668,9 +668,8 @@ msgid "NVAPI Version"
 msgstr "NVAPI Sürümü"
 
 #: src/ui/details.ui:1886
-#, fuzzy
 msgid "Windows Version"
-msgstr "Sürümü göster"
+msgstr "Windows Sürümü"
 
 #: src/ui/details.ui:1929 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -1240,12 +1239,10 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
-#, fuzzy
 msgid "Bottles' Forums"
-msgstr "Şişeler Sorunları"
+msgstr "Şişeler Forumları"
 
 #: src/ui/program-entry.ui:97
-#, fuzzy
 msgid "Bottles' Issues"
 msgstr "Şişeler Sorunları"
 
@@ -1287,7 +1284,7 @@ msgstr "Belgelendirme"
 
 #: src/ui/window.ui:84
 msgid "Forums"
-msgstr ""
+msgstr "Forumlar"
 
 #: src/ui/window.ui:97
 msgid "About Bottles"
@@ -1327,9 +1324,8 @@ msgid "lnk path"
 msgstr "lnk yolu"
 
 #: src/main.py:130
-#, fuzzy
 msgid "Pass arguments"
-msgstr "Argümanlarla çalıştır"
+msgstr "Argümanları ilet"
 
 #: src/main.py:247
 msgid "[Quit] request received."
@@ -1374,17 +1370,14 @@ msgid "No runners found, please install one."
 msgstr "Çalıştırıcı bulunamadı, lütfen bir tane kurun."
 
 #: src/backend/manager.py:924
-#, fuzzy
 msgid "No DXVK found, installing the latest version…"
 msgstr "DXVK bulunamadı, en son sürüm kuruluyor…"
 
 #: src/backend/manager.py:931
-#, fuzzy
 msgid "No VKD3D found, installing the latest version…"
 msgstr "VKD3D bulunamadı, en son sürüm kuruluyor…"
 
 #: src/backend/manager.py:938
-#, fuzzy
 msgid "No NVAPI found, installing the latest version…"
 msgstr "NVAPI bulunamadı, en son sürüm kuruluyor…"
 
@@ -1393,7 +1386,6 @@ msgid "Generating bottle config file…"
 msgstr "Şişe yapılandırma dosyası oluşturuluyor…"
 
 #: src/backend/manager.py:1024
-#, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "WINE yapılandırması güncelleniyor…"
 
@@ -1411,21 +1403,21 @@ msgstr "Korumalı klasörler oluşturuluyor…"
 
 #: src/backend/manager.py:1062
 msgid "Re-initializing registry…"
-msgstr ""
+msgstr "Kayıt defteri yeniden başlatılıyor…"
 
 #: src/backend/manager.py:1081
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "Windows sürümü ayarlanıyor…"
 
 #: src/backend/manager.py:1089
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "Ortam uygulanıyor: [{0}] …"
+msgstr "Ortam uygulanıyor: {0}…"
 
 #: src/backend/manager.py:1101
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing dependency: {0}…"
-msgstr "{1} şişesine bağımlılığı olan {0} yükleniyor…"
+msgstr "Bağımlılık kuruluyor: {0}…"
 
 #: src/backend/manager.py:1121
 msgid "Installing DXVK…"
@@ -1445,7 +1437,7 @@ msgstr "Sürüm oluşturma durumu 0 oluşturuluyor…"
 
 #: src/backend/manager.py:1163
 msgid "Finalizing…"
-msgstr ""
+msgstr "Sonuçlandırılıyor…"
 
 #: src/backend/versioning.py:52
 msgid "Generating state files index …"
