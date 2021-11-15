@@ -1,5 +1,6 @@
 import re
 import os
+import time
 import shutil
 import subprocess
 from typing import NewType
@@ -590,7 +591,8 @@ class Runner:
             command = "reg add '%s' /v '%s' /t %s /d '%s' /f" % (
                 key, value, keyType, data)
 
-        Runner.run_command(config, command)
+        Runner.wait_for_process(config, "reg.exe")
+        print(Runner.run_command(config, command, comunicate=True))
 
     @staticmethod
     def reg_delete(config: BottleConfig, key: str, value: str):
@@ -603,6 +605,7 @@ class Runner:
             f"register bottle: {config['Name']}"
         )
 
+        Runner.wait_for_process(config, "reg.exe")
         Runner.run_command(config, f"reg delete '{key}' /v {value} /f")
 
     @staticmethod
@@ -680,3 +683,64 @@ class Runner:
                 key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer",
                 value="Desktop"
             )
+    
+    @staticmethod
+    def get_processes(config:BottleConfig) -> list:
+        '''
+        Get processes running on the wineprefix.
+        Return
+        '''
+        processes = []
+        parent = None
+
+        winedbg = Runner.run_command(
+            config,
+            command='winedbg --command "info proc"',
+            comunicate=True
+        ).split("\n")
+
+        # remove the first line from the output (the header)
+        del winedbg[0]
+
+        for w in winedbg:
+            w = re.sub("\s{2,}", " ", w)[1:].replace("'", "")
+
+            if "\_" in w:
+                w = w.replace("\_ ", "")
+                w += " child"
+
+            w = w.split(" ")
+            w_parent = None
+
+            if len(w) >= 3 and w[1].isdigit():
+                w_pid = w[0]
+                w_threads = w[1]
+                w_name = w[2]
+
+                if len(w) == 3:
+                    parent = w_pid
+                else:
+                    w_parent = parent
+
+                w = {
+                    "pid": w_pid,
+                    "threads": w_threads,
+                    "name": w_name,
+                    "parent": w_parent
+                }
+                processes.append(w)
+
+        return processes
+    
+    @staticmethod
+    def wait_for_process(config:BottleConfig, name:str):
+        '''
+        Wait for all processes to finish.
+        '''
+        while True:
+            processes = Runner.get_processes(config)
+            if len(processes) == 0:
+                break
+            if name not in [p["name"] for p in processes]:
+                break
+            time.sleep(1)
