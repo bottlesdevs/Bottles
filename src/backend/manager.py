@@ -1131,15 +1131,16 @@ class Manager:
             self.install_nvapi(config, version=nvapi_name)
 
         # install dependencies
-        for dep in env["Installed_Dependencies"]:
-            _dep = self.supported_dependencies[dep]
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Installing dependency: {0}…").format(
-                    _dep["Description"]
+        if environment != "Custom":
+            for dep in env["Installed_Dependencies"]:
+                _dep = self.supported_dependencies[dep]
+                GLib.idle_add(
+                    dialog.update_output, 
+                    _("Installing dependency: {0}…").format(
+                        _dep["Description"]
+                    )
                 )
-            )
-            self.dependency_manager.install(config, [dep, _dep])
+                self.dependency_manager.install(config, [dep, _dep])
 
         time.sleep(.5)
 
