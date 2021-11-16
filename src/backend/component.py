@@ -500,7 +500,7 @@ class Downloader:
                             block_size,
                             total_size
                         )
-                    print(f"\r{count * block_size / total_size:.2f}%", end="")
+                        self.__progress(count, block_size, total_size)
         except:
             logging.error(
                 "Download failed! Check your internet connection."
@@ -508,3 +508,15 @@ class Downloader:
             return False
 
         return True
+    
+    def __progress(self, count, block_size, total_size):
+        '''
+        This function is used to update the progress bar.
+        '''
+        percent = int(count * block_size * 100 / total_size)
+        name = self.file.split("/")[-1]
+        print(f"\rDownloading {name}: {percent}% [{'=' * int(percent / 2)}>", end="")
+        
+        if percent == 100:
+            print("\n")
+        
