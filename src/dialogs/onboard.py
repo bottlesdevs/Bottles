@@ -112,7 +112,10 @@ class OnboardDialog(Handy.Window):
         '''
         self.__next_page()
         RunAsync(self.pulse, None)
-        self.manager.checks(after=self.__next_page)
+        RunAsync(
+            self.manager.checks, None,
+            self.__next_page
+        )
 
     def __previous_page(self, widget=False):
         visible_child = self.stack_onboard.get_visible_child_name()
