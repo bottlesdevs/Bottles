@@ -90,7 +90,7 @@ class DuplicateDialog(Handy.Window):
         self.btn_cancel.set_visible(False)
 
     def pulse(self):
-        # This function update the progress bar every 1s.
+        # This function update the progress bar every half second.
         while True:
             time.sleep(.5)
             self.progressbar.pulse()
