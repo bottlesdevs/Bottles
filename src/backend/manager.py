@@ -1435,7 +1435,7 @@ class Manager:
 
         # count results
         is_lutris = len(lutris_results)
-        is_playonlinux = is_lutris + len(playonlinux_results)
+        is_playonlinux = len(playonlinux_results)
         i = 1
 
         for wineprefix in results:
@@ -1461,7 +1461,7 @@ class Manager:
                     })
             i += 1
 
-        logging.info(f"Found {len(importer_wineprefixes)} wineprefixes ..")
+        logging.info(f"Found {len(importer_wineprefixes)} wineprefixes…")
         return importer_wineprefixes
 
     def import_wineprefix(self, wineprefix: dict, widget: Gtk.Widget) -> bool:
