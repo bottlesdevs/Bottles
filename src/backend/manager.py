@@ -31,7 +31,7 @@ from gettext import gettext as _
 from typing import NewType
 from gi.repository import Gtk, GLib
 
-from ..utils import UtilsLogger, RunAsync
+from ..utils import UtilsFiles, UtilsLogger, RunAsync
 from .runner import Runner
 from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
 from .versioning import RunnerVersioning
@@ -342,9 +342,9 @@ class Manager:
                 return False
 
         # sort component lists alphabetically
-        self.runners_available = sorted(self.runners_available)
-        self.dxvk_available = sorted(self.dxvk_available)
-        self.nvapi_available = sorted(self.nvapi_available)
+        self.runners_available = sorted(self.runners_available, reverse=True)
+        self.dxvk_available = sorted(self.dxvk_available, reverse=True)
+        self.nvapi_available = sorted(self.nvapi_available, reverse=True)
 
         return True
 
@@ -488,6 +488,15 @@ class Manager:
                 if fnmatch.fnmatch(name.lower(), pattern.lower()):
                     name = name.split("/")[-1][:-4]
                     return name
+
+        if "FLATPAK_ID" in os.environ:
+            '''
+            Flatpak has no access to the user's home directory, so
+            no icons can be found. Returning an empty string to
+            hide the icon instead of returning the default one for
+            all the entries in the Programs list.
+            '''
+            return ""
 
         return "application-x-executable"
 
@@ -708,6 +717,8 @@ class Manager:
                 new_config_yaml["Name"] = bottle_name_path
                 new_config_yaml["Environment"] = "Undefined"
                 self.local_bottles[bottle_name_path] = new_config_yaml
+            except AttributeError:
+                pass
 
         if len(self.local_bottles) > 0 and not silent:
             logging.info(f"Bottles found: {'|'.join(self.local_bottles)}")
@@ -909,6 +920,7 @@ class Manager:
         '''
         logging.info("Creating the wineprefix…")
 
+        # check for essential components
         if len(self.runners_available) == 0:
             # if there are no local runners, show preferences
             GLib.idle_add(
@@ -939,6 +951,7 @@ class Manager:
             )
             self.check_nvapi(no_async=True)
 
+        # default components versions if not specified
         if not runner:
             # if no runner is specified, use the first one from available
             runner = self.runners_available[0]
@@ -976,6 +989,7 @@ class Manager:
         bottle_name = name
         bottle_name_path = bottle_name.replace(" ", "-")
 
+        # get bottle path
         if path == "":
             # if no path is specified, use the name as path
             bottle_custom_path = False
@@ -984,6 +998,7 @@ class Manager:
             bottle_custom_path = True
             bottle_complete_path = path
 
+        # if another bottle with same path exists, append a random number
         if os.path.exists(bottle_complete_path):
             '''
             if bottle path already exists, create a new one
@@ -992,11 +1007,17 @@ class Manager:
             rnd = random.randint(100, 200)
             bottle_complete_path = f"{bottle_complete_path}__{rnd}"
 
+        # define registers that should be awaited
+        reg_files = [
+            f"{bottle_complete_path}/system.reg",
+            f"{bottle_complete_path}/user.reg"
+        ]
+
         # create the bottle directory
         os.makedirs(bottle_complete_path)
         
-        # generate bottle config file
-        logging.info("Generating bottle config file…")
+        # generate bottle configuration
+        logging.info("Generating bottle configuration")
         GLib.idle_add(
             dialog.update_output, 
             _("Generating bottle config file…")
@@ -1023,7 +1044,7 @@ class Manager:
             dialog.update_output, 
             _("The WINE config is being updated…")
         )
-        Runner.wineboot(config, status=3, comunicate=True)
+        Runner.wineboot(config, status=4, silent=True, comunicate=True)
         GLib.idle_add(
             dialog.update_output, 
             _("WINE config updated!")
@@ -1055,24 +1076,9 @@ class Manager:
                     except:
                         pass
             time.sleep(.5)
-
-        # re-initialize register (due to a bug, registry has wrong keys)
-        GLib.idle_add(
-            dialog.update_output,
-            _("Re-initializing registry…")
-        )
-        Runner.wineboot(config, status=0, comunicate=True)
-        reg_files = [
-            "system.reg",
-            "user.reg"
-        ]
-        for register in reg_files:
-            while not os.path.exists(f"{bottle_complete_path}/{register}"):
-                time.sleep(.5)
-            try:
-                os.remove(f"{bottle_complete_path}/{register}")
-            except:
-                pass
+            
+        # wait for registry files to be created
+        UtilsFiles.wait_for_files(reg_files)
 
         # apply Windows version
         logging.info("Setting Windows version…")
@@ -1081,8 +1087,11 @@ class Manager:
             _("Setting Windows version…")
         )
         Runner.set_windows(config, config["Windows"])
+        Runner.wineboot(config, status=3, comunicate=True)
+        
+        UtilsFiles.wait_for_files(reg_files)
 
-        # apply environment config
+        # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…")
         GLib.idle_add(
             dialog.update_output, 
@@ -1094,6 +1103,35 @@ class Manager:
                 if prm in env["Parameters"]:
                     config["Parameters"][prm] = env["Parameters"][prm]
 
+        if config["Parameters"]["dxvk"]:
+            # perform dxvk installation if configured
+            logging.info("Installing DXVK…")
+            GLib.idle_add(
+                dialog.update_output, 
+                _("Installing DXVK…")
+            )
+            self.install_dxvk(config, version=dxvk_name)
+
+        if config["Parameters"]["vkd3d"]:
+            # perform vkd3d installation if configured
+            logging.info("Installing VKD3D…")
+            GLib.idle_add(
+                dialog.update_output, 
+                _("Installing VKD3D…")
+            )
+            self.install_vkd3d(config, version=vkd3d_name)
+
+        if config["Parameters"]["dxvk_nvapi"]:
+            # perform nvapi installation if configured
+            logging.info("Installing DXVK-NVAPI…")
+            GLib.idle_add(
+                dialog.update_output, 
+                _("Installing DXVK-NVAPI…")
+            )
+            self.install_nvapi(config, version=nvapi_name)
+
+        # install dependencies
+        if environment != "Custom":
             for dep in env["Installed_Dependencies"]:
                 _dep = self.supported_dependencies[dep]
                 GLib.idle_add(
@@ -1110,38 +1148,6 @@ class Manager:
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
-
-        time.sleep(.5)
-
-        if config["Parameters"]["dxvk"]:
-            # perform dxvk installation if configured
-            logging.info("Installing DXVK…")
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Installing DXVK…")
-            )
-            RunAsync(
-                self.install_dxvk, None,
-                config, False, dxvk_name, None
-            )
-
-        if config["Parameters"]["vkd3d"]:
-            # perform vkd3d installation if configured
-            logging.info("Installing VKD3D…")
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Installing VKD3D…")
-            )
-            self.install_vkd3d(config, False, vkd3d_name, None)
-
-        if config["Parameters"]["dxvk_nvapi"]:
-            # perform nvapi installation if configured
-            logging.info("Installing DXVK-NVAPI…")
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Installing DXVK-NVAPI…")
-            )
-            self.install_nvapi(config, False, nvapi_name, None)
 
         time.sleep(.5)
 
@@ -1164,9 +1170,10 @@ class Manager:
         )
 
         # wait for all registry changes to be applied
-        for register in reg_files:
-            while not os.path.exists(f"{bottle_complete_path}/{register}"):
-                time.sleep(.5)
+        UtilsFiles.wait_for_files(reg_files)
+        
+        # perform wineboot
+        Runner.wineboot(config, status=3, comunicate=True)
 
         GLib.idle_add(dialog.finish, config)
 
@@ -1210,9 +1217,7 @@ class Manager:
         the configuration and files.
         '''
         logging.info("Stopping bottle…")
-        Runner.wineboot(config, status=0, comunicate=True)
-
-        logging.info("Deleting bottle…")
+        Runner.wineboot(config, status=-1, comunicate=True)
 
         if config.get("Path"):
             logging.info(f"Removing applications installed with the bottle ..")
@@ -1248,27 +1253,26 @@ class Manager:
             f"Trying to repair the bottle: [{config['Name']}]…"
         )
 
-        bottle_complete_path = f"{Paths.bottles}/{config['Name']}"
+        bottle_path = f"{Paths.bottles}/{config['Name']}"
 
         # create new config with path as name and Custom environment
         new_config = Samples.config
         new_config["Name"] = config.get("Name")
-        new_config["Runner"] = self.runners_available[0]
+        new_config["Runner"] = self.get_latest_runner()
         new_config["Path"] = config.get("Name")
         new_config["Environment"] = "Custom"
         new_config["Creation_Date"] = str(datetime.now())
         new_config["Update_Date"] = str(datetime.now())
 
         try:
-            with open("%s/bottle.yml" % bottle_complete_path,
-                      "w") as conf_file:
+            with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
                 yaml.dump(new_config, conf_file, indent=4)
                 conf_file.close()
         except:
             return False
 
         # Execute wineboot in bottle to generate missing files
-        Runner.wineboot(config=new_config, status=3, comunicate=True)
+        Runner.wineboot(config=new_config, status=4, comunicate=True)
 
         # Update bottles
         self.update_bottles()
@@ -1286,14 +1290,12 @@ class Manager:
         also be used to remove the DXVK version if remove is set to True.
         '''
         logging.info(f"Installing dxvk for bottle: [{config['Name']}].")
-
+        
+        dxvk_version = config.get("DXVK")
         if version:
             dxvk_version = version
-        else:
-            dxvk_version = config.get("DXVK")
 
         option = "uninstall" if remove else "install"
-
         command = [
             'DISPLAY=:3.0',
             f'WINEPREFIX="{Paths.bottles}/{config.get("Path")}"',

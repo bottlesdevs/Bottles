@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-11 18:13+0100\n"
-"PO-Revision-Date: 2021-11-08 22:03+0000\n"
+"PO-Revision-Date: 2021-11-18 11:55+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.9.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -163,7 +163,7 @@ msgstr "Tumma teema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Use a dark application theme."
-msgstr ""
+msgstr "Käytä tummaa teemaa sovelluksessa."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -588,12 +588,11 @@ msgstr "Laatu"
 
 #: src/ui/details.ui:1333
 msgid "Balanced"
-msgstr ""
+msgstr "Tasapainotettu"
 
 #: src/ui/details.ui:1334
-#, fuzzy
 msgid "Performance"
-msgstr "Ulkoasu"
+msgstr "Suorituskyky"
 
 #: src/ui/details.ui:1383
 msgid "Enable ACO shader compiler"
@@ -675,9 +674,8 @@ msgid "NVAPI Version"
 msgstr "NVAPI-versio"
 
 #: src/ui/details.ui:1886
-#, fuzzy
 msgid "Windows Version"
-msgstr "Näytä versio"
+msgstr "Windows-versio"
 
 #: src/ui/details.ui:1929 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -938,7 +936,6 @@ msgid "Execute in this bottle"
 msgstr "Suorita tässä pullossa"
 
 #: src/ui/list-entry.ui:118
-#, fuzzy
 msgid "Run Here"
 msgstr "Suorita tässä"
 
@@ -1241,14 +1238,12 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
-#, fuzzy
 msgid "Bottles' Forums"
-msgstr "Pullojen viat"
+msgstr "Pullojen keskustelualue"
 
 #: src/ui/program-entry.ui:97
-#, fuzzy
 msgid "Bottles' Issues"
-msgstr "Pullojen viat"
+msgstr "Pullojen ongelmat"
 
 #: src/ui/program-entry.ui:121
 msgid "Remove from Programs"
@@ -1288,7 +1283,7 @@ msgstr "Dokumentaatio"
 
 #: src/ui/window.ui:84
 msgid "Forums"
-msgstr ""
+msgstr "Keskustelualueet"
 
 #: src/ui/window.ui:97
 msgid "About Bottles"
@@ -1376,17 +1371,14 @@ msgid "No runners found, please install one."
 msgstr "Ajajia ei löytynyt. Asenna sellainen."
 
 #: src/backend/manager.py:924
-#, fuzzy
 msgid "No DXVK found, installing the latest version…"
 msgstr "DXVK:ta ei löytynyt, asennetaan uusin versio…"
 
 #: src/backend/manager.py:931
-#, fuzzy
 msgid "No VKD3D found, installing the latest version…"
 msgstr "VKD3D:tä ei löytynyt, asennetaan uusin versio…"
 
 #: src/backend/manager.py:938
-#, fuzzy
 msgid "No NVAPI found, installing the latest version…"
 msgstr "NVAPI:a ei löytynyt, asennetaan uusin versio…"
 
@@ -1395,7 +1387,6 @@ msgid "Generating bottle config file…"
 msgstr "Luodaan Pullo-kokoonpanotiedostoa…"
 
 #: src/backend/manager.py:1024
-#, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "Winen kokoonpanoa päivitetään…"
 
@@ -1413,21 +1404,21 @@ msgstr "Luodaan eristettyjä kansioita…"
 
 #: src/backend/manager.py:1062
 msgid "Re-initializing registry…"
-msgstr ""
+msgstr "Alustetaan uudelleen rekisteriä…"
 
 #: src/backend/manager.py:1081
 msgid "Setting Windows version…"
-msgstr ""
+msgstr "Asetetaan Windows-versiota…"
 
 #: src/backend/manager.py:1089
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "Toteutetaan ympäristö: {0} …"
+msgstr "Toteutetaan ympäristö: {0}…"
 
 #: src/backend/manager.py:1101
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing dependency: {0}…"
-msgstr "Asennus {0} riippuvuus pullossa {1} …"
+msgstr "Asennetaan riippuvuus: {0}…"
 
 #: src/backend/manager.py:1121
 msgid "Installing DXVK…"
@@ -1447,7 +1438,7 @@ msgstr "Luodaan versionointitila 0…"
 
 #: src/backend/manager.py:1163
 msgid "Finalizing…"
-msgstr ""
+msgstr "Viimeistellään…"
 
 #: src/backend/versioning.py:52
 msgid "Generating state files index …"

@@ -78,7 +78,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Optional sandboxed bottles
 
 ## ↗️ Install
-Bottles is officially provided as AppImage, Flatpak, Snap, AUR, deb package. 
+Bottles is officially provided as Flatpak, AppImage, AUR package. 
 There are also other packages maintained by our community, like Fedora and 
 AUR (bottles-git).
 

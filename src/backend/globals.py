@@ -59,16 +59,15 @@ class Samples:
             "Parameters": {
                 "dxvk": True,
                 # "nvapi": True,
-                "vkd3d": True,
+                "vkd3d": False,
                 "sync": "esync",
-                "fsr": True,
+                "fsr": False,
                 "discrete_gpu": True,
                 "pulseaudio_latency": True
             },
             "Installed_Dependencies": [
                 "d3dx9",
                 "msls31",
-                "riched20",
                 "allfonts",
                 "d3dcompiler_43",
                 "d3dcompiler_47"
@@ -81,7 +80,7 @@ class Samples:
                 "vkd3d": True
             },
             "Installed_Dependencies": [
-                "riched20",
+                "allfonts",
                 "dotnet48"
             ]
         },

@@ -123,7 +123,7 @@ class InstallerManager:
 
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
             RunAsync(
-                self.__manager.dependency_manager, None,
+                self.__manager.dependency_manager.install, None,
                 config, dep_index, None
             )
 
@@ -148,7 +148,9 @@ class InstallerManager:
                         config=config,
                         file_path=f"{Paths.temp}/{file}",
                         arguments=st.get("arguments"),
-                        environment=st.get("environment"))
+                        environment=st.get("environment"),
+                        no_async=True
+                    )
 
     def __set_parameters(self, config, parameters: dict):
         if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:

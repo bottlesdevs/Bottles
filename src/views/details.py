@@ -191,8 +191,8 @@ class DetailsView(Handy.Leaflet):
         self.btn_environment_variables.connect(
             'pressed', self.__show_environment_variables
         )
-        self.btn_backup_config.connect('pressed', self.__backup_config)
-        self.btn_backup_full.connect('pressed', self.__backup_full)
+        self.btn_backup_config.connect('pressed', self.__backup, "config")
+        self.btn_backup_full.connect('pressed', self.__backup, "full")
         self.btn_duplicate.connect('pressed', self.__duplicate)
         self.btn_add_state.connect('pressed', self.__add_state)
         self.btn_help_versioning.connect(
@@ -349,7 +349,6 @@ class DetailsView(Handy.Leaflet):
             del pages["installers"]
 
         if self.config.get("Environment") == "Layered":
-            print("ciao")
             del pages["dependencies"]
             del pages["preferences"]
             del pages["versioning"]
@@ -404,7 +403,6 @@ class DetailsView(Handy.Leaflet):
         file_dialog.set_current_folder(
             ManagerUtils.get_bottle_path(self.config)
         )
-
         response = file_dialog.run()
 
         if response == -3:
@@ -1209,61 +1207,33 @@ class DetailsView(Handy.Leaflet):
             self.entry_state_comment.set_text("")
             self.pop_state.popdown()
 
-    def __backup_config(self, widget):
+    def __backup(self, widget, backup_type):
         '''
         This function pop up the a file chooser where the user
-        can select the path where to export the bottle configuration
-        backup. It will also ask the BackupManager to export the new
-        backup after the user confirmation.
+        can select the path where to export the bottle backup.
+        Use the backup_type param to export config or full.
         '''
-        file_dialog = Gtk.FileChooserDialog(
-            _("Select the location where to save the backup config"),
+        title = _("Select the location where to save the backup config")
+        hint = f"backup_{self.config.get('Path')}.yml"
+
+        if backup_type == "full":
+            title = _("Select the location where to save the backup archive")
+            hint = f"backup_{self.config.get('Path')}.tar.gz"
+
+        file_dialog = Gtk.FileChooserNative.new(
+            title,
             self.window,
             Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
+            _("Export"), _("Cancel")
         )
-        file_dialog.set_current_name("backup_%s.yml" % self.config.get("Path"))
-
+        file_dialog.set_current_name(hint)
         response = file_dialog.run()
-
-        if response == Gtk.ResponseType.OK:
+        if response == -3:
             RunAsync(
                 BackupManager.export_backup, None,
                 self.window,
                 self.config,
-                "config",
-                file_dialog.get_filename()
-            )
-
-        file_dialog.destroy()
-
-    def __backup_full(self, widget):
-        '''
-        This function pop up the a file chooser where the user
-        can select the path where to export the bottle full backup. 
-        It will also ask the BackupManager to export the backup
-        after the user confirmation.
-        '''
-        file_dialog = Gtk.FileChooserDialog(
-            _("Select the location where to save the backup archive"),
-            self.window,
-            Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_SAVE, Gtk.ResponseType.OK)
-        )
-        file_dialog.set_current_name(
-            "backup_%s.tar.gz" % self.config.get("Path")
-        )
-
-        response = file_dialog.run()
-
-        if response == Gtk.ResponseType.OK:
-            RunAsync(
-                BackupManager.export_backup, None,
-                self.window,
-                self.config,
-                "full",
+                backup_type,
                 file_dialog.get_filename()
             )
 

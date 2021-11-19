@@ -41,8 +41,8 @@ class ManagerUtils:
             if path_type == "nvapi":
                 path = ManagerUtils.get_nvapi_path(component)
 
-            if path_type == "custom" and custom_path != "":
-                path = custom_path
+        if path_type == "custom" and custom_path != "":
+            path = custom_path
 
         command = f"xdg-open '{path}'"
         return subprocess.Popen(command, shell=True).communicate()

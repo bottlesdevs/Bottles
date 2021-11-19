@@ -27,7 +27,7 @@ from typing import Union
 
 from ..operation import OperationManager
 from .globals import Paths, BottlesRepositories
-from ..utils import UtilsLogger, UtilsFiles
+from ..utils import UtilsLogger, UtilsFiles, RunAsync
 
 logging = UtilsLogger()
 
@@ -254,11 +254,11 @@ class ComponentManager:
                 False and the download is removed from the download manager.
                 '''
                 try:
-                    urllib.request.urlretrieve(
+                    Downloader(
                         url=download_url,
-                        filename=f"{Paths.temp}/{file}",
-                        reporthook=update_func
-                    )
+                        file=f"{Paths.temp}/{file}",
+                        func=update_func
+                    ).download()
                 except:
                     GLib.idle_add(task_entry.remove)
                     return False
@@ -467,3 +467,56 @@ class ComponentManager:
                 src=os.path.join(path, source),
                 dst=os.path.join(path, dest)
             )
+
+class Downloader:
+    '''
+    This class is used to download a resource from a given URL. It shows
+    and update a progress bar while downloading but can also be used to
+    update external progress bars using the func parameter.
+    '''
+    def __init__(self, url: str, file: str, func: callable = None):
+        self.url = url
+        self.file = file
+        self.func = func
+
+    def download(self):
+        '''
+        Download the file.
+        '''
+        try:
+            with open(self.file, "wb") as file:
+                response = requests.get(self.url, stream=True)
+                total_size = int(response.headers.get("content-length", 0))
+                block_size = 1024
+                count = 0
+
+                for data in response.iter_content(block_size):
+                    file.write(data)
+                    count += 1
+                    if self.func is not None:
+                        GLib.idle_add(
+                            self.func,
+                            count,
+                            block_size,
+                            total_size
+                        )
+                        self.__progress(count, block_size, total_size)
+        except:
+            logging.error(
+                "Download failed! Check your internet connection."
+            )
+            return False
+
+        return True
+    
+    def __progress(self, count, block_size, total_size):
+        '''
+        This function is used to update the progress bar.
+        '''
+        percent = int(count * block_size * 100 / total_size)
+        name = self.file.split("/")[-1]
+        print(f"\rDownloading {name}: {percent}% [{'=' * int(percent / 2)}>", end="")
+        
+        if percent == 100:
+            print("\n")
+        

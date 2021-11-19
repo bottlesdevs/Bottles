@@ -84,9 +84,11 @@ class ListViewEntry(Handy.ActionRow):
         if self.config.get("Broken"):
             for w in [self.btn_repair,self.icon_damaged]:
                 w.set_visible(True)
+                w.set_sensitive(True)
 
-            for w in [self, self.btn_run]:
-                w.set_sensitive(False)
+            self.btn_run.set_sensitive(False)
+            self.handler_block_by_func(self.show_details)
+
         else:
             '''Check for arguments from config'''
             if self.arg_exe:
@@ -104,6 +106,7 @@ class ListViewEntry(Handy.ActionRow):
     '''Repair bottle'''
     def repair(self, widget):
         self.manager.repair_bottle(self.config)
+        self.handler_unblock_by_func(self.show_details)
 
     '''Display file dialog for executable'''
     def run_executable(self, widget):
