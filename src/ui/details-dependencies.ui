@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <requires lib="gtk+" version="3.24"/>
+    <requires lib="libhandy" version="1.0"/>
+    <template class="DetailsDependencies" parent="GtkScrolledWindow">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <child>
+            <object class="GtkViewport">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+                <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="GtkInfoBar" id="infobar_testing">
+                    <property name="can-focus">False</property>
+                    <property name="message-type">error</property>
+                    <child internal-child="action_area">
+                        <object class="GtkButtonBox">
+                        <property name="can-focus">False</property>
+                        <property name="spacing">6</property>
+                        <property name="layout-style">end</property>
+                        <child>
+                            <placeholder/>
+                        </child>
+                        <child>
+                            <placeholder/>
+                        </child>
+                        <child>
+                            <placeholder/>
+                        </child>
+                        </object>
+                        <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                        </packing>
+                    </child>
+                    <child internal-child="content_area">
+                        <object class="GtkBox">
+                        <property name="can-focus">False</property>
+                        <property name="spacing">16</property>
+                        <child>
+                            <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">Test mode enabled: only dependencies from testing repository are shown.</property>
+                            </object>
+                            <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                            </packing>
+                        </child>
+                        </object>
+                        <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                        </packing>
+                    </child>
+                    <child>
+                        <placeholder/>
+                    </child>
+                    </object>
+                    <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                    </packing>
+                </child>
+                <child>
+                    <object class="HdyClamp">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="maximum-size">500</property>
+                    <child>
+                        <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">15</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                            <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-bottom">10</property>
+                            <child>
+                                <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                    <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                        <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">start</property>
+                                        <property name="label" translatable="yes">While the files on this page have been verified may be under proprietary license.</property>
+                                        </object>
+                                        <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                        </packing>
+                                    </child>
+                                    <child>
+                                        <object class="GtkButton" id="btn_request_dependency">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="receives-default">True</property>
+                                        <property name="tooltip-text" translatable="yes">Read documentation</property>
+                                        <property name="halign">end</property>
+                                        <property name="margin-left">5</property>
+                                        <property name="margin-start">5</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="relief">none</property>
+                                        <child>
+                                            <object class="GtkImage">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Report a missing dependency</property>
+                                            <property name="icon-name">chat-message-new-symbolic</property>
+                                            </object>
+                                        </child>
+                                        <style>
+                                            <class name="circular"/>
+                                            <class name="image-button"/>
+                                        </style>
+                                        </object>
+                                        <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                        </packing>
+                                    </child>
+                                    </object>
+                                    <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                    </packing>
+                                </child>
+                                </object>
+                                <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                                </packing>
+                            </child>
+                            </object>
+                            <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                            </packing>
+                        </child>
+                        <child>
+                            <object class="GtkSearchEntry" id="entry_search_deps">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="margin-bottom">10</property>
+                            <property name="primary-icon-name">edit-find-symbolic</property>
+                            <property name="primary-icon-activatable">False</property>
+                            <property name="primary-icon-sensitive">False</property>
+                            <property name="placeholder-text" translatable="yes">Microsoft .NET Framework 4 ..</property>
+                            </object>
+                            <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                            </packing>
+                        </child>
+                        <child>
+                            <object class="GtkListBox" id="list_dependencies">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-bottom">10</property>
+                            <property name="selection-mode">none</property>
+                            <style>
+                                <class name="content"/>
+                            </style>
+                            </object>
+                            <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                            </packing>
+                        </child>
+                        </object>
+                    </child>
+                    </object>
+                    <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                    </packing>
+                </child>
+                </object>
+            </child>
+            </object>
+        </child>
+    </template>
+</interface>

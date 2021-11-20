@@ -26,6 +26,7 @@ import subprocess
 import hashlib
 import threading
 import traceback
+import webbrowser
 
 from typing import Union
 from datetime import datetime
@@ -431,3 +432,9 @@ def validate_url(url: str):
     )
 
     return re.match(regex, url) is not None
+
+
+class GtkUtils:
+    @staticmethod
+    def open_doc_url(widget, page):
+        webbrowser.open_new_tab(f"https://docs.usebottles.com/{page}")

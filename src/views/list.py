@@ -137,7 +137,7 @@ class ListViewEntry(Handy.ActionRow):
 
     '''Show details page'''
     def show_details(self, widget):
-        self.window.page_details.update_combo_components()
+        self.window.page_details.view_preferences.update_combo_components()
         self.window.show_details_view(config=self.config)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
