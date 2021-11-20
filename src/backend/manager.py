@@ -921,35 +921,22 @@ class Manager:
         logging.info("Creating the wineprefix…")
 
         # check for essential components
-        if len(self.runners_available) == 0:
-            # if there are no local runners, show preferences
+        if 0 in [
+            len(self.runners_available),
+            len(self.dxvk_available),
+            len(self.vkd3d_available),
+            len(self.nvapi_available)
+        ]:
+            logging.error("Missing essential components. Installing…")
             GLib.idle_add(
                 dialog.update_output, 
-                _("No runners found, please install one.")
+                _("Missing essential components. Installing…")
             )
-            self.window.show_prefs_view()
-            dialog.destroy()
-        if len(self.dxvk_available) == 0:
-            # if there are no local dxvks, install latest
-            GLib.idle_add(
-                dialog.update_output, 
-                _("No DXVK found, installing the latest version…")
-            )
+            self.check_runners()
             self.check_dxvk(no_async=True)
-        if len(self.vkd3d_available) == 0:
-            # if there are no local vkd3ds, install latest
-            GLib.idle_add(
-                dialog.update_output, 
-                _("No VKD3D found, installing the latest version…")
-            )
             self.check_vkd3d(no_async=True)
-        if len(self.nvapi_available) == 0:
-            # if there are no local nvapis, install latest
-            GLib.idle_add(
-                dialog.update_output, 
-                _("No NVAPI found, installing the latest version…")
-            )
             self.check_nvapi(no_async=True)
+            self.organize_components()
 
         # default components versions if not specified
         if not runner:
