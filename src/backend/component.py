@@ -299,6 +299,8 @@ class ComponentManager:
                 logging.error(
                     f"Source cksum: [{checksum}] downloaded: [{local_checksum}]"
                 )
+                logging.info(f"Removing corrupted file [{file}].")
+                os.remove(file_path)
 
                 #os.remove(file_path)
                 GLib.idle_add(task_entry.remove)
