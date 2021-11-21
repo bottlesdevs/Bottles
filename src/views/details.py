@@ -77,9 +77,7 @@ class DetailsView(Handy.Leaflet):
 
         self.list_pages.connect('row-selected', self.__change_page)
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
-        self.btn_taskmanager_update.connect(
-            'pressed', self.view_taskmanager.update
-        )
+        self.btn_taskmanager_update.connect('pressed', self.update_taskmanager)
         # endregion
 
         # self.build_pages()
@@ -203,3 +201,7 @@ class DetailsView(Handy.Leaflet):
     def update_programs(self, widget):
         self.view_bottle.update_programs()
         self.view_programs.update(config=self.config)
+
+    def update_taskmanager(self, widget):
+        self.view_taskmanager.update(config=self.config)
+        
