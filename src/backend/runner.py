@@ -701,7 +701,12 @@ class Runner:
             config,
             command='winedbg --command "info proc"',
             comunicate=True
-        ).split("\n")
+        )
+
+        if winedbg in [None, ""]:
+            return processes
+        
+        winedbg = winedbg.split("\n")
 
         # remove the first line from the output (the header)
         del winedbg[0]

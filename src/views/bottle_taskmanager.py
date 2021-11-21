@@ -17,33 +17,35 @@
 
 from gettext import gettext as _
 from gi.repository import Gtk
+
+from ..utils import RunAsync
 from ..backend.runner import Runner
 
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/task-manager.ui')
-class TaskManagerView(Gtk.Box):
+@Gtk.Template(resource_path='/com/usebottles/bottles/details-taskmanager.ui')
+class TaskManagerView(Gtk.ScrolledWindow):
     __gtype_name__ = 'TaskManagerView'
 
     # region Widgets
     treeview_processes = Gtk.Template.Child()
-    btn_processes_update = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, **kwargs):
+    def __init__(self, window, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         self.window = window
         self.manager = window.manager
+        self.config = config
 
         # apply model to treeview_processes
-        self.liststore_processes = Gtk.ListStore(str, str, str, str, str, str)
+        self.liststore_processes = Gtk.ListStore(str, str, str, str)
         self.treeview_processes.set_model(self.liststore_processes)
 
         cell_renderer = Gtk.CellRendererText()
         i = 0
 
-        for column in ["PID", "Memory", "CPU", "Start", "Time", "Command"]:
+        for column in ["PID", "Name", "Threads", "Parent"]:
             '''
             For each column, add it to the treeview_processes
             '''
@@ -51,26 +53,31 @@ class TaskManagerView(Gtk.Box):
             self.treeview_processes.append_column(column)
             i += 1
 
-        # connect signals
-        self.btn_processes_update.connect('pressed', self.update_processes)
+        self.update()
 
-        self.update_processes()
-
-    def update_processes(self, widget=False):
+    def update_processes(self, widget=False, config={}):
         '''
         This function scan for new processed and update the
         liststore_processes with the new data
         '''
+        self.config = config
+
         self.liststore_processes.clear()
-        processes = Runner.get_running_processes()
+        processes = Runner.get_processes(self.config)
 
         if len(processes) > 0:
             for process in processes:
                 self.liststore_processes.append([
-                    process["pid"],
-                    process["pmem"],
-                    process["pcpu"],
-                    process["stime"],
-                    process["time"],
-                    process["cmd"]
+                    process.get("pid"),
+                    process.get("name", "n/a"),
+                    process.get("threads", "0"),
+                    process.get("parent", "0")
                 ])
+    
+    def update(self, widget=False, config={}):
+        '''
+        This function is called when the btn_processes_updates is
+        pressed. It will update the liststore_processes with the
+        new data. It is an async wrapper for update_processes.
+        '''
+        RunAsync(self.update_processes, None, False, config)    

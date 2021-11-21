@@ -28,6 +28,7 @@ from .bottle_dependencies import DependenciesView
 from .bottle_preferences import PreferencesView
 from .bottle_programs import ProgramsView
 from .bottle_versioning import VersioningView
+from .bottle_taskmanager import TaskManagerView
 
 
 pages = {}
@@ -42,9 +43,11 @@ class DetailsView(Handy.Leaflet):
     actions_programs = Gtk.Template.Child()
     actions_versioning = Gtk.Template.Child()
     actions_installers = Gtk.Template.Child()
+    actions_taskmanager = Gtk.Template.Child()
     btn_programs_updates = Gtk.Template.Child()
     btn_programs_add = Gtk.Template.Child()
     btn_help_versioning = Gtk.Template.Child()
+    btn_taskmanager_update = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config={}, **kwargs):
@@ -61,6 +64,7 @@ class DetailsView(Handy.Leaflet):
         self.view_preferences = PreferencesView(window, config)
         self.view_programs = ProgramsView(window, config)
         self.view_versioning = VersioningView(window, config)
+        self.view_taskmanager = TaskManagerView(window, config)
 
         # region signals
         self.btn_programs_updates.connect(
@@ -73,6 +77,9 @@ class DetailsView(Handy.Leaflet):
 
         self.list_pages.connect('row-selected', self.__change_page)
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
+        self.btn_taskmanager_update.connect(
+            'pressed', self.view_taskmanager.update
+        )
         # endregion
 
         # self.build_pages()
@@ -94,6 +101,8 @@ class DetailsView(Handy.Leaflet):
             self.window.set_actions(self.actions_versioning)
         elif page == "installers":
             self.window.set_actions(self.actions_installers)
+        elif page == "taskmanager":
+            self.window.set_actions(self.actions_taskmanager)
         else:
             self.window.set_actions(None)
 
@@ -128,6 +137,10 @@ class DetailsView(Handy.Leaflet):
             "installers": {
                 "title": _("Installers"),
                 "description": "",
+            },
+            "taskmanager": {
+                "title": _("Task manager"),
+                "description": "",
             }
         }
 
@@ -154,6 +167,7 @@ class DetailsView(Handy.Leaflet):
         self.stack_bottle.add_named(self.view_programs, "programs")
         self.stack_bottle.add_named(self.view_installers, "installers")
         self.stack_bottle.add_named(self.view_versioning, "versioning")
+        self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
     def __change_page(self, widget, row):
         '''
@@ -181,6 +195,7 @@ class DetailsView(Handy.Leaflet):
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
         self.view_programs.update(config=config)
+        self.view_taskmanager.update(config=config)
         self.view_bottle.update_programs()
 
         self.build_pages()

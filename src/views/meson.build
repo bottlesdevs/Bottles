@@ -7,7 +7,6 @@ bottles_sources = [
   'list.py',
   'details.py',
   'preferences.py',
-  'taskmanager.py',
   'importer.py',
 
   'bottle_details.py',
@@ -15,7 +14,8 @@ bottles_sources = [
   'bottle_dependencies.py',
   'bottle_preferences.py',
   'bottle_programs.py',
-  'bottle_versioning.py'
+  'bottle_versioning.py',
+  'bottle_taskmanager.py'
 ]
 
 install_data(bottles_sources, install_dir: viewsdir)

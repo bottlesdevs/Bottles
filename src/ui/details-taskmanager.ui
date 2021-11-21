@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="TaskManagerView" parent="GtkScrolledWindow">
+    <property name="visible">True</property>
+    <property name="can-focus">True</property>
+    <child>
+      <object class="GtkViewport">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkTreeView" id="treeview_processes">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="enable-grid-lines">horizontal</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

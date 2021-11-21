@@ -31,7 +31,6 @@ from .views.new import NewView
 from .views.details import DetailsView
 from .views.list import ListView
 from .views.preferences import PreferencesWindow
-from .views.taskmanager import TaskManagerView
 from .views.importer import ImporterView
 from .dialogs.crash import CrashReportDialog
 from .dialogs.generic import AboutDialog
@@ -61,7 +60,6 @@ class MainWindow(Handy.ApplicationWindow):
     btn_more = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
     btn_forum = Gtk.Template.Child()
-    btn_taskmanager = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
@@ -126,13 +124,11 @@ class MainWindow(Handy.ApplicationWindow):
         # Pages
         page_details = DetailsView(self)
         page_list = ListView(self, arg_exe)
-        page_taskmanager = TaskManagerView(self)
         page_importer = ImporterView(self)
 
         # Reusable variables
         self.page_list = page_list
         self.page_details = page_details
-        self.page_taskmanager = page_taskmanager
         self.page_importer = page_importer
 
         # Populate stack
@@ -147,11 +143,6 @@ class MainWindow(Handy.ApplicationWindow):
             child=page_list,
             name="page_list",
             title=_("Bottles")
-        )
-        self.stack_main.add_titled(
-            child=page_taskmanager,
-            name="page_taskmanager",
-            title=_("Task manager")
         )
         self.stack_main.add_titled(
             child=page_importer,
@@ -170,7 +161,6 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_docs.connect('pressed', self.open_url, DOC_URL)
         self.btn_forum.connect('pressed', self.open_url, FORUMS_URL)
         self.btn_preferences.connect('pressed', self.show_prefs_view)
-        self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
@@ -202,8 +192,6 @@ class MainWindow(Handy.ApplicationWindow):
             self.set_title(_("Bottle details"))
         elif page == "page_list":
             self.set_title(_("Bottles"))
-        elif page == "page_taskmanager":
-            self.set_title(_("Task manager"))
         elif page == "page_importer":
             self.set_title(_("Import & export"))
 
@@ -307,10 +295,6 @@ class MainWindow(Handy.ApplicationWindow):
 
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
-
-    def show_taskmanager_view(self, widget=False):
-        self.set_previous_page_status()
-        self.stack_main.set_visible_child_name("page_taskmanager")
 
     def show_importer_view(self, widget=False):
         self.set_previous_page_status()
