@@ -388,6 +388,7 @@ class DependencyManager:
                 environment=step.get("environment"),
                 no_async=True
             )
+            Runner.wait_for_process(config, file)
         else:
             if widget is not None:
                 widget.btn_install.set_sensitive(True)
