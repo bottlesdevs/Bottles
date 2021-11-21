@@ -5,7 +5,7 @@ import shutil
 import subprocess
 from typing import NewType
 
-from ..utils import UtilsTerminal, UtilsLogger, RunAsync
+from ..utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding
 from .globals import Paths, gamemode_available
 from .manager_utils import ManagerUtils
 
@@ -413,24 +413,29 @@ class Runner:
             
         if comunicate:
             try:
-                return subprocess.Popen(
+                res = subprocess.Popen(
                     command,
                     stdout=subprocess.PIPE,
                     shell=True,
                     env=env,
                     cwd=cwd
-                ).communicate()[0].decode("utf-8")
+                ).communicate()[0]
             except:
                 '''
                 If return an exception, try to execute the command
                 without the cwd argument
                 '''
-                return subprocess.Popen(
+                res = subprocess.Popen(
                     command,
                     stdout=subprocess.PIPE,
                     shell=True,
                     env=env
-                ).communicate()[0].decode("utf-8")
+                ).communicate()[0]
+
+            enc = detect_encoding(res)
+            if enc is not None:
+                res = res.decode(enc)
+            return res
 
         try:
             '''
@@ -445,7 +450,11 @@ class Runner:
                 cwd=cwd,
                 shell=True,
                 env=env
-            ).communicate()[0].decode("utf-8")
+            ).communicate()[0]
+
+            enc = detect_encoding(res)
+            if enc is not None:
+                res = res.decode(enc)
 
             if "ShellExecuteEx" in res:
                 raise Exception("ShellExecuteEx")
