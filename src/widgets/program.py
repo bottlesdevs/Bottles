@@ -56,6 +56,10 @@ class ProgramEntry(Handy.ActionRow):
         self.set_title(self.program_name)
         self.set_icon_name(program[2])
 
+        if self.program_name not in self.config["External_Programs"]:
+            # hide remove button if program is not added by user
+            self.btn_remove.set_visible(False)
+
         '''Signal connections'''
         self.btn_run.connect('pressed', self.run_executable)
         self.btn_winehq.connect('pressed', self.open_search_url, "winehq")
