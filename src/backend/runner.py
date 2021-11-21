@@ -692,8 +692,7 @@ class Runner:
     @staticmethod
     def get_processes(config:BottleConfig) -> list:
         '''
-        Get processes running on the wineprefix.
-        Return
+        Get processes running on the wineprefix as a list.
         '''
         processes = []
         parent = None
