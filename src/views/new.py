@@ -212,7 +212,7 @@ class NewView(Handy.Window):
                 runner = self.manager.runners_available[0]
 
         RunAsync(
-            self.manager.create_bottle, None,
+            task_func=self.manager.create_bottle,
             name=self.entry_name.get_text(),
             path="",
             environment=self.selected_env,

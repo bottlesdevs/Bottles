@@ -225,7 +225,10 @@ class RunnerVersioning:
             If the update flag is set, we will update the bottle's 
             states list.
             '''
-            self.window.page_details.update_states()
+            GLib.idle_add(
+                self.window.page_details.view_versioning.update,
+                False, config
+            )
 
         # update the bottles' list
         self.manager.update_bottles()
@@ -237,7 +240,7 @@ class RunnerVersioning:
             If the caller defined a function to be called after the
             process, we will call it.
             '''
-            GLib.idle_add(after)
+            GLib.idle_add(after, False, config)
 
         return True
 
@@ -380,7 +383,10 @@ class RunnerVersioning:
         self.manager.update_config(config, "State", state_id)
 
         # update states
-        self.window.page_details.update_states()
+        GLib.idle_add(
+            self.window.page_details.view_versioning.update,
+            False, config
+        )
 
         # update bottles
         self.manager.update_bottles()

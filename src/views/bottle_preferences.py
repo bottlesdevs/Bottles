@@ -312,13 +312,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             widget.set_sensitive(False)
         if state:
             RunAsync(
-                self.manager.install_dxvk, None,
+                task_func=self.manager.install_dxvk,
                 config=self.config,
                 widget=widget
             )
         else:
             RunAsync(
-                self.manager.remove_dxvk, None,
+                self.manager.remove_dxvk,
                 config=self.config,
                 widget=widget
             )
@@ -354,13 +354,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             widget.set_sensitive(False)
         if state:
             RunAsync(
-                self.manager.install_vkd3d, None,
+                task_func=self.manager.install_vkd3d,
                 config=self.config,
                 widget=widget
             )
         else:
             RunAsync(
-                self.manager.remove_vkd3d, None,
+                task_func=self.manager.remove_vkd3d,
                 config=self.config,
                 widget=widget
             )
@@ -383,13 +383,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             widget.set_sensitive(False)
         if state:
             RunAsync(
-                self.manager.install_nvapi, None,
+                task_func=self.manager.install_nvapi,
                 config=self.config,
                 widget=widget
             )
         else:
             RunAsync(
-                self.manager.remove_nvapi, None,
+                task_func=self.manager.remove_nvapi,
                 config=self.config,
                 widget=widget
             )

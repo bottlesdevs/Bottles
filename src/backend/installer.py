@@ -122,10 +122,7 @@ class InstallerManager:
                 continue
 
             dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
-            RunAsync(
-                self.__manager.dependency_manager.install, None,
-                config, dep_index, None
-            )
+            self.__manager.dependency_manager.install(config, dep_index)
 
     def __perform_steps(self, config, steps: list):
         for st in steps:

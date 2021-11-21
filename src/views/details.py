@@ -15,10 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
+import re
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
-from ..utils import GtkUtils
+
+from ..utils import GtkUtils, RunAsync
 
 from ..widgets.page import PageRow
 
@@ -40,14 +41,6 @@ class DetailsView(Handy.Leaflet):
     # region Widgets
     list_pages = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
-    actions_programs = Gtk.Template.Child()
-    actions_versioning = Gtk.Template.Child()
-    actions_installers = Gtk.Template.Child()
-    actions_taskmanager = Gtk.Template.Child()
-    btn_programs_updates = Gtk.Template.Child()
-    btn_programs_add = Gtk.Template.Child()
-    btn_help_versioning = Gtk.Template.Child()
-    btn_taskmanager_update = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config={}, **kwargs):
@@ -56,28 +49,20 @@ class DetailsView(Handy.Leaflet):
         # common variables and references
         self.window = window
         self.manager = window.manager
+        self.versioning_manager = window.manager.versioning_manager
         self.config = config
 
         self.view_bottle = BottleView(window, config)
         self.view_installers = InstallersView(window, config)
         self.view_dependencies = DependenciesView(window, config)
         self.view_preferences = PreferencesView(window, config)
-        self.view_programs = ProgramsView(window, config)
+        self.view_programs = ProgramsView(self, config)
         self.view_versioning = VersioningView(window, config)
         self.view_taskmanager = TaskManagerView(window, config)
 
         # region signals
-        self.btn_programs_updates.connect(
-            'pressed', self.update_programs
-        )
-        self.btn_programs_add.connect('pressed', self.view_programs.add)
-        self.btn_help_versioning.connect(
-            'pressed', GtkUtils.open_doc_url, "bottles/versioning"
-        )
-
         self.list_pages.connect('row-selected', self.__change_page)
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
-        self.btn_taskmanager_update.connect('pressed', self.update_taskmanager)
         # endregion
 
         # self.build_pages()
@@ -94,13 +79,13 @@ class DetailsView(Handy.Leaflet):
 
         self.window.set_title(pages[page]['title'], pages[page]['description'])
         if page == "programs":
-            self.window.set_actions(self.actions_programs)
+            self.window.set_actions(self.view_programs.actions)
         elif page == "versioning":
-            self.window.set_actions(self.actions_versioning)
+            self.window.set_actions(self.view_versioning.actions)
         elif page == "installers":
-            self.window.set_actions(self.actions_installers)
+            self.window.set_actions(self.view_installers.actions)
         elif page == "taskmanager":
-            self.window.set_actions(self.actions_taskmanager)
+            self.window.set_actions(self.view_taskmanager.actions)
         else:
             self.window.set_actions(None)
 
@@ -189,11 +174,11 @@ class DetailsView(Handy.Leaflet):
         # update widgets data with bottle configuration        
         self.view_bottle.set_config(config=config)
         self.view_preferences.set_config(config=config)
+        self.view_taskmanager.set_config(config=config)
         self.view_dependencies.update(config=config)
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
         self.view_programs.update(config=config)
-        self.view_taskmanager.update(config=config)
         self.view_bottle.update_programs()
 
         self.build_pages()
@@ -201,7 +186,4 @@ class DetailsView(Handy.Leaflet):
     def update_programs(self, widget):
         self.view_bottle.update_programs()
         self.view_programs.update(config=self.config)
-
-    def update_taskmanager(self, widget):
-        self.view_taskmanager.update(config=self.config)
         

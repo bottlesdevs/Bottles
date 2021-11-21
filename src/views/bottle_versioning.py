@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
 from gettext import gettext as _
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk
 
 from ..utils import RunAsync, GtkUtils
+
 from ..widgets.state import StateEntry
 
 
@@ -28,9 +30,11 @@ class VersioningView(Gtk.ScrolledWindow):
 
     # region Widgets
     list_states = Gtk.Template.Child()
-    entry_state_comment = Gtk.Template.Child()
+    actions = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
     btn_add_state = Gtk.Template.Child()
+    btn_help_versioning = Gtk.Template.Child()
+    entry_state_comment = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -42,12 +46,15 @@ class VersioningView(Gtk.ScrolledWindow):
         self.versioning_manager = window.manager.versioning_manager
         self.config = config
         
-        self.btn_add_state.connect('pressed', self.add)
+        self.btn_add_state.connect('pressed', self.add_state)
         self.entry_state_comment.connect(
             'key-release-event', self.check_entry_state_comment
         )
+        self.btn_help_versioning.connect(
+            'pressed', GtkUtils.open_doc_url, "bottles/versioning"
+        )
 
-    def __idle_update(self, widget=False, config={}):
+    def update(self, widget=False, config={}):
         '''
         This function update the states list with the
         ones from the bottle configuration.
@@ -70,9 +77,6 @@ class VersioningView(Gtk.ScrolledWindow):
                         )
                     )
 
-    def update(self, widget=False, config={}):
-        GLib.idle_add(self.__idle_update, widget, config)
-
     def check_entry_state_comment(self, widget, event_key):
         '''
         This function check if the entry state comment is valid,
@@ -89,7 +93,7 @@ class VersioningView(Gtk.ScrolledWindow):
             self.btn_add_state.set_sensitive(False)
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
-    def add(self, widget):
+    def add_state(self, widget):
         '''
         This function create ask the versioning manager to
         create a new bottle state with the given comment.
@@ -97,10 +101,9 @@ class VersioningView(Gtk.ScrolledWindow):
         comment = self.entry_state_comment.get_text()
         if comment != "":
             RunAsync(
-                self.versioning_manager.create_state, None,
+                task_func=self.versioning_manager.create_state,
                 config=self.config,
-                comment=comment,
-                after=self.update_states
+                comment=comment
             )
             self.entry_state_comment.set_text("")
             self.pop_state.popdown()

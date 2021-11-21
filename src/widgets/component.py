@@ -71,9 +71,9 @@ class ComponentEntry(Handy.ActionRow):
             w.set_visible(True)
 
         RunAsync(
-            self.component_manager.install, None,
-            self.component_type,
-            self.name,
+            task_func=self.component_manager.install,
+            component_type=self.component_type,
+            component_name=self.name,
             func=self.update_status,
             after=self.set_installed
         )

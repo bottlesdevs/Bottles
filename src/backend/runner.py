@@ -92,8 +92,11 @@ class Runner:
 
         command = f"start /unix '{file_path}'"
         RunAsync(
-            Runner.run_command, None, 
-            config, command, False, arguments, environment
+            task_func=Runner.run_command, 
+            config=config, 
+            command=command, 
+            arguments=arguments, 
+            environment=environment
         )
 
     @staticmethod
@@ -120,9 +123,8 @@ class Runner:
 
         if no_async:
             Runner.run_command(
-                config, 
-                command,
-                terminal=False, 
+                config=config, 
+                command=command,
                 arguments=arguments, 
                 environment=environment, 
                 comunicate=True, 
@@ -130,39 +132,69 @@ class Runner:
             )
         else:
             RunAsync(
-                Runner.run_command, None, 
-                config, command, False, arguments, environment, False, cwd
+                task_func=Runner.run_command, 
+                config=config, 
+                command=command, 
+                arguments=arguments, 
+                environment=environment,
+                cwd=cwd
             )
 
     @staticmethod
     def run_winecfg(config: BottleConfig):
         logging.info("Running winecfg on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "winecfg")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="winecfg"
+        )
 
     @staticmethod
     def run_winetricks( config: BottleConfig):
         logging.info("Running winetricks on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "winetricks")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="winetricks"
+        )
 
     @staticmethod
     def run_debug(config: BottleConfig):
         logging.info("Running a debug console on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "winedbg", True)
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="winedbg",
+            terminal=True
+        )
 
     @staticmethod
     def run_cmd(config: BottleConfig):
         logging.info("Running a CMD on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "cmd", True)
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="cmd",
+            terminal=True
+        )
 
     @staticmethod
     def run_taskmanager(config: BottleConfig):
         logging.info("Running a Task Manager on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "taskmgr")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="taskmgr"
+        )
 
     @staticmethod
     def run_controlpanel( config: BottleConfig):
         logging.info("Running a Control Panel on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "control")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="control"
+        )
 
     @staticmethod
     def run_uninstaller(config: BottleConfig, uuid: str = False):
@@ -171,12 +203,20 @@ class Runner:
 
         if uuid:
             command = f"uninstaller --remove '{uuid}'"
-        RunAsync(Runner.run_command, None, config, command)
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command=command
+        )
 
     @staticmethod
     def run_regedit(config: BottleConfig):
         logging.info("Running a Regedit on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "regedit")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="regedit"
+        )
 
     @staticmethod
     def wineboot(

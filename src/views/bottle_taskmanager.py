@@ -28,6 +28,8 @@ class TaskManagerView(Gtk.ScrolledWindow):
 
     # region Widgets
     treeview_processes = Gtk.Template.Child()
+    actions = Gtk.Template.Child()
+    btn_taskmanager_update = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -38,6 +40,8 @@ class TaskManagerView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
+        self.btn_taskmanager_update.connect('pressed', self.sensitive_update)
+        
         # apply model to treeview_processes
         self.liststore_processes = Gtk.ListStore(str, str, str, str)
         self.treeview_processes.set_model(self.liststore_processes)
@@ -54,8 +58,11 @@ class TaskManagerView(Gtk.ScrolledWindow):
             i += 1
 
         self.update()
-
-    def update_processes(self, widget=False, config={}):
+        
+    def set_config(self, config):
+        self.config = config
+        
+    def update(self, widget=False, config={}):
         '''
         This function scan for new processed and update the
         liststore_processes with the new data
@@ -72,12 +79,16 @@ class TaskManagerView(Gtk.ScrolledWindow):
                     process.get("name", "n/a"),
                     process.get("threads", "0"),
                     process.get("parent", "0")
-                ])
-    
-    def update(self, widget=False, config={}):
-        '''
-        This function is called when the btn_processes_updates is
-        pressed. It will update the liststore_processes with the
-        new data. It is an async wrapper for update_processes.
-        '''
-        RunAsync(self.update_processes, None, False, config)    
+                ])  
+
+    def sensitive_update(self, widget):
+        def reset(result, error):
+            self.btn_taskmanager_update.set_sensitive(True)
+
+        self.btn_taskmanager_update.set_sensitive(False)
+        RunAsync(
+            task_func=self.update, 
+            callback=reset, 
+            widget=False, 
+            config=self.config
+        )

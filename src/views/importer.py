@@ -81,11 +81,11 @@ class ImporterView(Gtk.ScrolledWindow):
 
         if response == -3:
             RunAsync(
-                BackupManager.import_backup, None,
-                self.window,
-                "full",
-                file_dialog.get_filename(),
-                self.manager
+                task_func=BackupManager.import_backup,
+                window=self.window,
+                scope="full",
+                path=file_dialog.get_filename(),
+                manager=self.manager
             )
 
         file_dialog.destroy()
@@ -112,11 +112,11 @@ class ImporterView(Gtk.ScrolledWindow):
 
         if response == -3:
             RunAsync(
-                BackupManager.import_backup, None,
-                self.window,
-                "config",
-                file_dialog.get_filename(),
-                self.manager
+                task_func=BackupManager.import_backup,
+                window=self.window,
+                scope="config",
+                path=file_dialog.get_filename(),
+                manager=self.manager
             )
 
         file_dialog.destroy()

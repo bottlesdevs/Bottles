@@ -111,10 +111,10 @@ class OnboardDialog(Handy.Window):
         it will install the latest runner if there is no one installed.
         '''
         self.__next_page()
-        RunAsync(self.pulse, None)
+        RunAsync(self.pulse)
         RunAsync(
-            self.manager.checks, None,
-            self.__next_page
+            task_func=self.manager.checks,
+            after=self.__next_page
         )
 
     def __previous_page(self, widget=False):

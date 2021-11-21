@@ -75,8 +75,10 @@ class StateEntry(Handy.ActionRow):
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
         RunAsync(
-            self.versioning_manager.set_state, None,
-            self.config, self.state[0], self.set_completed
+            task_func=self.versioning_manager.set_state,
+            config=self.config, 
+            state_id=self.state[0], 
+            after=self.set_completed
         )
 
     def open_index(self, widget):

@@ -107,7 +107,7 @@ class InstallerEntry(Handy.ActionRow):
         GLib.idle_add(self.spinner.start)
 
         RunAsync(
-            self.manager.installer_manager.install, None,
+            task_func=self.manager.installer_manager.install,
             config=self.config,
             installer=self.installer,
             widget=self

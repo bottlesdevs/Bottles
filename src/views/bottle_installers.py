@@ -27,6 +27,7 @@ class InstallersView(Gtk.ScrolledWindow):
 
     # region Widgets
     list_installers = Gtk.Template.Child()
+    actions = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):

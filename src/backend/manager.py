@@ -377,12 +377,16 @@ class Manager:
                     dxvk_version = next(iter(self.supported_dxvk))
                     if no_async:
                         self.component_manager.install(
-                            "dxvk", dxvk_version, checks=False
+                            component_type="dxvk", 
+                            component_name=dxvk_version, 
+                            checks=False
                         )
                     else:
                         RunAsync(
-                            self.component_manager.install, None,
-                            "dxvk", dxvk_version, False, False, False
+                            task_func=self.component_manager.install, 
+                            component_type="dxvk", 
+                            component_name=dxvk_version, 
+                            checks=False
                         )
                 except StopIteration:
                     return False
@@ -419,12 +423,16 @@ class Manager:
                     vkd3d_version = next(iter(self.supported_vkd3d))
                     if no_async:
                         self.component_manager.install(
-                            "vkd3d", vkd3d_version, checks=False
+                            component_type="vkd3d", 
+                            component_name=vkd3d_version, 
+                            checks=False
                         )
                     else:
                         RunAsync(
-                            self.component_manager.install, None,
-                            "vkd3d", vkd3d_version, False, False, False
+                            task_func=self.component_manager.install,
+                            component_type="vkd3d", 
+                            component_name=vkd3d_version, 
+                            checks=False
                         )
                 except StopIteration:
                     return False
@@ -461,12 +469,16 @@ class Manager:
                     nvapi_version = next(iter(self.supported_nvapi))
                     if no_async:
                         self.component_manager.install(
-                            "nvapi", nvapi_version, False, False, False
+                            component_type="nvapi", 
+                            component_name=nvapi_version, 
+                            checks=False
                         )
                     else:
                         RunAsync(
-                            self.component_manager.install, None,
-                            "nvapi", nvapi_version, checks=False
+                            task_func=self.component_manager.install,
+                            component_type="nvapi", 
+                            component_name=nvapi_version, 
+                            checks=False
                         )
                 except StopIteration:
                     return False
@@ -888,9 +900,7 @@ class Manager:
                     dependency,
                     self.supported_dependencies[dependency]
                 ]
-                RunAsync(self.dependency_manager.install, None,
-                    config, dep, None
-                )
+                self.dependency_manager.install(config, dep)
 
         self.update_bottles(silent=True)
 

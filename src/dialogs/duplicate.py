@@ -77,7 +77,7 @@ class DuplicateDialog(Handy.Window):
         self.stack_switcher.set_visible_child_name("page_duplicating")
 
         widget.set_visible(False)
-        RunAsync(self.pulse, None)
+        RunAsync(self.pulse)
         name = self.entry_name.get_text()
 
         BackupManager.duplicate_bottle(self.config, name)

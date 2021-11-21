@@ -343,11 +343,11 @@ class BottleView(Gtk.ScrolledWindow):
         response = file_dialog.run()
         if response == -3:
             RunAsync(
-                BackupManager.export_backup, None,
-                self.window,
-                self.config,
-                backup_type,
-                file_dialog.get_filename()
+                task_func=BackupManager.export_backup,
+                window=self.window,
+                config=self.config,
+                scope=backup_type,
+                path=file_dialog.get_filename()
             )
 
         file_dialog.destroy()
@@ -377,8 +377,8 @@ class BottleView(Gtk.ScrolledWindow):
 
         if response == Gtk.ResponseType.OK:
             RunAsync(
-                self.manager.delete_bottle, None,
-                self.config
+                task_func=self.manager.delete_bottle,
+                config=self.config
             )
             self.window.go_back()
 

@@ -131,7 +131,7 @@ class DependencyEntry(Handy.ActionRow):
         GLib.idle_add(self.spinner.start)
 
         RunAsync(
-            self.manager.dependency_manager.install, None,
+            task_func=self.manager.dependency_manager.install,
             config=self.config,
             dependency=self.dependency,
             widget=self

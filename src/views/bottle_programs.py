@@ -28,15 +28,24 @@ class ProgramsView(Gtk.ScrolledWindow):
 
     # region Widgets
     list_programs = Gtk.Template.Child()
+    actions = Gtk.Template.Child()
+    btn_programs_updates = Gtk.Template.Child()
+    btn_programs_add = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, config, **kwargs):
+    def __init__(self, parent, config, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.parent = parent
+        self.window = parent.window
+        self.manager = parent.manager
         self.config = config
+
+        self.btn_programs_add.connect('pressed', self.add)
+        self.btn_programs_updates.connect(
+            'pressed', self.parent.update_programs
+        )
 
     def add(self, widget=False):
         '''

@@ -289,7 +289,7 @@ class RunAsync(threading.Thread):
     It take a function, a callback and a list of arguments as input.
     '''
 
-    def __init__(self, task_func, callback, *args, **kwargs):
+    def __init__(self, task_func, callback=None, *args, **kwargs):
         if "DEBUG_MODE" in os.environ:
             import faulthandler
             faulthandler.enable()
