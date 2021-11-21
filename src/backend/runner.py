@@ -683,6 +683,7 @@ class Runner:
                 key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer",
                 value="Desktop"
             )
+        Runner.wineboot(config, status=3, comunicate=True)
     
     @staticmethod
     def get_processes(config:BottleConfig) -> list:
@@ -735,7 +736,7 @@ class Runner:
     @staticmethod
     def wait_for_process(config:BottleConfig, name:str):
         '''
-        Wait for all processes to finish.
+        Wait for a process to exit.
         '''
         while True:
             processes = Runner.get_processes(config)
