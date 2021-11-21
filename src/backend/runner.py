@@ -297,6 +297,9 @@ class Runner:
             runner = "wine"
         else:
             runner = f"{Paths.runners}/{runner}/bin/wine"
+        
+        if arch == "win64":
+            runner = f"{runner}64"
 
         if not config.get("Custom_Path"):
             path = "%s/%s" % (Paths.bottles, path)
@@ -590,9 +593,10 @@ class Runner:
         if keyType:
             command = "reg add '%s' /v '%s' /t %s /d '%s' /f" % (
                 key, value, keyType, data)
-
+        
         Runner.wait_for_process(config, "reg.exe")
-        print(Runner.run_command(config, command, comunicate=True))
+        res = Runner.run_command(config, command, comunicate=True)
+        logging.info(res)
 
     @staticmethod
     def reg_delete(config: BottleConfig, key: str, value: str):
