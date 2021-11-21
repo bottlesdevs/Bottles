@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-20 19:08+0100\n"
+"POT-Creation-Date: 2021-11-21 17:13+0100\n"
 "PO-Revision-Date: 2021-10-29 00:32+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
-#: src/window.py:149 src/window.py:204
+#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
+#: src/window.py:145 src/window.py:194
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -190,7 +190,7 @@ msgid "Change the window height."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:349
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Avisering"
 
@@ -320,25 +320,25 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Ladda ner & Installera detta beroendet"
 
-#: src/ui/details.ui:87 src/ui/importer.ui:94
+#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
 msgid "Refresh"
 msgstr "Uppdatera"
 
-#: src/ui/details.ui:120
+#: src/ui/details.ui:119
 #, fuzzy
 msgid "Add a custom executable path"
 msgstr "Kör exekverbar"
 
-#: src/ui/details.ui:146
+#: src/ui/details.ui:145
 msgid "Search for installed programs"
 msgstr "Sök efter installerade program"
 
-#: src/ui/details.ui:179 src/ui/details-dependencies.ui:119
+#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
 #, fuzzy
 msgid "Read documentation"
 msgstr "Dokumentation"
 
-#: src/ui/details.ui:206
+#: src/ui/details.ui:241
 msgid "Create new state"
 msgstr "Skapa ny status"
 
@@ -602,7 +602,10 @@ msgid "Message goes here."
 msgstr "Meddelande här."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/list.py:120
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
+#: src/views/list.py:120
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -728,7 +731,7 @@ msgstr ""
 msgid "Full archive"
 msgstr "Fullständigt arkiv"
 
-#: src/ui/importer.ui:75 src/window.py:159
+#: src/ui/importer.ui:75 src/window.py:150
 msgid "Importer"
 msgstr "Importör"
 
@@ -790,7 +793,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Kör .exe/.msi i denna butelj"
 
-#: src/ui/new.ui:25 src/ui/window.ui:329
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "Ny butelj"
 
@@ -986,7 +989,7 @@ msgstr "Du är nu redo att skapa dina första buteljer."
 msgid "Finish"
 msgstr "Slutför"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:47 src/views/details.py:113
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -1060,11 +1063,11 @@ msgstr ""
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:125
+#: src/ui/preferences.ui:272 src/views/details.py:132
 msgid "Versioning"
 msgstr "Versionshantering"
 
-#: src/ui/preferences.ui:298 src/views/details.py:129
+#: src/ui/preferences.ui:298 src/views/details.py:136
 msgid "Installers"
 msgstr "Installatörer"
 
@@ -1111,44 +1114,32 @@ msgstr "Återställ denna status"
 msgid "Creation date"
 msgstr "Skapad"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr "Detta är de wine-/wineserver-processer som körs på din dator."
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "Sök efter aktiva processer."
-
-#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
-msgid "Task manager"
-msgstr "Aktivitetshanterare"
-
-#: src/ui/window.ui:34
+#: src/ui/window.ui:20
 msgid "Import and export"
 msgstr "Import och export"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
 msgid "Forums"
 msgstr ""
 
-#: src/ui/window.ui:97
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "Om Bottles"
 
-#: src/ui/window.ui:222 src/ui/window.ui:265
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "Öppna menyn"
 
-#: src/ui/window.ui:243
+#: src/ui/window.ui:229
 #, fuzzy
 msgid "Operations"
 msgstr "Uppdaterade översättningar"
 
-#: src/ui/window.ui:287
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1158,7 +1149,7 @@ msgstr ""
 "kunna ladda ner viktiga komponenter. Klicka på den här ikonen när du har "
 "återupprättat anslutningen."
 
-#: src/ui/window.ui:308
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "Gå tillbaka"
 
@@ -1201,15 +1192,15 @@ msgstr "[Uppdatera] begäran mottagen."
 msgid "You are offline, unable to download."
 msgstr "Du är offline, kan inte ladda ner."
 
-#: src/window.py:144 src/window.py:202
+#: src/window.py:140 src/window.py:192
 msgid "Bottle details"
 msgstr "Buteljdetaljer"
 
-#: src/window.py:192
+#: src/window.py:182
 msgid "Bottles Started!"
 msgstr "Bottles startad!"
 
-#: src/window.py:208
+#: src/window.py:196
 #, fuzzy
 msgid "Import & export"
 msgstr "Import och export"
@@ -1323,24 +1314,93 @@ msgstr "Varning"
 msgid "An error has occurred."
 msgstr "Ett fel har inträffat."
 
-#: src/views/details.py:109
+#: src/views/details.py:116
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Verktyg"
 
-#: src/views/details.py:117
+#: src/views/details.py:124
 msgid "Dependencies"
 msgstr "Beroenden"
 
-#: src/views/details.py:121
+#: src/views/details.py:128
 msgid "Programs"
 msgstr "Program"
 
-#: src/views/details.py:122
+#: src/views/details.py:129
 #, fuzzy
 msgid "Found in your bottle's Start menu."
 msgstr ""
 "Dessa program hittade jag installerade i buteljen (de kanske inte är alla)."
+
+#: src/views/details.py:140
+msgid "Task manager"
+msgstr "Aktivitetshanterare"
+
+#: src/views/bottle_details.py:160
+#, python-format
+msgid "Updated: %s"
+msgstr "Uppdaterat: %s"
+
+#. set arch
+#: src/views/bottle_details.py:163
+msgid "64-bit"
+msgstr ""
+
+#: src/views/bottle_details.py:165
+msgid "32-bit"
+msgstr ""
+
+#: src/views/bottle_details.py:262 src/views/list.py:116
+msgid "Choose a Windows executable file"
+msgstr "Välj en körbar Windows-fil"
+
+#: src/views/bottle_details.py:265 src/views/list.py:119
+msgid "Run"
+msgstr "Kör"
+
+#: src/views/bottle_details.py:329
+#, fuzzy
+msgid "Select the location where to save the backup config"
+msgstr "Välj var säkerhetskopieringskonfigurationen skall sparas"
+
+#: src/views/bottle_details.py:333
+msgid "Select the location where to save the backup archive"
+msgstr "Välj var säkerhetskopieringsarkivet skall sparas"
+
+#: src/views/bottle_details.py:340
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:371
+msgid "Confirm deletion"
+msgstr "Bekräfta borttagning"
+
+#: src/views/bottle_details.py:373
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Vill du verkligen ta bort denna butelj och alla filer?"
+
+#: src/views/bottle_preferences.py:124
+msgid "Gamemode is either not available on your system or not running."
+msgstr ""
+
+#: src/views/bottle_preferences.py:134
+#, fuzzy
+msgid "Choose working directory for executables"
+msgstr "Välj en körbar Windows-fil"
+
+#: src/views/bottle_preferences.py:137
+msgid "Done"
+msgstr ""
+
+#: src/views/bottle_programs.py:50
+#, fuzzy
+msgid "Choose an executable path"
+msgstr "Välj en körbar Windows-fil"
+
+#: src/views/bottle_programs.py:53
+msgid "Add"
+msgstr ""
 
 #: src/views/importer.py:70
 msgid "Choose a backup archive"
@@ -1359,14 +1419,6 @@ msgstr ""
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argument hittades för körbar: [{executable}]."
-
-#: src/views/list.py:116
-msgid "Choose a Windows executable file"
-msgstr "Välj en körbar Windows-fil"
-
-#: src/views/list.py:119
-msgid "Run"
-msgstr "Kör"
 
 #: src/views/new.py:72
 msgid "Gaming"
@@ -1396,6 +1448,12 @@ msgstr "En ren miljö för dina experiment."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "En butelj kallad \"{0}\" skapades"
+
+#~ msgid "These are the wine/wineserver processes running on your PC."
+#~ msgstr "Detta är de wine-/wineserver-processer som körs på din dator."
+
+#~ msgid "Check for running processes."
+#~ msgstr "Sök efter aktiva processer."
 
 #, fuzzy
 #~ msgid "Duplicate bottle"
@@ -1510,31 +1568,6 @@ msgstr "En butelj kallad \"{0}\" skapades"
 #~ msgid "No NVAPI found, installing the latest version…"
 #~ msgstr ""
 #~ "Körprogram och/eller dxvk hittades inte, installerar senaste version …"
-
-#, fuzzy
-#~ msgid "Choose working directory for executables"
-#~ msgstr "Välj en körbar Windows-fil"
-
-#, python-format
-#~ msgid "Updated: %s"
-#~ msgstr "Uppdaterat: %s"
-
-#, fuzzy
-#~ msgid "Choose an executable path"
-#~ msgstr "Välj en körbar Windows-fil"
-
-#, fuzzy
-#~ msgid "Select the location where to save the backup config"
-#~ msgstr "Välj var säkerhetskopieringskonfigurationen skall sparas"
-
-#~ msgid "Select the location where to save the backup archive"
-#~ msgstr "Välj var säkerhetskopieringsarkivet skall sparas"
-
-#~ msgid "Confirm deletion"
-#~ msgstr "Bekräfta borttagning"
-
-#~ msgid "Are you sure you want to delete this Bottle and all files?"
-#~ msgstr "Vill du verkligen ta bort denna butelj och alla filer?"
 
 #, fuzzy, python-brace-format
 #~ msgid "Your new {0} bottle is now ready."

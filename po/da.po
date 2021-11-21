@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-20 19:08+0100\n"
+"POT-Creation-Date: 2021-11-21 17:13+0100\n"
 "PO-Revision-Date: 2021-11-08 22:03+0000\n"
 "Last-Translator: Joe Osborne <reachjoe.o@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
-#: src/window.py:149 src/window.py:204
+#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
+#: src/window.py:145 src/window.py:194
 msgid "Bottles"
 msgstr "Flasker"
 
@@ -195,7 +195,7 @@ msgid "Change the window height."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:349
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Notifikationer"
 
@@ -319,25 +319,25 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr ""
 
-#: src/ui/details.ui:87 src/ui/importer.ui:94
+#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
 msgid "Refresh"
 msgstr ""
 
-#: src/ui/details.ui:120
+#: src/ui/details.ui:119
 #, fuzzy
 msgid "Add a custom executable path"
 msgstr "Før .exe"
 
-#: src/ui/details.ui:146
+#: src/ui/details.ui:145
 msgid "Search for installed programs"
 msgstr "Søg efter installerede programmer"
 
-#: src/ui/details.ui:179 src/ui/details-dependencies.ui:119
+#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
 #, fuzzy
 msgid "Read documentation"
 msgstr "Dokumentation"
 
-#: src/ui/details.ui:206
+#: src/ui/details.ui:241
 msgid "Create new state"
 msgstr "Opret ny flaske"
 
@@ -594,7 +594,10 @@ msgid "Message goes here."
 msgstr ""
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/list.py:120
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
+#: src/views/list.py:120
 msgid "Cancel"
 msgstr "Afbryd"
 
@@ -721,7 +724,7 @@ msgstr "Det er din flaskes komplette arkiv, inklusiv personlige filer."
 msgid "Full archive"
 msgstr "Fuldt arkiv"
 
-#: src/ui/importer.ui:75 src/window.py:159
+#: src/ui/importer.ui:75 src/window.py:150
 msgid "Importer"
 msgstr "Importering"
 
@@ -783,7 +786,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Kør .exe/.msi i denne flaske"
 
-#: src/ui/new.ui:25 src/ui/window.ui:329
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "Ny flaske"
 
@@ -968,7 +971,7 @@ msgstr ""
 msgid "Finish"
 msgstr ""
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:47 src/views/details.py:113
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
 msgid "Preferences"
 msgstr "Indstillinger"
 
@@ -1042,11 +1045,11 @@ msgstr ""
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:125
+#: src/ui/preferences.ui:272 src/views/details.py:132
 msgid "Versioning"
 msgstr "Versionering"
 
-#: src/ui/preferences.ui:298 src/views/details.py:129
+#: src/ui/preferences.ui:298 src/views/details.py:136
 msgid "Installers"
 msgstr "Installeringer"
 
@@ -1095,44 +1098,32 @@ msgstr "Eksekver i denne flaske"
 msgid "Creation date"
 msgstr "Opret Flaske"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr ""
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "Kontroller for installerede programmer."
-
-#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
-msgid "Task manager"
-msgstr "Opgavehåndtering"
-
-#: src/ui/window.ui:34
+#: src/ui/window.ui:20
 #, fuzzy
 msgid "Import and export"
 msgstr "Importering"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
 msgid "Forums"
 msgstr ""
 
-#: src/ui/window.ui:97
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "Om Flasker"
 
-#: src/ui/window.ui:222 src/ui/window.ui:265
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "Åbn menu"
 
-#: src/ui/window.ui:243
+#: src/ui/window.ui:229
 msgid "Operations"
 msgstr ""
 
-#: src/ui/window.ui:287
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1142,7 +1133,7 @@ msgstr ""
 "kunne hente essentielle komponenter. Klik på dette ikon, når du har "
 "genetableret forbindelsen."
 
-#: src/ui/window.ui:308
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "Gå tilbage"
 
@@ -1184,15 +1175,15 @@ msgstr "[Genopfrisk] anmodning modtaget."
 msgid "You are offline, unable to download."
 msgstr ""
 
-#: src/window.py:144 src/window.py:202
+#: src/window.py:140 src/window.py:192
 msgid "Bottle details"
 msgstr "Detaljer om Flaske"
 
-#: src/window.py:192
+#: src/window.py:182
 msgid "Bottles Started!"
 msgstr "Flasker Startet!"
 
-#: src/window.py:208
+#: src/window.py:196
 #, fuzzy
 msgid "Import & export"
 msgstr "Importering"
@@ -1302,22 +1293,92 @@ msgstr "Advarsel"
 msgid "An error has occurred."
 msgstr ""
 
-#: src/views/details.py:109
+#: src/views/details.py:116
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Hjælpeprogram"
 
-#: src/views/details.py:117
+#: src/views/details.py:124
 msgid "Dependencies"
 msgstr "Afhængigheder"
 
-#: src/views/details.py:121
+#: src/views/details.py:128
 msgid "Programs"
 msgstr "Programmer"
 
-#: src/views/details.py:122
+#: src/views/details.py:129
 msgid "Found in your bottle's Start menu."
 msgstr ""
+
+#: src/views/details.py:140
+msgid "Task manager"
+msgstr "Opgavehåndtering"
+
+#: src/views/bottle_details.py:160
+#, python-format
+msgid "Updated: %s"
+msgstr ""
+
+#. set arch
+#: src/views/bottle_details.py:163
+msgid "64-bit"
+msgstr "64 bit"
+
+#: src/views/bottle_details.py:165
+msgid "32-bit"
+msgstr "32 bit"
+
+#: src/views/bottle_details.py:262 src/views/list.py:116
+msgid "Choose a Windows executable file"
+msgstr "Vælg en eksekverbar Windows-fil"
+
+#: src/views/bottle_details.py:265 src/views/list.py:119
+msgid "Run"
+msgstr "Køre"
+
+#: src/views/bottle_details.py:329
+msgid "Select the location where to save the backup config"
+msgstr ""
+"Vælg placeringen, hvor sikkerhedskopieringen af konfigurationsfil skal gemmes"
+
+#: src/views/bottle_details.py:333
+msgid "Select the location where to save the backup archive"
+msgstr "Vælg placeringen, hvor sikkerhedskopiens arkiv skal gemmes"
+
+#: src/views/bottle_details.py:340
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:371
+msgid "Confirm deletion"
+msgstr "Bekræft sletning"
+
+#: src/views/bottle_details.py:373
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Er du sikker på, at du vil slette denne Flaske og alle filer?"
+
+#: src/views/bottle_preferences.py:124
+msgid "Gamemode is either not available on your system or not running."
+msgstr ""
+"Spilletilstand er enten ikke tilgængelig på dit system, eller kører ikke."
+
+#: src/views/bottle_preferences.py:134
+#, fuzzy
+msgid "Choose working directory for executables"
+msgstr "Vælg en eksekverbar Windows-fil"
+
+#: src/views/bottle_preferences.py:137
+msgid "Done"
+msgstr "Færdig"
+
+#: src/views/bottle_programs.py:50
+#, fuzzy
+msgid "Choose an executable path"
+msgstr "Vælg en eksekverbar Windows-fil"
+
+#: src/views/bottle_programs.py:53
+msgid "Add"
+msgstr "Tilføj"
 
 #: src/views/importer.py:70
 msgid "Choose a backup archive"
@@ -1335,14 +1396,6 @@ msgstr ""
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumenter fundet til eksekverbar genstand: [{executable}]."
-
-#: src/views/list.py:116
-msgid "Choose a Windows executable file"
-msgstr "Vælg en eksekverbar Windows-fil"
-
-#: src/views/list.py:119
-msgid "Run"
-msgstr "Køre"
 
 #: src/views/new.py:72
 msgid "Gaming"
@@ -1372,6 +1425,9 @@ msgstr "Et rent miljø, uden nogen optimeringer."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr ""
+
+#~ msgid "Check for running processes."
+#~ msgstr "Kontroller for installerede programmer."
 
 #, fuzzy
 #~ msgid "Duplicate bottle"
@@ -1435,44 +1491,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "No runners found, please install one."
 #~ msgstr "Ingen kørere fundet"
-
-#~ msgid "Gamemode is either not available on your system or not running."
-#~ msgstr ""
-#~ "Spilletilstand er enten ikke tilgængelig på dit system, eller kører ikke."
-
-#, fuzzy
-#~ msgid "Choose working directory for executables"
-#~ msgstr "Vælg en eksekverbar Windows-fil"
-
-#~ msgid "Done"
-#~ msgstr "Færdig"
-
-#~ msgid "64-bit"
-#~ msgstr "64 bit"
-
-#~ msgid "32-bit"
-#~ msgstr "32 bit"
-
-#, fuzzy
-#~ msgid "Choose an executable path"
-#~ msgstr "Vælg en eksekverbar Windows-fil"
-
-#~ msgid "Add"
-#~ msgstr "Tilføj"
-
-#~ msgid "Select the location where to save the backup config"
-#~ msgstr ""
-#~ "Vælg placeringen, hvor sikkerhedskopieringen af konfigurationsfil skal "
-#~ "gemmes"
-
-#~ msgid "Select the location where to save the backup archive"
-#~ msgstr "Vælg placeringen, hvor sikkerhedskopiens arkiv skal gemmes"
-
-#~ msgid "Confirm deletion"
-#~ msgstr "Bekræft sletning"
-
-#~ msgid "Are you sure you want to delete this Bottle and all files?"
-#~ msgstr "Er du sikker på, at du vil slette denne Flaske og alle filer?"
 
 #, fuzzy
 #~ msgid "Improved the Download manager"

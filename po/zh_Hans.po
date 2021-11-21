@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-20 19:08+0100\n"
+"POT-Creation-Date: 2021-11-21 17:13+0100\n"
 "PO-Revision-Date: 2021-11-15 00:13+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
-#: src/window.py:149 src/window.py:204
+#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
+#: src/window.py:145 src/window.py:194
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -184,7 +184,7 @@ msgid "Change the window height."
 msgstr "更改窗口高度。"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:349
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "通知"
 
@@ -303,23 +303,23 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "下载并安装该依赖"
 
-#: src/ui/details.ui:87 src/ui/importer.ui:94
+#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
 msgid "Refresh"
 msgstr "刷新"
 
-#: src/ui/details.ui:120
+#: src/ui/details.ui:119
 msgid "Add a custom executable path"
 msgstr "添加自定义可执行路径"
 
-#: src/ui/details.ui:146
+#: src/ui/details.ui:145
 msgid "Search for installed programs"
 msgstr "搜索已安装的程序"
 
-#: src/ui/details.ui:179 src/ui/details-dependencies.ui:119
+#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
 msgid "Read documentation"
 msgstr "阅读文档"
 
-#: src/ui/details.ui:206
+#: src/ui/details.ui:241
 msgid "Create new state"
 msgstr "创建新状态"
 
@@ -573,7 +573,10 @@ msgid "Message goes here."
 msgstr "消息在这里。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/list.py:120
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
+#: src/views/list.py:120
 msgid "Cancel"
 msgstr "取消"
 
@@ -695,7 +698,7 @@ msgstr "这是您的 bottle 的完整归档，包含个人文件。"
 msgid "Full archive"
 msgstr "完全归档"
 
-#: src/ui/importer.ui:75 src/window.py:159
+#: src/ui/importer.ui:75 src/window.py:150
 msgid "Importer"
 msgstr "导入器"
 
@@ -753,7 +756,7 @@ msgstr "该 bottle 看起来已损坏，配置文件丢失。我可以尝试通�
 msgid "Run .exe/.msi in this bottle"
 msgstr "在该 bottle 中运行 .exe/.msi"
 
-#: src/ui/new.ui:25 src/ui/window.ui:329
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "新建 bottle"
 
@@ -945,7 +948,7 @@ msgstr "您现在可以创建您的第一个 bottles。"
 msgid "Finish"
 msgstr "完成"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:47 src/views/details.py:113
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
 msgid "Preferences"
 msgstr "首选项"
 
@@ -1017,11 +1020,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:125
+#: src/ui/preferences.ui:272 src/views/details.py:132
 msgid "Versioning"
 msgstr "版本控制"
 
-#: src/ui/preferences.ui:298 src/views/details.py:129
+#: src/ui/preferences.ui:298 src/views/details.py:136
 msgid "Installers"
 msgstr "安装器"
 
@@ -1065,43 +1068,31 @@ msgstr "恢复该状态"
 msgid "Creation date"
 msgstr "创建日期"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr "这些是正在您的电脑上运行的 wine/wineserver 进程。"
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "检查正在运行的进程。"
-
-#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
-msgid "Task manager"
-msgstr "任务管理器"
-
-#: src/ui/window.ui:34
+#: src/ui/window.ui:20
 msgid "Import and export"
 msgstr "导入和导出"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "文档"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
 msgid "Forums"
 msgstr "论坛"
 
-#: src/ui/window.ui:97
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "关于 Bottles"
 
-#: src/ui/window.ui:222 src/ui/window.ui:265
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "打开菜单"
 
-#: src/ui/window.ui:243
+#: src/ui/window.ui:229
 msgid "Operations"
 msgstr "操作"
 
-#: src/ui/window.ui:287
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1110,7 +1101,7 @@ msgstr ""
 "您似乎没有连接互联网。没有网络您无法下载必需的组件。当您恢复连接时点击该图"
 "标。"
 
-#: src/ui/window.ui:308
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "返回"
 
@@ -1150,15 +1141,15 @@ msgstr "[刷新] 请求已收到。"
 msgid "You are offline, unable to download."
 msgstr "您已离线，无法下载。"
 
-#: src/window.py:144 src/window.py:202
+#: src/window.py:140 src/window.py:192
 msgid "Bottle details"
 msgstr "Bottle 详情"
 
-#: src/window.py:192
+#: src/window.py:182
 msgid "Bottles Started!"
 msgstr "Bottles 已启动！"
 
-#: src/window.py:208
+#: src/window.py:196
 msgid "Import & export"
 msgstr "导入和导出"
 
@@ -1258,21 +1249,87 @@ msgstr "警告"
 msgid "An error has occurred."
 msgstr "发生了错误。"
 
-#: src/views/details.py:109
+#: src/views/details.py:116
 msgid "Details & Utilities"
 msgstr "详情和工具"
 
-#: src/views/details.py:117
+#: src/views/details.py:124
 msgid "Dependencies"
 msgstr "依赖"
 
-#: src/views/details.py:121
+#: src/views/details.py:128
 msgid "Programs"
 msgstr "程序"
 
-#: src/views/details.py:122
+#: src/views/details.py:129
 msgid "Found in your bottle's Start menu."
 msgstr "在 bottle 的开始菜单中找到。"
+
+#: src/views/details.py:140
+msgid "Task manager"
+msgstr "任务管理器"
+
+#: src/views/bottle_details.py:160
+#, python-format
+msgid "Updated: %s"
+msgstr "已更新：%s"
+
+#. set arch
+#: src/views/bottle_details.py:163
+msgid "64-bit"
+msgstr "64 位"
+
+#: src/views/bottle_details.py:165
+msgid "32-bit"
+msgstr "32 位"
+
+#: src/views/bottle_details.py:262 src/views/list.py:116
+msgid "Choose a Windows executable file"
+msgstr "选择一个 Windows 可执行文件"
+
+#: src/views/bottle_details.py:265 src/views/list.py:119
+msgid "Run"
+msgstr "运行"
+
+#: src/views/bottle_details.py:329
+msgid "Select the location where to save the backup config"
+msgstr "选择保存备份配置的位置"
+
+#: src/views/bottle_details.py:333
+msgid "Select the location where to save the backup archive"
+msgstr "选择要保存备份归档的位置"
+
+#: src/views/bottle_details.py:340
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:371
+msgid "Confirm deletion"
+msgstr "确认删除"
+
+#: src/views/bottle_details.py:373
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "您确定想要删除该 Bottle 和所有文件吗？"
+
+#: src/views/bottle_preferences.py:124
+msgid "Gamemode is either not available on your system or not running."
+msgstr "游戏模式在你的系统中不可用，或没在运行。"
+
+#: src/views/bottle_preferences.py:134
+msgid "Choose working directory for executables"
+msgstr "选择可执行文件的工作目录"
+
+#: src/views/bottle_preferences.py:137
+msgid "Done"
+msgstr "完成"
+
+#: src/views/bottle_programs.py:50
+msgid "Choose an executable path"
+msgstr "选择一个可执行路径"
+
+#: src/views/bottle_programs.py:53
+msgid "Add"
+msgstr "添加"
 
 #: src/views/importer.py:70
 msgid "Choose a backup archive"
@@ -1290,14 +1347,6 @@ msgstr "无"
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "发现可执行文件：[{executable}] 的变量。"
-
-#: src/views/list.py:116
-msgid "Choose a Windows executable file"
-msgstr "选择一个 Windows 可执行文件"
-
-#: src/views/list.py:119
-msgid "Run"
-msgstr "运行"
 
 #: src/views/new.py:72
 msgid "Gaming"
@@ -1327,6 +1376,12 @@ msgstr "为您的实验提供的清洁环境。"
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "成功创建了名为“{0}”的 bottle"
+
+#~ msgid "These are the wine/wineserver processes running on your PC."
+#~ msgstr "这些是正在您的电脑上运行的 wine/wineserver 进程。"
+
+#~ msgid "Check for running processes."
+#~ msgstr "检查正在运行的进程。"
 
 #~ msgid "Duplicate bottle"
 #~ msgstr "复制 bottle"
@@ -1450,43 +1505,6 @@ msgstr "成功创建了名为“{0}”的 bottle"
 
 #~ msgid "Re-initializing registry…"
 #~ msgstr "重新初始化注册表…"
-
-#~ msgid "Gamemode is either not available on your system or not running."
-#~ msgstr "游戏模式在你的系统中不可用，或没在运行。"
-
-#~ msgid "Choose working directory for executables"
-#~ msgstr "选择可执行文件的工作目录"
-
-#~ msgid "Done"
-#~ msgstr "完成"
-
-#~ msgid "64-bit"
-#~ msgstr "64 位"
-
-#~ msgid "32-bit"
-#~ msgstr "32 位"
-
-#, python-format
-#~ msgid "Updated: %s"
-#~ msgstr "已更新：%s"
-
-#~ msgid "Choose an executable path"
-#~ msgstr "选择一个可执行路径"
-
-#~ msgid "Add"
-#~ msgstr "添加"
-
-#~ msgid "Select the location where to save the backup config"
-#~ msgstr "选择保存备份配置的位置"
-
-#~ msgid "Select the location where to save the backup archive"
-#~ msgstr "选择要保存备份归档的位置"
-
-#~ msgid "Confirm deletion"
-#~ msgstr "确认删除"
-
-#~ msgid "Are you sure you want to delete this Bottle and all files?"
-#~ msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
 #, python-brace-format
 #~ msgid "Your new {0} bottle is now ready."

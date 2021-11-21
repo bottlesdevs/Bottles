@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-20 19:08+0100\n"
+"POT-Creation-Date: 2021-11-21 17:13+0100\n"
 "PO-Revision-Date: 2021-10-30 21:15+0000\n"
 "Last-Translator: Vilda <vvedomil@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
-#: src/window.py:149 src/window.py:204
+#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
+#: src/window.py:145 src/window.py:194
 msgid "Bottles"
 msgstr "Láhve"
 
@@ -195,7 +195,7 @@ msgid "Change the window height."
 msgstr "Změna výšky okna"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:349
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Upozornění"
 
@@ -328,24 +328,24 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Stáhnout a nainstalovat tuto závislost"
 
-#: src/ui/details.ui:87 src/ui/importer.ui:94
+#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: src/ui/details.ui:120
+#: src/ui/details.ui:119
 msgid "Add a custom executable path"
 msgstr "Přidání vlastní cesty ke spustitelnému souboru"
 
-#: src/ui/details.ui:146
+#: src/ui/details.ui:145
 msgid "Search for installed programs"
 msgstr "Hledat nainstalované programy"
 
-#: src/ui/details.ui:179 src/ui/details-dependencies.ui:119
+#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
 #, fuzzy
 msgid "Read documentation"
 msgstr "Dokumentace"
 
-#: src/ui/details.ui:206
+#: src/ui/details.ui:241
 msgid "Create new state"
 msgstr "Vytvořit nový stav"
 
@@ -609,7 +609,10 @@ msgid "Message goes here."
 msgstr "Zpráva jde sem."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/list.py:120
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
+#: src/views/list.py:120
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -734,7 +737,7 @@ msgstr "Toto je kompletní archiv vaší lahve, včetně osobních souborů."
 msgid "Full archive"
 msgstr "Kompletní archiv"
 
-#: src/ui/importer.ui:75 src/window.py:159
+#: src/ui/importer.ui:75 src/window.py:150
 msgid "Importer"
 msgstr "Importovat"
 
@@ -796,7 +799,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Spustit .exe/.msi v této láhvi"
 
-#: src/ui/new.ui:25 src/ui/window.ui:329
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "Nová láhev"
 
@@ -989,7 +992,7 @@ msgstr "Nyní jste připraveni vytvořit své první láhve."
 msgid "Finish"
 msgstr "Dokončit"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:47 src/views/details.py:113
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
 msgid "Preferences"
 msgstr "Předvolby"
 
@@ -1061,11 +1064,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:125
+#: src/ui/preferences.ui:272 src/views/details.py:132
 msgid "Versioning"
 msgstr "Správa verzí"
 
-#: src/ui/preferences.ui:298 src/views/details.py:129
+#: src/ui/preferences.ui:298 src/views/details.py:136
 msgid "Installers"
 msgstr "Instalátory"
 
@@ -1112,43 +1115,31 @@ msgstr "Obnovit tento stav"
 msgid "Creation date"
 msgstr "Datum vytvoření"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr "Zde jsou wine/wineserver procesy které běží na vašem PC."
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "Zkontrolovat spuštěné procesy."
-
-#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
-msgid "Task manager"
-msgstr "Správce úloh"
-
-#: src/ui/window.ui:34
+#: src/ui/window.ui:20
 msgid "Import and export"
 msgstr "Importovat a exportovat"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "Dokumentace"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
 msgid "Forums"
 msgstr ""
 
-#: src/ui/window.ui:97
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "O Láhvích"
 
-#: src/ui/window.ui:222 src/ui/window.ui:265
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "Otevřít menu"
 
-#: src/ui/window.ui:243
+#: src/ui/window.ui:229
 msgid "Operations"
 msgstr "Operace"
 
-#: src/ui/window.ui:287
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1157,7 +1148,7 @@ msgstr ""
 "Zdá se, že nejste připojeni k internetu. Bez něj si nebudete moci stáhnout "
 "základní komponenty. Po obnovení připojení klikněte na tuto ikonu."
 
-#: src/ui/window.ui:308
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "Jít zpět"
 
@@ -1198,15 +1189,15 @@ msgstr "[Refresh] žádost přijata."
 msgid "You are offline, unable to download."
 msgstr "Jste offline, nemohu stahovat."
 
-#: src/window.py:144 src/window.py:202
+#: src/window.py:140 src/window.py:192
 msgid "Bottle details"
 msgstr "Detaily láhve"
 
-#: src/window.py:192
+#: src/window.py:182
 msgid "Bottles Started!"
 msgstr "Láhve Spuštěny!"
 
-#: src/window.py:208
+#: src/window.py:196
 #, fuzzy
 msgid "Import & export"
 msgstr "Importovat a exportovat"
@@ -1320,23 +1311,90 @@ msgstr "Varování"
 msgid "An error has occurred."
 msgstr "Došlo k chybě."
 
-#: src/views/details.py:109
+#: src/views/details.py:116
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Nástroje"
 
-#: src/views/details.py:117
+#: src/views/details.py:124
 msgid "Dependencies"
 msgstr "Závislosti"
 
-#: src/views/details.py:121
+#: src/views/details.py:128
 msgid "Programs"
 msgstr "Programy"
 
-#: src/views/details.py:122
+#: src/views/details.py:129
 #, fuzzy
 msgid "Found in your bottle's Start menu."
 msgstr "Tyto programy se nacházejí v nabídce Start vaší láhve"
+
+#: src/views/details.py:140
+msgid "Task manager"
+msgstr "Správce úloh"
+
+#: src/views/bottle_details.py:160
+#, fuzzy, python-format
+msgid "Updated: %s"
+msgstr "Aktualizace: %s"
+
+#. set arch
+#: src/views/bottle_details.py:163
+msgid "64-bit"
+msgstr "64-bit"
+
+#: src/views/bottle_details.py:165
+msgid "32-bit"
+msgstr "32-bit"
+
+#: src/views/bottle_details.py:262 src/views/list.py:116
+msgid "Choose a Windows executable file"
+msgstr "Vyberte spustitelný soubor Windows"
+
+#: src/views/bottle_details.py:265 src/views/list.py:119
+msgid "Run"
+msgstr "Spustit"
+
+#: src/views/bottle_details.py:329
+msgid "Select the location where to save the backup config"
+msgstr "Vyberte umístění, kam chcete uložit zálohu konfigurace"
+
+#: src/views/bottle_details.py:333
+msgid "Select the location where to save the backup archive"
+msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
+
+#: src/views/bottle_details.py:340
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:371
+msgid "Confirm deletion"
+msgstr "Potvrďte odstranění"
+
+#: src/views/bottle_details.py:373
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
+
+#: src/views/bottle_preferences.py:124
+msgid "Gamemode is either not available on your system or not running."
+msgstr "Gamemode není v systému k dispozici nebo není spuštěn."
+
+#: src/views/bottle_preferences.py:134
+#, fuzzy
+msgid "Choose working directory for executables"
+msgstr "Vyberte spustitelný soubor Windows"
+
+#: src/views/bottle_preferences.py:137
+msgid "Done"
+msgstr "Hotovo"
+
+#: src/views/bottle_programs.py:50
+msgid "Choose an executable path"
+msgstr "Výběr cesty ke spustitelnému souboru"
+
+#: src/views/bottle_programs.py:53
+msgid "Add"
+msgstr "Přidat"
 
 #: src/views/importer.py:70
 msgid "Choose a backup archive"
@@ -1355,14 +1413,6 @@ msgstr "N/A"
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumenty nalezené pro spustitelný soubor: [{executable}]."
-
-#: src/views/list.py:116
-msgid "Choose a Windows executable file"
-msgstr "Vyberte spustitelný soubor Windows"
-
-#: src/views/list.py:119
-msgid "Run"
-msgstr "Spustit"
 
 #: src/views/new.py:72
 msgid "Gaming"
@@ -1392,6 +1442,12 @@ msgstr "Čisté rozhraní pro vaše experimenty."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Láhev pojmenovaná “{0}” byla úspěšně vytvořena"
+
+#~ msgid "These are the wine/wineserver processes running on your PC."
+#~ msgstr "Zde jsou wine/wineserver procesy které běží na vašem PC."
+
+#~ msgid "Check for running processes."
+#~ msgstr "Zkontrolovat spuštěné procesy."
 
 #~ msgid "Duplicate bottle"
 #~ msgstr "Duplikovat láhev"
@@ -1512,45 +1568,6 @@ msgstr "Láhev pojmenovaná “{0}” byla úspěšně vytvořena"
 #, fuzzy
 #~ msgid "No NVAPI found, installing the latest version…"
 #~ msgstr "Nebylo nanalezeno dxvk, instalace nejnovější verze…"
-
-#~ msgid "Gamemode is either not available on your system or not running."
-#~ msgstr "Gamemode není v systému k dispozici nebo není spuštěn."
-
-#, fuzzy
-#~ msgid "Choose working directory for executables"
-#~ msgstr "Vyberte spustitelný soubor Windows"
-
-#~ msgid "Done"
-#~ msgstr "Hotovo"
-
-#~ msgid "64-bit"
-#~ msgstr "64-bit"
-
-#~ msgid "32-bit"
-#~ msgstr "32-bit"
-
-#, fuzzy, python-format
-#~ msgid "Updated: %s"
-#~ msgstr "Aktualizace: %s"
-
-#~ msgid "Choose an executable path"
-#~ msgstr "Výběr cesty ke spustitelnému souboru"
-
-#~ msgid "Add"
-#~ msgstr "Přidat"
-
-#~ msgid "Select the location where to save the backup config"
-#~ msgstr "Vyberte umístění, kam chcete uložit zálohu konfigurace"
-
-#~ msgid "Select the location where to save the backup archive"
-#~ msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
-
-#~ msgid "Confirm deletion"
-#~ msgstr "Potvrďte odstranění"
-
-#~ msgid "Are you sure you want to delete this Bottle and all files?"
-#~ msgstr ""
-#~ "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
 
 #, fuzzy, python-brace-format
 #~ msgid "Your new {0} bottle is now ready."

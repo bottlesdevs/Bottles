@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-20 19:08+0100\n"
+"POT-Creation-Date: 2021-11-21 17:13+0100\n"
 "PO-Revision-Date: 2021-11-15 00:13+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
-#: src/window.py:149 src/window.py:204
+#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
+#: src/window.py:145 src/window.py:194
 msgid "Bottles"
 msgstr "Şişeler"
 
@@ -190,7 +190,7 @@ msgid "Change the window height."
 msgstr "Pencere yüksekliğini değiştir."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:349
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Bildirimler"
 
@@ -315,23 +315,23 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Bu bağımlılığı indir ve kur"
 
-#: src/ui/details.ui:87 src/ui/importer.ui:94
+#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
 msgid "Refresh"
 msgstr "Yenile"
 
-#: src/ui/details.ui:120
+#: src/ui/details.ui:119
 msgid "Add a custom executable path"
 msgstr "Özel bir çalıştırılabilir yol ekle"
 
-#: src/ui/details.ui:146
+#: src/ui/details.ui:145
 msgid "Search for installed programs"
 msgstr "Kurulu programları arayın"
 
-#: src/ui/details.ui:179 src/ui/details-dependencies.ui:119
+#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
 msgid "Read documentation"
 msgstr "Belgelendirmeyi oku"
 
-#: src/ui/details.ui:206
+#: src/ui/details.ui:241
 msgid "Create new state"
 msgstr "Yeni durum oluştur"
 
@@ -597,7 +597,10 @@ msgid "Message goes here."
 msgstr "Mesaj buraya gelecek."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/list.py:120
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
+#: src/views/list.py:120
 msgid "Cancel"
 msgstr "İptal"
 
@@ -725,7 +728,7 @@ msgstr "Kişisel dosyalarınız da dahil, bu sizin şişenizin eksiksiz arşivid
 msgid "Full archive"
 msgstr "Tam arşiv"
 
-#: src/ui/importer.ui:75 src/window.py:159
+#: src/ui/importer.ui:75 src/window.py:150
 msgid "Importer"
 msgstr "İçe aktarıcı"
 
@@ -785,7 +788,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Bu şişede .exe/.msi çalıştır"
 
-#: src/ui/new.ui:25 src/ui/window.ui:329
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "Yeni şişe"
 
@@ -985,7 +988,7 @@ msgstr "Artık ilk şişelerinizi oluşturmaya hazırsınız."
 msgid "Finish"
 msgstr "Bitiş"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:47 src/views/details.py:113
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
 msgid "Preferences"
 msgstr "Tercihler"
 
@@ -1057,11 +1060,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:125
+#: src/ui/preferences.ui:272 src/views/details.py:132
 msgid "Versioning"
 msgstr "Sürüm oluşturma"
 
-#: src/ui/preferences.ui:298 src/views/details.py:129
+#: src/ui/preferences.ui:298 src/views/details.py:136
 msgid "Installers"
 msgstr "Kurucular"
 
@@ -1105,43 +1108,31 @@ msgstr "Bu durumu geri yükle"
 msgid "Creation date"
 msgstr "Oluşturulma tarihi"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr "Bunlar, bilgisayarınızda çalışan wine / wine sunucusu işlemleridir."
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "Çalışan işlemleri kontrol edin."
-
-#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
-msgid "Task manager"
-msgstr "Görev yöneticisi"
-
-#: src/ui/window.ui:34
+#: src/ui/window.ui:20
 msgid "Import and export"
 msgstr "İçe aktar / Dışa aktar"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "Belgelendirme"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
 msgid "Forums"
 msgstr "Forumlar"
 
-#: src/ui/window.ui:97
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "Şişeler Hakkında"
 
-#: src/ui/window.ui:222 src/ui/window.ui:265
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-#: src/ui/window.ui:243
+#: src/ui/window.ui:229
 msgid "Operations"
 msgstr "İşlemler"
 
-#: src/ui/window.ui:287
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1150,7 +1141,7 @@ msgstr ""
 "İnternete bağlı değilsiniz, internet bağlantısı olmadan temel bileşenleri "
 "indiremezsiniz. Bağlantıyı yeniden kurduğunuzda bu simgeye tıklayın."
 
-#: src/ui/window.ui:308
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "Geri git"
 
@@ -1190,15 +1181,15 @@ msgstr "[Yenile] isteği alındı."
 msgid "You are offline, unable to download."
 msgstr "Çevrimdışısınız, karşıdan yükleyemiyorsunuz."
 
-#: src/window.py:144 src/window.py:202
+#: src/window.py:140 src/window.py:192
 msgid "Bottle details"
 msgstr "Şişe ayrıntıları"
 
-#: src/window.py:192
+#: src/window.py:182
 msgid "Bottles Started!"
 msgstr "Şişeler Başlatıldı!"
 
-#: src/window.py:208
+#: src/window.py:196
 msgid "Import & export"
 msgstr "İçe ve dışa aktar"
 
@@ -1298,21 +1289,87 @@ msgstr "Uyarı"
 msgid "An error has occurred."
 msgstr "Bir hata oluştu."
 
-#: src/views/details.py:109
+#: src/views/details.py:116
 msgid "Details & Utilities"
 msgstr "Ayrıntılar ve Araçlar"
 
-#: src/views/details.py:117
+#: src/views/details.py:124
 msgid "Dependencies"
 msgstr "Bağımlılıklar"
 
-#: src/views/details.py:121
+#: src/views/details.py:128
 msgid "Programs"
 msgstr "Programlar"
 
-#: src/views/details.py:122
+#: src/views/details.py:129
 msgid "Found in your bottle's Start menu."
 msgstr "Şişenizin Başlat menüsünde bulunur."
+
+#: src/views/details.py:140
+msgid "Task manager"
+msgstr "Görev yöneticisi"
+
+#: src/views/bottle_details.py:160
+#, python-format
+msgid "Updated: %s"
+msgstr "Güncellendi: %s"
+
+#. set arch
+#: src/views/bottle_details.py:163
+msgid "64-bit"
+msgstr "64-bit"
+
+#: src/views/bottle_details.py:165
+msgid "32-bit"
+msgstr "32-bit"
+
+#: src/views/bottle_details.py:262 src/views/list.py:116
+msgid "Choose a Windows executable file"
+msgstr "Çalıştırılacak bir Windows dosyası seçin"
+
+#: src/views/bottle_details.py:265 src/views/list.py:119
+msgid "Run"
+msgstr "Çalıştır"
+
+#: src/views/bottle_details.py:329
+msgid "Select the location where to save the backup config"
+msgstr "Yedekleme yapılandırmasının kaydedileceği konumu seç"
+
+#: src/views/bottle_details.py:333
+msgid "Select the location where to save the backup archive"
+msgstr "Yedek arşivinin kaydedileceği konumu seçin"
+
+#: src/views/bottle_details.py:340
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:371
+msgid "Confirm deletion"
+msgstr "Silmeyi onayla"
+
+#: src/views/bottle_details.py:373
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
+
+#: src/views/bottle_preferences.py:124
+msgid "Gamemode is either not available on your system or not running."
+msgstr "Oyun modu ya sisteminizde kullanılabilir değil ya da çalışmıyor."
+
+#: src/views/bottle_preferences.py:134
+msgid "Choose working directory for executables"
+msgstr "Çalıştırılabilir dosyalar için çalışma dizini seç"
+
+#: src/views/bottle_preferences.py:137
+msgid "Done"
+msgstr "Bitti"
+
+#: src/views/bottle_programs.py:50
+msgid "Choose an executable path"
+msgstr "Çalıştırılabilir dosya yolu seç"
+
+#: src/views/bottle_programs.py:53
+msgid "Add"
+msgstr "Ekle"
 
 #: src/views/importer.py:70
 msgid "Choose a backup archive"
@@ -1330,14 +1387,6 @@ msgstr "Yok"
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Yürütebilir dosya için bulunan bağımsız değişkenler: [{executable}]."
-
-#: src/views/list.py:116
-msgid "Choose a Windows executable file"
-msgstr "Çalıştırılacak bir Windows dosyası seçin"
-
-#: src/views/list.py:119
-msgid "Run"
-msgstr "Çalıştır"
 
 #: src/views/new.py:72
 msgid "Gaming"
@@ -1367,6 +1416,12 @@ msgstr "Deneyleriniz için temiz bir ortam."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "“{0}” adlı bir şişe başarıyla oluşturuldu"
+
+#~ msgid "These are the wine/wineserver processes running on your PC."
+#~ msgstr "Bunlar, bilgisayarınızda çalışan wine / wine sunucusu işlemleridir."
+
+#~ msgid "Check for running processes."
+#~ msgstr "Çalışan işlemleri kontrol edin."
 
 #~ msgid "Duplicate bottle"
 #~ msgstr "Şişeyi kopyala"
@@ -1490,43 +1545,6 @@ msgstr "“{0}” adlı bir şişe başarıyla oluşturuldu"
 
 #~ msgid "Re-initializing registry…"
 #~ msgstr "Kayıt defteri yeniden başlatılıyor…"
-
-#~ msgid "Gamemode is either not available on your system or not running."
-#~ msgstr "Oyun modu ya sisteminizde kullanılabilir değil ya da çalışmıyor."
-
-#~ msgid "Choose working directory for executables"
-#~ msgstr "Çalıştırılabilir dosyalar için çalışma dizini seç"
-
-#~ msgid "Done"
-#~ msgstr "Bitti"
-
-#~ msgid "64-bit"
-#~ msgstr "64-bit"
-
-#~ msgid "32-bit"
-#~ msgstr "32-bit"
-
-#, python-format
-#~ msgid "Updated: %s"
-#~ msgstr "Güncellendi: %s"
-
-#~ msgid "Choose an executable path"
-#~ msgstr "Çalıştırılabilir dosya yolu seç"
-
-#~ msgid "Add"
-#~ msgstr "Ekle"
-
-#~ msgid "Select the location where to save the backup config"
-#~ msgstr "Yedekleme yapılandırmasının kaydedileceği konumu seç"
-
-#~ msgid "Select the location where to save the backup archive"
-#~ msgstr "Yedek arşivinin kaydedileceği konumu seçin"
-
-#~ msgid "Confirm deletion"
-#~ msgstr "Silmeyi onayla"
-
-#~ msgid "Are you sure you want to delete this Bottle and all files?"
-#~ msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
 
 #, python-brace-format
 #~ msgid "Your new {0} bottle is now ready."

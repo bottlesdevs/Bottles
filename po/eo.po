@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-20 19:08+0100\n"
+"POT-Creation-Date: 2021-11-21 17:13+0100\n"
 "PO-Revision-Date: 2021-11-04 21:31+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
-#: src/window.py:149 src/window.py:204
+#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
+#: src/window.py:145 src/window.py:194
 msgid "Bottles"
 msgstr "Boteloj"
 
@@ -190,7 +190,7 @@ msgid "Change the window height."
 msgstr "Ŝanĝi fenestran alton."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:349
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Sciigoj"
 
@@ -315,23 +315,23 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Elŝuti kaj instali ĉi tiun dependaĵon"
 
-#: src/ui/details.ui:87 src/ui/importer.ui:94
+#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
 msgid "Refresh"
 msgstr "Reŝargi"
 
-#: src/ui/details.ui:120
+#: src/ui/details.ui:119
 msgid "Add a custom executable path"
 msgstr "Aldoni propran dosierindikon de ruleblaĵo"
 
-#: src/ui/details.ui:146
+#: src/ui/details.ui:145
 msgid "Search for installed programs"
 msgstr "Serĉi instalitajn programojn"
 
-#: src/ui/details.ui:179 src/ui/details-dependencies.ui:119
+#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
 msgid "Read documentation"
 msgstr "Legi dokumentaron"
 
-#: src/ui/details.ui:206
+#: src/ui/details.ui:241
 msgid "Create new state"
 msgstr "Krei novan staton"
 
@@ -594,7 +594,10 @@ msgid "Message goes here."
 msgstr "Jen tajpenda mesaĝo ĉi tie."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/list.py:120
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
+#: src/views/list.py:120
 msgid "Cancel"
 msgstr "Nuligi"
 
@@ -719,7 +722,7 @@ msgstr "Jen la plena arkivo de via botelo, inkluzive de personaj dosieroj."
 msgid "Full archive"
 msgstr "Plena arkivo"
 
-#: src/ui/importer.ui:75 src/window.py:159
+#: src/ui/importer.ui:75 src/window.py:150
 msgid "Importer"
 msgstr "Enportilo"
 
@@ -779,7 +782,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Ruli .exe/.msi en ĉi tiu botelo"
 
-#: src/ui/new.ui:25 src/ui/window.ui:329
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "Nova botelo"
 
@@ -968,7 +971,7 @@ msgstr "Vi nun pretas ekkrei viajn botelojn."
 msgid "Finish"
 msgstr "Fini"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:47 src/views/details.py:113
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
 msgid "Preferences"
 msgstr "Preferencoj"
 
@@ -1040,11 +1043,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:125
+#: src/ui/preferences.ui:272 src/views/details.py:132
 msgid "Versioning"
 msgstr "Administrado de versioj"
 
-#: src/ui/preferences.ui:298 src/views/details.py:129
+#: src/ui/preferences.ui:298 src/views/details.py:136
 msgid "Installers"
 msgstr "Instaliloj"
 
@@ -1090,44 +1093,32 @@ msgstr "Restaŭri ĉi tiun staton"
 msgid "Creation date"
 msgstr "Dato de kreo"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr "Jen la ruliĝantaj procezoj de (servilo de) Wine en via komputilo."
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "Kontrolu ruliĝantajn procezojn."
-
-#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
-msgid "Task manager"
-msgstr "Administrilo de taskoj"
-
-#: src/ui/window.ui:34
+#: src/ui/window.ui:20
 msgid "Import and export"
 msgstr "Enporti kaj elporti"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "Dokumentaro"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
 msgid "Forums"
 msgstr ""
 
-#: src/ui/window.ui:97
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "Pri Boteloj"
 
-#: src/ui/window.ui:222 src/ui/window.ui:265
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "Malfermi menuon"
 
-#: src/ui/window.ui:243
+#: src/ui/window.ui:229
 #, fuzzy
 msgid "Operations"
 msgstr "Tradukoj"
 
-#: src/ui/window.ui:287
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1136,7 +1127,7 @@ msgstr ""
 "Vi ne ŝajnas konektita al Interreto. Sen konekto vi ne povos elŝuti "
 "havendajn komponantojn. Alklaku ĉi tiun ikonon post konektado."
 
-#: src/ui/window.ui:308
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "Reen"
 
@@ -1177,15 +1168,15 @@ msgstr "Riceviĝis peto [Reŝargi]."
 msgid "You are offline, unable to download."
 msgstr "Vi ne estas konektita al Interreto, kaj tial ne kapablas elŝuti."
 
-#: src/window.py:144 src/window.py:202
+#: src/window.py:140 src/window.py:192
 msgid "Bottle details"
 msgstr "Detaloj pri botelo"
 
-#: src/window.py:192
+#: src/window.py:182
 msgid "Bottles Started!"
 msgstr "Ekfunkcias botelo!"
 
-#: src/window.py:208
+#: src/window.py:196
 msgid "Import & export"
 msgstr "Enporti kaj elporti"
 
@@ -1290,21 +1281,87 @@ msgstr "Averto"
 msgid "An error has occurred."
 msgstr "Eraro okazis."
 
-#: src/views/details.py:109
+#: src/views/details.py:116
 msgid "Details & Utilities"
 msgstr "Detaloj & ilprogramoj"
 
-#: src/views/details.py:117
+#: src/views/details.py:124
 msgid "Dependencies"
 msgstr "Dependaĵoj"
 
-#: src/views/details.py:121
+#: src/views/details.py:128
 msgid "Programs"
 msgstr "Programoj"
 
-#: src/views/details.py:122
+#: src/views/details.py:129
 msgid "Found in your bottle's Start menu."
 msgstr ""
+
+#: src/views/details.py:140
+msgid "Task manager"
+msgstr "Administrilo de taskoj"
+
+#: src/views/bottle_details.py:160
+#, python-format
+msgid "Updated: %s"
+msgstr "Ĝisdatigoj: %s"
+
+#. set arch
+#: src/views/bottle_details.py:163
+msgid "64-bit"
+msgstr "64-bita"
+
+#: src/views/bottle_details.py:165
+msgid "32-bit"
+msgstr "32-bita"
+
+#: src/views/bottle_details.py:262 src/views/list.py:116
+msgid "Choose a Windows executable file"
+msgstr "Elektu Vindozan programon"
+
+#: src/views/bottle_details.py:265 src/views/list.py:119
+msgid "Run"
+msgstr "Ruli"
+
+#: src/views/bottle_details.py:329
+msgid "Select the location where to save the backup config"
+msgstr "Elektu la lokon, kie konserviĝos la savkopio de agordoj"
+
+#: src/views/bottle_details.py:333
+msgid "Select the location where to save the backup archive"
+msgstr "Elektu la lokon, kie konserviĝos la savkopia arkivo"
+
+#: src/views/bottle_details.py:340
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:371
+msgid "Confirm deletion"
+msgstr "Konfirmu forviŝon"
+
+#: src/views/bottle_details.py:373
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Ĉu vi certe volas forviŝi ĉi tiun botelon kaj ĝiajn dosierojn?"
+
+#: src/views/bottle_preferences.py:124
+msgid "Gamemode is either not available on your system or not running."
+msgstr "Gamemode estas aŭ ne havebla aŭ ne ruliĝanta en via sistemo."
+
+#: src/views/bottle_preferences.py:134
+msgid "Choose working directory for executables"
+msgstr "Elektu labordosierujon por ruleblaĵoj"
+
+#: src/views/bottle_preferences.py:137
+msgid "Done"
+msgstr "Finita"
+
+#: src/views/bottle_programs.py:50
+msgid "Choose an executable path"
+msgstr "Elektu dosierindikon de ruleblaĵo"
+
+#: src/views/bottle_programs.py:53
+msgid "Add"
+msgstr "Aldoni"
 
 #: src/views/importer.py:70
 msgid "Choose a backup archive"
@@ -1323,14 +1380,6 @@ msgstr "Ne aplikebla"
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Troviĝis argumentoj de programo [{executable}]."
-
-#: src/views/list.py:116
-msgid "Choose a Windows executable file"
-msgstr "Elektu Vindozan programon"
-
-#: src/views/list.py:119
-msgid "Run"
-msgstr "Ruli"
 
 #: src/views/new.py:72
 msgid "Gaming"
@@ -1360,6 +1409,12 @@ msgstr "Medio por viaj eksperimentoj."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Sukcese kreiĝis botelo nomita “{0}”"
+
+#~ msgid "These are the wine/wineserver processes running on your PC."
+#~ msgstr "Jen la ruliĝantaj procezoj de (servilo de) Wine en via komputilo."
+
+#~ msgid "Check for running processes."
+#~ msgstr "Kontrolu ruliĝantajn procezojn."
 
 #~ msgid "Duplicate bottle"
 #~ msgstr "Kopii botelon"
@@ -1471,43 +1526,6 @@ msgstr "Sukcese kreiĝis botelo nomita “{0}”"
 #, fuzzy
 #~ msgid "No NVAPI found, installing the latest version…"
 #~ msgstr "Ne troviĝis DXVK; instalante plej novan version…"
-
-#~ msgid "Gamemode is either not available on your system or not running."
-#~ msgstr "Gamemode estas aŭ ne havebla aŭ ne ruliĝanta en via sistemo."
-
-#~ msgid "Choose working directory for executables"
-#~ msgstr "Elektu labordosierujon por ruleblaĵoj"
-
-#~ msgid "Done"
-#~ msgstr "Finita"
-
-#~ msgid "64-bit"
-#~ msgstr "64-bita"
-
-#~ msgid "32-bit"
-#~ msgstr "32-bita"
-
-#, python-format
-#~ msgid "Updated: %s"
-#~ msgstr "Ĝisdatigoj: %s"
-
-#~ msgid "Choose an executable path"
-#~ msgstr "Elektu dosierindikon de ruleblaĵo"
-
-#~ msgid "Add"
-#~ msgstr "Aldoni"
-
-#~ msgid "Select the location where to save the backup config"
-#~ msgstr "Elektu la lokon, kie konserviĝos la savkopio de agordoj"
-
-#~ msgid "Select the location where to save the backup archive"
-#~ msgstr "Elektu la lokon, kie konserviĝos la savkopia arkivo"
-
-#~ msgid "Confirm deletion"
-#~ msgstr "Konfirmu forviŝon"
-
-#~ msgid "Are you sure you want to delete this Bottle and all files?"
-#~ msgstr "Ĉu vi certe volas forviŝi ĉi tiun botelon kaj ĝiajn dosierojn?"
 
 #, python-brace-format
 #~ msgid "Your new {0} bottle is now ready."

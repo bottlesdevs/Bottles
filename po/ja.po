@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-20 19:08+0100\n"
+"POT-Creation-Date: 2021-11-21 17:13+0100\n"
 "PO-Revision-Date: 2021-11-18 11:55+0000\n"
 "Last-Translator: Kaz Sibuya <sibuyakazokuu@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
-#: src/window.py:149 src/window.py:204
+#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
+#: src/window.py:145 src/window.py:194
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -194,7 +194,7 @@ msgid "Change the window height."
 msgstr "ウィンドウの高さを変更する"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:349
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "通知"
 
@@ -323,23 +323,23 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "この依存関係をダウンロードしてインストールします"
 
-#: src/ui/details.ui:87 src/ui/importer.ui:94
+#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
 msgid "Refresh"
 msgstr "リフレッシュ"
 
-#: src/ui/details.ui:120
+#: src/ui/details.ui:119
 msgid "Add a custom executable path"
 msgstr "カスタム実行可能パスを追加します"
 
-#: src/ui/details.ui:146
+#: src/ui/details.ui:145
 msgid "Search for installed programs"
 msgstr "インストールされているプログラムを検索する"
 
-#: src/ui/details.ui:179 src/ui/details-dependencies.ui:119
+#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
 msgid "Read documentation"
 msgstr "ドキュメンテーションを読む"
 
-#: src/ui/details.ui:206
+#: src/ui/details.ui:241
 msgid "Create new state"
 msgstr "新しい状態を作成する"
 
@@ -604,7 +604,10 @@ msgid "Message goes here."
 msgstr "メッセージはここにあります。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/list.py:120
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
+#: src/views/list.py:120
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -733,7 +736,7 @@ msgstr "これは、個人ファイルを含む、ボトルの完全なアーカ
 msgid "Full archive"
 msgstr "完全なアーカイブ"
 
-#: src/ui/importer.ui:75 src/window.py:159
+#: src/ui/importer.ui:75 src/window.py:150
 msgid "Importer"
 msgstr "インポータ"
 
@@ -794,7 +797,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "このボトルで.exe / .msiを実行します"
 
-#: src/ui/new.ui:25 src/ui/window.ui:329
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "新しいボトル"
 
@@ -997,7 +1000,7 @@ msgstr "これで、最初のボトルを作成する準備が整いました。
 msgid "Finish"
 msgstr "終了"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:47 src/views/details.py:113
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
 msgid "Preferences"
 msgstr "設定"
 
@@ -1069,11 +1072,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:125
+#: src/ui/preferences.ui:272 src/views/details.py:132
 msgid "Versioning"
 msgstr "バージョン管理"
 
-#: src/ui/preferences.ui:298 src/views/details.py:129
+#: src/ui/preferences.ui:298 src/views/details.py:136
 msgid "Installers"
 msgstr "インストーラー"
 
@@ -1119,43 +1122,31 @@ msgstr "この状態を復元します"
 msgid "Creation date"
 msgstr "作成日"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr "これらは、PCで実行されているWine/ Wineサーバーのプロセスです。"
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "実行中のプロセスを確認します。"
-
-#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
-msgid "Task manager"
-msgstr "タスクマネージャー"
-
-#: src/ui/window.ui:34
+#: src/ui/window.ui:20
 msgid "Import and export"
 msgstr "インポートとエクスポート"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "ドキュメンテーション"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
 msgid "Forums"
 msgstr ""
 
-#: src/ui/window.ui:97
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "Bottlesについて"
 
-#: src/ui/window.ui:222 src/ui/window.ui:265
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "メニューを開く"
 
-#: src/ui/window.ui:243
+#: src/ui/window.ui:229
 msgid "Operations"
 msgstr ""
 
-#: src/ui/window.ui:287
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1165,7 +1156,7 @@ msgstr ""
 "ネントをダウンロードできません。接続を再確立したら、このアイコンをクリックし"
 "ます。"
 
-#: src/ui/window.ui:308
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "戻る"
 
@@ -1206,15 +1197,15 @@ msgstr "[リフレシュ]リクエストを受信しました。"
 msgid "You are offline, unable to download."
 msgstr "オフラインで、ダウンロードできません。"
 
-#: src/window.py:144 src/window.py:202
+#: src/window.py:140 src/window.py:192
 msgid "Bottle details"
 msgstr "ボトルの詳細"
 
-#: src/window.py:192
+#: src/window.py:182
 msgid "Bottles Started!"
 msgstr "ボトルス起動しました!"
 
-#: src/window.py:208
+#: src/window.py:196
 #, fuzzy
 msgid "Import & export"
 msgstr "インポートとエクスポート"
@@ -1328,22 +1319,92 @@ msgstr "注意"
 msgid "An error has occurred."
 msgstr "エラーが発生しました。"
 
-#: src/views/details.py:109
+#: src/views/details.py:116
 msgid "Details & Utilities"
 msgstr "詳細とユーティリティ"
 
-#: src/views/details.py:117
+#: src/views/details.py:124
 msgid "Dependencies"
 msgstr "依存関係"
 
-#: src/views/details.py:121
+#: src/views/details.py:128
 msgid "Programs"
 msgstr "プログラム"
 
-#: src/views/details.py:122
+#: src/views/details.py:129
 #, fuzzy
 msgid "Found in your bottle's Start menu."
 msgstr "これらは、ボトルのスタートメニューにあるプログラムです"
+
+#: src/views/details.py:140
+msgid "Task manager"
+msgstr "タスクマネージャー"
+
+#: src/views/bottle_details.py:160
+#, python-format
+msgid "Updated: %s"
+msgstr "更新しました：%s"
+
+#. set arch
+#: src/views/bottle_details.py:163
+msgid "64-bit"
+msgstr ""
+
+#: src/views/bottle_details.py:165
+msgid "32-bit"
+msgstr ""
+
+#: src/views/bottle_details.py:262 src/views/list.py:116
+msgid "Choose a Windows executable file"
+msgstr "Windows実行可能ファイルを選択してください"
+
+#: src/views/bottle_details.py:265 src/views/list.py:119
+msgid "Run"
+msgstr "実行"
+
+#: src/views/bottle_details.py:329
+#, fuzzy
+msgid "Select the location where to save the backup config"
+msgstr "バックアップ構成を保存する場所を選択してください"
+
+#: src/views/bottle_details.py:333
+msgid "Select the location where to save the backup archive"
+msgstr "バックアップアーカイブを保存する場所を選択してください"
+
+#: src/views/bottle_details.py:340
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:371
+msgid "Confirm deletion"
+msgstr "削除の確認"
+
+#: src/views/bottle_details.py:373
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
+
+#: src/views/bottle_preferences.py:124
+msgid "Gamemode is either not available on your system or not running."
+msgstr "ゲームモードは、システムで使用できないか、実行されていません。"
+
+#: src/views/bottle_preferences.py:134
+#, fuzzy
+msgid "Choose working directory for executables"
+msgstr ""
+"ボトルルートは、実行されたすべてのコマンドの作業ディレクトリとして設定されま"
+"す"
+
+#: src/views/bottle_preferences.py:137
+msgid "Done"
+msgstr ""
+
+#: src/views/bottle_programs.py:50
+msgid "Choose an executable path"
+msgstr "実行可能パスを選択します"
+
+#: src/views/bottle_programs.py:53
+msgid "Add"
+msgstr "追加"
 
 #: src/views/importer.py:70
 msgid "Choose a backup archive"
@@ -1362,14 +1423,6 @@ msgstr ""
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "実行可能ファイル：[{executable}]の引数が見つかりました。"
-
-#: src/views/list.py:116
-msgid "Choose a Windows executable file"
-msgstr "Windows実行可能ファイルを選択してください"
-
-#: src/views/list.py:119
-msgid "Run"
-msgstr "実行"
 
 #: src/views/new.py:72
 msgid "Gaming"
@@ -1399,6 +1452,12 @@ msgstr "あなたの実験のための明確な環境。"
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "「{0}」という名前のボトルが正常に作成されました"
+
+#~ msgid "These are the wine/wineserver processes running on your PC."
+#~ msgstr "これらは、PCで実行されているWine/ Wineサーバーのプロセスです。"
+
+#~ msgid "Check for running processes."
+#~ msgstr "実行中のプロセスを確認します。"
 
 #, fuzzy
 #~ msgid "Duplicate bottle"
@@ -1508,38 +1567,6 @@ msgstr "「{0}」という名前のボトルが正常に作成されました"
 #, fuzzy
 #~ msgid "No NVAPI found, installing the latest version…"
 #~ msgstr "dxvkが見つかりません、最新バージョンをインストールしています…"
-
-#~ msgid "Gamemode is either not available on your system or not running."
-#~ msgstr "ゲームモードは、システムで使用できないか、実行されていません。"
-
-#, fuzzy
-#~ msgid "Choose working directory for executables"
-#~ msgstr ""
-#~ "ボトルルートは、実行されたすべてのコマンドの作業ディレクトリとして設定され"
-#~ "ます"
-
-#, python-format
-#~ msgid "Updated: %s"
-#~ msgstr "更新しました：%s"
-
-#~ msgid "Choose an executable path"
-#~ msgstr "実行可能パスを選択します"
-
-#~ msgid "Add"
-#~ msgstr "追加"
-
-#, fuzzy
-#~ msgid "Select the location where to save the backup config"
-#~ msgstr "バックアップ構成を保存する場所を選択してください"
-
-#~ msgid "Select the location where to save the backup archive"
-#~ msgstr "バックアップアーカイブを保存する場所を選択してください"
-
-#~ msgid "Confirm deletion"
-#~ msgstr "削除の確認"
-
-#~ msgid "Are you sure you want to delete this Bottle and all files?"
-#~ msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
 
 #, fuzzy, python-brace-format
 #~ msgid "Your new {0} bottle is now ready."

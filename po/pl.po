@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-20 19:08+0100\n"
+"POT-Creation-Date: 2021-11-21 17:13+0100\n"
 "PO-Revision-Date: 2021-11-08 22:03+0000\n"
 "Last-Translator: Krzysztof Marcinek <krzymar2002@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,8 +22,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:198 src/ui/window.ui:213
-#: src/window.py:149 src/window.py:204
+#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
+#: src/window.py:145 src/window.py:194
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -196,7 +196,7 @@ msgid "Change the window height."
 msgstr "Zmień wysokość okna."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:349
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Powiadomienia"
 
@@ -321,23 +321,23 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Pobierz i zainstaluj tę zależność"
 
-#: src/ui/details.ui:87 src/ui/importer.ui:94
+#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: src/ui/details.ui:120
+#: src/ui/details.ui:119
 msgid "Add a custom executable path"
 msgstr "Dodaj niestandardową ścieżkę do pliku wykonywalnego"
 
-#: src/ui/details.ui:146
+#: src/ui/details.ui:145
 msgid "Search for installed programs"
 msgstr "Szukaj zainstalowanych programów"
 
-#: src/ui/details.ui:179 src/ui/details-dependencies.ui:119
+#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
 msgid "Read documentation"
 msgstr "Przeczytaj dokumentację"
 
-#: src/ui/details.ui:206
+#: src/ui/details.ui:241
 msgid "Create new state"
 msgstr "Stwórz nowy stan"
 
@@ -603,7 +603,10 @@ msgid "Message goes here."
 msgstr "Wiadomość trafia tutaj."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/list.py:120
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
+#: src/views/list.py:120
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -732,7 +735,7 @@ msgstr ""
 msgid "Full archive"
 msgstr "Pełne archiwum"
 
-#: src/ui/importer.ui:75 src/window.py:159
+#: src/ui/importer.ui:75 src/window.py:150
 msgid "Importer"
 msgstr "Importer"
 
@@ -792,7 +795,7 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Uruchom plik .exe/.msi w tej butelce"
 
-#: src/ui/new.ui:25 src/ui/window.ui:329
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "Nowa butelka"
 
@@ -991,7 +994,7 @@ msgstr "Teraz jesteś gotowy do tworzenia swoich pierwszych butelek."
 msgid "Finish"
 msgstr "Zakończ"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:47 src/views/details.py:113
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
 msgid "Preferences"
 msgstr "Ustawienia"
 
@@ -1065,11 +1068,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:125
+#: src/ui/preferences.ui:272 src/views/details.py:132
 msgid "Versioning"
 msgstr "Wersjonowanie"
 
-#: src/ui/preferences.ui:298 src/views/details.py:129
+#: src/ui/preferences.ui:298 src/views/details.py:136
 msgid "Installers"
 msgstr "Instalatory"
 
@@ -1115,43 +1118,31 @@ msgstr "Przywróć ten stan"
 msgid "Creation date"
 msgstr "Data utworzenia"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr "Są to procesy wine/wineserver działające na Twoim komputerze."
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "Sprawdź działające procesy."
-
-#: src/ui/window.ui:21 src/window.py:154 src/window.py:206
-msgid "Task manager"
-msgstr "Menedżer zadań"
-
-#: src/ui/window.ui:34
+#: src/ui/window.ui:20
 msgid "Import and export"
 msgstr "Importuj i eksportuj"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "Dokumentacja"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
 msgid "Forums"
 msgstr ""
 
-#: src/ui/window.ui:97
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "O Bottles"
 
-#: src/ui/window.ui:222 src/ui/window.ui:265
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "Otwórz menu"
 
-#: src/ui/window.ui:243
+#: src/ui/window.ui:229
 msgid "Operations"
 msgstr "Operacje"
 
-#: src/ui/window.ui:287
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1161,7 +1152,7 @@ msgstr ""
 "stanie pobrać niezbędnych komponentów. Kliknij tę ikonę po przywróceniu "
 "połączenia."
 
-#: src/ui/window.ui:308
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "Wróć"
 
@@ -1202,15 +1193,15 @@ msgstr "[Odśwież] otrzymano żądanie."
 msgid "You are offline, unable to download."
 msgstr "Jesteś offline, nie można pobrać."
 
-#: src/window.py:144 src/window.py:202
+#: src/window.py:140 src/window.py:192
 msgid "Bottle details"
 msgstr "Detale butelki"
 
-#: src/window.py:192
+#: src/window.py:182
 msgid "Bottles Started!"
 msgstr "Bottles uruchomione!"
 
-#: src/window.py:208
+#: src/window.py:196
 msgid "Import & export"
 msgstr "Importuj i eksportuj"
 
@@ -1311,21 +1302,88 @@ msgstr "Ostrzeżenie"
 msgid "An error has occurred."
 msgstr "Wystąpił błąd."
 
-#: src/views/details.py:109
+#: src/views/details.py:116
 msgid "Details & Utilities"
 msgstr "Detale i narzędzia"
 
-#: src/views/details.py:117
+#: src/views/details.py:124
 msgid "Dependencies"
 msgstr "Zależności"
 
-#: src/views/details.py:121
+#: src/views/details.py:128
 msgid "Programs"
 msgstr "Programy"
 
-#: src/views/details.py:122
+#: src/views/details.py:129
 msgid "Found in your bottle's Start menu."
 msgstr "Są to programy znajdujące się w menu Start Twojej butelki."
+
+#: src/views/details.py:140
+msgid "Task manager"
+msgstr "Menedżer zadań"
+
+#: src/views/bottle_details.py:160
+#, python-format
+msgid "Updated: %s"
+msgstr "Zaktualizowano: %s"
+
+#. set arch
+#: src/views/bottle_details.py:163
+msgid "64-bit"
+msgstr "64-bitowa"
+
+#: src/views/bottle_details.py:165
+msgid "32-bit"
+msgstr "32-bitowa"
+
+#: src/views/bottle_details.py:262 src/views/list.py:116
+msgid "Choose a Windows executable file"
+msgstr "Wybierz plik wykonywalny Windows"
+
+#: src/views/bottle_details.py:265 src/views/list.py:119
+msgid "Run"
+msgstr "Uruchom"
+
+#: src/views/bottle_details.py:329
+msgid "Select the location where to save the backup config"
+msgstr ""
+"Wybierz lokalizację, gdzie ma zostać zapisana konfiguracja kopii zapasowej"
+
+#: src/views/bottle_details.py:333
+msgid "Select the location where to save the backup archive"
+msgstr "Wybierz lokalizację, gdzie ma zostać zapisane archiwum kopii zapasowej"
+
+#: src/views/bottle_details.py:340
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:371
+msgid "Confirm deletion"
+msgstr "Potwierdź usunięcie"
+
+#: src/views/bottle_details.py:373
+msgid "Are you sure you want to delete this Bottle and all files?"
+msgstr "Czy na pewno chcesz usunąć tę butelkę i wszystkie pliki?"
+
+#: src/views/bottle_preferences.py:124
+msgid "Gamemode is either not available on your system or not running."
+msgstr "Gamemode nie jest dostępny na Twoim systemie lub nie jest uruchomiony."
+
+#: src/views/bottle_preferences.py:134
+msgid "Choose working directory for executables"
+msgstr "Wybierz katalog roboczy dla plików wykonywalnych"
+
+#: src/views/bottle_preferences.py:137
+msgid "Done"
+msgstr "Gotowe"
+
+#: src/views/bottle_programs.py:50
+msgid "Choose an executable path"
+msgstr "Wybierz ścieżkę do pliku wykonywalnego"
+
+#: src/views/bottle_programs.py:53
+msgid "Add"
+msgstr "Dodaj"
 
 #: src/views/importer.py:70
 msgid "Choose a backup archive"
@@ -1343,14 +1401,6 @@ msgstr "N/A"
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumenty znalezione dla pliku wykonywalnego: [{executable}]."
-
-#: src/views/list.py:116
-msgid "Choose a Windows executable file"
-msgstr "Wybierz plik wykonywalny Windows"
-
-#: src/views/list.py:119
-msgid "Run"
-msgstr "Uruchom"
 
 #: src/views/new.py:72
 msgid "Gaming"
@@ -1380,6 +1430,12 @@ msgstr "Proste środowisko dla Twoich eksperymentów."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Butelka o nazwie “{0}” została utworzona pomyślnie"
+
+#~ msgid "These are the wine/wineserver processes running on your PC."
+#~ msgstr "Są to procesy wine/wineserver działające na Twoim komputerze."
+
+#~ msgid "Check for running processes."
+#~ msgstr "Sprawdź działające procesy."
 
 #~ msgid "Duplicate bottle"
 #~ msgstr "Duplikuj butelkę"
@@ -1505,46 +1561,6 @@ msgstr "Butelka o nazwie “{0}” została utworzona pomyślnie"
 #, fuzzy
 #~ msgid "No NVAPI found, installing the latest version…"
 #~ msgstr "Nie znaleziono NVAPI, instalujemy najnowszą wersję…"
-
-#~ msgid "Gamemode is either not available on your system or not running."
-#~ msgstr ""
-#~ "Gamemode nie jest dostępny na Twoim systemie lub nie jest uruchomiony."
-
-#~ msgid "Choose working directory for executables"
-#~ msgstr "Wybierz katalog roboczy dla plików wykonywalnych"
-
-#~ msgid "Done"
-#~ msgstr "Gotowe"
-
-#~ msgid "64-bit"
-#~ msgstr "64-bitowa"
-
-#~ msgid "32-bit"
-#~ msgstr "32-bitowa"
-
-#, python-format
-#~ msgid "Updated: %s"
-#~ msgstr "Zaktualizowano: %s"
-
-#~ msgid "Choose an executable path"
-#~ msgstr "Wybierz ścieżkę do pliku wykonywalnego"
-
-#~ msgid "Add"
-#~ msgstr "Dodaj"
-
-#~ msgid "Select the location where to save the backup config"
-#~ msgstr ""
-#~ "Wybierz lokalizację, gdzie ma zostać zapisana konfiguracja kopii zapasowej"
-
-#~ msgid "Select the location where to save the backup archive"
-#~ msgstr ""
-#~ "Wybierz lokalizację, gdzie ma zostać zapisane archiwum kopii zapasowej"
-
-#~ msgid "Confirm deletion"
-#~ msgstr "Potwierdź usunięcie"
-
-#~ msgid "Are you sure you want to delete this Bottle and all files?"
-#~ msgstr "Czy na pewno chcesz usunąć tę butelkę i wszystkie pliki?"
 
 #, python-brace-format
 #~ msgid "Your new {0} bottle is now ready."
