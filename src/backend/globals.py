@@ -68,7 +68,9 @@ class Samples:
             "Installed_Dependencies": [
                 "d3dx9",
                 "msls31",
-                "allfonts",
+                "arial32",
+                "times32",
+                "courie32",
                 "d3dcompiler_43",
                 "d3dcompiler_47"
             ]
@@ -80,7 +82,9 @@ class Samples:
                 "vkd3d": True
             },
             "Installed_Dependencies": [
-                "allfonts",
+                "arial32",
+                "times32",
+                "courie32",
                 "dotnet48"
             ]
         },
