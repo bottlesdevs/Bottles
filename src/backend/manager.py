@@ -1088,6 +1088,17 @@ class Manager:
         
         UtilsFiles.wait_for_files(reg_files)
 
+        # apply CMD settings
+        logging.info("Setting CMD default settings…")
+        GLib.idle_add(
+            dialog.update_output,
+            _("Apply CMD default settings…")
+        )
+        Runner.apply_cmd_settings(config)
+        Runner.wineboot(config, status=3, comunicate=True)
+        
+        UtilsFiles.wait_for_files(reg_files)
+
         # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…")
         GLib.idle_add(

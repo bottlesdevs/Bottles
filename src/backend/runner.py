@@ -6,7 +6,7 @@ import subprocess
 from typing import NewType
 
 from ..utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding
-from .globals import Paths, gamemode_available
+from .globals import Paths, CMDSettings, gamemode_available
 from .manager_utils import ManagerUtils
 
 logging = UtilsLogger()
@@ -802,3 +802,30 @@ class Runner:
             if name not in [p["name"] for p in processes]:
                 break
             time.sleep(1)
+
+    @staticmethod
+    def apply_cmd_settings(config:BottleConfig, scheme:dict={}):
+        '''
+        Change settings for the wine command line in a bottle.
+        This method can also be used to apply the default settings, part
+        of the Bottles experience, these are meant to improve the
+        readability and usability.
+        '''
+        for key, value in CMDSettings.items():
+            if key not in scheme:
+                scheme[key] = value
+
+        for key, value in scheme.items():
+            keyType="REG_DWORD"
+
+            if key == "FaceName":
+                keyType="REG_SZ"
+
+            Runner.reg_add(
+                config,
+                key="HKEY_CURRENT_USER\\Console\\C:_windows_system32_wineconsole.exe",
+                value=key,
+                data=value,
+                keyType=keyType
+            )
+        
