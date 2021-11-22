@@ -380,6 +380,7 @@ class BottleView(Gtk.ScrolledWindow):
                 task_func=self.manager.delete_bottle,
                 config=self.config
             )
+            self.window.page_list.disable_bottle(self.config)
             self.window.go_back()
 
         dialog_delete.destroy()

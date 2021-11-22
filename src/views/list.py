@@ -37,6 +37,7 @@ class ListViewEntry(Handy.ActionRow):
     label_state = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
+    spinner = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, arg_exe, **kwargs):
@@ -186,3 +187,13 @@ class ListView(Gtk.Box):
 
     def update_bottles(self):
         GLib.idle_add(self.idle_update_bottles)
+    
+    def disable_bottle(self, config):
+        for bottle in self.list_bottles.get_children():
+            if bottle.config["Path"] == config["Path"]:
+                for w in bottle.get_children():
+                    w.set_sensitive(False)
+
+                bottle.spinner.start()
+                bottle.spinner.set_visible(True)
+                bottle.set_sensitive(False)
