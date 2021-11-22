@@ -20,6 +20,7 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 
+from ..utils import RunAsync
 from ..backend.runner import Runner
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
@@ -106,8 +107,11 @@ class ListViewEntry(Handy.ActionRow):
 
     '''Repair bottle'''
     def repair(self, widget):
-        self.manager.repair_bottle(self.config)
-        self.handler_unblock_by_func(self.show_details)
+        self.disable()
+        RunAsync(
+            task_func=self.manager.repair_bottle,
+            config=self.config
+        )
 
     '''Display file dialog for executable'''
     def run_executable(self, widget):
@@ -140,6 +144,16 @@ class ListViewEntry(Handy.ActionRow):
     def show_details(self, widget):
         self.window.page_details.view_preferences.update_combo_components()
         self.window.show_details_view(config=self.config)
+    
+    def disable(self):
+        self.handler_block_by_func(self.show_details)
+
+        for w in self.get_children():
+            w.set_sensitive(False)
+
+        self.spinner.start()
+        self.spinner.set_visible(True)
+        self.set_sensitive(False)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
 class ListView(Gtk.Box):
@@ -180,9 +194,9 @@ class ListView(Gtk.Box):
             self.hdy_status.set_visible(False)
 
         for bottle in bottles:
-            self.list_bottles.add(ListViewEntry(self.window,
-                                                   bottle,
-                                                   self.arg_exe))
+            self.list_bottles.add(
+                ListViewEntry(self.window, bottle, self.arg_exe)
+            )
         self.arg_exe = False
 
     def update_bottles(self):
@@ -191,9 +205,4 @@ class ListView(Gtk.Box):
     def disable_bottle(self, config):
         for bottle in self.list_bottles.get_children():
             if bottle.config["Path"] == config["Path"]:
-                for w in bottle.get_children():
-                    w.set_sensitive(False)
-
-                bottle.spinner.start()
-                bottle.spinner.set_visible(True)
-                bottle.set_sensitive(False)
+                bottle.disable()
