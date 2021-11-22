@@ -582,7 +582,7 @@ class Manager:
         Windows' paths, with their icons and paths. It also checks for 
         external programs from the bottle configuration.
         '''
-        bottle = "%s/%s" % (Paths.bottles, config.get("Path"))
+        bottle = ManagerUtils.get_bottle_path(config)
         results = glob(
             f"{bottle}/drive_c/users/*/Start Menu/Programs/**/*.lnk",
             recursive=True
