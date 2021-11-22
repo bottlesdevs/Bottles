@@ -1244,7 +1244,7 @@ class Manager:
                 pass
 
             logging.info(f"Deleted the bottle in the [{path}] path")
-            self.window.page_list.update_bottles()
+            GLib.idle_add(self.window.page_list.update_bottles)
 
             return True
 
