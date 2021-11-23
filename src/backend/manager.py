@@ -33,6 +33,7 @@ from gi.repository import Gtk, GLib
 
 from ..utils import UtilsFiles, UtilsLogger, RunAsync
 from .runner import Runner
+from .result import Result
 from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
 from .versioning import RunnerVersioning
 from .component import ComponentManager
@@ -198,8 +199,7 @@ class Manager:
     def remove_dependency(
         self,
         config: BottleConfig,
-        dependency: list,
-        widget: Gtk.Widget
+        dependency: list
     ):
         '''
         This function removes a dependency, it will call its 
@@ -235,9 +235,10 @@ class Manager:
             key="Installed_Dependencies",
             value=config["Installed_Dependencies"]
         )
-
-        GLib.idle_add(widget.btn_install.set_visible, True)
-        GLib.idle_add(widget.btn_remove.set_visible, False)
+        return Result(
+            status=True,
+            data={"removed": True}
+        )
 
     def remove_program(self, config: BottleConfig, program_name: str):
         '''

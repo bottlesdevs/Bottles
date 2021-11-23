@@ -80,7 +80,8 @@ class DependencyEntry(Handy.ActionRow):
             If the dependency has no uninstaller, disable the
             btn_remove button
             '''
-            if self.config["Uninstallers"][dependency[0]] == "NO_UNINSTALLER":
+            uninstaller = self.config["Uninstallers"][dependency[0]]
+            if uninstaller in [False, "NO_UNINSTALLER"]:
                 self.btn_remove.set_sensitive(False)
 
     def open_manifest(self, widget):
@@ -132,9 +133,9 @@ class DependencyEntry(Handy.ActionRow):
 
         RunAsync(
             task_func=self.manager.dependency_manager.install,
+            callback=self.set_install_status,
             config=self.config,
-            dependency=self.dependency,
-            widget=self
+            dependency=self.dependency
         )
 
     def remove_dependency(self, widget):
@@ -142,12 +143,24 @@ class DependencyEntry(Handy.ActionRow):
         This function remove the dependency from the bottle
         configuration
         '''
-        GLib.idle_add(widget.set_sensitive, False)
-        self.manager.remove_dependency(
+        widget.set_sensitive(False)
+        RunAsync(
+            task_func=self.manager.remove_dependency,
+            callback=self.set_install_status,
             config=self.config,
             dependency=self.dependency,
-            widget=self
         )
+
+    def set_install_status(self, result, error=None):
+        '''
+        This function set the dependency as installed
+        if the installation is successful
+        '''
+        if result.status:
+            uninstaller = result.data.get("uninstaller")
+            removed = result.data.get("removed")
+            return self.set_installed(uninstaller, removed)
+        self.set_err()
 
     def set_err(self):
         '''
@@ -158,15 +171,20 @@ class DependencyEntry(Handy.ActionRow):
         self.btn_install.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_err.set_visible(True)
+        self.get_parent().set_sensitive(True)
 
-    def set_installed(self, has_installer=True):
+    def set_installed(self, installer=True, removed=False):
         '''
         This function set the dependency as installed
         '''
         self.spinner.stop()
-        self.btn_install.set_visible(False)
-        if has_installer:
-            self.btn_remove.set_visible(True)
-            self.btn_remove.set_sensitive(True)
+        if not removed:
+            self.btn_install.set_visible(False)
+            if installer:
+                self.btn_remove.set_visible(True)
+                self.btn_remove.set_sensitive(True)
+        else:
+            self.btn_remove.set_visible(False)
+            self.btn_install.set_visible(True)
 
         self.get_parent().set_sensitive(True)

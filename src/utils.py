@@ -328,7 +328,6 @@ class RunAsync(threading.Thread):
             traceback_info = '\n'.join(traceback.format_tb(trace))
 
             write_log([str(exception), traceback_info])
-
         self.source_id = GLib.idle_add(self.callback, result, error)
         return self.source_id
 

@@ -95,6 +95,9 @@ class InstallerEntry(Handy.ActionRow):
 
     def __execute_installer(self, widget):
         '''Execute installer'''
+        self.set_steps(
+            self.manager.installer_manager.count_steps(self.installer)
+        )
         self.get_parent().set_sensitive(False)
         self.label_step.set_visible(True)
         for w in widget.get_children():

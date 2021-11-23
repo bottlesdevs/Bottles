@@ -121,8 +121,12 @@ class InstallerManager:
             if dep in config.get("Installed_Dependencies"):
                 continue
 
-            dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
-            self.__manager.dependency_manager.install(config, dep_index)
+            _dep = [dep, self.__manager.supported_dependencies.get(dep)]
+            res = self.__manager.dependency_manager.install(config, _dep)
+            if res.status == False:
+                return False
+        
+        return True
 
     def __perform_steps(self, config, steps: list):
         for st in steps:
@@ -209,7 +213,7 @@ class InstallerManager:
             f.write("Name=Configure in Bottles\n")
             f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
 
-    def install(self, config, installer, widget):
+    def count_steps(self, installer):
         manifest = self.get_installer(
             installer_name=installer[0],
             installer_category=installer[1]["Category"]
@@ -223,7 +227,14 @@ class InstallerManager:
             steps += int(len(manifest.get("Steps")))
         if manifest.get("Executable"):
             steps += 1
-        widget.set_steps(steps)
+        
+        return steps
+
+    def install(self, config, installer, widget):
+        manifest = self.get_installer(
+            installer_name=installer[0],
+            installer_category=installer[1]["Category"]
+        )
 
         dependencies = manifest.get("Dependencies")
         parameters = manifest.get("Parameters")

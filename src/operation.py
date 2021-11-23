@@ -58,6 +58,10 @@ class TaskEntry(Handy.ActionRow):
         if not self.label_task_status.get_visible():
             self.label_task_status.set_visible(True)
 
+        if total_size == 0:
+            self.label_task_status.set_text(_("Calculating..."))
+            return
+            
         if not completed:
             percent = int(count * block_size * 100 / total_size)
             self.label_task_status.set_text(f'{str(percent)}%')
