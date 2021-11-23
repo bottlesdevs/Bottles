@@ -113,8 +113,7 @@ class DependencyManager:
     ) -> Result:
         '''
         This function install a given dependency in a bottle. It will
-        return True if the installation was successful and update the
-        widget status.
+        return True if the installation was successful.
         '''
         uninstaller = True
 
@@ -147,8 +146,8 @@ class DependencyManager:
         )
         if not manifest:
             '''
-            If the manifest is not found, update the widget status to
-            not installed and return False.
+            If the manifest is not found, return a Result
+            object with the error.
             '''
             GLib.idle_add(task_entry.remove)
             return Result(
@@ -369,8 +368,7 @@ class DependencyManager:
     ) -> bool:
         '''
         This function download and install the .exe or .msi file
-        declared in the step, in a bottle. If a widget is given, it
-        will be set to visible if the installation fail.
+        declared in the step, in a bottle.
         '''
         download = self.__manager.component_manager.download(
             component="dependency",
@@ -427,8 +425,7 @@ class DependencyManager:
     def __step_cab_extract(self, step: dict):
         '''
         This function download and extract a Windows Cabinet to the
-        temp folder. If a widget is given, it will be to the error
-        status if something goes wrong.
+        temp folder.
         '''
         if validate_url(step["url"]):
             download = self.__manager.component_manager.download(
