@@ -918,7 +918,7 @@ class Manager:
         nvapi: bool = False,
         versioning: bool = False,
         sandbox: bool = False,
-        dialog: Gtk.Widget = None,
+        fn_logger: callable = None,
         arch: str = "win64"
     ):
         '''
@@ -929,8 +929,10 @@ class Manager:
         On Flatpak, it also unlinks all folders from the user directory
         and creates these as normal folders instead.
         '''
-        logging.info("Creating the wineprefix…")
-
+        def log_update(message):
+            if fn_logger:
+                GLib.idle_add(fn_logger, message)
+        
         # check for essential components
         if 0 in [
             len(self.runners_available),
@@ -939,10 +941,7 @@ class Manager:
             len(self.nvapi_available)
         ]:
             logging.error("Missing essential components. Installing…")
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Missing essential components. Installing…")
-            )
+            log_update(_("Missing essential components. Installing…"))
             self.check_runners()
             self.check_dxvk(no_async=True)
             self.check_vkd3d(no_async=True)
@@ -1016,10 +1015,7 @@ class Manager:
         
         # generate bottle configuration
         logging.info("Generating bottle configuration")
-        GLib.idle_add(
-            dialog.update_output, 
-            _("Generating bottle config file…")
-        )
+        log_update(_("Generating bottle configuration"))
         config = Samples.config
         config["Name"] = bottle_name
         config["Arch"] = arch
@@ -1038,15 +1034,9 @@ class Manager:
             config["Versioning"] = True
 
         # execute wineboot on the bottle path
-        GLib.idle_add(
-            dialog.update_output, 
-            _("The WINE config is being updated…")
-        )
+        log_update(_("The WINE config is being updated…"))
         Runner.wineboot(config, status=4, silent=True, comunicate=True)
-        GLib.idle_add(
-            dialog.update_output, 
-            _("WINE config updated!")
-        )
+        log_update(_("WINE config updated!"))
         time.sleep(.5)
 
         if "FLATPAK_ID" in os.environ or sandbox:
@@ -1055,15 +1045,9 @@ class Manager:
             directories and make them as folders.
             '''
             if "FLATPAK_ID":
-                GLib.idle_add(
-                    dialog.update_output, 
-                    _("Running as Flatpak, creating sandboxed folders…")
-                )
+                log_update(_("Running as Flatpak, sandboxing userdir…"))
             if sandbox:
-                GLib.idle_add(
-                    dialog.update_output, 
-                    _("Creating sandboxed folders…")
-                )
+                log_update(_("Sandboxing userdir…"))
             users_dir = glob(f"{bottle_complete_path}/drive_c/users/*/*")
 
             for user_path in users_dir:
@@ -1080,10 +1064,7 @@ class Manager:
 
         # apply Windows version
         logging.info("Setting Windows version…")
-        GLib.idle_add(
-            dialog.update_output, 
-            _("Setting Windows version…")
-        )
+        log_update(_("Setting Windows version…"))
         Runner.set_windows(config, config["Windows"])
         Runner.wineboot(config, status=3, comunicate=True)
         
@@ -1091,10 +1072,7 @@ class Manager:
 
         # apply CMD settings
         logging.info("Setting CMD default settings…")
-        GLib.idle_add(
-            dialog.update_output,
-            _("Apply CMD default settings…")
-        )
+        log_update(_("Apply CMD default settings…"))
         Runner.apply_cmd_settings(config)
         Runner.wineboot(config, status=3, comunicate=True)
         
@@ -1102,10 +1080,7 @@ class Manager:
 
         # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…")
-        GLib.idle_add(
-            dialog.update_output, 
-            _("Applying environment: {0}…").format(environment)
-        )
+        log_update(_("Applying environment: {0}…").format(environment))
         if environment != "Custom":
             env = Samples.environments[environment.lower()]
             for prm in config["Parameters"]:
@@ -1115,40 +1090,28 @@ class Manager:
         if config["Parameters"]["dxvk"]:
             # perform dxvk installation if configured
             logging.info("Installing DXVK…")
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Installing DXVK…")
-            )
+            log_update(_("Installing DXVK…"))
             self.install_dxvk(config, version=dxvk_name)
 
         if config["Parameters"]["vkd3d"]:
             # perform vkd3d installation if configured
             logging.info("Installing VKD3D…")
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Installing VKD3D…")
-            )
+            log_update(_("Installing VKD3D…"))
             self.install_vkd3d(config, version=vkd3d_name)
 
         if config["Parameters"]["dxvk_nvapi"]:
             # perform nvapi installation if configured
             logging.info("Installing DXVK-NVAPI…")
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Installing DXVK-NVAPI…")
-            )
+            log_update(_("Installing DXVK-NVAPI…"))
             self.install_nvapi(config, version=nvapi_name)
 
         # install dependencies
         if environment != "Custom":
             for dep in env["Installed_Dependencies"]:
                 _dep = self.supported_dependencies[dep]
-                GLib.idle_add(
-                    dialog.update_output, 
-                    _("Installing dependency: {0}…").format(
-                        _dep["Description"]
-                    )
-                )
+                log_update(_("Installing dependency: {0}…").format(
+                    _dep["Description"]
+                ))
                 self.dependency_manager.install(config, [dep, _dep])
 
         time.sleep(.5)
@@ -1163,28 +1126,25 @@ class Manager:
         if versioning:
             # create first state if versioning enabled
             logging.info("Creating versioning state 0…")
-            GLib.idle_add(
-                dialog.update_output, 
-                _("Creating versioning state 0…")
-            )
+            log_update(_("Creating versioning state 0…"))
             self.versioning_manager.create_state(
                 config, "First boot", False, True, False
             )
 
         # set status created and UI usability
         logging.info(f"[{bottle_name}] is now bottled.")
-        GLib.idle_add(
-            dialog.update_output, 
-            _("Finalizing…")
-        )
+        log_update(_("Finalizing…"))
 
         # wait for all registry changes to be applied
         UtilsFiles.wait_for_files(reg_files)
         
         # perform wineboot
         Runner.wineboot(config, status=3, comunicate=True)
-
-        GLib.idle_add(dialog.finish, config)
+        
+        return Result(
+            status=True,
+            data={"config": config}
+        )
 
     def __sort_runners(self, prefix: str, fallback: bool = True) -> sorted:
         '''

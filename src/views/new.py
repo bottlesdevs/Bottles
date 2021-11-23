@@ -213,6 +213,7 @@ class NewView(Handy.Window):
 
         RunAsync(
             task_func=self.manager.create_bottle,
+            callback=self.finish,
             name=self.entry_name.get_text(),
             path="",
             environment=self.selected_env,
@@ -220,8 +221,8 @@ class NewView(Handy.Window):
             dxvk=self.combo_dxvk.get_active_id(),
             versioning=versioning_state,
             sandbox=sandbox_state,
-            dialog=self,
-            arch=self.combo_arch.get_active_id()
+            arch=self.combo_arch.get_active_id(),
+            fn_logger=self.update_output
         )
 
     def update_output(self, text):
@@ -233,8 +234,8 @@ class NewView(Handy.Window):
         text = f"{current_text}{text}\n"
         self.label_output.set_text(text)
 
-    def finish(self, config):
-        self.new_bottle_config = config
+    def finish(self, result, error=None):
+        self.new_bottle_config = result.data.get("config")
         self.page_created.set_description(
             _("A bottle named “{0}” was created successfully").format(
                 self.entry_name.get_text()
