@@ -313,14 +313,14 @@ class PreferencesView(Gtk.ScrolledWindow):
         if state:
             RunAsync(
                 task_func=self.manager.install_dxvk,
-                config=self.config,
-                widget=widget
+                callback=self.set_dxvk_status,
+                config=self.config
             )
         else:
             RunAsync(
                 self.manager.remove_dxvk,
+                callback=self.set_dxvk_status,
                 config=self.config,
-                widget=widget
             )
 
         new_config = self.manager.update_config(
@@ -355,14 +355,14 @@ class PreferencesView(Gtk.ScrolledWindow):
         if state:
             RunAsync(
                 task_func=self.manager.install_vkd3d,
-                config=self.config,
-                widget=widget
+                callback=self.set_vkd3d_status,
+                config=self.config
             )
         else:
             RunAsync(
                 task_func=self.manager.remove_vkd3d,
-                config=self.config,
-                widget=widget
+                callback=self.set_vkd3d_status,
+                config=self.config
             )
 
         new_config = self.manager.update_config(
@@ -384,14 +384,14 @@ class PreferencesView(Gtk.ScrolledWindow):
         if state:
             RunAsync(
                 task_func=self.manager.install_nvapi,
-                config=self.config,
-                widget=widget
+                callback=self.set_nvapi_status,
+                config=self.config
             )
         else:
             RunAsync(
                 task_func=self.manager.remove_nvapi,
-                config=self.config,
-                widget=widget
+                callback=self.set_nvapi_status,
+                config=self.config
             )
 
         new_config = self.manager.update_config(
@@ -623,4 +623,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             config=self.config
         )
         new_window.present()
+    
+    def set_dxvk_status(self, status, error=None):
+        self.switch_dxvk.set_sensitive(True)
+    
+    def set_vkd3d_status(self, status, error=None):
+        self.switch_vkd3d.set_sensitive(True)
+    
+    def set_nvapi_status(self, status, error=None):
+        self.switch_nvapi.set_sensitive(True)
     

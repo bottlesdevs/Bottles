@@ -1291,8 +1291,7 @@ class Manager:
         self,
         config: BottleConfig,
         remove: bool = False,
-        version: str = False,
-        widget: Gtk.Widget = None
+        version: str = False
     ) -> bool:
         '''
         This function installs the givven DXVK version in a bottle. It can
@@ -1314,18 +1313,15 @@ class Manager:
             '--with-d3d10'
         ]
         command = " ".join(command)
-        res = subprocess.Popen(command, shell=True).communicate()
+        subprocess.Popen(command, shell=True).communicate()
 
-        if widget:
-            return GLib.idle_add(widget.set_sensitive, True)
-        return res
+        return Result(status=True)
 
     def install_vkd3d(
         self,
         config: BottleConfig,
         remove: bool = False,
-        version: str = False,
-        widget: Gtk.Widget = None
+        version: str = False
     ) -> bool:
         '''
         This function installs the givven VKD3D version in a bottle. It can
@@ -1352,18 +1348,15 @@ class Manager:
             f'{Paths.vkd3d}/{vkd3d_version}/setup_vkd3d_proton.sh',
             option
         ]
-        res = subprocess.Popen(command, shell=True).communicate()
+        subprocess.Popen(command, shell=True).communicate()
 
-        if widget:
-            return GLib.idle_add(widget.set_sensitive, True)
-        return res
+        return Result(status=True)
 
     def install_nvapi(
         self,
         config: BottleConfig,
         remove: bool = False,
-        version: str = False,
-        widget: Gtk.Widget = None
+        version: str = False
     ) -> bool:
         '''
         This function installs the givven DXVK-NVAPI version in a bottle. It
@@ -1400,36 +1393,34 @@ class Manager:
                         os.rename(_dll, _dll_bck)
                     shutil.copy(f"{nvapi_path}/{dll}/{dll_file}", inst_path)
 
-        if widget:
-            return GLib.idle_add(widget.set_sensitive, True)
-        return True
+        return Result(status=True)
 
-    def remove_dxvk(self, config: BottleConfig, widget: Gtk.Widget = None):
+    def remove_dxvk(self, config: BottleConfig):
         '''
         This is a wrapper function for the install_dxvk function,
         using the remove option.
         '''
         logging.info(f"Removing dxvk for bottle: [{config['Name']}].")
 
-        self.install_dxvk(config, remove=True, widget=widget)
+        self.install_dxvk(config, remove=True)
 
-    def remove_vkd3d(self, config: BottleConfig, widget: Gtk.Widget = None):
+    def remove_vkd3d(self, config: BottleConfig):
         '''
         This is a wrapper function for the install_vkd3d function,
         using the remove option.
         '''
         logging.info(f"Removing VKD3D for bottle: [{config['Name']}].")
 
-        self.install_vkd3d(config, remove=True, widget=widget)
+        self.install_vkd3d(config, remove=True)
 
-    def remove_nvapi(self, config: BottleConfig, widget: Gtk.Widget = None):
+    def remove_nvapi(self, config: BottleConfig):
         '''
         This is a wrapper function for the install_nvapi function,
         using the remove option.
         '''
         logging.info(f"Removing dxvk-nvapi for bottle: [{config['Name']}].")
 
-        self.install_nvapi(config, remove=True, widget=widget)
+        self.install_nvapi(config, remove=True)
 
     @staticmethod
     def search_wineprefixes() -> list:
