@@ -492,17 +492,23 @@ class Downloader:
                 block_size = 1024
                 count = 0
 
-                for data in response.iter_content(block_size):
-                    file.write(data)
-                    count += 1
+                if total_size != 0:
+                    for data in response.iter_content(block_size):
+                        file.write(data)
+                        count += 1
+                        if self.func is not None:
+                            GLib.idle_add(
+                                self.func,
+                                count,
+                                block_size,
+                                total_size
+                            )
+                            self.__progress(count, block_size, total_size)
+                else:
+                    file.write(response.content)
                     if self.func is not None:
-                        GLib.idle_add(
-                            self.func,
-                            count,
-                            block_size,
-                            total_size
-                        )
-                        self.__progress(count, block_size, total_size)
+                        GLib.idle_add(self.func, 1, 1, 1)
+                        self.__progress(1, 1, 1)
         except:
             logging.error(
                 "Download failed! Check your internet connection."
