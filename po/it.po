@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-21 17:13+0100\n"
+"POT-Creation-Date: 2021-11-23 21:12+0100\n"
 "PO-Revision-Date: 2021-11-04 21:35+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -317,26 +317,6 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Scaricare e installare questa dipendenza"
 
-#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
-msgid "Refresh"
-msgstr "Ricarica"
-
-#: src/ui/details.ui:119
-msgid "Add a custom executable path"
-msgstr "Aggiungi un percorso eseguibile personalizzato"
-
-#: src/ui/details.ui:145
-msgid "Search for installed programs"
-msgstr "Cerca programmi installati"
-
-#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
-msgid "Read documentation"
-msgstr "Leggi documentazione"
-
-#: src/ui/details.ui:241
-msgid "Create new state"
-msgstr "Crea nuovo stato"
-
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
@@ -351,6 +331,10 @@ msgstr ""
 "Mentre i file su questa pagina sono stati verificati possono essere sotto "
 "licenza proprietaria."
 
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+msgid "Read documentation"
+msgstr "Leggi documentazione"
+
 #: src/ui/details-dependencies.ui:129
 msgid "Report a missing dependency"
 msgstr "Segnala una dipendenza mancante"
@@ -359,7 +343,7 @@ msgstr "Segnala una dipendenza mancante"
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework 4 ..."
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:52
+#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -367,6 +351,11 @@ msgstr ""
 "Questa è una caratteristica sperimentale in fase iniziale di sviluppo, fate "
 "attenzione e <a href=\"https://github.com/bottlesdevs/Bottles/issues/new/"
 "choose\">segnalate i bug</a>."
+
+#: src/ui/details-installers.ui:137 src/ui/details-taskmanager.ui:32
+#: src/ui/importer.ui:94
+msgid "Refresh"
+msgstr "Ricarica"
 
 #: src/ui/details-preferences.ui:28
 msgid "Graphics"
@@ -580,17 +569,29 @@ msgstr "Abilita i log fixme di wine"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Mostra i log per le funzioni non implementate in Wine."
 
-#: src/ui/details-versioning.ui:143
+#: src/ui/details-programs.ui:74
+msgid "Add a custom executable path"
+msgstr "Aggiungi un percorso eseguibile personalizzato"
+
+#: src/ui/details-programs.ui:100
+msgid "Search for installed programs"
+msgstr "Cerca programmi installati"
+
+#: src/ui/details-versioning.ui:142
 msgid "Type a really short comment:"
 msgstr "Scrivi un breve commento:"
 
-#: src/ui/details-versioning.ui:160
+#: src/ui/details-versioning.ui:159
 msgid "A really short comment"
 msgstr "Un commento corto"
 
-#: src/ui/details-versioning.ui:174
+#: src/ui/details-versioning.ui:173
 msgid "Save the bottle state."
 msgstr "Salva lo stato della bottiglia."
+
+#: src/ui/details-versioning.ui:238
+msgid "Create new state"
+msgstr "Crea nuovo stato"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
@@ -599,8 +600,8 @@ msgstr "Il messaggio va qui."
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
 #: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
-#: src/views/list.py:120
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/list.py:125
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -753,31 +754,31 @@ msgstr "Inizia creando una bottiglia."
 msgid "Create a new Bottle"
 msgstr "Crea una nuova Bottiglia"
 
-#: src/ui/list-entry.ui:35
+#: src/ui/list-entry.ui:34
 msgid "Versioning enabled for this bottle"
 msgstr "Versionamento abilitato per questa bottiglia"
 
-#: src/ui/list-entry.ui:42
+#: src/ui/list-entry.ui:41
 msgid "Versioning is active in this bottle."
 msgstr "Il versionamento è attivo in questa bottiglia."
 
-#: src/ui/list-entry.ui:61
+#: src/ui/list-entry.ui:60
 msgid "0"
 msgstr "0"
 
-#: src/ui/list-entry.ui:82
+#: src/ui/list-entry.ui:107
 msgid "This bottle looks damaged."
 msgstr "Questa bottiglia sembra danneggiata."
 
-#: src/ui/list-entry.ui:97
+#: src/ui/list-entry.ui:127
 msgid "Execute in this bottle"
 msgstr "Esegui .exe in questa bottiglia"
 
-#: src/ui/list-entry.ui:118
+#: src/ui/list-entry.ui:153
 msgid "Run Here"
 msgstr "Esegui Qui"
 
-#: src/ui/list-entry.ui:132
+#: src/ui/list-entry.ui:172
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
@@ -785,7 +786,7 @@ msgstr ""
 "Questa bottiglia sembra danneggiata, manca il file di configurazione. Posso "
 "provare a risolvere creando una nuova configurazione."
 
-#: src/ui/list-entry.ui:153
+#: src/ui/list-entry.ui:193
 msgid "Run .exe/.msi in this bottle"
 msgstr "Esegui .exe/. in questa bottiglia"
 
@@ -986,7 +987,7 @@ msgstr "Tutto pronto, puoi creare la tua prima bottiglia."
 msgid "Finish"
 msgstr "Finito"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -1059,11 +1060,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:132
+#: src/ui/preferences.ui:272 src/views/details.py:117
 msgid "Versioning"
 msgstr "Versionamento"
 
-#: src/ui/preferences.ui:298 src/views/details.py:136
+#: src/ui/preferences.ui:298 src/views/details.py:121
 msgid "Installers"
 msgstr "Installatori"
 
@@ -1147,6 +1148,10 @@ msgstr ""
 msgid "Go back"
 msgstr "Indietro"
 
+#: src/operation.py:62
+msgid "Calculating..."
+msgstr ""
+
 #: src/main.py:98
 msgid "Show version"
 msgstr "Mostra la versione"
@@ -1206,62 +1211,70 @@ msgstr "Backup {0}"
 msgid "Importing backup: {0}"
 msgstr "Importazione del backup: {0}"
 
-#: src/backend/manager.py:933
+#: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1010
-msgid "Generating bottle config file…"
+#: src/backend/manager.py:1018
+#, fuzzy
+msgid "Generating bottle configuration"
 msgstr "Generazione del file di configurazione della bottiglia…"
 
-#: src/backend/manager.py:1032
+#. execute wineboot on the bottle path
+#: src/backend/manager.py:1037
 #, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "Aggiornamento configurazione di WINE …"
 
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1039
 msgid "WINE config updated!"
 msgstr "Configurazione di WINE aggiornata!"
 
-#: src/backend/manager.py:1049
-msgid "Running as Flatpak, creating sandboxed folders…"
+#: src/backend/manager.py:1048
+#, fuzzy
+msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Esecuzione come Flatpak, creazione delle cartelle nella sandbox …"
 
-#: src/backend/manager.py:1054
-msgid "Creating sandboxed folders…"
-msgstr "Creazione delle cartelle nella sandbox …"
-
-#: src/backend/manager.py:1074
-msgid "Setting Windows version…"
+#: src/backend/manager.py:1050
+msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1085
+#: src/backend/manager.py:1067
+#, fuzzy
+msgid "Setting Windows version…"
+msgstr "Mostra la versione"
+
+#: src/backend/manager.py:1075
+msgid "Apply CMD default settings…"
+msgstr ""
+
+#: src/backend/manager.py:1083
 #, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Applicazione dell'ambiente: {0} …"
 
-#: src/backend/manager.py:1098
+#: src/backend/manager.py:1093
 msgid "Installing DXVK…"
 msgstr "Installazione di DXVK …"
 
-#: src/backend/manager.py:1107
+#: src/backend/manager.py:1099
 msgid "Installing VKD3D…"
 msgstr "Installazione di VKD3D …"
 
-#: src/backend/manager.py:1116
+#: src/backend/manager.py:1105
 msgid "Installing DXVK-NVAPI…"
 msgstr "Installazione di DXVK-NVAPI …"
 
-#: src/backend/manager.py:1126
+#: src/backend/manager.py:1112
 #, fuzzy, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Installazione di {0} dipendenza nella bottiglia {1} …"
 
-#: src/backend/manager.py:1146
+#: src/backend/manager.py:1129
 msgid "Creating versioning state 0…"
 msgstr "Creazione dello stato di versione 0…"
 
-#: src/backend/manager.py:1156
+#: src/backend/manager.py:1136
 msgid "Finalizing…"
 msgstr ""
 
@@ -1293,24 +1306,24 @@ msgstr "Avviso"
 msgid "An error has occurred."
 msgstr "C'è stato un errore."
 
-#: src/views/details.py:116
+#: src/views/details.py:101
 msgid "Details & Utilities"
 msgstr "Dettagli e utilità"
 
-#: src/views/details.py:124
+#: src/views/details.py:109
 msgid "Dependencies"
 msgstr "Dipendenze"
 
-#: src/views/details.py:128
+#: src/views/details.py:113
 msgid "Programs"
 msgstr "Programmi"
 
-#: src/views/details.py:129
+#: src/views/details.py:114
 msgid "Found in your bottle's Start menu."
 msgstr ""
 "Questi sono i programmi che si trovano nel menu Start della vostra bottiglia."
 
-#: src/views/details.py:140
+#: src/views/details.py:125
 msgid "Task manager"
 msgstr "Gestore processi"
 
@@ -1328,11 +1341,11 @@ msgstr "64-bit"
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/views/bottle_details.py:262 src/views/list.py:116
+#: src/views/bottle_details.py:262 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Scegli un file eseguibile Windows"
 
-#: src/views/bottle_details.py:265 src/views/list.py:119
+#: src/views/bottle_details.py:265 src/views/list.py:124
 msgid "Run"
 msgstr "Esegui"
 
@@ -1368,11 +1381,11 @@ msgstr "Scegliere il percorso di lavoro per gli eseguibili"
 msgid "Done"
 msgstr "Fatto"
 
-#: src/views/bottle_programs.py:50
+#: src/views/bottle_programs.py:59
 msgid "Choose an executable path"
 msgstr "Scegliere il percorso dell'eseguibile"
 
-#: src/views/bottle_programs.py:53
+#: src/views/bottle_programs.py:62
 msgid "Add"
 msgstr "Aggiungi"
 
@@ -1384,11 +1397,11 @@ msgstr "Scegli un archivio di backup"
 msgid "Choose a configuration file"
 msgstr "Scegli un file di configurazione"
 
-#: src/views/list.py:53 src/views/list.py:59
+#: src/views/list.py:55 src/views/list.py:61
 msgid "N/A"
 msgstr "N/A"
 
-#: src/views/list.py:96
+#: src/views/list.py:98
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argomenti trovati per l'eseguibile: [{executable}]."
@@ -1417,10 +1430,13 @@ msgstr "Personalizzato"
 msgid "A clear environment for your experiments."
 msgstr "Un ambiente pulito per i tuoi esperimenti."
 
-#: src/views/new.py:239
+#: src/views/new.py:240
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Una bottiglia chiamata \"{0}\" è stata creata con successo"
+
+#~ msgid "Creating sandboxed folders…"
+#~ msgstr "Creazione delle cartelle nella sandbox …"
 
 #~ msgid "These are the wine/wineserver processes running on your PC."
 #~ msgstr "Questi sono i processi wine / wineserver in esecuzione sul tuo PC."

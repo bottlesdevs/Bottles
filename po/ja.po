@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-21 17:13+0100\n"
+"POT-Creation-Date: 2021-11-23 21:12+0100\n"
 "PO-Revision-Date: 2021-11-18 11:55+0000\n"
 "Last-Translator: Kaz Sibuya <sibuyakazokuu@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -323,26 +323,6 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "この依存関係をダウンロードしてインストールします"
 
-#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
-msgid "Refresh"
-msgstr "リフレッシュ"
-
-#: src/ui/details.ui:119
-msgid "Add a custom executable path"
-msgstr "カスタム実行可能パスを追加します"
-
-#: src/ui/details.ui:145
-msgid "Search for installed programs"
-msgstr "インストールされているプログラムを検索する"
-
-#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
-msgid "Read documentation"
-msgstr "ドキュメンテーションを読む"
-
-#: src/ui/details.ui:241
-msgid "Create new state"
-msgstr "新しい状態を作成する"
-
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr "テストモードが有効：テストリポジトリからの依存関係のみが表示されます。"
@@ -355,6 +335,10 @@ msgstr ""
 "このページのファイルは検証済みですが、プロプライエタリライセンスの下にある可"
 "能性があります。"
 
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+msgid "Read documentation"
+msgstr "ドキュメンテーションを読む"
+
 #: src/ui/details-dependencies.ui:129
 msgid "Report a missing dependency"
 msgstr "欠落している依存関係を報告する"
@@ -363,13 +347,18 @@ msgstr "欠落している依存関係を報告する"
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework4。。"
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:52
+#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
 "これは初期の開発における実験的な機能です。注意して<a href=\"https://github."
 "com/bottlesdevs/Bottles/issues/new/choose\">バグを報告してください</a>。"
+
+#: src/ui/details-installers.ui:137 src/ui/details-taskmanager.ui:32
+#: src/ui/importer.ui:94
+msgid "Refresh"
+msgstr "リフレッシュ"
 
 #: src/ui/details-preferences.ui:28
 msgid "Graphics"
@@ -587,17 +576,29 @@ msgstr "wine fixmeログを有効にする"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wineで実装されていないログコードパス。"
 
-#: src/ui/details-versioning.ui:143
+#: src/ui/details-programs.ui:74
+msgid "Add a custom executable path"
+msgstr "カスタム実行可能パスを追加します"
+
+#: src/ui/details-programs.ui:100
+msgid "Search for installed programs"
+msgstr "インストールされているプログラムを検索する"
+
+#: src/ui/details-versioning.ui:142
 msgid "Type a really short comment:"
 msgstr "本当に短いコメントを入力してください："
 
-#: src/ui/details-versioning.ui:160
+#: src/ui/details-versioning.ui:159
 msgid "A really short comment"
 msgstr "本当に短いコメント"
 
-#: src/ui/details-versioning.ui:174
+#: src/ui/details-versioning.ui:173
 msgid "Save the bottle state."
 msgstr "ボトルの状態を保存します。"
+
+#: src/ui/details-versioning.ui:238
+msgid "Create new state"
+msgstr "新しい状態を作成する"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
@@ -606,8 +607,8 @@ msgstr "メッセージはここにあります。"
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
 #: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
-#: src/views/list.py:120
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/list.py:125
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -760,32 +761,32 @@ msgstr "ボトルを作成することから始めます。"
 msgid "Create a new Bottle"
 msgstr "新しいボトルを作成する"
 
-#: src/ui/list-entry.ui:35
+#: src/ui/list-entry.ui:34
 msgid "Versioning enabled for this bottle"
 msgstr "このボトルでバージョン管理が有効になっています"
 
-#: src/ui/list-entry.ui:42
+#: src/ui/list-entry.ui:41
 msgid "Versioning is active in this bottle."
 msgstr "このボトルではバージョン管理がアクティブです。"
 
-#: src/ui/list-entry.ui:61
+#: src/ui/list-entry.ui:60
 msgid "0"
 msgstr "0"
 
-#: src/ui/list-entry.ui:82
+#: src/ui/list-entry.ui:107
 msgid "This bottle looks damaged."
 msgstr "このボトルは破損しているようです。"
 
-#: src/ui/list-entry.ui:97
+#: src/ui/list-entry.ui:127
 msgid "Execute in this bottle"
 msgstr "このボトルで実行する"
 
-#: src/ui/list-entry.ui:118
+#: src/ui/list-entry.ui:153
 #, fuzzy
 msgid "Run Here"
 msgstr "ここで実行する"
 
-#: src/ui/list-entry.ui:132
+#: src/ui/list-entry.ui:172
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
@@ -793,7 +794,7 @@ msgstr ""
 "このボトルは破損しているようです、構成ファイルがありません。私は新しい構成を"
 "作成することで解決を試みることができます。"
 
-#: src/ui/list-entry.ui:153
+#: src/ui/list-entry.ui:193
 msgid "Run .exe/.msi in this bottle"
 msgstr "このボトルで.exe / .msiを実行します"
 
@@ -1000,7 +1001,7 @@ msgstr "これで、最初のボトルを作成する準備が整いました。
 msgid "Finish"
 msgstr "終了"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "設定"
 
@@ -1072,11 +1073,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:132
+#: src/ui/preferences.ui:272 src/views/details.py:117
 msgid "Versioning"
 msgstr "バージョン管理"
 
-#: src/ui/preferences.ui:298 src/views/details.py:136
+#: src/ui/preferences.ui:298 src/views/details.py:121
 msgid "Installers"
 msgstr "インストーラー"
 
@@ -1160,6 +1161,10 @@ msgstr ""
 msgid "Go back"
 msgstr "戻る"
 
+#: src/operation.py:62
+msgid "Calculating..."
+msgstr ""
+
 #: src/main.py:98
 msgid "Show version"
 msgstr "バージョンを表示"
@@ -1220,69 +1225,74 @@ msgstr "バックアップ{0}"
 msgid "Importing backup: {0}"
 msgstr "バックアップのインポート：{0}"
 
-#: src/backend/manager.py:933
+#: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1010
+#: src/backend/manager.py:1018
 #, fuzzy
-msgid "Generating bottle config file…"
+msgid "Generating bottle configuration"
 msgstr "接続ステータス：オフライン…"
 
-#: src/backend/manager.py:1032
+#. execute wineboot on the bottle path
+#: src/backend/manager.py:1037
 #, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "wineの構成を更新しています…"
 
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1039
 #, fuzzy
 msgid "WINE config updated!"
 msgstr "Wineの構成が更新されました！"
 
-#: src/backend/manager.py:1049
-msgid "Running as Flatpak, creating sandboxed folders…"
+#: src/backend/manager.py:1048
+msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1054
+#: src/backend/manager.py:1050
+msgid "Sandboxing userdir…"
+msgstr ""
+
+#: src/backend/manager.py:1067
 #, fuzzy
-msgid "Creating sandboxed folders…"
-msgstr "ボトルを作成しています…"
-
-#: src/backend/manager.py:1074
 msgid "Setting Windows version…"
+msgstr "バージョンを表示"
+
+#: src/backend/manager.py:1075
+msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/manager.py:1085
+#: src/backend/manager.py:1083
 #, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "環境を適用しています：{0}…"
 
-#: src/backend/manager.py:1098
+#: src/backend/manager.py:1093
 #, fuzzy
 msgid "Installing DXVK…"
 msgstr "dxvkのインストール…"
 
-#: src/backend/manager.py:1107
+#: src/backend/manager.py:1099
 #, fuzzy
 msgid "Installing VKD3D…"
 msgstr "vkd3dをインストールしている…"
 
-#: src/backend/manager.py:1116
+#: src/backend/manager.py:1105
 #, fuzzy
 msgid "Installing DXVK-NVAPI…"
 msgstr "dxvkのインストール…"
 
-#: src/backend/manager.py:1126
+#: src/backend/manager.py:1112
 #, fuzzy, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "ボトル{1}に依存関係{0}をインストール…"
 
-#: src/backend/manager.py:1146
+#: src/backend/manager.py:1129
 #, fuzzy
 msgid "Creating versioning state 0…"
 msgstr "バージョン管理状態0の作成…"
 
-#: src/backend/manager.py:1156
+#: src/backend/manager.py:1136
 msgid "Finalizing…"
 msgstr ""
 
@@ -1319,24 +1329,24 @@ msgstr "注意"
 msgid "An error has occurred."
 msgstr "エラーが発生しました。"
 
-#: src/views/details.py:116
+#: src/views/details.py:101
 msgid "Details & Utilities"
 msgstr "詳細とユーティリティ"
 
-#: src/views/details.py:124
+#: src/views/details.py:109
 msgid "Dependencies"
 msgstr "依存関係"
 
-#: src/views/details.py:128
+#: src/views/details.py:113
 msgid "Programs"
 msgstr "プログラム"
 
-#: src/views/details.py:129
+#: src/views/details.py:114
 #, fuzzy
 msgid "Found in your bottle's Start menu."
 msgstr "これらは、ボトルのスタートメニューにあるプログラムです"
 
-#: src/views/details.py:140
+#: src/views/details.py:125
 msgid "Task manager"
 msgstr "タスクマネージャー"
 
@@ -1354,11 +1364,11 @@ msgstr ""
 msgid "32-bit"
 msgstr ""
 
-#: src/views/bottle_details.py:262 src/views/list.py:116
+#: src/views/bottle_details.py:262 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Windows実行可能ファイルを選択してください"
 
-#: src/views/bottle_details.py:265 src/views/list.py:119
+#: src/views/bottle_details.py:265 src/views/list.py:124
 msgid "Run"
 msgstr "実行"
 
@@ -1398,11 +1408,11 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: src/views/bottle_programs.py:50
+#: src/views/bottle_programs.py:59
 msgid "Choose an executable path"
 msgstr "実行可能パスを選択します"
 
-#: src/views/bottle_programs.py:53
+#: src/views/bottle_programs.py:62
 msgid "Add"
 msgstr "追加"
 
@@ -1415,11 +1425,11 @@ msgstr "バックアップアーカイブを選択してください"
 msgid "Choose a configuration file"
 msgstr "構成"
 
-#: src/views/list.py:53 src/views/list.py:59
+#: src/views/list.py:55 src/views/list.py:61
 msgid "N/A"
 msgstr ""
 
-#: src/views/list.py:96
+#: src/views/list.py:98
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "実行可能ファイル：[{executable}]の引数が見つかりました。"
@@ -1448,10 +1458,14 @@ msgstr "カスタム"
 msgid "A clear environment for your experiments."
 msgstr "あなたの実験のための明確な環境。"
 
-#: src/views/new.py:239
+#: src/views/new.py:240
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "「{0}」という名前のボトルが正常に作成されました"
+
+#, fuzzy
+#~ msgid "Creating sandboxed folders…"
+#~ msgstr "ボトルを作成しています…"
 
 #~ msgid "These are the wine/wineserver processes running on your PC."
 #~ msgstr "これらは、PCで実行されているWine/ Wineサーバーのプロセスです。"

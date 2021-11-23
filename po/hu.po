@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-21 17:13+0100\n"
+"POT-Creation-Date: 2021-11-23 21:12+0100\n"
 "PO-Revision-Date: 2021-11-15 00:13+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
@@ -319,26 +319,6 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Függőség letöltése és telepítése"
 
-#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
-msgid "Refresh"
-msgstr "Frissítés"
-
-#: src/ui/details.ui:119
-msgid "Add a custom executable path"
-msgstr "Egyéni végrehajtható fájl elérési útja hozzáadása"
-
-#: src/ui/details.ui:145
-msgid "Search for installed programs"
-msgstr "Keresse meg a telepített programokat"
-
-#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
-msgid "Read documentation"
-msgstr "Dokumentáció olvasása"
-
-#: src/ui/details.ui:241
-msgid "Create new state"
-msgstr "Új állapot létrehozása"
-
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
@@ -352,6 +332,10 @@ msgstr ""
 "Míg az ezen az oldalon található fájlok ellenőrzése megtörtént, "
 "előfordulhat, hogy saját licenc alatt vannak."
 
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+msgid "Read documentation"
+msgstr "Dokumentáció olvasása"
+
 #: src/ui/details-dependencies.ui:129
 msgid "Report a missing dependency"
 msgstr "Jelentse a hiányzó függőséget"
@@ -360,7 +344,7 @@ msgstr "Jelentse a hiányzó függőséget"
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework 4…"
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:52
+#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -368,6 +352,11 @@ msgstr ""
 "Ez a korai fejlesztés kísérleti jellemzője, legyen óvatos és <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">jelentse a "
 "hibákat</a>."
+
+#: src/ui/details-installers.ui:137 src/ui/details-taskmanager.ui:32
+#: src/ui/importer.ui:94
+msgid "Refresh"
+msgstr "Frissítés"
 
 #: src/ui/details-preferences.ui:28
 msgid "Graphics"
@@ -583,17 +572,29 @@ msgstr "Engedélyezze a wine fixme naplóit"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "A Wine programban nem végrehajtott naplózási útvonalak."
 
-#: src/ui/details-versioning.ui:143
+#: src/ui/details-programs.ui:74
+msgid "Add a custom executable path"
+msgstr "Egyéni végrehajtható fájl elérési útja hozzáadása"
+
+#: src/ui/details-programs.ui:100
+msgid "Search for installed programs"
+msgstr "Keresse meg a telepített programokat"
+
+#: src/ui/details-versioning.ui:142
 msgid "Type a really short comment:"
 msgstr "Írjon egy igazán rövid megjegyzést:"
 
-#: src/ui/details-versioning.ui:160
+#: src/ui/details-versioning.ui:159
 msgid "A really short comment"
 msgstr "Igazán rövid megjegyzés"
 
-#: src/ui/details-versioning.ui:174
+#: src/ui/details-versioning.ui:173
 msgid "Save the bottle state."
 msgstr "A tároló állapotának mentése."
+
+#: src/ui/details-versioning.ui:238
+msgid "Create new state"
+msgstr "Új állapot létrehozása"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
@@ -602,8 +603,8 @@ msgstr "Ide kerül az üzenet."
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
 #: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
-#: src/views/list.py:120
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/list.py:125
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -754,31 +755,31 @@ msgstr "Kezdje egy Tároló létrehozásával."
 msgid "Create a new Bottle"
 msgstr "Új tároló létrehozása"
 
-#: src/ui/list-entry.ui:35
+#: src/ui/list-entry.ui:34
 msgid "Versioning enabled for this bottle"
 msgstr "A verziókészítés engedélyezve van ehhez a tárolóhoz"
 
-#: src/ui/list-entry.ui:42
+#: src/ui/list-entry.ui:41
 msgid "Versioning is active in this bottle."
 msgstr "A verziókészítés aktív ebben a tárolóban."
 
-#: src/ui/list-entry.ui:61
+#: src/ui/list-entry.ui:60
 msgid "0"
 msgstr "0"
 
-#: src/ui/list-entry.ui:82
+#: src/ui/list-entry.ui:107
 msgid "This bottle looks damaged."
 msgstr "Ez a tároló sérültnek tűnik."
 
-#: src/ui/list-entry.ui:97
+#: src/ui/list-entry.ui:127
 msgid "Execute in this bottle"
 msgstr "Ennek a tárolónak a végrehajtása"
 
-#: src/ui/list-entry.ui:118
+#: src/ui/list-entry.ui:153
 msgid "Run Here"
 msgstr "Futtatás ide"
 
-#: src/ui/list-entry.ui:132
+#: src/ui/list-entry.ui:172
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
@@ -786,7 +787,7 @@ msgstr ""
 "Ez az tároló sérültnek tűnik, hiányzik a beállítási fájlt. Megpróbálhatom "
 "megoldani egy új konfiguráció létrehozásával."
 
-#: src/ui/list-entry.ui:153
+#: src/ui/list-entry.ui:193
 msgid "Run .exe/.msi in this bottle"
 msgstr ".exe/.msi futtatása ebben a tárolóban"
 
@@ -986,7 +987,7 @@ msgstr "Most készen áll az első tárolók elkészítésére."
 msgid "Finish"
 msgstr "Befejez"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "Beállítások"
 
@@ -1058,11 +1059,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:132
+#: src/ui/preferences.ui:272 src/views/details.py:117
 msgid "Versioning"
 msgstr "Verziókészítés"
 
-#: src/ui/preferences.ui:298 src/views/details.py:136
+#: src/ui/preferences.ui:298 src/views/details.py:121
 msgid "Installers"
 msgstr "Telepítők"
 
@@ -1144,6 +1145,10 @@ msgstr ""
 msgid "Go back"
 msgstr "Vissza"
 
+#: src/operation.py:62
+msgid "Calculating..."
+msgstr ""
+
 #: src/main.py:98
 msgid "Show version"
 msgstr "Verzió megjelenítése"
@@ -1202,65 +1207,70 @@ msgstr "{0} biztonsági másolata"
 msgid "Importing backup: {0}"
 msgstr "Biztonsági másolat importálása: {0}"
 
-#: src/backend/manager.py:933
+#: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1010
-msgid "Generating bottle config file…"
+#: src/backend/manager.py:1018
+#, fuzzy
+msgid "Generating bottle configuration"
 msgstr "Tároló beállításfájl készítése folyamatban van…"
 
-#: src/backend/manager.py:1032
+#. execute wineboot on the bottle path
+#: src/backend/manager.py:1037
 msgid "The WINE config is being updated…"
 msgstr "WINE beállításainak frissítése folyamatban van…"
 
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1039
 msgid "WINE config updated!"
 msgstr "WINE beállításai frissítve!"
 
-#: src/backend/manager.py:1049
-msgid "Running as Flatpak, creating sandboxed folders…"
+#: src/backend/manager.py:1048
+#, fuzzy
+msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 "Flatpak-ként futtatása, védőfal mögé helyezett mappák létrehozása "
 "folyamatban van…"
 
-#: src/backend/manager.py:1054
-msgid "Creating sandboxed folders…"
+#: src/backend/manager.py:1050
+msgid "Sandboxing userdir…"
 msgstr ""
-"Flatpak-ként futtatása, védőfal mögé helyezett mappák létrehozása "
-"folyamatban van…"
 
-#: src/backend/manager.py:1074
+#: src/backend/manager.py:1067
 msgid "Setting Windows version…"
 msgstr "A Windows verzió beállítása folyamatban van…"
 
-#: src/backend/manager.py:1085
+#: src/backend/manager.py:1075
+msgid "Apply CMD default settings…"
+msgstr ""
+
+#: src/backend/manager.py:1083
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Környezet alkalmazása folyamatban van: {0}…"
 
-#: src/backend/manager.py:1098
+#: src/backend/manager.py:1093
 msgid "Installing DXVK…"
 msgstr "A DXVK telepítése folyamatban van…"
 
-#: src/backend/manager.py:1107
+#: src/backend/manager.py:1099
 msgid "Installing VKD3D…"
 msgstr "A VKD3D telepítése folyamatban van…"
 
-#: src/backend/manager.py:1116
+#: src/backend/manager.py:1105
 msgid "Installing DXVK-NVAPI…"
 msgstr "A DXVK-NVAPI telepítése folyamatban van…"
 
-#: src/backend/manager.py:1126
+#: src/backend/manager.py:1112
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Függőség telepítése folyamatban van: {0}…"
 
-#: src/backend/manager.py:1146
+#: src/backend/manager.py:1129
 msgid "Creating versioning state 0…"
 msgstr "A(z) 0 verziószámozási állapot létrehozása folyamatban van…"
 
-#: src/backend/manager.py:1156
+#: src/backend/manager.py:1136
 msgid "Finalizing…"
 msgstr "Véglegesítés folyamatban van…"
 
@@ -1292,23 +1302,23 @@ msgstr "Figyelmeztetés"
 msgid "An error has occurred."
 msgstr "Hiba történt."
 
-#: src/views/details.py:116
+#: src/views/details.py:101
 msgid "Details & Utilities"
 msgstr "Részletek és segédprogramok"
 
-#: src/views/details.py:124
+#: src/views/details.py:109
 msgid "Dependencies"
 msgstr "Függőségek"
 
-#: src/views/details.py:128
+#: src/views/details.py:113
 msgid "Programs"
 msgstr "Programok"
 
-#: src/views/details.py:129
+#: src/views/details.py:114
 msgid "Found in your bottle's Start menu."
 msgstr "A tároló kezdőképernyőjében található."
 
-#: src/views/details.py:140
+#: src/views/details.py:125
 msgid "Task manager"
 msgstr "Feladatkezelő"
 
@@ -1326,11 +1336,11 @@ msgstr "64 bites"
 msgid "32-bit"
 msgstr "32 bites"
 
-#: src/views/bottle_details.py:262 src/views/list.py:116
+#: src/views/bottle_details.py:262 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "A Windows futtatható fájl kiválasztása"
 
-#: src/views/bottle_details.py:265 src/views/list.py:119
+#: src/views/bottle_details.py:265 src/views/list.py:124
 msgid "Run"
 msgstr "Futtatás"
 
@@ -1366,11 +1376,11 @@ msgstr "Végrehajtható fájlok munkakönyvtár kiválasztása"
 msgid "Done"
 msgstr "Befejezve"
 
-#: src/views/bottle_programs.py:50
+#: src/views/bottle_programs.py:59
 msgid "Choose an executable path"
 msgstr "Válasszon egy végrehajtható fájl elérési útja"
 
-#: src/views/bottle_programs.py:53
+#: src/views/bottle_programs.py:62
 msgid "Add"
 msgstr "Hozzáadás"
 
@@ -1382,11 +1392,11 @@ msgstr "Válasszon egy biztonsági másolat archívumot"
 msgid "Choose a configuration file"
 msgstr "Beállítási fájl kijelölése"
 
-#: src/views/list.py:53 src/views/list.py:59
+#: src/views/list.py:55 src/views/list.py:61
 msgid "N/A"
 msgstr "Nem alkalmazható"
 
-#: src/views/list.py:96
+#: src/views/list.py:98
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "A futtatható fájlhoz talált érvekek: [{{executable}}]."
@@ -1415,10 +1425,15 @@ msgstr "Egyéni"
 msgid "A clear environment for your experiments."
 msgstr "Tiszta környezet a kísérletekhez."
 
-#: src/views/new.py:239
+#: src/views/new.py:240
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "A(z) „{0}” tároló sikeresen létrehozva"
+
+#~ msgid "Creating sandboxed folders…"
+#~ msgstr ""
+#~ "Flatpak-ként futtatása, védőfal mögé helyezett mappák létrehozása "
+#~ "folyamatban van…"
 
 #~ msgid "These are the wine/wineserver processes running on your PC."
 #~ msgstr "Ezek a wine/wine-kiszolgáló folyamatok futnak a számítógépén."

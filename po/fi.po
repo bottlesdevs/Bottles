@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-21 17:13+0100\n"
+"POT-Creation-Date: 2021-11-23 21:12+0100\n"
 "PO-Revision-Date: 2021-11-18 11:55+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -319,27 +319,6 @@ msgstr ""
 msgid "Download & Install this dependency"
 msgstr "Lataa ja asenna tämä riippuvuus"
 
-#: src/ui/details.ui:86 src/ui/details.ui:178 src/ui/importer.ui:94
-msgid "Refresh"
-msgstr "Päivitä"
-
-#: src/ui/details.ui:119
-#, fuzzy
-msgid "Add a custom executable path"
-msgstr "Suorita .exe"
-
-#: src/ui/details.ui:145
-msgid "Search for installed programs"
-msgstr "Etsi asennettuja ohjelmia"
-
-#: src/ui/details.ui:214 src/ui/details-dependencies.ui:119
-msgid "Read documentation"
-msgstr "Lue dokumentaatio"
-
-#: src/ui/details.ui:241
-msgid "Create new state"
-msgstr "Luo uusi tila"
-
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
@@ -351,6 +330,10 @@ msgid ""
 "license."
 msgstr ""
 
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+msgid "Read documentation"
+msgstr "Lue dokumentaatio"
+
 #: src/ui/details-dependencies.ui:129
 msgid "Report a missing dependency"
 msgstr "Ilmoita puuttuvasta riippuvuudesta"
@@ -359,7 +342,7 @@ msgstr "Ilmoita puuttuvasta riippuvuudesta"
 msgid "Microsoft .NET Framework 4 .."
 msgstr ""
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:52
+#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -367,6 +350,11 @@ msgstr ""
 "Tämä on kokeellinen ominaisuus, joka on vielä varhaisessa kehitysvaiheessa. "
 "Ole varovainen ja <a href=\"https://github.com/bottlesdevs/Bottles/issues/"
 "new/choose\">ilmoita ongelmista</a>."
+
+#: src/ui/details-installers.ui:137 src/ui/details-taskmanager.ui:32
+#: src/ui/importer.ui:94
+msgid "Refresh"
+msgstr "Päivitä"
 
 #: src/ui/details-preferences.ui:28
 msgid "Graphics"
@@ -580,17 +568,30 @@ msgstr "Ota Winen fixme-lokit käyttöön"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Lokita koodipolut, joita ei ole toteutettu Winessä."
 
-#: src/ui/details-versioning.ui:143
+#: src/ui/details-programs.ui:74
+#, fuzzy
+msgid "Add a custom executable path"
+msgstr "Suorita .exe"
+
+#: src/ui/details-programs.ui:100
+msgid "Search for installed programs"
+msgstr "Etsi asennettuja ohjelmia"
+
+#: src/ui/details-versioning.ui:142
 msgid "Type a really short comment:"
 msgstr "Kirjoita todella lyhyt kommentti:"
 
-#: src/ui/details-versioning.ui:160
+#: src/ui/details-versioning.ui:159
 msgid "A really short comment"
 msgstr "Todella lyhyt kommentti"
 
-#: src/ui/details-versioning.ui:174
+#: src/ui/details-versioning.ui:173
 msgid "Save the bottle state."
 msgstr "Tallenna pullon tila."
+
+#: src/ui/details-versioning.ui:238
+msgid "Create new state"
+msgstr "Luo uusi tila"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
@@ -599,8 +600,8 @@ msgstr "Viesti menee tänne."
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
 #: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:54
-#: src/views/list.py:120
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/list.py:125
 msgid "Cancel"
 msgstr "Peru"
 
@@ -753,31 +754,31 @@ msgstr "Aloita luomalla pullo."
 msgid "Create a new Bottle"
 msgstr "Luo uusi pullo"
 
-#: src/ui/list-entry.ui:35
+#: src/ui/list-entry.ui:34
 msgid "Versioning enabled for this bottle"
 msgstr "Versiointi on käytössä tälle pullolle"
 
-#: src/ui/list-entry.ui:42
+#: src/ui/list-entry.ui:41
 msgid "Versioning is active in this bottle."
 msgstr "Versiointi on aktiivisena tässä pullossa."
 
-#: src/ui/list-entry.ui:61
+#: src/ui/list-entry.ui:60
 msgid "0"
 msgstr "0"
 
-#: src/ui/list-entry.ui:82
+#: src/ui/list-entry.ui:107
 msgid "This bottle looks damaged."
 msgstr "Tämä pullo näyttää vaurioituneelta."
 
-#: src/ui/list-entry.ui:97
+#: src/ui/list-entry.ui:127
 msgid "Execute in this bottle"
 msgstr "Suorita tässä pullossa"
 
-#: src/ui/list-entry.ui:118
+#: src/ui/list-entry.ui:153
 msgid "Run Here"
 msgstr "Suorita tässä"
 
-#: src/ui/list-entry.ui:132
+#: src/ui/list-entry.ui:172
 msgid ""
 "This bottle looks damaged, the configuration file is missing. I can try to "
 "solve by creating a new configuration."
@@ -785,7 +786,7 @@ msgstr ""
 "Tämä pullo näyttää vaurioituneelta, kokoonpanotiedosto puuttuu. Voin yrittää "
 "ratkaista tämä luomalla uuden kokoonpanon."
 
-#: src/ui/list-entry.ui:153
+#: src/ui/list-entry.ui:193
 msgid "Run .exe/.msi in this bottle"
 msgstr "Suorita .exe/.msi tässä pullossa"
 
@@ -987,7 +988,7 @@ msgstr "Olet nyt valmis luodaksesi ensimmäiset pullot."
 msgid "Finish"
 msgstr "Valmis"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:120
+#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "Asetukset"
 
@@ -1059,11 +1060,11 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:132
+#: src/ui/preferences.ui:272 src/views/details.py:117
 msgid "Versioning"
 msgstr "Versiointi"
 
-#: src/ui/preferences.ui:298 src/views/details.py:136
+#: src/ui/preferences.ui:298 src/views/details.py:121
 msgid "Installers"
 msgstr "Asentajat"
 
@@ -1145,6 +1146,10 @@ msgstr ""
 msgid "Go back"
 msgstr "Siirry takaisin"
 
+#: src/operation.py:62
+msgid "Calculating..."
+msgstr ""
+
 #: src/main.py:98
 msgid "Show version"
 msgstr "Näytä versio"
@@ -1204,61 +1209,68 @@ msgstr "Varmuuskopio {0}"
 msgid "Importing backup: {0}"
 msgstr "Varmuuskopion tuominen: {0}"
 
-#: src/backend/manager.py:933
+#: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1010
-msgid "Generating bottle config file…"
+#: src/backend/manager.py:1018
+#, fuzzy
+msgid "Generating bottle configuration"
 msgstr "Luodaan Pullo-kokoonpanotiedostoa…"
 
-#: src/backend/manager.py:1032
+#. execute wineboot on the bottle path
+#: src/backend/manager.py:1037
 msgid "The WINE config is being updated…"
 msgstr "Winen kokoonpanoa päivitetään…"
 
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1039
 msgid "WINE config updated!"
 msgstr "Winen kokoonpano päivitetty!"
 
-#: src/backend/manager.py:1049
-msgid "Running as Flatpak, creating sandboxed folders…"
+#: src/backend/manager.py:1048
+#, fuzzy
+msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Suoritetaan flatpakina, luodaan eristettyjä kansioita…"
 
-#: src/backend/manager.py:1054
-msgid "Creating sandboxed folders…"
-msgstr "Luodaan eristettyjä kansioita…"
+#: src/backend/manager.py:1050
+msgid "Sandboxing userdir…"
+msgstr ""
 
-#: src/backend/manager.py:1074
+#: src/backend/manager.py:1067
 msgid "Setting Windows version…"
 msgstr "Asetetaan Windows-versiota…"
 
-#: src/backend/manager.py:1085
+#: src/backend/manager.py:1075
+msgid "Apply CMD default settings…"
+msgstr ""
+
+#: src/backend/manager.py:1083
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Toteutetaan ympäristö: {0}…"
 
-#: src/backend/manager.py:1098
+#: src/backend/manager.py:1093
 msgid "Installing DXVK…"
 msgstr "Asennetaan DXVK…"
 
-#: src/backend/manager.py:1107
+#: src/backend/manager.py:1099
 msgid "Installing VKD3D…"
 msgstr "Asennetaan VKD3D…"
 
-#: src/backend/manager.py:1116
+#: src/backend/manager.py:1105
 msgid "Installing DXVK-NVAPI…"
 msgstr "Asennetaan DXVK-NVAPI…"
 
-#: src/backend/manager.py:1126
+#: src/backend/manager.py:1112
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Asennetaan riippuvuus: {0}…"
 
-#: src/backend/manager.py:1146
+#: src/backend/manager.py:1129
 msgid "Creating versioning state 0…"
 msgstr "Luodaan versionointitila 0…"
 
-#: src/backend/manager.py:1156
+#: src/backend/manager.py:1136
 msgid "Finalizing…"
 msgstr "Viimeistellään…"
 
@@ -1290,24 +1302,24 @@ msgstr "Varoitus"
 msgid "An error has occurred."
 msgstr "On tapahtunut virhe."
 
-#: src/views/details.py:116
+#: src/views/details.py:101
 msgid "Details & Utilities"
 msgstr "Tiedot ja työkalut"
 
-#: src/views/details.py:124
+#: src/views/details.py:109
 msgid "Dependencies"
 msgstr "Riippuvuudet"
 
-#: src/views/details.py:128
+#: src/views/details.py:113
 msgid "Programs"
 msgstr "Ohjelmat"
 
-#: src/views/details.py:129
+#: src/views/details.py:114
 #, fuzzy
 msgid "Found in your bottle's Start menu."
 msgstr "Nämä ohjelmat löytyvät pullosi Käynnistä-valikosta"
 
-#: src/views/details.py:140
+#: src/views/details.py:125
 msgid "Task manager"
 msgstr "Tehtävienhallinta"
 
@@ -1325,11 +1337,11 @@ msgstr "64-bit"
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/views/bottle_details.py:262 src/views/list.py:116
+#: src/views/bottle_details.py:262 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Valitse Windowsin suoritettava tiedosto"
 
-#: src/views/bottle_details.py:265 src/views/list.py:119
+#: src/views/bottle_details.py:265 src/views/list.py:124
 msgid "Run"
 msgstr "Suorita"
 
@@ -1366,11 +1378,11 @@ msgstr "Valitse työskentelyhakemisto suoritettaville tiedostoille"
 msgid "Done"
 msgstr "Valmis"
 
-#: src/views/bottle_programs.py:50
+#: src/views/bottle_programs.py:59
 msgid "Choose an executable path"
 msgstr "Valitse suoritustiedoston polku"
 
-#: src/views/bottle_programs.py:53
+#: src/views/bottle_programs.py:62
 msgid "Add"
 msgstr "Lisää"
 
@@ -1382,11 +1394,11 @@ msgstr "Valitse varmuuskopiointiarkisto"
 msgid "Choose a configuration file"
 msgstr "Valitse kokoonpanotiedosto"
 
-#: src/views/list.py:53 src/views/list.py:59
+#: src/views/list.py:55 src/views/list.py:61
 msgid "N/A"
 msgstr ""
 
-#: src/views/list.py:96
+#: src/views/list.py:98
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Suoritettavalle ohjelmalle löytyi argumentteja: [{executable}]."
@@ -1415,10 +1427,13 @@ msgstr "Mukautettu"
 msgid "A clear environment for your experiments."
 msgstr "Tyhjä ympäristö kokeiluillesi."
 
-#: src/views/new.py:239
+#: src/views/new.py:240
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Pullo nimeltä “{0}” luotiin onnistuneesti"
+
+#~ msgid "Creating sandboxed folders…"
+#~ msgstr "Luodaan eristettyjä kansioita…"
 
 #~ msgid "These are the wine/wineserver processes running on your PC."
 #~ msgstr ""
