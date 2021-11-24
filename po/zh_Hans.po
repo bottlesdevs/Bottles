@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-23 21:12+0100\n"
-"PO-Revision-Date: 2021-11-15 00:13+0000\n"
+"PO-Revision-Date: 2021-11-25 15:53+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9.1-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -1108,7 +1108,7 @@ msgstr "返回"
 
 #: src/operation.py:62
 msgid "Calculating..."
-msgstr ""
+msgstr "计算中…"
 
 #: src/main.py:98
 msgid "Show version"
@@ -1170,12 +1170,11 @@ msgstr "正在导入备份：{0}"
 
 #: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "缺少必要的组件。 正在安装…"
 
 #: src/backend/manager.py:1018
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "正在生成 bottle 配置文件…"
+msgstr "生成 bottle 配置"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1037
@@ -1187,13 +1186,12 @@ msgid "WINE config updated!"
 msgstr "WINE 配置已更新！"
 
 #: src/backend/manager.py:1048
-#, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "正运行为 Flatpak，创建沙箱文件夹中…"
+msgstr "运行为 Flatpak，沙箱化用户目录…"
 
 #: src/backend/manager.py:1050
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "沙箱化用户目录…"
 
 #: src/backend/manager.py:1067
 msgid "Setting Windows version…"
@@ -1201,7 +1199,7 @@ msgstr "设置 Windows 版本…"
 
 #: src/backend/manager.py:1075
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "应用 CMD 默认设置…"
 
 #: src/backend/manager.py:1083
 #, python-brace-format
@@ -1313,7 +1311,7 @@ msgstr "选择要保存备份归档的位置"
 
 #: src/views/bottle_details.py:340
 msgid "Export"
-msgstr ""
+msgstr "导出"
 
 #: src/views/bottle_details.py:371
 msgid "Confirm deletion"
