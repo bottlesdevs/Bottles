@@ -80,11 +80,17 @@ class DuplicateDialog(Handy.Window):
         RunAsync(self.pulse)
         name = self.entry_name.get_text()
 
-        BackupManager.duplicate_bottle(self.config, name)
+        RunAsync(
+            task_func=BackupManager.duplicate_bottle,
+            callback=self.finish,
+            config=self.config,
+            name=name
+        )
+
+    def finish(self, result, error=None):
+        # TODO: handle result.status == False
         self.parent.manager.update_bottles()
-
         self.stack_switcher.set_visible_child_name("page_duplicated")
-
         self.btn_close.set_sensitive(True)
         self.btn_close.set_visible(True)
         self.btn_cancel.set_visible(False)

@@ -8,6 +8,7 @@ from gettext import gettext as _
 from .manager import Manager
 
 from ..utils import UtilsLogger
+from .result import Result
 from .globals import Paths
 from .manager_utils import ManagerUtils
 from ..operation import OperationManager
@@ -74,10 +75,10 @@ class BackupManager:
 
         if backup_created:
             logging.info(f"Backup saved in path: {path}.")
-            return True
+            return Result(status=True)
 
         logging.error(f"Failed to save backup in path: {path}.")
-        return False
+        return Result(status=False)
 
     @staticmethod
     def import_backup(window, scope: str, path: str, manager: Manager) -> bool:
@@ -133,10 +134,10 @@ class BackupManager:
         if import_status:
             window.manager.update_bottles()
             logging.info(f"Backup: [{path}] imported successfully.")
-            return True
+            return Result(status=True)
 
         logging.error(f"Failed importing backup: [{backup_name}]")
-        return False
+        return Result(status=False)
 
     @staticmethod
     def duplicate_bottle(config, name) -> bool:
@@ -190,7 +191,7 @@ class BackupManager:
             )
         except:
             logging.error(f"Failed duplicate bottle: [{name}]")
-            return False
+            return Result(status=False)
 
         logging.info(f"Bottle [{name}] duplicated successfully.")
-        return True
+        return Result(status=True)
