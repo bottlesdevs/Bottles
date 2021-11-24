@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-23 21:12+0100\n"
-"PO-Revision-Date: 2021-11-15 00:13+0000\n"
+"PO-Revision-Date: 2021-11-25 15:53+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -1148,7 +1148,7 @@ msgstr "Geri git"
 
 #: src/operation.py:62
 msgid "Calculating..."
-msgstr ""
+msgstr "Hesaplanıyor..."
 
 #: src/main.py:98
 msgid "Show version"
@@ -1210,12 +1210,11 @@ msgstr "Yedekleme içe aktarılıyor: {0}"
 
 #: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Temel bileşenler eksik. Kuruluyor…"
 
 #: src/backend/manager.py:1018
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Şişe yapılandırma dosyası oluşturuluyor…"
+msgstr "Şişe yapılandırması oluşturuluyor"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1037
@@ -1227,13 +1226,12 @@ msgid "WINE config updated!"
 msgstr "WINE yapılandırması güncellendi!"
 
 #: src/backend/manager.py:1048
-#, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Flatpak olarak çalışıyor, korumalı klasörler oluşturuluyor…"
+msgstr "Flatpak olarak çalışıyor, kullanıcı dizini korumalı yapılıyor…"
 
 #: src/backend/manager.py:1050
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Kullanıcı dizini korumalı yapılıyor…"
 
 #: src/backend/manager.py:1067
 msgid "Setting Windows version…"
@@ -1241,7 +1239,7 @@ msgstr "Windows sürümü ayarlanıyor…"
 
 #: src/backend/manager.py:1075
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "CMD öntanımlı ayarlarını uygula…"
 
 #: src/backend/manager.py:1083
 #, python-brace-format
@@ -1353,7 +1351,7 @@ msgstr "Yedek arşivinin kaydedileceği konumu seçin"
 
 #: src/views/bottle_details.py:340
 msgid "Export"
-msgstr ""
+msgstr "Dışa aktar"
 
 #: src/views/bottle_details.py:371
 msgid "Confirm deletion"
