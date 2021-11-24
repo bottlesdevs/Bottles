@@ -182,7 +182,12 @@ class BackupManager:
             with open(dest_config, "w") as config_file:
                 yaml.dump(config, config_file, indent=4)
 
-            shutil.copytree(source_drive, dest_drive)
+            shutil.copytree(
+                src=source_drive,
+                dst=dest_drive,
+                ignore=shutil.ignore_patterns(".*"),
+                symlinks=False
+            )
         except:
             logging.error(f"Failed duplicate bottle: [{name}]")
             return False
