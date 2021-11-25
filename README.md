@@ -63,7 +63,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Tweak different wine prefix settings, without leaving Bottles
 - Automated dxvk installation
 - System for checking runner updates for the bottle and automatic repair in case of breakage
-- Integrated Dependencies installer with compatibility check based on a community-driver [repository](https://github.com/bottlesdevs/dependencies)
+- Integrated Dependencies installer with compatibility check based on a community-driven [repository](https://github.com/bottlesdevs/dependencies)
 - Detection of installed programs
 - Integrated Task manager for wine processes
 - Easy access to ProtonDB and WineHQ for support
