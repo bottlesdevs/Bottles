@@ -156,7 +156,7 @@ class ListViewEntry(Handy.ActionRow):
         self.set_sensitive(False)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
-class ListView(Gtk.Box):
+class ListView(Gtk.ScrolledWindow):
     __gtype_name__ = 'ListView'
 
     # region Widgets

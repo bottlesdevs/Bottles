@@ -2,37 +2,84 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.2"/>
-  <template class="ListView" parent="GtkBox">
+  <template class="ListView" parent="GtkScrolledWindow">
     <property name="visible">True</property>
-    <property name="can-focus">False</property>
+    <property name="can-focus">True</property>
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
-    <property name="orientation">vertical</property>
     <child>
-      <object class="HdyClamp" id="clamp_list">
+      <object class="GtkViewport">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-top">20</property>
-        <property name="maximum-size">500</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
-              <placeholder/>
-            </child>
-            <child>
-              <object class="GtkListBox" id="list_bottles">
+              <object class="HdyClamp" id="clamp_list">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="selection-mode">none</property>
-                <style>
-                  <class name="content"/>
-                </style>
+                <property name="margin-top">20</property>
+                <property name="maximum-size">500</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <object class="GtkListBox" id="list_bottles">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="selection-mode">none</property>
+                        <style>
+                          <class name="content"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="HdyStatusPage" id="hdy_status">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">com.usebottles.bottles-symbolic</property>
+                <property name="title" translatable="yes">Bottles</property>
+                <property name="description" translatable="yes">Start off by creating a Bottle.</property>
+                <child>
+                  <object class="GtkButton" id="btn_create">
+                    <property name="label" translatable="yes">Create a new Bottle</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="suggested-action"/>
+                      <class name="circular-button"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
@@ -40,39 +87,6 @@
           </object>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
-    <child>
-      <object class="HdyStatusPage" id="hdy_status">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="icon-name">com.usebottles.bottles-symbolic</property>
-        <property name="title" translatable="yes">Bottles</property>
-        <property name="description" translatable="yes">Start off by creating a Bottle.</property>
-        <child>
-          <object class="GtkButton" id="btn_create">
-            <property name="label" translatable="yes">Create a new Bottle</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <style>
-              <class name="suggested-action"/>
-              <class name="circular-button"/>
-            </style>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">True</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </template>
 </interface>
