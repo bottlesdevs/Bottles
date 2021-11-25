@@ -1049,6 +1049,7 @@ class Manager:
             if sandbox:
                 log_update(_("Sandboxing userdir…"))
             users_dir = glob(f"{bottle_complete_path}/drive_c/users/*/*")
+            users_dir+= glob(f"{bottle_complete_path}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/*")
 
             for user_path in users_dir:
                 if os.path.islink(user_path):
