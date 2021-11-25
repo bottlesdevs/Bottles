@@ -67,6 +67,7 @@ class BottleView(Gtk.ScrolledWindow):
     btn_flatpak_doc_home = Gtk.Template.Child()
     btn_flatpak_doc_expose = Gtk.Template.Child()
     btn_flatpak_doc_upgrade = Gtk.Template.Child()
+    btn_flatpak_doc_silent_crash = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
     box_run_extra = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
@@ -136,6 +137,11 @@ class BottleView(Gtk.ScrolledWindow):
             'pressed',
             GtkUtils.open_doc_url,
             "flatpak/migrate-bottles-to-flatpak"
+        )
+        self.btn_flatpak_doc_silent_crash.connect(
+            'pressed',
+            GtkUtils.open_doc_url,
+            "flatpak/black-screen-or-silent-crash"
         )
 
         if "FLATPAK_ID" in os.environ:
