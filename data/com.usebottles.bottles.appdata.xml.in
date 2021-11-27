@@ -82,49 +82,55 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2021.11.14-treviso-4" date="2021-11-12">
+        <release version="2021.11.28-treviso" date="2021-11-28">
           <description>
             <p>News</p>
             <ul>
-                <li>Now environments install several common dependencies to increase the out-of-the-box compatibility level of the bottle.</li>
-                <li>Now the new bottles are created by setting Windows 10 as the version.</li>
-                <li>Added a new menu showing all executables launched during the session, to reach them easily</li>
-                <li>Now it is possible to change Windows version for a bottle (doesn't work for old bottles)</li>
-                <li>Dependencies can now use specific Windows version during packages installation</li>
-                <li>The sandbox switcher is hidden from Flatpak and automatically enabled</li>
-                <li>New wineboot management</li>
-                <li>Now the runner only shows useful logs during bottle creation</li>
-                <li>Gamemode support also for Flatpak thanks to @BigmenPixel0</li>
-                <li>Now it is possible to pass executable arguments using the Bottles CLI using the -a option thanks to @Rerumus</li>
-                <li>Programs icons are now hidden in Flatpak</li>
-                <li>General code/UI cleanup and improvements</li>
+                <li>Introducing a new Downloader for better performance, chunked downloads and CLI progress reporting</li>
+                <li>The Task manager is now per bottle and only list processes running inside it</li>
+                <li>By creating a bottle a patch is applied to wineconsole to improve reading</li>
+                <li>Bottle duplication is now asynchroneous</li>
+                <li>Repairing a broken bottle provides a visual feedback in the bottles list</li>
+                <li>Deleting a bottle provides a visual feedback in the bottles list</li>
+                <li>Now installers wait for dependencies and executables to finish before move to next step</li>
+                <li>Bottle details view has been reworked to be more easy to extend</li>
+                <li>Now corrupted downloaded files are automatically removed if checksum is not matching</li>
+                <li>Now when Bottles creates a registry key, it will wait for any previous keys to be created to avoid corrupting the registry</li>
+                <li>The Remove option is now hidden for auto-discovered programs</li>
+                <li>Now automated environments only install most used fonts instead of the allfonts package</li>
+                <li>The VKD3D is no more enabled by default in Gaming environment</li>
+                <li>The documentation hub now has new hints for Flatpak users</li>
             </ul>
 
             <p>Bug fixes</p>
             <ul>
-                <li>Fixed a series of random crashes due to mixing threads</li>
-                <li>Fixed a bug in environment variables check that result in crash</li>
-                <li>Fixed a bug that prevented the user from opening the file manager on Proton runners</li>
-                <li>Fixed a bug that was causing a crash when Bottles fails on removing a bottle</li>
-                <li>Fixed incomplete translations in Flatpak</li>
+                <li>Fixed a bug in Downloader that was failing when it is not able to estimate the download size</li>
+                <li>Fixed a bug in bottle duplication that was looping in symlinked directories</li>
+                <li>Fixed a bug in bottle creation that was failing on essential components check</li>
+                <li>Fixed a bug in wrong encoding of command output</li>
+                <li>Fixed a bug in Onboard that was freezing the app during component installation</li>
+                <li>Fixed a bug in components download that was crashing when it is not able to reach the repository</li>
+                <li>Fixed a bug in wineboot that was updating instead of initializing during bottle creation</li>
+                <li>Fixed a bug that prevent scrolling in the bottle list</li>
+                <li>Fixed a bug in sandbox that was not unlinking the Windows Templates folder</li>
+                <li>Fixed the TypeError: Must be number, not NoneType error thanks to @dogabone</li>
+                <li>Fixed the Custom environment in bottle creation</li>
+                <li>Fixed changing Windows version for win64 bottles</li>
+                <li>Fixed virtual desktop support switching</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>German translations thanks to Lasse Palm</li>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Czech translations thanks to @SoongVilda</li>
                 <li>Spanish translations thanks to @oscfdezdz</li>
                 <li>Turkish translations thanks to @ersen0</li>
                 <li>Chinese (Simplified) translations thanks to @sr093906</li>
-                <li>Japanese translations thanks to @CheesersY5</li>
                 <li>Hungarian translations thanks to @ovari</li>
-                <li>Italian translations thanks to @seldon1000</li>
-                <li>Esperanto translations thanks to @phlostically</li>
-                <li>Indonesian translations thanks to @liimee, @rezaalmanda</li>
-                <li>Danish translations thanks to @ettmetal</li>
-                <li>Polish translations thanks to Krzysztof Marcinek</li>
-                <li>General translations fixes thanks to @comradekingu, @Martinligabue, @AmeyShrivastava</li>
+                <li>French translations thanks to @julroy67</li>
+                <li>Norwegian Bokmål translations thanks to @comradekingu</li>
+                <li>Portuguese (Brazil) translations thanks to @vitorhcl</li>
+                <li>Finnish translations thanks to Jiri Grönroos</li>
+                <li>Japanese translations thanks to @CheesersY5</li>
+                <li>Croatian translations thanks to @milotype</li>
             </ul>
           </description>
         </release>
