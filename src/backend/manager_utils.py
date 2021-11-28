@@ -1,7 +1,9 @@
+import gi
 import os
-import shutil
 import subprocess
 from typing import NewType, Union
+from gi.repository import GLib
+
 from ..utils import UtilsLogger
 from .globals import Paths
 
@@ -72,18 +74,39 @@ class ManagerUtils:
         return f"{Paths.nvapi}/{nvapi}"
 
     @staticmethod
-    def move_file_to_bottle(file_path: str, config: BottleConfig) -> Union[str, bool]:
+    def move_file_to_bottle(
+        file_path: str, 
+        config: BottleConfig,
+        fn_update: callable = None
+    ) -> Union[str, bool]:
         logging.info(f"Adding file {file_path} to the bottle …")
         bottle_path = ManagerUtils.get_bottle_path(config)
         
         if not os.path.exists(f"{bottle_path}/storage"):
+            '''
+            If the storage folder does not exist for the bottle,
+            create it before moving the file.
+            '''
             os.makedirs(f"{bottle_path}/storage")
         
+        file_name = os.path.basename(file_path)
+        file_size = os.path.getsize(file_path)
+        file_new_path = f"{bottle_path}/storage/{file_name}"
+
+        logging.info(f"Copying file {file_path} to the bottle …")
         try:
-            logging.info(f"Moving file {file_path} to the bottle …")
-            file_name = os.path.basename(file_path)
-            shutil.move(file_path, f"{bottle_path}/storage/{file_name}")
-            return f"{bottle_path}/storage/{file_name}"
-        except Exception as e:
-            logging.error(f"Error while copying file: {e}")
+            with open(file_path, "rb") as f_in:
+                with open(file_new_path, "wb") as f_out:
+                    for i in range(file_size):
+                        f_out.write(f_in.read(1))
+                        _size = i / file_size
+                        
+                        if fn_update:
+                            if _size % 0.1 == 0:
+                                GLib.idle_add(fn_update, _size)
+                    GLib.idle_add(fn_update, 1)
+            return file_new_path
+        except:
+            logging.error(f"Could not copy file {file_path} to the bottle.")
             return False
+            

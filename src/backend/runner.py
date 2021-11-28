@@ -107,7 +107,8 @@ class Runner:
         environment: dict = False,
         no_async: bool = False,
         cwd: str = None,
-        move_file: bool = False
+        move_file: bool = False,
+        move_progress: callable = None
     ):
         '''
         Run an executable file with arguments and environment variables, inside
@@ -118,7 +119,8 @@ class Runner:
         if move_file:
             new_path = ManagerUtils.move_file_to_bottle(
                 file_path=file_path,
-                config=config
+                config=config,
+                fn_update=move_progress
             )
             if new_path:
                 file_path = new_path

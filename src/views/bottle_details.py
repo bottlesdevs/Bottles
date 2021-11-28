@@ -78,6 +78,8 @@ class BottleView(Gtk.ScrolledWindow):
     row_regedit = Gtk.Template.Child()
     row_browse = Gtk.Template.Child()
     extra_separator = Gtk.Template.Child()
+    reveal_progress = Gtk.Template.Child()
+    progress_bar = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -279,11 +281,14 @@ class BottleView(Gtk.ScrolledWindow):
 
         if response == -3:
             if args:
-                Runner.run_executable(
+                RunAsync(
+                    task_func=Runner.run_executable,
                     config=self.config,
                     file_path=file_dialog.get_filename(),
                     arguments=args,
-                    move_file=self.check_move_file.get_active()
+                    move_file=self.check_move_file.get_active(),
+                    move_progress=self.update_move_progress,
+                    no_async=True
                 )
                 self.manager.update_config(
                     config=self.config,
@@ -295,10 +300,13 @@ class BottleView(Gtk.ScrolledWindow):
                     }]
                 )
             else:
-                Runner.run_executable(
+                RunAsync(
+                    task_func=Runner.run_executable,
                     config=self.config,
                     file_path=file_dialog.get_filename(),
-                    move_file=self.check_move_file.get_active()
+                    move_file=self.check_move_file.get_active(),
+                    move_progress=self.update_move_progress,
+                    no_async=True
                 )
                 self.manager.update_config(
                     config=self.config,
@@ -410,6 +418,18 @@ class BottleView(Gtk.ScrolledWindow):
                 widget.set_visible(False)
             else:
                 widget.set_visible(True)
+    
+    def update_move_progress(self, progress):
+        '''
+        This function update the progress bar when the user
+        is moving a file.
+        '''
+        if progress == 1:
+            self.reveal_progress.set_reveal_child(False)
+            self.progress_bar.set_fraction(0)
+        else:
+            self.reveal_progress.set_reveal_child(True)
+            self.progress_bar.set_fraction(progress)
 
     '''
     The following functions are used like wrappers for the

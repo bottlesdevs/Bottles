@@ -396,22 +396,6 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="HdyPreferencesGroup" id="group_layers">
-                    <property name="can-focus">False</property>
-                    <property name="margin-top">20</property>
-                    <property name="title" translatable="yes">Layers</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -459,6 +443,22 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="HdyPreferencesGroup" id="group_layers">
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">20</property>
+                    <property name="title" translatable="yes">Layers</property>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack-type">end</property>
                     <property name="position">2</property>
                   </packing>
                 </child>
@@ -690,6 +690,27 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkRevealer" id="reveal_progress">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">10</property>
+                    <property name="transition-type">slide-up</property>
+                    <child>
+                      <object class="GtkProgressBar" id="progress_bar">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="text" translatable="yes">Moving inside the sandbox…</property>
+                        <property name="show-text">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="HdyPreferencesGroup" id="group_programs">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -702,7 +723,7 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">4</property>
+                    <property name="position">5</property>
                   </packing>
                 </child>
                 <child>
@@ -1057,7 +1078,7 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">5</property>
+                    <property name="position">6</property>
                   </packing>
                 </child>
               </object>
