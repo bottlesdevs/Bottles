@@ -106,13 +106,22 @@ class Runner:
         arguments: str = "",
         environment: dict = False,
         no_async: bool = False,
-        cwd: str = None
+        cwd: str = None,
+        move_file: bool = False
     ):
         '''
         Run an executable file with arguments and environment variables, inside
         a bottle using the config provided.
         '''
         logging.info("Running an executable on the bottle…")
+
+        if move_file:
+            new_path = ManagerUtils.move_file_to_bottle(
+                file_path=file_path,
+                config=config
+            )
+            if new_path:
+                file_path = new_path
 
         command = f"'{file_path}'"
 

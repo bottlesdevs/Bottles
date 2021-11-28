@@ -21,8 +21,9 @@ from ..backend.runner import Runner
 
 class ExecButton(Gtk.ModelButton):
 
-    def __init__(self, data, config, **kwargs):
+    def __init__(self, parent, data, config, **kwargs):
         super().__init__(**kwargs)
+        self.parent = parent
         self.config = config
         self.data = data
 
@@ -36,4 +37,5 @@ class ExecButton(Gtk.ModelButton):
             config=self.config,
             file_path=self.data.get("file"),
             arguments=self.data.get("args"),
+            move_file=self.parent.check_move_file.get_active()
         )

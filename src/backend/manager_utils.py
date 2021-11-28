@@ -1,5 +1,7 @@
+import os
+import shutil
 import subprocess
-from typing import NewType
+from typing import NewType, Union
 from ..utils import UtilsLogger
 from .globals import Paths
 
@@ -68,3 +70,20 @@ class ManagerUtils:
     @staticmethod
     def get_nvapi_path(nvapi: str) -> str:
         return f"{Paths.nvapi}/{nvapi}"
+
+    @staticmethod
+    def move_file_to_bottle(file_path: str, config: BottleConfig) -> Union[str, bool]:
+        logging.info(f"Adding file {file_path} to the bottle …")
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        
+        if not os.path.exists(f"{bottle_path}/storage"):
+            os.makedirs(f"{bottle_path}/storage")
+        
+        try:
+            logging.info(f"Moving file {file_path} to the bottle …")
+            file_name = os.path.basename(file_path)
+            shutil.move(file_path, f"{bottle_path}/storage/{file_name}")
+            return f"{bottle_path}/storage/{file_name}"
+        except Exception as e:
+            logging.error(f"Error while copying file: {e}")
+            return False

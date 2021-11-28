@@ -70,12 +70,14 @@ class BottleView(Gtk.ScrolledWindow):
     btn_flatpak_doc_silent_crash = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
     box_run_extra = Gtk.Template.Child()
+    check_move_file = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     row_uninstaller = Gtk.Template.Child()
     row_regedit = Gtk.Template.Child()
     row_browse = Gtk.Template.Child()
+    extra_separator = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -280,7 +282,8 @@ class BottleView(Gtk.ScrolledWindow):
                 Runner.run_executable(
                     config=self.config,
                     file_path=file_dialog.get_filename(),
-                    arguments=args
+                    arguments=args,
+                    move_file=self.check_move_file.get_active()
                 )
                 self.manager.update_config(
                     config=self.config,
@@ -294,7 +297,8 @@ class BottleView(Gtk.ScrolledWindow):
             else:
                 Runner.run_executable(
                     config=self.config,
-                    file_path=file_dialog.get_filename()
+                    file_path=file_dialog.get_filename(),
+                    move_file=self.check_move_file.get_active()
                 )
                 self.manager.update_config(
                     config=self.config,
@@ -315,12 +319,16 @@ class BottleView(Gtk.ScrolledWindow):
         This function update the latest executables list.
         '''
         for w in self.box_run_extra.get_children():
-            if w != self.btn_run_args:
+            if w not in [
+                self.btn_run_args, 
+                self.check_move_file,
+                self.extra_separator]:
                 w.destroy()
 
         _execs = self.config.get("Latest_Executables", [])[-5:]
         for exe in _execs:
             _btn = ExecButton(
+                parent=self,
                 data=exe,
                 config=self.config
             )

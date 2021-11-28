@@ -1491,3 +1491,4 @@ class Manager:
             path_type="custom",
             custom_path=wineprefix.get("Path")
         )
+        
