@@ -116,7 +116,21 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="HdyStatusPage" id="hdy_status">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">preferences-system-time-symbolic</property>
+                <property name="title" translatable="yes">No states found</property>
+                <property name="description" translatable="yes">Create first state to start using versioning.</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
             </child>
           </object>
         </child>

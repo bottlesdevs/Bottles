@@ -35,6 +35,7 @@ class VersioningView(Gtk.ScrolledWindow):
     btn_add_state = Gtk.Template.Child()
     btn_help_versioning = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
+    hdy_status = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -68,14 +69,18 @@ class VersioningView(Gtk.ScrolledWindow):
             states = self.versioning_manager.list_states(self.config).items()
 
             if len(states) > 0:
-                for state in states:
-                    self.list_states.add(
-                        StateEntry(
-                            window=self.window,
-                            config=self.config,
-                            state=state
-                        )
+                self.hdy_status.set_visible(False)
+            else:
+                self.hdy_status.set_visible(True)
+
+            for state in states:
+                self.list_states.add(
+                    StateEntry(
+                        window=self.window,
+                        config=self.config,
+                        state=state
                     )
+                )
 
     def check_entry_state_comment(self, widget, event_key):
         '''
