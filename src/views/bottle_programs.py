@@ -31,6 +31,7 @@ class ProgramsView(Gtk.ScrolledWindow):
     actions = Gtk.Template.Child()
     btn_programs_updates = Gtk.Template.Child()
     btn_programs_add = Gtk.Template.Child()
+    hdy_status = Gtk.Template.Child()
     # endregion
 
     def __init__(self, parent, config, **kwargs):
@@ -74,7 +75,7 @@ class ProgramsView(Gtk.ScrolledWindow):
                 value=file_dialog.get_filename(),
                 scope="External_Programs"
             )
-            self.update()
+            self.update(config=self.config)
 
         file_dialog.destroy()
 
@@ -90,10 +91,17 @@ class ProgramsView(Gtk.ScrolledWindow):
 
         programs = self.manager.get_programs(self.config)
 
+        if len(programs) > 0:
+            self.hdy_status.set_visible(False)
+        else:
+            self.hdy_status.set_visible(True)
+
         i = 0
         for program in programs:
             self.list_programs.add(
                 ProgramEntry(
-                    self.window, self.config, program
+                    window=self.window, 
+                    config=self.config,
+                    program=program
                 )
             )

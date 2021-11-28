@@ -22,19 +22,18 @@
                 <property name="margin-bottom">10</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkBox">
+                  <object class="HdyStatusPage" id="hdy_status">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-bottom">10</property>
-                    <child>
-                      <placeholder/>
-                    </child>
+                    <property name="icon-name">preferences-desktop-apps-symbolic</property>
+                    <property name="title" translatable="yes">No programs found</property>
+                    <property name="description" translatable="yes">New programs will be automatically found.</property>
                     <child>
                       <placeholder/>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
+                    <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
