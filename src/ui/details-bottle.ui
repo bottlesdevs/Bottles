@@ -446,13 +446,47 @@
                     <property name="can-focus">False</property>
                     <property name="spacing">5</property>
                     <child>
-                      <object class="GtkButton" id="btn_execute">
-                        <property name="label" translatable="yes">Run executable</property>
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkButton" id="btn_execute">
+                            <property name="label" translatable="yes">Run executable</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <style>
+                              <class name="suggested-action"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkMenuButton">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="focus-on-click">False</property>
+                            <property name="receives-default">True</property>
+                            <property name="popover">pop_run</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <style>
+                              <class name="suggested-action"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
                         <style>
-                          <class name="suggested-action"/>
+                          <class name="linked"/>
                         </style>
                       </object>
                       <packing>
@@ -462,21 +496,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkMenuButton">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="focus-on-click">False</property>
-                        <property name="receives-default">True</property>
-                        <property name="popover">pop_run</property>
-                        <child>
-                          <placeholder/>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
+                      <placeholder/>
                     </child>
                     <child>
                       <object class="GtkBox">
