@@ -203,8 +203,8 @@ class Runner:
 
         if uuid:
             command = f"uninstaller --remove '{uuid}'"
-        RunAsync(
-            task_func=Runner.run_command, 
+            
+        Runner.run_command(
             config=config, 
             command=command
         )

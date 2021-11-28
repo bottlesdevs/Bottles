@@ -112,9 +112,9 @@ class BottleView(Gtk.ScrolledWindow):
         self.btn_uninstaller.connect('pressed', self.run_uninstaller)
         self.btn_regedit.connect('pressed', self.run_regedit)
         self.btn_delete.connect('pressed', self.__confirm_delete)
-        self.btn_shutdown.connect('pressed', self.run_shutdown)
-        self.btn_reboot.connect('pressed', self.run_reboot)
-        self.btn_killall.connect('pressed', self.run_killall)
+        self.btn_shutdown.connect('pressed', self.wineboot, 2)
+        self.btn_reboot.connect('pressed', self.wineboot, 1)
+        self.btn_killall.connect('pressed', self.wineboot, 0)
         self.btn_backup_config.connect('pressed', self.__backup, "config")
         self.btn_backup_full.connect('pressed', self.__backup, "full")
         self.btn_duplicate.connect('pressed', self.__duplicate)
@@ -427,19 +427,27 @@ class BottleView(Gtk.ScrolledWindow):
         Runner.run_controlpanel(self.config)
 
     def run_uninstaller(self, widget):
-        Runner.run_uninstaller(self.config)
+        RunAsync(
+            task_func=Runner.run_uninstaller,
+            config=self.config
+        )
 
     def run_regedit(self, widget):
         Runner.run_regedit(self.config)
 
-    def run_shutdown(self, widget):
-        Runner.wineboot(self.config, status=2, silent=False)
+    def wineboot(self, widget, status):
+        def reset(result, error=False):
+            widget.set_sensitive(True)
 
-    def run_reboot(self, widget):
-        Runner.wineboot(self.config, status=1, silent=False)
-
-    def run_killall(self, widget):
-        Runner.wineboot(self.config, status=0, silent=False)
+        widget.set_sensitive(False)
+        
+        RunAsync(
+            Runner.wineboot,
+            callback=reset,
+            config=self.config, 
+            status=status, 
+            silent=False
+        )
 
     '''
     The following methods open resources (URLs) in the

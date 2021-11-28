@@ -18,6 +18,7 @@
 import webbrowser
 from gi.repository import Gtk, Handy
 
+from ..utils import RunAsync
 from ..dialogs.launchoptions import LaunchOptionsDialog
 from ..backend.runner import Runner
 from ..backend.manager_utils import ManagerUtils
@@ -44,6 +45,8 @@ class ProgramEntry(Handy.ActionRow):
 
         # common variables and references
         self.window = window
+        self.view_programs = window.page_details.view_programs
+        self.view_bottle = window.page_details.view_bottle
         self.manager = window.manager
         self.config = config
         self.arguments = ""
@@ -101,8 +104,17 @@ class ProgramEntry(Handy.ActionRow):
             cwd=self.program_folder
         )
 
+    def update_programs(self, result=False, error=False):
+        self.view_programs.update(config=self.config)
+        self.view_bottle.update_programs()
+
     def uninstall_program(self, widget):
-        self.manager.remove_program(self.config, self.program_name)
+        RunAsync(
+            task_func=self.manager.remove_program,
+            callback=self.update_programs,
+            config=self.config,
+            program_name=self.program_name
+        )
 
     def remove_program(self, widget):
         self.manager.update_config(
@@ -112,7 +124,7 @@ class ProgramEntry(Handy.ActionRow):
             remove=True,
             scope="External_Programs"
         )
-        self.destroy()
+        self.update_programs()
 
     def browse_program_folder(self, widget):
         ManagerUtils.open_filemanager(
