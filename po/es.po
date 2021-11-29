@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-23 21:12+0100\n"
-"PO-Revision-Date: 2021-11-15 00:13+0000\n"
+"PO-Revision-Date: 2021-11-30 22:50+0000\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
@@ -1150,7 +1150,7 @@ msgstr "Regresar"
 
 #: src/operation.py:62
 msgid "Calculating..."
-msgstr ""
+msgstr "Calculando…"
 
 #: src/main.py:98
 msgid "Show version"
@@ -1212,12 +1212,11 @@ msgstr "Importando copia de respaldo: {0}"
 
 #: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Faltan componentes esenciales. Instalando…"
 
 #: src/backend/manager.py:1018
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Generando el archivo de configuración de la botella…"
+msgstr "Generando configuración de la botella"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1037
@@ -1229,13 +1228,12 @@ msgid "WINE config updated!"
 msgstr "¡Configuración de WINE actualizada!"
 
 #: src/backend/manager.py:1048
-#, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Ejecutando como Flatpak, creando carpetas aisladas…"
+msgstr "Ejecutando como Flatpak, aislando directorio del usuario…"
 
 #: src/backend/manager.py:1050
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Aislando directorio del usuario…"
 
 #: src/backend/manager.py:1067
 msgid "Setting Windows version…"
@@ -1243,7 +1241,7 @@ msgstr "Configurando la versión de Windows…"
 
 #: src/backend/manager.py:1075
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Aplicar la configuración predeterminada del CMD…"
 
 #: src/backend/manager.py:1083
 #, python-brace-format
@@ -1355,7 +1353,7 @@ msgstr "Seleccione la ubicación donde guardar el archivo de respaldo"
 
 #: src/views/bottle_details.py:340
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #: src/views/bottle_details.py:371
 msgid "Confirm deletion"
