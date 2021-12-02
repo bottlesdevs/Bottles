@@ -127,9 +127,6 @@ class DetailsView(Handy.Leaflet):
             }
         }
 
-        if not self.window.settings.get_boolean("experiments-versioning"):
-            del pages["versioning"]
-
         if not self.window.settings.get_boolean("experiments-installers"):
             del pages["installers"]
 

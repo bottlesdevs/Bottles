@@ -30,7 +30,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
-    switch_versioning = Gtk.Template.Child()
     switch_installers = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
@@ -64,9 +63,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_release_candidate.set_active(
             self.settings.get_boolean("release-candidate")
         )
-        self.switch_versioning.set_active(
-            self.settings.get_boolean("experiments-versioning")
-        )
         self.switch_installers.set_active(
             self.settings.get_boolean("experiments-installers")
         )
@@ -86,7 +82,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_notifications.connect('state-set', self.__toggle_notify)
         self.switch_temp.connect('state-set', self.__toggle_temp)
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
-        self.switch_versioning.connect('state-set', self.__toggle_versioning)
         self.switch_installers.connect('state-set', self.__toggle_installers)
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
@@ -111,10 +106,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
     def __toggle_temp(self, widget, state):
         self.settings.set_boolean("temp", state)
-
-    def __toggle_versioning(self, widget, state):
-        self.settings.set_boolean("experiments-versioning", state)
-        self.window.page_details.build_pages()
 
     def __toggle_installers(self, widget, state):
         self.settings.set_boolean("experiments-installers", state)

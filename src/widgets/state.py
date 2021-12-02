@@ -93,7 +93,9 @@ class StateEntry(Handy.ActionRow):
             log=self.versioning_manager.get_state_edits(
                 self.config,
                 self.state[0],
-                True))
+                True
+            ).get("Plain")
+        )
         dialog.run()
         dialog.destroy()
 

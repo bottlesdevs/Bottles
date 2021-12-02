@@ -259,8 +259,22 @@ class RunnerVersioning:
         bottle_path = ManagerUtils.get_bottle_path(config)
         try:
             file = open('%s/states/%s/index.yml' % (bottle_path, state_id))
-            files = file.read() if plain else yaml.safe_load(file.read())
+            content = file.read()
+            files = yaml.safe_load(content)
             file.close()
+            
+            additions = len(files["Additions"])
+            removed = len(files["Removed"])
+            changes = len(files["Changes"])
+
+            if plain:
+                return {
+                    "Plain": content,
+                    "Additions": additions,
+                    "Removed": removed,
+                    "Changes": changes
+                }
+            
             return files
         except:
             return {}
