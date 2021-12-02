@@ -68,7 +68,8 @@ class DependenciesView(Gtk.ScrolledWindow):
 
     @staticmethod
     def __filter_dependencies(row, terms=None):
-        if terms.lower() in row.get_title().lower():
+        text = row.get_title().lower() + row.get_subtitle().lower()
+        if terms.lower() in text:
             return True
         return False
 
