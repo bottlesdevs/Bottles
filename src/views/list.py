@@ -56,7 +56,7 @@ class ListViewEntry(Handy.ActionRow):
         if self.config.get("Update_Date"):
             try:
                 update_date = datetime.strptime(self.config.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
-                update_date = update_date.strftime("%b %d %Y %H:%M:%S")
+                update_date = update_date.strftime("%d %B, %Y %H:%M:%S")
             except ValueError:
                 update_date = _("N/A")
 

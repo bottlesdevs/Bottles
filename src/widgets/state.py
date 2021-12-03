@@ -48,7 +48,7 @@ class StateEntry(Handy.ActionRow):
         creation_date = datetime.strptime(
             state[1].get("Creation_Date"), "%Y-%m-%d %H:%M:%S.%f"
         )
-        creation_date = creation_date.strftime("%b %d %Y %H:%M:%S")
+        creation_date = creation_date.strftime("%d %B, %Y %H:%M:%S")
 
         # populate widgets
         self.set_title(self.state_name)
