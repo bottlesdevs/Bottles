@@ -29,7 +29,6 @@ class StateEntry(Handy.ActionRow):
     # region Widgets
     label_creation_date = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
-    btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     # endregion
 
