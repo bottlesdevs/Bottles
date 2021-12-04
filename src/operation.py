@@ -34,6 +34,7 @@ class TaskEntry(Handy.ActionRow):
 
         self.window = window
         self.list_tasks = window.list_tasks
+        self.btn_operations = window.btn_operations
 
         if len(file_name) > 30:
             file_name = f"{file_name[:20]}..."
@@ -75,7 +76,8 @@ class TaskEntry(Handy.ActionRow):
     def remove(self):
         tasks = self.list_tasks.get_children()
         if len(tasks) <= 1:
-            self.window.btn_operations.set_visible(False)
+            if not self.btn_operations.get_active():
+                self.btn_operations.set_visible(False)
         self.destroy()
 
 
@@ -91,6 +93,6 @@ class OperationManager():
     def new_task(self, file_name, cancellable=True):
         task_entry = TaskEntry(
             self.window, file_name, cancellable)
-        self.window.list_tasks.add(task_entry)
+        self.list_tasks.add(task_entry)
 
         return task_entry

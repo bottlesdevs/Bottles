@@ -164,6 +164,7 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
+        self.btn_operations.connect('toggled', self.on_operations_toggled)
 
         # Set the bottles list page as the default page
         self.stack_main.set_visible_child_name("page_list")
@@ -194,6 +195,10 @@ class MainWindow(Handy.ApplicationWindow):
             self.set_title(_("Bottles"))
         elif page == "page_importer":
             self.set_title(_("Import & export"))
+
+    def on_operations_toggled(self, widget):
+        if len(self.list_tasks.get_children()) == 0:
+            widget.set_visible(False)
 
     def set_title(self, title, subtitle: str = ""):
         self.headerbar.set_title(title)
