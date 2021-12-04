@@ -24,11 +24,12 @@ class RunnerVersioning:
     def __init__(self, window, manager):
         self.window = window
         self.manager = manager
+        self.operation_manager = OperationManager(self.window)
 
     def create_state(
         self,
         config: BottleConfig,
-        comment: str = "Not commented",
+        comment: str = "No comment",
         update: bool = False,
         no_update: bool = False,
         after: bool = False
@@ -47,7 +48,6 @@ class RunnerVersioning:
         )
 
         bottle_path = ManagerUtils.get_bottle_path(config)
-        self.operation_manager = OperationManager(self.window)
         task_entry = self.operation_manager.new_task(
             file_name=_("Generating state files index …"),
             cancellable=False
