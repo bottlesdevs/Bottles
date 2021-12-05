@@ -1002,6 +1002,7 @@ class Manager:
             using the name and a random number.
             '''
             rnd = random.randint(100, 200)
+            bottle_name_path = f"{bottle_name_path}__{rnd}"
             bottle_complete_path = f"{bottle_complete_path}__{rnd}"
 
         # define registers that should be awaited
