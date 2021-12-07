@@ -2,6 +2,7 @@ import gi
 import os
 import subprocess
 from typing import NewType, Union
+from datetime import datetime
 from gi.repository import GLib
 
 from ..utils import UtilsLogger
@@ -109,4 +110,30 @@ class ManagerUtils:
         except:
             logging.error(f"Could not copy file {file_path} to the bottle.")
             return False
-            
+
+    @staticmethod
+    def create_desktop_entry(config, program: dict):
+        if "FLATPAK_ID" in os.environ:
+            return None
+
+        desktop_file = "%s/%s--%s--%s.desktop" % (
+            Paths.applications,
+            config.get('Name'),
+            program.get("name"),
+            datetime.now().timestamp()
+        )
+
+        with open(desktop_file, "w") as f:
+            f.write(f"[Desktop Entry]\n")
+            f.write(f"Name={program.get('name')}\n")
+            f.write(f"Exec=bottles -e '{program.get('executable')}' -b '{config.get('Name')}'\n")
+            f.write(f"Type=Application\n")
+            f.write(f"Terminal=false\n")
+            f.write(f"Categories=Application;\n")
+            f.write(f"Icon=com.usebottles.bottles-program\n")
+            f.write(f"Comment=Launch {program.get('name')} using Bottles.\n")
+            # Actions
+            f.write("Actions=Configure;\n")
+            f.write("[Desktop Action Configure]\n")
+            f.write("Name=Configure in Bottles\n")
+            f.write(f"Exec=bottles -b '{config.get('Name')}'\n")

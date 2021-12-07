@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import webbrowser
 from gi.repository import Gtk, Handy
 
@@ -38,6 +39,7 @@ class ProgramEntry(Handy.ActionRow):
     btn_uninstall = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
+    btn_add_entry = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, program, **kwargs):
@@ -59,6 +61,13 @@ class ProgramEntry(Handy.ActionRow):
         self.set_title(self.program_name)
         self.set_icon_name(program[2])
 
+        if "FLATPAK_ID" in os.environ:
+            '''
+            Disable the btn_add_entry button since the flatpak has no access
+            to the user .loocal directory, so the entry cannot be created.
+            '''
+            self.btn_add_entry.set_visible(False)
+
         if self.program_name not in self.config["External_Programs"]:
             # hide remove button if program is not added by user
             self.btn_remove.set_visible(False)
@@ -74,6 +83,7 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_uninstall.connect('pressed', self.uninstall_program)
         self.btn_remove.connect('pressed', self.remove_program)
         self.btn_browse.connect('pressed', self.browse_program_folder)
+        self.btn_add_entry.connect('pressed', self.add_entry)
 
         '''Populate entry_arguments by config'''
         if self.program_executable in self.config["Programs"]:
@@ -89,8 +99,6 @@ class ProgramEntry(Handy.ActionRow):
             self.arguments
         )
         new_window.present()
-
-    '''Run executable'''
 
     def run_executable(self, widget):
         if self.program_executable in self.config["Programs"]:
@@ -132,8 +140,16 @@ class ProgramEntry(Handy.ActionRow):
             path_type="custom",
             custom_path=self.program_folder
         )
+    
+    def add_entry(self, widget):
+        ManagerUtils.create_desktop_entry(
+            config=self.config,
+            program={
+                "name": self.program_name,
+                "executable": self.program_executable
+            }
+        )
 
-    '''Open URLs'''
     def open_search_url(self, widget, site):
         query = self.program_name.replace(" ", "+")
         sites = {

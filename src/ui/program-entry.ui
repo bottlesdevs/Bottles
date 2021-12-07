@@ -127,6 +127,19 @@
           </packing>
         </child>
         <child>
+          <object class="GtkModelButton" id="btn_add_entry">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="text" translatable="yes">Add desktop entry</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">9</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkModelButton" id="btn_uninstall">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
@@ -136,7 +149,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">9</property>
+            <property name="position">10</property>
           </packing>
         </child>
       </object>

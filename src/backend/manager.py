@@ -511,7 +511,7 @@ class Manager:
             '''
             return ""
 
-        return "application-x-executable"
+        return "com.usebottles.bottles-program"
 
     def __get_exe_parent_dir(self, config, executable_path):
         '''
