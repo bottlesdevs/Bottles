@@ -85,10 +85,10 @@ class MainWindow(Handy.ApplicationWindow):
         self.utils_conn = UtilsConnection(self)
         self.manager = Manager(self)
 
-        # Set dark theme according to user settings
+        # Set night theme according to user settings
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
-            self.settings.get_boolean("dark-theme")
+            self.settings.get_boolean("night-theme")
         )
 
         # Validate arg_exe extension

@@ -191,7 +191,7 @@ class Runner:
 
     @staticmethod
     def run_taskmanager(config: BottleConfig):
-        logging.info("Running a Task Manager on the wineprefix…")
+        logging.info("Running a Task manager on the wineprefix…")
         RunAsync(
             task_func=Runner.run_command, 
             config=config, 
@@ -200,7 +200,7 @@ class Runner:
 
     @staticmethod
     def run_controlpanel( config: BottleConfig):
-        logging.info("Running a Control Panel on the wineprefix…")
+        logging.info("Running a Control panel on the wineprefix…")
         RunAsync(
             task_func=Runner.run_command, 
             config=config, 

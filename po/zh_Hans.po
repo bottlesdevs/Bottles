@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-23 21:12+0100\n"
+"POT-Creation-Date: 2021-12-07 21:49+0100\n"
 "PO-Revision-Date: 2021-11-25 15:53+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -20,9 +20,9 @@ msgstr ""
 "X-Generator: Weblate 4.10-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
-#: src/window.py:145 src/window.py:194
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
+#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
+#: src/window.py:195
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -152,12 +152,13 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr "开关 Flatpak 迁移对话框。"
 
 #: data/com.usebottles.bottles.gschema.xml:11
-msgid "Dark theme"
-msgstr "深色主题"
+msgid "Night theme"
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:12
-msgid "Use a dark application theme."
-msgstr "使用深色应用程序主题。"
+#, fuzzy
+msgid "Use the night theme."
+msgstr "启用深色主题。"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -183,7 +184,7 @@ msgstr "窗口高度"
 msgid "Change the window height."
 msgstr "更改窗口高度。"
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
+#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "通知"
@@ -216,7 +217,7 @@ msgstr "启动视图"
 msgid "Choose which view the application should be started in."
 msgstr "选择应用启动时视图模式。"
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:263
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
 msgstr "实验功能"
 
@@ -227,26 +228,18 @@ msgid ""
 msgstr "开关如版本控制、安装器和运行器候选版本等实验性功能。"
 
 #: data/com.usebottles.bottles.gschema.xml:56
-msgid "Experiments:versioning"
-msgstr "实验功能：版本控制"
-
-#: data/com.usebottles.bottles.gschema.xml:57
-msgid "Toggle experimental versioning feature."
-msgstr "开关实验性的版本控制功能。"
-
-#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
 msgstr "实验功能：安装器"
 
-#: data/com.usebottles.bottles.gschema.xml:62
+#: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental installer features."
 msgstr "开关实验性的安装器功能。"
 
-#: data/com.usebottles.bottles.gschema.xml:66
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "自动关闭 Bottles"
 
-#: data/com.usebottles.bottles.gschema.xml:67
+#: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr "从文件管理器启动可执行文件后关闭 Bottles。"
 
@@ -313,7 +306,7 @@ msgid ""
 "license."
 msgstr "虽然此页面上的文件已验证，但可能属于专有许可证。"
 
-#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:162
 msgid "Read documentation"
 msgstr "阅读文档"
 
@@ -325,7 +318,7 @@ msgstr "报告丢失的依赖项"
 msgid "Microsoft .NET Framework 4 .."
 msgstr "微软 .NET Framework 4 .."
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
+#: src/ui/details-installers.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -367,7 +360,8 @@ msgstr ""
 "如果您遭遇图形故障请禁用。"
 
 #: src/ui/details-preferences.ui:89
-msgid "Use Gamemode"
+#, fuzzy
+msgid "Use GameMode"
 msgstr "使用游戏模式"
 
 #: src/ui/details-preferences.ui:90
@@ -468,7 +462,7 @@ msgid "Manage runners"
 msgstr "管理运行器"
 
 #: src/ui/details-preferences.ui:492 src/ui/new.ui:358
-msgid "DXVK Version"
+msgid "DXVK version"
 msgstr "DXVK 版本"
 
 #: src/ui/details-preferences.ui:535 src/ui/details-preferences.ui:685
@@ -477,7 +471,8 @@ msgid "Manage DXVK versions"
 msgstr "管理 DXVK 版本"
 
 #: src/ui/details-preferences.ui:567
-msgid "VKD3D Version"
+#, fuzzy
+msgid "VKD3D version"
 msgstr "VKD3D 版本"
 
 #: src/ui/details-preferences.ui:610
@@ -485,16 +480,19 @@ msgid "Manage VKD3D versions"
 msgstr "管理 VKD3D 版本"
 
 #: src/ui/details-preferences.ui:642
-msgid "NVAPI Version"
+#, fuzzy
+msgid "NVAPI version"
 msgstr "NVAPI 版本"
 
 #: src/ui/details-preferences.ui:717
-msgid "Windows Version"
+#, fuzzy
+msgid "Windows version"
 msgstr "Windows 版本"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-msgid "DLL Overrides"
+#, fuzzy
+msgid "DLL overrides"
 msgstr "DLL 覆盖"
 
 #: src/ui/details-preferences.ui:798
@@ -545,27 +543,44 @@ msgstr "启用 wine fixme 日志"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "记录未在 Wine 中实现的代码路径。"
 
-#: src/ui/details-programs.ui:74
+#: src/ui/details-programs.ui:29
+msgid "No programs found"
+msgstr ""
+
+#: src/ui/details-programs.ui:30
+msgid "New programs will be automatically found."
+msgstr ""
+
+#: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
 msgstr "添加自定义可执行路径"
 
-#: src/ui/details-programs.ui:100
+#: src/ui/details-programs.ui:99
 msgid "Search for installed programs"
 msgstr "搜索已安装的程序"
 
-#: src/ui/details-versioning.ui:142
+#: src/ui/details-versioning.ui:60
+#, fuzzy
+msgid "No states found"
+msgstr "找到 Bottles：%s"
+
+#: src/ui/details-versioning.ui:61
+msgid "Create first state to start using versioning."
+msgstr ""
+
+#: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
 msgstr "键入一条简短注释："
 
-#: src/ui/details-versioning.ui:159
+#: src/ui/details-versioning.ui:110
 msgid "A really short comment"
 msgstr "简短注释"
 
-#: src/ui/details-versioning.ui:173
+#: src/ui/details-versioning.ui:124
 msgid "Save the bottle state."
 msgstr "保存 bottle 状态。"
 
-#: src/ui/details-versioning.ui:238
+#: src/ui/details-versioning.ui:189
 msgid "Create new state"
 msgstr "创建新状态"
 
@@ -575,8 +590,8 @@ msgstr "消息在这里。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/bottle_details.py:276 src/views/bottle_details.py:362
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:64
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "取消"
@@ -677,7 +692,7 @@ msgstr "浏览文件"
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:134
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:147
 msgid "Uninstall"
 msgstr "卸载"
 
@@ -715,11 +730,11 @@ msgstr "该 wineprefix 已导入 Bottles 中。"
 msgid "Read review"
 msgstr "阅读评论"
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
 msgstr "新建一个 Bottle 以开始。"
 
-#: src/ui/list.ui:75
+#: src/ui/list.ui:68
 msgid "Create a new Bottle"
 msgstr "新建一个 Bottle"
 
@@ -921,7 +936,7 @@ msgstr ""
 "\n"
 "您准备好时请点击<b>安装</b>按钮。"
 
-#: src/ui/onboard.ui:263 src/ui/preferences.ui:181
+#: src/ui/onboard.ui:263 src/ui/preferences.ui:180
 msgid "Runners"
 msgstr "运行器"
 
@@ -949,83 +964,80 @@ msgstr "您现在可以创建您的第一个 bottles。"
 msgid "Finish"
 msgstr "完成"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "首选项"
 
-#: src/ui/preferences.ui:18 src/ui/preferences.ui:87
+#: src/ui/preferences.ui:17 src/ui/preferences.ui:86
 msgid "General"
 msgstr "常规"
 
-#: src/ui/preferences.ui:23
+#: src/ui/preferences.ui:22
 msgid "Apperance"
 msgstr "外观"
 
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:331
-msgid "Dark Mode"
-msgstr "深色模式"
+#: src/ui/preferences.ui:27 src/ui/preferences.ui:304
+msgid "Night mode"
+msgstr ""
 
-#: src/ui/preferences.ui:29 src/ui/preferences.ui:332
-msgid "Whether Bottles should use the Dark theme variant."
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:305
+#, fuzzy
+msgid "Whether Bottles should use the Night theme variant."
 msgstr "Bottles 是否应使用深色主题。"
 
-#: src/ui/preferences.ui:55
+#: src/ui/preferences.ui:54
 msgid "Show update date"
 msgstr "显示更新日期"
 
-#: src/ui/preferences.ui:56
+#: src/ui/preferences.ui:55
 msgid "Whether to show the update date in the bottle list."
 msgstr "是否在 bottle 列表中显示更新日期。"
 
-#: src/ui/preferences.ui:93
+#: src/ui/preferences.ui:92
 msgid "Show notifications for downloads and installs."
 msgstr "为下载和安装显示通知。"
 
-#: src/ui/preferences.ui:119
+#: src/ui/preferences.ui:118
 msgid "Temp files"
 msgstr "临时文件"
 
-#: src/ui/preferences.ui:120
+#: src/ui/preferences.ui:119
 msgid "Clean temp files when Bottles launches?"
 msgstr "在 Bottles 启动时清理临时文件吗？"
 
-#: src/ui/preferences.ui:146
+#: src/ui/preferences.ui:145
 msgid "Close Bottles after starting a program"
 msgstr "启动程序后关闭 Bottles"
 
-#: src/ui/preferences.ui:147
+#: src/ui/preferences.ui:146
 msgid "Close Bottles after starting a program from the file manager"
 msgstr "从文件管理器启动程序后关闭 Bottles"
 
-#: src/ui/preferences.ui:190
+#: src/ui/preferences.ui:189
 msgid "Pre-release"
 msgstr "预发布"
 
-#: src/ui/preferences.ui:191
+#: src/ui/preferences.ui:190
 msgid "Whether the above list should display unstable versions."
 msgstr "上面的列表是否应显示不稳定版本。"
 
-#: src/ui/preferences.ui:225
+#: src/ui/preferences.ui:224
 msgid "DXVK/VKD3D"
 msgstr "DXVK/VKD3D"
 
-#: src/ui/preferences.ui:230
+#: src/ui/preferences.ui:229
 msgid "DXVK"
 msgstr "DXVK"
 
-#: src/ui/preferences.ui:240
+#: src/ui/preferences.ui:239
 msgid "VKD3D"
 msgstr "VKD3D"
 
-#: src/ui/preferences.ui:250
+#: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:117
-msgid "Versioning"
-msgstr "版本控制"
-
-#: src/ui/preferences.ui:298 src/views/details.py:121
+#: src/ui/preferences.ui:271 src/views/details.py:121
 msgid "Installers"
 msgstr "安装器"
 
@@ -1057,20 +1069,21 @@ msgstr "Bottles 问题"
 msgid "Remove from Programs"
 msgstr "从程序中删除"
 
-#: src/ui/state-entry.ui:45
-msgid "Delete state"
-msgstr "删除状态"
+#: src/ui/program-entry.ui:134
+msgid "Add desktop entry"
+msgstr ""
 
-#: src/ui/state-entry.ui:71
+#: src/ui/state-entry.ui:47
 msgid "Restore this state"
 msgstr "恢复该状态"
 
-#: src/ui/state-entry.ui:98
+#: src/ui/state-entry.ui:74
 msgid "Creation date"
 msgstr "创建日期"
 
 #: src/ui/window.ui:20
-msgid "Import and export"
+#, fuzzy
+msgid "Import/export"
 msgstr "导入和导出"
 
 #: src/ui/window.ui:57
@@ -1106,7 +1119,7 @@ msgstr ""
 msgid "Go back"
 msgstr "返回"
 
-#: src/operation.py:62
+#: src/operation.py:63
 msgid "Calculating..."
 msgstr "计算中…"
 
@@ -1146,24 +1159,24 @@ msgstr "[刷新] 请求已收到。"
 msgid "You are offline, unable to download."
 msgstr "您已离线，无法下载。"
 
-#: src/window.py:140 src/window.py:192
+#: src/window.py:140 src/window.py:193
 msgid "Bottle details"
 msgstr "Bottle 详情"
 
-#: src/window.py:182
+#: src/window.py:183
 msgid "Bottles Started!"
 msgstr "Bottles 已启动！"
 
-#: src/window.py:196
+#: src/window.py:197
 msgid "Import & export"
 msgstr "导入和导出"
 
-#: src/backend/backup.py:59
+#: src/backend/backup.py:60
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "备份 {0}"
 
-#: src/backend/backup.py:97
+#: src/backend/backup.py:98
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "正在导入备份：{0}"
@@ -1172,62 +1185,62 @@ msgstr "正在导入备份：{0}"
 msgid "Missing essential components. Installing…"
 msgstr "缺少必要的组件。 正在安装…"
 
-#: src/backend/manager.py:1018
+#: src/backend/manager.py:1019
 msgid "Generating bottle configuration"
 msgstr "生成 bottle 配置"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1038
 msgid "The WINE config is being updated…"
 msgstr "正在更新 WINE 配置…"
 
-#: src/backend/manager.py:1039
+#: src/backend/manager.py:1040
 msgid "WINE config updated!"
 msgstr "WINE 配置已更新！"
 
-#: src/backend/manager.py:1048
+#: src/backend/manager.py:1049
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "运行为 Flatpak，沙箱化用户目录…"
 
-#: src/backend/manager.py:1050
+#: src/backend/manager.py:1051
 msgid "Sandboxing userdir…"
 msgstr "沙箱化用户目录…"
 
-#: src/backend/manager.py:1067
+#: src/backend/manager.py:1069
 msgid "Setting Windows version…"
 msgstr "设置 Windows 版本…"
 
-#: src/backend/manager.py:1075
+#: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
 msgstr "应用 CMD 默认设置…"
 
-#: src/backend/manager.py:1083
+#: src/backend/manager.py:1085
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "正在应用环境：{0} …"
 
-#: src/backend/manager.py:1093
+#: src/backend/manager.py:1095
 msgid "Installing DXVK…"
 msgstr "正在安装 DXVK …"
 
-#: src/backend/manager.py:1099
+#: src/backend/manager.py:1101
 msgid "Installing VKD3D…"
 msgstr "正在安装 VKD3D …"
 
-#: src/backend/manager.py:1105
+#: src/backend/manager.py:1107
 msgid "Installing DXVK-NVAPI…"
 msgstr "正在安装 DXVK-NVAPI …"
 
-#: src/backend/manager.py:1112
+#: src/backend/manager.py:1114
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "正在安装依赖项：{0} …"
 
-#: src/backend/manager.py:1129
+#: src/backend/manager.py:1131
 msgid "Creating versioning state 0…"
 msgstr "正在创建版本状态 0 …"
 
-#: src/backend/manager.py:1136
+#: src/backend/manager.py:1138
 msgid "Finalizing…"
 msgstr "完成中…"
 
@@ -1275,49 +1288,53 @@ msgstr "程序"
 msgid "Found in your bottle's Start menu."
 msgstr "在 bottle 的开始菜单中找到。"
 
+#: src/views/details.py:117
+msgid "Versioning"
+msgstr "版本控制"
+
 #: src/views/details.py:125
 msgid "Task manager"
 msgstr "任务管理器"
 
-#: src/views/bottle_details.py:160
+#: src/views/bottle_details.py:170
 #, python-format
 msgid "Updated: %s"
 msgstr "已更新：%s"
 
 #. set arch
-#: src/views/bottle_details.py:163
+#: src/views/bottle_details.py:173
 msgid "64-bit"
 msgstr "64 位"
 
-#: src/views/bottle_details.py:165
+#: src/views/bottle_details.py:175
 msgid "32-bit"
 msgstr "32 位"
 
-#: src/views/bottle_details.py:262 src/views/list.py:121
+#: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "选择一个 Windows 可执行文件"
 
-#: src/views/bottle_details.py:265 src/views/list.py:124
+#: src/views/bottle_details.py:275 src/views/list.py:124
 msgid "Run"
 msgstr "运行"
 
-#: src/views/bottle_details.py:329
+#: src/views/bottle_details.py:351
 msgid "Select the location where to save the backup config"
 msgstr "选择保存备份配置的位置"
 
-#: src/views/bottle_details.py:333
+#: src/views/bottle_details.py:355
 msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
-#: src/views/bottle_details.py:340
+#: src/views/bottle_details.py:362
 msgid "Export"
 msgstr "导出"
 
-#: src/views/bottle_details.py:371
+#: src/views/bottle_details.py:393
 msgid "Confirm deletion"
 msgstr "确认删除"
 
-#: src/views/bottle_details.py:373
+#: src/views/bottle_details.py:395
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
@@ -1333,11 +1350,11 @@ msgstr "选择可执行文件的工作目录"
 msgid "Done"
 msgstr "完成"
 
-#: src/views/bottle_programs.py:59
+#: src/views/bottle_programs.py:60
 msgid "Choose an executable path"
 msgstr "选择一个可执行路径"
 
-#: src/views/bottle_programs.py:62
+#: src/views/bottle_programs.py:63
 msgid "Add"
 msgstr "添加"
 
@@ -1386,6 +1403,30 @@ msgstr "为您的实验提供的清洁环境。"
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "成功创建了名为“{0}”的 bottle"
+
+#~ msgid "Dark theme"
+#~ msgstr "深色主题"
+
+#~ msgid "Use a dark application theme."
+#~ msgstr "使用深色应用程序主题。"
+
+#~ msgid "DXVK Version"
+#~ msgstr "DXVK 版本"
+
+#~ msgid "Experiments:versioning"
+#~ msgstr "实验功能：版本控制"
+
+#~ msgid "Toggle experimental versioning feature."
+#~ msgstr "开关实验性的版本控制功能。"
+
+#~ msgid "Dark Mode"
+#~ msgstr "深色模式"
+
+#~ msgid "Delete state"
+#~ msgstr "删除状态"
+
+#~ msgid "Import and export"
+#~ msgstr "导入和导出"
 
 #~ msgid "Creating sandboxed folders…"
 #~ msgstr "创建沙箱文件夹中…"
@@ -1577,12 +1618,6 @@ msgstr "成功创建了名为“{0}”的 bottle"
 
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "德语翻译，感谢 @thericosanto"
-
-#~ msgid "Enable the dark theme."
-#~ msgstr "启用深色主题。"
-
-#~ msgid "DXVK version"
-#~ msgstr "DXVK 版本"
 
 #~ msgid "Utility & Preferences"
 #~ msgstr "工具和首选项"
@@ -2225,9 +2260,6 @@ msgstr "成功创建了名为“{0}”的 bottle"
 
 #~ msgid "Key: [{0}] not in bottle: [{1}] configuration Parameters, updating."
 #~ msgstr "键值：[{0}] 不在 bottle：[{1}] 配置参数中，正在更新。"
-
-#~ msgid "Bottles found: %s"
-#~ msgstr "找到 Bottles：%s"
 
 #~ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
 #~ msgstr "正在为 bottle：[{2}] 设置键值：[{0}] 为 [{1}] …"

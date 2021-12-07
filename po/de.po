@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-23 21:12+0100\n"
+"POT-Creation-Date: 2021-12-07 21:49+0100\n"
 "PO-Revision-Date: 2021-10-31 06:02+0000\n"
 "Last-Translator: Mirko Brombin <send@mirko.pm>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -20,9 +20,9 @@ msgstr ""
 "X-Generator: Weblate 4.9-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
-#: src/window.py:145 src/window.py:194
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
+#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
+#: src/window.py:195
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -169,12 +169,13 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr "Schalten Sie das Dialogfeld für die Flatpak-Migration um."
 
 #: data/com.usebottles.bottles.gschema.xml:11
-msgid "Dark theme"
-msgstr "Dunkles Thema"
+msgid "Night theme"
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:12
-msgid "Use a dark application theme."
-msgstr ""
+#, fuzzy
+msgid "Use the night theme."
+msgstr "Aktiviere das dunkle Thema."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -203,7 +204,7 @@ msgstr "Fensterhöhe"
 msgid "Change the window height."
 msgstr "Fensterhöhe ändern"
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
+#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Benachrichtigungen"
@@ -240,7 +241,7 @@ msgstr "Startansicht"
 msgid "Choose which view the application should be started in."
 msgstr "Wähle welche Ansicht beim starten angezeigt werden soll."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:263
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
 msgstr "Versuche"
 
@@ -254,28 +255,19 @@ msgstr ""
 "Candidates für Runner"
 
 #: data/com.usebottles.bottles.gschema.xml:56
-msgid "Experiments:versioning"
-msgstr "Experimente:Versionierung"
-
-#: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
-msgid "Toggle experimental versioning feature."
-msgstr "Schalten Sie die experimentelle Versionierungsfunktion um"
-
-#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
 msgstr "Experimente:Installateure"
 
-#: data/com.usebottles.bottles.gschema.xml:62
+#: data/com.usebottles.bottles.gschema.xml:57
 #, fuzzy
 msgid "Toggle experimental installer features."
 msgstr "Schalten Sie die Funktion für experimentelle Installer um"
 
-#: data/com.usebottles.bottles.gschema.xml:66
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Automatisches Schließen von Bottles"
 
-#: data/com.usebottles.bottles.gschema.xml:67
+#: data/com.usebottles.bottles.gschema.xml:62
 #, fuzzy
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
@@ -351,7 +343,7 @@ msgstr ""
 "Die Dateien auf dieser Seite wurden zwar geprüft, stehen aber möglicherweise "
 "unter einer proprietären Lizenz."
 
-#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:162
 msgid "Read documentation"
 msgstr "Dokumentation lesen"
 
@@ -363,7 +355,7 @@ msgstr "Fehlende Abhängigkeit melden"
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework 4 ..."
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
+#: src/ui/details-installers.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -408,7 +400,8 @@ msgstr ""
 "Deaktivieren Sie diese Option, wenn Sie grafische Probleme haben."
 
 #: src/ui/details-preferences.ui:89
-msgid "Use Gamemode"
+#, fuzzy
+msgid "Use GameMode"
 msgstr "Gamemode verwenden"
 
 #: src/ui/details-preferences.ui:90
@@ -511,7 +504,7 @@ msgid "Manage runners"
 msgstr "Runner verwalten"
 
 #: src/ui/details-preferences.ui:492 src/ui/new.ui:358
-msgid "DXVK Version"
+msgid "DXVK version"
 msgstr "DXVK Version"
 
 #: src/ui/details-preferences.ui:535 src/ui/details-preferences.ui:685
@@ -520,7 +513,8 @@ msgid "Manage DXVK versions"
 msgstr "DXVK Version verwalten"
 
 #: src/ui/details-preferences.ui:567
-msgid "VKD3D Version"
+#, fuzzy
+msgid "VKD3D version"
 msgstr "VKD3D Version"
 
 #: src/ui/details-preferences.ui:610
@@ -530,17 +524,18 @@ msgstr "DXVK Version verwalten"
 
 #: src/ui/details-preferences.ui:642
 #, fuzzy
-msgid "NVAPI Version"
+msgid "NVAPI version"
 msgstr "DXVK Version"
 
 #: src/ui/details-preferences.ui:717
 #, fuzzy
-msgid "Windows Version"
+msgid "Windows version"
 msgstr "Version anzeigen"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-msgid "DLL Overrides"
+#, fuzzy
+msgid "DLL overrides"
 msgstr "DLL Überbrückungen"
 
 #: src/ui/details-preferences.ui:798
@@ -596,27 +591,44 @@ msgstr "Wine fixme Logs aktivieren"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Logge Programmpfade, die in Wine nicht implementiert sind."
 
-#: src/ui/details-programs.ui:74
+#: src/ui/details-programs.ui:29
+msgid "No programs found"
+msgstr ""
+
+#: src/ui/details-programs.ui:30
+msgid "New programs will be automatically found."
+msgstr ""
+
+#: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
 msgstr "Benutzerdefinierten Pfad für eine ausführbare Datei hinzufügen"
 
-#: src/ui/details-programs.ui:100
+#: src/ui/details-programs.ui:99
 msgid "Search for installed programs"
 msgstr "Suche nach installierten Programmen"
 
-#: src/ui/details-versioning.ui:142
+#: src/ui/details-versioning.ui:60
+#, fuzzy
+msgid "No states found"
+msgstr "Gefundene Flaschen: %s"
+
+#: src/ui/details-versioning.ui:61
+msgid "Create first state to start using versioning."
+msgstr ""
+
+#: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
 msgstr "Gib einen wirklich kurzen Kommentar ein:"
 
-#: src/ui/details-versioning.ui:159
+#: src/ui/details-versioning.ui:110
 msgid "A really short comment"
 msgstr "Einen wirklich kurzen Kommentar"
 
-#: src/ui/details-versioning.ui:173
+#: src/ui/details-versioning.ui:124
 msgid "Save the bottle state."
 msgstr "Speichere den Status der bottle."
 
-#: src/ui/details-versioning.ui:238
+#: src/ui/details-versioning.ui:189
 msgid "Create new state"
 msgstr "Neuen Status erzeugen"
 
@@ -626,8 +638,8 @@ msgstr "Nachricht hier ablegen."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/bottle_details.py:276 src/views/bottle_details.py:362
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:64
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -736,7 +748,7 @@ msgstr "Dateien durchsuchen"
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:134
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:147
 msgid "Uninstall"
 msgstr "Deinstallieren"
 
@@ -777,11 +789,11 @@ msgstr "Dieses wineprefix wurde bereits in Bottles importiert."
 msgid "Read review"
 msgstr ""
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
 msgstr "Beginnen Sie mit der Erstellung einer Bottle."
 
-#: src/ui/list.ui:75
+#: src/ui/list.ui:68
 msgid "Create a new Bottle"
 msgstr "Eine neue Bottle anlegen"
 
@@ -997,7 +1009,7 @@ msgstr ""
 "\n"
 "Wenn Sie bereit sind, drücken Sie die Schaltfläche <b>Installieren</b>."
 
-#: src/ui/onboard.ui:263 src/ui/preferences.ui:181
+#: src/ui/onboard.ui:263 src/ui/preferences.ui:180
 msgid "Runners"
 msgstr "Runner"
 
@@ -1027,84 +1039,81 @@ msgstr "Du bist nun bereit deine ersten Bottles anzulegen."
 msgid "Finish"
 msgstr "Fertig"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "Eigenschaften"
 
-#: src/ui/preferences.ui:18 src/ui/preferences.ui:87
+#: src/ui/preferences.ui:17 src/ui/preferences.ui:86
 msgid "General"
 msgstr "Allgemein"
 
-#: src/ui/preferences.ui:23
+#: src/ui/preferences.ui:22
 msgid "Apperance"
 msgstr "Darstellung"
 
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:331
-msgid "Dark Mode"
-msgstr "Dunkler Modus"
+#: src/ui/preferences.ui:27 src/ui/preferences.ui:304
+msgid "Night mode"
+msgstr ""
 
-#: src/ui/preferences.ui:29 src/ui/preferences.ui:332
-msgid "Whether Bottles should use the Dark theme variant."
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:305
+#, fuzzy
+msgid "Whether Bottles should use the Night theme variant."
 msgstr "Ob Bottles die dunkle Variante des Thema benutzen soll."
 
-#: src/ui/preferences.ui:55
+#: src/ui/preferences.ui:54
 msgid "Show update date"
 msgstr "Update-Datum anzeigen"
 
-#: src/ui/preferences.ui:56
+#: src/ui/preferences.ui:55
 msgid "Whether to show the update date in the bottle list."
 msgstr "Ob das Update-Datum in der Bottle-Liste angezeigt werden soll."
 
-#: src/ui/preferences.ui:93
+#: src/ui/preferences.ui:92
 msgid "Show notifications for downloads and installs."
 msgstr "Zeige Benachrichtigungen für Downloads und Installationen."
 
-#: src/ui/preferences.ui:119
+#: src/ui/preferences.ui:118
 msgid "Temp files"
 msgstr "Temporäre Dateien"
 
-#: src/ui/preferences.ui:120
+#: src/ui/preferences.ui:119
 msgid "Clean temp files when Bottles launches?"
 msgstr "Temporäre Dateien leeren, wenn Bottles gestartet wird?"
 
-#: src/ui/preferences.ui:146
+#: src/ui/preferences.ui:145
 msgid "Close Bottles after starting a program"
 msgstr "Bottles nach dem Starten eines Programms schließen"
 
-#: src/ui/preferences.ui:147
+#: src/ui/preferences.ui:146
 msgid "Close Bottles after starting a program from the file manager"
 msgstr ""
 "Bottles nach dem Starten eines Programms über den Dateimanager schließen"
 
-#: src/ui/preferences.ui:190
+#: src/ui/preferences.ui:189
 msgid "Pre-release"
 msgstr "Vorabversion"
 
-#: src/ui/preferences.ui:191
+#: src/ui/preferences.ui:190
 msgid "Whether the above list should display unstable versions."
 msgstr "Ob die obere Liste instabile Versionen anzeigen soll."
 
-#: src/ui/preferences.ui:225
+#: src/ui/preferences.ui:224
 msgid "DXVK/VKD3D"
 msgstr "DXVK/VKD3D"
 
-#: src/ui/preferences.ui:230
+#: src/ui/preferences.ui:229
 msgid "DXVK"
 msgstr "DXVK"
 
-#: src/ui/preferences.ui:240
+#: src/ui/preferences.ui:239
 msgid "VKD3D"
 msgstr "VKD3D"
 
-#: src/ui/preferences.ui:250
+#: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:117
-msgid "Versioning"
-msgstr "Versionierung"
-
-#: src/ui/preferences.ui:298 src/views/details.py:121
+#: src/ui/preferences.ui:271 src/views/details.py:121
 msgid "Installers"
 msgstr "Installer"
 
@@ -1138,20 +1147,21 @@ msgstr "Bottles Probleme"
 msgid "Remove from Programs"
 msgstr "Aus Programme entfernen"
 
-#: src/ui/state-entry.ui:45
-msgid "Delete state"
-msgstr "Stand löschen"
+#: src/ui/program-entry.ui:134
+msgid "Add desktop entry"
+msgstr ""
 
-#: src/ui/state-entry.ui:71
+#: src/ui/state-entry.ui:47
 msgid "Restore this state"
 msgstr "Diesen Stand wiederherstellen"
 
-#: src/ui/state-entry.ui:98
+#: src/ui/state-entry.ui:74
 msgid "Creation date"
 msgstr "Erstelldatum"
 
 #: src/ui/window.ui:20
-msgid "Import and export"
+#, fuzzy
+msgid "Import/export"
 msgstr "Import und Export"
 
 #: src/ui/window.ui:57
@@ -1189,7 +1199,7 @@ msgstr ""
 msgid "Go back"
 msgstr "Zurück"
 
-#: src/operation.py:62
+#: src/operation.py:63
 msgid "Calculating..."
 msgstr ""
 
@@ -1230,25 +1240,25 @@ msgstr "[Neu laden] Anforderung erhalten."
 msgid "You are offline, unable to download."
 msgstr "Sie sind offline und können nicht herunterladen."
 
-#: src/window.py:140 src/window.py:192
+#: src/window.py:140 src/window.py:193
 msgid "Bottle details"
 msgstr "Bottle-Details"
 
-#: src/window.py:182
+#: src/window.py:183
 msgid "Bottles Started!"
 msgstr "Bottles gestartet!"
 
-#: src/window.py:196
+#: src/window.py:197
 #, fuzzy
 msgid "Import & export"
 msgstr "Import und Export"
 
-#: src/backend/backup.py:59
+#: src/backend/backup.py:60
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Sicherung {0}"
 
-#: src/backend/backup.py:97
+#: src/backend/backup.py:98
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Sicherung importieren: {0}"
@@ -1257,71 +1267,71 @@ msgstr "Sicherung importieren: {0}"
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1018
+#: src/backend/manager.py:1019
 #, fuzzy
 msgid "Generating bottle configuration"
 msgstr "Konfigurationsdatei für Bottle wird erzeugt …"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1038
 #, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "Die Wine-Konfiguration wird aktualisiert …"
 
-#: src/backend/manager.py:1039
+#: src/backend/manager.py:1040
 #, fuzzy
 msgid "WINE config updated!"
 msgstr "Wine-Konfiguration aktualisiert!"
 
-#: src/backend/manager.py:1048
+#: src/backend/manager.py:1049
 #, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Ausführung als Flatpak, isolierte Ordner werden erstellt …"
 
-#: src/backend/manager.py:1050
+#: src/backend/manager.py:1051
 msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1067
+#: src/backend/manager.py:1069
 #, fuzzy
 msgid "Setting Windows version…"
 msgstr "Version anzeigen"
 
-#: src/backend/manager.py:1075
+#: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/manager.py:1083
+#: src/backend/manager.py:1085
 #, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Umgebung anwenden: {0} …"
 
-#: src/backend/manager.py:1093
+#: src/backend/manager.py:1095
 #, fuzzy
 msgid "Installing DXVK…"
 msgstr "Installation von dxvk …"
 
-#: src/backend/manager.py:1099
+#: src/backend/manager.py:1101
 #, fuzzy
 msgid "Installing VKD3D…"
 msgstr "Installieren von vkd3d …"
 
-#: src/backend/manager.py:1105
+#: src/backend/manager.py:1107
 #, fuzzy
 msgid "Installing DXVK-NVAPI…"
 msgstr "Installation von dxvk …"
 
-#: src/backend/manager.py:1112
+#: src/backend/manager.py:1114
 #, fuzzy, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Installation der {0}-Abhängigkeit in Flasche {1} …"
 
-#: src/backend/manager.py:1129
+#: src/backend/manager.py:1131
 #, fuzzy
 msgid "Creating versioning state 0…"
 msgstr "Erstellen des Versionierungsstatus 0 …"
 
-#: src/backend/manager.py:1136
+#: src/backend/manager.py:1138
 msgid "Finalizing…"
 msgstr ""
 
@@ -1370,51 +1380,55 @@ msgstr "Programme"
 msgid "Found in your bottle's Start menu."
 msgstr "Dies sind die Programme, die sich im Startmenü Ihrer Bottle befinden"
 
+#: src/views/details.py:117
+msgid "Versioning"
+msgstr "Versionierung"
+
 #: src/views/details.py:125
 msgid "Task manager"
 msgstr "Task-Manager"
 
-#: src/views/bottle_details.py:160
+#: src/views/bottle_details.py:170
 #, python-format
 msgid "Updated: %s"
 msgstr "Aktualisiert: %s"
 
 #. set arch
-#: src/views/bottle_details.py:163
+#: src/views/bottle_details.py:173
 msgid "64-bit"
 msgstr "64-bit"
 
-#: src/views/bottle_details.py:165
+#: src/views/bottle_details.py:175
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/views/bottle_details.py:262 src/views/list.py:121
+#: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Ausführbare Windows-Datei auswählen"
 
-#: src/views/bottle_details.py:265 src/views/list.py:124
+#: src/views/bottle_details.py:275 src/views/list.py:124
 msgid "Run"
 msgstr "Ausführen"
 
-#: src/views/bottle_details.py:329
+#: src/views/bottle_details.py:351
 msgid "Select the location where to save the backup config"
 msgstr ""
 "Wählen Sie den Ort, wo die Sicherungskonfiguration gespeichert werden soll"
 
-#: src/views/bottle_details.py:333
+#: src/views/bottle_details.py:355
 msgid "Select the location where to save the backup archive"
 msgstr ""
 "Wählen Sie den Ort, an dem das Sicherungsarchiv gespeichert werden soll"
 
-#: src/views/bottle_details.py:340
+#: src/views/bottle_details.py:362
 msgid "Export"
 msgstr ""
 
-#: src/views/bottle_details.py:371
+#: src/views/bottle_details.py:393
 msgid "Confirm deletion"
 msgstr "Bestätigung der Löschung"
 
-#: src/views/bottle_details.py:373
+#: src/views/bottle_details.py:395
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr ""
 "Sind Sie sicher, dass Sie diese Bottle und alle Dateien löschen wollen?"
@@ -1432,11 +1446,11 @@ msgstr "Wähle das Arbeitsverzeichnis für ausführbare Dateien"
 msgid "Done"
 msgstr "Fertig"
 
-#: src/views/bottle_programs.py:59
+#: src/views/bottle_programs.py:60
 msgid "Choose an executable path"
 msgstr "Pfad zur ausführbaren Datei auswählen"
 
-#: src/views/bottle_programs.py:62
+#: src/views/bottle_programs.py:63
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -1486,6 +1500,28 @@ msgstr "Eine übersichtliche Umgebung für Ihre Experimente."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Eine Bottle mit dem Namen \"{0}\" wurde erfolgreich angelegt"
+
+#~ msgid "Dark theme"
+#~ msgstr "Dunkles Thema"
+
+#~ msgid "DXVK Version"
+#~ msgstr "DXVK Version"
+
+#~ msgid "Experiments:versioning"
+#~ msgstr "Experimente:Versionierung"
+
+#, fuzzy
+#~ msgid "Toggle experimental versioning feature."
+#~ msgstr "Schalten Sie die experimentelle Versionierungsfunktion um"
+
+#~ msgid "Dark Mode"
+#~ msgstr "Dunkler Modus"
+
+#~ msgid "Delete state"
+#~ msgstr "Stand löschen"
+
+#~ msgid "Import and export"
+#~ msgstr "Import und Export"
 
 #, fuzzy
 #~ msgid "Creating sandboxed folders…"
@@ -1685,12 +1721,6 @@ msgstr "Eine Bottle mit dem Namen \"{0}\" wurde erfolgreich angelegt"
 #, fuzzy
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "Deutsche Übersetzungen Dank an @thericosanto"
-
-#~ msgid "Enable the dark theme."
-#~ msgstr "Aktiviere das dunkle Thema."
-
-#~ msgid "DXVK version"
-#~ msgstr "DXVK Version"
 
 #~ msgid "Utility & Preferences"
 #~ msgstr "Dienstprogramme & Einstellungen"
@@ -2193,9 +2223,6 @@ msgstr "Eine Bottle mit dem Namen \"{0}\" wurde erfolgreich angelegt"
 #~ msgstr ""
 #~ "Schlüssel: [{0}] nicht in Flasche: [{1}] Konfiguration Parameter, "
 #~ "aktualisieren."
-
-#~ msgid "Bottles found: %s"
-#~ msgstr "Gefundene Flaschen: %s"
 
 #~ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
 #~ msgstr "Einstellung Schlüssel: [{0}] bis [{1}] für Flasche: [{2}] …"

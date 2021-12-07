@@ -26,7 +26,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     __gtype_name__ = 'PreferencesWindow'
 
     # region Widgets
-    switch_dark = Gtk.Template.Child()
+    switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
@@ -51,8 +51,8 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.manager = window.manager
 
         # set widget defaults
-        self.switch_dark.set_active(
-            self.settings.get_boolean("dark-theme")
+        self.switch_theme.set_active(
+            self.settings.get_boolean("night-theme")
         )
         self.switch_notifications.set_active(
             self.settings.get_boolean("notifications")
@@ -78,7 +78,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.populate_nvapi_list()
 
         # connect signals
-        self.switch_dark.connect('state-set', self.__toggle_dark)
+        self.switch_theme.connect('state-set', self.__toggle_night)
         self.switch_notifications.connect('state-set', self.__toggle_notify)
         self.switch_temp.connect('state-set', self.__toggle_temp)
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
@@ -86,8 +86,8 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
 
-    def __toggle_dark(self, widget, state):
-        self.settings.set_boolean("dark-theme", state)
+    def __toggle_night(self, widget, state):
+        self.settings.set_boolean("night-theme", state)
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
             state

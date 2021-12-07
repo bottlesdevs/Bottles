@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-23 21:12+0100\n"
+"POT-Creation-Date: 2021-12-07 21:49+0100\n"
 "PO-Revision-Date: 2021-11-15 00:13+0000\n"
 "Last-Translator: ovari <ovari123@zoho.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
@@ -20,9 +20,9 @@ msgstr ""
 "X-Generator: Weblate 4.9.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
-#: src/window.py:145 src/window.py:194
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
+#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
+#: src/window.py:195
 msgid "Bottles"
 msgstr "Tárolók"
 
@@ -160,12 +160,13 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr "Flatpak áttelepítése párbeszédpanel ki-/bekapcsolása."
 
 #: data/com.usebottles.bottles.gschema.xml:11
-msgid "Dark theme"
-msgstr "Sötét téma"
+msgid "Night theme"
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:12
-msgid "Use a dark application theme."
-msgstr "Sötét alkalmazástéma használata."
+#, fuzzy
+msgid "Use the night theme."
+msgstr "Engedélyezze a sötét témát."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -191,7 +192,7 @@ msgstr "Ablakmagasság"
 msgid "Change the window height."
 msgstr "Ablak magasság módosítása."
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
+#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Értesítések"
@@ -225,7 +226,7 @@ msgid "Choose which view the application should be started in."
 msgstr ""
 "Válassza ki, hogy melyik nézetet kell betölteni az alkalmazás indításakor."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:263
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
 msgstr "Kísérletek"
 
@@ -238,26 +239,18 @@ msgstr ""
 "kiadásra jelölt."
 
 #: data/com.usebottles.bottles.gschema.xml:56
-msgid "Experiments:versioning"
-msgstr "Kísérletek: verziókészítés"
-
-#: data/com.usebottles.bottles.gschema.xml:57
-msgid "Toggle experimental versioning feature."
-msgstr "Kísérleti verziófunkció ki-/bekapcsolása."
-
-#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
 msgstr "Kísérletek: telepítők"
 
-#: data/com.usebottles.bottles.gschema.xml:62
+#: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental installer features."
 msgstr "Kísérleti telepítők ki-/bekapcsolása."
 
-#: data/com.usebottles.bottles.gschema.xml:66
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Tárolók önműködő bezárása"
 
-#: data/com.usebottles.bottles.gschema.xml:67
+#: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
 "Zárja be a Tárolókat, miután elindította a végrehajtható fájlt a "
@@ -332,7 +325,7 @@ msgstr ""
 "Míg az ezen az oldalon található fájlok ellenőrzése megtörtént, "
 "előfordulhat, hogy saját licenc alatt vannak."
 
-#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:162
 msgid "Read documentation"
 msgstr "Dokumentáció olvasása"
 
@@ -344,7 +337,7 @@ msgstr "Jelentse a hiányzó függőséget"
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework 4…"
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
+#: src/ui/details-installers.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -387,7 +380,8 @@ msgstr ""
 "Tiltsa le, ha grafikus hibákat tapasztal."
 
 #: src/ui/details-preferences.ui:89
-msgid "Use Gamemode"
+#, fuzzy
+msgid "Use GameMode"
 msgstr "Használja a játék módot"
 
 #: src/ui/details-preferences.ui:90
@@ -491,7 +485,7 @@ msgid "Manage runners"
 msgstr "Futtatók kezelése"
 
 #: src/ui/details-preferences.ui:492 src/ui/new.ui:358
-msgid "DXVK Version"
+msgid "DXVK version"
 msgstr "DXVK-verzió"
 
 #: src/ui/details-preferences.ui:535 src/ui/details-preferences.ui:685
@@ -500,7 +494,8 @@ msgid "Manage DXVK versions"
 msgstr "DXVK-verzióinak kezelése"
 
 #: src/ui/details-preferences.ui:567
-msgid "VKD3D Version"
+#, fuzzy
+msgid "VKD3D version"
 msgstr "VKD3D-verzió"
 
 #: src/ui/details-preferences.ui:610
@@ -508,16 +503,19 @@ msgid "Manage VKD3D versions"
 msgstr "VKD3D-verzióinak kezelése"
 
 #: src/ui/details-preferences.ui:642
-msgid "NVAPI Version"
+#, fuzzy
+msgid "NVAPI version"
 msgstr "NVAPI-verzió"
 
 #: src/ui/details-preferences.ui:717
-msgid "Windows Version"
+#, fuzzy
+msgid "Windows version"
 msgstr "Windows verzió"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-msgid "DLL Overrides"
+#, fuzzy
+msgid "DLL overrides"
 msgstr "DLL felülírja"
 
 #: src/ui/details-preferences.ui:798
@@ -572,27 +570,43 @@ msgstr "Engedélyezze a wine fixme naplóit"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "A Wine programban nem végrehajtott naplózási útvonalak."
 
-#: src/ui/details-programs.ui:74
+#: src/ui/details-programs.ui:29
+msgid "No programs found"
+msgstr ""
+
+#: src/ui/details-programs.ui:30
+msgid "New programs will be automatically found."
+msgstr ""
+
+#: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
 msgstr "Egyéni végrehajtható fájl elérési útja hozzáadása"
 
-#: src/ui/details-programs.ui:100
+#: src/ui/details-programs.ui:99
 msgid "Search for installed programs"
 msgstr "Keresse meg a telepített programokat"
 
-#: src/ui/details-versioning.ui:142
+#: src/ui/details-versioning.ui:60
+msgid "No states found"
+msgstr ""
+
+#: src/ui/details-versioning.ui:61
+msgid "Create first state to start using versioning."
+msgstr ""
+
+#: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
 msgstr "Írjon egy igazán rövid megjegyzést:"
 
-#: src/ui/details-versioning.ui:159
+#: src/ui/details-versioning.ui:110
 msgid "A really short comment"
 msgstr "Igazán rövid megjegyzés"
 
-#: src/ui/details-versioning.ui:173
+#: src/ui/details-versioning.ui:124
 msgid "Save the bottle state."
 msgstr "A tároló állapotának mentése."
 
-#: src/ui/details-versioning.ui:238
+#: src/ui/details-versioning.ui:189
 msgid "Create new state"
 msgstr "Új állapot létrehozása"
 
@@ -602,8 +616,8 @@ msgstr "Ide kerül az üzenet."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/bottle_details.py:276 src/views/bottle_details.py:362
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:64
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "Mégse"
@@ -707,7 +721,7 @@ msgstr "Fájlok keresése"
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:134
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:147
 msgid "Uninstall"
 msgstr "Eltávolítás"
 
@@ -747,11 +761,11 @@ msgstr "Ezt a wineprefixet már importálták a Tárolókba."
 msgid "Read review"
 msgstr "Felülvizsgálat olvasása"
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
 msgstr "Kezdje egy Tároló létrehozásával."
 
-#: src/ui/list.ui:75
+#: src/ui/list.ui:68
 msgid "Create a new Bottle"
 msgstr "Új tároló létrehozása"
 
@@ -959,7 +973,7 @@ msgstr ""
 "\n"
 "Ha készen áll, nyomja meg a <b>Telepítés</b> gombot."
 
-#: src/ui/onboard.ui:263 src/ui/preferences.ui:181
+#: src/ui/onboard.ui:263 src/ui/preferences.ui:180
 msgid "Runners"
 msgstr "Futtatók"
 
@@ -987,83 +1001,80 @@ msgstr "Most készen áll az első tárolók elkészítésére."
 msgid "Finish"
 msgstr "Befejez"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: src/ui/preferences.ui:18 src/ui/preferences.ui:87
+#: src/ui/preferences.ui:17 src/ui/preferences.ui:86
 msgid "General"
 msgstr "Általános"
 
-#: src/ui/preferences.ui:23
+#: src/ui/preferences.ui:22
 msgid "Apperance"
 msgstr "Megjelenés"
 
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:331
-msgid "Dark Mode"
-msgstr "Sötét mód"
+#: src/ui/preferences.ui:27 src/ui/preferences.ui:304
+msgid "Night mode"
+msgstr ""
 
-#: src/ui/preferences.ui:29 src/ui/preferences.ui:332
-msgid "Whether Bottles should use the Dark theme variant."
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:305
+#, fuzzy
+msgid "Whether Bottles should use the Night theme variant."
 msgstr "Akár a Tárolóknak használnia kell a Sötét téma változatot."
 
-#: src/ui/preferences.ui:55
+#: src/ui/preferences.ui:54
 msgid "Show update date"
 msgstr "Frissítési dátum megjelenítése"
 
-#: src/ui/preferences.ui:56
+#: src/ui/preferences.ui:55
 msgid "Whether to show the update date in the bottle list."
 msgstr "A frissítési dátum megjelenítése a tárolólistában."
 
-#: src/ui/preferences.ui:93
+#: src/ui/preferences.ui:92
 msgid "Show notifications for downloads and installs."
 msgstr "Értesítések megjelenítése letöltésekről és telepítésekről."
 
-#: src/ui/preferences.ui:119
+#: src/ui/preferences.ui:118
 msgid "Temp files"
 msgstr "Ideiglenes fájlok"
 
-#: src/ui/preferences.ui:120
+#: src/ui/preferences.ui:119
 msgid "Clean temp files when Bottles launches?"
 msgstr "Tisztítsa meg az ideiglenes fájlokat, amikor a Tároló elindul?"
 
-#: src/ui/preferences.ui:146
+#: src/ui/preferences.ui:145
 msgid "Close Bottles after starting a program"
 msgstr "Program indítása után zárja be a Tárolókat"
 
-#: src/ui/preferences.ui:147
+#: src/ui/preferences.ui:146
 msgid "Close Bottles after starting a program from the file manager"
 msgstr "Zárja be a Tárolókat, miután elindította a programot a fájlkezelőből"
 
-#: src/ui/preferences.ui:190
+#: src/ui/preferences.ui:189
 msgid "Pre-release"
 msgstr "Előzetes kiadás"
 
-#: src/ui/preferences.ui:191
+#: src/ui/preferences.ui:190
 msgid "Whether the above list should display unstable versions."
 msgstr "Akár a fenti listán az instabil verziókat kellene megjeleníteni."
 
-#: src/ui/preferences.ui:225
+#: src/ui/preferences.ui:224
 msgid "DXVK/VKD3D"
 msgstr "DXVK/VKD3D"
 
-#: src/ui/preferences.ui:230
+#: src/ui/preferences.ui:229
 msgid "DXVK"
 msgstr "DXVK"
 
-#: src/ui/preferences.ui:240
+#: src/ui/preferences.ui:239
 msgid "VKD3D"
 msgstr "VKD3D"
 
-#: src/ui/preferences.ui:250
+#: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:117
-msgid "Versioning"
-msgstr "Verziókészítés"
-
-#: src/ui/preferences.ui:298 src/views/details.py:121
+#: src/ui/preferences.ui:271 src/views/details.py:121
 msgid "Installers"
 msgstr "Telepítők"
 
@@ -1095,21 +1106,22 @@ msgstr "Tárolók kérdései"
 msgid "Remove from Programs"
 msgstr "Programok eltávolítása"
 
-#: src/ui/state-entry.ui:45
-msgid "Delete state"
-msgstr "Állapot törlése"
+#: src/ui/program-entry.ui:134
+msgid "Add desktop entry"
+msgstr ""
 
-#: src/ui/state-entry.ui:71
+#: src/ui/state-entry.ui:47
 msgid "Restore this state"
 msgstr "Állítsa vissza ezt az állapotot"
 
-#: src/ui/state-entry.ui:98
+#: src/ui/state-entry.ui:74
 msgid "Creation date"
 msgstr "Létrehozás dátuma"
 
 #: src/ui/window.ui:20
-msgid "Import and export"
-msgstr "Import és export"
+#, fuzzy
+msgid "Import/export"
+msgstr "Importálás és exportálás"
 
 #: src/ui/window.ui:57
 msgid "Documentation"
@@ -1145,7 +1157,7 @@ msgstr ""
 msgid "Go back"
 msgstr "Vissza"
 
-#: src/operation.py:62
+#: src/operation.py:63
 msgid "Calculating..."
 msgstr ""
 
@@ -1185,24 +1197,24 @@ msgstr "[Frissítési] kérelem érkezett."
 msgid "You are offline, unable to download."
 msgstr "Nincs online kapcsolat, nem tudja letölteni."
 
-#: src/window.py:140 src/window.py:192
+#: src/window.py:140 src/window.py:193
 msgid "Bottle details"
 msgstr "Tároló részletei"
 
-#: src/window.py:182
+#: src/window.py:183
 msgid "Bottles Started!"
 msgstr "Tárolók elindítva!"
 
-#: src/window.py:196
+#: src/window.py:197
 msgid "Import & export"
 msgstr "Importálás és exportálás"
 
-#: src/backend/backup.py:59
+#: src/backend/backup.py:60
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "{0} biztonsági másolata"
 
-#: src/backend/backup.py:97
+#: src/backend/backup.py:98
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Biztonsági másolat importálása: {0}"
@@ -1211,66 +1223,66 @@ msgstr "Biztonsági másolat importálása: {0}"
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1018
+#: src/backend/manager.py:1019
 #, fuzzy
 msgid "Generating bottle configuration"
 msgstr "Tároló beállításfájl készítése folyamatban van…"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1038
 msgid "The WINE config is being updated…"
 msgstr "WINE beállításainak frissítése folyamatban van…"
 
-#: src/backend/manager.py:1039
+#: src/backend/manager.py:1040
 msgid "WINE config updated!"
 msgstr "WINE beállításai frissítve!"
 
-#: src/backend/manager.py:1048
+#: src/backend/manager.py:1049
 #, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 "Flatpak-ként futtatása, védőfal mögé helyezett mappák létrehozása "
 "folyamatban van…"
 
-#: src/backend/manager.py:1050
+#: src/backend/manager.py:1051
 msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1067
+#: src/backend/manager.py:1069
 msgid "Setting Windows version…"
 msgstr "A Windows verzió beállítása folyamatban van…"
 
-#: src/backend/manager.py:1075
+#: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/manager.py:1083
+#: src/backend/manager.py:1085
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Környezet alkalmazása folyamatban van: {0}…"
 
-#: src/backend/manager.py:1093
+#: src/backend/manager.py:1095
 msgid "Installing DXVK…"
 msgstr "A DXVK telepítése folyamatban van…"
 
-#: src/backend/manager.py:1099
+#: src/backend/manager.py:1101
 msgid "Installing VKD3D…"
 msgstr "A VKD3D telepítése folyamatban van…"
 
-#: src/backend/manager.py:1105
+#: src/backend/manager.py:1107
 msgid "Installing DXVK-NVAPI…"
 msgstr "A DXVK-NVAPI telepítése folyamatban van…"
 
-#: src/backend/manager.py:1112
+#: src/backend/manager.py:1114
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Függőség telepítése folyamatban van: {0}…"
 
-#: src/backend/manager.py:1129
+#: src/backend/manager.py:1131
 msgid "Creating versioning state 0…"
 msgstr "A(z) 0 verziószámozási állapot létrehozása folyamatban van…"
 
-#: src/backend/manager.py:1136
+#: src/backend/manager.py:1138
 msgid "Finalizing…"
 msgstr "Véglegesítés folyamatban van…"
 
@@ -1318,49 +1330,53 @@ msgstr "Programok"
 msgid "Found in your bottle's Start menu."
 msgstr "A tároló kezdőképernyőjében található."
 
+#: src/views/details.py:117
+msgid "Versioning"
+msgstr "Verziókészítés"
+
 #: src/views/details.py:125
 msgid "Task manager"
 msgstr "Feladatkezelő"
 
-#: src/views/bottle_details.py:160
+#: src/views/bottle_details.py:170
 #, python-format
 msgid "Updated: %s"
 msgstr "Frissítve: %s"
 
 #. set arch
-#: src/views/bottle_details.py:163
+#: src/views/bottle_details.py:173
 msgid "64-bit"
 msgstr "64 bites"
 
-#: src/views/bottle_details.py:165
+#: src/views/bottle_details.py:175
 msgid "32-bit"
 msgstr "32 bites"
 
-#: src/views/bottle_details.py:262 src/views/list.py:121
+#: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "A Windows futtatható fájl kiválasztása"
 
-#: src/views/bottle_details.py:265 src/views/list.py:124
+#: src/views/bottle_details.py:275 src/views/list.py:124
 msgid "Run"
 msgstr "Futtatás"
 
-#: src/views/bottle_details.py:329
+#: src/views/bottle_details.py:351
 msgid "Select the location where to save the backup config"
 msgstr "Válassza ki a beállítások biztonsági másolatának mentési helyét"
 
-#: src/views/bottle_details.py:333
+#: src/views/bottle_details.py:355
 msgid "Select the location where to save the backup archive"
 msgstr "Válassza ki a biztonsági másolat archívum mentésének helyét"
 
-#: src/views/bottle_details.py:340
+#: src/views/bottle_details.py:362
 msgid "Export"
 msgstr ""
 
-#: src/views/bottle_details.py:371
+#: src/views/bottle_details.py:393
 msgid "Confirm deletion"
 msgstr "Törlés megerősítése"
 
-#: src/views/bottle_details.py:373
+#: src/views/bottle_details.py:395
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Biztosan törölni szeretné ezt a Tárolót és az összes fájlt?"
 
@@ -1376,11 +1392,11 @@ msgstr "Végrehajtható fájlok munkakönyvtár kiválasztása"
 msgid "Done"
 msgstr "Befejezve"
 
-#: src/views/bottle_programs.py:59
+#: src/views/bottle_programs.py:60
 msgid "Choose an executable path"
 msgstr "Válasszon egy végrehajtható fájl elérési útja"
 
-#: src/views/bottle_programs.py:62
+#: src/views/bottle_programs.py:63
 msgid "Add"
 msgstr "Hozzáadás"
 
@@ -1429,6 +1445,30 @@ msgstr "Tiszta környezet a kísérletekhez."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "A(z) „{0}” tároló sikeresen létrehozva"
+
+#~ msgid "Dark theme"
+#~ msgstr "Sötét téma"
+
+#~ msgid "Use a dark application theme."
+#~ msgstr "Sötét alkalmazástéma használata."
+
+#~ msgid "DXVK Version"
+#~ msgstr "DXVK-verzió"
+
+#~ msgid "Experiments:versioning"
+#~ msgstr "Kísérletek: verziókészítés"
+
+#~ msgid "Toggle experimental versioning feature."
+#~ msgstr "Kísérleti verziófunkció ki-/bekapcsolása."
+
+#~ msgid "Dark Mode"
+#~ msgstr "Sötét mód"
+
+#~ msgid "Delete state"
+#~ msgstr "Állapot törlése"
+
+#~ msgid "Import and export"
+#~ msgstr "Import és export"
 
 #~ msgid "Creating sandboxed folders…"
 #~ msgstr ""
@@ -1632,12 +1672,6 @@ msgstr "A(z) „{0}” tároló sikeresen létrehozva"
 
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "Német fordítás: @bloomvdomino, @thericosanto"
-
-#~ msgid "Enable the dark theme."
-#~ msgstr "Engedélyezze a sötét témát."
-
-#~ msgid "DXVK version"
-#~ msgstr "DXVK-verzió"
 
 #~ msgid "Utility & Preferences"
 #~ msgstr "Segédprogram és beállítások"

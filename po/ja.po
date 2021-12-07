@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-23 21:12+0100\n"
+"POT-Creation-Date: 2021-12-07 21:49+0100\n"
 "PO-Revision-Date: 2021-11-18 11:55+0000\n"
 "Last-Translator: Kaz Sibuya <sibuyakazokuu@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -20,9 +20,9 @@ msgstr ""
 "X-Generator: Weblate 4.9.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
-#: src/window.py:145 src/window.py:194
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
+#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
+#: src/window.py:195
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -159,12 +159,13 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr "flatpak移行ダイアログを切り替えます。"
 
 #: data/com.usebottles.bottles.gschema.xml:11
-msgid "Dark theme"
-msgstr "ダークテーマ"
+msgid "Night theme"
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:12
-msgid "Use a dark application theme."
-msgstr "ダークテーマを適用します。"
+#, fuzzy
+msgid "Use the night theme."
+msgstr "ダークテーマを有効にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -193,7 +194,7 @@ msgstr "ウィンドウの高さ"
 msgid "Change the window height."
 msgstr "ウィンドウの高さを変更する"
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
+#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "通知"
@@ -228,7 +229,7 @@ msgstr "スタートアップビュー"
 msgid "Choose which view the application should be started in."
 msgstr "アプリケーションの起動時にロードするビューを選択します。"
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:263
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
 msgstr "実験"
 
@@ -242,28 +243,19 @@ msgstr ""
 "リース候補を切り替えます"
 
 #: data/com.usebottles.bottles.gschema.xml:56
-msgid "Experiments:versioning"
-msgstr "実験：バージョン管理"
-
-#: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
-msgid "Toggle experimental versioning feature."
-msgstr "実験的なバージョン管理機能を切り替えます"
-
-#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
 msgstr "実験：インストーラー"
 
-#: data/com.usebottles.bottles.gschema.xml:62
+#: data/com.usebottles.bottles.gschema.xml:57
 #, fuzzy
 msgid "Toggle experimental installer features."
 msgstr "実験的なインストーラー機能を切り替えます"
 
-#: data/com.usebottles.bottles.gschema.xml:66
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Bottlesを自動的に閉じる"
 
-#: data/com.usebottles.bottles.gschema.xml:67
+#: data/com.usebottles.bottles.gschema.xml:62
 #, fuzzy
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr "ファイルマネージャから実行可能ファイルを起動した後、Bottlesを閉じる"
@@ -335,7 +327,7 @@ msgstr ""
 "このページのファイルは検証済みですが、プロプライエタリライセンスの下にある可"
 "能性があります。"
 
-#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:162
 msgid "Read documentation"
 msgstr "ドキュメンテーションを読む"
 
@@ -347,7 +339,7 @@ msgstr "欠落している依存関係を報告する"
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework4。。"
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
+#: src/ui/details-installers.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -391,7 +383,8 @@ msgstr ""
 "グラフィカルな不具合が発生している場合には無効にします。"
 
 #: src/ui/details-preferences.ui:89
-msgid "Use Gamemode"
+#, fuzzy
+msgid "Use GameMode"
 msgstr "ゲームモードを使用する"
 
 #: src/ui/details-preferences.ui:90
@@ -492,7 +485,7 @@ msgid "Manage runners"
 msgstr "ランナーを管理する"
 
 #: src/ui/details-preferences.ui:492 src/ui/new.ui:358
-msgid "DXVK Version"
+msgid "DXVK version"
 msgstr "DXVKバージョン"
 
 #: src/ui/details-preferences.ui:535 src/ui/details-preferences.ui:685
@@ -501,7 +494,8 @@ msgid "Manage DXVK versions"
 msgstr "DXVKバージョンを管理する"
 
 #: src/ui/details-preferences.ui:567
-msgid "VKD3D Version"
+#, fuzzy
+msgid "VKD3D version"
 msgstr "VKD3Dバージョン"
 
 #: src/ui/details-preferences.ui:610
@@ -511,17 +505,18 @@ msgstr "DXVKバージョンを管理する"
 
 #: src/ui/details-preferences.ui:642
 #, fuzzy
-msgid "NVAPI Version"
+msgid "NVAPI version"
 msgstr "DXVKバージョン"
 
 #: src/ui/details-preferences.ui:717
 #, fuzzy
-msgid "Windows Version"
+msgid "Windows version"
 msgstr "バージョンを表示"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-msgid "DLL Overrides"
+#, fuzzy
+msgid "DLL overrides"
 msgstr "DLLのオーバーライド"
 
 #: src/ui/details-preferences.ui:798
@@ -576,27 +571,44 @@ msgstr "wine fixmeログを有効にする"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wineで実装されていないログコードパス。"
 
-#: src/ui/details-programs.ui:74
+#: src/ui/details-programs.ui:29
+msgid "No programs found"
+msgstr ""
+
+#: src/ui/details-programs.ui:30
+msgid "New programs will be automatically found."
+msgstr ""
+
+#: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
 msgstr "カスタム実行可能パスを追加します"
 
-#: src/ui/details-programs.ui:100
+#: src/ui/details-programs.ui:99
 msgid "Search for installed programs"
 msgstr "インストールされているプログラムを検索する"
 
-#: src/ui/details-versioning.ui:142
+#: src/ui/details-versioning.ui:60
+#, fuzzy
+msgid "No states found"
+msgstr "見つかったボトル：%s"
+
+#: src/ui/details-versioning.ui:61
+msgid "Create first state to start using versioning."
+msgstr ""
+
+#: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
 msgstr "本当に短いコメントを入力してください："
 
-#: src/ui/details-versioning.ui:159
+#: src/ui/details-versioning.ui:110
 msgid "A really short comment"
 msgstr "本当に短いコメント"
 
-#: src/ui/details-versioning.ui:173
+#: src/ui/details-versioning.ui:124
 msgid "Save the bottle state."
 msgstr "ボトルの状態を保存します。"
 
-#: src/ui/details-versioning.ui:238
+#: src/ui/details-versioning.ui:189
 msgid "Create new state"
 msgstr "新しい状態を作成する"
 
@@ -606,8 +618,8 @@ msgstr "メッセージはここにあります。"
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/bottle_details.py:276 src/views/bottle_details.py:362
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:64
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "キャンセル"
@@ -713,7 +725,7 @@ msgstr "ブラウズファイル"
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:134
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:147
 msgid "Uninstall"
 msgstr "アンインストール"
 
@@ -753,11 +765,11 @@ msgstr "このwineprefixはすでにBottlesにインポートされています�
 msgid "Read review"
 msgstr ""
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
 msgstr "ボトルを作成することから始めます。"
 
-#: src/ui/list.ui:75
+#: src/ui/list.ui:68
 msgid "Create a new Bottle"
 msgstr "新しいボトルを作成する"
 
@@ -972,7 +984,7 @@ msgstr ""
 "\n"
 "準備ができたら、<b>インストール</b>ボタンを押します。"
 
-#: src/ui/onboard.ui:263 src/ui/preferences.ui:181
+#: src/ui/onboard.ui:263 src/ui/preferences.ui:180
 msgid "Runners"
 msgstr "ランナー"
 
@@ -1001,83 +1013,80 @@ msgstr "これで、最初のボトルを作成する準備が整いました。
 msgid "Finish"
 msgstr "終了"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "設定"
 
-#: src/ui/preferences.ui:18 src/ui/preferences.ui:87
+#: src/ui/preferences.ui:17 src/ui/preferences.ui:86
 msgid "General"
 msgstr "一般"
 
-#: src/ui/preferences.ui:23
+#: src/ui/preferences.ui:22
 msgid "Apperance"
 msgstr "外観"
 
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:331
-msgid "Dark Mode"
-msgstr "ダークモード"
+#: src/ui/preferences.ui:27 src/ui/preferences.ui:304
+msgid "Night mode"
+msgstr ""
 
-#: src/ui/preferences.ui:29 src/ui/preferences.ui:332
-msgid "Whether Bottles should use the Dark theme variant."
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:305
+#, fuzzy
+msgid "Whether Bottles should use the Night theme variant."
 msgstr "ボトルがダークテーマバリアントを使用する必要があるかどうか。"
 
-#: src/ui/preferences.ui:55
+#: src/ui/preferences.ui:54
 msgid "Show update date"
 msgstr "更新日を表示"
 
-#: src/ui/preferences.ui:56
+#: src/ui/preferences.ui:55
 msgid "Whether to show the update date in the bottle list."
 msgstr "ボトルリストに更新日を表示するかどうか。"
 
-#: src/ui/preferences.ui:93
+#: src/ui/preferences.ui:92
 msgid "Show notifications for downloads and installs."
 msgstr "ダウンロードとインストールの通知を表示します。"
 
-#: src/ui/preferences.ui:119
+#: src/ui/preferences.ui:118
 msgid "Temp files"
 msgstr "一時ファイル"
 
-#: src/ui/preferences.ui:120
+#: src/ui/preferences.ui:119
 msgid "Clean temp files when Bottles launches?"
 msgstr "ボトルの起動時に一時ファイルをクリーンアップしますか？"
 
-#: src/ui/preferences.ui:146
+#: src/ui/preferences.ui:145
 msgid "Close Bottles after starting a program"
 msgstr "プログラム開始後にボトルを閉じる"
 
-#: src/ui/preferences.ui:147
+#: src/ui/preferences.ui:146
 msgid "Close Bottles after starting a program from the file manager"
 msgstr "ファイルマネージャからプログラムを開始した後、Bottlesを閉じる"
 
-#: src/ui/preferences.ui:190
+#: src/ui/preferences.ui:189
 msgid "Pre-release"
 msgstr "プレリリース"
 
-#: src/ui/preferences.ui:191
+#: src/ui/preferences.ui:190
 msgid "Whether the above list should display unstable versions."
 msgstr "上記のリストに不安定なバージョンを表示するかどうか。"
 
-#: src/ui/preferences.ui:225
+#: src/ui/preferences.ui:224
 msgid "DXVK/VKD3D"
 msgstr "DXVK/VKD3D"
 
-#: src/ui/preferences.ui:230
+#: src/ui/preferences.ui:229
 msgid "DXVK"
 msgstr "DXVK"
 
-#: src/ui/preferences.ui:240
+#: src/ui/preferences.ui:239
 msgid "VKD3D"
 msgstr "VKD3D"
 
-#: src/ui/preferences.ui:250
+#: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:117
-msgid "Versioning"
-msgstr "バージョン管理"
-
-#: src/ui/preferences.ui:298 src/views/details.py:121
+#: src/ui/preferences.ui:271 src/views/details.py:121
 msgid "Installers"
 msgstr "インストーラー"
 
@@ -1111,20 +1120,21 @@ msgstr "ボトルの問題"
 msgid "Remove from Programs"
 msgstr "プログラムから削除する"
 
-#: src/ui/state-entry.ui:45
-msgid "Delete state"
-msgstr "状態を削除する"
+#: src/ui/program-entry.ui:134
+msgid "Add desktop entry"
+msgstr ""
 
-#: src/ui/state-entry.ui:71
+#: src/ui/state-entry.ui:47
 msgid "Restore this state"
 msgstr "この状態を復元します"
 
-#: src/ui/state-entry.ui:98
+#: src/ui/state-entry.ui:74
 msgid "Creation date"
 msgstr "作成日"
 
 #: src/ui/window.ui:20
-msgid "Import and export"
+#, fuzzy
+msgid "Import/export"
 msgstr "インポートとエクスポート"
 
 #: src/ui/window.ui:57
@@ -1161,7 +1171,7 @@ msgstr ""
 msgid "Go back"
 msgstr "戻る"
 
-#: src/operation.py:62
+#: src/operation.py:63
 msgid "Calculating..."
 msgstr ""
 
@@ -1202,25 +1212,25 @@ msgstr "[リフレシュ]リクエストを受信しました。"
 msgid "You are offline, unable to download."
 msgstr "オフラインで、ダウンロードできません。"
 
-#: src/window.py:140 src/window.py:192
+#: src/window.py:140 src/window.py:193
 msgid "Bottle details"
 msgstr "ボトルの詳細"
 
-#: src/window.py:182
+#: src/window.py:183
 msgid "Bottles Started!"
 msgstr "ボトルス起動しました!"
 
-#: src/window.py:196
+#: src/window.py:197
 #, fuzzy
 msgid "Import & export"
 msgstr "インポートとエクスポート"
 
-#: src/backend/backup.py:59
+#: src/backend/backup.py:60
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "バックアップ{0}"
 
-#: src/backend/backup.py:97
+#: src/backend/backup.py:98
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "バックアップのインポート：{0}"
@@ -1229,70 +1239,70 @@ msgstr "バックアップのインポート：{0}"
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1018
+#: src/backend/manager.py:1019
 #, fuzzy
 msgid "Generating bottle configuration"
 msgstr "接続ステータス：オフライン…"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1038
 #, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "wineの構成を更新しています…"
 
-#: src/backend/manager.py:1039
+#: src/backend/manager.py:1040
 #, fuzzy
 msgid "WINE config updated!"
 msgstr "Wineの構成が更新されました！"
 
-#: src/backend/manager.py:1048
+#: src/backend/manager.py:1049
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1050
+#: src/backend/manager.py:1051
 msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1067
+#: src/backend/manager.py:1069
 #, fuzzy
 msgid "Setting Windows version…"
 msgstr "バージョンを表示"
 
-#: src/backend/manager.py:1075
+#: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/manager.py:1083
+#: src/backend/manager.py:1085
 #, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "環境を適用しています：{0}…"
 
-#: src/backend/manager.py:1093
+#: src/backend/manager.py:1095
 #, fuzzy
 msgid "Installing DXVK…"
 msgstr "dxvkのインストール…"
 
-#: src/backend/manager.py:1099
+#: src/backend/manager.py:1101
 #, fuzzy
 msgid "Installing VKD3D…"
 msgstr "vkd3dをインストールしている…"
 
-#: src/backend/manager.py:1105
+#: src/backend/manager.py:1107
 #, fuzzy
 msgid "Installing DXVK-NVAPI…"
 msgstr "dxvkのインストール…"
 
-#: src/backend/manager.py:1112
+#: src/backend/manager.py:1114
 #, fuzzy, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "ボトル{1}に依存関係{0}をインストール…"
 
-#: src/backend/manager.py:1129
+#: src/backend/manager.py:1131
 #, fuzzy
 msgid "Creating versioning state 0…"
 msgstr "バージョン管理状態0の作成…"
 
-#: src/backend/manager.py:1136
+#: src/backend/manager.py:1138
 msgid "Finalizing…"
 msgstr ""
 
@@ -1346,50 +1356,54 @@ msgstr "プログラム"
 msgid "Found in your bottle's Start menu."
 msgstr "これらは、ボトルのスタートメニューにあるプログラムです"
 
+#: src/views/details.py:117
+msgid "Versioning"
+msgstr "バージョン管理"
+
 #: src/views/details.py:125
 msgid "Task manager"
 msgstr "タスクマネージャー"
 
-#: src/views/bottle_details.py:160
+#: src/views/bottle_details.py:170
 #, python-format
 msgid "Updated: %s"
 msgstr "更新しました：%s"
 
 #. set arch
-#: src/views/bottle_details.py:163
+#: src/views/bottle_details.py:173
 msgid "64-bit"
 msgstr ""
 
-#: src/views/bottle_details.py:165
+#: src/views/bottle_details.py:175
 msgid "32-bit"
 msgstr ""
 
-#: src/views/bottle_details.py:262 src/views/list.py:121
+#: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Windows実行可能ファイルを選択してください"
 
-#: src/views/bottle_details.py:265 src/views/list.py:124
+#: src/views/bottle_details.py:275 src/views/list.py:124
 msgid "Run"
 msgstr "実行"
 
-#: src/views/bottle_details.py:329
+#: src/views/bottle_details.py:351
 #, fuzzy
 msgid "Select the location where to save the backup config"
 msgstr "バックアップ構成を保存する場所を選択してください"
 
-#: src/views/bottle_details.py:333
+#: src/views/bottle_details.py:355
 msgid "Select the location where to save the backup archive"
 msgstr "バックアップアーカイブを保存する場所を選択してください"
 
-#: src/views/bottle_details.py:340
+#: src/views/bottle_details.py:362
 msgid "Export"
 msgstr ""
 
-#: src/views/bottle_details.py:371
+#: src/views/bottle_details.py:393
 msgid "Confirm deletion"
 msgstr "削除の確認"
 
-#: src/views/bottle_details.py:373
+#: src/views/bottle_details.py:395
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
 
@@ -1408,11 +1422,11 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: src/views/bottle_programs.py:59
+#: src/views/bottle_programs.py:60
 msgid "Choose an executable path"
 msgstr "実行可能パスを選択します"
 
-#: src/views/bottle_programs.py:62
+#: src/views/bottle_programs.py:63
 msgid "Add"
 msgstr "追加"
 
@@ -1462,6 +1476,31 @@ msgstr "あなたの実験のための明確な環境。"
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "「{0}」という名前のボトルが正常に作成されました"
+
+#~ msgid "Dark theme"
+#~ msgstr "ダークテーマ"
+
+#~ msgid "Use a dark application theme."
+#~ msgstr "ダークテーマを適用します。"
+
+#~ msgid "DXVK Version"
+#~ msgstr "DXVKバージョン"
+
+#~ msgid "Experiments:versioning"
+#~ msgstr "実験：バージョン管理"
+
+#, fuzzy
+#~ msgid "Toggle experimental versioning feature."
+#~ msgstr "実験的なバージョン管理機能を切り替えます"
+
+#~ msgid "Dark Mode"
+#~ msgstr "ダークモード"
+
+#~ msgid "Delete state"
+#~ msgstr "状態を削除する"
+
+#~ msgid "Import and export"
+#~ msgstr "インポートとエクスポート"
 
 #, fuzzy
 #~ msgid "Creating sandboxed folders…"
@@ -1638,12 +1677,6 @@ msgstr "「{0}」という名前のボトルが正常に作成されました"
 #, fuzzy
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "@thericosantoのおかげでドイツ語の翻訳"
-
-#~ msgid "Enable the dark theme."
-#~ msgstr "ダークテーマを有効にします。"
-
-#~ msgid "DXVK version"
-#~ msgstr "DXVKバージョン"
 
 #~ msgid "Utility & Preferences"
 #~ msgstr "ユーティリティと設定"
@@ -2088,9 +2121,6 @@ msgstr "「{0}」という名前のボトルが正常に作成されました"
 
 #~ msgid "Key: [{0}] not in bottle: [{1}] configuration Parameters, updating."
 #~ msgstr "キー：[{0}]はボトル：[{1}] 構成パラメーターにありません、更新中。"
-
-#~ msgid "Bottles found: %s"
-#~ msgstr "見つかったボトル：%s"
 
 #~ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
 #~ msgstr "ボトル：[{2}]の設定キー：[{0}]から[{1}]…"

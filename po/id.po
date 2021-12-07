@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-23 21:12+0100\n"
+"POT-Creation-Date: 2021-12-07 21:49+0100\n"
 "PO-Revision-Date: 2021-11-11 06:51+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
@@ -20,9 +20,9 @@ msgstr ""
 "X-Generator: Weblate 4.9.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:184 src/ui/window.ui:199
-#: src/window.py:145 src/window.py:194
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
+#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
+#: src/window.py:195
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -160,12 +160,13 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr "Beralih dialog migrasi Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
-msgid "Dark theme"
-msgstr "Tema gelap"
+msgid "Night theme"
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:12
-msgid "Use a dark application theme."
-msgstr "Gunakan tema gelap aplikasi."
+#, fuzzy
+msgid "Use the night theme."
+msgstr "Aktifkan tema gelap."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -191,7 +192,7 @@ msgstr "Tinggi jendela"
 msgid "Change the window height."
 msgstr "Ubah tinggi jendela."
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
+#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Notifikasi"
@@ -224,7 +225,7 @@ msgstr "Tampilan permulaan"
 msgid "Choose which view the application should be started in."
 msgstr "Pilih tampilan mana yang harus dimuat saat memulai aplikasi."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:263
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
 msgstr "Eksperimen-eksperimen"
 
@@ -237,26 +238,18 @@ msgstr ""
 "Rilis untuk Runners."
 
 #: data/com.usebottles.bottles.gschema.xml:56
-msgid "Experiments:versioning"
-msgstr "Eksperimen:penerapan versi"
-
-#: data/com.usebottles.bottles.gschema.xml:57
-msgid "Toggle experimental versioning feature."
-msgstr "Beralih ke fitur penerapan versi eksperimental."
-
-#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
 msgstr "Eksperimen: pemasang"
 
-#: data/com.usebottles.bottles.gschema.xml:62
+#: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental installer features."
 msgstr "Alihkan fitur pemasang eksperimental."
 
-#: data/com.usebottles.bottles.gschema.xml:66
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Tutup Bottle secara otomatis"
 
-#: data/com.usebottles.bottles.gschema.xml:67
+#: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr "Tutup Bottle setelah memulai executable dari file manager."
 
@@ -327,7 +320,7 @@ msgstr ""
 "File pada halaman ini telah diverifikasi mungkin berada di bawah lisensi "
 "kepemilikan."
 
-#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:211
+#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:162
 msgid "Read documentation"
 msgstr "Baca dokumentasi"
 
@@ -339,7 +332,7 @@ msgstr "Laporkan dependensi yang hilang"
 msgid "Microsoft .NET Framework 4 .."
 msgstr "Microsoft .NET Framework 4 .."
 
-#: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
+#: src/ui/details-installers.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
@@ -382,7 +375,8 @@ msgstr ""
 "Nonaktifkan jika Anda mengalami gangguan grafis."
 
 #: src/ui/details-preferences.ui:89
-msgid "Use Gamemode"
+#, fuzzy
+msgid "Use GameMode"
 msgstr "Gunakan Gamemode"
 
 #: src/ui/details-preferences.ui:90
@@ -484,7 +478,7 @@ msgid "Manage runners"
 msgstr "Kelola runner"
 
 #: src/ui/details-preferences.ui:492 src/ui/new.ui:358
-msgid "DXVK Version"
+msgid "DXVK version"
 msgstr "Versi DXVK"
 
 #: src/ui/details-preferences.ui:535 src/ui/details-preferences.ui:685
@@ -493,7 +487,8 @@ msgid "Manage DXVK versions"
 msgstr "Kelola versi DXVK"
 
 #: src/ui/details-preferences.ui:567
-msgid "VKD3D Version"
+#, fuzzy
+msgid "VKD3D version"
 msgstr "Versi VKD3D"
 
 #: src/ui/details-preferences.ui:610
@@ -501,17 +496,19 @@ msgid "Manage VKD3D versions"
 msgstr "Kelola versi VKD3D"
 
 #: src/ui/details-preferences.ui:642
-msgid "NVAPI Version"
+#, fuzzy
+msgid "NVAPI version"
 msgstr "Versi NVAPI"
 
 #: src/ui/details-preferences.ui:717
 #, fuzzy
-msgid "Windows Version"
+msgid "Windows version"
 msgstr "Tampilkan versi"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-msgid "DLL Overrides"
+#, fuzzy
+msgid "DLL overrides"
 msgstr "Mengganti DLL"
 
 #: src/ui/details-preferences.ui:798
@@ -566,27 +563,44 @@ msgstr "Aktifkan log wine fixme"
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Jalur kode log yang tidak diterapkan di Wine."
 
-#: src/ui/details-programs.ui:74
+#: src/ui/details-programs.ui:29
+msgid "No programs found"
+msgstr ""
+
+#: src/ui/details-programs.ui:30
+msgid "New programs will be automatically found."
+msgstr ""
+
+#: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
 msgstr "Tambahkan jalur khusus yang dapat dieksekusi"
 
-#: src/ui/details-programs.ui:100
+#: src/ui/details-programs.ui:99
 msgid "Search for installed programs"
 msgstr "Cari program yang terpasang"
 
-#: src/ui/details-versioning.ui:142
+#: src/ui/details-versioning.ui:60
+#, fuzzy
+msgid "No states found"
+msgstr "Bottle ditemukan: %s"
+
+#: src/ui/details-versioning.ui:61
+msgid "Create first state to start using versioning."
+msgstr ""
+
+#: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
 msgstr "Ketik komentar singkat:"
 
-#: src/ui/details-versioning.ui:159
+#: src/ui/details-versioning.ui:110
 msgid "A really short comment"
 msgstr "Komentar yang sangat singkat"
 
-#: src/ui/details-versioning.ui:173
+#: src/ui/details-versioning.ui:124
 msgid "Save the bottle state."
 msgstr "Simpan status bottle."
 
-#: src/ui/details-versioning.ui:238
+#: src/ui/details-versioning.ui:189
 msgid "Create new state"
 msgstr "Buat status baru"
 
@@ -596,8 +610,8 @@ msgstr "Pesan ditempatkan di sini."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:266 src/views/bottle_details.py:340
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:63
+#: src/views/bottle_details.py:276 src/views/bottle_details.py:362
+#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:64
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "Batalkan"
@@ -703,7 +717,7 @@ msgstr "Jelajahi Berkas-berkas"
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:134
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:147
 msgid "Uninstall"
 msgstr "Hapus Pemasangan"
 
@@ -743,11 +757,11 @@ msgstr "Wineprefix ini sudah diimpor ke Bottles."
 msgid "Read review"
 msgstr "Baca ulasan"
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
 msgstr "Mulai dengan membuat bottle."
 
-#: src/ui/list.ui:75
+#: src/ui/list.ui:68
 msgid "Create a new Bottle"
 msgstr "Buat Bottle baru"
 
@@ -958,7 +972,7 @@ msgstr ""
 "\n"
 "<b>Ketika Anda siap tekan tombol Instal</b>."
 
-#: src/ui/onboard.ui:263 src/ui/preferences.ui:181
+#: src/ui/onboard.ui:263 src/ui/preferences.ui:180
 msgid "Runners"
 msgstr "Pelari"
 
@@ -986,85 +1000,82 @@ msgstr "Anda sekarang sudah siap untuk membuat bottle-bottle pertama Anda."
 msgid "Finish"
 msgstr "Selesai"
 
-#: src/ui/preferences.ui:8 src/ui/window.ui:33 src/views/details.py:105
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:105
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: src/ui/preferences.ui:18 src/ui/preferences.ui:87
+#: src/ui/preferences.ui:17 src/ui/preferences.ui:86
 msgid "General"
 msgstr "Umum"
 
-#: src/ui/preferences.ui:23
+#: src/ui/preferences.ui:22
 msgid "Apperance"
 msgstr "Tampilan"
 
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:331
-msgid "Dark Mode"
-msgstr "Mode Gelap"
+#: src/ui/preferences.ui:27 src/ui/preferences.ui:304
+msgid "Night mode"
+msgstr ""
 
-#: src/ui/preferences.ui:29 src/ui/preferences.ui:332
-msgid "Whether Bottles should use the Dark theme variant."
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:305
+#, fuzzy
+msgid "Whether Bottles should use the Night theme variant."
 msgstr "Apakah Bottles harus menggunakan varian tema Gelap."
 
-#: src/ui/preferences.ui:55
+#: src/ui/preferences.ui:54
 msgid "Show update date"
 msgstr "Tampilkan tanggal pembaruan"
 
-#: src/ui/preferences.ui:56
+#: src/ui/preferences.ui:55
 msgid "Whether to show the update date in the bottle list."
 msgstr ""
 "Sila pilih untuk menampilkan tanggal pembaruan dalam daftar bottle atau "
 "tidak."
 
-#: src/ui/preferences.ui:93
+#: src/ui/preferences.ui:92
 msgid "Show notifications for downloads and installs."
 msgstr "Tampilkan notifikasi untuk pengunduhan dan pemasangan."
 
-#: src/ui/preferences.ui:119
+#: src/ui/preferences.ui:118
 msgid "Temp files"
 msgstr "Berkas-berkas temp"
 
-#: src/ui/preferences.ui:120
+#: src/ui/preferences.ui:119
 msgid "Clean temp files when Bottles launches?"
 msgstr "Bersihkan berkas-berkas temp saat Bottles diluncurkan?"
 
-#: src/ui/preferences.ui:146
+#: src/ui/preferences.ui:145
 msgid "Close Bottles after starting a program"
 msgstr "Tutup Bottle setelah memulai program"
 
-#: src/ui/preferences.ui:147
+#: src/ui/preferences.ui:146
 msgid "Close Bottles after starting a program from the file manager"
 msgstr "Tutup Bottle setelah memulai program dari manajer file"
 
-#: src/ui/preferences.ui:190
+#: src/ui/preferences.ui:189
 msgid "Pre-release"
 msgstr "Pra-rilis"
 
-#: src/ui/preferences.ui:191
+#: src/ui/preferences.ui:190
 msgid "Whether the above list should display unstable versions."
 msgstr "Apakah daftar di atas harus menampilkan versi yang tidak stabil."
 
-#: src/ui/preferences.ui:225
+#: src/ui/preferences.ui:224
 msgid "DXVK/VKD3D"
 msgstr "DXVK/VKD3D"
 
-#: src/ui/preferences.ui:230
+#: src/ui/preferences.ui:229
 msgid "DXVK"
 msgstr "DXVK"
 
-#: src/ui/preferences.ui:240
+#: src/ui/preferences.ui:239
 msgid "VKD3D"
 msgstr "VKD3D"
 
-#: src/ui/preferences.ui:250
+#: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:272 src/views/details.py:117
-msgid "Versioning"
-msgstr "Versi"
-
-#: src/ui/preferences.ui:298 src/views/details.py:121
+#: src/ui/preferences.ui:271 src/views/details.py:121
 msgid "Installers"
 msgstr "Pemasang"
 
@@ -1098,21 +1109,22 @@ msgstr "Masalah-Masalah Bottles"
 msgid "Remove from Programs"
 msgstr "Hapus dari Program"
 
-#: src/ui/state-entry.ui:45
-msgid "Delete state"
-msgstr "Hapus keadaan"
+#: src/ui/program-entry.ui:134
+msgid "Add desktop entry"
+msgstr ""
 
-#: src/ui/state-entry.ui:71
+#: src/ui/state-entry.ui:47
 msgid "Restore this state"
 msgstr "Kembalikan keadaan ini"
 
-#: src/ui/state-entry.ui:98
+#: src/ui/state-entry.ui:74
 msgid "Creation date"
 msgstr "Tanggal Pembuatan"
 
 #: src/ui/window.ui:20
-msgid "Import and export"
-msgstr "Impor dan ekspor"
+#, fuzzy
+msgid "Import/export"
+msgstr "Impor & ekspor"
 
 #: src/ui/window.ui:57
 msgid "Documentation"
@@ -1148,7 +1160,7 @@ msgstr ""
 msgid "Go back"
 msgstr "Kembali"
 
-#: src/operation.py:62
+#: src/operation.py:63
 msgid "Calculating..."
 msgstr ""
 
@@ -1189,24 +1201,24 @@ msgstr "Permintaan [Segarkan] diterima."
 msgid "You are offline, unable to download."
 msgstr "Anda sedang offline, tidak dapat mengunduh."
 
-#: src/window.py:140 src/window.py:192
+#: src/window.py:140 src/window.py:193
 msgid "Bottle details"
 msgstr "Rincian Bottle"
 
-#: src/window.py:182
+#: src/window.py:183
 msgid "Bottles Started!"
 msgstr "Bottle dijalankan!"
 
-#: src/window.py:196
+#: src/window.py:197
 msgid "Import & export"
 msgstr "Impor & ekspor"
 
-#: src/backend/backup.py:59
+#: src/backend/backup.py:60
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Cadangan {0}"
 
-#: src/backend/backup.py:97
+#: src/backend/backup.py:98
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Mengimpor cadangan: {0}"
@@ -1215,66 +1227,66 @@ msgstr "Mengimpor cadangan: {0}"
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1018
+#: src/backend/manager.py:1019
 #, fuzzy
 msgid "Generating bottle configuration"
 msgstr "Membuat file konfigurasi bottle…"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1037
+#: src/backend/manager.py:1038
 #, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "Konfigurasi WINE sedang diperbarui…"
 
-#: src/backend/manager.py:1039
+#: src/backend/manager.py:1040
 msgid "WINE config updated!"
 msgstr "Konfigurasi WINE diperbarui!"
 
-#: src/backend/manager.py:1048
+#: src/backend/manager.py:1049
 #, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Berjalan sebagai Flatpak, membuat folder sandboxed…"
 
-#: src/backend/manager.py:1050
+#: src/backend/manager.py:1051
 msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1067
+#: src/backend/manager.py:1069
 #, fuzzy
 msgid "Setting Windows version…"
 msgstr "Tampilkan versi"
 
-#: src/backend/manager.py:1075
+#: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/manager.py:1083
+#: src/backend/manager.py:1085
 #, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Menerapkan lingkup: {0}…"
 
-#: src/backend/manager.py:1093
+#: src/backend/manager.py:1095
 msgid "Installing DXVK…"
 msgstr "Memasang DXVK…"
 
-#: src/backend/manager.py:1099
+#: src/backend/manager.py:1101
 msgid "Installing VKD3D…"
 msgstr "Menginstal VKD3D…"
 
-#: src/backend/manager.py:1105
+#: src/backend/manager.py:1107
 msgid "Installing DXVK-NVAPI…"
 msgstr "Memasang DXVK-NVAPI…"
 
-#: src/backend/manager.py:1112
+#: src/backend/manager.py:1114
 #, fuzzy, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Memasang dependensi {0} di bottle {1} …"
 
-#: src/backend/manager.py:1129
+#: src/backend/manager.py:1131
 msgid "Creating versioning state 0…"
 msgstr "Membuat status versi 0…"
 
-#: src/backend/manager.py:1136
+#: src/backend/manager.py:1138
 msgid "Finalizing…"
 msgstr ""
 
@@ -1322,49 +1334,53 @@ msgstr "Program-program"
 msgid "Found in your bottle's Start menu."
 msgstr "Ditemukan di menu Start bottle Anda."
 
+#: src/views/details.py:117
+msgid "Versioning"
+msgstr "Versi"
+
 #: src/views/details.py:125
 msgid "Task manager"
 msgstr "Pengelola tugas"
 
-#: src/views/bottle_details.py:160
+#: src/views/bottle_details.py:170
 #, python-format
 msgid "Updated: %s"
 msgstr "Diperbarui: %s"
 
 #. set arch
-#: src/views/bottle_details.py:163
+#: src/views/bottle_details.py:173
 msgid "64-bit"
 msgstr "64-bit"
 
-#: src/views/bottle_details.py:165
+#: src/views/bottle_details.py:175
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/views/bottle_details.py:262 src/views/list.py:121
+#: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Pilih berkas bisa-eksekusi Windows"
 
-#: src/views/bottle_details.py:265 src/views/list.py:124
+#: src/views/bottle_details.py:275 src/views/list.py:124
 msgid "Run"
 msgstr "Jalankan"
 
-#: src/views/bottle_details.py:329
+#: src/views/bottle_details.py:351
 msgid "Select the location where to save the backup config"
 msgstr "Pilih lokasi tempat menyimpan konfigurasi cadangan"
 
-#: src/views/bottle_details.py:333
+#: src/views/bottle_details.py:355
 msgid "Select the location where to save the backup archive"
 msgstr "Pilih lokasi tempat menyimpan arsip cadangan"
 
-#: src/views/bottle_details.py:340
+#: src/views/bottle_details.py:362
 msgid "Export"
 msgstr ""
 
-#: src/views/bottle_details.py:371
+#: src/views/bottle_details.py:393
 msgid "Confirm deletion"
 msgstr "Konfirmasi penghapusan"
 
-#: src/views/bottle_details.py:373
+#: src/views/bottle_details.py:395
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Anda yakin ingin menghapus Bottle ini berserta seluruh berkasnya?"
 
@@ -1380,11 +1396,11 @@ msgstr "Pilih direktori kerja untuk executable"
 msgid "Done"
 msgstr "Selesai"
 
-#: src/views/bottle_programs.py:59
+#: src/views/bottle_programs.py:60
 msgid "Choose an executable path"
 msgstr "Pilih jalur yang dapat dieksekusi"
 
-#: src/views/bottle_programs.py:62
+#: src/views/bottle_programs.py:63
 msgid "Add"
 msgstr "Tambah"
 
@@ -1433,6 +1449,30 @@ msgstr "Lingkungan yang jelas untuk eksperimen Anda."
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Botol bernama \"{0}\" berhasil dibuat"
+
+#~ msgid "Dark theme"
+#~ msgstr "Tema gelap"
+
+#~ msgid "Use a dark application theme."
+#~ msgstr "Gunakan tema gelap aplikasi."
+
+#~ msgid "DXVK Version"
+#~ msgstr "Versi DXVK"
+
+#~ msgid "Experiments:versioning"
+#~ msgstr "Eksperimen:penerapan versi"
+
+#~ msgid "Toggle experimental versioning feature."
+#~ msgstr "Beralih ke fitur penerapan versi eksperimental."
+
+#~ msgid "Dark Mode"
+#~ msgstr "Mode Gelap"
+
+#~ msgid "Delete state"
+#~ msgstr "Hapus keadaan"
+
+#~ msgid "Import and export"
+#~ msgstr "Impor dan ekspor"
 
 #~ msgid "Creating sandboxed folders…"
 #~ msgstr "Membuat folder sandboxed…"
@@ -1611,12 +1651,6 @@ msgstr "Botol bernama \"{0}\" berhasil dibuat"
 #, fuzzy
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "Terjemahan Jerman oleh @thericosanto"
-
-#~ msgid "Enable the dark theme."
-#~ msgstr "Aktifkan tema gelap."
-
-#~ msgid "DXVK version"
-#~ msgstr "Versi DXVK"
 
 #~ msgid "Utility & Preferences"
 #~ msgstr "Utilitas & Preferensi"
@@ -1917,9 +1951,6 @@ msgstr "Botol bernama \"{0}\" berhasil dibuat"
 #~ msgid "Key: [{0}] not in bottle: [{1}] configuration Parameters, updating."
 #~ msgstr ""
 #~ "Kunci: [{0}] tidak dalam parameter konfigurasi bottle: [{1}], memperbarui."
-
-#~ msgid "Bottles found: %s"
-#~ msgstr "Bottle ditemukan: %s"
 
 #~ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
 #~ msgstr "Mengatur kunci: [{0}} ke [{1}] pada bottle: [{2}]…"
