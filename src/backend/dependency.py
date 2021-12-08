@@ -124,9 +124,9 @@ class DependencyManager:
             the dependency.
             '''
             self.__manager.versioning_manager.create_state(
-                config,
-                f"before {dependency[0]}",
-                True, False, None
+                config=config,
+                comment=f"before {dependency[0]}",
+                update=True
             )
 
         task_entry = self.__operation_manager.new_task(

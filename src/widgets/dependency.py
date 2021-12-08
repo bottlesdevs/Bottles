@@ -157,6 +157,10 @@ class DependencyEntry(Handy.ActionRow):
         if the installation is successful
         '''
         if result.status:
+            if self.config.get("Versioning"):
+                self.window.page_details.view_versioning.update(
+                    config=self.config
+                )
             uninstaller = result.data.get("uninstaller")
             removed = result.data.get("removed")
             return self.set_installed(uninstaller, removed)

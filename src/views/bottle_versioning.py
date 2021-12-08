@@ -55,23 +55,24 @@ class VersioningView(Gtk.ScrolledWindow):
             'pressed', GtkUtils.open_doc_url, "bottles/versioning"
         )
 
-    def update(self, widget=False, config={}):
+    def update(self, widget=False, config={}, states={}):
         '''
         This function update the states list with the
         ones from the bottle configuration.
         '''
-        self.config = config
+        if len(config) > 0:
+            self.config = config
         
         if self.config.get("Versioning"):
             for w in self.list_states:
                 w.destroy()
 
-            states = self.versioning_manager.list_states(self.config).items()
+            if len(states) == 0:
+                states = self.versioning_manager.list_states(self.config)
+            
+            states = states.items()
 
-            if len(states) > 0:
-                self.hdy_status.set_visible(False)
-            else:
-                self.hdy_status.set_visible(True)
+            self.hdy_status.set_visible(not len(states) > 0)
 
             for state in states:
                 self.list_states.add(
@@ -90,23 +91,27 @@ class VersioningView(Gtk.ScrolledWindow):
         '''
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         comment = widget.get_text()
+        check = regex.search(comment) is None
 
-        if(regex.search(comment) is None):
-            self.btn_add_state.set_sensitive(True)
-            widget.set_icon_from_icon_name(1, "")
-        else:
-            self.btn_add_state.set_sensitive(False)
-            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+        self.btn_save.set_sensitive(check)
+        widget.set_icon_from_icon_name(
+            1, '' if check else 'dialog-warning-symbolic"'
+        )
 
     def add_state(self, widget):
         '''
         This function create ask the versioning manager to
         create a new bottle state with the given comment.
         '''
+        def update(result, error):
+            if result.status:
+                self.update(states=result.data.get('states'))
+
         comment = self.entry_state_comment.get_text()
         if comment != "":
             RunAsync(
                 task_func=self.versioning_manager.create_state,
+                callback=update,
                 config=self.config,
                 comment=comment
             )

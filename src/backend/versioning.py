@@ -9,6 +9,7 @@ from gi.repository import GLib
 
 from ..operation import OperationManager
 from ..utils import UtilsLogger, UtilsFiles
+from .result import Result
 from .manager_utils import ManagerUtils
 
 logging = UtilsLogger()
@@ -30,9 +31,7 @@ class RunnerVersioning:
         self,
         config: BottleConfig,
         comment: str = "No comment",
-        update: bool = False,
-        no_update: bool = False,
-        after: bool = False
+        update: bool = False
     ):
         '''
         This function creates a new bottle state.
@@ -152,7 +151,10 @@ class RunnerVersioning:
                 yaml.dump(cur_index, state_files_file, indent=4)
                 state_files_file.close()
         except:
-            return False
+            return Result(
+                status=False,
+                message=_("Could not create the state folder.")
+            )
 
         task_entry.remove()
         task_entry = self.operation_manager.new_task(
@@ -201,7 +203,10 @@ class RunnerVersioning:
                 yaml.dump(new_state_file, states_file, indent=4)
                 states_file.close()
         except:
-            return False
+            return Result(
+                status=False,
+                message=_("Could not update the states file.")
+            )
 
         try:
             '''
@@ -212,7 +217,10 @@ class RunnerVersioning:
                 yaml.dump(cur_index, cur_index_file, indent=4)
                 cur_index_file.close()
         except:
-            return False
+            return Result(
+                status=False,
+                message=_("Could not update the index file.")
+            )
 
         # update bottle configuration
         self.manager.update_config(config, "State", state_id)
@@ -235,14 +243,15 @@ class RunnerVersioning:
 
         task_entry.remove()
 
-        if after:
-            '''
-            If the caller defined a function to be called after the
-            process, we will call it.
-            '''
-            GLib.idle_add(after, False, config)
-
-        return True
+        return Result(
+            status=True,
+            message=_("New state [{0}] created successfully!").format(state_id),
+            data={
+                "state_id": state_id,
+                "state_path": state_path,
+                "states": self.list_states(config)
+            }
+        )
 
     def get_state_edits(
         self,
