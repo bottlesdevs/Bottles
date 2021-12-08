@@ -18,6 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
+from ..utils import GtkUtils
 from ..widgets.program import ProgramEntry
 from ..backend.manager_utils import ManagerUtils
 
@@ -29,8 +30,9 @@ class ProgramsView(Gtk.ScrolledWindow):
     # region Widgets
     list_programs = Gtk.Template.Child()
     actions = Gtk.Template.Child()
-    btn_programs_updates = Gtk.Template.Child()
-    btn_programs_add = Gtk.Template.Child()
+    btn_help = Gtk.Template.Child()
+    btn_update = Gtk.Template.Child()
+    btn_add = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
     # endregion
 
@@ -43,9 +45,12 @@ class ProgramsView(Gtk.ScrolledWindow):
         self.manager = parent.manager
         self.config = config
 
-        self.btn_programs_add.connect('pressed', self.add)
-        self.btn_programs_updates.connect(
+        self.btn_add.connect('pressed', self.add)
+        self.btn_update.connect(
             'pressed', self.parent.update_programs
+        )
+        self.btn_help.connect(
+            'pressed', GtkUtils.open_doc_url, "bottles/programs"
         )
 
     def add(self, widget=False):

@@ -32,8 +32,8 @@ class VersioningView(Gtk.ScrolledWindow):
     list_states = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     pop_state = Gtk.Template.Child()
-    btn_add_state = Gtk.Template.Child()
-    btn_help_versioning = Gtk.Template.Child()
+    btn_save = Gtk.Template.Child()
+    btn_help = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
     # endregion
@@ -47,11 +47,11 @@ class VersioningView(Gtk.ScrolledWindow):
         self.versioning_manager = window.manager.versioning_manager
         self.config = config
         
-        self.btn_add_state.connect('pressed', self.add_state)
+        self.btn_save.connect('pressed', self.add_state)
         self.entry_state_comment.connect(
             'key-release-event', self.check_entry_state_comment
         )
-        self.btn_help_versioning.connect(
+        self.btn_help.connect(
             'pressed', GtkUtils.open_doc_url, "bottles/versioning"
         )
 

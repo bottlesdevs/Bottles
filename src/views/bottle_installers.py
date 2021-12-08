@@ -18,6 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
+from ..utils import GtkUtils
 from ..widgets.installer import InstallerEntry
 
 
@@ -27,6 +28,7 @@ class InstallersView(Gtk.ScrolledWindow):
 
     # region Widgets
     list_installers = Gtk.Template.Child()
+    btn_help = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     # endregion
 
@@ -37,6 +39,10 @@ class InstallersView(Gtk.ScrolledWindow):
         self.window = window
         self.manager = window.manager
         self.config = config
+
+        self.btn_help.connect(
+            'pressed', GtkUtils.open_doc_url, "bottles/installers"
+        )
 
     def update(self, widget=False, config={}):
         '''
