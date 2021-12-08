@@ -29,9 +29,11 @@ class DependenciesView(Gtk.ScrolledWindow):
 
     # region Widgets
     list_dependencies = Gtk.Template.Child()
-    btn_request_dependency = Gtk.Template.Child()
+    btn_report = Gtk.Template.Child()
+    btn_help = Gtk.Template.Child()
     entry_search_deps = Gtk.Template.Child()
     infobar_testing = Gtk.Template.Child()
+    actions = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -42,10 +44,13 @@ class DependenciesView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
-        self.btn_request_dependency.connect(
+        self.btn_report.connect(
             'pressed', 
             GtkUtils.open_doc_url, 
             "contribute/missing-dependencies"
+        )
+        self.btn_help.connect(
+            'pressed', GtkUtils.open_doc_url, "bottles/dependencies"
         )
         self.entry_search_deps.connect(
             'key-release-event', self.__search_dependencies

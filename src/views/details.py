@@ -80,6 +80,8 @@ class DetailsView(Handy.Leaflet):
         self.window.set_title(pages[page]['title'], pages[page]['description'])
         if page == "programs":
             self.window.set_actions(self.view_programs.actions)
+        elif page == "dependencies":
+            self.window.set_actions(self.view_dependencies.actions)
         elif page == "versioning":
             self.window.set_actions(self.view_versioning.actions)
         elif page == "installers":
@@ -145,8 +147,8 @@ class DetailsView(Handy.Leaflet):
         self.stack_bottle.add_named(self.view_preferences, "preferences")
         self.stack_bottle.add_named(self.view_dependencies, "dependencies")
         self.stack_bottle.add_named(self.view_programs, "programs")
-        self.stack_bottle.add_named(self.view_installers, "installers")
         self.stack_bottle.add_named(self.view_versioning, "versioning")
+        self.stack_bottle.add_named(self.view_installers, "installers")
         self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
     def __change_page(self, widget, row):
