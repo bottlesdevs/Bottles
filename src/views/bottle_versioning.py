@@ -62,18 +62,17 @@ class VersioningView(Gtk.ScrolledWindow):
         '''
         if len(config) > 0:
             self.config = config
+
+        for w in self.list_states.get_children():
+            w.destroy()
         
+        if len(states) == 0:
+            states = self.versioning_manager.list_states(self.config)
+        
+        states = states.items()
+        self.hdy_status.set_visible(not len(states) > 0)
+
         if self.config.get("Versioning"):
-            for w in self.list_states:
-                w.destroy()
-
-            if len(states) == 0:
-                states = self.versioning_manager.list_states(self.config)
-            
-            states = states.items()
-
-            self.hdy_status.set_visible(not len(states) > 0)
-
             for state in states:
                 self.list_states.add(
                     StateEntry(
