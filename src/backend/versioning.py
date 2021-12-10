@@ -118,7 +118,7 @@ class RunnerVersioning:
                         "checksum": file["checksum"]
                     })
 
-            state_id = str(len(states_file_yaml.get("States")))
+            state_id = int(str(len(states_file_yaml.get("States"))))
         else:
             new_state_index = {
                 "Update_Date": str(datetime.now()),
@@ -126,7 +126,7 @@ class RunnerVersioning:
                 "Removed": [],
                 "Changes": []
             }
-            state_id = "0"
+            state_id = 0
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
         task_entry.remove()
@@ -291,7 +291,7 @@ class RunnerVersioning:
     def get_state_files(
         self,
         config: BottleConfig,
-        state_id: str,
+        state_id: int,
         plain: bool = False
     ) -> dict:
         '''
@@ -336,7 +336,7 @@ class RunnerVersioning:
     def set_state(
         self, 
         config: BottleConfig, 
-        state_id: str, 
+        state_id: int, 
         after=False
     ):
         '''
