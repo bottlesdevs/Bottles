@@ -11,6 +11,7 @@
     "--socket=wayland",
     "--socket=fallback-x11",
     "--socket=pulseaudio",
+    "--socket=session-bus",
     "--device=all",
     "--system-talk-name=org.freedesktop.UDisks2",
     "--talk-name=org.freedesktop.Notifications",
@@ -620,6 +621,35 @@
       ]
     },
 
+    {
+      "name" : "vte",
+      "buildsystem" : "meson",
+      "config-opts": [
+          "-Ddocs=false",
+          "-Dvapi=false"
+      ],
+      "sources" : [
+          {
+              "type": "archive",
+              "url": "https://gitlab.gnome.org/GNOME/vte/-/archive/0.66.2/vte-0.66.2.tar.gz",
+              "sha256": "a486e389e3d16f903ed6f27d9513c2a44bff5945a12af4fcfe48ce00992c42ab"
+          }
+      ]
+    },
+    {
+      "name": "EasyTerm",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 setup.py install --prefix=/app --root=/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/bottlesdevs/EasyTerm/archive/refs/tags/0.1.8.tar.gz",
+          "sha256": "1383395a2a42ec7b5453a3a24b500fc8da0413ac645a81f397e49ae96abc9d5a"
+        }
+      ]
+    },
     
     {
       "name": "bottles",
