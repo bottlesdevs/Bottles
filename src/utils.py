@@ -83,7 +83,13 @@ class UtilsTerminal():
     It will loop all the "supported" terminals to find the one
     that is available, so it will be used to launch the command.
     '''
+    colors = {
+        "default": "#00ffff #2b2d2e",
+        "debug": "#ff9800 #2e2c2b",
+    }
+
     terminals = [
+        ['easyterm.py', '-d -p "%s" -c %s'],
         ['xterm', '-e %s'],
         ['konsole', '-e %s'],
         ['gnome-terminal', '-- %s'],
@@ -108,13 +114,23 @@ class UtilsTerminal():
 
         return False
 
-    def execute(self, command, env={}):
+    def execute(self, command, env={}, colors="default"):
         if not self.check_support():
             logging.warning("Terminal not supported.")
             return False
+        
+        if colors not in self.colors:
+            colors = "default"
+            
+        colors = self.colors[colors]
+        
+        if self.terminal[0] == 'easyterm.py':
+            command = ' '.join(self.terminal) % (colors, f"bash -c '{command}'")
+        else:
+            command = ' '.join(self.terminal) % f"bash -c '{command}'"
 
         subprocess.Popen(
-            ' '.join(self.terminal) % f"bash -c '{command}'",
+            command,
             shell=True,
             env=env,
             stdout=subprocess.PIPE
