@@ -176,7 +176,8 @@ class Runner:
             task_func=Runner.run_command, 
             config=config, 
             command="winedbg",
-            terminal=True
+            terminal=True,
+            colors="debug"
         )
 
     @staticmethod
@@ -286,7 +287,8 @@ class Runner:
         arguments: str = False,
         environment: dict = False,
         comunicate: bool = False,
-        cwd: str = None
+        cwd: str = None,
+        colors: str = "default"
     ):
         '''
         Run a command inside a bottle using the config provided, supports
@@ -296,20 +298,6 @@ class Runner:
         path = config.get("Path")
         runner = config.get("Runner")
         arch = config.get("Arch")
-
-        if "FLATPAK_ID" in os.environ \
-                or "SNAP" in os.environ \
-                or not UtilsTerminal().check_support() \
-                and terminal:
-            '''
-            Work around for Flatpak and Snap not able to 
-            use system host commands. Disable terminal to
-            force the wineconsole, then append the command
-            as arguments.
-            '''
-            terminal = False
-            if command in ["winedbg", "cmd"]:
-                command = f"wineconsole {command}"
 
         if not cwd:
             '''
@@ -460,7 +448,7 @@ class Runner:
             command = f"gamemoderun {command}"
 
         if terminal:
-            return UtilsTerminal().execute(command, env)
+            return UtilsTerminal().execute(command, env, colors)
             
         if comunicate:
             try:
