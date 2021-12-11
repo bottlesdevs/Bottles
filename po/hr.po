@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-07 21:49+0100\n"
-"PO-Revision-Date: 2021-11-18 11:55+0000\n"
+"PO-Revision-Date: 2021-12-12 11:04+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9.1-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -163,12 +163,11 @@ msgstr "Uključi/isključi dijalog za Flatpak migraciju."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Night theme"
-msgstr ""
+msgstr "Noćna tema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
-#, fuzzy
 msgid "Use the night theme."
-msgstr "Aktiviraj tamnu temu."
+msgstr "Koristi tamnu temu."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -380,9 +379,8 @@ msgstr ""
 "Deaktiviraj ako se pojave greške u prikazu."
 
 #: src/ui/details-preferences.ui:89
-#, fuzzy
 msgid "Use GameMode"
-msgstr "Koristi Gamemode"
+msgstr "Koristi GameMode"
 
 #: src/ui/details-preferences.ui:90
 msgid "Optimise gaming performance on demand"
@@ -493,7 +491,6 @@ msgid "Manage DXVK versions"
 msgstr "Upravljaj DXVK verzijama"
 
 #: src/ui/details-preferences.ui:567
-#, fuzzy
 msgid "VKD3D version"
 msgstr "VKD3D verzija"
 
@@ -502,20 +499,17 @@ msgid "Manage VKD3D versions"
 msgstr "Upravljaj VKD3D verzijama"
 
 #: src/ui/details-preferences.ui:642
-#, fuzzy
 msgid "NVAPI version"
 msgstr "NVAPI verzija"
 
 #: src/ui/details-preferences.ui:717
-#, fuzzy
 msgid "Windows version"
 msgstr "Windows verzija"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-#, fuzzy
 msgid "DLL overrides"
-msgstr "Zamjene DLL biblioteka"
+msgstr "DLL nadjačavanja"
 
 #: src/ui/details-preferences.ui:798
 msgid "Working directory"
@@ -571,11 +565,11 @@ msgstr "Zapiši putanje kodova koji u Wineu nisu implementirani."
 
 #: src/ui/details-programs.ui:29
 msgid "No programs found"
-msgstr ""
+msgstr "Nije pronađen nijedan program"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
-msgstr ""
+msgstr "Novi programi će se automatski pronaći."
 
 #: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
@@ -586,13 +580,12 @@ msgid "Search for installed programs"
 msgstr "Traži instalirane programe"
 
 #: src/ui/details-versioning.ui:60
-#, fuzzy
 msgid "No states found"
-msgstr "Pronađene butelje: %s"
+msgstr "Nema stanja"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Stvori prvo stanje za početak korištenja verzioniranja."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -1016,12 +1009,11 @@ msgstr "Izgled"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr ""
+msgstr "Noćni modus"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
-#, fuzzy
 msgid "Whether Bottles should use the Night theme variant."
-msgstr "Treba li program Butelje koristiti varijantu tamne teme."
+msgstr "Treba li program Butelje koristiti varijantu noćne teme."
 
 #: src/ui/preferences.ui:54
 msgid "Show update date"
@@ -1110,7 +1102,7 @@ msgstr "Ukloni iz programa"
 
 #: src/ui/program-entry.ui:134
 msgid "Add desktop entry"
-msgstr ""
+msgstr "Dodaj unos na radnoj površini"
 
 #: src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1121,9 +1113,8 @@ msgid "Creation date"
 msgstr "Datum stvaranja"
 
 #: src/ui/window.ui:20
-#, fuzzy
 msgid "Import/export"
-msgstr "Uvezi i izvezi"
+msgstr "Uvezi/izvezi"
 
 #: src/ui/window.ui:57
 msgid "Documentation"
@@ -1160,7 +1151,7 @@ msgstr "Idi natrag"
 
 #: src/operation.py:63
 msgid "Calculating..."
-msgstr ""
+msgstr "Izračunavanje …"
 
 #: src/main.py:98
 msgid "Show version"
@@ -1222,12 +1213,11 @@ msgstr "Uvoz sigurnosne kopije: {0}"
 
 #: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Nedostaju bitne komponente. Instaliranje u tijeku …"
 
 #: src/backend/manager.py:1019
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Generiranje konfiguracijske datoteke butelje …"
+msgstr "Generiranje konfiguracije butelje"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1038
@@ -1239,13 +1229,13 @@ msgid "WINE config updated!"
 msgstr "WINE konfiguracija je aktualizirana!"
 
 #: src/backend/manager.py:1049
-#, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Pokretanje kao Flatpak, stvaranje mapa testnih okruženja …"
+msgstr ""
+"Pokretanje kao Flatpak, postavljanje mape korisnika u testno okruženje …"
 
 #: src/backend/manager.py:1051
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Postavljanje mape korisnika u testno okruženje …"
 
 #: src/backend/manager.py:1069
 msgid "Setting Windows version…"
@@ -1253,7 +1243,7 @@ msgstr "Postavljanje verzije Windowsa …"
 
 #: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Primijeni standardne CMD postavke …"
 
 #: src/backend/manager.py:1085
 #, python-brace-format
@@ -1369,7 +1359,7 @@ msgstr "Odaberi mjesto za spremanje arhive sigurnosne kopije"
 
 #: src/views/bottle_details.py:362
 msgid "Export"
-msgstr ""
+msgstr "Izvoz"
 
 #: src/views/bottle_details.py:393
 msgid "Confirm deletion"
