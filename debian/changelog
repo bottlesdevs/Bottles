@@ -1,42 +1,32 @@
 com.usebottles.bottles (2021.12.14-treviso) precise; urgency=low
 
   * Introducing a new Downloader for better performance, chunked downloads and CLI progress reporting
-  * The Task manager is now per bottle and only list processes running inside it
-  * By creating a bottle a patch is applied to wineconsole to improve reading
-  * Bottle duplication is now asynchroneous
-  * Repairing a broken bottle provides a visual feedback in the bottles list
-  * Deleting a bottle provides a visual feedback in the bottles list
-  * Now installers wait for dependencies and executables to finish before move to next step
-  * Bottle details view has been reworked to be more easy to extend
-  * Now corrupted downloaded files are automatically removed if checksum is not matching
-  * Now when Bottles creates a registry key, it will wait for any previous keys to be created to avoid corrupting the registry
-  * The Remove option is now hidden for auto-discovered programs
-  * Now automated environments only install most used fonts instead of the allfonts package
-  * The VKD3D is no more enabled by default in Gaming environment
-  * Removed double title in bottles list
-  * The documentation hub now has new hints for Flatpak users
-  * Fixed a bug in Downloader that was failing when it is not able to estimate the download size
-  * Fixed a bug in bottle duplication that was looping in symlinked directories
-  * Fixed a bug in bottle creation that was failing on essential components check
-  * Fixed a bug in wrong encoding of command output
-  * Fixed a bug in Onboard that was freezing the app during component installation
-  * Fixed a bug in components download that was crashing when it is not able to reach the repository
-  * Fixed a bug in wineboot that was updating instead of initializing during bottle creation
-  * Fixed a bug that prevent scrolling in the bottle list
-  * Fixed a bug in sandbox that was not unlinking the Windows Templates folder
-  * Fixed the TypeError: Must be number, not NoneType error thanks to @dogabone
-  * Fixed the Custom environment in bottle creation
-  * Fixed changing Windows version for win64 bottles
-  * Fixed virtual desktop support switching
+  * A status page is now shown when there are no programs/states/installers
+  * The Versioning feature is now available
+  * Now you can ask Bottles to move an executable inside the sandbox before executing
+  * The "Run executable" button is now merged with its context menu
+  * The search bar in the dependencies view now also searches for descriptions
+  * Now you can generate a new Desktop entry file from the programs list (not on Flatpak)
+  * The dependencies view now use the new actions like other views
+  * Bottle power actions are now places in a dedicated menu
+  * Flatpak users now have access to a new console instead of wineconsole
+  * Logs are reformatted to be more easy to read and less verbose
+  * Power actions now provides a visual feedback
+  * Dark theme was renamed to Night mode
+  * Fixed a bug that was preventing the programs list from being updated when removing a program
+  * Fixed a bug that was causing a flickering of the operations menu when some tasks were running
+  * Fixed a bug in bottle creation that was not set the correct path when already existed
+  * Fixed a bug in bottle cloning that was not updating the bottle path
+  * Fixed a consistency issue with the terms used in the UI
+  * Fixed a bug in versioning that was storing states ID as strings instead of integers
+  * Fixed a bug that was listing the wrong states when switching between bottles
+  * Fixed a bug in dependencies installation with 32-bit bottles
+  * Fixed a bug in installers that was silently fail when a dependency was not installed
+  * Czech translations thanks to @tuzu128
   * Spanish translations thanks to @oscfdezdz
+  * French translations thanks to @julroy67
   * Turkish translations thanks to @ersen0
   * Chinese (Simplified) translations thanks to @sr093906
-  * Hungarian translations thanks to @ovari
-  * French translations thanks to @julroy67
-  * Norwegian Bokmål translations thanks to @comradekingu
-  * Portuguese (Brazil) translations thanks to @vitorhcl
-  * Finnish translations thanks to Jiri Grönroos
-  * Japanese translations thanks to @CheesersY5
   * Croatian translations thanks to @milotype
 
- -- Mirko Brombin <send@mirko.pm>  Fri, 27 Nov 2021 16:18:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Sun, 12 Dec 2021 12:09:00 +0000
