@@ -151,13 +151,14 @@ class UtilsLogger(logging.getLoggerClass()):
         "error": 31,
         "critical": 41
     }
-
     __format_log = {
-        'fmt': '%(asctime)s \033[1m%(levelname)s\033[0m: %(message)s',
-        'datefmt': '%Y-%m-%d %H:%M:%S',
+        'fmt': '\033[80m(%(asctime)s) \033[1m%(levelname)s\033[0m %(message)s \033[0m',
+        'datefmt': '%H:%M:%S',
     }
 
     def __color(self, level, message):
+        if "\n" in message:
+            message = message.replace("\n", "\n\t") + "\n"
         color_id = self.__color_map[level]
         return "\033[%dm%s\033[0m" % (color_id, message)
 
