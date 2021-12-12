@@ -68,29 +68,6 @@
   ],
   "modules": [
     {
-      "name": "compat",
-      "buildsystem": "simple",
-      "build-commands": [
-        "mkdir -p /app/lib/i386-linux-gnu /app/lib/debug/lib/i386-linux-gnu"
-      ]
-    },
-    {
-      "name": "i386-libs",
-      "buildsystem": "simple",
-      "build-commands": [
-        "mkdir -p /app/lib/i386-linux-gnu",
-        "install -Dm644 ld.so.conf -t /app/etc/"
-      ],
-      "sources": [
-        {
-          "type": "file",
-          "path": "ld.so.conf"
-        }
-      ]
-    },
-    
-
-    {
       "name": "PyYAML",
       "buildsystem": "simple",
       "build-commands": [
@@ -99,8 +76,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/yaml/pyyaml/archive/5.4.1.tar.gz",
-          "sha256": "75f966559c5f262dfc44da0f958cc2aa18953ae5021f2c3657b415c5a370045f"
+          "url": "https://github.com/yaml/pyyaml/archive/refs/tags/6.0.tar.gz",
+          "sha256": "f33eaba25d8e0c1a959bbf00655198c287dfc5868f5b7b01e401eaa1796cc778"
         }
       ]
     },
@@ -113,8 +90,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/requests/requests/archive/v2.25.1.tar.gz",
-          "sha256": "03b192fad682a33964df331d35f90918b1940c89f6c5bcb10060be688ba50315"
+          "url": "https://github.com/psf/requests/archive/refs/tags/v2.26.0.tar.gz",
+          "sha256": "e88b61425a0b4f1316e7ab8f6c11d7abbc99b464e418786681d59fef9f9d6421"
         }
       ]
     },
@@ -127,8 +104,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/urllib3/urllib3/archive/1.26.6.tar.gz",
-          "sha256": "ab4582b44fbe33f3e3fc838e3d90dde7f68fa3697aeb075962e0ba4b93020327"
+          "url": "https://github.com/urllib3/urllib3/archive/refs/tags/1.26.7.tar.gz",
+          "sha256": "87f1b873ec9f7e0dc6e5bc2f9aa69279c73295a007fbd1ac421954a4679d7923"
         }
       ]
     },
@@ -155,8 +132,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/certifi/python-certifi/archive/2021.05.30.tar.gz",
-          "sha256": "9bffc4826ac0308591e26852a0404548a9e4e30b7214ebfd86360cd214f51dda"
+          "url": "https://github.com/certifi/python-certifi/archive/refs/tags/2021.10.08.tar.gz",
+          "sha256": "51c2cf76f7f2582d9c4eb5440bb311ef523ba0b319d0a973450ecebfb6802a3a"
         }
       ]
     },
@@ -169,8 +146,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/kjd/idna/archive/v3.2.tar.gz",
-          "sha256": "7104cb016a7b2c0d53195e6088abb5cdce03aa0c1b0874a4863c216f647abd29"
+          "url": "https://github.com/kjd/idna/archive/refs/tags/v3.3.tar.gz",
+          "sha256": "34b145ffe35b7872e9a3e0abc3a3a8330db90a0fd58db978725fd05c5c7d9f88"
         }
       ]
     },
@@ -183,80 +160,33 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/Python-Markdown/markdown/archive/refs/tags/3.3.4.tar.gz",
-          "sha256": "dcba963ea6d47d845aaa5d169911052985eec90d50267850c5c4c4fb4b05eff7"
-        }
-      ]
-    },
-
-    
-    {
-      "name": "vkd3d",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz",
-          "sha256": "b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b"
-        }
-      ],
-      "modules": [
-        {
-          "name": "SPIRV-Headers",
-          "buildsystem": "cmake-ninja",
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/1.5.4.raytracing.fixed.tar.gz",
-              "sha256": "df2ad2520be4d95a479fa248921065885bbf435a658349a7fc164ad7b26b68c6"
-            }
-          ]
+          "url": "https://github.com/Python-Markdown/markdown/archive/refs/tags/3.3.6.tar.gz",
+          "sha256": "506543bf4fcd81ea939eae4b43c031ae65b0e210b58ab1db9e3d9dae9298a601"
         }
       ]
     },
     {
-      "name": "vkd3d-32bit",
-      "build-options": {
-        "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-        "ldflags": "-L/app/lib32",
-        "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
-        "env": {
-          "CC": "i686-unknown-linux-gnu-gcc",
-          "CXX": "i686-unknown-linux-gnu-g++"
-        },
-        "libdir": "/app/lib32",
-        "strip": true,
-        "no-debuginfo": true
-      },
+      "name": "patool",
+      "buildsystem": "simple",
+      "build-commands": [
+        "python3 setup.py install --prefix=/app --root=/"
+      ],
       "sources": [
         {
           "type": "archive",
-          "url": "https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz",
-          "sha256": "b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b"
+          "url": "https://github.com/wummel/patool/archive/refs/tags/upstream/1.12.tar.gz",
+          "sha256": "582fd4b87c263325958c1550400504799018c88bc3444f249bba304ae1747f1f"
         }
-      ],
-      "modules": [
+      ]
+    },
+    {
+      "name": "cabextract",
+      "buildsystem": "autotools",
+      "sources": [
         {
-          "name": "SPIRV-Headers-32bit",
-          "buildsystem": "cmake-ninja",
-          "build-options": {
-            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-            "ldflags": "-L/app/lib32",
-            "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
-            "env": {
-              "CC": "i686-unknown-linux-gnu-gcc",
-              "CXX": "i686-unknown-linux-gnu-g++"
-            },
-            "libdir": "/app/lib32",
-            "strip": true,
-            "no-debuginfo": true
-          },
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/1.5.4.raytracing.fixed.tar.gz",
-              "sha256": "df2ad2520be4d95a479fa248921065885bbf435a658349a7fc164ad7b26b68c6"
-            }
-          ]
+          "type": "archive",
+          "url": "https://www.cabextract.org.uk/cabextract-1.9.1.tar.gz",
+          "sha256": "afc253673c8ef316b4d5c29cc4aa8445844bee14afffbe092ee9469405851ca7"
         }
       ]
     },
@@ -271,218 +201,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.2.162.tar.gz",
-          "sha256": "98a3a00471da65df833b4ffeb1ab29ec1d169d5feab54270cf4cd8f50f82e682"
-        }
-      ]
-    },
-    {
-      "name": "mesa-glu",
-      "config-opts": [
-        "--disable-static"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://mesa.freedesktop.org/archive/glu/glu-9.0.2.tar.xz",
-          "sha256": "6e7280ff585c6a1d9dfcdf2fca489251634b3377bfc33c29e4002466a38d02d4"
-        }
-      ]
-    },
-    {
-      "name": "mesa-glu-32bit",
-      "build-options": {
-        "arch": {
-          "x86_64": {
-            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-            "ldflags": "-L/app/lib32",
-            "append-path": "/usr/lib/sdk/toolchain-i386/bin",
-            "env": {
-              "CC": "i686-unknown-linux-gnu-gcc",
-              "CXX": "i686-unknown-linux-gnu-g++"
-            },
-            "libdir": "/app/lib32"
-          }
-        }
-      },
-      "config-opts": [
-        "--disable-static"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://mesa.freedesktop.org/archive/glu/glu-9.0.2.tar.xz",
-          "sha256": "6e7280ff585c6a1d9dfcdf2fca489251634b3377bfc33c29e4002466a38d02d4"
-        }
-      ]
-    },
-    {
-      "name": "OpenCL",
-      "buildsystem": "simple",
-      "build-commands": [
-        "cp -av CL $FLATPAK_DEST/include/"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/KhronosGroup/OpenCL-Headers.git",
-          "commit": "9fac4e9866a961f66bdd72fa2bff50145512f972"
-        }
-      ]
-    },
-    {
-      "name": "libpcap",
-      "config-opts": [
-        "--enable-ipv6"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://www.tcpdump.org/release/libpcap-1.10.1.tar.gz",
-          "sha256": "ed285f4accaf05344f90975757b3dbfe772ba41d1c401c2648b7fa45b711bdd4"
-        }
-      ]
-    },
-    {
-      "name": "libpcap-32bit",
-      "build-options": {
-        "arch": {
-          "x86_64": {
-            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-            "ldflags": "-L/app/lib32",
-            "append-path": "/usr/lib/sdk/toolchain-i386/bin",
-            "env": {
-              "CC": "i686-unknown-linux-gnu-gcc",
-              "CXX": "i686-unknown-linux-gnu-g++"
-            },
-            "libdir": "/app/lib32"
-          }
-        }
-      },
-      "config-opts": [
-        "--enable-ipv6"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://www.tcpdump.org/release/libpcap-1.10.1.tar.gz",
-          "sha256": "ed285f4accaf05344f90975757b3dbfe772ba41d1c401c2648b7fa45b711bdd4"
-        }
-      ]
-    },
-    {
-      "name": "openldap",
-      "config-opts": [
-        "--disable-static",
-        "--enable-shared",
-        "--disable-slapd",
-        "--disable-slurpd",
-        "--disable-bdb",
-        "--disable-hdb"
-      ],
-      "cleanup": [
-        "/bin"
-      ],
-      "build-options": {
-        "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-        "ldflags": "-L/app/lib32",
-        "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
-        "env": {
-          "CC": "i686-unknown-linux-gnu-gcc",
-          "CXX": "i686-unknown-linux-gnu-g++"
-        },
-        "libdir": "/app/lib32",
-        "strip": true,
-        "no-debuginfo": true
-      },
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.5.6.tgz",
-          "sha256": "3f21423a9d3bd9774a4494e2d4fbc830ac68d63a87d4c2934eff800954cac11f"
-        }
-      ]
-    },
-    {
-      "name": "openldap64",
-      "config-opts": [
-        "--disable-static",
-        "--enable-shared",
-        "--disable-slapd",
-        "--disable-slurpd",
-        "--disable-bdb",
-        "--disable-hdb"
-      ],
-      "cleanup": [
-        "/bin"
-      ],
-      "build-options": {
-        "strip": true,
-        "no-debuginfo": true
-      },
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.5.6.tgz",
-          "sha256": "3f21423a9d3bd9774a4494e2d4fbc830ac68d63a87d4c2934eff800954cac11f"
-        }
-      ]
-    },
-    {
-      "name": "FAudio",
-      "buildsystem": "cmake-ninja",
-      "config-opts": [
-        "-DFFMPEG=ON"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/FNA-XNA/FAudio/archive/refs/tags/21.08.tar.gz",
-          "sha256": "42a3a295da44721c63f06fcbf5edf8077a42fdb78313b9e1c065afad12df8063"
-        }
-      ]
-    },
-    {
-      "name": "FAudio-32bit",
-      "build-options": {
-        "arch": {
-          "x86_64": {
-            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
-            "ldflags": "-L/app/lib32",
-            "append-path": "/usr/lib/sdk/toolchain-i386/bin",
-            "env": {
-              "CC": "i686-unknown-linux-gnu-gcc",
-              "CXX": "i686-unknown-linux-gnu-g++"
-            },
-            "libdir": "/app/lib32"
-          }
-        }
-      },
-      "buildsystem": "cmake-ninja",
-      "config-opts": [
-        "-DFFMPEG=ON"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/FNA-XNA/FAudio/archive/refs/tags/21.08.tar.gz",
-          "sha256": "42a3a295da44721c63f06fcbf5edf8077a42fdb78313b9e1c065afad12df8063"
-        }
-      ]
-    },
-
-
-    {
-      "name": "patool",
-      "buildsystem": "simple",
-      "build-commands": [
-        "python3 setup.py install --prefix=/app --root=/"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/wummel/patool/archive/refs/tags/upstream/1.12.tar.gz",
-          "sha256": "582fd4b87c263325958c1550400504799018c88bc3444f249bba304ae1747f1f"
+          "url": "https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.2.186.tar.gz",
+          "sha256": "8ba0e21e8de0b70d31985d251d11150efee71266875262798784e9d1ec9b717b"
         }
       ]
     },
@@ -546,17 +266,6 @@
       ]
     },
     {
-      "name": "cabextract",
-      "buildsystem": "autotools",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://www.cabextract.org.uk/cabextract-1.9.1.tar.gz",
-          "sha256": "afc253673c8ef316b4d5c29cc4aa8445844bee14afffbe092ee9469405851ca7"
-        }
-      ]
-    },
-    {
       "name": "gamemode",
       "buildsystem": "meson",
       "config-opts": [
@@ -601,8 +310,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/FeralInteractive/gamemode/releases/download/1.6/gamemode-1.6.tar.xz",
-          "sha256": "ede17eb042c1c87f7b35bfe96a00560afaea086f685d25bb3964d794b0af9c80"
+          "url": "https://github.com/FeralInteractive/gamemode/releases/download/1.6.1/gamemode-1.6.1.tar.xz",
+          "sha256": "10c2a3f142eae472f5a09e42616e38c666c05b25ca3e61e562a543bb3fda66c5"
         }
       ]
     },
@@ -615,25 +324,292 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/FeralInteractive/gamemode/releases/download/1.6/gamemode-1.6.tar.xz",
-          "sha256": "ede17eb042c1c87f7b35bfe96a00560afaea086f685d25bb3964d794b0af9c80"
+          "url": "https://github.com/FeralInteractive/gamemode/releases/download/1.6.1/gamemode-1.6.1.tar.xz",
+          "sha256": "10c2a3f142eae472f5a09e42616e38c666c05b25ca3e61e562a543bb3fda66c5"
         }
       ]
     },
-
     {
-      "name" : "vte",
-      "buildsystem" : "meson",
-      "config-opts": [
-          "-Ddocs=false",
-          "-Dvapi=false"
+      "name": "compat",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/lib/i386-linux-gnu /app/lib/debug/lib/i386-linux-gnu"
+      ]
+    },
+    {
+      "name": "i386-libs",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/lib/i386-linux-gnu",
+        "install -Dm644 ld.so.conf -t /app/etc/"
       ],
-      "sources" : [
-          {
+      "sources": [
+        {
+          "type": "file",
+          "path": "ld.so.conf"
+        }
+      ]
+    },
+    {
+      "name": "vkd3d",
+      "config-opts": [
+        "--disable-static",
+        "--enable-shared"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz",
+          "sha256": "b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b"
+        }
+      ],
+      "modules": [
+        {
+          "name": "SPIRV-Headers",
+          "buildsystem": "cmake-ninja",
+          "sources": [
+            {
               "type": "archive",
-              "url": "https://gitlab.gnome.org/GNOME/vte/-/archive/0.66.2/vte-0.66.2.tar.gz",
-              "sha256": "a486e389e3d16f903ed6f27d9513c2a44bff5945a12af4fcfe48ce00992c42ab"
+              "url": "https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/1.5.4.raytracing.fixed.tar.gz",
+              "sha256": "df2ad2520be4d95a479fa248921065885bbf435a658349a7fc164ad7b26b68c6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "vkd3d-32bit",
+      "config-opts": [
+        "--disable-static",
+        "--enable-shared"
+      ],
+      "build-options": {
+        "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+        "ldflags": "-L/app/lib32",
+        "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
+        "env": {
+          "CC": "i686-unknown-linux-gnu-gcc",
+          "CXX": "i686-unknown-linux-gnu-g++"
+        },
+        "libdir": "/app/lib32",
+        "strip": true,
+        "no-debuginfo": true
+      },
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz",
+          "sha256": "b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b"
+        }
+      ],
+      "modules": [
+        {
+          "name": "SPIRV-Headers-32bit",
+          "buildsystem": "cmake-ninja",
+          "build-options": {
+            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+            "ldflags": "-L/app/lib32",
+            "prepend-path": "/usr/lib/sdk/toolchain-i386/bin",
+            "env": {
+              "CC": "i686-unknown-linux-gnu-gcc",
+              "CXX": "i686-unknown-linux-gnu-g++"
+            },
+            "libdir": "/app/lib32",
+            "strip": true,
+            "no-debuginfo": true
+          },
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/1.5.4.raytracing.fixed.tar.gz",
+              "sha256": "df2ad2520be4d95a479fa248921065885bbf435a658349a7fc164ad7b26b68c6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mesa-glu",
+      "config-opts": [
+        "--disable-static"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://mesa.freedesktop.org/archive/glu/glu-9.0.2.tar.xz",
+          "sha256": "6e7280ff585c6a1d9dfcdf2fca489251634b3377bfc33c29e4002466a38d02d4"
+        }
+      ]
+    },
+    {
+      "name": "mesa-glu-32bit",
+      "build-options": {
+        "arch": {
+          "x86_64": {
+            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+            "ldflags": "-L/app/lib32",
+            "append-path": "/usr/lib/sdk/toolchain-i386/bin",
+            "env": {
+              "CC": "i686-unknown-linux-gnu-gcc",
+              "CXX": "i686-unknown-linux-gnu-g++"
+            },
+            "libdir": "/app/lib32"
           }
+        }
+      },
+      "config-opts": [
+        "--disable-static"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://mesa.freedesktop.org/archive/glu/glu-9.0.2.tar.xz",
+          "sha256": "6e7280ff585c6a1d9dfcdf2fca489251634b3377bfc33c29e4002466a38d02d4"
+        }
+      ]
+    },
+    {
+      "name": "openldap",
+      "config-opts": [
+        "--disable-slapd",
+        "--disable-slurpd",
+        "--disable-bdb",
+        "--disable-hdb"
+      ],
+      "cleanup": [
+        "/bin"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.0.tgz",
+          "sha256": "b71c580eac573e9aba15d95f33dd4dd08f2ed4f0d7fc09e08ad4be7ed1e41a4f"
+        }
+      ]
+    },
+    {
+      "name": "openldap-32bit",
+      "build-options": {
+        "arch": {
+          "x86_64": [
+            "--disable-slapd",
+            "--disable-slurpd",
+            "--disable-bdb",
+            "--disable-hdb"
+          ]
+        }
+      },
+      "config-opts": [
+        "--disable-slapd",
+        "--disable-slurpd",
+        "--disable-bdb",
+        "--disable-hdb"
+      ],
+      "cleanup": [
+        "/bin"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.0.tgz",
+          "sha256": "b71c580eac573e9aba15d95f33dd4dd08f2ed4f0d7fc09e08ad4be7ed1e41a4f"
+        }
+      ]
+    },
+    {
+      "name": "OpenCL",
+      "buildsystem": "simple",
+      "build-commands": [
+        "cp -av CL $FLATPAK_DEST/include/"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/KhronosGroup/OpenCL-Headers.git",
+          "commit": "e3cd57376dada061bc6d5f9edfce2ea631b81214"
+        }
+      ]
+    },
+    {
+      "name": "libpcap",
+      "config-opts": [
+        "--enable-ipv6"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.tcpdump.org/release/libpcap-1.10.1.tar.gz",
+          "sha256": "ed285f4accaf05344f90975757b3dbfe772ba41d1c401c2648b7fa45b711bdd4"
+        }
+      ]
+    },
+    {
+      "name": "libpcap-32bit",
+      "build-options": {
+        "arch": {
+          "x86_64": {
+            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+            "ldflags": "-L/app/lib32",
+            "append-path": "/usr/lib/sdk/toolchain-i386/bin",
+            "env": {
+              "CC": "i686-unknown-linux-gnu-gcc",
+              "CXX": "i686-unknown-linux-gnu-g++"
+            },
+            "libdir": "/app/lib32"
+          }
+        }
+      },
+      "config-opts": [
+        "--enable-ipv6"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://www.tcpdump.org/release/libpcap-1.10.1.tar.gz",
+          "sha256": "ed285f4accaf05344f90975757b3dbfe772ba41d1c401c2648b7fa45b711bdd4"
+        }
+      ]
+    },
+    {
+      "name": "FAudio",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DGSTREAMER=ON"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/FNA-XNA/FAudio/archive/refs/tags/21.08.tar.gz",
+          "sha256": "42a3a295da44721c63f06fcbf5edf8077a42fdb78313b9e1c065afad12df8063"
+        }
+      ]
+    },
+    {
+      "name": "FAudio-32bit",
+      "build-options": {
+        "arch": {
+          "x86_64": {
+            "prepend-pkg-config-path": "/app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig",
+            "ldflags": "-L/app/lib32",
+            "append-path": "/usr/lib/sdk/toolchain-i386/bin",
+            "env": {
+              "CC": "i686-unknown-linux-gnu-gcc",
+              "CXX": "i686-unknown-linux-gnu-g++"
+            },
+            "libdir": "/app/lib32"
+          }
+        }
+      },
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DGSTREAMER=ON"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/FNA-XNA/FAudio/archive/refs/tags/21.08.tar.gz",
+          "sha256": "42a3a295da44721c63f06fcbf5edf8077a42fdb78313b9e1c065afad12df8063"
+        }
       ]
     },
     {
@@ -644,21 +620,54 @@
       ],
       "sources": [
         {
-          "type": "archive",
-          "url": "https://github.com/bottlesdevs/EasyTerm/archive/refs/tags/0.1.8.tar.gz",
-          "sha256": "1383395a2a42ec7b5453a3a24b500fc8da0413ac645a81f397e49ae96abc9d5a"
+          "type": "git",
+          "url": "https://github.com/bottlesdevs/EasyTerm",
+          "tag": "0.1.8",
+          "commit": "7677c93e865735ebf7125262e071218794ab6e70",
+          "x-checker-data": {
+            "type": "json",
+            "url": "https://api.github.com/repos/bottlesdevs/EasyTerm/releases/latest",
+            "tag-query": ".tag_name",
+            "version-query": ".tag_name",
+            "timestamp-query": ".published_at"
+          }
+        }
+      ],
+      "modules": [
+        {
+          "name": "vte",
+          "buildsystem": "meson",
+          "config-opts": [
+            "-Ddocs=false",
+            "-Dvapi=false"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://gitlab.gnome.org/GNOME/vte/-/archive/0.66.2/vte-0.66.2.tar.gz",
+              "sha256": "a486e389e3d16f903ed6f27d9513c2a44bff5945a12af4fcfe48ce00992c42ab"
+            }
+          ]
         }
       ]
     },
-    
     {
       "name": "bottles",
       "builddir": true,
       "buildsystem": "meson",
       "sources": [
         {
-          "type": "dir",
-          "path": "."
+          "type": "git",
+          "url": "https://github.com/bottlesdevs/Bottles",
+          "tag": "2021.11.28-treviso",
+          "commit": "f1e22097959a2fc838318f059600c00a687f3d8e",
+          "x-checker-data": {
+            "type": "json",
+            "url": "https://api.github.com/repos/bottlesdevs/Bottles/releases/latest",
+            "tag-query": ".tag_name",
+            "version-query": "$tag | sub(\"-treviso\"; \"\")",
+            "timestamp-query": ".published_at"
+          }
         }
       ]
     }

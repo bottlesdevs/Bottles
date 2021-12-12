@@ -1,0 +1,404 @@
+id: com.usebottles.bottles
+sdk: org.gnome.Sdk
+runtime: org.gnome.Platform
+runtime-version: '41'
+command: bottles
+
+finish-args:
+  - --allow=multiarch
+  - --share=network
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --socket=session-bus
+  - --device=all
+  - --system-talk-name=org.freedesktop.UDisks2
+  - --talk-name=org.freedesktop.Notifications
+  - --env=LD_LIBRARY_PATH=/app/lib:/app/lib32
+  - --require-version=1.1.2
+
+add-extensions:
+  org.gnome.Platform.Compat.i386:
+    directory: lib/i386-linux-gnu
+    version: '41'
+  org.gnome.Platform.Compat.i386.Debug:
+    directory: lib/debug/lib/i386-linux-gnu
+    version: '41'
+    no-autodownload: true
+  org.freedesktop.Platform.GL32:
+    directory: lib/i386-linux-gnu/GL
+    version: '1.4'
+    versions: 21.08;1.4
+    subdirectories: true
+    no-autodownload: true
+    autodelete: false
+    add-ld-path: lib
+    merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d
+    download-if: active-gl-driver
+    enable-if: active-gl-driver
+
+x-compat-i386-opts: &compat_i386_opts
+  prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+  ldflags: -L/app/lib32
+  append-path: /usr/lib/sdk/toolchain-i386/bin
+  env:
+    CC: i686-unknown-linux-gnu-gcc
+    CXX: i686-unknown-linux-gnu-g++
+  libdir: /app/lib32
+
+sdk-extensions:
+  - org.gnome.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.toolchain-i386
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.la'
+  - '*.a'
+
+modules:
+
+  # Python modules
+  # ----------------------------------------------------------------------------
+  - name: PyYAML
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/yaml/pyyaml/archive/refs/tags/6.0.tar.gz
+        sha256: f33eaba25d8e0c1a959bbf00655198c287dfc5868f5b7b01e401eaa1796cc778
+
+  - name: python-requests
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/psf/requests/archive/refs/tags/v2.26.0.tar.gz
+        sha256: e88b61425a0b4f1316e7ab8f6c11d7abbc99b464e418786681d59fef9f9d6421
+
+  - name: python-urllib3
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/urllib3/urllib3/archive/refs/tags/1.26.7.tar.gz
+        sha256: 87f1b873ec9f7e0dc6e5bc2f9aa69279c73295a007fbd1ac421954a4679d7923
+
+  - name: python-chardet
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/chardet/chardet/archive/4.0.0.tar.gz
+        sha256: 67bbe3eb02691d38831ddf2719c40fe09381bc17f15321946f6cd71dc274e530
+
+  - name: python-certifi
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/certifi/python-certifi/archive/refs/tags/2021.10.08.tar.gz
+        sha256: 51c2cf76f7f2582d9c4eb5440bb311ef523ba0b319d0a973450ecebfb6802a3a
+
+  - name: python-idna
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/kjd/idna/archive/refs/tags/v3.3.tar.gz
+        sha256: 34b145ffe35b7872e9a3e0abc3a3a8330db90a0fd58db978725fd05c5c7d9f88
+
+  - name: python-markdown
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/Python-Markdown/markdown/archive/refs/tags/3.3.6.tar.gz
+        sha256: 506543bf4fcd81ea939eae4b43c031ae65b0e210b58ab1db9e3d9dae9298a601
+
+  - name: patool
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/wummel/patool/archive/refs/tags/upstream/1.12.tar.gz
+        sha256: 582fd4b87c263325958c1550400504799018c88bc3444f249bba304ae1747f1f
+
+  # Tools / Codecs
+  # ----------------------------------------------------------------------------
+  - name: cabextract
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://www.cabextract.org.uk/cabextract-1.9.1.tar.gz
+        sha256: afc253673c8ef316b4d5c29cc4aa8445844bee14afffbe092ee9469405851ca7
+
+  - name: vulkan-tools
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DGLSLANG_INSTALL_DIR=/app
+      - -DVULKAN_HEADERS_INSTALL_DIR=/app
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.2.186.tar.gz
+        sha256: 8ba0e21e8de0b70d31985d251d11150efee71266875262798784e9d1ec9b717b
+  
+  - name: p7zip
+    no-autogen: true
+    make-args:
+      - all2
+      - OPTFLAGS=-O2 -g
+      - DEST_HOME=/app
+      - DEST_BIN=/app/bin
+      - DEST_SHARE=/app/lib/p7zip
+      - DEST_MAN=/app/share/man
+    make-install-args:
+      - DEST_HOME=/app
+      - DEST_BIN=/app/bin
+      - DEST_SHARE=/app/lib/p7zip
+      - DEST_MAN=/app/share/man
+    sources:
+      - type: archive
+        url: https://github.com/jinfeihan57/p7zip/archive/refs/tags/v17.04.tar.gz
+        sha256: ea029a2e21d2d6ad0a156f6679bd66836204aa78148a4c5e498fe682e77127ef
+      - type: shell
+        only-arches:
+          - x86_64
+        commands:
+          - ln -sf makefile.linux_amd64_asm makefile.machine
+      - type: shell
+        only-arches:
+          - i386
+        commands:
+          - ln -sf makefile.linux_x86_asm_gcc_4.X makefile.machine
+    modules:
+      - name: yasm
+        buildsystem: cmake-ninja
+        sources:
+          - type: archive
+            url: https://github.com/yasm/yasm/archive/v1.3.0.tar.gz
+            sha256: f708be0b7b8c59bc1dbe7134153cd2f31faeebaa8eec48676c10f972a1f13df3
+        cleanup:
+          - '*'
+
+  - name: gamemode
+    buildsystem: meson
+    config-opts: &gamemode_opts
+      - -Dwith-systemd=false
+      - -Dwith-daemon=false
+      - -Dwith-examples=false
+      - -Dwith-util=false
+      - -Dwith-sd-bus-provider=no-daemon
+    sources: &gamemode_sources
+      - type: archive
+        url: https://github.com/FeralInteractive/gamemode/releases/download/1.6.1/gamemode-1.6.1.tar.xz
+        sha256: 10c2a3f142eae472f5a09e42616e38c666c05b25ca3e61e562a543bb3fda66c5
+
+  - name: gamemode-32bit
+    build-options:
+      arch:
+        x86_64: *compat_i386_opts
+    buildsystem: meson
+    config-opts: *gamemode_opts
+    sources: *gamemode_sources
+
+  - name: gamemoderun
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 data/gamemoderun -t /app/bin
+    sources: *gamemode_sources
+  
+  # Libraries
+  # ----------------------------------------------------------------------------
+  - name: compat
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/i386-linux-gnu /app/lib/debug/lib/i386-linux-gnu
+
+  - name: i386-libs
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/i386-linux-gnu
+      - install -Dm644 ld.so.conf -t /app/etc/
+    sources:
+      - type: file
+        path: ld.so.conf
+
+  - name: vkd3d
+    config-opts: &vkd3d_opts
+      - --disable-static
+      - --enable-shared
+    sources: &vkd3d_sources
+      - type: archive
+        url: https://dl.winehq.org/vkd3d/source/vkd3d-1.2.tar.xz
+        sha256: b04b030fcbf0f2dacc933c76c74b449bffef1fc1a18d50254ef1ad3e380df96b
+    modules:
+      - name: SPIRV-Headers
+        buildsystem: cmake-ninja
+        sources: &spirv_sources
+          - type: archive
+            url: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/1.5.4.raytracing.fixed.tar.gz
+            sha256: df2ad2520be4d95a479fa248921065885bbf435a658349a7fc164ad7b26b68c6
+
+  - name: vkd3d-32bit
+    config-opts: *vkd3d_opts
+    build-options:
+      prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+      ldflags: -L/app/lib32
+      prepend-path: /usr/lib/sdk/toolchain-i386/bin
+      env:
+        CC: i686-unknown-linux-gnu-gcc
+        CXX: i686-unknown-linux-gnu-g++
+      libdir: /app/lib32
+      strip: true
+      no-debuginfo: true
+    sources: *vkd3d_sources
+    modules:
+      - name: SPIRV-Headers-32bit
+        buildsystem: cmake-ninja
+        build-options:
+          prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+          ldflags: -L/app/lib32
+          prepend-path: /usr/lib/sdk/toolchain-i386/bin
+          env:
+            CC: i686-unknown-linux-gnu-gcc
+            CXX: i686-unknown-linux-gnu-g++
+          libdir: /app/lib32
+          strip: true
+          no-debuginfo: true
+        sources: *spirv_sources
+
+  - name: mesa-glu
+    config-opts: &mesa_glu_opts
+      - --disable-static
+    sources: &mesa_glu_sources
+      - type: archive
+        url: https://mesa.freedesktop.org/archive/glu/glu-9.0.2.tar.xz
+        sha256: 6e7280ff585c6a1d9dfcdf2fca489251634b3377bfc33c29e4002466a38d02d4
+
+  - name: mesa-glu-32bit
+    build-options:
+      arch:
+        x86_64: *compat_i386_opts
+    config-opts: *mesa_glu_opts
+    sources: *mesa_glu_sources
+  
+  - name: openldap
+    config-opts: &openldap_opts
+      - --disable-slapd
+      - --disable-slurpd
+      - --disable-bdb
+      - --disable-hdb
+    cleanup: &openldap_cleanup
+      - /bin
+    sources: &openldap_sources
+      - type: archive
+        url: https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.0.tgz
+        sha256: b71c580eac573e9aba15d95f33dd4dd08f2ed4f0d7fc09e08ad4be7ed1e41a4f
+
+  - name: openldap-32bit
+    build-options:
+      arch:
+        x86_64: *openldap_opts
+    config-opts: *openldap_opts
+    cleanup: *openldap_cleanup
+    sources: *openldap_sources
+
+  - name: OpenCL
+    buildsystem: simple
+    build-commands:
+      - cp -av CL $FLATPAK_DEST/include/
+    sources:
+      - type: git
+        url: https://github.com/KhronosGroup/OpenCL-Headers.git
+        commit: e3cd57376dada061bc6d5f9edfce2ea631b81214
+
+  - name: libpcap
+    config-opts: &libpcap_opts
+      - --enable-ipv6
+    sources: &libpcap_sources
+      - type: archive
+        url: https://www.tcpdump.org/release/libpcap-1.10.1.tar.gz
+        sha256: ed285f4accaf05344f90975757b3dbfe772ba41d1c401c2648b7fa45b711bdd4
+
+  - name: libpcap-32bit
+    build-options:
+      arch:
+        x86_64: *compat_i386_opts
+    config-opts: *libpcap_opts
+    sources: *libpcap_sources
+
+  - name: FAudio
+    buildsystem: cmake-ninja
+    config-opts: &faudio_opts
+      - -DGSTREAMER=ON
+    sources: &faudio_sources
+      - type: archive
+        url: https://github.com/FNA-XNA/FAudio/archive/refs/tags/21.08.tar.gz
+        sha256: 42a3a295da44721c63f06fcbf5edf8077a42fdb78313b9e1c065afad12df8063
+  
+  - name: FAudio-32bit
+    build-options:
+      arch:
+        x86_64: *compat_i386_opts
+    buildsystem: cmake-ninja
+    config-opts: *faudio_opts
+    sources: *faudio_sources
+
+  # Bottles components
+  # ----------------------------------------------------------------------------
+  - name: EasyTerm
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: git
+        url: https://github.com/bottlesdevs/EasyTerm
+        tag: 0.1.8
+        commit: 7677c93e865735ebf7125262e071218794ab6e70
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/bottlesdevs/EasyTerm/releases/latest
+          tag-query: .tag_name
+          version-query: .tag_name
+          timestamp-query: .published_at
+    modules:
+      - name: vte
+        buildsystem: meson
+        config-opts:
+          - -Ddocs=false
+          - -Dvapi=false
+        sources:
+          - type: archive
+            url: https://gitlab.gnome.org/GNOME/vte/-/archive/0.66.2/vte-0.66.2.tar.gz
+            sha256: a486e389e3d16f903ed6f27d9513c2a44bff5945a12af4fcfe48ce00992c42ab
+
+  - name: bottles
+    builddir: true
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/bottlesdevs/Bottles
+        tag: 2021.11.28-treviso
+        commit: f1e22097959a2fc838318f059600c00a687f3d8e
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/bottlesdevs/Bottles/releases/latest
+          tag-query: .tag_name
+          version-query: $tag | sub("-treviso"; "")
+          timestamp-query: .published_at
