@@ -367,6 +367,24 @@ modules:
         x86_64: *compat_i386_opts
     sources: *libbsd_sources
 
+  - name: libcaca
+    config-opts: &libcaca_opts
+      - --disable-doc
+      - --disable-static
+      - --disable-python
+      - --disable-ruby
+    sources: &libcaca_sources
+      - type: archive
+        url: http://caca.zoy.org/files/libcaca/libcaca-0.99.beta19.tar.gz
+        sha256: 128b467c4ed03264c187405172a4e83049342cc8cc2f655f53a2d0ee9d3772f4
+
+  - name: libcaca-32bit
+    build-options:
+      arch:
+        x86_64: *compat_i386_opts
+    config-opts: *libcaca_opts
+    sources: *libcaca_sources
+
   - name: FAudio
     buildsystem: cmake-ninja
     config-opts: &faudio_opts
