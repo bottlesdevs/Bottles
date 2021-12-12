@@ -89,26 +89,22 @@ class Manager:
         self.installer_manager = InstallerManager(self)
         self.dependency_manager = DependencyManager(self)
 
-        self.check_runners_dir()
-        self.check_dxvk(install_latest=False)
-        self.check_vkd3d(install_latest=False)
-        self.check_nvapi(install_latest=False)
-        self.check_runners(install_latest=False)
-        self.organize_components()
-        self.organize_dependencies()
-        self.fetch_installers()
-        self.check_bottles()
-        self.__clear_temp()
+        self.checks(install_latest=False, first_run=True)
 
-    def checks(self, after, no_install=False):
+    def checks(self, install_latest=False, first_run=False):
+        logging.info("Performing Bottles checks...")
         self.check_runners_dir()
-        self.check_dxvk()
-        self.check_vkd3d()
-        self.check_nvapi()
-        self.check_runners(install_latest=not no_install, after=after)
+        self.check_dxvk(install_latest)
+        self.check_vkd3d(install_latest)
+        self.check_nvapi(install_latest)
+        self.check_runners(install_latest)
+        if first_run:
+            self.organize_components()
+            self.__clear_temp()
         self.check_bottles()
         self.organize_dependencies()
         self.fetch_installers()
+        # TODO: self.check_vulkan_support()
 
     def __clear_temp(self, force: bool = False):
         '''
@@ -309,9 +305,9 @@ class Manager:
             self.runners_available.append(runner.split("/")[-2])
 
         if len(self.runners_available) > 0:
-            logging.info(
-                f"Runners found: [{'|'.join(self.runners_available)}]"
-            )
+            logging.info("Runners found:\n - {0}".format(
+                "\n - ".join(self.runners_available)
+            ))
 
         tmp_runners = [
             x for x in self.runners_available if not x.startswith('sys-')
@@ -367,8 +363,9 @@ class Manager:
             self.dxvk_available.append(dxvk.split("/")[-2])
 
         if len(self.dxvk_available) > 0:
-            logging.info(f"Dxvk found: [{'|'.join(self.dxvk_available)}]")
-
+            logging.info("DXVKs found:\n - {0}".format(
+                "\n - ".join(self.dxvk_available)
+            ))
         if len(self.dxvk_available) == 0 and install_latest:
             logging.warning("No dxvk found.")
 
@@ -413,7 +410,9 @@ class Manager:
             self.vkd3d_available.append(vkd3d.split("/")[-2])
 
         if len(self.vkd3d_available) > 0:
-            logging.info(f"Vkd3d found: [{'|'.join(self.vkd3d_available)}]")
+            logging.info("VKD3Ds found:\n - {0}".format(
+                "\n - ".join(self.vkd3d_available)
+            ))
 
         if len(self.vkd3d_available) == 0 and install_latest:
             logging.warning("No vkd3d found.")
@@ -459,7 +458,9 @@ class Manager:
             self.nvapi_available.append(nvapi.split("/")[-2])
 
         if len(self.nvapi_available) > 0:
-            logging.info(f"Nvapi found: [{'|'.join(self.nvapi_available)}]")
+            logging.info("NVAPIs found:\n - {0}".format(
+                "\n - ".join(self.nvapi_available)
+            ))
 
         if len(self.nvapi_available) == 0 and install_latest:
             logging.warning("No nvapi found.")
@@ -734,7 +735,9 @@ class Manager:
                 pass
 
         if len(self.local_bottles) > 0 and not silent:
-            logging.info(f"Bottles found: {'|'.join(self.local_bottles)}")
+            logging.info("Bottles found:\n - {0}".format(
+                "\n - ".join(self.local_bottles)
+            ))
 
     # Update parameters in bottle config
     def update_config(

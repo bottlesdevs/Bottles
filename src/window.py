@@ -221,7 +221,7 @@ class MainWindow(Handy.ApplicationWindow):
         features locked for no internet connection.
         '''
         if self.utils_conn.check_connection():
-            self.manager.checks()
+            self.manager.checks(install_latest=False, first_run=True)
 
     def toggle_btn_noconnection(self, status):
         self.btn_noconnection.set_visible(status)
