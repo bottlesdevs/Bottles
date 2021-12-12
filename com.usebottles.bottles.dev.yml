@@ -22,10 +22,12 @@ add-extensions:
   org.gnome.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
     version: '41'
+
   org.gnome.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
     version: '41'
     no-autodownload: true
+
   org.freedesktop.Platform.GL32:
     directory: lib/i386-linux-gnu/GL
     version: '1.4'
@@ -436,4 +438,4 @@ modules:
     sources:
       - type: dir
         path: .
-        
+
