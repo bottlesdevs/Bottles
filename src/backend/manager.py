@@ -1082,6 +1082,18 @@ class Manager:
         Runner.wineboot(config, status=3, comunicate=True)
         
         UtilsFiles.wait_for_files(reg_files)
+        
+        # blacklisting processes
+        logging.info("Optimizing environment…")
+        log_update(_("Optimizing environment…"))
+        _blacklist_dll = ["winemenubuilder.exe"]
+        for _dll in _blacklist_dll:
+            Runner.reg_add(
+                config,
+                key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                value=_dll,
+                data="disabled"
+            )
 
         # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…")
