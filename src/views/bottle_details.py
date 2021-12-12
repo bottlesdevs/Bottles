@@ -70,6 +70,7 @@ class BottleView(Gtk.ScrolledWindow):
     btn_flatpak_doc_silent_crash = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
     box_run_extra = Gtk.Template.Child()
+    check_terminal = Gtk.Template.Child()
     check_move_file = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
@@ -288,7 +289,8 @@ class BottleView(Gtk.ScrolledWindow):
                     arguments=args,
                     move_file=self.check_move_file.get_active(),
                     move_progress=self.update_move_progress,
-                    no_async=True
+                    no_async=True,
+                    terminal=self.check_terminal.get_active()
                 )
                 self.manager.update_config(
                     config=self.config,
@@ -306,7 +308,8 @@ class BottleView(Gtk.ScrolledWindow):
                     file_path=file_dialog.get_filename(),
                     move_file=self.check_move_file.get_active(),
                     move_progress=self.update_move_progress,
-                    no_async=True
+                    no_async=True,
+                    terminal=self.check_terminal.get_active()
                 )
                 self.manager.update_config(
                     config=self.config,
@@ -330,6 +333,7 @@ class BottleView(Gtk.ScrolledWindow):
             if w not in [
                 self.btn_run_args, 
                 self.check_move_file,
+                self.check_terminal,
                 self.extra_separator]:
                 w.destroy()
 

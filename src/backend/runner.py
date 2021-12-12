@@ -108,7 +108,8 @@ class Runner:
         no_async: bool = False,
         cwd: str = None,
         move_file: bool = False,
-        move_progress: callable = None
+        move_progress: callable = None,
+        terminal: bool = False
     ):
         '''
         Run an executable file with arguments and environment variables, inside
@@ -139,7 +140,8 @@ class Runner:
                 arguments=arguments, 
                 environment=environment, 
                 comunicate=True, 
-                cwd=cwd
+                cwd=cwd,
+                terminal=terminal
             )
         else:
             RunAsync(
@@ -148,7 +150,8 @@ class Runner:
                 command=command, 
                 arguments=arguments, 
                 environment=environment,
-                cwd=cwd
+                cwd=cwd,
+                terminal=terminal
             )
 
     @staticmethod
