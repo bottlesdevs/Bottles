@@ -494,6 +494,9 @@ class DependencyManager:
             return False
 
         if step.get("dest"):
+            if config.get("Arch") == "win32" and "syswow64" in step.get("dest"):
+                return True
+            
             dest = step.get("dest")
             dest_file_name = step.get("file_name")
 
