@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 from gettext import gettext as _
 from gi.repository import Gtk
 
@@ -50,6 +51,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_virt_desktop = Gtk.Template.Child()
     switch_pulse_latency = Gtk.Template.Child()
     switch_fixme = Gtk.Template.Child()
+    switch_runtime = Gtk.Template.Child()
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
@@ -61,6 +63,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     combo_nvapi = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
+    action_runtime = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -112,6 +115,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
         self.combo_windows.connect('changed', self.__set_windows)
+
+        if "FLATPAK_ID" in os.environ:
+            self.action_runtime.set_visible(True)
+            self.switch_runtime.connect('state-set', self.__toggle_runtime)
 
         '''
         Toggle the gamemode sensitivity based on gamemode_available
@@ -423,6 +430,19 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="fsr",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+    
+    def __toggle_runtime(self, widget, state):
+        '''
+        This function update the runtime status on the bottle
+        configuration according to the widget state.
+        '''
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="use_runtime",
             value=state,
             scope="Parameters"
         )

@@ -8,6 +8,7 @@ from typing import NewType
 from ..utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding
 from .globals import Paths, CMDSettings, gamemode_available
 from .manager_utils import ManagerUtils
+from .runtime import RuntimeManager
 
 logging = UtilsLogger()
 
@@ -376,6 +377,10 @@ class Runner:
             # for e in environment:
             #     e = e.split("=")
             #     env[e[0]] = e[1]
+
+        if "FLATPAK_ID" in os.environ and parameters["use_runtime"]:
+            logging.info("Using runtime if available…")
+            env["LD_LIBRARY_PATH"] = RuntimeManager.get_runtime_env()
 
         if parameters["dxvk"]:
             env["WINE_LARGE_ADDRESS_AWARE"] = "1"
