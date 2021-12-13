@@ -182,7 +182,7 @@ class DetailsView(Handy.Leaflet):
 
         self.build_pages()
         
-    def update_programs(self, widget):
+    def update_programs(self, widget=None):
         self.view_bottle.update_programs()
         self.view_programs.update(config=self.config)
         
