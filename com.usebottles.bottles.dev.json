@@ -766,22 +766,28 @@
       ]
     },
     {
+      "name": "runtime",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/etc/runtime",
+        "cp -a * /app/etc/runtime/"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/bottlesdevs/runtime/releases/download/0.1/runtime.tar.gz",
+          "sha256": "4e66f600c5da2086ad2d0fe073ddb97896566baca348bf48173e536b090bf538"
+        }
+      ]
+    },
+    {
       "name": "bottles",
       "builddir": true,
       "buildsystem": "meson",
       "sources": [
         {
-          "type": "git",
-          "url": "https://github.com/bottlesdevs/Bottles",
-          "tag": "2021.11.28-treviso",
-          "commit": "f1e22097959a2fc838318f059600c00a687f3d8e",
-          "x-checker-data": {
-            "type": "json",
-            "url": "https://api.github.com/repos/bottlesdevs/Bottles/releases/latest",
-            "tag-query": ".tag_name",
-            "version-query": "$tag | sub(\"-treviso\"; \"\")",
-            "timestamp-query": ".published_at"
-          }
+          "type": "dir",
+          "path": "."
         }
       ]
     }
