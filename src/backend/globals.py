@@ -44,6 +44,7 @@ class Samples:
             "pulseaudio_latency": False,
             "fixme_logs": False,
             "environment_variables": "",
+            "use_runtime": False,
         },
         "Installed_Dependencies": [],
         "DLL_Overrides": {},
