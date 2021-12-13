@@ -432,6 +432,16 @@ modules:
             url: https://gitlab.gnome.org/GNOME/vte/-/archive/0.66.2/vte-0.66.2.tar.gz
             sha256: a486e389e3d16f903ed6f27d9513c2a44bff5945a12af4fcfe48ce00992c42ab
 
+  - name: runtime
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/etc/runtime
+      - cp -a * /app/etc/runtime/
+    sources:
+      - type: archive
+        url: https://github.com/bottlesdevs/runtime/releases/download/0.1/runtime.tar.gz
+        sha256: 4e66f600c5da2086ad2d0fe073ddb97896566baca348bf48173e536b090bf538
+
   - name: bottles
     builddir: true
     buildsystem: meson
