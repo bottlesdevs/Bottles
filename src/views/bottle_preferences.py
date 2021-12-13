@@ -219,6 +219,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_fsr.set_active(parameters["fsr"])
+        self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_aco.set_active(parameters["aco_compiler"])
 
         if parameters["sync"] == "wine":
