@@ -393,8 +393,10 @@ class Runner:
             if os.path.exists(f"{runner_path}/{lib}"):
                 runner_libs.append(f"{runner_path}/{lib}")
         if runner_libs:
-            env["LD_LIBRARY_PATH"] += ":".join(runner_libs)
-
+            if "LD_LIBRARY_PATH" in env:
+                env["LD_LIBRARY_PATH"] += ":".join(runner_libs)
+            else:
+                env["LD_LIBRARY_PATH"] = ":".join(runner_libs)
 
         if parameters["dxvk"]:
             env["WINE_LARGE_ADDRESS_AWARE"] = "1"
