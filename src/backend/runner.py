@@ -379,8 +379,22 @@ class Runner:
             #     env[e[0]] = e[1]
 
         if "FLATPAK_ID" in os.environ and parameters["use_runtime"]:
+            '''
+            If the bottle is running inside a flatpak and the use_runtime
+            parameter is set, add runtime libs to LD_LIBRARY_PATH.
+            '''
             logging.info("Using runtime if available…")
             env["LD_LIBRARY_PATH"] = RuntimeManager.get_runtime_env()
+
+        # ensure that runner libs can be found
+        runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
+        runner_libs = []
+        for lib in ["lib", "lib64"]:
+            if os.path.exists(f"{runner_path}/{lib}"):
+                runner_libs.append(f"{runner_path}/{lib}")
+        if runner_libs:
+            env["LD_LIBRARY_PATH"] += ":".join(runner_libs)
+
 
         if parameters["dxvk"]:
             env["WINE_LARGE_ADDRESS_AWARE"] = "1"
