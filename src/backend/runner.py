@@ -378,7 +378,7 @@ class Runner:
             #     e = e.split("=")
             #     env[e[0]] = e[1]
 
-        if "FLATPAK_ID" in os.environ and parameters["use_runtime"]:
+        if "FLATPAK_ID" in os.environ and parameters["use_runtime"] and not terminal:
             '''
             If the bottle is running inside a flatpak and the use_runtime
             parameter is set, add runtime libs to LD_LIBRARY_PATH.
