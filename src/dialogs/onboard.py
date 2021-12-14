@@ -106,6 +106,9 @@ class OnboardDialog(Handy.Window):
         quit()
 
     def __install_runner(self, widget):
+        def set_completed(result, error=False):
+            self.__next_page()
+            
         '''
         This method ask the manager to performs its checks, then
         it will install the latest runner if there is no one installed.
@@ -114,7 +117,9 @@ class OnboardDialog(Handy.Window):
         RunAsync(self.pulse)
         RunAsync(
             task_func=self.manager.checks,
-            after=self.__next_page
+            callback=set_completed,
+            install_latest=True,
+            first_run=True
         )
 
     def __previous_page(self, widget=False):
