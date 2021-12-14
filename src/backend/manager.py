@@ -259,7 +259,7 @@ class Manager:
 
         Runner.run_uninstaller(config, uuid)
 
-    def check_runners(self, install_latest: bool = True, after=False) -> bool:
+    def check_runners(self, install_latest: bool = True) -> bool:
         '''
         This function checks for installed Bottles and system runners and
         appends them to the runners_available list. If there are no runners
@@ -330,8 +330,7 @@ class Manager:
                         runner_name = next(iter(tmp_runners))
                     self.component_manager.install(
                         component_type="runner",
-                        component_name=runner_name,
-                        after=after
+                        component_name=runner_name
                     )
                 except StopIteration:
                     return False
@@ -347,8 +346,7 @@ class Manager:
 
     def check_dxvk(
         self,
-        install_latest: bool = True,
-        no_async: bool = False
+        install_latest: bool = True
     ) -> bool:
         '''
         This function check for installed DXVKs and appends them to the
@@ -373,19 +371,11 @@ class Manager:
                 # if connected, install latest dxvk from repository
                 try:
                     dxvk_version = next(iter(self.supported_dxvk))
-                    if no_async:
-                        self.component_manager.install(
-                            component_type="dxvk", 
-                            component_name=dxvk_version, 
-                            checks=False
-                        )
-                    else:
-                        RunAsync(
-                            task_func=self.component_manager.install, 
-                            component_type="dxvk", 
-                            component_name=dxvk_version, 
-                            checks=False
-                        )
+                    self.component_manager.install(
+                        component_type="dxvk", 
+                        component_name=dxvk_version, 
+                        checks=False
+                    )
                 except StopIteration:
                     return False
             else:
@@ -394,8 +384,7 @@ class Manager:
 
     def check_vkd3d(
         self,
-        install_latest: bool = True,
-        no_async: bool = False
+        install_latest: bool = True
     ) -> bool:
         '''
         This function check for installed VKD3Ds and appends them to the
@@ -421,19 +410,11 @@ class Manager:
                 # if connected, install latest vkd3d from repository
                 try:
                     vkd3d_version = next(iter(self.supported_vkd3d))
-                    if no_async:
-                        self.component_manager.install(
-                            component_type="vkd3d", 
-                            component_name=vkd3d_version, 
-                            checks=False
-                        )
-                    else:
-                        RunAsync(
-                            task_func=self.component_manager.install,
-                            component_type="vkd3d", 
-                            component_name=vkd3d_version, 
-                            checks=False
-                        )
+                    self.component_manager.install(
+                        component_type="vkd3d", 
+                        component_name=vkd3d_version, 
+                        checks=False
+                    )
                 except StopIteration:
                     return False
             else:
@@ -442,8 +423,7 @@ class Manager:
 
     def check_nvapi(
         self,
-        install_latest: bool = True,
-        no_async: bool = False
+        install_latest: bool = True
     ) -> bool:
         '''
         This function checks for installed NVAPIs and appends them to the
@@ -469,19 +449,11 @@ class Manager:
                 # if connected, install latest nvapi from repository
                 try:
                     nvapi_version = next(iter(self.supported_nvapi))
-                    if no_async:
-                        self.component_manager.install(
-                            component_type="nvapi", 
-                            component_name=nvapi_version, 
-                            checks=False
-                        )
-                    else:
-                        RunAsync(
-                            task_func=self.component_manager.install,
-                            component_type="nvapi", 
-                            component_name=nvapi_version, 
-                            checks=False
-                        )
+                    self.component_manager.install(
+                        component_type="nvapi", 
+                        component_name=nvapi_version, 
+                        checks=False
+                    )
                 except StopIteration:
                     return False
             else:
@@ -946,9 +918,9 @@ class Manager:
             logging.error("Missing essential components. Installing…")
             log_update(_("Missing essential components. Installing…"))
             self.check_runners()
-            self.check_dxvk(no_async=True)
-            self.check_vkd3d(no_async=True)
-            self.check_nvapi(no_async=True)
+            self.check_dxvk()
+            self.check_vkd3d()
+            self.check_nvapi()
             self.organize_components()
 
         # default components versions if not specified

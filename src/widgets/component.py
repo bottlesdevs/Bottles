@@ -63,6 +63,12 @@ class ComponentEntry(Handy.ActionRow):
         self.btn_browse.connect('pressed', self.run_browse)
 
     def download(self, widget):
+        def install_finished(result, error=False):
+            if result:
+                return self.set_installed()
+            
+            return self.update_status(failed=True)
+            
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
@@ -72,10 +78,10 @@ class ComponentEntry(Handy.ActionRow):
 
         RunAsync(
             task_func=self.component_manager.install,
+            callback=install_finished,
             component_type=self.component_type,
             component_name=self.name,
-            func=self.update_status,
-            after=self.set_installed
+            func=self.update_status
         )
 
     def run_browse(self, widget):

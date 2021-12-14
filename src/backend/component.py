@@ -25,6 +25,7 @@ from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
 
+from .result import Result
 from ..operation import OperationManager
 from .globals import Paths, BottlesRepositories
 from ..utils import UtilsLogger, UtilsFiles, RunAsync
@@ -381,8 +382,8 @@ class ComponentManager:
         '''
         manifest = self.get_component(component_type, component_name)
 
-        if not manifest and not isinstance(func, bool):
-            return func(failed=True)
+        if not manifest:
+            return Result(False)
 
         logging.info(f"Installing component: [{component_name}].")
 
@@ -444,9 +445,7 @@ class ComponentManager:
 
         self.__manager.organize_components()
 
-        # Execute a method at the end if passed
-        if after:
-            GLib.idle_add(after)
+        return Result(True)
 
     def __post_rename(self, component_type: str, post: dict):
         source = post.get("source")
