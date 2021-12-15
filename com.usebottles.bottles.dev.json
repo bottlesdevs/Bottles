@@ -330,6 +330,17 @@
       ]
     },
     {
+      "name": "xdpyinfo",
+      "buildsystem": "autotools",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/freedesktop/xdpyinfo/archive/refs/tags/xdpyinfo-1.3.2.tar.gz",
+          "sha256": "4c6942cb55e965f1192c0e2efc78429e2f4281cc2bc185d6ea09d609f32c51de"
+        }
+      ]
+    },
+    {
       "name": "compat",
       "buildsystem": "simple",
       "build-commands": [
