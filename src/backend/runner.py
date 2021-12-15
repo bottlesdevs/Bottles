@@ -433,17 +433,16 @@ class Runner:
         if "WAYLAND_DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
             logging.info("Using Xwayland..")
-            display = os.environ.get("DISPLAY", ":0")
+            display = ManagerUtils.get_x_display()
+            if not display:
+                logging.error("Failed to get Xwayland display")
+                return
             env["DISPLAY"] = display
             env["GDK_BACKEND"] = "x11"
             env["GDK_SDISPLAYALE"] = display
 
         if parameters["discrete_gpu"]:
-            if "nvidia" in subprocess.Popen(
-                "lspci | grep 'VGA'",
-                stdout=subprocess.PIPE,
-                shell=True
-            ).communicate()[0].decode("utf-8").lower():
+            if ManagerUtils.check_nvidia_device():
                 env["__NV_PRIME_RENDER_OFFLOAD"] = "1"
                 env["__GLX_VENDOR_LIBRARY_NAME"] = "nvidia"
                 env["__VK_LAYER_NV_optimus"] = "NVIDIA_only"
