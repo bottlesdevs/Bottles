@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-07 21:49+0100\n"
-"PO-Revision-Date: 2021-10-29 00:32+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2021-12-15 21:14+0000\n"
+"Last-Translator: Илья Коротков <korotkovin@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -33,7 +33,7 @@ msgstr "Простое управление wine префиксами"
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
-msgstr ""
+msgstr "Вайн;Виндовс;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -152,9 +152,8 @@ msgid "Bottles versioning (experimental)"
 msgstr "Управление версиями \"бутылок\" (экспериментально)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
-#, fuzzy
 msgid "... and much more that you can find by installing Bottles!"
-msgstr ".. и многое другое, что вы можете найти, установив Bottles!"
+msgstr "... и многое другое, что вы можете найти, установив Bottles!"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -167,39 +166,35 @@ msgstr "Переключение диалога миграции flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Night theme"
-msgstr ""
+msgstr "Тёмный режим"
 
 #: data/com.usebottles.bottles.gschema.xml:12
-#, fuzzy
 msgid "Use the night theme."
 msgstr "Использовать тёмную тему."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr "Переключение даты обновления в списке"
+msgstr "Показывать даты обновления в списке"
 
 #: data/com.usebottles.bottles.gschema.xml:17
-#, fuzzy
 msgid "Toggle the update date in list of bottles."
-msgstr "Переключение даты обновления в списке бутылок."
+msgstr "Показывать даты обновления в списке бутылок."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
 msgstr "Ширина окна"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Change the window width."
-msgstr "Изменение ширины окна"
+msgstr "Изменение ширины окна."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
 msgstr "Высота окна"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Change the window height."
-msgstr "Изменение высоты окна"
+msgstr "Изменение высоты окна."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:335
@@ -207,7 +202,6 @@ msgid "Notifications"
 msgstr "Уведомления"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Show notifications."
 msgstr "Включить уведомления."
 
@@ -216,7 +210,6 @@ msgid "Temp cleaning"
 msgstr "Удаление временных файлов"
 
 #: data/com.usebottles.bottles.gschema.xml:37
-#, fuzzy
 msgid "Clean the temp path when booting the system."
 msgstr "Удаление временных файлов при запуске."
 
@@ -225,50 +218,45 @@ msgid "Release Candidate"
 msgstr "Релиз-кандидат"
 
 #: data/com.usebottles.bottles.gschema.xml:42
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "Использовать версию Release Candidate для runner'ов"
+msgstr "Использовать версию Release Candidate для runner'ов."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
 msgstr "Вид при запуске"
 
 #: data/com.usebottles.bottles.gschema.xml:47
-#, fuzzy
 msgid "Choose which view the application should be started in."
-msgstr "Выберите вид, который должен быть загружен при запуске приложения."
+msgstr "Выберите внешний вид приложения при запуске."
 
 #: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
 msgstr "Эксперименты"
 
 #: data/com.usebottles.bottles.gschema.xml:52
-#, fuzzy
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Включить экспериментальные функции, такие как версионирование и установщики. "
-"(RC версия для компонентов)"
+"Включить экспериментальные функции, такие как версионирование и установщики ("
+"RC версия для компонентов)."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:installers"
 msgstr "Эксперименты:инсталляторы"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental installer features."
-msgstr "Включить функцию экспериментальных установщиков"
+msgstr "Включить функцию экспериментальных установщиков."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Автоматическое закрытие Bottles"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
-"Закрыть Bottles после запуска исполняемого файла из файлового менеджера"
+"Закрыть Bottles после запуска исполняемого файла из файлового менеджера."
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -298,9 +286,8 @@ msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\"> Блог </a>"
 
 #: src/ui/about.ui:175
-#, fuzzy
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
-msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Перевод</a>"
+msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
 #: src/ui/state-entry.ui:21
@@ -376,7 +363,6 @@ msgid "Use DXVK"
 msgstr "Использовать DXVK"
 
 #: src/ui/details-preferences.ui:34
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -389,7 +375,6 @@ msgid "Use VKD3D"
 msgstr "Использовать VKD3D"
 
 #: src/ui/details-preferences.ui:62
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -398,9 +383,8 @@ msgstr ""
 "Отключите, если у вас наблюдаются графические сбои."
 
 #: src/ui/details-preferences.ui:89
-#, fuzzy
 msgid "Use GameMode"
-msgstr "Использовать Gamemode"
+msgstr "Использовать \"Игровой\" режим"
 
 #: src/ui/details-preferences.ui:90
 msgid "Optimise gaming performance on demand"
@@ -408,38 +392,40 @@ msgstr "Оптимизация игровой производительност
 
 #: src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "Включить Сглаживание с алгоритмами глубокого обучения (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:117
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr ""
+msgstr "Обеспечивает поддержку DLSS, если таковая имеется, и NVAPI от Nvidia."
 
 #: src/ui/details-preferences.ui:145
 msgid "Enable FSR"
-msgstr ""
+msgstr "Включить FSR (FidelityFX Super Resolution)"
 
 #: src/ui/details-preferences.ui:146
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
 msgstr ""
+"FSR использует передовые технологии масштабирования, чтобы помочь увеличить "
+"частоту кадров.\n"
+"Отключите эту функцию, если у вас возникнут графические сбои."
 
 #: src/ui/details-preferences.ui:162
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Ультра Качество"
 
 #: src/ui/details-preferences.ui:163
 msgid "Quality"
-msgstr ""
+msgstr "Качество"
 
 #: src/ui/details-preferences.ui:164
 msgid "Balanced"
-msgstr ""
+msgstr "Сбалансировано"
 
 #: src/ui/details-preferences.ui:165
-#, fuzzy
 msgid "Performance"
-msgstr "Внешний вид"
+msgstr "Производительный"
 
 #: src/ui/details-preferences.ui:214
 msgid "Enable ACO shader compiler"
@@ -478,7 +464,6 @@ msgid "Synchronization"
 msgstr "Синхронизация"
 
 #: src/ui/details-preferences.ui:359
-#, fuzzy
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr ""
@@ -511,44 +496,37 @@ msgid "Manage DXVK versions"
 msgstr "Управление версиями DXVK"
 
 #: src/ui/details-preferences.ui:567
-#, fuzzy
 msgid "VKD3D version"
 msgstr "Версия VKD3D"
 
 #: src/ui/details-preferences.ui:610
-#, fuzzy
 msgid "Manage VKD3D versions"
-msgstr "Управление версиями DXVK"
+msgstr "Управление версиями VKD3D"
 
 #: src/ui/details-preferences.ui:642
-#, fuzzy
 msgid "NVAPI version"
-msgstr "Версия DXVK"
+msgstr "Версия NVAPI"
 
 #: src/ui/details-preferences.ui:717
-#, fuzzy
 msgid "Windows version"
-msgstr "Показать версию"
+msgstr "Версия Windows"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-#, fuzzy
 msgid "DLL overrides"
 msgstr "Переопределения DLL"
 
 #: src/ui/details-preferences.ui:798
 msgid "Working directory"
-msgstr ""
+msgstr "Рабочий каталог"
 
 #: src/ui/details-preferences.ui:800
-#, fuzzy
 msgid "Point to the bottle path"
-msgstr "Сохранить состояние \"бутылки\"."
+msgstr "Указать путь к \"бутылке\""
 
 #: src/ui/details-preferences.ui:816
-#, fuzzy
 msgid "Choose a directory"
-msgstr "Выберите переменную среду"
+msgstr "Выберите каталог"
 
 #: src/ui/details-preferences.ui:859
 msgid "Audio"
@@ -590,11 +568,11 @@ msgstr "Пути лог-кода, которые не реализованы в 
 
 #: src/ui/details-programs.ui:29
 msgid "No programs found"
-msgstr ""
+msgstr "Не найдено программ"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
-msgstr ""
+msgstr "Новые программы будут найдены автоматически."
 
 #: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
@@ -713,9 +691,8 @@ msgid "Native then Builtin"
 msgstr "Родной, затем встроенный"
 
 #: src/ui/component-entry.ui:9
-#, fuzzy
 msgid "Component version"
-msgstr "Показать версию"
+msgstr "Версия компонента"
 
 #: src/ui/component-entry.ui:19
 msgid ""
@@ -730,9 +707,8 @@ msgstr ""
 "Нажмите, чтобы повторить попытку."
 
 #: src/ui/component-entry.ui:72
-#, fuzzy
 msgid "Download & Install"
-msgstr "Загрузить и установить этот DXVK"
+msgstr "Загрузить и установить"
 
 #: src/ui/component-entry.ui:99 src/ui/importer-entry.ui:21
 msgid "Browse files"
@@ -780,7 +756,7 @@ msgstr "Этот wine префикс уже был импортирован в B
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
-msgstr ""
+msgstr "Прочитать отзыв"
 
 #: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
@@ -840,9 +816,8 @@ msgid "Close"
 msgstr "Закрыть"
 
 #: src/ui/new.ui:97
-#, fuzzy
 msgid "Bottle information"
-msgstr "\"Бутылка\" создана"
+msgstr "Информация о \"Бутылке\""
 
 #: src/ui/new.ui:118
 msgid "Name"
@@ -891,7 +866,6 @@ msgid "Architecture"
 msgstr "Архитектура"
 
 #: src/ui/new.ui:434
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary"
 msgstr "Мы рекомендуем использовать только 32bit, если это строго необходимо"
 
@@ -944,9 +918,8 @@ msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr "Bottles делает запуск ПО Windows на Linux гораздо проще."
 
 #: src/ui/onboard.ui:152
-#, fuzzy
 msgid "What Are Runners?"
-msgstr "Управление runner'ами"
+msgstr "Что такое runner'ы?"
 
 #: src/ui/onboard.ui:171
 msgid ""
@@ -959,11 +932,11 @@ msgid ""
 "<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
 "runners</a>"
 msgstr ""
-"Это уровень совместимости, которй позволяет устанавливать и запускать "
+"Это уровень совместимости, который позволяет устанавливать и запускать "
 "программное обеспечение Windows на системах Linux.\n"
 "\n"
-"<b>Bottles</b> это среда, в которой исполнитель настраивает систему и в "
-"которой запускается и устанавливается программное обеспечение Windows.\n"
+"<b>Bottles</b> это среда, в которой runner настраивает систему и в которой "
+"запускается и устанавливается программное обеспечение Windows.\n"
 "\n"
 "<a href=\"https://docs.usebottles.com/components/runners\">Подробнее о "
 "бегунах</a>"
@@ -1019,7 +992,6 @@ msgid "Download"
 msgstr "Скачать"
 
 #: src/ui/onboard.ui:349
-#, fuzzy
 msgid "Everything Is Ready!"
 msgstr "Все готово!"
 
@@ -1045,7 +1017,7 @@ msgstr "Внешний вид"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr ""
+msgstr "Ночной режим"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
 #, fuzzy
@@ -1090,7 +1062,7 @@ msgstr "Должен ли вышеуказанный список отображ
 
 #: src/ui/preferences.ui:224
 msgid "DXVK/VKD3D"
-msgstr ""
+msgstr "DXVK/VKD3D"
 
 #: src/ui/preferences.ui:229
 msgid "DXVK"
@@ -1102,7 +1074,7 @@ msgstr "Использовать VKD3D"
 
 #: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:271 src/views/details.py:121
 msgid "Installers"
@@ -1151,7 +1123,6 @@ msgid "Creation date"
 msgstr "Дата создания"
 
 #: src/ui/window.ui:20
-#, fuzzy
 msgid "Import/export"
 msgstr "Импорт и экспорт"
 
@@ -1161,7 +1132,7 @@ msgstr "Документация"
 
 #: src/ui/window.ui:70
 msgid "Forums"
-msgstr ""
+msgstr "Форумы"
 
 #: src/ui/window.ui:83
 msgid "About Bottles"
@@ -1239,7 +1210,6 @@ msgid "Bottles Started!"
 msgstr "Бутылки запущены!"
 
 #: src/window.py:197
-#, fuzzy
 msgid "Import & export"
 msgstr "Импорт и экспорт"
 
@@ -1258,18 +1228,15 @@ msgid "Missing essential components. Installing…"
 msgstr ""
 
 #: src/backend/manager.py:1019
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Состояние соединения: офлайн …"
+msgstr "Создание конфигурации \"бутылки\""
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1038
-#, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "Конфигурация wine обновляется…"
 
 #: src/backend/manager.py:1040
-#, fuzzy
 msgid "WINE config updated!"
 msgstr "Конфигурация Wine обновлена!"
 
@@ -1282,9 +1249,8 @@ msgid "Sandboxing userdir…"
 msgstr ""
 
 #: src/backend/manager.py:1069
-#, fuzzy
 msgid "Setting Windows version…"
-msgstr "Показать версию"
+msgstr "Указать версию Windows…"
 
 #: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
@@ -1296,19 +1262,16 @@ msgid "Applying environment: {0}…"
 msgstr "Применяю переменное окружение: [{0}]…"
 
 #: src/backend/manager.py:1095
-#, fuzzy
 msgid "Installing DXVK…"
 msgstr "Установка dxvk …"
 
 #: src/backend/manager.py:1101
-#, fuzzy
 msgid "Installing VKD3D…"
 msgstr "Установка vkd3d …"
 
 #: src/backend/manager.py:1107
-#, fuzzy
 msgid "Installing DXVK-NVAPI…"
-msgstr "Установка dxvk …"
+msgstr "Установка DXVK-NVAPI…"
 
 #: src/backend/manager.py:1114
 #, fuzzy, python-brace-format
@@ -1345,9 +1308,8 @@ msgid "Updating states …"
 msgstr "Создание \"бутылки\"…"
 
 #: src/dialogs/crash.py:36
-#, fuzzy
 msgid "Show report"
-msgstr "Отчёт об ошибке"
+msgstr "Показать отчёт"
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
@@ -1405,9 +1367,8 @@ msgid "Run"
 msgstr "Запустить"
 
 #: src/views/bottle_details.py:351
-#, fuzzy
 msgid "Select the location where to save the backup config"
-msgstr "Выберите место, где сохранить конфигурацию резервного копирования"
+msgstr "Выберите место сохранения резервной копии конфигурации"
 
 #: src/views/bottle_details.py:355
 msgid "Select the location where to save the backup archive"
@@ -1415,7 +1376,7 @@ msgstr "Выберите место, где сохранить архив рез
 
 #: src/views/bottle_details.py:362
 msgid "Export"
-msgstr ""
+msgstr "Экспорт"
 
 #: src/views/bottle_details.py:393
 msgid "Confirm deletion"
@@ -1430,13 +1391,12 @@ msgid "Gamemode is either not available on your system or not running."
 msgstr "Игровой режим либо недоступен в вашей системе, либо не запущен."
 
 #: src/views/bottle_preferences.py:134
-#, fuzzy
 msgid "Choose working directory for executables"
-msgstr "Выберите исполняемый файл Windows"
+msgstr "Выберите рабочий каталог для исполняемых файлов"
 
 #: src/views/bottle_preferences.py:137
 msgid "Done"
-msgstr ""
+msgstr "Готово"
 
 #: src/views/bottle_programs.py:60
 msgid "Choose an executable path"
@@ -1451,9 +1411,8 @@ msgid "Choose a backup archive"
 msgstr "Выберите архив резервной копии"
 
 #: src/views/importer.py:101
-#, fuzzy
 msgid "Choose a configuration file"
-msgstr "Настройка"
+msgstr "Выберите конфигурационный файл"
 
 #: src/views/list.py:55 src/views/list.py:61
 msgid "N/A"
