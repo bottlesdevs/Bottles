@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-07 21:49+0100\n"
-"PO-Revision-Date: 2021-11-29 21:50+0000\n"
-"Last-Translator: Vojta Z <vojtazan@gmail.com>\n"
+"PO-Revision-Date: 2021-12-15 05:46+0000\n"
+"Last-Translator: Vilda <vvedomil@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
 "Language: cs\n"
@@ -146,9 +146,8 @@ msgid "Bottles versioning (experimental)"
 msgstr "Správce verzí láhví (experimentální)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
-#, fuzzy
 msgid "... and much more that you can find by installing Bottles!"
-msgstr ".. a mnohem více můžete zjistit tak že si nainstalujete Láhve!"
+msgstr "... a mnohem více můžete zjistit instalací Láhve!"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
@@ -161,12 +160,11 @@ msgstr "Přechod na Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Night theme"
-msgstr ""
+msgstr "Tmavý vzhled"
 
 #: data/com.usebottles.bottles.gschema.xml:12
-#, fuzzy
 msgid "Use the night theme."
-msgstr "Povolit tmavý vzhled."
+msgstr "Použít tmavý vzhled."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -334,9 +332,8 @@ msgstr ""
 "licencí."
 
 #: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:162
-#, fuzzy
 msgid "Read documentation"
-msgstr "Dokumentace"
+msgstr "Číst dokumentaci"
 
 #: src/ui/details-dependencies.ui:129
 msgid "Report a missing dependency"
@@ -366,21 +363,18 @@ msgid "Use DXVK"
 msgstr "Použít DXVK"
 
 #: src/ui/details-preferences.ui:34
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Zvyšuje výkon ve hrách a 3D aplikacích.\n"
-"Vypněte pokud máte problém s grafickými závadami."
+"Zlepšuje výkon her a 3D aplikací DirectX 11.\n"
+"Vypněte, pokud dochází ke grafickým závadám."
 
 #: src/ui/details-preferences.ui:61
-#, fuzzy
 msgid "Use VKD3D"
-msgstr "Použít DXVK"
+msgstr "Použít VKD3D"
 
 #: src/ui/details-preferences.ui:62
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -399,38 +393,39 @@ msgstr "Optimalizovat herní výkon na vyžádání"
 
 #: src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "Povolit DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:117
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr ""
+msgstr "Zajistěte podporu DLSS, pokud je k dispozici a NVAPI Nvidia."
 
 #: src/ui/details-preferences.ui:145
 msgid "Enable FSR"
-msgstr ""
+msgstr "Povolit FSR"
 
 #: src/ui/details-preferences.ui:146
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
 msgstr ""
+"FSR využívá špičkové technologie pro zvýšení snímkové frekvence.\n"
+"Pokud se setkáte s grafickými vadami, vypněte tuto funkci."
 
 #: src/ui/details-preferences.ui:162
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Ultra kvalita"
 
 #: src/ui/details-preferences.ui:163
 msgid "Quality"
-msgstr ""
+msgstr "Kvalita"
 
 #: src/ui/details-preferences.ui:164
 msgid "Balanced"
-msgstr ""
+msgstr "Vyvážený"
 
 #: src/ui/details-preferences.ui:165
-#, fuzzy
 msgid "Performance"
-msgstr "Vzhled"
+msgstr "Výkon"
 
 #: src/ui/details-preferences.ui:214
 msgid "Enable ACO shader compiler"
@@ -509,14 +504,12 @@ msgid "Manage VKD3D versions"
 msgstr "Spravovat verze VKD3D"
 
 #: src/ui/details-preferences.ui:642
-#, fuzzy
 msgid "NVAPI version"
-msgstr "Verze DXVK"
+msgstr "Verze NVAPI"
 
 #: src/ui/details-preferences.ui:717
-#, fuzzy
 msgid "Windows version"
-msgstr "Zobrazit verzi"
+msgstr "Verze Windows"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -577,11 +570,11 @@ msgstr "Protokolujte cesty kódu, které nejsou ve Wine implementovány."
 
 #: src/ui/details-programs.ui:29
 msgid "No programs found"
-msgstr ""
+msgstr "Nenalezen žádný program"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
-msgstr ""
+msgstr "Nové programy budou nalezeny automaticky."
 
 #: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
@@ -1018,7 +1011,7 @@ msgstr "Vzhled"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr ""
+msgstr "Tmavý režim"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
 #, fuzzy
@@ -1075,7 +1068,7 @@ msgstr "VKD3D"
 
 #: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:271 src/views/details.py:121
 msgid "Installers"
@@ -1086,9 +1079,8 @@ msgid "Change Launch Options"
 msgstr "Změnit možnosti spuštění"
 
 #: src/ui/program-entry.ui:34
-#, fuzzy
 msgid "Browse Path"
-msgstr "Procházet C:"
+msgstr "Procházet umístění"
 
 #: src/ui/program-entry.ui:58
 msgid "WineHQ"
@@ -1099,14 +1091,12 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
-#, fuzzy
 msgid "Bottles' Forums"
-msgstr "Problémy s Láhvemi"
+msgstr "Fórum Láhví"
 
 #: src/ui/program-entry.ui:97
-#, fuzzy
 msgid "Bottles' Issues"
-msgstr "Problémy s Láhvemi"
+msgstr "Problémy Láhví"
 
 #: src/ui/program-entry.ui:121
 msgid "Remove from Programs"
@@ -1114,7 +1104,7 @@ msgstr "Odebrat z programů"
 
 #: src/ui/program-entry.ui:134
 msgid "Add desktop entry"
-msgstr ""
+msgstr "Přidání položky na plochu"
 
 #: src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1125,9 +1115,8 @@ msgid "Creation date"
 msgstr "Datum vytvoření"
 
 #: src/ui/window.ui:20
-#, fuzzy
 msgid "Import/export"
-msgstr "Importovat a exportovat"
+msgstr "Importovat/exportovat"
 
 #: src/ui/window.ui:57
 msgid "Documentation"
@@ -1135,7 +1124,7 @@ msgstr "Dokumentace"
 
 #: src/ui/window.ui:70
 msgid "Forums"
-msgstr ""
+msgstr "Fórum"
 
 #: src/ui/window.ui:83
 msgid "About Bottles"
@@ -1164,7 +1153,7 @@ msgstr "Jít zpět"
 
 #: src/operation.py:63
 msgid "Calculating..."
-msgstr ""
+msgstr "Výpočet..."
 
 #: src/main.py:98
 msgid "Show version"
@@ -1212,9 +1201,8 @@ msgid "Bottles Started!"
 msgstr "Láhve Spuštěny!"
 
 #: src/window.py:197
-#, fuzzy
 msgid "Import & export"
-msgstr "Importovat a exportovat"
+msgstr "Importovat & exportovat"
 
 #: src/backend/backup.py:60
 #, python-brace-format
@@ -1228,23 +1216,20 @@ msgstr "Importuji zálohu: {0}"
 
 #: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Chybí základní součásti. Instalace…"
 
 #: src/backend/manager.py:1019
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Stav Připojení: offline …"
+msgstr "Generování konfigurace láhve"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1038
-#, fuzzy
 msgid "The WINE config is being updated…"
-msgstr "Konfigurace wine je aktualizována …"
+msgstr "Konfigurace WINE se aktualizuje …"
 
 #: src/backend/manager.py:1040
-#, fuzzy
 msgid "WINE config updated!"
-msgstr "Konfigurace wine byla aktualizována!"
+msgstr "Konfigurace WINE byla aktualizována!"
 
 #: src/backend/manager.py:1049
 #, fuzzy
@@ -1256,9 +1241,8 @@ msgid "Sandboxing userdir…"
 msgstr ""
 
 #: src/backend/manager.py:1069
-#, fuzzy
 msgid "Setting Windows version…"
-msgstr "Zobrazit verzi"
+msgstr "Nastavení verze Windows…"
 
 #: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
@@ -1388,7 +1372,7 @@ msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
 
 #: src/views/bottle_details.py:362
 msgid "Export"
-msgstr ""
+msgstr "Export"
 
 #: src/views/bottle_details.py:393
 msgid "Confirm deletion"
@@ -1403,9 +1387,8 @@ msgid "Gamemode is either not available on your system or not running."
 msgstr "Gamemode není v systému k dispozici nebo není spuštěn."
 
 #: src/views/bottle_preferences.py:134
-#, fuzzy
 msgid "Choose working directory for executables"
-msgstr "Vyberte spustitelný soubor Windows"
+msgstr "Vyberte pracovní složku pro spustitelné soubory"
 
 #: src/views/bottle_preferences.py:137
 msgid "Done"
@@ -1424,9 +1407,8 @@ msgid "Choose a backup archive"
 msgstr "Vyberte záložní archiv"
 
 #: src/views/importer.py:101
-#, fuzzy
 msgid "Choose a configuration file"
-msgstr "Konfigurace"
+msgstr "Vyberte konfigurační soubor"
 
 #: src/views/list.py:55 src/views/list.py:61
 msgid "N/A"
