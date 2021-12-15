@@ -235,6 +235,12 @@ class NewView(Handy.Window):
         self.label_output.set_text(text)
 
     def finish(self, result, error=None):
+        if result is None or error is not None:
+            self.update_output(_("There was an error creating the bottle."))
+            self.btn_cancel.set_visible(False)
+            self.btn_close.set_visible(True)
+            return
+
         self.new_bottle_config = result.data.get("config")
         self.page_created.set_description(
             _("A bottle named “{0}” was created successfully").format(
