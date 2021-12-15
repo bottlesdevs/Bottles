@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-07 21:49+0100\n"
-"PO-Revision-Date: 2021-11-18 11:55+0000\n"
+"PO-Revision-Date: 2021-12-15 21:14+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -159,7 +159,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Night theme"
-msgstr ""
+msgstr "Yöteema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 #, fuzzy
@@ -379,7 +379,6 @@ msgstr ""
 "Poista käytöstä jos havaitset graafisia ongelmia."
 
 #: src/ui/details-preferences.ui:89
-#, fuzzy
 msgid "Use GameMode"
 msgstr "Käytä pelitilaa"
 
@@ -490,7 +489,6 @@ msgid "Manage DXVK versions"
 msgstr "Hallitse DXVK-versioita"
 
 #: src/ui/details-preferences.ui:567
-#, fuzzy
 msgid "VKD3D version"
 msgstr "VKD3D-versio"
 
@@ -499,18 +497,15 @@ msgid "Manage VKD3D versions"
 msgstr "Hallitse VKD3D-versioita"
 
 #: src/ui/details-preferences.ui:642
-#, fuzzy
 msgid "NVAPI version"
 msgstr "NVAPI-versio"
 
 #: src/ui/details-preferences.ui:717
-#, fuzzy
 msgid "Windows version"
 msgstr "Windows-versio"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-#, fuzzy
 msgid "DLL overrides"
 msgstr "DLL-ohitukset"
 
@@ -567,29 +562,27 @@ msgstr "Lokita koodipolut, joita ei ole toteutettu Winessä."
 
 #: src/ui/details-programs.ui:29
 msgid "No programs found"
-msgstr ""
+msgstr "Ohjelmia ei löytynyt"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
-msgstr ""
+msgstr "Uudet ohjelmat löytyvät automaattisesti."
 
 #: src/ui/details-programs.ui:73
-#, fuzzy
 msgid "Add a custom executable path"
-msgstr "Suorita .exe"
+msgstr "Lisää omavalintainen suorituspolku"
 
 #: src/ui/details-programs.ui:99
 msgid "Search for installed programs"
 msgstr "Etsi asennettuja ohjelmia"
 
 #: src/ui/details-versioning.ui:60
-#, fuzzy
 msgid "No states found"
-msgstr "Löytyi pulloja: %s"
+msgstr "Tiloja ei löytynyt"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Luo ensimmäinen tila aloittaaksesi versioinnin käytön."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -1016,12 +1009,11 @@ msgstr "Ulkoasu"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr ""
+msgstr "Yötila"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
-#, fuzzy
 msgid "Whether Bottles should use the Night theme variant."
-msgstr "Pitäisikö pullojen käyttää tumman teeman muunnosta."
+msgstr "Tuleeko pullojen käyttää tumman yöteeman muunnosta."
 
 #: src/ui/preferences.ui:54
 msgid "Show update date"
@@ -1109,7 +1101,7 @@ msgstr "Poista ohjelmista"
 
 #: src/ui/program-entry.ui:134
 msgid "Add desktop entry"
-msgstr ""
+msgstr "Lisää työpöytätietue"
 
 #: src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1120,9 +1112,8 @@ msgid "Creation date"
 msgstr "Luomispäivä"
 
 #: src/ui/window.ui:20
-#, fuzzy
 msgid "Import/export"
-msgstr "Tuonti ja vienti"
+msgstr "Tuo/vie"
 
 #: src/ui/window.ui:57
 msgid "Documentation"
@@ -1160,7 +1151,7 @@ msgstr "Siirry takaisin"
 
 #: src/operation.py:63
 msgid "Calculating..."
-msgstr ""
+msgstr "Lasketaan..."
 
 #: src/main.py:98
 msgid "Show version"
@@ -1223,12 +1214,11 @@ msgstr "Varmuuskopion tuominen: {0}"
 
 #: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Välttömättömiä komponentteja puuttuu. Asennetaan…"
 
 #: src/backend/manager.py:1019
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Luodaan Pullo-kokoonpanotiedostoa…"
+msgstr "Luodaan Pullo-kokoonpanoa"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1038
@@ -1327,9 +1317,8 @@ msgid "Programs"
 msgstr "Ohjelmat"
 
 #: src/views/details.py:114
-#, fuzzy
 msgid "Found in your bottle's Start menu."
-msgstr "Nämä ohjelmat löytyvät pullosi Käynnistä-valikosta"
+msgstr "Löytyi pullosi Käynnistä-valikosta."
 
 #: src/views/details.py:117
 msgid "Versioning"
@@ -1371,7 +1360,7 @@ msgstr "Valitse sijainti, johon varmuuskopioarkisto tallennetaan"
 
 #: src/views/bottle_details.py:362
 msgid "Export"
-msgstr ""
+msgstr "Vie"
 
 #: src/views/bottle_details.py:393
 msgid "Confirm deletion"
