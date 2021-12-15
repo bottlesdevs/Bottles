@@ -1254,16 +1254,15 @@ class Manager:
             dxvk_version = version
 
         option = "uninstall" if remove else "install"
-        command = [
+        command = " ".join([
             'DISPLAY=:3.0',
-            f'WINEPREFIX="{Paths.bottles}/{config.get("Path")}"',
-            f'PATH="{Paths.runners}/{config.get("Runner")}/bin:$PATH"',
-            f'{Paths.dxvk}/{dxvk_version}/setup_dxvk.sh',
+            f'WINEPREFIX="{ManagerUtils.get_bottle_path(config)}"',
+            f'PATH="{ManagerUtils.get_runner_path(config["Runner"])}/bin:$PATH"',
+            f'{ManagerUtils.get_dxvk_path(dxvk_version)}/setup_dxvk.sh',
             option,
             '--with-d3d10'
-        ]
-        command = " ".join(command)
-        subprocess.Popen(command, shell=True).communicate()
+        ])
+        subprocess.Popen(command, shell=True).wait()
 
         return Result(status=True)
 
@@ -1291,14 +1290,14 @@ class Manager:
 
         option = "uninstall" if remove else "install"
 
-        command = [
+        command = " ".join([
             'DISPLAY=:3.0',
-            f'WINEPREFIX="{Paths.bottles}/{config.get("Path")}"',
-            f'PATH="{Paths.runners}/{config.get("Runner")}/bin:$PATH"',
-            f'{Paths.vkd3d}/{vkd3d_version}/setup_vkd3d_proton.sh',
+            f'WINEPREFIX="{ManagerUtils.get_bottle_path(config)}"',
+            f'PATH="{ManagerUtils.get_runner_path(config["Runner"])}/bin:$PATH"',
+            f'{ManagerUtils.get_vkd3d_path(vkd3d_version)}/setup_vkd3d_proton.sh',
             option
-        ]
-        subprocess.Popen(command, shell=True).communicate()
+        ])
+        subprocess.Popen(command, shell=True).wait()
 
         return Result(status=True)
 
