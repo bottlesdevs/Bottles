@@ -84,10 +84,10 @@
               <object class="GtkEntry" id="entry_arguments">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="tooltip-text" translatable="yes">e.g.: -example1 -example2 -example3=hello</property>
+                <property name="tooltip-text" translatable="yes">e.g.: VAR=value %command% -example1 -example2 -example3=hello</property>
                 <property name="hexpand">True</property>
                 <property name="primary-icon-name">utilities-terminal-symbolic</property>
-                <property name="placeholder-text" translatable="yes">e.g.: -example1 -example2 -example3=hello</property>
+                <property name="placeholder-text" translatable="yes">e.g.: VAR=value %command% -example1 -example2 -example3=hello</property>
                 <property name="input-purpose">terminal</property>
               </object>
               <packing>
