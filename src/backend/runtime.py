@@ -60,7 +60,7 @@ class RuntimeManager:
             f"/app/etc/runtime",
             f"{Path.home()}/.local/share/bottles/runtime",
         ]
-        structure = ["lib32", "lib64"]
+        structure = ["lib", "lib32"]
 
         return RuntimeManager.__get_runtime(paths, structure)
     
