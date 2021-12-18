@@ -99,6 +99,7 @@ class ProgramEntry(Handy.ActionRow):
             self.arguments
         )
         new_window.present()
+        self.update_programs()
 
     def run_executable(self, widget):
         if self.program_executable in self.config["Programs"]:
