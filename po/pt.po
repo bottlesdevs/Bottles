@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-07 21:49+0100\n"
-"PO-Revision-Date: 2021-09-26 18:38+0000\n"
-"Last-Translator: Davi Patricio <davipatricio@pm.me>\n"
+"PO-Revision-Date: 2021-12-21 08:25+0000\n"
+"Last-Translator: Tom Pereira <tomas_1998@live.com.pt>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bottles/"
 "bottles/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -148,7 +148,6 @@ msgid "Bottles versioning (experimental)"
 msgstr "Versão do Bottles (experimental)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
-#, fuzzy
 msgid "... and much more that you can find by installing Bottles!"
 msgstr ".. e muito mais que pode encontrar ao instalar o Bottles!"
 
@@ -157,42 +156,40 @@ msgid "Flatpak migration"
 msgstr "Migração Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:7
-#, fuzzy
 msgid "Toggle the Flatpak migration dialog."
-msgstr "Migração Flatpak"
+msgstr "Accione diálogo de Migração Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Night theme"
-msgstr ""
+msgstr "Tema nocturno"
 
 #: data/com.usebottles.bottles.gschema.xml:12
-#, fuzzy
 msgid "Use the night theme."
-msgstr "Ativar o tema escuro."
+msgstr "Ativar o tema noturno."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Accionar a data de atualização na lista"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr ""
+msgstr "Accionar a data de atualização na lista de Bottles."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
-msgstr ""
+msgstr "Largura da janela"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Change the window width."
-msgstr ""
+msgstr "Modificar a largura da janela."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
-msgstr ""
+msgstr "Altura da janela"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Change the window height."
-msgstr ""
+msgstr "Modificar a altura da janela."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:335
@@ -209,7 +206,6 @@ msgid "Temp cleaning"
 msgstr "Esvaziar ficheiros temporários"
 
 #: data/com.usebottles.bottles.gschema.xml:37
-#, fuzzy
 msgid "Clean the temp path when booting the system."
 msgstr "Esvazie os ficheiros temporários na abertura da aplicação."
 
@@ -218,16 +214,14 @@ msgid "Release Candidate"
 msgstr "Versão de testes"
 
 #: data/com.usebottles.bottles.gschema.xml:42
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "Alterar as versões de testes para os runners"
+msgstr "Alterar as versões de testes para os runners."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
 msgstr "Ecrã inicial"
 
 #: data/com.usebottles.bottles.gschema.xml:47
-#, fuzzy
 msgid "Choose which view the application should be started in."
 msgstr ""
 "Escolha quais das opções devem ser carregadas em conjunto com a aplicação."
@@ -237,33 +231,30 @@ msgid "Experiments"
 msgstr "Funcionalidades experimentais"
 
 #: data/com.usebottles.bottles.gschema.xml:52
-#, fuzzy
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
-"Alterna recursos experimentais, como controlo de versão e instaladores. "
-"Candidato a Lançamento para Runners"
+"Acciona recursos experimentais, como controlo de versão e instaladores. "
+"Candidato a Lançamento para Runners."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:installers"
 msgstr "Experimental: instaladores"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental installer features."
-msgstr "Alterna recurso experimental de instaladores"
+msgstr "Acciona recurso experimental de instaladores."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Fechar garrafas automaticamente"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
-"Fechar as garrafas depois de iniciar o executável a partir do gestor de "
-"ficheiros"
+"Fechar as bottles depois de iniciar o executável a partir do gestor de "
+"ficheiros."
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -313,6 +304,8 @@ msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
 msgstr ""
+"Ocorreu um erro na instalação. Reinicie o Bottles para ler o relatório de "
+"falha ou execute-o no terminal para ler o resultado."
 
 #: src/ui/dependency-entry.ui:193
 msgid "Download & Install this dependency"
@@ -321,6 +314,8 @@ msgstr "Descarregar e instalar esta dependência"
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
+"Modo de teste ativado: apenas dependências do repositório de testes são "
+"mostradas."
 
 #: src/ui/details-dependencies.ui:106
 msgid ""
@@ -347,6 +342,9 @@ msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
+"Isto é uma opção experimental ainda em desnvolvimento, tenha cuidado e\n"
+"<a href=\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">reporte "
+"os erros</a>."
 
 #: src/ui/details-installers.ui:137 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:94
@@ -375,7 +373,6 @@ msgid "Use VKD3D"
 msgstr "Use o VKD3D"
 
 #: src/ui/details-preferences.ui:62
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -384,7 +381,6 @@ msgstr ""
 "Desativar se estiver a enfrentar falhas gráficas."
 
 #: src/ui/details-preferences.ui:89
-#, fuzzy
 msgid "Use GameMode"
 msgstr "Usar Gamemode"
 
@@ -394,38 +390,40 @@ msgstr "Otimize o desempenho dos seus jogos"
 
 #: src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "Ativar DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:117
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr ""
+msgstr "Fornece suporte para DLSS se disponível e NVAPI da Nvidia."
 
 #: src/ui/details-preferences.ui:145
 msgid "Enable FSR"
-msgstr ""
+msgstr "Ativar FSR"
 
 #: src/ui/details-preferences.ui:146
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
 msgstr ""
+"FSR usa tecnologia de aumento de resolução de ponta a fim de ajudar a "
+"melhorar os teus framerates.\n"
+"Desativa-o se experienciar falhas gráficas."
 
 #: src/ui/details-preferences.ui:162
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Qualidade Ultra"
 
 #: src/ui/details-preferences.ui:163
 msgid "Quality"
-msgstr ""
+msgstr "Qualidade"
 
 #: src/ui/details-preferences.ui:164
 msgid "Balanced"
-msgstr ""
+msgstr "Equilibrado"
 
 #: src/ui/details-preferences.ui:165
-#, fuzzy
 msgid "Performance"
-msgstr "Aparência"
+msgstr "Desempenho"
 
 #: src/ui/details-preferences.ui:214
 msgid "Enable ACO shader compiler"
@@ -464,7 +462,6 @@ msgid "Synchronization"
 msgstr "Sincronização"
 
 #: src/ui/details-preferences.ui:359
-#, fuzzy
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr ""
@@ -497,41 +494,35 @@ msgid "Manage DXVK versions"
 msgstr "Gerir versões do DXVK"
 
 #: src/ui/details-preferences.ui:567
-#, fuzzy
 msgid "VKD3D version"
 msgstr "Versão do VKD3D"
 
 #: src/ui/details-preferences.ui:610
-#, fuzzy
 msgid "Manage VKD3D versions"
 msgstr "Gerir versões do DXVK"
 
 #: src/ui/details-preferences.ui:642
-#, fuzzy
 msgid "NVAPI version"
-msgstr "Versão do DXVK"
+msgstr "Versão do NVAPI"
 
 #: src/ui/details-preferences.ui:717
-#, fuzzy
 msgid "Windows version"
-msgstr "Mostrar versão"
+msgstr "Versão do Windows"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-#, fuzzy
 msgid "DLL overrides"
 msgstr "Substituições de DLL"
 
 #: src/ui/details-preferences.ui:798
 msgid "Working directory"
-msgstr ""
+msgstr "Diretório de trabalho"
 
 #: src/ui/details-preferences.ui:800
 msgid "Point to the bottle path"
 msgstr "Aponte para o caminho da garrafa"
 
 #: src/ui/details-preferences.ui:816
-#, fuzzy
 msgid "Choose a directory"
 msgstr "Escolha o espaço de trabalho"
 
@@ -577,11 +568,11 @@ msgstr "Caminhos de código de registo que não são implementados no Wine."
 
 #: src/ui/details-programs.ui:29
 msgid "No programs found"
-msgstr ""
+msgstr "Nenhum programa encontrado"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
-msgstr ""
+msgstr "Novos programas serão automaticamente encontrados."
 
 #: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
@@ -592,13 +583,12 @@ msgid "Search for installed programs"
 msgstr "Procurar programas instalados"
 
 #: src/ui/details-versioning.ui:60
-#, fuzzy
 msgid "No states found"
-msgstr "Bottles encontradas: %s"
+msgstr "Nenhum estado encontrado"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Criar primeiro estado para começar a usar gestão de versões."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -702,9 +692,8 @@ msgid "Native then Builtin"
 msgstr "Nativo e depois integrado"
 
 #: src/ui/component-entry.ui:9
-#, fuzzy
 msgid "Component version"
-msgstr "Mostrar versão"
+msgstr "Versão de componente"
 
 #: src/ui/component-entry.ui:19
 msgid ""
@@ -713,11 +702,14 @@ msgid ""
 "\n"
 "Press to try again."
 msgstr ""
+"A instalação falhou. Isto pode ter ocorrido devido a um erro de repositório, "
+"um download parcial ou um erro com o checksum.\n"
+"\n"
+"Pressione para tentar de novo."
 
 #: src/ui/component-entry.ui:72
-#, fuzzy
 msgid "Download & Install"
-msgstr "Descarregar e instalar este DXVK"
+msgstr "Descarregar e instalar"
 
 #: src/ui/component-entry.ui:99 src/ui/importer-entry.ui:21
 msgid "Browse files"
@@ -765,7 +757,7 @@ msgstr "Esta configuração (wineprefix) já foi importada para o Bottles."
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
-msgstr ""
+msgstr "Ler crítica"
 
 #: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
@@ -797,7 +789,7 @@ msgstr "Execute neste Bottle"
 
 #: src/ui/list-entry.ui:153
 msgid "Run Here"
-msgstr ""
+msgstr "Executar aqui"
 
 #: src/ui/list-entry.ui:172
 msgid ""
@@ -824,9 +816,8 @@ msgid "Close"
 msgstr "Fechar"
 
 #: src/ui/new.ui:97
-#, fuzzy
 msgid "Bottle information"
-msgstr "Bottle criada"
+msgstr "Informação da Bottle"
 
 #: src/ui/new.ui:118
 msgid "Name"
@@ -862,11 +853,11 @@ msgstr "Ative o controle de versão para gravar e restaurar o estado do Bottle."
 
 #: src/ui/new.ui:257
 msgid "Unlinked homedir"
-msgstr ""
+msgstr "Diretório pessoal não vinculado"
 
 #: src/ui/new.ui:258
 msgid "Do not link the userdir to the homedir"
-msgstr ""
+msgstr "Não vincular o diretório de utilizador ao diretório pessoal"
 
 #: src/ui/new.ui:432
 msgid "Architecture"
@@ -874,7 +865,7 @@ msgstr "Arquitetura"
 
 #: src/ui/new.ui:434
 msgid "We recommend using 32bit only if strictly necessary"
-msgstr ""
+msgstr "Recomenda-mos usar 32 bits apenas se estritamente necessário"
 
 #: src/ui/new.ui:448
 msgid "64 bit"
@@ -926,9 +917,8 @@ msgstr ""
 "O Bottles torna a execução de software Windows em Linux muito mais fácil."
 
 #: src/ui/onboard.ui:152
-#, fuzzy
 msgid "What Are Runners?"
-msgstr "O que são as camadas de compatibilidade?"
+msgstr "O que são os runners?"
 
 #: src/ui/onboard.ui:171
 msgid ""
@@ -1000,7 +990,6 @@ msgid "Download"
 msgstr "Descarregar"
 
 #: src/ui/onboard.ui:349
-#, fuzzy
 msgid "Everything Is Ready!"
 msgstr "Está tudo pronto!"
 
@@ -1026,10 +1015,9 @@ msgstr "Aparência"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr ""
+msgstr "Modo noturno"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
-#, fuzzy
 msgid "Whether Bottles should use the Night theme variant."
 msgstr "Se os seus Bottles devem usar uma variante de tema escuro."
 
@@ -1241,9 +1229,8 @@ msgid "Missing essential components. Installing…"
 msgstr ""
 
 #: src/backend/manager.py:1019
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Estado da conexão: offline…"
+msgstr "Criando configuração da Bottle"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1038
@@ -1265,9 +1252,8 @@ msgid "Sandboxing userdir…"
 msgstr ""
 
 #: src/backend/manager.py:1069
-#, fuzzy
 msgid "Setting Windows version…"
-msgstr "Mostrar versão"
+msgstr "Configurando versão do Windows…"
 
 #: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
@@ -1294,9 +1280,9 @@ msgid "Installing DXVK-NVAPI…"
 msgstr "A instalar dxvk …"
 
 #: src/backend/manager.py:1114
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing dependency: {0}…"
-msgstr "A instalar {0} dependência na bottle {1} …"
+msgstr "A instalar dependência: {0} …"
 
 #: src/backend/manager.py:1131
 #, fuzzy
@@ -1348,10 +1334,8 @@ msgid "Programs"
 msgstr "Programas"
 
 #: src/views/details.py:114
-#, fuzzy
 msgid "Found in your bottle's Start menu."
-msgstr ""
-"Estes são os programas ou jogos encontrados no menu Iniciar do seu Bottles"
+msgstr "Encontrados no menu Iniciar do seu Bottles."
 
 #: src/views/details.py:117
 msgid "Versioning"
