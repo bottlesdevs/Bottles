@@ -1,6 +1,7 @@
 import os
 import shutil
 from pathlib import Path
+from ..utils import DisplayUtils
 
 
 class API:
@@ -169,3 +170,5 @@ CMDSettings = {
 gamemode_available = False
 if shutil.which("gamemoderun") is not None:
     gamemode_available = True
+
+x_display = DisplayUtils.get_x_display()

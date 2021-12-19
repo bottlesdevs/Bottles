@@ -5,8 +5,8 @@ import shutil
 import subprocess
 from typing import NewType
 
-from ..utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding
-from .globals import Paths, CMDSettings, gamemode_available
+from ..utils import UtilsTerminal, UtilsLogger, DisplayUtils, RunAsync, detect_encoding
+from .globals import Paths, CMDSettings, gamemode_available, x_display
 from .manager_utils import ManagerUtils
 from .runtime import RuntimeManager
 
@@ -433,16 +433,15 @@ class Runner:
         if "WAYLAND_DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
             logging.info("Using Xwayland..")
-            display = ManagerUtils.get_x_display()
-            if not display:
+            if not x_display:
                 logging.error("Failed to get Xwayland display")
                 return
-            env["DISPLAY"] = display
+            env["DISPLAY"] = x_display
             env["GDK_BACKEND"] = "x11"
-            env["GDK_SDISPLAYALE"] = display
+            env["GDK_SDISPLAYALE"] = x_display
 
         if parameters["discrete_gpu"]:
-            if ManagerUtils.check_nvidia_device():
+            if DisplayUtils.check_nvidia_device():
                 env["__NV_PRIME_RENDER_OFFLOAD"] = "1"
                 env["__GLX_VENDOR_LIBRARY_NAME"] = "nvidia"
                 env["__VK_LAYER_NV_optimus"] = "NVIDIA_only"
