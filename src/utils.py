@@ -157,7 +157,7 @@ class UtilsLogger(logging.getLoggerClass()):
     }
 
     def __color(self, level, message):
-        if "\n" in message:
+        if message is not None and "\n" in message:
             message = message.replace("\n", "\n\t") + "\n"
         color_id = self.__color_map[level]
         return "\033[%dm%s\033[0m" % (color_id, message)
