@@ -116,6 +116,8 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_nvapi.connect('changed', self.__set_nvapi)
         self.combo_windows.connect('changed', self.__set_windows)
 
+        self.__prevent_scroll()
+
         if "FLATPAK_ID" in os.environ:
             self.action_runtime.set_visible(True)
             self.switch_runtime.connect('state-set', self.__toggle_runtime)
@@ -654,3 +656,17 @@ class PreferencesView(Gtk.ScrolledWindow):
     def set_nvapi_status(self, status, error=None):
         self.switch_nvapi.set_sensitive(True)
     
+    def __prevent_scroll(self):
+        def no_action(widget, event):
+            return True
+
+        for c in [
+            self.combo_fsr,
+            self.combo_virt_res,
+            self.combo_runner,
+            self.combo_dxvk,
+            self.combo_vkd3d,
+            self.combo_nvapi,
+            self.combo_windows
+        ]:
+            c.connect('scroll-event', no_action)
