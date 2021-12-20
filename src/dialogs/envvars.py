@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
+import shlex
 from gi.repository import Gtk, Handy
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-environment-variables.ui')
@@ -53,18 +55,22 @@ class EnvVarsDialog(Handy.Window):
         disabled preventing the user to save the invalid entries.
         '''
         entries = widget.get_text()
-        entries = entries.split(" ")
-        for entry in entries:
-            if entry == "":
-                continue
-            try:
-                entry = entry.split("=")
-                if len(entry) != 2:
+        try:
+            entries = shlex.split(entries)
+            
+            for e in entries:
+                kv = e.split("=")
+
+                if len(kv) > 2:
+                    kv[1] = "=".join(kv[1:])
+                    kv = kv[:2]
+
+                if len(kv) != 2:
                     raise Exception
-            except:
-                self.btn_save.set_sensitive(False)
-                widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
-                return
+        except:
+            self.btn_save.set_sensitive(False)
+            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+            return
         
         self.btn_save.set_sensitive(True)
         widget.set_icon_from_icon_name(1, "")

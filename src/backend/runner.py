@@ -1,6 +1,7 @@
 import re
 import os
 import time
+import shlex
 import shutil
 import subprocess
 from typing import NewType
@@ -357,16 +358,21 @@ class Runner:
                 dll_overrides.append("%s=%s" % (dll[0], dll[1]))
 
         if parameters["environment_variables"]:
-            for env_var in re.findall(
-                r'(?:[^\s,"]|"(?:\\.|[^"])*"|\'(?:\\.|[^\'])*\')+',
-                parameters["environment_variables"]
-            ):
-                try:
-                    key, value = env_var.split("=")
-                    env[key] = value
-                except:
-                    # ref: https://github.com/bottlesdevs/Bottles/issues/668
-                    logging.debug(f"Invalid environment variable: {env_var}")
+            try:
+                entries = shlex.split(parameters["environment_variables"])
+            
+                for e in entries:
+                    kv = e.split("=")
+
+                    if len(kv) > 2:
+                        kv[1] = "=".join(kv[1:])
+                        kv = kv[:2]
+
+                    if len(kv) == 2:
+                        env[kv[0]] = kv[1]
+            except:
+                # ref: https://github.com/bottlesdevs/Bottles/issues/668
+                logging.debug(f"One or more environment variables are invalid: {parameters['environment_variables']}")
 
         if environment:
             if environment.get("WINEDLLOVERRIDES"):
