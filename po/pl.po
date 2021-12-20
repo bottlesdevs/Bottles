@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-07 21:49+0100\n"
-"PO-Revision-Date: 2021-11-08 22:03+0000\n"
+"PO-Revision-Date: 2021-12-21 08:25+0000\n"
 "Last-Translator: Krzysztof Marcinek <krzymar2002@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
 "pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -165,12 +165,11 @@ msgstr "Przełącz okno dialogowe migracji Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Night theme"
-msgstr ""
+msgstr "Motyw nocny"
 
 #: data/com.usebottles.bottles.gschema.xml:12
-#, fuzzy
 msgid "Use the night theme."
-msgstr "Włącz motyw ciemny."
+msgstr "Użyj motywu nocnego."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -383,9 +382,8 @@ msgstr ""
 "Wyłącz, jeśli występują problemy z grafiką."
 
 #: src/ui/details-preferences.ui:89
-#, fuzzy
 msgid "Use GameMode"
-msgstr "Użyj Gamemode"
+msgstr "Użyj GameMode"
 
 #: src/ui/details-preferences.ui:90
 msgid "Optimise gaming performance on demand"
@@ -497,7 +495,6 @@ msgid "Manage DXVK versions"
 msgstr "Zarządzaj wersjami DXVK"
 
 #: src/ui/details-preferences.ui:567
-#, fuzzy
 msgid "VKD3D version"
 msgstr "Wersja VKD3D"
 
@@ -506,18 +503,15 @@ msgid "Manage VKD3D versions"
 msgstr "Zarządzaj wersjami VKD3D"
 
 #: src/ui/details-preferences.ui:642
-#, fuzzy
 msgid "NVAPI version"
 msgstr "Wersja NVAPI"
 
 #: src/ui/details-preferences.ui:717
-#, fuzzy
 msgid "Windows version"
-msgstr "Pokaż wersję"
+msgstr "Wersja Windows"
 
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-#, fuzzy
 msgid "DLL overrides"
 msgstr "Nadpisania DLL"
 
@@ -574,11 +568,11 @@ msgstr "Rejestruj ścieżki kodu, które nie są zaimplementowane w Wine."
 
 #: src/ui/details-programs.ui:29
 msgid "No programs found"
-msgstr ""
+msgstr "Nie znaleziono programów"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
-msgstr ""
+msgstr "Nowe programy zostaną automatycznie wyszukane."
 
 #: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
@@ -590,11 +584,11 @@ msgstr "Szukaj zainstalowanych programów"
 
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
-msgstr ""
+msgstr "Nie znaleziono zapisanych stanów"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Utwórz pierwszy stan, aby rozpocząć korzystanie z wersjonowania."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -1022,12 +1016,11 @@ msgstr "Wygląd"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr ""
+msgstr "Tryb nocny"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
-#, fuzzy
 msgid "Whether Bottles should use the Night theme variant."
-msgstr "Pozwala na to, czy Bottles powinno używać ciemnego wariantu motywu."
+msgstr "Pozwala na to, czy Bottles powinno używać nocnego wariantu motywu."
 
 #: src/ui/preferences.ui:54
 msgid "Show update date"
@@ -1104,12 +1097,10 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:84
-#, fuzzy
 msgid "Bottles' Forums"
-msgstr "Problemy Bottles"
+msgstr "Fora Bottles"
 
 #: src/ui/program-entry.ui:97
-#, fuzzy
 msgid "Bottles' Issues"
 msgstr "Problemy Bottles"
 
@@ -1119,7 +1110,7 @@ msgstr "Usuń z Programów"
 
 #: src/ui/program-entry.ui:134
 msgid "Add desktop entry"
-msgstr ""
+msgstr "Dodaj wpis pulpitowy"
 
 #: src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1130,9 +1121,8 @@ msgid "Creation date"
 msgstr "Data utworzenia"
 
 #: src/ui/window.ui:20
-#, fuzzy
 msgid "Import/export"
-msgstr "Importuj i eksportuj"
+msgstr "Importuj/eksportuj"
 
 #: src/ui/window.ui:57
 msgid "Documentation"
@@ -1140,7 +1130,7 @@ msgstr "Dokumentacja"
 
 #: src/ui/window.ui:70
 msgid "Forums"
-msgstr ""
+msgstr "Fora"
 
 #: src/ui/window.ui:83
 msgid "About Bottles"
@@ -1170,7 +1160,7 @@ msgstr "Wróć"
 
 #: src/operation.py:63
 msgid "Calculating..."
-msgstr ""
+msgstr "Obliczanie..."
 
 #: src/main.py:98
 msgid "Show version"
@@ -1189,9 +1179,8 @@ msgid "Bottle name"
 msgstr "Nazwa butelki"
 
 #: src/main.py:130
-#, fuzzy
 msgid "Pass arguments"
-msgstr "Uruchom z argumentami"
+msgstr "Podaj argumenty"
 
 #: src/main.py:249
 msgid "[Quit] request received."
@@ -1233,45 +1222,42 @@ msgstr "Importuję kopię zapasową: {0}"
 
 #: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Brak istotnych komponentów. Instaluję…"
 
 #: src/backend/manager.py:1019
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Generuję plik konfiguracyjny butelki…"
+msgstr "Generuję konfigurację butelki"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1038
-#, fuzzy
 msgid "The WINE config is being updated…"
-msgstr "Konfiguracja Wine jest aktualizowana…"
+msgstr "Konfiguracja WINE jest aktualizowana…"
 
 #: src/backend/manager.py:1040
 msgid "WINE config updated!"
 msgstr "Konfiguracja Wine zaktualizowana!"
 
 #: src/backend/manager.py:1049
-#, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Uruchamiam jako Flatpak, tworzę katalogi w piaskownicy…"
+msgstr ""
+"Uruchamiam jako Flatpak, konfiguruję piaskownicę dla katalogu użytkownika…"
 
 #: src/backend/manager.py:1051
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Konfiguruję piaskownicę dla katalogu użytkownika…"
 
 #: src/backend/manager.py:1069
-#, fuzzy
 msgid "Setting Windows version…"
-msgstr "Pokaż wersję"
+msgstr "Ustawiam wersję Windows…"
 
 #: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Stosuję ustawienia domyślne CMD…"
 
 #: src/backend/manager.py:1085
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "Stosuję środowisko: {0} …"
+msgstr "Stosuję środowisko: {0}…"
 
 #: src/backend/manager.py:1095
 msgid "Installing DXVK…"
@@ -1286,9 +1272,9 @@ msgid "Installing DXVK-NVAPI…"
 msgstr "Instaluję DXVK-NVAPI…"
 
 #: src/backend/manager.py:1114
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing dependency: {0}…"
-msgstr "Pobierz i zainstaluj tę zależność"
+msgstr "Instaluję zależność: {0}…"
 
 #: src/backend/manager.py:1131
 msgid "Creating versioning state 0…"
@@ -1296,7 +1282,7 @@ msgstr "Tworzę stan 0 wersjonowania …"
 
 #: src/backend/manager.py:1138
 msgid "Finalizing…"
-msgstr ""
+msgstr "Finalizuję…"
 
 #: src/backend/versioning.py:52
 msgid "Generating state files index …"
@@ -1383,7 +1369,7 @@ msgstr "Wybierz lokalizację, gdzie ma zostać zapisane archiwum kopii zapasowej
 
 #: src/views/bottle_details.py:362
 msgid "Export"
-msgstr ""
+msgstr "Eksport"
 
 #: src/views/bottle_details.py:393
 msgid "Confirm deletion"
