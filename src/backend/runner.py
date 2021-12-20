@@ -467,8 +467,8 @@ class Runner:
 
         if gamemode_available and config["Parameters"]["gamemode"]:
             # check for gamemode enabled
-            command = f"gamemoderun {command}"
-
+            command = f"{gamemode_available} {command}"
+        
         if terminal:
             return UtilsTerminal().execute(command, env, colors)
             

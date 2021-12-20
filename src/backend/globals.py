@@ -167,8 +167,6 @@ CMDSettings = {
 
 
 # Check if gamemode is available
-gamemode_available = False
-if shutil.which("gamemoderun") is not None:
-    gamemode_available = True
+gamemode_available = shutil.which("gamemoderun") or False
 
 x_display = DisplayUtils.get_x_display()
