@@ -6,10 +6,12 @@ import shutil
 import subprocess
 from typing import NewType
 
-from ..utils import UtilsTerminal, UtilsLogger, DisplayUtils, RunAsync, detect_encoding
+from ..utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding
 from .globals import Paths, CMDSettings, gamemode_available, x_display
 from .manager_utils import ManagerUtils
 from .runtime import RuntimeManager
+from .display import DisplayUtils
+
 
 logging = UtilsLogger()
 
