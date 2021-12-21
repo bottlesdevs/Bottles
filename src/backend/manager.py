@@ -1468,15 +1468,4 @@ class Manager:
             f"Wineprefix: [{wineprefix['Name']}] imported!"
         )
         return True
-
-    @staticmethod
-    def browse_wineprefix(wineprefix: dict) -> bool:
-        '''
-        This function popup the system file manager to browse
-        the wineprefix path.
-        '''
-        return ManagerUtils.open_filemanager(
-            path_type="custom",
-            custom_path=wineprefix.get("Path")
-        )
         

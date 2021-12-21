@@ -137,3 +137,14 @@ class ManagerUtils:
             f.write("[Desktop Action Configure]\n")
             f.write("Name=Configure in Bottles\n")
             f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
+
+    @staticmethod
+    def browse_wineprefix(wineprefix: dict) -> bool:
+        '''
+        This function popup the system file manager to browse
+        the wineprefix path.
+        '''
+        return ManagerUtils.open_filemanager(
+            path_type="custom",
+            custom_path=wineprefix.get("Path")
+        )

@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Handy
+from ..backend.manager_utils import ManagerUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')
@@ -55,7 +56,7 @@ class ImporterEntry(Handy.ActionRow):
     '''Browse wineprefix files'''
 
     def browse_wineprefix(self, widget):
-        self.manager.browse_wineprefix(self.prefix)
+        ManagerUtils.browse_wineprefix(self.prefix)
 
     '''Import wineprefix'''
 
