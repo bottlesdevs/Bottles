@@ -40,6 +40,7 @@ class ImporterView(Gtk.ScrolledWindow):
         # common variables and references
         self.window = window
         self.manager = window.manager
+        self.import_manager = window.manager.import_manager
 
         # connect signals
         self.btn_find_prefixes.connect("pressed", self.__find_prefixes)
@@ -51,13 +52,20 @@ class ImporterView(Gtk.ScrolledWindow):
         This function remove all entries from the list_prefixes, ask the
         manager to find all prefixes in the system and add them to the list
         '''
-        for w in self.list_prefixes.get_children():
-            w.destroy()
+        def update(result, error=False):
+            widget.set_sensitive(True)
+            if result.status:
+                for w in self.list_prefixes.get_children():
+                    w.destroy()
+                for prefix in result.data.get("wineprefixes"):
+                    self.list_prefixes.add(ImporterEntry(self.window, prefix))
 
-        wineprefixes = self.manager.search_wineprefixes()
-        if len(wineprefixes) > 0:
-            for wineprefix in wineprefixes:
-                self.list_prefixes.add(ImporterEntry(self.window, wineprefix))
+        widget.set_sensitive(False)
+        
+        RunAsync(
+            self.import_manager.search_wineprefixes,
+            callback=update
+        )
 
     def __import_full_bck(self, widget):
         '''

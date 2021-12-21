@@ -16,7 +16,8 @@ bottles_sources = [
   'notifications.py',
   'result.py',
   'runtime.py',
-  'display.py'
+  'display.py',
+  'importer.py'
 ]
 
 install_data(bottles_sources, install_dir: backenddir)
