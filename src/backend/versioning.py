@@ -258,7 +258,7 @@ class RunnerVersioning:
         # update the bottles' list
         self.manager.update_bottles()
 
-        task_entry.remove()
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
 
         return Result(
             status=True,
