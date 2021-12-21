@@ -121,6 +121,10 @@ class Runner:
         '''
         logging.info("Running an executable on the bottle…")
 
+        if file_path in [None, ""]:
+            logging.error("No executable file path provided.")
+            return False
+
         if move_file:
             new_path = ManagerUtils.move_file_to_bottle(
                 file_path=file_path,
