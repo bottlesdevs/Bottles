@@ -17,6 +17,7 @@
 
 import os
 import yaml
+import uuid
 import shutil
 import patoolib
 from glob import glob
@@ -115,6 +116,7 @@ class DependencyManager:
         This function install a given dependency in a bottle. It will
         return True if the installation was successful.
         '''
+        task_id = str(uuid.uuid4())
         uninstaller = True
 
         if config["Versioning"]:
@@ -129,9 +131,8 @@ class DependencyManager:
                 update=True
             )
 
-        task_entry = self.__operation_manager.new_task(
-            file_name=dependency[0],
-            cancellable=False
+        GLib.idle_add(
+            self.__operation_manager.new_task, task_id, dependency[0],  False
         )
 
         logging.info(
@@ -149,7 +150,7 @@ class DependencyManager:
             If the manifest is not found, return a Result
             object with the error.
             '''
-            GLib.idle_add(task_entry.remove)
+            GLib.idle_add(self.__operation_manager.remove_task, task_id)
             return Result(
                 status=False,
                 message=f"Cannot find manifest for {dependency[0]}."
@@ -162,7 +163,7 @@ class DependencyManager:
             '''
             res = self.__perform_steps(config, step)
             if not res.status:
-                GLib.idle_add(task_entry.remove)
+                GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return Result(
                     status=False,
                     message=f"One or more steps failed for {dependency[0]}."
@@ -202,8 +203,8 @@ class DependencyManager:
             "Uninstallers"
         )
 
-        # Remove entry from download manager
-        GLib.idle_add(task_entry.remove)
+        # Remove entry from operation manager
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
 
         # Hide installation button and show remove button
         if not uninstaller:
@@ -244,7 +245,7 @@ class DependencyManager:
                 return Result(status=False)
 
         if step["action"] == "uninstall":
-            self.__step_uninstall(config=config, file_name=step["file_name"])
+            self.__step_uninstall(config=config, title=step["file_name"])
 
         if step["action"] == "cab_extract":
             uninstaller = False

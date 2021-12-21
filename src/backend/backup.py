@@ -1,9 +1,11 @@
 import os
 import yaml
+import uuid
 import tarfile
 import shutil
 from typing import NewType
 from gettext import gettext as _
+from gi.repository import GLib
 
 from .manager import Manager
 
@@ -39,6 +41,7 @@ class BackupManager:
         It returns True if the backup was successful, False otherwise.
         '''
         BackupManager.operation_manager = OperationManager(window)
+        task_id = str(uuid.uuid4())
 
         if scope == "config":
             logging.info(
@@ -56,9 +59,11 @@ class BackupManager:
             logging.info(
                 f"Backuping bottle: [{config['Name']}] in [{path}]"
             )
-            task_entry = BackupManager.operation_manager.new_task(
-                file_name=_("Backup {0}").format(config.get("Name")),
-                cancellable=False
+            GLib.idle_add(
+                BackupManager.operation_manager.new_task, 
+                task_id, 
+                _("Backup {0}").format(config.get("Name")),  
+                False
             )
             bottle_path = ManagerUtils.get_bottle_path(config)
             try:
@@ -71,7 +76,7 @@ class BackupManager:
             except:
                 backup_created = False
 
-            task_entry.remove()
+            GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
 
         if backup_created:
             logging.info(f"Backup saved in path: {path}.")
@@ -91,11 +96,15 @@ class BackupManager:
         will also update the bottles' list), False otherwise.
         '''
         BackupManager.operation_manager = OperationManager(window)
+        task_id = str(uuid.uuid4())
         backup_name = path.split("/")[-1].split(".")
         import_status = False
 
-        task_entry = BackupManager.operation_manager.new_task(
-            _("Importing backup: {0}").format(backup_name), False
+        GLib.idle_add(
+            BackupManager.operation_manager.new_task, 
+            task_id, 
+            _("Importing backup: {0}").format(backup_name), 
+            False
         )
         logging.info(f"Importing backup: {backup_name}")
 
@@ -129,7 +138,7 @@ class BackupManager:
             except:
                 import_status = False
 
-        task_entry.remove()
+        GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
 
         if import_status:
             window.manager.update_bottles()

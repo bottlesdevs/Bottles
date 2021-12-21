@@ -1,5 +1,6 @@
 import os
 import yaml
+import uuid
 import shutil
 from glob import glob
 from typing import NewType
@@ -25,7 +26,7 @@ class RunnerVersioning:
     def __init__(self, window, manager):
         self.window = window
         self.manager = manager
-        self.operation_manager = OperationManager(self.window)
+        self.__operation_manager = OperationManager(self.window)
 
     def create_state(
         self,
@@ -42,14 +43,17 @@ class RunnerVersioning:
         the index file. It will return True if the state was created, 
         False otherwise.
         '''
+        task_id = str(uuid.uuid4())
         logging.info(
             f"Creating new state for bottle: [{config['Name']}] …"
         )
 
         bottle_path = ManagerUtils.get_bottle_path(config)
-        task_entry = self.operation_manager.new_task(
-            file_name=_("Generating state files index …"),
-            cancellable=False
+        GLib.idle_add(
+            self.__operation_manager.new_task, 
+            task_id, 
+            _("Generating state files index …"),  
+            False
         )
 
         # check if this is the first state
@@ -129,9 +133,14 @@ class RunnerVersioning:
             state_id = 0
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
-        task_entry.remove()
-        task_entry = self.operation_manager.new_task(
-            _("Creating a restore point …"), False)
+        
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        GLib.idle_add(
+            self.__operation_manager.new_task, 
+            task_id, 
+            _("Creating a restore point …"),  
+            False
+        )
 
         try:
             '''
@@ -156,9 +165,13 @@ class RunnerVersioning:
                 message=_("Could not create the state folder.")
             )
 
-        task_entry.remove()
-        task_entry = self.operation_manager.new_task(
-            _("Updating index …"), False)
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        GLib.idle_add(
+            self.__operation_manager.new_task, 
+            task_id, 
+            _("Updating index …"),  
+            False
+        )
 
         for file in cur_index["Files"]:
             '''
@@ -176,9 +189,13 @@ class RunnerVersioning:
             target = "{0}/drive_c/{1}".format(state_path, file["file"])
             shutil.copyfile(source, target)
 
-        task_entry.remove()
-        task_entry = self.operation_manager.new_task(
-            _("Updating states …"), False)
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        GLib.idle_add(
+            self.__operation_manager.new_task, 
+            task_id, 
+            _("Updating states …"),  
+            False
+        )
 
         # update the states.yml file, appending the new state
         new_state = {

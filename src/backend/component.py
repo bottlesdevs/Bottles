@@ -17,6 +17,7 @@
 
 import os
 import yaml
+import uuid
 import shutil
 import tarfile
 import requests
@@ -192,11 +193,12 @@ class ComponentManager:
         Add new entry to the download manager and set the update_func
         to the task_entry update_status function by default.
         '''
-        task_entry = self.__operation_manager.new_task(
-            file_name=file,
-            cancellable=False
+        task_id = str(uuid.uuid4())
+        GLib.idle_add(
+            self.__operation_manager.new_task, task_id, file,  False
         )
-        _update_func = task_entry.update_status
+
+        _update_func = self.__operation_manager.update_task
 
         if download_url.startswith("temp/"):
             '''
@@ -213,12 +215,13 @@ class ComponentManager:
             _update_func = func
         
         def update_func(
+            task_id,
             count=False,
             block_size=False,
             total_size=False,
             completed=False
         ):
-            GLib.idle_add(_update_func, count, block_size, total_size, completed)
+            GLib.idle_add(_update_func, task_id, count, block_size, total_size, completed)
 
         existing_file = rename if rename else file
         just_downloaded = False
@@ -232,7 +235,7 @@ class ComponentManager:
             logging.warning(
                 f"File [{existing_file}] already exists in temp, skipping."
             )
-            GLib.idle_add(update_func, False, False, False, True)
+            GLib.idle_add(update_func, task_id, False, False, False, True)
         else:
             '''
             As some urls can be redirect, we need to take care of this
@@ -245,7 +248,7 @@ class ComponentManager:
                 download_url = response.url
                 req_code = urllib.request.urlopen(download_url).getcode()
             except:
-                GLib.idle_add(task_entry.remove)
+                GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
             if req_code == 200:
@@ -261,7 +264,7 @@ class ComponentManager:
                         func=update_func
                     ).download()
                 except:
-                    GLib.idle_add(task_entry.remove)
+                    GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
                 if not os.path.isfile(f"{Paths.temp}/{file}"):
@@ -269,12 +272,12 @@ class ComponentManager:
                     If the file is not available in the /temp directory,
                     then the download failed.
                     '''
-                    GLib.idle_add(task_entry.remove)
+                    GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
                 just_downloaded = True
             else:
-                GLib.idle_add(task_entry.remove)
+                GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
         if rename and just_downloaded:
@@ -304,10 +307,10 @@ class ComponentManager:
                 os.remove(file_path)
 
                 #os.remove(file_path)
-                GLib.idle_add(task_entry.remove)
+                GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
-        GLib.idle_add(task_entry.remove)
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
         return True
 
     def extract(self, name: str, component: str, archive: str) -> True:
