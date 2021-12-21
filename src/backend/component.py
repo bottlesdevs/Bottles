@@ -29,7 +29,7 @@ from typing import Union
 from .result import Result
 from ..operation import OperationManager
 from .globals import Paths, BottlesRepositories
-from ..utils import UtilsLogger, UtilsFiles, RunAsync
+from ..utils import UtilsLogger, UtilsFiles
 
 logging = UtilsLogger()
 
