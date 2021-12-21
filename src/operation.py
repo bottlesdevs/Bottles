@@ -93,8 +93,6 @@ class OperationManager():
         self.list_tasks = window.list_tasks
 
     def __new_widget(self, title, cancellable=True):
-        import threading
-        assert threading.current_thread() is threading.main_thread()
         task_entry = TaskEntry(self.window, title, cancellable)
         self.list_tasks.add(task_entry)
         return task_entry
