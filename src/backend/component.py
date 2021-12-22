@@ -114,11 +114,20 @@ class ComponentManager:
         if not self.__utils_conn.check_connection():
             return {}
 
-        catalog_wine = {}
-        catalog_proton = {}
-        catalog_dxvk = {}
-        catalog_vkd3d = {}
-        catalog_nvapi = {}
+        catalog = {
+            "wine": {},
+            "proton": {},
+            "dxvk": {},
+            "vkd3d": {},
+            "nvapi": {}
+        }
+        components_available = {
+            "wine": self.__manager.runners_available,
+            "proton": self.__manager.runners_available,
+            "dxvk": self.__manager.dxvk_available,
+            "vkd3d": self.__manager.vkd3d_available,
+            "nvapi": self.__manager.nvapi_available
+        }
 
         try:
             with urllib.request.urlopen(
@@ -144,38 +153,19 @@ class ComponentManager:
                     '''
                     continue
 
-                if component[1]["Sub-category"] == "wine":
-                    catalog_wine[component[0]] = component[1]
-                    if component[0] in self.__manager.runners_available:
-                        catalog_wine[component[0]]["Installed"] = True
+                sub_category = component[1]["Sub-category"]
+                catalog[sub_category][component[0]] = component[1]
+                if component[0] in components_available[sub_category]:
+                    catalog[sub_category][component[0]]["Installed"] = True
 
-                if component[1]["Sub-category"] == "proton":
-                    catalog_proton[component[0]] = component[1]
-                    if component[0] in self.__manager.runners_available:
-                        catalog_proton[component[0]]["Installed"] = True
+                continue
 
-            if component[1]["Category"] == "dxvk":
-                catalog_dxvk[component[0]] = component[1]
-                if component[0] in self.__manager.dxvk_available:
-                    catalog_dxvk[component[0]]["Installed"] = True
+            category = component[1]["Category"]
+            catalog[category][component[0]] = component[1]
+            if component[0] in components_available[category]:
+                catalog[category][component[0]]["Installed"] = True
 
-            if component[1]["Category"] == "vkd3d":
-                catalog_vkd3d[component[0]] = component[1]
-                if component[0] in self.__manager.vkd3d_available:
-                    catalog_vkd3d[component[0]]["Installed"] = True
-
-            if component[1]["Category"] == "nvapi":
-                catalog_nvapi[component[0]] = component[1]
-                if component[0] in self.__manager.nvapi_available:
-                    catalog_nvapi[component[0]]["Installed"] = True
-
-        return {
-            "wine": catalog_wine,
-            "proton": catalog_proton,
-            "dxvk": catalog_dxvk,
-            "vkd3d": catalog_vkd3d,
-            "nvapi": catalog_nvapi
-        }
+        return catalog
 
     def download(
         self,
