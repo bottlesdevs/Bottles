@@ -453,12 +453,10 @@ class Runner:
             env["GDK_SDISPLAYALE"] = x_display
 
         if parameters["discrete_gpu"]:
-            if DisplayUtils.check_nvidia_device():
-                env["__NV_PRIME_RENDER_OFFLOAD"] = "1"
-                env["__GLX_VENDOR_LIBRARY_NAME"] = "nvidia"
-                env["__VK_LAYER_NV_optimus"] = "NVIDIA_only"
-            else:
-                env["DRI_PRIME"] = "1"
+            prime = DisplayUtils.prime_support()
+            if prime:
+                for p in prime:
+                    env[p] = prime[p]
 
         if parameters["pulseaudio_latency"]:
             env["PULSE_LATENCY_MSEC"] = "60"
