@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-07 21:49+0100\n"
-"PO-Revision-Date: 2021-10-31 06:02+0000\n"
-"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"PO-Revision-Date: 2021-12-24 23:50+0000\n"
+"Last-Translator: McLutzifer <lukasschumi@gmx.at>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -155,7 +155,6 @@ msgid "Bottles versioning (experimental)"
 msgstr "Bottles-Versionierung (experimentell)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
-#, fuzzy
 msgid "... and much more that you can find by installing Bottles!"
 msgstr "… und vieles mehr. Einfach Bottles installieren und herausfinden!"
 
@@ -169,8 +168,9 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr "Schalten Sie das Dialogfeld für die Flatpak-Migration um."
 
 #: data/com.usebottles.bottles.gschema.xml:11
+#, fuzzy
 msgid "Night theme"
-msgstr ""
+msgstr "Dunkles Thema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 #, fuzzy
@@ -191,18 +191,16 @@ msgid "Window width"
 msgstr "Fensterbreite"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Change the window width."
-msgstr "Ändern Sie die Fensterbreite"
+msgstr "Ändern Sie die Fensterbreite."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
 msgstr "Fensterhöhe"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Change the window height."
-msgstr "Fensterhöhe ändern"
+msgstr "Fensterhöhe ändern."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:335
@@ -228,9 +226,8 @@ msgid "Release Candidate"
 msgstr "Release Candidate"
 
 #: data/com.usebottles.bottles.gschema.xml:42
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "Freigabekandidat für Läufer umschalten"
+msgstr "Freigabekandidat für Läufer umschalten."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
@@ -246,33 +243,30 @@ msgid "Experiments"
 msgstr "Versuche"
 
 #: data/com.usebottles.bottles.gschema.xml:52
-#, fuzzy
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
 "Aktiviere experimentelle Funktionen wie Versionierung, Installer und Release-"
-"Candidates für Runner"
+"Candidates für Runner."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:installers"
 msgstr "Experimente:Installateure"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental installer features."
-msgstr "Schalten Sie die Funktion für experimentelle Installer um"
+msgstr "Schalten Sie die Funktion für experimentelle Installer um."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Automatisches Schließen von Bottles"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
 "Bottles nach dem Starten der ausführbaren Datei aus dem Dateimanager "
-"schließen"
+"schließen."
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -409,34 +403,41 @@ msgid "Optimise gaming performance on demand"
 msgstr "Optimieren Sie die Spielleistung bei Bedarf"
 
 #: src/ui/details-preferences.ui:116
+#, fuzzy
 msgid "Enable DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "Aktivieren Sie DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:117
+#, fuzzy
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr ""
+msgstr "DLSS-Unterstützung (falls verfügbar) und Nvidias NVAPI."
 
 #: src/ui/details-preferences.ui:145
+#, fuzzy
 msgid "Enable FSR"
-msgstr ""
+msgstr "Aktivieren Sie FSR"
 
 #: src/ui/details-preferences.ui:146
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
 msgstr ""
+"FSR verwendet modernste Upscaling-Technologien, um die Bildwiederholrate zu "
+"erhöhen.\n"
+"Schalten Sie diese Funktion aus, wenn Sie grafische Probleme haben."
 
 #: src/ui/details-preferences.ui:162
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Ultra Quality"
 
 #: src/ui/details-preferences.ui:163
 msgid "Quality"
-msgstr ""
+msgstr "Qualität"
 
 #: src/ui/details-preferences.ui:164
+#, fuzzy
 msgid "Balanced"
-msgstr ""
+msgstr "Ausgewogen"
 
 #: src/ui/details-preferences.ui:165
 #, fuzzy
@@ -593,11 +594,11 @@ msgstr "Logge Programmpfade, die in Wine nicht implementiert sind."
 
 #: src/ui/details-programs.ui:29
 msgid "No programs found"
-msgstr ""
+msgstr "Keine Programme gefunden"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
-msgstr ""
+msgstr "Neue Programme werden automatisch gefunden."
 
 #: src/ui/details-programs.ui:73
 msgid "Add a custom executable path"
@@ -613,8 +614,9 @@ msgid "No states found"
 msgstr "Gefundene Flaschen: %s"
 
 #: src/ui/details-versioning.ui:61
+#, fuzzy
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Erstellen Sie den ersten Status, um mit der Versionierung zu beginnen."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -786,8 +788,9 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Dieses wineprefix wurde bereits in Bottles importiert."
 
 #: src/ui/installer-entry.ui:48
+#, fuzzy
 msgid "Read review"
-msgstr ""
+msgstr "Rezension lesen"
 
 #: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
@@ -886,12 +889,14 @@ msgstr ""
 "wiederherzustellen."
 
 #: src/ui/new.ui:257
+#, fuzzy
 msgid "Unlinked homedir"
-msgstr ""
+msgstr "Unverlinktes homedir"
 
 #: src/ui/new.ui:258
+#, fuzzy
 msgid "Do not link the userdir to the homedir"
-msgstr ""
+msgstr "Verlinken Sie nicht das usedir zum homedir"
 
 #: src/ui/new.ui:432
 msgid "Architecture"
@@ -1052,8 +1057,9 @@ msgid "Apperance"
 msgstr "Darstellung"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
+#, fuzzy
 msgid "Night mode"
-msgstr ""
+msgstr "Dunkler Modus"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
 #, fuzzy
@@ -1111,7 +1117,7 @@ msgstr "VKD3D"
 
 #: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:271 src/views/details.py:121
 msgid "Installers"
@@ -1149,7 +1155,7 @@ msgstr "Aus Programme entfernen"
 
 #: src/ui/program-entry.ui:134
 msgid "Add desktop entry"
-msgstr ""
+msgstr "Desktop-Eintrag hinzufügen"
 
 #: src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1170,7 +1176,7 @@ msgstr "Dokumentation"
 
 #: src/ui/window.ui:70
 msgid "Forums"
-msgstr ""
+msgstr "Foren"
 
 #: src/ui/window.ui:83
 msgid "About Bottles"
@@ -1200,8 +1206,9 @@ msgid "Go back"
 msgstr "Zurück"
 
 #: src/operation.py:63
+#, fuzzy
 msgid "Calculating..."
-msgstr ""
+msgstr "Berechnen..."
 
 #: src/main.py:98
 msgid "Show version"
@@ -1264,13 +1271,13 @@ msgid "Importing backup: {0}"
 msgstr "Sicherung importieren: {0}"
 
 #: src/backend/manager.py:944
+#, fuzzy
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Fehlende wesentliche Komponenten. Installieren…"
 
 #: src/backend/manager.py:1019
-#, fuzzy
 msgid "Generating bottle configuration"
-msgstr "Konfigurationsdatei für Bottle wird erzeugt …"
+msgstr "Konfigurationsdatei für Bottle wird erzeugt"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1038
@@ -1293,9 +1300,8 @@ msgid "Sandboxing userdir…"
 msgstr ""
 
 #: src/backend/manager.py:1069
-#, fuzzy
 msgid "Setting Windows version…"
-msgstr "Version anzeigen"
+msgstr "Windows Version anzeigen…"
 
 #: src/backend/manager.py:1077
 msgid "Apply CMD default settings…"
@@ -1333,7 +1339,7 @@ msgstr "Erstellen des Versionierungsstatus 0 …"
 
 #: src/backend/manager.py:1138
 msgid "Finalizing…"
-msgstr ""
+msgstr "Abschließen…"
 
 #: src/backend/versioning.py:52
 msgid "Generating state files index …"
@@ -1376,9 +1382,8 @@ msgid "Programs"
 msgstr "Programme"
 
 #: src/views/details.py:114
-#, fuzzy
 msgid "Found in your bottle's Start menu."
-msgstr "Dies sind die Programme, die sich im Startmenü Ihrer Bottle befinden"
+msgstr "Dies sind die Programme, die sich im Startmenü Ihrer Bottle befinden."
 
 #: src/views/details.py:117
 msgid "Versioning"
