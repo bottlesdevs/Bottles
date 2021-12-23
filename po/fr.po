@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-07 21:49+0100\n"
-"PO-Revision-Date: 2021-12-21 08:25+0000\n"
-"Last-Translator: Tom Pereira <tomas_1998@live.com.pt>\n"
+"PO-Revision-Date: 2021-12-23 21:40+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -32,7 +32,7 @@ msgstr "Gérer facilement vos wineprefix"
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
-msgstr "wine ;windows ;"
+msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -97,7 +97,7 @@ msgstr "Ajoutez rapidement des variables d’environnement"
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
 msgstr ""
-"Substituer des DLL directement depuis les préférences de chaque Bouteille"
+"Substituer des DLL directement depuis les préférences de chaque bouteille"
 
 #: data/com.usebottles.bottles.appdata.xml.in:23
 msgid "On-the-fly runner change for any Bottle"
@@ -117,7 +117,7 @@ msgstr "Installation et gestion automatique des exécuteurs Wine et Proton"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
-msgstr "Réparation automatique de Bouteilles en cas de casse"
+msgstr "Réparation automatique des bouteilles en cas de casse"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
@@ -243,7 +243,7 @@ msgstr ""
 #: data/com.usebottles.bottles.gschema.xml:56
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
-msgstr "Expérimental : installeurs"
+msgstr "Expérimental : installateurs"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 #: data/com.usebottles.bottles.gschema.xml:62
@@ -253,7 +253,7 @@ msgstr "Activer/désactiver les fonctionnalités expérimentales des installeurs
 #: data/com.usebottles.bottles.gschema.xml:61
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
-msgstr "Fermeture automatique des bouteilles"
+msgstr "Fermeture automatique de Bouteilles"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 #: data/com.usebottles.bottles.gschema.xml:67
@@ -304,7 +304,7 @@ msgstr "Licence"
 
 #: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
 msgid "Bug report"
-msgstr "Rapport de bug"
+msgstr "Rapport de bogue"
 
 #: src/ui/dependency-entry.ui:140
 msgid ""
@@ -342,7 +342,7 @@ msgstr "Signaler une dépendance manquante"
 
 #: src/ui/details-dependencies.ui:173
 msgid "Microsoft .NET Framework 4 .."
-msgstr "Microsoft .NET Framework 4.0 .."
+msgstr "Microsoft .NET Framework 4"
 
 #: src/ui/details-installers.ui:51 src/ui/details-versioning.ui:51
 msgid ""
@@ -473,7 +473,7 @@ msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr ""
 "Activer la synchronisation pour améliorer les performances des processeurs "
-"multi-cœur."
+"multicœur."
 
 #: src/ui/details-preferences.ui:380
 msgid "Esync"
@@ -519,7 +519,7 @@ msgstr "Version de Windows"
 #: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL overrides"
-msgstr "Substitution des DLL"
+msgstr "Substitutions de DLL"
 
 #: src/ui/details-preferences.ui:798
 msgid "Working directory"
@@ -544,7 +544,7 @@ msgstr "Réduire la latence de PulseAudio"
 #: src/ui/details-preferences.ui:865
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
-"Définir la latence de PulseAudio à 60 millisecondes pour améliorer la "
+"Définir la latence de PulseAudio à 60 millisecondes pour améliorer la "
 "qualité du sons."
 
 #: src/ui/details-preferences.ui:902
@@ -562,8 +562,8 @@ msgstr "ATH DXVK"
 #: src/ui/details-preferences.ui:946
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
-"Activer l’overlay DXVK qui montre les FPS et d’autres détails dans les "
-"applications D3D."
+"Activer/désactiver l’overlay DXVK qui montre les FPS et d’autres détails "
+"dans les applications D3D."
 
 #: src/ui/details-preferences.ui:972
 msgid "Enable wine fixme logs"
@@ -595,16 +595,15 @@ msgstr "Aucun état trouvé"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
-"Créez le premier état pour commencer à utiliser la gestion des versions."
+msgstr "Créez un premier état pour commencer à utiliser la gestion de versions."
 
 #: src/ui/details-versioning.ui:93 src/ui/details-versioning.ui:142
 msgid "Type a really short comment:"
-msgstr "Entrez un commentaire très court :"
+msgstr "Entrez un court commentaire :"
 
 #: src/ui/details-versioning.ui:110 src/ui/details-versioning.ui:159
 msgid "A really short comment"
-msgstr "Un commentaire très court"
+msgstr "Un court commentaire"
 
 #: src/ui/details-versioning.ui:124 src/ui/details-versioning.ui:173
 msgid "Save the bottle state."
@@ -670,11 +669,11 @@ msgstr ""
 #: src/ui/dialog-environment-variables.ui:87 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
 msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr "Syntaxe : -exemple1 -exemple2 -exemple3=hello"
+msgstr "Syntaxe : -exemple1 -exemple2 -exemple3=hello"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
-msgstr "Syntaxe : VAR1=valeur VAR2=valeur .."
+msgstr "Syntaxe : VAR1=valeur VAR2=valeur .."
 
 #: src/ui/dialog-launch-options.ui:25
 msgid "Change launch options"
@@ -682,7 +681,7 @@ msgstr "Modifier les options de lancement"
 
 #: src/ui/dialog-launch-options.ui:75
 msgid "These arguments are passed on program launch:"
-msgstr "Ces arguments sont transmis au lancement du programme :"
+msgstr "Ces arguments sont transmis au lancement du programme :"
 
 #: src/ui/dll-override-entry.ui:23
 msgid "Builtin (Wine)"
@@ -722,11 +721,11 @@ msgstr "Télécharger et installer"
 
 #: src/ui/component-entry.ui:99 src/ui/importer-entry.ui:21
 msgid "Browse files"
-msgstr "Parcourir le lecteur C"
+msgstr "Parcourir les fichiers"
 
 #: src/ui/component-entry.ui:129
 msgid "0%"
-msgstr "0%"
+msgstr "0 %"
 
 #: src/ui/component-entry.ui:177 src/ui/program-entry.ui:147
 #: src/ui/program-entry.ui:134
@@ -875,7 +874,7 @@ msgstr "Ne pas lier le dossier utilisateur au dossier personnel"
 
 #: src/ui/new.ui:432
 msgid "Architecture"
-msgstr "\"architecture\""
+msgstr "Architecture"
 
 #: src/ui/new.ui:434
 msgid "We recommend using 32bit only if strictly necessary"
@@ -885,11 +884,11 @@ msgstr ""
 
 #: src/ui/new.ui:448
 msgid "64 bit"
-msgstr "64 bits"
+msgstr "64 bits"
 
 #: src/ui/new.ui:449
 msgid "32 bit"
-msgstr "32 bits"
+msgstr "32 bits"
 
 #: src/ui/new.ui:514
 msgid "Creating bottle…"
@@ -925,7 +924,7 @@ msgstr "Retour"
 
 #: src/ui/onboard.ui:117
 msgid "Welcome to Bottles"
-msgstr "Bienvenue sur Bouteilles"
+msgstr "Bienvenue dans Bouteilles"
 
 #: src/ui/onboard.ui:118
 msgid "Bottles makes running Windows Software on Linux much easier."
@@ -1033,11 +1032,11 @@ msgstr "Apparence"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr "Thème sombre"
+msgstr "mode sombre"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
 msgid "Whether Bottles should use the Night theme variant."
-msgstr "Qu'il s'agisse les bouteilles doivent utiliser le Thème sombre."
+msgstr "Si les bouteilles doivent utiliser la variante du thème sombre."
 
 #: src/ui/preferences.ui:54 src/ui/preferences.ui:55
 msgid "Show update date"
@@ -1105,7 +1104,7 @@ msgstr "Modifier les options de lancement"
 
 #: src/ui/program-entry.ui:34
 msgid "Browse Path"
-msgstr "Parcourir Path"
+msgstr "Parcourir le chemin"
 
 #: src/ui/program-entry.ui:58
 msgid "WineHQ"
@@ -1129,7 +1128,7 @@ msgstr "Retirer des programmes"
 
 #: src/ui/program-entry.ui:134
 msgid "Add desktop entry"
-msgstr "Ajouter une entrée sur le bureau"
+msgstr "Ajouter une entrée de bureau"
 
 #: src/ui/state-entry.ui:47 src/ui/state-entry.ui:71
 msgid "Restore this state"
@@ -1149,7 +1148,7 @@ msgstr "Documentation"
 
 #: src/ui/window.ui:70
 msgid "Forums"
-msgstr "Les forums"
+msgstr "Forums"
 
 #: src/ui/window.ui:83
 msgid "About Bottles"
@@ -1169,13 +1168,13 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
-"Il semble que vous ne soyez pas connecter à internet. Sans la connexion, "
-"vous ne pourrez pas télécharger des composants essentielles. Cliquezsur "
-"cette icône lorsque votre connexion internet sera rétabli."
+"Il semble que vous ne soyez pas connectés à internet. Sans la connexion, "
+"vous ne pourrez pas télécharger des composants essentiels. Cliquez sur cette "
+"icône lorsque votre connexion internet sera rétablie."
 
 #: src/ui/window.ui:294
 msgid "Go back"
-msgstr "Revenir en arrière"
+msgstr "Retour"
 
 #: src/operation.py:62
 msgid "Calculating..."
@@ -1219,7 +1218,7 @@ msgstr "Vous êtes hors ligne, impossible de télécharger."
 
 #: src/window.py:140 src/window.py:193 src/window.py:192
 msgid "Bottle details"
-msgstr "Détails de la Bouteille"
+msgstr "Détails de la bouteille"
 
 #: src/window.py:183 src/window.py:182
 msgid "Bottles Started!"
@@ -1237,7 +1236,7 @@ msgstr "Sauvegarde {0}"
 #: src/backend/backup.py:98 src/backend/backup.py:97
 #, python-brace-format
 msgid "Importing backup: {0}"
-msgstr "Importation de la sauvegarde : {0}"
+msgstr "Importation de la sauvegarde : {0}"
 
 #: src/backend/manager.py:944
 msgid "Missing essential components. Installing…"
@@ -1254,7 +1253,7 @@ msgstr "La configuration de Wine est cours de mise à jour…"
 
 #: src/backend/manager.py:1040 src/backend/manager.py:1039
 msgid "WINE config updated!"
-msgstr "Configuration de Wine mise à jour !"
+msgstr "Configuration de Wine mise à jour !"
 
 #: src/backend/manager.py:1048
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -1321,7 +1320,7 @@ msgstr "Mise à jour des états…"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
-msgstr "Rapport de bug"
+msgstr "Afficher le rapport"
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
@@ -1358,16 +1357,16 @@ msgstr "Gestionnaire des tâches"
 #: src/views/bottle_details.py:170 src/views/bottle_details.py:160
 #, python-format
 msgid "Updated: %s"
-msgstr "Mis à jour : %s"
+msgstr "Mis à jour : %s"
 
 #. set arch
 #: src/views/bottle_details.py:173 src/views/bottle_details.py:163
 msgid "64-bit"
-msgstr "64 bits"
+msgstr "64 bits"
 
 #: src/views/bottle_details.py:175 src/views/bottle_details.py:165
 msgid "32-bit"
-msgstr "32 bits"
+msgstr "32 bits"
 
 #: src/views/bottle_details.py:272 src/views/list.py:121
 #: src/views/bottle_details.py:262
@@ -1399,8 +1398,8 @@ msgstr "Confirmer la suppression"
 #: src/views/bottle_details.py:395 src/views/bottle_details.py:373
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr ""
-"Êtes-vous sûr de vouloir supprimer cette Bouteille ainsi que tous ses "
-"fichiers ?"
+"Êtes-vous sûr de vouloir supprimer cette bouteille ainsi que tous ses "
+"fichiers ?"
 
 #: src/views/bottle_preferences.py:124
 msgid "Gamemode is either not available on your system or not running."
@@ -1443,7 +1442,7 @@ msgstr "Arguments trouvés pour l’exécutable : [{executable}]."
 
 #: src/views/new.py:72
 msgid "Gaming"
-msgstr "Gaming"
+msgstr "Jeux"
 
 #: src/views/new.py:73
 msgid "An environment improved for Windows games."
@@ -1476,7 +1475,7 @@ msgstr "Thème sombre"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Use a dark application theme."
-msgstr "Utilisez un thème sombre."
+msgstr "Utiliser un thème sombre."
 
 #: src/ui/details-preferences.ui:492 src/ui/new.ui:358
 msgid "DXVK Version"
@@ -1484,7 +1483,7 @@ msgstr "Version de DXVK"
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:versioning"
-msgstr "Expérimental : gestion de versions"
+msgstr "Expérimental : gestion de versions"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental versioning feature."
@@ -1526,7 +1525,7 @@ msgstr "Substitutions de DLL"
 
 #: src/ui/preferences.ui:29 src/ui/preferences.ui:332
 msgid "Whether Bottles should use the Dark theme variant."
-msgstr "Si les bouteilles doivent utiliser le Thème sombre."
+msgstr "Si les bouteilles doivent utiliser le thème sombre."
 
 #~ msgid "Creating sandboxed folders…"
 #~ msgstr "Création de dossiers bac à sable…"
