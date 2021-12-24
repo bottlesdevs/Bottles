@@ -551,10 +551,13 @@ class DependencyManager:
                     f"{Paths.temp}/{archive_name}")
 
             os.makedirs(f"{Paths.temp}/{archive_name}")
-            patoolib.extract_archive(
-                f"{Paths.temp}/{file}",
-                outdir=f"{Paths.temp}/{archive_name}"
-            )
+            try:
+                patoolib.extract_archive(
+                    f"{Paths.temp}/{file}",
+                    outdir=f"{Paths.temp}/{archive_name}"
+                )
+            except:
+                return False
             return True
         
         return False
