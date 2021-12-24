@@ -1,4 +1,4 @@
-# launchoptions.py
+# rename.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -17,17 +17,18 @@
 
 from gi.repository import Gtk, Handy
 
-@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
-class LaunchOptionsDialog(Handy.Window):
-    __gtype_name__ = 'LaunchOptionsDialog'
+
+@Gtk.Template(resource_path='/com/usebottles/bottles/dialog-rename.ui')
+class RenameDialog(Handy.Window):
+    __gtype_name__ = 'RenameDialog'
 
     # region Widgets
-    entry_arguments = Gtk.Template.Child()
+    entry = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, config, program_executable, arguments, **kwargs):
+    def __init__(self, window, name, on_save, **kwargs):
         super().__init__(**kwargs)
 
         self.set_transient_for(window)
@@ -35,31 +36,20 @@ class LaunchOptionsDialog(Handy.Window):
         # common variables and references
         self.window = window
         self.manager = window.manager
-        self.config = config
-        self.program_executable = program_executable
-        self.arguments = arguments
+        self.on_save = on_save
 
         # set widget defaults
-        self.entry_arguments.set_text(self.arguments)
+        self.entry.set_text(name)
 
         # connect signals
         self.btn_cancel.connect('pressed', self.__close_window)
-        self.btn_save.connect('pressed', self.__save_options)
+        self.btn_save.connect('pressed', self.__on_save)
+
+    def __on_save(self, widget):
+        text = self.entry.get_text()
+        self.on_save(new_name=text)
+        self.destroy()
 
     def __close_window(self, widget):
         self.destroy()
-
-    def __save_options(self, widget):
-        '''
-        This function save the launch options in the bottle
-        configuration. It also close the window and update the
-        programs list.
-        '''
-        self.arguments = self.entry_arguments.get_text()
-        self.config = self.manager.update_config(
-            config=self.config,
-            key=self.program_executable,
-            value=self.arguments,
-            scope="Programs"
-        )
-        self.__close_window(widget)
+        

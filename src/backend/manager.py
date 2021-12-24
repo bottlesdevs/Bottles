@@ -598,9 +598,13 @@ class Manager:
 
             if os.path.exists(path_check):
                 if executable_path not in installed_programs:
-                    installed_programs.append(
-                        [path, executable_path, icon, program_folder]
-                    )
+                    installed_programs.append({
+                        "executable": executable_name,
+                        "name": executable_name.split("\\")[-1],
+                        "path": executable_path,
+                        "folder": program_folder,
+                        "icon": icon
+                    })
 
         if config.get("External_Programs"):
             '''
@@ -609,11 +613,16 @@ class Manager:
             '''
             ext_programs = config.get("External_Programs")
             for program in ext_programs:
-                program_folder = os.path.dirname(ext_programs[program])
+                _program = ext_programs[program]
+                program_folder = os.path.dirname(_program["path"])
                 icon = self.__find_program_icon(program)
-                installed_programs.append(
-                    [program, ext_programs[program], icon, program_folder]
-                )
+                installed_programs.append({
+                    "executable": _program["executable"],
+                    "name": _program["name"],
+                    "path": _program["path"],
+                    "folder": program_folder,
+                    "icon": icon
+                })
 
         return installed_programs
 
@@ -659,6 +668,16 @@ class Manager:
                 conf_file = open(f"{bottle}/bottle.yml")
                 conf_file_yaml = yaml.safe_load(conf_file)
                 conf_file.close()
+
+                # Migrate old External_Programs to new format
+                if "External_Programs" in conf_file_yaml:
+                    for program in conf_file_yaml["External_Programs"]:
+                        if isinstance(program, str):
+                            conf_file_yaml["External_Programs"][program] = {
+                                "executable": program,
+                                "name": program,
+                                "path": program
+                            }
 
                 # Clear Latest_Executables on new session start
                 if conf_file_yaml.get("Latest_Executables"):

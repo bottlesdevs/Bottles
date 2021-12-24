@@ -74,10 +74,17 @@ class ProgramsView(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
+            _file = file_dialog.get_filename()
+            _file_name = _file.split("/")[-1]
+            _program = {
+                "executable": _file_name,
+                "name": _file.split("/")[-1][:-4],
+                "path": _file
+            }
             self.manager.update_config(
                 config=self.config,
-                key=file_dialog.get_filename().split("/")[-1][:-4],
-                value=file_dialog.get_filename(),
+                key=_file_name,
+                value=_program,
                 scope="External_Programs"
             )
             self.update(config=self.config)
