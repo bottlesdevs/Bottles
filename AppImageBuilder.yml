@@ -111,6 +111,7 @@ AppDir:
      rm -f $APPDIR/.bundle.yml
      rm -rf $APPDIR/usr/share/doc
      rm -rf $APPDIR/usr/share/man
+     mkdir -p $APPDIR/usr/local/lib/p7zip/ 
      ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/ 
 
   files:
