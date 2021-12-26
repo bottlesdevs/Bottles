@@ -20,6 +20,7 @@ import subprocess
 import random
 import yaml
 import time
+import shlex
 import shutil
 import struct
 import locale
@@ -678,6 +679,28 @@ class Manager:
                                 "name": program,
                                 "path": program
                             }
+                
+                # Migrate old environment_variables to new format
+                if "Parameters" in conf_file_yaml:
+                    _parameters = conf_file_yaml["Parameters"]
+                    if "environment_variables" in _parameters:
+                        entries = shlex.split(_parameters["environment_variables"])
+                        _env = {}
+
+                        if len(entries) > 0:
+                            for e in entries:
+                                kv = e.split("=")
+
+                                if len(kv) > 2:
+                                    kv[1] = "=".join(kv[1:])
+                                    kv = kv[:2]
+
+                                if len(kv) == 2:
+                                    _env[kv[0]] = kv[1]
+                            
+                            conf_file_yaml["Environment_Variables"] = _env
+                            if len(_env) > 0:
+                                del _parameters["environment_variables"]
 
                 # Clear Latest_Executables on new session start
                 if conf_file_yaml.get("Latest_Executables"):

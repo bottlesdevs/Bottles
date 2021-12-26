@@ -363,22 +363,9 @@ class Runner:
             for dll in config.get("DLL_Overrides").items():
                 dll_overrides.append("%s=%s" % (dll[0], dll[1]))
 
-        if parameters["environment_variables"]:
-            try:
-                entries = shlex.split(parameters["environment_variables"])
-            
-                for e in entries:
-                    kv = e.split("=")
-
-                    if len(kv) > 2:
-                        kv[1] = "=".join(kv[1:])
-                        kv = kv[:2]
-
-                    if len(kv) == 2:
-                        env[kv[0]] = kv[1]
-            except:
-                # ref: https://github.com/bottlesdevs/Bottles/issues/668
-                logging.debug(f"One or more environment variables are invalid: {parameters['environment_variables']}")
+        if config.get("Environment_Variables"):
+            for env_var in config.get("Environment_Variables").items():
+                env[env_var[0]] = env_var[1]
 
         if environment:
             if environment.get("WINEDLLOVERRIDES"):
