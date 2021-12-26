@@ -401,7 +401,7 @@ class DependencyManager:
         This function find an uninstaller in the bottle by the given
         file name and execute it.
         '''
-        command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
+        command = f"uninstaller --list | grep -i '{file_name}' | cut -f1 -d\|"
 
         uuid = Runner.run_command(
             config=config,
@@ -412,14 +412,15 @@ class DependencyManager:
         )
         uuid = uuid.strip()
 
-        if uuid != "":
+        if uuid:
             logging.info(
                 "Uninstalling [%s] from bottle: [%s]." % (
                     file_name,
                     config['Name']
                 )
             )
-            Runner.run_uninstaller(config, uuid)
+            for _uuid in uuid.splitlines():
+                Runner.run_uninstaller(config, _uuid)
         
         return True
 
