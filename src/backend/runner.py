@@ -631,6 +631,9 @@ class Runner:
         if version not in Runner._windows_versions:
             raise ValueError("Given version is not supported.")
             
+        if version == "winxp" and config.get("Arch") == "win64":
+            version = "winxp64"
+            
         Runner.reg_add(
             config=config,
             key=f"HKEY_CURRENT_USER\\Software\\Wine\\AppDefaults\\{executable}",

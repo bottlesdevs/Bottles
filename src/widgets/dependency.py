@@ -191,4 +191,7 @@ class DependencyEntry(Handy.ActionRow):
             self.btn_remove.set_visible(False)
             self.btn_install.set_visible(True)
 
-        self.get_parent().set_sensitive(True)
+        try:
+            self.get_parent().set_sensitive(True)
+        except AttributeError:
+            pass
