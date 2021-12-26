@@ -250,7 +250,8 @@ class Manager:
         )
 
         uuid = False
-        command = f"uninstaller --list | grep '{program_name}' | cut -f1 -d\|"
+        command = f"uninstaller --list | grep -i '^{program_name}' | cut -f1 -d\|"
+
         uuid = Runner.run_command(
             config=config,
             command=command,
