@@ -245,7 +245,7 @@ class DependencyManager:
                 return Result(status=False)
 
         if step["action"] == "uninstall":
-            self.__step_uninstall(config=config, title=step["file_name"])
+            self.__step_uninstall(config=config, file_name=step["file_name"])
 
         if step["action"] == "cab_extract":
             uninstaller = False
