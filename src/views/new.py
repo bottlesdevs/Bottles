@@ -192,6 +192,9 @@ class NewView(Handy.Window):
         if self.selected_env == "Custom":
             runner = self.combo_runner.get_active_id()
         else:
+            rc = [
+                i for i in self.manager.runners_available if i.startswith('caffe')
+            ]
             rv = [
                 i for i in self.manager.runners_available if i.startswith('vaniglia')
             ]
@@ -202,7 +205,9 @@ class NewView(Handy.Window):
                 i for i in self.manager.runners_available if i.startswith('sys-')
             ]
 
-            if len(rv) > 0:  # use the latest from vaniglia
+            if len(rc) > 0:  # use the latest from caffe
+                runner = rc[0]
+            elif len(rv) > 0:  # use the latest from vaniglia
                 runner = rv[0]
             elif len(rl) > 0:  # use the latest from lutris
                 runner = rl[0]

@@ -268,7 +268,7 @@ class Manager:
         This function checks for installed Bottles and system runners and
         appends them to the runners_available list. If there are no runners
         available (the sys-wine cannot be the only one), it will install
-        the latest vaniglia runner from the repository if connection is
+        the latest caffe runner from the repository if connection is
         available, then update the list with the new one. It also locks the 
         winemenubuilder.exe for the Bottles' runners, to prevent them from
         creating invalid desktop and menu entries.
@@ -674,7 +674,8 @@ class Manager:
                 # Migrate old External_Programs to new format
                 if "External_Programs" in conf_file_yaml:
                     for program in conf_file_yaml["External_Programs"]:
-                        if isinstance(program, str):
+                        _program = conf_file_yaml["External_Programs"][program]
+                        if isinstance(_program, str):
                             conf_file_yaml["External_Programs"][program] = {
                                 "executable": program,
                                 "name": program,
@@ -829,14 +830,7 @@ class Manager:
             to latest Vaniglia. If there is no Vaniglia, set it to the
             first one.
             '''
-            config["Runner"] = sorted(
-                [
-                    runner
-                    for runner in self.runners_available
-                    if runner.startswith("vaniglia")
-                ],
-                key=lambda x: x.split("-")[-1]
-            )[-1]     
+            config["Runner"] = self.get_latest_runner("wine")  
         
         if config["DXVK"] not in self.dxvk_available:
             '''
@@ -1210,7 +1204,7 @@ class Manager:
         '''
         try:
             if runner_type in ["", "wine"]:
-                return self.__sort_runners("vaniglia")
+                return self.__sort_runners("caffe")
             return self.__sort_runners("proton")
         except IndexError:
             return "Undefined"
