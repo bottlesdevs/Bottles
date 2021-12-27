@@ -3,7 +3,7 @@ data/com.usebottles.bottles.appdata.xml.in
 data/com.usebottles.bottles.gschema.xml
 
 src/ui/about.ui
-src/ui/dependency-entry.ui
+
 src/ui/details.ui
 src/ui/details-dependencies.ui
 src/ui/details-installers.ui
@@ -13,19 +13,27 @@ src/ui/details-versioning.ui
 src/ui/details-taskmanager.ui
 src/ui/dialog.ui
 src/ui/dialog-dll-overrides.ui
+src/ui/dialog-crash-report.ui
+src/ui/dialog-duplicate.ui
+src/ui/dialog-rename.ui
+src/ui/dialog-env-vars.ui
+src/ui/dialog-run-args.ui
 src/ui/dialog-environment-variables.ui
 src/ui/dialog-launch-options.ui
-src/ui/dll-override-entry.ui
-src/ui/component-entry.ui
 src/ui/importer.ui
 src/ui/importer-entry.ui
-src/ui/installer-entry.ui
 src/ui/list.ui
 src/ui/list-entry.ui
+src/ui/component-entry.ui
+src/ui/dependency-entry.ui
+src/ui/dll-override-entry.ui
+src/ui/env-var-entry.ui
+src/ui/installer-entry.ui
+src/ui/task-entry.ui
+src/ui/program-entry.ui
 src/ui/new.ui
 src/ui/onboard.ui
 src/ui/preferences.ui
-src/ui/program-entry.ui
 src/ui/state-entry.ui
 src/ui/window.ui
 
@@ -49,6 +57,7 @@ src/dialogs/envvars.py
 src/dialogs/generic.py
 src/dialogs/launchoptions.py
 src/dialogs/onboard.py
+src/dialogs/rename.py
 src/dialogs/runargs.py
 
 src/views/details.py
@@ -63,3 +72,7 @@ src/views/importer.py
 src/views/list.py
 src/views/new.py
 src/views/preferences.py
+
+src/widgets/dependency.py
+src/widgets/installer.py
+src/widgets/state.py

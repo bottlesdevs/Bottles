@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-07 21:49+0100\n"
+"POT-Creation-Date: 2021-12-27 17:50+0100\n"
 "PO-Revision-Date: 2021-12-19 15:45+0000\n"
 "Last-Translator: XiaoPanPanKevinPan <sn00151200@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -43,7 +43,8 @@ msgid "Mirko Brombin"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-msgid "Run Windows software on Linux with Bottles🍷!"
+#, fuzzy
+msgid "Run Windows software on Linux with Bottles!"
 msgstr "使用 Bottles🍷以在 Linux 上執行 Windows 程式！"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
@@ -55,7 +56,9 @@ msgid ""
 "Our built-in dependency installation system grants automatic software "
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
-msgstr "內建的相依項目安裝系統會授予自動軟件兼容性權限。使用下載管理員以取得官方組件：執行器（Wine, Proton）、DXVK、相依項目等。"
+msgstr ""
+"內建的相依項目安裝系統會授予自動軟件兼容性權限。使用下載管理員以取得官方組"
+"件：執行器（Wine, Proton）、DXVK、相依項目等。"
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
@@ -273,64 +276,41 @@ msgstr ""
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr ""
 
-#: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
-#: src/ui/state-entry.ui:21
-#, fuzzy
-msgid "Show manifest"
-msgstr "顯示清單"
-
-#: src/ui/dependency-entry.ui:34
-#, fuzzy
-msgid "License"
-msgstr "授權條款"
-
-#: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
-msgid "Bug report"
-msgstr "錯誤回報"
-
-#: src/ui/dependency-entry.ui:140
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr "發生了一個安裝錯誤。重啟 Bottles 以閱讀崩潰回報，或者透過終端機執行以閱讀輸出。"
-
-#: src/ui/dependency-entry.ui:193
-msgid "Download & Install this dependency"
-msgstr "下載與安裝相依項目"
-
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr "測試模式已啟用：僅測試存儲庫中的相依項目可見。"
 
-#: src/ui/details-dependencies.ui:106
+#: src/ui/details-dependencies.ui:127
+msgid "Microsoft .NET Framework 4 .."
+msgstr "微軟 .NET Framework 4 .."
+
+#: src/ui/details-dependencies.ui:139
 #, fuzzy
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr "雖然此頁面上之檔案已受驗證，然而可能受專有許可保護。"
 
-#: src/ui/details-dependencies.ui:119 src/ui/details-versioning.ui:162
+#: src/ui/details-dependencies.ui:196 src/ui/details-installers.ui:134
+#: src/ui/details-programs.ui:126 src/ui/details-versioning.ui:162
 #, fuzzy
 msgid "Read documentation"
 msgstr "閱讀文檔"
 
-#: src/ui/details-dependencies.ui:129
-msgid "Report a missing dependency"
+#: src/ui/details-dependencies.ui:222
+#, fuzzy
+msgid "Report a problem or a missing dependency."
 msgstr "回報一個遺失的相依項目"
-
-#: src/ui/details-dependencies.ui:173
-msgid "Microsoft .NET Framework 4 .."
-msgstr "微軟 .NET Framework 4 .."
 
 #: src/ui/details-installers.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
-"這是一個仍在早期開發階段的實驗性功能。謹慎使用，並於必要時 <a href=\"https://github.com/bottlesdevs/"
-"Bottles/issues/new/choose\">回報錯誤</a>。"
+"這是一個仍在早期開發階段的實驗性功能。謹慎使用，並於必要時 <a href=\"https://"
+"github.com/bottlesdevs/Bottles/issues/new/choose\">回報錯誤</a>。"
 
-#: src/ui/details-installers.ui:137 src/ui/details-taskmanager.ui:32
+#: src/ui/details-installers.ui:160 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:94
 msgid "Refresh"
 msgstr "重新整理"
@@ -438,111 +418,122 @@ msgstr "使用虛擬桌面"
 msgid "Use the Wine virtual desktop."
 msgstr "使用 Wine 的虛擬桌面。"
 
-#: src/ui/details-preferences.ui:353 src/ui/details-preferences.ui:366
+#: src/ui/details-preferences.ui:341
+#, fuzzy
+msgid "Use Bottles runtime"
+msgstr "酒瓶名稱"
+
+#: src/ui/details-preferences.ui:342
+msgid ""
+"Provides a bundle of extra libraries for more compatibility,\n"
+"disable if you run into issues."
+msgstr ""
+
+#: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
 msgstr "系統"
 
-#: src/ui/details-preferences.ui:358
+#: src/ui/details-preferences.ui:385
 msgid "Synchronization"
 msgstr "同步"
 
-#: src/ui/details-preferences.ui:359
+#: src/ui/details-preferences.ui:386
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr "啟用同步，以增進多核心處理器的表現。"
 
-#: src/ui/details-preferences.ui:380
+#: src/ui/details-preferences.ui:407
 msgid "Esync"
 msgstr ""
 
-#: src/ui/details-preferences.ui:394
+#: src/ui/details-preferences.ui:421
 msgid "Fsync"
 msgstr ""
 
-#: src/ui/details-preferences.ui:417 src/ui/new.ui:284
+#: src/ui/details-preferences.ui:444 src/ui/new.ui:284
 msgid "Runner"
 msgstr "執行器"
 
-#: src/ui/details-preferences.ui:460 src/ui/new.ui:326
+#: src/ui/details-preferences.ui:487 src/ui/new.ui:326
 msgid "Manage runners"
 msgstr "管理執行器"
 
-#: src/ui/details-preferences.ui:492 src/ui/new.ui:358
+#: src/ui/details-preferences.ui:519 src/ui/new.ui:358
 msgid "DXVK version"
 msgstr "DXVK 版本"
 
-#: src/ui/details-preferences.ui:535 src/ui/details-preferences.ui:685
+#: src/ui/details-preferences.ui:562 src/ui/details-preferences.ui:712
 #: src/ui/new.ui:400
 msgid "Manage DXVK versions"
 msgstr "管理 DXVK 版本"
 
-#: src/ui/details-preferences.ui:567
+#: src/ui/details-preferences.ui:594
 msgid "VKD3D version"
 msgstr "VKD3D 版本"
 
-#: src/ui/details-preferences.ui:610
+#: src/ui/details-preferences.ui:637
 msgid "Manage VKD3D versions"
 msgstr "管理 VKD3D 版本"
 
-#: src/ui/details-preferences.ui:642
+#: src/ui/details-preferences.ui:669
 msgid "NVAPI version"
 msgstr "NVAPI 版本"
 
-#: src/ui/details-preferences.ui:717
+#: src/ui/details-preferences.ui:744
 msgid "Windows version"
 msgstr "Windows 版本"
 
-#: src/ui/details-preferences.ui:760 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details-preferences.ui:787 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
 msgid "DLL overrides"
 msgstr "DLL 覆寫"
 
-#: src/ui/details-preferences.ui:798
+#: src/ui/details-preferences.ui:825
 msgid "Working directory"
 msgstr "工作資料夾"
 
-#: src/ui/details-preferences.ui:800
+#: src/ui/details-preferences.ui:827
 msgid "Point to the bottle path"
 msgstr "指向酒瓶路徑"
 
-#: src/ui/details-preferences.ui:816
+#: src/ui/details-preferences.ui:843
 msgid "Choose a directory"
 msgstr "選擇一個資料夾"
 
-#: src/ui/details-preferences.ui:859
+#: src/ui/details-preferences.ui:886
 msgid "Audio"
 msgstr "音訊"
 
-#: src/ui/details-preferences.ui:864
+#: src/ui/details-preferences.ui:891
 msgid "Reduce PulseAudio latency"
 msgstr "減少 PulseAudio 延遲"
 
-#: src/ui/details-preferences.ui:865
+#: src/ui/details-preferences.ui:892
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr "設定 PulseAudio 延遲為 60 毫秒，以提高聲音品質"
 
-#: src/ui/details-preferences.ui:902
+#: src/ui/details-preferences.ui:929
 msgid "Developers & Debug"
 msgstr "開發者與除錯"
 
-#: src/ui/details-preferences.ui:907
+#: src/ui/details-preferences.ui:934 src/ui/dialog-env-vars.ui:24
 msgid "Environment variables"
 msgstr "環境變數"
 
-#: src/ui/details-preferences.ui:945
+#: src/ui/details-preferences.ui:972
 msgid "DXVK HUD"
 msgstr ""
 
-#: src/ui/details-preferences.ui:946
+#: src/ui/details-preferences.ui:973
 #, fuzzy
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr "切換 D3D 應用程序中，包含 FPS 與其餘細節的 DXVK 螢幕上資訊框。"
 
-#: src/ui/details-preferences.ui:972
+#: src/ui/details-preferences.ui:999
 msgid "Enable wine fixme logs"
 msgstr "啟用 wine 的 fixme 記錄"
 
-#: src/ui/details-preferences.ui:973
+#: src/ui/details-preferences.ui:1000
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "記錄 Wine 中未實作代碼的路徑。"
 
@@ -554,11 +545,11 @@ msgstr "未發現程式"
 msgid "New programs will be automatically found."
 msgstr "新程式將被自動發現。"
 
-#: src/ui/details-programs.ui:73
+#: src/ui/details-programs.ui:74
 msgid "Add a custom executable path"
 msgstr "新增自定義執行檔路徑"
 
-#: src/ui/details-programs.ui:99
+#: src/ui/details-programs.ui:100
 msgid "Search for installed programs"
 msgstr "查詢已安裝程式"
 
@@ -590,10 +581,12 @@ msgstr "新增狀態版本"
 msgid "Message goes here."
 msgstr "此處留待通知。"
 
-#: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
+#: src/ui/dialog.ui:23 src/ui/dialog-crash-report.ui:27
+#: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
+#: src/ui/dialog-run-args.ui:28 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:276 src/views/bottle_details.py:362
-#: src/views/bottle_preferences.py:138 src/views/bottle_programs.py:64
+#: src/views/bottle_details.py:277 src/views/bottle_details.py:366
+#: src/views/bottle_preferences.py:147 src/views/bottle_programs.py:69
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "取消"
@@ -606,7 +599,8 @@ msgstr "確認"
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)"
-msgstr "可以選擇使用內建的（由 Wine 提供）或原生的（由該應用提供）動態連結函式庫"
+msgstr ""
+"可以選擇使用內建的（由 Wine 提供）或原生的（由該應用提供）動態連結函式庫"
 
 #: src/ui/dialog-dll-overrides.ui:57
 msgid "New override"
@@ -620,13 +614,154 @@ msgstr "例如：ucrtbase"
 msgid "Existing overrides"
 msgstr "現存的覆載"
 
+#: src/ui/dialog-crash-report.ui:24
+#, fuzzy
+msgid "Bottles Crash Report"
+msgstr "酒瓶開了！"
+
+#: src/ui/dialog-crash-report.ui:35
+#, fuzzy
+msgid "Send report"
+msgstr "顯示回報"
+
+#: src/ui/dialog-crash-report.ui:75
+msgid ""
+"Bottles crashed last time. Please fill out a report attaching the following "
+"traceback to help us identify the problem preventing it from happening again."
+msgstr ""
+
+#: src/ui/dialog-crash-report.ui:138
+msgid ""
+"We found one or more similar (or identical) reports. Please make sure to "
+"check carefully that it has not already been reported before submitting a "
+"new one. Each report requires effort on the part of the developers to "
+"diagnose, please respect their work and make sure you don't post duplicates."
+msgstr ""
+
+#: src/ui/dialog-crash-report.ui:183
+msgid "I still want to report."
+msgstr ""
+
+#: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
+msgid "Advanced options"
+msgstr "進階選項"
+
+#: src/ui/dialog-duplicate.ui:25
+msgid "Duplicate a bottle"
+msgstr ""
+
+#: src/ui/dialog-duplicate.ui:36
+msgid "Duplicate"
+msgstr ""
+
+#: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:50 src/ui/onboard.ui:56
+msgid "Close"
+msgstr "關閉"
+
+#: src/ui/dialog-duplicate.ui:95
+#, fuzzy
+msgid "Type a name for the new bottle"
+msgstr "為您的酒瓶取個名"
+
+#: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
+#, fuzzy
+msgid "e.g.: -example1 -example2 -example3=hello"
+msgstr "例如：-example1 -example2 -example3=hello"
+
+#: src/ui/dialog-duplicate.ui:109
+msgid "e.g: MyDuplicatedBottle"
+msgstr ""
+
+#: src/ui/dialog-duplicate.ui:130
+msgid "page_name"
+msgstr ""
+
+#: src/ui/dialog-duplicate.ui:147
+#, fuzzy
+msgid "Duplicating…"
+msgstr "下載中……"
+
+#: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:533
+msgid "Take a break, it may take a while"
+msgstr "喝杯咖啡，凡事總需要時間"
+
+#: src/ui/dialog-duplicate.ui:195
+msgid "page_duplicating"
+msgstr ""
+
+#: src/ui/dialog-duplicate.ui:204
+#, fuzzy
+msgid "Bottle duplicated"
+msgstr "已鑄好了酒瓶"
+
+#: src/ui/dialog-duplicate.ui:211
+msgid "page_duplicated"
+msgstr ""
+
+#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
+msgid "Rename"
+msgstr ""
+
+#: src/ui/dialog-rename.ui:35 src/ui/dialog-environment-variables.ui:36
+#: src/ui/dialog-launch-options.ui:36
+msgid "Save"
+msgstr "儲存"
+
+#: src/ui/dialog-rename.ui:74
+msgid "Type the new name:"
+msgstr ""
+
+#: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
+#: src/ui/dialog-launch-options.ui:90
+#, fuzzy
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "例如：-example1 -example2 -example3=hello"
+
+#: src/ui/dialog-rename.ui:88
+msgid "Type here.."
+msgstr ""
+
+#: src/ui/dialog-env-vars.ui:49
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+
+#: src/ui/dialog-env-vars.ui:54
+#, fuzzy
+msgid "New variable"
+msgstr "新覆寫"
+
+#: src/ui/dialog-env-vars.ui:65
+msgid "e.g. MY_VAR"
+msgstr ""
+
+#: src/ui/dialog-env-vars.ui:123
+#, fuzzy
+msgid "Existing variables"
+msgstr "現存的覆載"
+
+#: src/ui/dialog-run-args.ui:25
+#, fuzzy
+msgid "Run with arguments"
+msgstr "傳入引數"
+
+#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:276
+#: src/views/list.py:124
+msgid "Run"
+msgstr "執行"
+
+#: src/ui/dialog-run-args.ui:75
+msgid "Write below the arguments to be passed to the executable."
+msgstr ""
+
+#: src/ui/dialog-run-args.ui:90
+msgid "e.g: -opengl -SkipBuildPatchPrereq"
+msgstr ""
+
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
 msgstr "修改環境變數"
-
-#: src/ui/dialog-environment-variables.ui:36 src/ui/dialog-launch-options.ui:36
-msgid "Save"
-msgstr "儲存"
 
 #: src/ui/dialog-environment-variables.ui:75
 msgid ""
@@ -634,69 +769,22 @@ msgid ""
 "executed."
 msgstr "在此您可以修改所執行指令之環境變數。"
 
-#: src/ui/dialog-environment-variables.ui:87 src/ui/dialog-launch-options.ui:87
-#: src/ui/dialog-launch-options.ui:90
-msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr "例如：-example1 -example2 -example3=hello"
+#: src/ui/dialog-environment-variables.ui:87
+#, fuzzy
+msgid "e.g.: VAR1=value VAR2=value"
+msgstr "例如：VAR1=value VAR2=value .."
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
 msgstr "例如：VAR1=value VAR2=value .."
 
-#: src/ui/dialog-launch-options.ui:25
+#: src/ui/dialog-launch-options.ui:25 src/ui/program-entry.ui:20
 msgid "Change launch options"
 msgstr "修改啟動選項"
 
 #: src/ui/dialog-launch-options.ui:75
 msgid "These arguments are passed on program launch:"
 msgstr "這些引數將在程式啟動時一同傳遞："
-
-#: src/ui/dll-override-entry.ui:23
-msgid "Builtin (Wine)"
-msgstr "內建（Wine）"
-
-#: src/ui/dll-override-entry.ui:24
-msgid "Native (Windows)"
-msgstr "原生（Windows）"
-
-#: src/ui/dll-override-entry.ui:25
-msgid "Builtin then Native"
-msgstr "內建先於原生"
-
-#: src/ui/dll-override-entry.ui:26
-msgid "Native then Builtin"
-msgstr "原生先於內建"
-
-#: src/ui/component-entry.ui:9
-msgid "Component version"
-msgstr "組件版本"
-
-#: src/ui/component-entry.ui:19
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch.\n"
-"\n"
-"Press to try again."
-msgstr ""
-"安裝失敗。此或因存儲庫錯誤、下載不完全或校驗碼不合。\n"
-"\n"
-"請再試一次。"
-
-#: src/ui/component-entry.ui:72
-msgid "Download & Install"
-msgstr "下載與安裝"
-
-#: src/ui/component-entry.ui:99 src/ui/importer-entry.ui:21
-msgid "Browse files"
-msgstr "瀏覽檔案"
-
-#: src/ui/component-entry.ui:129
-msgid "0%"
-msgstr ""
-
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:147
-msgid "Uninstall"
-msgstr "解除安裝"
 
 #: src/ui/importer.ui:21
 msgid ""
@@ -724,14 +812,14 @@ msgstr "匯入器"
 msgid "Import Bottles backup"
 msgstr "匯入 Bottles 備份"
 
+#: src/ui/importer-entry.ui:21 src/ui/component-entry.ui:99
+msgid "Browse files"
+msgstr "瀏覽檔案"
+
 #: src/ui/importer-entry.ui:69
 #, fuzzy
 msgid "This wineprefix was already imported in Bottles."
 msgstr "此 wineprefix 早已匯入至 Bottles 中。"
-
-#: src/ui/installer-entry.ui:48
-msgid "Read review"
-msgstr "查看評論"
 
 #: src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
@@ -775,6 +863,117 @@ msgstr "這個酒瓶似乎破了——配置文件已遺失。我可以創建新
 msgid "Run .exe/.msi in this bottle"
 msgstr "在此酒瓶中執行 .exe/.msi"
 
+#: src/ui/component-entry.ui:9
+msgid "Component version"
+msgstr "組件版本"
+
+#: src/ui/component-entry.ui:19
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch.\n"
+"\n"
+"Press to try again."
+msgstr ""
+"安裝失敗。此或因存儲庫錯誤、下載不完全或校驗碼不合。\n"
+"\n"
+"請再試一次。"
+
+#: src/ui/component-entry.ui:72
+msgid "Download & Install"
+msgstr "下載與安裝"
+
+#: src/ui/component-entry.ui:129
+msgid "0%"
+msgstr ""
+
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:159
+msgid "Uninstall"
+msgstr "解除安裝"
+
+#: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
+#: src/ui/state-entry.ui:21
+#, fuzzy
+msgid "Show manifest"
+msgstr "顯示清單"
+
+#: src/ui/dependency-entry.ui:34
+#, fuzzy
+msgid "License"
+msgstr "授權條款"
+
+#: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
+msgid "Bug report"
+msgstr "錯誤回報"
+
+#: src/ui/dependency-entry.ui:140
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"發生了一個安裝錯誤。重啟 Bottles 以閱讀崩潰回報，或者透過終端機執行以閱讀輸"
+"出。"
+
+#: src/ui/dependency-entry.ui:193
+msgid "Download & Install this dependency"
+msgstr "下載與安裝相依項目"
+
+#: src/ui/dll-override-entry.ui:23
+msgid "Builtin (Wine)"
+msgstr "內建（Wine）"
+
+#: src/ui/dll-override-entry.ui:24
+msgid "Native (Windows)"
+msgstr "原生（Windows）"
+
+#: src/ui/dll-override-entry.ui:25
+msgid "Builtin then Native"
+msgstr "內建先於原生"
+
+#: src/ui/dll-override-entry.ui:26
+msgid "Native then Builtin"
+msgstr "原生先於內建"
+
+#: src/ui/env-var-entry.ui:91
+msgid "value"
+msgstr ""
+
+#: src/ui/installer-entry.ui:48
+msgid "Read review"
+msgstr "查看評論"
+
+#: src/ui/task-entry.ui:50
+msgid "Delete message"
+msgstr ""
+
+#: src/ui/program-entry.ui:33
+#, fuzzy
+msgid "Browse path"
+msgstr "瀏覽路徑"
+
+#: src/ui/program-entry.ui:70
+msgid "WineHQ"
+msgstr ""
+
+#: src/ui/program-entry.ui:83
+msgid "ProtonDB"
+msgstr ""
+
+#: src/ui/program-entry.ui:96
+msgid "Bottles' Forums"
+msgstr "Bottles 論壇"
+
+#: src/ui/program-entry.ui:109
+msgid "Bottles' Issues"
+msgstr "Bottles 問題"
+
+#: src/ui/program-entry.ui:133
+msgid "Remove from Programs"
+msgstr "從應用程式中移除"
+
+#: src/ui/program-entry.ui:146
+msgid "Add desktop entry"
+msgstr "新增桌面捷徑"
+
 #: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "新瓶子"
@@ -782,10 +981,6 @@ msgstr "新瓶子"
 #: src/ui/new.ui:36
 msgid "Create"
 msgstr "創建"
-
-#: src/ui/new.ui:50 src/ui/onboard.ui:56
-msgid "Close"
-msgstr "關閉"
 
 #: src/ui/new.ui:97
 msgid "Bottle information"
@@ -811,10 +1006,6 @@ msgstr "我美麗的酒瓶～"
 #, fuzzy
 msgid "Environment"
 msgstr "環境"
-
-#: src/ui/new.ui:209
-msgid "Advanced options"
-msgstr "進階選項"
 
 #: src/ui/new.ui:230
 msgid "Use versioning"
@@ -853,10 +1044,6 @@ msgstr "32 位元"
 #: src/ui/new.ui:514
 msgid "Creating bottle…"
 msgstr "正在鑄造酒瓶……"
-
-#: src/ui/new.ui:533
-msgid "Take a break, it may take a while"
-msgstr "喝杯咖啡，凡事總需要時間"
 
 #: src/ui/new.ui:583
 msgid "Bottle created"
@@ -907,9 +1094,11 @@ msgid ""
 msgstr ""
 "他們是一個兼容層，使得 Windows 程式在 Linux 中被安裝、執行成為可能。\n"
 "\n"
-"<b>每個酒瓶</b>是一個執行環境。於其中，執行器配置系統，以及 Windows 程式安裝並執行。\n"
+"<b>每個酒瓶</b>是一個執行環境。於其中，執行器配置系統，以及 Windows 程式安裝"
+"並執行。\n"
 "\n"
-"<a href=\"https://docs.usebottles.com/components/runners\">瞭解更多執行器相關</a>"
+"<a href=\"https://docs.usebottles.com/components/runners\">瞭解更多執行器相關"
+"</a>"
 
 #: src/ui/onboard.ui:191
 msgid "Wine"
@@ -934,8 +1123,8 @@ msgid ""
 msgstr ""
 "我們需要下載並安裝執行器，以讓您創建自己的酒瓶。\n"
 "檔案大小約莫 <b>70MB</b>。\n"
-"<a href=\"https://docs.usebottles.com/getting-started/first-run\""
-">瞭解什麼將被下載</a>\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">瞭解什麼將"
+"被下載</a>\n"
 "\n"
 "由於發佈週期不同，我們不能隨 Bottles 附上這些檔案。\n"
 "\n"
@@ -969,7 +1158,7 @@ msgstr "您現在可以創建自己的第一個酒瓶了。"
 msgid "Finish"
 msgstr "完成"
 
-#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:105
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:107
 msgid "Preferences"
 msgstr "偏好設定"
 
@@ -1041,41 +1230,9 @@ msgstr ""
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:271 src/views/details.py:121
+#: src/ui/preferences.ui:271 src/views/details.py:123
 msgid "Installers"
 msgstr "安裝程序"
-
-#: src/ui/program-entry.ui:21
-msgid "Change Launch Options"
-msgstr "修改啟動選項"
-
-#: src/ui/program-entry.ui:34
-msgid "Browse Path"
-msgstr "瀏覽路徑"
-
-#: src/ui/program-entry.ui:58
-msgid "WineHQ"
-msgstr ""
-
-#: src/ui/program-entry.ui:71
-msgid "ProtonDB"
-msgstr ""
-
-#: src/ui/program-entry.ui:84
-msgid "Bottles' Forums"
-msgstr "Bottles 論壇"
-
-#: src/ui/program-entry.ui:97
-msgid "Bottles' Issues"
-msgstr "Bottles 問題"
-
-#: src/ui/program-entry.ui:121
-msgid "Remove from Programs"
-msgstr "從應用程式中移除"
-
-#: src/ui/program-entry.ui:134
-msgid "Add desktop entry"
-msgstr "新增桌面捷徑"
 
 #: src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1114,7 +1271,8 @@ msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
 "the connection."
-msgstr "您似乎並未連上網路。沒了它，便不能下載必要組件。請在重建連結之後按此圖示。"
+msgstr ""
+"您似乎並未連上網路。沒了它，便不能下載必要組件。請在重建連結之後按此圖示。"
 
 #: src/ui/window.ui:294
 msgid "Go back"
@@ -1172,98 +1330,126 @@ msgstr "酒瓶開了！"
 msgid "Import & export"
 msgstr "匯入與匯出"
 
-#: src/backend/backup.py:60
+#: src/backend/backup.py:65
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "備份 {0}"
 
-#: src/backend/backup.py:98
+#: src/backend/backup.py:106
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "匯入備份：{0}"
 
-#: src/backend/manager.py:944
+#: src/backend/manager.py:964
 msgid "Missing essential components. Installing…"
 msgstr "遺失必要組件。正在安裝……"
 
-#: src/backend/manager.py:1019
+#: src/backend/manager.py:1039
 msgid "Generating bottle configuration"
 msgstr "正在產生酒瓶配置"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1038
+#: src/backend/manager.py:1058
 msgid "The WINE config is being updated…"
 msgstr "WINE 配置正在更新中……"
 
-#: src/backend/manager.py:1040
+#: src/backend/manager.py:1060
 msgid "WINE config updated!"
 msgstr "WINE 配置已更新！"
 
-#: src/backend/manager.py:1049
+#: src/backend/manager.py:1069
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "作為 Flatpak 執行中，正在將使用者資料夾裝入沙盒……"
 
-#: src/backend/manager.py:1051
+#: src/backend/manager.py:1071
 msgid "Sandboxing userdir…"
 msgstr "正在將使用者資料夾裝入沙盒……"
 
-#: src/backend/manager.py:1069
+#: src/backend/manager.py:1089
 msgid "Setting Windows version…"
 msgstr "正在設定 Windows 版本……"
 
-#: src/backend/manager.py:1077
+#: src/backend/manager.py:1097
 msgid "Apply CMD default settings…"
 msgstr "正在應用 CMD 的預設設定……"
 
-#: src/backend/manager.py:1085
+#: src/backend/manager.py:1105
+#, fuzzy
+msgid "Optimizing environment…"
+msgstr "正在應用環境：{0}……"
+
+#: src/backend/manager.py:1117
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "正在應用環境：{0}……"
 
-#: src/backend/manager.py:1095
+#: src/backend/manager.py:1127
 msgid "Installing DXVK…"
 msgstr "正在安裝 DXVK……"
 
-#: src/backend/manager.py:1101
+#: src/backend/manager.py:1133
 msgid "Installing VKD3D…"
 msgstr "正在安裝 VKD3D……"
 
-#: src/backend/manager.py:1107
+#: src/backend/manager.py:1139
 msgid "Installing DXVK-NVAPI…"
 msgstr "正在安裝 DXVK-NVAPI……"
 
-#: src/backend/manager.py:1114
+#: src/backend/manager.py:1146
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "正在安裝相依項目：{0}……"
 
-#: src/backend/manager.py:1131
+#: src/backend/manager.py:1163
 msgid "Creating versioning state 0…"
 msgstr "正在保存狀態版本 0……"
 
-#: src/backend/manager.py:1138
+#: src/backend/manager.py:1171
 msgid "Finalizing…"
 msgstr "正在收尾……"
 
-#: src/backend/versioning.py:52
+#: src/backend/versioning.py:55
 msgid "Generating state files index …"
 msgstr "正在創造狀態版本檔案索引……"
 
-#: src/backend/versioning.py:135
+#: src/backend/versioning.py:141
 msgid "Creating a restore point …"
 msgstr "正在創造恢復點……"
 
-#: src/backend/versioning.py:159
+#: src/backend/versioning.py:165
+msgid "Could not create the state folder."
+msgstr ""
+
+#: src/backend/versioning.py:172
 msgid "Updating index …"
 msgstr "正在更新索引……"
 
-#: src/backend/versioning.py:179
+#: src/backend/versioning.py:196
 msgid "Updating states …"
 msgstr "正在更新狀態版本……"
+
+#: src/backend/versioning.py:225
+msgid "Could not update the states file."
+msgstr ""
+
+#: src/backend/versioning.py:239
+msgid "Could not update the index file."
+msgstr ""
+
+#: src/backend/versioning.py:265
+#, fuzzy, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "成功鑄造了一個名為「{0}」的酒瓶"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
 msgstr "顯示回報"
+
+#: src/dialogs/crash.py:87
+msgid ""
+"            This issue was reported 5 times and cannot be sent again.\n"
+"            Report your feedback in one of the below existing reports."
+msgstr ""
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
@@ -1273,97 +1459,93 @@ msgstr "警告"
 msgid "An error has occurred."
 msgstr "發生錯誤。"
 
-#: src/views/details.py:101
+#: src/views/details.py:103
 msgid "Details & Utilities"
 msgstr "細節與實用工具"
 
-#: src/views/details.py:109
+#: src/views/details.py:111
 msgid "Dependencies"
 msgstr "依賴項目"
 
-#: src/views/details.py:113
+#: src/views/details.py:115
 msgid "Programs"
 msgstr "程式"
 
-#: src/views/details.py:114
+#: src/views/details.py:116
 msgid "Found in your bottle's Start menu."
 msgstr "在您的酒瓶開始功能表中找到。"
 
-#: src/views/details.py:117
+#: src/views/details.py:119
 msgid "Versioning"
 msgstr "版本控制"
 
-#: src/views/details.py:125
+#: src/views/details.py:127
 msgid "Task manager"
 msgstr "工作管理員"
 
-#: src/views/bottle_details.py:170
+#: src/views/bottle_details.py:171
 #, python-format
 msgid "Updated: %s"
 msgstr "已更新：%s"
 
 #. set arch
-#: src/views/bottle_details.py:173
+#: src/views/bottle_details.py:174
 msgid "64-bit"
 msgstr "64 位元"
 
-#: src/views/bottle_details.py:175
+#: src/views/bottle_details.py:176
 msgid "32-bit"
 msgstr "32 位元"
 
-#: src/views/bottle_details.py:272 src/views/list.py:121
+#: src/views/bottle_details.py:273 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "選擇一個 Windows 執行檔"
 
-#: src/views/bottle_details.py:275 src/views/list.py:124
-msgid "Run"
-msgstr "執行"
-
-#: src/views/bottle_details.py:351
+#: src/views/bottle_details.py:355
 msgid "Select the location where to save the backup config"
 msgstr "選擇儲存備份配置的位置"
 
-#: src/views/bottle_details.py:355
+#: src/views/bottle_details.py:359
 msgid "Select the location where to save the backup archive"
 msgstr "選擇儲存備份封存檔的位置"
 
-#: src/views/bottle_details.py:362
+#: src/views/bottle_details.py:366
 msgid "Export"
 msgstr "匯出"
 
-#: src/views/bottle_details.py:393
+#: src/views/bottle_details.py:397
 msgid "Confirm deletion"
 msgstr "確認刪除"
 
-#: src/views/bottle_details.py:395
+#: src/views/bottle_details.py:399
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "確定要刪除此酒瓶以及其內所有資料？"
 
-#: src/views/bottle_preferences.py:124
+#: src/views/bottle_preferences.py:133
 msgid "Gamemode is either not available on your system or not running."
 msgstr "遊戲模式似乎不支援您的系統，或者並未執行。"
 
-#: src/views/bottle_preferences.py:134
+#: src/views/bottle_preferences.py:143
 msgid "Choose working directory for executables"
 msgstr "選擇執行檔的工作資料夾"
 
-#: src/views/bottle_preferences.py:137
+#: src/views/bottle_preferences.py:146
 msgid "Done"
 msgstr "完成"
 
-#: src/views/bottle_programs.py:60
+#: src/views/bottle_programs.py:65
 msgid "Choose an executable path"
 msgstr "選擇執行檔的路徑"
 
-#: src/views/bottle_programs.py:63
+#: src/views/bottle_programs.py:68
 msgid "Add"
 msgstr "新增"
 
-#: src/views/importer.py:70
+#: src/views/importer.py:78
 msgid "Choose a backup archive"
 msgstr "選擇備份封存檔"
 
-#: src/views/importer.py:101
+#: src/views/importer.py:109
 msgid "Choose a configuration file"
 msgstr "選擇配置文件"
 
@@ -1400,7 +1582,34 @@ msgstr "自訂"
 msgid "A clear environment for your experiments."
 msgstr "一個乾淨的環境，專供您試驗。"
 
-#: src/views/new.py:240
+#: src/views/new.py:239
+msgid "There was an error creating the bottle."
+msgstr ""
+
+#: src/views/new.py:246
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "成功鑄造了一個名為「{0}」的酒瓶"
+
+#: src/widgets/dependency.py:94 src/widgets/installer.py:69
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr ""
+
+#: src/widgets/installer.py:83
+#, python-brace-format
+msgid "Review for {0}"
+msgstr ""
+
+#: src/widgets/installer.py:131
+#, python-brace-format
+msgid "Step {self.__step} of {self.steps}"
+msgstr ""
+
+#: src/widgets/state.py:90
+#, python-brace-format
+msgid "Index for state {0}"
+msgstr ""
+
+#~ msgid "Change Launch Options"
+#~ msgstr "修改啟動選項"
