@@ -405,6 +405,32 @@ class Runner:
             env["__GL_SHADER_DISK_CACHE"] = "1"
             env["__GL_SHADER_DISK_CACHE_PATH"] = path
 
+        if parameters["dxvk_nvapi"]:
+            logging.info("Checking/updating dxvk.conf…")
+            dxvk_conf = f"{ManagerUtils.get_bottle_path(config)}/dxvk.conf"
+            if not os.path.exists(dxvk_conf):
+                # create dxvk.conf if it doesn't exist
+                with open(dxvk_conf, "w") as f:
+                    f.write("dxgi.nvapiHack = False")
+            else:
+                # check if dxvk.conf has the nvapiHack option, if not add it
+                with open(dxvk_conf, "r") as f:
+                    lines = f.readlines()
+                with open(dxvk_conf, "w") as f:
+                    for line in lines:
+                        if "dxgi.nvapiHack" in line:
+                            f.write("dxgi.nvapiHack = False\n")
+                        else:
+                            f.write(line)
+            
+            if "DXVK_CONFIG_FILE" not in config.get("Environment_Variables").keys():
+                # add dxvk.conf to the environment variables if not
+                env["DXVK_CONFIG_FILE"] = dxvk_conf
+            
+            if DisplayUtils.check_nvidia_device():
+                # prevent wine from hiding the nvidia gpu
+                env["WINE_HIDE_NVIDIA_GPU"] = "0"
+
         if parameters["dxvk_hud"]:
             env["DXVK_HUD"] = "devinfo,memory,drawcalls,fps,version,api,compiler"
         else:
