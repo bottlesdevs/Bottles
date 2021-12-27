@@ -129,6 +129,7 @@ AppDir:
 
   runtime:
     env:
+      GDK_BACKEND: x11
       # Set python home
       LD_LIBRARY_PATH: '${APPDIR}/usr/lib:${LD_LIBRARY_PATH}'
       PYTHONPATH: '${APPDIR}/usr/lib/python3/dist-packages'
