@@ -85,9 +85,15 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_browse.connect('pressed', self.browse_program_folder)
         self.btn_add_entry.connect('pressed', self.add_entry)
 
-        '''Populate entry_arguments by config'''
-        if self.program["executable"] in self.config["Programs"]:
-            self.arguments = self.config["Programs"][self.program["executable"]]
+        '''
+        Populate entry_arguments by config
+        TODO: improve this without taking executable by path
+        '''
+        _executable = self.program["path"].split("\\")[-1] # win path
+        if len(_executable) == 0:
+            _executable = self.program["path"].split("/")[-1] # unix path
+        if _executable in self.config["Programs"]:
+            self.arguments = self.config["Programs"][_executable]
 
     '''Show dialog for launch options'''
 

@@ -173,7 +173,8 @@ class InstallerManager:
             config=config,
             key=executable.get("file"),
             value=executable.get("arguments"),
-            scope="Programs")
+            scope="Programs"
+        )
 
     def __create_desktop_entry(self, config, manifest, executable: dict):
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
