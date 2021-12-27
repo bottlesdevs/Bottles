@@ -406,7 +406,6 @@ class Runner:
             env["__GL_SHADER_DISK_CACHE_PATH"] = path
 
         if parameters["dxvk_nvapi"]:
-            logging.info("Checking/updating dxvk.conf…")
             dxvk_conf = f"{ManagerUtils.get_bottle_path(config)}/dxvk.conf"
             if not os.path.exists(dxvk_conf):
                 # create dxvk.conf if it doesn't exist
