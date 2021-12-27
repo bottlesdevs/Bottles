@@ -150,7 +150,6 @@ class ProgramEntry(Handy.ActionRow):
                 value=self.program,
                 scope="External_Programs"
             )
-            print(self.program)
             self.update_programs()
         
         RenameDialog(self.window, on_save=func, name=self.program["name"])
