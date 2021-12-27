@@ -17,7 +17,7 @@
 
 import os
 import webbrowser
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, GLib, Handy
 
 from ..utils import RunAsync
 from ..dialogs.launchoptions import LaunchOptionsDialog
@@ -119,8 +119,8 @@ class ProgramEntry(Handy.ActionRow):
         )
 
     def update_programs(self, result=False, error=False):
-        self.view_programs.update(config=self.config)
-        self.view_bottle.update_programs()
+        GLib.idle_add(self.view_programs.update, config=self.config)
+        GLib.idle_add(self.view_bottle.update_programs)
 
     def uninstall_program(self, widget):
         RunAsync(
@@ -133,7 +133,7 @@ class ProgramEntry(Handy.ActionRow):
     def remove_program(self, widget=None, update=True):
         self.manager.update_config(
             config=self.config,
-            key=self.program["name"],
+            key=self.program["executable"],
             value=False,
             remove=True,
             scope="External_Programs"
@@ -150,6 +150,7 @@ class ProgramEntry(Handy.ActionRow):
                 value=self.program,
                 scope="External_Programs"
             )
+            print(self.program)
             self.update_programs()
         
         RenameDialog(self.window, on_save=func, name=self.program["name"])
