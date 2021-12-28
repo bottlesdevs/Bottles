@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-27 17:50+0100\n"
-"PO-Revision-Date: 2021-12-12 11:04+0000\n"
+"PO-Revision-Date: 2021-12-29 05:52+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -43,9 +43,8 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-#, fuzzy
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "使用 Bottles🍷在 Linux 上运行 Windows 软件！"
+msgstr "使用 Bottles 在 Linux 上运行 Windows 软件！"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -292,9 +291,8 @@ msgid "Read documentation"
 msgstr "阅读文档"
 
 #: src/ui/details-dependencies.ui:222
-#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr "报告丢失的依赖项"
+msgstr "报告问题或丢失的依赖项。"
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -410,15 +408,16 @@ msgid "Use the Wine virtual desktop."
 msgstr "使用 Wine 虚拟桌面。"
 
 #: src/ui/details-preferences.ui:341
-#, fuzzy
 msgid "Use Bottles runtime"
-msgstr "Bottle 名称"
+msgstr "使用 Bottles runtime"
 
 #: src/ui/details-preferences.ui:342
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
+"提供额外库包以提高兼容性，\n"
+"如遇到问题则禁用。"
 
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
@@ -604,20 +603,18 @@ msgid "Existing overrides"
 msgstr "现存覆盖"
 
 #: src/ui/dialog-crash-report.ui:24
-#, fuzzy
 msgid "Bottles Crash Report"
-msgstr "Bottles 已启动！"
+msgstr "Bottles 崩溃报告"
 
 #: src/ui/dialog-crash-report.ui:35
-#, fuzzy
 msgid "Send report"
-msgstr "显示报告"
+msgstr "发送报告"
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
-msgstr ""
+msgstr "Bottles 上次崩溃了。请填写一份附以下追溯的报告，以帮助我们识别问题，防止其再次发生。"
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -626,53 +623,48 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"我们发现了一个或多个相似(或相同)的报告。请在提交新问题之前，确保仔细检查它是否已经被报告。每份报告都需要开发人员的努力来诊断，请尊重他们的工作，并确保不"
+"要发布重复的报告。"
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "我仍想报告。"
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
 msgid "Advanced options"
 msgstr "高级选项"
 
 #: src/ui/dialog-duplicate.ui:25
-#, fuzzy
 msgid "Duplicate a bottle"
 msgstr "复制 bottle"
 
 #: src/ui/dialog-duplicate.ui:36
-#, fuzzy
 msgid "Duplicate"
-msgstr "复制 bottle"
+msgstr "复制"
 
 #: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:50 src/ui/onboard.ui:56
 msgid "Close"
 msgstr "关闭"
 
 #: src/ui/dialog-duplicate.ui:95
-#, fuzzy
 msgid "Type a name for the new bottle"
-msgstr "为您的 bottle 命名"
+msgstr "输入新 bottle 的名称"
 
 #: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
-#, fuzzy
 msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr "例如：-example1 -example2 -example3=hello"
+msgstr "例如： -example1 -example2 -example3=hello"
 
 #: src/ui/dialog-duplicate.ui:109
-#, fuzzy
 msgid "e.g: MyDuplicatedBottle"
-msgstr "复制 bottle"
+msgstr "例如：MyDuplicatedBottle"
 
 #: src/ui/dialog-duplicate.ui:130
-#, fuzzy
 msgid "page_name"
-msgstr "重命名 bottle"
+msgstr "page_name"
 
 #: src/ui/dialog-duplicate.ui:147
-#, fuzzy
 msgid "Duplicating…"
-msgstr "正在下载…"
+msgstr "正在复制…"
 
 #: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:533
 msgid "Take a break, it may take a while"
@@ -680,21 +672,19 @@ msgstr "喝杯茶，它可能会花一点时间"
 
 #: src/ui/dialog-duplicate.ui:195
 msgid "page_duplicating"
-msgstr ""
+msgstr "page_duplicating"
 
 #: src/ui/dialog-duplicate.ui:204
-#, fuzzy
 msgid "Bottle duplicated"
-msgstr "Bottle 已创建"
+msgstr "Bottle 已复制"
 
 #: src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
-msgstr ""
+msgstr "page_duplicated"
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
-#, fuzzy
 msgid "Rename"
-msgstr "重命名 bottle"
+msgstr "重命名"
 
 #: src/ui/dialog-rename.ui:35 src/ui/dialog-environment-variables.ui:36
 #: src/ui/dialog-launch-options.ui:36
@@ -703,37 +693,34 @@ msgstr "保存"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "输入新名称："
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
-#, fuzzy
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "例如：-example1 -example2 -example3=hello"
+msgstr "例如： VAR=value %command% -example1 -example2 -example3=hello"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "在此输入.."
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
-msgstr ""
+msgstr "环境变量是动态命名的值，可以影响运行中进程在 Bottle 上的行为方式。"
 
 #: src/ui/dialog-env-vars.ui:54
-#, fuzzy
 msgid "New variable"
-msgstr "新的覆盖"
+msgstr "新变量"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr ""
+msgstr "如 MY_VAR"
 
 #: src/ui/dialog-env-vars.ui:123
-#, fuzzy
 msgid "Existing variables"
-msgstr "现存覆盖"
+msgstr "现有变量"
 
 #: src/ui/dialog-run-args.ui:25
 msgid "Run with arguments"
@@ -746,11 +733,11 @@ msgstr "运行"
 
 #: src/ui/dialog-run-args.ui:75
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "将要传递给可执行文件的参数写在下面。"
 
 #: src/ui/dialog-run-args.ui:90
 msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "例如：-opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
@@ -763,9 +750,8 @@ msgid ""
 msgstr "在这里您可以为执行的命令修改环境变量。"
 
 #: src/ui/dialog-environment-variables.ui:87
-#, fuzzy
 msgid "e.g.: VAR1=value VAR2=value"
-msgstr "例如：VAR1=value VAR2=value .."
+msgstr "例如： VAR1=value VAR2=value"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
@@ -924,19 +910,17 @@ msgstr "原生先于内置"
 
 #: src/ui/env-var-entry.ui:91
 msgid "value"
-msgstr ""
+msgstr "值"
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
 msgstr "阅读评论"
 
 #: src/ui/task-entry.ui:50
-#, fuzzy
 msgid "Delete message"
-msgstr "删除状态"
+msgstr "删除消息"
 
 #: src/ui/program-entry.ui:33
-#, fuzzy
 msgid "Browse path"
 msgstr "浏览路径"
 
@@ -1361,9 +1345,8 @@ msgid "Apply CMD default settings…"
 msgstr "应用 CMD 默认设置…"
 
 #: src/backend/manager.py:1105
-#, fuzzy
 msgid "Optimizing environment…"
-msgstr "正在应用环境：{0} …"
+msgstr "正在优化环境…"
 
 #: src/backend/manager.py:1117
 #, python-brace-format
@@ -1405,7 +1388,7 @@ msgstr "正在创建还原点…"
 
 #: src/backend/versioning.py:165
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "无法创建状态文件夹。"
 
 #: src/backend/versioning.py:172
 msgid "Updating index …"
@@ -1417,16 +1400,16 @@ msgstr "正在更新状态…"
 
 #: src/backend/versioning.py:225
 msgid "Could not update the states file."
-msgstr ""
+msgstr "无法更新状态文件。"
 
 #: src/backend/versioning.py:239
 msgid "Could not update the index file."
-msgstr ""
+msgstr "无法更新索引文件。"
 
 #: src/backend/versioning.py:265
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "临时路径清理成功！"
+msgstr "成功创建了新状态 [{0}]！"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -1437,6 +1420,8 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            此问题已报告5次，无法再次发送。\n"
+"            在以下现有的报告中报告反馈。"
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
@@ -1571,7 +1556,7 @@ msgstr "为您的实验提供的清洁环境。"
 
 #: src/views/new.py:239
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "创建该 bottle 时遇到一个问题。"
 
 #: src/views/new.py:246
 #, python-brace-format
@@ -1584,14 +1569,14 @@ msgid "Manifest for {0}"
 msgstr "{0} 的清单"
 
 #: src/widgets/installer.py:83
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review for {0}"
-msgstr "{0} 的清单"
+msgstr "{0} 的评论"
 
 #: src/widgets/installer.py:131
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "{self.steps} 的步骤 {self.__step}"
 
 #: src/widgets/state.py:90
 #, python-brace-format
