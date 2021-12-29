@@ -169,6 +169,9 @@ class InstallerManager:
             )
 
     def __set_executable_arguments(self, config, executable: dict):
+        '''
+        TODO: Change config["Programs"] struct like External_Programs
+        '''
         self.__manager.update_config(
             config=config,
             key=executable.get("file"),

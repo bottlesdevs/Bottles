@@ -94,6 +94,7 @@ class ProgramEntry(Handy.ActionRow):
             _executable = self.program["path"].split("/")[-1] # unix path
         if _executable in self.config["Programs"]:
             self.arguments = self.config["Programs"][_executable]
+        self.executable = _executable
 
     '''Show dialog for launch options'''
 
@@ -101,20 +102,17 @@ class ProgramEntry(Handy.ActionRow):
         new_window = LaunchOptionsDialog(
             self.window,
             self.config,
-            self.program["executable"],
+            self.executable,
             self.arguments
         )
         new_window.present()
         self.update_programs()
 
     def run_executable(self, widget):
-        arguments = False
-        if self.program["executable"] in self.config["Programs"]:
-            arguments = self.config["Programs"][self.program["executable"]]
         Runner.run_executable(
             self.config,
             self.program["path"],
-            arguments,
+            self.arguments,
             cwd=self.program["folder"]
         )
 

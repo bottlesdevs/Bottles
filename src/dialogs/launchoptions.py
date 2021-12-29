@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, GLib, Handy
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class LaunchOptionsDialog(Handy.Window):
@@ -46,7 +46,7 @@ class LaunchOptionsDialog(Handy.Window):
         self.btn_cancel.connect('pressed', self.__close_window)
         self.btn_save.connect('pressed', self.__save_options)
 
-    def __close_window(self, widget):
+    def __close_window(self, widget=None):
         self.destroy()
 
     def __save_options(self, widget):
@@ -62,4 +62,4 @@ class LaunchOptionsDialog(Handy.Window):
             value=self.arguments,
             scope="Programs"
         )
-        self.__close_window(widget)
+        GLib.idle_add(self.__close_window)
