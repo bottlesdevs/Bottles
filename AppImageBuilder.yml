@@ -53,7 +53,7 @@ AppDir:
     exec_args: "$APPDIR/usr/bin/bottles $@"
 
   apt:
-    arch: amd64
+    arch: [amd64, i386]
     sources:
       - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ impish main restricted universe multiverse'
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
