@@ -57,8 +57,6 @@ AppDir:
     sources:
       - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ impish main restricted universe multiverse'
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
-      - sourceline: 'deb [arch=i386] http://archive.ubuntu.com/ubuntu/ impish main restricted universe multiverse'
-        key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
 
     include:
     - gsettings-desktop-schemas
