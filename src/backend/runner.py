@@ -11,6 +11,7 @@ from .globals import Paths, CMDSettings, gamemode_available, x_display
 from .manager_utils import ManagerUtils
 from .runtime import RuntimeManager
 from .display import DisplayUtils
+from .result import Result
 
 
 logging = UtilsLogger()
@@ -151,6 +152,7 @@ class Runner:
                 cwd=cwd,
                 terminal=terminal
             )
+            return Result(status=True)
         else:
             RunAsync(
                 task_func=Runner.run_command, 
@@ -335,9 +337,9 @@ class Runner:
             If the runner is Proton, set the pat to /dist or /files 
             based on check if files exists.
             '''
-            runner = "%s/files" % runner
-            if os.path.exists("%s/%s/dist" % (Paths.runners, runner)):
-                runner = "%s/dist" % runner
+            runner = f"{runner}/files"
+            if os.path.exists(f"{Paths.runners}/{runner}/dist"):
+                runner = f"{runner}/dist"
 
         if runner.startswith("sys-"):
             '''
@@ -352,7 +354,7 @@ class Runner:
             runner = f"{runner}64"
 
         if not config.get("Custom_Path"):
-            path = "%s/%s" % (Paths.bottles, path)
+            path = f"{Paths.bottles}/{path}"
 
         # Check for executable args from bottle config
         env = os.environ.copy()
@@ -361,7 +363,7 @@ class Runner:
 
         if config.get("DLL_Overrides"):
             for dll in config.get("DLL_Overrides").items():
-                dll_overrides.append("%s=%s" % (dll[0], dll[1]))
+                dll_overrides.append(f"{dll[0]}={dll[1]}")
 
         if config.get("Environment_Variables"):
             for env_var in config.get("Environment_Variables").items():
@@ -373,9 +375,6 @@ class Runner:
                 del environment["WINEDLLOVERRIDES"]
             for e in environment:
                 env[e] = environment[e]
-            # for e in environment:
-            #     e = e.split("=")
-            #     env[e[0]] = e[1]
 
         if "FLATPAK_ID" in os.environ and parameters["use_runtime"] and not terminal:
             '''
@@ -848,6 +847,39 @@ class Runner:
             if name not in [p["name"] for p in processes]:
                 break
             time.sleep(1)
+    
+    @staticmethod
+    def kill_process(config:BottleConfig, pid:str=None, name:str=None):
+        '''
+        Kill a process by its PID or name.
+        '''
+        if pid:
+            command = "\n".join([
+                "winedbg << END_OF_INPUTS",
+                f"attach 0x{pid}",
+                "kill",
+                "quit",
+                "END_OF_INPUTS"
+            ])
+            res = Runner.run_command(
+                config,
+                command=command,
+                comunicate=True
+            )
+            if "error 5" in res and name:
+                res = subprocess.Popen(
+                    f"kill $(pgrep {name[:15]})",
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    shell=True
+                )
+                return res
+            return Runner.wineboot(config, status=0)
+        elif name:
+            processes = Runner.get_processes(config)
+            for p in processes:
+                if p["name"] == name:
+                    Runner.kill_process(config, p["pid"], name)
 
     @staticmethod
     def apply_cmd_settings(config:BottleConfig, scheme:dict={}):
