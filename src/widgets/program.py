@@ -32,6 +32,7 @@ class ProgramEntry(Handy.ActionRow):
 
     # region Widgets
     btn_run = Gtk.Template.Child()
+    btn_stop = Gtk.Template.Child()
     btn_winehq = Gtk.Template.Child()
     btn_protondb = Gtk.Template.Child()
     btn_forum = Gtk.Template.Child()
@@ -73,6 +74,7 @@ class ProgramEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_run.connect('pressed', self.run_executable)
+        self.btn_stop.connect('pressed', self.stop_process)
         self.btn_winehq.connect('pressed', self.open_search_url, "winehq")
         self.btn_protondb.connect('pressed', self.open_search_url, "protondb")
         self.btn_forum.connect('pressed', self.open_search_url, "forum")
@@ -108,13 +110,28 @@ class ProgramEntry(Handy.ActionRow):
         new_window.present()
         self.update_programs()
 
+    def __reset_buttons(self, result=False, error=False):
+        status = False
+        if result:
+            status = result.status
+        self.btn_run.set_visible(status)
+        self.btn_stop.set_visible(not status)
+
     def run_executable(self, widget):
-        Runner.run_executable(
-            self.config,
-            self.program["path"],
-            self.arguments,
-            cwd=self.program["folder"]
+        RunAsync(
+            Runner.run_executable,
+            callback=self.__reset_buttons,
+            config=self.config,
+            file_path=self.program["path"],
+            arguments=self.arguments,
+            cwd=self.program["folder"],
+            no_async=True
         )
+        self.__reset_buttons()
+    
+    def stop_process(self, widget):
+        Runner.kill_process(self.config, name=self.executable)
+        self.__reset_buttons()
 
     def update_programs(self, result=False, error=False):
         GLib.idle_add(self.view_programs.update, config=self.config)
