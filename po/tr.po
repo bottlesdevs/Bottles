@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-27 17:50+0100\n"
-"PO-Revision-Date: 2021-12-29 18:03+0000\n"
-"Last-Translator: Gurur Necdet Özöksel <g.ozoksel@gmail.com>\n"
+"PO-Revision-Date: 2021-12-31 17:51+0000\n"
+"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -306,9 +306,8 @@ msgid "Read documentation"
 msgstr "Belgelendirmeyi oku"
 
 #: src/ui/details-dependencies.ui:222
-#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr "Eksik bağımlılık bildir"
+msgstr "Sorun veya eksik bağımlılık bildir."
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -426,15 +425,16 @@ msgid "Use the Wine virtual desktop."
 msgstr "Wine sanal masaüstünü kullanın."
 
 #: src/ui/details-preferences.ui:341
-#, fuzzy
 msgid "Use Bottles runtime"
-msgstr "Şişe adı"
+msgstr "Şişeler çalışma zamanını kullan"
 
 #: src/ui/details-preferences.ui:342
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
+"Daha fazla uyumluluk için bir dizi ek kütüphane sağlar,\n"
+"sorunlarla karşılaşırsanız devre dışı bırakın."
 
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
@@ -628,20 +628,21 @@ msgid "Existing overrides"
 msgstr "Mevcut geçersiz kılmalar"
 
 #: src/ui/dialog-crash-report.ui:24
-#, fuzzy
 msgid "Bottles Crash Report"
-msgstr "Şişe yedekleme ve içe aktarma"
+msgstr "Şişeler Çökme Raporu"
 
 #: src/ui/dialog-crash-report.ui:35
-#, fuzzy
 msgid "Send report"
-msgstr "Raporu göster"
+msgstr "Rapor gönder"
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Geçen sefer şişeler çöktü. Lütfen, tekrar olmasını engellemek amacıyla "
+"sorunu belirlememize yardımcı olması için aşağıdaki geri izlemeyi ekleyerek "
+"bir rapor oluşturun."
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -650,53 +651,51 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Bir veya daha fazla benzer (veya aynı) rapor bulduk. Lütfen yeni bir tane "
+"göndermeden daha önce bildirilmediğine dikkatlice baktığınızdan emin olun. "
+"Her rapor, geliştiricilerin teşhis koyması için çaba gerektirir, lütfen "
+"çalışmalarına saygı gösterin ve daha öncekilerin aynısından göndermediğinize "
+"emin olun."
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "Yine de bildirmek istiyorum."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
 msgid "Advanced options"
 msgstr "Gelişmiş seçenekler"
 
 #: src/ui/dialog-duplicate.ui:25
-#, fuzzy
 msgid "Duplicate a bottle"
 msgstr "Şişeyi kopyala"
 
 #: src/ui/dialog-duplicate.ui:36
-#, fuzzy
 msgid "Duplicate"
-msgstr "Şişeyi kopyala"
+msgstr "Kopyala"
 
 #: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:50 src/ui/onboard.ui:56
 msgid "Close"
 msgstr "Kapat"
 
 #: src/ui/dialog-duplicate.ui:95
-#, fuzzy
 msgid "Type a name for the new bottle"
-msgstr "Şişeniz için bir ad yazın"
+msgstr "Yeni şişe için bir ad yazın"
 
 #: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
-#, fuzzy
 msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr "ör .: -örnek1 -örnek2 -örnek3 = merhaba"
+msgstr "örneğin: -örnek1 -örnek2 -örnek3=merhaba"
 
 #: src/ui/dialog-duplicate.ui:109
-#, fuzzy
 msgid "e.g: MyDuplicatedBottle"
-msgstr "Şişeyi kopyala"
+msgstr "örneğin: KopyalanmışŞişem"
 
 #: src/ui/dialog-duplicate.ui:130
-#, fuzzy
 msgid "page_name"
-msgstr "Çalıştırıcı"
+msgstr "page_name"
 
 #: src/ui/dialog-duplicate.ui:147
-#, fuzzy
 msgid "Duplicating…"
-msgstr "İndiriliyor…"
+msgstr "Kopyalanıyor…"
 
 #: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:533
 msgid "Take a break, it may take a while"
@@ -704,21 +703,19 @@ msgstr "Biraz ara verin, bu biraz zaman alabilir"
 
 #: src/ui/dialog-duplicate.ui:195
 msgid "page_duplicating"
-msgstr ""
+msgstr "page_duplicating"
 
 #: src/ui/dialog-duplicate.ui:204
-#, fuzzy
 msgid "Bottle duplicated"
-msgstr "Şişe oluşturuldu"
+msgstr "Şişe kopyalandı"
 
 #: src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
-msgstr ""
+msgstr "page_duplicated"
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
-#, fuzzy
 msgid "Rename"
-msgstr "Çalıştırıcı"
+msgstr "Yeniden adlandır"
 
 #: src/ui/dialog-rename.ui:35 src/ui/dialog-environment-variables.ui:36
 #: src/ui/dialog-launch-options.ui:36
@@ -727,37 +724,36 @@ msgstr "Kaydet"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Yeni adı yazın:"
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
-#, fuzzy
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "ör .: -örnek1 -örnek2 -örnek3 = merhaba"
+msgstr "örneğin: VAR=değer %komut% -örnek1 -örnek2 -örnek3=merhaba"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Buraya yazın..."
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Ortam değişkenleri, çalışan işlemlerin şişenizde nasıl davranacağını "
+"etkileyebilecek dinamik adlı değerlerdir."
 
 #: src/ui/dialog-env-vars.ui:54
-#, fuzzy
 msgid "New variable"
-msgstr "Yeni geçersiz kılma"
+msgstr "Yeni değişken"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr ""
+msgstr "örneğin DEGISKEN"
 
 #: src/ui/dialog-env-vars.ui:123
-#, fuzzy
 msgid "Existing variables"
-msgstr "Mevcut geçersiz kılmalar"
+msgstr "Mevcut değişkenler"
 
 #: src/ui/dialog-run-args.ui:25
 msgid "Run with arguments"
@@ -770,11 +766,11 @@ msgstr "Çalıştır"
 
 #: src/ui/dialog-run-args.ui:75
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Çalıştırılabilir dosyaya iletilecek argümanları aşağıya yazın."
 
 #: src/ui/dialog-run-args.ui:90
 msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "örneğin: -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
@@ -788,9 +784,8 @@ msgstr ""
 "Burada çalıştırılan komutlarla ortam değişkenlerini değiştirebilirsiniz."
 
 #: src/ui/dialog-environment-variables.ui:87
-#, fuzzy
 msgid "e.g.: VAR1=value VAR2=value"
-msgstr "örneğin: VAR1 = değer VAR2 = değer .."
+msgstr "örneğin: VAR1=değer VAR2=değer"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
@@ -955,21 +950,19 @@ msgstr "Yerel sonra Yerleşik"
 
 #: src/ui/env-var-entry.ui:91
 msgid "value"
-msgstr ""
+msgstr "değer"
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
 msgstr "İncelemeyi oku"
 
 #: src/ui/task-entry.ui:50
-#, fuzzy
 msgid "Delete message"
-msgstr "Durumu sil"
+msgstr "Mesajı sil"
 
 #: src/ui/program-entry.ui:33
-#, fuzzy
 msgid "Browse path"
-msgstr "Yola Gözat"
+msgstr "Yola göz at"
 
 #: src/ui/program-entry.ui:70
 msgid "WineHQ"
@@ -1400,9 +1393,8 @@ msgid "Apply CMD default settings…"
 msgstr "CMD öntanımlı ayarlarını uygula…"
 
 #: src/backend/manager.py:1105
-#, fuzzy
 msgid "Optimizing environment…"
-msgstr "Ortam uygulanıyor: {0}…"
+msgstr "Ortam en iyi duruma getiriliyor…"
 
 #: src/backend/manager.py:1117
 #, python-brace-format
@@ -1444,7 +1436,7 @@ msgstr "Geri yükleme noktası oluşturuluyor…"
 
 #: src/backend/versioning.py:165
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "Durum klasörü oluşturulamadı."
 
 #: src/backend/versioning.py:172
 msgid "Updating index …"
@@ -1456,16 +1448,16 @@ msgstr "Durumlar güncelleniyor…"
 
 #: src/backend/versioning.py:225
 msgid "Could not update the states file."
-msgstr ""
+msgstr "Durumlar dosyası güncellenemedi."
 
 #: src/backend/versioning.py:239
 msgid "Could not update the index file."
-msgstr ""
+msgstr "Dizin dosyası güncellenemedi."
 
 #: src/backend/versioning.py:265
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Geçici yol başarıyla temizlendi!"
+msgstr "Yeni durum [{0}] başarıyla oluşturuldu!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -1476,6 +1468,8 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            Bu sorun 5 kez bildirildi ve tekrar gönderilemiyor.\n"
+"            Geri bildiriminizi aşağıdaki mevcut raporlardan birinde bildirin."
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
@@ -1610,7 +1604,7 @@ msgstr "Deneyleriniz için temiz bir ortam."
 
 #: src/views/new.py:239
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "Şişe oluşturulurken bir hata meydana geldi."
 
 #: src/views/new.py:246
 #, python-brace-format
@@ -1623,14 +1617,14 @@ msgid "Manifest for {0}"
 msgstr "{0} için manifesto"
 
 #: src/widgets/installer.py:83
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review for {0}"
-msgstr "{0} için manifesto"
+msgstr "{0} için inceleme"
 
 #: src/widgets/installer.py:131
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "Adım {self.__step} / {self.steps}"
 
 #: src/widgets/state.py:90
 #, python-brace-format
