@@ -836,7 +836,7 @@ class Runner:
         return processes
     
     @staticmethod
-    def wait_for_process(config:BottleConfig, name:str):
+    def wait_for_process(config:BottleConfig, name:str, timeout:int = 1):
         '''
         Wait for a process to exit.
         '''
@@ -846,7 +846,8 @@ class Runner:
                 break
             if name not in [p["name"] for p in processes]:
                 break
-            time.sleep(1)
+            time.sleep(timeout)
+        return True
     
     @staticmethod
     def kill_process(config:BottleConfig, pid:str=None, name:str=None):
@@ -880,6 +881,18 @@ class Runner:
             for p in processes:
                 if p["name"] == name:
                     Runner.kill_process(config, p["pid"], name)
+    
+    @staticmethod
+    def is_process_alive(config:BottleConfig, pid:str=None, name:str=None):
+        '''
+        Check if a process is running on the wineprefix.
+        '''
+        processes = Runner.get_processes(config)
+        if pid:
+            return pid in [p["pid"] for p in processes]
+        elif name:
+            return name in [p["name"] for p in processes]
+        return False
 
     @staticmethod
     def apply_cmd_settings(config:BottleConfig, scheme:dict={}):

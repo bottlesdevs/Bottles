@@ -98,6 +98,8 @@ class ProgramEntry(Handy.ActionRow):
             self.arguments = self.config["Programs"][_executable]
         self.executable = _executable
 
+        self.__is_alive()
+
     '''Show dialog for launch options'''
 
     def show_launch_options_view(self, widget=False):
@@ -113,9 +115,29 @@ class ProgramEntry(Handy.ActionRow):
     def __reset_buttons(self, result=False, error=False):
         status = False
         if result:
-            status = result.status
+            status = result
+            if not isinstance(result, bool):
+                status = result.status
         self.btn_run.set_visible(status)
         self.btn_stop.set_visible(not status)
+    
+    def __is_alive(self):
+        def set_watcher(result=False, error=False):
+            self.__reset_buttons()
+            RunAsync(
+                Runner.wait_for_process,
+                callback=self.__reset_buttons,
+                config=self.config,
+                name=self.executable,
+                timeout=5
+            )
+
+        RunAsync(
+            Runner.is_process_alive,
+            callback=set_watcher,
+            config=self.config,
+            name=self.executable
+        )
 
     def run_executable(self, widget):
         RunAsync(
@@ -131,7 +153,7 @@ class ProgramEntry(Handy.ActionRow):
     
     def stop_process(self, widget):
         Runner.kill_process(self.config, name=self.executable)
-        self.__reset_buttons()
+        self.__reset_buttons(True)
 
     def update_programs(self, result=False, error=False):
         GLib.idle_add(self.view_programs.update, config=self.config)
