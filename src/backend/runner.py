@@ -11,6 +11,7 @@ from .globals import Paths, CMDSettings, gamemode_available, x_display
 from .manager_utils import ManagerUtils
 from .runtime import RuntimeManager
 from .display import DisplayUtils
+from .gpu import GPUUtils
 from .result import Result
 
 
@@ -311,7 +312,8 @@ class Runner:
         path = config.get("Path")
         runner = config.get("Runner")
         arch = config.get("Arch")
-
+        gpu = GPUUtils().get_gpu()
+        
         if not cwd:
             '''
             If no cwd is given, use the WorkingDir from the
@@ -464,10 +466,28 @@ class Runner:
             env["GDK_SDISPLAYALE"] = x_display
 
         if parameters["discrete_gpu"]:
-            prime = DisplayUtils.prime_support()
-            if prime:
-                for p in prime:
-                    env[p] = prime[p]
+            discrete = gpu["prime"]["discrete"]
+            if discrete is not None:
+                gpu_envs = discrete["envs"]
+                for p in gpu_envs:
+                    env[p] = gpu_envs[p]
+                env["VK_ICD_FILENAMES"] = discrete["icd"]
+        
+        if "VK_ICD_FILENAMES" not in env.keys():
+            if gpu["prime"]["integrated"] is not None:
+                '''
+                System support PRIME but user disabled the discrete GPU
+                setting (previus check skipped), so using the integrated one.
+                '''
+                env["VK_ICD_FILENAMES"] = gpu["prime"]["integrated"]["icd"]
+            else:
+                '''
+                System doesn't support PRIME, so using the first result
+                from the gpu vendors list.
+                '''
+                _first = gpu["vendors"].keys()[0]
+                env["VK_ICD_FILENAMES"] = gpu["vendors"][_first]["icd"]
+                
 
         if parameters["pulseaudio_latency"]:
             env["PULSE_LATENCY_MSEC"] = "60"

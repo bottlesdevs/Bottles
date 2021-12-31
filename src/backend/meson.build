@@ -17,7 +17,9 @@ bottles_sources = [
   'result.py',
   'runtime.py',
   'display.py',
-  'importer.py'
+  'importer.py',
+  'vulkan.py',
+  'gpu.py'
 ]
 
 install_data(bottles_sources, install_dir: backenddir)
