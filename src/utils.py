@@ -126,6 +126,8 @@ class UtilsTerminal():
         
         if self.terminal[0] == 'easyterm.py':
             command = ' '.join(self.terminal) % (colors, f"bash -c '{command}'")
+            if "ENABLE_BASH" in os.environ:
+                command = ' '.join(self.terminal) % (colors, f"bash")
         else:
             command = ' '.join(self.terminal) % f"bash -c '{command}'"
 
