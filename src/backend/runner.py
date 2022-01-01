@@ -622,6 +622,9 @@ class Runner:
 
         if version not in Runner._windows_versions:
             raise ValueError("Given version is not supported.")
+            
+        if version == "winxp" and config.get("Arch") == "win64":
+            version = "winxp64"
 
         del_keys = {
             "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "SubVersionNumber",
