@@ -33,53 +33,59 @@ class Runner:
 
     _windows_versions = {
         "win10": {
-            "ProductName": "Microsoft Windows 10",
             "CSDVersion": "",
-            "CurrentBuild": "17763",
-            "CurrentBuildNumber": "17763",
+            "CurrentBuildNumber": "10240",
             "CurrentVersion": "10.0",
+            "CSDVersionHex": "00000000",
+            "ProductType": "WinNT",
         },
         "win81": {
-            "ProductName": "Microsoft Windows 8.1",
             "CSDVersion": "",
-            "CurrentBuild": "9600",
             "CurrentBuildNumber": "9600",
             "CurrentVersion": "6.3",
+            "CSDVersionHex": "00000000",
+            "ProductType": "WinNT",
         },
         "win8": {
-            "ProductName": "Microsoft Windows 8",
             "CSDVersion": "",
-            "CurrentBuild": "9200",
             "CurrentBuildNumber": "9200",
             "CurrentVersion": "6.2",
+            "CSDVersionHex": "00000000",
+            "ProductType": "WinNT",
         },
         "win7": {
-            "ProductName": "Microsoft Windows 7",
             "CSDVersion": "Service Pack 1",
-            "CurrentBuild": "7601",
             "CurrentBuildNumber": "7601",
             "CurrentVersion": "6.1",
+            "CSDVersionHex": "00000100",
+            "ProductType": "WinNT",
         },
         "win2008r2": {
-            "ProductName": "Microsoft Windows 2008 R2",
             "CSDVersion": "Service Pack 1",
-            "CurrentBuild": "7601",
             "CurrentBuildNumber": "7601",
             "CurrentVersion": "6.1",
+            "CSDVersionHex": "00000100",
+            "ProductType": "WinNT",
         },
         "win2008": {
-            "ProductName": "Microsoft Windows 2008",
             "CSDVersion": "Service Pack 2",
-            "CurrentBuild": "6002",
             "CurrentBuildNumber": "6002",
             "CurrentVersion": "6.0",
+            "CSDVersionHex": "00000200",
+            "ProductType": "WinNT",
         },
         "winxp": {
-            "ProductName": "Microsoft Windows XP",
+            "CSDVersion": "Service Pack 3",
+            "CurrentBuildNumber": "2600",
+            "CSDVersionHex": "00000300",
+            "CurrentVersion": "5.1",
+        },
+        "winxp64": {
             "CSDVersion": "Service Pack 2",
-            "CurrentBuild": "3790",
             "CurrentBuildNumber": "3790",
+            "CSDVersionHex": "00000200",
             "CurrentVersion": "5.2",
+            "ProductType": "WinNT",
         },
     }
 
@@ -617,25 +623,26 @@ class Runner:
         if version not in Runner._windows_versions:
             raise ValueError("Given version is not supported.")
 
-        Runner.reg_add(
-            config=config,
-            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
-            value="ProductName",
-            data=Runner._windows_versions.get(version)["ProductName"]
-        )
-
+        del_keys = {
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "SubVersionNumber",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "VersionNumber",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CSDVersion",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CurrentBuildNumber",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CurrentVersion",
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions": "ProductType",
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ServiceCurrent": "OS",
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": "CSDVersion",
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions": "ProductType",
+            "HKEY_CURRENT_USER\\Softwarw\\Wine": "Version"
+        }
+        for d in del_keys:
+            Runner.reg_delete(config, d, del_keys[d])
+            
         Runner.reg_add(
             config=config,
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
             value="CSDVersion",
             data=Runner._windows_versions.get(version)["CSDVersion"]
-        )
-
-        Runner.reg_add(
-            config=config,
-            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
-            value="CurrentBuild",
-            data=Runner._windows_versions.get(version)["CurrentBuild"]
         )
 
         Runner.reg_add(
@@ -650,6 +657,23 @@ class Runner:
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
             value="CurrentVersion",
             data=Runner._windows_versions.get(version)["CurrentVersion"]
+        )
+
+        if "ProductType" in Runner._windows_versions.get(version):
+            '''windows xp 32 doesn't have ProductOptions/ProductType key'''
+            Runner.reg_add(
+                config=config,
+                key="HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions",
+                value="ProductType",
+                data=Runner._windows_versions.get(version)["ProductType"]
+            )
+
+        Runner.reg_add(
+            config=config,
+            key="HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows",
+            value="CSDVersion",
+            data=Runner._windows_versions.get(version)["CSDVersionHex"],
+            keyType="REG_DWORD"
         )
 
         Runner.wineboot(config, status=1, comunicate=True)
