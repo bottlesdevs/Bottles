@@ -485,7 +485,7 @@ class Runner:
                 System doesn't support PRIME, so using the first result
                 from the gpu vendors list.
                 '''
-                _first = gpu["vendors"].keys()[0]
+                _first = list(gpu["vendors"].keys())[0]
                 env["VK_ICD_FILENAMES"] = gpu["vendors"][_first]["icd"]
                 
 
