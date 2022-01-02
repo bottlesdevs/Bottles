@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-27 17:50+0100\n"
-"PO-Revision-Date: 2021-12-29 05:52+0000\n"
-"Last-Translator: Davi Patricio <davipatricio@pm.me>\n"
+"PO-Revision-Date: 2022-01-03 09:55+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/bottles/"
 "bottles/pt/>\n"
 "Language: pt\n"
@@ -43,9 +43,8 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-#, fuzzy
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Execute um programa Windows facilmente no Linux com o Bottles🍷!"
+msgstr "Execute programas do Windows no Linux com o Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -198,9 +197,8 @@ msgid "Notifications"
 msgstr "Notificações"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Show notifications."
-msgstr "Ativar notificações."
+msgstr "Mostrar as notificações."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
@@ -311,9 +309,8 @@ msgid "Read documentation"
 msgstr "Leia a documentação"
 
 #: src/ui/details-dependencies.ui:222
-#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr "Reportar uma dependência ausente"
+msgstr "Reportar uma dependência ausente."
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -338,13 +335,12 @@ msgid "Use DXVK"
 msgstr "Use o DXVK"
 
 #: src/ui/details-preferences.ui:34
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Melhora o desempenho para jogos que usa Directx 11 e aplicações 3D.\n"
-"Desativar se estiver a enfrentar falhas gráficas."
+"Melhora o desempenho para jogos que usam Directx 11 e aplicações 3D.\n"
+"Desativar se estiver a encontrar falhas gráficas."
 
 #: src/ui/details-preferences.ui:61
 msgid "Use VKD3D"
@@ -432,15 +428,16 @@ msgid "Use the Wine virtual desktop."
 msgstr "Use a área de trabalho virtual do Wine."
 
 #: src/ui/details-preferences.ui:341
-#, fuzzy
 msgid "Use Bottles runtime"
-msgstr "Nome do Bottle"
+msgstr "Usar runtime do Bottles"
 
 #: src/ui/details-preferences.ui:342
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
+"Fornece um pacote de bibliotecas extras para maior compatibilidade,\n"
+"desative se tiver problemas."
 
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
@@ -634,20 +631,21 @@ msgid "Existing overrides"
 msgstr "Substituições existentes"
 
 #: src/ui/dialog-crash-report.ui:24
-#, fuzzy
 msgid "Bottles Crash Report"
-msgstr "Bottles iniciadas!"
+msgstr "Relatório de Falhas do Bottles"
 
 #: src/ui/dialog-crash-report.ui:35
-#, fuzzy
 msgid "Send report"
-msgstr "Mostrar relatório"
+msgstr "Enviar relatório"
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"O Bottles fechou inesperadamente da última vez. Por favor, preencha um "
+"relatório a anexar o seguinte traceback para nos ajudar a identificar o "
+"problema, a evitar que ele ocorra novamente."
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -656,53 +654,50 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Encontramos um ou mais relatórios semelhantes (ou idênticos). Verifique "
+"cuidadosamente se já não foi relatado antes de enviar um novo. Cada "
+"relatório requer esforço por parte dos programadores para diagnosticar, por "
+"favor, respeite o trabalho deles e certifique-se de não postar duplicatas."
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "Ainda quero reportar."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
 msgid "Advanced options"
 msgstr "Opções avançadas"
 
 #: src/ui/dialog-duplicate.ui:25
-#, fuzzy
 msgid "Duplicate a bottle"
-msgstr "Duplicar bottle"
+msgstr "Duplicar uma garrafa"
 
 #: src/ui/dialog-duplicate.ui:36
-#, fuzzy
 msgid "Duplicate"
-msgstr "Duplicar bottle"
+msgstr "Duplicar"
 
 #: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:50 src/ui/onboard.ui:56
 msgid "Close"
 msgstr "Fechar"
 
 #: src/ui/dialog-duplicate.ui:95
-#, fuzzy
 msgid "Type a name for the new bottle"
-msgstr "Digite um nome para o seu Bottle"
+msgstr "Digite um nome para a sua garrafa"
 
 #: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
-#, fuzzy
 msgid "e.g.: -example1 -example2 -example3=hello"
 msgstr "ex.: -exemplo1 -exemplo2 -exemplo3 =olá"
 
 #: src/ui/dialog-duplicate.ui:109
-#, fuzzy
 msgid "e.g: MyDuplicatedBottle"
-msgstr "Duplicar bottle"
+msgstr "ex.: MinhaGarrafaDuplicada"
 
 #: src/ui/dialog-duplicate.ui:130
-#, fuzzy
 msgid "page_name"
-msgstr "Renomear bottle"
+msgstr "page_name"
 
 #: src/ui/dialog-duplicate.ui:147
-#, fuzzy
 msgid "Duplicating…"
-msgstr "A descarregar…"
+msgstr "A duplicar…"
 
 #: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:533
 msgid "Take a break, it may take a while"
@@ -713,18 +708,16 @@ msgid "page_duplicating"
 msgstr ""
 
 #: src/ui/dialog-duplicate.ui:204
-#, fuzzy
 msgid "Bottle duplicated"
-msgstr "Bottle criada"
+msgstr "Garrafa duplicada"
 
 #: src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
 msgstr ""
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
-#, fuzzy
 msgid "Rename"
-msgstr "Renomear bottle"
+msgstr "Renomear"
 
 #: src/ui/dialog-rename.ui:35 src/ui/dialog-environment-variables.ui:36
 #: src/ui/dialog-launch-options.ui:36
@@ -733,37 +726,36 @@ msgstr "Guardar"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Digite o novo nome:"
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
-#, fuzzy
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "ex.: -exemplo1 -exemplo2 -exemplo3 =olá"
+msgstr "ex.: VAR=valor %comando% -exemplo1 -exemplo2 -exemplo3=olá"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Digite aqui.."
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Variáveis de ambiente são valores nomeados dinamicamente que podem afetar a "
+"maneira como os processos em execução se comportarão na sua garrafa."
 
 #: src/ui/dialog-env-vars.ui:54
-#, fuzzy
 msgid "New variable"
-msgstr "Nova substituição"
+msgstr "Nova variável"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr ""
+msgstr "ex. MINHA_VAR"
 
 #: src/ui/dialog-env-vars.ui:123
-#, fuzzy
 msgid "Existing variables"
-msgstr "Substituições existentes"
+msgstr "Variáveis existentes"
 
 #: src/ui/dialog-run-args.ui:25
 msgid "Run with arguments"
@@ -776,11 +768,11 @@ msgstr "Executar"
 
 #: src/ui/dialog-run-args.ui:75
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Escreva abaixo os argumentos a serem passados para o executável."
 
 #: src/ui/dialog-run-args.ui:90
 msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "ex.: -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
@@ -795,9 +787,8 @@ msgstr ""
 "executados."
 
 #: src/ui/dialog-environment-variables.ui:87
-#, fuzzy
 msgid "e.g.: VAR1=value VAR2=value"
-msgstr "ex.: VAR1=valor VAR2=valor .."
+msgstr "ex.: VAR1=valor VAR2=valor"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
@@ -962,21 +953,19 @@ msgstr "Nativo e depois integrado"
 
 #: src/ui/env-var-entry.ui:91
 msgid "value"
-msgstr ""
+msgstr "valor"
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
 msgstr "Ler crítica"
 
 #: src/ui/task-entry.ui:50
-#, fuzzy
 msgid "Delete message"
-msgstr "Estado eliminado"
+msgstr "Excluir mensagem"
 
 #: src/ui/program-entry.ui:33
-#, fuzzy
 msgid "Browse path"
-msgstr "Caminho da Navegação"
+msgstr "Navegar no local"
 
 #: src/ui/program-entry.ui:70
 msgid "WineHQ"
@@ -987,22 +976,20 @@ msgid "ProtonDB"
 msgstr "ProtonDB"
 
 #: src/ui/program-entry.ui:96
-#, fuzzy
 msgid "Bottles' Forums"
-msgstr "Problemas do Bottles"
+msgstr "Fóruns do Bottles"
 
 #: src/ui/program-entry.ui:109
-#, fuzzy
 msgid "Bottles' Issues"
-msgstr "Problemas do Bottles"
+msgstr "Problemas com o Bottles"
 
 #: src/ui/program-entry.ui:133
 msgid "Remove from Programs"
-msgstr ""
+msgstr "Remover dos Programas"
 
 #: src/ui/program-entry.ui:146
 msgid "Add desktop entry"
-msgstr ""
+msgstr "Adicionar icone de ambiente de trabalho"
 
 #: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
@@ -1134,9 +1121,8 @@ msgid "Wine"
 msgstr "Wine"
 
 #: src/ui/onboard.ui:222
-#, fuzzy
 msgid "We Are Almost There"
-msgstr "Estamos quase lá"
+msgstr "Estamos Quase Lá"
 
 #: src/ui/onboard.ui:241
 msgid ""
@@ -1212,11 +1198,11 @@ msgstr "Se os seus Bottles devem usar uma variante de tema escuro."
 
 #: src/ui/preferences.ui:54
 msgid "Show update date"
-msgstr ""
+msgstr "Exibir data de atualização"
 
 #: src/ui/preferences.ui:55
 msgid "Whether to show the update date in the bottle list."
-msgstr ""
+msgstr "Se deseja exibir a data de atualização na lista de garrafas."
 
 #: src/ui/preferences.ui:92
 msgid "Show notifications for downloads and installs."
@@ -1262,7 +1248,7 @@ msgstr "VKD3D"
 
 #: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:271 src/views/details.py:123
 msgid "Installers"
@@ -1277,9 +1263,8 @@ msgid "Creation date"
 msgstr "Data de criação"
 
 #: src/ui/window.ui:20
-#, fuzzy
 msgid "Import/export"
-msgstr "Importar e exportar"
+msgstr "Importar/exportar"
 
 #: src/ui/window.ui:57
 msgid "Documentation"
@@ -1287,7 +1272,7 @@ msgstr "Documentação"
 
 #: src/ui/window.ui:70
 msgid "Forums"
-msgstr ""
+msgstr "Fóruns"
 
 #: src/ui/window.ui:83
 msgid "About Bottles"
@@ -1298,9 +1283,8 @@ msgid "Open menu"
 msgstr "Abrir menu"
 
 #: src/ui/window.ui:229
-#, fuzzy
 msgid "Operations"
-msgstr "Traduções"
+msgstr "Operações"
 
 #: src/ui/window.ui:273
 msgid ""
@@ -1317,7 +1301,7 @@ msgstr "Voltar"
 
 #: src/operation.py:63
 msgid "Calculating..."
-msgstr ""
+msgstr "A calcular..."
 
 #: src/main.py:98
 msgid "Show version"
@@ -1329,16 +1313,15 @@ msgstr "Correr o executável"
 
 #: src/main.py:114
 msgid "lnk path"
-msgstr ""
+msgstr "Caminho lnk"
 
 #: src/main.py:122
 msgid "Bottle name"
 msgstr "Nome do Bottle"
 
 #: src/main.py:130
-#, fuzzy
 msgid "Pass arguments"
-msgstr "Executar com argumentos"
+msgstr "Adicionar parâmetros"
 
 #: src/main.py:249
 msgid "[Quit] request received."
@@ -1365,7 +1348,6 @@ msgid "Bottles Started!"
 msgstr "Bottles iniciadas!"
 
 #: src/window.py:197
-#, fuzzy
 msgid "Import & export"
 msgstr "Importar e exportar"
 
@@ -1381,7 +1363,7 @@ msgstr "A importar a cópia de segurança: {0}"
 
 #: src/backend/manager.py:964
 msgid "Missing essential components. Installing…"
-msgstr ""
+msgstr "Componentes essenciais em falta. Instalando…"
 
 #: src/backend/manager.py:1039
 msgid "Generating bottle configuration"
@@ -1389,22 +1371,20 @@ msgstr "Criando configuração da Bottle"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1058
-#, fuzzy
 msgid "The WINE config is being updated…"
-msgstr "A configuração do wine está a ser atualizada …"
+msgstr "A configuração do WINE está a ser atualizada …"
 
 #: src/backend/manager.py:1060
-#, fuzzy
 msgid "WINE config updated!"
-msgstr "Configuração do Wine atualizada!"
+msgstr "Configuração do WINE atualizada!"
 
 #: src/backend/manager.py:1069
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr ""
+msgstr "A executar como flatpak, a criar pastas em sandbox…"
 
 #: src/backend/manager.py:1071
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "A fazer \"sandboxing\" do diretório de utilizador…"
 
 #: src/backend/manager.py:1089
 msgid "Setting Windows version…"
@@ -1412,32 +1392,28 @@ msgstr "Configurando versão do Windows…"
 
 #: src/backend/manager.py:1097
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Aplicar definições iniciais do CMD…"
 
 #: src/backend/manager.py:1105
-#, fuzzy
 msgid "Optimizing environment…"
-msgstr "Aplicando ambiente: {0} …"
+msgstr "Otimizando o ambiente…"
 
 #: src/backend/manager.py:1117
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "Aplicando ambiente: {0} …"
+msgstr "A aplicar o ambiente: {0} …"
 
 #: src/backend/manager.py:1127
-#, fuzzy
 msgid "Installing DXVK…"
-msgstr "A instalar dxvk …"
+msgstr "A instalar DVXK …"
 
 #: src/backend/manager.py:1133
-#, fuzzy
 msgid "Installing VKD3D…"
-msgstr "Instalando vkd3d…"
+msgstr "A instalar VKD3D…"
 
 #: src/backend/manager.py:1139
-#, fuzzy
 msgid "Installing DXVK-NVAPI…"
-msgstr "A instalar dxvk …"
+msgstr "A instalar DXVK-NVAPI …"
 
 #: src/backend/manager.py:1146
 #, python-brace-format
@@ -1445,13 +1421,12 @@ msgid "Installing dependency: {0}…"
 msgstr "A instalar dependência: {0} …"
 
 #: src/backend/manager.py:1163
-#, fuzzy
 msgid "Creating versioning state 0…"
-msgstr "Criando o estado de versionamento 0…"
+msgstr "A criar o estado de versão 0…"
 
 #: src/backend/manager.py:1171
 msgid "Finalizing…"
-msgstr ""
+msgstr "Finalizando…"
 
 #: src/backend/versioning.py:55
 msgid "Generating state files index …"
@@ -1463,7 +1438,7 @@ msgstr "Criando um ponto de restauração…"
 
 #: src/backend/versioning.py:165
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "Não foi possível criar a pasta do estado."
 
 #: src/backend/versioning.py:172
 msgid "Updating index …"
@@ -1475,16 +1450,16 @@ msgstr "Atualizando estados…"
 
 #: src/backend/versioning.py:225
 msgid "Could not update the states file."
-msgstr ""
+msgstr "Não foi possível atualizar o ficheiro de estados."
 
 #: src/backend/versioning.py:239
 msgid "Could not update the index file."
-msgstr ""
+msgstr "Não foi possível atualizar o ficheiro de índice."
 
 #: src/backend/versioning.py:265
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Caminho temporário limpo com sucesso!"
+msgstr "Novo estado [{0}] criado com sucesso!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -1495,6 +1470,9 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            Este problema foi reportado 5 vezes e não pode ser enviado "
+"novamente.\n"
+"            Faça os seus comentários num dos relatórios existentes abaixo."
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
@@ -1556,7 +1534,7 @@ msgstr "Selecione o local onde gravar o ficheiro da cópia de segurança"
 
 #: src/views/bottle_details.py:366
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #: src/views/bottle_details.py:397
 msgid "Confirm deletion"
@@ -1591,9 +1569,8 @@ msgid "Choose a backup archive"
 msgstr "Escolha um ficheiro de cópia de segurança"
 
 #: src/views/importer.py:109
-#, fuzzy
 msgid "Choose a configuration file"
-msgstr "Configuração"
+msgstr "Escolha um ficheiro de configuração"
 
 #: src/views/list.py:55 src/views/list.py:61
 msgid "N/A"
@@ -1630,7 +1607,7 @@ msgstr "Um ambiente limpo para as suas experiências."
 
 #: src/views/new.py:239
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "Houve um erro ao criar a garrafa."
 
 #: src/views/new.py:246
 #, python-brace-format
@@ -1643,14 +1620,14 @@ msgid "Manifest for {0}"
 msgstr "Manifest para {0}"
 
 #: src/widgets/installer.py:83
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review for {0}"
-msgstr "Manifest para {0}"
+msgstr "Análise de {0}"
 
 #: src/widgets/installer.py:131
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "Etapa {self.__step} de {self.steps}"
 
 #: src/widgets/state.py:90
 #, python-brace-format
