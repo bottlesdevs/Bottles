@@ -151,6 +151,10 @@ class Manager:
             logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
 
+        if not os.path.isdir(Paths.layers):
+            logging.info("Layers path doesn't exist, creating now.")
+            os.makedirs(Paths.layers, exist_ok=True)
+
         if not os.path.isdir(Paths.dxvk):
             logging.info("Dxvk path doesn't exist, creating now.")
             os.makedirs(Paths.dxvk, exist_ok=True)

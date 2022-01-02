@@ -131,6 +131,7 @@ class Paths:
     temp = f"{base}/temp"
     runners = f"{base}/runners"
     bottles = f"{base}/bottles"
+    layers = f"{base}/layers"
     dxvk = f"{base}/dxvk"
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
