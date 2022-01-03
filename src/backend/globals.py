@@ -92,8 +92,7 @@ class Samples:
         },
         "layered": {
             "Runner": "wine",
-            "Parameters": {},
-            "Installed_Dependencies": []
+            "Layers": []
         },
     }
 

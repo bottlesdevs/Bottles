@@ -79,12 +79,6 @@ class NewView(Handy.Window):
             "description": _("An environment improved for Windows software."),
             "icon": "applications-engineering-symbolic"
         },
-        # {
-        #     "id": "Layered",
-        #     "name": _("Layered"),
-        #     "description": _("A layered environment, where every app is a layer."),
-        #     "icon": "emoji-symbols-symbolic"
-        # },
         {
             "id": "Custom",
             "name": _("Custom"),
@@ -92,6 +86,14 @@ class NewView(Handy.Window):
             "icon": "applications-science-symbolic"
         }
     ]
+
+    if "LAYERS" in os.environ:
+        environments.append({
+            "id": "Layered",
+            "name": _("Layered"),
+            "description": _("A layered environment, where every app is a layer."),
+            "icon": "emoji-symbols-symbolic"
+        })
 
     def __init__(self, window, arg_exe=None, arg_lnk=None, **kwargs):
         super().__init__(**kwargs)
