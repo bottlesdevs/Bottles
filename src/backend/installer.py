@@ -28,6 +28,8 @@ from .runner import Runner
 from .manager_utils import ManagerUtils
 from .globals import BottlesRepositories, Paths
 from ..utils import RunAsync, UtilsLogger
+from .layers import LayersStore, Layer
+
 
 logging = UtilsLogger()
 
@@ -115,14 +117,24 @@ class InstallerManager:
         dependencies: list,
         widget: Gtk.Widget
     ):
+        _config = config
+
         for dep in dependencies:
             widget.next_step()
 
-            if dep in config.get("Installed_Dependencies"):
-                continue
+            if config.get("Environment") == "Layered":
+                logging.info(f"Installing {dep} in a new layer.")
+                layer = Layer().new(dep, self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _config = layer.runtime_conf
+                layer.sweep()
+                layer.save()
+            else:
+                if dep in config.get("Installed_Dependencies"):
+                    continue
 
             _dep = [dep, self.__manager.supported_dependencies.get(dep)]
-            res = self.__manager.dependency_manager.install(config, _dep)
+            res = self.__manager.dependency_manager.install(_config, _dep)
             if res.status == False:
                 return False
         
@@ -239,6 +251,7 @@ class InstallerManager:
             installer_name=installer[0],
             installer_category=installer[1]["Category"]
         )
+        _config = config
 
         dependencies = manifest.get("Dependencies")
         parameters = manifest.get("Parameters")
@@ -247,29 +260,29 @@ class InstallerManager:
 
         # download icon
         if executable.get("icon"):
-            self.__download_icon(config, executable, manifest)
+            self.__download_icon(_config, executable, manifest)
 
         # install dependencies
         if dependencies:
-            self.__install_dependencies(config, dependencies, widget)
+            self.__install_dependencies(_config, dependencies, widget)
 
         # execute steps
         if steps:
             widget.next_step()
-            self.__perform_steps(config, steps)
+            self.__perform_steps(_config, steps)
 
         # set parameters
         if parameters:
             widget.next_step()
-            self.__set_parameters(config, parameters)
+            self.__set_parameters(_config, parameters)
 
         # register executable arguments
         if executable.get("arguments"):
-            self.__set_executable_arguments(config, executable)
+            self.__set_executable_arguments(_config, executable)
 
         # create Desktop entry
         widget.next_step()
-        self.__create_desktop_entry(config, manifest, executable)
+        self.__create_desktop_entry(_config, manifest, executable)
 
         # unlock widget
         if widget is not None:
