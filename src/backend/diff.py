@@ -8,6 +8,7 @@ class Diff:
         "users",
         "bottle.yml",
         "layer.yml",
+        "storage"
     ]
 
     @staticmethod
@@ -29,6 +30,7 @@ class Diff:
             path += os.sep
 
         for root, dirs, files in os.walk(path):
+            dirs[:] = [d for d in dirs if d not in Diff.__ignored]
             for f in files:
                 if f in Diff.__ignored:
                     continue
