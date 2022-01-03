@@ -336,6 +336,8 @@ class DependencyManager:
         This function deletes the given dlls from the system32 folder
         of the bottle.
         '''
+        path = ManagerUtils.get_bottle_path(config)
+        
         for dll in dlls:
             try:
                 logging.info(
@@ -344,13 +346,7 @@ class DependencyManager:
                         config['Name']
                     )
                 )
-                os.remove(
-                    "%s/%s/drive_c/windows/system32/%s" % (
-                        Paths.bottles,
-                        config.get("Name"),
-                        dll
-                    )
-                )
+                os.remove(f"{path}/drive_c/windows/system32/{dll}")
             except FileNotFoundError:
                 logging.error(
                     "DLL [%s] not found in bottle [%s]." % (
@@ -370,7 +366,7 @@ class DependencyManager:
         '''
         This function download and install the .exe or .msi file
         declared in the step, in a bottle.
-        '''
+        '''            
         download = self.__manager.component_manager.download(
             component="dependency",
             download_url=step.get("url"),
@@ -608,8 +604,10 @@ class DependencyManager:
                         step.get('dest'),
                         os.path.basename(fg)
                     )
+                    print(f"Copying {fg} to {dest}")
                     shutil.copyfile(fg, dest)
             else:
+                print(f"Copying {path}/{step.get('file_name')} to {bottle_path}/drive_c/{step.get('dest')}")
                 shutil.copyfile(
                     f"{path}/{step.get('file_name')}",
                     f"{bottle_path}/drive_c/{step.get('dest')}"
