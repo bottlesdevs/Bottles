@@ -1113,7 +1113,7 @@ class Manager:
         # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…")
         log_update(_("Applying environment: {0}…").format(environment))
-        if environment != "Custom":
+        if environment not in ["Custom", "Layered"]:
             env = Samples.environments[environment.lower()]
             for prm in config["Parameters"]:
                 if prm in env["Parameters"]:
