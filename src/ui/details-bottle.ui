@@ -296,26 +296,25 @@
                     <property name="can-focus">False</property>
                     <property name="spacing">5</property>
                     <child>
-                      <object class="GtkEntry" id="entry_name">
-                        <property name="visible">True</property>
+                      <object class="GtkButton" id="btn_delete_top">
                         <property name="can-focus">True</property>
-                        <property name="editable">False</property>
-                        <property name="max-length">20</property>
-                        <property name="has-frame">False</property>
-                        <property name="text" translatable="yes">Bottle name</property>
-                        <property name="shadow-type">none</property>
-                        <property name="primary-icon-activatable">False</property>
-                        <property name="primary-icon-sensitive">False</property>
-                        <property name="placeholder-text" translatable="yes">Type a name for your bottle</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Destroy this bottle</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">user-trash-symbolic</property>
+                          </object>
+                        </child>
                         <style>
-                          <class name="borderless"/>
-                          <class name="heading_1"/>
-                          <class name="no-padding"/>
+                          <class name="destructive-action"/>
                         </style>
                       </object>
                       <packing>
-                        <property name="expand">True</property>
+                        <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="pack-type">end</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -343,6 +342,30 @@
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="pack-type">end</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_name">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="editable">False</property>
+                        <property name="max-length">20</property>
+                        <property name="has-frame">False</property>
+                        <property name="text" translatable="yes">Bottle name</property>
+                        <property name="shadow-type">none</property>
+                        <property name="primary-icon-activatable">False</property>
+                        <property name="primary-icon-sensitive">False</property>
+                        <property name="placeholder-text" translatable="yes">Type a name for your bottle</property>
+                        <style>
+                          <class name="borderless"/>
+                          <class name="heading_1"/>
+                          <class name="no-padding"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -503,7 +526,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox">
+                  <object class="GtkBox" id="box_actions">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="spacing">5</property>

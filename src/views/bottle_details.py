@@ -63,6 +63,7 @@ class BottleView(Gtk.ScrolledWindow):
     btn_backup_full = Gtk.Template.Child()
     btn_duplicate = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
+    btn_delete_top = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
     btn_flatpak_doc_home = Gtk.Template.Child()
     btn_flatpak_doc_expose = Gtk.Template.Child()
@@ -70,6 +71,7 @@ class BottleView(Gtk.ScrolledWindow):
     btn_flatpak_doc_silent_crash = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
     box_run_extra = Gtk.Template.Child()
+    box_actions = Gtk.Template.Child()
     check_terminal = Gtk.Template.Child()
     check_move_file = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
@@ -117,6 +119,7 @@ class BottleView(Gtk.ScrolledWindow):
         self.btn_uninstaller.connect('pressed', self.run_uninstaller)
         self.btn_regedit.connect('pressed', self.run_regedit)
         self.btn_delete.connect('pressed', self.__confirm_delete)
+        self.btn_delete_top.connect('pressed', self.__confirm_delete)
         self.btn_shutdown.connect('pressed', self.wineboot, 2)
         self.btn_reboot.connect('pressed', self.wineboot, 1)
         self.btn_killall.connect('pressed', self.wineboot, 0)
@@ -156,11 +159,11 @@ class BottleView(Gtk.ScrolledWindow):
             '''
             self.btn_flatpak_doc.set_visible(True)
 
-        self.__update_by_env()
         self.__update_latest_executables()
 
     def set_config(self, config):
         self.config = config
+        self.__update_by_env()
 
         # set update_date
         update_date = datetime.strptime(
@@ -415,13 +418,17 @@ class BottleView(Gtk.ScrolledWindow):
         widgets = [
             self.row_uninstaller,
             self.row_regedit,
-            self.row_browse
+            self.row_browse,
+            self.box_actions
         ]
-        for widget in widgets:
-            if self.config.get("Environment") == "Layered":
+        if self.config.get("Environment") == "Layered":
+            for widget in widgets:
                 widget.set_visible(False)
-            else:
+            self.btn_delete_top.set_visible(True)
+        else:
+            for widget in widgets:
                 widget.set_visible(True)
+            self.btn_delete_top.set_visible(False)
     
     def update_move_progress(self, progress):
         '''
