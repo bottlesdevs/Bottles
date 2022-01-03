@@ -3,8 +3,15 @@ import hashlib
 
 
 class Diff:
+    __ignored = [
+        "dosdevices",
+        "users",
+        "bottle.yml",
+        "layer.yml",
+    ]
 
-    def __hashify(self, path: str) -> dict:
+    @staticmethod
+    def hashify(path: str) -> dict:
         '''
         Hash (SHA-1) all files in a directory and return
         them in a dictionary. Here we use SHA-1 instead of
@@ -23,12 +30,7 @@ class Diff:
 
         for root, dirs, files in os.walk(path):
             for f in files:
-                if "dosdevices" in root or "users" in root:
-                    '''
-                    Skip the dosdevices and users folders as these
-                    generate loops due to symlinks, also these are
-                    not relevant for layers.
-                    '''
+                if f in Diff.__ignored:
                     continue
                 with open(os.path.join(root, f), "rb") as fr:
                     _hash = hashlib.sha1(fr.read()).hexdigest()
@@ -39,26 +41,25 @@ class Diff:
         
         return _files
 
-    def compare(self, parent: str, child: str) -> dict:
+    @staticmethod
+    def compare(parent: dict, child: dict) -> dict:
         '''
-        Compare two directories and return a dictionary
-        with the differences (added, removed, changed).
+        Compare two hashes dictionaries and return the
+        differences (added, removed, changed).
         '''
-        _parent = self.__hashify(parent)
-        _child = self.__hashify(child)
         
         added = []
         removed = []
         changed = []
         
-        for f in _child:
-            if f not in _parent:
+        for f in child:
+            if f not in parent:
                 added.append(f)
-            elif _parent[f] != _child[f]:
+            elif parent[f] != child[f]:
                 changed.append(f)
         
-        for f in _parent:
-            if f not in _child:
+        for f in parent:
+            if f not in child:
                 removed.append(f)
         
         return {
