@@ -94,11 +94,11 @@ class Layer:
     '''
     __uuid: str = None
     __path: str = None
-    __mounts: list = None
-    __config: dict = None
-    runtime_conf: dict = None
+    __mounts: list = []
+    __config: dict = {}
+    runtime_conf: dict = {}
 
-    def new(self, name: str):
+    def new(self, name: str, runner: str = None):
         '''
         Generate a new layer path based on the layer name
         and a random uuid. Also create a runtime config which
@@ -106,17 +106,18 @@ class Layer:
         manager to treat the layer as a bottle, plus the
         layer config.
         '''
-        logging.info("Creating a new layer …")
+        logging.info(f"Creating a new layer for {name}…")
 
         self.__uuid = str(uuid.uuid4())
         folder = f"@__{name}__{self.__uuid}"
         self.__path = f"{Paths.layers}/{folder}"
 
         _conf = Samples.config.copy()
-        _conf["Path"] = f"@__{self.__uuid}"
+        _conf["Path"] = f"@__{name}__{self.__uuid}"
         _conf["IsLayer"] = True # will be used by Dependency/Installer managers to set the right path
-
-        shutil.makedirs(self.__path)
+        if runner is not None:
+            _conf["Runner"] = runner
+        os.makedirs(self.__path)
 
         self.runtime_conf = _conf
         self.__config = {
@@ -125,6 +126,8 @@ class Layer:
             "Path": f"@__{self.__uuid}",
             "Tree": {},
         }
+
+        return self
     
     def __link_files(self, path):
         for root, dirs, files in os.walk(path):
@@ -141,6 +144,7 @@ class Layer:
         should be use to mount external directories, use mount_bottle
         for bottles instead.
         '''
+        logging.info(f"Mounting path {path} to layer {self.__path}…")
         _name = name if name else os.path.basename(path)
         _uuid = str(uuid.uuid4())
         hashes = Diff.hashify(path)
@@ -159,6 +163,7 @@ class Layer:
         This method will mount a layer to the current layer and
         append it to the __mounts list.
         '''
+        logging.info(f"Mounting layer {name}…")
         layer = LayersStore.get(name, uuid)
         if layer:
             layer["Type"] = "layer"
@@ -170,6 +175,7 @@ class Layer:
         This is just a wrapper to mount_dir to get the bottle
         path and mount it to the current layer.
         '''
+        logging.info(f"Mounting bottle {config['Name']}…")
         _path = ManagerUtils.get_bottle_path(config)
         self.mount_dir(_path, config["Name"])
     
@@ -178,6 +184,7 @@ class Layer:
         This method will unlink all the files from the mounted
         layers and update layer tree with residues.
         '''
+        logging.info(f"Sweeping layer {self.__config['Name']}…")
         for mount in self.__mounts:
             _tree = mount["Tree"]
             
@@ -193,5 +200,6 @@ class Layer:
         This method will save the layer config to the layer.yml file
         in the layer directory.
         '''
+        logging.info(f"Saving layer {self.__config['Name']}…")
         with open(f"{self.__path}/layer.yml", "w") as f:
             yaml.dump(self.__config, f)
