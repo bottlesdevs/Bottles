@@ -1033,8 +1033,8 @@ class Manager:
         os.makedirs(bottle_complete_path)
         
         # generate bottle configuration
-        logging.info("Generating bottle configuration")
-        log_update(_("Generating bottle configuration"))
+        logging.info("Generating bottle configuration…")
+        log_update(_("Generating bottle configuration…"))
         config = Samples.config
         config["Name"] = bottle_name
         config["Arch"] = arch
@@ -1119,26 +1119,24 @@ class Manager:
                 if prm in env["Parameters"]:
                     config["Parameters"][prm] = env["Parameters"][prm]
 
-        if config["Parameters"]["dxvk"]:
-            # perform dxvk installation if configured
-            logging.info("Installing DXVK…")
-            log_update(_("Installing DXVK…"))
-            self.install_dxvk(config, version=dxvk_name)
+            if config["Parameters"]["dxvk"]:
+                # perform dxvk installation if configured
+                logging.info("Installing DXVK…")
+                log_update(_("Installing DXVK…"))
+                self.install_dxvk(config, version=dxvk_name)
 
-        if config["Parameters"]["vkd3d"]:
-            # perform vkd3d installation if configured
-            logging.info("Installing VKD3D…")
-            log_update(_("Installing VKD3D…"))
-            self.install_vkd3d(config, version=vkd3d_name)
+            if config["Parameters"]["vkd3d"]:
+                # perform vkd3d installation if configured
+                logging.info("Installing VKD3D…")
+                log_update(_("Installing VKD3D…"))
+                self.install_vkd3d(config, version=vkd3d_name)
 
-        if config["Parameters"]["dxvk_nvapi"]:
-            # perform nvapi installation if configured
-            logging.info("Installing DXVK-NVAPI…")
-            log_update(_("Installing DXVK-NVAPI…"))
-            self.install_nvapi(config, version=nvapi_name)
-
-        # install dependencies
-        if environment != "Custom":
+            if config["Parameters"]["dxvk_nvapi"]:
+                # perform nvapi installation if configured
+                logging.info("Installing DXVK-NVAPI…")
+                log_update(_("Installing DXVK-NVAPI…"))
+                self.install_nvapi(config, version=nvapi_name)
+                    
             for dep in env["Installed_Dependencies"]:
                 _dep = self.supported_dependencies[dep]
                 log_update(_("Installing dependency: {0}…").format(
