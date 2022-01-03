@@ -1145,6 +1145,10 @@ class Manager:
                 self.dependency_manager.install(config, [dep, _dep])
 
         time.sleep(.5)
+        
+        # create Layers key if Layered
+        if environment == "Layered":
+            config["Layers"] = []
 
         # save bottle config
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
