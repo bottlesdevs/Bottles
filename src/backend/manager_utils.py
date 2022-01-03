@@ -51,11 +51,17 @@ class ManagerUtils:
 
         command = f"xdg-open '{path}'"
         return subprocess.Popen(command, shell=True).communicate()
+    
+    @staticmethod
+    def get_layer_path(layer: str) -> str:
+        return f"{Paths.layers}/{layer}"
 
     @staticmethod
     def get_bottle_path(config: BottleConfig) -> str:
         if config.get("Custom_Path"):
             return config.get("Path")
+        if "IsLayer" in config.keys():
+            return ManagerUtils.get_layer_path(config["Path"])
         return f"{Paths.bottles}/{config.get('Path')}"
 
     @staticmethod
