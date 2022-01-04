@@ -315,7 +315,7 @@ class Runner:
         the comunicate argument to wait for the command to finish and
         catch the output.
         '''
-        path = config.get("Path")
+        path = ManagerUtils.get_bottle_path(config)
         runner = config.get("Runner")
         arch = config.get("Arch")
         gpu = GPUUtils().get_gpu()
@@ -331,8 +331,9 @@ class Runner:
             If the WorkingDir is empty, use the bottle path as
             working directory.
             '''
-            cwd = ManagerUtils.get_bottle_path(config)
+            cwd = path
 
+        print(cwd)
         if runner is None:
             '''
             If there is no runner declared in the bottle
@@ -361,9 +362,6 @@ class Runner:
         if arch == "win64":
             runner = f"{runner}64"
 
-        if not config.get("Custom_Path"):
-            path = f"{Paths.bottles}/{path}"
-
         # Check for executable args from bottle config
         env = os.environ.copy()
         dll_overrides = []
@@ -383,6 +381,9 @@ class Runner:
                 del environment["WINEDLLOVERRIDES"]
             for e in environment:
                 env[e] = environment[e]
+        
+        # hide mono and gecko to avoid popup dialogs
+        dll_overrides.append("mscoree=d mshtml=d")
 
         if "FLATPAK_ID" in os.environ and parameters["use_runtime"] and not terminal:
             '''
