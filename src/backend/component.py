@@ -98,8 +98,9 @@ class ComponentManager:
 
                     # return as dictionary
                     return yaml.safe_load(url.read())
-            except:
+            except Exception as e:
                 logging.error(f"Cannot fetch manifest for {component_name}.")
+                print(e)
                 return False
 
         return False
