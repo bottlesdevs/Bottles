@@ -333,7 +333,6 @@ class Runner:
             '''
             cwd = path
 
-        print(cwd)
         if runner is None:
             '''
             If there is no runner declared in the bottle
