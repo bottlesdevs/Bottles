@@ -780,6 +780,9 @@ class Manager:
         configuration. Use no_update to avoid updating the local bottle
         list and view. It also updates the Update_Date key.
         '''
+        if "IsLayer" in config:
+            return
+            
         logging.info(
             f"Setting Key: [{key}] to [{value}] for "
             f"bottle: [{config['Name']}]…"
