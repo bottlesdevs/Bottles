@@ -514,7 +514,6 @@ class DependencyManager:
                 dest = dest.replace("temp/", f"{Paths.temp}/")
             else:
                 dest = f"{Paths.temp}/{dest}"
-
             shutil.copy(
                 f"{Paths.temp}/{file_name}",
                 f"{dest}/{dest_file_name}"
@@ -569,19 +568,12 @@ class DependencyManager:
         bottle_path = ManagerUtils.get_bottle_path(config)
 
         for font in step.get('fonts'):
-            try:
-                shutil.copyfile(
-                    f"{path}/{font}",
-                    f"{bottle_path}/drive_c/windows/Fonts/{font}"
-                )
-            except FileNotFoundError:
-                logging.error(
-                    "Font [%s] not found in [%s]." % (
-                        font,
-                        path
-                    )
-                )
-                return False
+            font_path = f"{bottle_path}/drive_c/windows/Fonts/"
+            if not os.path.exists(font_path):
+                os.makedirs(font_path)
+
+            shutil.copyfile(f"{path}/{font}", f"{font_path}/{font}")
+            print(f"Copying {font} to {bottle_path}/drive_c/windows/Fonts/")
         
         return True
 
@@ -594,30 +586,34 @@ class DependencyManager:
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
         bottle_path = ManagerUtils.get_bottle_path(config)
+        dest = step.get('dest')
 
         try:
             if "*" in step.get('file_name'):
                 files = glob(f"{path}/{step.get('file_name')}")
                 for fg in files:
-                    dest = "%s/drive_c/%s/%s" % (
-                        bottle_path,
-                        step.get('dest'),
-                        os.path.basename(fg)
-                    )
-                    print(f"Copying {fg} to {dest}")
-                    shutil.copyfile(fg, dest)
-            else:
-                print(f"Copying {path}/{step.get('file_name')} to {bottle_path}/drive_c/{step.get('dest')}")
-                shutil.copyfile(
-                    f"{path}/{step.get('file_name')}",
-                    f"{bottle_path}/drive_c/{step.get('dest')}"
-                )
+                    _name = os.path.basename(fg)
+                    _dest = f"{bottle_path}/drive_c/{dest}/{_name}"
+                    print(f"Copying {_name} to {_dest}")
 
-        except FileNotFoundError:
-            logging.error(
-                f"dll {step.get('file_name')} not found in temp, \
-                    there should be other errors from cabextract."
-            )
+                    if os.path.exists(_dest):
+                        if os.path.islink(_dest):
+                            os.unlink(_dest)
+
+                    shutil.copyfile(fg, _dest)
+            else:
+                _name = step.get('file_name')
+                _dest = f"{bottle_path}/drive_c/{dest}"
+                print(f"Copying {_name} to {_dest}")
+
+                if os.path.exists(_dest):
+                    if os.path.islink(_dest):
+                        os.unlink(_dest)
+
+                shutil.copyfile(f"{path}/{_name}", _dest)
+
+        except FileNotFoundError as e:
+            print(e)
             return False
         
         return True
