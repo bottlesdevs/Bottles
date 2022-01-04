@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-27 17:50+0100\n"
-"PO-Revision-Date: 2021-12-24 23:50+0000\n"
-"Last-Translator: Translator5 <radko.dobrjankov@gmail.com>\n"
+"PO-Revision-Date: 2022-01-04 15:50+0000\n"
+"Last-Translator: ThatRedKite <lambdarho950@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
 "Language: de\n"
@@ -28,7 +28,7 @@ msgstr "Bottles"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
-msgstr "Wineprefix einfach verwalten"
+msgstr "Wine-Präfix einfach verwalten"
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
@@ -49,7 +49,7 @@ msgstr "Mit Bottles Windows-Software in Linux ausführen🍷!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
-msgstr "Füll Software in eine Bottle und genieße Sie in aller Ruhe!"
+msgstr "Füll' Software in eine Bottle und genieße sie in aller Ruhe!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -149,7 +149,7 @@ msgstr "Sicherung und Import von Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
 msgid "Import Wine prefixes from other managers"
-msgstr "Import Wine-prefixe von anderen Managern"
+msgstr "Importiere Wine-Präfixe von anderen Managern"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning (experimental)"
@@ -164,7 +164,6 @@ msgid "Flatpak migration"
 msgstr "Flatpak-Migration"
 
 #: data/com.usebottles.bottles.gschema.xml:7
-#, fuzzy
 msgid "Toggle the Flatpak migration dialog."
 msgstr "Schalten Sie das Dialogfeld für die Flatpak-Migration um."
 
@@ -215,7 +214,7 @@ msgstr "Aktiviere Benachrichtigungen."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
-msgstr "Temporäre Dateien säubern"
+msgstr "Temporäre Dateien aufräumen"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 #, fuzzy
@@ -228,7 +227,7 @@ msgstr "Release Candidate"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle release candidate for runners."
-msgstr "Freigabekandidat für Läufer umschalten."
+msgstr "Release-Kanidat für Runner umschalten."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
@@ -275,7 +274,7 @@ msgstr "© 2017-2021 - Bottles Developers"
 
 #: src/ui/about.ui:12
 msgid "Easily manage wineprefix using environments"
-msgstr "Wineprefixes einfach verwalten"
+msgstr "Wine-Präfixe einfach verwalten"
 
 #: src/ui/about.ui:123
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
@@ -322,9 +321,8 @@ msgid "Read documentation"
 msgstr "Dokumentation lesen"
 
 #: src/ui/details-dependencies.ui:222
-#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr "Fehlende Abhängigkeit melden"
+msgstr "Ein Problem oder eine fehlende Abhängigkeit melden."
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -349,7 +347,6 @@ msgid "Use DXVK"
 msgstr "DXVK verwenden"
 
 #: src/ui/details-preferences.ui:34
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -362,7 +359,6 @@ msgid "Use VKD3D"
 msgstr "VKD3D verwenden"
 
 #: src/ui/details-preferences.ui:62
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -371,28 +367,25 @@ msgstr ""
 "Deaktivieren Sie diese Option, wenn Sie grafische Probleme haben."
 
 #: src/ui/details-preferences.ui:89
-#, fuzzy
 msgid "Use GameMode"
-msgstr "Gamemode verwenden"
+msgstr "Spielemodus verwenden"
 
 #: src/ui/details-preferences.ui:90
 msgid "Optimise gaming performance on demand"
 msgstr "Optimieren Sie die Spielleistung bei Bedarf"
 
 #: src/ui/details-preferences.ui:116
-#, fuzzy
 msgid "Enable DLSS (DXVK-NVAPI)"
-msgstr "Aktivieren Sie DLSS (DXVK-NVAPI)"
+msgstr "Aktiviere DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:117
-#, fuzzy
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "DLSS-Unterstützung (falls verfügbar) und Nvidias NVAPI."
+msgstr ""
+"Stelle DLSS und Nvidia's NVAPI zu Verfügung Unterstützung falls verfügbar."
 
 #: src/ui/details-preferences.ui:145
-#, fuzzy
 msgid "Enable FSR"
-msgstr "Aktivieren Sie FSR"
+msgstr "FSR Aktivieren"
 
 #: src/ui/details-preferences.ui:146
 msgid ""
@@ -405,21 +398,19 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:162
 msgid "Ultra Quality"
-msgstr "Ultra Quality"
+msgstr "Ultra Qualität"
 
 #: src/ui/details-preferences.ui:163
 msgid "Quality"
 msgstr "Qualität"
 
 #: src/ui/details-preferences.ui:164
-#, fuzzy
 msgid "Balanced"
 msgstr "Ausgewogen"
 
 #: src/ui/details-preferences.ui:165
-#, fuzzy
 msgid "Performance"
-msgstr "Darstellung"
+msgstr "Leistung"
 
 #: src/ui/details-preferences.ui:214
 msgid "Enable ACO shader compiler"
@@ -469,11 +460,10 @@ msgid "Synchronization"
 msgstr "Synchronisation"
 
 #: src/ui/details-preferences.ui:386
-#, fuzzy
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr ""
-"Aktiviere die Synchronisation, um die Leistung für Multi-Core Prozessoren zu "
+"Aktiviere Synchronisation, um die Leistung für Mehrkern-Prozessoren zu "
 "verbessern."
 
 #: src/ui/details-preferences.ui:407
@@ -507,9 +497,8 @@ msgid "VKD3D version"
 msgstr "VKD3D Version"
 
 #: src/ui/details-preferences.ui:637
-#, fuzzy
 msgid "Manage VKD3D versions"
-msgstr "DXVK Version verwalten"
+msgstr "VKD3D Versionen verwalten"
 
 #: src/ui/details-preferences.ui:669
 #, fuzzy
@@ -661,9 +650,8 @@ msgid "Existing overrides"
 msgstr "Vorhandene Überbrückungen"
 
 #: src/ui/dialog-crash-report.ui:24
-#, fuzzy
 msgid "Bottles Crash Report"
-msgstr "Bottles gestartet!"
+msgstr "Bottles Absturzbericht"
 
 #: src/ui/dialog-crash-report.ui:35
 #, fuzzy
@@ -822,9 +810,8 @@ msgstr ""
 "werden, verändern."
 
 #: src/ui/dialog-environment-variables.ui:87
-#, fuzzy
 msgid "e.g.: VAR1=value VAR2=value"
-msgstr "z. B.: VAR1=value VAR2=value ..."
+msgstr "z. B.: VAR1=wert VAR2=wert"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
@@ -918,7 +905,7 @@ msgstr ""
 
 #: src/ui/list-entry.ui:193
 msgid "Run .exe/.msi in this bottle"
-msgstr ".exe/.msi in dieser Bottle starten"
+msgstr ".exe/.msi in dieser Bottle ausführen"
 
 #: src/ui/component-entry.ui:9
 #, fuzzy
@@ -939,9 +926,8 @@ msgstr ""
 "Klick hier, um es nochmal zu versuchen."
 
 #: src/ui/component-entry.ui:72
-#, fuzzy
 msgid "Download & Install"
-msgstr "Herunterladen & Installieren dieser DXVK"
+msgstr "Herunterladen & Installieren"
 
 #: src/ui/component-entry.ui:129
 msgid "0%"
@@ -995,20 +981,17 @@ msgstr "Native dann Builtin"
 
 #: src/ui/env-var-entry.ui:91
 msgid "value"
-msgstr ""
+msgstr "Wert"
 
 #: src/ui/installer-entry.ui:48
-#, fuzzy
 msgid "Read review"
-msgstr "Rezension lesen"
+msgstr "Review lesen"
 
 #: src/ui/task-entry.ui:50
-#, fuzzy
 msgid "Delete message"
-msgstr "Stand löschen"
+msgstr "Nachricht löschen"
 
 #: src/ui/program-entry.ui:33
-#, fuzzy
 msgid "Browse path"
 msgstr "Pfad durchsuchen"
 
@@ -1246,9 +1229,8 @@ msgid "Apperance"
 msgstr "Darstellung"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
-#, fuzzy
 msgid "Night mode"
-msgstr "Dunkler Modus"
+msgstr "Nachtmodus"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
 #, fuzzy
@@ -1352,8 +1334,8 @@ msgid ""
 "download essential components. Click this icon when you have reestablished "
 "the connection."
 msgstr ""
-"Du scheinst nicht mit dem Internet verbunden zu sein. Ohne sie wirst du "
-"nicht in der Lage sein erforderliche Komponenten herunterzuladen. Klick auf "
+"Du scheinst nicht mit dem Internet verbunden zu sein. Ohne Internet wirst du "
+"nicht in der Lage sein, erforderliche Komponenten herunterzuladen. Klick auf "
 "dieses Symbol, wenn du die Verbindung wiederhergestellt hast."
 
 #: src/ui/window.ui:294
@@ -1426,9 +1408,8 @@ msgid "Importing backup: {0}"
 msgstr "Sicherung importieren: {0}"
 
 #: src/backend/manager.py:964
-#, fuzzy
 msgid "Missing essential components. Installing…"
-msgstr "Fehlende wesentliche Komponenten. Installieren…"
+msgstr "Essentielle Komponenten fehlen. Installiere…"
 
 #: src/backend/manager.py:1039
 msgid "Generating bottle configuration"
@@ -1527,12 +1508,12 @@ msgstr ""
 
 #: src/backend/versioning.py:239
 msgid "Could not update the index file."
-msgstr ""
+msgstr "Konnte die Indexdatei nicht aktualisieren."
 
 #: src/backend/versioning.py:265
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Temp Pfad erfolgreich bereinigt!"
+msgstr "Neuen Stand [{0}] erfolgreich erstellt!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -1682,7 +1663,7 @@ msgstr "Eine übersichtliche Umgebung für Ihre Experimente."
 
 #: src/views/new.py:239
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "Beim Erstellen der Bottle trat ein Fehler auf."
 
 #: src/views/new.py:246
 #, python-brace-format
@@ -1695,19 +1676,19 @@ msgid "Manifest for {0}"
 msgstr "Manifest für {0}"
 
 #: src/widgets/installer.py:83
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review for {0}"
-msgstr "Manifest für {0}"
+msgstr "Review für {0}"
 
 #: src/widgets/installer.py:131
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "Schritt {self.__step} von {self.steps}"
 
 #: src/widgets/state.py:90
 #, python-brace-format
 msgid "Index for state {0}"
-msgstr "Index für Zustand {0}"
+msgstr "Index für Stand {0}"
 
 #~ msgid "Change Launch Options"
 #~ msgstr "Startoptionen ändern"
