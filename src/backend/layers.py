@@ -113,6 +113,7 @@ class Layer:
         self.__path = f"{Paths.layers}/{folder}"
 
         _conf = Samples.config.copy()
+        _conf["Name"] = f"@__{name}__{self.__uuid}"
         _conf["Path"] = f"@__{name}__{self.__uuid}"
         _conf["IsLayer"] = True # will be used by Dependency/Installer managers to set the right path
         if runner is not None:
@@ -131,6 +132,8 @@ class Layer:
     
     def __link_files(self, path):
         for root, dirs, files in os.walk(path):
+            if "dosdevices" in root:
+                continue
             for f in files:
                 _source = os.path.join(root, f)
                 _layer = _source.replace(path, self.__path)
@@ -189,7 +192,12 @@ class Layer:
             _tree = mount["Tree"]
             
             for f in _tree:
-                os.unlink(f"{self.__path}/{f}")
+                try:
+                    _link = f"{self.__path}/{f}"
+                    if os.path.islink(_link):
+                        os.unlink(_link)
+                except FileNotFoundError:
+                    pass
                 
             self.__mounts.remove(mount)
         
