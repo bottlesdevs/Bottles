@@ -58,10 +58,10 @@ class ManagerUtils:
 
     @staticmethod
     def get_bottle_path(config: BottleConfig) -> str:
-        if config.get("Custom_Path"):
-            return config.get("Path")
         if "IsLayer" in config.keys():
             return ManagerUtils.get_layer_path(config["Path"])
+        if config.get("Custom_Path"):
+            return config.get("Path")
         return f"{Paths.bottles}/{config.get('Path')}"
 
     @staticmethod
