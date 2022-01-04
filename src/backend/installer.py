@@ -132,9 +132,10 @@ class InstallerManager:
                 layer = Layer().new(dep, self.__manager.get_latest_runner())
                 layer.mount_bottle(config)
                 _config = layer.runtime_conf
+                Runner.wineboot(_config, status=4, comunicate=True)
 
             res = self.__manager.dependency_manager.install(_config, _dep)
-            
+
             if config.get("Environment") == "Layered":
                 layer.sweep()
                 layer.save()
