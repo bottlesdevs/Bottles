@@ -122,19 +122,23 @@ class InstallerManager:
         for dep in dependencies:
             widget.next_step()
 
+            if dep in config.get("Installed_Dependencies"):
+                continue
+
+            _dep = [dep, self.__manager.supported_dependencies.get(dep)]
+            
             if config.get("Environment") == "Layered":
                 logging.info(f"Installing {dep} in a new layer.")
                 layer = Layer().new(dep, self.__manager.get_latest_runner())
                 layer.mount_bottle(config)
                 _config = layer.runtime_conf
+
+            res = self.__manager.dependency_manager.install(_config, _dep)
+            
+            if config.get("Environment") == "Layered":
                 layer.sweep()
                 layer.save()
-            else:
-                if dep in config.get("Installed_Dependencies"):
-                    continue
 
-            _dep = [dep, self.__manager.supported_dependencies.get(dep)]
-            res = self.__manager.dependency_manager.install(_config, _dep)
             if res.status == False:
                 return False
         
