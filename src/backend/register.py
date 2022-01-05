@@ -1,6 +1,7 @@
 import os
 import re
 import uuid
+import json
 
 
 class WinRegister:
@@ -18,10 +19,11 @@ class WinRegister:
     
     def __get_header(self):
         '''
-        This function returns the header of the register.
+        This function returns the header of the register. This
+        handle only Windows registry files, not WINE.
         '''
         with open(self.path, "r") as reg:
-            header = reg.readlines(4)
+            header = reg.readlines(2)
             return header
     
     def __parse_dict(self, path: str):
@@ -34,21 +36,23 @@ class WinRegister:
         _dict = {}
         exclude = [] # append here the keys to exclude, not safe
 
-        with open(path, "r") as _reg:
+        with open(path, "rb") as _reg:
             content = _reg.read()
+            content = content.decode("utf-16")
             cur_line = 0
-            regs = re.split("\n\n", content)
-
+            regs = content.split("\r")
+            print("Total keys:", len(regs))
+            
             for reg in regs:
 
-                if cur_line <= 4:
+                if cur_line <= 2:
                     '''
                     Skip the first 4 lines which are the
                     register header.
                     '''
                     cur_line += 1
                     continue
-                
+
                 for line in reg.split("\n"):
                     '''
                     Following checks will check the line format, when
@@ -67,19 +71,7 @@ class WinRegister:
                         
                         _dict[key] = {}
                         continue
-                     
-                    if line.startswith("#time"):
-                        '''
-                        Check if line format corresponds to a time key, if
-                        true get value and append to last key.
-                        '''
-                        if key is None:
-                            continue
-
-                        _dict[key]["time"] = line.split("=")[1]
-                        continue
-
-                    if line.startswith("\""):
+                    elif line not in ["", "\n"]:
                         '''
                         Check if line format corresponds to a value, if
                         true get key and value and append to last key.
@@ -88,7 +80,7 @@ class WinRegister:
                             continue
 
                         _key = line.split("=")[0]
-                        _value = line[len(_key)+2:]
+                        _value = line[len(_key)+1:]
                         _dict[key][_key] = _value
                         continue
         
@@ -163,3 +155,10 @@ class WinRegister:
                     else:
                         reg.write(f"{_key}={self.reg_dict[key][_key]}\n")
                 reg.write("\n")
+
+    def export_json(self, path: str):
+        '''
+        This function exports the current register in json format.
+        '''
+        with open(path, "w") as json_file:
+            json.dump(self.reg_dict, json_file, indent=4)
