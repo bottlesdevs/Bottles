@@ -114,6 +114,17 @@ class Layer:
     __config: dict = {}
     runtime_conf: dict = {}
 
+    def init(self, layer: dict):
+        '''
+        Initialize a layer from a dict.
+        '''
+        self.__uuid = layer["UUID"]
+        self.__path = layer["Path"]
+        self.__config = layer
+
+        return self
+
+
     def new(self, name: str, runner: str = None):
         '''
         Generate a new layer path based on the layer name
@@ -145,6 +156,12 @@ class Layer:
         }
 
         return self
+    
+    def get_uuid(self) -> str:
+        '''
+        Get the layer uuid.
+        '''
+        return self.__uuid
     
     def __link_files(self, path):
         for root, dirs, files in os.walk(path):
