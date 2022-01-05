@@ -93,7 +93,7 @@ class Samples:
         },
         "layered": {
             "Runner": "wine",
-            "Layers": []
+            "Layers": {}
         },
     }
 
