@@ -45,7 +45,7 @@ class ProgramEntry(Handy.ActionRow):
     btn_add_entry = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, config, program, **kwargs):
+    def __init__(self, window, config, program, is_layer=False, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -56,7 +56,8 @@ class ProgramEntry(Handy.ActionRow):
         self.config = config
         self.arguments = ""
         self.program = program
-
+        self.is_layer = is_layer
+        
         # populate widgets
         self.set_title(self.program["name"])
         self.set_icon_name(program["icon"])
@@ -91,11 +92,15 @@ class ProgramEntry(Handy.ActionRow):
         Populate entry_arguments by config
         TODO: improve this without taking executable by path
         '''
-        _executable = self.program["path"].split("\\")[-1] # win path
-        if len(_executable) == 0:
-            _executable = self.program["path"].split("/")[-1] # unix path
-        if _executable in self.config["Programs"]:
-            self.arguments = self.config["Programs"][_executable]
+        if not is_layer:
+            _executable = self.program["path"].split("\\")[-1] # win path
+            if len(_executable) == 0:
+                _executable = self.program["path"].split("/")[-1] # unix path
+            if _executable in self.config["Programs"]:
+                self.arguments = self.config["Programs"][_executable]
+        else:
+            _executable = self.program["exec_name"]
+            self.arguments = self.program["exec_args"]
         self.executable = _executable
 
         self.__is_alive()
@@ -140,15 +145,23 @@ class ProgramEntry(Handy.ActionRow):
         )
 
     def run_executable(self, widget):
-        RunAsync(
-            Runner.run_executable,
-            callback=self.__reset_buttons,
-            config=self.config,
-            file_path=self.program["path"],
-            arguments=self.arguments,
-            cwd=self.program["folder"],
-            no_async=True
-        )
+        if self.is_layer:
+            RunAsync(
+                self.manager.launch_layer_program,
+                callback=self.__reset_buttons,
+                config=self.config, 
+                layer=self.program
+            )
+        else:
+            RunAsync(
+                Runner.run_executable,
+                callback=self.__reset_buttons,
+                config=self.config,
+                file_path=self.program["path"],
+                arguments=self.arguments,
+                cwd=self.program["folder"],
+                no_async=True
+            )
         self.__reset_buttons()
     
     def stop_process(self, widget):

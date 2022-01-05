@@ -101,6 +101,16 @@ class ProgramsView(Gtk.ScrolledWindow):
         for w in self.list_programs:
             w.destroy()
 
+        if self.config["Environment"] == "Layered":
+            for layer in self.config["Layers"]:
+                entry = ProgramEntry(
+                    window=self.window, 
+                    config=self.config,
+                    program=self.config["Layers"][layer],
+                    is_layer=True
+                )
+                self.list_programs.add(entry)
+
         programs = self.manager.get_programs(self.config)
 
         if len(programs) > 0:
