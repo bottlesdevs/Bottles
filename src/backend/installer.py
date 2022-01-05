@@ -128,6 +128,8 @@ class InstallerManager:
             _dep = [dep, self.__manager.supported_dependencies.get(dep)]
             
             if config.get("Environment") == "Layered":
+                if LayersStore.get_layer_by_name(dep):
+                    continue
                 logging.info(f"Installing {dep} in a new layer.")
                 layer = Layer().new(dep, self.__manager.get_latest_runner())
                 layer.mount_bottle(config)
