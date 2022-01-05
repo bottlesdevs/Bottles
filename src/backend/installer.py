@@ -343,10 +343,30 @@ class InstallerManager:
         widget.next_step()
         self.__create_desktop_entry(_config, manifest, executable)
 
-        # sweep and save
         if self.__layer is not None:
+            # sweep and save
             self.__layer.sweep()
             self.__layer.save()
+            
+            # register layer
+            _layer_launcher = {
+                "uuid": self.__layer.get_uuid(),
+                "name": manifest["Name"],
+                "icon": "com.usebottles.bottles-program",
+                "exec_path": f'{executable["path"]}/{executable["file"]}',
+                "exec_name": executable["file"],
+                "exec_args": executable["arguments"],
+                "exec_env": {},
+                "exec_cwd": executable["path"],
+                "parameters": parameters,
+                "mounts": dependencies,
+            }
+            self.__manager.update_config(
+                config=config,
+                key=self.__layer.get_uuid(),
+                value=_layer_launcher,
+                scope="Layers"
+            )
 
         # unlock widget
         if widget is not None:
