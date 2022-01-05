@@ -30,7 +30,7 @@ from glob import glob
 from datetime import datetime
 from gettext import gettext as _
 from typing import NewType
-from gi.repository import Gtk, GLib
+from gi.repository import GLib
 
 from ..utils import UtilsFiles, UtilsLogger, RunAsync
 from .runner import Runner
@@ -42,6 +42,8 @@ from .installer import InstallerManager
 from .dependency import DependencyManager
 from .manager_utils import ManagerUtils
 from .importer import ImportManager
+from .layers import Layer, LayersStore
+
 
 logging = UtilsLogger()
 
@@ -557,6 +559,37 @@ class Manager:
                 decode = 'utf-16'
 
             return content[-1].decode(decode)
+
+    def launch_layer_program(self, config, layer):
+        '''
+        This function mount a layer and launches a program on it.
+        '''
+        logging.info(f"Preparing {len(layer['mounts'])} layer(s)..")
+        layer_conf = LayersStore.get_layer_by_uuid(layer['uuid'])
+        if not layer_conf:
+            logging.error("Layer not found.")
+            return False
+        program_layer = Layer().init(layer_conf)
+        program_layer.mount_bottle(config)
+        mounts = []
+
+        for mount in layer['mounts']:
+            _layer = LayersStore.get_layer_by_name(mount)
+            if not _layer:
+                logging.error(f"Layer {mount} not found.")
+                return False
+            mounts.append(_layer["UUID"])
+        
+        for mount in mounts:
+            logging.info("Mounting layers..")
+            program_layer.mount(uuid=mount)
+            
+        logging.info("Launching program..")
+        Runner.run_layer_executable(config, layer)
+
+        logging.info("Program exited, unmounting layers..")
+        program_layer.sweep()
+        program_layer.save()
 
     def get_programs(self, config: BottleConfig) -> list:
         '''
