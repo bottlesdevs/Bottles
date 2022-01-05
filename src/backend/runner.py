@@ -172,6 +172,19 @@ class Runner:
             )
 
     @staticmethod
+    def run_layer_executable(config: BottleConfig, layer: dict):
+        '''
+        Run a layer executable.
+        '''
+        Runner.run_executable(
+            config=config,
+            file_path=layer["exec_path"],
+            arguments=layer["exec_args"],
+            environment=layer["exec_env"],
+            no_async=True
+        )
+
+    @staticmethod
     def run_winecfg(config: BottleConfig):
         logging.info("Running winecfg on the wineprefix…")
         RunAsync(
