@@ -65,6 +65,7 @@ class Layer:
     - layer.mount_bottle(bottle) | link the bottle to the layer
     - Dependency.install(layer.config) | install dependency on layer
     - layer.sweep() | unlink bottle files from layer
+        - sweep should also export registry diffs
     - layer.save() | create a index.yml file with stored files and hashes
     - layer = Layer.new("epic") | create a new empty layer (@__epic__uuid)
     - layer.mount_bottle(bottle) | link the bottle to the layer

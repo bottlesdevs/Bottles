@@ -87,6 +87,7 @@ class Samples:
                 "arial32",
                 "times32",
                 "courie32",
+                "dotnet40",
                 "dotnet48"
             ]
         },
