@@ -41,6 +41,7 @@ class LayersStore:
         else:
             raise Exception("No layer name or uuid provided.")
         
+        layer = False
         for f in glob(pattern):
             if os.path.isdir(f):
                 layer = f
@@ -51,7 +52,21 @@ class LayersStore:
                 conf = yaml.safe_load(f)
                 return conf
 
-        raise Exception(f"No layer match pattern {pattern}.")
+        return False
+    
+    @staticmethod
+    def get_layer_by_name(name: str) -> dict:
+        '''
+        Wrapper to get() method.
+        '''
+        return LayersStore.get(name=name)
+    
+    @staticmethod
+    def get_layer_by_uuid(uuid: str) -> dict:
+        '''
+        Wrapper to get() method.
+        '''
+        return LayersStore.get(uuid=uuid)
 
 
 class Layer:
