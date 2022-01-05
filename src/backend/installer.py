@@ -43,6 +43,7 @@ class InstallerManager:
         self.__manager = manager
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
+        self.__layer = None
 
     @lru_cache
     def get_review(self, installer_name):
@@ -173,11 +174,52 @@ class InstallerManager:
                     )
 
     def __set_parameters(self, config, parameters: dict):
-        if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:
-            self.__manager.install_dxvk(config)
+        _config = config
+        _components_layers = []
 
-        if parameters.get("vkd3d") and config.get("Parameters")["vkd3d"]:
-            self.__manager.install_vkd3d(config)
+        if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:
+            if config["Environment"] == "Layered":
+                if LayersStore.get_layer_by_name("dxvk"):
+                    return
+                logging.info(f"Installing DXVK in a new layer.")
+                layer = Layer().new("dxvk", self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _components_layers.append(layer)
+                _config = layer.runtime_conf
+                Runner.wineboot(_config, status=4, comunicate=True)
+
+            self.__manager.install_dxvk(_config)
+
+        if parameters.get("vkd3d") and not config.get("Parameters")["vkd3d"]:
+            if config["Environment"] == "Layered":
+                if LayersStore.get_layer_by_name("vkd3d"):
+                    return
+                logging.info(f"Installing VKD3D in a new layer.")
+                layer = Layer().new("vkd3d", self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _components_layers.append(layer)
+                _config = layer.runtime_conf
+                Runner.wineboot(_config, status=4, comunicate=True)
+
+            self.__manager.install_vkd3d(_config)
+        
+        if parameters.get("dxvk_nvapi") and not config.get("Parameters")["dxvk_nvapi"]:
+            if config["Environment"] == "Layered":
+                if LayersStore.get_layer_by_name("dxvk_nvapi"):
+                    return
+                logging.info(f"Installing DXVK NVAPI in a new layer.")
+                layer = Layer().new("dxvk_nvapi", self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _components_layers.append(layer)
+                _config = layer.runtime_conf
+                Runner.wineboot(_config, status=4, comunicate=True)
+
+            self.__manager.install_nvapi(_config)
+        
+        # sweep and save layers
+        for c in _components_layers:
+            c.sweep()
+            c.save()
 
         for param in parameters:
             self.__manager.update_config(
@@ -254,6 +296,11 @@ class InstallerManager:
         return steps
 
     def install(self, config, installer, widget):
+        if config.get("Environment") == "Layered":
+            self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
+            self.__layer.mount_bottle(config)
+            Runner.wineboot(self.__layer.runtime_conf, status=4, comunicate=True)
+
         manifest = self.get_installer(
             installer_name=installer[0],
             installer_category=installer[1]["Category"]
@@ -276,7 +323,12 @@ class InstallerManager:
         # execute steps
         if steps:
             widget.next_step()
-            self.__perform_steps(_config, steps)
+            if self.__layer is not None:
+                for d in dependencies:
+                    self.__layer.mount(name=d)
+                self.__perform_steps(self.__layer.runtime_conf, steps)
+            else:
+                self.__perform_steps(_config, steps)
 
         # set parameters
         if parameters:
@@ -290,6 +342,11 @@ class InstallerManager:
         # create Desktop entry
         widget.next_step()
         self.__create_desktop_entry(_config, manifest, executable)
+
+        # sweep and save
+        if self.__layer is not None:
+            self.__layer.sweep()
+            self.__layer.save()
 
         # unlock widget
         if widget is not None:
