@@ -154,6 +154,9 @@ class Layer:
                 _source = os.path.join(root, f)
                 _layer = _source.replace(path, self.__path)
                 os.makedirs(os.path.dirname(_layer), exist_ok=True) # should not be ok, need handling
+                if os.path.exists(_layer):
+                    if os.path.islink(_layer):
+                        os.unlink(_layer)
                 os.symlink(_source, _layer)
 
     def mount_dir(self, path: str, name: str = None):
