@@ -19,7 +19,7 @@ import webbrowser
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
 from ..utils import RunAsync
-from ..dialogs.generic import Dialog
+from ..dialogs.generic import TextDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
@@ -89,18 +89,15 @@ class DependencyEntry(Handy.ActionRow):
         This function pop up a dialog with the manifest
         of the dependency
         '''
-        dialog = Dialog(
+        TextDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
-            message=False,
-            log=self.manager.dependency_manager.get_dependency(
+            message=self.manager.dependency_manager.get_dependency(
                 dependency_name=self.dependency[0],
                 dependency_category=self.dependency[1]["Category"],
                 plain=True
             )
         )
-        dialog.run()
-        dialog.destroy()
 
     def open_license(self, widget):
         '''
