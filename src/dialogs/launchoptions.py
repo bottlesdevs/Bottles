@@ -43,8 +43,8 @@ class LaunchOptionsDialog(Handy.Window):
         self.entry_arguments.set_text(self.arguments)
 
         # connect signals
-        self.btn_cancel.connect('pressed', self.__close_window)
-        self.btn_save.connect('pressed', self.__save_options)
+        self.btn_cancel.connect("pressed", self.__close_window)
+        self.btn_save.connect("pressed", self.__save_options)
 
     def __close_window(self, widget=None):
         self.destroy()

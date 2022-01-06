@@ -73,8 +73,8 @@ class CrashReportDialog(Handy.Window):
             log = "".join(log)
 
         # connect signals
-        self.btn_cancel.connect('pressed', self.__close_window)
-        self.btn_send.connect('pressed', self.__open_github, log)
+        self.btn_cancel.connect("pressed", self.__close_window)
+        self.btn_send.connect("pressed", self.__open_github, log)
         self.check_unlock_send.connect('toggled', self.__on_unlock_send)
 
         self.label_output.set_text(log)

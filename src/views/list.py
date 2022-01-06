@@ -68,9 +68,9 @@ class ListViewEntry(Handy.ActionRow):
 
         # connect signals
         activate_handler = self.connect('activated', self.show_details)
-        self.btn_run.connect('pressed', self.run_executable)
-        self.btn_repair.connect('pressed', self.repair)
-        self.btn_run_executable.connect('pressed', self.run_executable)
+        self.btn_run.connect("pressed", self.run_executable)
+        self.btn_repair.connect("pressed", self.repair)
+        self.btn_run_executable.connect("pressed", self.run_executable)
 
         # populate widgets
         self.grid_versioning.set_visible(self.config.get("Versioning"))

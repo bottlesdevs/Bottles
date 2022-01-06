@@ -46,8 +46,8 @@ class EnvVarEntry(Handy.ActionRow):
         self.entry_value.set_text(self.env[1])
 
         # connect signals
-        self.btn_remove.connect('pressed', self.__remove)
-        self.btn_save.connect('pressed', self.__save)
+        self.btn_remove.connect("pressed", self.__remove)
+        self.btn_save.connect("pressed", self.__save)
         self.entry_value.connect('key-release-event', self.on_change)
     
     def on_change(self, widget, event):
@@ -103,7 +103,7 @@ class EnvVarsDialog(Handy.Window):
         self.__populate_vars_list()
 
         # connect signals
-        self.btn_save.connect('pressed', self.__save_var)
+        self.btn_save.connect("pressed", self.__save_var)
         self.entry_name.connect('key-release-event', self.__validate)
 
     def __validate(self, widget, event_key):

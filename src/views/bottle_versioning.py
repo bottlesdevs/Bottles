@@ -47,12 +47,12 @@ class VersioningView(Gtk.ScrolledWindow):
         self.versioning_manager = window.manager.versioning_manager
         self.config = config
         
-        self.btn_save.connect('pressed', self.add_state)
+        self.btn_save.connect("pressed", self.add_state)
         self.entry_state_comment.connect(
             'key-release-event', self.check_entry_state_comment
         )
         self.btn_help.connect(
-            'pressed', GtkUtils.open_doc_url, "bottles/versioning"
+            "pressed", GtkUtils.open_doc_url, "bottles/versioning"
         )
 
     def update(self, widget=False, config={}, states={}):

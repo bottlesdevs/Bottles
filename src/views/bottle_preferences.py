@@ -79,14 +79,14 @@ class PreferencesView(Gtk.ScrolledWindow):
             'activate', self.__show_environment_variables
         )
         self.btn_cwd.connect('activate', self.choose_cwd)
-        self.btn_overrides.connect('pressed', self.__show_dll_overrides_view)
-        self.btn_manage_runners.connect('pressed', self.window.show_prefs_view)
-        self.btn_manage_dxvk.connect('pressed', self.window.show_prefs_view)
-        self.btn_manage_vkd3d.connect('pressed', self.window.show_prefs_view)
-        self.btn_manage_nvapi.connect('pressed', self.window.show_prefs_view)
-        self.btn_cwd.connect('pressed', self.choose_cwd)
+        self.btn_overrides.connect("pressed", self.__show_dll_overrides_view)
+        self.btn_manage_runners.connect("pressed", self.window.show_prefs_view)
+        self.btn_manage_dxvk.connect("pressed", self.window.show_prefs_view)
+        self.btn_manage_vkd3d.connect("pressed", self.window.show_prefs_view)
+        self.btn_manage_nvapi.connect("pressed", self.window.show_prefs_view)
+        self.btn_cwd.connect("pressed", self.choose_cwd)
         self.btn_environment_variables.connect(
-            'pressed', self.__show_environment_variables
+            "pressed", self.__show_environment_variables
         )
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
         self.toggle_esync.connect('toggled', self.__set_esync)

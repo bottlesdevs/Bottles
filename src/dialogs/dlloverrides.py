@@ -44,7 +44,7 @@ class DLLEntry(Handy.ActionRow):
         self.combo_type.set_active_id(self.override[1])
 
         # connect signals
-        self.btn_remove.connect('pressed', self.__remove_override)
+        self.btn_remove.connect("pressed", self.__remove_override)
         self.combo_type.connect('changed', self.__set_override_type)
 
         self.__prevent_scroll()
@@ -106,7 +106,7 @@ class DLLOverridesDialog(Handy.Window):
         self.__populate_overrides_list()
 
         # connect signals
-        self.btn_save.connect('pressed', self.__save_override)
+        self.btn_save.connect("pressed", self.__save_override)
 
     def __idle_save_override(self, widget=False):
         '''

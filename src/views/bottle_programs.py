@@ -45,12 +45,12 @@ class ProgramsView(Gtk.ScrolledWindow):
         self.manager = parent.manager
         self.config = config
 
-        self.btn_add.connect('pressed', self.add)
+        self.btn_add.connect("pressed", self.add)
         self.btn_update.connect(
-            'pressed', self.parent.update_programs
+            "pressed", self.parent.update_programs
         )
         self.btn_help.connect(
-            'pressed', GtkUtils.open_doc_url, "bottles/programs"
+            "pressed", GtkUtils.open_doc_url, "bottles/programs"
         )
 
     def add(self, widget=False):

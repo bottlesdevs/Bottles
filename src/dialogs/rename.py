@@ -42,8 +42,8 @@ class RenameDialog(Handy.Window):
         self.entry.set_text(name)
 
         # connect signals
-        self.btn_cancel.connect('pressed', self.__close_window)
-        self.btn_save.connect('pressed', self.__on_save)
+        self.btn_cancel.connect("pressed", self.__close_window)
+        self.btn_save.connect("pressed", self.__on_save)
 
     def __on_save(self, widget):
         text = self.entry.get_text()

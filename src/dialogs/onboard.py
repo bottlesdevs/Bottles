@@ -55,11 +55,11 @@ class OnboardDialog(Handy.Window):
 
         # connect signals
         self.stack_onboard.connect('notify::visible-child', self.__page_changed)
-        self.btn_close.connect('pressed', self.__close_window)
-        self.btn_quit.connect('pressed', self.__quit)
-        self.btn_back.connect('pressed', self.__previous_page)
-        self.btn_next.connect('pressed', self.__next_page)
-        self.btn_install.connect('pressed', self.__install_runner)
+        self.btn_close.connect("pressed", self.__close_window)
+        self.btn_quit.connect("pressed", self.__quit)
+        self.btn_back.connect("pressed", self.__previous_page)
+        self.btn_next.connect("pressed", self.__next_page)
+        self.btn_install.connect("pressed", self.__install_runner)
 
         self.__page_changed()
 

@@ -108,46 +108,46 @@ class BottleView(Gtk.ScrolledWindow):
         self.btn_uninstaller.connect('activate', self.run_uninstaller)
         self.btn_regedit.connect('activate', self.run_regedit)
 
-        self.btn_winecfg.connect('pressed', self.run_winecfg)
-        self.btn_debug.connect('pressed', self.run_debug)
-        self.btn_execute.connect('pressed', self.run_executable)
-        self.btn_run_args.connect('pressed', self.__run_executable_with_args)
-        self.btn_browse.connect('pressed', self.run_browse)
-        self.btn_cmd.connect('pressed', self.run_cmd)
-        self.btn_taskmanager.connect('pressed', self.run_taskmanager)
-        self.btn_controlpanel.connect('pressed', self.run_controlpanel)
-        self.btn_uninstaller.connect('pressed', self.run_uninstaller)
-        self.btn_regedit.connect('pressed', self.run_regedit)
-        self.btn_delete.connect('pressed', self.__confirm_delete)
-        self.btn_delete_top.connect('pressed', self.__confirm_delete)
-        self.btn_shutdown.connect('pressed', self.wineboot, 2)
-        self.btn_reboot.connect('pressed', self.wineboot, 1)
-        self.btn_killall.connect('pressed', self.wineboot, 0)
-        self.btn_backup_config.connect('pressed', self.__backup, "config")
-        self.btn_backup_full.connect('pressed', self.__backup, "full")
-        self.btn_duplicate.connect('pressed', self.__duplicate)
+        self.btn_winecfg.connect("pressed", self.run_winecfg)
+        self.btn_debug.connect("pressed", self.run_debug)
+        self.btn_execute.connect("pressed", self.run_executable)
+        self.btn_run_args.connect("pressed", self.__run_executable_with_args)
+        self.btn_browse.connect("pressed", self.run_browse)
+        self.btn_cmd.connect("pressed", self.run_cmd)
+        self.btn_taskmanager.connect("pressed", self.run_taskmanager)
+        self.btn_controlpanel.connect("pressed", self.run_controlpanel)
+        self.btn_uninstaller.connect("pressed", self.run_uninstaller)
+        self.btn_regedit.connect("pressed", self.run_regedit)
+        self.btn_delete.connect("pressed", self.__confirm_delete)
+        self.btn_delete_top.connect("pressed", self.__confirm_delete)
+        self.btn_shutdown.connect("pressed", self.wineboot, 2)
+        self.btn_reboot.connect("pressed", self.wineboot, 1)
+        self.btn_killall.connect("pressed", self.wineboot, 0)
+        self.btn_backup_config.connect("pressed", self.__backup, "config")
+        self.btn_backup_full.connect("pressed", self.__backup, "full")
+        self.btn_duplicate.connect("pressed", self.__duplicate)
         self.btn_help_debug.connect(
-            'pressed',
+            "pressed",
             GtkUtils.open_doc_url,
             "utilities/logs-and-debugger#wine-debugger"
         )
         self.btn_flatpak_doc_home.connect(
-            'pressed',
+            "pressed",
             GtkUtils.open_doc_url,
             "flatpak/expose-directories/use-system-home"
         )
         self.btn_flatpak_doc_expose.connect(
-            'pressed',
+            "pressed",
             GtkUtils.open_doc_url,
             "flatpak/expose-directories"
         )
         self.btn_flatpak_doc_upgrade.connect(
-            'pressed',
+            "pressed",
             GtkUtils.open_doc_url,
             "flatpak/migrate-bottles-to-flatpak"
         )
         self.btn_flatpak_doc_silent_crash.connect(
-            'pressed',
+            "pressed",
             GtkUtils.open_doc_url,
             "flatpak/black-screen-or-silent-crash"
         )

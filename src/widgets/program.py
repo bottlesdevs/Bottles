@@ -74,19 +74,19 @@ class ProgramEntry(Handy.ActionRow):
             self.btn_remove.set_visible(False)
 
         '''Signal connections'''
-        self.btn_run.connect('pressed', self.run_executable)
-        self.btn_stop.connect('pressed', self.stop_process)
-        self.btn_winehq.connect('pressed', self.open_search_url, "winehq")
-        self.btn_protondb.connect('pressed', self.open_search_url, "protondb")
-        self.btn_forum.connect('pressed', self.open_search_url, "forum")
-        self.btn_issues.connect('pressed', self.open_search_url, "issues")
+        self.btn_run.connect("pressed", self.run_executable)
+        self.btn_stop.connect("pressed", self.stop_process)
+        self.btn_winehq.connect("pressed", self.open_search_url, "winehq")
+        self.btn_protondb.connect("pressed", self.open_search_url, "protondb")
+        self.btn_forum.connect("pressed", self.open_search_url, "forum")
+        self.btn_issues.connect("pressed", self.open_search_url, "issues")
         self.btn_launch_options.connect(
-            'pressed', self.show_launch_options_view)
-        self.btn_uninstall.connect('pressed', self.uninstall_program)
-        self.btn_remove.connect('pressed', self.remove_program)
-        self.btn_rename.connect('pressed', self.rename_program)
-        self.btn_browse.connect('pressed', self.browse_program_folder)
-        self.btn_add_entry.connect('pressed', self.add_entry)
+            "pressed", self.show_launch_options_view)
+        self.btn_uninstall.connect("pressed", self.uninstall_program)
+        self.btn_remove.connect("pressed", self.remove_program)
+        self.btn_rename.connect("pressed", self.rename_program)
+        self.btn_browse.connect("pressed", self.browse_program_folder)
+        self.btn_add_entry.connect("pressed", self.add_entry)
 
         '''
         Populate entry_arguments by config

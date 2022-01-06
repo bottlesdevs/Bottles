@@ -45,12 +45,12 @@ class DependenciesView(Gtk.ScrolledWindow):
         self.config = config
 
         self.btn_report.connect(
-            'pressed', 
+            "pressed", 
             GtkUtils.open_doc_url, 
             "contribute/missing-dependencies"
         )
         self.btn_help.connect(
-            'pressed', GtkUtils.open_doc_url, "bottles/dependencies"
+            "pressed", GtkUtils.open_doc_url, "bottles/dependencies"
         )
         self.entry_search_deps.connect(
             'key-release-event', self.__search_dependencies

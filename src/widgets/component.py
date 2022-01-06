@@ -58,9 +58,9 @@ class ComponentEntry(Handy.ActionRow):
             self.btn_browse.set_visible(False)
 
         # connect signals
-        self.btn_download.connect('pressed', self.download)
-        self.btn_err.connect('pressed', self.download)
-        self.btn_browse.connect('pressed', self.run_browse)
+        self.btn_download.connect("pressed", self.download)
+        self.btn_err.connect("pressed", self.download)
+        self.btn_browse.connect("pressed", self.run_browse)
 
     def download(self, widget):
         def install_finished(result, error=False):

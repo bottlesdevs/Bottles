@@ -40,7 +40,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
-        self.btn_taskmanager_update.connect('pressed', self.sensitive_update)
+        self.btn_taskmanager_update.connect("pressed", self.sensitive_update)
         
         # apply model to treeview_processes
         self.liststore_processes = Gtk.ListStore(str, str, str, str)
