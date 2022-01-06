@@ -101,7 +101,8 @@ class ProgramsView(Gtk.ScrolledWindow):
         for w in self.list_programs:
             w.destroy()
 
-        if self.config["Environment"] == "Layered":
+        if "Environment" in self.config \
+            and self.config["Environment"] == "Layered":
             for layer in self.config["Layers"]:
                 entry = ProgramEntry(
                     window=self.window, 

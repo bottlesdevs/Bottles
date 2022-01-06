@@ -69,7 +69,12 @@ class ProgramEntry(Handy.ActionRow):
             '''
             self.btn_add_entry.set_visible(False)
 
-        if self.program["name"] not in self.config["External_Programs"]:
+        external_programs = []
+        for p in self.config.get("External_Programs"):
+            _p = self.config["External_Programs"][p]["name"]
+            external_programs.append(_p)
+
+        if self.program["name"] not in external_programs:
             # hide remove button if program is not added by user
             self.btn_remove.set_visible(False)
 

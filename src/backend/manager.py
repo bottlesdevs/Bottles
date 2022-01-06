@@ -614,7 +614,27 @@ class Manager:
             f"{bottle}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
             recursive=True
         )
+        found = []
         installed_programs = []
+
+        if config.get("External_Programs"):
+            '''
+            if the bottle has external programs in the configuration,
+            append them to the installed_programs list.
+            '''
+            ext_programs = config.get("External_Programs")
+            for program in ext_programs:
+                _program = ext_programs[program]
+                program_folder = os.path.dirname(_program["path"])
+                icon = self.__find_program_icon(program)
+                installed_programs.append({
+                    "executable": _program["executable"],
+                    "name": _program["name"],
+                    "path": _program["path"],
+                    "folder": program_folder,
+                    "icon": icon
+                })
+                found.append(_program["path"])
 
         for program in results:
             '''
@@ -640,7 +660,7 @@ class Manager:
             )
 
             if os.path.exists(path_check):
-                if executable_path not in installed_programs:
+                if executable_path not in found:
                     installed_programs.append({
                         "executable": executable_name,
                         "name": executable_name.split("\\")[-1],
@@ -648,24 +668,7 @@ class Manager:
                         "folder": program_folder,
                         "icon": icon
                     })
-
-        if config.get("External_Programs"):
-            '''
-            if the bottle has external programs in the configuration,
-            append them to the installed_programs list.
-            '''
-            ext_programs = config.get("External_Programs")
-            for program in ext_programs:
-                _program = ext_programs[program]
-                program_folder = os.path.dirname(_program["path"])
-                icon = self.__find_program_icon(program)
-                installed_programs.append({
-                    "executable": _program["executable"],
-                    "name": _program["name"],
-                    "path": _program["path"],
-                    "folder": program_folder,
-                    "icon": icon
-                })
+                    found.append(executable_path)
 
         return installed_programs
 
