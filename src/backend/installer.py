@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import subprocess
 import yaml
 import markdown
 import urllib.request
@@ -78,11 +79,12 @@ class InstallerManager:
         '''
         if self.__utils_conn.check_connection():
             try:
-                with urllib.request.urlopen("%s/%s/%s.yml" % (
+                manifest_url = "%s/%s/%s.yml" % (
                     BottlesRepositories.installers,
                     installer_category,
                     installer_name
-                )) as url:
+                )
+                with urllib.request.urlopen(manifest_url) as url:
                     if plain:
                         '''
                         Caller required the component manifest
@@ -92,8 +94,9 @@ class InstallerManager:
 
                     # return as dictionary
                     return yaml.safe_load(url.read())
-            except:
+            except Exception as e:
                 logging.error(f"Cannot fetch manifest for {installer_name}.")
+                print(e)
                 return False
 
         return False
@@ -150,6 +153,10 @@ class InstallerManager:
 
     def __perform_steps(self, config, steps: list):
         for st in steps:
+            # Step type: run_script
+            if st.get("action") == "run_script":
+                self.__step_run_script(config, st)
+                
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
                 download = self.__component_manager.download(
@@ -172,6 +179,38 @@ class InstallerManager:
                         environment=st.get("environment"),
                         no_async=True
                     )
+    
+    def __step_run_script(self, config, step: dict):
+        placeholders = {
+            "!bottle_path": ManagerUtils.get_bottle_path(config),
+            "!bottle_drive": f"{ManagerUtils.get_bottle_path(config)}/drive_c",
+            "!bottle_name": config.get("Name"),
+            "!bottle_arch": config.get("Arch")
+        }
+        preventions = {
+            "bottle.yml": "Bottle configuration cannot be modified."
+        }
+        script = step.get("script")
+
+        for key, value in placeholders.items():
+            script = script.replace(key, value)
+        
+        for key, value in preventions.items():
+            if script.find(key) != -1:
+                logging.error(value)
+                return False
+
+        res = subprocess.Popen(
+            f"bash -c '{script}'",
+            shell=True,
+            cwd=ManagerUtils.get_bottle_path(config),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        stdout, stderr = res.communicate()
+        logging.info(f"Executing installer script..")
+        print(stdout.decode('utf-8'))
+        logging.info(f"Finished executing installer script.")
 
     def __set_parameters(self, config, parameters: dict):
         _config = config
