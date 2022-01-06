@@ -23,6 +23,7 @@ from gi.repository import Gtk, Gio, Notify, Handy
 from pathlib import Path
 
 from .params import *
+from .backend.health import HealthChecker
 from .backend.manager import Manager
 from .backend.runner import Runner
 from .backend.notifications import NotificationsManager
@@ -33,7 +34,7 @@ from .views.list import ListView
 from .views.preferences import PreferencesWindow
 from .views.importer import ImporterView
 from .dialogs.crash import CrashReportDialog
-from .dialogs.generic import AboutDialog
+from .dialogs.generic import Dialog, AboutDialog
 from .dialogs.onboard import OnboardDialog
 from .widgets.message import MessageEntry
 
@@ -62,6 +63,7 @@ class MainWindow(Handy.ApplicationWindow):
     btn_forum = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
+    btn_health = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     list_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
@@ -163,6 +165,7 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_preferences.connect('pressed', self.show_prefs_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
+        self.btn_health.connect('pressed', self.show_health_view)
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
         self.btn_operations.connect('toggled', self.on_operations_toggled)
 
@@ -276,6 +279,22 @@ class MainWindow(Handy.ApplicationWindow):
             w.set_visible(False)
 
         self.stack_main.set_visible_child_name(self.previous_page)
+
+    def show_health_view(self, widget):
+        '''
+        This method is called when the user presses the health button.
+        It will show the health view.
+        '''
+        ht = HealthChecker().get_results(plain=True)
+        dialog = Dialog(
+            parent=self,
+            title=_("Health check"),
+            message=False,
+            log=ht
+        )
+        dialog.run()
+        dialog.destroy()
+
 
     def show_details_view(self, widget=False, config=dict):
         self.set_previous_page_status()
