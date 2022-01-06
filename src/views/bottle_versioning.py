@@ -54,6 +54,7 @@ class VersioningView(Gtk.ScrolledWindow):
         self.btn_help.connect(
             "clicked", GtkUtils.open_doc_url, "bottles/versioning"
         )
+        self.entry_state_comment.connect("activate", self.add_state)
 
     def update(self, widget=False, config={}, states={}):
         '''
@@ -102,6 +103,9 @@ class VersioningView(Gtk.ScrolledWindow):
         This function create ask the versioning manager to
         create a new bottle state with the given comment.
         '''
+        if not self.btn_save.get_sensitive():
+            return
+
         def update(result, error):
             if result.status:
                 self.update(states=result.data.get('states'))

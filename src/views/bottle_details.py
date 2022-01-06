@@ -94,9 +94,8 @@ class BottleView(Gtk.ScrolledWindow):
         self.config = config
 
         self.entry_name.connect('key-release-event', self.__check_entry_name)
-
+        self.entry_name.connect('activate', self.__toggle_rename)
         self.btn_rename.connect('toggled', self.__toggle_rename)
-
         self.btn_winecfg.connect("clicked", self.run_winecfg)
         self.btn_debug.connect("clicked", self.run_debug)
         self.btn_execute.connect("clicked", self.run_executable)
@@ -211,9 +210,14 @@ class BottleView(Gtk.ScrolledWindow):
         also update the bottle configuration with the new bottle name
         if the entry_name status is False (not editable).
         '''
-        status = widget.get_active()
-        self.entry_name.set_editable(status)
+        if not self.btn_rename.get_sensitive():
+            return
 
+        status = self.btn_rename.get_active()
+        if widget == self.entry_name:
+            status = not status
+        self.entry_name.set_editable(status)
+        
         if status:
             self.entry_name.grab_focus()
         else:
@@ -222,6 +226,9 @@ class BottleView(Gtk.ScrolledWindow):
                 key="Name",
                 value=self.entry_name.get_text()
             )
+            self.btn_rename.handler_block_by_func(self.__toggle_rename)
+            self.btn_rename.set_active(False)
+            self.btn_rename.handler_unblock_by_func(self.__toggle_rename)
 
     def update_programs(self, widget=False):
         '''

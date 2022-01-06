@@ -113,6 +113,7 @@ class NewView(Handy.Window):
         self.btn_create.connect("clicked", self.create_bottle)
         self.list_envs.connect('row-selected', self.set_active_env)
         self.entry_name.connect('key-release-event', self.check_entry_name)
+        self.entry_name.connect('activate', self.create_bottle)
         self.btn_pref_runners.connect("clicked", self.window.show_prefs_view)
         self.btn_pref_dxvk.connect("clicked", self.window.show_prefs_view)
 

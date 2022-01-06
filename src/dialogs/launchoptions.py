@@ -45,6 +45,7 @@ class LaunchOptionsDialog(Handy.Window):
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_save.connect("clicked", self.__save_options)
+        self.entry_arguments.connect("activate", self.__save_options)
 
     def __close_window(self, widget=None):
         self.destroy()
