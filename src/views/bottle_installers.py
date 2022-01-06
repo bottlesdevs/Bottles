@@ -41,7 +41,7 @@ class InstallersView(Gtk.ScrolledWindow):
         self.config = config
 
         self.btn_help.connect(
-            "pressed", GtkUtils.open_doc_url, "bottles/installers"
+            "clicked", GtkUtils.open_doc_url, "bottles/installers"
         )
 
     def update(self, widget=False, config={}):

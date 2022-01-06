@@ -43,9 +43,9 @@ class ImporterView(Gtk.ScrolledWindow):
         self.import_manager = window.manager.import_manager
 
         # connect signals
-        self.btn_find_prefixes.connect("pressed", self.__find_prefixes)
-        self.btn_import_full.connect("pressed", self.__import_full_bck)
-        self.btn_import_config.connect("pressed", self.__import_config_bck)
+        self.btn_find_prefixes.connect("clicked", self.__find_prefixes)
+        self.btn_import_full.connect("clicked", self.__import_full_bck)
+        self.btn_import_config.connect("clicked", self.__import_config_bck)
 
     def __find_prefixes(self, widget):
         '''

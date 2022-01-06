@@ -44,9 +44,9 @@ class DuplicateDialog(Handy.Window):
         self.config = parent.config
 
         # connect signals
-        self.btn_cancel.connect("pressed", self.__close_window)
-        self.btn_close.connect("pressed", self.__close_window)
-        self.btn_duplicate.connect("pressed", self.__duplicate_bottle)
+        self.btn_cancel.connect("clicked", self.__close_window)
+        self.btn_close.connect("clicked", self.__close_window)
+        self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
         self.entry_name.connect('key-release-event', self.__check_entry_name)
 
     def __check_entry_name(self, widget, event_key):

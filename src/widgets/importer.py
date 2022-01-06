@@ -53,8 +53,8 @@ class ImporterEntry(Handy.ActionRow):
         )
 
         # connect signals
-        self.btn_browse.connect("pressed", self.browse_wineprefix)
-        self.btn_import.connect("pressed", self.import_wineprefix)
+        self.btn_browse.connect("clicked", self.browse_wineprefix)
+        self.btn_import.connect("clicked", self.import_wineprefix)
 
     '''Browse wineprefix files'''
 

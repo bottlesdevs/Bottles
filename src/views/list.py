@@ -68,9 +68,9 @@ class ListViewEntry(Handy.ActionRow):
 
         # connect signals
         activate_handler = self.connect('activated', self.show_details)
-        self.btn_run.connect("pressed", self.run_executable)
-        self.btn_repair.connect("pressed", self.repair)
-        self.btn_run_executable.connect("pressed", self.run_executable)
+        self.btn_run.connect("clicked", self.run_executable)
+        self.btn_repair.connect("clicked", self.repair)
+        self.btn_run_executable.connect("clicked", self.run_executable)
 
         # populate widgets
         self.grid_versioning.set_visible(self.config.get("Versioning"))
@@ -174,7 +174,7 @@ class ListView(Gtk.ScrolledWindow):
         self.arg_exe = arg_exe
 
         '''Connect signals'''
-        self.btn_create.connect("pressed", self.window.show_add_view)
+        self.btn_create.connect("clicked", self.window.show_add_view)
 
         '''Populate list_bottles'''
         self.update_bottles()

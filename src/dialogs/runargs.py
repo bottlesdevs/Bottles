@@ -35,8 +35,8 @@ class RunArgsDialog(Handy.Window):
         self.parent = parent
 
         # connect signals
-        self.btn_cancel.connect("pressed", self.__close_window)
-        self.btn_run.connect("pressed", self.__run_executable)
+        self.btn_cancel.connect("clicked", self.__close_window)
+        self.btn_run.connect("clicked", self.__run_executable)
 
     def __run_executable(self, widget):
         '''

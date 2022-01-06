@@ -108,13 +108,13 @@ class NewView(Handy.Window):
         self.new_bottle_config = {}
 
         # connect signals
-        self.btn_cancel.connect("pressed", self.__close_window)
-        self.btn_close.connect("pressed", self.__close_window)
-        self.btn_create.connect("pressed", self.create_bottle)
+        self.btn_cancel.connect("clicked", self.__close_window)
+        self.btn_close.connect("clicked", self.__close_window)
+        self.btn_create.connect("clicked", self.create_bottle)
         self.list_envs.connect('row-selected', self.set_active_env)
         self.entry_name.connect('key-release-event', self.check_entry_name)
-        self.btn_pref_runners.connect("pressed", self.window.show_prefs_view)
-        self.btn_pref_dxvk.connect("pressed", self.window.show_prefs_view)
+        self.btn_pref_runners.connect("clicked", self.window.show_prefs_view)
+        self.btn_pref_dxvk.connect("clicked", self.window.show_prefs_view)
 
         for env in self.environments:
             env_row = EnvironmentRow(env)

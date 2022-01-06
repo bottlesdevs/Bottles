@@ -52,10 +52,10 @@ class InstallerEntry(Handy.ActionRow):
         self.set_subtitle(installer[1].get("Description"))
 
         # connect signals
-        self.btn_install.connect("pressed", self.__execute_installer)
-        self.btn_manifest.connect("pressed", self.__open_manifest)
-        self.btn_review.connect("pressed", self.__open_review)
-        self.btn_report.connect("pressed", self.__open_bug_report)
+        self.btn_install.connect("clicked", self.__execute_installer)
+        self.btn_manifest.connect("clicked", self.__open_manifest)
+        self.btn_review.connect("clicked", self.__open_review)
+        self.btn_report.connect("clicked", self.__open_bug_report)
 
     def __open_manifest(self, widget):
         '''Open installer manifest'''

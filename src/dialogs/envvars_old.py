@@ -44,8 +44,8 @@ class EnvVarsDialog(Handy.Window):
 
         # connect signals
         self.entry_variables.connect('key-release-event', self.__check_entries)
-        self.btn_cancel.connect("pressed", self.__close_window)
-        self.btn_save.connect("pressed", self.__save_variables)
+        self.btn_cancel.connect("clicked", self.__close_window)
+        self.btn_save.connect("clicked", self.__save_variables)
 
     def __check_entries(self, widget, event_key):
         '''

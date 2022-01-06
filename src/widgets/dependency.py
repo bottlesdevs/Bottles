@@ -62,10 +62,10 @@ class DependencyEntry(Handy.ActionRow):
         self.label_category.set_text(dependency[1].get("Category"))
 
         # connect signals
-        self.btn_install.connect("pressed", self.install_dependency)
-        self.btn_remove.connect("pressed", self.remove_dependency)
-        self.btn_manifest.connect("pressed", self.open_manifest)
-        self.btn_license.connect("pressed", self.open_license)
+        self.btn_install.connect("clicked", self.install_dependency)
+        self.btn_remove.connect("clicked", self.remove_dependency)
+        self.btn_manifest.connect("clicked", self.open_manifest)
+        self.btn_license.connect("clicked", self.open_license)
 
         if dependency[0] in self.config.get("Installed_Dependencies"):
             '''

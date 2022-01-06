@@ -58,8 +58,8 @@ class StateEntry(Handy.ActionRow):
             self.get_style_context().add_class("current-state")
 
         # connect signals
-        self.btn_restore.connect("pressed", self.set_state)
-        self.btn_manifest.connect("pressed", self.open_index)
+        self.btn_restore.connect("clicked", self.set_state)
+        self.btn_manifest.connect("clicked", self.open_index)
 
     def set_state(self, widget):
         '''
