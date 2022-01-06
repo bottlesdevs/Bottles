@@ -59,6 +59,7 @@ class CrashReportDialog(Handy.Window):
     btn_cancel = Gtk.Template.Child()
     btn_send = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
+    label_notice = Gtk.Template.Child()
     box_related = Gtk.Template.Child()
     check_unlock_send = Gtk.Template.Child()
     list_reports = Gtk.Template.Child()
@@ -78,6 +79,17 @@ class CrashReportDialog(Handy.Window):
 
         self.label_output.set_text(log)
         __similar_reports = self.__get_similar_issues(log)
+        if len(__similar_reports) >= 5:
+            '''
+            This issue was reported 5 times, preventing the user from
+            sending it again.
+            '''
+            prevent_text = _("""\
+            This issue was reported 5 times and cannot be sent again.
+            Report your feedback in one of the below existing reports.""")
+            self.check_unlock_send.set_sensitive(False)
+            self.btn_send.set_tooltip_text(prevent_text)
+            self.label_notice.set_text(prevent_text)
 
         if len(__similar_reports) > 0:
             '''
@@ -128,7 +140,7 @@ class CrashReportDialog(Handy.Window):
         if there are no similar reports.
         '''
         similar_issues = []
-        api_url = "https://api.github.com/repos/bottlesdevs/Bottles/issues?filter=all&state=all&labels=crash"
+        api_url = "https://api.github.com/repos/bottlesdevs/Bottles/issues?filter=all&state=all"
         try:
             with urllib.request.urlopen(api_url) as r:
                 data = r.read().decode("utf-8")

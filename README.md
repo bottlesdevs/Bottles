@@ -10,9 +10,6 @@
   <a href="https://hosted.weblate.org/engage/bottles">
     <img src="https://hosted.weblate.org/widgets/bottles/-/bottles/svg-badge.svg" />
   </a>
-  <a href="https://liberapay.com/bottles">
-    <img src="https://img.shields.io/liberapay/receives/bottles.svg?logo=liberapay">
-  </a>
   <a href="https://www.codefactor.io/repository/github/bottlesdevs/bottles/overview/master">
     <img src="https://www.codefactor.io/repository/github/bottlesdevs/bottles/badge/master" />
   </a>
@@ -26,12 +23,16 @@
     <img alt="AUR version" src="https://img.shields.io/aur/version/bottles">
   </a>
   <br>
-  <a href="https://t.me/usebottles">
-    <img src="https://img.shields.io/static/v1?label=Join%20our&message=Telegram%20Group&color=blue&logo=telegram" />
+  <a href="https://stopthemingmy.app" title="Please do not theme this app">
+    <img src="https://stopthemingmy.app/badge.svg">
   </a>
-  <a href="https://www.reddit.com/r/usebottles/">
-    <img alt="Subreddit subscribers" src="https://img.shields.io/reddit/subreddit-subscribers/usebottles">
-  </a>
+
+  <hr />
+
+  <a href="https://docs.usebottles.com">Documentation</a> ·
+  <a href="https://forums.usebottles.com">Forums</a> · 
+  <a href="https://t.me/usebottles">Telegram group</a> · 
+  <a href="https://usebottles.com/funding">Funding</a>
 </div>
 
 <br/>
@@ -62,7 +63,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Tweak different wine prefix settings, without leaving Bottles
 - Automated dxvk installation
 - System for checking runner updates for the bottle and automatic repair in case of breakage
-- Integrated Dependencies installer with compatibility check based on a community-driver [repository](https://github.com/bottlesdevs/dependencies)
+- Integrated Dependencies installer with compatibility check based on a community-driven [repository](https://github.com/bottlesdevs/dependencies)
 - Detection of installed programs
 - Integrated Task manager for wine processes
 - Easy access to ProtonDB and WineHQ for support
@@ -77,7 +78,7 @@ translate Bottles in your language or how to help improve existing ones.
 - Optional sandboxed bottles
 
 ## ↗️ Install
-Bottles is officially provided as AppImage, Flatpak, Snap, AUR, deb package. 
+Bottles is officially provided as Flatpak, AppImage, AUR package. 
 There are also other packages maintained by our community, like Fedora and 
 AUR (bottles-git).
 

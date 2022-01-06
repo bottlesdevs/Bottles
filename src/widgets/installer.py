@@ -18,7 +18,7 @@
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
 import webbrowser
-
+from ..utils import RunAsync
 from ..dialogs.generic import Dialog
 
 
@@ -95,6 +95,9 @@ class InstallerEntry(Handy.ActionRow):
 
     def __execute_installer(self, widget):
         '''Execute installer'''
+        self.set_steps(
+            self.manager.installer_manager.count_steps(self.installer)
+        )
         self.get_parent().set_sensitive(False)
         self.label_step.set_visible(True)
         for w in widget.get_children():
@@ -106,7 +109,8 @@ class InstallerEntry(Handy.ActionRow):
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
 
-        self.manager.installer_manager.install(
+        RunAsync(
+            task_func=self.manager.installer_manager.install,
             config=self.config,
             installer=self.installer,
             widget=self

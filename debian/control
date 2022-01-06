@@ -3,8 +3,14 @@ Section: utils
 Priority: optional
 Maintainer: Mirko Brombin <send@mirko.pm>
 Build-Depends: debhelper,
-	       python3,
-               meson
+               python3,
+               meson,
+               libglib2.0-dev,
+	       gettext
+Homepage: https://usebottles.com/
+Vcs-Browser: https://github.com/bottlesdevs/Bottles
+Vcs-Git: https://github.com/bottlesdevs/Bottles.git
+Rules-Requires-Root: no
 
 Package: com.usebottles.bottles
 Architecture: any
@@ -21,7 +27,8 @@ Depends: ${python3:Depends},
          libhandy-1-0,
          zlib1g,
          gir1.2-gtk-3.0,
-         gir1.2-handy-1,
+         gir1.2-handy-1 (>=1.5.0),
+         gir1.2-webkit2-4.0,
          gir1.2-notify-0.7,
          libglib2.0-bin,
          ibus-gtk3,
@@ -29,6 +36,12 @@ Depends: ${python3:Depends},
          gamemode,
          gamemode-daemon,
          libgamemode0,
-         winbind
-Description: Bottles
- Easily manage wineprefix using environments
+         winbind,
+         cabextract,
+         x11-utils
+Description: Easily manage WINE prefixes using environments
+ Bottles is an application that allows you to easily manage WINE prefixes.
+ .
+ Choose between Gaming and Software environments based on the type of software 
+ you want to start. More advanced users can choose the Custom environment to 
+ configure the bottle on their own.

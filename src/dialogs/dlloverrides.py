@@ -47,6 +47,9 @@ class DLLEntry(Handy.ActionRow):
         self.btn_remove.connect('pressed', self.__remove_override)
         self.combo_type.connect('changed', self.__set_override_type)
 
+        self.__prevent_scroll()
+
+
     def __set_override_type(self, widget):
         '''
         Change the override type according to the selected
@@ -73,6 +76,12 @@ class DLLEntry(Handy.ActionRow):
             remove=True
         )
         self.destroy()
+    
+    def __prevent_scroll(self):
+        def no_action(widget, event):
+            return True
+
+        self.combo_type.connect('scroll-event', no_action)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')

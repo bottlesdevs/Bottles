@@ -16,13 +16,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk
+
+from ..utils import RunAsync
 from ..backend.runner import Runner
 
 
 class ExecButton(Gtk.ModelButton):
 
-    def __init__(self, data, config, **kwargs):
+    def __init__(self, parent, data, config, **kwargs):
         super().__init__(**kwargs)
+        self.parent = parent
         self.config = config
         self.data = data
 
@@ -32,8 +35,12 @@ class ExecButton(Gtk.ModelButton):
         self.show_all()
 
     def on_clicked(self, widget):
-        Runner.run_executable(
+        RunAsync(
+            task_func=Runner.run_executable,
             config=self.config,
             file_path=self.data.get("file"),
             arguments=self.data.get("args"),
+            move_file=self.parent.check_move_file.get_active(),
+            move_progress=self.parent.update_move_progress,
+            no_async=True
         )

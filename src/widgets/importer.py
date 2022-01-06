@@ -17,6 +17,9 @@
 
 from gi.repository import Gtk, Handy
 
+from ..utils import RunAsync
+from ..backend.manager_utils import ManagerUtils
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')
 class ImporterEntry(Handy.ActionRow):
@@ -35,6 +38,7 @@ class ImporterEntry(Handy.ActionRow):
         # common variables and references
         self.window = window
         self.manager = window.manager
+        self.import_manager = window.manager.import_manager
         self.prefix = prefix
 
         # populate widgets
@@ -55,10 +59,21 @@ class ImporterEntry(Handy.ActionRow):
     '''Browse wineprefix files'''
 
     def browse_wineprefix(self, widget):
-        self.manager.browse_wineprefix(self.prefix)
+        ManagerUtils.browse_wineprefix(self.prefix)
 
     '''Import wineprefix'''
 
     def import_wineprefix(self, widget):
-        if self.manager.import_wineprefix(self.prefix, widget):
-            self.destroy()
+        def set_imported(result, error=False):
+            if result.status:
+                self.destroy()
+                
+            self.set_sensitive(True)
+        
+        self.set_sensitive(False)
+
+        RunAsync(
+            self.import_manager.import_wineprefix,
+            callback=set_imported,
+            wineprefix=self.prefix
+        )

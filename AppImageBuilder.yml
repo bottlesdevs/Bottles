@@ -46,18 +46,16 @@ AppDir:
     id: com.usebottles.bottles
     name: Bottles
     icon: com.usebottles.bottles
-    version: 2021.10.28-treviso
+    version: 2021.12.28-treviso
     # Set the python executable as entry point
     exec: usr/bin/python3.9
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
     exec_args: "$APPDIR/usr/bin/bottles $@"
 
   apt:
-    arch: amd64
+    arch: [amd64, i386]
     sources:
-      - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ hirsute main restricted universe multiverse'
-        key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
-      - sourceline: 'deb [arch=i386] http://archive.ubuntu.com/ubuntu/ hirsute main restricted universe multiverse'
+      - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ impish main restricted universe multiverse'
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
 
     include:
@@ -78,9 +76,12 @@ AppDir:
     - librsvg2-common
     - libselinux1
     - libgtk-3-0
+    - libwebkit2gtk-4.0
     - libglib2.0-0
     - libglib2.0-bin
     - libgee-0.8-2
+    - libffi8ubuntu1
+    - libhandy-1-0
     - python3-gi-cairo
     - python3-certifi
     - python3-yaml
@@ -98,6 +99,7 @@ AppDir:
     - cabextract
     - patool
     - p7zip
+    - x11-utils
 
     exclude:
     - adwaita-icon-theme
@@ -107,9 +109,13 @@ AppDir:
      rm -f $APPDIR/.bundle.yml
      rm -rf $APPDIR/usr/share/doc
      rm -rf $APPDIR/usr/share/man
+     mkdir -p $APPDIR/usr/local/lib/p7zip/ 
+     ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/ 
 
   files:
-    include: []
+    include:
+      - AppDir/usr/lib/x86_64-linux-gnu/libffi.so.8
+      - AppDir/usr/lib/x86_64-linux-gnu/libhandy-1.so.0
 
     exclude:
       - AppDir/usr/lib/x86_64-linux-gnu/gconv
@@ -121,6 +127,7 @@ AppDir:
 
   runtime:
     env:
+      GDK_BACKEND: x11
       # Set python home
       LD_LIBRARY_PATH: '${APPDIR}/usr/lib:${LD_LIBRARY_PATH}'
       PYTHONPATH: '${APPDIR}/usr/lib/python3/dist-packages'

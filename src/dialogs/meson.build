@@ -10,7 +10,8 @@ bottles_sources = [
   'generic.py',
   'launchoptions.py',
   'onboard.py',
-  'runargs.py'
+  'runargs.py',
+  'rename.py'
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)

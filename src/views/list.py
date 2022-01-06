@@ -20,6 +20,7 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 
+from ..utils import RunAsync
 from ..backend.runner import Runner
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
@@ -37,6 +38,7 @@ class ListViewEntry(Handy.ActionRow):
     label_state = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
+    spinner = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, arg_exe, **kwargs):
@@ -54,7 +56,7 @@ class ListViewEntry(Handy.ActionRow):
         if self.config.get("Update_Date"):
             try:
                 update_date = datetime.strptime(self.config.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
-                update_date = update_date.strftime("%b %d %Y %H:%M:%S")
+                update_date = update_date.strftime("%d %B, %Y %H:%M:%S")
             except ValueError:
                 update_date = _("N/A")
 
@@ -84,9 +86,11 @@ class ListViewEntry(Handy.ActionRow):
         if self.config.get("Broken"):
             for w in [self.btn_repair,self.icon_damaged]:
                 w.set_visible(True)
+                w.set_sensitive(True)
 
-            for w in [self, self.btn_run]:
-                w.set_sensitive(False)
+            self.btn_run.set_sensitive(False)
+            self.handler_block_by_func(self.show_details)
+
         else:
             '''Check for arguments from config'''
             if self.arg_exe:
@@ -103,7 +107,11 @@ class ListViewEntry(Handy.ActionRow):
 
     '''Repair bottle'''
     def repair(self, widget):
-        self.manager.repair_bottle(self.config)
+        self.disable()
+        RunAsync(
+            task_func=self.manager.repair_bottle,
+            config=self.config
+        )
 
     '''Display file dialog for executable'''
     def run_executable(self, widget):
@@ -134,11 +142,21 @@ class ListViewEntry(Handy.ActionRow):
 
     '''Show details page'''
     def show_details(self, widget):
-        self.window.page_details.update_combo_components()
+        self.window.page_details.view_preferences.update_combo_components()
         self.window.show_details_view(config=self.config)
+    
+    def disable(self):
+        self.handler_block_by_func(self.show_details)
+
+        for w in self.get_children():
+            w.set_sensitive(False)
+
+        self.spinner.start()
+        self.spinner.set_visible(True)
+        self.set_sensitive(False)
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
-class ListView(Gtk.Box):
+class ListView(Gtk.ScrolledWindow):
     __gtype_name__ = 'ListView'
 
     # region Widgets
@@ -176,10 +194,15 @@ class ListView(Gtk.Box):
             self.hdy_status.set_visible(False)
 
         for bottle in bottles:
-            self.list_bottles.add(ListViewEntry(self.window,
-                                                   bottle,
-                                                   self.arg_exe))
+            self.list_bottles.add(
+                ListViewEntry(self.window, bottle, self.arg_exe)
+            )
         self.arg_exe = False
 
     def update_bottles(self):
         GLib.idle_add(self.idle_update_bottles)
+    
+    def disable_bottle(self, config):
+        for bottle in self.list_bottles.get_children():
+            if bottle.config["Path"] == config["Path"]:
+                bottle.disable()

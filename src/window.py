@@ -31,7 +31,6 @@ from .views.new import NewView
 from .views.details import DetailsView
 from .views.list import ListView
 from .views.preferences import PreferencesWindow
-from .views.taskmanager import TaskManagerView
 from .views.importer import ImporterView
 from .dialogs.crash import CrashReportDialog
 from .dialogs.generic import AboutDialog
@@ -60,7 +59,7 @@ class MainWindow(Handy.ApplicationWindow):
     btn_menu = Gtk.Template.Child()
     btn_more = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
-    btn_taskmanager = Gtk.Template.Child()
+    btn_forum = Gtk.Template.Child()
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
@@ -86,10 +85,10 @@ class MainWindow(Handy.ApplicationWindow):
         self.utils_conn = UtilsConnection(self)
         self.manager = Manager(self)
 
-        # Set dark theme according to user settings
+        # Set night theme according to user settings
         self.default_settings.set_property(
             "gtk-application-prefer-dark-theme",
-            self.settings.get_boolean("dark-theme")
+            self.settings.get_boolean("night-theme")
         )
 
         # Validate arg_exe extension
@@ -125,13 +124,11 @@ class MainWindow(Handy.ApplicationWindow):
         # Pages
         page_details = DetailsView(self)
         page_list = ListView(self, arg_exe)
-        page_taskmanager = TaskManagerView(self)
         page_importer = ImporterView(self)
 
         # Reusable variables
         self.page_list = page_list
         self.page_details = page_details
-        self.page_taskmanager = page_taskmanager
         self.page_importer = page_importer
 
         # Populate stack
@@ -148,11 +145,6 @@ class MainWindow(Handy.ApplicationWindow):
             title=_("Bottles")
         )
         self.stack_main.add_titled(
-            child=page_taskmanager,
-            name="page_taskmanager",
-            title=_("Task manager")
-        )
-        self.stack_main.add_titled(
             child=page_importer,
             name="page_importer",
             title=_("Importer")
@@ -166,12 +158,13 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_back.connect('activate', self.go_back)
         self.btn_add.connect('pressed', self.show_add_view, arg_exe)
         self.btn_about.connect('pressed', self.show_about_dialog)
-        self.btn_docs.connect('pressed', self.open_docs_url)
+        self.btn_docs.connect('pressed', self.open_url, DOC_URL)
+        self.btn_forum.connect('pressed', self.open_url, FORUMS_URL)
         self.btn_preferences.connect('pressed', self.show_prefs_view)
-        self.btn_taskmanager.connect('pressed', self.show_taskmanager_view)
         self.btn_importer.connect('pressed', self.show_importer_view)
         self.btn_noconnection.connect('pressed', self.check_for_connection)
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
+        self.btn_operations.connect('toggled', self.on_operations_toggled)
 
         # Set the bottles list page as the default page
         self.stack_main.set_visible_child_name("page_list")
@@ -200,17 +193,16 @@ class MainWindow(Handy.ApplicationWindow):
             self.set_title(_("Bottle details"))
         elif page == "page_list":
             self.set_title(_("Bottles"))
-        elif page == "page_taskmanager":
-            self.set_title(_("Task manager"))
         elif page == "page_importer":
             self.set_title(_("Import & export"))
 
-    def set_title(self, title, subtitle: str = False):
+    def on_operations_toggled(self, widget):
+        if len(self.list_tasks.get_children()) == 0:
+            widget.set_visible(False)
+
+    def set_title(self, title, subtitle: str = ""):
         self.headerbar.set_title(title)
-        if subtitle:
-            self.headerbar.set_subtitle(subtitle)
-        else:
-            self.headerbar.set_subtitle("")
+        self.headerbar.set_subtitle(subtitle)
     
     def set_actions(self, widget: Gtk.Widget = False):
         '''
@@ -229,7 +221,7 @@ class MainWindow(Handy.ApplicationWindow):
         features locked for no internet connection.
         '''
         if self.utils_conn.check_connection():
-            self.manager.checks()
+            self.manager.checks(install_latest=False, first_run=True)
 
     def toggle_btn_noconnection(self, status):
         self.btn_noconnection.set_visible(status)
@@ -249,14 +241,14 @@ class MainWindow(Handy.ApplicationWindow):
         self.check_crash_log()
         self.check_notifications()
 
-    def send_notification(self, title, text, image="", user_settings=True):
+    def send_notification(self, title, text, image="", ignore_user=True):
         '''
         This method is used to send a notification to the user using
         the Notify instance. The notification is sent only if the
         user has enabled it in the settings. It is possibile to ignore the
-        user settings by passing the argument user_settings=False.
+        user settings by passing the argument ignore_user=False.
         '''
-        if user_settings and self.settings.get_boolean("notifications") or not user_settings:
+        if ignore_user or self.settings.get_boolean("notifications"):
             notification = Notify.Notification.new(title, text, image)
             notification.show()
 
@@ -309,10 +301,6 @@ class MainWindow(Handy.ApplicationWindow):
     def show_list_view(self, widget=False):
         self.stack_main.set_visible_child_name("page_list")
 
-    def show_taskmanager_view(self, widget=False):
-        self.set_previous_page_status()
-        self.stack_main.set_visible_child_name("page_taskmanager")
-
     def show_importer_view(self, widget=False):
         self.set_previous_page_status()
         self.stack_main.set_visible_child_name("page_importer")
@@ -351,7 +339,7 @@ class MainWindow(Handy.ApplicationWindow):
         if len(messages) > 0:
             for message in messages:
                 entry = MessageEntry(
-                    id=message["id"],
+                    nid=message["id"],
                     title=message["title"],
                     body=message["body"],
                     url=message["url"],
@@ -376,5 +364,5 @@ class MainWindow(Handy.ApplicationWindow):
         AboutDialog().show_all()
 
     @staticmethod
-    def open_docs_url(widget):
-        webbrowser.open_new_tab("https://docs.usebottles.com")
+    def open_url(widget, url):
+        webbrowser.open_new_tab(url)

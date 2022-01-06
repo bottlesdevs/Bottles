@@ -18,8 +18,8 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..backend.backup import RunnerBackup
-
+from ..backend.backup import BackupManager
+from ..utils import RunAsync
 from ..widgets.importer import ImporterEntry
 
 
@@ -40,6 +40,7 @@ class ImporterView(Gtk.ScrolledWindow):
         # common variables and references
         self.window = window
         self.manager = window.manager
+        self.import_manager = window.manager.import_manager
 
         # connect signals
         self.btn_find_prefixes.connect("pressed", self.__find_prefixes)
@@ -51,17 +52,24 @@ class ImporterView(Gtk.ScrolledWindow):
         This function remove all entries from the list_prefixes, ask the
         manager to find all prefixes in the system and add them to the list
         '''
-        for w in self.list_prefixes.get_children():
-            w.destroy()
+        def update(result, error=False):
+            widget.set_sensitive(True)
+            if result.status:
+                for w in self.list_prefixes.get_children():
+                    w.destroy()
+                for prefix in result.data.get("wineprefixes"):
+                    self.list_prefixes.add(ImporterEntry(self.window, prefix))
 
-        wineprefixes = self.manager.search_wineprefixes()
-        if len(wineprefixes) > 0:
-            for wineprefix in wineprefixes:
-                self.list_prefixes.add(ImporterEntry(self.window, wineprefix))
+        widget.set_sensitive(False)
+        
+        RunAsync(
+            self.import_manager.search_wineprefixes,
+            callback=update
+        )
 
     def __import_full_bck(self, widget):
         '''
-        This function show a dialog to the user, from wich it can choose an
+        This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It support only .tar.gz files
         as Bottles export bottles in this format. Once selected, it will
         be imported.
@@ -80,18 +88,19 @@ class ImporterView(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
-            RunnerBackup().import_backup(
-                self.window,
-                "full",
-                file_dialog.get_filename(),
-                self.manager
+            RunAsync(
+                task_func=BackupManager.import_backup,
+                window=self.window,
+                scope="full",
+                path=file_dialog.get_filename(),
+                manager=self.manager
             )
 
         file_dialog.destroy()
     
     def __import_config_bck(self, widget):
         '''
-        This function show a dialog to the user, from wich it can choose an
+        This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It support only .yml files
         which are the Bottles configuration file. Once selected, it will
         be imported.
@@ -110,11 +119,12 @@ class ImporterView(Gtk.ScrolledWindow):
         response = file_dialog.run()
 
         if response == -3:
-            RunnerBackup().import_backup(
-                self.window,
-                "config",
-                file_dialog.get_filename(),
-                self.manager
+            RunAsync(
+                task_func=BackupManager.import_backup,
+                window=self.window,
+                scope="config",
+                path=file_dialog.get_filename(),
+                manager=self.manager
             )
 
         file_dialog.destroy()

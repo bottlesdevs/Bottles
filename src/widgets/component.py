@@ -18,6 +18,7 @@
 from gi.repository import Gtk, GLib, GObject, Handy
 
 from ..backend.manager_utils import ManagerUtils
+from ..utils import RunAsync
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
 class ComponentEntry(Handy.ActionRow):
@@ -62,6 +63,12 @@ class ComponentEntry(Handy.ActionRow):
         self.btn_browse.connect('pressed', self.run_browse)
 
     def download(self, widget):
+        def install_finished(result, error=False):
+            if result:
+                return self.set_installed()
+            
+            return self.update_status(failed=True)
+            
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
@@ -69,11 +76,12 @@ class ComponentEntry(Handy.ActionRow):
         for w in self.box_download_status.get_children():
             w.set_visible(True)
 
-        self.component_manager.install(
-            self.component_type,
-            self.name,
-            func=self.update_status,
-            after=self.set_installed
+        RunAsync(
+            task_func=self.component_manager.install,
+            callback=install_finished,
+            component_type=self.component_type,
+            component_name=self.name,
+            func=self.update_status
         )
 
     def run_browse(self, widget):

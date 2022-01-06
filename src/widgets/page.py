@@ -30,7 +30,8 @@ class PageRow(Gtk.ListBoxRow):
             "dependencies": "application-x-addon-symbolic",
             "programs": "preferences-desktop-apps-symbolic",
             "versioning": "preferences-system-time-symbolic",
-            "installers": "system-software-install-symbolic"
+            "installers": "system-software-install-symbolic",
+            "taskmanager": "computer-symbolic-symbolic"
         }
 
         box = Gtk.Box(

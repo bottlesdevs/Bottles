@@ -18,8 +18,9 @@
 import os
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, Handy
 from ..backend.runner import Runner
+from ..utils import RunAsync
 
 
 class EnvironmentRow(Handy.ActionRow):
@@ -78,12 +79,6 @@ class NewView(Handy.Window):
             "description": _("An environment improved for Windows software."),
             "icon": "applications-engineering-symbolic"
         },
-        # {
-        #     "id": "Layered",
-        #     "name": _("Layered"),
-        #     "description": _("A layered environment, where every app is a layer."),
-        #     "icon": "emoji-symbols-symbolic"
-        # },
         {
             "id": "Custom",
             "name": _("Custom"),
@@ -91,6 +86,14 @@ class NewView(Handy.Window):
             "icon": "applications-science-symbolic"
         }
     ]
+
+    if "LAYERS" in os.environ:
+        environments.append({
+            "id": "Layered",
+            "name": _("Layered"),
+            "description": _("A layered environment, where every app is a layer."),
+            "icon": "emoji-symbols-symbolic"
+        })
 
     def __init__(self, window, arg_exe=None, arg_lnk=None, **kwargs):
         super().__init__(**kwargs)
@@ -191,6 +194,9 @@ class NewView(Handy.Window):
         if self.selected_env == "Custom":
             runner = self.combo_runner.get_active_id()
         else:
+            rc = [
+                i for i in self.manager.runners_available if i.startswith('caffe')
+            ]
             rv = [
                 i for i in self.manager.runners_available if i.startswith('vaniglia')
             ]
@@ -201,7 +207,9 @@ class NewView(Handy.Window):
                 i for i in self.manager.runners_available if i.startswith('sys-')
             ]
 
-            if len(rv) > 0:  # use the latest from vaniglia
+            if len(rc) > 0:  # use the latest from caffe
+                runner = rc[0]
+            elif len(rv) > 0:  # use the latest from vaniglia
                 runner = rv[0]
             elif len(rl) > 0:  # use the latest from lutris
                 runner = rl[0]
@@ -210,7 +218,9 @@ class NewView(Handy.Window):
             else:  # use any other runner available
                 runner = self.manager.runners_available[0]
 
-        self.manager.create_bottle(
+        RunAsync(
+            task_func=self.manager.create_bottle,
+            callback=self.finish,
             name=self.entry_name.get_text(),
             path="",
             environment=self.selected_env,
@@ -218,21 +228,27 @@ class NewView(Handy.Window):
             dxvk=self.combo_dxvk.get_active_id(),
             versioning=versioning_state,
             sandbox=sandbox_state,
-            dialog=self,
-            arch=self.combo_arch.get_active_id()
+            arch=self.combo_arch.get_active_id(),
+            fn_logger=self.update_output
         )
 
     def update_output(self, text):
         '''
-        This function update the label_output with the givven text.
+        This function update the label_output with the given text.
         It will be concatenated with the previous one.
         '''
         current_text = self.label_output.get_text()
         text = f"{current_text}{text}\n"
         self.label_output.set_text(text)
 
-    def finish(self, config):
-        self.new_bottle_config = config
+    def finish(self, result, error=None):
+        if result is None or error is not None:
+            self.update_output(_("There was an error creating the bottle."))
+            self.btn_cancel.set_visible(False)
+            self.btn_close.set_visible(True)
+            return
+
+        self.new_bottle_config = result.data.get("config")
         self.page_created.set_description(
             _("A bottle named “{0}” was created successfully").format(
                 self.entry_name.get_text()

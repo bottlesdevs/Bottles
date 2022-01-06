@@ -67,7 +67,7 @@ class OnboardDialog(Handy.Window):
         '''
         This function is called on first load and when the user require
         to change the page. It sets the widgets status according to
-        the step of the onboad progress.
+        the step of the onboard progress.
         '''
         page = self.stack_onboard.get_visible_child_name()
 
@@ -106,13 +106,21 @@ class OnboardDialog(Handy.Window):
         quit()
 
     def __install_runner(self, widget):
+        def set_completed(result, error=False):
+            self.__next_page()
+            
         '''
         This method ask the manager to performs its checks, then
         it will install the latest runner if there is no one installed.
         '''
         self.__next_page()
-        RunAsync(self.pulse, None)
-        self.manager.checks(after=self.__next_page)
+        RunAsync(self.pulse)
+        RunAsync(
+            task_func=self.manager.checks,
+            callback=set_completed,
+            install_latest=True,
+            first_run=True
+        )
 
     def __previous_page(self, widget=False):
         visible_child = self.stack_onboard.get_visible_child_name()

@@ -1,27 +1,45 @@
-com.usebottles.bottles (2021.10.28-treviso) precise; urgency=low
+com.usebottles.bottles (2021.12.28-treviso) precise; urgency=low
 
-  * Support for AMD FSR (FidelityFX Super Resolution)
-  * Now there is an internal Notifications manager, so we can keep in touch with the community!
-  * Implement DataManager to store and manage internal data
-  * Migrate components to the new ComponentEntry widget
-  * Dependencies catalog is now sorted alphabetically
-  * Now it is possible to read the installer review
-  * Now all HTTP requests are cached after the first time
-  * Support for QTerminal and LXTerminal
-  * Allow also other packages to use the sandboxed userdir in bottles (currenty thi is not a full sandbox, just the userdir is not linked to the homedir)
-  * General UI Cleanups (thanks to @BrainBlasted)
-  * Fixed a regression in Wayland support
-  * Fixed a bug in environment variables storing
-  * Fixed the wrong dxvk_nvapi flag in bottle configuration
-  * Fixed a bug with Proton component installation
-  * Fixed a bug that was causing the Versioning system executing methods in the main thread in a non safe way
-  * Fixed "Directory not empty" bug on bottle deletion
-  * Fixed "'bool' object is not callable" bug on component installation failure
-  * Fixed mispelling in translations (thanks to @Martinligabue, @comradekingu)
+  * Bottles runtime updated to 0.2
+  * Caffe is now the new default runner, falling back to Vaniglia if not available
+  * New environment variables management, has also a nice new UI
+  * The new Operation manager handle tasks queue to avoid conflicts
+  * Improved xwayland support for runners when running in a wayland session
+  * Improved compatibility for optimus laptops
+  * Prevented value changes in preferences when scrolling on combo boxes
+  * Now the Crash Report dialog disable the send button if the report is already sent multiple times
+  * The new copy_file action can be used to copy any file during dependency installation
+  * Now is possible to rename manually added programs
+  * The uninstaller can now remove more than one program in one go (used by dependencies/installers)
+  * Improved DLSS support, now is automatically configured
+  * Extended the programs search to new directories
+  * Fixed onboard (first start-up) freeze on components download
+  * Fixed random crashes caused by non-safe thread access
+  * Fixed wayland support, was setting the wrong port for xwayland, the new method tests a bunch of ports to find the right one
+  * Fixed vkd3d installation, was failing due to a regression in command handling
+  * Fixed a crash during bottle creation caused by a non handled exception
+  * Fixed random crash saving environment variables
+  * Fixed a crash caused by the logger trying to split a None
+  * Fixed silent EasyTerm crash when gamemode is enabled but it doesn't find the executable
+  * Fixed wrong environment variables setting on non optimus laptops
+  * Fixed a crash caused by a non handled exception of Patool library
+  * Fixed Windows version change for winxp, was setting the wrong value for 64bit bottles
+  * Fixed a bug during initial checks
+  * Chinese (Traditional) translations thanks to @XiaoPanPanKevinPan
+  * Italian translations thanks to @AlexzanDev, @phaerrax
+  * Czech translations thanks to @SoongVilda
+  * Russian translations thanks to @ZSHFan
   * Finnish translations thanks to Jiri Grönroos
-  * Hindi translations thanks to @ExistingProgrammer, @gauthamkrishna9991
-  * Croatian translations thanks to @milotype
-  * Japanese translations thanks to @jatin-cbs
-  * Portuguese (Brazil) translations thanks to @davipatricio
+  * French translations thanks to @GoudronViande24, @Bloombug, @julroy67
+  * Korean translations thanks to @OctopusET, @qogusdn1017
+  * Portuguese (Brazil) translations thanks to @redvulps, @davipatricio
+  * Vietnamese translations thanks to AD, Giai Ngo
+  * Portuguese translations thanks to @Bloombug
+  * Polish translations thanks to Krzysztof Marcinek
+  * Hindi translations thanks to @athenasaurav
+  * Spanish translations thanks to Alberto Cañaveras
+  * Indonesian translations thanks to neko
+  * German translations thanks to @McLutzifer, @Translator5
+  * Japanese translations thanks to @Hebi-no-Sekigae
 
- -- Mirko Brombin <send@mirko.pm>  Wed, 27 Oct 2021 19:56:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Mon, 27 Dec 2021 22:13:00 +0000

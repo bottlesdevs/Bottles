@@ -167,6 +167,8 @@ class Bottles(Gtk.Application):
 
         self.do_activate()
 
+        return 0
+
     def do_startup(self):
         '''
         This function is called when the application is started.
@@ -197,11 +199,11 @@ class Bottles(Gtk.Application):
                 path="/com/usebottles/bottles/yaru.css",
                 lookup_flags=0
             )
-        elif "Breeze" in user_theme:
-            css_res = Gio.resources_lookup_data(
-                path="/com/usebottles/bottles/breeze.css",
-                lookup_flags=0
-            )
+        # elif "Breeze" in user_theme:
+        #     css_res = Gio.resources_lookup_data(
+        #         path="/com/usebottles/bottles/breeze.css",
+        #         lookup_flags=0
+        #     )
         elif "io.elementary.stylesheet" in user_theme:
             css_res = Gio.resources_lookup_data(
                 path="/com/usebottles/bottles/elementary.css",

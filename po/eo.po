@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-30 23:20+0200\n"
-"PO-Revision-Date: 2021-10-02 17:45+0000\n"
+"POT-Creation-Date: 2021-12-27 17:50+0100\n"
+"PO-Revision-Date: 2021-11-04 21:31+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/bottles/"
 "bottles/eo/>\n"
@@ -20,9 +20,9 @@ msgstr ""
 "X-Generator: Weblate 4.9-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
-#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:29
-#: src/ui/list.ui:71 src/ui/window.ui:185 src/ui/window.ui:200
-#: src/window.py:145 src/window.py:199
+#: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
+#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
+#: src/window.py:195
 msgid "Bottles"
 msgstr "Boteloj"
 
@@ -43,7 +43,8 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-msgid "Run Windows software on Linux with Bottles🍷!"
+#, fuzzy
+msgid "Run Windows software on Linux with Bottles!"
 msgstr "Ruli Vindozajn programonj sur Linukso per Boteloj 🍷!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
@@ -158,12 +159,13 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr "Migrado al Flatpak"
 
 #: data/com.usebottles.bottles.gschema.xml:11
-msgid "Dark theme"
-msgstr "Malhela etoso"
+msgid "Night theme"
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:12
-msgid "Use a dark application theme."
-msgstr ""
+#, fuzzy
+msgid "Use the night theme."
+msgstr "Ŝalti malhelan etoson."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -178,35 +180,31 @@ msgid "Window width"
 msgstr "Larĝo de fenestro"
 
 #: data/com.usebottles.bottles.gschema.xml:22
-#, fuzzy
 msgid "Change the window width."
-msgstr "Ŝanĝi fenestran larĝon"
+msgstr "Ŝanĝi fenestran larĝon."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
 msgstr "Alto de fenestro"
 
 #: data/com.usebottles.bottles.gschema.xml:27
-#, fuzzy
 msgid "Change the window height."
-msgstr "Ŝanĝi fenestran alton"
+msgstr "Ŝanĝi fenestran alton."
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:92
-#: src/ui/window.ui:336
+#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
+#: src/ui/window.ui:335
 msgid "Notifications"
 msgstr "Sciigoj"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Show notifications."
-msgstr "Ŝalti sciigojn."
+msgstr "Montri sciigojn."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
 msgstr "Forviŝado de provizoraĵoj"
 
 #: data/com.usebottles.bottles.gschema.xml:37
-#, fuzzy
 msgid "Clean the temp path when booting the system."
 msgstr "Malplenigi dosierujon de provizoraĵoj dum starto."
 
@@ -215,9 +213,8 @@ msgid "Release Candidate"
 msgstr "Testa Antaŭversio"
 
 #: data/com.usebottles.bottles.gschema.xml:42
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "Baskuligi uzon de testaj antaŭversioj de ruliloj"
+msgstr "Baskuligi uzon de testaj antaŭversioj de ruliloj."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
@@ -228,7 +225,7 @@ msgstr "Komenca vido"
 msgid "Choose which view the application should be started in."
 msgstr "Elektu tiun vidon, kiu montriĝos post lanĉo de programo."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:263
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
 msgstr "Eksperimentoj"
 
@@ -242,31 +239,20 @@ msgstr ""
 "instalilojn, kaj testajn antaŭversiojn de ruliloj"
 
 #: data/com.usebottles.bottles.gschema.xml:56
-msgid "Experiments:versioning"
-msgstr "Eksperimentoj:versiadministrado"
-
-#: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
-msgid "Toggle experimental versioning feature."
-msgstr "Baskuligi eksperimentan funkcion de administrado de versioj"
-
-#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:installers"
 msgstr "Eksperimentoj:instaliloj"
 
-#: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
+#: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental installer features."
-msgstr "Baskuligi eksperimentan funkcion de instaliloj"
+msgstr "Baskuligi eksperimentajn funkciojn de instaliloj."
 
-#: data/com.usebottles.bottles.gschema.xml:66
+#: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
 msgstr "Aŭtomate fermi botelojn"
 
-#: data/com.usebottles.bottles.gschema.xml:67
-#, fuzzy
+#: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr "Fermi Botelojn post lanĉo de ruleblaĵo per dosieradministrilo"
+msgstr "Fermi Botelojn post lanĉo de ruleblaĵo per dosieradministrilo."
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -276,261 +262,72 @@ msgstr "© 2017-2021 - Kreantoj de Boteloj"
 msgid "Easily manage wineprefix using environments"
 msgstr "Facile administri Wine-prefiksojn per medioj"
 
-#: src/ui/about.ui:117
+#: src/ui/about.ui:123
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Traduku</a>"
 
-#: src/ui/about.ui:130
+#: src/ui/about.ui:136
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Financado</a>"
 
-#: src/ui/about.ui:143
+#: src/ui/about.ui:149
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Raportoj pri "
 "cimoj</a>"
 
-#: src/ui/about.ui:156
+#: src/ui/about.ui:162
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Novaĵoj</a>"
 
-#: src/ui/about.ui:169
+#: src/ui/about.ui:175
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
-#: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
-#: src/ui/state-entry.ui:21
-msgid "Show manifest"
-msgstr "Montri manifeston"
+#: src/ui/details-dependencies.ui:50
+msgid "Test mode enabled: only dependencies from testing repository are shown."
+msgstr ""
 
-#: src/ui/dependency-entry.ui:34
-msgid "License"
-msgstr "Permesilo"
+#: src/ui/details-dependencies.ui:127
+msgid "Microsoft .NET Framework 4 .."
+msgstr "Versio 4 de Microsoft .NET Framework…"
 
-#: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
-msgid "Bug report"
-msgstr "Raporto pri cimo"
-
-#: src/ui/dependency-entry.ui:140
+#: src/ui/details-dependencies.ui:139
 msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
+"While the files on this page have been verified may be under proprietary "
+"license."
 msgstr ""
 
-#: src/ui/dependency-entry.ui:193
-msgid "Download & Install this dependency"
-msgstr "Elŝuti kaj instali ĉi tiun dependaĵon"
-
-#: src/ui/details.ui:17 src/ui/importer.ui:94
-msgid "Refresh"
-msgstr "Reŝargi"
-
-#: src/ui/details.ui:50
-msgid "Add a custom executable path"
-msgstr "Aldoni propran dosierindikon de ruleblaĵo"
-
-#: src/ui/details.ui:76
-msgid "Search for installed programs"
-msgstr "Serĉi instalitajn programojn"
-
-#: src/ui/details.ui:117 src/ui/importer.ui:21
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
-msgstr ""
-"Jen nur la botela agordo. Ĝi estas perfekta, se vi volas krei novan botelon "
-"sen personaj dosieroj."
-
-#: src/ui/details.ui:118 src/ui/importer.ui:22
-msgid "Configuration"
-msgstr "Agordoj"
-
-#: src/ui/details.ui:131 src/ui/importer.ui:35
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Jen la plena arkivo de via botelo, inkluzive de personaj dosieroj."
-
-#: src/ui/details.ui:132 src/ui/importer.ui:36
-msgid "Full archive"
-msgstr "Plena arkivo"
-
-#: src/ui/details.ui:156
-msgid "Duplicate bottle"
-msgstr "Kopii botelon"
-
-#: src/ui/details.ui:182
-msgid "Flatpak help"
-msgstr ""
-
-#: src/ui/details.ui:206
-msgid "I can't see my old bottles after upgrade."
-msgstr ""
-
-#: src/ui/details.ui:219
-msgid "I don't see some directories."
-msgstr ""
-
-#: src/ui/details.ui:232
-msgid "I can't see the files in my home."
-msgstr ""
-
-#: src/ui/details.ui:261
-msgid "Run with arguments"
-msgstr "Ruli kun argumentoj"
-
-#: src/ui/details.ui:359
-msgid "Rename bottle"
-msgstr "Alinomi botelon"
-
-#: src/ui/details.ui:386 src/ui/list-entry.ui:35
-msgid "Versioning enabled for this bottle"
-msgstr "Administrado de versioj estas ŝaltita por ĉi tiu botelo"
-
-#: src/ui/details.ui:397 src/ui/list-entry.ui:42
-msgid "Versioning is active in this bottle."
-msgstr "Administrado de versioj estas aktiva por ĉi tiu botelo."
-
-#: src/ui/details.ui:418 src/ui/list-entry.ui:61
-msgid "0"
-msgstr "0"
-
-#: src/ui/details.ui:469 src/main.py:121
-msgid "Bottle name"
-msgstr "Botela nomo"
-
-#: src/ui/details.ui:473
-msgid "Type a name for your bottle"
-msgstr "Tajpu nomon por via botelo"
-
-#: src/ui/details.ui:492 src/ui/new.ui:161
-msgid "Environment"
-msgstr "Medio"
-
-#: src/ui/details.ui:519
-msgid "Layers"
-msgstr ""
-
-#: src/ui/details.ui:542
-msgid "64 Bit"
-msgstr "64-Bita"
-
-#: src/ui/details.ui:561
-msgid "lutris-6.0-rc1-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
-
-#: src/ui/details.ui:589
-msgid "Run executable"
-msgstr "Ruli ruleblaĵon"
-
-#: src/ui/details.ui:630
-msgid "Backup bottle"
-msgstr "Savkopii botelon"
-
-#: src/ui/details.ui:656
-msgid "Reboot Windows"
-msgstr "Restarti Vindozon"
-
-#: src/ui/details.ui:681
-msgid "Shutdown Windows"
-msgstr "Malŝalti Vindozon"
-
-#: src/ui/details.ui:706
-msgid "Kill all wine processes"
-msgstr "Ĉesigi ĉiujn procezoj de Wine."
-
-#: src/ui/details.ui:742
-msgid "Destroy this bottle"
-msgstr "Detrui ĉi tiun botelon"
-
-#: src/ui/details.ui:794 src/ui/details.ui:2424 src/views/details.py:326
-msgid "Programs"
-msgstr "Programoj"
-
-#: src/ui/details.ui:810
-msgid "Utilities"
-msgstr "Ilprogramoj"
-
-#: src/ui/details.ui:815
-msgid "Wine config"
-msgstr "Agordoj pri Wine"
-
-#: src/ui/details.ui:817
-msgid "Adjust internal settings."
-msgstr "Agordi internaĵojn."
-
-#: src/ui/details.ui:854
-msgid "Browse C:"
-msgstr "Foliumi C:"
-
-#: src/ui/details.ui:856
-msgid "Browse internal files."
-msgstr "Foliumi internaj dosieroj."
-
-#: src/ui/details.ui:893
-msgid "Command Line"
-msgstr "Komandlinio"
-
-#: src/ui/details.ui:895
-msgid "Run commands inside the Bottle."
-msgstr "Ruli komandojn en la botelo."
-
-#: src/ui/details.ui:932
-msgid "Registry Editor"
-msgstr "Redaktilo de Registrejo"
-
-#: src/ui/details.ui:934
-msgid "Edit the internal registry."
-msgstr "Redakti la internan registrejon."
-
-#: src/ui/details.ui:971
-msgid "Debug"
-msgstr "Serĉi erarojn"
-
-#: src/ui/details.ui:973
-msgid "Debug wine processes."
-msgstr "Serĉi erarojn en procezoj de Wine."
-
-#: src/ui/details.ui:1007 src/ui/details.ui:2261 src/ui/details.ui:2781
+#: src/ui/details-dependencies.ui:196 src/ui/details-installers.ui:134
+#: src/ui/details-programs.ui:126 src/ui/details-versioning.ui:162
 msgid "Read documentation"
 msgstr "Legi dokumentaron"
 
-#: src/ui/details.ui:1037
-msgid "Task Manager"
-msgstr "Administrilo de Taskoj"
+#: src/ui/details-dependencies.ui:222
+msgid "Report a problem or a missing dependency."
+msgstr ""
 
-#: src/ui/details.ui:1039
-msgid "Manage processes with the Wine task manager."
-msgstr "Administri procezojn per la administrilo de taskoj de Wine."
+#: src/ui/details-installers.ui:51
+msgid ""
+"This is an experimental feature in early development, be careful and <a href="
+"\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
+msgstr ""
 
-#: src/ui/details.ui:1076
-msgid "Uninstaller"
-msgstr "Malinstalilo"
+#: src/ui/details-installers.ui:160 src/ui/details-taskmanager.ui:32
+#: src/ui/importer.ui:94
+msgid "Refresh"
+msgstr "Reŝargi"
 
-#: src/ui/details.ui:1078
-msgid "Uninstall programs using wine uninstaller"
-msgstr "Malinstali programojn per la malinstalilo de Wine"
-
-#: src/ui/details.ui:1115
-msgid "Control Panel"
-msgstr "Stirpanelo"
-
-#: src/ui/details.ui:1117
-msgid "Access the internal wine control panel."
-msgstr "Atingi la internal stirpanelon de Wine."
-
-#: src/ui/details.ui:1169
-msgid "Bottle"
-msgstr "Botelo"
-
-#: src/ui/details.ui:1197
+#: src/ui/details-preferences.ui:28
 msgid "Graphics"
 msgstr "Grafikaĵoj"
 
-#: src/ui/details.ui:1202
+#: src/ui/details-preferences.ui:33
 msgid "Use DXVK"
 msgstr "Uzi DXVK"
 
-#: src/ui/details.ui:1203
+#: src/ui/details-preferences.ui:34
 #, fuzzy
 msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
@@ -540,11 +337,11 @@ msgstr ""
 "tridimensia grafiko.\n"
 "Malŝaltu tion, se vi spertas grafikajn problemojn."
 
-#: src/ui/details.ui:1230
+#: src/ui/details-preferences.ui:61
 msgid "Use VKD3D"
 msgstr "Uzi VKD3D"
 
-#: src/ui/details.ui:1231
+#: src/ui/details-preferences.ui:62
 #, fuzzy
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
@@ -554,54 +351,54 @@ msgstr ""
 "tridimensia grafiko.\n"
 "Malŝaltu tion, se vi spertas grafikajn problemojn."
 
-#: src/ui/details.ui:1258
-msgid "Use Gamemode"
+#: src/ui/details-preferences.ui:89
+#, fuzzy
+msgid "Use GameMode"
 msgstr "Uzi Gamemode"
 
-#: src/ui/details.ui:1259
+#: src/ui/details-preferences.ui:90
 msgid "Optimise gaming performance on demand"
 msgstr ""
 
-#: src/ui/details.ui:1285
+#: src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "Ŝalti DLSS (DXVK-NVAPI)"
 
-#: src/ui/details.ui:1286
+#: src/ui/details-preferences.ui:117
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr ""
 
-#: src/ui/details.ui:1314
+#: src/ui/details-preferences.ui:145
 msgid "Enable FSR"
-msgstr ""
+msgstr "Ŝalti FSR"
 
-#: src/ui/details.ui:1315
+#: src/ui/details-preferences.ui:146
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
 msgstr ""
 
-#: src/ui/details.ui:1331
+#: src/ui/details-preferences.ui:162
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Bonega kvalito"
 
-#: src/ui/details.ui:1332
+#: src/ui/details-preferences.ui:163
 msgid "Quality"
-msgstr ""
+msgstr "Kvalito"
 
-#: src/ui/details.ui:1333
+#: src/ui/details-preferences.ui:164
 msgid "Balanced"
 msgstr ""
 
-#: src/ui/details.ui:1334
-#, fuzzy
+#: src/ui/details-preferences.ui:165
 msgid "Performance"
-msgstr "Aspekto"
+msgstr "Rendimento"
 
-#: src/ui/details.ui:1383
+#: src/ui/details-preferences.ui:214
 msgid "Enable ACO shader compiler"
 msgstr "Ŝalti ombrigilo-tradukilon ACO"
 
-#: src/ui/details.ui:1384
+#: src/ui/details-preferences.ui:215
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -609,182 +406,189 @@ msgstr ""
 "Plibonigas rendimenton de videoludoj kaj programoj de tridimensia grafiko.\n"
 "Malŝaltu tion, se vi spertas grafikajn problemojn."
 
-#: src/ui/details.ui:1411
+#: src/ui/details-preferences.ui:242
 msgid "Discrete GPU"
 msgstr "Aparta Grafikprocesoro"
 
-#: src/ui/details.ui:1412
+#: src/ui/details-preferences.ui:243
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Pliigas rendimenton koste de plia uzado de energio."
 
-#: src/ui/details.ui:1438
+#: src/ui/details-preferences.ui:269
 msgid "Use a virtual desktop"
 msgstr "Uzi virtualan labortablon"
 
-#: src/ui/details.ui:1439
+#: src/ui/details-preferences.ui:270
 msgid "Use the Wine virtual desktop."
 msgstr "Uzi la virtualan labortablon de Wine."
 
-#: src/ui/details.ui:1522 src/ui/details.ui:1535
+#: src/ui/details-preferences.ui:341
+#, fuzzy
+msgid "Use Bottles runtime"
+msgstr "Botela nomo"
+
+#: src/ui/details-preferences.ui:342
+msgid ""
+"Provides a bundle of extra libraries for more compatibility,\n"
+"disable if you run into issues."
+msgstr ""
+
+#: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
 msgstr "Sistemo"
 
-#: src/ui/details.ui:1527
+#: src/ui/details-preferences.ui:385
 msgid "Synchronization"
 msgstr "Sinkronigo"
 
-#: src/ui/details.ui:1528
+#: src/ui/details-preferences.ui:386
 #, fuzzy
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr "Sinkronigo pliigas rendimenton por plurkernaj procesoroj."
 
-#: src/ui/details.ui:1549
+#: src/ui/details-preferences.ui:407
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details.ui:1563
+#: src/ui/details-preferences.ui:421
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details.ui:1586 src/ui/new.ui:284
+#: src/ui/details-preferences.ui:444 src/ui/new.ui:284
 msgid "Runner"
 msgstr "Rulilo"
 
-#: src/ui/details.ui:1629 src/ui/new.ui:326
+#: src/ui/details-preferences.ui:487 src/ui/new.ui:326
 msgid "Manage runners"
 msgstr "Administri rulilojn"
 
-#: src/ui/details.ui:1661 src/ui/new.ui:358
-msgid "DXVK Version"
+#: src/ui/details-preferences.ui:519 src/ui/new.ui:358
+msgid "DXVK version"
 msgstr "Versio de DXVK"
 
-#: src/ui/details.ui:1704 src/ui/details.ui:1854 src/ui/new.ui:400
+#: src/ui/details-preferences.ui:562 src/ui/details-preferences.ui:712
+#: src/ui/new.ui:400
 msgid "Manage DXVK versions"
 msgstr "Administri versiojn de DXVK"
 
-#: src/ui/details.ui:1736
-msgid "VKD3D Version"
+#: src/ui/details-preferences.ui:594
+#, fuzzy
+msgid "VKD3D version"
 msgstr "Versio de VKD3D"
 
-#: src/ui/details.ui:1779
+#: src/ui/details-preferences.ui:637
 #, fuzzy
 msgid "Manage VKD3D versions"
 msgstr "Administri versiojn de DXVK"
 
-#: src/ui/details.ui:1811
+#: src/ui/details-preferences.ui:669
 #, fuzzy
-msgid "NVAPI Version"
+msgid "NVAPI version"
 msgstr "Versio de DXVK"
 
-#: src/ui/details.ui:1887 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/details-preferences.ui:744
+#, fuzzy
+msgid "Windows version"
+msgstr "Montri version"
+
+#: src/ui/details-preferences.ui:787 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
-msgid "DLL Overrides"
+#, fuzzy
+msgid "DLL overrides"
 msgstr "DLL-Superregoj"
 
-#: src/ui/details.ui:1925
+#: src/ui/details-preferences.ui:825
 msgid "Working directory"
 msgstr "Ruldosierujo"
 
-#: src/ui/details.ui:1927
+#: src/ui/details-preferences.ui:827
 #, fuzzy
 msgid "Point to the bottle path"
 msgstr "Konservi la staton de la botelo."
 
-#: src/ui/details.ui:1943
+#: src/ui/details-preferences.ui:843
 #, fuzzy
 msgid "Choose a directory"
 msgstr "Elektu medion"
 
-#: src/ui/details.ui:1986
+#: src/ui/details-preferences.ui:886
 msgid "Audio"
 msgstr "Sono"
 
-#: src/ui/details.ui:1991
+#: src/ui/details-preferences.ui:891
 msgid "Reduce PulseAudio latency"
 msgstr "Malpliigi respondotempon de PulseAudio"
 
-#: src/ui/details.ui:1992
+#: src/ui/details-preferences.ui:892
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Agordu la respondotempon de PulseAudio al 60 milisekundoj por plibonigi sonon"
 
-#: src/ui/details.ui:2029
+#: src/ui/details-preferences.ui:929
 msgid "Developers & Debug"
 msgstr "Programistaĵoj & Erarserĉado"
 
-#: src/ui/details.ui:2034
+#: src/ui/details-preferences.ui:934 src/ui/dialog-env-vars.ui:24
 msgid "Environment variables"
 msgstr "Mediaj variabloj"
 
-#: src/ui/details.ui:2072
+#: src/ui/details-preferences.ui:972
 msgid "DXVK HUD"
 msgstr "Montrileto de DXVK"
 
-#: src/ui/details.ui:2073
+#: src/ui/details-preferences.ui:973
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Baskuligi montrileton de DXVK, montrante nombron de kadroj en sekundo kaj "
 "aliajn detalojn pri Direct3D-programoj."
 
-#: src/ui/details.ui:2099
+#: src/ui/details-preferences.ui:999
 msgid "Enable wine fixme logs"
 msgstr "Protokoli riparendaĵon de Wine"
 
-#: src/ui/details.ui:2100
+#: src/ui/details-preferences.ui:1000
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Protokoli programvojojn ne realigitajn en Wine."
 
-#: src/ui/details.ui:2141 src/ui/preferences.ui:8 src/ui/window.ui:47
-#: src/views/details.py:318
-msgid "Preferences"
-msgstr "Preferencoj"
-
-#: src/ui/details.ui:2192
-msgid "Test mode enabled: only dependencies from testing repository are shown."
+#: src/ui/details-programs.ui:29
+msgid "No programs found"
 msgstr ""
 
-#: src/ui/details.ui:2248
-msgid ""
-"While the files on this page have been verified may be under proprietary "
-"license."
+#: src/ui/details-programs.ui:30
+msgid "New programs will be automatically found."
 msgstr ""
 
-#: src/ui/details.ui:2271
-msgid "Report a missing dependency"
+#: src/ui/details-programs.ui:74
+msgid "Add a custom executable path"
+msgstr "Aldoni propran dosierindikon de ruleblaĵo"
+
+#: src/ui/details-programs.ui:100
+msgid "Search for installed programs"
+msgstr "Serĉi instalitajn programojn"
+
+#: src/ui/details-versioning.ui:60
+#, fuzzy
+msgid "No states found"
+msgstr "Boteloj troviĝis: %s"
+
+#: src/ui/details-versioning.ui:61
+msgid "Create first state to start using versioning."
 msgstr ""
 
-#: src/ui/details.ui:2315
-msgid "Microsoft .NET Framework 4 .."
-msgstr "Versio 4 de Microsoft .NET Framework…"
-
-#: src/ui/details.ui:2355 src/views/details.py:322
-msgid "Dependencies"
-msgstr "Dependaĵoj"
-
-#: src/ui/details.ui:2476 src/ui/details.ui:2603
-msgid ""
-"This is an experimental feature in early development, be careful and <a href="
-"\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
-msgstr ""
-
-#: src/ui/details.ui:2712
+#: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
 msgstr "Tajpu etan komenton:"
 
-#: src/ui/details.ui:2729
-msgid "Special characters are not allowed!"
-msgstr "Specialaj signoj estas malpermesataj!"
-
-#: src/ui/details.ui:2730
+#: src/ui/details-versioning.ui:110
 msgid "A really short comment"
 msgstr "Eta komento"
 
-#: src/ui/details.ui:2744
+#: src/ui/details-versioning.ui:124
 msgid "Save the bottle state."
 msgstr "Konservi la staton de la botelo."
 
-#: src/ui/details.ui:2808
+#: src/ui/details-versioning.ui:189
 msgid "Create new state"
 msgstr "Krei novan staton"
 
@@ -792,9 +596,13 @@ msgstr "Krei novan staton"
 msgid "Message goes here."
 msgstr "Jen tajpenda mesaĝo ĉi tie."
 
-#: src/ui/dialog.ui:23 src/ui/dialog-environment-variables.ui:28
-#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28 src/views/details.py:390
-#: src/views/details.py:603 src/views/details.py:1086 src/views/list.py:117
+#: src/ui/dialog.ui:23 src/ui/dialog-crash-report.ui:27
+#: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
+#: src/ui/dialog-run-args.ui:28 src/ui/dialog-environment-variables.ui:28
+#: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
+#: src/views/bottle_details.py:277 src/views/bottle_details.py:366
+#: src/views/bottle_preferences.py:147 src/views/bottle_programs.py:69
+#: src/views/list.py:125
 msgid "Cancel"
 msgstr "Nuligi"
 
@@ -822,13 +630,158 @@ msgstr "ekz. ucrtbase"
 msgid "Existing overrides"
 msgstr "Ekzistantaj superregoj"
 
+#: src/ui/dialog-crash-report.ui:24
+#, fuzzy
+msgid "Bottles Crash Report"
+msgstr "Ekfunkcias botelo!"
+
+#: src/ui/dialog-crash-report.ui:35
+#, fuzzy
+msgid "Send report"
+msgstr "Montri raporton"
+
+#: src/ui/dialog-crash-report.ui:75
+msgid ""
+"Bottles crashed last time. Please fill out a report attaching the following "
+"traceback to help us identify the problem preventing it from happening again."
+msgstr ""
+
+#: src/ui/dialog-crash-report.ui:138
+msgid ""
+"We found one or more similar (or identical) reports. Please make sure to "
+"check carefully that it has not already been reported before submitting a "
+"new one. Each report requires effort on the part of the developers to "
+"diagnose, please respect their work and make sure you don't post duplicates."
+msgstr ""
+
+#: src/ui/dialog-crash-report.ui:183
+msgid "I still want to report."
+msgstr ""
+
+#: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
+msgid "Advanced options"
+msgstr "Altnivelaj opcioj"
+
+#: src/ui/dialog-duplicate.ui:25
+#, fuzzy
+msgid "Duplicate a bottle"
+msgstr "Kopii botelon"
+
+#: src/ui/dialog-duplicate.ui:36
+#, fuzzy
+msgid "Duplicate"
+msgstr "Kopii botelon"
+
+#: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:50 src/ui/onboard.ui:56
+msgid "Close"
+msgstr "Fermi"
+
+#: src/ui/dialog-duplicate.ui:95
+#, fuzzy
+msgid "Type a name for the new bottle"
+msgstr "Tajpu nomon por via botelo"
+
+#: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
+#, fuzzy
+msgid "e.g.: -example1 -example2 -example3=hello"
+msgstr "ekz.: -ekzemplo1 -ekzemplo2 -ekzemplo3=saluton"
+
+#: src/ui/dialog-duplicate.ui:109
+#, fuzzy
+msgid "e.g: MyDuplicatedBottle"
+msgstr "Kopii botelon"
+
+#: src/ui/dialog-duplicate.ui:130
+#, fuzzy
+msgid "page_name"
+msgstr "Alinomi botelon"
+
+#: src/ui/dialog-duplicate.ui:147
+#, fuzzy
+msgid "Duplicating…"
+msgstr "Elŝutante…"
+
+#: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:533
+msgid "Take a break, it may take a while"
+msgstr "Ripozu, eble tio iom daŭros"
+
+#: src/ui/dialog-duplicate.ui:195
+msgid "page_duplicating"
+msgstr ""
+
+#: src/ui/dialog-duplicate.ui:204
+#, fuzzy
+msgid "Bottle duplicated"
+msgstr "Kreiĝis botelo"
+
+#: src/ui/dialog-duplicate.ui:211
+msgid "page_duplicated"
+msgstr ""
+
+#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
+#, fuzzy
+msgid "Rename"
+msgstr "Alinomi botelon"
+
+#: src/ui/dialog-rename.ui:35 src/ui/dialog-environment-variables.ui:36
+#: src/ui/dialog-launch-options.ui:36
+msgid "Save"
+msgstr "Konservi"
+
+#: src/ui/dialog-rename.ui:74
+msgid "Type the new name:"
+msgstr ""
+
+#: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
+#: src/ui/dialog-launch-options.ui:90
+#, fuzzy
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "ekz.: -ekzemplo1 -ekzemplo2 -ekzemplo3=saluton"
+
+#: src/ui/dialog-rename.ui:88
+msgid "Type here.."
+msgstr ""
+
+#: src/ui/dialog-env-vars.ui:49
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+
+#: src/ui/dialog-env-vars.ui:54
+#, fuzzy
+msgid "New variable"
+msgstr "Nova superrego"
+
+#: src/ui/dialog-env-vars.ui:65
+msgid "e.g. MY_VAR"
+msgstr ""
+
+#: src/ui/dialog-env-vars.ui:123
+#, fuzzy
+msgid "Existing variables"
+msgstr "Ekzistantaj superregoj"
+
+#: src/ui/dialog-run-args.ui:25
+msgid "Run with arguments"
+msgstr "Ruli kun argumentoj"
+
+#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:276
+#: src/views/list.py:124
+msgid "Run"
+msgstr "Ruli"
+
+#: src/ui/dialog-run-args.ui:75
+msgid "Write below the arguments to be passed to the executable."
+msgstr ""
+
+#: src/ui/dialog-run-args.ui:90
+msgid "e.g: -opengl -SkipBuildPatchPrereq"
+msgstr ""
+
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
 msgstr "Ŝanĝi mediajn variablojn"
-
-#: src/ui/dialog-environment-variables.ui:36 src/ui/dialog-launch-options.ui:36
-msgid "Save"
-msgstr "Konservi"
 
 #: src/ui/dialog-environment-variables.ui:75
 msgid ""
@@ -836,16 +789,16 @@ msgid ""
 "executed."
 msgstr "Ĉi tie vi povas ŝanĝi la mediajn variablojn por la rulotaj komandoj."
 
-#: src/ui/dialog-environment-variables.ui:87 src/ui/dialog-launch-options.ui:87
-#: src/ui/dialog-launch-options.ui:90
-msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr "ekz.: -ekzemplo1 -ekzemplo2 -ekzemplo3=saluton"
+#: src/ui/dialog-environment-variables.ui:87
+#, fuzzy
+msgid "e.g.: VAR1=value VAR2=value"
+msgstr "ekz.: VAR1=valoro VAR2=valoro…"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
 msgstr "ekz.: VAR1=valoro VAR2=valoro…"
 
-#: src/ui/dialog-launch-options.ui:25
+#: src/ui/dialog-launch-options.ui:25 src/ui/program-entry.ui:20
 msgid "Change launch options"
 msgstr "Ŝanĝi opciojn pri lanĉado"
 
@@ -853,21 +806,85 @@ msgstr "Ŝanĝi opciojn pri lanĉado"
 msgid "These arguments are passed on program launch:"
 msgstr "Jen la argumentoj donotaj al la programo dum lanĉo:"
 
-#: src/ui/dll-override-entry.ui:23
-msgid "Builtin (Wine)"
-msgstr "Integrita (Wine)"
+#: src/ui/importer.ui:21
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Jen nur la botela agordo. Ĝi estas perfekta, se vi volas krei novan botelon "
+"sen personaj dosieroj."
 
-#: src/ui/dll-override-entry.ui:24
-msgid "Native (Windows)"
-msgstr "Indiĝena (Vindoza)"
+#: src/ui/importer.ui:22
+msgid "Configuration"
+msgstr "Agordoj"
 
-#: src/ui/dll-override-entry.ui:25
-msgid "Builtin then Native"
-msgstr "Integrita, poste Indiĝena"
+#: src/ui/importer.ui:35
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr "Jen la plena arkivo de via botelo, inkluzive de personaj dosieroj."
 
-#: src/ui/dll-override-entry.ui:26
-msgid "Native then Builtin"
-msgstr "Indiĝena, poste Integrita"
+#: src/ui/importer.ui:36
+msgid "Full archive"
+msgstr "Plena arkivo"
+
+#: src/ui/importer.ui:75 src/window.py:150
+msgid "Importer"
+msgstr "Enportilo"
+
+#: src/ui/importer.ui:121
+msgid "Import Bottles backup"
+msgstr "Enporti savkopion de botelo"
+
+#: src/ui/importer-entry.ui:21 src/ui/component-entry.ui:99
+msgid "Browse files"
+msgstr "Foliumi dosierojn"
+
+#: src/ui/importer-entry.ui:69
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Ĉi tiu Wine-prefikso jam estis enportita en botelojn."
+
+#: src/ui/list.ui:65
+msgid "Start off by creating a Bottle."
+msgstr "Komencu per kreo de botelo."
+
+#: src/ui/list.ui:68
+msgid "Create a new Bottle"
+msgstr "Krei novan botelon"
+
+#: src/ui/list-entry.ui:34
+msgid "Versioning enabled for this bottle"
+msgstr "Administrado de versioj estas ŝaltita por ĉi tiu botelo"
+
+#: src/ui/list-entry.ui:41
+msgid "Versioning is active in this bottle."
+msgstr "Administrado de versioj estas aktiva por ĉi tiu botelo."
+
+#: src/ui/list-entry.ui:60
+msgid "0"
+msgstr "0"
+
+#: src/ui/list-entry.ui:107
+msgid "This bottle looks damaged."
+msgstr "Ĉi tia botelo aspektas difektita."
+
+#: src/ui/list-entry.ui:127
+msgid "Execute in this bottle"
+msgstr "Ruli en ĉi tiu botelo"
+
+#: src/ui/list-entry.ui:153
+msgid "Run Here"
+msgstr "Ruli ĉi tie"
+
+#: src/ui/list-entry.ui:172
+msgid ""
+"This bottle looks damaged, the configuration file is missing. I can try to "
+"solve by creating a new configuration."
+msgstr ""
+"Tiu botelo aspektas difektita; mankas ĝia agorda dosiero. Mi povas provi "
+"ripari ĝin per kreo de nova agorda dosiero."
+
+#: src/ui/list-entry.ui:193
+msgid "Run .exe/.msi in this bottle"
+msgstr "Ruli .exe/.msi en ĉi tiu botelo"
 
 #: src/ui/component-entry.ui:9
 #, fuzzy
@@ -887,68 +904,98 @@ msgstr ""
 msgid "Download & Install"
 msgstr "Elŝuti kaj instali ĉi tiun DXVK"
 
-#: src/ui/component-entry.ui:99 src/ui/importer-entry.ui:21
-msgid "Browse files"
-msgstr "Foliumi dosierojn"
-
 #: src/ui/component-entry.ui:129
 msgid "0%"
 msgstr "0%"
 
-#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:121
+#: src/ui/component-entry.ui:177 src/ui/program-entry.ui:159
 msgid "Uninstall"
 msgstr "Malinstali"
 
-#: src/ui/importer.ui:75 src/window.py:155
-msgid "Importer"
-msgstr "Enportilo"
+#: src/ui/dependency-entry.ui:21 src/ui/installer-entry.ui:21
+#: src/ui/state-entry.ui:21
+msgid "Show manifest"
+msgstr "Montri manifeston"
 
-#: src/ui/importer.ui:121
-msgid "Import Bottles backup"
-msgstr "Enporti savkopion de botelo"
+#: src/ui/dependency-entry.ui:34
+msgid "License"
+msgstr "Permesilo"
 
-#: src/ui/importer-entry.ui:69
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Ĉi tiu Wine-prefikso jam estis enportita en botelojn."
+#: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
+msgid "Bug report"
+msgstr "Raporto pri cimo"
+
+#: src/ui/dependency-entry.ui:140
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+
+#: src/ui/dependency-entry.ui:193
+msgid "Download & Install this dependency"
+msgstr "Elŝuti kaj instali ĉi tiun dependaĵon"
+
+#: src/ui/dll-override-entry.ui:23
+msgid "Builtin (Wine)"
+msgstr "Integrita (Wine)"
+
+#: src/ui/dll-override-entry.ui:24
+msgid "Native (Windows)"
+msgstr "Indiĝena (Vindoza)"
+
+#: src/ui/dll-override-entry.ui:25
+msgid "Builtin then Native"
+msgstr "Integrita, poste Indiĝena"
+
+#: src/ui/dll-override-entry.ui:26
+msgid "Native then Builtin"
+msgstr "Indiĝena, poste Integrita"
+
+#: src/ui/env-var-entry.ui:91
+msgid "value"
+msgstr ""
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
-msgstr ""
+msgstr "Legi recenzon"
 
-#: src/ui/list.ui:72
-msgid "Start off by creating a Bottle."
-msgstr "Komencu per kreo de botelo."
-
-#: src/ui/list.ui:75
-msgid "Create a new Bottle"
-msgstr "Krei novan botelon"
-
-#: src/ui/list-entry.ui:82
-msgid "This bottle looks damaged."
-msgstr "Ĉi tia botelo aspektas difektita."
-
-#: src/ui/list-entry.ui:97
-msgid "Execute in this bottle"
-msgstr "Ruli en ĉi tiu botelo"
-
-#: src/ui/list-entry.ui:118
+#: src/ui/task-entry.ui:50
 #, fuzzy
-msgid "Run Here"
-msgstr "Ruli ĉi tie"
+msgid "Delete message"
+msgstr "Forviŝi staton"
 
-#: src/ui/list-entry.ui:132
-msgid ""
-"This bottle looks damaged, the configuration file is missing. I can try to "
-"solve by creating a new configuration."
+#: src/ui/program-entry.ui:33
+#, fuzzy
+msgid "Browse path"
+msgstr "Foliumi dosierindikojn"
+
+#: src/ui/program-entry.ui:70
+msgid "WineHQ"
+msgstr "WineHQ"
+
+#: src/ui/program-entry.ui:83
+msgid "ProtonDB"
+msgstr "ProtonDB"
+
+#: src/ui/program-entry.ui:96
+#, fuzzy
+msgid "Bottles' Forums"
+msgstr "Problemoj pri Boteloj"
+
+#: src/ui/program-entry.ui:109
+#, fuzzy
+msgid "Bottles' Issues"
+msgstr "Problemoj pri Boteloj"
+
+#: src/ui/program-entry.ui:133
+msgid "Remove from Programs"
+msgstr "Forigi el Programo-dosierujo"
+
+#: src/ui/program-entry.ui:146
+msgid "Add desktop entry"
 msgstr ""
-"Tiu botelo aspektas difektita; mankas ĝia agorda dosiero. Mi povas provi "
-"ripari ĝin per kreo de nova agorda dosiero."
 
-#: src/ui/list-entry.ui:153
-msgid "Run .exe/.msi in this bottle"
-msgstr "Ruli .exe/.msi en ĉi tiu botelo"
-
-#: src/ui/new.ui:25 src/ui/window.ui:316
+#: src/ui/new.ui:25 src/ui/window.ui:315
 msgid "New bottle"
 msgstr "Nova botelo"
 
@@ -956,14 +1003,9 @@ msgstr "Nova botelo"
 msgid "Create"
 msgstr "Krei"
 
-#: src/ui/new.ui:50 src/ui/onboard.ui:56
-msgid "Close"
-msgstr "Fermi"
-
 #: src/ui/new.ui:97
-#, fuzzy
 msgid "Bottle information"
-msgstr "Kreiĝis botelo"
+msgstr "Informo pri botelo"
 
 #: src/ui/new.ui:118
 msgid "Name"
@@ -981,9 +1023,9 @@ msgstr "Ĉi tiu kampo ne enhavu specialajn signojn!"
 msgid "My beautiful bottle"
 msgstr "Mia bela botelo"
 
-#: src/ui/new.ui:209
-msgid "Advanced options"
-msgstr "Altnivelaj opcioj"
+#: src/ui/new.ui:161
+msgid "Environment"
+msgstr "Medio"
 
 #: src/ui/new.ui:230
 msgid "Use versioning"
@@ -1007,7 +1049,6 @@ msgid "Architecture"
 msgstr "Arkitekturo"
 
 #: src/ui/new.ui:434
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary"
 msgstr "Ni rekomendas uzi la 32-bitan nur se tio necesas"
 
@@ -1022,10 +1063,6 @@ msgstr "32-bita"
 #: src/ui/new.ui:514
 msgid "Creating bottle…"
 msgstr "Kreante botelon…"
-
-#: src/ui/new.ui:533
-msgid "Take a break, it may take a while"
-msgstr "Ripozu, eble tio iom daŭros"
 
 #: src/ui/new.ui:583
 msgid "Bottle created"
@@ -1081,7 +1118,6 @@ msgid "Wine"
 msgstr "Wine"
 
 #: src/ui/onboard.ui:222
-#, fuzzy
 msgid "We Are Almost There"
 msgstr "Preskaŭ finite"
 
@@ -1108,7 +1144,7 @@ msgstr ""
 "\n"
 "Se vi pretas, premu la butonon <b>«Instali»</b>."
 
-#: src/ui/onboard.ui:263 src/ui/preferences.ui:181
+#: src/ui/onboard.ui:263 src/ui/preferences.ui:180
 msgid "Runners"
 msgstr "Ruliloj"
 
@@ -1125,7 +1161,6 @@ msgid "Download"
 msgstr "Elŝuti"
 
 #: src/ui/onboard.ui:349
-#, fuzzy
 msgid "Everything Is Ready!"
 msgstr "Ĉio pretas!"
 
@@ -1137,152 +1172,118 @@ msgstr "Vi nun pretas ekkrei viajn botelojn."
 msgid "Finish"
 msgstr "Fini"
 
-#: src/ui/preferences.ui:18 src/ui/preferences.ui:87
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:107
+msgid "Preferences"
+msgstr "Preferencoj"
+
+#: src/ui/preferences.ui:17 src/ui/preferences.ui:86
 msgid "General"
 msgstr "Ĝenerala"
 
-#: src/ui/preferences.ui:23
+#: src/ui/preferences.ui:22
 msgid "Apperance"
 msgstr "Aspekto"
 
-#: src/ui/preferences.ui:28 src/ui/preferences.ui:331
-msgid "Dark Mode"
-msgstr "Malhela Reĝimo"
+#: src/ui/preferences.ui:27 src/ui/preferences.ui:304
+msgid "Night mode"
+msgstr ""
 
-#: src/ui/preferences.ui:29 src/ui/preferences.ui:332
-msgid "Whether Bottles should use the Dark theme variant."
+#: src/ui/preferences.ui:28 src/ui/preferences.ui:305
+#, fuzzy
+msgid "Whether Bottles should use the Night theme variant."
 msgstr "Ĉu uzi malhelan etoson por boteloj."
 
-#: src/ui/preferences.ui:55
+#: src/ui/preferences.ui:54
 msgid "Show update date"
 msgstr "Montri daton de ĝisdatigo"
 
-#: src/ui/preferences.ui:56
+#: src/ui/preferences.ui:55
 msgid "Whether to show the update date in the bottle list."
 msgstr ""
 
-#: src/ui/preferences.ui:93
+#: src/ui/preferences.ui:92
 msgid "Show notifications for downloads and installs."
 msgstr "Sciigi pri elŝutoj kaj instaloj."
 
-#: src/ui/preferences.ui:119
+#: src/ui/preferences.ui:118
 msgid "Temp files"
 msgstr "Provizoraj dosieroj"
 
-#: src/ui/preferences.ui:120
+#: src/ui/preferences.ui:119
 msgid "Clean temp files when Bottles launches?"
 msgstr "Ĉu forviŝi provizoraĵojn dum lanĉo de Boteloj?"
 
-#: src/ui/preferences.ui:146
+#: src/ui/preferences.ui:145
 msgid "Close Bottles after starting a program"
 msgstr "Fermi Botelojn post lanĉo de programo"
 
-#: src/ui/preferences.ui:147
+#: src/ui/preferences.ui:146
 msgid "Close Bottles after starting a program from the file manager"
 msgstr "Fermi Botelojn post lanĉo de programo per dosieradministrilo"
 
-#: src/ui/preferences.ui:190
+#: src/ui/preferences.ui:189
 msgid "Pre-release"
 msgstr "Antaŭversio"
 
-#: src/ui/preferences.ui:191
+#: src/ui/preferences.ui:190
 msgid "Whether the above list should display unstable versions."
 msgstr "Ĉu la ĉi-supra listo montru nestabilajn versiojn."
 
-#: src/ui/preferences.ui:225
+#: src/ui/preferences.ui:224
 msgid "DXVK/VKD3D"
 msgstr "DXVK/VKD3D"
 
-#: src/ui/preferences.ui:230
+#: src/ui/preferences.ui:229
 msgid "DXVK"
 msgstr "DXVK"
 
-#: src/ui/preferences.ui:240
+#: src/ui/preferences.ui:239
 msgid "VKD3D"
 msgstr "VKD3D"
 
-#: src/ui/preferences.ui:250
+#: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:272 src/views/details.py:330
-msgid "Versioning"
-msgstr "Administrado de versioj"
-
-#: src/ui/preferences.ui:298 src/views/details.py:334
+#: src/ui/preferences.ui:271 src/views/details.py:123
 msgid "Installers"
 msgstr "Instaliloj"
 
-#: src/ui/program-entry.ui:21
-msgid "Change Launch Options"
-msgstr "Ŝanĝi Opciojn pri Lanĉado"
-
-#: src/ui/program-entry.ui:34
-msgid "Browse Path"
-msgstr "Foliumi dosierindikojn"
-
-#: src/ui/program-entry.ui:58
-msgid "WineHQ"
-msgstr "WineHQ"
-
-#: src/ui/program-entry.ui:71
-msgid "ProtonDB"
-msgstr "ProtonDB"
-
-#: src/ui/program-entry.ui:84
-msgid "Bottles Issues"
-msgstr "Problemoj pri Boteloj"
-
-#: src/ui/program-entry.ui:108
-msgid "Remove from Programs"
-msgstr "Forigi el Programo-dosierujo"
-
-#: src/ui/state-entry.ui:45
-msgid "Delete state"
-msgstr "Forviŝi staton"
-
-#: src/ui/state-entry.ui:71
+#: src/ui/state-entry.ui:47
 msgid "Restore this state"
 msgstr "Restaŭri ĉi tiun staton"
 
-#: src/ui/state-entry.ui:98
+#: src/ui/state-entry.ui:74
 msgid "Creation date"
 msgstr "Dato de kreo"
 
-#: src/ui/task-manager.ui:26
-msgid "These are the wine/wineserver processes running on your PC."
-msgstr "Jen la ruliĝantaj procezoj de (servilo de) Wine en via komputilo."
-
-#: src/ui/task-manager.ui:45
-msgid "Check for running processes."
-msgstr "Kontrolu ruliĝantajn procezojn."
-
-#: src/ui/window.ui:21 src/window.py:150 src/window.py:201
-msgid "Task manager"
-msgstr "Administrilo de taskoj"
-
-#: src/ui/window.ui:34
-msgid "Import and export"
+#: src/ui/window.ui:20
+#, fuzzy
+msgid "Import/export"
 msgstr "Enporti kaj elporti"
 
-#: src/ui/window.ui:71
+#: src/ui/window.ui:57
 msgid "Documentation"
 msgstr "Dokumentaro"
 
-#: src/ui/window.ui:84
+#: src/ui/window.ui:70
+msgid "Forums"
+msgstr ""
+
+#: src/ui/window.ui:83
 msgid "About Bottles"
 msgstr "Pri Boteloj"
 
-#: src/ui/window.ui:209 src/ui/window.ui:252
+#: src/ui/window.ui:208 src/ui/window.ui:251
 msgid "Open menu"
 msgstr "Malfermi menuon"
 
-#: src/ui/window.ui:230
+#: src/ui/window.ui:229
 #, fuzzy
 msgid "Operations"
 msgstr "Tradukoj"
 
-#: src/ui/window.ui:274
+#: src/ui/window.ui:273
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1291,160 +1292,188 @@ msgstr ""
 "Vi ne ŝajnas konektita al Interreto. Sen konekto vi ne povos elŝuti "
 "havendajn komponantojn. Alklaku ĉi tiun ikonon post konektado."
 
-#: src/ui/window.ui:295
+#: src/ui/window.ui:294
 msgid "Go back"
 msgstr "Reen"
 
-#: src/main.py:97
+#: src/operation.py:63
+msgid "Calculating..."
+msgstr ""
+
+#: src/main.py:98
 msgid "Show version"
 msgstr "Montri version"
 
-#: src/main.py:105
+#: src/main.py:106
 msgid "Executable path"
 msgstr "Dosierindiko de ruleblaĵo"
 
-#: src/main.py:113
+#: src/main.py:114
 msgid "lnk path"
 msgstr "Dosierindiko de simbola ligo"
 
-#: src/main.py:234
+#: src/main.py:122
+msgid "Bottle name"
+msgstr "Botela nomo"
+
+#: src/main.py:130
+#, fuzzy
+msgid "Pass arguments"
+msgstr "Ruli kun argumentoj"
+
+#: src/main.py:249
 msgid "[Quit] request received."
 msgstr "Riceviĝis peto [Forlasi]."
 
-#: src/main.py:243
+#: src/main.py:258
 msgid "[Help] request received."
 msgstr "Riceviĝis peto [Helpo]."
 
-#: src/main.py:251
+#: src/main.py:266
 msgid "[Refresh] request received."
 msgstr "Riceviĝis peto [Reŝargi]."
 
-#: src/utils.py:68
+#: src/utils.py:70
 msgid "You are offline, unable to download."
 msgstr "Vi ne estas konektita al Interreto, kaj tial ne kapablas elŝuti."
 
-#: src/window.py:140 src/window.py:197
+#: src/window.py:140 src/window.py:193
 msgid "Bottle details"
 msgstr "Detaloj pri botelo"
 
-#: src/window.py:187
+#: src/window.py:183
 msgid "Bottles Started!"
 msgstr "Ekfunkcias botelo!"
 
-#: src/window.py:203
-#, fuzzy
+#: src/window.py:197
 msgid "Import & export"
 msgstr "Enporti kaj elporti"
 
-#: src/backend/backup.py:54
+#: src/backend/backup.py:65
 #, python-brace-format
 msgid "Backup {0}"
-msgstr "Savkopii {0}"
+msgstr "Savkopio {0}"
 
-#: src/backend/backup.py:101
+#: src/backend/backup.py:106
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Enportante savkopion: {0}"
 
-#. if there are no local runners, show preferences
-#: src/backend/manager.py:896
-msgid "No runners found, please install one."
-msgstr "Neniuj ruliloj troviĝis; bonvolu instali unu."
+#: src/backend/manager.py:964
+msgid "Missing essential components. Installing…"
+msgstr ""
 
-#. if there are no local dxvks, install latest
-#: src/backend/manager.py:901
+#: src/backend/manager.py:1039
 #, fuzzy
-msgid "No DXVK found, installing the latest version …"
-msgstr "Ne troviĝis DXVK; instalante plej novan version…"
-
-#. if there are no local vkd3ds, install latest
-#: src/backend/manager.py:905
-#, fuzzy
-msgid "No VKD3D found, installing the latest version …"
-msgstr "Ne troviĝis VKD3D; instalante plej novan version…"
-
-#. if there are no local nvapis, install latest
-#: src/backend/manager.py:909
-#, fuzzy
-msgid "No NVAPI found, installing the latest version …"
-msgstr "Ne troviĝis DXVK; instalante plej novan version…"
+msgid "Generating bottle configuration"
+msgstr "Konektostato: ne konektita…"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:969
+#: src/backend/manager.py:1058
 #, fuzzy
-msgid "The WINE config is being updated …"
+msgid "The WINE config is being updated…"
 msgstr "Reagordante Wine…"
 
-#: src/backend/manager.py:979
-#, fuzzy
+#: src/backend/manager.py:1060
 msgid "WINE config updated!"
 msgstr "Reagordiĝis Wine!"
 
-#: src/backend/manager.py:988
-msgid "Running as Flatpak, creating sandboxed folders…"
+#: src/backend/manager.py:1069
+msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:990
-#, fuzzy
-msgid "Creating sandboxed folders…"
-msgstr "Kreante botelon…"
+#: src/backend/manager.py:1071
+msgid "Sandboxing userdir…"
+msgstr ""
 
-#: src/backend/manager.py:1004
+#: src/backend/manager.py:1089
 #, fuzzy
-msgid "Generating bottle config file…"
-msgstr "Konektostato: ne konektita…"
+msgid "Setting Windows version…"
+msgstr "Montri version"
 
-#: src/backend/manager.py:1025
-#, python-brace-format
-msgid "Applying environment: {0} …"
+#: src/backend/manager.py:1097
+msgid "Apply CMD default settings…"
+msgstr ""
+
+#: src/backend/manager.py:1105
+#, fuzzy
+msgid "Optimizing environment…"
 msgstr "Efektivigante medion: {0}…"
 
-#: src/backend/manager.py:1048
-#, fuzzy
+#: src/backend/manager.py:1117
+#, fuzzy, python-brace-format
+msgid "Applying environment: {0}…"
+msgstr "Efektivigante medion: {0}…"
+
+#: src/backend/manager.py:1127
 msgid "Installing DXVK…"
 msgstr "Instalante DXVK…"
 
-#: src/backend/manager.py:1054
-#, fuzzy
+#: src/backend/manager.py:1133
 msgid "Installing VKD3D…"
 msgstr "Instalante VKD3D…"
 
-#: src/backend/manager.py:1060
-#, fuzzy
+#: src/backend/manager.py:1139
 msgid "Installing DXVK-NVAPI…"
-msgstr "Instalante DXVK…"
+msgstr "Instalante DXVK-NVAPI…"
 
-#: src/backend/manager.py:1068
-#, fuzzy
+#: src/backend/manager.py:1146
+#, fuzzy, python-brace-format
+msgid "Installing dependency: {0}…"
+msgstr "Instalante dependaĵon {0} en botelo {1}…"
+
+#: src/backend/manager.py:1163
 msgid "Creating versioning state 0…"
 msgstr "Kreante versian staton 0…"
 
-#: src/backend/manager.py:1075
-#, fuzzy, python-brace-format
-msgid "Your new {0} bottle is now ready."
-msgstr "Pretas via nova botelo {0}!"
+#: src/backend/manager.py:1171
+msgid "Finalizing…"
+msgstr ""
 
-#: src/backend/versioning.py:48
+#: src/backend/versioning.py:55
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Konektostato: ne konektita…"
 
-#: src/backend/versioning.py:131
+#: src/backend/versioning.py:141
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Kreante ŝlosdosieron en fonta dosierujo…"
 
-#: src/backend/versioning.py:155
+#: src/backend/versioning.py:165
+msgid "Could not create the state folder."
+msgstr ""
+
+#: src/backend/versioning.py:172
 msgid "Updating index …"
 msgstr "Ĝisdatigante indekson…"
 
-#: src/backend/versioning.py:178
+#: src/backend/versioning.py:196
 msgid "Updating states …"
 msgstr "Ĝisdatigante statojn…"
+
+#: src/backend/versioning.py:225
+msgid "Could not update the states file."
+msgstr ""
+
+#: src/backend/versioning.py:239
+msgid "Could not update the index file."
+msgstr ""
+
+#: src/backend/versioning.py:265
+#, fuzzy, python-brace-format
+msgid "New state [{0}] created successfully!"
+msgstr "Sukcese malpleniĝis dosierujo de provizoraĵoj!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
 msgstr "Montri raporton"
+
+#: src/dialogs/crash.py:87
+msgid ""
+"            This issue was reported 5 times and cannot be sent again.\n"
+"            Report your feedback in one of the below existing reports."
+msgstr ""
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:68
 msgid "Warning"
@@ -1454,118 +1483,293 @@ msgstr "Averto"
 msgid "An error has occurred."
 msgstr "Eraro okazis."
 
-#: src/views/details.py:270
-msgid "Gamemode is either not available on your system or not running."
-msgstr "Gamemode estas aŭ ne havebla aŭ ne ruliĝanta en via sistemo."
-
-#: src/views/details.py:314
+#: src/views/details.py:103
 msgid "Details & Utilities"
 msgstr "Detaloj & ilprogramoj"
 
-#: src/views/details.py:327
+#: src/views/details.py:111
+msgid "Dependencies"
+msgstr "Dependaĵoj"
+
+#: src/views/details.py:115
+msgid "Programs"
+msgstr "Programoj"
+
+#: src/views/details.py:116
 msgid "Found in your bottle's Start menu."
 msgstr ""
 
-#: src/views/details.py:386
-msgid "Choose working directory for executables"
-msgstr "Elektu labordosierujon por ruleblaĵoj"
+#: src/views/details.py:119
+msgid "Versioning"
+msgstr "Administrado de versioj"
 
-#: src/views/details.py:389
-msgid "Done"
-msgstr "Finita"
+#: src/views/details.py:127
+msgid "Task manager"
+msgstr "Administrilo de taskoj"
 
-#. format arch
-#: src/views/details.py:459
-msgid "64-bit"
-msgstr "64-bita"
-
-#: src/views/details.py:461
-msgid "32-bit"
-msgstr "32-bita"
-
-#: src/views/details.py:482
+#: src/views/bottle_details.py:171
 #, python-format
 msgid "Updated: %s"
 msgstr "Ĝisdatigoj: %s"
 
-#: src/views/details.py:599
-msgid "Choose an executable path"
-msgstr "Elektu dosierindikon de ruleblaĵo"
+#. set arch
+#: src/views/bottle_details.py:174
+msgid "64-bit"
+msgstr "64-bita"
 
-#: src/views/details.py:602
-msgid "Add"
-msgstr "Aldoni"
+#: src/views/bottle_details.py:176
+msgid "32-bit"
+msgstr "32-bita"
 
-#: src/views/details.py:1082 src/views/list.py:113
+#: src/views/bottle_details.py:273 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Elektu Vindozan programon"
 
-#: src/views/details.py:1085 src/views/list.py:116
-msgid "Run"
-msgstr "Ruli"
-
-#: src/views/details.py:1145
+#: src/views/bottle_details.py:355
 msgid "Select the location where to save the backup config"
 msgstr "Elektu la lokon, kie konserviĝos la savkopio de agordoj"
 
-#: src/views/details.py:1173
+#: src/views/bottle_details.py:359
 msgid "Select the location where to save the backup archive"
 msgstr "Elektu la lokon, kie konserviĝos la savkopia arkivo"
 
-#: src/views/details.py:1211
+#: src/views/bottle_details.py:366
+msgid "Export"
+msgstr ""
+
+#: src/views/bottle_details.py:397
 msgid "Confirm deletion"
 msgstr "Konfirmu forviŝon"
 
-#: src/views/details.py:1213
+#: src/views/bottle_details.py:399
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Ĉu vi certe volas forviŝi ĉi tiun botelon kaj ĝiajn dosierojn?"
 
-#: src/views/importer.py:70
+#: src/views/bottle_preferences.py:133
+msgid "Gamemode is either not available on your system or not running."
+msgstr "Gamemode estas aŭ ne havebla aŭ ne ruliĝanta en via sistemo."
+
+#: src/views/bottle_preferences.py:143
+msgid "Choose working directory for executables"
+msgstr "Elektu labordosierujon por ruleblaĵoj"
+
+#: src/views/bottle_preferences.py:146
+msgid "Done"
+msgstr "Finita"
+
+#: src/views/bottle_programs.py:65
+msgid "Choose an executable path"
+msgstr "Elektu dosierindikon de ruleblaĵo"
+
+#: src/views/bottle_programs.py:68
+msgid "Add"
+msgstr "Aldoni"
+
+#: src/views/importer.py:78
 msgid "Choose a backup archive"
 msgstr "Elektu savkopian arkivon"
 
-#: src/views/importer.py:100
+#: src/views/importer.py:109
 #, fuzzy
 msgid "Choose a configuration file"
 msgstr "Agordoj"
 
-#: src/views/list.py:53 src/views/list.py:59
+#: src/views/list.py:55 src/views/list.py:61
 msgid "N/A"
 msgstr "Ne aplikebla"
 
-#: src/views/list.py:94
+#: src/views/list.py:98
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Troviĝis argumentoj de programo [{executable}]."
 
-#: src/views/new.py:69
+#: src/views/new.py:72
 msgid "Gaming"
 msgstr "Videoludado"
 
-#: src/views/new.py:70
+#: src/views/new.py:73
 msgid "An environment improved for Windows games."
 msgstr "Medio por Vindozaj videoludoj."
 
-#: src/views/new.py:75
+#: src/views/new.py:78
 msgid "Software"
 msgstr "Programoj"
 
-#: src/views/new.py:76
+#: src/views/new.py:79
 msgid "An environment improved for Windows software."
 msgstr "Medio por Vindozaj programoj."
 
-#: src/views/new.py:87
+#: src/views/new.py:90
 msgid "Custom"
 msgstr "Propra"
 
-#: src/views/new.py:88
+#: src/views/new.py:91
 msgid "A clear environment for your experiments."
 msgstr "Medio por viaj eksperimentoj."
 
-#: src/views/new.py:234
+#: src/views/new.py:239
+msgid "There was an error creating the bottle."
+msgstr ""
+
+#: src/views/new.py:246
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Sukcese kreiĝis botelo nomita “{0}”"
+
+#: src/widgets/dependency.py:94 src/widgets/installer.py:69
+#, python-brace-format
+msgid "Manifest for {0}"
+msgstr "Manifesto de {0}"
+
+#: src/widgets/installer.py:83
+#, fuzzy, python-brace-format
+msgid "Review for {0}"
+msgstr "Manifesto de {0}"
+
+#: src/widgets/installer.py:131
+#, python-brace-format
+msgid "Step {self.__step} of {self.steps}"
+msgstr ""
+
+#: src/widgets/state.py:90
+#, python-brace-format
+msgid "Index for state {0}"
+msgstr "Indico de stato {0}"
+
+#~ msgid "Change Launch Options"
+#~ msgstr "Ŝanĝi Opciojn pri Lanĉado"
+
+#~ msgid "Dark theme"
+#~ msgstr "Malhela etoso"
+
+#~ msgid "DXVK Version"
+#~ msgstr "Versio de DXVK"
+
+#~ msgid "Experiments:versioning"
+#~ msgstr "Eksperimentoj:versiadministrado"
+
+#, fuzzy
+#~ msgid "Toggle experimental versioning feature."
+#~ msgstr "Baskuligi eksperimentan funkcion de administrado de versioj"
+
+#~ msgid "Dark Mode"
+#~ msgstr "Malhela Reĝimo"
+
+#~ msgid "Import and export"
+#~ msgstr "Enporti kaj elporti"
+
+#, fuzzy
+#~ msgid "Creating sandboxed folders…"
+#~ msgstr "Kreante botelon…"
+
+#~ msgid "These are the wine/wineserver processes running on your PC."
+#~ msgstr "Jen la ruliĝantaj procezoj de (servilo de) Wine en via komputilo."
+
+#~ msgid "Check for running processes."
+#~ msgstr "Kontrolu ruliĝantajn procezojn."
+
+#~ msgid "Layers"
+#~ msgstr "Tavoloj"
+
+#~ msgid "64 Bit"
+#~ msgstr "64-Bita"
+
+#~ msgid "lutris-6.0-rc1-x86_64"
+#~ msgstr "lutris-6.0-rc1-x86_64"
+
+#~ msgid "Run executable"
+#~ msgstr "Ruli ruleblaĵon"
+
+#~ msgid "Backup bottle"
+#~ msgstr "Savkopii botelon"
+
+#~ msgid "Reboot Windows"
+#~ msgstr "Restarti Vindozon"
+
+#~ msgid "Shutdown Windows"
+#~ msgstr "Malŝalti Vindozon"
+
+#~ msgid "Kill all wine processes"
+#~ msgstr "Ĉesigi ĉiujn procezoj de Wine."
+
+#~ msgid "Destroy this bottle"
+#~ msgstr "Detrui ĉi tiun botelon"
+
+#~ msgid "Utilities"
+#~ msgstr "Ilprogramoj"
+
+#~ msgid "Wine config"
+#~ msgstr "Agordoj pri Wine"
+
+#~ msgid "Adjust internal settings."
+#~ msgstr "Agordi internaĵojn."
+
+#~ msgid "Browse C:"
+#~ msgstr "Foliumi C:"
+
+#~ msgid "Browse internal files."
+#~ msgstr "Foliumi internaj dosieroj."
+
+#~ msgid "Command Line"
+#~ msgstr "Komandlinio"
+
+#~ msgid "Run commands inside the Bottle."
+#~ msgstr "Ruli komandojn en la botelo."
+
+#~ msgid "Registry Editor"
+#~ msgstr "Redaktilo de Registrejo"
+
+#~ msgid "Edit the internal registry."
+#~ msgstr "Redakti la internan registrejon."
+
+#~ msgid "Debug"
+#~ msgstr "Serĉi erarojn"
+
+#~ msgid "Debug wine processes."
+#~ msgstr "Serĉi erarojn en procezoj de Wine."
+
+#~ msgid "Task Manager"
+#~ msgstr "Administrilo de Taskoj"
+
+#~ msgid "Manage processes with the Wine task manager."
+#~ msgstr "Administri procezojn per la administrilo de taskoj de Wine."
+
+#~ msgid "Uninstaller"
+#~ msgstr "Malinstalilo"
+
+#~ msgid "Uninstall programs using wine uninstaller"
+#~ msgstr "Malinstali programojn per la malinstalilo de Wine"
+
+#~ msgid "Control Panel"
+#~ msgstr "Stirpanelo"
+
+#~ msgid "Access the internal wine control panel."
+#~ msgstr "Atingi la internal stirpanelon de Wine."
+
+#~ msgid "Bottle"
+#~ msgstr "Botelo"
+
+#~ msgid "Special characters are not allowed!"
+#~ msgstr "Specialaj signoj estas malpermesataj!"
+
+#~ msgid "No runners found, please install one."
+#~ msgstr "Neniuj ruliloj troviĝis; bonvolu instali unu."
+
+#, fuzzy
+#~ msgid "No DXVK found, installing the latest version…"
+#~ msgstr "Ne troviĝis DXVK; instalante plej novan version…"
+
+#, fuzzy
+#~ msgid "No VKD3D found, installing the latest version…"
+#~ msgstr "Ne troviĝis VKD3D; instalante plej novan version…"
+
+#, fuzzy
+#~ msgid "No NVAPI found, installing the latest version…"
+#~ msgstr "Ne troviĝis DXVK; instalante plej novan version…"
+
+#, python-brace-format
+#~ msgid "Your new {0} bottle is now ready."
+#~ msgstr "Pretas via nova botelo {0}."
 
 #~ msgid "News"
 #~ msgstr "Novaĵoj"
@@ -1612,12 +1816,6 @@ msgstr "Sukcese kreiĝis botelo nomita “{0}”"
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "Germana traduko dank’ al @bloomvdomino, @thericosanto"
 
-#~ msgid "Enable the dark theme."
-#~ msgstr "Ŝalti malhelan etoson."
-
-#~ msgid "DXVK version"
-#~ msgstr "Versio de DXVK"
-
 #~ msgid "Utility & Preferences"
 #~ msgstr "Iloj & Preferoj"
 
@@ -1656,14 +1854,6 @@ msgstr "Sukcese kreiĝis botelo nomita “{0}”"
 
 #~ msgid "Downloads"
 #~ msgstr "Elŝutoj"
-
-#, python-brace-format
-#~ msgid "Manifest for {0}"
-#~ msgstr "Manifesto de {0}"
-
-#, python-brace-format
-#~ msgid "Index for state {0}"
-#~ msgstr "Indico de stato {0}"
 
 #, fuzzy
 #~ msgid ""
@@ -1816,9 +2006,6 @@ msgstr "Sukcese kreiĝis botelo nomita “{0}”"
 #~ msgid "Component {0} successfully installed!"
 #~ msgstr "Sukcese instaliĝis komponanto {0}!"
 
-#~ msgid "Installing {0} dependency in bottle {1} …"
-#~ msgstr "Instalante dependaĵon {0} en botelo {1}…"
-
 #~ msgid "{0} completed for {1}."
 #~ msgstr "{0} finiĝis pri {1}."
 
@@ -1863,9 +2050,6 @@ msgstr "Sukcese kreiĝis botelo nomita “{0}”"
 
 #~ msgid "DXVK Versions"
 #~ msgstr "Versioj de DXVK"
-
-#~ msgid "Temp path cleaned successfully!"
-#~ msgstr "Sukcese malpleniĝis dosierujo de provizoraĵoj!"
 
 #~ msgid "Failed to clear temp path!"
 #~ msgstr "Malsukcesis malplenigi dosierujon de provizoraĵoj!"
@@ -1934,9 +2118,6 @@ msgstr "Sukcese kreiĝis botelo nomita “{0}”"
 #~ msgstr ""
 #~ "Ŝlosilo [{0}] ne troviĝas en agordaj parametroj de botelo [{1}]; "
 #~ "ĝisdatigante."
-
-#~ msgid "Bottles found: %s"
-#~ msgstr "Boteloj troviĝis: %s"
 
 #~ msgid "Setting Key: [{0}] to [{1}] for bottle: [{2}] …"
 #~ msgstr "Agordante ŝlosilon [{0}] al [{1}] por botelo [{2}]…"

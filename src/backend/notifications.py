@@ -45,14 +45,14 @@ class NotificationsManager:
 
             self.messages.append(message)
     
-    def mark_as_read(self, id):
+    def mark_as_read(self, nid):
         '''
         This function marks a notification as read, updating the
         user data file and marking the notification as read in the
         local list.
         '''
         for message in self.messages:
-            if message.get("id") == id:
+            if message.get("id") == nid:
                 message["read"] = True
-                self.data.set("notifications", id)
+                self.data.set("notifications", nid)
                 break

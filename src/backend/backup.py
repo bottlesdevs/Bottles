@@ -1,15 +1,17 @@
 import os
 import yaml
+import uuid
 import tarfile
 import shutil
 from typing import NewType
 from gettext import gettext as _
+from gi.repository import GLib
 
 from .manager import Manager
 
-from ..utils import UtilsLogger, RunAsync
+from ..utils import UtilsLogger
+from .result import Result
 from .globals import Paths
-from .runner import Runner
 from .manager_utils import ManagerUtils
 from ..operation import OperationManager
 
@@ -21,9 +23,15 @@ RunnerName = NewType('RunnerName', str)
 RunnerType = NewType('RunnerType', str)
 
 
-class RunnerBackup:
+class BackupManager:
 
-    def async_export_backup(self, args: list) -> bool:
+    @staticmethod
+    def export_backup(
+        window,
+        config: BottleConfig,
+        scope: str,
+        path: str
+    ) -> bool:
         '''
         This function is used to make a backup of a bottle.
         If the backup type is "config", the backup will be done
@@ -32,8 +40,8 @@ class RunnerBackup:
         bottle's directory as a tar.gz file.
         It returns True if the backup was successful, False otherwise.
         '''
-        window, config, scope, path = args
-        self.operation_manager = OperationManager(window)
+        BackupManager.operation_manager = OperationManager(window)
+        task_id = str(uuid.uuid4())
 
         if scope == "config":
             logging.info(
@@ -51,9 +59,11 @@ class RunnerBackup:
             logging.info(
                 f"Backuping bottle: [{config['Name']}] in [{path}]"
             )
-            task_entry = self.operation_manager.new_task(
-                file_name=_("Backup {0}").format(config.get("Name")),
-                cancellable=False
+            GLib.idle_add(
+                BackupManager.operation_manager.new_task, 
+                task_id, 
+                _("Backup {0}").format(config.get("Name")),  
+                False
             )
             bottle_path = ManagerUtils.get_bottle_path(config)
             try:
@@ -66,40 +76,35 @@ class RunnerBackup:
             except:
                 backup_created = False
 
-            task_entry.remove()
+            GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
 
         if backup_created:
             logging.info(f"Backup saved in path: {path}.")
-            return True
+            return Result(status=True)
 
         logging.error(f"Failed to save backup in path: {path}.")
-        return False
+        return Result(status=False)
 
-    def export_backup(
-        self,
-        window,
-        config: BottleConfig,
-        scope: str,
-        path: str
-    ):
-        RunAsync(self.async_export_backup, None, [window, config, scope, path])
-
-    def async_import_backup(self, args: list) -> bool:
+    @staticmethod
+    def import_backup(window, scope: str, path: str, manager: Manager) -> bool:
         '''
         This function is used to import a backup of a bottle.
         If the backup type is "config", the configuration will be
-        used to replicate the bottle's environement. If the backup
+        used to replicate the bottle's environment. If the backup
         type is "full", the backup will be extracted in the bottle's
         directory. It returns True if the backup was successful (it 
         will also update the bottles' list), False otherwise.
         '''
-        window, scope, path, manager = args
-        self.operation_manager = OperationManager(window)
+        BackupManager.operation_manager = OperationManager(window)
+        task_id = str(uuid.uuid4())
         backup_name = path.split("/")[-1].split(".")
         import_status = False
 
-        task_entry = self.operation_manager.new_task(
-            _("Importing backup: {0}").format(backup_name), False
+        GLib.idle_add(
+            BackupManager.operation_manager.new_task, 
+            task_id, 
+            _("Importing backup: {0}").format(backup_name), 
+            False
         )
         logging.info(f"Importing backup: {backup_name}")
 
@@ -133,22 +138,18 @@ class RunnerBackup:
             except:
                 import_status = False
 
-        task_entry.remove()
+        GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
 
         if import_status:
             window.manager.update_bottles()
             logging.info(f"Backup: [{path}] imported successfully.")
-            return True
+            return Result(status=True)
 
         logging.error(f"Failed importing backup: [{backup_name}]")
-        return False
+        return Result(status=False)
 
-    def import_backup(self, window, scope: str, path: str, manager: Manager):
-        RunAsync(
-            self.async_import_backup, None, [window, scope, path, manager]
-        )
-
-    def duplicate_bottle(self, config, name) -> bool:
+    @staticmethod
+    def duplicate_bottle(config, name) -> bool:
         '''
         This function is used to duplicate a bottle.
         The new bottle will be created in the bottles' directory
@@ -191,10 +192,15 @@ class RunnerBackup:
             with open(dest_config, "w") as config_file:
                 yaml.dump(config, config_file, indent=4)
 
-            shutil.copytree(source_drive, dest_drive)
+            shutil.copytree(
+                src=source_drive,
+                dst=dest_drive,
+                ignore=shutil.ignore_patterns(".*"),
+                symlinks=False
+            )
         except:
             logging.error(f"Failed duplicate bottle: [{name}]")
-            return False
+            return Result(status=False)
 
         logging.info(f"Bottle [{name}] duplicated successfully.")
-        return True
+        return Result(status=True)

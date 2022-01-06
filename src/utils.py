@@ -18,6 +18,7 @@
 import os
 import re
 import sys
+import time
 import shutil
 import logging
 import socket
@@ -25,6 +26,7 @@ import subprocess
 import hashlib
 import threading
 import traceback
+import webbrowser
 
 from typing import Union
 from datetime import datetime
@@ -81,7 +83,13 @@ class UtilsTerminal():
     It will loop all the "supported" terminals to find the one
     that is available, so it will be used to launch the command.
     '''
+    colors = {
+        "default": "#00ffff #2b2d2e",
+        "debug": "#ff9800 #2e2c2b",
+    }
+
     terminals = [
+        ['easyterm.py', '-d -p "%s" -c %s'],
         ['xterm', '-e %s'],
         ['konsole', '-e %s'],
         ['gnome-terminal', '-- %s'],
@@ -106,13 +114,27 @@ class UtilsTerminal():
 
         return False
 
-    def execute(self, command, env={}):
+    def execute(self, command, env={}, colors="default"):
         if not self.check_support():
             logging.warning("Terminal not supported.")
             return False
-
+        
+        if colors not in self.colors:
+            colors = "default"
+            
+        colors = self.colors[colors]
+        
+        if self.terminal[0] == 'easyterm.py':
+            command = ' '.join(self.terminal) % (colors, f"bash -c '{command}'")
+            if "ENABLE_BASH" in os.environ:
+                command = ' '.join(self.terminal) % (colors, f"bash")
+        elif self.terminal[0] == 'xfce4-terminal':
+            command = ' '.join(self.terminal) % "'sh -c %s'" % f'"{command}"'
+        else:
+            command = ' '.join(self.terminal) % f"'bash -c {command}'"
+        print(command)
         subprocess.Popen(
-            ' '.join(self.terminal) % f"bash -c '{command}'",
+            command,
             shell=True,
             env=env,
             stdout=subprocess.PIPE
@@ -123,8 +145,8 @@ class UtilsTerminal():
 
 class UtilsLogger(logging.getLoggerClass()):
     '''
-    This class is a wrapper for the logging module. It provide
-    custom fotmats for the log messages.
+    This class is a wrapper for the logging module. It provides
+    custom formats for the log messages.
     '''
     __color_map = {
         "debug": 37,
@@ -133,13 +155,14 @@ class UtilsLogger(logging.getLoggerClass()):
         "error": 31,
         "critical": 41
     }
-
     __format_log = {
-        'fmt': '%(asctime)s \033[1m%(levelname)s\033[0m: %(message)s',
-        'datefmt': '%Y-%m-%d %H:%M:%S',
+        'fmt': '\033[80m(%(asctime)s) \033[1m%(levelname)s\033[0m %(message)s \033[0m',
+        'datefmt': '%H:%M:%S',
     }
 
     def __color(self, level, message):
+        if message is not None and "\n" in message:
+            message = message.replace("\n", "\n\t") + "\n"
         color_id = self.__color_map[level]
         return "\033[%dm%s\033[0m" % (color_id, message)
 
@@ -245,6 +268,20 @@ class UtilsFiles():
             "used": disk_used,
             "free": disk_free,
         }
+    
+    @staticmethod
+    def wait_for_files(files: list, timeout: int = .5) -> bool:
+        '''
+        This function waits for a list of files to be created or modified.
+        '''
+        for file in files:
+            if not os.path.isfile(file):
+                return False
+            
+            while not os.path.exists(file):
+                time.sleep(timeout)
+
+        return True
 
 
 def write_log(data: list):
@@ -273,14 +310,14 @@ class RunAsync(threading.Thread):
     It take a function, a callback and a list of arguments as input.
     '''
 
-    def __init__(self, task_func, callback, *args, **kwargs):
+    def __init__(self, task_func, callback=None, *args, **kwargs):
         if "DEBUG_MODE" in os.environ:
             import faulthandler
             faulthandler.enable()
 
         self.source_id = None
         self.stop_request = threading.Event()
-        # assert threading.current_thread() is threading.main_thread()
+        assert threading.current_thread() is threading.main_thread()
 
         super(RunAsync, self).__init__(
             target=self.__target, args=args, kwargs=kwargs)
@@ -312,7 +349,6 @@ class RunAsync(threading.Thread):
             traceback_info = '\n'.join(traceback.format_tb(trace))
 
             write_log([str(exception), traceback_info])
-
         self.source_id = GLib.idle_add(self.callback, result, error)
         return self.source_id
 
@@ -351,11 +387,11 @@ class CabExtract():
         if not shutil.which("cabextract"):
             logging.fatal(
                 "cabextract utility not found, please install to use "
-                "dependencies wich need this feature"
+                "dependencies which need this feature"
             )
             write_log(
                 "cabextract utility not found, please install to use "
-                "dependencies wich need this feature"
+                "dependencies which need this feature"
             )
             return False
 
@@ -416,3 +452,59 @@ def validate_url(url: str):
     )
 
     return re.match(regex, url) is not None
+
+
+def detect_encoding(text: bytes):
+    '''
+    This function detects the encoding of a given file.
+    It returns the encoding if it is valid, None otherwise.
+    '''
+    encodings = [
+        sys.stdout.encoding,
+        "ascii",
+        "utf-8",
+        "utf-16",
+        "utf-32",
+        "latin-1",
+        "big5",
+        "gb2312",
+        "gb18030",
+        "euc_jp",
+        "euc_jis_2004",
+        "euc_jisx0213",
+        "shift_jis",
+        "shift_jis_2004",
+        "shift_jisx0213",
+        "iso2022_jp",
+        "iso2022_jp_1",
+        "iso2022_jp_2",
+        "iso2022_jp_2004",
+        "iso2022_jp_3",
+        "iso2022_jp_ext",
+        "iso2022_kr",
+        "utf_32_be",
+        "utf_32_le",
+        "utf_16_be",
+        "utf_16_le",
+        "utf_7",
+        "utf_8_sig",
+        "utf_16_be_sig",
+        "utf_16_le_sig",
+        "utf_32_be_sig",
+        "utf_32_le_sig"
+    ]
+
+    for encoding in encodings:
+        try:
+            text.decode(encoding)
+            return encoding
+        except UnicodeDecodeError:
+            pass
+
+    return None
+
+
+class GtkUtils:
+    @staticmethod
+    def open_doc_url(widget, page):
+        webbrowser.open_new_tab(f"https://docs.usebottles.com/{page}")

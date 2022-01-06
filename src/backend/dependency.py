@@ -17,6 +17,7 @@
 
 import os
 import yaml
+import uuid
 import shutil
 import patoolib
 from glob import glob
@@ -25,11 +26,12 @@ from functools import lru_cache
 from typing import Union, NewType
 from gi.repository import Gtk, GLib
 
+from .result import Result
 from .runner import Runner
 from .globals import BottlesRepositories, Paths
 from ..operation import OperationManager
 from .manager_utils import ManagerUtils
-from ..utils import RunAsync, UtilsLogger, CabExtract, validate_url
+from ..utils import UtilsLogger, CabExtract, validate_url
 
 logging = UtilsLogger()
 
@@ -105,14 +107,17 @@ class DependencyManager:
         catalog = dict(sorted(catalog.items()))
         return catalog
 
-    def async_install(self, args: list) -> bool:
+    def install(
+        self,
+        config: BottleConfig,
+        dependency: list
+    ) -> Result:
         '''
         This function install a given dependency in a bottle. It will
-        return True if the installation was successful and update the
-        widget status.
+        return True if the installation was successful.
         '''
-        config, dependency, widget = args
-        has_no_uninstaller = False
+        task_id = str(uuid.uuid4())
+        uninstaller = True
 
         if config["Versioning"]:
             '''
@@ -120,15 +125,14 @@ class DependencyManager:
             to create a new version of the bottle, before installing
             the dependency.
             '''
-            self.__manager.versioning_manager.async_create_state([
-                config,
-                f"before {dependency[0]}",
-                True, False, None
-            ])
+            self.__manager.versioning_manager.create_state(
+                config=config,
+                comment=f"before {dependency[0]}",
+                update=True
+            )
 
-        task_entry = self.__operation_manager.new_task(
-            file_name=dependency[0],
-            cancellable=False
+        GLib.idle_add(
+            self.__operation_manager.new_task, task_id, dependency[0],  False
         )
 
         logging.info(
@@ -143,18 +147,29 @@ class DependencyManager:
         )
         if not manifest:
             '''
-            If the manifest is not found, update the widget status to
-            not installed and return False.
+            If the manifest is not found, return a Result
+            object with the error.
             '''
-            GLib.idle_add(widget.set_installed, False)
-            return False
+            GLib.idle_add(self.__operation_manager.remove_task, task_id)
+            return Result(
+                status=False,
+                message=f"Cannot find manifest for {dependency[0]}."
+            )
 
         for step in manifest.get("Steps"):
             '''
             Here we execute all steps in the manifest.
             Steps are the actions performed to install the dependency.
             '''
-            has_no_uninstaller = self.__perform_steps(config, step, widget)
+            res = self.__perform_steps(config, step)
+            if not res.status:
+                GLib.idle_add(self.__operation_manager.remove_task, task_id)
+                return Result(
+                    status=False,
+                    message=f"One or more steps failed for {dependency[0]}."
+                )
+            if not res.data.get("uninstaller"):
+                uninstaller = False
 
         if dependency[0] not in config.get("Installed_Dependencies"):
             '''
@@ -173,7 +188,7 @@ class DependencyManager:
                 value=dependencies
             )
 
-        if manifest.get("Uninstaller") or has_no_uninstaller:
+        if manifest.get("Uninstaller"):
             '''
             If the manifest has an uninstaller, add it to the
             uninstaller list in the bottle config.
@@ -181,46 +196,31 @@ class DependencyManager:
             '''
             uninstaller = manifest.get("Uninstaller")
 
-            if has_no_uninstaller:
-                uninstaller = "NO_UNINSTALLER"
+        self.__manager.update_config(
+            config,
+            dependency[0],
+            uninstaller,
+            "Uninstallers"
+        )
 
-            self.__manager.update_config(
-                config,
-                dependency[0],
-                uninstaller,
-                "Uninstallers"
-            )
-
-        # Remove entry from download manager
-        GLib.idle_add(task_entry.remove)
+        # Remove entry from operation manager
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
 
         # Hide installation button and show remove button
-        if widget is not None:
-            if has_no_uninstaller:
-                GLib.idle_add(widget.set_installed, False)
-            else:
-                GLib.idle_add(widget.set_installed, True)
-
-        return True
-
-    def install(
-        self,
-        config: BottleConfig,
-        dependency: list,
-        widget: Gtk.Widget = None
-    ):
-        if self.__utils_conn.check_connection(True):
-            RunAsync(self.async_install, None, [
-                config,
-                dependency,
-                widget
-            ])
+        if not uninstaller:
+            return Result(
+                status=True,
+                data={"uninstaller": False}
+            )
+        return Result(
+            status=True,
+            data={"uninstaller": True}
+        )
 
     def __perform_steps(
         self, 
         config:BottleConfig, 
-        step:dict, 
-        widget: Gtk.Widget
+        step:dict
     ) -> bool:
         """
         This method execute a step in the bottle (e.g. changing the Windows
@@ -228,10 +228,11 @@ class DependencyManager:
         ---
         Returns True if the dependency cannot be uninstalled.
         """
-        has_no_uninstaller = False
+        uninstaller = True
         
         if step["action"] == "download_archive":
-            self.__step_download_archive(step)
+            if not self.__step_download_archive(step):
+                return Result(status=False)
 
         if step["action"] == "delete_sys32_dlls":
             self.__step_delete_sys32_dlls(
@@ -240,50 +241,36 @@ class DependencyManager:
             )
 
         if step["action"] in ["install_exe", "install_msi"]:
-            self.__step_install_exe_msi(
-                config=config,
-                step=step,
-                widget=widget
-            )
+            if not self.__step_install_exe_msi(config=config, step=step):
+                return Result(status=False)
 
         if step["action"] == "uninstall":
-            self.__step_uninstall(
-                config=config,
-                file_name=step["file_name"]
-            )
+            self.__step_uninstall(config=config, file_name=step["file_name"])
 
         if step["action"] == "cab_extract":
-            has_no_uninstaller = True
-            self.__step_cab_extract(
-                step=step,
-                widget=widget
-            )
+            uninstaller = False
+            if not self.__step_cab_extract(step=step):
+                return Result(status=False)
 
         if step["action"] == "get_from_cab":
-            has_no_uninstaller = True
-            self.__step_get_from_cab(
-                config=config,
-                step=step,
-                widget=widget
-            )
+            uninstaller = False
+            if not self.__step_get_from_cab(config=config, step=step):
+                return Result(status=False)
 
         if step["action"] == "archive_extract":
-            has_no_uninstaller = True
-            self.__step_archive_extract(step)
+            uninstaller = False
+            if not self.__step_archive_extract(step):
+                return Result(status=False)
 
         if step["action"] in ["install_cab_fonts", "install_fonts"]:
-            has_no_uninstaller = True
-            self.__step_install_fonts(
-                config=config,
-                step=step
-            )
+            uninstaller = False
+            if not self.__step_install_fonts(config=config, step=step):
+                return Result(status=False)
 
-        if step["action"] in ["copy_cab_dll", "copy_dll"]:
-            has_no_uninstaller = True
-            self.__step_copy_dll(
-                config=config,
-                step=step
-            )
+        if step["action"] in ["copy_cab_dll", "copy_dll", "copy_file"]:
+            uninstaller = False
+            if not self.__step_copy_dll(config=config, step=step):
+                return Result(status=False)
 
         if step["action"] == "override_dll":
             self.__step_override_dll(
@@ -321,12 +308,15 @@ class DependencyManager:
                 step=step
             )
         
-        return has_no_uninstaller
+        return Result(
+            status=True,
+            data={"uninstaller": uninstaller}
+        )
 
 
     def __step_download_archive(self, step: dict):
         '''
-        This function download an archive from the givven step.
+        This function download an archive from the given step.
         Can be used for any file type (cab, zip, ...). Please don't
         use this method for exe/msi files as the install_exe already
         download the exe/msi file before installation.
@@ -346,6 +336,8 @@ class DependencyManager:
         This function deletes the given dlls from the system32 folder
         of the bottle.
         '''
+        path = ManagerUtils.get_bottle_path(config)
+        
         for dll in dlls:
             try:
                 logging.info(
@@ -354,13 +346,7 @@ class DependencyManager:
                         config['Name']
                     )
                 )
-                os.remove(
-                    "%s/%s/drive_c/windows/system32/%s" % (
-                        Paths.bottles,
-                        config.get("Name"),
-                        dll
-                    )
-                )
+                os.remove(f"{path}/drive_c/windows/system32/{dll}")
             except FileNotFoundError:
                 logging.error(
                     "DLL [%s] not found in bottle [%s]." % (
@@ -368,18 +354,19 @@ class DependencyManager:
                         config['Name'],
                     )
                 )
+        
+        # return True in both cases, has it is a non-critical error
+        return True
 
     def __step_install_exe_msi(
         self,
         config: BottleConfig,
-        step: dict,
-        widget: Gtk.Widget
-    ) -> Union[None, bool]:
+        step: dict
+    ) -> bool:
         '''
         This function download and install the .exe or .msi file
-        declared in the step, in a bottle. If a widget is given, it
-        will be set to visible if the installation fail.
-        '''
+        declared in the step, in a bottle.
+        '''            
         download = self.__manager.component_manager.download(
             component="dependency",
             download_url=step.get("url"),
@@ -400,17 +387,17 @@ class DependencyManager:
                 environment=step.get("environment"),
                 no_async=True
             )
-        else:
-            if widget is not None:
-                widget.btn_install.set_sensitive(True)
-            return False
+            Runner.wait_for_process(config, file)
+            return True
 
-    def __step_uninstall(self, config: BottleConfig, file_name: str):
+        return False
+
+    def __step_uninstall(self, config: BottleConfig, file_name: str) -> bool:
         '''
         This function find an uninstaller in the bottle by the given
         file name and execute it.
         '''
-        command = f"uninstaller --list | grep '{file_name}' | cut -f1 -d\|"
+        command = f"uninstaller --list | grep -i '{file_name}' | cut -f1 -d\|"
 
         uuid = Runner.run_command(
             config=config,
@@ -421,20 +408,22 @@ class DependencyManager:
         )
         uuid = uuid.strip()
 
-        if uuid != "":
+        if uuid:
             logging.info(
                 "Uninstalling [%s] from bottle: [%s]." % (
                     file_name,
                     config['Name']
                 )
             )
-            Runner.run_uninstaller(config, uuid)
+            for _uuid in uuid.splitlines():
+                Runner.run_uninstaller(config, _uuid)
+        
+        return True
 
-    def __step_cab_extract(self, step: dict, widget: Gtk.Widget):
+    def __step_cab_extract(self, step: dict):
         '''
         This function download and extract a Windows Cabinet to the
-        temp folder. If a widget is given, it will be to the error
-        status if something goes wrong.
+        temp folder.
         '''
         if validate_url(step["url"]):
             download = self.__manager.component_manager.download(
@@ -455,15 +444,13 @@ class DependencyManager:
                     path=f"{Paths.temp}/{file}",
                     name=file
                 ):
-                    if widget is not None:
-                        GLib.idle_add(widget.set_err)
+                    return False
 
                 if not CabExtract().run(
                     f"{Paths.temp}/{file}",
                     os.path.splitext(f"{file}")[0]
                 ):
-                    if widget is not None:
-                        GLib.idle_add(widget.set_err)
+                    return False
 
         elif step["url"].startswith("temp/"):
             path = step["url"]
@@ -480,15 +467,14 @@ class DependencyManager:
                 f"{path}/{step.get('file_name')}",
                 file_path
             ):
-                if widget is not None:
-                    GLib.idle_add(widget.set_err)
-                exit()
+                return False
+        
+        return True
 
     def __step_get_from_cab(
         self,
         config: BottleConfig,
-        step: dict,
-        widget: Gtk.Widget
+        step: dict
     ):
         '''
         This function take a file from a cab file and extract it to
@@ -502,11 +488,13 @@ class DependencyManager:
             files=[file_name]
         )
 
-        if not res and widget is not None:
-            GLib.idle_add(widget.set_err)
-            exit()
+        if not res:
+            return False
 
         if step.get("dest"):
+            if config.get("Arch") == "win32" and "syswow64" in step.get("dest"):
+                return True
+            
             dest = step.get("dest")
             dest_file_name = step.get("file_name")
 
@@ -526,11 +514,12 @@ class DependencyManager:
                 dest = dest.replace("temp/", f"{Paths.temp}/")
             else:
                 dest = f"{Paths.temp}/{dest}"
-
             shutil.copy(
                 f"{Paths.temp}/{file_name}",
                 f"{dest}/{dest_file_name}"
             )
+        
+        return True
 
     def __step_archive_extract(self, step: dict):
         '''
@@ -558,9 +547,16 @@ class DependencyManager:
                     f"{Paths.temp}/{archive_name}")
 
             os.makedirs(f"{Paths.temp}/{archive_name}")
-            patoolib.extract_archive(
-                f"{Paths.temp}/{file}",
-                outdir=f"{Paths.temp}/{archive_name}")
+            try:
+                patoolib.extract_archive(
+                    f"{Paths.temp}/{file}",
+                    outdir=f"{Paths.temp}/{archive_name}"
+                )
+            except:
+                return False
+            return True
+        
+        return False
 
     def __step_install_fonts(self, config: BottleConfig, step: dict):
         '''
@@ -572,10 +568,14 @@ class DependencyManager:
         bottle_path = ManagerUtils.get_bottle_path(config)
 
         for font in step.get('fonts'):
-            shutil.copyfile(
-                f"{path}/{font}",
-                f"{bottle_path}/drive_c/windows/Fonts/{font}"
-            )
+            font_path = f"{bottle_path}/drive_c/windows/Fonts/"
+            if not os.path.exists(font_path):
+                os.makedirs(font_path)
+
+            shutil.copyfile(f"{path}/{font}", f"{font_path}/{font}")
+            print(f"Copying {font} to {bottle_path}/drive_c/windows/Fonts/")
+        
+        return True
 
     def __step_copy_dll(self, config: BottleConfig, step: dict):
         '''
@@ -586,29 +586,37 @@ class DependencyManager:
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
         bottle_path = ManagerUtils.get_bottle_path(config)
+        dest = step.get('dest')
 
         try:
             if "*" in step.get('file_name'):
                 files = glob(f"{path}/{step.get('file_name')}")
                 for fg in files:
-                    dest = "%s/drive_c/%s/%s" % (
-                        bottle_path,
-                        step.get('dest'),
-                        os.path.basename(fg)
-                    )
-                    shutil.copyfile(fg, dest)
-            else:
-                shutil.copyfile(
-                    f"{path}/{step.get('file_name')}",
-                    f"{bottle_path}/drive_c/{step.get('dest')}"
-                )
+                    _name = os.path.basename(fg)
+                    _dest = f"{bottle_path}/drive_c/{dest}/{_name}"
+                    print(f"Copying {_name} to {_dest}")
 
-        except FileNotFoundError:
-            logging.error(
-                f"dll {step.get('file_name')} not found in temp, \
-                    there should be other errors from cabextract."
-            )
+                    if os.path.exists(_dest):
+                        if os.path.islink(_dest):
+                            os.unlink(_dest)
+
+                    shutil.copyfile(fg, _dest)
+            else:
+                _name = step.get('file_name')
+                _dest = f"{bottle_path}/drive_c/{dest}"
+                print(f"Copying {_name} to {_dest}")
+
+                if os.path.exists(_dest):
+                    if os.path.islink(_dest):
+                        os.unlink(_dest)
+
+                shutil.copyfile(f"{path}/{_name}", _dest)
+
+        except FileNotFoundError as e:
+            print(e)
             return False
+        
+        return True
 
     def __step_override_dll(self, config: BottleConfig, step: dict):
         '''
@@ -630,7 +638,7 @@ class DependencyManager:
                     value=dll_name,
                     data=step.get("type")
                 )
-            return
+            return True
 
         Runner.reg_add(
             config,
@@ -638,6 +646,7 @@ class DependencyManager:
             value=step.get("dll"),
             data=step.get("type")
         )
+        return True
 
     def __step_set_register_key(self, config: BottleConfig, step: dict):
         '''
@@ -651,6 +660,7 @@ class DependencyManager:
             data=step.get("data"),
             keyType=step.get("type")
         )
+        return True
 
     def __step_register_font(self, config: BottleConfig, step: dict):
         '''
@@ -663,6 +673,7 @@ class DependencyManager:
             value=step.get("name"),
             data=step.get("file")
         )
+        return True
 
     def __step_replace_font(self, config: BottleConfig, step: dict):
         '''
@@ -686,12 +697,14 @@ class DependencyManager:
                     value=step.get("font"),
                     data=r
                 )
+        return True
 
     def __step_set_windows(self, config: BottleConfig, step: dict):
         '''
         This function set the windows version in the bottle registry.
         '''
         Runner.set_windows(config, step.get("version"))
+        return True
 
     def __step_use_windows(self, config: BottleConfig, step: dict):
         '''
@@ -699,3 +712,4 @@ class DependencyManager:
         in the bottle registry.
         '''
         Runner.set_app_default(config, step.get("version"), step.get("executable"))
+        return True

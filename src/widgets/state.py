@@ -18,7 +18,7 @@
 from datetime import datetime
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
-
+from ..utils import RunAsync
 from ..dialogs.generic import Dialog
 
 
@@ -29,7 +29,6 @@ class StateEntry(Handy.ActionRow):
     # region Widgets
     label_creation_date = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
-    btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     # endregion
 
@@ -49,7 +48,7 @@ class StateEntry(Handy.ActionRow):
         creation_date = datetime.strptime(
             state[1].get("Creation_Date"), "%Y-%m-%d %H:%M:%S.%f"
         )
-        creation_date = creation_date.strftime("%b %d %Y %H:%M:%S")
+        creation_date = creation_date.strftime("%d %B, %Y %H:%M:%S")
 
         # populate widgets
         self.set_title(self.state_name)
@@ -74,8 +73,12 @@ class StateEntry(Handy.ActionRow):
 
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
-        self.versioning_manager.set_state(
-            self.config, self.state[0], self.set_completed)
+        RunAsync(
+            task_func=self.versioning_manager.set_state,
+            config=self.config, 
+            state_id=self.state[0], 
+            after=self.set_completed
+        )
 
     def open_index(self, widget):
         '''
@@ -89,7 +92,9 @@ class StateEntry(Handy.ActionRow):
             log=self.versioning_manager.get_state_edits(
                 self.config,
                 self.state[0],
-                True))
+                True
+            ).get("Plain")
+        )
         dialog.run()
         dialog.destroy()
 

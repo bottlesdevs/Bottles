@@ -17,7 +17,7 @@
 
 import os
 import yaml
-import time
+import uuid
 import shutil
 import tarfile
 import requests
@@ -26,9 +26,10 @@ from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
 
+from .result import Result
 from ..operation import OperationManager
 from .globals import Paths, BottlesRepositories
-from ..utils import UtilsLogger, UtilsFiles, RunAsync
+from ..utils import UtilsLogger, UtilsFiles
 
 logging = UtilsLogger()
 
@@ -97,8 +98,9 @@ class ComponentManager:
 
                     # return as dictionary
                     return yaml.safe_load(url.read())
-            except:
+            except Exception as e:
                 logging.error(f"Cannot fetch manifest for {component_name}.")
+                print(e)
                 return False
 
         return False
@@ -113,11 +115,20 @@ class ComponentManager:
         if not self.__utils_conn.check_connection():
             return {}
 
-        catalog_wine = {}
-        catalog_proton = {}
-        catalog_dxvk = {}
-        catalog_vkd3d = {}
-        catalog_nvapi = {}
+        catalog = {
+            "wine": {},
+            "proton": {},
+            "dxvk": {},
+            "vkd3d": {},
+            "nvapi": {}
+        }
+        components_available = {
+            "wine": self.__manager.runners_available,
+            "proton": self.__manager.runners_available,
+            "dxvk": self.__manager.dxvk_available,
+            "vkd3d": self.__manager.vkd3d_available,
+            "nvapi": self.__manager.nvapi_available
+        }
 
         try:
             with urllib.request.urlopen(
@@ -143,38 +154,19 @@ class ComponentManager:
                     '''
                     continue
 
-                if component[1]["Sub-category"] == "wine":
-                    catalog_wine[component[0]] = component[1]
-                    if component[0] in self.__manager.runners_available:
-                        catalog_wine[component[0]]["Installed"] = True
+                sub_category = component[1]["Sub-category"]
+                catalog[sub_category][component[0]] = component[1]
+                if component[0] in components_available[sub_category]:
+                    catalog[sub_category][component[0]]["Installed"] = True
 
-                if component[1]["Sub-category"] == "proton":
-                    catalog_proton[component[0]] = component[1]
-                    if component[0] in self.__manager.runners_available:
-                        catalog_proton[component[0]]["Installed"] = True
+                continue
 
-            if component[1]["Category"] == "dxvk":
-                catalog_dxvk[component[0]] = component[1]
-                if component[0] in self.__manager.dxvk_available:
-                    catalog_dxvk[component[0]]["Installed"] = True
+            category = component[1]["Category"]
+            catalog[category][component[0]] = component[1]
+            if component[0] in components_available[category]:
+                catalog[category][component[0]]["Installed"] = True
 
-            if component[1]["Category"] == "vkd3d":
-                catalog_vkd3d[component[0]] = component[1]
-                if component[0] in self.__manager.vkd3d_available:
-                    catalog_vkd3d[component[0]]["Installed"] = True
-
-            if component[1]["Category"] == "nvapi":
-                catalog_nvapi[component[0]] = component[1]
-                if component[0] in self.__manager.nvapi_available:
-                    catalog_nvapi[component[0]]["Installed"] = True
-
-        return {
-            "wine": catalog_wine,
-            "proton": catalog_proton,
-            "dxvk": catalog_dxvk,
-            "vkd3d": catalog_vkd3d,
-            "nvapi": catalog_nvapi
-        }
+        return catalog
 
     def download(
         self,
@@ -192,11 +184,12 @@ class ComponentManager:
         Add new entry to the download manager and set the update_func
         to the task_entry update_status function by default.
         '''
-        task_entry = self.__operation_manager.new_task(
-            file_name=file,
-            cancellable=False
+        task_id = str(uuid.uuid4())
+        GLib.idle_add(
+            self.__operation_manager.new_task, task_id, file,  False
         )
-        _update_func = task_entry.update_status
+
+        _update_func = self.__operation_manager.update_task
 
         if download_url.startswith("temp/"):
             '''
@@ -207,18 +200,19 @@ class ComponentManager:
 
         if func:
             '''
-            Set a function to be executing during the downlaod. This 
+            Set a function to be executing during the download. This 
             can be used to check the download status or update progress bars.
             '''
             _update_func = func
         
         def update_func(
+            task_id,
             count=False,
             block_size=False,
             total_size=False,
             completed=False
         ):
-            GLib.idle_add(_update_func, count, block_size, total_size, completed)
+            GLib.idle_add(_update_func, task_id, count, block_size, total_size, completed)
 
         existing_file = rename if rename else file
         just_downloaded = False
@@ -232,7 +226,7 @@ class ComponentManager:
             logging.warning(
                 f"File [{existing_file}] already exists in temp, skipping."
             )
-            GLib.idle_add(update_func, False, False, False, True)
+            GLib.idle_add(update_func, task_id, False, False, False, True)
         else:
             '''
             As some urls can be redirect, we need to take care of this
@@ -245,7 +239,7 @@ class ComponentManager:
                 download_url = response.url
                 req_code = urllib.request.urlopen(download_url).getcode()
             except:
-                GLib.idle_add(task_entry.remove)
+                GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
             if req_code == 200:
@@ -255,13 +249,13 @@ class ComponentManager:
                 False and the download is removed from the download manager.
                 '''
                 try:
-                    urllib.request.urlretrieve(
+                    Downloader(
                         url=download_url,
-                        filename=f"{Paths.temp}/{file}",
-                        reporthook=update_func
-                    )
+                        file=f"{Paths.temp}/{file}",
+                        func=update_func
+                    ).download()
                 except:
-                    GLib.idle_add(task_entry.remove)
+                    GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
                 if not os.path.isfile(f"{Paths.temp}/{file}"):
@@ -269,12 +263,12 @@ class ComponentManager:
                     If the file is not available in the /temp directory,
                     then the download failed.
                     '''
-                    GLib.idle_add(task_entry.remove)
+                    GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
                 just_downloaded = True
             else:
-                GLib.idle_add(task_entry.remove)
+                GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
         if rename and just_downloaded:
@@ -300,12 +294,14 @@ class ComponentManager:
                 logging.error(
                     f"Source cksum: [{checksum}] downloaded: [{local_checksum}]"
                 )
+                logging.info(f"Removing corrupted file [{file}].")
+                os.remove(file_path)
 
                 #os.remove(file_path)
-                GLib.idle_add(task_entry.remove)
+                GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
-        GLib.idle_add(task_entry.remove)
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
         return True
 
     def extract(self, name: str, component: str, archive: str) -> True:
@@ -375,19 +371,13 @@ class ComponentManager:
     ):
         '''
         This function is used to install a component. It automatically
-        get the manifest from the givven component and then calls the
+        get the manifest from the given component and then calls the
         download and extract functions.
         '''
-        if self.__utils_conn.check_connection(True):
-            RunAsync(self.async_install, None, [
-                     component_type, component_name, after, func, checks])
-
-    def async_install(self, args: list):
-        component_type, component_name, after, func, checks = args
         manifest = self.get_component(component_type, component_name)
 
-        if not manifest and not isinstance(func, bool):
-            return func(failed=True)
+        if not manifest:
+            return Result(False)
 
         logging.info(f"Installing component: [{component_name}].")
 
@@ -449,9 +439,7 @@ class ComponentManager:
 
         self.__manager.organize_components()
 
-        # Execute a method at the end if passed
-        if after:
-            GLib.idle_add(after)
+        return Result(True)
 
     def __post_rename(self, component_type: str, post: dict):
         source = post.get("source")
@@ -474,3 +462,62 @@ class ComponentManager:
                 src=os.path.join(path, source),
                 dst=os.path.join(path, dest)
             )
+
+class Downloader:
+    '''
+    This class is used to download a resource from a given URL. It shows
+    and update a progress bar while downloading but can also be used to
+    update external progress bars using the func parameter.
+    '''
+    def __init__(self, url: str, file: str, func: callable = None):
+        self.url = url
+        self.file = file
+        self.func = func
+
+    def download(self):
+        '''
+        Download the file.
+        '''
+        try:
+            with open(self.file, "wb") as file:
+                response = requests.get(self.url, stream=True)
+                total_size = int(response.headers.get("content-length", 0))
+                block_size = 1024
+                count = 0
+
+                if total_size != 0:
+                    for data in response.iter_content(block_size):
+                        file.write(data)
+                        count += 1
+                        if self.func is not None:
+                            GLib.idle_add(
+                                self.func,
+                                count,
+                                block_size,
+                                total_size
+                            )
+                            self.__progress(count, block_size, total_size)
+                else:
+                    file.write(response.content)
+                    if self.func is not None:
+                        GLib.idle_add(self.func, 1, 1, 1)
+                        self.__progress(1, 1, 1)
+        except:
+            logging.error(
+                "Download failed! Check your internet connection."
+            )
+            return False
+
+        return True
+    
+    def __progress(self, count, block_size, total_size):
+        '''
+        This function is used to update the progress bar.
+        '''
+        percent = int(count * block_size * 100 / total_size)
+        name = self.file.split("/")[-1]
+        print(f"\rDownloading {name}: {percent}% [{'=' * int(percent / 2)}>", end="")
+        
+        if percent == 100:
+            print("\n")
+        

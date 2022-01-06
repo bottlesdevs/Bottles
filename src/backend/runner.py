@@ -1,12 +1,19 @@
 import re
 import os
+import time
+import shlex
 import shutil
 import subprocess
 from typing import NewType
 
-from ..utils import UtilsTerminal, UtilsLogger, RunAsync
-from .globals import Paths, gamemode_available
+from ..utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding
+from .globals import Paths, CMDSettings, gamemode_available, x_display
 from .manager_utils import ManagerUtils
+from .runtime import RuntimeManager
+from .display import DisplayUtils
+from .gpu import GPUUtils
+from .result import Result
+
 
 logging = UtilsLogger()
 
@@ -19,60 +26,66 @@ class Runner:
     This class handle everything related to the runner (e.g. WINE, Proton).
     It should not contain any manager logic (e.g. catalogs, checks, etc.) or
     any bottle related stuff (e.g. config handling, etc.), also DXVK, VKD3D,
-    NVAPI handling should not performed from here. This class should be keeped
+    NVAPI handling should not performed from here. This class should be kept
     as clean as possible to easily migrate to the libwine in the future.
     <https://github.com/bottlesdevs/libwine>
     '''
 
     _windows_versions = {
         "win10": {
-            "ProductName": "Microsoft Windows 10",
             "CSDVersion": "",
-            "CurrentBuild": "17763",
-            "CurrentBuildNumber": "17763",
+            "CurrentBuildNumber": "10240",
             "CurrentVersion": "10.0",
+            "CSDVersionHex": "00000000",
+            "ProductType": "WinNT",
         },
         "win81": {
-            "ProductName": "Microsoft Windows 8.1",
             "CSDVersion": "",
-            "CurrentBuild": "9600",
             "CurrentBuildNumber": "9600",
             "CurrentVersion": "6.3",
+            "CSDVersionHex": "00000000",
+            "ProductType": "WinNT",
         },
         "win8": {
-            "ProductName": "Microsoft Windows 8",
             "CSDVersion": "",
-            "CurrentBuild": "9200",
             "CurrentBuildNumber": "9200",
             "CurrentVersion": "6.2",
+            "CSDVersionHex": "00000000",
+            "ProductType": "WinNT",
         },
         "win7": {
-            "ProductName": "Microsoft Windows 7",
             "CSDVersion": "Service Pack 1",
-            "CurrentBuild": "7601",
             "CurrentBuildNumber": "7601",
             "CurrentVersion": "6.1",
+            "CSDVersionHex": "00000100",
+            "ProductType": "WinNT",
         },
         "win2008r2": {
-            "ProductName": "Microsoft Windows 2008 R2",
             "CSDVersion": "Service Pack 1",
-            "CurrentBuild": "7601",
             "CurrentBuildNumber": "7601",
             "CurrentVersion": "6.1",
+            "CSDVersionHex": "00000100",
+            "ProductType": "WinNT",
         },
         "win2008": {
-            "ProductName": "Microsoft Windows 2008",
             "CSDVersion": "Service Pack 2",
-            "CurrentBuild": "6002",
             "CurrentBuildNumber": "6002",
             "CurrentVersion": "6.0",
+            "CSDVersionHex": "00000200",
+            "ProductType": "WinNT",
         },
         "winxp": {
-            "ProductName": "Microsoft Windows XP",
+            "CSDVersion": "Service Pack 3",
+            "CurrentBuildNumber": "2600",
+            "CSDVersionHex": "00000300",
+            "CurrentVersion": "5.1",
+        },
+        "winxp64": {
             "CSDVersion": "Service Pack 2",
-            "CurrentBuild": "3790",
             "CurrentBuildNumber": "3790",
+            "CSDVersionHex": "00000200",
             "CurrentVersion": "5.2",
+            "ProductType": "WinNT",
         },
     }
 
@@ -83,11 +96,20 @@ class Runner:
         arguments: str = "",
         environment: dict = False
     ):
+        '''
+        Run a .lnk file with arguments and environment variables, inside
+        a bottle using the config provided.
+        '''
         logging.info("Running link file on the bottle…")
 
         command = f"start /unix '{file_path}'"
-        RunAsync(Runner.run_command, None, config,
-                 command, False, arguments, environment)
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command=command, 
+            arguments=arguments, 
+            environment=environment
+        )
 
     @staticmethod
     def run_executable(
@@ -96,9 +118,29 @@ class Runner:
         arguments: str = "",
         environment: dict = False,
         no_async: bool = False,
-        cwd: str = None
+        cwd: str = None,
+        move_file: bool = False,
+        move_progress: callable = None,
+        terminal: bool = False
     ):
+        '''
+        Run an executable file with arguments and environment variables, inside
+        a bottle using the config provided.
+        '''
         logging.info("Running an executable on the bottle…")
+
+        if file_path in [None, ""]:
+            logging.error("No executable file path provided.")
+            return False
+
+        if move_file:
+            new_path = ManagerUtils.move_file_to_bottle(
+                file_path=file_path,
+                config=config,
+                fn_update=move_progress
+            )
+            if new_path:
+                file_path = new_path
 
         command = f"'{file_path}'"
 
@@ -108,72 +150,167 @@ class Runner:
             command = f"wineconsole cmd /c '{file_path}'"
 
         if no_async:
-            Runner.run_command(config, command,
-                             False, arguments, environment, True, cwd)
+            Runner.run_command(
+                config=config, 
+                command=command,
+                arguments=arguments, 
+                environment=environment, 
+                comunicate=True, 
+                cwd=cwd,
+                terminal=terminal
+            )
+            return Result(status=True)
         else:
-            RunAsync(Runner.run_command, None, config,
-                     command, False, arguments, environment, False, cwd)
+            RunAsync(
+                task_func=Runner.run_command, 
+                config=config, 
+                command=command, 
+                arguments=arguments, 
+                environment=environment,
+                cwd=cwd,
+                terminal=terminal
+            )
 
     @staticmethod
-    def run_wineboot(config: BottleConfig):
-        logging.info("Running wineboot on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "wineboot -u")
+    def run_layer_executable(config: BottleConfig, layer: dict):
+        '''
+        Run a layer executable.
+        '''
+        Runner.run_executable(
+            config=config,
+            file_path=layer["exec_path"],
+            arguments=layer["exec_args"],
+            environment=layer["exec_env"],
+            no_async=True
+        )
 
     @staticmethod
     def run_winecfg(config: BottleConfig):
         logging.info("Running winecfg on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "winecfg")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="winecfg"
+        )
 
     @staticmethod
     def run_winetricks( config: BottleConfig):
         logging.info("Running winetricks on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "winetricks")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="winetricks"
+        )
 
     @staticmethod
     def run_debug(config: BottleConfig):
         logging.info("Running a debug console on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "winedbg", True)
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="winedbg",
+            terminal=True,
+            colors="debug"
+        )
 
     @staticmethod
     def run_cmd(config: BottleConfig):
         logging.info("Running a CMD on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "cmd", True)
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="cmd",
+            terminal=True
+        )
 
     @staticmethod
     def run_taskmanager(config: BottleConfig):
-        logging.info("Running a Task Manager on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "taskmgr")
+        logging.info("Running a Task manager on the wineprefix…")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="taskmgr"
+        )
 
     @staticmethod
     def run_controlpanel( config: BottleConfig):
-        logging.info("Running a Control Panel on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "control")
+        logging.info("Running a Control panel on the wineprefix…")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="control"
+        )
 
     @staticmethod
     def run_uninstaller(config: BottleConfig, uuid: str = False):
         logging.info("Running an Uninstaller on the wineprefix…")
-
         command = "uninstaller"
+
         if uuid:
             command = f"uninstaller --remove '{uuid}'"
-        RunAsync(Runner.run_command, None, config, command)
+            
+        Runner.run_command(
+            config=config, 
+            command=command
+        )
 
     @staticmethod
     def run_regedit(config: BottleConfig):
         logging.info("Running a Regedit on the wineprefix…")
-        RunAsync(Runner.run_command, None, config, "regedit")
+        RunAsync(
+            task_func=Runner.run_command, 
+            config=config, 
+            command="regedit"
+        )
 
     @staticmethod
-    def send_status(config: BottleConfig, status: str):
-        logging.info(f"Sending Status: [{status}] to the wineprefix…")
-
-        available_status = {
-            "shutdown": "-s",
-            "reboot": "-r",
-            "kill": "-k"
+    def wineboot(
+        config: BottleConfig, 
+        status: int, 
+        silent: bool = True, 
+        comunicate: bool = False
+    ):
+        '''
+        Manage Wine server uptime using wineboot, inside a bottle using the
+        given configuraton.
+        ---
+        supported statues:
+            - -1: force
+            - 0: kill
+            - 1: restart
+            - 2: shutdown
+            - 3: update
+            - 4: init
+        ---
+        raises: ValueError
+            if the status is not supported.
+        '''
+        states = {
+            -1: "force",
+            0: "-k",
+            1: "-r",
+            2: "-s",
+            3: "-u",
+            4: "-i"
         }
-        option = available_status[status]
-        Runner.run_command(config, "wineboot %s" % option)
+        envs = {"WINEDEBUG": "-all"}
+
+        if status in states:
+            status = states[status]
+            command = f"wineboot {status}"
+        
+            if silent:
+                envs["DISPLAY"] = ":3.0"
+                command = f"{command} /nogui"
+                
+            Runner.run_command(
+                config, 
+                command, 
+                environment=envs,
+                comunicate=comunicate
+            )
+        else:
+            raise ValueError(f"[{status}] is not a valid status for wineboot!")
 
     @staticmethod
     def run_command(
@@ -183,26 +320,19 @@ class Runner:
         arguments: str = False,
         environment: dict = False,
         comunicate: bool = False,
-        cwd: str = None
-    ) -> bool:
-        path = config.get("Path")
+        cwd: str = None,
+        colors: str = "default"
+    ):
+        '''
+        Run a command inside a bottle using the config provided, supports
+        the comunicate argument to wait for the command to finish and
+        catch the output.
+        '''
+        path = ManagerUtils.get_bottle_path(config)
         runner = config.get("Runner")
         arch = config.get("Arch")
-
-        if "FLATPAK_ID" in os.environ \
-                or "SNAP" in os.environ \
-                or not UtilsTerminal().check_support() \
-                and terminal:
-            '''
-            Work around for Flatpak and Snap not able to 
-            use system host commands. Disable terminal to
-            force the wineconsole, then append the comamnd
-            as arguments.
-            '''
-            terminal = False
-            if command in ["winedbg", "cmd"]:
-                command = f"wineconsole {command}"
-
+        gpu = GPUUtils().get_gpu()
+        
         if not cwd:
             '''
             If no cwd is given, use the WorkingDir from the
@@ -214,7 +344,7 @@ class Runner:
             If the WorkingDir is empty, use the bottle path as
             working directory.
             '''
-            cwd = ManagerUtils.get_bottle_path(config)
+            cwd = path
 
         if runner is None:
             '''
@@ -228,9 +358,9 @@ class Runner:
             If the runner is Proton, set the pat to /dist or /files 
             based on check if files exists.
             '''
-            runner = "%s/files" % runner
-            if os.path.exists("%s/%s/dist" % (Paths.runners, runner)):
-                runner = "%s/dist" % runner
+            runner = f"{runner}/files"
+            if os.path.exists(f"{Paths.runners}/{runner}/dist"):
+                runner = f"{runner}/dist"
 
         if runner.startswith("sys-"):
             '''
@@ -240,9 +370,9 @@ class Runner:
             runner = "wine"
         else:
             runner = f"{Paths.runners}/{runner}/bin/wine"
-
-        if not config.get("Custom_Path"):
-            path = "%s/%s" % (Paths.bottles, path)
+        
+        if arch == "win64":
+            runner = f"{runner}64"
 
         # Check for executable args from bottle config
         env = os.environ.copy()
@@ -251,27 +381,41 @@ class Runner:
 
         if config.get("DLL_Overrides"):
             for dll in config.get("DLL_Overrides").items():
-                dll_overrides.append("%s=%s" % (dll[0], dll[1]))
+                dll_overrides.append(f"{dll[0]}={dll[1]}")
 
-        if parameters["environment_variables"]:
-            for env_var in re.findall(
-                r'(?:[^\s,"]|"(?:\\.|[^"])*"|\'(?:\\.|[^\'])*\')+',
-                parameters["environment_variables"]
-            ):
-                try:
-                    key, value = env_var.split("=")
-                    env[key] = value
-                except:
-                    # ref: https://github.com/bottlesdevs/Bottles/issues/668
-                    continue
+        if config.get("Environment_Variables"):
+            for env_var in config.get("Environment_Variables").items():
+                env[env_var[0]] = env_var[1]
 
         if environment:
             if environment.get("WINEDLLOVERRIDES"):
                 dll_overrides.append(environment["WINEDLLOVERRIDES"])
                 del environment["WINEDLLOVERRIDES"]
             for e in environment:
-                e = e.split("=")
-                env[e[0]] = e[1]
+                env[e] = environment[e]
+        
+        # hide mono and gecko to avoid popup dialogs
+        dll_overrides.append("mscoree=d mshtml=d")
+
+        if "FLATPAK_ID" in os.environ and parameters["use_runtime"] and not terminal:
+            '''
+            If the bottle is running inside a flatpak and the use_runtime
+            parameter is set, add runtime libs to LD_LIBRARY_PATH.
+            '''
+            logging.info("Using runtime if available…")
+            env["LD_LIBRARY_PATH"] = RuntimeManager.get_runtime_env()
+
+            # ensure that runner libs can be found
+            runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
+            runner_libs = []
+            for lib in ["lib", "lib64"]:
+                if os.path.exists(f"{runner_path}/{lib}"):
+                    runner_libs.append(f"{runner_path}/{lib}")
+            if runner_libs:
+                if "LD_LIBRARY_PATH" in env:
+                    env["LD_LIBRARY_PATH"] += ":".join(runner_libs)
+                else:
+                    env["LD_LIBRARY_PATH"] = ":".join(runner_libs)
 
         if parameters["dxvk"]:
             env["WINE_LARGE_ADDRESS_AWARE"] = "1"
@@ -280,6 +424,31 @@ class Runner:
             env["__GL_DXVK_OPTIMIZATIONS"] = "1"
             env["__GL_SHADER_DISK_CACHE"] = "1"
             env["__GL_SHADER_DISK_CACHE_PATH"] = path
+
+        if parameters["dxvk_nvapi"]:
+            dxvk_conf = f"{ManagerUtils.get_bottle_path(config)}/dxvk.conf"
+            if not os.path.exists(dxvk_conf):
+                # create dxvk.conf if it doesn't exist
+                with open(dxvk_conf, "w") as f:
+                    f.write("dxgi.nvapiHack = False")
+            else:
+                # check if dxvk.conf has the nvapiHack option, if not add it
+                with open(dxvk_conf, "r") as f:
+                    lines = f.readlines()
+                with open(dxvk_conf, "w") as f:
+                    for line in lines:
+                        if "dxgi.nvapiHack" in line:
+                            f.write("dxgi.nvapiHack = False\n")
+                        else:
+                            f.write(line)
+            
+            if "DXVK_CONFIG_FILE" not in config.get("Environment_Variables").keys():
+                # add dxvk.conf to the environment variables if not
+                env["DXVK_CONFIG_FILE"] = dxvk_conf
+            
+            if DisplayUtils.check_nvidia_device():
+                # prevent wine from hiding the nvidia gpu
+                env["WINE_HIDE_NVIDIA_GPU"] = "0"
 
         if parameters["dxvk_hud"]:
             env["DXVK_HUD"] = "devinfo,memory,drawcalls,fps,version,api,compiler"
@@ -292,10 +461,11 @@ class Runner:
         if parameters["sync"] == "fsync":
             env["WINEFSYNC"] = "1"
 
-        if parameters["fixme_logs"]:
-            env["WINEDEBUG"] = "+fixme-all"
-        else:
-            env["WINEDEBUG"] = "fixme-all"
+        if not env.get("WINEDEBUG"):
+            if parameters["fixme_logs"]:
+                env["WINEDEBUG"] = "+fixme-all"
+            else:
+                env["WINEDEBUG"] = "fixme-all"
 
         if parameters["aco_compiler"]:
             env["ACO_COMPILER"] = "aco"
@@ -307,22 +477,36 @@ class Runner:
         if "WAYLAND_DISPLAY" in os.environ:
             # workaround https://github.com/bottlesdevs/Bottles/issues/419
             logging.info("Using Xwayland..")
-            display = os.environ.get("DISPLAY", ":0")
-            env["DISPLAY"] = display
+            if not x_display:
+                logging.error("Failed to get Xwayland display")
+                return
+            env["DISPLAY"] = x_display
             env["GDK_BACKEND"] = "x11"
-            env["GDK_SDISPLAYALE"] = display
+            env["GDK_SDISPLAYALE"] = x_display
 
         if parameters["discrete_gpu"]:
-            if "nvidia" in subprocess.Popen(
-                "lspci | grep 'VGA'",
-                stdout=subprocess.PIPE,
-                shell=True
-            ).communicate()[0].decode("utf-8").lower():
-                env["__NV_PRIME_RENDER_OFFLOAD"] = "1"
-                env["__GLX_VENDOR_LIBRARY_NAME"] = "nvidia"
-                env["__VK_LAYER_NV_optimus"] = "NVIDIA_only"
+            discrete = gpu["prime"]["discrete"]
+            if discrete is not None:
+                gpu_envs = discrete["envs"]
+                for p in gpu_envs:
+                    env[p] = gpu_envs[p]
+                env["VK_ICD_FILENAMES"] = discrete["icd"]
+        
+        if "VK_ICD_FILENAMES" not in env.keys():
+            if gpu["prime"]["integrated"] is not None:
+                '''
+                System support PRIME but user disabled the discrete GPU
+                setting (previus check skipped), so using the integrated one.
+                '''
+                env["VK_ICD_FILENAMES"] = gpu["prime"]["integrated"]["icd"]
             else:
-                env["DRI_PRIME"] = "1"
+                '''
+                System doesn't support PRIME, so using the first result
+                from the gpu vendors list.
+                '''
+                _first = list(gpu["vendors"].keys())[0]
+                env["VK_ICD_FILENAMES"] = gpu["vendors"][_first]["icd"]
+                
 
         if parameters["pulseaudio_latency"]:
             env["PULSE_LATENCY_MSEC"] = "60"
@@ -343,31 +527,36 @@ class Runner:
 
         if gamemode_available and config["Parameters"]["gamemode"]:
             # check for gamemode enabled
-            command = f"gamemoderun {command}"
-
+            command = f"{gamemode_available} {command}"
+        
         if terminal:
-            return UtilsTerminal().execute(command, env)
+            return UtilsTerminal().execute(command, env, colors)
             
         if comunicate:
             try:
-                return subprocess.Popen(
+                res = subprocess.Popen(
                     command,
                     stdout=subprocess.PIPE,
                     shell=True,
                     env=env,
                     cwd=cwd
-                ).communicate()[0].decode("utf-8")
+                ).communicate()[0]
             except:
                 '''
                 If return an exception, try to execute the command
                 without the cwd argument
                 '''
-                return subprocess.Popen(
+                res = subprocess.Popen(
                     command,
                     stdout=subprocess.PIPE,
                     shell=True,
                     env=env
-                ).communicate()[0].decode("utf-8")
+                ).communicate()[0]
+
+            enc = detect_encoding(res)
+            if enc is not None:
+                res = res.decode(enc)
+            return res
 
         try:
             '''
@@ -382,7 +571,11 @@ class Runner:
                 cwd=cwd,
                 shell=True,
                 env=env
-            ).communicate()[0].decode("utf-8")
+            ).communicate()[0]
+
+            enc = detect_encoding(res)
+            if enc is not None:
+                res = res.decode(enc)
 
             if "ShellExecuteEx" in res:
                 raise Exception("ShellExecuteEx")
@@ -424,46 +617,48 @@ class Runner:
     @staticmethod
     def set_windows(config: BottleConfig, version: str):
         '''
-        Change Windows version of the wineprefix.
-        Parameters
+        Change Windows version in a bottle from the given
+        configuration.
         ----------
-        version : str
-            the Windows version to be setted:
-            win10 (Microsoft Windows 10)
-            win81 (Microsoft Windows 8.1)
-            win8 (Microsoft Windows 8)
-            win7 (Microsoft Windows 7)
-            win2008r2 (Microsoft Windows 2008 R1)
-            win2008 (Microsoft Windows 2008)
-            winxp (Microsoft Windows XP)
-        Raises
+        supported versions:
+            - win10 (Microsoft Windows 10)
+            - win81 (Microsoft Windows 8.1)
+            - win8 (Microsoft Windows 8)
+            - win7 (Microsoft Windows 7)
+            - win2008r2 (Microsoft Windows 2008 R1)
+            - win2008 (Microsoft Windows 2008)
+            - winxp (Microsoft Windows XP)
         ------
-        ValueError
+        raises: ValueError
             If the given version is invalid.
         '''
 
         if version not in Runner._windows_versions:
             raise ValueError("Given version is not supported.")
+            
+        if version == "winxp" and config.get("Arch") == "win64":
+            version = "winxp64"
 
-        Runner.reg_add(
-            config=config,
-            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
-            value="ProductName",
-            data=Runner._windows_versions.get(version)["ProductName"]
-        )
-
+        del_keys = {
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "SubVersionNumber",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "VersionNumber",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CSDVersion",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CurrentBuildNumber",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CurrentVersion",
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions": "ProductType",
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ServiceCurrent": "OS",
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": "CSDVersion",
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions": "ProductType",
+            "HKEY_CURRENT_USER\\Softwarw\\Wine": "Version"
+        }
+        for d in del_keys:
+            Runner.reg_delete(config, d, del_keys[d])
+            
         Runner.reg_add(
             config=config,
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
             value="CSDVersion",
             data=Runner._windows_versions.get(version)["CSDVersion"]
-        )
-
-        Runner.reg_add(
-            config=config,
-            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
-            value="CurrentBuild",
-            data=Runner._windows_versions.get(version)["CurrentBuild"]
         )
 
         Runner.reg_add(
@@ -478,34 +673,50 @@ class Runner:
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
             value="CurrentVersion",
             data=Runner._windows_versions.get(version)["CurrentVersion"]
-        ) 
+        )
 
-        RunAsync(Runner.send_status, None, config, "reboot")
+        if "ProductType" in Runner._windows_versions.get(version):
+            '''windows xp 32 doesn't have ProductOptions/ProductType key'''
+            Runner.reg_add(
+                config=config,
+                key="HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions",
+                value="ProductType",
+                data=Runner._windows_versions.get(version)["ProductType"]
+            )
+
+        Runner.reg_add(
+            config=config,
+            key="HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows",
+            value="CSDVersion",
+            data=Runner._windows_versions.get(version)["CSDVersionHex"],
+            keyType="REG_DWORD"
+        )
+
+        Runner.wineboot(config, status=1, comunicate=True)
     
     @staticmethod
     def set_app_default(config: BottleConfig, version: str, executable: str):
         '''
-        Change default Windows version per application
-        Parameters
+        Change default Windows version per application in a bottle
+        from the given configuration.
         ----------
-        executable : str
-            a valid executable name (e.g. wmplayer.exe)
-        version : str
-            the Windows version to be setted:
-            win10 (Microsoft Windows 10)
-            win81 (Microsoft Windows 8.1)
-            win8 (Microsoft Windows 8)
-            win7 (Microsoft Windows 7)
-            win2008r2 (Microsoft Windows 2008 R1)
-            win2008 (Microsoft Windows 2008)
-            winxp (Microsoft Windows XP)
-        Raises
+        supported versions:
+            - win10 (Microsoft Windows 10)
+            - win81 (Microsoft Windows 8.1)
+            - win8 (Microsoft Windows 8)
+            - win7 (Microsoft Windows 7)
+            - win2008r2 (Microsoft Windows 2008 R1)
+            - win2008 (Microsoft Windows 2008)
+            - winxp (Microsoft Windows XP)
         ------
-        ValueError
+        raises: ValueError
             If the given version is invalid.
         '''
         if version not in Runner._windows_versions:
             raise ValueError("Given version is not supported.")
+            
+        if version == "winxp" and config.get("Arch") == "win64":
+            version = "winxp64"
             
         Runner.reg_add(
             config=config,
@@ -536,8 +747,10 @@ class Runner:
         if keyType:
             command = "reg add '%s' /v '%s' /t %s /d '%s' /f" % (
                 key, value, keyType, data)
-
-        Runner.run_command(config, command)
+        
+        Runner.wait_for_process(config, "reg.exe")
+        res = Runner.run_command(config, command, comunicate=True)
+        logging.info(res)
 
     @staticmethod
     def reg_delete(config: BottleConfig, key: str, value: str):
@@ -550,6 +763,7 @@ class Runner:
             f"register bottle: {config['Name']}"
         )
 
+        Runner.wait_for_process(config, "reg.exe")
         Runner.run_command(config, f"reg delete '{key}' /v {value} /f")
 
     @staticmethod
@@ -627,3 +841,142 @@ class Runner:
                 key="HKEY_CURRENT_USER\\Software\\Wine\\Explorer",
                 value="Desktop"
             )
+        Runner.wineboot(config, status=3, comunicate=True)
+    
+    @staticmethod
+    def get_processes(config:BottleConfig) -> list:
+        '''
+        Get processes running on the wineprefix as a list.
+        '''
+        processes = []
+        parent = None
+
+        winedbg = Runner.run_command(
+            config,
+            command='winedbg --command "info proc"',
+            comunicate=True
+        )
+
+        if winedbg in [None, ""]:
+            return processes
+        
+        winedbg = winedbg.split("\n")
+
+        # remove the first line from the output (the header)
+        del winedbg[0]
+
+        for w in winedbg:
+            w = re.sub("\s{2,}", " ", w)[1:].replace("'", "")
+
+            if "\_" in w:
+                w = w.replace("\_ ", "")
+                w += " child"
+
+            w = w.split(" ")
+            w_parent = None
+
+            if len(w) >= 3 and w[1].isdigit():
+                w_pid = w[0]
+                w_threads = w[1]
+                w_name = w[2]
+
+                if len(w) == 3:
+                    parent = w_pid
+                else:
+                    w_parent = parent
+
+                w = {
+                    "pid": w_pid,
+                    "threads": w_threads,
+                    "name": w_name,
+                    "parent": w_parent
+                }
+                processes.append(w)
+
+        return processes
+    
+    @staticmethod
+    def wait_for_process(config:BottleConfig, name:str, timeout:int = 1):
+        '''
+        Wait for a process to exit.
+        '''
+        while True:
+            processes = Runner.get_processes(config)
+            if len(processes) == 0:
+                break
+            if name not in [p["name"] for p in processes]:
+                break
+            time.sleep(timeout)
+        return True
+    
+    @staticmethod
+    def kill_process(config:BottleConfig, pid:str=None, name:str=None):
+        '''
+        Kill a process by its PID or name.
+        '''
+        if pid:
+            command = "\n".join([
+                "winedbg << END_OF_INPUTS",
+                f"attach 0x{pid}",
+                "kill",
+                "quit",
+                "END_OF_INPUTS"
+            ])
+            res = Runner.run_command(
+                config,
+                command=command,
+                comunicate=True
+            )
+            if "error 5" in res and name:
+                res = subprocess.Popen(
+                    f"kill $(pgrep {name[:15]})",
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    shell=True
+                )
+                return res
+            return Runner.wineboot(config, status=0)
+        elif name:
+            processes = Runner.get_processes(config)
+            for p in processes:
+                if p["name"] == name:
+                    Runner.kill_process(config, p["pid"], name)
+    
+    @staticmethod
+    def is_process_alive(config:BottleConfig, pid:str=None, name:str=None):
+        '''
+        Check if a process is running on the wineprefix.
+        '''
+        processes = Runner.get_processes(config)
+        if pid:
+            return pid in [p["pid"] for p in processes]
+        elif name:
+            return name in [p["name"] for p in processes]
+        return False
+
+    @staticmethod
+    def apply_cmd_settings(config:BottleConfig, scheme:dict={}):
+        '''
+        Change settings for the wine command line in a bottle.
+        This method can also be used to apply the default settings, part
+        of the Bottles experience, these are meant to improve the
+        readability and usability.
+        '''
+        for key, value in CMDSettings.items():
+            if key not in scheme:
+                scheme[key] = value
+
+        for key, value in scheme.items():
+            keyType="REG_DWORD"
+
+            if key == "FaceName":
+                keyType="REG_SZ"
+
+            Runner.reg_add(
+                config,
+                key="HKEY_CURRENT_USER\\Console\\C:_windows_system32_wineconsole.exe",
+                value=key,
+                data=value,
+                keyType=keyType
+            )
+        

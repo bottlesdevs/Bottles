@@ -25,8 +25,11 @@ from datetime import datetime
 from gi.repository import Gtk, GLib
 
 from .runner import Runner
+from .manager_utils import ManagerUtils
 from .globals import BottlesRepositories, Paths
 from ..utils import RunAsync, UtilsLogger
+from .layers import LayersStore, Layer
+
 
 logging = UtilsLogger()
 
@@ -36,14 +39,11 @@ BottleConfig = NewType('BottleConfig', dict)
 
 class InstallerManager:
 
-    def __init__(
-        self,
-        manager,
-        widget: Gtk.Widget = None
-    ):
+    def __init__(self, manager):
         self.__manager = manager
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
+        self.__layer = None
 
     @lru_cache
     def get_review(self, installer_name):
@@ -118,18 +118,35 @@ class InstallerManager:
         dependencies: list,
         widget: Gtk.Widget
     ):
+        _config = config
+
         for dep in dependencies:
             widget.next_step()
 
             if dep in config.get("Installed_Dependencies"):
                 continue
 
-            dep_index = [dep, self.__manager.supported_dependencies.get(dep)]
-            self.__manager.dependency_manager.async_install([
-                config,
-                dep_index,
-                None
-            ])
+            _dep = [dep, self.__manager.supported_dependencies.get(dep)]
+            
+            if config.get("Environment") == "Layered":
+                if LayersStore.get_layer_by_name(dep):
+                    continue
+                logging.info(f"Installing {dep} in a new layer.")
+                layer = Layer().new(dep, self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _config = layer.runtime_conf
+                Runner.wineboot(_config, status=4, comunicate=True)
+
+            res = self.__manager.dependency_manager.install(_config, _dep)
+
+            if config.get("Environment") == "Layered":
+                layer.sweep()
+                layer.save()
+
+            if res.status == False:
+                return False
+        
+        return True
 
     def __perform_steps(self, config, steps: list):
         for st in steps:
@@ -152,14 +169,57 @@ class InstallerManager:
                         config=config,
                         file_path=f"{Paths.temp}/{file}",
                         arguments=st.get("arguments"),
-                        environment=st.get("environment"))
+                        environment=st.get("environment"),
+                        no_async=True
+                    )
 
     def __set_parameters(self, config, parameters: dict):
-        if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:
-            self.__manager.install_dxvk(config)
+        _config = config
+        _components_layers = []
 
-        if parameters.get("vkd3d") and config.get("Parameters")["vkd3d"]:
-            self.__manager.install_vkd3d(config)
+        if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:
+            if config["Environment"] == "Layered":
+                if LayersStore.get_layer_by_name("dxvk"):
+                    return
+                logging.info(f"Installing DXVK in a new layer.")
+                layer = Layer().new("dxvk", self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _components_layers.append(layer)
+                _config = layer.runtime_conf
+                Runner.wineboot(_config, status=4, comunicate=True)
+
+            self.__manager.install_dxvk(_config)
+
+        if parameters.get("vkd3d") and not config.get("Parameters")["vkd3d"]:
+            if config["Environment"] == "Layered":
+                if LayersStore.get_layer_by_name("vkd3d"):
+                    return
+                logging.info(f"Installing VKD3D in a new layer.")
+                layer = Layer().new("vkd3d", self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _components_layers.append(layer)
+                _config = layer.runtime_conf
+                Runner.wineboot(_config, status=4, comunicate=True)
+
+            self.__manager.install_vkd3d(_config)
+        
+        if parameters.get("dxvk_nvapi") and not config.get("Parameters")["dxvk_nvapi"]:
+            if config["Environment"] == "Layered":
+                if LayersStore.get_layer_by_name("dxvk_nvapi"):
+                    return
+                logging.info(f"Installing DXVK NVAPI in a new layer.")
+                layer = Layer().new("dxvk_nvapi", self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _components_layers.append(layer)
+                _config = layer.runtime_conf
+                Runner.wineboot(_config, status=4, comunicate=True)
+
+            self.__manager.install_nvapi(_config)
+        
+        # sweep and save layers
+        for c in _components_layers:
+            c.sweep()
+            c.save()
 
         for param in parameters:
             self.__manager.update_config(
@@ -170,11 +230,15 @@ class InstallerManager:
             )
 
     def __set_executable_arguments(self, config, executable: dict):
+        '''
+        TODO: Change config["Programs"] struct like External_Programs
+        '''
         self.__manager.update_config(
             config=config,
             key=executable.get("file"),
             value=executable.get("arguments"),
-            scope="Programs")
+            scope="Programs"
+        )
 
     def __create_desktop_entry(self, config, manifest, executable: dict):
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
@@ -214,9 +278,7 @@ class InstallerManager:
             f.write("Name=Configure in Bottles\n")
             f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
 
-    def __async_install(self, args):
-        config, installer, widget = args
-
+    def count_steps(self, installer):
         manifest = self.get_installer(
             installer_name=installer[0],
             installer_category=installer[1]["Category"]
@@ -230,7 +292,20 @@ class InstallerManager:
             steps += int(len(manifest.get("Steps")))
         if manifest.get("Executable"):
             steps += 1
-        widget.set_steps(steps)
+        
+        return steps
+
+    def install(self, config, installer, widget):
+        if config.get("Environment") == "Layered":
+            self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
+            self.__layer.mount_bottle(config)
+            Runner.wineboot(self.__layer.runtime_conf, status=4, comunicate=True)
+
+        manifest = self.get_installer(
+            installer_name=installer[0],
+            installer_category=installer[1]["Category"]
+        )
+        _config = config
 
         dependencies = manifest.get("Dependencies")
         parameters = manifest.get("Parameters")
@@ -239,33 +314,60 @@ class InstallerManager:
 
         # download icon
         if executable.get("icon"):
-            self.__download_icon(config, executable, manifest)
+            self.__download_icon(_config, executable, manifest)
 
         # install dependencies
         if dependencies:
-            self.__install_dependencies(config, dependencies, widget)
+            self.__install_dependencies(_config, dependencies, widget)
 
         # execute steps
         if steps:
             widget.next_step()
-            self.__perform_steps(config, steps)
+            if self.__layer is not None:
+                for d in dependencies:
+                    self.__layer.mount(name=d)
+                self.__perform_steps(self.__layer.runtime_conf, steps)
+            else:
+                self.__perform_steps(_config, steps)
 
         # set parameters
         if parameters:
             widget.next_step()
-            self.__set_parameters(config, parameters)
+            self.__set_parameters(_config, parameters)
 
         # register executable arguments
         if executable.get("arguments"):
-            self.__set_executable_arguments(config, executable)
+            self.__set_executable_arguments(_config, executable)
 
         # create Desktop entry
         widget.next_step()
-        self.__create_desktop_entry(config, manifest, executable)
+        self.__create_desktop_entry(_config, manifest, executable)
+
+        if self.__layer is not None:
+            # sweep and save
+            self.__layer.sweep()
+            self.__layer.save()
+            
+            # register layer
+            _layer_launcher = {
+                "uuid": self.__layer.get_uuid(),
+                "name": manifest["Name"],
+                "icon": "com.usebottles.bottles-program",
+                "exec_path": f'{executable["path"]}/{executable["file"]}',
+                "exec_name": executable["file"],
+                "exec_args": executable["arguments"],
+                "exec_env": {},
+                "exec_cwd": executable["path"],
+                "parameters": parameters,
+                "mounts": dependencies,
+            }
+            self.__manager.update_config(
+                config=config,
+                key=self.__layer.get_uuid(),
+                value=_layer_launcher,
+                scope="Layers"
+            )
 
         # unlock widget
         if widget is not None:
             GLib.idle_add(widget.set_installed)
-
-    def install(self, config, installer, widget):
-        RunAsync(self.__async_install, False, [config, installer, widget])

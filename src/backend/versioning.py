@@ -1,6 +1,6 @@
 import os
 import yaml
-import time
+import uuid
 import shutil
 from glob import glob
 from typing import NewType
@@ -9,7 +9,8 @@ from gettext import gettext as _
 from gi.repository import GLib
 
 from ..operation import OperationManager
-from ..utils import UtilsLogger, UtilsFiles, RunAsync
+from ..utils import UtilsLogger, UtilsFiles
+from .result import Result
 from .manager_utils import ManagerUtils
 
 logging = UtilsLogger()
@@ -25,8 +26,14 @@ class RunnerVersioning:
     def __init__(self, window, manager):
         self.window = window
         self.manager = manager
+        self.__operation_manager = OperationManager(self.window)
 
-    def async_create_state(self, args: list) -> bool:
+    def create_state(
+        self,
+        config: BottleConfig,
+        comment: str = "No comment",
+        update: bool = False
+    ):
         '''
         This function creates a new bottle state.
         It will list all files in the bottle and compare them with the
@@ -36,17 +43,17 @@ class RunnerVersioning:
         the index file. It will return True if the state was created, 
         False otherwise.
         '''
-        config, comment, update, no_update, after = args
-
+        task_id = str(uuid.uuid4())
         logging.info(
             f"Creating new state for bottle: [{config['Name']}] …"
         )
 
         bottle_path = ManagerUtils.get_bottle_path(config)
-        self.operation_manager = OperationManager(self.window)
-        task_entry = self.operation_manager.new_task(
-            file_name=_("Generating state files index …"),
-            cancellable=False
+        GLib.idle_add(
+            self.__operation_manager.new_task, 
+            task_id, 
+            _("Generating state files index …"),  
+            False
         )
 
         # check if this is the first state
@@ -115,7 +122,7 @@ class RunnerVersioning:
                         "checksum": file["checksum"]
                     })
 
-            state_id = str(len(states_file_yaml.get("States")))
+            state_id = int(str(len(states_file_yaml.get("States"))))
         else:
             new_state_index = {
                 "Update_Date": str(datetime.now()),
@@ -123,12 +130,17 @@ class RunnerVersioning:
                 "Removed": [],
                 "Changes": []
             }
-            state_id = "0"
+            state_id = 0
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
-        task_entry.remove()
-        task_entry = self.operation_manager.new_task(
-            _("Creating a restore point …"), False)
+        
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        GLib.idle_add(
+            self.__operation_manager.new_task, 
+            task_id, 
+            _("Creating a restore point …"),  
+            False
+        )
 
         try:
             '''
@@ -148,11 +160,18 @@ class RunnerVersioning:
                 yaml.dump(cur_index, state_files_file, indent=4)
                 state_files_file.close()
         except:
-            return False
+            return Result(
+                status=False,
+                message=_("Could not create the state folder.")
+            )
 
-        task_entry.remove()
-        task_entry = self.operation_manager.new_task(
-            _("Updating index …"), False)
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        GLib.idle_add(
+            self.__operation_manager.new_task, 
+            task_id, 
+            _("Updating index …"),  
+            False
+        )
 
         for file in cur_index["Files"]:
             '''
@@ -170,9 +189,13 @@ class RunnerVersioning:
             target = "{0}/drive_c/{1}".format(state_path, file["file"])
             shutil.copyfile(source, target)
 
-        task_entry.remove()
-        task_entry = self.operation_manager.new_task(
-            _("Updating states …"), False)
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
+        GLib.idle_add(
+            self.__operation_manager.new_task, 
+            task_id, 
+            _("Updating states …"),  
+            False
+        )
 
         # update the states.yml file, appending the new state
         new_state = {
@@ -197,7 +220,10 @@ class RunnerVersioning:
                 yaml.dump(new_state_file, states_file, indent=4)
                 states_file.close()
         except:
-            return False
+            return Result(
+                status=False,
+                message=_("Could not update the states file.")
+            )
 
         try:
             '''
@@ -208,9 +234,12 @@ class RunnerVersioning:
                 yaml.dump(cur_index, cur_index_file, indent=4)
                 cur_index_file.close()
         except:
-            return False
+            return Result(
+                status=False,
+                message=_("Could not update the index file.")
+            )
 
-        # update bottle configuation
+        # update bottle configuration
         self.manager.update_config(config, "State", state_id)
         self.manager.update_config(config, "Versioning", True)
 
@@ -221,34 +250,24 @@ class RunnerVersioning:
             If the update flag is set, we will update the bottle's 
             states list.
             '''
-            self.window.page_details.update_states()
+            GLib.idle_add(
+                self.window.page_details.view_versioning.update,
+                False, config
+            )
 
         # update the bottles' list
         self.manager.update_bottles()
 
-        task_entry.remove()
+        GLib.idle_add(self.__operation_manager.remove_task, task_id)
 
-        if after:
-            '''
-            If the caller defined a function to be called after the
-            process, we will call it.
-            '''
-            GLib.idle_add(after)
-
-        return True
-
-    def create_state(
-        self,
-        config: BottleConfig,
-        comment: str = "Not commented",
-        update: bool = False,
-        no_update: bool = False,
-        after: bool = False
-    ):
-        RunAsync(
-            self.async_create_state, 
-            None, 
-            [config, comment, update, no_update, after]
+        return Result(
+            status=True,
+            message=_("New state [{0}] created successfully!").format(state_id),
+            data={
+                "state_id": state_id,
+                "state_path": state_path,
+                "states": self.list_states(config)
+            }
         )
 
     def get_state_edits(
@@ -266,8 +285,22 @@ class RunnerVersioning:
         bottle_path = ManagerUtils.get_bottle_path(config)
         try:
             file = open('%s/states/%s/index.yml' % (bottle_path, state_id))
-            files = file.read() if plain else yaml.safe_load(file.read())
+            content = file.read()
+            files = yaml.safe_load(content)
             file.close()
+            
+            additions = len(files["Additions"])
+            removed = len(files["Removed"])
+            changes = len(files["Changes"])
+
+            if plain:
+                return {
+                    "Plain": content,
+                    "Additions": additions,
+                    "Removed": removed,
+                    "Changes": changes
+                }
+            
             return files
         except:
             return {}
@@ -275,7 +308,7 @@ class RunnerVersioning:
     def get_state_files(
         self,
         config: BottleConfig,
-        state_id: str,
+        state_id: int,
         plain: bool = False
     ) -> dict:
         '''
@@ -317,7 +350,12 @@ class RunnerVersioning:
             })
         return cur_index
 
-    def async_set_state(self, args) -> bool:
+    def set_state(
+        self, 
+        config: BottleConfig, 
+        state_id: int, 
+        after=False
+    ):
         '''
         This function restore the given state to the bottle.
         It compare the state files with bottle ones and restore
@@ -327,7 +365,6 @@ class RunnerVersioning:
         well documented, but I'm a bit scared to put my hands
         on it again °_°
         '''
-        config, state_id, after = args
 
         bottle_path = ManagerUtils.get_bottle_path(config)
 
@@ -386,7 +423,10 @@ class RunnerVersioning:
         self.manager.update_config(config, "State", state_id)
 
         # update states
-        self.window.page_details.update_states()
+        GLib.idle_add(
+            self.window.page_details.view_versioning.update,
+            False, config
+        )
 
         # update bottles
         self.manager.update_bottles()
@@ -396,18 +436,6 @@ class RunnerVersioning:
             GLib.idle_add(after)
 
         return True
-
-    def set_state(
-        self, 
-        config: BottleConfig, 
-        state_id: str, 
-        after=False
-    ):
-        RunAsync(
-            self.async_set_state,
-            None,
-            [config, state_id, after]
-        )
 
     def list_states(self, config: BottleConfig) -> dict:
         '''
@@ -427,7 +455,7 @@ class RunnerVersioning:
                 f"Found [{len(states)}] states for bottle: [{config['Name']}]"
             )
         except:
-            logging.error(
+            logging.warning(
                 f"Cannot find states.yml file for bottle: [{config['Name']}]"
             )
 

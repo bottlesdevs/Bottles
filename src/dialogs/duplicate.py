@@ -20,7 +20,7 @@ import time
 from gi.repository import Gtk, Handy
 
 from ..utils import RunAsync
-from ..backend.backup import RunnerBackup
+from ..backend.backup import BackupManager
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
 class DuplicateDialog(Handy.Window):
@@ -77,20 +77,26 @@ class DuplicateDialog(Handy.Window):
         self.stack_switcher.set_visible_child_name("page_duplicating")
 
         widget.set_visible(False)
-        RunAsync(self.pulse, None)
+        RunAsync(self.pulse)
         name = self.entry_name.get_text()
 
-        RunnerBackup().duplicate_bottle(self.config, name)
+        RunAsync(
+            task_func=BackupManager.duplicate_bottle,
+            callback=self.finish,
+            config=self.config,
+            name=name
+        )
+
+    def finish(self, result, error=None):
+        # TODO: handle result.status == False
         self.parent.manager.update_bottles()
-
         self.stack_switcher.set_visible_child_name("page_duplicated")
-
         self.btn_close.set_sensitive(True)
         self.btn_close.set_visible(True)
         self.btn_cancel.set_visible(False)
 
     def pulse(self):
-        # This function update the progress bar every 1s.
+        # This function update the progress bar every half second.
         while True:
             time.sleep(.5)
             self.progressbar.pulse()

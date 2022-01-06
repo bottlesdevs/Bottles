@@ -5,9 +5,9 @@
     <project_license>GPL-3.0-or-later</project_license>
     <name>Bottles</name>
     <summary>Run Windows software</summary>
-    <developer_name>Mirko Brombin</developer_name>
+    <developer_name translatable="no">Mirko Brombin</developer_name>
     <description>
-        <p>Run Windows software on Linux with Bottles🍷!</p>
+        <p>Run Windows software on Linux with Bottles!</p>
         <p>Bottle software and enjoy at your leisure!</p>
         <p>Our built-in dependency installation system grants automatic software
             compatibility access. Use the download manager to download the official components:
@@ -82,40 +82,59 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2021.10.28-treviso" date="2021-10-28">
+        <release version="2021.12.28-treviso" date="2021-12-27">
           <description>
             <p>News</p>
             <ul>
-                <li>Now there is an internal notification manager, so we can keep in touch with the community!</li>
-                <li>Implement DataManager to store and manage internal data</li>
-                <li>Migrate components to the new ComponentEntry widget</li>
-                <li>Dependencies catalog now sorted alphabetically</li>
-                <li>Now it is possible to read the installer review</li>
-                <li>Now all HTTP requests are cached after the first time</li>
-                <li>Support for QTerminal and LXTerminal</li>
-                <li>Allow also other packages to use the sandboxed userdir in bottles (currenty this is not a full sandbox, just the userdir is not linked to the homedir)</li>
-                <li>General UI cleanups (thanks to @BrainBlasted)</li>
+                <li>Bottles runtime updated to 0.2</li>
+                <li>Caffe is now the new default runner, falling back to Vaniglia if not available</li>
+                <li>New environment variables management, with a nice new UI</li>
+                <li>The new Operation manager handle tasks queue to avoid conflicts</li>
+                <li>Improved XWayland support for runners when running in a Wayland session</li>
+                <li>Improved compatibility for Optimus laptops</li>
+                <li>Prevented value changes in preferences when scrolling on combo boxes</li>
+                <li>Now the Crash Report dialog disable the send button if the report is already sent multiple times</li>
+                <li>The new copy_file action can be used to copy any file during dependency installation</li>
+                <li>Now is possible to rename manually added programs</li>
+                <li>The uninstaller can now remove more than one program in one go (used by dependencies/installers)</li>
+                <li>Improved DLSS support, now is automatically configured</li>
+                <li>Extended the programs search to new directories</li>
             </ul>
 
-            <p>Bug fixes</p>
+            <p>Bug-fixes</p>
             <ul>
-                <li>Fixed a regression in Wayland support</li>
-                <li>Fixed a bug in environment variables storing</li>
-                <li>Fixed the wrong dxvk_nvapi flag in bottle configuration</li>
-                <li>Fixed a bug with Proton component installation</li>
-                <li>Fixed a bug that was causing the Versioning system executing methods in the main thread in a non safe way</li>
-                <li>Fixed "Directory not empty" bug on bottle deletion</li>
-                <li>Fixed "'bool' object is not callable" bug on component installation failure</li>
-                <li>Fixed source string errors (thanks to @Martinligabue, and Allan Nordhøy)</li>
+                <li>Fixed onboard (first start-up) freeze when downloading components</li>
+                <li>Fixed random crashes caused by non-safe thread access</li>
+                <li>Fixed Wayland support, was setting the wrong port for XWayland, the new method tests a bunch of ports to find the right one</li>
+                <li>Fixed VKD3D installation, was failing due to a regression in command-handling</li>
+                <li>Fixed a crash during bottle creation caused by a non-handled exception</li>
+                <li>Fixed random crash saving environment variables</li>
+                <li>Fixed a crash caused by the logger trying to split a None</li>
+                <li>Fixed silent EasyTerm crash when gamemode is on and it doesn't find the executable</li>
+                <li>Fixed wrong environment variables setting on non-Optimus laptops</li>
+                <li>Fixed a crash caused by a non-handled exception of Patool library</li>
+                <li>Fixed Windows version change for Win XP, was setting the wrong value for 64-bit bottles</li>
+                <li>Fixed a bug during initial checks</li>
             </ul>
 
             <p>Translations</p>
             <ul>
+                <li>Chinese (Traditional) translations thanks to @XiaoPanPanKevinPan</li>
+                <li>Czech translations thanks to @SoongVilda</li>
                 <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Hindi translations thanks to @ExistingProgrammer, @gauthamkrishna9991</li>
-                <li>Croatian translations thanks to @milotype</li>
-                <li>Japanese translations thanks to @jatin-cbs</li>
-                <li>Portuguese (Brazil) translations thanks to @davipatricio</li>
+                <li>French translations thanks to @GoudronViande24, @Bloombug, @julroy67</li>
+                <li>German translations thanks to @McLutzifer, @Translator5</li>
+                <li>Hindi translations thanks to @athenasaurav</li>
+                <li>Indonesian translations thanks to neko</li>
+                <li>Italian translations thanks to @AlexzanDev, @phaerrax</li>
+                <li>Japanese translations thanks to @Hebi-no-Sekigae</li>
+                <li>Korean translations thanks to @OctopusET, @qogusdn1017</li>
+                <li>Polish translations thanks to Krzysztof Marcinek</li>
+                <li>Portuguese translations thanks to @Bloombug</li>
+                <li>Portuguese (Brazil) translations thanks to @redvulps, @davipatricio</li>
+                <li>Spanish translations thanks to Alberto Cañaveras</li>
+                <li>Vietnamese translations thanks to AD, Giai Ngo</li>
+                <li>Russian translations thanks to @ZSHFan</li>
             </ul>
           </description>
         </release>
