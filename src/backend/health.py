@@ -22,6 +22,7 @@ class HealthChecker:
     kernel_version: str = ""
     distro: str = ""
     distro_version: str = ""
+    bottles_envs: dict = {}
 
     def __init__(self):
         self.x11 = self.check_x11()
@@ -31,6 +32,7 @@ class HealthChecker:
         self.cabextract = self.check_cabextract()
         self.p7zip = self.check_p7zip()
         self.patool = self.check_patool()
+        self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
     
     def check_gpus(self):
@@ -110,6 +112,21 @@ class HealthChecker:
             "name": "Unknown",
             "version": "Unknown"
         }
+    
+    def get_bottles_envs(self):
+        look = [
+            "LAYERS",
+            "TESTING_REPOS",
+            "LOCAL_INSTALLERS",
+            "LOCAL_COMPONENTS",
+            "LOCAL_DEPENDENCIES"
+        ]
+
+        for _look in look:
+            if _look in os.environ:
+                return {
+                    _look: os.environ[_look]
+                }
         
     def check_system_info(self):
         distro = self.__get_distro()
@@ -138,7 +155,8 @@ class HealthChecker:
                 "cabextract": self.cabextract,
                 "p7zip": self.p7zip,
                 "patool": self.patool
-            }
+            },
+            "Bottles_envs": self.bottles_envs
         }
         
         if plain:
