@@ -2,7 +2,10 @@ import os
 import shutil
 from pathlib import Path
 from ..backend.display import DisplayUtils
+from ..utils import UtilsLogger
 
+
+logging = UtilsLogger()
 
 class API:
     notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
@@ -111,6 +114,30 @@ class BottlesRepositories:
     if "TESTING_REPOS" in os.environ and int(os.environ["TESTING_REPOS"]) == 1:
             dependencies_index = f"{dependencies}/testing.yml"
             components_index = f"{components}/testing.yml"
+    
+    if "LOCAL_COMPONENTS" in os.environ:
+        if os.path.exists(f"{os.environ['LOCAL_COMPONENTS']}/index.yml"):
+            logging.info(f"Using a local components repository: {os.environ['LOCAL_COMPONENTS']}")
+            components = f"file://{os.environ['LOCAL_COMPONENTS']}/"
+            components_index = f"{components}/index.yml"
+        else:
+            logging.error(f"Local components path does not exist: {os.environ['LOCAL_COMPONENTS']}")
+    
+    if "LOCAL_DEPENDENCIES" in os.environ:
+        if os.path.exists(f"{os.environ['LOCAL_DEPENDENCIES']}/index.yml"):
+            logging.info(f"Using a local dependencies repository: {os.environ['LOCAL_DEPENDENCIES']}")
+            dependencies = f"file://{os.environ['LOCAL_DEPENDENCIES']}/"
+            dependencies_index = f"{dependencies}/index.yml"
+        else:
+            logging.error(f"Local dependencies path does not exist: {os.environ['LOCAL_DEPENDENCIES']}")
+    
+    if "LOCAL_INSTALLERS" in os.environ:
+        if os.path.exists(f"{os.environ['LOCAL_INSTALLERS']}/index.yml"):
+            logging.info(f"Using a local installers repository: {os.environ['LOCAL_INSTALLERS']}")
+            installers = f"file://{os.environ['LOCAL_INSTALLERS']}/"
+            installers_index = f"{installers}/index.yml"
+        else:
+            logging.error(f"Local installers path does not exist: {os.environ['LOCAL_INSTALLERS']}")
 
 
 class Paths:
