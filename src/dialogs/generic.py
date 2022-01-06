@@ -107,11 +107,12 @@ class Dialog(Gtk.Dialog):
                 message_view = Gtk.TextView()
                 message_buffer = message_view.get_buffer()
                 buffer_iter = message_buffer.get_end_iter()
-                message_buffer.insert_markup(
-                    buffer_iter, 
-                    f"<span foreground='{color}'>{log}</span>",
-                    -1
-                )
+                for l in log.split("\n"):
+                    message_buffer.insert_markup(
+                        buffer_iter, 
+                        f"<span foreground='{color}'>{l}</span>\n",
+                        -1
+                    )
                 message_scroll.add(message_view)
 
             if html:
