@@ -34,7 +34,7 @@ from .views.list import ListView
 from .views.preferences import PreferencesWindow
 from .views.importer import ImporterView
 from .dialogs.crash import CrashReportDialog
-from .dialogs.generic import Dialog, AboutDialog
+from .dialogs.generic import AboutDialog, TextDialog
 from .dialogs.onboard import OnboardDialog
 from .widgets.message import MessageEntry
 
@@ -286,14 +286,11 @@ class MainWindow(Handy.ApplicationWindow):
         It will show the health view.
         '''
         ht = HealthChecker().get_results(plain=True)
-        dialog = Dialog(
+        TextDialog(
             parent=self,
             title=_("Health check"),
-            message=False,
-            log=ht
+            message=ht,
         )
-        dialog.run()
-        dialog.destroy()
 
 
     def show_details_view(self, widget=False, config=dict):
