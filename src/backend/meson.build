@@ -21,7 +21,8 @@ bottles_sources = [
   'vulkan.py',
   'gpu.py',
   'layers.py',
-  'diff.py'
+  'diff.py',
+  'health.py'
 ]
 
 install_data(bottles_sources, install_dir: backenddir)
