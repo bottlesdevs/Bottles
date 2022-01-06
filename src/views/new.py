@@ -74,9 +74,9 @@ class NewView(Handy.Window):
             "icon": "applications-games-symbolic"
         },
         {
-            "id": "Software",
-            "name": _("Software"),
-            "description": _("An environment improved for Windows software."),
+            "id": "Application",
+            "name": _("Application"),
+            "description": _("An environment improved for Windows application."),
             "icon": "applications-engineering-symbolic"
         },
         {

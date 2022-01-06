@@ -80,7 +80,7 @@ class Samples:
                 "d3dcompiler_47"
             ]
         },
-        "software": {
+        "application": {
             "Runner": "wine",
             "Parameters": {
                 "dxvk": True,
