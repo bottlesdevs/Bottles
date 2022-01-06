@@ -607,10 +607,6 @@ class Manager:
             recursive=True
         )
         results += glob(
-            f"{bottle}/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
-            recursive=True
-        )
-        results += glob(
             f"{bottle}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
             recursive=True
         )
