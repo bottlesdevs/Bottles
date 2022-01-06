@@ -74,11 +74,6 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
-        self.btn_overrides.connect('activate', self.__show_dll_overrides_view)
-        self.btn_environment_variables.connect(
-            'activate', self.__show_environment_variables
-        )
-        self.btn_cwd.connect('activate', self.choose_cwd)
         self.btn_overrides.connect("clicked", self.__show_dll_overrides_view)
         self.btn_manage_runners.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_dxvk.connect("clicked", self.window.show_prefs_view)

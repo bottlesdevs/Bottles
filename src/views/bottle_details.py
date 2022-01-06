@@ -97,17 +97,6 @@ class BottleView(Gtk.ScrolledWindow):
 
         self.btn_rename.connect('toggled', self.__toggle_rename)
 
-        self.btn_winecfg.connect('activate', self.run_winecfg)
-        self.btn_debug.connect('activate', self.run_debug)
-        self.btn_execute.connect('activate', self.run_executable)
-        self.btn_run_args.connect('activate', self.__run_executable_with_args)
-        self.btn_browse.connect('activate', self.run_browse)
-        self.btn_cmd.connect('activate', self.run_cmd)
-        self.btn_taskmanager.connect('activate', self.run_taskmanager)
-        self.btn_controlpanel.connect('activate', self.run_controlpanel)
-        self.btn_uninstaller.connect('activate', self.run_uninstaller)
-        self.btn_regedit.connect('activate', self.run_regedit)
-
         self.btn_winecfg.connect("clicked", self.run_winecfg)
         self.btn_debug.connect("clicked", self.run_debug)
         self.btn_execute.connect("clicked", self.run_executable)
