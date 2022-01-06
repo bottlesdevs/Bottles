@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-27 17:50+0100\n"
+"POT-Creation-Date: 2022-01-06 23:20+0100\n"
 "PO-Revision-Date: 2021-12-15 05:46+0000\n"
 "Last-Translator: Vilda <vvedomil@protonmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
-#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
-#: src/window.py:195
+#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:147
+#: src/window.py:197
 msgid "Bottles"
 msgstr "Láhve"
 
@@ -195,7 +195,7 @@ msgid "Change the window height."
 msgstr "Změna výšky okna"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
-#: src/ui/window.ui:335
+#: src/ui/window.ui:348
 msgid "Notifications"
 msgstr "Upozornění"
 
@@ -269,26 +269,26 @@ msgstr "© 2017-2021 - Vývojáři Láhví (Bottles)"
 msgid "Easily manage wineprefix using environments"
 msgstr "Snadno spravujte wineprefix pomocí proměnných prostředí"
 
-#: src/ui/about.ui:123
+#: src/ui/about.ui:138
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Překlady</a>"
 
-#: src/ui/about.ui:136
+#: src/ui/about.ui:151
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">Příspěvky</a>"
 
-#: src/ui/about.ui:149
+#: src/ui/about.ui:164
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Nahlašování chyb</"
 "a>"
 
-#: src/ui/about.ui:162
+#: src/ui/about.ui:177
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 
-#: src/ui/about.ui:175
+#: src/ui/about.ui:190
 #, fuzzy
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Překlady</a>"
@@ -606,8 +606,8 @@ msgstr "Zpráva jde sem."
 #: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
 #: src/ui/dialog-run-args.ui:28 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:277 src/views/bottle_details.py:366
-#: src/views/bottle_preferences.py:147 src/views/bottle_programs.py:69
+#: src/views/bottle_details.py:276 src/views/bottle_details.py:365
+#: src/views/bottle_preferences.py:142 src/views/bottle_programs.py:69
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "Zrušit"
@@ -772,7 +772,7 @@ msgstr "Existující přepsání"
 msgid "Run with arguments"
 msgstr "Spustit s argumenty"
 
-#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:276
+#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:275
 #: src/views/list.py:124
 msgid "Run"
 msgstr "Spustit"
@@ -832,7 +832,7 @@ msgstr "Toto je kompletní archiv vaší lahve, včetně osobních souborů."
 msgid "Full archive"
 msgstr "Kompletní archiv"
 
-#: src/ui/importer.ui:75 src/window.py:150
+#: src/ui/importer.ui:75 src/window.py:152
 msgid "Importer"
 msgstr "Importovat"
 
@@ -1003,7 +1003,7 @@ msgstr "Odebrat z programů"
 msgid "Add desktop entry"
 msgstr "Přidání položky na plochu"
 
-#: src/ui/new.ui:25 src/ui/window.ui:315
+#: src/ui/new.ui:25 src/ui/window.ui:328
 msgid "New bottle"
 msgstr "Nová láhev"
 
@@ -1281,19 +1281,23 @@ msgstr "Dokumentace"
 msgid "Forums"
 msgstr "Fórum"
 
-#: src/ui/window.ui:83
+#: src/ui/window.ui:83 src/window.py:290
+msgid "Health check"
+msgstr ""
+
+#: src/ui/window.ui:96
 msgid "About Bottles"
 msgstr "O Láhvích"
 
-#: src/ui/window.ui:208 src/ui/window.ui:251
+#: src/ui/window.ui:221 src/ui/window.ui:264
 msgid "Open menu"
 msgstr "Otevřít menu"
 
-#: src/ui/window.ui:229
+#: src/ui/window.ui:242
 msgid "Operations"
 msgstr "Operace"
 
-#: src/ui/window.ui:273
+#: src/ui/window.ui:286
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1302,7 +1306,7 @@ msgstr ""
 "Zdá se, že nejste připojeni k internetu. Bez něj si nebudete moci stáhnout "
 "základní komponenty. Po obnovení připojení klikněte na tuto ikonu."
 
-#: src/ui/window.ui:294
+#: src/ui/window.ui:307
 msgid "Go back"
 msgstr "Jít zpět"
 
@@ -1347,15 +1351,15 @@ msgstr "[Refresh] žádost přijata."
 msgid "You are offline, unable to download."
 msgstr "Jste offline, nemohu stahovat."
 
-#: src/window.py:140 src/window.py:193
+#: src/window.py:142 src/window.py:195
 msgid "Bottle details"
 msgstr "Detaily láhve"
 
-#: src/window.py:183
+#: src/window.py:185
 msgid "Bottles Started!"
 msgstr "Láhve Spuštěny!"
 
-#: src/window.py:197
+#: src/window.py:199
 msgid "Import & export"
 msgstr "Importovat & exportovat"
 
@@ -1369,76 +1373,81 @@ msgstr "Záloha {0}"
 msgid "Importing backup: {0}"
 msgstr "Importuji zálohu: {0}"
 
-#: src/backend/manager.py:964
+#: src/backend/manager.py:1004
+msgid "Fail to install components, tried 3 times."
+msgstr ""
+
+#: src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
 msgstr "Chybí základní součásti. Instalace…"
 
-#: src/backend/manager.py:1039
-msgid "Generating bottle configuration"
+#: src/backend/manager.py:1097
+#, fuzzy
+msgid "Generating bottle configuration…"
 msgstr "Generování konfigurace láhve"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1058
+#: src/backend/manager.py:1116
 msgid "The WINE config is being updated…"
 msgstr "Konfigurace WINE se aktualizuje …"
 
-#: src/backend/manager.py:1060
+#: src/backend/manager.py:1118
 msgid "WINE config updated!"
 msgstr "Konfigurace WINE byla aktualizována!"
 
-#: src/backend/manager.py:1069
+#: src/backend/manager.py:1127
 #, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Spuštění jako flatpak, vytváření složek v sandboxu …"
 
-#: src/backend/manager.py:1071
+#: src/backend/manager.py:1129
 msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1089
+#: src/backend/manager.py:1147
 msgid "Setting Windows version…"
 msgstr "Nastavení verze Windows…"
 
-#: src/backend/manager.py:1097
+#: src/backend/manager.py:1155
 msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/manager.py:1105
+#: src/backend/manager.py:1163
 #, fuzzy
 msgid "Optimizing environment…"
 msgstr "Aplikuji prostředí: [{0}] …"
 
-#: src/backend/manager.py:1117
+#: src/backend/manager.py:1175
 #, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Aplikuji prostředí: [{0}] …"
 
-#: src/backend/manager.py:1127
+#: src/backend/manager.py:1185
 #, fuzzy
 msgid "Installing DXVK…"
 msgstr "Instaluji DXVK …"
 
-#: src/backend/manager.py:1133
+#: src/backend/manager.py:1191
 #, fuzzy
 msgid "Installing VKD3D…"
 msgstr "Instaluji vkd3d…"
 
-#: src/backend/manager.py:1139
+#: src/backend/manager.py:1197
 #, fuzzy
 msgid "Installing DXVK-NVAPI…"
 msgstr "Instaluji DXVK …"
 
-#: src/backend/manager.py:1146
+#: src/backend/manager.py:1202
 #, fuzzy, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Instaluji {0} závislost v láhvi {1} …"
 
-#: src/backend/manager.py:1163
+#: src/backend/manager.py:1223
 #, fuzzy
 msgid "Creating versioning state 0…"
 msgstr "Vytvářím verzovací stav 0 …"
 
-#: src/backend/manager.py:1171
+#: src/backend/manager.py:1231
 msgid "Finalizing…"
 msgstr ""
 
@@ -1489,13 +1498,17 @@ msgid ""
 "            Report your feedback in one of the below existing reports."
 msgstr ""
 
-#: src/dialogs/generic.py:26 src/dialogs/generic.py:68
+#: src/dialogs/generic.py:26 src/dialogs/generic.py:154
 msgid "Warning"
 msgstr "Varování"
 
 #: src/dialogs/generic.py:27
 msgid "An error has occurred."
 msgstr "Došlo k chybě."
+
+#: src/dialogs/generic.py:89 src/dialogs/generic.py:133
+msgid "Copy to clipboard"
+msgstr ""
 
 #: src/views/details.py:103
 #, fuzzy
@@ -1523,53 +1536,53 @@ msgstr "Správa verzí"
 msgid "Task manager"
 msgstr "Správce úloh"
 
-#: src/views/bottle_details.py:171
+#: src/views/bottle_details.py:162
 #, fuzzy, python-format
 msgid "Updated: %s"
 msgstr "Aktualizace: %s"
 
 #. set arch
-#: src/views/bottle_details.py:174
+#: src/views/bottle_details.py:165
 msgid "64-bit"
 msgstr "64-bit"
 
-#: src/views/bottle_details.py:176
+#: src/views/bottle_details.py:167
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/views/bottle_details.py:273 src/views/list.py:121
+#: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Vyberte spustitelný soubor Windows"
 
-#: src/views/bottle_details.py:355
+#: src/views/bottle_details.py:354
 msgid "Select the location where to save the backup config"
 msgstr "Vyberte umístění, kam chcete uložit zálohu konfigurace"
 
-#: src/views/bottle_details.py:359
+#: src/views/bottle_details.py:358
 msgid "Select the location where to save the backup archive"
 msgstr "Vyberte lokaci do které chcete uložit archiv se zálohou"
 
-#: src/views/bottle_details.py:366
+#: src/views/bottle_details.py:365
 msgid "Export"
 msgstr "Export"
 
-#: src/views/bottle_details.py:397
+#: src/views/bottle_details.py:396
 msgid "Confirm deletion"
 msgstr "Potvrďte odstranění"
 
-#: src/views/bottle_details.py:399
+#: src/views/bottle_details.py:398
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Jste si jisti že chcete odstranit tuto láhev a všechny její soubory?"
 
-#: src/views/bottle_preferences.py:133
+#: src/views/bottle_preferences.py:128
 msgid "Gamemode is either not available on your system or not running."
 msgstr "Gamemode není v systému k dispozici nebo není spuštěn."
 
-#: src/views/bottle_preferences.py:143
+#: src/views/bottle_preferences.py:138
 msgid "Choose working directory for executables"
 msgstr "Vyberte pracovní složku pro spustitelné soubory"
 
-#: src/views/bottle_preferences.py:146
+#: src/views/bottle_preferences.py:141
 msgid "Done"
 msgstr "Hotovo"
 
@@ -1607,26 +1620,36 @@ msgid "An environment improved for Windows games."
 msgstr "Prostředí dělané pro hry z Windows."
 
 #: src/views/new.py:78
-msgid "Software"
-msgstr "Software"
+#, fuzzy
+msgid "Application"
+msgstr "Stahuji…"
 
 #: src/views/new.py:79
-msgid "An environment improved for Windows software."
-msgstr "Prostředí dělané pro software z Windows."
+#, fuzzy
+msgid "An environment improved for Windows application."
+msgstr "Prostředí dělané pro hry z Windows."
 
-#: src/views/new.py:90
+#: src/views/new.py:84
 msgid "Custom"
 msgstr "Vlastní"
 
-#: src/views/new.py:91
+#: src/views/new.py:85
 msgid "A clear environment for your experiments."
 msgstr "Čisté rozhraní pro vaše experimenty."
 
-#: src/views/new.py:239
+#: src/views/new.py:93
+msgid "Layered"
+msgstr ""
+
+#: src/views/new.py:94
+msgid "A layered environment, where every app is a layer."
+msgstr ""
+
+#: src/views/new.py:247
 msgid "There was an error creating the bottle."
 msgstr ""
 
-#: src/views/new.py:246
+#: src/views/new.py:254
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Láhev pojmenovaná “{0}” byla úspěšně vytvořena"
@@ -1636,12 +1659,12 @@ msgstr "Láhev pojmenovaná “{0}” byla úspěšně vytvořena"
 msgid "Manifest for {0}"
 msgstr "Manifest pro {0}"
 
-#: src/widgets/installer.py:83
+#: src/widgets/installer.py:80
 #, fuzzy, python-brace-format
 msgid "Review for {0}"
 msgstr "Manifest pro {0}"
 
-#: src/widgets/installer.py:131
+#: src/widgets/installer.py:124
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
 msgstr ""
@@ -1650,6 +1673,12 @@ msgstr ""
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Index pro stav {0}"
+
+#~ msgid "Software"
+#~ msgstr "Software"
+
+#~ msgid "An environment improved for Windows software."
+#~ msgstr "Prostředí dělané pro software z Windows."
 
 #~ msgid "Change Launch Options"
 #~ msgstr "Změnit možnosti spuštění"

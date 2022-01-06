@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-27 17:50+0100\n"
+"POT-Creation-Date: 2022-01-06 23:20+0100\n"
 "PO-Revision-Date: 2021-12-15 21:14+0000\n"
 "Last-Translator: Илья Коротков <korotkovin@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -22,8 +22,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
-#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
-#: src/window.py:195
+#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:147
+#: src/window.py:197
 msgid "Bottles"
 msgstr "Бутылка"
 
@@ -198,7 +198,7 @@ msgid "Change the window height."
 msgstr "Изменение высоты окна."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
-#: src/ui/window.ui:335
+#: src/ui/window.ui:348
 msgid "Notifications"
 msgstr "Уведомления"
 
@@ -267,26 +267,26 @@ msgstr "© 2017-2021 - Разработчики Bottles"
 msgid "Easily manage wineprefix using environments"
 msgstr "Легкое управление префиксами wine с помощью сред окружения"
 
-#: src/ui/about.ui:123
+#: src/ui/about.ui:138
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Перевод</a>"
 
-#: src/ui/about.ui:136
+#: src/ui/about.ui:151
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\"> Финансирование </a>"
 
-#: src/ui/about.ui:149
+#: src/ui/about.ui:164
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\"> Отчет об ошибке </"
 "a>"
 
-#: src/ui/about.ui:162
+#: src/ui/about.ui:177
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\"> Блог </a>"
 
-#: src/ui/about.ui:175
+#: src/ui/about.ui:190
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
@@ -604,8 +604,8 @@ msgstr "Сообщение приходит сюда."
 #: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
 #: src/ui/dialog-run-args.ui:28 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:277 src/views/bottle_details.py:366
-#: src/views/bottle_preferences.py:147 src/views/bottle_programs.py:69
+#: src/views/bottle_details.py:276 src/views/bottle_details.py:365
+#: src/views/bottle_preferences.py:142 src/views/bottle_programs.py:69
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "Отмена"
@@ -770,7 +770,7 @@ msgstr "Существующие переопределения"
 msgid "Run with arguments"
 msgstr "Запуск с аргументами"
 
-#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:276
+#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:275
 #: src/views/list.py:124
 msgid "Run"
 msgstr "Запустить"
@@ -830,7 +830,7 @@ msgstr "Это полный архив вашей \"бутылки\", включ
 msgid "Full archive"
 msgstr "Полный архив"
 
-#: src/ui/importer.ui:75 src/window.py:150
+#: src/ui/importer.ui:75 src/window.py:152
 msgid "Importer"
 msgstr "Импортер"
 
@@ -1004,7 +1004,7 @@ msgstr "Удалить из Программ"
 msgid "Add desktop entry"
 msgstr ""
 
-#: src/ui/new.ui:25 src/ui/window.ui:315
+#: src/ui/new.ui:25 src/ui/window.ui:328
 msgid "New bottle"
 msgstr "Новая \"бутылка\""
 
@@ -1289,19 +1289,23 @@ msgstr "Документация"
 msgid "Forums"
 msgstr "Форумы"
 
-#: src/ui/window.ui:83
+#: src/ui/window.ui:83 src/window.py:290
+msgid "Health check"
+msgstr ""
+
+#: src/ui/window.ui:96
 msgid "About Bottles"
 msgstr "О Bottles"
 
-#: src/ui/window.ui:208 src/ui/window.ui:251
+#: src/ui/window.ui:221 src/ui/window.ui:264
 msgid "Open menu"
 msgstr "Открыть меню"
 
-#: src/ui/window.ui:229
+#: src/ui/window.ui:242
 msgid "Operations"
 msgstr ""
 
-#: src/ui/window.ui:273
+#: src/ui/window.ui:286
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1311,7 +1315,7 @@ msgstr ""
 "необходимые компоненты. Нажмите на эту иконку, когда вы восстановите "
 "соединение."
 
-#: src/ui/window.ui:294
+#: src/ui/window.ui:307
 msgid "Go back"
 msgstr "Вернуться назад"
 
@@ -1356,15 +1360,15 @@ msgstr "[Обновить] запрос получен."
 msgid "You are offline, unable to download."
 msgstr "Вы в офлайн режиме, не могу загрузить."
 
-#: src/window.py:140 src/window.py:193
+#: src/window.py:142 src/window.py:195
 msgid "Bottle details"
 msgstr "Детали бутылки"
 
-#: src/window.py:183
+#: src/window.py:185
 msgid "Bottles Started!"
 msgstr "Бутылки запущены!"
 
-#: src/window.py:197
+#: src/window.py:199
 msgid "Import & export"
 msgstr "Импорт и экспорт"
 
@@ -1378,72 +1382,77 @@ msgstr "Резервная копия {0}"
 msgid "Importing backup: {0}"
 msgstr "Импорт резервной копии: {0}"
 
-#: src/backend/manager.py:964
+#: src/backend/manager.py:1004
+msgid "Fail to install components, tried 3 times."
+msgstr ""
+
+#: src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/manager.py:1039
-msgid "Generating bottle configuration"
+#: src/backend/manager.py:1097
+#, fuzzy
+msgid "Generating bottle configuration…"
 msgstr "Создание конфигурации \"бутылки\""
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1058
+#: src/backend/manager.py:1116
 msgid "The WINE config is being updated…"
 msgstr "Конфигурация wine обновляется…"
 
-#: src/backend/manager.py:1060
+#: src/backend/manager.py:1118
 msgid "WINE config updated!"
 msgstr "Конфигурация Wine обновлена!"
 
-#: src/backend/manager.py:1069
+#: src/backend/manager.py:1127
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1071
+#: src/backend/manager.py:1129
 msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/manager.py:1089
+#: src/backend/manager.py:1147
 msgid "Setting Windows version…"
 msgstr "Указать версию Windows…"
 
-#: src/backend/manager.py:1097
+#: src/backend/manager.py:1155
 msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/manager.py:1105
+#: src/backend/manager.py:1163
 #, fuzzy
 msgid "Optimizing environment…"
 msgstr "Применяю переменное окружение: [{0}]…"
 
-#: src/backend/manager.py:1117
+#: src/backend/manager.py:1175
 #, fuzzy, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Применяю переменное окружение: [{0}]…"
 
-#: src/backend/manager.py:1127
+#: src/backend/manager.py:1185
 msgid "Installing DXVK…"
 msgstr "Установка dxvk …"
 
-#: src/backend/manager.py:1133
+#: src/backend/manager.py:1191
 msgid "Installing VKD3D…"
 msgstr "Установка vkd3d …"
 
-#: src/backend/manager.py:1139
+#: src/backend/manager.py:1197
 msgid "Installing DXVK-NVAPI…"
 msgstr "Установка DXVK-NVAPI…"
 
-#: src/backend/manager.py:1146
+#: src/backend/manager.py:1202
 #, fuzzy, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Установка зависимости {0} в бутылке {1} …"
 
-#: src/backend/manager.py:1163
+#: src/backend/manager.py:1223
 #, fuzzy
 msgid "Creating versioning state 0…"
 msgstr "Создание состояния версии 0 …"
 
-#: src/backend/manager.py:1171
+#: src/backend/manager.py:1231
 msgid "Finalizing…"
 msgstr ""
 
@@ -1494,13 +1503,17 @@ msgid ""
 "            Report your feedback in one of the below existing reports."
 msgstr ""
 
-#: src/dialogs/generic.py:26 src/dialogs/generic.py:68
+#: src/dialogs/generic.py:26 src/dialogs/generic.py:154
 msgid "Warning"
 msgstr "Предупреждение"
 
 #: src/dialogs/generic.py:27
 msgid "An error has occurred."
 msgstr "Произошла ошибка."
+
+#: src/dialogs/generic.py:89 src/dialogs/generic.py:133
+msgid "Copy to clipboard"
+msgstr ""
 
 #: src/views/details.py:103
 msgid "Details & Utilities"
@@ -1527,53 +1540,53 @@ msgstr "Управление версиями"
 msgid "Task manager"
 msgstr "Диспетчер задач"
 
-#: src/views/bottle_details.py:171
+#: src/views/bottle_details.py:162
 #, python-format
 msgid "Updated: %s"
 msgstr "Обновлено: %s"
 
 #. set arch
-#: src/views/bottle_details.py:174
+#: src/views/bottle_details.py:165
 msgid "64-bit"
 msgstr ""
 
-#: src/views/bottle_details.py:176
+#: src/views/bottle_details.py:167
 msgid "32-bit"
 msgstr ""
 
-#: src/views/bottle_details.py:273 src/views/list.py:121
+#: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Выберите исполняемый файл Windows"
 
-#: src/views/bottle_details.py:355
+#: src/views/bottle_details.py:354
 msgid "Select the location where to save the backup config"
 msgstr "Выберите место сохранения резервной копии конфигурации"
 
-#: src/views/bottle_details.py:359
+#: src/views/bottle_details.py:358
 msgid "Select the location where to save the backup archive"
 msgstr "Выберите место, где сохранить архив резервного копирования"
 
-#: src/views/bottle_details.py:366
+#: src/views/bottle_details.py:365
 msgid "Export"
 msgstr "Экспорт"
 
-#: src/views/bottle_details.py:397
+#: src/views/bottle_details.py:396
 msgid "Confirm deletion"
 msgstr "Подтвердить удаление"
 
-#: src/views/bottle_details.py:399
+#: src/views/bottle_details.py:398
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Вы уверены, что хотите удалить эту бутылку и все файлы?"
 
-#: src/views/bottle_preferences.py:133
+#: src/views/bottle_preferences.py:128
 msgid "Gamemode is either not available on your system or not running."
 msgstr "Игровой режим либо недоступен в вашей системе, либо не запущен."
 
-#: src/views/bottle_preferences.py:143
+#: src/views/bottle_preferences.py:138
 msgid "Choose working directory for executables"
 msgstr "Выберите рабочий каталог для исполняемых файлов"
 
-#: src/views/bottle_preferences.py:146
+#: src/views/bottle_preferences.py:141
 msgid "Done"
 msgstr "Готово"
 
@@ -1611,26 +1624,36 @@ msgid "An environment improved for Windows games."
 msgstr "Улучшенная среда для игр Windows."
 
 #: src/views/new.py:78
-msgid "Software"
-msgstr "Программы"
+#, fuzzy
+msgid "Application"
+msgstr "Загружается…"
 
 #: src/views/new.py:79
-msgid "An environment improved for Windows software."
-msgstr "Улучшенная среда для программ Windows."
+#, fuzzy
+msgid "An environment improved for Windows application."
+msgstr "Улучшенная среда для игр Windows."
 
-#: src/views/new.py:90
+#: src/views/new.py:84
 msgid "Custom"
 msgstr "Настраиваемая"
 
-#: src/views/new.py:91
+#: src/views/new.py:85
 msgid "A clear environment for your experiments."
 msgstr "Чистая среда для ваших экспериментов."
 
-#: src/views/new.py:239
+#: src/views/new.py:93
+msgid "Layered"
+msgstr ""
+
+#: src/views/new.py:94
+msgid "A layered environment, where every app is a layer."
+msgstr ""
+
+#: src/views/new.py:247
 msgid "There was an error creating the bottle."
 msgstr ""
 
-#: src/views/new.py:246
+#: src/views/new.py:254
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Бутылка с названием “{0}” была успешно создана"
@@ -1640,12 +1663,12 @@ msgstr "Бутылка с названием “{0}” была успешно �
 msgid "Manifest for {0}"
 msgstr "Манифест для {0}"
 
-#: src/widgets/installer.py:83
+#: src/widgets/installer.py:80
 #, fuzzy, python-brace-format
 msgid "Review for {0}"
 msgstr "Манифест для {0}"
 
-#: src/widgets/installer.py:131
+#: src/widgets/installer.py:124
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
 msgstr ""
@@ -1654,6 +1677,12 @@ msgstr ""
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Указатель состояния {0}"
+
+#~ msgid "Software"
+#~ msgstr "Программы"
+
+#~ msgid "An environment improved for Windows software."
+#~ msgstr "Улучшенная среда для программ Windows."
 
 #~ msgid "Change Launch Options"
 #~ msgstr "Изменить параметры запуска"

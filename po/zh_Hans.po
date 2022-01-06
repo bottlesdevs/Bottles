@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-27 17:50+0100\n"
+"POT-Creation-Date: 2022-01-06 23:20+0100\n"
 "PO-Revision-Date: 2021-12-29 05:52+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
-#: src/ui/window.ui:184 src/ui/window.ui:199 src/window.py:145
-#: src/window.py:195
+#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:147
+#: src/window.py:197
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -184,7 +184,7 @@ msgid "Change the window height."
 msgstr "更改窗口高度。"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
-#: src/ui/window.ui:335
+#: src/ui/window.ui:348
 msgid "Notifications"
 msgstr "通知"
 
@@ -250,24 +250,24 @@ msgstr "© 2017-2021 - Bottles 开发者"
 msgid "Easily manage wineprefix using environments"
 msgstr "使用环境轻松管理 wineprefix"
 
-#: src/ui/about.ui:123
+#: src/ui/about.ui:138
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">翻译</a>"
 
-#: src/ui/about.ui:136
+#: src/ui/about.ui:151
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
 msgstr "<a href=\"https://usebottles.com/funding/\">捐助</a>"
 
-#: src/ui/about.ui:149
+#: src/ui/about.ui:164
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">缺陷报告</a>"
 
-#: src/ui/about.ui:162
+#: src/ui/about.ui:177
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\">博客</a>"
 
-#: src/ui/about.ui:175
+#: src/ui/about.ui:190
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
@@ -574,8 +574,8 @@ msgstr "消息在这里。"
 #: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
 #: src/ui/dialog-run-args.ui:28 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:277 src/views/bottle_details.py:366
-#: src/views/bottle_preferences.py:147 src/views/bottle_programs.py:69
+#: src/views/bottle_details.py:276 src/views/bottle_details.py:365
+#: src/views/bottle_preferences.py:142 src/views/bottle_programs.py:69
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "取消"
@@ -614,7 +614,9 @@ msgstr "发送报告"
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
-msgstr "Bottles 上次崩溃了。请填写一份附以下追溯的报告，以帮助我们识别问题，防止其再次发生。"
+msgstr ""
+"Bottles 上次崩溃了。请填写一份附以下追溯的报告，以帮助我们识别问题，防止其再"
+"次发生。"
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -623,7 +625,8 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
-"我们发现了一个或多个相似(或相同)的报告。请在提交新问题之前，确保仔细检查它是否已经被报告。每份报告都需要开发人员的努力来诊断，请尊重他们的工作，并确保不"
+"我们发现了一个或多个相似(或相同)的报告。请在提交新问题之前，确保仔细检查它是"
+"否已经被报告。每份报告都需要开发人员的努力来诊断，请尊重他们的工作，并确保不"
 "要发布重复的报告。"
 
 #: src/ui/dialog-crash-report.ui:183
@@ -726,7 +729,7 @@ msgstr "现有变量"
 msgid "Run with arguments"
 msgstr "带有参数运行"
 
-#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:276
+#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:275
 #: src/views/list.py:124
 msgid "Run"
 msgstr "运行"
@@ -783,7 +786,7 @@ msgstr "这是您的 bottle 的完整归档，包含个人文件。"
 msgid "Full archive"
 msgstr "完全归档"
 
-#: src/ui/importer.ui:75 src/window.py:150
+#: src/ui/importer.ui:75 src/window.py:152
 msgid "Importer"
 msgstr "导入器"
 
@@ -948,7 +951,7 @@ msgstr "从程序中删除"
 msgid "Add desktop entry"
 msgstr "添加桌面条目"
 
-#: src/ui/new.ui:25 src/ui/window.ui:315
+#: src/ui/new.ui:25 src/ui/window.ui:328
 msgid "New bottle"
 msgstr "新建 bottle"
 
@@ -1224,19 +1227,23 @@ msgstr "文档"
 msgid "Forums"
 msgstr "论坛"
 
-#: src/ui/window.ui:83
+#: src/ui/window.ui:83 src/window.py:290
+msgid "Health check"
+msgstr ""
+
+#: src/ui/window.ui:96
 msgid "About Bottles"
 msgstr "关于 Bottles"
 
-#: src/ui/window.ui:208 src/ui/window.ui:251
+#: src/ui/window.ui:221 src/ui/window.ui:264
 msgid "Open menu"
 msgstr "打开菜单"
 
-#: src/ui/window.ui:229
+#: src/ui/window.ui:242
 msgid "Operations"
 msgstr "操作"
 
-#: src/ui/window.ui:273
+#: src/ui/window.ui:286
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1245,7 +1252,7 @@ msgstr ""
 "您似乎没有连接互联网。没有网络您无法下载必需的组件。当您恢复连接时点击该图"
 "标。"
 
-#: src/ui/window.ui:294
+#: src/ui/window.ui:307
 msgid "Go back"
 msgstr "返回"
 
@@ -1289,15 +1296,15 @@ msgstr "[刷新] 请求已收到。"
 msgid "You are offline, unable to download."
 msgstr "您已离线，无法下载。"
 
-#: src/window.py:140 src/window.py:193
+#: src/window.py:142 src/window.py:195
 msgid "Bottle details"
 msgstr "Bottle 详情"
 
-#: src/window.py:183
+#: src/window.py:185
 msgid "Bottles Started!"
 msgstr "Bottles 已启动！"
 
-#: src/window.py:197
+#: src/window.py:199
 msgid "Import & export"
 msgstr "导入和导出"
 
@@ -1311,70 +1318,75 @@ msgstr "备份 {0}"
 msgid "Importing backup: {0}"
 msgstr "正在导入备份：{0}"
 
-#: src/backend/manager.py:964
+#: src/backend/manager.py:1004
+msgid "Fail to install components, tried 3 times."
+msgstr ""
+
+#: src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
 msgstr "缺少必要的组件。 正在安装…"
 
-#: src/backend/manager.py:1039
-msgid "Generating bottle configuration"
+#: src/backend/manager.py:1097
+#, fuzzy
+msgid "Generating bottle configuration…"
 msgstr "生成 bottle 配置"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1058
+#: src/backend/manager.py:1116
 msgid "The WINE config is being updated…"
 msgstr "正在更新 WINE 配置…"
 
-#: src/backend/manager.py:1060
+#: src/backend/manager.py:1118
 msgid "WINE config updated!"
 msgstr "WINE 配置已更新！"
 
-#: src/backend/manager.py:1069
+#: src/backend/manager.py:1127
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "运行为 Flatpak，沙箱化用户目录…"
 
-#: src/backend/manager.py:1071
+#: src/backend/manager.py:1129
 msgid "Sandboxing userdir…"
 msgstr "沙箱化用户目录…"
 
-#: src/backend/manager.py:1089
+#: src/backend/manager.py:1147
 msgid "Setting Windows version…"
 msgstr "设置 Windows 版本…"
 
-#: src/backend/manager.py:1097
+#: src/backend/manager.py:1155
 msgid "Apply CMD default settings…"
 msgstr "应用 CMD 默认设置…"
 
-#: src/backend/manager.py:1105
+#: src/backend/manager.py:1163
 msgid "Optimizing environment…"
 msgstr "正在优化环境…"
 
-#: src/backend/manager.py:1117
+#: src/backend/manager.py:1175
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "正在应用环境：{0} …"
 
-#: src/backend/manager.py:1127
+#: src/backend/manager.py:1185
 msgid "Installing DXVK…"
 msgstr "正在安装 DXVK …"
 
-#: src/backend/manager.py:1133
+#: src/backend/manager.py:1191
 msgid "Installing VKD3D…"
 msgstr "正在安装 VKD3D …"
 
-#: src/backend/manager.py:1139
+#: src/backend/manager.py:1197
 msgid "Installing DXVK-NVAPI…"
 msgstr "正在安装 DXVK-NVAPI …"
 
-#: src/backend/manager.py:1146
+#: src/backend/manager.py:1202
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "正在安装依赖项：{0} …"
 
-#: src/backend/manager.py:1163
+#: src/backend/manager.py:1223
 msgid "Creating versioning state 0…"
 msgstr "正在创建版本状态 0 …"
 
-#: src/backend/manager.py:1171
+#: src/backend/manager.py:1231
 msgid "Finalizing…"
 msgstr "完成中…"
 
@@ -1423,13 +1435,17 @@ msgstr ""
 "            此问题已报告5次，无法再次发送。\n"
 "            在以下现有的报告中报告反馈。"
 
-#: src/dialogs/generic.py:26 src/dialogs/generic.py:68
+#: src/dialogs/generic.py:26 src/dialogs/generic.py:154
 msgid "Warning"
 msgstr "警告"
 
 #: src/dialogs/generic.py:27
 msgid "An error has occurred."
 msgstr "发生了错误。"
+
+#: src/dialogs/generic.py:89 src/dialogs/generic.py:133
+msgid "Copy to clipboard"
+msgstr ""
 
 #: src/views/details.py:103
 msgid "Details & Utilities"
@@ -1455,53 +1471,53 @@ msgstr "版本控制"
 msgid "Task manager"
 msgstr "任务管理器"
 
-#: src/views/bottle_details.py:171
+#: src/views/bottle_details.py:162
 #, python-format
 msgid "Updated: %s"
 msgstr "已更新：%s"
 
 #. set arch
-#: src/views/bottle_details.py:174
+#: src/views/bottle_details.py:165
 msgid "64-bit"
 msgstr "64 位"
 
-#: src/views/bottle_details.py:176
+#: src/views/bottle_details.py:167
 msgid "32-bit"
 msgstr "32 位"
 
-#: src/views/bottle_details.py:273 src/views/list.py:121
+#: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "选择一个 Windows 可执行文件"
 
-#: src/views/bottle_details.py:355
+#: src/views/bottle_details.py:354
 msgid "Select the location where to save the backup config"
 msgstr "选择保存备份配置的位置"
 
-#: src/views/bottle_details.py:359
+#: src/views/bottle_details.py:358
 msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
-#: src/views/bottle_details.py:366
+#: src/views/bottle_details.py:365
 msgid "Export"
 msgstr "导出"
 
-#: src/views/bottle_details.py:397
+#: src/views/bottle_details.py:396
 msgid "Confirm deletion"
 msgstr "确认删除"
 
-#: src/views/bottle_details.py:399
+#: src/views/bottle_details.py:398
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
-#: src/views/bottle_preferences.py:133
+#: src/views/bottle_preferences.py:128
 msgid "Gamemode is either not available on your system or not running."
 msgstr "游戏模式在你的系统中不可用，或没在运行。"
 
-#: src/views/bottle_preferences.py:143
+#: src/views/bottle_preferences.py:138
 msgid "Choose working directory for executables"
 msgstr "选择可执行文件的工作目录"
 
-#: src/views/bottle_preferences.py:146
+#: src/views/bottle_preferences.py:141
 msgid "Done"
 msgstr "完成"
 
@@ -1539,26 +1555,37 @@ msgid "An environment improved for Windows games."
 msgstr "为 Windows 游戏优化的环境。"
 
 #: src/views/new.py:78
-msgid "Software"
-msgstr "软件"
+#, fuzzy
+msgid "Application"
+msgstr "page_duplicating"
 
 #: src/views/new.py:79
-msgid "An environment improved for Windows software."
-msgstr "为 Windows 软件优化的环境。"
+#, fuzzy
+msgid "An environment improved for Windows application."
+msgstr "为 Windows 游戏优化的环境。"
 
-#: src/views/new.py:90
+#: src/views/new.py:84
 msgid "Custom"
 msgstr "自定义"
 
-#: src/views/new.py:91
+#: src/views/new.py:85
 msgid "A clear environment for your experiments."
 msgstr "为您的实验提供的清洁环境。"
 
-#: src/views/new.py:239
+#: src/views/new.py:93
+#, fuzzy
+msgid "Layered"
+msgstr "层"
+
+#: src/views/new.py:94
+msgid "A layered environment, where every app is a layer."
+msgstr ""
+
+#: src/views/new.py:247
 msgid "There was an error creating the bottle."
 msgstr "创建该 bottle 时遇到一个问题。"
 
-#: src/views/new.py:246
+#: src/views/new.py:254
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "成功创建了名为“{0}”的 bottle"
@@ -1568,12 +1595,12 @@ msgstr "成功创建了名为“{0}”的 bottle"
 msgid "Manifest for {0}"
 msgstr "{0} 的清单"
 
-#: src/widgets/installer.py:83
+#: src/widgets/installer.py:80
 #, python-brace-format
 msgid "Review for {0}"
 msgstr "{0} 的评论"
 
-#: src/widgets/installer.py:131
+#: src/widgets/installer.py:124
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
 msgstr "{self.steps} 的步骤 {self.__step}"
@@ -1582,6 +1609,12 @@ msgstr "{self.steps} 的步骤 {self.__step}"
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "状态 {0} 的索引"
+
+#~ msgid "Software"
+#~ msgstr "软件"
+
+#~ msgid "An environment improved for Windows software."
+#~ msgstr "为 Windows 软件优化的环境。"
 
 #~ msgid "Change Launch Options"
 #~ msgstr "更改启动选项"
@@ -1627,9 +1660,6 @@ msgstr "状态 {0} 的索引"
 
 #~ msgid "I can't see the files in my home."
 #~ msgstr "我在主页中看不到文件。"
-
-#~ msgid "Layers"
-#~ msgstr "层"
 
 #~ msgid "64 Bit"
 #~ msgstr "64 位"
