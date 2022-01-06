@@ -744,6 +744,10 @@ class Manager:
                             conf_file_yaml["Environment_Variables"] = _env
                             if len(_env) > 0:
                                 del _parameters["environment_variables"]
+                
+                # Migrate old Software env to the new Application
+                if conf_file_yaml["Environment"] == "Software":
+                    conf_file_yaml["Environment"] = "Application"
 
                 # Clear Latest_Executables on new session start
                 if conf_file_yaml.get("Latest_Executables"):
