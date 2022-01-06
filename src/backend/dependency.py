@@ -612,7 +612,7 @@ class DependencyManager:
 
                 shutil.copyfile(f"{path}/{_name}", _dest)
 
-        except FileNotFoundError as e:
+        except Exception as e:
             print(e)
             return False
         
