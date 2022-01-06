@@ -1,5 +1,7 @@
 import os
 from glob import glob
+import shutil
+import subprocess
 
 from .display import DisplayUtils
 
@@ -56,3 +58,19 @@ class VulkanUtils:
             icd = ":".join(icd)
 
         return icd
+
+    def check_support(self):
+        return True
+
+    def test_vulkan(self):
+        if shutil.which("vulkaninfo") is None:
+            return "vulkaninfo tool not found"
+        
+        res = subprocess.Popen(
+            "vulkaninfo",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True
+        ).communicate()[0].decode("utf-8")
+
+        return res
