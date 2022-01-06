@@ -1,6 +1,8 @@
 import os
 import yaml
 import shutil
+import platform
+import subprocess
 
 from .display import DisplayUtils
 from .gpu import GPUUtils
@@ -16,6 +18,10 @@ class HealthChecker:
     cabextract: bool = False
     p7zip: bool = False
     patool: bool = False
+    kernel: str = ""
+    kernel_version: str = ""
+    distro: str = ""
+    distro_version: str = ""
 
     def __init__(self):
         self.x11 = self.check_x11()
@@ -25,6 +31,7 @@ class HealthChecker:
         self.cabextract = self.check_cabextract()
         self.p7zip = self.check_p7zip()
         self.patool = self.check_patool()
+        self.check_system_info()
     
     def check_gpus(self):
         return GPUUtils().get_gpu()
@@ -63,20 +70,80 @@ class HealthChecker:
         if res is None:
             return False
         return True
+    
+    def __get_distro(self):
+        try: # only Python 3.10+
+            _platform = platform.freedesktop_os_release()
+            return {
+                "name": _platform["NAME"],
+                "version": _platform["VERSION_ID"]
+            }
+        except AttributeError:
+            pass
+
+        if shutil.which("lsb_release"):
+            _proc = subprocess.Popen(
+                "lsb_release -a",
+                stdout=subprocess.PIPE, 
+                stderr=subprocess.PIPE,
+                shell=True
+            ).communicate()[0].decode("utf-8").lower()
+            _lines = _proc.split("\n")
+            _name = _lines[0].split(":")[1].strip()
+            _version = _lines[1].split(":")[1].strip()
+            return {
+                "name": _name,
+                "version": _version
+            }
+        
+        if os.path.exists("/etc/os-release"):
+            with open("/etc/os-release", "r") as _file:
+                _lines = _file.readlines()
+                _name = _lines[0].split("=")[1].strip()
+                _version = _lines[1].split("=")[1].strip()
+                return {
+                    "name": _name,
+                    "version": _version
+                }
+        
+        return {
+            "name": "Unknown",
+            "version": "Unknown"
+        }
+        
+    def check_system_info(self):
+        distro = self.__get_distro()
+        self.kernel = os.uname().sysname
+        self.kernel_version = os.uname().release
+        self.distro = distro["name"]
+        self.distro_version = distro["version"]
 
     def get_results(self, plain:bool = False):
         results = {
-            "x11": self.x11,
-            "x11_port": self.x11_port,
-            "wayland": self.wayland,
-            "gpus": self.gpus,
-            "cabextract": self.cabextract,
-            "p7zip": self.p7zip,
-            "patool": self.patool
+            "Display": {
+                "X.org": self.x11,
+                "X.org (port)": self.x11_port,
+                "Wayland": self.wayland,
+            },
+            "Graphics": self.gpus,
+            "Kernel": {
+                "Type": self.kernel,
+                "Version": self.kernel_version
+            },
+            "Distro": {
+                "Name": self.distro,
+                "Version": self.distro_version
+            },
+            "Tools": {
+                "cabextract": self.cabextract,
+                "p7zip": self.p7zip,
+                "patool": self.patool
+            }
         }
         
         if plain:
-            _yaml = yaml.dump(results)
+            _yaml = yaml.dump(results, sort_keys=False, indent=4)
+            _yaml = _yaml.replace("&id", "&amp;id")
             return _yaml
         
         return results
