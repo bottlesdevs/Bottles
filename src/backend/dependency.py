@@ -267,7 +267,7 @@ class DependencyManager:
             if not self.__step_install_fonts(config=config, step=step):
                 return Result(status=False)
 
-        if step["action"] in ["copy_cab_dll", "copy_dll", "copy_file"]:
+        if step["action"] in ["copy_dll", "copy_file"]:
             uninstaller = False
             if not self.__step_copy_dll(config=config, step=step):
                 return Result(status=False)
