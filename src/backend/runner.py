@@ -452,8 +452,6 @@ class Runner:
 
         if parameters["dxvk_hud"]:
             env["DXVK_HUD"] = "devinfo,memory,drawcalls,fps,version,api,compiler"
-        else:
-            env["DXVK_HUD"] = "compiler"
 
         if parameters["sync"] == "esync":
             env["WINEESYNC"] = "1"
