@@ -406,9 +406,9 @@ class DependencyManager:
             environment=False,
             comunicate=True
         )
-        uuid = uuid.strip()
 
         if uuid:
+            uuid = uuid.strip()
             logging.info(
                 "Uninstalling [%s] from bottle: [%s]." % (
                     file_name,
