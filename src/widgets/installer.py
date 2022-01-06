@@ -19,7 +19,7 @@ from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
 import webbrowser
 from ..utils import RunAsync
-from ..dialogs.generic import Dialog
+from ..dialogs.generic import TextDialog, WebDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
@@ -64,29 +64,22 @@ class InstallerEntry(Handy.ActionRow):
             installer_category=self.installer[1]["Category"],
             plain=True
         )
-        dialog = Dialog(
+        TextDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
-            message=False,
-            log=plain_manifest
+            message=plain_manifest
         )
-        dialog.run()
-        dialog.destroy()
 
     def __open_review(self, widget):
         '''Open review'''
         html_review = self.manager.installer_manager.get_review(
             installer_name=self.installer[0],
         )
-        dialog = Dialog(
+        WebDialog(
             parent=self.window,
             title=_("Review for {0}").format(self.installer[0]),
-            message=False,
-            log=False,
-            html=html_review
+            message=html_review,
         )
-        dialog.run()
-        dialog.destroy()
 
 
     def __open_bug_report(self, widget):
