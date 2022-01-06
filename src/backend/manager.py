@@ -988,19 +988,36 @@ class Manager:
                 GLib.idle_add(fn_logger, message)
         
         # check for essential components
-        if 0 in [
-            len(self.runners_available),
-            len(self.dxvk_available),
-            len(self.vkd3d_available),
-            len(self.nvapi_available)
-        ]:
-            logging.error("Missing essential components. Installing…")
-            log_update(_("Missing essential components. Installing…"))
-            self.check_runners()
-            self.check_dxvk()
-            self.check_vkd3d()
-            self.check_nvapi()
-            self.organize_components()
+        check_attempts = 0
+        def components_check():
+            nonlocal check_attempts
+
+            if check_attempts > 2:
+                logging.error("Fail to install components, tried 3 times.")
+                log_update(_("Fail to install components, tried 3 times."))
+                return False
+
+            if 0 in [
+                len(self.runners_available),
+                len(self.dxvk_available),
+                len(self.vkd3d_available),
+                len(self.nvapi_available)
+            ]:
+                logging.error("Missing essential components. Installing…")
+                log_update(_("Missing essential components. Installing…"))
+                self.check_runners()
+                self.check_dxvk()
+                self.check_vkd3d()
+                self.check_nvapi()
+                self.organize_components()
+
+                check_attempts += 1
+                return components_check()
+
+            return True
+
+        if not components_check():
+            return False
 
         # default components versions if not specified
         if not runner:
