@@ -404,7 +404,7 @@ class CabExtract():
                         "cabextract",
                         f"-F '*{file}*'",
                         f"-d {self.destination}",
-                        f"{self.path}"
+                        f"-q {self.path}"
                     ]
                     command = " ".join(command)
                     subprocess.Popen(
@@ -421,7 +421,7 @@ class CabExtract():
                 command = [
                     "cabextract",
                     f"-d {self.destination}",
-                    f"{self.path}"
+                    f"-q {self.path}"
                 ]
                 command = " ".join(command)
                 subprocess.Popen(
