@@ -280,7 +280,7 @@ class Manager:
         creating invalid desktop and menu entries.
         A very special thanks to Lutris & GloriousEggroll for extra builds <3!
         '''
-        runners = glob("%s/*/" % Paths.runners)
+        runners = glob(f"{Paths.runners}/*/")
         self.runners_available = []
 
         # lock winemenubuilder.exe
@@ -294,7 +294,7 @@ class Manager:
                 if winemenubuilder.startswith("Proton"):
                     continue
                 if os.path.isfile(winemenubuilder):
-                    os.rename(winemenubuilder, winemenubuilder + ".lock")
+                    os.rename(winemenubuilder, f"{winemenubuilder}.lock")
 
         # check system wine
         if shutil.which("wine") is not None:

@@ -24,7 +24,7 @@ from glob import glob
 import urllib.request
 from functools import lru_cache
 from typing import Union, NewType
-from gi.repository import Gtk, GLib
+from gi.repository import GLib
 
 from .result import Result
 from .runner import Runner
@@ -425,6 +425,13 @@ class DependencyManager:
         This function download and extract a Windows Cabinet to the
         temp folder.
         '''
+        dest = step.get("dest")
+        if dest.startswith("temp/"):
+            dest = dest.replace("temp/", f"{Paths.temp}/")
+        else:
+            logging.error("Destination path not supported!")
+            return False
+
         if validate_url(step["url"]):
             download = self.__manager.component_manager.download(
                 component="dependency",
@@ -442,13 +449,15 @@ class DependencyManager:
 
                 if not CabExtract().run(
                     path=f"{Paths.temp}/{file}",
-                    name=file
+                    name=file,
+                    destination=dest
                 ):
                     return False
 
                 if not CabExtract().run(
                     f"{Paths.temp}/{file}",
-                    os.path.splitext(f"{file}")[0]
+                    os.path.splitext(f"{file}")[0],
+                    destination=dest
                 ):
                     return False
 
@@ -482,43 +491,33 @@ class DependencyManager:
         '''
         source = step.get("source")
         file_name = step.get("file_name")
+        dest = step.get("dest")
+        bottle = ManagerUtils.get_bottle_path(config)
+        rename = step.get("rename")
+
+        if dest.startswith("temp/"):
+            dest = dest.replace("temp/", f"{Paths.temp}/")
+        elif dest.startswith("windows/"):
+            dest = f"{bottle}/drive_c/{dest}"
+        else:
+            logging.error("Destination path not supported!")
+            return False
 
         res = CabExtract().run(
             path=f"{Paths.temp}/{source}",
-            files=[file_name]
+            files=[file_name],
+            destination=dest
         )
+
+        if rename:
+            _file_name = file_name.split("/")[-1]
+            shutil.move(
+                f"{dest}/{_file_name}",
+                f"{dest}/{rename}"
+            )
 
         if not res:
             return False
-
-        if step.get("dest"):
-            if config.get("Arch") == "win32" and "syswow64" in step.get("dest"):
-                return True
-            
-            dest = step.get("dest")
-            dest_file_name = step.get("file_name")
-
-            if step.get("rename"):
-                dest_file_name = step.get("rename")
-
-            if dest.startswith("temp/"):
-                dest = dest.replace("temp/", f"{Paths.temp}/")
-
-            if dest.startswith("drive_c/"):
-                bottle_path = ManagerUtils.get_bottle_path(config)
-                dest = dest.replace(
-                    "drive_c/",
-                    f"{bottle_path}/drive_c/"
-                )
-            elif dest.startswith("temp/"):
-                dest = dest.replace("temp/", f"{Paths.temp}/")
-            else:
-                dest = f"{Paths.temp}/{dest}"
-            shutil.copy(
-                f"{Paths.temp}/{file_name}",
-                f"{dest}/{dest_file_name}"
-            )
-        
         return True
 
     def __step_archive_extract(self, step: dict):

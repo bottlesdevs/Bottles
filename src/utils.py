@@ -19,6 +19,7 @@ import os
 import re
 import sys
 import time
+import uuid
 import shutil
 import logging
 import socket
@@ -362,11 +363,11 @@ class CabExtract():
     '''
     requirements = False
 
-    def run(self, path: str, name: str = "", files: list = []):
+    def run(self, path: str, name: str = "", files: list = [], destination: str = ""):
         self.path = path
         self.name = name
         self.files = files
-
+        self.destination = destination
         self.name = self.name.replace(".", "_")
 
         if not self.__checks():
@@ -377,11 +378,6 @@ class CabExtract():
         if not os.path.exists(self.path) and "*" not in self.path:
             logging.error(f"Cab file {self.path} not found")
             write_log(f"Cab file {self.path} not found")
-            return False
-
-        if not self.path.lower().endswith((".exe", ".msi", ".cab")):
-            logging.error(f"{self.path} is not a cab file")
-            write_log(f"{self.path} is not a cab file")
             return False
 
         if not shutil.which("cabextract"):
@@ -398,29 +394,34 @@ class CabExtract():
         return True
 
     def __extract(self) -> bool:
-        temp_path = f"{Path.home()}/.local/share/bottles/temp"
-        if "FLATPAK_ID" in os.environ:
-            temp_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles/temp"
-
+        if not os.path.exists(self.destination):
+            os.makedirs(self.destination)
+            
         try:
             if len(self.files) > 0:
                 for file in self.files:
                     command = [
                         "cabextract",
                         f"-F '*{file}*'",
-                        f"-d {temp_path}/{self.name}",
-                        f"-q {self.path}"
+                        f"-d {self.destination}",
+                        f"{self.path}"
                     ]
                     command = " ".join(command)
                     subprocess.Popen(
                         command,
                         shell=True
                     ).communicate()
+
+                    if len(file.split("/")) > 1:
+                        _file = file.split("/")[-1]
+                        _dir = file.replace(_file, "")
+                        if not os.path.exists(f"{self.destination}/{_file}"):
+                            shutil.move(f"{self.destination}/{_dir}/{_file}", f"{self.destination}/{_file}")
             else:
                 command = [
                     "cabextract",
-                    f"-d {temp_path}/{self.name}",
-                    f"-q {self.path}"
+                    f"-d {self.destination}",
+                    f"{self.path}"
                 ]
                 command = " ".join(command)
                 subprocess.Popen(
