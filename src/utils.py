@@ -133,7 +133,6 @@ class UtilsTerminal():
             command = ' '.join(self.terminal) % "'sh -c %s'" % f'"{command}"'
         else:
             command = ' '.join(self.terminal) % f"'bash -c {command}'"
-        print(command)
         subprocess.Popen(
             command,
             shell=True,
