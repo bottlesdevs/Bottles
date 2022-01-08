@@ -499,6 +499,14 @@ class DependencyManager:
             dest = dest.replace("temp/", f"{Paths.temp}/")
         elif dest.startswith("windows/"):
             dest = f"{bottle}/drive_c/{dest}"
+        elif dest.startswith("win32"):
+            dest = f"{bottle}/drive_c/windows/system32/"
+            if config.get("Arch") == "win64":
+                dest = f"{bottle}/drive_c/windows/syswow64/"
+        elif dest.startswith("win64"):
+            if config.get("Arch") == "win64":
+                dest = f"{bottle}/drive_c/windows/system32/"
+            return True
         else:
             logging.error("Destination path not supported!")
             return False
