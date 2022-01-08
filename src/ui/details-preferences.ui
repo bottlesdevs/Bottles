@@ -336,33 +336,6 @@ Disable if you're experiencing graphical glitches.</property>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_runtime">
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Use Bottles runtime</property>
-                        <property name="subtitle" translatable="yes">Provides a bundle of extra libraries for more compatibility,
-disable if you run into issues.</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <child>
-                              <object class="GtkSwitch" id="switch_runtime">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="halign">start</property>
-                                <property name="valign">center</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
                       <placeholder/>
                     </child>
                   </object>
@@ -862,6 +835,33 @@ disable if you run into issues.</property>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
                                 <property name="position">3</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="HdyActionRow" id="action_runtime">
+                        <property name="can-focus">True</property>
+                        <property name="title" translatable="yes">Use Bottles runtime</property>
+                        <property name="subtitle" translatable="yes">Provides a bundle of extra libraries for more compatibility,
+disable if you run into issues.</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkSwitch" id="switch_runtime">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
                               </packing>
                             </child>
                           </object>
