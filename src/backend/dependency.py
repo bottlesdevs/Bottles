@@ -503,9 +503,11 @@ class DependencyManager:
             dest = f"{bottle}/drive_c/windows/system32/"
             if config.get("Arch") == "win64":
                 dest = f"{bottle}/drive_c/windows/syswow64/"
+            dest = step.get("dest").replace("win32", dest)
         elif dest.startswith("win64"):
             if config.get("Arch") == "win64":
                 dest = f"{bottle}/drive_c/windows/system32/"
+                dest = step.get("dest").replace("win64", dest)
             return True
         else:
             logging.error("Destination path not supported!")
@@ -590,17 +592,36 @@ class DependencyManager:
         declared in the step. The bottle drive_c path will be used as
         root path.
         '''
+        bottle = ManagerUtils.get_bottle_path(config)
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
         bottle_path = ManagerUtils.get_bottle_path(config)
         dest = step.get('dest')
+
+        if dest.startswith("temp/"):
+            dest = dest.replace("temp/", f"{Paths.temp}/")
+        elif dest.startswith("windows/"):
+            dest = f"{bottle}/drive_c/{dest}"
+        elif dest.startswith("win32"):
+            dest = f"{bottle}/drive_c/windows/system32/"
+            if config.get("Arch") == "win64":
+                dest = f"{bottle}/drive_c/windows/syswow64/"
+            dest = step.get("dest").replace("win32", dest)
+        elif dest.startswith("win64"):
+            if config.get("Arch") == "win64":
+                dest = f"{bottle}/drive_c/windows/system32/"
+                dest = step.get("dest").replace("win64", dest)
+            return True
+        else:
+            logging.error("Destination path not supported!")
+            return False
 
         try:
             if "*" in step.get('file_name'):
                 files = glob(f"{path}/{step.get('file_name')}")
                 for fg in files:
                     _name = os.path.basename(fg)
-                    _dest = f"{bottle_path}/drive_c/{dest}/{_name}"
+                    _dest = f"{dest}/{_name}"
                     print(f"Copying {_name} to {_dest}")
 
                     if os.path.exists(_dest):
@@ -610,7 +631,7 @@ class DependencyManager:
                     shutil.copyfile(fg, _dest)
             else:
                 _name = step.get('file_name')
-                _dest = f"{bottle_path}/drive_c/{dest}"
+                _dest = f"{dest}"
                 print(f"Copying {_name} to {_dest}")
 
                 if os.path.exists(_dest):
