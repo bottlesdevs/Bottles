@@ -1175,6 +1175,8 @@ class Manager:
         log_update(_("Applying environment: {0}…").format(environment))
         if environment not in ["Custom", "Layered"]:
             env = Samples.environments[environment.lower()]
+            Runner.wineboot(config, status=0, comunicate=True)
+            
             for prm in config["Parameters"]:
                 if prm in env["Parameters"]:
                     config["Parameters"][prm] = env["Parameters"][prm]
@@ -1341,6 +1343,71 @@ class Manager:
         # Update bottles
         self.update_bottles()
         return True
+
+    def install_dxvk_testing(
+        self,
+        config: BottleConfig,
+        remove: bool = False,
+        version: str = False
+    ) -> bool:
+        logging.info(f"Installing dxvk for bottle: [{config['Name']}].")
+        dlls = ["d3d9", "d3d10", "d3d10_1", "d3d10core", "d3d11", "dxgi"]
+        bottle_path = ManagerUtils.get_bottle_path(config)
+        dxvk_version = config.get("DXVK")
+        if version:
+            dxvk_version = version
+        dxvk_path = ManagerUtils.get_dxvk_path(dxvk_version)
+        dll_source_frmt = f"{dxvk_path}/%s/%s.dll"
+        dll_dest_frmt = f"{bottle_path}/drive_c/windows/%s/%s.dll"
+        
+        for dll in dlls:
+            _32_path = "system32"
+            if config.get("Arch") == "win64":
+                _32_path = "syswow64"
+
+            if not remove:
+                _source = dll_source_frmt % ("x32", dll)
+                _dest = dll_dest_frmt % (_32_path, dll)
+                if os.path.exists(_dest):
+                    shutil.copyfile(_dest, f"{_dest}.bak")
+                shutil.copyfile(_source, _dest)
+
+                if config.get("Arch") == "win64":
+                    _source = dll_source_frmt % ("x64", dll)
+                    _dest = dll_dest_frmt % ("system32", dll)
+                    if os.path.exists(_dest):
+                        shutil.copyfile(_dest, f"{_dest}.bak")
+                    shutil.copyfile(_source, _dest)
+                
+                Runner.reg_add(
+                    config,
+                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                    value=dll,
+                    data="native"
+                )
+            else:
+                # remove and restore .bak if exists
+                _dest = dll_dest_frmt % ("system32", dll)
+                if os.path.exists(_dest):
+                    os.remove(_dest)
+                    if os.path.exists(f"{_dest}.bak"):
+                        os.rename(f"{_dest}.bak", _dest)
+                
+                if config.get("Arch") == "win64":
+                    _dest = dll_dest_frmt % ("syswow64", dll)
+                    if os.path.exists(_dest):
+                        os.remove(_dest)
+                    if os.path.exists(f"{_dest}.bak"):
+                        os.rename(f"{_dest}.bak", _dest)
+                
+                Runner.reg_delete(
+                    config,
+                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                    value=dll
+                )
+
+        return True
+        
 
     def install_dxvk(
         self,
