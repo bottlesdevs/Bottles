@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-06 23:20+0100\n"
-"PO-Revision-Date: 2022-01-04 15:50+0000\n"
+"PO-Revision-Date: 2022-01-09 07:40+0000\n"
 "Last-Translator: ThatRedKite <lambdarho950@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
@@ -168,9 +168,8 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr "Schalten Sie das Dialogfeld für die Flatpak-Migration um."
 
 #: data/com.usebottles.bottles.gschema.xml:11
-#, fuzzy
 msgid "Night theme"
-msgstr "Dunkles Thema"
+msgstr "Nachtthema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 #, fuzzy
@@ -208,9 +207,8 @@ msgid "Notifications"
 msgstr "Benachrichtigungen"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Show notifications."
-msgstr "Aktiviere Benachrichtigungen."
+msgstr "Benachrichtigungen anzeigen."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
@@ -223,7 +221,7 @@ msgstr "Temporäre Dateien beim Start löschen."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
-msgstr "Release Candidate"
+msgstr "Releasekanidat"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle release candidate for runners."
@@ -252,7 +250,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:installers"
-msgstr "Experimente:Installateure"
+msgstr "Experimente:Installationsprogramme"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental installer features."
@@ -525,9 +523,8 @@ msgid "Point to the bottle path"
 msgstr "Verweise auf das Verzeichnis der Bottle"
 
 #: src/ui/details-preferences.ui:843
-#, fuzzy
 msgid "Choose a directory"
-msgstr "Wähle eine Umgebung"
+msgstr "Wähle ein Verzeichnis"
 
 #: src/ui/details-preferences.ui:886
 msgid "Audio"
@@ -591,9 +588,8 @@ msgid "No states found"
 msgstr "Gefundene Flaschen: %s"
 
 #: src/ui/details-versioning.ui:61
-#, fuzzy
 msgid "Create first state to start using versioning."
-msgstr "Erstellen Sie den ersten Status, um mit der Versionierung zu beginnen."
+msgstr "Erstellen Sie den ersten Stand, um mit der Versionierung zu beginnen."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -700,7 +696,6 @@ msgid "Type a name for the new bottle"
 msgstr "Geben Sie einen Namen für Ihre Bottle ein"
 
 #: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
-#, fuzzy
 msgid "e.g.: -example1 -example2 -example3=hello"
 msgstr "z. B.: -beispiel1 -beispiel2 -beispiel3=Hallo"
 
@@ -908,9 +903,8 @@ msgid "Run .exe/.msi in this bottle"
 msgstr ".exe/.msi in dieser Bottle ausführen"
 
 #: src/ui/component-entry.ui:9
-#, fuzzy
 msgid "Component version"
-msgstr "Version anzeigen"
+msgstr "Komponentenversion"
 
 #: src/ui/component-entry.ui:19
 msgid ""
@@ -1065,9 +1059,8 @@ msgstr ""
 "wiederherzustellen."
 
 #: src/ui/new.ui:257
-#, fuzzy
 msgid "Unlinked homedir"
-msgstr "Unverlinktes homedir"
+msgstr "Unverlinktes home-Verzeichnis"
 
 #: src/ui/new.ui:258
 #, fuzzy
@@ -1328,9 +1321,8 @@ msgid "Open menu"
 msgstr "Menü öffnen"
 
 #: src/ui/window.ui:242
-#, fuzzy
 msgid "Operations"
-msgstr "Übersetzungen"
+msgstr "Operationen"
 
 #: src/ui/window.ui:286
 msgid ""
@@ -1347,9 +1339,8 @@ msgid "Go back"
 msgstr "Zurück"
 
 #: src/operation.py:63
-#, fuzzy
 msgid "Calculating..."
-msgstr "Berechnen..."
+msgstr "Berechne..."
 
 #: src/main.py:98
 msgid "Show version"
@@ -1365,7 +1356,7 @@ msgstr "lnk-Pfad"
 
 #: src/main.py:122
 msgid "Bottle name"
-msgstr "Bottle-Name"
+msgstr "Name der Bottle"
 
 #: src/main.py:130
 #, fuzzy
@@ -1417,7 +1408,7 @@ msgstr ""
 
 #: src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
-msgstr "Essentielle Komponenten fehlen. Installiere…"
+msgstr "Fehlende wesentliche Komponenten. Installiere…"
 
 #: src/backend/manager.py:1097
 #, fuzzy
@@ -1478,9 +1469,9 @@ msgid "Installing DXVK-NVAPI…"
 msgstr "Installation von dxvk …"
 
 #: src/backend/manager.py:1202
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Installing dependency: {0}…"
-msgstr "Installation der {0}-Abhängigkeit in Flasche {1} …"
+msgstr "Installation der {0}-Abhängigkeit in Flasche"
 
 #: src/backend/manager.py:1223
 #, fuzzy
