@@ -1497,9 +1497,13 @@ class Manager:
         
         for dll in dlls:
             if dll == "x32":
-                inst_path = f"{win_path}system32/"
+                _path = "system32"
+                if config.get("Arch") == "win64":
+                    _path = "syswow64"
+                inst_path = f"{win_path}/{_path}"
             else:
-                inst_path = f"{win_path}syswow64/"
+                if config.get("Arch") == "win64":
+                    inst_path = f"{win_path}/system32"
             
             for dll_file in dlls[dll]:
                 _dll = f"{inst_path}{dll_file}"
