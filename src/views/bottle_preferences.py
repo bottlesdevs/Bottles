@@ -317,15 +317,18 @@ class PreferencesView(Gtk.ScrolledWindow):
             widget.set_sensitive(False)
         if state:
             RunAsync(
-                task_func=self.manager.install_dxvk,
+                task_func=self.manager.install_dll_component,
                 callback=self.set_dxvk_status,
-                config=self.config
+                config=self.config,
+                component="dxvk"
             )
         else:
             RunAsync(
-                self.manager.remove_dxvk,
+                self.manager.install_dll_component,
                 callback=self.set_dxvk_status,
                 config=self.config,
+                component="dxvk",
+                remove=True
             )
 
         new_config = self.manager.update_config(
@@ -359,15 +362,18 @@ class PreferencesView(Gtk.ScrolledWindow):
             widget.set_sensitive(False)
         if state:
             RunAsync(
-                task_func=self.manager.install_vkd3d,
+                task_func=self.manager.install_dll_component,
                 callback=self.set_vkd3d_status,
-                config=self.config
+                config=self.config,
+                component="vkd3d"
             )
         else:
             RunAsync(
-                task_func=self.manager.remove_vkd3d,
+                task_func=self.manager.install_dll_component,
                 callback=self.set_vkd3d_status,
-                config=self.config
+                config=self.config,
+                component="vkd3d",
+                remove=True
             )
 
         new_config = self.manager.update_config(
@@ -388,15 +394,18 @@ class PreferencesView(Gtk.ScrolledWindow):
             widget.set_sensitive(False)
         if state:
             RunAsync(
-                task_func=self.manager.install_nvapi,
+                task_func=self.manager.install_dll_component,
                 callback=self.set_nvapi_status,
-                config=self.config
+                config=self.config,
+                component="nvapi"
             )
         else:
             RunAsync(
-                task_func=self.manager.remove_nvapi,
+                task_func=self.manager.install_dll_component,
                 callback=self.set_nvapi_status,
-                config=self.config
+                config=self.config,
+                component="nvapi",
+                remove=True
             )
 
         new_config = self.manager.update_config(

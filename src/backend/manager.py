@@ -43,6 +43,9 @@ from .dependency import DependencyManager
 from .manager_utils import ManagerUtils
 from .importer import ImportManager
 from .layers import Layer, LayersStore
+from .dxvk import DXVKComponent
+from. vkd3d import VKD3DComponent
+from .nvapi import NVAPIComponent
 
 
 logging = UtilsLogger()
@@ -938,20 +941,20 @@ class Manager:
             '''
             If DXVK is enabled, execute the installation script.
             '''
-            self.install_dxvk(config)
+            self.install_dll_component(config, "dxvk")
         
         if config["Parameters"]["dxvk_nvapi"]:
             '''
             If NVAPI is enabled, execute the substitution of DLLs.
             '''
-            self.install_nvapi(config)
+            self.install_dll_component(config, "nvapi")
         
         if config["Parameters"]["vkd3d"]:
             '''
             If the VKD3D parameter is set to True, install it
             in the new bottle.
             '''
-            self.install_vkd3d(config)
+            self.install_dll_component(config, "vkd3d")
         
         for dependency in config["Installed_Dependencies"]:
             '''
@@ -1185,19 +1188,19 @@ class Manager:
                 # perform dxvk installation if configured
                 logging.info("Installing DXVK…")
                 log_update(_("Installing DXVK…"))
-                self.install_dxvk(config, version=dxvk_name)
+                self.install_dll_component(config, "dxvk", version=dxvk_name)
 
             if config["Parameters"]["vkd3d"]:
                 # perform vkd3d installation if configured
                 logging.info("Installing VKD3D…")
                 log_update(_("Installing VKD3D…"))
-                self.install_vkd3d(config, version=vkd3d_name)
+                self.install_dll_component(config, "vkd3d", version=vkd3d_name)
 
             if config["Parameters"]["dxvk_nvapi"]:
                 # perform nvapi installation if configured
                 logging.info("Installing DXVK-NVAPI…")
                 log_update(_("Installing DXVK-NVAPI…"))
-                self.install_nvapi(config, version=nvapi_name)
+                self.install_dll_component(config, "dxvk_nvapi", version=nvapi_name)
                     
             for dep in env["Installed_Dependencies"]:
                 _dep = self.supported_dependencies[dep]
@@ -1344,72 +1347,46 @@ class Manager:
         self.update_bottles()
         return True
 
-    def install_dxvk_testing(
+    def install_dll_component(
         self,
         config: BottleConfig,
+        component: str,
         remove: bool = False,
-        version: str = False
+        version: str = False,
+        exclude: list = []
     ) -> bool:
-        logging.info(f"Installing dxvk for bottle: [{config['Name']}].")
-        dlls = ["d3d9", "d3d10", "d3d10_1", "d3d10core", "d3d11", "dxgi"]
-        bottle_path = ManagerUtils.get_bottle_path(config)
-        dxvk_version = config.get("DXVK")
-        if version:
-            dxvk_version = version
-        dxvk_path = ManagerUtils.get_dxvk_path(dxvk_version)
-        dll_source_frmt = f"{dxvk_path}/%s/%s.dll"
-        dll_dest_frmt = f"{bottle_path}/drive_c/windows/%s/%s.dll"
+        if component == "dxvk":
+            _version = config.get("DXVK")
+            _version = version if version else _version
+            if not _version:
+                _version = self.dxvk_available[0]
+            manager = DXVKComponent(_version)
+        elif component == "vkd3d":
+            _version = config.get("VKD3D")
+            _version = version if version else _version
+            if not _version:
+                _version = self.vkd3d_available[0]
+            manager = VKD3DComponent(_version)
+        elif component == "nvapi":
+            _version = config.get("NVAPI")
+            _version = version if version else _version
+            if not _version:
+                _version = self.nvapi_available[0]
+            manager = NVAPIComponent(_version)
+        else:
+            return Result(
+                status=False,
+                data={"message": f"Invalid component: {component}"}
+            )
         
-        for dll in dlls:
-            _32_path = "system32"
-            if config.get("Arch") == "win64":
-                _32_path = "syswow64"
-
-            if not remove:
-                _source = dll_source_frmt % ("x32", dll)
-                _dest = dll_dest_frmt % (_32_path, dll)
-                if os.path.exists(_dest):
-                    shutil.copyfile(_dest, f"{_dest}.bak")
-                shutil.copyfile(_source, _dest)
-
-                if config.get("Arch") == "win64":
-                    _source = dll_source_frmt % ("x64", dll)
-                    _dest = dll_dest_frmt % ("system32", dll)
-                    if os.path.exists(_dest):
-                        shutil.copyfile(_dest, f"{_dest}.bak")
-                    shutil.copyfile(_source, _dest)
-                
-                Runner.reg_add(
-                    config,
-                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                    value=dll,
-                    data="native"
-                )
-            else:
-                # remove and restore .bak if exists
-                _dest = dll_dest_frmt % ("system32", dll)
-                if os.path.exists(_dest):
-                    os.remove(_dest)
-                    if os.path.exists(f"{_dest}.bak"):
-                        os.rename(f"{_dest}.bak", _dest)
-                
-                if config.get("Arch") == "win64":
-                    _dest = dll_dest_frmt % ("syswow64", dll)
-                    if os.path.exists(_dest):
-                        os.remove(_dest)
-                    if os.path.exists(f"{_dest}.bak"):
-                        os.rename(f"{_dest}.bak", _dest)
-                
-                Runner.reg_delete(
-                    config,
-                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                    value=dll
-                )
-
-        return True
+        if remove:
+            manager.install(config, exclude)
+        else:
+            manager.uninstall(config, exclude)
         
+        return Result(status=True)
 
-    def install_dxvk(
+    def install_dxvk_script(
         self,
         config: BottleConfig,
         remove: bool = False,
@@ -1438,7 +1415,7 @@ class Manager:
 
         return Result(status=True)
 
-    def install_vkd3d(
+    def install_vkd3d_script(
         self,
         config: BottleConfig,
         remove: bool = False,
@@ -1473,7 +1450,7 @@ class Manager:
 
         return Result(status=True)
 
-    def install_nvapi(
+    def install_nvapi_old(
         self,
         config: BottleConfig,
         remove: bool = False,

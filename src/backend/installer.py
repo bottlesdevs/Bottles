@@ -227,7 +227,7 @@ class InstallerManager:
                 _config = layer.runtime_conf
                 Runner.wineboot(_config, status=4, comunicate=True)
 
-            self.__manager.install_dxvk(_config)
+            self.__manager.install_dll_component(_config, "dxvk")
 
         if parameters.get("vkd3d") and not config.get("Parameters")["vkd3d"]:
             if config["Environment"] == "Layered":
@@ -240,7 +240,7 @@ class InstallerManager:
                 _config = layer.runtime_conf
                 Runner.wineboot(_config, status=4, comunicate=True)
 
-            self.__manager.install_vkd3d(_config)
+            self.__manager.install_dll_component(_config, "vkd3d")
         
         if parameters.get("dxvk_nvapi") and not config.get("Parameters")["dxvk_nvapi"]:
             if config["Environment"] == "Layered":
@@ -253,7 +253,7 @@ class InstallerManager:
                 _config = layer.runtime_conf
                 Runner.wineboot(_config, status=4, comunicate=True)
 
-            self.__manager.install_nvapi(_config)
+            self.__manager.install_dll_component(_config, "nvapi")
         
         # sweep and save layers
         for c in _components_layers:

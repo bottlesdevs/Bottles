@@ -505,7 +505,6 @@ class Runner:
                 _first = list(gpu["vendors"].keys())[0]
                 env["VK_ICD_FILENAMES"] = gpu["vendors"][_first]["icd"]
                 
-
         if parameters["pulseaudio_latency"]:
             env["PULSE_LATENCY_MSEC"] = "60"
 

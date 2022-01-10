@@ -22,7 +22,11 @@ bottles_sources = [
   'gpu.py',
   'layers.py',
   'diff.py',
-  'health.py'
+  'health.py',
+  'dll.py',
+  'dxvk.py',
+  'vkd3d.py',
+  'nvapi.py'
 ]
 
 install_data(bottles_sources, install_dir: backenddir)
