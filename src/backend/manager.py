@@ -1380,9 +1380,9 @@ class Manager:
             )
         
         if remove:
-            manager.install(config, exclude)
-        else:
             manager.uninstall(config, exclude)
+        else:
+            manager.install(config, exclude)
         
         return Result(status=True)
 
