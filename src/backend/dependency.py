@@ -161,10 +161,10 @@ class DependencyManager:
             If the manifest has dependencies, we need to install them
             before installing the current one.
             '''
-            for dependency in manifest.get("Dependencies"):
-                if dependency in self.__manager.supported_dependencies:
-                    _dep = self.__manager.supported_dependencies[dependency]
-                    _res = self.install(config, [dependency, _dep])
+            for _ext_dep in manifest.get("Dependencies"):
+                if _ext_dep in self.__manager.supported_dependencies:
+                    _dep = self.__manager.supported_dependencies[_ext_dep]
+                    _res = self.install(config, [_ext_dep, _dep])
                     if not _res.status:
                         return _res
 
