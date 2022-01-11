@@ -340,6 +340,7 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
                                 <property name="valign">center</property>
                               </object>
                               <packing>
@@ -354,6 +355,7 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
                                 <property name="valign">center</property>
                               </object>
                               <packing>
@@ -368,6 +370,7 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
                                 <property name="valign">center</property>
                               </object>
                               <packing>
@@ -770,7 +773,7 @@ Disable if you're experiencing graphical glitches.</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Working directory</property>
                         <property name="activatable-widget">btn_cwd</property>
-                        <property name="subtitle" translatable="yes">Point to the bottle path</property>
+                        <property name="subtitle" translatable="yes">Default to the bottle path.</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
