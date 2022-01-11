@@ -291,6 +291,7 @@ class Manager:
             winemenubuilder_paths = [
                 f"{runner}lib64/wine/x86_64-windows/winemenubuilder.exe",
                 f"{runner}lib/wine/x86_64-windows/winemenubuilder.exe",
+                f"{runner}lib32/wine/i386-windows/winemenubuilder.exe",
                 f"{runner}lib/wine/i386-windows/winemenubuilder.exe",
             ]
             for winemenubuilder in winemenubuilder_paths:
