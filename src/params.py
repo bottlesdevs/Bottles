@@ -2,7 +2,7 @@
 APP_NAME = "Bottles"
 APP_NAME_LOWER = APP_NAME.lower()
 APP_ID = "com.usebottles.bottles"
-VERSION = "2021.12.28-treviso"
+VERSION = "2022.1.14-trento"
 
 # Internal settings not user editable
 ANIM_DURATION = 120
