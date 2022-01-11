@@ -156,6 +156,18 @@ class DependencyManager:
                 message=f"Cannot find manifest for {dependency[0]}."
             )
 
+        if  manifest.get("Dependencies"):
+            '''
+            If the manifest has dependencies, we need to install them
+            before installing the current one.
+            '''
+            for dependency in manifest.get("Dependencies"):
+                if dependency in self.__manager.supported_dependencies:
+                    _dep = self.__manager.supported_dependencies[dependency]
+                    _res = self.install(config, [dependency, _dep])
+                    if not _res.status:
+                        return _res
+
         for step in manifest.get("Steps"):
             '''
             Here we execute all steps in the manifest.
