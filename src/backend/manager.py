@@ -843,6 +843,14 @@ class Manager:
             if remove:
                 del config[key]
 
+        if key == "sync":
+            '''
+            Workaround <https://github.com/bottlesdevs/Bottles/issues/916>
+            Sync type change requires wineserver restart or wine will fail
+            to execute any command.
+            '''
+            Runner.wineboot(config, status=0, comunicate=True)
+
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
