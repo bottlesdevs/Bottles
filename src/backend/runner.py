@@ -7,7 +7,7 @@ import subprocess
 from typing import NewType
 
 from ..utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding
-from .globals import Paths, CMDSettings, gamemode_available, x_display
+from .globals import Paths, CMDSettings, gamemode_available, gamescope_available, x_display
 from .manager_utils import ManagerUtils
 from .runtime import RuntimeManager
 from .display import DisplayUtils
@@ -526,7 +526,9 @@ class Runner:
 
         if gamemode_available and config["Parameters"]["gamemode"]:
             # check for gamemode enabled
-            command = f"{gamemode_available} {command}"
+            # TODO: Unimplemented
+            # command = f"{gamemode_available} {command}"
+            pass
         
         if terminal:
             return UtilsTerminal().execute(command, env, colors)

@@ -38,6 +38,7 @@ class Samples:
             "dxvk_nvapi": False,
             "vkd3d": False,
             "gamemode": False,
+            # "gamescope": False,
             "sync": "wine",
             "fsr": False,
             "fsr_level": 5,
@@ -196,5 +197,7 @@ CMDSettings = {
 
 # Check if gamemode is available
 gamemode_available = shutil.which("gamemoderun") or False
+# Check if gamescope is available
+gamescope_available = shutil.which("gamescope") or False
 
 x_display = DisplayUtils.get_x_display()
