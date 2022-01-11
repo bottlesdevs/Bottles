@@ -209,6 +209,9 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_windows.handler_block_by_func(self.__set_windows)
+        self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
+        self.toggle_esync.handler_block_by_func(self.__set_esync)
+        self.toggle_fsync.handler_block_by_func(self.__set_fsync)
         
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
@@ -259,6 +262,9 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
+        self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
+        self.toggle_esync.handler_unblock_by_func(self.__set_esync)
+        self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
 
 
     def __show_environment_variables(self, widget=False):
