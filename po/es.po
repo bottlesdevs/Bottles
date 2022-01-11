@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-06 23:20+0100\n"
-"PO-Revision-Date: 2021-12-22 13:27+0000\n"
-"Last-Translator: Alberto Cañaveras <acmp@tuta.io>\n"
+"PO-Revision-Date: 2022-01-12 19:53+0000\n"
+"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -43,9 +43,8 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-#, fuzzy
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Ejecute fácilmente programas de Windows en Linux con Bottles 🍷"
+msgstr "¡Ejecute software de Windows en Linux con Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -116,7 +115,7 @@ msgstr "Instalación y gestión automática de los ejecutores Wine y Proton"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
-msgstr "Reparación automática de bottles en caso de rotura"
+msgstr "Reparación automática de botellas en caso de rotura"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
@@ -308,9 +307,8 @@ msgid "Read documentation"
 msgstr "Leer documentación"
 
 #: src/ui/details-dependencies.ui:222
-#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr "Informar de una dependencia faltante"
+msgstr "Informar de un problema o de la falta de una dependencia."
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -428,15 +426,17 @@ msgid "Use the Wine virtual desktop."
 msgstr "Usar el escritorio virtual de Wine."
 
 #: src/ui/details-preferences.ui:341
-#, fuzzy
 msgid "Use Bottles runtime"
-msgstr "Nombre de la botella"
+msgstr "Usar el tiempo de ejecución de Bottles"
 
 #: src/ui/details-preferences.ui:342
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
+"Proporciona un paquete de bibliotecas adicionales para una mayor "
+"compatibilidad,\n"
+"desactívelo si tienes problemas."
 
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
@@ -631,20 +631,21 @@ msgid "Existing overrides"
 msgstr "Anulaciones existentes"
 
 #: src/ui/dialog-crash-report.ui:24
-#, fuzzy
 msgid "Bottles Crash Report"
-msgstr "Importación y copia de respaldo de botellas"
+msgstr "Informe sobre el accidente de las botellas"
 
 #: src/ui/dialog-crash-report.ui:35
-#, fuzzy
 msgid "Send report"
-msgstr "Mostrar informe"
+msgstr "Enviar informe"
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Bottles se cayó la última vez. Por favor, rellene un informe adjuntando el "
+"siguiente rastro para ayudarnos a identificar el problema y evitar que "
+"vuelva a ocurrir."
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -653,53 +654,51 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Hemos encontrado uno o más informes similares (o idénticos). Por favor, "
+"asegúrese de comprobar cuidadosamente que no ha sido ya reportado antes de "
+"enviar uno nuevo. Cada informe requiere un esfuerzo por parte de los "
+"desarrolladores para diagnosticar, por favor respete su trabajo y asegúrese "
+"de no publicar duplicados."
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "Aún así quiero informar."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
 msgid "Advanced options"
 msgstr "Opciones avanzadas"
 
 #: src/ui/dialog-duplicate.ui:25
-#, fuzzy
 msgid "Duplicate a bottle"
-msgstr "Botella duplicada"
+msgstr "Duplicar una botella"
 
 #: src/ui/dialog-duplicate.ui:36
-#, fuzzy
 msgid "Duplicate"
-msgstr "Botella duplicada"
+msgstr "Duplicar"
 
 #: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:50 src/ui/onboard.ui:56
 msgid "Close"
 msgstr "Cerrar"
 
 #: src/ui/dialog-duplicate.ui:95
-#, fuzzy
 msgid "Type a name for the new bottle"
-msgstr "Escriba un nombre para su botella"
+msgstr "Escriba un nombre para la botella nueva"
 
 #: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
-#, fuzzy
 msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr "por ejemplo: -example1 -example2 -example3=hello"
+msgstr "ej.: -ejemplo1 -ejemplo2 -ejemplo3=hola"
 
 #: src/ui/dialog-duplicate.ui:109
-#, fuzzy
 msgid "e.g: MyDuplicatedBottle"
-msgstr "Botella duplicada"
+msgstr "ej.: MiBotellaDuplicada"
 
 #: src/ui/dialog-duplicate.ui:130
-#, fuzzy
 msgid "page_name"
-msgstr "Instalador"
+msgstr "page_name"
 
 #: src/ui/dialog-duplicate.ui:147
-#, fuzzy
 msgid "Duplicating…"
-msgstr "Descargando…"
+msgstr "Duplicando…"
 
 #: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:533
 msgid "Take a break, it may take a while"
@@ -707,21 +706,19 @@ msgstr "Tómese un descanso, puede llevar un tiempo"
 
 #: src/ui/dialog-duplicate.ui:195
 msgid "page_duplicating"
-msgstr ""
+msgstr "page_duplicating"
 
 #: src/ui/dialog-duplicate.ui:204
-#, fuzzy
 msgid "Bottle duplicated"
-msgstr "Botella creada"
+msgstr "Botella duplicada"
 
 #: src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
-msgstr ""
+msgstr "page_duplicated"
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
-#, fuzzy
 msgid "Rename"
-msgstr "Instalador"
+msgstr "Renombrar"
 
 #: src/ui/dialog-rename.ui:35 src/ui/dialog-environment-variables.ui:36
 #: src/ui/dialog-launch-options.ui:36
@@ -730,37 +727,36 @@ msgstr "Guardar"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Escriba el nombre nuevo:"
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
-#, fuzzy
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "por ejemplo: -example1 -example2 -example3=hello"
+msgstr "ej.: VAR=valor %comando% -ejemplo1 -ejemplo2 -ejemplo3=hola"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Escriba aquí…"
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Las variables de entorno son valores dinámicos que pueden afectar a la forma "
+"en que los procesos en ejecución se comportarán en su botella."
 
 #: src/ui/dialog-env-vars.ui:54
-#, fuzzy
 msgid "New variable"
-msgstr "Anulación nueva"
+msgstr "Variable nueva"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr ""
+msgstr "ej. MI_VAR"
 
 #: src/ui/dialog-env-vars.ui:123
-#, fuzzy
 msgid "Existing variables"
-msgstr "Anulaciones existentes"
+msgstr "Variables existentes"
 
 #: src/ui/dialog-run-args.ui:25
 msgid "Run with arguments"
@@ -773,11 +769,11 @@ msgstr "Ejecutar"
 
 #: src/ui/dialog-run-args.ui:75
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Escriba a continuación los argumentos que debe pasar al ejecutable."
 
 #: src/ui/dialog-run-args.ui:90
 msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "ej.: -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
@@ -791,9 +787,8 @@ msgstr ""
 "Aquí puede cambiar las variables de entorno de las órdenes que se ejecutan."
 
 #: src/ui/dialog-environment-variables.ui:87
-#, fuzzy
 msgid "e.g.: VAR1=value VAR2=value"
-msgstr "por ejemplo: VAR1=value VAR2=value .."
+msgstr "ej.: VAR1=value VAR2=value"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
@@ -959,21 +954,19 @@ msgstr "Nativo, después incorporado"
 
 #: src/ui/env-var-entry.ui:91
 msgid "value"
-msgstr ""
+msgstr "valor"
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
 msgstr "Leer reseña"
 
 #: src/ui/task-entry.ui:50
-#, fuzzy
 msgid "Delete message"
-msgstr "Eliminar estado"
+msgstr "Eliminar mensaje"
 
 #: src/ui/program-entry.ui:33
-#, fuzzy
 msgid "Browse path"
-msgstr "Examinar ruta"
+msgstr "Examinar directorio"
 
 #: src/ui/program-entry.ui:70
 msgid "WineHQ"
@@ -1283,7 +1276,7 @@ msgstr "Foros"
 
 #: src/ui/window.ui:83 src/window.py:290
 msgid "Health check"
-msgstr ""
+msgstr "Control de salud"
 
 #: src/ui/window.ui:96
 msgid "About Bottles"
@@ -1375,16 +1368,15 @@ msgstr "Importando copia de respaldo: {0}"
 
 #: src/backend/manager.py:1004
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "No se pueden instalar los componentes, lo he intentado 3 veces."
 
 #: src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
 msgstr "Faltan componentes esenciales. Instalando…"
 
 #: src/backend/manager.py:1097
-#, fuzzy
 msgid "Generating bottle configuration…"
-msgstr "Generando configuración de la botella"
+msgstr "Generar la configuración de la botella…"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1116
@@ -1412,9 +1404,8 @@ msgid "Apply CMD default settings…"
 msgstr "Aplicar la configuración predeterminada del CMD…"
 
 #: src/backend/manager.py:1163
-#, fuzzy
 msgid "Optimizing environment…"
-msgstr "Aplicando el entorno: {0}…"
+msgstr "Optimizando el entorno…"
 
 #: src/backend/manager.py:1175
 #, python-brace-format
@@ -1456,7 +1447,7 @@ msgstr "Creando un punto de restauración…"
 
 #: src/backend/versioning.py:165
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "No se ha podido crear la carpeta de estado."
 
 #: src/backend/versioning.py:172
 msgid "Updating index …"
@@ -1468,16 +1459,16 @@ msgstr "Actualizando estados…"
 
 #: src/backend/versioning.py:225
 msgid "Could not update the states file."
-msgstr ""
+msgstr "No se ha podido actualizar el archivo de estados."
 
 #: src/backend/versioning.py:239
 msgid "Could not update the index file."
-msgstr ""
+msgstr "No se ha podido actualizar el archivo de índice."
 
 #: src/backend/versioning.py:265
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "¡La ruta temporal se limpió con éxito!"
+msgstr "¡Estado nuevo [{0}] creado con éxito!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -1488,6 +1479,10 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            Este problema fue reportado 5 veces y no puede ser enviado de "
+"nuevo.\n"
+"            Informe de sus comentarios en uno de los siguientes informes "
+"existentes."
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:154
 msgid "Warning"
@@ -1499,7 +1494,7 @@ msgstr "Se ha producido un error."
 
 #: src/dialogs/generic.py:89 src/dialogs/generic.py:133
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copiar al portapapeles"
 
 #: src/views/details.py:103
 msgid "Details & Utilities"
@@ -1610,14 +1605,12 @@ msgid "An environment improved for Windows games."
 msgstr "Un entorno mejorado para juegos de Windows."
 
 #: src/views/new.py:78
-#, fuzzy
 msgid "Application"
-msgstr "Descargando…"
+msgstr "Aplicación"
 
 #: src/views/new.py:79
-#, fuzzy
 msgid "An environment improved for Windows application."
-msgstr "Un entorno mejorado para juegos de Windows."
+msgstr "Un entorno mejorado para la aplicación de Windows."
 
 #: src/views/new.py:84
 msgid "Custom"
@@ -1628,17 +1621,16 @@ msgid "A clear environment for your experiments."
 msgstr "Un entorno limpio para sus experimentos."
 
 #: src/views/new.py:93
-#, fuzzy
 msgid "Layered"
 msgstr "Capas"
 
 #: src/views/new.py:94
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "Un entorno por capas, donde cada aplicación es una capa."
 
 #: src/views/new.py:247
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "Hubo un error al crear la botella."
 
 #: src/views/new.py:254
 #, python-brace-format
@@ -1651,14 +1643,14 @@ msgid "Manifest for {0}"
 msgstr "Manifiesto de {0}"
 
 #: src/widgets/installer.py:80
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review for {0}"
-msgstr "Manifiesto de {0}"
+msgstr "Valoración para {0}"
 
 #: src/widgets/installer.py:124
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "Paso {self.__step} de {self.steps}"
 
 #: src/widgets/state.py:90
 #, python-brace-format
