@@ -162,6 +162,8 @@ class DependencyManager:
             before installing the current one.
             '''
             for _ext_dep in manifest.get("Dependencies"):
+                if _ext_dep in config["Installed_Dependencies"]:
+                    continue
                 if _ext_dep in self.__manager.supported_dependencies:
                     _dep = self.__manager.supported_dependencies[_ext_dep]
                     _res = self.install(config, [_ext_dep, _dep])
