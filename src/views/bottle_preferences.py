@@ -52,6 +52,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_pulse_latency = Gtk.Template.Child()
     switch_fixme = Gtk.Template.Child()
     switch_runtime = Gtk.Template.Child()
+    switch_mouse_capture = Gtk.Template.Child()
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
@@ -102,7 +103,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             'state-set', self.__toggle_pulse_latency
         )
         self.switch_fixme.connect('state-set', self.__toggle_fixme)
-
+        self.switch_mouse_capture.connect('state-set', self.__toggle_full_capt)
         self.combo_fsr.connect('changed', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_runner.connect('changed', self.__set_runner)
@@ -641,6 +642,26 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="fixme_logs",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+    
+    def __toggle_full_capt(self, widget, state):
+        '''
+        This function update the full capture status on the bottle
+        configuration according to the widget state.
+        '''
+        _rule = "Y" if state else "N"
+        Runner.reg_add(
+            self.config,
+            key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
+            value="GrabFullscreen",
+            data=_rule
+        )
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="fullscreen_capture",
             value=state,
             scope="Parameters"
         )
