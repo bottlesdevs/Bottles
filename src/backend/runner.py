@@ -396,6 +396,8 @@ class Runner:
         
         # hide mono and gecko to avoid popup dialogs
         dll_overrides.append("mscoree=d mshtml=d")
+        # hide winemenubuilder.exe to avoid broken desktop entries
+        dll_overrides.append("winemenubuilder.exe=d")
 
         if "FLATPAK_ID" in os.environ and parameters["use_runtime"] and not terminal:
             '''

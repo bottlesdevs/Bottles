@@ -1170,7 +1170,7 @@ class Manager:
                 config,
                 key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                 value=_dll,
-                data="disabled"
+                data=""
             )
 
         # apply environment configuration
