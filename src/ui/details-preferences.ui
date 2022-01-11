@@ -86,33 +86,6 @@ Disable if you're experiencing graphical glitches.</property>
                       <object class="HdyActionRow">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Use GameMode</property>
-                        <property name="subtitle" translatable="yes">Optimise gaming performance on demand</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <child>
-                              <object class="GtkSwitch" id="switch_gamemode">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="halign">start</property>
-                                <property name="valign">center</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Enable DLSS (DXVK-NVAPI)</property>
                         <property name="subtitle" translatable="yes">Provide DLSS support if available and Nvidia's NVAPI.</property>
                         <child>
@@ -853,6 +826,33 @@ disable if you run into issues.</property>
                             <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_runtime">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="HdyActionRow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="title" translatable="yes">Use GameMode</property>
+                        <property name="subtitle" translatable="yes">Optimise gaming performance on demand</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkSwitch" id="switch_gamemode">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="halign">start</property>
