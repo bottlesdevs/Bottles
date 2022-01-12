@@ -526,9 +526,11 @@ class Runner:
 
         if gamemode_available and config["Parameters"]["gamemode"]:
             # check for gamemode enabled
-            # TODO: Unimplemented
-            # command = f"{gamemode_available} {command}"
-            pass
+            command = f"{gamemode_available} {command}"
+
+        if gamescope_available and config["Parameters"]["gamescope"]:
+            # check for gamescope enabled
+            command = f"{gamescope_available} {command}"
         
         if terminal:
             return UtilsTerminal().execute(command, env, colors)

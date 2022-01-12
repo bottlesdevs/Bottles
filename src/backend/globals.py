@@ -38,7 +38,7 @@ class Samples:
             "dxvk_nvapi": False,
             "vkd3d": False,
             "gamemode": False,
-            # "gamescope": False,
+            "gamescope": False,
             "sync": "wine",
             "fsr": False,
             "fsr_level": 5,

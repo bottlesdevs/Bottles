@@ -21,7 +21,7 @@ from gi.repository import Gtk
 
 from ..utils import RunAsync
 
-from ..backend.runner import Runner, gamemode_available
+from ..backend.runner import Runner, gamemode_available, gamescope_available
 from ..backend.manager_utils import ManagerUtils
 
 from ..dialogs.envvars import EnvVarsDialog
@@ -45,6 +45,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
+    switch_gamescope = Gtk.Template.Child()
     switch_aco = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
@@ -93,6 +94,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_vkd3d.connect('state-set', self.__toggle_vkd3d)
         self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
         self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
+        self.switch_gamescope.connect('state-set', self.__toggle_gamescope)
         self.switch_aco.connect('state-set', self.__toggle_aco)
         self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
@@ -124,9 +126,12 @@ class PreferencesView(Gtk.ScrolledWindow):
         is not available.
         '''
         self.switch_gamemode.set_sensitive(gamemode_available)
+        self.switch_gamescope.set_sensitive(not gamescope_available)
+        _not_available = _("This feature is not available on your system.")
         if not gamemode_available:
-            self.switch_gamemode.set_tooltip_text(
-                _("Gamemode is either not available on your system or not running."))
+            self.switch_gamemode.set_tooltip_text(_not_available)
+        if not gamescope_available:
+            self.switch_gamescope.set_tooltip_text(_not_available)
 
     def choose_cwd(self, widget):
         '''
@@ -431,6 +436,19 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="gamemode",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+    
+    def __toggle_gamescope(self, widget=False, state=False):
+        '''
+        This function update the gamescope status on the bottle
+        configuration according to the widget state.
+        '''
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="gamescope",
             value=state,
             scope="Parameters"
         )
