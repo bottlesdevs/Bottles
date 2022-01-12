@@ -652,20 +652,27 @@ class PreferencesView(Gtk.ScrolledWindow):
         This function update the full capture status on the bottle
         configuration according to the widget state.
         '''
+        def update(result, error=False):
+            nonlocal widget
+            new_config = self.manager.update_config(
+                config=self.config,
+                key="fullscreen_capture",
+                value=state,
+                scope="Parameters"
+            )
+            self.config = new_config
+            widget.set_sensitive(True)
+
+        widget.set_sensitive(False)
         _rule = "Y" if state else "N"
-        Runner.reg_add(
-            self.config,
+        RunAsync(
+            Runner.reg_add,
+            callback=update,
+            config=self.config,
             key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
             value="GrabFullscreen",
             data=_rule
         )
-        new_config = self.manager.update_config(
-            config=self.config,
-            key="fullscreen_capture",
-            value=state,
-            scope="Parameters"
-        )
-        self.config = new_config
 
     def __show_dll_overrides_view(self, widget=False):
         '''
