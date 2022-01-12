@@ -11,7 +11,8 @@ bottles_sources = [
   'launchoptions.py',
   'onboard.py',
   'runargs.py',
-  'rename.py'
+  'rename.py',
+  'gamescope.py'
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)

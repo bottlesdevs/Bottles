@@ -26,6 +26,7 @@ from ..backend.manager_utils import ManagerUtils
 
 from ..dialogs.envvars import EnvVarsDialog
 from ..dialogs.dlloverrides import DLLOverridesDialog
+from ..dialogs.gamescope import GamescopeDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-preferences.ui')
@@ -37,6 +38,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     btn_manage_dxvk = Gtk.Template.Child()
     btn_manage_vkd3d = Gtk.Template.Child()
     btn_manage_nvapi = Gtk.Template.Child()
+    btn_manage_gamescope = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_environment_variables = Gtk.Template.Child()
     btn_overrides = Gtk.Template.Child()
@@ -81,6 +83,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.btn_manage_dxvk.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_vkd3d.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_nvapi.connect("clicked", self.window.show_prefs_view)
+        self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_environment_variables.connect(
             "clicked", self.__show_environment_variables
@@ -126,7 +129,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         is not available.
         '''
         self.switch_gamemode.set_sensitive(gamemode_available)
-        self.switch_gamescope.set_sensitive(not gamescope_available)
+        self.switch_gamescope.set_sensitive(gamescope_available)
         _not_available = _("This feature is not available on your system.")
         if not gamemode_available:
             self.switch_gamemode.set_tooltip_text(_not_available)
@@ -224,6 +227,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_vkd3d.set_active(parameters["vkd3d"])
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
         self.switch_gamemode.set_active(parameters["gamemode"])
+        self.switch_gamescope.set_active(parameters["gamescope"])
         self.switch_fsr.set_active(parameters["fsr"])
         self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_aco.set_active(parameters["aco_compiler"])
@@ -272,6 +276,13 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
         self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
 
+
+    def __show_gamescope_settings(self, widget):
+        new_window = GamescopeDialog(
+            window=self.window,
+            config=self.config
+        )
+        new_window.present()
 
     def __show_environment_variables(self, widget=False):
         '''

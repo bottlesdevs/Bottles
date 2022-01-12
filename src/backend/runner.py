@@ -530,7 +530,28 @@ class Runner:
 
         if gamescope_available and config["Parameters"]["gamescope"]:
             # check for gamescope enabled
-            command = f"{gamescope_available} {command}"
+            gamescope_cmd = [gamescope_available]
+            if parameters["gamescope_fullscreen"]:
+                gamescope_cmd.append("-f")
+            if parameters["gamescope_borderless"]:
+                gamescope_cmd.append("-b")
+            if parameters["gamescope_scaling"]:
+                gamescope_cmd.append("-n")
+            if len(parameters["gamescope_fps"]) > 0:
+                gamescope_cmd.append(f"-r {parameters['gamescope_fps']}")
+            if len(parameters["gamescope_fps_no_focus"]) > 0:
+                gamescope_cmd.append(f"-o {parameters['gamescope_fps_no_focus']}")
+            if len(parameters["gamescope_game_width"]) > 0:
+                gamescope_cmd.append(f"-w {parameters['gamescope_game_width']}")
+            if len(parameters["gamescope_game_height"]) > 0:
+                gamescope_cmd.append(f"-h {parameters['gamescope_game_height']}")
+            if len(parameters["gamescope_window_width"]) > 0:
+                gamescope_cmd.append(f"-W {parameters['gamescope_window_width']}")
+            if len(parameters["gamescope_window_height"]) > 0:
+                gamescope_cmd.append(f"-H {parameters['gamescope_window_height']}")
+
+            command = f"{' '.join(gamescope_cmd)} {command}"
+            print(command)
         
         if terminal:
             return UtilsTerminal().execute(command, env, colors)
