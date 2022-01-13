@@ -190,16 +190,8 @@ class Runner:
         RunAsync(
             task_func=Runner.run_command, 
             config=config, 
-            command="winecfg"
-        )
-
-    @staticmethod
-    def run_winetricks( config: BottleConfig):
-        logging.info("Running winetricks on the wineprefix…")
-        RunAsync(
-            task_func=Runner.run_command, 
-            config=config, 
-            command="winetricks"
+            command="winecfg",
+            minimal=True
         )
 
     @staticmethod
@@ -210,7 +202,8 @@ class Runner:
             config=config, 
             command="winedbg",
             terminal=True,
-            colors="debug"
+            colors="debug",
+            minimal=True
         )
 
     @staticmethod
@@ -220,7 +213,8 @@ class Runner:
             task_func=Runner.run_command, 
             config=config, 
             command="cmd",
-            terminal=True
+            terminal=True,
+            minimal=True
         )
 
     @staticmethod
@@ -229,7 +223,8 @@ class Runner:
         RunAsync(
             task_func=Runner.run_command, 
             config=config, 
-            command="taskmgr"
+            command="taskmgr",
+            minimal=True
         )
 
     @staticmethod
@@ -238,7 +233,8 @@ class Runner:
         RunAsync(
             task_func=Runner.run_command, 
             config=config, 
-            command="control"
+            command="control",
+            minimal=True
         )
 
     @staticmethod
@@ -251,7 +247,8 @@ class Runner:
             
         Runner.run_command(
             config=config, 
-            command=command
+            command=command,
+            minimal=True
         )
 
     @staticmethod
@@ -260,7 +257,8 @@ class Runner:
         RunAsync(
             task_func=Runner.run_command, 
             config=config, 
-            command="regedit"
+            command="regedit",
+            minimal=True
         )
 
     @staticmethod
@@ -307,7 +305,8 @@ class Runner:
                 config, 
                 command, 
                 environment=envs,
-                comunicate=comunicate
+                comunicate=comunicate,
+                minimal=True
             )
         else:
             raise ValueError(f"[{status}] is not a valid status for wineboot!")
@@ -321,7 +320,8 @@ class Runner:
         environment: dict = False,
         comunicate: bool = False,
         cwd: str = None,
-        colors: str = "default"
+        colors: str = "default",
+        minimal: bool = False # avoid gamemode/gamescope usage
     ):
         '''
         Run a command inside a bottle using the config provided, supports
@@ -524,34 +524,34 @@ class Runner:
             else:
                 command = f"{command} {arguments}"
 
-        if gamemode_available and config["Parameters"]["gamemode"]:
-            # check for gamemode enabled
-            command = f"{gamemode_available} {command}"
+        if not minimal:
+            if gamemode_available and config["Parameters"]["gamemode"]:
+                # check for gamemode enabled
+                command = f"{gamemode_available} {command}"
 
-        if gamescope_available and config["Parameters"]["gamescope"]:
-            # check for gamescope enabled
-            gamescope_cmd = [gamescope_available]
-            if parameters["gamescope_fullscreen"]:
-                gamescope_cmd.append("-f")
-            if parameters["gamescope_borderless"]:
-                gamescope_cmd.append("-b")
-            if parameters["gamescope_scaling"]:
-                gamescope_cmd.append("-n")
-            if len(parameters["gamescope_fps"]) > 0:
-                gamescope_cmd.append(f"-r {parameters['gamescope_fps']}")
-            if len(parameters["gamescope_fps_no_focus"]) > 0:
-                gamescope_cmd.append(f"-o {parameters['gamescope_fps_no_focus']}")
-            if len(parameters["gamescope_game_width"]) > 0:
-                gamescope_cmd.append(f"-w {parameters['gamescope_game_width']}")
-            if len(parameters["gamescope_game_height"]) > 0:
-                gamescope_cmd.append(f"-h {parameters['gamescope_game_height']}")
-            if len(parameters["gamescope_window_width"]) > 0:
-                gamescope_cmd.append(f"-W {parameters['gamescope_window_width']}")
-            if len(parameters["gamescope_window_height"]) > 0:
-                gamescope_cmd.append(f"-H {parameters['gamescope_window_height']}")
-
-            command = f"{' '.join(gamescope_cmd)} {command}"
-            print(command)
+            if gamescope_available and config["Parameters"]["gamescope"]:
+                # check for gamescope enabled
+                gamescope_cmd = [gamescope_available]
+                if parameters["gamescope_fullscreen"]:
+                    gamescope_cmd.append("-f")
+                if parameters["gamescope_borderless"]:
+                    gamescope_cmd.append("-b")
+                if parameters["gamescope_scaling"]:
+                    gamescope_cmd.append("-n")
+                if parameters["gamescope_fps"] > 0:
+                    gamescope_cmd.append(f"-r {parameters['gamescope_fps']}")
+                if parameters["gamescope_fps_no_focus"] > 0:
+                    gamescope_cmd.append(f"-o {parameters['gamescope_fps_no_focus']}")
+                if parameters["gamescope_game_width"] > 0:
+                    gamescope_cmd.append(f"-w {parameters['gamescope_game_width']}")
+                if parameters["gamescope_game_height"] > 0:
+                    gamescope_cmd.append(f"-h {parameters['gamescope_game_height']}")
+                if parameters["gamescope_window_width"] > 0:
+                    gamescope_cmd.append(f"-W {parameters['gamescope_window_width']}")
+                if parameters["gamescope_window_height"] > 0:
+                    gamescope_cmd.append(f"-H {parameters['gamescope_window_height']}")
+                
+                command = f"{' '.join(gamescope_cmd)} {command}"
         
         if terminal:
             return UtilsTerminal().execute(command, env, colors)
@@ -773,7 +773,7 @@ class Runner:
                 key, value, keyType, data)
         
         Runner.wait_for_process(config, "reg.exe")
-        res = Runner.run_command(config, command, comunicate=True)
+        res = Runner.run_command(config, command, comunicate=True, minimal=True)
         logging.info(res)
 
     @staticmethod
@@ -788,7 +788,7 @@ class Runner:
         )
 
         Runner.wait_for_process(config, "reg.exe")
-        Runner.run_command(config, f"reg delete '{key}' /v {value} /f")
+        Runner.run_command(config, f"reg delete '{key}' /v {value} /f", minimal=True)
 
     @staticmethod
     def dll_override(
@@ -878,7 +878,8 @@ class Runner:
         winedbg = Runner.run_command(
             config,
             command='winedbg --command "info proc"',
-            comunicate=True
+            comunicate=True,
+            minimal=True
         )
 
         if winedbg in [None, ""]:
