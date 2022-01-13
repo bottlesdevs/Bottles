@@ -504,8 +504,11 @@ class Runner:
                 System doesn't support PRIME, so using the first result
                 from the gpu vendors list.
                 '''
-                _first = list(gpu["vendors"].keys())[0]
-                env["VK_ICD_FILENAMES"] = gpu["vendors"][_first]["icd"]
+                if "vendors" in gpu and len(gpu["vendors"]) > 0:
+                    _first = list(gpu["vendors"].keys())[0]
+                    env["VK_ICD_FILENAMES"] = gpu["vendors"][_first]["icd"]
+                else:
+                    logging.warning("No GPU vendor found, that's weird but keep going without setting VK_ICD_FILENAMES")
                 
         if parameters["pulseaudio_latency"]:
             env["PULSE_LATENCY_MSEC"] = "60"
