@@ -1,45 +1,46 @@
 com.usebottles.bottles (2022.1.14-trento) precise; urgency=low
 
-  * Bottles runtime updated to 0.2
-  * Caffe is now the new default runner, falling back to Vaniglia if not available
-  * New environment variables management, has also a nice new UI
-  * The new Operation manager handle tasks queue to avoid conflicts
-  * Improved xwayland support for runners when running in a wayland session
-  * Improved compatibility for optimus laptops
-  * Prevented value changes in preferences when scrolling on combo boxes
-  * Now the Crash Report dialog disable the send button if the report is already sent multiple times
-  * The new copy_file action can be used to copy any file during dependency installation
-  * Now is possible to rename manually added programs
-  * The uninstaller can now remove more than one program in one go (used by dependencies/installers)
-  * Improved DLSS support, now is automatically configured
-  * Extended the programs search to new directories
-  * Fixed onboard (first start-up) freeze on components download
-  * Fixed random crashes caused by non-safe thread access
-  * Fixed wayland support, was setting the wrong port for xwayland, the new method tests a bunch of ports to find the right one
-  * Fixed vkd3d installation, was failing due to a regression in command handling
-  * Fixed a crash during bottle creation caused by a non handled exception
-  * Fixed random crash saving environment variables
-  * Fixed a crash caused by the logger trying to split a None
-  * Fixed silent EasyTerm crash when gamemode is enabled but it doesn't find the executable
-  * Fixed wrong environment variables setting on non optimus laptops
-  * Fixed a crash caused by a non handled exception of Patool library
-  * Fixed Windows version change for winxp, was setting the wrong value for 64bit bottles
-  * Fixed a bug during initial checks
-  * Chinese (Traditional) translations thanks to @XiaoPanPanKevinPan
-  * Italian translations thanks to @AlexzanDev, @phaerrax
-  * Czech translations thanks to @SoongVilda
-  * Russian translations thanks to @ZSHFan
-  * Finnish translations thanks to Jiri Grönroos
-  * French translations thanks to @GoudronViande24, @Bloombug, @julroy67
-  * Korean translations thanks to @OctopusET, @qogusdn1017
-  * Portuguese (Brazil) translations thanks to @redvulps, @davipatricio
-  * Vietnamese translations thanks to AD, Giai Ngo
-  * Portuguese translations thanks to @Bloombug
-  * Polish translations thanks to Krzysztof Marcinek
-  * Hindi translations thanks to @athenasaurav
-  * Spanish translations thanks to Alberto Cañaveras
-  * Indonesian translations thanks to neko
-  * German translations thanks to @McLutzifer, @Translator5
-  * Japanese translations thanks to @Hebi-no-Sekigae
+  * Stop a running program directly from the program list
+  * Vulkan ICDs are now automatically found and properly loaded according to your GPUs
+  * Dependencies are now installed even faster (give it a try)
+  * Experimental layered-bottles (currently only for developers)
+  * Support for local repositories, see the documentation
+  * Introducing the Health check, this display a lot of useful information about your installation
+  * New and improved dialogs for manifests, reviews and more
+  * During bottle creation, missing componentes are not installed automatically
+  * All dependencies have been updated to use the new structure and avoid residuals in temp
+  * The copy_cab_dll method for dependencies was deprecated if favor of new copy_file
+  * Improved accessibility, now it is possible to interact with widgets through keyboard
+  * The Software environment was renamed to Applications
+  * The "Compiler" notice is now hidden by default when DXVK is enabled, enable the DXVK HUD option to restore it
+  * Installers can now execute scripts through the new run_script action
+  * The Bottles runtime and GameMode settings are now placed under System instead of Graphics
+  * Dependencies can now use win32/win64 placeholders to automatically detect the right sys path (system32/syswow64 according to the bottle arch)
+  * Deprecated old scripts-installation for DXVK, VKD3D, DXVK-Nvapi which are now managed by Bottles
+  * Dependencies can now handle nested-dependencies (e.g. dotnet48 now depend on dotnet40, so it will automatically installed if not already)
+  * The wineserver is now automatically restarted when chaning sync type (system, esync, fsync)
+  * Initial Gamescope support
+  * Fullscreen mouse capture can now be set from the bottle preferences
+  * Fixed program arguments, was not storing correctly
+  * Fixed Windows version change, winxp was using wrong values
+  * Fixed a regression in xfce4-terminal support
+  * Fixed a bug in dependencies installation when handling the uninstaller
+  * Fixed a bug in components recognition when there are no components
+  * Fixed a bug in programs rename, was generating a new copy of the program instead of renaming it
+  * Fixed a bug during dependencies installation (when using the cab_extract method), DLLs were copied to wrong location
+  * Fixed a regression in DXVK-Nvapi installation, causing missing DLLs
+  * Fixed winemenubuilder blacklisting that was not working for runners which are using the lib32 path
+  * Fixed the ptrace() problem with Flatpak
+  * Fixed a bug when changing Sync type, was breaking next executions due to an already running wineserver with the wrong sync type
+  * French translations thanks to @julroy67
+  * Portuguese translations thanks to @davipatricio, @SantosSi
+  * Portuguese (Brazil) translations thanks to @davipatricio, @vitorhcl
+  * Chinese (Simplified) translations thanks to @sr093906, Eric
+  * Turkish translations thanks to @lateralrook, @ersen0
+  * German translations thanks to @ThatRedKite
+  * Basque translations thanks to Sergio Varela
+  * Italian translations thanks to @albanobattistella, @phaerrax
+  * Russian translations thanks to @Knebergish
+  * Spanish translations thanks to @oscfdezdz
 
- -- Mirko Brombin <send@mirko.pm>  Mon, 27 Dec 2021 22:13:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Thu, 13 Jan 2022 14:23:00 +0000

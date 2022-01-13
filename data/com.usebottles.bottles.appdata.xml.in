@@ -82,59 +82,60 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.1.14-trento" date="2021-12-27">
+        <release version="2022.1.14-trento" date="2022-01-13">
           <description>
             <p>News</p>
             <ul>
-                <li>Bottles runtime updated to 0.2</li>
-                <li>Caffe is now the new default runner, falling back to Vaniglia if not available</li>
-                <li>New environment variables management, has also a nice new UI</li>
-                <li>The new Operation manager handle tasks queue to avoid conflicts</li>
-                <li>Improved xwayland support for runners when running in a wayland session</li>
-                <li>Improved compatibility for optimus laptops</li>
-                <li>Prevented value changes in preferences when scrolling on combo boxes</li>
-                <li>Now the Crash Report dialog disable the send button if the report is already sent multiple times</li>
-                <li>The new copy_file action can be used to copy any file during dependency installation</li>
-                <li>Now is possible to rename manually added programs</li>
-                <li>The uninstaller can now remove more than one program in one go (used by dependencies/installers)</li>
-                <li>Improved DLSS support, now is automatically configured</li>
-                <li>Extended the programs search to new directories</li>
+                <li>Stop a running program directly from the program list</li>
+                <li>Vulkan ICDs are now automatically found and properly loaded according to your GPUs</li>
+                <li>Dependencies are now installed even faster (give it a try)</li>
+                <li>Experimental layered-bottles (currently only for developers)</li>
+                <li>Support for local repositories, see the documentation</li>
+                <li>Introducing the Health check, this display a lot of useful information about your installation</li>
+                <li>New and improved dialogs for manifests, reviews and more</li>
+                <li>During bottle creation, missing componentes are not installed automatically</li>
+                <li>All dependencies have been updated to use the new structure and avoid residuals in temp</li>
+                <li>The copy_cab_dll method for dependencies was deprecated if favor of new copy_file</li>
+                <li>Improved accessibility, now it is possible to interact with widgets through keyboard</li>
+                <li>The Software environment was renamed to Applications</li>
+                <li>The "Compiler" notice is now hidden by default when DXVK is enabled, enable the DXVK HUD option to restore it</li>
+                <li>Installers can now execute scripts through the new run_script action</li>
+                <li>The Bottles runtime and GameMode settings are now placed under System instead of Graphics</li>
+                <li>Dependencies can now use win32/win64 placeholders to automatically detect the right sys path (system32/syswow64 according to the bottle arch)</li>
+                <li>Deprecated old scripts-installation for DXVK, VKD3D, DXVK-Nvapi which are now managed by Bottles</li>
+                <li>Dependencies can now handle nested-dependencies (e.g. dotnet48 now depend on dotnet40, so it will automatically installed if not already)</li>
+                <li>The wineserver is now automatically restarted when chaning sync type (system, esync, fsync)</li>
+                <li>Initial Gamescope support</li>
+                <li>Fullscreen mouse capture can now be set from the bottle preferences</li>
             </ul>
 
             <p>Bug fixes</p>
             <ul>
-                <li>Fixed onboard (first start-up) freeze on components download</li>
-                <li>Fixed random crashes caused by non-safe thread access</li>
-                <li>Fixed wayland support, was setting the wrong port for xwayland, the new method tests a bunch of ports to find the right one</li>
-                <li>Fixed vkd3d installation, was failing due to a regression in command handling</li>
-                <li>Fixed a crash during bottle creation caused by a non handled exception</li>
-                <li>Fixed random crash saving environment variables</li>
-                <li>Fixed a crash caused by the logger trying to split a None</li>
-                <li>Fixed silent EasyTerm crash when gamemode is enabled but it doesn't find the executable</li>
-                <li>Fixed wrong environment variables setting on non optimus laptops</li>
-                <li>Fixed a crash caused by a non handled exception of Patool library</li>
-                <li>Fixed Windows version change for winxp, was setting the wrong value for 64bit bottles</li>
-                <li>Fixed a bug during initial checks</li>
+                <li>Fixed program arguments, was not storing correctly</li>
+                <li>Fixed Windows version change, winxp was using wrong values</li>
+                <li>Fixed a regression in xfce4-terminal support</li>
+                <li>Fixed a bug in dependencies installation when handling the uninstaller</li>
+                <li>Fixed a bug in components recognition when there are no components</li>
+                <li>Fixed a bug in programs rename, was generating a new copy of the program instead of renaming it</li>
+                <li>Fixed a bug during dependencies installation (when using the cab_extract method), DLLs were copied to wrong location</li>
+                <li>Fixed a regression in DXVK-Nvapi installation, causing missing DLLs</li>
+                <li>Fixed winemenubuilder blacklisting that was not working for runners which are using the lib32 path</li>
+                <li>Fixed the ptrace() problem with Flatpak</li>
+                <li>Fixed a bug when changing Sync type, was breaking next executions due to an already running wineserver with the wrong sync type</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Chinese (Traditional) translations thanks to @XiaoPanPanKevinPan</li>
-                <li>Italian translations thanks to @AlexzanDev, @phaerrax</li>
-                <li>Czech translations thanks to @SoongVilda</li>
-                <li>Russian translations thanks to @ZSHFan</li>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>French translations thanks to @GoudronViande24, @Bloombug, @julroy67</li>
-                <li>Korean translations thanks to @OctopusET, @qogusdn1017</li>
-                <li>Portuguese (Brazil) translations thanks to @redvulps, @davipatricio</li>
-                <li>Vietnamese translations thanks to AD, Giai Ngo</li>
-                <li>Portuguese translations thanks to @Bloombug</li>
-                <li>Polish translations thanks to Krzysztof Marcinek</li>
-                <li>Hindi translations thanks to @athenasaurav</li>
-                <li>Spanish translations thanks to Alberto Cañaveras</li>
-                <li>Indonesian translations thanks to neko</li>
-                <li>German translations thanks to @McLutzifer, @Translator5</li>
-                <li>Japanese translations thanks to @Hebi-no-Sekigae</li>
+                <li>French translations thanks to @julroy67</li>
+                <li>Portuguese translations thanks to @davipatricio, @SantosSi</li>
+                <li>Portuguese (Brazil) translations thanks to @davipatricio, @vitorhcl</li>
+                <li>Chinese (Simplified) translations thanks to @sr093906, Eric</li>
+                <li>Turkish translations thanks to @lateralrook, @ersen0</li>
+                <li>German translations thanks to @ThatRedKite</li>
+                <li>Basque translations thanks to Sergio Varela</li>
+                <li>Italian translations thanks to @albanobattistella, @phaerrax</li>
+                <li>Russian translations thanks to @Knebergish</li>
+                <li>Spanish translations thanks to @oscfdezdz</li>
             </ul>
           </description>
         </release>
