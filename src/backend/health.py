@@ -77,8 +77,8 @@ class HealthChecker:
         try: # only Python 3.10+
             _platform = platform.freedesktop_os_release()
             return {
-                "name": _platform["NAME"],
-                "version": _platform["VERSION_ID"]
+                "name": _platform.get("NAME", "Unknown"),
+                "version": _platform.get("VERSION_ID", "Unknown")
             }
         except AttributeError:
             pass
