@@ -1,7 +1,6 @@
 import re
 import os
 import time
-import shlex
 import shutil
 import subprocess
 from typing import NewType
@@ -873,10 +872,40 @@ class Runner:
         Runner.wineboot(config, status=3, comunicate=True)
     
     @staticmethod
+    def is_wineserver_alive(config:BottleConfig) ->bool:
+        '''
+        This function checks if the wineserver is alive in a bottle.
+        '''
+        if not config.get("Runner"):
+            return False
+
+        bottle = ManagerUtils.get_bottle_path(config)
+        runner = ManagerUtils.get_runner_path(config.get("Runner"))
+
+        env = os.environ.copy()
+        env["WINEPREFIX"] = bottle
+        env["PATH"] = f"{runner}/bin:{env['PATH']}"
+        res = subprocess.Popen(
+            "wineserver -w",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+            cwd=bottle,
+            env=env
+        )
+        time.sleep(1)
+        if res.poll() is None:
+            return True
+        return False
+
+    @staticmethod
     def get_processes(config:BottleConfig) -> list:
         '''
         Get processes running on the wineprefix as a list.
         '''
+        if not Runner.is_wineserver_alive(config):
+            return []
+
         processes = []
         parent = None
 
@@ -930,6 +959,9 @@ class Runner:
         '''
         Wait for a process to exit.
         '''
+        if not Runner.is_wineserver_alive(config):
+            return True
+
         while True:
             processes = Runner.get_processes(config)
             if len(processes) == 0:
@@ -944,6 +976,9 @@ class Runner:
         '''
         Kill a process by its PID or name.
         '''
+        if not Runner.is_wineserver_alive(config):
+            return
+
         if pid:
             command = "\n".join([
                 "winedbg << END_OF_INPUTS",
@@ -977,6 +1012,9 @@ class Runner:
         '''
         Check if a process is running on the wineprefix.
         '''
+        if not Runner.is_wineserver_alive(config):
+            return False
+
         processes = Runner.get_processes(config)
         if pid:
             return pid in [p["pid"] for p in processes]
