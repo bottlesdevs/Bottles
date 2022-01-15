@@ -79,8 +79,8 @@ translate Bottles in your language or how to help improve existing ones.
 
 ## ↗️ Install
 Bottles is officially provided as Flatpak, AppImage, AUR package. 
-There are also other packages maintained by our community, like Fedora and 
-AUR (bottles-git).
+There are also other packages maintained by our community, like Fedora, 
+AUR (bottles-git), and MX Linux.
 
 Read [here](https://docs.usebottles.com/getting-started/installation) how to
 install Bottles on your distribution.
