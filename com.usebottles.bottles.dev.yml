@@ -9,8 +9,8 @@ finish-args:
   - --allow=multiarch
   - --share=network
   - --share=ipc
+  - --socket=x11
   - --socket=wayland
-  - --socket=fallback-x11
   - --socket=pulseaudio
   - --device=all
   - --system-talk-name=org.freedesktop.UDisks2

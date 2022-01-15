@@ -475,14 +475,16 @@ class Runner:
             env["WINE_FULLSCREEN_FSR_STRENGHT"] = str(parameters["fsr_level"])
 
         if "WAYLAND_DISPLAY" in os.environ:
-            # workaround https://github.com/bottlesdevs/Bottles/issues/419
             logging.info("Using Xwayland..")
+            '''
+            # workaround https://github.com/bottlesdevs/Bottles/issues/419
             if not x_display:
                 logging.error("Failed to get Xwayland display")
                 return
             env["DISPLAY"] = x_display
             env["GDK_BACKEND"] = "x11"
             env["GDK_SDISPLAYALE"] = x_display
+            '''
 
         if parameters["discrete_gpu"]:
             discrete = gpu["prime"]["discrete"]
