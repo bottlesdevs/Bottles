@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-06 23:20+0100\n"
-"PO-Revision-Date: 2022-01-16 20:05+0000\n"
+"PO-Revision-Date: 2022-01-16 20:46+0000\n"
 "Last-Translator: Kostadin <kostadinshishmanov@protonmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/bg/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:147
 #: src/window.py:197
 msgid "Bottles"
-msgstr ""
+msgstr "Bottles"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
-msgstr ""
+msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
 msgid "Mirko Brombin"
-msgstr ""
+msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles!"
@@ -64,21 +64,25 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
 msgid "Features:"
-msgstr ""
+msgstr "Възможности:"
 
 #: data/com.usebottles.bottles.appdata.xml.in:18
 msgid "Create bottles using preconfigured environments or create your own"
 msgstr ""
+"Създаване на \"bottles\" чрез предварително конфигурирани среди или "
+"създаване на своя собствена"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
 msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
+"Стартиране на изпълними файлове (.exe/.msi) във Ваши \"bottles\" директно от "
+"контекстното меню на Вашия файлов мениджър"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr ""
+msgstr "Автоматично откриване на програми инсталирани във Вашите \"bottles\""
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -106,23 +110,26 @@ msgstr "Автоматична инсталация и управление на
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
-msgstr ""
+msgstr "Автоматично поправяне на \"bottles\" в случай на повреда"
 
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
 msgstr ""
+"Вграден инсталатор на зависимости, базиран на хранилище, което се управлява "
+"от обществото"
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
 msgid "Integrated Task manager for Wine processes"
-msgstr ""
+msgstr "Вграден Диспечер на задачи за Wine процеси"
 
 #: data/com.usebottles.bottles.appdata.xml.in:29
 msgid "Access to ProtonDB and WineHQ for support"
 msgstr "Достъп до ProtonDB и WineHQ за помощ"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
+#, fuzzy
 msgid "System for bringing your configuration to new versions of Bottles"
-msgstr ""
+msgstr "Система за пренасяне на Вашата конфигурация към нови версии на Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:31
 msgid "Back up and import bottles"
@@ -154,7 +161,7 @@ msgstr "Нощна тема"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Use the night theme."
-msgstr "Използване на нощна тема."
+msgstr "Използване на нощната тема."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -191,11 +198,11 @@ msgstr "Показване на известия."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
-msgstr ""
+msgstr "Почистване на временни файлове"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Clean the temp path when booting the system."
-msgstr ""
+msgstr "Почистване на временните файлове при стартиране на системата."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
@@ -207,7 +214,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
-msgstr ""
+msgstr "Изглед при стартиране"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Choose which view the application should be started in."
@@ -215,7 +222,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
-msgstr ""
+msgstr "Експерименти"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid ""
@@ -225,7 +232,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:installers"
-msgstr ""
+msgstr "Експерименти:инсталатори"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental installer features."
@@ -238,43 +245,49 @@ msgstr "Автоматично затваряне на Bottles"
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
+"Затваряне на Bottles след стартиране на изпълним файл от файловия мениджър."
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
-msgstr ""
+msgstr "© 2017-2021 - Bottles Developers"
 
 #: src/ui/about.ui:12
+#, fuzzy
 msgid "Easily manage wineprefix using environments"
-msgstr ""
+msgstr "Лесно управление на wine префиксове с помощ на среди"
 
 #: src/ui/about.ui:138
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
-msgstr ""
+msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Превод</a>"
 
 #: src/ui/about.ui:151
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/funding/\">Финансиране</a>"
 
 #: src/ui/about.ui:164
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
+"<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Докладване на "
+"проблем</a>"
 
 #: src/ui/about.ui:177
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/blog\">Блог</a>"
 
 #: src/ui/about.ui:190
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/details-dependencies.ui:50
+#, fuzzy
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
+"Включен тестов режим: само зависимости от от тестовото хранилище се показват"
 
 #: src/ui/details-dependencies.ui:127
 msgid "Microsoft .NET Framework 4 .."
-msgstr ""
+msgstr "Microsoft .NET Framework 4 .."
 
 #: src/ui/details-dependencies.ui:139
 msgid ""
