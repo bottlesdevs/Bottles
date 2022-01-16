@@ -8,13 +8,16 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-06 23:20+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-01-16 20:05+0000\n"
+"Last-Translator: Kostadin <kostadinshishmanov@protonmail.com>\n"
+"Language-Team: Bulgarian <https://hosted.weblate.org/projects/bottles/"
+"bottles/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -94,10 +97,12 @@ msgid ""
 "Various gaming-performance optimizations (esync, fsync, DXVK, cache, shader "
 "compiler, offload … and much more.)"
 msgstr ""
+"Различни оптимизации свързани с игри (esync, fsync, DXVK, кеш, компилатор на "
+"шейдъри, offload ... и много други.)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:25
 msgid "Automatic installation and management of Wine and Proton runners"
-msgstr ""
+msgstr "Автоматична инсталация и управление на Wine и Proton версии"
 
 #: data/com.usebottles.bottles.appdata.xml.in:26
 msgid "Automatic bottle repair in case of breakage"
@@ -113,7 +118,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:29
 msgid "Access to ProtonDB and WineHQ for support"
-msgstr ""
+msgstr "Достъп до ProtonDB и WineHQ за помощ"
 
 #: data/com.usebottles.bottles.appdata.xml.in:30
 msgid "System for bringing your configuration to new versions of Bottles"
@@ -145,11 +150,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Night theme"
-msgstr ""
+msgstr "Нощна тема"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Use the night theme."
-msgstr ""
+msgstr "Използване на нощна тема."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -161,28 +166,28 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
-msgstr ""
+msgstr "Ширина на прозореца"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Change the window width."
-msgstr ""
+msgstr "Промяна на ширината на прозореца."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
-msgstr ""
+msgstr "Височина на прозореца"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Change the window height."
-msgstr ""
+msgstr "Промяна на височината на прозореца."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:348
 msgid "Notifications"
-msgstr ""
+msgstr "Известия"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Show notifications."
-msgstr ""
+msgstr "Показване на известия."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
@@ -228,7 +233,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "Автоматично затваряне на Bottles"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 msgid "Close Bottles after starting an executable from the file manager."
@@ -261,7 +266,7 @@ msgstr ""
 
 #: src/ui/about.ui:190
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
-msgstr ""
+msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
@@ -283,19 +288,23 @@ msgid "Read documentation"
 msgstr ""
 
 #: src/ui/details-dependencies.ui:222
+#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr ""
+msgstr "Докладване на проблем или липсваща зависимост."
 
 #: src/ui/details-installers.ui:51
 msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
+"Това е експериментална функция в ранен стадий на разбработка, бъдете "
+"внимателни и <a href=\"https://github.com/bottlesdevs/Bottles/issues/new/"
+"choose\">докладвайте бъгове</a>."
 
 #: src/ui/details-installers.ui:160 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:94
 msgid "Refresh"
-msgstr ""
+msgstr "Опресняване"
 
 #: src/ui/details-preferences.ui:28
 msgid "Graphics"
@@ -303,23 +312,29 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:33
 msgid "Use DXVK"
-msgstr ""
+msgstr "Използване на DXVK"
 
 #: src/ui/details-preferences.ui:34
+#, fuzzy
 msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
+"Подобрява производителността на DirectX11 игри и 3D програми.\n"
+"Деактивирайте, ако имате проблеми с графиката."
 
 #: src/ui/details-preferences.ui:61
 msgid "Use VKD3D"
-msgstr ""
+msgstr "Използване на VKD3D"
 
 #: src/ui/details-preferences.ui:62
+#, fuzzy
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
+"Подобрява производителността на DirectX 12 игри и 3D програми.\n"
+"Деактивирайте, ако имате проблеми с графиката."
 
 #: src/ui/details-preferences.ui:89
 msgid "Use GameMode"
@@ -401,11 +416,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
-msgstr ""
+msgstr "Система"
 
 #: src/ui/details-preferences.ui:385
 msgid "Synchronization"
-msgstr ""
+msgstr "Синхронизация"
 
 #: src/ui/details-preferences.ui:386
 msgid ""
@@ -414,11 +429,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:407
 msgid "Esync"
-msgstr ""
+msgstr "Esync"
 
 #: src/ui/details-preferences.ui:421
 msgid "Fsync"
-msgstr ""
+msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:444 src/ui/new.ui:284
 msgid "Runner"
@@ -451,7 +466,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:744
 msgid "Windows version"
-msgstr ""
+msgstr "Версия на Windows"
 
 #: src/ui/details-preferences.ui:787 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52
@@ -460,7 +475,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:825
 msgid "Working directory"
-msgstr ""
+msgstr "Работна директория"
 
 #: src/ui/details-preferences.ui:827
 msgid "Point to the bottle path"
@@ -468,15 +483,15 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:843
 msgid "Choose a directory"
-msgstr ""
+msgstr "Изберете директория"
 
 #: src/ui/details-preferences.ui:886
 msgid "Audio"
-msgstr ""
+msgstr "Звук"
 
 #: src/ui/details-preferences.ui:891
 msgid "Reduce PulseAudio latency"
-msgstr ""
+msgstr "Намаляне латентността (забавянето) на Pulseaudio"
 
 #: src/ui/details-preferences.ui:892
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
@@ -508,11 +523,11 @@ msgstr ""
 
 #: src/ui/details-programs.ui:29
 msgid "No programs found"
-msgstr ""
+msgstr "Не бяха открити програми"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
-msgstr ""
+msgstr "Нови програми ще се откриват автоматично."
 
 #: src/ui/details-programs.ui:74
 msgid "Add a custom executable path"
@@ -558,11 +573,11 @@ msgstr ""
 #: src/views/bottle_preferences.py:142 src/views/bottle_programs.py:69
 #: src/views/list.py:125
 msgid "Cancel"
-msgstr ""
+msgstr "Отказ"
 
 #: src/ui/dialog.ui:36
 msgid "Confirm"
-msgstr ""
+msgstr "Потвърди"
 
 #: src/ui/dialog-dll-overrides.ui:51
 msgid ""
@@ -576,7 +591,7 @@ msgstr ""
 
 #: src/ui/dialog-dll-overrides.ui:68
 msgid "e.g. ucrtbase"
-msgstr ""
+msgstr "напр. ucrtbase"
 
 #: src/ui/dialog-dll-overrides.ui:125
 msgid "Existing overrides"
