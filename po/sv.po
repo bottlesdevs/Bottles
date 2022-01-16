@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-06 23:20+0100\n"
-"PO-Revision-Date: 2021-10-29 00:32+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2022-01-16 19:35+0000\n"
+"Last-Translator: Lemonmeth <bnjbrg@pm.me>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
 "sv/>\n"
 "Language: sv\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -43,9 +43,8 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-#, fuzzy
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Kör Windows-program på Linux med Bottles 🍷!"
+msgstr "Kör Windows-program på Linux med Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -146,30 +145,28 @@ msgid "Bottles versioning (experimental)"
 msgstr "Buteljversionshantering (experimentell)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
-#, fuzzy
 msgid "... and much more that you can find by installing Bottles!"
 msgstr "... och mycket mer som du hittar genom att installera Bottles!"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr ""
+msgstr "Flatpak-migrering"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
-msgstr ""
+msgstr "Av/På dialogrutan för Flatpak-migrering."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Night theme"
-msgstr ""
+msgstr "Mörkt tema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
-#, fuzzy
 msgid "Use the night theme."
 msgstr "Aktivera mörkt tema."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Av/På uppdatera datum i lista."
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
@@ -177,19 +174,19 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
-msgstr ""
+msgstr "Fönsterbredd"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Change the window width."
-msgstr ""
+msgstr "Ändra fönsterbredden."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
-msgstr ""
+msgstr "Fönsterhöjd"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Change the window height."
-msgstr ""
+msgstr "Ändra fönsterhöjden."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:91
 #: src/ui/window.ui:348
@@ -197,49 +194,44 @@ msgid "Notifications"
 msgstr "Avisering"
 
 #: data/com.usebottles.bottles.gschema.xml:32
-#, fuzzy
 msgid "Show notifications."
-msgstr "Aktivera avisering."
+msgstr "Visa aviseringar."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
 msgstr "Temp-rensning"
 
 #: data/com.usebottles.bottles.gschema.xml:37
-#, fuzzy
 msgid "Clean the temp path when booting the system."
-msgstr "Rensa temp-mappen vid start."
+msgstr "Rensa temp-mappen vid systemstart."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
 msgstr "RC-utgåva"
 
 #: data/com.usebottles.bottles.gschema.xml:42
-#, fuzzy
 msgid "Toggle release candidate for runners."
-msgstr "RC-utgåva för körprogram av/på"
+msgstr "Av/På RC-utgåva för körprogram."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
 msgstr "Uppstartsvy"
 
 #: data/com.usebottles.bottles.gschema.xml:47
-#, fuzzy
 msgid "Choose which view the application should be started in."
-msgstr "Välj vilken vy som skall läsas in vid programstart."
+msgstr "Välj vilken vy som skall användas in vid programstart."
 
 #: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:262
 msgid "Experiments"
 msgstr "Experiment"
 
 #: data/com.usebottles.bottles.gschema.xml:52
-#, fuzzy
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
 "Av/På för experimentella funktioner såsom versionshantering och "
-"installationsprogram. RC-utgåva för körprogram"
+"installationsprogram. RC-utgåva för körprogram."
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:installers"
@@ -255,9 +247,8 @@ msgid "Automatically close Bottles"
 msgstr "Stäng Bottles automatiskt"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr "Stäng Bottles efter att ha startat körbar fil från filhanteraren"
+msgstr "Stäng Bottles efter att ha startat körbar fil från filhanteraren."
 
 #: src/ui/about.ui:11
 msgid "© 2017-2021 - Bottles Developers"
@@ -293,10 +284,11 @@ msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Översätt</a>"
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
+"Testläge aktiverat: endast beroenden (dependencies) från testrepo visas."
 
 #: src/ui/details-dependencies.ui:127
 msgid "Microsoft .NET Framework 4 .."
-msgstr ""
+msgstr "Microsoft .NET Framework 4 .."
 
 #: src/ui/details-dependencies.ui:139
 msgid ""
@@ -306,14 +298,12 @@ msgstr ""
 
 #: src/ui/details-dependencies.ui:196 src/ui/details-installers.ui:134
 #: src/ui/details-programs.ui:126 src/ui/details-versioning.ui:162
-#, fuzzy
 msgid "Read documentation"
-msgstr "Dokumentation"
+msgstr "Läs dokumentation"
 
 #: src/ui/details-dependencies.ui:222
-#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr "Har du hittat ett trasigt beroende?"
+msgstr "Rapportera ett problem eller ett beroende (dependecy) som saknas."
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -335,32 +325,28 @@ msgid "Use DXVK"
 msgstr "Använd DXVK"
 
 #: src/ui/details-preferences.ui:34
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Förbättrar prestanda i spel och 3D-program.\n"
+"Förbättrar prestanda i DirectX 11-spel och 3D-program.\n"
 "Avaktivera om du upplever grafiska problem."
 
 #: src/ui/details-preferences.ui:61
-#, fuzzy
 msgid "Use VKD3D"
-msgstr "Använd DXVK"
+msgstr "Använd VKD3d"
 
 #: src/ui/details-preferences.ui:62
-#, fuzzy
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"Förbättrar prestanda i spel och 3D-program.\n"
+"Förbättrar prestanda i DirectX 12-spel och 3D-program.\n"
 "Avaktivera om du upplever grafiska problem."
 
 #: src/ui/details-preferences.ui:89
-#, fuzzy
 msgid "Use GameMode"
-msgstr "Använd spelläge"
+msgstr "Använd SpelLäge"
 
 #: src/ui/details-preferences.ui:90
 msgid "Optimise gaming performance on demand"
@@ -368,7 +354,7 @@ msgstr "Optimera spelprestanda på begäran"
 
 #: src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
-msgstr ""
+msgstr "Aktivera DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:117
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
@@ -376,25 +362,25 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:145
 msgid "Enable FSR"
-msgstr ""
+msgstr "Aktivera FSR"
 
 #: src/ui/details-preferences.ui:146
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
-msgstr ""
+msgstr "FSR använder"
 
 #: src/ui/details-preferences.ui:162
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Ultrakvalité"
 
 #: src/ui/details-preferences.ui:163
 msgid "Quality"
-msgstr ""
+msgstr "Kvalité"
 
 #: src/ui/details-preferences.ui:164
 msgid "Balanced"
-msgstr ""
+msgstr "Balanserad"
 
 #: src/ui/details-preferences.ui:165
 #, fuzzy
@@ -507,7 +493,7 @@ msgstr "DLL-undantag"
 
 #: src/ui/details-preferences.ui:825
 msgid "Working directory"
-msgstr ""
+msgstr "Arbetskatalog"
 
 #: src/ui/details-preferences.ui:827
 #, fuzzy
@@ -582,7 +568,7 @@ msgstr "Inga buteljer hittades!"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Skapa ett första tillstånd för att börja använda versionshantering."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -664,7 +650,7 @@ msgstr ""
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "Jag vill fortfarande rapportera."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
 msgid "Advanced options"
@@ -739,7 +725,7 @@ msgstr "Spara"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Skriv nya namnet:"
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
@@ -749,7 +735,7 @@ msgstr "exempel: -exempel1 -exempele2 -exempel3=hallå"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Skriv här.."
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
@@ -884,7 +870,7 @@ msgstr "Exekvera i denna butelj"
 
 #: src/ui/list-entry.ui:153
 msgid "Run Here"
-msgstr ""
+msgstr "Kör Här"
 
 #: src/ui/list-entry.ui:172
 msgid ""
@@ -931,7 +917,7 @@ msgstr "Visa manifest"
 
 #: src/ui/dependency-entry.ui:34
 msgid "License"
-msgstr ""
+msgstr "Licens"
 
 #: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
 msgid "Bug report"
@@ -965,11 +951,11 @@ msgstr "Inhemskt, sedan inbyggt"
 
 #: src/ui/env-var-entry.ui:91
 msgid "value"
-msgstr ""
+msgstr "värde"
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
-msgstr ""
+msgstr "Läs omdöme"
 
 #: src/ui/task-entry.ui:50
 #, fuzzy
@@ -1001,7 +987,7 @@ msgstr "Bottles-problem"
 
 #: src/ui/program-entry.ui:133
 msgid "Remove from Programs"
-msgstr ""
+msgstr "Ta bort från Program"
 
 #: src/ui/program-entry.ui:146
 msgid "Add desktop entry"
@@ -1060,19 +1046,19 @@ msgstr ""
 
 #: src/ui/new.ui:432
 msgid "Architecture"
-msgstr ""
+msgstr "Arkitektur"
 
 #: src/ui/new.ui:434
 msgid "We recommend using 32bit only if strictly necessary"
-msgstr ""
+msgstr "Vi rekommenderar att endast använda 32bit vid strikt behov"
 
 #: src/ui/new.ui:448
 msgid "64 bit"
-msgstr ""
+msgstr "64 bit"
 
 #: src/ui/new.ui:449
 msgid "32 bit"
-msgstr ""
+msgstr "32 bit"
 
 #: src/ui/new.ui:514
 msgid "Creating bottle…"
@@ -1204,7 +1190,7 @@ msgstr "Utseende"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr ""
+msgstr "Mörkt läge"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
 #, fuzzy
@@ -1259,11 +1245,11 @@ msgstr "Använd DXVK"
 
 #: src/ui/preferences.ui:239
 msgid "VKD3D"
-msgstr ""
+msgstr "VKD3D"
 
 #: src/ui/preferences.ui:249
 msgid "DXVK-NVAPI"
-msgstr ""
+msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:271 src/views/details.py:123
 msgid "Installers"
@@ -1288,11 +1274,11 @@ msgstr "Dokumentation"
 
 #: src/ui/window.ui:70
 msgid "Forums"
-msgstr ""
+msgstr "Forum"
 
 #: src/ui/window.ui:83 src/window.py:290
 msgid "Health check"
-msgstr ""
+msgstr "Hälsokoll"
 
 #: src/ui/window.ui:96
 msgid "About Bottles"
@@ -1323,7 +1309,7 @@ msgstr "Gå tillbaka"
 
 #: src/operation.py:63
 msgid "Calculating..."
-msgstr ""
+msgstr "Beräknar.."
 
 #: src/main.py:98
 #, fuzzy
@@ -1389,7 +1375,7 @@ msgstr "Importerar säkerhetskopia: {0}"
 
 #: src/backend/manager.py:1004
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "Misslyckades att installera komponenter, försökte 3 gånger."
 
 #: src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
@@ -1465,7 +1451,7 @@ msgstr "Skapar versionshanteringsstatus 0 …"
 
 #: src/backend/manager.py:1231
 msgid "Finalizing…"
-msgstr ""
+msgstr "Slutför.."
 
 #: src/backend/versioning.py:55
 #, fuzzy
@@ -1479,7 +1465,7 @@ msgstr "Skapar låsfil på källsökväg …"
 
 #: src/backend/versioning.py:165
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "Kunde inte skapa tillståndsmapp."
 
 #: src/backend/versioning.py:172
 #, fuzzy
@@ -1493,11 +1479,11 @@ msgstr "Skapar butelj …"
 
 #: src/backend/versioning.py:225
 msgid "Could not update the states file."
-msgstr ""
+msgstr "Kunde inte uppdatera tillståndstfil."
 
 #: src/backend/versioning.py:239
 msgid "Could not update the index file."
-msgstr ""
+msgstr "Kunde inte uppdatera indexfil."
 
 #: src/backend/versioning.py:265
 #, fuzzy, python-brace-format
@@ -1562,11 +1548,11 @@ msgstr "Uppdaterat: %s"
 #. set arch
 #: src/views/bottle_details.py:165
 msgid "64-bit"
-msgstr ""
+msgstr "64-bit"
 
 #: src/views/bottle_details.py:167
 msgid "32-bit"
-msgstr ""
+msgstr "32-bit"
 
 #: src/views/bottle_details.py:272 src/views/list.py:121
 msgid "Choose a Windows executable file"
@@ -1583,7 +1569,7 @@ msgstr "Välj var säkerhetskopieringsarkivet skall sparas"
 
 #: src/views/bottle_details.py:365
 msgid "Export"
-msgstr ""
+msgstr "Exportera"
 
 #: src/views/bottle_details.py:396
 msgid "Confirm deletion"
@@ -1604,7 +1590,7 @@ msgstr "Välj en körbar Windows-fil"
 
 #: src/views/bottle_preferences.py:141
 msgid "Done"
-msgstr ""
+msgstr "Färdig"
 
 #: src/views/bottle_programs.py:65
 #, fuzzy
@@ -1613,7 +1599,7 @@ msgstr "Välj en körbar Windows-fil"
 
 #: src/views/bottle_programs.py:68
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 #: src/views/importer.py:78
 msgid "Choose a backup archive"
@@ -1661,11 +1647,11 @@ msgstr "En ren miljö för dina experiment."
 
 #: src/views/new.py:93
 msgid "Layered"
-msgstr ""
+msgstr "Skiktad"
 
 #: src/views/new.py:94
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "En skiktad miljö, där varje app är ett skikt."
 
 #: src/views/new.py:247
 msgid "There was an error creating the bottle."
