@@ -43,13 +43,13 @@ class GPUUtils:
     def get_gpu(self):
         checks = {
             "nvidia": {
-                "query": "VGA.*NVIDIA"
+                "query": "(VGA|3D).*NVIDIA"
             },
             "amd": {
-                "query": "VGA.*AMD/ATI"
+                "query": "(VGA|3D).*AMD/ATI"
             },
             "intel": {
-                "query": "VGA.*Intel"
+                "query": "(VGA|3D).*Intel"
             }
         }
         gpus = {
@@ -88,15 +88,13 @@ class GPUUtils:
 
         for _check in checks:
             _query = checks[_check]["query"]
-
             _proc = subprocess.Popen(
-                f"lspci | grep '{_query}'",
+                f"lspci | grep -iP '{_query}'",
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 shell=True
             )
             stdout, stderr = _proc.communicate()
-
             if len(stdout) > 0:
                 found.append(_check)
                 result["vendors"][_check] = gpus[_check]
