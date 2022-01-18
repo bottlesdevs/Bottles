@@ -54,10 +54,10 @@ jobs:
 
       # Rename and release packages
       # --------------------------------------
-      - name: Rename packages
-        run: |
-          mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
-          mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
+      #- name: Rename packages
+      #  run: |
+      #    mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
+      #    mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
       #    mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
 
       #- name: Upload AppImage to Artifacts
