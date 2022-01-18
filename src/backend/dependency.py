@@ -522,7 +522,8 @@ class DependencyManager:
             if config.get("Arch") == "win64":
                 dest = f"{bottle}/drive_c/windows/system32/"
                 dest = step.get("dest").replace("win64", dest)
-            return True
+            else:
+                return True
         else:
             logging.error("Destination path not supported!")
             return False
