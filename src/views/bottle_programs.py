@@ -87,7 +87,7 @@ class ProgramsView(Gtk.ScrolledWindow):
                 value=_program,
                 scope="External_Programs"
             )
-            self.update(config=self.config)
+            self.parent.update_programs(config=self.config)
 
         file_dialog.destroy()
 

@@ -230,11 +230,14 @@ class BottleView(Gtk.ScrolledWindow):
             self.btn_rename.set_active(False)
             self.btn_rename.handler_unblock_by_func(self.__toggle_rename)
 
-    def update_programs(self, widget=False):
+    def update_programs(self, widget=False, config=None):
         '''
         This function update the programs lists. The list in the
         details page is limited to 5 items.
         '''
+        if config:
+            self.config = config
+            
         for w in self.group_programs:
             w.destroy()
 

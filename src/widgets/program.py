@@ -50,8 +50,7 @@ class ProgramEntry(Handy.ActionRow):
 
         # common variables and references
         self.window = window
-        self.view_programs = window.page_details.view_programs
-        self.view_bottle = window.page_details.view_bottle
+        self.page_details = window.page_details
         self.manager = window.manager
         self.config = config
         self.arguments = ""
@@ -174,8 +173,7 @@ class ProgramEntry(Handy.ActionRow):
         self.__reset_buttons(True)
 
     def update_programs(self, result=False, error=False):
-        GLib.idle_add(self.view_programs.update, config=self.config)
-        GLib.idle_add(self.view_bottle.update_programs)
+        GLib.idle_add(self.page_details.update_programs, config=self.config)
 
     def uninstall_program(self, widget):
         RunAsync(
@@ -186,7 +184,7 @@ class ProgramEntry(Handy.ActionRow):
         )
 
     def remove_program(self, widget=None, update=True):
-        self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key=self.program["executable"],
             value=False,
