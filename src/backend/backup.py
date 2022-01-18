@@ -67,11 +67,11 @@ class BackupManager:
             )
             bottle_path = ManagerUtils.get_bottle_path(config)
             try:
-                with tarfile.open(path, "w:gz") as archive_backup:
-                    for root, dirs, files in os.walk(bottle_path):
-                        for file in files:
-                            archive_backup.add(os.path.join(root, file))
-                    archive_backup.close()
+                with tarfile.open(path, "w:gz") as tar:
+                    parent = os.path.dirname(bottle_path)
+                    folder = os.path.basename(bottle_path)
+                    os.chdir(parent)
+                    tar.add(folder, filter=BackupManager.exclude_filter)
                 backup_created = True
             except:
                 backup_created = False
@@ -84,6 +84,18 @@ class BackupManager:
 
         logging.error(f"Failed to save backup in path: {path}.")
         return Result(status=False)
+    
+    @staticmethod
+    def exclude_filter(tarinfo):
+        '''
+        This function is used to exclude some files from the backup.
+        E.g. dosdevices should be excluded as this contains symlinks
+        to the real devices and may cause loops.
+        '''
+        if "dosdevices" in tarinfo.name:
+            return None
+
+        return tarinfo
 
     @staticmethod
     def import_backup(window, scope: str, path: str, manager: Manager) -> bool:
@@ -132,8 +144,8 @@ class BackupManager:
                 backup_name = backup_name[7:]
 
             try:
-                archive = tarfile.open(path)
-                archive.extractall(f"{Paths.bottles}/{backup_name}")
+                with tarfile.open(path, "r:gz") as tar:
+                    tar.extractall(Paths.bottles)
                 import_status = True
             except:
                 import_status = False
