@@ -101,8 +101,9 @@ class Samples:
                 "arial32",
                 "times32",
                 "courie32",
-                "dotnet40",
-                "dotnet48"
+                "mono",
+                #"dotnet40",
+                #"dotnet48"
             ]
         },
         "layered": {
