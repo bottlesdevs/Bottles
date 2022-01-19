@@ -56,7 +56,7 @@ class Runner:
             "CSDVersion": "Service Pack 1",
             "CurrentBuildNumber": "7601",
             "CurrentVersion": "6.1",
-            "CSDVersionHex": "00000100",
+            "CSDVersionHex": "00000256",
             "ProductType": "WinNT",
         },
         "win2008r2": {
