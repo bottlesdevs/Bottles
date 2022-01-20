@@ -28,11 +28,11 @@ class DLLComponent():
             return False
         return True
     
-    def install(self, config:BottleConfig, exclude:list=[]):
+    def install(self, config:BottleConfig, overrides_only:bool=False, exclude:list=[]):
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
-                    self.__install_dll(config, path, dll)
+                    self.__install_dll(config, path, dll, False, overrides_only)
 
     def uninstall(self, config:BottleConfig, exclude:list=[]):
         for path in self.dlls:
@@ -51,7 +51,7 @@ class DLLComponent():
                 return "syswow64"
         return None
 
-    def __install_dll(self, config, path:str, dll:str, remove:bool=False):
+    def __install_dll(self, config, path:str, dll:str, remove:bool=False, overrides_only:bool=False):
         dll_name = dll.split('/')[-1]
         bottle = ManagerUtils.get_bottle_path(config)
         bottle = f"{bottle}/drive_c/windows/"
@@ -61,9 +61,10 @@ class DLLComponent():
         
         if target is not None:
             if not remove:
-                if os.path.exists(target):
-                    shutil.copy(target, f"{target}.bck")
-                shutil.copyfile(source, target)
+                if not overrides_only:
+                    if os.path.exists(target):
+                        shutil.copy(target, f"{target}.bck")
+                    shutil.copyfile(source, target)
                 Runner.reg_add(
                     config,
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
