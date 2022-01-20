@@ -259,6 +259,33 @@ class Runner:
             command="regedit",
             minimal=True
         )
+    
+    @staticmethod
+    def is_wineserver_alive(config:BottleConfig) ->bool:
+        '''
+        This function checks if the wineserver is alive in a bottle.
+        '''
+        if not config.get("Runner"):
+            return False
+
+        bottle = ManagerUtils.get_bottle_path(config)
+        runner = ManagerUtils.get_runner_path(config.get("Runner"))
+
+        env = os.environ.copy()
+        env["WINEPREFIX"] = bottle
+        env["PATH"] = f"{runner}/bin:{env['PATH']}"
+        res = subprocess.Popen(
+            "wineserver -w",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+            cwd=bottle,
+            env=env
+        )
+        time.sleep(1)
+        if res.poll() is None:
+            return True
+        return False
 
     @staticmethod
     def wineboot(
@@ -291,6 +318,10 @@ class Runner:
             4: "-i"
         }
         envs = {"WINEDEBUG": "-all"}
+
+        if status == 0 and not Runner.is_wineserver_alive(config):
+            logging.info("There is no running wineserver.")
+            return
 
         if status in states:
             status = states[status]
@@ -870,33 +901,6 @@ class Runner:
                 value="Desktop"
             )
         Runner.wineboot(config, status=3, comunicate=True)
-    
-    @staticmethod
-    def is_wineserver_alive(config:BottleConfig) ->bool:
-        '''
-        This function checks if the wineserver is alive in a bottle.
-        '''
-        if not config.get("Runner"):
-            return False
-
-        bottle = ManagerUtils.get_bottle_path(config)
-        runner = ManagerUtils.get_runner_path(config.get("Runner"))
-
-        env = os.environ.copy()
-        env["WINEPREFIX"] = bottle
-        env["PATH"] = f"{runner}/bin:{env['PATH']}"
-        res = subprocess.Popen(
-            "wineserver -w",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            shell=True,
-            cwd=bottle,
-            env=env
-        )
-        time.sleep(1)
-        if res.poll() is None:
-            return True
-        return False
     
     @staticmethod
     def runner_update(config:BottleConfig, manager:object):
