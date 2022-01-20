@@ -1362,6 +1362,7 @@ class Manager:
         component: str,
         remove: bool = False,
         version: str = False,
+        overrides_only:bool=False,
         exclude: list = []
     ) -> bool:
         if component == "dxvk":
@@ -1391,7 +1392,7 @@ class Manager:
         if remove:
             manager.uninstall(config, exclude)
         else:
-            manager.install(config, exclude)
+            manager.install(config, overrides_only, exclude)
         
         return Result(status=True)
 
