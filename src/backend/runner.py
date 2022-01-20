@@ -897,6 +897,27 @@ class Runner:
         if res.poll() is None:
             return True
         return False
+    
+    @staticmethod
+    def runner_update(config:BottleConfig, manager:object):
+        '''
+        This method should be executed after changing the runner
+        for a bottle. It do a prefix update and re-initialize the
+        active DLLComponents (dxvk, dxvk-nvapi, vkd3d..).
+        '''
+        logging.info(f"Doing runner update for bottle: {config['Name']}")
+        # perform a prefix update
+        Runner.wineboot(config, status=3, comunicate=True)
+        # kill wineserver after update
+        Runner.wineboot(config, status=0, comunicate=True)
+        if config["Parameters"]["dxvk"]:
+            manager.install_dll_component(config, "dxvk", overrides_only=True)
+        if config["Parameters"]["dxvk_nvapi"]:
+            manager.install_dll_component(config, "nvapi", overrides_only=True)
+        if config["Parameters"]["vkd3d"]:
+            manager.install_dll_component(config, "vkd3d", overrides_only=True)
+        
+        return Result(status=True)
 
     @staticmethod
     def get_processes(config:BottleConfig) -> list:
@@ -955,7 +976,7 @@ class Runner:
         return processes
     
     @staticmethod
-    def wait_for_process(config:BottleConfig, name:str, timeout:int = 1):
+    def wait_for_process(config:BottleConfig, name:str, timeout:int = .5):
         '''
         Wait for a process to exit.
         '''
