@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-06 23:20+0100\n"
-"PO-Revision-Date: 2022-01-16 19:35+0000\n"
+"PO-Revision-Date: 2022-01-21 20:56+0000\n"
 "Last-Translator: Sergio Varela <sergitroll9@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/bottles/bottles/"
 "eu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -290,9 +290,8 @@ msgstr ""
 "Probatzeko modu aktibatua: frogen biltegiko gelak baino ez dira erakusten."
 
 #: src/ui/details-dependencies.ui:127
-#, fuzzy
 msgid "Microsoft .NET Framework 4 .."
-msgstr "Microsoft .NET Framework 4 .."
+msgstr "Microsoft .NET Framework 4 …"
 
 #: src/ui/details-dependencies.ui:139
 msgid ""
@@ -572,27 +571,27 @@ msgstr "Ez da aurkitu estaturik"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Bertsionatua erabiltzen hasteko lehen egoera sortu."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
-msgstr ""
+msgstr "Idatzi iruzkin labur bat:"
 
 #: src/ui/details-versioning.ui:110
 msgid "A really short comment"
-msgstr ""
+msgstr "Oso iruzkin laburra"
 
 #: src/ui/details-versioning.ui:124
 msgid "Save the bottle state."
-msgstr ""
+msgstr "Gorde bottle-n egoera."
 
 #: src/ui/details-versioning.ui:189
 msgid "Create new state"
-msgstr ""
+msgstr "Sortu egoera berria"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
-msgstr ""
+msgstr "Mezua hemen doa."
 
 #: src/ui/dialog.ui:23 src/ui/dialog-crash-report.ui:27
 #: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
@@ -602,43 +601,47 @@ msgstr ""
 #: src/views/bottle_preferences.py:142 src/views/bottle_programs.py:69
 #: src/views/list.py:125
 msgid "Cancel"
-msgstr ""
+msgstr "Ezeztatu"
 
 #: src/ui/dialog.ui:36
 msgid "Confirm"
-msgstr ""
+msgstr "Baieztatu"
 
 #: src/ui/dialog-dll-overrides.ui:51
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)"
 msgstr ""
+"Lotura dinamikoak dituzten liburutegiak zehaztu egin daitezke integratuak ("
+"Wine bidez emanak) edo natiboak (programak emanak) izan daitezen"
 
 #: src/ui/dialog-dll-overrides.ui:57
 msgid "New override"
-msgstr ""
+msgstr "Deuseztapen berria"
 
 #: src/ui/dialog-dll-overrides.ui:68
 msgid "e.g. ucrtbase"
-msgstr ""
+msgstr "adibidez, ucrtbase"
 
 #: src/ui/dialog-dll-overrides.ui:125
 msgid "Existing overrides"
-msgstr ""
+msgstr "Dauden deuseztapenak"
 
 #: src/ui/dialog-crash-report.ui:24
 msgid "Bottles Crash Report"
-msgstr ""
+msgstr "Bottles-ren istripuari buruzko txostena"
 
 #: src/ui/dialog-crash-report.ui:35
 msgid "Send report"
-msgstr ""
+msgstr "Bidali txostena"
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Bottles erori egin zen azken aldian. Mesedez, bete txosten bat honako "
+"arrasto honekin, arazoa identifikatzen laguntzeko eta berriro gerta ez dadin."
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -647,111 +650,117 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Antzeko txosten bat edo gehiago aurkitu ditugu (edo berdinak). Mesedez, "
+"ziurtatu kontu handiz ez dela jakinarazi berri bat bidali aurretik. Txosten "
+"bakoitzak ahalegin bat eskatzen du garatzaileen aldetik diagnostikatzeko, "
+"mesedez, errespetatu haien lana eta ziurtatu ez direla bikoiztuak izango."
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "Hala ere, informatu egin nahi dut."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
 msgid "Advanced options"
-msgstr ""
+msgstr "Ezarpen aurreratuak"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
-msgstr ""
+msgstr "Bottle bat bikoiztu"
 
 #: src/ui/dialog-duplicate.ui:36
 msgid "Duplicate"
-msgstr ""
+msgstr "Bikoiztu"
 
 #: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:50 src/ui/onboard.ui:56
 msgid "Close"
-msgstr ""
+msgstr "Itxi"
 
 #: src/ui/dialog-duplicate.ui:95
 msgid "Type a name for the new bottle"
-msgstr ""
+msgstr "Idatzi izen bat bottle berriarentzat"
 
 #: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
 msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "adibidez: -adibide1 -2adibide -3adibide=kaixo"
 
 #: src/ui/dialog-duplicate.ui:109
 msgid "e.g: MyDuplicatedBottle"
-msgstr ""
+msgstr "adibidez: NireBottleBikoiztua"
 
 #: src/ui/dialog-duplicate.ui:130
 msgid "page_name"
-msgstr ""
+msgstr "page_name"
 
 #: src/ui/dialog-duplicate.ui:147
 msgid "Duplicating…"
-msgstr ""
+msgstr "Bikoizten…"
 
 #: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:533
 msgid "Take a break, it may take a while"
-msgstr ""
+msgstr "Har ezazu atseden bat, honek denbora behar izan dezake"
 
 #: src/ui/dialog-duplicate.ui:195
 msgid "page_duplicating"
-msgstr ""
+msgstr "page_duplicating"
 
 #: src/ui/dialog-duplicate.ui:204
 msgid "Bottle duplicated"
-msgstr ""
+msgstr "Bottle bikoiztua"
 
 #: src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
-msgstr ""
+msgstr "page_duplicated"
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
 msgid "Rename"
-msgstr ""
+msgstr "Izena aldatu"
 
 #: src/ui/dialog-rename.ui:35 src/ui/dialog-environment-variables.ui:36
 #: src/ui/dialog-launch-options.ui:36
 msgid "Save"
-msgstr ""
+msgstr "Gorde"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Idatzi izen berria:"
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "Adibidez: VAR=balioa %komando% -adibidea1 -adibidea2 -adibidea3=kaixo"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Idatzi hemen…"
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Ingurunearen aldagaiak balio dinamikoak dira, eta egikaritzen ari diren "
+"prozesuek bottle-k nola jokatuko duten eragin dezakete."
 
 #: src/ui/dialog-env-vars.ui:54
 msgid "New variable"
-msgstr ""
+msgstr "Aldagai berria"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr ""
+msgstr "adibidez: NIRE_VAR"
 
 #: src/ui/dialog-env-vars.ui:123
 msgid "Existing variables"
-msgstr ""
+msgstr "Dauden aldagaiak"
 
 #: src/ui/dialog-run-args.ui:25
 msgid "Run with arguments"
-msgstr ""
+msgstr "Argudioekin exekutatu"
 
 #: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:275
 #: src/views/list.py:124
 msgid "Run"
-msgstr ""
+msgstr "Exekutatu"
 
 #: src/ui/dialog-run-args.ui:75
 msgid "Write below the arguments to be passed to the executable."
