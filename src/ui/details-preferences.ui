@@ -38,6 +38,22 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
+                              <object class="GtkSpinner" id="spinner_dxvkbool">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-end">5</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkSwitch" id="switch_dxvk">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -47,7 +63,7 @@ Disable if you're experiencing graphical glitches.</property>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
@@ -66,6 +82,22 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
+                              <object class="GtkSpinner" id="spinner_vkd3dbool">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-end">5</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkSwitch" id="switch_vkd3d">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -75,7 +107,7 @@ Disable if you're experiencing graphical glitches.</property>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
@@ -92,6 +124,22 @@ Disable if you're experiencing graphical glitches.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkSpinner" id="spinner_nvapibool">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-end">5</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
                             <child>
                               <object class="GtkSwitch" id="switch_nvapi">
                                 <property name="visible">True</property>
@@ -429,6 +477,21 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
+                              <object class="GtkSpinner" id="spinner_runner">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Updating Runner and components, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-right">5</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkComboBoxText" id="combo_runner">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
@@ -444,7 +507,7 @@ Disable if you're experiencing graphical glitches.</property>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                             <child>
@@ -504,6 +567,21 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
+                              <object class="GtkSpinner" id="spinner_dxvk">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-end">5</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkComboBoxText" id="combo_dxvk">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
@@ -519,7 +597,7 @@ Disable if you're experiencing graphical glitches.</property>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                             <child>
@@ -579,6 +657,22 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
+                              <object class="GtkSpinner" id="spinner_vkd3d">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-end">5</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkComboBoxText" id="combo_vkd3d">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
@@ -594,7 +688,7 @@ Disable if you're experiencing graphical glitches.</property>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                             <child>
@@ -647,12 +741,28 @@ Disable if you're experiencing graphical glitches.</property>
                       <object class="HdyActionRow">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">NVAPI version</property>
+                        <property name="title" translatable="yes">DXVK NVAPI version</property>
                         <property name="activatable-widget">combo_nvapi</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkSpinner" id="spinner_nvapi">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-end">5</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
                             <child>
                               <object class="GtkComboBoxText" id="combo_nvapi">
                                 <property name="visible">True</property>
@@ -669,7 +779,7 @@ Disable if you're experiencing graphical glitches.</property>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                             <child>
@@ -729,6 +839,22 @@ Disable if you're experiencing graphical glitches.</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>
+                              <object class="GtkSpinner" id="spinner_win">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Updating Windows version, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-end">5</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkComboBoxText" id="combo_windows">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
@@ -753,7 +879,7 @@ Disable if you're experiencing graphical glitches.</property>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
@@ -920,6 +1046,7 @@ disable if you run into issues.</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                                 <property name="margin-right">5</property>
+                                <property name="margin-end">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>

@@ -68,6 +68,14 @@ class PreferencesView(Gtk.ScrolledWindow):
     combo_windows = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
     action_runtime = Gtk.Template.Child()
+    spinner_dxvk = Gtk.Template.Child()
+    spinner_dxvkbool = Gtk.Template.Child()
+    spinner_vkd3d = Gtk.Template.Child()
+    spinner_vkd3dbool = Gtk.Template.Child()
+    spinner_nvapi = Gtk.Template.Child()
+    spinner_nvapibool = Gtk.Template.Child()
+    spinner_runner = Gtk.Template.Child()
+    spinner_win = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -338,6 +346,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         '''
         if widget:
             widget.set_sensitive(False)
+            self.combo_dxvk.set_sensitive(False)
+            self.spinner_dxvk.start()
+            self.spinner_dxvkbool.start()
+
         if state:
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -383,6 +395,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         '''
         if widget:
             widget.set_sensitive(False)
+            self.combo_vkd3d.set_sensitive(False)
+            self.spinner_vkd3d.start()
+            self.spinner_vkd3dbool.start()
+
         if state:
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -415,6 +431,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         '''
         if widget:
             widget.set_sensitive(False)
+            self.combo_nvapi.set_sensitive(False)
+            self.spinner_nvapi.start()
+            self.spinner_nvapibool.start()
+
         if state:
             RunAsync(
                 task_func=self.manager.install_dll_component,
@@ -574,6 +594,27 @@ class PreferencesView(Gtk.ScrolledWindow):
         This function update the runner on the bottle configuration
         according to the selected one.
         '''
+        def set_widgets_status(status=True):
+            for w in [
+                widget,
+                self.switch_dxvk,
+                self.switch_nvapi,
+                self.switch_vkd3d,
+                self.combo_dxvk,
+                self.combo_nvapi,
+                self.combo_vkd3d
+            ]:
+                w.set_sensitive(status)
+            if status:
+                self.spinner_runner.stop()
+            else:
+                self.spinner_runner.start()
+
+        def update(result, error=False):
+            set_widgets_status(True)
+
+        set_widgets_status(False)
+
         runner = widget.get_active_id()
         new_config = self.manager.update_config(
             config=self.config,
@@ -581,6 +622,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             value=runner
         )
         self.config = new_config
+
+        RunAsync(
+            Runner.runner_update,
+            callback=update,
+            config=self.config,
+            manager= self.manager
+        )
 
     def __set_dxvk(self, widget):
         '''
@@ -641,14 +689,26 @@ class PreferencesView(Gtk.ScrolledWindow):
         This function update the Windows version on the bottle 
         configuration according to the selected one.
         '''
+        def update(result, error=False):
+            self.spinner_win.stop()
+            widget.set_sensitive(True)
+            self.config = new_config
+
+        self.spinner_win.start()
+        widget.set_sensitive(False)
+
         win = widget.get_active_id()
         new_config = self.manager.update_config(
             config=self.config,
             key="Windows",
             value=win
         )
-        Runner.set_windows(config=new_config, version=win)
-        self.config = new_config
+        RunAsync(
+            Runner.set_windows,
+            callback=update,
+            config=new_config, 
+            version=win
+        )
 
     def __toggle_pulse_latency(self, widget, state):
         '''
@@ -716,12 +776,21 @@ class PreferencesView(Gtk.ScrolledWindow):
     
     def set_dxvk_status(self, status, error=None):
         self.switch_dxvk.set_sensitive(True)
+        self.combo_dxvk.set_sensitive(True)
+        self.spinner_dxvk.stop()
+        self.spinner_dxvkbool.stop()
     
     def set_vkd3d_status(self, status, error=None):
         self.switch_vkd3d.set_sensitive(True)
+        self.combo_vkd3d.set_sensitive(True)
+        self.spinner_vkd3d.stop()
+        self.spinner_vkd3dbool.stop()
     
     def set_nvapi_status(self, status, error=None):
         self.switch_nvapi.set_sensitive(True)
+        self.combo_nvapi.set_sensitive(True)
+        self.spinner_nvapi.stop()
+        self.spinner_nvapibool.stop()
     
     def __prevent_scroll(self):
         def no_action(widget, event):
