@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-06 23:20+0100\n"
-"PO-Revision-Date: 2021-12-21 08:25+0000\n"
+"PO-Revision-Date: 2022-01-21 20:56+0000\n"
 "Last-Translator: Krzysztof Marcinek <krzymar2002@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
 "pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -44,9 +44,8 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-#, fuzzy
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Uruchamiaj programy Windows na Linux za pomocą Bottles🍷!"
+msgstr "Uruchamiaj oprogramowanie Windows na Linuksie za pomocą Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -313,9 +312,8 @@ msgid "Read documentation"
 msgstr "Przeczytaj dokumentację"
 
 #: src/ui/details-dependencies.ui:222
-#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr "Zgłoś brakującą zależność"
+msgstr "Zgłoś problem lub brakującą zależność."
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -433,15 +431,16 @@ msgid "Use the Wine virtual desktop."
 msgstr "Użyj pulpitu wirtualnego Wine."
 
 #: src/ui/details-preferences.ui:341
-#, fuzzy
 msgid "Use Bottles runtime"
-msgstr "Nazwa butelki"
+msgstr "Użyj czasu wykonania (runtime) Bottles"
 
 #: src/ui/details-preferences.ui:342
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
+"Udostępnia pakiet dodatkowych bibliotek dla większej kompatybilności,\n"
+"wyłącz, jeśli napotkasz problemy."
 
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
 msgid "System"
@@ -634,20 +633,21 @@ msgid "Existing overrides"
 msgstr "Istniejące nadpisania"
 
 #: src/ui/dialog-crash-report.ui:24
-#, fuzzy
 msgid "Bottles Crash Report"
-msgstr "Bottles uruchomione!"
+msgstr "Raport błędów Bottles"
 
 #: src/ui/dialog-crash-report.ui:35
-#, fuzzy
 msgid "Send report"
-msgstr "Pokaż zgłoszenie"
+msgstr "Wyślij raport"
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Ostatnim razem Bottles uległo awarii. Wypełnij raport, załączając poniższy "
+"ślad, aby pomóc nam zidentyfikować problem i zapobiec powtórzeniu się "
+"podobnej sytuacji w przyszłości."
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -656,53 +656,51 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Znaleźliśmy jedno lub więcej podobnych (lub identycznych) zgłoszeń. Przed "
+"wysłaniem nowego raportu upewnij się, że nie został on już wcześniej "
+"zgłoszony. Każde zgłoszenie wymaga wysiłku ze strony programistów, aby je "
+"zdiagnozować, dlatego prosimy o uszanowanie ich pracy i upewnienie się, że "
+"nie zamieszczasz duplikatów."
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "Nadal chcę to zgłosić."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
 msgid "Advanced options"
 msgstr "Opcje zaawansowane"
 
 #: src/ui/dialog-duplicate.ui:25
-#, fuzzy
 msgid "Duplicate a bottle"
 msgstr "Duplikuj butelkę"
 
 #: src/ui/dialog-duplicate.ui:36
-#, fuzzy
 msgid "Duplicate"
-msgstr "Duplikuj butelkę"
+msgstr "Duplikuj"
 
 #: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:50 src/ui/onboard.ui:56
 msgid "Close"
 msgstr "Zamknij"
 
 #: src/ui/dialog-duplicate.ui:95
-#, fuzzy
 msgid "Type a name for the new bottle"
-msgstr "Wpisz nazwę dla swojej butelki"
+msgstr "Wpisz nazwę dla nowej butelki"
 
 #: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:87
-#, fuzzy
 msgid "e.g.: -example1 -example2 -example3=hello"
-msgstr "np.: -przyklad1 -przyklad2 -przyklad3=serwus"
+msgstr "np.: -przyklad1 -przyklad2 -przyklad3=witam"
 
 #: src/ui/dialog-duplicate.ui:109
-#, fuzzy
 msgid "e.g: MyDuplicatedBottle"
-msgstr "Duplikuj butelkę"
+msgstr "np: MojaZduplikowanaButelka"
 
 #: src/ui/dialog-duplicate.ui:130
-#, fuzzy
 msgid "page_name"
-msgstr "Zmień nazwę butelki"
+msgstr "nazwa_strony"
 
 #: src/ui/dialog-duplicate.ui:147
-#, fuzzy
 msgid "Duplicating…"
-msgstr "Pobieram…"
+msgstr "Duplikuję…"
 
 #: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:533
 msgid "Take a break, it may take a while"
@@ -710,21 +708,19 @@ msgstr "Zrób sobie przerwę, to może trochę potrwać"
 
 #: src/ui/dialog-duplicate.ui:195
 msgid "page_duplicating"
-msgstr ""
+msgstr "duplikacja_stron"
 
 #: src/ui/dialog-duplicate.ui:204
-#, fuzzy
 msgid "Bottle duplicated"
-msgstr "Butelka utworzona"
+msgstr "Butelka zduplikowana"
 
 #: src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
-msgstr ""
+msgstr "strona_zduplikowana"
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
-#, fuzzy
 msgid "Rename"
-msgstr "Zmień nazwę butelki"
+msgstr "Zmień nazwę"
 
 #: src/ui/dialog-rename.ui:35 src/ui/dialog-environment-variables.ui:36
 #: src/ui/dialog-launch-options.ui:36
@@ -733,37 +729,36 @@ msgstr "Zapisz"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Wpisz nową nazwę:"
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
-#, fuzzy
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "np.: -przyklad1 -przyklad2 -przyklad3=serwus"
+msgstr "np.: ZMIENNA=wartosc %polecenie% -przyklad1 -przyklad2 -przyklad3=witam"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Pisz tutaj..."
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Zmienne środowiskowe są dynamicznie nazywanymi wartościami które mogą "
+"wpływać na działanie uruchomionych procesów w Twojej butelce."
 
 #: src/ui/dialog-env-vars.ui:54
-#, fuzzy
 msgid "New variable"
-msgstr "Nowe nadpisanie"
+msgstr "Nowa zmienna"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr ""
+msgstr "np. MOJA_ZMIENNA"
 
 #: src/ui/dialog-env-vars.ui:123
-#, fuzzy
 msgid "Existing variables"
-msgstr "Istniejące nadpisania"
+msgstr "Istniejące zmienne"
 
 #: src/ui/dialog-run-args.ui:25
 msgid "Run with arguments"
@@ -776,11 +771,11 @@ msgstr "Uruchom"
 
 #: src/ui/dialog-run-args.ui:75
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Poniżej wypisz argumenty, które zostaną podane do programu."
 
 #: src/ui/dialog-run-args.ui:90
 msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "np: -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
@@ -794,9 +789,8 @@ msgstr ""
 "Tutaj możesz zmienić zmienne środowiskowe dla poleceń, które są wykonywane."
 
 #: src/ui/dialog-environment-variables.ui:87
-#, fuzzy
 msgid "e.g.: VAR1=value VAR2=value"
-msgstr "np.: VAR1=wartosc1 VAR2=wartosc2 ..."
+msgstr "np.: ZMIENNA1=wartosc ZMIENNA2=wartosc"
 
 #: src/ui/dialog-environment-variables.ui:90
 msgid "e.g: VAR1=value VAR2=value .."
@@ -962,19 +956,17 @@ msgstr "Natywne potem Wbudowane"
 
 #: src/ui/env-var-entry.ui:91
 msgid "value"
-msgstr ""
+msgstr "wartość"
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
 msgstr "Przeczytaj recenzję"
 
 #: src/ui/task-entry.ui:50
-#, fuzzy
 msgid "Delete message"
-msgstr "Usuń stan"
+msgstr "Usuń wiadomość"
 
 #: src/ui/program-entry.ui:33
-#, fuzzy
 msgid "Browse path"
 msgstr "Przeglądaj ścieżkę"
 
@@ -1289,7 +1281,7 @@ msgstr "Fora"
 
 #: src/ui/window.ui:83 src/window.py:290
 msgid "Health check"
-msgstr ""
+msgstr "Sprawdź stan zdrowia programu"
 
 #: src/ui/window.ui:96
 msgid "About Bottles"
@@ -1381,16 +1373,15 @@ msgstr "Importuję kopię zapasową: {0}"
 
 #: src/backend/manager.py:1004
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "Nie można zainstalować komponentów, próbowano 3 razy."
 
 #: src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
 msgstr "Brak istotnych komponentów. Instaluję…"
 
 #: src/backend/manager.py:1097
-#, fuzzy
 msgid "Generating bottle configuration…"
-msgstr "Generuję konfigurację butelki"
+msgstr "Generuję konfigurację butelki…"
 
 #. execute wineboot on the bottle path
 #: src/backend/manager.py:1116
@@ -1419,9 +1410,8 @@ msgid "Apply CMD default settings…"
 msgstr "Stosuję ustawienia domyślne CMD…"
 
 #: src/backend/manager.py:1163
-#, fuzzy
 msgid "Optimizing environment…"
-msgstr "Stosuję środowisko: {0}…"
+msgstr "Optymalizuję środowisko…"
 
 #: src/backend/manager.py:1175
 #, python-brace-format
@@ -1463,7 +1453,7 @@ msgstr "Tworzę punkt przywracania…"
 
 #: src/backend/versioning.py:165
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "Nie można utworzyć folderu stanu."
 
 #: src/backend/versioning.py:172
 msgid "Updating index …"
@@ -1475,16 +1465,16 @@ msgstr "Aktualizuję stany…"
 
 #: src/backend/versioning.py:225
 msgid "Could not update the states file."
-msgstr ""
+msgstr "Nie można zaktualizować pliku stanów."
 
 #: src/backend/versioning.py:239
 msgid "Could not update the index file."
-msgstr ""
+msgstr "Nie można zaktualizować pliku indeksu."
 
 #: src/backend/versioning.py:265
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Butelka o nazwie “{0}” została utworzona pomyślnie"
+msgstr "Nowy stan [{0}] został utworzony pomyślnie!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -1495,6 +1485,9 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            Ten problem został już zgłoszony 5 razy i nie może zostać "
+"zgłoszony ponownie.\n"
+"            Zgłoś to w jednym z istniejących raportów."
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:154
 msgid "Warning"
@@ -1506,7 +1499,7 @@ msgstr "Wystąpił błąd."
 
 #: src/dialogs/generic.py:89 src/dialogs/generic.py:133
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiuj do schowka"
 
 #: src/views/details.py:103
 msgid "Details & Utilities"
@@ -1617,14 +1610,12 @@ msgid "An environment improved for Windows games."
 msgstr "Środowisko ulepszone dla gier Windows."
 
 #: src/views/new.py:78
-#, fuzzy
 msgid "Application"
-msgstr "Pobieram…"
+msgstr "Aplikacja"
 
 #: src/views/new.py:79
-#, fuzzy
 msgid "An environment improved for Windows application."
-msgstr "Środowisko ulepszone dla gier Windows."
+msgstr "Środowisko ulepszone dla aplikacji Windows."
 
 #: src/views/new.py:84
 msgid "Custom"
@@ -1635,17 +1626,16 @@ msgid "A clear environment for your experiments."
 msgstr "Proste środowisko dla Twoich eksperymentów."
 
 #: src/views/new.py:93
-#, fuzzy
 msgid "Layered"
-msgstr "Warstwy"
+msgstr "Warstwowe"
 
 #: src/views/new.py:94
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "Środowisko warstwowe, w którym każda aplikacja jest warstwą."
 
 #: src/views/new.py:247
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "Wystąpił problem tworzenia butelki."
 
 #: src/views/new.py:254
 #, python-brace-format
@@ -1658,14 +1648,14 @@ msgid "Manifest for {0}"
 msgstr "Manifest dla {0}"
 
 #: src/widgets/installer.py:80
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review for {0}"
-msgstr "Manifest dla {0}"
+msgstr "Recenzja dla {0}"
 
 #: src/widgets/installer.py:124
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "Krok {self.__step} z {self.steps}"
 
 #: src/widgets/state.py:90
 #, python-brace-format
