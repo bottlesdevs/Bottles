@@ -415,28 +415,7 @@ class DependencyManager:
         This function find an uninstaller in the bottle by the given
         file name and execute it.
         '''
-        command = f"uninstaller --list | grep -i '{file_name}' | cut -f1 -d\|"
-
-        uuid = Runner.run_command(
-            config=config,
-            command=command,
-            terminal=False,
-            environment=False,
-            comunicate=True,
-            minimal=True
-        )
-
-        if uuid:
-            uuid = uuid.strip()
-            logging.info(
-                "Uninstalling [%s] from bottle: [%s]." % (
-                    file_name,
-                    config['Name']
-                )
-            )
-            for _uuid in uuid.splitlines():
-                Uninstaller(config).from_uuid(_uuid)
-        
+        Uninstaller(config).from_name(file_name)
         return True
 
     def __step_cab_extract(self, step: dict):
