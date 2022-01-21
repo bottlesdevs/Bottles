@@ -33,6 +33,7 @@ from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineboot import WineBoot
+from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 
 logging = UtilsLogger()
@@ -165,6 +166,7 @@ class Runner:
 
         reg = Reg(config)
         wineboot = WineBoot(config)
+        wineserver = WineServer(config)
         del_keys = {
             "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "SubVersionNumber",
             "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "VersionNumber",
@@ -188,6 +190,12 @@ class Runner:
 
         reg.add(
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="CurrentBuild",
+            data=win_versions.get(version)["CurrentBuild"]
+        )
+
+        reg.add(
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
             value="CurrentBuildNumber",
             data=win_versions.get(version)["CurrentBuildNumber"]
         )
@@ -198,6 +206,71 @@ class Runner:
             data=win_versions.get(version)["CurrentVersion"]
         )
 
+        reg.add(
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="ProductName",
+            data=win_versions.get(version)["ProductName"]
+        )
+
+        reg.add(
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="CurrentMinorVersionNumber",
+            data=win_versions.get(version)["CurrentMinorVersionNumber"],
+            keyType="REG_DWORD"
+        )
+
+        reg.add(
+            key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+            value="CurrentMajorVersionNumber",
+            data=win_versions.get(version)["CurrentMajorVersionNumber"],
+            keyType="REG_DWORD"
+        )
+
+        if config.get("Arch") == "win64":
+            reg.add(
+                key="HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion",
+                value="CSDVersion",
+                data=win_versions.get(version)["CSDVersion"]
+            )
+
+            reg.add(
+                key="HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion",
+                value="CurrentBuild",
+                data=win_versions.get(version)["CurrentBuild"]
+            )
+
+            reg.add(
+                key="HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion",
+                value="CurrentBuildNumber",
+                data=win_versions.get(version)["CurrentBuildNumber"]
+            )
+
+            reg.add(
+                key="HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion",
+                value="CurrentVersion",
+                data=win_versions.get(version)["CurrentVersion"]
+            )
+
+            reg.add(
+                key="HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion",
+                value="ProductName",
+                data=win_versions.get(version)["ProductName"]
+            )
+
+            reg.add(
+                key="HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion",
+                value="CurrentMinorVersionNumber",
+                data=win_versions.get(version)["CurrentMinorVersionNumber"],
+                keyType="REG_DWORD"
+            )
+
+            reg.add(
+                key="HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion",
+                value="CurrentMajorVersionNumber",
+                data=win_versions.get(version)["CurrentMajorVersionNumber"],
+                keyType="REG_DWORD"
+            )
+
         if "ProductType" in win_versions.get(version):
             '''windows xp 32 doesn't have ProductOptions/ProductType key'''
             reg.add(
@@ -206,14 +279,9 @@ class Runner:
                 data=win_versions.get(version)["ProductType"]
             )
 
-        reg.add(
-            key="HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows",
-            value="CSDVersion",
-            data=win_versions.get(version)["CSDVersionHex"],
-            keyType="REG_DWORD"
-        )
-
         wineboot.restart()
+        wineboot.update()
+        # wineserver.wait()
     
     @staticmethod
     def set_app_default(config: BottleConfig, version: str, executable: str):

@@ -137,7 +137,7 @@ class WineCommand:
                 dll_overrides.append(f"{dll[0]}={dll[1]}")
 
         # Default DLL overrides
-        dll_overrides.append("mscoree=d mshtml=d")
+        dll_overrides.append("mshtml=d")
         dll_overrides.append("winemenubuilder.exe=d")
         
         # Get Runtime libraries
