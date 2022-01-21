@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-06 23:20+0100\n"
+"POT-Creation-Date: 2022-01-22 00:17+0100\n"
 "PO-Revision-Date: 2022-01-07 09:52+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
-#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:147
-#: src/window.py:197
+#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:148
+#: src/window.py:198
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -243,7 +243,8 @@ msgid "Close Bottles after starting an executable from the file manager."
 msgstr "从文件管理器启动可执行文件后关闭 Bottles。"
 
 #: src/ui/about.ui:11
-msgid "© 2017-2021 - Bottles Developers"
+#, fuzzy
+msgid "© 2017-2022 - Bottles Developers"
 msgstr "© 2017-2021 - Bottles 开发者"
 
 #: src/ui/about.ui:12
@@ -323,11 +324,16 @@ msgstr ""
 "改进 Directx 11 游戏和 3D 应用程序的性能。\n"
 "如果您遭遇图形故障请禁用。"
 
-#: src/ui/details-preferences.ui:61
+#: src/ui/details-preferences.ui:44 src/ui/details-preferences.ui:573
+#, fuzzy
+msgid "Updating DXVK, please wait…"
+msgstr "正在更新状态…"
+
+#: src/ui/details-preferences.ui:77
 msgid "Use VKD3D"
 msgstr "使用 VKD3D"
 
-#: src/ui/details-preferences.ui:62
+#: src/ui/details-preferences.ui:78
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -335,27 +341,29 @@ msgstr ""
 "改进 Directx 12 游戏和 3D 应用程序的性能。\n"
 "如果您遭遇图形故障请禁用。"
 
-#: src/ui/details-preferences.ui:89
-msgid "Use GameMode"
-msgstr "使用游戏模式"
+#: src/ui/details-preferences.ui:88 src/ui/details-preferences.ui:663
+#, fuzzy
+msgid "Updating VKD3D, please wait…"
+msgstr "正在更新状态…"
 
-#: src/ui/details-preferences.ui:90
-msgid "Optimise gaming performance on demand"
-msgstr "根据需要优化游戏性能"
-
-#: src/ui/details-preferences.ui:116
+#: src/ui/details-preferences.ui:121
 msgid "Enable DLSS (DXVK-NVAPI)"
 msgstr "启用 DLSS (DXVK-NVAPI)"
 
-#: src/ui/details-preferences.ui:117
+#: src/ui/details-preferences.ui:122
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr "提供 DLSS 支持（如果可用）和 Nvidia 的 NVAPI。"
 
-#: src/ui/details-preferences.ui:145
+#: src/ui/details-preferences.ui:131 src/ui/details-preferences.ui:754
+#, fuzzy
+msgid "Updating DXVK-NVAPI, please wait…"
+msgstr "正在安装 DXVK-NVAPI …"
+
+#: src/ui/details-preferences.ui:166
 msgid "Enable FSR"
 msgstr "启用 FSR"
 
-#: src/ui/details-preferences.ui:146
+#: src/ui/details-preferences.ui:167
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
@@ -363,27 +371,27 @@ msgstr ""
 "FSR 使用尖端的分辨率提升技术来帮助提高您的帧率。\n"
 "如果您遇到图形故障，请将其关闭。"
 
-#: src/ui/details-preferences.ui:162
+#: src/ui/details-preferences.ui:183
 msgid "Ultra Quality"
 msgstr "超高品质"
 
-#: src/ui/details-preferences.ui:163
+#: src/ui/details-preferences.ui:184
 msgid "Quality"
 msgstr "画质"
 
-#: src/ui/details-preferences.ui:164
+#: src/ui/details-preferences.ui:185
 msgid "Balanced"
 msgstr "平衡"
 
-#: src/ui/details-preferences.ui:165
+#: src/ui/details-preferences.ui:186
 msgid "Performance"
 msgstr "性能"
 
-#: src/ui/details-preferences.ui:214
+#: src/ui/details-preferences.ui:235
 msgid "Enable ACO shader compiler"
 msgstr "启用 ACO 着色编译器"
 
-#: src/ui/details-preferences.ui:215
+#: src/ui/details-preferences.ui:236
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -391,27 +399,122 @@ msgstr ""
 "在游戏和 3D 应用程序中提高性能。\n"
 "如果您遭遇图形故障请禁用。"
 
-#: src/ui/details-preferences.ui:242
+#: src/ui/details-preferences.ui:263
 msgid "Discrete GPU"
 msgstr "独立显卡"
 
-#: src/ui/details-preferences.ui:243
+#: src/ui/details-preferences.ui:264
 msgid "Improves performance at the cost of increased power usage."
 msgstr "以增加功耗为代价提升性能。"
 
-#: src/ui/details-preferences.ui:269
+#: src/ui/details-preferences.ui:290
 msgid "Use a virtual desktop"
 msgstr "使用虚拟桌面"
 
-#: src/ui/details-preferences.ui:270
+#: src/ui/details-preferences.ui:291
 msgid "Use the Wine virtual desktop."
 msgstr "使用 Wine 虚拟桌面。"
 
-#: src/ui/details-preferences.ui:341
+#: src/ui/details-preferences.ui:363
+msgid "Mouse capture fullscreen"
+msgstr ""
+
+#: src/ui/details-preferences.ui:364
+msgid "Let the program capture mouse input when fullscreen."
+msgstr ""
+
+#: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
+msgid "System"
+msgstr "系统"
+
+#: src/ui/details-preferences.ui:411
+msgid "Synchronization"
+msgstr "同步"
+
+#: src/ui/details-preferences.ui:412
+msgid ""
+"Enable synchronization to increase performance of multi-core processors."
+msgstr "启用同步以提高多核处理器的性能。"
+
+#: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
+#: src/ui/details-preferences.ui:453
+msgid "Will restart the wineserver."
+msgstr ""
+
+#: src/ui/details-preferences.ui:434
+msgid "Esync"
+msgstr "Esync"
+
+#: src/ui/details-preferences.ui:449
+msgid "Fsync"
+msgstr "Fsync"
+
+#: src/ui/details-preferences.ui:473 src/ui/new.ui:284
+msgid "Runner"
+msgstr "运行器"
+
+#: src/ui/details-preferences.ui:483
+msgid "Updating Runner and components, please wait…"
+msgstr ""
+
+#: src/ui/details-preferences.ui:531 src/ui/new.ui:326
+msgid "Manage runners"
+msgstr "管理运行器"
+
+#: src/ui/details-preferences.ui:563 src/ui/new.ui:358
+msgid "DXVK version"
+msgstr "DXVK 版本"
+
+#: src/ui/details-preferences.ui:621 src/ui/details-preferences.ui:803
+#: src/ui/new.ui:400
+msgid "Manage DXVK versions"
+msgstr "管理 DXVK 版本"
+
+#: src/ui/details-preferences.ui:653
+msgid "VKD3D version"
+msgstr "VKD3D 版本"
+
+#: src/ui/details-preferences.ui:712
+msgid "Manage VKD3D versions"
+msgstr "管理 VKD3D 版本"
+
+#: src/ui/details-preferences.ui:744
+#, fuzzy
+msgid "DXVK NVAPI version"
+msgstr "NVAPI 版本"
+
+#: src/ui/details-preferences.ui:835
+msgid "Windows version"
+msgstr "Windows 版本"
+
+#: src/ui/details-preferences.ui:845
+#, fuzzy
+msgid "Updating Windows version, please wait…"
+msgstr "设置 Windows 版本…"
+
+#: src/ui/details-preferences.ui:894 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/dialog-dll-overrides.ui:52
+msgid "DLL overrides"
+msgstr "DLL 覆盖"
+
+#: src/ui/details-preferences.ui:932
+msgid "Working directory"
+msgstr "工作目录"
+
+#: src/ui/details-preferences.ui:934
+#, fuzzy
+msgid "Default to the bottle path."
+msgstr "指向 bottle 路径"
+
+#: src/ui/details-preferences.ui:950
+msgid "Choose a directory"
+msgstr "选择一个目录"
+
+#: src/ui/details-preferences.ui:981
 msgid "Use Bottles runtime"
 msgstr "使用 Bottles runtime"
 
-#: src/ui/details-preferences.ui:342
+#: src/ui/details-preferences.ui:982
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
@@ -419,110 +522,61 @@ msgstr ""
 "提供额外库包以提高兼容性，\n"
 "如遇到问题则禁用。"
 
-#: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
-msgid "System"
-msgstr "系统"
+#: src/ui/details-preferences.ui:1009
+msgid "Use GameMode"
+msgstr "使用游戏模式"
 
-#: src/ui/details-preferences.ui:385
-msgid "Synchronization"
-msgstr "同步"
+#: src/ui/details-preferences.ui:1010
+#, fuzzy
+msgid "Optimise gaming performance on demand."
+msgstr "根据需要优化游戏性能"
 
-#: src/ui/details-preferences.ui:386
-msgid ""
-"Enable synchronization to increase performance of multi-core processors."
-msgstr "启用同步以提高多核处理器的性能。"
+#: src/ui/details-preferences.ui:1036
+#, fuzzy
+msgid "Use Gamescope"
+msgstr "使用游戏模式"
 
-#: src/ui/details-preferences.ui:407
-msgid "Esync"
-msgstr "Esync"
+#: src/ui/details-preferences.ui:1037
+msgid "Use the Gamescope micro-compositor."
+msgstr ""
 
-#: src/ui/details-preferences.ui:421
-msgid "Fsync"
-msgstr "Fsync"
+#: src/ui/details-preferences.ui:1075
+msgid "Manage Gamescope settings"
+msgstr ""
 
-#: src/ui/details-preferences.ui:444 src/ui/new.ui:284
-msgid "Runner"
-msgstr "运行器"
-
-#: src/ui/details-preferences.ui:487 src/ui/new.ui:326
-msgid "Manage runners"
-msgstr "管理运行器"
-
-#: src/ui/details-preferences.ui:519 src/ui/new.ui:358
-msgid "DXVK version"
-msgstr "DXVK 版本"
-
-#: src/ui/details-preferences.ui:562 src/ui/details-preferences.ui:712
-#: src/ui/new.ui:400
-msgid "Manage DXVK versions"
-msgstr "管理 DXVK 版本"
-
-#: src/ui/details-preferences.ui:594
-msgid "VKD3D version"
-msgstr "VKD3D 版本"
-
-#: src/ui/details-preferences.ui:637
-msgid "Manage VKD3D versions"
-msgstr "管理 VKD3D 版本"
-
-#: src/ui/details-preferences.ui:669
-msgid "NVAPI version"
-msgstr "NVAPI 版本"
-
-#: src/ui/details-preferences.ui:744
-msgid "Windows version"
-msgstr "Windows 版本"
-
-#: src/ui/details-preferences.ui:787 src/ui/dialog-dll-overrides.ui:26
-#: src/ui/dialog-dll-overrides.ui:52
-msgid "DLL overrides"
-msgstr "DLL 覆盖"
-
-#: src/ui/details-preferences.ui:825
-msgid "Working directory"
-msgstr "工作目录"
-
-#: src/ui/details-preferences.ui:827
-msgid "Point to the bottle path"
-msgstr "指向 bottle 路径"
-
-#: src/ui/details-preferences.ui:843
-msgid "Choose a directory"
-msgstr "选择一个目录"
-
-#: src/ui/details-preferences.ui:886
+#: src/ui/details-preferences.ui:1118
 msgid "Audio"
 msgstr "音频"
 
-#: src/ui/details-preferences.ui:891
+#: src/ui/details-preferences.ui:1123
 msgid "Reduce PulseAudio latency"
 msgstr "降低 PulseAudio 延迟"
 
-#: src/ui/details-preferences.ui:892
+#: src/ui/details-preferences.ui:1124
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音频质量"
 
-#: src/ui/details-preferences.ui:929
+#: src/ui/details-preferences.ui:1161
 msgid "Developers & Debug"
 msgstr "开发者与调试"
 
-#: src/ui/details-preferences.ui:934 src/ui/dialog-env-vars.ui:24
+#: src/ui/details-preferences.ui:1166 src/ui/dialog-env-vars.ui:24
 msgid "Environment variables"
 msgstr "环境变量"
 
-#: src/ui/details-preferences.ui:972
+#: src/ui/details-preferences.ui:1204
 msgid "DXVK HUD"
 msgstr "DXVK 抬头显示"
 
-#: src/ui/details-preferences.ui:973
+#: src/ui/details-preferences.ui:1205
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr "切换 DXVK 在 D3D 应用程序中叠加显示帧率和其它详情。"
 
-#: src/ui/details-preferences.ui:999
+#: src/ui/details-preferences.ui:1231
 msgid "Enable wine fixme logs"
 msgstr "启用 wine fixme 日志"
 
-#: src/ui/details-preferences.ui:1000
+#: src/ui/details-preferences.ui:1232
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "记录未在 Wine 中实现的代码路径。"
 
@@ -574,8 +628,8 @@ msgstr "消息在这里。"
 #: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
 #: src/ui/dialog-run-args.ui:28 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:276 src/views/bottle_details.py:365
-#: src/views/bottle_preferences.py:142 src/views/bottle_programs.py:69
+#: src/views/bottle_details.py:287 src/views/bottle_details.py:376
+#: src/views/bottle_preferences.py:160 src/views/bottle_programs.py:69
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "取消"
@@ -729,7 +783,7 @@ msgstr "现有变量"
 msgid "Run with arguments"
 msgstr "带有参数运行"
 
-#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:275
+#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:286
 #: src/views/list.py:124
 msgid "Run"
 msgstr "运行"
@@ -786,7 +840,7 @@ msgstr "这是您的 bottle 的完整归档，包含个人文件。"
 msgid "Full archive"
 msgstr "完全归档"
 
-#: src/ui/importer.ui:75 src/window.py:152
+#: src/ui/importer.ui:75 src/window.py:153
 msgid "Importer"
 msgstr "导入器"
 
@@ -1131,7 +1185,7 @@ msgstr "您现在可以创建您的第一个 bottles。"
 msgid "Finish"
 msgstr "完成"
 
-#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:107
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:106
 msgid "Preferences"
 msgstr "首选项"
 
@@ -1203,7 +1257,7 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:271 src/views/details.py:123
+#: src/ui/preferences.ui:271 src/views/details.py:122
 msgid "Installers"
 msgstr "安装器"
 
@@ -1227,7 +1281,7 @@ msgstr "文档"
 msgid "Forums"
 msgstr "论坛"
 
-#: src/ui/window.ui:83 src/window.py:290
+#: src/ui/window.ui:83 src/window.py:291
 msgid "Health check"
 msgstr "健康检查"
 
@@ -1292,132 +1346,132 @@ msgstr "[帮助] 请求已收到。"
 msgid "[Refresh] request received."
 msgstr "[刷新] 请求已收到。"
 
-#: src/utils.py:70
+#: src/utils.py:71
 msgid "You are offline, unable to download."
 msgstr "您已离线，无法下载。"
 
-#: src/window.py:142 src/window.py:195
+#: src/window.py:143 src/window.py:196
 msgid "Bottle details"
 msgstr "Bottle 详情"
 
-#: src/window.py:185
+#: src/window.py:186
 msgid "Bottles Started!"
 msgstr "Bottles 已启动！"
 
-#: src/window.py:199
+#: src/window.py:200
 msgid "Import & export"
 msgstr "导入和导出"
 
-#: src/backend/backup.py:65
+#: src/backend/backup.py:81
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "备份 {0}"
 
-#: src/backend/backup.py:106
+#: src/backend/backup.py:134
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "正在导入备份：{0}"
 
-#: src/backend/manager.py:1004
+#: src/backend/manager.py:1007
 msgid "Fail to install components, tried 3 times."
 msgstr "安装组件失败，已经尝试三次。"
 
-#: src/backend/manager.py:1014
+#: src/backend/manager.py:1017
 msgid "Missing essential components. Installing…"
 msgstr "缺少必要的组件。 正在安装…"
 
-#: src/backend/manager.py:1097
+#: src/backend/manager.py:1100
 msgid "Generating bottle configuration…"
 msgstr "正在生成 bottle 配置…"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1116
+#: src/backend/manager.py:1122
 msgid "The WINE config is being updated…"
 msgstr "正在更新 WINE 配置…"
 
-#: src/backend/manager.py:1118
+#: src/backend/manager.py:1124
 msgid "WINE config updated!"
 msgstr "WINE 配置已更新！"
 
-#: src/backend/manager.py:1127
+#: src/backend/manager.py:1132
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "运行为 Flatpak，沙箱化用户目录…"
 
-#: src/backend/manager.py:1129
+#: src/backend/manager.py:1134
 msgid "Sandboxing userdir…"
 msgstr "沙箱化用户目录…"
 
-#: src/backend/manager.py:1147
+#: src/backend/manager.py:1151
 msgid "Setting Windows version…"
 msgstr "设置 Windows 版本…"
 
-#: src/backend/manager.py:1155
+#: src/backend/manager.py:1159
 msgid "Apply CMD default settings…"
 msgstr "应用 CMD 默认设置…"
 
-#: src/backend/manager.py:1163
+#: src/backend/manager.py:1167
 msgid "Optimizing environment…"
 msgstr "正在优化环境…"
 
-#: src/backend/manager.py:1175
+#: src/backend/manager.py:1178
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "正在应用环境：{0} …"
 
-#: src/backend/manager.py:1185
+#: src/backend/manager.py:1190
 msgid "Installing DXVK…"
 msgstr "正在安装 DXVK …"
 
-#: src/backend/manager.py:1191
+#: src/backend/manager.py:1196
 msgid "Installing VKD3D…"
 msgstr "正在安装 VKD3D …"
 
-#: src/backend/manager.py:1197
+#: src/backend/manager.py:1202
 msgid "Installing DXVK-NVAPI…"
 msgstr "正在安装 DXVK-NVAPI …"
 
-#: src/backend/manager.py:1202
+#: src/backend/manager.py:1207
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "正在安装依赖项：{0} …"
 
-#: src/backend/manager.py:1223
+#: src/backend/manager.py:1225
 msgid "Creating versioning state 0…"
 msgstr "正在创建版本状态 0 …"
 
-#: src/backend/manager.py:1231
+#: src/backend/manager.py:1233
 msgid "Finalizing…"
 msgstr "完成中…"
 
-#: src/backend/versioning.py:55
+#: src/backend/versioning.py:72
 msgid "Generating state files index …"
 msgstr "正在生成状态文件索引…"
 
-#: src/backend/versioning.py:141
+#: src/backend/versioning.py:158
 msgid "Creating a restore point …"
 msgstr "正在创建还原点…"
 
-#: src/backend/versioning.py:165
+#: src/backend/versioning.py:182
 msgid "Could not create the state folder."
 msgstr "无法创建状态文件夹。"
 
-#: src/backend/versioning.py:172
+#: src/backend/versioning.py:189
 msgid "Updating index …"
 msgstr "正在更新索引…"
 
-#: src/backend/versioning.py:196
+#: src/backend/versioning.py:213
 msgid "Updating states …"
 msgstr "正在更新状态…"
 
-#: src/backend/versioning.py:225
+#: src/backend/versioning.py:242
 msgid "Could not update the states file."
 msgstr "无法更新状态文件。"
 
-#: src/backend/versioning.py:239
+#: src/backend/versioning.py:256
 msgid "Could not update the index file."
 msgstr "无法更新索引文件。"
 
-#: src/backend/versioning.py:265
+#: src/backend/versioning.py:282
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
 msgstr "成功创建了新状态 [{0}]！"
@@ -1446,77 +1500,78 @@ msgstr "发生了错误。"
 msgid "Copy to clipboard"
 msgstr "复制到剪贴板"
 
-#: src/views/details.py:103
+#: src/views/details.py:102
 msgid "Details & Utilities"
 msgstr "详情和工具"
 
-#: src/views/details.py:111
+#: src/views/details.py:110
 msgid "Dependencies"
 msgstr "依赖"
 
-#: src/views/details.py:115
+#: src/views/details.py:114
 msgid "Programs"
 msgstr "程序"
 
-#: src/views/details.py:116
+#: src/views/details.py:115
 msgid "Found in your bottle's Start menu."
 msgstr "在 bottle 的开始菜单中找到。"
 
-#: src/views/details.py:119
+#: src/views/details.py:118
 msgid "Versioning"
 msgstr "版本控制"
 
-#: src/views/details.py:127
+#: src/views/details.py:126
 msgid "Task manager"
 msgstr "任务管理器"
 
-#: src/views/bottle_details.py:162
+#: src/views/bottle_details.py:170
 #, python-format
 msgid "Updated: %s"
 msgstr "已更新：%s"
 
 #. set arch
-#: src/views/bottle_details.py:165
+#: src/views/bottle_details.py:173
 msgid "64-bit"
 msgstr "64 位"
 
-#: src/views/bottle_details.py:167
+#: src/views/bottle_details.py:175
 msgid "32-bit"
 msgstr "32 位"
 
-#: src/views/bottle_details.py:272 src/views/list.py:121
+#: src/views/bottle_details.py:283 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "选择一个 Windows 可执行文件"
 
-#: src/views/bottle_details.py:354
+#: src/views/bottle_details.py:365
 msgid "Select the location where to save the backup config"
 msgstr "选择保存备份配置的位置"
 
-#: src/views/bottle_details.py:358
+#: src/views/bottle_details.py:369
 msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
-#: src/views/bottle_details.py:365
+#: src/views/bottle_details.py:376
 msgid "Export"
 msgstr "导出"
 
-#: src/views/bottle_details.py:396
+#: src/views/bottle_details.py:407
 msgid "Confirm deletion"
 msgstr "确认删除"
 
-#: src/views/bottle_details.py:398
+#: src/views/bottle_details.py:409
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
-#: src/views/bottle_preferences.py:128
-msgid "Gamemode is either not available on your system or not running."
+#: src/views/bottle_preferences.py:142
+#, fuzzy
+msgid "This feature is not available on your system."
 msgstr "游戏模式在你的系统中不可用，或没在运行。"
 
-#: src/views/bottle_preferences.py:138
+#: src/views/bottle_preferences.py:156
 msgid "Choose working directory for executables"
 msgstr "选择可执行文件的工作目录"
 
-#: src/views/bottle_preferences.py:141
+#: src/views/bottle_preferences.py:159
 msgid "Done"
 msgstr "完成"
 
@@ -1545,63 +1600,63 @@ msgstr "无"
 msgid "Arguments found for executable: [{executable}]."
 msgstr "发现可执行文件：[{executable}] 的变量。"
 
-#: src/views/new.py:72
+#: src/views/new.py:73
 msgid "Gaming"
 msgstr "游戏"
 
-#: src/views/new.py:73
+#: src/views/new.py:74
 msgid "An environment improved for Windows games."
 msgstr "为 Windows 游戏优化的环境。"
 
-#: src/views/new.py:78
+#: src/views/new.py:79
 msgid "Application"
 msgstr "应用程序"
 
-#: src/views/new.py:79
+#: src/views/new.py:80
 msgid "An environment improved for Windows application."
 msgstr "改善了 Windows 程序的环境。"
 
-#: src/views/new.py:84
+#: src/views/new.py:85
 msgid "Custom"
 msgstr "自定义"
 
-#: src/views/new.py:85
+#: src/views/new.py:86
 msgid "A clear environment for your experiments."
 msgstr "为您的实验提供的清洁环境。"
 
-#: src/views/new.py:93
+#: src/views/new.py:94
 msgid "Layered"
 msgstr "分层的"
 
-#: src/views/new.py:94
+#: src/views/new.py:95
 msgid "A layered environment, where every app is a layer."
 msgstr "一个分层的环境，每个应用都是一层。"
 
-#: src/views/new.py:247
+#: src/views/new.py:248
 msgid "There was an error creating the bottle."
 msgstr "创建该 bottle 时遇到一个问题。"
 
-#: src/views/new.py:254
+#: src/views/new.py:255
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "成功创建了名为“{0}”的 bottle"
 
-#: src/widgets/dependency.py:94 src/widgets/installer.py:69
+#: src/widgets/dependency.py:95 src/widgets/installer.py:70
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "{0} 的清单"
 
-#: src/widgets/installer.py:80
+#: src/widgets/installer.py:81
 #, python-brace-format
 msgid "Review for {0}"
 msgstr "{0} 的评论"
 
-#: src/widgets/installer.py:124
+#: src/widgets/installer.py:125
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
 msgstr "{self.steps} 的步骤 {self.__step}"
 
-#: src/widgets/state.py:90
+#: src/widgets/state.py:91
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "状态 {0} 的索引"

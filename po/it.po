@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-06 23:20+0100\n"
+"POT-Creation-Date: 2022-01-22 00:17+0100\n"
 "PO-Revision-Date: 2022-01-16 19:35+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
-#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:147
-#: src/window.py:197
+#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:148
+#: src/window.py:198
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -255,7 +255,8 @@ msgid "Close Bottles after starting an executable from the file manager."
 msgstr "Chiudere Bottles dopo aver avviato l'eseguibile dal file manager."
 
 #: src/ui/about.ui:11
-msgid "© 2017-2021 - Bottles Developers"
+#, fuzzy
+msgid "© 2017-2022 - Bottles Developers"
 msgstr "© 2017-2021 - Sviluppatori di Bottles"
 
 #: src/ui/about.ui:12
@@ -341,11 +342,16 @@ msgstr ""
 "Migliora le prestazioni dei giochi DirectX 11 e delle applicazioni 3D.\n"
 "Disabilita se stai sperimentando glitch grafici."
 
-#: src/ui/details-preferences.ui:61
+#: src/ui/details-preferences.ui:44 src/ui/details-preferences.ui:573
+#, fuzzy
+msgid "Updating DXVK, please wait…"
+msgstr "Aggiornamento degli stati…"
+
+#: src/ui/details-preferences.ui:77
 msgid "Use VKD3D"
 msgstr "Usa VKD3D"
 
-#: src/ui/details-preferences.ui:62
+#: src/ui/details-preferences.ui:78
 msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -353,27 +359,29 @@ msgstr ""
 "Migliora le prestazioni dei giochi DirectX 12 e delle applicazioni 3D.\n"
 "Disattivare se si verificano glitch grafici."
 
-#: src/ui/details-preferences.ui:89
-msgid "Use GameMode"
-msgstr "Usa GameMode"
+#: src/ui/details-preferences.ui:88 src/ui/details-preferences.ui:663
+#, fuzzy
+msgid "Updating VKD3D, please wait…"
+msgstr "Aggiornamento degli stati…"
 
-#: src/ui/details-preferences.ui:90
-msgid "Optimise gaming performance on demand"
-msgstr "Ottimizza le prestazioni di gioco on demand"
-
-#: src/ui/details-preferences.ui:116
+#: src/ui/details-preferences.ui:121
 msgid "Enable DLSS (DXVK-NVAPI)"
 msgstr "Abilita DLSS (DXVK-NVAPI)"
 
-#: src/ui/details-preferences.ui:117
+#: src/ui/details-preferences.ui:122
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr "Fornisce il supporto al DLSS se disponibile e ad Nvidia NVAPI."
 
-#: src/ui/details-preferences.ui:145
+#: src/ui/details-preferences.ui:131 src/ui/details-preferences.ui:754
+#, fuzzy
+msgid "Updating DXVK-NVAPI, please wait…"
+msgstr "Installazione di DXVK-NVAPI …"
+
+#: src/ui/details-preferences.ui:166
 msgid "Enable FSR"
 msgstr "Abilita FSR"
 
-#: src/ui/details-preferences.ui:146
+#: src/ui/details-preferences.ui:167
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
@@ -382,27 +390,27 @@ msgstr ""
 "migliorare i tuoi framerate.\n"
 "Disabilita se si verificano glitch grafici."
 
-#: src/ui/details-preferences.ui:162
+#: src/ui/details-preferences.ui:183
 msgid "Ultra Quality"
 msgstr "Qualità Ultra"
 
-#: src/ui/details-preferences.ui:163
+#: src/ui/details-preferences.ui:184
 msgid "Quality"
 msgstr "Qualità"
 
-#: src/ui/details-preferences.ui:164
+#: src/ui/details-preferences.ui:185
 msgid "Balanced"
 msgstr "Bilanciata"
 
-#: src/ui/details-preferences.ui:165
+#: src/ui/details-preferences.ui:186
 msgid "Performance"
 msgstr "Prestazioni"
 
-#: src/ui/details-preferences.ui:214
+#: src/ui/details-preferences.ui:235
 msgid "Enable ACO shader compiler"
 msgstr "Abilita compilatore di shader ACO"
 
-#: src/ui/details-preferences.ui:215
+#: src/ui/details-preferences.ui:236
 msgid ""
 "Improves performance in games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
@@ -410,27 +418,122 @@ msgstr ""
 "Migliora le performance nei giochi e nelle applicazioni 3D.\n"
 "Disabilita se riscontri glitch grafici."
 
-#: src/ui/details-preferences.ui:242
+#: src/ui/details-preferences.ui:263
 msgid "Discrete GPU"
 msgstr "Usa la GPU dedicata"
 
-#: src/ui/details-preferences.ui:243
+#: src/ui/details-preferences.ui:264
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Migliora le performance al costo di un maggior utilizzo energetico."
 
-#: src/ui/details-preferences.ui:269
+#: src/ui/details-preferences.ui:290
 msgid "Use a virtual desktop"
 msgstr "Usa un Desktop virtuale"
 
-#: src/ui/details-preferences.ui:270
+#: src/ui/details-preferences.ui:291
 msgid "Use the Wine virtual desktop."
 msgstr "Usa il Desktop virtuale di Wine."
 
-#: src/ui/details-preferences.ui:341
+#: src/ui/details-preferences.ui:363
+msgid "Mouse capture fullscreen"
+msgstr ""
+
+#: src/ui/details-preferences.ui:364
+msgid "Let the program capture mouse input when fullscreen."
+msgstr ""
+
+#: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
+msgid "System"
+msgstr "Sistema"
+
+#: src/ui/details-preferences.ui:411
+msgid "Synchronization"
+msgstr "Sincronizzazione"
+
+#: src/ui/details-preferences.ui:412
+msgid ""
+"Enable synchronization to increase performance of multi-core processors."
+msgstr "Abilita la sincronizzazione per aumentare le prestazioni multi-core."
+
+#: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
+#: src/ui/details-preferences.ui:453
+msgid "Will restart the wineserver."
+msgstr ""
+
+#: src/ui/details-preferences.ui:434
+msgid "Esync"
+msgstr "Esync"
+
+#: src/ui/details-preferences.ui:449
+msgid "Fsync"
+msgstr "Fsync"
+
+#: src/ui/details-preferences.ui:473 src/ui/new.ui:284
+msgid "Runner"
+msgstr "Runner"
+
+#: src/ui/details-preferences.ui:483
+msgid "Updating Runner and components, please wait…"
+msgstr ""
+
+#: src/ui/details-preferences.ui:531 src/ui/new.ui:326
+msgid "Manage runners"
+msgstr "Gestisci runner"
+
+#: src/ui/details-preferences.ui:563 src/ui/new.ui:358
+msgid "DXVK version"
+msgstr "Versione DXVK"
+
+#: src/ui/details-preferences.ui:621 src/ui/details-preferences.ui:803
+#: src/ui/new.ui:400
+msgid "Manage DXVK versions"
+msgstr "Gestisci le versioni DXVK"
+
+#: src/ui/details-preferences.ui:653
+msgid "VKD3D version"
+msgstr "Versione VKD3D"
+
+#: src/ui/details-preferences.ui:712
+msgid "Manage VKD3D versions"
+msgstr "Gestisci le versioni VKD3D"
+
+#: src/ui/details-preferences.ui:744
+#, fuzzy
+msgid "DXVK NVAPI version"
+msgstr "Versione NVAPI"
+
+#: src/ui/details-preferences.ui:835
+msgid "Windows version"
+msgstr "Versione Windows"
+
+#: src/ui/details-preferences.ui:845
+#, fuzzy
+msgid "Updating Windows version, please wait…"
+msgstr "Impostazione della versione di Windows…"
+
+#: src/ui/details-preferences.ui:894 src/ui/dialog-dll-overrides.ui:26
+#: src/ui/dialog-dll-overrides.ui:52
+msgid "DLL overrides"
+msgstr "Sostituzioni DLL"
+
+#: src/ui/details-preferences.ui:932
+msgid "Working directory"
+msgstr "Cartella di lavoro"
+
+#: src/ui/details-preferences.ui:934
+#, fuzzy
+msgid "Default to the bottle path."
+msgstr "Punta al percorso della bottiglia"
+
+#: src/ui/details-preferences.ui:950
+msgid "Choose a directory"
+msgstr "Scegli una cartella"
+
+#: src/ui/details-preferences.ui:981
 msgid "Use Bottles runtime"
 msgstr "Usa l'eseguibile Bottles"
 
-#: src/ui/details-preferences.ui:342
+#: src/ui/details-preferences.ui:982
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
@@ -438,113 +541,65 @@ msgstr ""
 "Provvede un pacchetto di librerie extra per maggiore compatibilità, \n"
 "disabilita nel caso di problemi."
 
-#: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
-msgid "System"
-msgstr "Sistema"
+#: src/ui/details-preferences.ui:1009
+msgid "Use GameMode"
+msgstr "Usa GameMode"
 
-#: src/ui/details-preferences.ui:385
-msgid "Synchronization"
-msgstr "Sincronizzazione"
+#: src/ui/details-preferences.ui:1010
+#, fuzzy
+msgid "Optimise gaming performance on demand."
+msgstr "Ottimizza le prestazioni di gioco on demand"
 
-#: src/ui/details-preferences.ui:386
-msgid ""
-"Enable synchronization to increase performance of multi-core processors."
-msgstr "Abilita la sincronizzazione per aumentare le prestazioni multi-core."
+#: src/ui/details-preferences.ui:1036
+#, fuzzy
+msgid "Use Gamescope"
+msgstr "Usa GameMode"
 
-#: src/ui/details-preferences.ui:407
-msgid "Esync"
-msgstr "Esync"
+#: src/ui/details-preferences.ui:1037
+msgid "Use the Gamescope micro-compositor."
+msgstr ""
 
-#: src/ui/details-preferences.ui:421
-msgid "Fsync"
-msgstr "Fsync"
+#: src/ui/details-preferences.ui:1075
+#, fuzzy
+msgid "Manage Gamescope settings"
+msgstr "Gestisci le impostazioni del sottosistema wine."
 
-#: src/ui/details-preferences.ui:444 src/ui/new.ui:284
-msgid "Runner"
-msgstr "Runner"
-
-#: src/ui/details-preferences.ui:487 src/ui/new.ui:326
-msgid "Manage runners"
-msgstr "Gestisci runner"
-
-#: src/ui/details-preferences.ui:519 src/ui/new.ui:358
-msgid "DXVK version"
-msgstr "Versione DXVK"
-
-#: src/ui/details-preferences.ui:562 src/ui/details-preferences.ui:712
-#: src/ui/new.ui:400
-msgid "Manage DXVK versions"
-msgstr "Gestisci le versioni DXVK"
-
-#: src/ui/details-preferences.ui:594
-msgid "VKD3D version"
-msgstr "Versione VKD3D"
-
-#: src/ui/details-preferences.ui:637
-msgid "Manage VKD3D versions"
-msgstr "Gestisci le versioni VKD3D"
-
-#: src/ui/details-preferences.ui:669
-msgid "NVAPI version"
-msgstr "Versione NVAPI"
-
-#: src/ui/details-preferences.ui:744
-msgid "Windows version"
-msgstr "Versione Windows"
-
-#: src/ui/details-preferences.ui:787 src/ui/dialog-dll-overrides.ui:26
-#: src/ui/dialog-dll-overrides.ui:52
-msgid "DLL overrides"
-msgstr "Sostituzioni DLL"
-
-#: src/ui/details-preferences.ui:825
-msgid "Working directory"
-msgstr "Cartella di lavoro"
-
-#: src/ui/details-preferences.ui:827
-msgid "Point to the bottle path"
-msgstr "Punta al percorso della bottiglia"
-
-#: src/ui/details-preferences.ui:843
-msgid "Choose a directory"
-msgstr "Scegli una cartella"
-
-#: src/ui/details-preferences.ui:886
+#: src/ui/details-preferences.ui:1118
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details-preferences.ui:891
+#: src/ui/details-preferences.ui:1123
 msgid "Reduce PulseAudio latency"
 msgstr "Riduci la latenza di PulseAudio"
 
-#: src/ui/details-preferences.ui:892
+#: src/ui/details-preferences.ui:1124
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Imposta la latenza di PulseAudio su 60 millisecondi per aumentare la qualità "
 "del suono"
 
-#: src/ui/details-preferences.ui:929
+#: src/ui/details-preferences.ui:1161
 msgid "Developers & Debug"
 msgstr "Sviluppatori & Debug"
 
-#: src/ui/details-preferences.ui:934 src/ui/dialog-env-vars.ui:24
+#: src/ui/details-preferences.ui:1166 src/ui/dialog-env-vars.ui:24
 msgid "Environment variables"
 msgstr "Ambiente"
 
-#: src/ui/details-preferences.ui:972
+#: src/ui/details-preferences.ui:1204
 msgid "DXVK HUD"
 msgstr "HUD DXVK"
 
-#: src/ui/details-preferences.ui:973
+#: src/ui/details-preferences.ui:1205
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Abilita l'overlay DXVK mostrando FPS e altri dettagli nelle applicazioni D3D."
 
-#: src/ui/details-preferences.ui:999
+#: src/ui/details-preferences.ui:1231
 msgid "Enable wine fixme logs"
 msgstr "Abilita i log fixme di wine"
 
-#: src/ui/details-preferences.ui:1000
+#: src/ui/details-preferences.ui:1232
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Mostra i log per le funzioni non implementate in Wine."
 
@@ -596,8 +651,8 @@ msgstr "Il messaggio va qui."
 #: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
 #: src/ui/dialog-run-args.ui:28 src/ui/dialog-environment-variables.ui:28
 #: src/ui/dialog-launch-options.ui:28 src/ui/new.ui:28
-#: src/views/bottle_details.py:276 src/views/bottle_details.py:365
-#: src/views/bottle_preferences.py:142 src/views/bottle_programs.py:69
+#: src/views/bottle_details.py:287 src/views/bottle_details.py:376
+#: src/views/bottle_preferences.py:160 src/views/bottle_programs.py:69
 #: src/views/list.py:125
 msgid "Cancel"
 msgstr "Annulla"
@@ -758,7 +813,7 @@ msgstr "Variabili esistenti"
 msgid "Run with arguments"
 msgstr "Eseguire con argomenti"
 
-#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:275
+#: src/ui/dialog-run-args.ui:36 src/views/bottle_details.py:286
 #: src/views/list.py:124
 msgid "Run"
 msgstr "Esegui"
@@ -819,7 +874,7 @@ msgstr ""
 msgid "Full archive"
 msgstr "Archivio completo"
 
-#: src/ui/importer.ui:75 src/window.py:152
+#: src/ui/importer.ui:75 src/window.py:153
 msgid "Importer"
 msgstr "Importatore"
 
@@ -1173,7 +1228,7 @@ msgstr "Tutto pronto, puoi creare la tua prima bottiglia."
 msgid "Finish"
 msgstr "Finito"
 
-#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:107
+#: src/ui/preferences.ui:7 src/ui/window.ui:33 src/views/details.py:106
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -1246,7 +1301,7 @@ msgstr "VKD3D"
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:271 src/views/details.py:123
+#: src/ui/preferences.ui:271 src/views/details.py:122
 msgid "Installers"
 msgstr "Installatori"
 
@@ -1270,7 +1325,7 @@ msgstr "Documentazione"
 msgid "Forums"
 msgstr "Forums"
 
-#: src/ui/window.ui:83 src/window.py:290
+#: src/ui/window.ui:83 src/window.py:291
 msgid "Health check"
 msgstr "Controllo della salute"
 
@@ -1336,132 +1391,132 @@ msgstr "Richiesta [Aiuto] ricevuta."
 msgid "[Refresh] request received."
 msgstr "Richiesta [Ricarica] ricevuta."
 
-#: src/utils.py:70
+#: src/utils.py:71
 msgid "You are offline, unable to download."
 msgstr "Sei offline, non puoi scaricare."
 
-#: src/window.py:142 src/window.py:195
+#: src/window.py:143 src/window.py:196
 msgid "Bottle details"
 msgstr "Dettagli Bottiglia"
 
-#: src/window.py:185
+#: src/window.py:186
 msgid "Bottles Started!"
 msgstr "Bottles Avviato!"
 
-#: src/window.py:199
+#: src/window.py:200
 msgid "Import & export"
 msgstr "Importa ed esporta"
 
-#: src/backend/backup.py:65
+#: src/backend/backup.py:81
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Backup {0}"
 
-#: src/backend/backup.py:106
+#: src/backend/backup.py:134
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importazione del backup: {0}"
 
-#: src/backend/manager.py:1004
+#: src/backend/manager.py:1007
 msgid "Fail to install components, tried 3 times."
 msgstr "Impossibile installare i componenti, provato 3 volte."
 
-#: src/backend/manager.py:1014
+#: src/backend/manager.py:1017
 msgid "Missing essential components. Installing…"
 msgstr "Componenti essenziali mancanti. Installazione…"
 
-#: src/backend/manager.py:1097
+#: src/backend/manager.py:1100
 msgid "Generating bottle configuration…"
 msgstr "Generazione configurazione della bottiglia…"
 
 #. execute wineboot on the bottle path
-#: src/backend/manager.py:1116
+#: src/backend/manager.py:1122
 msgid "The WINE config is being updated…"
 msgstr "La configurazione di WINE viene aggiornata…"
 
-#: src/backend/manager.py:1118
+#: src/backend/manager.py:1124
 msgid "WINE config updated!"
 msgstr "Configurazione di WINE aggiornata!"
 
-#: src/backend/manager.py:1127
+#: src/backend/manager.py:1132
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr "Esecuzione come Flatpak, creazione delle cartelle nella sandbox …"
 
-#: src/backend/manager.py:1129
+#: src/backend/manager.py:1134
 msgid "Sandboxing userdir…"
 msgstr "Sandboxing userdir…"
 
-#: src/backend/manager.py:1147
+#: src/backend/manager.py:1151
 msgid "Setting Windows version…"
 msgstr "Impostazione della versione di Windows…"
 
-#: src/backend/manager.py:1155
+#: src/backend/manager.py:1159
 msgid "Apply CMD default settings…"
 msgstr "Applica le impostazioni predefinite di CMD…"
 
-#: src/backend/manager.py:1163
+#: src/backend/manager.py:1167
 msgid "Optimizing environment…"
 msgstr "Ottimizzando l'ambiente…"
 
-#: src/backend/manager.py:1175
+#: src/backend/manager.py:1178
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr "Applicazione dell'ambiente: {0} …"
 
-#: src/backend/manager.py:1185
+#: src/backend/manager.py:1190
 msgid "Installing DXVK…"
 msgstr "Installazione di DXVK …"
 
-#: src/backend/manager.py:1191
+#: src/backend/manager.py:1196
 msgid "Installing VKD3D…"
 msgstr "Installazione di VKD3D …"
 
-#: src/backend/manager.py:1197
+#: src/backend/manager.py:1202
 msgid "Installing DXVK-NVAPI…"
 msgstr "Installazione di DXVK-NVAPI …"
 
-#: src/backend/manager.py:1202
+#: src/backend/manager.py:1207
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Installazione della dipendenza: {0}…"
 
-#: src/backend/manager.py:1223
+#: src/backend/manager.py:1225
 msgid "Creating versioning state 0…"
 msgstr "Creazione dello stato di versione 0…"
 
-#: src/backend/manager.py:1231
+#: src/backend/manager.py:1233
 msgid "Finalizing…"
 msgstr "Conclusione…"
 
-#: src/backend/versioning.py:55
+#: src/backend/versioning.py:72
 msgid "Generating state files index …"
 msgstr "Generazione di file di stato indice …"
 
-#: src/backend/versioning.py:141
+#: src/backend/versioning.py:158
 msgid "Creating a restore point …"
 msgstr "Creare un punto di ripristino …"
 
-#: src/backend/versioning.py:165
+#: src/backend/versioning.py:182
 msgid "Could not create the state folder."
 msgstr "Impossibile creare la cartella di stato."
 
-#: src/backend/versioning.py:172
+#: src/backend/versioning.py:189
 msgid "Updating index …"
 msgstr "Aggiornamento dell'indice …"
 
-#: src/backend/versioning.py:196
+#: src/backend/versioning.py:213
 msgid "Updating states …"
 msgstr "Aggiornamento degli stati…"
 
-#: src/backend/versioning.py:225
+#: src/backend/versioning.py:242
 msgid "Could not update the states file."
 msgstr "Impossibile aggiornare il file degli stati."
 
-#: src/backend/versioning.py:239
+#: src/backend/versioning.py:256
 msgid "Could not update the index file."
 msgstr "Impossibile aggiornare il file di indice."
 
-#: src/backend/versioning.py:265
+#: src/backend/versioning.py:282
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
 msgstr "Nuovo stato {0} creato con successo!"
@@ -1491,78 +1546,79 @@ msgstr "C'è stato un errore."
 msgid "Copy to clipboard"
 msgstr "Copia negli appunti"
 
-#: src/views/details.py:103
+#: src/views/details.py:102
 msgid "Details & Utilities"
 msgstr "Dettagli e utilità"
 
-#: src/views/details.py:111
+#: src/views/details.py:110
 msgid "Dependencies"
 msgstr "Dipendenze"
 
-#: src/views/details.py:115
+#: src/views/details.py:114
 msgid "Programs"
 msgstr "Programmi"
 
-#: src/views/details.py:116
+#: src/views/details.py:115
 msgid "Found in your bottle's Start menu."
 msgstr ""
 "Questi sono i programmi che si trovano nel menu Start della vostra bottiglia."
 
-#: src/views/details.py:119
+#: src/views/details.py:118
 msgid "Versioning"
 msgstr "Versionamento"
 
-#: src/views/details.py:127
+#: src/views/details.py:126
 msgid "Task manager"
 msgstr "Gestore processi"
 
-#: src/views/bottle_details.py:162
+#: src/views/bottle_details.py:170
 #, python-format
 msgid "Updated: %s"
 msgstr "Aggiornato: %s"
 
 #. set arch
-#: src/views/bottle_details.py:165
+#: src/views/bottle_details.py:173
 msgid "64-bit"
 msgstr "64-bit"
 
-#: src/views/bottle_details.py:167
+#: src/views/bottle_details.py:175
 msgid "32-bit"
 msgstr "32-bit"
 
-#: src/views/bottle_details.py:272 src/views/list.py:121
+#: src/views/bottle_details.py:283 src/views/list.py:121
 msgid "Choose a Windows executable file"
 msgstr "Scegli un file eseguibile Windows"
 
-#: src/views/bottle_details.py:354
+#: src/views/bottle_details.py:365
 msgid "Select the location where to save the backup config"
 msgstr "Seleziona la posizione in cui salvare la configurazione di backup"
 
-#: src/views/bottle_details.py:358
+#: src/views/bottle_details.py:369
 msgid "Select the location where to save the backup archive"
 msgstr "Seleziona la posizione dove salvare l'archivio backup"
 
-#: src/views/bottle_details.py:365
+#: src/views/bottle_details.py:376
 msgid "Export"
 msgstr "Esporta"
 
-#: src/views/bottle_details.py:396
+#: src/views/bottle_details.py:407
 msgid "Confirm deletion"
 msgstr "Conferma eliminazione"
 
-#: src/views/bottle_details.py:398
+#: src/views/bottle_details.py:409
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Sei sicuro di voler rimuovere questa Bottiglia e tutti i suoi file?"
 
-#: src/views/bottle_preferences.py:128
-msgid "Gamemode is either not available on your system or not running."
+#: src/views/bottle_preferences.py:142
+#, fuzzy
+msgid "This feature is not available on your system."
 msgstr "La Gamemode non è disponibile sul tuo sistema o non è in esecuzione."
 
-#: src/views/bottle_preferences.py:138
+#: src/views/bottle_preferences.py:156
 msgid "Choose working directory for executables"
 msgstr "Scegliere il percorso di lavoro per gli eseguibili"
 
-#: src/views/bottle_preferences.py:141
+#: src/views/bottle_preferences.py:159
 msgid "Done"
 msgstr "Fatto"
 
@@ -1591,63 +1647,63 @@ msgstr "N/A"
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argomenti trovati per l'eseguibile: [{executable}]."
 
-#: src/views/new.py:72
+#: src/views/new.py:73
 msgid "Gaming"
 msgstr "Giochi"
 
-#: src/views/new.py:73
+#: src/views/new.py:74
 msgid "An environment improved for Windows games."
 msgstr "Un ambiente migliorato per i giochi Windows."
 
-#: src/views/new.py:78
+#: src/views/new.py:79
 msgid "Application"
 msgstr "Applicazione"
 
-#: src/views/new.py:79
+#: src/views/new.py:80
 msgid "An environment improved for Windows application."
 msgstr "Un ambiente migliorato per le applicazioni Windows."
 
-#: src/views/new.py:84
+#: src/views/new.py:85
 msgid "Custom"
 msgstr "Personalizzato"
 
-#: src/views/new.py:85
+#: src/views/new.py:86
 msgid "A clear environment for your experiments."
 msgstr "Un ambiente pulito per i tuoi esperimenti."
 
-#: src/views/new.py:93
+#: src/views/new.py:94
 msgid "Layered"
 msgstr "Stratificato"
 
-#: src/views/new.py:94
+#: src/views/new.py:95
 msgid "A layered environment, where every app is a layer."
 msgstr "Un ambiente stratificato, dove ogni applicazione è uno strato."
 
-#: src/views/new.py:247
+#: src/views/new.py:248
 msgid "There was an error creating the bottle."
 msgstr "C'è stato un errore nel creare la bottiglia."
 
-#: src/views/new.py:254
+#: src/views/new.py:255
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Una bottiglia chiamata \"{0}\" è stata creata con successo"
 
-#: src/widgets/dependency.py:94 src/widgets/installer.py:69
+#: src/widgets/dependency.py:95 src/widgets/installer.py:70
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifesto per {0}"
 
-#: src/widgets/installer.py:80
+#: src/widgets/installer.py:81
 #, python-brace-format
 msgid "Review for {0}"
 msgstr "Recensione per {0}"
 
-#: src/widgets/installer.py:124
+#: src/widgets/installer.py:125
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
 msgstr "Passo {self.__step} di {self.steps}"
 
-#: src/widgets/state.py:90
+#: src/widgets/state.py:91
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Indice per lo stato {0}"
@@ -2735,9 +2791,6 @@ msgstr "Indice per lo stato {0}"
 #~ msgstr ""
 #~ "Avvia una console di debug in questa bottiglia. Leggi nella nostra "
 #~ "documentazione come utilizzare il debug. [F1]"
-
-#~ msgid "Manage the wine subsystem settings."
-#~ msgstr "Gestisci le impostazioni del sottosistema wine."
 
 #~ msgid "Use this to uninstall programs from the Bottle."
 #~ msgstr "Usa questo per disinstallare programmi dalla Bottiglia."
