@@ -1,4 +1,5 @@
 import os
+from sys import stdout
 import time
 import subprocess
 from typing import NewType
@@ -42,3 +43,21 @@ class WineServer(WineProgram):
         if res.poll() is None:
             return True
         return False
+
+    def wait(self):
+        config = self.config
+        bottle = ManagerUtils.get_bottle_path(config)
+        runner = ManagerUtils.get_runner_path(config.get("Runner"))
+            
+        env = os.environ.copy()
+        env["WINEPREFIX"] = bottle
+        env["PATH"] = f"{runner}/bin:{env['PATH']}"
+
+        subprocess.Popen(
+            "wineserver -w",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+            cwd=bottle,
+            env=env
+        ).wait()
