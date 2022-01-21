@@ -22,19 +22,27 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..utils import RunAsync, GtkUtils
+from bottles.utils import RunAsync, GtkUtils # pyright: reportMissingImports=false
 
-from ..backend.runner import Runner
-from ..backend.backup import BackupManager
-from ..backend.manager_utils import ManagerUtils
+from bottles.backend.runner import Runner
+from bottles.backend.backup import BackupManager
+from bottles.backend.manager_utils import ManagerUtils
 
-from ..widgets.program import ProgramEntry
-from ..widgets.executable import ExecButton
+from bottles.widgets.program import ProgramEntry
+from bottles.widgets.executable import ExecButton
 
-from ..dialogs.runargs import RunArgsDialog
-from ..dialogs.generic import MessageDialog
-from ..dialogs.duplicate import DuplicateDialog
+from bottles.dialogs.runargs import RunArgsDialog
+from bottles.dialogs.generic import MessageDialog
+from bottles.dialogs.duplicate import DuplicateDialog
 
+from bottles.backend.wine.uninstaller import Uninstaller
+from bottles.backend.wine.winecfg import WineCfg
+from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.wineboot import WineBoot
+from bottles.backend.wine.cmd import CMD
+from bottles.backend.wine.taskmgr import Taskmgr
+from bottles.backend.wine.control import Control
+from bottles.backend.wine.regedit import Regedit
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
 class BottleView(Gtk.ScrolledWindow):
@@ -447,44 +455,47 @@ class BottleView(Gtk.ScrolledWindow):
     '''
 
     def run_winecfg(self, widget):
-        Runner.run_winecfg(self.config)
+        program = WineCfg(self.config)
+        RunAsync(program.launch)
 
     def run_debug(self, widget):
-        Runner.run_debug(self.config)
+        program = WineDbg(self.config)
+        RunAsync(program.launch_terminal)
 
     def run_browse(self, widget):
         ManagerUtils.open_filemanager(self.config)
 
     def run_cmd(self, widget):
-        Runner.run_cmd(self.config)
+        program = CMD(self.config)
+        RunAsync(program.launch_terminal)
 
     def run_taskmanager(self, widget):
-        Runner.run_taskmanager(self.config)
+        program = Taskmgr(self.config)
+        RunAsync(program.launch)
 
     def run_controlpanel(self, widget):
-        Runner.run_controlpanel(self.config)
+        program = Control(self.config)
+        RunAsync(program.launch)
 
     def run_uninstaller(self, widget):
-        RunAsync(
-            task_func=Runner.run_uninstaller,
-            config=self.config
-        )
+        program = Uninstaller(self.config)
+        RunAsync(program.launch)
 
     def run_regedit(self, widget):
-        Runner.run_regedit(self.config)
+        program = Regedit(self.config)
+        RunAsync(program.launch)
 
     def wineboot(self, widget, status):
         def reset(result, error=False):
             widget.set_sensitive(True)
 
+        wineboot = WineBoot(self.config)
         widget.set_sensitive(False)
         
         RunAsync(
-            Runner.wineboot,
+            wineboot.send_status,
             callback=reset,
-            config=self.config, 
-            status=status, 
-            silent=False
+            status=status
         )
 
     '''

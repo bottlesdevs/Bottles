@@ -18,8 +18,8 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..utils import GtkUtils
-from ..widgets.installer import InstallerEntry
+from bottles.utils import GtkUtils # pyright: reportMissingImports=false
+from bottles.widgets.installer import InstallerEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-installers.ui')

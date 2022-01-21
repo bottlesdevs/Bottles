@@ -19,11 +19,14 @@ import os
 import webbrowser
 from gi.repository import Gtk, GLib, Handy
 
-from ..utils import RunAsync
-from ..dialogs.launchoptions import LaunchOptionsDialog
-from ..dialogs.rename import RenameDialog
-from ..backend.runner import Runner
-from ..backend.manager_utils import ManagerUtils
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
+
+from bottles.dialogs.launchoptions import LaunchOptionsDialog
+from bottles.dialogs.rename import RenameDialog
+
+from bottles.backend.runner import Runner
+from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.wine.winedbg import WineDbg
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
@@ -131,20 +134,22 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_stop.set_visible(not status)
     
     def __is_alive(self):
+        winedbg = WineDbg(self.config)
+
         def set_watcher(result=False, error=False):
+            nonlocal winedbg
             self.__reset_buttons()
+
             RunAsync(
-                Runner.wait_for_process,
+                winedbg.wait_for_process,
                 callback=self.__reset_buttons,
-                config=self.config,
                 name=self.executable,
                 timeout=5
             )
 
         RunAsync(
-            Runner.is_process_alive,
+            winedbg.is_process_alive,
             callback=set_watcher,
-            config=self.config,
             name=self.executable
         )
 
@@ -169,7 +174,8 @@ class ProgramEntry(Handy.ActionRow):
         self.__reset_buttons()
     
     def stop_process(self, widget):
-        Runner.kill_process(self.config, name=self.executable)
+        winedbg = WineDbg(self.config)
+        winedbg.kill_process(name=self.executable)
         self.__reset_buttons(True)
 
     def update_programs(self, result=False, error=False):

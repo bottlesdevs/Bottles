@@ -1,9 +1,28 @@
+# dll.py
+#
+# Copyright 2020 brombinmirko <send@mirko.pm>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import os
 import shutil
 from typing import NewType
+from abc import abstractmethod
 
-from .runner import Runner
-from .manager_utils import ManagerUtils
+from bottles.backend.runner import Runner # pyright: reportMissingImports=false
+from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.wine.reg import Reg
 
 BottleConfig = NewType('BottleConfig', dict)
 
@@ -15,17 +34,28 @@ class DLLComponent():
 
     def __init__(self, version:str):
         self.version = version
+        self.base_path = self.get_base_path(version)
         self.check()
     
+    @abstractmethod
+    def get_base_path(self, version:str):
+        pass
+
     def check(self):
+        found = self.dlls.copy()
+
         for path in self.dlls:
             if not os.path.exists(f"{self.base_path}/{path}"):
-                self.dlls.remove(path)
-                for dll in self.dlls[path]:
-                    if not os.path.exists(f"{self.base_path}/{path}/{dll}"):
-                        self.dlls[path].remove(dll)
-        if len(self.dlls) == 0:
+                del found[path]
+                continue
+            for dll in self.dlls[path]:
+                if not os.path.exists(f"{self.base_path}/{path}/{dll}"):
+                    del found[path][dll]
+                    
+        if len(found) == 0:
             return False
+
+        self.dlls = found
         return True
     
     def install(self, config:BottleConfig, overrides_only:bool=False, exclude:list=[]):
@@ -52,6 +82,7 @@ class DLLComponent():
         return None
 
     def __install_dll(self, config, path:str, dll:str, remove:bool=False, overrides_only:bool=False):
+        reg = Reg(config)
         dll_name = dll.split('/')[-1]
         bottle = ManagerUtils.get_bottle_path(config)
         bottle = f"{bottle}/drive_c/windows/"
@@ -65,15 +96,13 @@ class DLLComponent():
                     if os.path.exists(target):
                         shutil.copy(target, f"{target}.bck")
                     shutil.copyfile(source, target)
-                Runner.reg_add(
-                    config,
+                reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                     value=dll_name.split('.')[0],
                     data="native,builtin"
                 )
             else:
-                Runner.reg_delete(
-                    config,
+                reg.remove(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                     value=dll_name.split('.')[0]
                 )

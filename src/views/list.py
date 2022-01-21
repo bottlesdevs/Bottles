@@ -20,8 +20,8 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 
-from ..utils import RunAsync
-from ..backend.runner import Runner
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.backend.runner import Runner
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class ListViewEntry(Handy.ActionRow):

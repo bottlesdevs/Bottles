@@ -31,6 +31,7 @@ from .globals import BottlesRepositories, Paths
 from ..utils import RunAsync, UtilsLogger
 from .layers import LayersStore, Layer
 
+from bottles.backend.wine.wineboot import WineBoot
 
 logging = UtilsLogger()
 
@@ -122,6 +123,7 @@ class InstallerManager:
         widget: Gtk.Widget
     ):
         _config = config
+        wineboot = WineBoot(_config)
 
         for dep in dependencies:
             widget.next_step()
@@ -138,7 +140,7 @@ class InstallerManager:
                 layer = Layer().new(dep, self.__manager.get_latest_runner())
                 layer.mount_bottle(config)
                 _config = layer.runtime_conf
-                Runner.wineboot(_config, status=4, comunicate=True)
+                wineboot.init()
 
             res = self.__manager.dependency_manager.install(_config, _dep)
 
@@ -215,6 +217,7 @@ class InstallerManager:
     def __set_parameters(self, config, parameters: dict):
         _config = config
         _components_layers = []
+        wineboot = WineBoot(_config)
 
         if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:
             if config["Environment"] == "Layered":
@@ -225,7 +228,7 @@ class InstallerManager:
                 layer.mount_bottle(config)
                 _components_layers.append(layer)
                 _config = layer.runtime_conf
-                Runner.wineboot(_config, status=4, comunicate=True)
+                wineboot.init()
 
             self.__manager.install_dll_component(_config, "dxvk")
 
@@ -238,7 +241,7 @@ class InstallerManager:
                 layer.mount_bottle(config)
                 _components_layers.append(layer)
                 _config = layer.runtime_conf
-                Runner.wineboot(_config, status=4, comunicate=True)
+                wineboot.init()
 
             self.__manager.install_dll_component(_config, "vkd3d")
         
@@ -251,7 +254,7 @@ class InstallerManager:
                 layer.mount_bottle(config)
                 _components_layers.append(layer)
                 _config = layer.runtime_conf
-                Runner.wineboot(_config, status=4, comunicate=True)
+                wineboot.init()
 
             self.__manager.install_dll_component(_config, "nvapi")
         
@@ -336,9 +339,10 @@ class InstallerManager:
 
     def install(self, config, installer, widget):
         if config.get("Environment") == "Layered":
+            wineboot = WineBoot(self.__layer.runtime_conf)
             self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
             self.__layer.mount_bottle(config)
-            Runner.wineboot(self.__layer.runtime_conf, status=4, comunicate=True)
+            wineboot.init()
 
         manifest = self.get_installer(
             installer_name=installer[0],

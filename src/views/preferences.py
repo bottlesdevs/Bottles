@@ -18,7 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
-from ..widgets.component import ComponentEntry
+from bottles.widgets.component import ComponentEntry # pyright: reportMissingImports=false
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')

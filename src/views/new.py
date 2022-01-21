@@ -19,8 +19,9 @@ import os
 import re
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
-from ..backend.runner import Runner
-from ..utils import RunAsync
+
+from bottles.backend.runner import Runner # pyright: reportMissingImports=false
+from bottles.utils import RunAsync
 
 
 class EnvironmentRow(Handy.ActionRow):

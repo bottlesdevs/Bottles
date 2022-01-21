@@ -18,8 +18,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..utils import RunAsync
-from ..backend.runner import Runner
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.backend.runner import Runner
+from bottles.backend.wine.winedbg import WineDbg
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-taskmanager.ui')
@@ -68,9 +69,13 @@ class TaskManagerView(Gtk.ScrolledWindow):
         liststore_processes with the new data
         '''
         self.config = config
+        if not config.get("Runner"):
+            return
+            
+        winedbg = WineDbg(config)
 
         self.liststore_processes.clear()
-        processes = Runner.get_processes(self.config)
+        processes = winedbg.get_processes()
 
         if len(processes) > 0:
             for process in processes:

@@ -19,17 +19,16 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
-from ..utils import GtkUtils, RunAsync
+from bottles.utils import GtkUtils, RunAsync # pyright: reportMissingImports=false
+from bottles.widgets.page import PageRow
 
-from ..widgets.page import PageRow
-
-from .bottle_details import BottleView
-from .bottle_installers import InstallersView
-from .bottle_dependencies import DependenciesView
-from .bottle_preferences import PreferencesView
-from .bottle_programs import ProgramsView
-from .bottle_versioning import VersioningView
-from .bottle_taskmanager import TaskManagerView
+from bottles.views.bottle_details import BottleView
+from bottles.views.bottle_installers import InstallersView
+from bottles.views.bottle_dependencies import DependenciesView
+from bottles.views.bottle_preferences import PreferencesView
+from bottles.views.bottle_programs import ProgramsView
+from bottles.views.bottle_versioning import VersioningView
+from bottles.views.bottle_taskmanager import TaskManagerView
 
 
 pages = {}

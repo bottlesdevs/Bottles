@@ -28,9 +28,9 @@ gi.require_version('Notify', '0.7')
 gi.require_version('WebKit2', '4.0')
 from gi.repository import Gtk, Gio, Gdk, GLib, GObject
 
-from .params import *
-from .utils import UtilsLogger
-from .window import MainWindow
+from bottles.params import *
+from bottles.utils import UtilsLogger
+from bottles.window import MainWindow
 
 logging = UtilsLogger()
 

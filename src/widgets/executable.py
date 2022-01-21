@@ -17,8 +17,8 @@
 
 from gi.repository import Gtk
 
-from ..utils import RunAsync
-from ..backend.runner import Runner
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.backend.runner import Runner
 
 
 class ExecButton(Gtk.ModelButton):

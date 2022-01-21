@@ -32,21 +32,23 @@ from gettext import gettext as _
 from typing import NewType
 from gi.repository import GLib
 
-from ..utils import UtilsFiles, UtilsLogger, RunAsync
-from .runner import Runner
-from .result import Result
-from .globals import Samples, BottlesRepositories, Paths, TrdyPaths
-from .versioning import RunnerVersioning
-from .component import ComponentManager
-from .installer import InstallerManager
-from .dependency import DependencyManager
-from .manager_utils import ManagerUtils
-from .importer import ImportManager
-from .layers import Layer, LayersStore
-from .dxvk import DXVKComponent
-from. vkd3d import VKD3DComponent
-from .nvapi import NVAPIComponent
-
+from bottles.utils import UtilsFiles, UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.runner import Runner
+from bottles.backend.result import Result
+from bottles.backend.globals import Samples, BottlesRepositories, Paths
+from bottles.backend.versioning import RunnerVersioning
+from bottles.backend.component import ComponentManager
+from bottles.backend.installer import InstallerManager
+from bottles.backend.dependency import DependencyManager
+from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.importer import ImportManager
+from bottles.backend.layers import Layer, LayersStore
+from bottles.backend.dxvk import DXVKComponent
+from bottles.backend.vkd3d import VKD3DComponent
+from bottles.backend.nvapi import NVAPIComponent
+from bottles.backend.wine.uninstaller import Uninstaller
+from bottles.backend.wine.wineboot import WineBoot 
+from bottles.backend.wine.reg import Reg
 
 logging = UtilsLogger()
 
@@ -230,11 +232,12 @@ class Manager:
                 command=command,
                 terminal=False,
                 environment=False,
-                comunicate=True
+                comunicate=True,
+                minimal=True
             )
             uuid = uuid.strip()
 
-        Runner.run_uninstaller(config, uuid)
+        Uninstaller(config).from_uuid(uuid)
 
         # remove dependency from bottle configuration
         config["Installed_Dependencies"].remove(dependency[0])
@@ -257,20 +260,7 @@ class Manager:
             f"Removing program: [{ program_name }] from " +
             f"bottle: [{config['Name']}] config."
         )
-
-        uuid = False
-        command = f"uninstaller --list | grep -i '^{program_name}' | cut -f1 -d\|"
-
-        uuid = Runner.run_command(
-            config=config,
-            command=command,
-            terminal=False,
-            environment=False,
-            comunicate=True
-        )
-        uuid = uuid.strip()
-
-        Runner.run_uninstaller(config, uuid)
+        Uninstaller(config).from_name(program_name)
 
     def check_runners(self, install_latest: bool = True) -> bool:
         '''
@@ -826,12 +816,13 @@ class Manager:
         '''
         if "IsLayer" in config:
             return
-            
+
         logging.info(
             f"Setting Key: [{key}] to [{value}] for "
             f"bottle: [{config['Name']}]…"
         )
 
+        wineboot = WineBoot(config)
         bottle_complete_path = ManagerUtils.get_bottle_path(config)
 
         if scope != "":
@@ -849,7 +840,7 @@ class Manager:
             Sync type change requires wineserver restart or wine will fail
             to execute any command.
             '''
-            Runner.wineboot(config, status=0, comunicate=True)
+            wineboot.kill()
 
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
@@ -1124,11 +1115,13 @@ class Manager:
         if versioning:
             config["Versioning"] = True
 
+        reg = Reg(config)
+        wineboot = WineBoot(config)
+
         # execute wineboot on the bottle path
         log_update(_("The WINE config is being updated…"))
-        Runner.wineboot(config, status=4, silent=True, comunicate=True)
+        wineboot.init()
         log_update(_("WINE config updated!"))
-        time.sleep(.5)
 
         if "FLATPAK_ID" in os.environ or sandbox:
             '''
@@ -1149,7 +1142,6 @@ class Manager:
                         os.makedirs(user_path)
                     except:
                         pass
-            time.sleep(.5)
             
         # wait for registry files to be created
         UtilsFiles.wait_for_files(reg_files)
@@ -1158,7 +1150,7 @@ class Manager:
         logging.info("Setting Windows version…")
         log_update(_("Setting Windows version…"))
         Runner.set_windows(config, config["Windows"])
-        Runner.wineboot(config, status=3, comunicate=True)
+        wineboot.update()
         
         UtilsFiles.wait_for_files(reg_files)
 
@@ -1166,7 +1158,7 @@ class Manager:
         logging.info("Setting CMD default settings…")
         log_update(_("Apply CMD default settings…"))
         Runner.apply_cmd_settings(config)
-        Runner.wineboot(config, status=3, comunicate=True)
+        wineboot.update()
         
         UtilsFiles.wait_for_files(reg_files)
         
@@ -1175,8 +1167,7 @@ class Manager:
         log_update(_("Optimizing environment…"))
         _blacklist_dll = ["winemenubuilder.exe"]
         for _dll in _blacklist_dll:
-            Runner.reg_add(
-                config,
+            reg.add(
                 key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                 value=_dll,
                 data=""
@@ -1187,7 +1178,7 @@ class Manager:
         log_update(_("Applying environment: {0}…").format(environment))
         if environment not in ["Custom", "Layered"]:
             env = Samples.environments[environment.lower()]
-            Runner.wineboot(config, status=0, comunicate=True)
+            wineboot.kill()
             
             for prm in config["Parameters"]:
                 if prm in env["Parameters"]:
@@ -1218,7 +1209,6 @@ class Manager:
                 ))
                 self.dependency_manager.install(config, [dep, _dep])
 
-        time.sleep(.5)
         
         # create Layers key if Layered
         if environment == "Layered":
@@ -1228,8 +1218,6 @@ class Manager:
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
-
-        time.sleep(.5)
 
         if versioning:
             # create first state if versioning enabled
@@ -1248,7 +1236,7 @@ class Manager:
         UtilsFiles.wait_for_files(reg_files)
         
         # perform wineboot
-        Runner.wineboot(config, status=3, comunicate=True)
+        wineboot.update()
         
         return Result(
             status=True,
@@ -1295,7 +1283,8 @@ class Manager:
         the configuration and files.
         '''
         logging.info("Stopping bottle…")
-        Runner.wineboot(config, status=-1, comunicate=True)
+        wineboot = WineBoot(config)
+        wineboot.force()
 
         if config.get("Path"):
             logging.info(f"Removing applications installed with the bottle ..")
@@ -1331,6 +1320,7 @@ class Manager:
             f"Trying to repair the bottle: [{config['Name']}]…"
         )
 
+        wineboot = WineBoot(config)
         bottle_path = f"{Paths.bottles}/{config['Name']}"
 
         # create new config with path as name and Custom environment
@@ -1350,7 +1340,7 @@ class Manager:
             return False
 
         # Execute wineboot in bottle to generate missing files
-        Runner.wineboot(config=new_config, status=4, comunicate=True)
+        wineboot.init()
 
         # Update bottles
         self.update_bottles()

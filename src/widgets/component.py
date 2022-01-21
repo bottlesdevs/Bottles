@@ -17,8 +17,8 @@
 
 from gi.repository import Gtk, GLib, GObject, Handy
 
-from ..backend.manager_utils import ManagerUtils
-from ..utils import RunAsync
+from bottles.backend.manager_utils import ManagerUtils # pyright: reportMissingImports=false
+from bottles.utils import RunAsync
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
 class ComponentEntry(Handy.ActionRow):

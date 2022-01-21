@@ -26,12 +26,15 @@ from functools import lru_cache
 from typing import Union, NewType
 from gi.repository import GLib
 
-from .result import Result
-from .runner import Runner
-from .globals import BottlesRepositories, Paths
-from ..operation import OperationManager
-from .manager_utils import ManagerUtils
-from ..utils import UtilsLogger, CabExtract, validate_url
+from bottles.operation import OperationManager # pyright: reportMissingImports=false
+from bottles.utils import UtilsLogger, CabExtract, validate_url
+from bottles.backend.result import Result
+from bottles.backend.runner import Runner
+from bottles.backend.globals import BottlesRepositories, Paths
+from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.wine.uninstaller import Uninstaller
+from bottles.backend.wine.winedbg import WineDbg 
+from bottles.backend.wine.reg import Reg
 
 logging = UtilsLogger()
 
@@ -380,7 +383,8 @@ class DependencyManager:
         '''
         This function download and install the .exe or .msi file
         declared in the step, in a bottle.
-        '''            
+        '''     
+        winedbg = WineDbg(config)       
         download = self.__manager.component_manager.download(
             component="dependency",
             download_url=step.get("url"),
@@ -401,7 +405,7 @@ class DependencyManager:
                 environment=step.get("environment"),
                 no_async=True
             )
-            Runner.wait_for_process(config, file)
+            winedbg.wait_for_process(file)
             return True
 
         return False
@@ -418,7 +422,8 @@ class DependencyManager:
             command=command,
             terminal=False,
             environment=False,
-            comunicate=True
+            comunicate=True,
+            minimal=True
         )
 
         if uuid:
@@ -430,7 +435,7 @@ class DependencyManager:
                 )
             )
             for _uuid in uuid.splitlines():
-                Runner.run_uninstaller(config, _uuid)
+                Uninstaller(config).from_uuid(_uuid)
         
         return True
 
@@ -667,6 +672,8 @@ class DependencyManager:
         This function register a new override for each dll declared
         in the step, for a bottle.
         '''
+        reg = Reg(config)
+
         if step.get("url") and step.get("url").startswith("temp/"):
             path = step["url"].replace(
                 "temp/",
@@ -676,16 +683,14 @@ class DependencyManager:
 
             for dll in glob(path):
                 dll_name = os.path.splitext(os.path.basename(dll))[0]
-                Runner.reg_add(
-                    config,
+                reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                     value=dll_name,
                     data=step.get("type")
                 )
             return True
 
-        Runner.reg_add(
-            config,
+        reg.add(
             key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
             value=step.get("dll"),
             data=step.get("type")
@@ -697,8 +702,8 @@ class DependencyManager:
         This function set a register key in the bottle registry. It is
         just a mirror of the reg_add function from the manager. 
         '''
-        Runner.reg_add(
-            config,
+        reg = Reg(config)
+        reg.add(
             key=step.get("key"),
             value=step.get("value"),
             data=step.get("data"),
@@ -711,8 +716,8 @@ class DependencyManager:
         This function register a font in the bottle registry. It is
         important to make the font available in the system.
         '''
-        Runner.reg_add(
-            config,
+        reg = Reg(config)
+        reg.add(
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts",
             value=step.get("name"),
             data=step.get("file")
@@ -724,19 +729,18 @@ class DependencyManager:
         This function replace the font declared in the step in
         the bottle registry.
         '''
+        reg = Reg(config)
         replaces = step.get("replace")
 
         if len(replaces) == 1:
-            Runner.reg_add(
-                config,
+            reg.add(
                 key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
                 value=step.get("font"),
                 data=step.get("replace")
             )
         else:
             for r in replaces:
-                Runner.reg_add(
-                    config,
+                reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\Fonts\\Replacements",
                     value=step.get("font"),
                     data=r

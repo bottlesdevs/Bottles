@@ -22,23 +22,24 @@ from gettext import gettext as _
 from gi.repository import Gtk, Gio, Notify, Handy
 from pathlib import Path
 
-from .params import *
-from .backend.health import HealthChecker
-from .backend.manager import Manager
-from .backend.runner import Runner
-from .backend.notifications import NotificationsManager
+from bottles.params import * # pyright: reportMissingImports=false
+from bottles.widgets.message import MessageEntry
+from bottles.utils import UtilsConnection, UtilsLogger
 
-from .views.new import NewView
-from .views.details import DetailsView
-from .views.list import ListView
-from .views.preferences import PreferencesWindow
-from .views.importer import ImporterView
-from .dialogs.crash import CrashReportDialog
-from .dialogs.generic import AboutDialog, TextDialog
-from .dialogs.onboard import OnboardDialog
-from .widgets.message import MessageEntry
+from bottles.backend.health import HealthChecker
+from bottles.backend.manager import Manager
+from bottles.backend.runner import Runner
+from bottles.backend.notifications import NotificationsManager
 
-from .utils import UtilsConnection, UtilsLogger
+from bottles.views.new import NewView
+from bottles.views.details import DetailsView
+from bottles.views.list import ListView
+from bottles.views.preferences import PreferencesWindow
+from bottles.views.importer import ImporterView
+
+from bottles.dialogs.crash import CrashReportDialog
+from bottles.dialogs.generic import AboutDialog, TextDialog
+from bottles.dialogs.onboard import OnboardDialog
 
 logging = UtilsLogger()
 

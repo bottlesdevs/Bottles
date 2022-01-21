@@ -17,8 +17,8 @@
 
 from gi.repository import Gtk, Handy
 
-from ..utils import RunAsync
-from ..backend.manager_utils import ManagerUtils
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.backend.manager_utils import ManagerUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')

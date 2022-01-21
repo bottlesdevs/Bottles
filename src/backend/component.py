@@ -26,10 +26,10 @@ from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
 
-from .result import Result
-from ..operation import OperationManager
-from .globals import Paths, BottlesRepositories
-from ..utils import UtilsLogger, UtilsFiles
+from bottles.operation import OperationManager # pyright: reportMissingImports=false
+from bottles.utils import UtilsLogger, UtilsFiles
+from bottles.backend.globals import Paths, BottlesRepositories
+from bottles.backend.result import Result
 
 logging = UtilsLogger()
 

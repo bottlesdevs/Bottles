@@ -1,3 +1,20 @@
+# backup.py
+#
+# Copyright 2020 brombinmirko <send@mirko.pm>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import os
 import yaml
 import uuid
@@ -7,13 +24,12 @@ from typing import NewType
 from gettext import gettext as _
 from gi.repository import GLib
 
-from .manager import Manager
-
-from ..utils import UtilsLogger
-from .result import Result
-from .globals import Paths
-from .manager_utils import ManagerUtils
-from ..operation import OperationManager
+from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.manager import Manager
+from bottles.backend.result import Result
+from bottles.backend.globals import Paths
+from bottles.backend.manager_utils import ManagerUtils
+from bottles.operation import OperationManager
 
 logging = UtilsLogger()
 

@@ -18,9 +18,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..utils import GtkUtils
-from ..widgets.program import ProgramEntry
-from ..backend.manager_utils import ManagerUtils
+from bottles.utils import GtkUtils
+from bottles.widgets.program import ProgramEntry
+from bottles.backend.manager_utils import ManagerUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-programs.ui')

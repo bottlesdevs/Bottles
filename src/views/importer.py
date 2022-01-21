@@ -18,9 +18,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..backend.backup import BackupManager
-from ..utils import RunAsync
-from ..widgets.importer import ImporterEntry
+from bottles.backend.backup import BackupManager # pyright: reportMissingImports=false
+from bottles.utils import RunAsync
+from bottles.widgets.importer import ImporterEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')

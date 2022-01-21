@@ -19,9 +19,8 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..utils import RunAsync, GtkUtils
-
-from ..widgets.state import StateEntry
+from bottles.utils import RunAsync, GtkUtils # pyright: reportMissingImports=false
+from bottles.widgets.state import StateEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-versioning.ui')

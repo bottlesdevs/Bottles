@@ -18,8 +18,9 @@
 from datetime import datetime
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
-from ..utils import RunAsync
-from ..dialogs.generic import Dialog
+
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.dialogs.generic import Dialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')

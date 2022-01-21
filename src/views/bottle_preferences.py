@@ -19,15 +19,16 @@ import os
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..utils import RunAsync
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
 
-from ..backend.runner import Runner, gamemode_available, gamescope_available
-from ..backend.manager_utils import ManagerUtils
+from bottles.backend.runner import Runner, gamemode_available, gamescope_available
+from bottles.backend.manager_utils import ManagerUtils
 
-from ..dialogs.envvars import EnvVarsDialog
-from ..dialogs.dlloverrides import DLLOverridesDialog
-from ..dialogs.gamescope import GamescopeDialog
+from bottles.dialogs.envvars import EnvVarsDialog
+from bottles.dialogs.dlloverrides import DLLOverridesDialog
+from bottles.dialogs.gamescope import GamescopeDialog
 
+from bottles.backend.wine.reg import Reg
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-preferences.ui')
 class PreferencesView(Gtk.ScrolledWindow):
@@ -752,12 +753,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.config = new_config
             widget.set_sensitive(True)
 
+        reg = Reg(self.config)
         widget.set_sensitive(False)
         _rule = "Y" if state else "N"
+        
         RunAsync(
-            Runner.reg_add,
+            reg.add,
             callback=update,
-            config=self.config,
             key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
             value="GrabFullscreen",
             data=_rule

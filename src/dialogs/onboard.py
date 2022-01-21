@@ -19,7 +19,7 @@ import time
 
 from gi.repository import Gtk, Handy
 
-from ..utils import RunAsync
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
 class OnboardDialog(Handy.Window):

@@ -19,8 +19,8 @@ import os
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from ..utils import GtkUtils
-from ..widgets.dependency import DependencyEntry
+from bottles.utils import GtkUtils # pyright: reportMissingImports=false
+from bottles.widgets.dependency import DependencyEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-dependencies.ui')

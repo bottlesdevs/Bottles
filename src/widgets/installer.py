@@ -18,8 +18,9 @@
 from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
 import webbrowser
-from ..utils import RunAsync
-from ..dialogs.generic import TextDialog, WebDialog
+
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.dialogs.generic import TextDialog, WebDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
