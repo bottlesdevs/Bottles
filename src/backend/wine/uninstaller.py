@@ -32,5 +32,5 @@ class Uninstaller(WineProgram):
     def from_name(self, name: str):
         uuid = self.get_uuid(name)
         uuid = uuid.strip()
-
-        return self.from_uuid(uuid)
+        for _uuid in uuid.splitlines():
+            self.from_uuid(_uuid)
