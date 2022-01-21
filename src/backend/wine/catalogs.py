@@ -1,0 +1,57 @@
+win_versions = {
+    "win10": {
+        "CSDVersion": "",
+        "CurrentBuildNumber": "10240",
+        "CurrentVersion": "10.0",
+        "CSDVersionHex": "0",
+        "ProductType": "WinNT",
+    },
+    "win81": {
+        "CSDVersion": "",
+        "CurrentBuildNumber": "9600",
+        "CurrentVersion": "6.3",
+        "CSDVersionHex": "00000000",
+        "ProductType": "WinNT",
+    },
+    "win8": {
+        "CSDVersion": "",
+        "CurrentBuildNumber": "9200",
+        "CurrentVersion": "6.2",
+        "CSDVersionHex": "0",
+        "ProductType": "WinNT",
+    },
+    "win7": {
+        "CSDVersion": "Service Pack 1",
+        "CurrentBuildNumber": "7601",
+        "CurrentVersion": "6.1",
+        "CSDVersionHex": "256",
+        "ProductType": "WinNT",
+    },
+    "win2008r2": {
+        "CSDVersion": "Service Pack 1",
+        "CurrentBuildNumber": "7601",
+        "CurrentVersion": "6.1",
+        "CSDVersionHex": "256",
+        "ProductType": "WinNT",
+    },
+    "win2008": {
+        "CSDVersion": "Service Pack 2",
+        "CurrentBuildNumber": "6002",
+        "CurrentVersion": "6.0",
+        "CSDVersionHex": "512",
+        "ProductType": "WinNT",
+    },
+    "winxp": {
+        "CSDVersion": "Service Pack 3",
+        "CurrentBuildNumber": "2600",
+        "CSDVersionHex": "768",
+        "CurrentVersion": "5.1",
+    },
+    "winxp64": {
+        "CSDVersion": "Service Pack 2",
+        "CurrentBuildNumber": "3790",
+        "CSDVersionHex": "512",
+        "CurrentVersion": "5.2",
+        "ProductType": "WinNT",
+    },
+}
