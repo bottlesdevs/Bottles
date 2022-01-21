@@ -1,6 +1,8 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 backenddir = join_paths(pkgdatadir, 'bottles/backend')
 
+subdir('wine')
+
 bottles_sources = [
   '__init__.py',
   'backup.py',
