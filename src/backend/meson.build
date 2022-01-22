@@ -28,7 +28,8 @@ bottles_sources = [
   'dll.py',
   'dxvk.py',
   'vkd3d.py',
-  'nvapi.py'
+  'nvapi.py',
+  'conf.py'
 ]
 
 install_data(bottles_sources, install_dir: backenddir)

@@ -31,7 +31,8 @@ from .globals import BottlesRepositories, Paths
 from ..utils import RunAsync, UtilsLogger
 from .layers import LayersStore, Layer
 
-from bottles.backend.wine.wineboot import WineBoot
+from bottles.backend.wine.wineboot import WineBoot # pyright: reportMissingImports=false
+from bottles.backend.conf import ConfigManager
 
 logging = UtilsLogger()
 
@@ -158,6 +159,10 @@ class InstallerManager:
             # Step type: run_script
             if st.get("action") == "run_script":
                 self.__step_run_script(config, st)
+
+            # Step type: update_config
+            if st.get("action") == "update_config":
+                self.__step_update_config(config, st)
                 
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
@@ -213,6 +218,20 @@ class InstallerManager:
         logging.info(f"Executing installer script..")
         print(stdout.decode('utf-8'))
         logging.info(f"Finished executing installer script.")
+    
+    def __step_update_config(self, config, step: dict):
+        bottle = ManagerUtils.get_bottle_path(config)
+        conf_path = step.get("path")
+        conf_type = step.get("type")
+        del_keys = step.get("del_keys")
+        upd_keys = step.get("upd_keys")
+        conf_path = f"{bottle}/{conf_path}"
+        _conf = ConfigManager(conf_path, conf_type)
+
+        for d in del_keys:
+            _conf.del_key(d)
+        
+        _conf.merge_dict(upd_keys)
 
     def __set_parameters(self, config, parameters: dict):
         _config = config
