@@ -125,7 +125,7 @@ class BackupManager:
         '''
         BackupManager.operation_manager = OperationManager(window)
         task_id = str(uuid.uuid4())
-        backup_name = path.split("/")[-1].split(".")
+        backup_name = os.path.basename(path)
         import_status = False
 
         GLib.idle_add(
@@ -142,7 +142,9 @@ class BackupManager:
             to replicate the bottle configuration, else the backup
             will be used to extract the bottle's directory.
             '''
-            backup_name = backup_name[-2]
+            if backup_name.endswith(".yml"):
+                backup_name = backup_name[:-4]
+
             try:
                 with open(path, "r") as config_backup:
                     config = yaml.safe_load(config_backup)
@@ -153,7 +155,8 @@ class BackupManager:
             except:
                 import_status = False
         else:
-            backup_name = backup_name[-3]
+            if backup_name.endswith(".tar.gz"):
+                backup_name = backup_name[:-7]
 
             if backup_name.lower().startswith("backup_"):
                 # remove the "backup_" prefix if it exists
