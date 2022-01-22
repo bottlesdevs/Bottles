@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-22 00:17+0100\n"
-"PO-Revision-Date: 2022-01-07 09:52+0000\n"
-"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
+"PO-Revision-Date: 2022-01-23 11:55+0000\n"
+"Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -243,9 +243,8 @@ msgid "Close Bottles after starting an executable from the file manager."
 msgstr "从文件管理器启动可执行文件后关闭 Bottles。"
 
 #: src/ui/about.ui:11
-#, fuzzy
 msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2021 - Bottles 开发者"
+msgstr "© 2017-2022 - Bottles 开发者"
 
 #: src/ui/about.ui:12
 msgid "Easily manage wineprefix using environments"
@@ -325,9 +324,8 @@ msgstr ""
 "如果您遭遇图形故障请禁用。"
 
 #: src/ui/details-preferences.ui:44 src/ui/details-preferences.ui:573
-#, fuzzy
 msgid "Updating DXVK, please wait…"
-msgstr "正在更新状态…"
+msgstr "正在更新 DXVK，请稍等…"
 
 #: src/ui/details-preferences.ui:77 src/ui/details-preferences.ui:61
 msgid "Use VKD3D"
@@ -342,9 +340,8 @@ msgstr ""
 "如果您遭遇图形故障请禁用。"
 
 #: src/ui/details-preferences.ui:88 src/ui/details-preferences.ui:663
-#, fuzzy
 msgid "Updating VKD3D, please wait…"
-msgstr "正在更新状态…"
+msgstr "正在更新 VKD3D，请稍等…"
 
 #: src/ui/details-preferences.ui:121 src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
@@ -355,9 +352,8 @@ msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr "提供 DLSS 支持（如果可用）和 Nvidia 的 NVAPI。"
 
 #: src/ui/details-preferences.ui:131 src/ui/details-preferences.ui:754
-#, fuzzy
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "正在安装 DXVK-NVAPI …"
+msgstr "正在更新 DXVK-NVAPI，请稍等…"
 
 #: src/ui/details-preferences.ui:166 src/ui/details-preferences.ui:145
 msgid "Enable FSR"
@@ -417,11 +413,11 @@ msgstr "使用 Wine 虚拟桌面。"
 
 #: src/ui/details-preferences.ui:363
 msgid "Mouse capture fullscreen"
-msgstr ""
+msgstr "鼠标捕获全屏"
 
 #: src/ui/details-preferences.ui:364
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "让程序在全屏时捕获鼠标输入。"
 
 #: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
@@ -440,7 +436,7 @@ msgstr "启用同步以提高多核处理器的性能。"
 #: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
 #: src/ui/details-preferences.ui:453
 msgid "Will restart the wineserver."
-msgstr ""
+msgstr "将重启 wineserver。"
 
 #: src/ui/details-preferences.ui:434 src/ui/details-preferences.ui:407
 msgid "Esync"
@@ -457,7 +453,7 @@ msgstr "运行器"
 
 #: src/ui/details-preferences.ui:483
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "正在更新运行器和组件，请稍等…"
 
 #: src/ui/details-preferences.ui:531 src/ui/new.ui:326
 #: src/ui/details-preferences.ui:487
@@ -484,18 +480,16 @@ msgid "Manage VKD3D versions"
 msgstr "管理 VKD3D 版本"
 
 #: src/ui/details-preferences.ui:744
-#, fuzzy
 msgid "DXVK NVAPI version"
-msgstr "NVAPI 版本"
+msgstr "DXVK NVAPI 版本"
 
 #: src/ui/details-preferences.ui:835 src/ui/details-preferences.ui:744
 msgid "Windows version"
 msgstr "Windows 版本"
 
 #: src/ui/details-preferences.ui:845
-#, fuzzy
 msgid "Updating Windows version, please wait…"
-msgstr "设置 Windows 版本…"
+msgstr "正在更新 Windows 版本，请稍等…"
 
 #: src/ui/details-preferences.ui:894 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52 src/ui/details-preferences.ui:787
@@ -507,9 +501,8 @@ msgid "Working directory"
 msgstr "工作目录"
 
 #: src/ui/details-preferences.ui:934
-#, fuzzy
 msgid "Default to the bottle path."
-msgstr "指向 bottle 路径"
+msgstr "默认 bottle 路径。"
 
 #: src/ui/details-preferences.ui:950 src/ui/details-preferences.ui:843
 msgid "Choose a directory"
@@ -532,22 +525,20 @@ msgid "Use GameMode"
 msgstr "使用游戏模式"
 
 #: src/ui/details-preferences.ui:1010
-#, fuzzy
 msgid "Optimise gaming performance on demand."
-msgstr "根据需要优化游戏性能"
+msgstr "根据需要优化游戏性能。"
 
 #: src/ui/details-preferences.ui:1036
-#, fuzzy
 msgid "Use Gamescope"
-msgstr "使用游戏模式"
+msgstr "使用 Gamescope"
 
 #: src/ui/details-preferences.ui:1037
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "使用 Gamescope 微型合成器。"
 
 #: src/ui/details-preferences.ui:1075
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "管理 Gamescope 设置"
 
 #: src/ui/details-preferences.ui:1118 src/ui/details-preferences.ui:886
 msgid "Audio"
@@ -1572,9 +1563,8 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
 #: src/views/bottle_preferences.py:142
-#, fuzzy
 msgid "This feature is not available on your system."
-msgstr "游戏模式在你的系统中不可用，或没在运行。"
+msgstr "该功能在您的系统上不可用。"
 
 #: src/views/bottle_preferences.py:156 src/views/bottle_preferences.py:138
 msgid "Choose working directory for executables"
