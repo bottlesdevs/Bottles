@@ -408,8 +408,8 @@ Disable if you're experiencing graphical glitches.</property>
                       <object class="HdyActionRow">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Enable synchronization to increase performance of multi-core processors.</property>
                         <property name="title" translatable="yes">Synchronization</property>
-                        <property name="subtitle" translatable="yes">Enable synchronization to increase performance of multi-core processors.</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
@@ -457,6 +457,21 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
                                 <property name="position">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkToggleButton" id="toggle_futex2">
+                                <property name="label" translatable="yes">Futex2</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
+                                <property name="valign">center</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">3</property>
                               </packing>
                             </child>
                             <style>

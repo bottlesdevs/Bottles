@@ -60,6 +60,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
+    toggle_futex2 = Gtk.Template.Child()
     combo_fsr = Gtk.Template.Child()
     combo_virt_res = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
@@ -100,6 +101,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
         self.toggle_esync.connect('toggled', self.__set_esync)
         self.toggle_fsync.connect('toggled', self.__set_fsync)
+        self.toggle_futex2.connect('toggled', self.__set_futex2)
 
         self.switch_dxvk.connect('state-set', self.__toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.__toggle_dxvk_hud)
@@ -230,6 +232,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_block_by_func(self.__set_esync)
         self.toggle_fsync.handler_block_by_func(self.__set_fsync)
+        self.toggle_futex2.handler_block_by_func(self.__set_futex2)
         
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
@@ -247,6 +250,8 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.toggle_esync.set_active(True)
         if parameters["sync"] == "fsync":
             self.toggle_fsync.set_active(True)
+        if parameters["sync"] == "futex2":
+            self.toggle_futex2.set_active(True)
 
         self.switch_discrete.set_active(parameters["discrete_gpu"])
         self.switch_virt_desktop.set_active(parameters["virtual_desktop"])
@@ -284,6 +289,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
         self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
+        self.toggle_futex2.handler_unblock_by_func(self.__set_futex2)
 
 
     def __show_gamescope_settings(self, widget):
@@ -316,19 +322,19 @@ class PreferencesView(Gtk.ScrolledWindow):
             scope="Parameters"
         )
         self.config = new_config
-
-        if sync in ["esync", "fsync"]:
-            self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
-            self.toggle_sync.set_active(False)
-            self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
-        if sync in ["esync", "wine"]:
-            self.toggle_fsync.handler_block_by_func(self.__set_fsync)
-            self.toggle_fsync.set_active(False)
-            self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
-        if sync in ["fsync", "wine"]:
-            self.toggle_esync.handler_block_by_func(self.__set_esync)
-            self.toggle_esync.set_active(False)
-            self.toggle_esync.handler_unblock_by_func(self.__set_esync)
+        togglers = [
+            ("wine", self.toggle_sync, self.__set_wine_sync),
+            ("esync", self.toggle_esync, self.__set_esync),
+            ("fsync", self.toggle_fsync, self.__set_fsync),
+            ("futex2", self.toggle_futex2, self.__set_futex2)
+        ]
+        for sync_type, toggle, func in togglers:
+            toggle.handler_block_by_func(func)
+            if sync_type == sync:
+                toggle.set_active(True)
+            else:
+                toggle.set_active(False)
+            toggle.handler_unblock_by_func(func)
 
     def __set_wine_sync(self, widget):
         self.__set_sync_type("wine")
@@ -338,6 +344,9 @@ class PreferencesView(Gtk.ScrolledWindow):
 
     def __set_fsync(self, widget):
         self.__set_sync_type("fsync")
+
+    def __set_futex2(self, widget):
+        self.__set_sync_type("futex2")
     
     def __toggle_dxvk(self, widget=False, state=False):
         '''

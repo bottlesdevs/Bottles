@@ -177,6 +177,7 @@ class WineCommand:
         # DXVK HUD environment variable
         if params["dxvk_hud"]:
             env.add("DXVK_HUD", "device,memory,drawcalls,fps,version,api,compiler")
+
         # Esync environment variable
         if params["sync"] == "esync":
             env.add("WINEESYNC", "1")
@@ -184,6 +185,10 @@ class WineCommand:
         # Fsync environment variable
         if params["sync"] == "fsync":
             env.add("WINEFSYNC", "1")
+        
+        # Futex2 environment variable
+        if params["sync"] == "futex2":
+            env.add("WINEFSYNC_FUTEX2", "1")
         
         # Wine debug level
         debug_level = "fixme-all"
