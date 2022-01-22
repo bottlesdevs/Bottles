@@ -6,7 +6,7 @@ win_versions = {
         "CurrentBuildNumber": "17763",
         "CurrentVersion": "10.0",
         "CurrentMinorVersionNumber": "0",
-        "CurrentMajorVersionNumber": "10",
+        "CurrentMajorVersionNumber": "a", # 10
         "ProductType": "WinNT",
         "ProductName": "Microsoft Windows 10"
     },
