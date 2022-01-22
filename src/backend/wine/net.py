@@ -29,7 +29,7 @@ class Net(WineProgram):
         
         return self.launch(args=args, comunicate=True)
 
-    def stop(self, name: str = None):
+    def use(self, name: str = None):
         # this command has no documentation, not tested yet
         args = "use"
 
