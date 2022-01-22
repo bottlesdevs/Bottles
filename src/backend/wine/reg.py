@@ -1,8 +1,11 @@
+import os
+import uuid
 from typing import NewType
 
 from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.manager_utils import ManagerUtils
 
 logging = UtilsLogger()
 
@@ -52,3 +55,40 @@ class Reg(WineProgram):
 
         res = self.launch(args, comunicate=True)
         logging.info(res)
+    
+    def import_bundle(self, bundle: dict):
+        '''
+        This function import a bundle to the given bottle registry.
+        '''
+        config = self.config
+        logging.info(
+            f"Importing bundle to {config['Name']} registry"
+        )
+        winedbg = WineDbg(config)
+        reg_file = ManagerUtils.get_temp_path(f"{uuid.uuid4()}.reg")
+        
+        # prepare reg file
+        with open(reg_file, "w") as f:
+            f.write("REGEDIT4\n\n")
+
+            for key in bundle:
+                f.write(f"[{key}]\n")
+
+                for value in bundle[key]:
+                    if "keyType" in value:
+                        f.write(f'"{value["value"]}"={value["keyType"]}:{value["data"]}\n')
+                    else:
+                        f.write(f'"{value["value"]}"="{value["data"]}"\n')
+
+                f.write("\n")
+            
+        args = f"import {reg_file}"
+
+        # avoid conflicts when executing async
+        winedbg.wait_for_process("reg.exe")
+
+        res = self.launch(args, comunicate=True)
+        logging.info(res)
+
+        # remove reg file
+        os.remove(reg_file)
