@@ -363,6 +363,9 @@ class InstallerManager:
         if dependencies:
             res = self.__install_dependencies(_config, dependencies, widget)
             if not res:
+                # unlock widget
+                if widget is not None:
+                    GLib.idle_add(widget.set_err, _("Dependencies installation failed."))
                 return False
 
         # execute steps

@@ -33,6 +33,7 @@ class InstallerEntry(Handy.ActionRow):
     btn_manifest = Gtk.Template.Child()
     btn_report = Gtk.Template.Child()
     img_installed = Gtk.Template.Child()
+    img_error = Gtk.Template.Child()
     label_step = Gtk.Template.Child()
     # endregion
 
@@ -116,6 +117,15 @@ class InstallerEntry(Handy.ActionRow):
         self.btn_install.set_visible(False)
         self.label_step.set_visible(False)
         self.img_installed.set_visible(True)
+        self.get_parent().set_sensitive(True)
+
+    def set_err(self, msg="Something went wrong"):
+        '''Set error status'''
+        self.spinner.stop()
+        self.btn_install.set_visible(False)
+        self.img_error.set_visible(True)
+        self.label_step.set_visible(False)
+        self.img_error.set_tooltip_text(msg)
         self.get_parent().set_sensitive(True)
 
     def next_step(self):
