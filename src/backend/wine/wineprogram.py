@@ -15,8 +15,9 @@ class WineProgram:
     config: dict = {}
     colors: str = "default"
 
-    def __init__(self, config: BottleConfig):
+    def __init__(self, config: BottleConfig, silent=False):
         self.config = config
+        self.silent = silent
 
     def __get_command(self, args: str = None):
         command = self.command
@@ -31,9 +32,12 @@ class WineProgram:
         terminal: bool = False, 
         minimal: bool = True,
         comunicate: bool = False,
-        environment: dict = {}
+        environment: dict = {},
+        cwd: str = None,
     ):
-        logging.info(f"Using {self.program}")
+        if not self.silent:
+            logging.info(f"Using {self.program}")
+            
         command = self.__get_command(args)
         res = WineCommand(
             self.config,
@@ -42,7 +46,8 @@ class WineProgram:
             minimal=minimal,
             comunicate=comunicate,
             colors=self.colors,
-            environment=environment
+            environment=environment,
+            cwd=cwd
         ).run()
         return res
 
