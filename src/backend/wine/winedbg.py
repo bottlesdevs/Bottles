@@ -85,12 +85,12 @@ class WineDbg(WineProgram):
             time.sleep(timeout)
         return True
 
-    def kill_process(self, config:BottleConfig, pid:str=None, name:str=None):
+    def kill_process(self, pid:str=None, name:str=None):
         '''
         Kill a process by its PID or name.
         '''
-        wineserver = WineServer(config)
-        wineboot = WineBoot(config)
+        wineserver = WineServer(self.config)
+        wineboot = WineBoot(self.config)
         if not wineserver.is_alive():
             return
 
