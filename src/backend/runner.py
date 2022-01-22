@@ -18,16 +18,12 @@
 import shlex
 from typing import NewType
 
-from bottles.utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding # pyright: reportMissingImports=false
-from bottles.backend.globals import Paths, CMDSettings, gamemode_available, gamescope_available
+from bottles.utils import UtilsLogger, RunAsync # pyright: reportMissingImports=false
+from bottles.backend.globals import CMDSettings, gamemode_available, gamescope_available
 from bottles.backend.manager_utils import ManagerUtils
-from bottles.backend.runtime import RuntimeManager
-from bottles.backend.display import DisplayUtils
-from bottles.backend.gpu import GPUUtils
 from bottles.backend.result import Result
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.winecommand import WineCommand
-from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
@@ -47,80 +43,6 @@ class Runner:
     as clean as possible to easily migrate to the libwine in the future.
     <https://github.com/bottlesdevs/libwine>
     '''
-
-    @staticmethod
-    def run_lnk(
-        config: BottleConfig,
-        file_path: str,
-        arguments: str = "",
-        environment: dict = False
-    ):
-        '''
-        Run a .lnk file with arguments and environment variables, inside
-        a bottle using the config provided.
-        '''
-        logging.info("Running link file on the bottle…")
-        winecmd = WineCommand(
-            config=config, 
-            command=f"start /unix '{file_path}'", 
-            arguments=arguments, 
-            environment=environment
-        )
-        RunAsync(winecmd.run)
-
-    @staticmethod
-    def run_executable(
-        config: BottleConfig,
-        file_path: str,
-        arguments: str = "",
-        environment: dict = False,
-        no_async: bool = False,
-        cwd: str = None,
-        move_file: bool = False,
-        move_progress: callable = None,
-        terminal: bool = False
-    ):
-        '''
-        Run an executable file with arguments and environment variables, inside
-        a bottle using the config provided.
-        '''
-        logging.info("Running an executable on the bottle…")
-
-        if file_path in [None, ""]:
-            logging.error("No executable file path provided.")
-            return False
-
-        if move_file:
-            new_path = ManagerUtils.move_file_to_bottle(
-                file_path=file_path,
-                config=config,
-                fn_update=move_progress
-            )
-            if new_path:
-                file_path = new_path
-        
-        file_path = shlex.quote(file_path)
-        command = f"{file_path}"
-
-        if "msi" in file_path.split("."):
-            command = f"msiexec /i {file_path}"
-        elif "bat" in file_path.split("."):
-            command = f"wineconsole cmd /c {file_path}"
-
-        winecmd = WineCommand(
-            config=config, 
-            command=command,
-            arguments=arguments, 
-            environment=environment, 
-            comunicate=True, 
-            cwd=cwd,
-            terminal=terminal
-        )
-        if no_async:
-            winecmd.run()
-            return Result(status=True)
-        else:
-            RunAsync(winecmd.run)
 
     @staticmethod
     def run_layer_executable(config: BottleConfig, layer: dict):
@@ -391,4 +313,3 @@ class Runner:
                 data=value,
                 keyType=keyType
             )
-        
