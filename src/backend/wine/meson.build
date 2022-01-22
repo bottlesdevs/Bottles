@@ -16,6 +16,9 @@ bottles_sources = [
   'regedit.py',
   'reg.py',
   'net.py',
+  'msiexec.py',
+  'executor.py',
+  'start.py',
 ]
 
 install_data(bottles_sources, install_dir: winedir)
