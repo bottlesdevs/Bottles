@@ -35,6 +35,7 @@ from bottles.backend.manager_utils import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg 
 from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.executor import WineExecutor
 
 logging = UtilsLogger()
 
@@ -398,13 +399,13 @@ class DependencyManager:
             else:
                 file = step.get("file_name")
 
-            Runner.run_executable(
-                config=config,
-                file_path=f"{Paths.temp}/{file}",
-                arguments=step.get("arguments"),
-                environment=step.get("environment"),
-                no_async=True
+            executor = WineExecutor(
+                config,
+                exec_path=f"{Paths.temp}/{file}",
+                args=step.get("arguments"),
+                environment=step.get("environment")
             )
+            executor.run()
             winedbg.wait_for_process(file)
             return True
 

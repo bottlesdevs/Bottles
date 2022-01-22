@@ -69,7 +69,6 @@ _ = gettext.gettext
 
 class Bottles(Gtk.Application):
     arg_exe = False
-    arg_lnk = False
     arg_bottle = False
     arg_passed = False
 
@@ -148,7 +147,7 @@ class Bottles(Gtk.Application):
             quit()
 
         if commands.contains("lnk"):
-            self.arg_lnk = commands.lookup_value("lnk").get_string()
+            self.arg_exe = commands.lookup_value("lnk").get_string()
 
         if commands.contains("bottle"):
             self.arg_bottle = commands.lookup_value("bottle").get_string()
@@ -162,7 +161,7 @@ class Bottles(Gtk.Application):
             the --executable argument.
             '''
             for a in sys.argv:
-                if a.endswith(('.exe', '.msi', '.bat')):
+                if a.endswith(('.exe', '.msi', '.bat', '.lnk')):
                     self.arg_exe = a
 
         self.do_activate()
@@ -234,7 +233,6 @@ class Bottles(Gtk.Application):
                 application=self,
                 arg_exe=self.arg_exe,
                 arg_bottle=self.arg_bottle,
-                arg_lnk=self.arg_lnk,
                 arg_passed=self.arg_passed
             )
         self.win = win

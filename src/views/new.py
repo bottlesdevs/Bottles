@@ -21,6 +21,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
 from bottles.backend.runner import Runner # pyright: reportMissingImports=false
+from bottles.backend.wine.executor import WineExecutor
 from bottles.utils import RunAsync
 
 
@@ -96,7 +97,7 @@ class NewView(Handy.Window):
             "icon": "emoji-symbols-symbolic"
         })
 
-    def __init__(self, window, arg_exe=None, arg_lnk=None, **kwargs):
+    def __init__(self, window, arg_exe=None, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
 
@@ -104,7 +105,6 @@ class NewView(Handy.Window):
         self.window = window
         self.manager = window.manager
         self.arg_exe = arg_exe
-        self.arg_lnk = arg_lnk
         self.selected_env = "gaming"
         self.new_bottle_config = {}
 
@@ -277,15 +277,10 @@ class NewView(Handy.Window):
         no arguments, it will simply close the dialog.
         '''
         if self.arg_exe:
-            Runner.run_executable(
-                config=self.new_bottle_config,
-                file_path=self.arg_exe
+            executor = WineExecutor(
+                self.new_bottle_config,
+                exec_path=self.arg_exe
             )
-
-        if self.arg_lnk is not None:
-            Runner.run_lnk(
-                config=self.new_bottle_config,
-                file_path=self.arg_lnk
-            )
+            RunAsync(executor.run)
 
         self.destroy()

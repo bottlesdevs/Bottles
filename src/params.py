@@ -8,8 +8,7 @@ VERSION = "2022.1.14-trento-4"
 ANIM_DURATION = 120
 
 # General purpose definitions
-EXECUTABLE_EXTS = ('.exe', '.msi', '.bat')
-LNK_EXTS = ('.lnk')
+EXECUTABLE_EXTS = ('.exe', '.msi', '.bat', '.lnk')
 
 # URLs
 DOC_URL = "https://docs.usebottles.com"

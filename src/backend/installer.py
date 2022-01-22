@@ -33,6 +33,7 @@ from .layers import LayersStore, Layer
 
 from bottles.backend.wine.wineboot import WineBoot # pyright: reportMissingImports=false
 from bottles.backend.conf import ConfigManager
+from bottles.backend.wine.executor import WineExecutor
 
 logging = UtilsLogger()
 
@@ -179,13 +180,13 @@ class InstallerManager:
                     else:
                         file = st.get("file_name")
 
-                    Runner.run_executable(
-                        config=config,
-                        file_path=f"{Paths.temp}/{file}",
-                        arguments=st.get("arguments"),
-                        environment=st.get("environment"),
-                        no_async=True
+                    executor = WineExecutor(
+                        config,
+                        exec_path=f"{Paths.temp}/{file}",
+                        args=st.get("arguments"),
+                        environment=st.get("environment")
                     )
+                    executor.run()
     
     def __step_run_script(self, config, step: dict):
         placeholders = {

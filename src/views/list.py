@@ -22,6 +22,7 @@ from gi.repository import Gtk, GLib, Handy
 
 from bottles.utils import RunAsync # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
+from bottles.backend.wine.executor import WineExecutor
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class ListViewEntry(Handy.ActionRow):
@@ -115,8 +116,9 @@ class ListViewEntry(Handy.ActionRow):
 
     '''Display file dialog for executable'''
     def run_executable(self, widget):
-        if not self.arg_exe:
-            '''If executable is not Bottles argument'''
+        exec_path = self.arg_exe
+
+        if not exec_path:
             file_dialog = Gtk.FileChooserNative.new(
                 _("Choose a Windows executable file"),
                 self.window,
@@ -124,21 +126,22 @@ class ListViewEntry(Handy.ActionRow):
                 _("Run"),
                 _("Cancel")
             )
-
             response = file_dialog.run()
-
             if response == -3:
-                Runner.run_executable(self.config,
-                                           file_dialog.get_filename())
-
+                exec_path = file_dialog.get_filename()
             file_dialog.destroy()
-        else:
-            '''Use executable provided as bottles argument'''
-            Runner.run_executable(self.config, self.arg_exe)
-            if self.window.settings.get_boolean("auto-close-bottles"):
-                self.window.proper_close()
-            self.arg_exe = False
-            self.manager.update_bottles()
+        
+        executor = WineExecutor(
+            self.config,
+            exec_path=exec_path
+        )
+        RunAsync(executor.run)
+        
+        if self.window.settings.get_boolean("auto-close-bottles"):
+            self.window.proper_close()
+
+        self.arg_exe = False
+        self.manager.update_bottles()
 
     '''Show details page'''
     def show_details(self, widget):

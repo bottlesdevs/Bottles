@@ -24,12 +24,12 @@ from pathlib import Path
 
 from bottles.params import * # pyright: reportMissingImports=false
 from bottles.widgets.message import MessageEntry
-from bottles.utils import UtilsConnection, UtilsLogger
+from bottles.utils import UtilsConnection, UtilsLogger, RunAsync
 
 from bottles.backend.health import HealthChecker
 from bottles.backend.manager import Manager
-from bottles.backend.runner import Runner
 from bottles.backend.notifications import NotificationsManager
+from bottles.backend.wine.executor import WineExecutor
 
 from bottles.views.new import NewView
 from bottles.views.details import DetailsView
@@ -82,7 +82,7 @@ class MainWindow(Handy.ApplicationWindow):
     # Notify instance
     Notify.init(APP_ID)
 
-    def __init__(self, arg_exe, arg_lnk, arg_bottle, arg_passed, **kwargs):
+    def __init__(self, arg_exe, arg_bottle, arg_passed, **kwargs):
         super().__init__(**kwargs)
 
         self.utils_conn = UtilsConnection(self)
@@ -98,10 +98,6 @@ class MainWindow(Handy.ApplicationWindow):
         if not str(arg_exe).endswith(EXECUTABLE_EXTS):
             arg_exe = False
 
-        # Validate arg_lnk extension
-        if not str(arg_lnk).endswith(LNK_EXTS):
-            arg_lnk = False
-
         if arg_bottle and arg_bottle in self.manager.local_bottles.keys():
             '''
             If Bottles was started with a bottle and an executable as
@@ -110,18 +106,12 @@ class MainWindow(Handy.ApplicationWindow):
             bottle_config = self.manager.local_bottles[arg_bottle]
             arg_passed = arg_passed or ""
             if arg_exe:
-                Runner.run_executable(
-                    config=bottle_config,
-                    file_path=arg_exe,
-                    arguments=arg_passed
+                executor = WineExecutor(
+                    bottle_config,
+                    exec_path=arg_exe,
+                    args=arg_passed
                 )
-                self.proper_close()
-            elif arg_lnk:
-                Runner.run_lnk(
-                    config=bottle_config,
-                    file_path=arg_lnk,
-                    arguments=arg_passed
-                )
+                RunAsync(executor.run)
                 self.proper_close()
 
         # Pages
@@ -306,10 +296,10 @@ class MainWindow(Handy.ApplicationWindow):
         onboard_window = OnboardDialog(self)
         onboard_window.present()
 
-    def show_add_view(self, widget=False, arg_exe=None, arg_lnk=None):
+    def show_add_view(self, widget=False, arg_exe=None):
         if not self.argument_executed:
             self.argument_executed = True
-            new_window = NewView(self, arg_exe, arg_lnk)
+            new_window = NewView(self, arg_exe)
         else:
             new_window = NewView(self)
         new_window.present()

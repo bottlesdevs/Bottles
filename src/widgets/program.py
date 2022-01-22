@@ -24,9 +24,9 @@ from bottles.utils import RunAsync # pyright: reportMissingImports=false
 from bottles.dialogs.launchoptions import LaunchOptionsDialog
 from bottles.dialogs.rename import RenameDialog
 
-from bottles.backend.runner import Runner
 from bottles.backend.manager_utils import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.executor import WineExecutor
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
@@ -162,15 +162,14 @@ class ProgramEntry(Handy.ActionRow):
                 layer=self.program
             )
         else:
-            RunAsync(
-                Runner.run_executable,
-                callback=self.__reset_buttons,
-                config=self.config,
-                file_path=self.program["path"],
-                arguments=self.arguments,
-                cwd=self.program["folder"],
-                no_async=True
+            executor = WineExecutor(
+                self.config,
+                exec_path=self.program["path"],
+                args=self.arguments,
+                cwd=self.program["folder"]
             )
+            RunAsync(executor.run, callback=self.__reset_buttons)
+
         self.__reset_buttons()
     
     def stop_process(self, widget):

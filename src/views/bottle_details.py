@@ -43,6 +43,7 @@ from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.taskmgr import Taskmgr
 from bottles.backend.wine.control import Control
 from bottles.backend.wine.regedit import Regedit
+from bottles.backend.wine.executor import WineExecutor
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
 class BottleView(Gtk.ScrolledWindow):
@@ -291,45 +292,29 @@ class BottleView(Gtk.ScrolledWindow):
         _execs = self.config.get("Latest_Executables")
 
         if response == -3:
-            if args:
-                RunAsync(
-                    task_func=Runner.run_executable,
-                    config=self.config,
-                    file_path=file_dialog.get_filename(),
-                    arguments=args,
-                    move_file=self.check_move_file.get_active(),
-                    move_progress=self.update_move_progress,
-                    no_async=True,
-                    terminal=self.check_terminal.get_active()
-                )
-                self.manager.update_config(
-                    config=self.config,
-                    key="Latest_Executables",
-                    value=_execs+[{
-                        "name": file_dialog.get_filename().split("/")[-1],
-                        "file": file_dialog.get_filename(),
-                        "args": args
-                    }]
-                )
-            else:
-                RunAsync(
-                    task_func=Runner.run_executable,
-                    config=self.config,
-                    file_path=file_dialog.get_filename(),
-                    move_file=self.check_move_file.get_active(),
-                    move_progress=self.update_move_progress,
-                    no_async=True,
-                    terminal=self.check_terminal.get_active()
-                )
-                self.manager.update_config(
-                    config=self.config,
-                    key="Latest_Executables",
-                    value=_execs+[{
-                        "name": file_dialog.get_filename().split("/")[-1],
-                        "file": file_dialog.get_filename(),
-                        "args": ""
-                    }]
-                )
+
+            if not args:
+                args = ""
+
+            executor = WineExecutor(
+                self.config,
+                exec_path=file_dialog.get_filename(),
+                args=args,
+                terminal=self.check_terminal.get_active(),
+                move_file=self.check_move_file.get_active(),
+                move_upd_fn=self.update_move_progress
+            )
+            RunAsync(executor.run)
+
+            self.manager.update_config(
+                config=self.config,
+                key="Latest_Executables",
+                value=_execs+[{
+                    "name": file_dialog.get_filename().split("/")[-1],
+                    "file": file_dialog.get_filename(),
+                    "args": args
+                }]
+            )
 
         self.__update_latest_executables()
 

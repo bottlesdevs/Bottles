@@ -19,7 +19,7 @@ from gi.repository import Gtk
 
 from bottles.utils import RunAsync # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
-
+from bottles.backend.wine.executor import WineExecutor
 
 class ExecButton(Gtk.ModelButton):
 
@@ -35,12 +35,11 @@ class ExecButton(Gtk.ModelButton):
         self.show_all()
 
     def on_clicked(self, widget):
-        RunAsync(
-            task_func=Runner.run_executable,
-            config=self.config,
-            file_path=self.data.get("file"),
-            arguments=self.data.get("args"),
+        executor = WineExecutor(
+            self.config,
+            exec_path=self.data.get("file"),
+            args=self.data.get("args"),
             move_file=self.parent.check_move_file.get_active(),
-            move_progress=self.parent.update_move_progress,
-            no_async=True
+            move_upd_fn=self.parent.update_move_progress
         )
+        RunAsync(executor.run)
