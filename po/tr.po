@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-22 00:17+0100\n"
-"PO-Revision-Date: 2022-01-08 16:52+0000\n"
+"PO-Revision-Date: 2022-01-23 11:55+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -253,9 +253,8 @@ msgstr ""
 "kapat."
 
 #: src/ui/about.ui:11
-#, fuzzy
 msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2021 - Şişe Geliştiricileri"
+msgstr "© 2017-2022 - Şişeler Geliştiricileri"
 
 #: src/ui/about.ui:12
 msgid "Easily manage wineprefix using environments"
@@ -341,9 +340,8 @@ msgstr ""
 "Grafiksel sorunlar yaşıyorsanız devre dışı bırakın."
 
 #: src/ui/details-preferences.ui:44 src/ui/details-preferences.ui:573
-#, fuzzy
 msgid "Updating DXVK, please wait…"
-msgstr "Durumlar güncelleniyor…"
+msgstr "DXVK güncelleniyor, lütfen bekleyin…"
 
 #: src/ui/details-preferences.ui:77 src/ui/details-preferences.ui:61
 msgid "Use VKD3D"
@@ -358,9 +356,8 @@ msgstr ""
 "Grafiksel sorunlar yaşıyorsanız devre dışı bırakın."
 
 #: src/ui/details-preferences.ui:88 src/ui/details-preferences.ui:663
-#, fuzzy
 msgid "Updating VKD3D, please wait…"
-msgstr "Durumlar güncelleniyor…"
+msgstr "VKD3D güncelleniyor, lütfen bekleyin…"
 
 #: src/ui/details-preferences.ui:121 src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
@@ -371,9 +368,8 @@ msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr "Varsa DLSS desteği ve Nvidia'nın NVAPI'sini sağla."
 
 #: src/ui/details-preferences.ui:131 src/ui/details-preferences.ui:754
-#, fuzzy
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "DXVK-NVAPI kuruluyor…"
+msgstr "DXVK-NVAPI güncelleniyor, lütfen bekleyin…"
 
 #: src/ui/details-preferences.ui:166 src/ui/details-preferences.ui:145
 msgid "Enable FSR"
@@ -434,11 +430,11 @@ msgstr "Wine sanal masaüstünü kullanın."
 
 #: src/ui/details-preferences.ui:363
 msgid "Mouse capture fullscreen"
-msgstr ""
+msgstr "Tam ekranken fareyi yakalama"
 
 #: src/ui/details-preferences.ui:364
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "Tam ekran olduğunda programın fare girdisini yakalamasına izin verin."
 
 #: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
@@ -459,7 +455,7 @@ msgstr ""
 #: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
 #: src/ui/details-preferences.ui:453
 msgid "Will restart the wineserver."
-msgstr ""
+msgstr "wineserver yeniden başlatılacak."
 
 #: src/ui/details-preferences.ui:434 src/ui/details-preferences.ui:407
 msgid "Esync"
@@ -476,7 +472,7 @@ msgstr "Çalıştırıcı"
 
 #: src/ui/details-preferences.ui:483
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Çalıştırıcı ve bileşenler güncelleniyor, lütfen bekleyin…"
 
 #: src/ui/details-preferences.ui:531 src/ui/new.ui:326
 #: src/ui/details-preferences.ui:487
@@ -503,18 +499,16 @@ msgid "Manage VKD3D versions"
 msgstr "VKD3D sürümlerini yönetin"
 
 #: src/ui/details-preferences.ui:744
-#, fuzzy
 msgid "DXVK NVAPI version"
-msgstr "NVAPI sürümü"
+msgstr "DXVK NVAPI sürümü"
 
 #: src/ui/details-preferences.ui:835 src/ui/details-preferences.ui:744
 msgid "Windows version"
 msgstr "Windows sürümü"
 
 #: src/ui/details-preferences.ui:845
-#, fuzzy
 msgid "Updating Windows version, please wait…"
-msgstr "Windows sürümü ayarlanıyor…"
+msgstr "Windows sürümü güncelleniyor, lütfen bekleyin…"
 
 #: src/ui/details-preferences.ui:894 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52 src/ui/details-preferences.ui:787
@@ -526,9 +520,8 @@ msgid "Working directory"
 msgstr "Çalışma dizini"
 
 #: src/ui/details-preferences.ui:934
-#, fuzzy
 msgid "Default to the bottle path."
-msgstr "Şişe yolunu göster"
+msgstr "Şişe yolu için öntanımlı."
 
 #: src/ui/details-preferences.ui:950 src/ui/details-preferences.ui:843
 msgid "Choose a directory"
@@ -551,23 +544,20 @@ msgid "Use GameMode"
 msgstr "Oyun modunu kullan"
 
 #: src/ui/details-preferences.ui:1010
-#, fuzzy
 msgid "Optimise gaming performance on demand."
-msgstr "İsteğe bağlı olarak oyun performansını iyileştirir"
+msgstr "İstendiğinde oyun performansını iyileştir."
 
 #: src/ui/details-preferences.ui:1036
-#, fuzzy
 msgid "Use Gamescope"
-msgstr "Oyun modunu kullan"
+msgstr "Gamescope kullanın"
 
 #: src/ui/details-preferences.ui:1037
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Gamesscope mikro birleştiricisini kullan."
 
 #: src/ui/details-preferences.ui:1075
-#, fuzzy
 msgid "Manage Gamescope settings"
-msgstr "Wine alt sistem ayarlarını yönet."
+msgstr "Gamescope ayarlarını yönet"
 
 #: src/ui/details-preferences.ui:1118 src/ui/details-preferences.ui:886
 msgid "Audio"
@@ -1618,9 +1608,8 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
 
 #: src/views/bottle_preferences.py:142
-#, fuzzy
 msgid "This feature is not available on your system."
-msgstr "Oyun modu ya sisteminizde kullanılabilir değil ya da çalışmıyor."
+msgstr "Bu özellik sisteminizde kullanılabilir değil."
 
 #: src/views/bottle_preferences.py:156 src/views/bottle_preferences.py:138
 msgid "Choose working directory for executables"
@@ -1723,7 +1712,7 @@ msgstr "© 2017-2021 - Şişe Geliştiricileri"
 
 #: src/ui/details-preferences.ui:90
 msgid "Optimise gaming performance on demand"
-msgstr "İsteğe bağlı olarak oyun performansını iyileştirir"
+msgstr "İstendiğinde oyun performansını iyileştir"
 
 #: src/ui/details-preferences.ui:669
 msgid "NVAPI version"
