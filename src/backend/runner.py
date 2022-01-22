@@ -15,11 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
-import os
-import time
-import shutil
-import subprocess
+import shlex
 from typing import NewType
 
 from bottles.utils import UtilsTerminal, UtilsLogger, RunAsync, detect_encoding # pyright: reportMissingImports=false
@@ -64,8 +60,6 @@ class Runner:
         a bottle using the config provided.
         '''
         logging.info("Running link file on the bottle…")
-
-        command = f"start /unix '{file_path}'"
         winecmd = WineCommand(
             config=config, 
             command=f"start /unix '{file_path}'", 
@@ -104,13 +98,14 @@ class Runner:
             )
             if new_path:
                 file_path = new_path
-
-        command = f"'{file_path}'"
+        
+        file_path = shlex.quote(file_path)
+        command = f"{file_path}"
 
         if "msi" in file_path.split("."):
-            command = f"msiexec /i '{file_path}'"
+            command = f"msiexec /i {file_path}"
         elif "bat" in file_path.split("."):
-            command = f"wineconsole cmd /c '{file_path}'"
+            command = f"wineconsole cmd /c {file_path}"
 
         winecmd = WineCommand(
             config=config, 
