@@ -361,7 +361,9 @@ class InstallerManager:
 
         # install dependencies
         if dependencies:
-            self.__install_dependencies(_config, dependencies, widget)
+            res = self.__install_dependencies(_config, dependencies, widget)
+            if not res:
+                return False
 
         # execute steps
         if steps:
