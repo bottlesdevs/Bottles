@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-22 00:17+0100\n"
-"PO-Revision-Date: 2022-01-10 23:56+0000\n"
+"PO-Revision-Date: 2022-01-23 11:55+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -258,9 +258,8 @@ msgstr ""
 "fichiers."
 
 #: src/ui/about.ui:11
-#, fuzzy
 msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017 - 2021 — Développeurs de Bouteilles"
+msgstr "© 2017 - 2022 — Développeurs de Bouteilles"
 
 #: src/ui/about.ui:12
 msgid "Easily manage wineprefix using environments"
@@ -346,9 +345,8 @@ msgstr ""
 "Désactivez si vous rencontrez des problèmes graphiques."
 
 #: src/ui/details-preferences.ui:44 src/ui/details-preferences.ui:573
-#, fuzzy
 msgid "Updating DXVK, please wait…"
-msgstr "Mise à jour des états…"
+msgstr "Mise à jour de DXVK, veuillez patienter…"
 
 #: src/ui/details-preferences.ui:77 src/ui/details-preferences.ui:61
 msgid "Use VKD3D"
@@ -363,9 +361,8 @@ msgstr ""
 "Désactivez si vous rencontrez des problèmes graphiques."
 
 #: src/ui/details-preferences.ui:88 src/ui/details-preferences.ui:663
-#, fuzzy
 msgid "Updating VKD3D, please wait…"
-msgstr "Mise à jour des états…"
+msgstr "Mise à jour de VKD3D, veuillez patienter…"
 
 #: src/ui/details-preferences.ui:121 src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
@@ -377,9 +374,8 @@ msgstr ""
 "Fournir la prise en charge de DLSS si disponible et utilise NVAPI de Nvidia."
 
 #: src/ui/details-preferences.ui:131 src/ui/details-preferences.ui:754
-#, fuzzy
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "Installation de DXVK-NVAPI…"
+msgstr "Mise à jour de DXVK-NVAPI, veuillez patienter…"
 
 #: src/ui/details-preferences.ui:166 src/ui/details-preferences.ui:145
 msgid "Enable FSR"
@@ -440,11 +436,11 @@ msgstr "Utiliser le bureau virtuel de Wine."
 
 #: src/ui/details-preferences.ui:363
 msgid "Mouse capture fullscreen"
-msgstr ""
+msgstr "Capture de la souris en plein écran"
 
 #: src/ui/details-preferences.ui:364
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "Laissez le programme capturer l’entrée de la souris en plein écran."
 
 #: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
@@ -465,7 +461,7 @@ msgstr ""
 #: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
 #: src/ui/details-preferences.ui:453
 msgid "Will restart the wineserver."
-msgstr ""
+msgstr "Redémarrera wineserver."
 
 #: src/ui/details-preferences.ui:434 src/ui/details-preferences.ui:407
 msgid "Esync"
@@ -482,7 +478,7 @@ msgstr "Exécuteur"
 
 #: src/ui/details-preferences.ui:483
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Mise à jour de l’exécuteur et des composants, veuillez patienter…"
 
 #: src/ui/details-preferences.ui:531 src/ui/new.ui:326
 #: src/ui/details-preferences.ui:487
@@ -509,18 +505,16 @@ msgid "Manage VKD3D versions"
 msgstr "Gérer les versions de VKD3D"
 
 #: src/ui/details-preferences.ui:744
-#, fuzzy
 msgid "DXVK NVAPI version"
-msgstr "Version de NVAPI"
+msgstr "Version de DXVK NVAPI"
 
 #: src/ui/details-preferences.ui:835 src/ui/details-preferences.ui:744
 msgid "Windows version"
 msgstr "Version de Windows"
 
 #: src/ui/details-preferences.ui:845
-#, fuzzy
 msgid "Updating Windows version, please wait…"
-msgstr "Configuration de la version de Windows…"
+msgstr "Mise à jour de la version Windows, veuillez patienter…"
 
 #: src/ui/details-preferences.ui:894 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52 src/ui/details-preferences.ui:787
@@ -532,9 +526,8 @@ msgid "Working directory"
 msgstr "Répertoire de travail"
 
 #: src/ui/details-preferences.ui:934
-#, fuzzy
 msgid "Default to the bottle path."
-msgstr "Pointer vers le chemin de la bouteille"
+msgstr "Par défaut, chemin de la bouteille."
 
 #: src/ui/details-preferences.ui:950 src/ui/details-preferences.ui:843
 msgid "Choose a directory"
@@ -558,23 +551,20 @@ msgid "Use GameMode"
 msgstr "Utiliser le mode de jeu"
 
 #: src/ui/details-preferences.ui:1010
-#, fuzzy
 msgid "Optimise gaming performance on demand."
-msgstr "Optimiser les performances des jeux sur demande"
+msgstr "Optimise les performances des jeux à la demande."
 
 #: src/ui/details-preferences.ui:1036
-#, fuzzy
 msgid "Use Gamescope"
-msgstr "Utiliser le mode de jeu"
+msgstr "Utiliser Gamescope"
 
 #: src/ui/details-preferences.ui:1037
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Utiliser le micro-compositeur Gamescope."
 
 #: src/ui/details-preferences.ui:1075
-#, fuzzy
 msgid "Manage Gamescope settings"
-msgstr "Gérer les paramètres sous-système de wine."
+msgstr "Gérer les paramètres de Gamescope"
 
 #: src/ui/details-preferences.ui:1118 src/ui/details-preferences.ui:886
 msgid "Audio"
@@ -587,8 +577,7 @@ msgstr "Réduire la latence de PulseAudio"
 #: src/ui/details-preferences.ui:1124 src/ui/details-preferences.ui:892
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
-"Définir la latence de PulseAudio à 60 millisecondes pour améliorer la "
-"qualité du sons."
+"Définir la latence de PulseAudio à 60 ms pour améliorer la qualité du sons."
 
 #: src/ui/details-preferences.ui:1161 src/ui/details-preferences.ui:929
 msgid "Developers & Debug"
@@ -1267,7 +1256,7 @@ msgstr "Apparence"
 
 #: src/ui/preferences.ui:27 src/ui/preferences.ui:304
 msgid "Night mode"
-msgstr "mode sombre"
+msgstr "Mode sombre"
 
 #: src/ui/preferences.ui:28 src/ui/preferences.ui:305
 msgid "Whether Bottles should use the Night theme variant."
@@ -1643,11 +1632,8 @@ msgstr ""
 "fichiers ?"
 
 #: src/views/bottle_preferences.py:142
-#, fuzzy
 msgid "This feature is not available on your system."
-msgstr ""
-"Le mode de jeu n’est pas disponible sur votre système ou n’est pas en cours "
-"d’exécution."
+msgstr "Cette fonctionnalité n’est pas disponible sur votre système."
 
 #: src/views/bottle_preferences.py:156 src/views/bottle_preferences.py:138
 msgid "Choose working directory for executables"
