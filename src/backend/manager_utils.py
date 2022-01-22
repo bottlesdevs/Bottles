@@ -98,6 +98,10 @@ class ManagerUtils:
         return f"{Paths.nvapi}/{nvapi}"
 
     @staticmethod
+    def get_temp_path(dest: str) -> str:
+        return f"{Paths.temp}/{dest}"
+
+    @staticmethod
     def move_file_to_bottle(
         file_path: str, 
         config: BottleConfig,
