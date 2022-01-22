@@ -12,3 +12,21 @@ BottleConfig = NewType('BottleConfig', dict)
 class CMD(WineProgram):
     program = "WINE Command Line"
     command = "cmd"
+
+    def run_batch(
+        self, 
+        batch: str, 
+        terminal: bool = True, 
+        args: str = "",
+        environment: dict = {},
+        cwd: str = None
+    ):
+        args = f"/c {batch} {args}"
+        
+        self.launch(
+            args=args,
+            comunicate=True,
+            terminal=terminal,
+            environment=environment,
+            cwd=cwd
+        )
