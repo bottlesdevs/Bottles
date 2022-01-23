@@ -222,22 +222,9 @@ class Manager:
         )
 
         # run dependency uninstaller if available
-        uuid = False
-
         if dependency[0] in config["Uninstallers"]:
             uninst = config["Uninstallers"][dependency[0]]
-            command = f"uninstaller --list | grep '{uninst}' | cut -f1 -d\|"
-            uuid = Runner.run_command(
-                config=config,
-                command=command,
-                terminal=False,
-                environment=False,
-                comunicate=True,
-                minimal=True
-            )
-            uuid = uuid.strip()
-
-        Uninstaller(config).from_uuid(uuid)
+            Uninstaller(config).from_name(uninst)
 
         # remove dependency from bottle configuration
         config["Installed_Dependencies"].remove(dependency[0])
