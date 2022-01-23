@@ -480,7 +480,10 @@ class Downloader:
         '''
         try:
             with open(self.file, "wb") as file:
-                response = requests.get(self.url, stream=True)
+                headers = {
+                    "User-Agent": "curl/7.79.1"
+                }
+                response = requests.get(self.url, stream=True, headers=headers)
                 total_size = int(response.headers.get("content-length", 0))
                 block_size = 1024
                 count = 0
