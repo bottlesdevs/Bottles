@@ -2,8 +2,6 @@ import os
 from typing import NewType
 
 from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
-from bottles.backend.globals import Paths
-from bottles.backend.manager_utils import ManagerUtils
 from bottles.backend.wine.wineprogram import WineProgram
 
 logging = UtilsLogger()
@@ -14,10 +12,11 @@ BottleConfig = NewType('BottleConfig', dict)
 
 class WineBridge(WineProgram):
     program = "WINE Bridge"
-    command = f"{Paths.base}/WineBridge.exe"
+    command = "WineBridge.exe"
+    is_internal = True
 
     def is_available(self):
-        if os.path.isfile(self.command):
+        if os.path.isfile(self.get_command()):
             logging.info(f"{self.program} is available.")
             return True
 
