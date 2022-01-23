@@ -393,15 +393,19 @@ class DependencyManager:
             rename=step.get("rename"),
             checksum=step.get("file_checksum")
         )
-        if download:
-            if step.get("rename"):
-                file = step.get("rename")
-            else:
-                file = step.get("file_name")
+        file = step.get("file_name")
+        if step.get("rename"):
+            file = step.get("rename")
 
+        if download:
+            if step.get("url").startswith("temp/"):
+                _file = step.get("url").replace("temp/", f"{Paths.temp}/")
+                file = f"{_file}/{file}"
+            else:
+                file = f"{Paths.temp}/{file}"
             executor = WineExecutor(
                 config,
-                exec_path=f"{Paths.temp}/{file}",
+                exec_path=file,
                 args=step.get("arguments"),
                 environment=step.get("environment")
             )
