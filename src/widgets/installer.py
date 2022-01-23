@@ -20,7 +20,7 @@ from gettext import gettext as _
 import webbrowser
 
 from bottles.utils import RunAsync # pyright: reportMissingImports=false
-from bottles.dialogs.generic import TextDialog, WebDialog
+from bottles.dialogs.generic import SourceDialog, WebDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
@@ -66,7 +66,7 @@ class InstallerEntry(Handy.ActionRow):
             installer_category=self.installer[1]["Category"],
             plain=True
         )
-        TextDialog(
+        SourceDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
             message=plain_manifest

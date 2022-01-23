@@ -20,7 +20,7 @@ from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
 
 from bottles.utils import RunAsync # pyright: reportMissingImports=false
-from bottles.dialogs.generic import Dialog
+from bottles.dialogs.generic import SourceDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
@@ -86,18 +86,16 @@ class StateEntry(Handy.ActionRow):
         Open the manifest for the state index in a new
         dialog.
         '''
-        dialog = Dialog(
+        plain_state = self.versioning_manager.get_state_edits(
+            self.config,
+            self.state[0],
+            True
+        ).get("Plain")
+        SourceDialog(
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
-            message=False,
-            log=self.versioning_manager.get_state_edits(
-                self.config,
-                self.state[0],
-                True
-            ).get("Plain")
+            message=plain_state
         )
-        dialog.run()
-        dialog.destroy()
 
     def set_completed(self):
         '''

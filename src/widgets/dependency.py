@@ -20,7 +20,7 @@ from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
 
 from bottles.utils import RunAsync # pyright: reportMissingImports=false
-from bottles.dialogs.generic import TextDialog
+from bottles.dialogs.generic import SourceDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
@@ -90,7 +90,7 @@ class DependencyEntry(Handy.ActionRow):
         This function pop up a dialog with the manifest
         of the dependency
         '''
-        TextDialog(
+        SourceDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
             message=self.manager.dependency_manager.get_dependency(
