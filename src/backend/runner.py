@@ -93,7 +93,7 @@ class Runner:
             "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ServiceCurrent": "OS",
             "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": "CSDVersion",
             "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions": "ProductType",
-            "HKEY_CURRENT_USER\\Softwarw\\Wine": "Version"
+            "HKEY_CURRENT_USER\\Software\\Wine": "Version"
         }
         for d in del_keys:
             reg.remove(d, del_keys[d])
