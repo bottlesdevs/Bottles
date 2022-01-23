@@ -235,9 +235,14 @@ class ComponentManager:
             '''
             try:
                 requests.packages.urllib3.disable_warnings()
-                response = requests.head(download_url, allow_redirects=True)
+                headers = {"User-Agent": "curl/7.79.1"}
+                response = requests.head(
+                    download_url, 
+                    allow_redirects=True, 
+                    headers=headers
+                )
                 download_url = response.url
-                req_code = urllib.request.urlopen(download_url).getcode()
+                req_code = response.status_code
             except:
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
@@ -480,9 +485,7 @@ class Downloader:
         '''
         try:
             with open(self.file, "wb") as file:
-                headers = {
-                    "User-Agent": "curl/7.79.1"
-                }
+                headers = {"User-Agent": "curl/7.79.1"}
                 response = requests.get(self.url, stream=True, headers=headers)
                 total_size = int(response.headers.get("content-length", 0))
                 block_size = 1024
