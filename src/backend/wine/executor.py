@@ -9,6 +9,7 @@ from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
+from bottles.backend.wine.winebridge import WineBridge
 
 logging = UtilsLogger()
 
@@ -88,10 +89,10 @@ class WineExecutor:
             return False
     
     def run(self):
-        if self.exec_type == "exe":
-            return self.__launch_exe()
+        if self.exec_type in ["exe"]:
+            return self.__launch_with_bridge()
         elif self.exec_type == "msi":
-            return self.__launch_msi()
+            return self.__launch_exe()
         elif self.exec_type == "batch":
             return self.__launch_batch()
         elif self.exec_type == "lnk":
@@ -101,7 +102,32 @@ class WineExecutor:
         else:
             return False
     
+    def __launch_with_bridge(self):
+        winebridge = WineBridge(self.config)
+
+        if winebridge.is_available():
+            res = winebridge.run_exe(self.exec_path)
+            return Result(
+                status=True,
+                data={"output": res}
+            )
+        else:
+            if self.exec_type == "exe":
+                return self.__launch_exe()
+            elif self.exec_type == "msi":
+                return self.__launch_msi()
+            else:
+                return False
+
     def __launch_exe(self):
+        winebridge = WineBridge(self.config)
+        if winebridge.is_available():
+            res = winebridge.run_exe(self.exec_path)
+            return Result(
+                status=True,
+                data={"output": res}
+            )
+
         winecmd = WineCommand(
             self.config,
             command=self.exec_path,
