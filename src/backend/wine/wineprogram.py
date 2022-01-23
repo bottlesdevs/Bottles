@@ -1,6 +1,7 @@
 from typing import NewType
 
 from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.globals import Paths
 from bottles.backend.wine.winecommand import WineCommand
 
 logging = UtilsLogger()
@@ -14,16 +15,21 @@ class WineProgram:
     command: str = ""
     config: dict = {}
     colors: str = "default"
+    is_internal: bool = False
 
     def __init__(self, config: BottleConfig, silent=False):
         self.config = config
         self.silent = silent
 
-    def __get_command(self, args: str = None):
+    def get_command(self, args: str = None):
         command = self.command
+        
+        if self.is_internal:
+            command = f"{Paths.base}/{command}"
+
         if args is not None:
             command += f" {args}"
-            
+
         return command
 
     def launch(
@@ -38,7 +44,7 @@ class WineProgram:
         if not self.silent:
             logging.info(f"Using {self.program}")
             
-        command = self.__get_command(args)
+        command = self.get_command(args)
         res = WineCommand(
             self.config,
             command=command,
