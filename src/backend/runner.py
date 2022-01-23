@@ -19,7 +19,7 @@ import shlex
 from typing import NewType
 
 from bottles.utils import UtilsLogger, RunAsync # pyright: reportMissingImports=false
-from bottles.backend.globals import CMDSettings, gamemode_available, gamescope_available
+from bottles.backend.globals import gamemode_available, gamescope_available
 from bottles.backend.manager_utils import ManagerUtils
 from bottles.backend.result import Result
 from bottles.backend.wine.catalogs import win_versions
@@ -277,20 +277,25 @@ class Runner:
         readability and usability.
         '''
         reg = Reg(config)
-
-        for key, value in CMDSettings.items():
-            if key not in scheme:
-                scheme[key] = value
-
-        for key, value in scheme.items():
-            keyType="REG_DWORD"
-
-            if key == "FaceName":
-                keyType="REG_SZ"
-
-            reg.add(
-                key="HKEY_CURRENT_USER\\Console\\C:_windows_system32_wineconsole.exe",
-                value=key,
-                data=value,
-                keyType=keyType
-            )
+        reg.import_bundle({
+            "HKEY_CURRENT_USER\\Console\\C:_windows_system32_wineconsole.exe": [
+                {"value": "ColorTable00", "data": "2368548"},
+                {"value": "CursorSize","data": "25" },
+                {"value": "CursorVisible","data": "1" },
+                {"value": "EditionMode","data": "0" },
+                {"value": "FaceName","data": "Monospace" },
+                {"value": "FontPitchFamily","data": "1" },
+                {"value": "FontSize","data": "1248584" },
+                {"value": "FontWeight","data": "400" },
+                {"value": "HistoryBufferSize","data": "50" },
+                {"value": "HistoryNoDup","data": "0" },
+                {"value": "InsertMode","data": "1" },
+                {"value": "MenuMask","data": "0" },
+                {"value": "PopupColors","data": "245" },
+                {"value": "QuickEdit","data": "1" },
+                {"value": "ScreenBufferSize","data": "9830480" },
+                {"value": "ScreenColors","data": "11" },
+                {"value": "WindowSize","data": "1638480"
+                }
+            ]
+        })

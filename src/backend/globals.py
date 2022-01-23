@@ -202,27 +202,6 @@ class TrdyPaths:
     bottlesv1 = f"{Path.home()}/.Bottles"
 
 
-CMDSettings = {
-    "ColorTable00":"2368548", 
-    "CursorSize": "25",
-    "CursorVisible": "1",
-    "EditionMode": "0",
-    "FaceName": "Monospace",
-    "FontPitchFamily": "1",
-    "FontSize":"1248584", 
-    "FontWeight": "400",
-    "HistoryBufferSize": "50",
-    "HistoryNoDup": "0",
-    "InsertMode": "1",
-    "MenuMask": "0",
-    "PopupColors": "245",
-    "QuickEdit": "1",
-    "ScreenBufferSize": "9830480",
-    "ScreenColors":"11", 
-    "WindowSize": "1638480"
-}
-
-
 # Check if gamemode is available
 gamemode_available = shutil.which("gamemoderun") or False
 # Check if gamescope is available
