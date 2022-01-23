@@ -283,7 +283,7 @@ class Runner:
                 {"value": "CursorSize","data": "25" },
                 {"value": "CursorVisible","data": "1" },
                 {"value": "EditionMode","data": "0" },
-                {"value": "FaceName","data": "Monospace" },
+                {"value": "FaceName","data": "Monospace", "keyType": "dword"},
                 {"value": "FontPitchFamily","data": "1" },
                 {"value": "FontSize","data": "1248584" },
                 {"value": "FontWeight","data": "400" },
