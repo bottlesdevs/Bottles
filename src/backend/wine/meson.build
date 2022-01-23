@@ -19,6 +19,7 @@ bottles_sources = [
   'msiexec.py',
   'executor.py',
   'start.py',
+  'winebridge.py',
 ]
 
 install_data(bottles_sources, install_dir: winedir)
