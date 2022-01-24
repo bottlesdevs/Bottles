@@ -19,7 +19,6 @@ import os
 import subprocess
 import random
 import yaml
-import time
 import shlex
 import shutil
 import struct
@@ -65,11 +64,9 @@ class Manager:
     the bottles' directories and creates them if they don't exist. Also
     check for components, dependencies, and installers so this check should
     not be performed every time the manager is initialized.
-    ---
-    TODO: a good task for the future can be splitting out all the Bottle
-          related code (like, install dxvk, vkd3d, remove ecc) into a
-          separate class. So each bottle can be handled separately, reducing
-          this class to only checks purposes and to keep the catalogs.
+    
+    NOTE: This class is under heavy-refactoring, so close your eyes 
+          and enjoy °L°
     '''
 
     # component lists
