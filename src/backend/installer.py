@@ -370,6 +370,7 @@ class InstallerManager:
         )
         _config = config
 
+        bottle = ManagerUtils.get_bottle_path(config)
         dependencies = manifest.get("Dependencies")
         parameters = manifest.get("Parameters")
         executable = manifest.get("Executable")
@@ -403,9 +404,19 @@ class InstallerManager:
             widget.next_step()
             self.__set_parameters(_config, parameters)
 
-        # register executable arguments
-        if executable.get("arguments"):
-            self.__set_executable_arguments(_config, executable)
+        # register executable
+        if self.__layer is None:
+            _program = {
+                "executable": executable["file"],
+                "name": executable["name"],
+                "path": f"{bottle}/drive_c/{executable['path']}"
+            }
+            self.__manager.update_config(
+                config=config,
+                key=executable["file"],
+                value=_program,
+                scope="External_Programs"
+            )
 
         # create Desktop entry
         widget.next_step()
