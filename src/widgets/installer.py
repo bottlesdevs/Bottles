@@ -35,6 +35,7 @@ class InstallerEntry(Handy.ActionRow):
     img_installed = Gtk.Template.Child()
     img_error = Gtk.Template.Child()
     label_step = Gtk.Template.Child()
+    label_grade = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, installer, plain=False, **kwargs):
@@ -48,10 +49,15 @@ class InstallerEntry(Handy.ActionRow):
         self.spinner = Gtk.Spinner()
         self.__step = 0
         self.steps = 0
+        name = installer[1].get("Name")
+        description = installer[1].get("Description")
+        grade = installer[1].get('Grade')
 
         # populate widgets
-        self.set_title(installer[0])
-        self.set_subtitle(installer[1].get("Description"))
+        self.set_title(name)
+        self.set_subtitle(description)
+        self.label_grade.set_text(grade)
+        self.label_grade.get_style_context().add_class(f"grade-{grade}")
 
         # connect signals
         self.btn_install.connect("clicked", self.__execute_installer)
