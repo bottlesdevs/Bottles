@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-22 00:17+0100\n"
-"PO-Revision-Date: 2022-01-16 19:35+0000\n"
-"Last-Translator: Davi Patricio <davipatricio@pm.me>\n"
+"PO-Revision-Date: 2022-01-25 16:54+0000\n"
+"Last-Translator: Fábio Rodrigues Ribeiro <farribeiro@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -254,7 +254,6 @@ msgid "Close Bottles after starting an executable from the file manager."
 msgstr "Feche o Bottles após iniciar o executável no gerenciador de arquivos."
 
 #: src/ui/about.ui:11
-#, fuzzy
 msgid "© 2017-2022 - Bottles Developers"
 msgstr "© 2017-2021 - Bottles Developers"
 
@@ -343,9 +342,8 @@ msgstr ""
 "Desativar se estiver a encontrar falhas gráficas."
 
 #: src/ui/details-preferences.ui:44 src/ui/details-preferences.ui:573
-#, fuzzy
 msgid "Updating DXVK, please wait…"
-msgstr "Atualizando estados…"
+msgstr "Atualizando o DXVK, aguarde…"
 
 #: src/ui/details-preferences.ui:77 src/ui/details-preferences.ui:61
 msgid "Use VKD3D"
@@ -360,9 +358,8 @@ msgstr ""
 "Desativar se estiver a experienciar falhas gráficas."
 
 #: src/ui/details-preferences.ui:88 src/ui/details-preferences.ui:663
-#, fuzzy
 msgid "Updating VKD3D, please wait…"
-msgstr "Atualizando estados…"
+msgstr "Atualizando o VKD3D, aguarde…"
 
 #: src/ui/details-preferences.ui:121 src/ui/details-preferences.ui:116
 msgid "Enable DLSS (DXVK-NVAPI)"
@@ -373,9 +370,8 @@ msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr "Fornece suporte DLSS se disponível e a NVAPI da Nvidia."
 
 #: src/ui/details-preferences.ui:131 src/ui/details-preferences.ui:754
-#, fuzzy
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "Instalando DXVK-NVAPI …"
+msgstr "Atualizando o DXVK-NVAPI, aguarde…"
 
 #: src/ui/details-preferences.ui:166 src/ui/details-preferences.ui:145
 msgid "Enable FSR"
@@ -436,11 +432,12 @@ msgstr "Use a área de trabalho virtual do Wine."
 
 #: src/ui/details-preferences.ui:363
 msgid "Mouse capture fullscreen"
-msgstr ""
+msgstr "Captura do mouse em tela cheia"
 
 #: src/ui/details-preferences.ui:364
 msgid "Let the program capture mouse input when fullscreen."
 msgstr ""
+"Deixe o programa capturar a entrada do mouse quando estiver em tela cheia."
 
 #: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
@@ -460,7 +457,7 @@ msgstr ""
 #: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
 #: src/ui/details-preferences.ui:453
 msgid "Will restart the wineserver."
-msgstr ""
+msgstr "Será reiniciado o servidor wine."
 
 #: src/ui/details-preferences.ui:434 src/ui/details-preferences.ui:407
 msgid "Esync"
@@ -477,7 +474,7 @@ msgstr "Executor"
 
 #: src/ui/details-preferences.ui:483
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Atualizando Runner e componentes, aguarde…"
 
 #: src/ui/details-preferences.ui:531 src/ui/new.ui:326
 #: src/ui/details-preferences.ui:487
@@ -504,18 +501,16 @@ msgid "Manage VKD3D versions"
 msgstr "Gerenciar versões do DXVK"
 
 #: src/ui/details-preferences.ui:744
-#, fuzzy
 msgid "DXVK NVAPI version"
-msgstr "Versão do NVAPI"
+msgstr "Versão do DXVK NVAPI"
 
 #: src/ui/details-preferences.ui:835 src/ui/details-preferences.ui:744
 msgid "Windows version"
 msgstr "Versão do Windows"
 
 #: src/ui/details-preferences.ui:845
-#, fuzzy
 msgid "Updating Windows version, please wait…"
-msgstr "Configurando a versão do Windows…"
+msgstr "Atualizando a versão do Windows, aguarde…"
 
 #: src/ui/details-preferences.ui:894 src/ui/dialog-dll-overrides.ui:26
 #: src/ui/dialog-dll-overrides.ui:52 src/ui/details-preferences.ui:787
@@ -527,9 +522,8 @@ msgid "Working directory"
 msgstr "Diretório de trabalho"
 
 #: src/ui/details-preferences.ui:934
-#, fuzzy
 msgid "Default to the bottle path."
-msgstr "Aponte para o caminho da garrafa"
+msgstr "Aponte para o caminho da garrafa."
 
 #: src/ui/details-preferences.ui:950 src/ui/details-preferences.ui:843
 msgid "Choose a directory"
@@ -552,23 +546,20 @@ msgid "Use GameMode"
 msgstr "Usar Gamemode"
 
 #: src/ui/details-preferences.ui:1010
-#, fuzzy
 msgid "Optimise gaming performance on demand."
-msgstr "Otimize o desempenho dos jogos sob demanda"
+msgstr "Otimize o desempenho dos jogos sob demanda."
 
 #: src/ui/details-preferences.ui:1036
-#, fuzzy
 msgid "Use Gamescope"
-msgstr "Usar Gamemode"
+msgstr "Usar Gamescope"
 
 #: src/ui/details-preferences.ui:1037
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Use o micro-compositor Gamescope."
 
 #: src/ui/details-preferences.ui:1075
-#, fuzzy
 msgid "Manage Gamescope settings"
-msgstr "Gerencie as configurações do subsistema do wine."
+msgstr "Gerencie as configurações do Gamescope"
 
 #: src/ui/details-preferences.ui:1118 src/ui/details-preferences.ui:886
 msgid "Audio"
@@ -1622,9 +1613,8 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Tem certeza de que deseja excluir esta garrafa e todos os arquivos?"
 
 #: src/views/bottle_preferences.py:142
-#, fuzzy
 msgid "This feature is not available on your system."
-msgstr "O Gamemode não está disponível em seu sistema ou não está funcionando."
+msgstr "Este recurso não está disponível em seu sistema."
 
 #: src/views/bottle_preferences.py:156 src/views/bottle_preferences.py:138
 msgid "Choose working directory for executables"
