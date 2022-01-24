@@ -1203,12 +1203,12 @@ class Manager:
                 self.install_dll_component(config, "dxvk_nvapi", version=nvapi_name)
                     
             for dep in env["Installed_Dependencies"]:
-                _dep = self.supported_dependencies[dep]
-                log_update(_("Installing dependency: {0}…").format(
-                    _dep["Description"]
-                ))
-                self.dependency_manager.install(config, [dep, _dep])
-
+                if _dep in self.supported_dependencies:
+                    _dep = self.supported_dependencies[dep]
+                    log_update(_("Installing dependency: {0}…").format(
+                        _dep["Description"]
+                    ))
+                    self.dependency_manager.install(config, [dep, _dep])
         
         # create Layers key if Layered
         if environment == "Layered":
