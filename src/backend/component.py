@@ -30,6 +30,7 @@ from bottles.operation import OperationManager # pyright: reportMissingImports=f
 from bottles.utils import UtilsLogger, UtilsFiles
 from bottles.backend.globals import Paths, BottlesRepositories
 from bottles.backend.result import Result
+from bottles.backend.downloader import Downloader
 
 logging = UtilsLogger()
 
@@ -468,62 +469,3 @@ class ComponentManager:
                 dst=os.path.join(path, dest)
             )
 
-class Downloader:
-    '''
-    This class is used to download a resource from a given URL. It shows
-    and update a progress bar while downloading but can also be used to
-    update external progress bars using the func parameter.
-    '''
-    def __init__(self, url: str, file: str, func: callable = None):
-        self.url = url
-        self.file = file
-        self.func = func
-
-    def download(self):
-        '''
-        Download the file.
-        '''
-        try:
-            with open(self.file, "wb") as file:
-                headers = {"User-Agent": "curl/7.79.1"}
-                response = requests.get(self.url, stream=True, headers=headers)
-                total_size = int(response.headers.get("content-length", 0))
-                block_size = 1024
-                count = 0
-
-                if total_size != 0:
-                    for data in response.iter_content(block_size):
-                        file.write(data)
-                        count += 1
-                        if self.func is not None:
-                            GLib.idle_add(
-                                self.func,
-                                count,
-                                block_size,
-                                total_size
-                            )
-                            self.__progress(count, block_size, total_size)
-                else:
-                    file.write(response.content)
-                    if self.func is not None:
-                        GLib.idle_add(self.func, 1, 1, 1)
-                        self.__progress(1, 1, 1)
-        except:
-            logging.error(
-                "Download failed! Check your internet connection."
-            )
-            return False
-
-        return True
-    
-    def __progress(self, count, block_size, total_size):
-        '''
-        This function is used to update the progress bar.
-        '''
-        percent = int(count * block_size * 100 / total_size)
-        name = self.file.split("/")[-1]
-        print(f"\rDownloading {name}: {percent}% [{'=' * int(percent / 2)}>", end="")
-        
-        if percent == 100:
-            print("\n")
-        
