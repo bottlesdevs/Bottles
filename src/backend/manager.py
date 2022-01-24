@@ -593,6 +593,14 @@ class Manager:
         )
         found = []
         installed_programs = []
+        ignored_patterns = [
+            "*installer*",
+            "*setup*",
+            "*debug*",
+            "*report*",
+            "*crash*",
+            "*err*"
+        ]
 
         if config.get("External_Programs"):
             '''
@@ -628,7 +636,12 @@ class Manager:
             )
             icon = self.__find_program_icon(executable_name)
 
-            if "Uninstall" in path:
+            for pattern in ignored_patterns:
+                stop = False
+                if fnmatch.fnmatch(executable_name.lower(), pattern):
+                    stop = True
+                    break
+            if stop:
                 continue
 
             path_check = os.path.join(
