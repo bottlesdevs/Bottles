@@ -29,6 +29,7 @@ class InstallersView(Gtk.ScrolledWindow):
     # region Widgets
     list_installers = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
+    entry_search = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     # endregion
 
@@ -43,6 +44,28 @@ class InstallersView(Gtk.ScrolledWindow):
         self.btn_help.connect(
             "clicked", GtkUtils.open_doc_url, "bottles/installers"
         )
+        self.entry_search.connect(
+            'key-release-event', self.__search_installers
+        )
+        self.entry_search.connect('changed', self.__search_installers)
+
+    def __search_installers(self, widget, event=None, data=None):
+        '''
+        This function search in the list of installers the
+        text written in the search entry.
+        '''
+        terms = widget.get_text()
+        self.list_installers.set_filter_func(
+            self.__filter_installers,
+            terms
+        )
+
+    @staticmethod
+    def __filter_installers(row, terms=None):
+        text = row.get_title().lower() + row.get_subtitle().lower()
+        if terms.lower() in text:
+            return True
+        return False
 
     def update(self, widget=False, config={}):
         '''
