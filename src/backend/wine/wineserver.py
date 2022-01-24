@@ -4,7 +4,7 @@ import time
 import subprocess
 from typing import NewType
 
-from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.utils import UtilsLogger, RunAsync # pyright: reportMissingImports=false
 from bottles.backend.manager_utils import ManagerUtils
 from bottles.backend.wine.wineprogram import WineProgram
 
@@ -39,8 +39,9 @@ class WineServer(WineProgram):
             cwd=bottle,
             env=env
         )
-        time.sleep(1)
+        time.sleep(.5)
         if res.poll() is None:
+            res.kill() # kill the process to avoid zombie incursion
             return True
         return False
 
