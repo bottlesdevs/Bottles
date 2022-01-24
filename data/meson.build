@@ -54,3 +54,8 @@ install_data(
     join_paths('icons/hicolor/scalable/apps/com.usebottles.bottles-program.svg'),
     install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/scalable/apps')
 )
+
+install_data(
+    join_paths('icons/symbolic/scalable/apps/bottle-symbolic.svg'),
+    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons/hicolor/symbolic/apps')
+)

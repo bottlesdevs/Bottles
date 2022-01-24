@@ -25,7 +25,7 @@ class PageRow(Gtk.ListBoxRow):
         self.page_name = page_name
 
         icons = {
-            "bottle": "com.usebottles.bottles-symbolic",
+            "bottle": "bottle-symbolic",
             "preferences": "applications-system-symbolic",
             "dependencies": "application-x-addon-symbolic",
             "programs": "preferences-desktop-apps-symbolic",
