@@ -90,7 +90,8 @@ class SourceDialog(Handy.Window):
             buffer=source_buffer,
             show_line_numbers=True,
             show_line_marks=True,
-            tab_width=4
+            tab_width=4,
+            monospace=True
         )
         source_buffer = source_view.get_buffer()
 
