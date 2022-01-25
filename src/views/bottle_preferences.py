@@ -244,14 +244,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_aco.set_active(parameters["aco_compiler"])
 
-        if parameters["sync"] == "wine":
-            self.toggle_sync.set_active(True)
-        if parameters["sync"] == "esync":
-            self.toggle_esync.set_active(True)
-        if parameters["sync"] == "fsync":
-            self.toggle_fsync.set_active(True)
-        if parameters["sync"] == "futex2":
-            self.toggle_futex2.set_active(True)
+        self.toggle_sync.set_active(parameters["sync"] == "wine")
+        self.toggle_esync.set_active(parameters["sync"] == "esync")
+        self.toggle_fsync.set_active(parameters["sync"] == "fsync")
+        self.toggle_futex2.set_active(parameters["sync"] == "futex2")
 
         self.switch_discrete.set_active(parameters["discrete_gpu"])
         self.switch_virt_desktop.set_active(parameters["virtual_desktop"])
