@@ -28,7 +28,8 @@ class WineExecutor:
         cwd: str = None,
         environment: dict = False,
         move_file: bool = False,
-        move_upd_fn: callable = None
+        move_upd_fn: callable = None,
+        post_script: str = None
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -43,6 +44,7 @@ class WineExecutor:
         self.terminal = terminal
         self.cwd = cwd
         self.environment = environment
+        self.post_script = post_script
 
     def __validate_path(self, exec_path):
         if exec_path in [None, ""]:
@@ -135,7 +137,8 @@ class WineExecutor:
             terminal=self.terminal,
             cwd=self.cwd,
             environment=self.environment,
-            comunicate=True
+            comunicate=True,
+            post_script=self.post_script
         )
         res = winecmd.run()
         return Result(

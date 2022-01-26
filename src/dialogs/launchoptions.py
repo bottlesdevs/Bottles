@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 from gi.repository import Gtk, GLib, Handy
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
@@ -25,9 +26,12 @@ class LaunchOptionsDialog(Handy.Window):
     entry_arguments = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
+    btn_script = Gtk.Template.Child()
+    flatpak_warn = Gtk.Template.Child()
+    expander = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, config, program_executable, arguments, **kwargs):
+    def __init__(self, window, config, program, **kwargs):
         super().__init__(**kwargs)
 
         self.set_transient_for(window)
@@ -36,16 +40,19 @@ class LaunchOptionsDialog(Handy.Window):
         self.window = window
         self.manager = window.manager
         self.config = config
-        self.program_executable = program_executable
-        self.arguments = arguments
+        self.program = program
 
         # set widget defaults
-        self.entry_arguments.set_text(self.arguments)
+        self.entry_arguments.set_text(program.get("arguments", ""))
+        if "FLATPAK_ID" in os.environ:
+            self.flatpak_warn.set_visible(True)
 
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_save.connect("clicked", self.__save_options)
+        self.btn_script.connect("clicked", self.__choose_script)
         self.entry_arguments.connect("activate", self.__save_options)
+        # self.expander.set_visible(False)
 
     def __close_window(self, widget=None):
         self.destroy()
@@ -56,11 +63,27 @@ class LaunchOptionsDialog(Handy.Window):
         configuration. It also close the window and update the
         programs list.
         '''
-        self.arguments = self.entry_arguments.get_text()
+        self.program["arguments"] = self.entry_arguments.get_text()
         self.config = self.manager.update_config(
             config=self.config,
-            key=self.program_executable,
-            value=self.arguments,
-            scope="Programs"
+            key=self.program["executable"],
+            value=self.program,
+            scope="External_Programs"
         )
         GLib.idle_add(self.__close_window)
+
+    def __choose_script(self, widget):
+        '''
+        This function open a file chooser dialog to choose the
+        script which will be executed before the program.
+        '''
+        file_dialog = Gtk.FileChooserNative.new(
+            _("Choose the script"),
+            self.window,
+            Gtk.FileChooserAction.OPEN,
+            _("Run"),
+            _("Cancel")
+        )
+        response = file_dialog.run()
+        if response == -3:
+            self.program["script"] = file_dialog.get_filename()

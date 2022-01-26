@@ -77,14 +77,15 @@ class WineCommand:
         comunicate: bool = False,
         cwd: str = None,
         colors: str = "default",
-        minimal: bool = False # avoid gamemode/gamescope usage
+        minimal: bool = False,  # avoid gamemode/gamescope usage
+        post_script: str = None
     ):
         self.config = config
         self.minimal = minimal
         self.arguments = arguments
         self.cwd = self.__get_cwd(cwd)
         self.runner = self.__get_runner()
-        self.command = self.__get_cmd(command)
+        self.command = self.__get_cmd(command, post_script)
         self.terminal = terminal
         self.env = self.__get_env(environment)
         self.comunicate = comunicate
@@ -278,7 +279,7 @@ class WineCommand:
         
         return runner
 
-    def __get_cmd(self, command) -> str:
+    def __get_cmd(self, command, post_script) -> str:
         config = self.config
         params = config["Parameters"]
         runner = self.runner
@@ -299,6 +300,8 @@ class WineCommand:
             if gamescope_available and params["gamescope"]:
                 command = f"{self.__get_gamescope_cmd()} {command}"
         
+        if post_script is not None:
+            command = f"{command} && sh {post_script}"
         return command
 
     def __get_gamescope_cmd(self) -> str:
