@@ -56,13 +56,20 @@ class ProgramEntry(Handy.ActionRow):
         self.page_details = window.page_details
         self.manager = window.manager
         self.config = config
-        self.arguments = ""
         self.program = program
         self.is_layer = is_layer
+
+        if not is_layer:
+            self.executable = program["executable"]
+        else:
+            self.executable = self.program["exec_name"]
         
         # populate widgets
         self.set_title(self.program["name"])
         self.set_icon_name(program["icon"])
+
+        if program.get("removed"):
+            self.get_style_context().add_class("removed")
 
         if "FLATPAK_ID" in os.environ:
             '''
@@ -76,10 +83,6 @@ class ProgramEntry(Handy.ActionRow):
             _p = self.config["External_Programs"][p]["name"]
             external_programs.append(_p)
 
-        if self.program["name"] not in external_programs:
-            # hide remove button if program is not added by user
-            self.btn_remove.set_visible(False)
-
         '''Signal connections'''
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_stop.connect("clicked", self.stop_process)
@@ -87,28 +90,12 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_protondb.connect("clicked", self.open_search_url, "protondb")
         self.btn_forum.connect("clicked", self.open_search_url, "forum")
         self.btn_issues.connect("clicked", self.open_search_url, "issues")
-        self.btn_launch_options.connect(
-            "clicked", self.show_launch_options_view)
+        self.btn_launch_options.connect("clicked", self.show_launch_options_view)
         self.btn_uninstall.connect("clicked", self.uninstall_program)
         self.btn_remove.connect("clicked", self.remove_program)
         self.btn_rename.connect("clicked", self.rename_program)
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
-
-        '''
-        Populate entry_arguments by config
-        TODO: improve this without taking executable by path
-        '''
-        if not is_layer:
-            _executable = self.program["path"].split("\\")[-1] # win path
-            if len(_executable) == 0:
-                _executable = self.program["path"].split("/")[-1] # unix path
-            if _executable in self.config["Programs"]:
-                self.arguments = self.config["Programs"][_executable]
-        else:
-            _executable = self.program["exec_name"]
-            self.arguments = self.program["exec_args"]
-        self.executable = _executable
 
         self.__is_alive()
 
@@ -118,8 +105,7 @@ class ProgramEntry(Handy.ActionRow):
         new_window = LaunchOptionsDialog(
             self.window,
             self.config,
-            self.executable,
-            self.arguments
+            self.program
         )
         new_window.present()
         self.update_programs()
@@ -165,8 +151,9 @@ class ProgramEntry(Handy.ActionRow):
             executor = WineExecutor(
                 self.config,
                 exec_path=self.program["path"],
-                args=self.arguments,
-                cwd=self.program["folder"]
+                args=self.program["arguments"],
+                cwd=self.program["folder"],
+                post_script=self.program.get("script", None)
             )
             RunAsync(executor.run, callback=self.__reset_buttons)
 
@@ -189,11 +176,11 @@ class ProgramEntry(Handy.ActionRow):
         )
 
     def remove_program(self, widget=None, update=True):
+        self.program["removed"] = True
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["executable"],
-            value=False,
-            remove=True,
+            value=self.program,
             scope="External_Programs"
         )
         if update:

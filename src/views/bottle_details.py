@@ -261,6 +261,8 @@ class BottleView(Gtk.ScrolledWindow):
         i = 0
         # append first 5 entries to group_programs
         for program in programs:
+            if program.get("removed"):
+                continue
             if i < 5:
                 self.group_programs.add(ProgramEntry(
                     self.window, self.config, program))

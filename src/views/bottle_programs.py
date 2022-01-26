@@ -18,7 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import GtkUtils
+from bottles.utils import GtkUtils # pyright: reportMissingImports=false
 from bottles.widgets.program import ProgramEntry
 from bottles.backend.manager_utils import ManagerUtils
 
@@ -32,6 +32,7 @@ class ProgramsView(Gtk.ScrolledWindow):
     actions = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
+    btn_toggle_removed = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
     # endregion
@@ -44,6 +45,7 @@ class ProgramsView(Gtk.ScrolledWindow):
         self.window = parent.window
         self.manager = parent.manager
         self.config = config
+        self.show_removed = False
 
         self.btn_add.connect("clicked", self.add)
         self.btn_update.connect(
@@ -51,6 +53,9 @@ class ProgramsView(Gtk.ScrolledWindow):
         )
         self.btn_help.connect(
             "clicked", GtkUtils.open_doc_url, "bottles/programs"
+        )
+        self.btn_toggle_removed.connect(
+            "toggled", self.__toggle_removed
         )
 
     def add(self, widget=False):
@@ -119,8 +124,9 @@ class ProgramsView(Gtk.ScrolledWindow):
         else:
             self.hdy_status.set_visible(True)
 
-        i = 0
         for program in programs:
+            if program.get("removed") and not self.show_removed:
+                continue
             self.list_programs.add(
                 ProgramEntry(
                     window=self.window, 
@@ -128,3 +134,11 @@ class ProgramsView(Gtk.ScrolledWindow):
                     program=program
                 )
             )
+        
+    def __toggle_removed(self, widget=False):
+        '''
+        This function toggle the show_removed variable.
+        '''
+        self.show_removed = not self.show_removed
+        self.update(config=self.config)
+
