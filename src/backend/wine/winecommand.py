@@ -138,7 +138,7 @@ class WineCommand:
 
         # Default DLL overrides
         dll_overrides.append("mshtml=d")
-        dll_overrides.append("winemenubuilder.exe=d")
+        dll_overrides.append("winemenubuilder=''")
         
         # Get Runtime libraries
         if "FLATPAK_ID" in os.environ and \

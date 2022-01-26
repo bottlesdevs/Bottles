@@ -100,7 +100,7 @@ class Manager:
 
     def checks(self, install_latest=False, first_run=False):
         logging.info("Performing Bottles checks...")
-        self.check_runners_dir()
+        self.check_app_dirs()
         self.check_dxvk(install_latest)
         self.check_vkd3d(install_latest)
         self.check_nvapi(install_latest)
@@ -129,7 +129,7 @@ class Manager:
                 logging.info("Temp path cleaned successfully!")
             except FileNotFoundError:
                 logging.error("Failed to clear temp path!")
-                self.check_runners_dir()
+                self.check_app_dirs()
 
     def update_bottles(self, silent: bool = False):
         '''
@@ -142,7 +142,7 @@ class Manager:
         except AttributeError:
             pass
 
-    def check_runners_dir(self):
+    def check_app_dirs(self):
         '''
         This function checks if the Bottles' default directories 
         exists, if not, they will be created.

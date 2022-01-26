@@ -179,7 +179,7 @@ class ComponentManager:
         func=False
     ) -> bool:
         # Check for missing Bottles paths before download
-        self.__manager.check_runners_dir()
+        self.__manager.check_app_dirs()
 
         '''
         Add new entry to the download manager and set the update_func
