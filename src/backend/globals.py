@@ -80,7 +80,6 @@ class Samples:
         "Environment_Variables": {},
         "Installed_Dependencies": [],
         "DLL_Overrides": {},
-        "Programs": {},
         "External_Programs": {},
         "Uninstallers": {},
         "Latest_Executables": []
