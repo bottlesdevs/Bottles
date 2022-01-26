@@ -588,7 +588,6 @@ class Manager:
             f"{bottle}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
             recursive=True
         )
-        found = []
         installed_programs = []
         ignored_patterns = [
             "*installer*",
@@ -598,25 +597,27 @@ class Manager:
             "*crash*",
             "*err*"
         ]
+        found = []
+        ext_programs = config.get("External_Programs")
 
-        if config.get("External_Programs"):
-            '''
-            if the bottle has external programs in the configuration,
-            append them to the installed_programs list.
-            '''
-            ext_programs = config.get("External_Programs")
-            for program in ext_programs:
-                _program = ext_programs[program]
-                program_folder = os.path.dirname(_program["path"])
-                icon = self.__find_program_icon(program)
-                installed_programs.append({
-                    "executable": _program["executable"],
-                    "name": _program["name"],
-                    "path": _program["path"],
-                    "folder": program_folder,
-                    "icon": icon
-                })
-                found.append(_program["path"])
+        '''
+        Process External_Programs
+        '''
+        for program in ext_programs:
+            found.append(program)
+            _program = ext_programs[program]
+            program_folder = os.path.dirname(_program["path"])
+            icon = self.__find_program_icon(program)
+            installed_programs.append({
+                "executable": _program["executable"],
+                "arguments": _program.get("arguments", ""),
+                "name": _program["name"],
+                "path": _program["path"],
+                "folder": program_folder,
+                "icon": icon,
+                "script": _program.get("script"),
+                "removed": _program.get("removed")
+            })
 
         for program in results:
             '''
@@ -624,9 +625,8 @@ class Manager:
             append it to the installed_programs list with its icon, 
             skip if the path contains the "Uninstall" word.
             '''
-            path = program.split("/")[-1].replace(".lnk", "")
             executable_path = self.__getLnkData(program)
-            executable_name = executable_path.split("\\")[-1][:-4]
+            executable_name = executable_path.split("\\")[-1]
             program_folder = self.__get_exe_parent_dir(
                 config,
                 executable_path
@@ -647,15 +647,16 @@ class Manager:
             )
 
             if os.path.exists(path_check):
-                if executable_path not in found:
+                if executable_name not in found:
                     installed_programs.append({
                         "executable": executable_name,
-                        "name": executable_name.split("\\")[-1],
+                        "arguments": "",
+                        "name": executable_name.split(".")[0],
                         "path": executable_path,
                         "folder": program_folder,
                         "icon": icon
                     })
-                    found.append(executable_path)
+                    found.append(executable_name)
 
         return installed_programs
 
@@ -701,17 +702,6 @@ class Manager:
                 conf_file = open(f"{bottle}/bottle.yml")
                 conf_file_yaml = yaml.safe_load(conf_file)
                 conf_file.close()
-
-                # Migrate old External_Programs to new format
-                if "External_Programs" in conf_file_yaml:
-                    for program in conf_file_yaml["External_Programs"]:
-                        _program = conf_file_yaml["External_Programs"][program]
-                        if isinstance(_program, str):
-                            conf_file_yaml["External_Programs"][program] = {
-                                "executable": program,
-                                "name": program,
-                                "path": program
-                            }
                 
                 # Migrate old environment_variables to new format
                 if "Parameters" in conf_file_yaml:
