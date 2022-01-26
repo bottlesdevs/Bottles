@@ -291,17 +291,6 @@ class InstallerManager:
                 scope="Parameters"
             )
 
-    def __set_executable_arguments(self, config, executable: dict):
-        '''
-        TODO: Change config["Programs"] struct like External_Programs
-        '''
-        self.__manager.update_config(
-            config=config,
-            key=executable.get("file"),
-            value=executable.get("arguments"),
-            scope="Programs"
-        )
-
     def __create_desktop_entry(self, config, manifest, executable: dict):
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
 
@@ -408,6 +397,7 @@ class InstallerManager:
         if self.__layer is None:
             _program = {
                 "executable": executable["file"],
+                "arguments": executable.get("arguments", ""),
                 "name": executable["name"],
                 "path": f"{bottle}/drive_c/{executable['path']}"
             }
