@@ -319,33 +319,6 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="btn_rename">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                        <property name="tooltip-text" translatable="yes">Rename bottle</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="icon-name">document-edit-symbolic</property>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="circular"/>
-                          <class name="image-button"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkEntry" id="entry_name">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -370,24 +343,29 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label_environment">
+                      <object class="GtkToggleButton" id="btn_rename">
                         <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="double-buffered">False</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Rename bottle</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
-                        <property name="label" translatable="yes">Environment</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell 10"/>
-                          <attribute name="weight" value="normal"/>
-                        </attributes>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">document-edit-symbolic</property>
+                          </object>
+                        </child>
                         <style>
-                          <class name="tag"/>
+                          <class name="circular"/>
+                          <class name="image-button"/>
                         </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack-type">end</property>
                         <property name="position">2</property>
                       </packing>
                     </child>
@@ -448,6 +426,28 @@
                         <property name="fill">False</property>
                         <property name="pack-type">end</property>
                         <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_environment">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="double-buffered">False</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="label" translatable="yes">Environment</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Cantarell 10"/>
+                          <attribute name="weight" value="normal"/>
+                        </attributes>
+                        <style>
+                          <class name="tag"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                   </object>
