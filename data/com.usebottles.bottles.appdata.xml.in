@@ -86,56 +86,73 @@
           <description>
             <p>News</p>
             <ul>
-                <li>Stop a running program directly from the program list</li>
-                <li>Vulkan ICDs are now automatically found and properly loaded according to your GPUs</li>
-                <li>Dependencies are now installed even faster (give it a try)</li>
-                <li>Experimental layered-bottles (currently only for developers)</li>
-                <li>Support for local repositories, see the documentation</li>
-                <li>Introducing the Health check, this display a lot of useful information about your installation</li>
-                <li>New and improved dialogs for manifests, reviews and more</li>
-                <li>During bottle creation, missing componentes are not installed automatically</li>
-                <li>All dependencies have been updated to use the new structure and avoid residuals in temp</li>
-                <li>The copy_cab_dll method for dependencies was deprecated if favor of new copy_file</li>
-                <li>Improved accessibility, now it is possible to interact with widgets through keyboard</li>
-                <li>The Software environment was renamed to Applications</li>
-                <li>The "Compiler" notice is now hidden by default when DXVK is enabled, enable the DXVK HUD option to restore it</li>
-                <li>Installers can now execute scripts through the new run_script action</li>
-                <li>The Bottles runtime and GameMode settings are now placed under System instead of Graphics</li>
-                <li>Dependencies can now use win32/win64 placeholders to automatically detect the right sys path (system32/syswow64 according to the bottle arch)</li>
-                <li>Deprecated old scripts-installation for DXVK, VKD3D, DXVK-Nvapi which are now managed by Bottles</li>
-                <li>Dependencies can now handle nested-dependencies (e.g. dotnet48 now depend on dotnet40, so it will automatically installed if not already)</li>
-                <li>The wineserver is now automatically restarted when chaning sync type (system, esync, fsync)</li>
-                <li>Initial Gamescope support</li>
-                <li>Fullscreen mouse capture can now be set from the bottle preferences</li>
+                <li>Each runner change will re-initialize the installed components (DXVK, VKD3D, DXVK-Nvapi ..) to avoid breackage</li>
+                <li>New WINE backend ensures stable and faster operations</li>
+                <li>New WINE registry WineProgram, allows to write multiple keys in a single call, reducing waiting times</li>
+                <li>New net WineProgram allows Bottles to manage bottle services</li>
+                <li>New wineserver WineProgram checks the bottle status to prevent commands from being executed when the server is down</li>
+                <li>New start/msiexec/cmd WineProgram(s) for handling .lnk shortcuts, .msi/.batch files</li>
+                <li>New executor manager handle all executables launched in Bottles, automatically redirecting the call to the correct WineProgram based on the extension</li>
+                <li>Choose a shell script to be executed after a program</li>
+                <li>Bottles handle 2 types of commands: minimal and full, allowing to run commands on lighter environments when needed (no gamescope, gamemode..)</li>
+                <li>Changing Windows/DXVK/VKD3D/DXVK-Nvapi/Runner version displays visual feedback</li>
+                <li>Support for Futex2 sync (need kernel 5.16 or patched)</li>
+                <li>Iinstallers can edit config files (json, ini, yaml) using the update_config action</li>
+                <li>Bottles shows in the console which WineProgram(s) are running</li>
+                <li>Manifests are now shown in a source view</li>
+                <li>Bottle detail page icon changed</li>
+                <li>Installers view now shows the pretty title and compatibility grade</li>
+                <li>Search in installers view</li>
+                <li>Hide and show items in the programs list</li>
+                <li>Rename auto-detected programs</li>
             </ul>
 
             <p>Bug fixes</p>
             <ul>
-                <li>Fixed program arguments, was not storing correctly</li>
-                <li>Fixed Windows version change, winxp was using wrong values</li>
-                <li>Fixed a regression in xfce4-terminal support</li>
-                <li>Fixed a bug in dependencies installation when handling the uninstaller</li>
-                <li>Fixed a bug in components recognition when there are no components</li>
-                <li>Fixed a bug in programs rename, was generating a new copy of the program instead of renaming it</li>
-                <li>Fixed a bug during dependencies installation (when using the cab_extract method), DLLs were copied to wrong location</li>
-                <li>Fixed a regression in DXVK-Nvapi installation, causing missing DLLs</li>
-                <li>Fixed winemenubuilder blacklisting that was not working for runners which are using the lib32 path</li>
-                <li>Fixed the ptrace() problem with Flatpak</li>
-                <li>Fixed a bug when changing Sync type, was breaking next executions due to an already running wineserver with the wrong sync type</li>
+                <li>Fixed Health Check crash in some distributions</li>
+                <li>Fixed Wayland support</li>
+                <li>Fixed unwanted program start ups when Bottles asks for the process list</li> 
+                <li>Fixed 3D controller GPU detection</li>
+                <li>Fixed backup import feature</li>
+                <li>Fixed programs list, was disappearing after renaming a program</li>
+                <li>Fixed 64-bit dependencies installation, some actions was not able to place the DLLs in the correct folder</li>
+                <li>Fixed Windows version switch, some keys was missing causing some dependencies to fail to install (like .NET 3.5)</li>
+                <li>Fixed installers, was not interrupting the installation process when a dependency failed to install</li>
+                <li>Fixed bottle creation, was allowing some special characters in the name</li>
+                <li>Fixed Desktop entires, was setting the wrong path to the executable</li>
+                <li>Fixed the Download manager, was unable to reach some resources (e.g. physx) due to lack of User-Agent</li>
+                <li>Fixed dependencies installation during bottle creation, was breaking the bottle if a dependency is unreadable</li>
+                <li>Fixed a recursion in gamescope settings</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>French translations thanks to @julroy67</li>
-                <li>Portuguese translations thanks to @davipatricio, @SantosSi</li>
-                <li>Portuguese (Brazil) translations thanks to @davipatricio, @vitorhcl</li>
-                <li>Chinese (Simplified) translations thanks to @sr093906, Eric</li>
-                <li>Turkish translations thanks to @lateralrook, @ersen0</li>
-                <li>German translations thanks to @ThatRedKite</li>
-                <li>Basque translations thanks to Sergio Varela</li>
+                <li>Portuguese translations thanks to @hugok79, @laralem</li>
+                <li>Bulgarian translations thanks to @kostadin04</li>
                 <li>Italian translations thanks to @albanobattistella, @phaerrax</li>
-                <li>Russian translations thanks to @Knebergish</li>
-                <li>Spanish translations thanks to @oscfdezdz</li>
+                <li>Portuguese (Brazil) translations thanks to @davipatricio, @andrelomba86, @farribeiro</li>
+                <li>Sweedish translations thanks to @Lemonmeth, @eson57</li>
+                <li>Basque translations thanks to Sergio Varela</li>
+                <li>Greek translations thanks to @dim20</li>
+                <li>Croatian translations thanks to @milotype</li>
+                <li>Danish translations thanks to @emiltang, @ettmetal</li>
+                <li>Dutch translations thanks to @MichelN86</li>
+                <li>Polish translations thanks to Krzysztof Marcinek</li>
+                <li>French translations thanks to @julroy67</li>
+                <li>German translations thanks to Lasse Palm</li>
+                <li>Spanish translations thanks to @Lvaskz, @d33vliter</li>
+                <li>Norwegian Bokmål translations thanks to @comradekingu</li>
+                <li>Indonesian translations thanks to @rezaalmanda</li>
+                <li>Turkish translations thanks to @ersen0</li>
+                <li>Russian translations thanks to @mclvren</li>
+                <li>Esperanto translations thanks to phlostically</li>
+                <li>Chinese (Simplified) translations thanks to Eric, @lumingzh</li>
+                <li>Finnish translations thanks to Jiri Grönroos</li>
+                <li>Japanese translations thanks to @shuriken1812</li>
+                <li>Czech translations thanks to @panmourovaty</li>
+                <li>Hungarian translations thanks to @ovari</li>
+                <li>Chinese (Traditional) translations thanks to @XiaoPanPanKevinPan</li>
+                <li>Vietnamese translations thanks to Giai Ngo</li>
             </ul>
           </description>
         </release>
