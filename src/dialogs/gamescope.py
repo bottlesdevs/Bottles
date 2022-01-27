@@ -53,12 +53,17 @@ class GamescopeDialog(Handy.Window):
         self.__update(config)
     
     def __change_wtype(self, widget, wtype):
+        self.toggle_borderless.handler_block_by_func(self.__change_wtype)
+        self.toggle_fullscreen.handler_block_by_func(self.__change_wtype)
         if wtype == "b":
             self.toggle_fullscreen.set_active(False)
             self.toggle_borderless.set_active(True)
         elif wtype == "f":
             self.toggle_fullscreen.set_active(True)
             self.toggle_borderless.set_active(False)
+
+        self.toggle_borderless.handler_unblock_by_func(self.__change_wtype)
+        self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
 
     def __update(self, config):
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
