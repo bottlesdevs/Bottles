@@ -78,9 +78,9 @@ translate Bottles in your language or how to help improve existing ones.
 - Optional sandboxed bottles
 
 ## ↗️ Install
-Bottles is officially provided as Flatpak, AppImage, AUR package. 
+Bottles is officially provided as Flatpak, AppImage, [AUR package](https://aur.archlinux.org/packages/bottles/). 
 There are also other packages maintained by our community, like Fedora, 
-AUR (bottles-git), and MX Linux.
+[AUR (bottles-git)](https://aur.archlinux.org/packages/bottles-git/), [CachyOS AUR](https://github.com/CachyOS/linux-cachyos#we-are-providing-a-repo-which-includes-all-kernels-in-generic-v3-and-generic-and-more-optimized-packages), and MX Linux.
 
 Read [here](https://docs.usebottles.com/getting-started/installation) how to
 install Bottles on your distribution.
