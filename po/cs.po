@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-22 00:17+0100\n"
-"PO-Revision-Date: 2021-12-15 05:46+0000\n"
-"Last-Translator: Vilda <vvedomil@protonmail.com>\n"
+"PO-Revision-Date: 2022-01-30 15:10+0000\n"
+"Last-Translator: panmourovaty <panmourovaty@centrum.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -169,7 +169,7 @@ msgstr "Použít tmavý vzhled."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
-msgstr ""
+msgstr "Přepnout datum aktualizace v seznamu"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 #, fuzzy
@@ -327,6 +327,9 @@ msgid ""
 "This is an experimental feature in early development, be careful and <a href="
 "\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">report bugs</a>."
 msgstr ""
+"Tohle je experimentální funkce, buďte opatrní a chyby nahlašujte na <a href="
+"\"https://github.com/bottlesdevs/Bottles/issues/new/choose\">nahlašování "
+"chyb</a>."
 
 #: src/ui/details-installers.ui:160 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:94
@@ -442,11 +445,11 @@ msgstr "Použít Virtuální plochu Wine."
 
 #: src/ui/details-preferences.ui:363
 msgid "Mouse capture fullscreen"
-msgstr ""
+msgstr "Snímání myši na celou obrazovku"
 
 #: src/ui/details-preferences.ui:364
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "Nechat program zachytávat vstup z myši když je v režimu fullscreen."
 
 #: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
 #: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:393
@@ -466,7 +469,7 @@ msgstr "Povolením synchronizace zvýšíte výkon vícejádrových procesorů."
 #: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
 #: src/ui/details-preferences.ui:453
 msgid "Will restart the wineserver."
-msgstr ""
+msgstr "Restartuje wineserver."
 
 #: src/ui/details-preferences.ui:434 src/ui/details-preferences.ui:407
 msgid "Esync"
@@ -483,7 +486,7 @@ msgstr "Runner"
 
 #: src/ui/details-preferences.ui:483
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Aktualizuji spouštěče a komponenty, prosím čekejte…"
 
 #: src/ui/details-preferences.ui:531 src/ui/new.ui:326
 #: src/ui/details-preferences.ui:487
@@ -553,6 +556,8 @@ msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
+"Poskytuje balíček knihoven pro vyšší kompatibilitu,\n"
+"vypněte pokud máte problémy."
 
 #: src/ui/details-preferences.ui:1009 src/ui/details-preferences.ui:89
 #, fuzzy
@@ -571,11 +576,11 @@ msgstr "Použít herní režim"
 
 #: src/ui/details-preferences.ui:1037
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Použít kompozitor Gamescope."
 
 #: src/ui/details-preferences.ui:1075
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "Spravovat nastavení Gamescope"
 
 #: src/ui/details-preferences.ui:1118 src/ui/details-preferences.ui:886
 msgid "Audio"
@@ -639,7 +644,7 @@ msgstr "Nalezené láhve: %s"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "Vytvořit první stav a začít používat verzování."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -711,6 +716,9 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Láhve selhali minulé spuštění. Prosím vyplňte nahlášení a vložte následující "
+"log aby jste nám pomohli identifikovat problém a mohli jsme to vyřešit ať se "
+"to neopakuje."
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -719,10 +727,14 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Našli jsme jeden nebo více podobných (nebo identických) nahlášení. Prosím "
+"ujistěte se že tento problém zatím nebyl nahlášen. Každé nahlášení vyžaduje "
+"snahu vývojářů aby ho diagnostikovali, prosím respektujte jejich práci a "
+"ujistěte se že vaše nahlášení není duplikát."
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "I přes to chci nahlásit."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/new.ui:209
 msgid "Advanced options"
@@ -772,8 +784,9 @@ msgid "Take a break, it may take a while"
 msgstr "Dejte si pauzu, může to chvíli trvat"
 
 #: src/ui/dialog-duplicate.ui:195
+#, fuzzy
 msgid "page_duplicating"
-msgstr ""
+msgstr "page_duplicating"
 
 #: src/ui/dialog-duplicate.ui:204
 #, fuzzy
@@ -781,8 +794,9 @@ msgid "Bottle duplicated"
 msgstr "Láhev vytvořena"
 
 #: src/ui/dialog-duplicate.ui:211
+#, fuzzy
 msgid "page_duplicated"
-msgstr ""
+msgstr "page_duplicated"
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:46
 #, fuzzy
@@ -796,7 +810,7 @@ msgstr "Uložit"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Napište nové jméno:"
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:87
 #: src/ui/dialog-launch-options.ui:90
@@ -806,13 +820,15 @@ msgstr "např .: -příklad1 -příklad2 -příklad3 = ahoj"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Pište sem..."
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Proměnné prostředí jsou dynamické hodnoty které mohou ovlivnit způsob jakým "
+"procesy běží ve vaší láhvi."
 
 #: src/ui/dialog-env-vars.ui:54
 #, fuzzy
@@ -821,7 +837,7 @@ msgstr "Nové přepsání"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr ""
+msgstr "tzn. MOJE_PROMENA"
 
 #: src/ui/dialog-env-vars.ui:123
 #, fuzzy
@@ -839,11 +855,11 @@ msgstr "Spustit"
 
 #: src/ui/dialog-run-args.ui:75
 msgid "Write below the arguments to be passed to the executable."
-msgstr ""
+msgstr "Dolů napište argumenty které mají být předány spustitelnému souboru."
 
 #: src/ui/dialog-run-args.ui:90
 msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "tzn: -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog-environment-variables.ui:25
 msgid "Change environment variables"
@@ -909,9 +925,8 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Tento wineprefix byl již importován do lahví."
 
 #: src/ui/list.ui:65
-#, fuzzy
 msgid "Start off by creating a Bottle."
-msgstr "Začněte vytvořením láhve"
+msgstr "Začněte vytvořením Láhve"
 
 #: src/ui/list.ui:68
 msgid "Create a new Bottle"
@@ -966,6 +981,10 @@ msgid ""
 "\n"
 "Press to try again."
 msgstr ""
+"Instalace selhala. Toto může být z důvodu chyby repozitáře, neshoda "
+"checksumu.\n"
+"\n"
+"Stiskněte pro vyzkoušení znovu."
 
 #: src/ui/component-entry.ui:72
 #, fuzzy
@@ -1023,11 +1042,11 @@ msgstr "Nativní potom Vestavěné"
 
 #: src/ui/env-var-entry.ui:91
 msgid "value"
-msgstr ""
+msgstr "hodnota"
 
 #: src/ui/installer-entry.ui:48
 msgid "Read review"
-msgstr ""
+msgstr "Přečíst recenzi"
 
 #: src/ui/task-entry.ui:50
 #, fuzzy
@@ -1106,11 +1125,11 @@ msgstr "Chcete-li láhev uložit a obnovit do stavu, povolte správu verzí."
 
 #: src/ui/new.ui:257
 msgid "Unlinked homedir"
-msgstr ""
+msgstr "Nelinkovaná domovská složka"
 
 #: src/ui/new.ui:258
 msgid "Do not link the userdir to the homedir"
-msgstr ""
+msgstr "Nelinkujte uživatelskou složku do domovské složky"
 
 #: src/ui/new.ui:432
 msgid "Architecture"
@@ -1181,6 +1200,14 @@ msgid ""
 "<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
 "runners</a>"
 msgstr ""
+"Tohle jsou vrstvy kompatibility které umožňují software z Windows fungovat "
+"na Linuxových systémech.\n"
+"\n"
+"<b>Láhve</b> jsou prostředí kde spouštěče konfigurují systém a kde software "
+"z Windows běží a je nainstalovaný.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com/components/runners\">Zde si můžete "
+"přečíst o spouštěčích</a>"
 
 #: src/ui/onboard.ui:191
 msgid "Wine"
@@ -1344,7 +1371,7 @@ msgstr "Fórum"
 
 #: src/ui/window.ui:83 src/window.py:291 src/window.py:290
 msgid "Health check"
-msgstr ""
+msgstr "Kontrola zdraví"
 
 #: src/ui/window.ui:96
 msgid "About Bottles"
@@ -1385,7 +1412,7 @@ msgstr "Cesta ke spustitelnému souboru"
 
 #: src/main.py:114
 msgid "lnk path"
-msgstr ""
+msgstr "lnk cesta"
 
 #: src/main.py:122
 msgid "Bottle name"
@@ -1436,7 +1463,7 @@ msgstr "Importuji zálohu: {0}"
 
 #: src/backend/manager.py:1007 src/backend/manager.py:1004
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "Instalace komponent selhala, bylo vyzkoušeno 3krát."
 
 #: src/backend/manager.py:1017 src/backend/manager.py:1014
 msgid "Missing essential components. Installing…"
@@ -1463,7 +1490,7 @@ msgstr "Spuštění jako flatpak, vytváření složek v sandboxu …"
 
 #: src/backend/manager.py:1134 src/backend/manager.py:1129
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Sandboxuji uživatelskou složku…"
 
 #: src/backend/manager.py:1151 src/backend/manager.py:1147
 msgid "Setting Windows version…"
@@ -1471,7 +1498,7 @@ msgstr "Nastavení verze Windows…"
 
 #: src/backend/manager.py:1159 src/backend/manager.py:1155
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Aplikuji výchozí nastavení CMD…"
 
 #: src/backend/manager.py:1167 src/backend/manager.py:1163
 #, fuzzy
@@ -1510,7 +1537,7 @@ msgstr "Vytvářím verzovací stav 0 …"
 
 #: src/backend/manager.py:1233 src/backend/manager.py:1231
 msgid "Finalizing…"
-msgstr ""
+msgstr "Dokončuji…"
 
 #: src/backend/versioning.py:72 src/backend/versioning.py:55
 #, fuzzy
@@ -1523,7 +1550,7 @@ msgstr "Vytváření bodu obnovení …"
 
 #: src/backend/versioning.py:182 src/backend/versioning.py:165
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "Nebylo možné vytvořit stavovou složku."
 
 #: src/backend/versioning.py:189 src/backend/versioning.py:172
 #, fuzzy
@@ -1537,11 +1564,11 @@ msgstr "Vytvářím láhev…"
 
 #: src/backend/versioning.py:242 src/backend/versioning.py:225
 msgid "Could not update the states file."
-msgstr ""
+msgstr "Nebylo možné aktualizovat soubor se stavy."
 
 #: src/backend/versioning.py:256 src/backend/versioning.py:239
 msgid "Could not update the index file."
-msgstr ""
+msgstr "Nebylo možné aktualizovat soubor s indexy."
 
 #: src/backend/versioning.py:282 src/backend/versioning.py:265
 #, fuzzy, python-brace-format
@@ -1558,6 +1585,8 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            Tento problém byl nahlášen 5krát a nemůže být poslán znovu.\n"
+"Nahlaste svoji odezvu v jednom z existujících nahlášení."
 
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:154
 msgid "Warning"
@@ -1569,7 +1598,7 @@ msgstr "Došlo k chybě."
 
 #: src/dialogs/generic.py:89 src/dialogs/generic.py:133
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Zkopírovat do schránky"
 
 #: src/views/details.py:102 src/views/details.py:103
 #, fuzzy
@@ -1702,15 +1731,15 @@ msgstr "Čisté rozhraní pro vaše experimenty."
 
 #: src/views/new.py:94 src/views/new.py:93
 msgid "Layered"
-msgstr ""
+msgstr "Vrstvené"
 
 #: src/views/new.py:95 src/views/new.py:94
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "Vrstvené prostředí, kde aplikace jsou vrstvené."
 
 #: src/views/new.py:248 src/views/new.py:247
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "Při vytváření láhve se vyskytla chyba."
 
 #: src/views/new.py:255 src/views/new.py:254
 #, python-brace-format
@@ -1731,7 +1760,7 @@ msgstr "Manifest pro {0}"
 #: src/widgets/installer.py:125 src/widgets/installer.py:124
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "Krok {self.__step} z {self.steps}"
 
 #: src/widgets/state.py:91 src/widgets/state.py:90
 #, python-brace-format
