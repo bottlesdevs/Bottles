@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-22 00:17+0100\n"
-"PO-Revision-Date: 2022-01-16 19:35+0000\n"
-"Last-Translator: Lemonmeth <bnjbrg@pm.me>\n"
+"PO-Revision-Date: 2022-01-30 15:09+0000\n"
+"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/bottles/bottles/"
 "sv/>\n"
 "Language: sv\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:64
@@ -251,9 +251,8 @@ msgid "Close Bottles after starting an executable from the file manager."
 msgstr "Stäng Bottles efter att ha startat körbar fil från filhanteraren."
 
 #: src/ui/about.ui:11
-#, fuzzy
 msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2021 - Bottles Utvecklare"
+msgstr "© 2017-2022 - Bottles Utvecklare"
 
 #: src/ui/about.ui:12
 msgid "Easily manage wineprefix using environments"
@@ -278,9 +277,8 @@ msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgstr "<a href=\"https://usebottles.com/blog\"> Blogg</a>"
 
 #: src/ui/about.ui:190
-#, fuzzy
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
-msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Översätt</a>"
+msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
@@ -391,9 +389,8 @@ msgid "Balanced"
 msgstr "Balanserad"
 
 #: src/ui/details-preferences.ui:186 src/ui/details-preferences.ui:165
-#, fuzzy
 msgid "Performance"
-msgstr "Utseende"
+msgstr "Prestanda"
 
 #: src/ui/details-preferences.ui:235 src/ui/details-preferences.ui:214
 msgid "Enable ACO shader compiler"
@@ -449,7 +446,7 @@ msgstr "Aktivera synkronisering för ökad prestanda i flerkärniga processorer.
 #: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
 #: src/ui/details-preferences.ui:453
 msgid "Will restart the wineserver."
-msgstr ""
+msgstr "Kommer att starta om wineserver."
 
 #: src/ui/details-preferences.ui:434 src/ui/details-preferences.ui:407
 msgid "Esync"
@@ -485,24 +482,20 @@ msgid "Manage DXVK versions"
 msgstr "Hantera DXVK-versioner"
 
 #: src/ui/details-preferences.ui:653 src/ui/details-preferences.ui:594
-#, fuzzy
 msgid "VKD3D version"
-msgstr "DXVK-version"
+msgstr "VKD3D-version"
 
 #: src/ui/details-preferences.ui:712 src/ui/details-preferences.ui:637
-#, fuzzy
 msgid "Manage VKD3D versions"
-msgstr "Hantera DXVK-versioner"
+msgstr "Hantera VKD3D-versioner"
 
 #: src/ui/details-preferences.ui:744
-#, fuzzy
 msgid "DXVK NVAPI version"
-msgstr "DXVK-version"
+msgstr "DXVK NVAPI-version"
 
 #: src/ui/details-preferences.ui:835 src/ui/details-preferences.ui:744
-#, fuzzy
 msgid "Windows version"
-msgstr "DXVK-version"
+msgstr "Windows-version"
 
 #: src/ui/details-preferences.ui:845
 #, fuzzy
@@ -525,14 +518,12 @@ msgid "Default to the bottle path."
 msgstr "Spara buteljstatus."
 
 #: src/ui/details-preferences.ui:950 src/ui/details-preferences.ui:843
-#, fuzzy
 msgid "Choose a directory"
-msgstr "Välj en miljö"
+msgstr "Välj en katalog"
 
 #: src/ui/details-preferences.ui:981 src/ui/details-preferences.ui:341
-#, fuzzy
 msgid "Use Bottles runtime"
-msgstr "Buteljnamn"
+msgstr "Använd Bottles körtid"
 
 #: src/ui/details-preferences.ui:982 src/ui/details-preferences.ui:342
 msgid ""
@@ -545,23 +536,20 @@ msgid "Use GameMode"
 msgstr "Använd SpelLäge"
 
 #: src/ui/details-preferences.ui:1010
-#, fuzzy
 msgid "Optimise gaming performance on demand."
-msgstr "Optimera spelprestanda på begäran"
+msgstr "Optimera spelprestanda på begäran."
 
 #: src/ui/details-preferences.ui:1036
-#, fuzzy
 msgid "Use Gamescope"
-msgstr "Använd SpelLäge"
+msgstr "Använd Gamescope"
 
 #: src/ui/details-preferences.ui:1037
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Använd Gamescope-mikrokompositören."
 
 #: src/ui/details-preferences.ui:1075
-#, fuzzy
 msgid "Manage Gamescope settings"
-msgstr "Hantera inställningar för Wine-undersystem."
+msgstr "Hantera Gamescope inställningar"
 
 #: src/ui/details-preferences.ui:1118 src/ui/details-preferences.ui:886
 msgid "Audio"
@@ -603,18 +591,16 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Logga kodssökvägar som inte har implementerats i Wine."
 
 #: src/ui/details-programs.ui:29
-#, fuzzy
 msgid "No programs found"
-msgstr "Inga program hittades!"
+msgstr "Inga program hittades"
 
 #: src/ui/details-programs.ui:30
 msgid "New programs will be automatically found."
 msgstr ""
 
 #: src/ui/details-programs.ui:74
-#, fuzzy
 msgid "Add a custom executable path"
-msgstr "Kör exekverbar"
+msgstr "Lägg till en anpassad körbar sökväg"
 
 #: src/ui/details-programs.ui:100
 msgid "Search for installed programs"
