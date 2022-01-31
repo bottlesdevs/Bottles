@@ -130,6 +130,13 @@ class Runner:
                     "data": win_versions.get(version)["CurrentMajorVersionNumber"],
                     "keyType": "dword"
                 },
+            ],
+            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": [
+                {
+                    "value": "CSDVersion",
+                    "data": win_versions.get(version)["CSDVersionHex"],
+                    "keyType": "dword"
+                }
             ]
         }
 
@@ -164,7 +171,7 @@ class Runner:
                     "value": "CurrentMajorVersionNumber",
                     "data": win_versions.get(version)["CurrentMajorVersionNumber"],
                     "keyType": "dword"
-                },
+                }
             ]
 
         if "ProductType" in win_versions.get(version):

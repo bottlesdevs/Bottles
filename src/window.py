@@ -322,9 +322,8 @@ class MainWindow(Handy.ApplicationWindow):
         self.show_prefs_view(widget, view=2)
 
     def check_crash_log(self):
-        log_path = f"{Path.home()}/.local/share/bottles/crash.log"
-        if "FLATPAK_ID" in os.environ:
-            log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
+        xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+        log_path = f"{xdg_data_home}/bottles/crash.log"
         crash_log = False
 
         try:

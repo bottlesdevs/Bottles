@@ -168,20 +168,18 @@ class BottlesRepositories:
             logging.error(f"Local installers path does not exist: {os.environ['LOCAL_INSTALLERS']}")
 
 
+# xdg data path
+xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
 class Paths:
 
     # Icon paths
-    icons_user = f"{Path.home()}/.local/share/icons"
+    icons_user = f"{xdg_data_home}/icons"
 
     # Local paths
-    base = f"{Path.home()}/.local/share/bottles"
+    base = f"{xdg_data_home}/bottles"
 
     # User applications path
-    applications = f"{Path.home()}/.local/share/applications/"
-
-    if "FLATPAK_ID" in os.environ:
-        base_n = base
-        base = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/bottles"
+    applications = f"{xdg_data_home}/applications/"
 
     temp = f"{base}/temp"
     runners = f"{base}/runners"
@@ -196,9 +194,9 @@ class Paths:
 class TrdyPaths:
 
     # External managers paths
-    lutris = f"{Path.home()}*/Games"
-    playonlinux = f"{Path.home()}/.PlayOnLinux/wineprefix/"
-    bottlesv1 = f"{Path.home()}/.Bottles"
+    lutris = f"{xdg_data_home}*/Games"
+    playonlinux = f"{xdg_data_home}/.PlayOnLinux/wineprefix/"
+    bottlesv1 = f"{xdg_data_home}/.Bottles"
 
 
 # Check if gamemode is available

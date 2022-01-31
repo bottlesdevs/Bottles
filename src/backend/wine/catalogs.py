@@ -34,7 +34,7 @@ win_versions = {
     },
     "win7": {
         "CSDVersion": "Service Pack 1",
-        "CSDVersionHex": "256",
+        "CSDVersionHex": "100",
         "CurrentBuild": "7601",
         "CurrentBuildNumber": "7601",
         "CurrentVersion": "6.1",
@@ -45,7 +45,7 @@ win_versions = {
     },
     "win2008r2": {
         "CSDVersion": "Service Pack 1",
-        "CSDVersionHex": "256",
+        "CSDVersionHex": "100",
         "CurrentBuild": "7601",
         "CurrentBuildNumber": "7601",
         "CurrentVersion": "6.1",
@@ -56,7 +56,7 @@ win_versions = {
     },
     "win2008": {
         "CSDVersion": "Service Pack 2",
-        "CSDVersionHex": "512",
+        "CSDVersionHex": "200",
         "CurrentBuild": "6002",
         "CurrentBuildNumber": "6002",
         "CurrentVersion": "6.0",
@@ -64,6 +64,16 @@ win_versions = {
         "CurrentMajorVersionNumber": "6",
         "ProductType": "WinNT",
         "ProductName": "Microsoft Windows 2008"
+    },
+    "win2003": {
+        "CSDVersion": "Service Pack 2",
+        "CSDVersionHex": "200",
+        "CurrentBuild": "3790",
+        "CurrentBuildNumber": "3790",
+        "CurrentVersion": "5.2",
+        "CurrentMinorVersionNumber": "2",
+        "CurrentMajorVersionNumber": "5",
+        "ProductName": "Microsoft Windows 2003"
     },
     "winxp": {
         "CSDVersion": "Service Pack 3",
@@ -77,7 +87,7 @@ win_versions = {
     },
     "winxp64": {
         "CSDVersion": "Service Pack 2",
-        "CSDVersionHex": "512",
+        "CSDVersionHex": "200",
         "CurrentBuild": "3790",
         "CurrentBuildNumber": "3790",
         "CurrentVersion": "5.2",

@@ -287,13 +287,11 @@ class UtilsFiles():
 def write_log(data: list):
     '''
     This function writes a crash.log file.
-    It takes care of the location of the log whether Bottles is running 
-    under Flatpak or not. It also find and replace the user's home directory
+    It finds and replace the user's home directory
     with "USER" as a proposed standard for crash reports.
     '''
-    log_path = f"{Path.home()}/.local/share/bottles/crash.log"
-    if "FLATPAK_ID" in os.environ:
-        log_path = f"{Path.home()}/.var/app/{os.environ['FLATPAK_ID']}/data/crash.log"
+    xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+    log_path = f"{xdg_data_home}/bottles/crash.log"
 
     with open(log_path, "w") as crash_log:
         for d in data:
