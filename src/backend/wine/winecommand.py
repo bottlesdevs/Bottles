@@ -108,6 +108,8 @@ class WineCommand:
             '''
             cwd = bottle
 
+        return cwd
+
     def __get_env(self, environment) -> dict:
         env = WineEnv()
         config = self.config
