@@ -342,10 +342,16 @@ class ComponentManager:
             tar.close()
         except:
             if os.path.isfile(os.path.join(Paths.temp, archive)):
-                os.remove(os.path.join(Paths.temp, archive))
+                try:
+                    os.remove(os.path.join(Paths.temp, archive))
+                except:
+                    pass # safely ignore the error, there is nothing to remove
 
             if os.path.isdir(os.path.join(path, archive[:-7])):
-                shutil.rmtree(os.path.join(path, archive[:-7]))
+                try:
+                    shutil.rmtree(os.path.join(path, archive[:-7]))
+                except:
+                    pass # safely ignore the error, there is nothing to remove
 
             logging.error(
                 "Extraction failed! Archive ends earlier than expected."
