@@ -20,6 +20,7 @@ bottles_sources = [
   'msiexec.py',
   'executor.py',
   'start.py',
+  'register.py',
   'winebridge.py',
 ]
 
