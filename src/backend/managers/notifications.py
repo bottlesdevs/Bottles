@@ -22,7 +22,7 @@ from datetime import datetime, timedelta
 
 from bottles.params import VERSION # pyright: reportMissingImports=false
 from bottles.backend.globals import API
-from bottles.backend.data import DataManager
+from bottles.backend.managers.data import DataManager
 
 class NotificationsManager:
     '''

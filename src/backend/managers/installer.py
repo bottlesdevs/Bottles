@@ -31,7 +31,7 @@ from bottles.utils import UtilsLogger
 from bottles.backend.layers import LayersStore, Layer
 
 from bottles.backend.wine.wineboot import WineBoot
-from bottles.backend.conf import ConfigManager
+from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.wine.executor import WineExecutor
 
 logging = UtilsLogger()

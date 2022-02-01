@@ -19,7 +19,7 @@ import webbrowser
 from gi.repository import Gtk, Handy
 from gettext import gettext as _
 
-from bottles.backend.notifications import NotificationsManager # pyright: reportMissingImports=false
+from bottles.backend.managers.notifications import NotificationsManager # pyright: reportMissingImports=false
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/message-entry.ui')
 class MessageEntry(Handy.ActionRow):

@@ -25,7 +25,7 @@ from gi.repository import Gtk
 from bottles.utils import RunAsync, GtkUtils # pyright: reportMissingImports=false
 
 from bottles.backend.runner import Runner
-from bottles.backend.backup import BackupManager
+from bottles.backend.managers.backup import BackupManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.widgets.program import ProgramEntry

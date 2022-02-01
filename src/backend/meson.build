@@ -5,25 +5,15 @@ subdir('wine')
 subdir('models')
 subdir('utils')
 subdir('dlls')
+subdir('managers')
 
 bottles_sources = [
   '__init__.py',
-  'backup.py',
-  'component.py',
-  'dependency.py',
   'globals.py',
-  'installer.py',
-  'manager.py',
   'runner.py',
-  'versioning.py',
-  'data.py',
-  'notifications.py',
-  'runtime.py',
-  'importer.py',
   'layers.py',
   'diff.py',
   'health.py',
-  'conf.py',
   'downloader.py'
 ]
 

@@ -20,7 +20,7 @@ import time
 from gi.repository import Gtk, Handy
 
 from bottles.utils import RunAsync # pyright: reportMissingImports=false
-from bottles.backend.backup import BackupManager
+from bottles.backend.managers.backup import BackupManager
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
 class DuplicateDialog(Handy.Window):

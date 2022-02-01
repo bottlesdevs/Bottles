@@ -27,8 +27,8 @@ from bottles.widgets.message import MessageEntry
 from bottles.utils import UtilsConnection, UtilsLogger, RunAsync
 
 from bottles.backend.health import HealthChecker
-from bottles.backend.manager import Manager
-from bottles.backend.notifications import NotificationsManager
+from bottles.backend.managers.manager import Manager
+from bottles.backend.managers.notifications import NotificationsManager
 from bottles.backend.wine.executor import WineExecutor
 
 from bottles.views.new import NewView

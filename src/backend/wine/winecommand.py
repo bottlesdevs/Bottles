@@ -3,7 +3,7 @@ import subprocess
 from typing import NewType
 
 from bottles.utils import UtilsLogger, UtilsTerminal, detect_encoding # pyright: reportMissingImports=false
-from bottles.backend.runtime import RuntimeManager
+from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
