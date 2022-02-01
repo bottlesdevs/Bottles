@@ -283,7 +283,7 @@ class WineCommand:
 
     def __get_cmd(self, command, post_script) -> str:
         config = self.config
-        params = config["Parameters"]
+        params = config.get("Params", {})
         runner = self.runner
         command = f"{runner} {command}"
 
@@ -296,10 +296,10 @@ class WineCommand:
                 command = f"{command} {self.arguments}"
 
         if not self.minimal:
-            if gamemode_available and params["gamemode"]:
+            if gamemode_available and params.get("gamemode"):
                 command = f"{gamemode_available} {command}"
 
-            if gamescope_available and params["gamescope"]:
+            if gamescope_available and params.get("gamescope"):
                 command = f"{self.__get_gamescope_cmd()} {command}"
         
         if post_script is not None:
