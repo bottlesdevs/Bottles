@@ -28,7 +28,7 @@ from gi.repository import GLib
 
 from bottles.operation import OperationManager # pyright: reportMissingImports=false
 from bottles.utils import UtilsLogger, CabExtract, validate_url
-from bottles.backend.result import Result
+from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
 from bottles.backend.globals import BottlesRepositories, Paths
 from bottles.backend.manager_utils import ManagerUtils

@@ -24,7 +24,7 @@ from gi.repository import Gtk
 
 from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
 from bottles.backend.globals import TrdyPaths, Paths, Samples
-from bottles.backend.result import Result
+from bottles.backend.models.result import Result
 
 
 logging = UtilsLogger()

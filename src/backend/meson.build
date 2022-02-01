@@ -2,6 +2,7 @@ pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.proje
 backenddir = join_paths(pkgdatadir, 'bottles/backend')
 
 subdir('wine')
+subdir('models')
 
 bottles_sources = [
   '__init__.py',
@@ -16,7 +17,6 @@ bottles_sources = [
   'versioning.py',
   'data.py',
   'notifications.py',
-  'result.py',
   'runtime.py',
   'display.py',
   'importer.py',
@@ -30,7 +30,7 @@ bottles_sources = [
   'vkd3d.py',
   'nvapi.py',
   'conf.py',
-  'downloader.py'
+  'downloader.py',
 ]
 
 install_data(bottles_sources, install_dir: backenddir)

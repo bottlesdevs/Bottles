@@ -29,7 +29,7 @@ from typing import Union
 from bottles.operation import OperationManager # pyright: reportMissingImports=false
 from bottles.utils import UtilsLogger, UtilsFiles
 from bottles.backend.globals import Paths, BottlesRepositories
-from bottles.backend.result import Result
+from bottles.backend.models.result import Result
 from bottles.backend.downloader import Downloader
 
 logging = UtilsLogger()

@@ -27,7 +27,7 @@ from gi.repository import GLib
 
 from bottles.operation import OperationManager # pyright: reportMissingImports=false
 from bottles.utils import UtilsLogger, UtilsFiles
-from bottles.backend.result import Result
+from bottles.backend.models.result import Result
 from bottles.backend.manager_utils import ManagerUtils
 
 logging = UtilsLogger()
