@@ -3,6 +3,7 @@ backenddir = join_paths(pkgdatadir, 'bottles/backend')
 
 subdir('wine')
 subdir('models')
+subdir('dlls')
 
 bottles_sources = [
   '__init__.py',
@@ -25,12 +26,8 @@ bottles_sources = [
   'layers.py',
   'diff.py',
   'health.py',
-  'dll.py',
-  'dxvk.py',
-  'vkd3d.py',
-  'nvapi.py',
   'conf.py',
-  'downloader.py',
+  'downloader.py'
 ]
 
 install_data(bottles_sources, install_dir: backenddir)

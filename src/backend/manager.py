@@ -42,9 +42,9 @@ from bottles.backend.dependency import DependencyManager
 from bottles.backend.manager_utils import ManagerUtils
 from bottles.backend.importer import ImportManager
 from bottles.backend.layers import Layer, LayersStore
-from bottles.backend.dxvk import DXVKComponent
-from bottles.backend.vkd3d import VKD3DComponent
-from bottles.backend.nvapi import NVAPIComponent
+from bottles.backend.dlls.dxvk import DXVKComponent
+from bottles.backend.dlls.vkd3d import VKD3DComponent
+from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.wineboot import WineBoot 
 from bottles.backend.wine.reg import Reg

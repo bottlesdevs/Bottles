@@ -1,4 +1,4 @@
-# vkd3d.py
+# nvapi.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -15,19 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from bottles.backend.dll import DLLComponent # pyright: reportMissingImports=false
+from bottles.backend.dlls.dll import DLLComponent # pyright: reportMissingImports=false
 from bottles.backend.manager_utils import ManagerUtils
 
 
-class VKD3DComponent(DLLComponent):
+class NVAPIComponent(DLLComponent):
     dlls = {
-        "x86": [
-            "d3d12.dll"
+        "x32": [
+            "nvapi.dll"
         ],
         "x64": [
-            "d3d12.dll"
+            "nvapi64.dll"
         ]
     }
 
     def get_base_path(self, version:str):
-        return ManagerUtils.get_vkd3d_path(version)
+        return ManagerUtils.get_nvapi_path(version)
