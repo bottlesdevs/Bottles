@@ -161,9 +161,8 @@ class WineExecutor:
         )
     
     def __launch_batch(self):
-        cmd = CMD()
+        cmd = CMD(self.config)
         res = cmd.run_batch(
-            self.config,
             batch=self.exec_path,
             terminal=self.terminal,
             args=self.args,
@@ -178,7 +177,6 @@ class WineExecutor:
     def __launch_lnk(self):
         start = Start(self.config)
         res = start.run(
-            self.config,
             file=self.exec_path,
             terminal=self.terminal,
             args=self.args,
