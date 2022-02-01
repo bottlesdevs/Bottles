@@ -20,7 +20,6 @@ import yaml
 import subprocess
 from glob import glob
 from datetime import datetime
-from gi.repository import Gtk
 
 from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
 from bottles.backend.globals import TrdyPaths, Paths, Samples
