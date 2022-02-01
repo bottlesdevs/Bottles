@@ -3,6 +3,7 @@ backenddir = join_paths(pkgdatadir, 'bottles/backend')
 
 subdir('wine')
 subdir('models')
+subdir('utils')
 subdir('dlls')
 
 bottles_sources = [
@@ -13,16 +14,12 @@ bottles_sources = [
   'globals.py',
   'installer.py',
   'manager.py',
-  'manager_utils.py',
   'runner.py',
   'versioning.py',
   'data.py',
   'notifications.py',
   'runtime.py',
-  'display.py',
   'importer.py',
-  'vulkan.py',
-  'gpu.py',
   'layers.py',
   'diff.py',
   'health.py',

@@ -21,8 +21,8 @@ import shutil
 import platform
 import subprocess
 
-from bottles.backend.display import DisplayUtils # pyright: reportMissingImports=false
-from bottles.backend.gpu import GPUUtils
+from bottles.backend.utils.display import DisplayUtils # pyright: reportMissingImports=false
+from bottles.backend.utils.gpu import GPUUtils
 
 
 class HealthChecker:

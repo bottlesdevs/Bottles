@@ -25,13 +25,12 @@ from functools import lru_cache
 from datetime import datetime
 from gi.repository import Gtk, GLib
 
-from .runner import Runner
-from .manager_utils import ManagerUtils
-from .globals import BottlesRepositories, Paths
-from ..utils import RunAsync, UtilsLogger
-from .layers import LayersStore, Layer
+from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
+from bottles.backend.globals import BottlesRepositories, Paths
+from bottles.utils import UtilsLogger
+from bottles.backend.layers import LayersStore, Layer
 
-from bottles.backend.wine.wineboot import WineBoot # pyright: reportMissingImports=false
+from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.conf import ConfigManager
 from bottles.backend.wine.executor import WineExecutor
 

@@ -4,9 +4,9 @@ from typing import NewType
 
 from bottles.utils import UtilsLogger, UtilsTerminal, detect_encoding # pyright: reportMissingImports=false
 from bottles.backend.runtime import RuntimeManager
-from bottles.backend.manager_utils import ManagerUtils
-from bottles.backend.display import DisplayUtils
-from bottles.backend.gpu import GPUUtils
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.display import DisplayUtils
+from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available
 
 logging = UtilsLogger()

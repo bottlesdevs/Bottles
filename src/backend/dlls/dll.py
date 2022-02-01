@@ -21,7 +21,7 @@ from typing import NewType
 from abc import abstractmethod
 
 from bottles.backend.runner import Runner # pyright: reportMissingImports=false
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.reg import Reg
 
 BottleConfig = NewType('BottleConfig', dict)

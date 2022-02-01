@@ -31,7 +31,7 @@ from bottles.utils import UtilsLogger, CabExtract, validate_url
 from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
 from bottles.backend.globals import BottlesRepositories, Paths
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg 
 from bottles.backend.wine.reg import Reg

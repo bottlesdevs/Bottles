@@ -39,7 +39,7 @@ from bottles.backend.versioning import RunnerVersioning
 from bottles.backend.component import ComponentManager
 from bottles.backend.installer import InstallerManager
 from bottles.backend.dependency import DependencyManager
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.importer import ImportManager
 from bottles.backend.layers import Layer, LayersStore
 from bottles.backend.dlls.dxvk import DXVKComponent

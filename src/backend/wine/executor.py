@@ -4,7 +4,7 @@ from typing import NewType
 
 from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
 from bottles.backend.models.result import Result
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.msiexec import MsiExec

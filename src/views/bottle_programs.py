@@ -20,7 +20,7 @@ from gi.repository import Gtk
 
 from bottles.utils import GtkUtils # pyright: reportMissingImports=false
 from bottles.widgets.program import ProgramEntry
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-programs.ui')

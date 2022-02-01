@@ -24,7 +24,7 @@ from bottles.utils import RunAsync # pyright: reportMissingImports=false
 from bottles.dialogs.launchoptions import LaunchOptionsDialog
 from bottles.dialogs.rename import RenameDialog
 
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.executor import WineExecutor
 

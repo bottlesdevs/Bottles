@@ -20,7 +20,7 @@ from typing import NewType
 
 from bottles.utils import UtilsLogger, RunAsync # pyright: reportMissingImports=false
 from bottles.backend.globals import gamemode_available, gamescope_available
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.models.result import Result
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.winecommand import WineCommand

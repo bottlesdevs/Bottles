@@ -2,6 +2,7 @@ pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.proje
 modelsdir = join_paths(pkgdatadir, 'bottles/backend/models')
 
 bottles_sources = [
+  '__init__.py',
   'result.py',
 ]
 

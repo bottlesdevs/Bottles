@@ -25,7 +25,7 @@ from typing import NewType
 
 from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.globals import Paths, Samples
 from bottles.backend.diff import Diff
 

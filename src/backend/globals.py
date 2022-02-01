@@ -19,7 +19,7 @@ import os
 import shutil
 from pathlib import Path
 from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
-from bottles.backend.display import DisplayUtils
+from bottles.backend.utils.display import DisplayUtils
 
 
 logging = UtilsLogger()

@@ -22,7 +22,7 @@ from gi.repository import Gtk
 from bottles.utils import RunAsync # pyright: reportMissingImports=false
 
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available
-from bottles.backend.manager_utils import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.dialogs.envvars import EnvVarsDialog
 from bottles.dialogs.dlloverrides import DLLOverridesDialog

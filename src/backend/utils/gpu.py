@@ -17,7 +17,7 @@
 
 import subprocess
 
-from bottles.backend.vulkan import VulkanUtils # pyright: reportMissingImports=false
+from bottles.backend.utils.vulkan import VulkanUtils # pyright: reportMissingImports=false
 
 
 class GPUUtils:

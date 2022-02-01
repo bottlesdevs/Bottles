@@ -2,6 +2,7 @@ pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.proje
 dllsdir = join_paths(pkgdatadir, 'bottles/backend/dlls')
 
 bottles_sources = [
+  '__init__.py',
   'dll.py',
   'dxvk.py',
   'vkd3d.py',
