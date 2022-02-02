@@ -22,7 +22,8 @@ from glob import glob
 from datetime import datetime
 
 from bottles.backend.logger import Logger # pyright: reportMissingImports=false
-from bottles.backend.globals import TrdyPaths, Paths, Samples
+from bottles.backend.globals import TrdyPaths, Paths
+from bottles.backend.models.samples import Samples
 from bottles.backend.models.result import Result
 
 

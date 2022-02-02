@@ -34,7 +34,8 @@ from gi.repository import GLib
 from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
-from bottles.backend.globals import Samples, BottlesRepositories, Paths
+from bottles.backend.models.samples import Samples
+from bottles.backend.globals import BottlesRepositories, Paths
 from bottles.backend.managers.versioning import RunnerVersioning
 from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.installer import InstallerManager

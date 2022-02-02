@@ -19,7 +19,8 @@ import os
 import yaml
 
 from bottles.backend.logger import Logger # pyright: reportMissingImports=false
-from bottles.backend.globals import Paths, Samples
+from bottles.backend.globals import Paths
+from bottles.backend.models.samples import Samples
 
 logging = Logger()
 
