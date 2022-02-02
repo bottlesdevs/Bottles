@@ -1,10 +1,10 @@
 from typing import NewType
 
-from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths
 from bottles.backend.wine.winecommand import WineCommand
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)

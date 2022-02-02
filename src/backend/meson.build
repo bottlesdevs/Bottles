@@ -14,7 +14,9 @@ bottles_sources = [
   'layers.py',
   'diff.py',
   'health.py',
-  'downloader.py'
+  'downloader.py',
+  'logger.py',
+  'cabextract.py'
 ]
 
 install_data(bottles_sources, install_dir: backenddir)

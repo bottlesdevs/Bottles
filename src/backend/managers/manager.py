@@ -31,7 +31,7 @@ from gettext import gettext as _
 from typing import NewType
 from gi.repository import GLib
 
-from bottles.utils import UtilsFiles, UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.globals import Samples, BottlesRepositories, Paths
@@ -39,6 +39,7 @@ from bottles.backend.managers.versioning import RunnerVersioning
 from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.dependency import DependencyManager
+from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.layers import Layer, LayersStore
@@ -49,7 +50,7 @@ from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.wineboot import WineBoot 
 from bottles.backend.wine.reg import Reg
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
@@ -1132,7 +1133,7 @@ class Manager:
                         pass
             
         # wait for registry files to be created
-        UtilsFiles.wait_for_files(reg_files)
+        FileUtils.wait_for_files(reg_files)
 
         # apply Windows version
         logging.info("Setting Windows version…")
@@ -1140,7 +1141,7 @@ class Manager:
         Runner.set_windows(config, config["Windows"])
         wineboot.update()
         
-        UtilsFiles.wait_for_files(reg_files)
+        FileUtils.wait_for_files(reg_files)
 
         # apply CMD settings
         logging.info("Setting CMD default settings…")
@@ -1148,7 +1149,7 @@ class Manager:
         Runner.apply_cmd_settings(config)
         wineboot.update()
         
-        UtilsFiles.wait_for_files(reg_files)
+        FileUtils.wait_for_files(reg_files)
         
         # blacklisting processes
         logging.info("Optimizing environment…")
@@ -1221,7 +1222,7 @@ class Manager:
         log_update(_("Finalizing…"))
 
         # wait for all registry changes to be applied
-        UtilsFiles.wait_for_files(reg_files)
+        FileUtils.wait_for_files(reg_files)
         
         # perform wineboot
         wineboot.update()

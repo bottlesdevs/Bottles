@@ -24,7 +24,7 @@ from pathlib import Path
 
 from bottles.params import * # pyright: reportMissingImports=false
 from bottles.widgets.message import MessageEntry
-from bottles.utils import UtilsConnection, UtilsLogger, RunAsync
+from bottles.utils import UtilsConnection, Logger, RunAsync
 
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
@@ -41,7 +41,7 @@ from bottles.dialogs.crash import CrashReportDialog
 from bottles.dialogs.generic import AboutDialog, SourceDialog
 from bottles.dialogs.onboard import OnboardDialog
 
-logging = UtilsLogger()
+logging = Logger()
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/window.ui')

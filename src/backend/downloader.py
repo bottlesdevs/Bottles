@@ -18,9 +18,9 @@
 import requests
 from gi.repository import GLib
 
-from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 
-logging = UtilsLogger()
+logging = Logger()
 
 class Downloader:
     '''

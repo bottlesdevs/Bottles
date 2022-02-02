@@ -29,10 +29,10 @@ gi.require_version('WebKit2', '4.0')
 from gi.repository import Gtk, Gio, Gdk, GLib, GObject
 
 from bottles.params import *
-from bottles.utils import UtilsLogger
+from bottles.backend.logger import Logger
 from bottles.window import MainWindow
 
-logging = UtilsLogger()
+logging = Logger()
 
 # region Translations
 '''

@@ -26,11 +26,12 @@ from gettext import gettext as _
 from gi.repository import GLib
 
 from bottles.operation import OperationManager # pyright: reportMissingImports=false
-from bottles.utils import UtilsLogger, UtilsFiles
+from bottles.backend.utils.file import FileUtils
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.logger import Logger
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
@@ -363,7 +364,7 @@ class RunnerVersioning:
 
             cur_index["Files"].append({
                 "file": file[len(bottle_path)+9:],
-                "checksum": UtilsFiles().get_checksum(file)
+                "checksum": FileUtils().get_checksum(file)
             })
         return cur_index
 
@@ -430,7 +431,7 @@ class RunnerVersioning:
                 source = "%s/states/%s/drive_c/%s" % (
                     bottle_path, str(i), file["file"])
                 if os.path.isfile(source):
-                    checksum = UtilsFiles().get_checksum(source)
+                    checksum = FileUtils().get_checksum(source)
                     if file["checksum"] == checksum:
                         break
             target = "%s/drive_c/%s" % (bottle_path, file["file"])

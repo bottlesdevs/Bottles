@@ -27,12 +27,13 @@ from gi.repository import GLib
 from typing import Union
 
 from bottles.operation import OperationManager # pyright: reportMissingImports=false
-from bottles.utils import UtilsLogger, UtilsFiles
+from bottles.backend.utils.file import FileUtils
 from bottles.backend.globals import Paths, BottlesRepositories
 from bottles.backend.models.result import Result
 from bottles.backend.downloader import Downloader
+from bottles.backend.logger import Logger
 
-logging = UtilsLogger()
+logging = Logger()
 
 
 class ComponentManager:
@@ -293,7 +294,7 @@ class ComponentManager:
             download manager and return False.
             '''
             checksum = checksum.lower()
-            local_checksum = UtilsFiles().get_checksum(file_path)
+            local_checksum = FileUtils().get_checksum(file_path)
 
             if local_checksum != checksum:
                 logging.error(f"Downloaded file [{file}] looks corrupted.")

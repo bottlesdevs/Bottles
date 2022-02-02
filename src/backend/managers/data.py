@@ -18,10 +18,10 @@
 import os
 import yaml
 
-from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths, Samples
 
-logging = UtilsLogger()
+logging = Logger()
 
 class DataManager:
     '''
@@ -30,7 +30,7 @@ class DataManager:
     and settings that should not be stored in gsettings.
     '''
 
-    __data = {}
+    __data: dict = {}
     
     def __init__(self):
         self.__get_data()

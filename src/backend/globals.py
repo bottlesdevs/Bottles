@@ -18,11 +18,11 @@
 import os
 import shutil
 from pathlib import Path
-from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.utils.display import DisplayUtils
 
 
-logging = UtilsLogger()
+logging = Logger()
 
 class API:
     notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
@@ -189,7 +189,8 @@ class Paths:
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
     data = f"{base}/data.yml"
-
+    journal = f"{base}/journal.yml"
+    
 
 class TrdyPaths:
 

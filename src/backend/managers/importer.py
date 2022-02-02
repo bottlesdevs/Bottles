@@ -21,12 +21,12 @@ import subprocess
 from glob import glob
 from datetime import datetime
 
-from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.globals import TrdyPaths, Paths, Samples
 from bottles.backend.models.result import Result
 
 
-logging = UtilsLogger()
+logging = Logger()
 
 class ImportManager:
 

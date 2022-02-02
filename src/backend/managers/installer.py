@@ -27,14 +27,14 @@ from gi.repository import Gtk, GLib
 
 from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
 from bottles.backend.globals import BottlesRepositories, Paths
-from bottles.utils import UtilsLogger
+from bottles.backend.logger import Logger
 from bottles.backend.layers import LayersStore, Layer
 
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.wine.executor import WineExecutor
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)

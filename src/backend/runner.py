@@ -17,17 +17,16 @@
 
 from typing import NewType
 
-from bottles.utils import UtilsLogger, RunAsync # pyright: reportMissingImports=false
+from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
 from bottles.backend.globals import gamemode_available, gamescope_available
-from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.models.result import Result
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.wineboot import WineBoot
-from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)

@@ -2,14 +2,16 @@ import os
 import subprocess
 from typing import NewType
 
-from bottles.utils import UtilsLogger, UtilsTerminal, detect_encoding # pyright: reportMissingImports=false
+from bottles.backend.utils.generic import detect_encoding # pyright: reportMissingImports=false
 from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.globals import Paths, gamemode_available, gamescope_available
+from bottles.backend.logger import Logger
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
@@ -339,7 +341,7 @@ class WineCommand:
             return
 
         if self.terminal:
-            return UtilsTerminal().execute(self.command, self.env, self.colors)
+            return TerminalUtils().execute(self.command, self.env, self.colors)
             
         if self.comunicate:
             try:

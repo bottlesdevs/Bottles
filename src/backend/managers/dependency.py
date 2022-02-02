@@ -27,9 +27,11 @@ from typing import Union, NewType
 from gi.repository import GLib
 
 from bottles.operation import OperationManager # pyright: reportMissingImports=false
-from bottles.utils import UtilsLogger, CabExtract, validate_url
+from bottles.backend.utils.generic import validate_url
 from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
+from bottles.backend.logger import Logger
+from bottles.backend.cabextract import CabExtract
 from bottles.backend.globals import BottlesRepositories, Paths
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
@@ -37,7 +39,7 @@ from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.executor import WineExecutor
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)

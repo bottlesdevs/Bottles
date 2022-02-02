@@ -4,11 +4,11 @@ import time
 import subprocess
 from typing import NewType
 
-from bottles.utils import UtilsLogger, RunAsync # pyright: reportMissingImports=false
-from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
 from bottles.backend.wine.wineprogram import WineProgram
+from bottles.backend.logger import Logger
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)

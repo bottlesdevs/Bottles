@@ -7,6 +7,9 @@ bottles_sources = [
   'gpu.py',
   'manager.py',
   'vulkan.py',
+  'terminal.py',
+  'file.py',
+  'generic.py',
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

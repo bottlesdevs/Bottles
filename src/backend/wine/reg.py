@@ -2,12 +2,12 @@ import os
 import uuid
 from typing import NewType
 
-from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.utils.manager import ManagerUtils
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)

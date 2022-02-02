@@ -2,7 +2,7 @@ import os
 import shlex
 from typing import NewType
 
-from bottles.utils import UtilsLogger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winecommand import WineCommand
@@ -11,7 +11,7 @@ from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
 from bottles.backend.wine.winebridge import WineBridge
 
-logging = UtilsLogger()
+logging = Logger()
 
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
