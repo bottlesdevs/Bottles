@@ -38,7 +38,7 @@ from bottles.views.preferences import PreferencesWindow
 from bottles.views.importer import ImporterView
 
 from bottles.dialogs.crash import CrashReportDialog
-from bottles.dialogs.generic import AboutDialog, TextDialog
+from bottles.dialogs.generic import AboutDialog, SourceDialog
 from bottles.dialogs.onboard import OnboardDialog
 
 logging = UtilsLogger()
@@ -276,7 +276,7 @@ class MainWindow(Handy.ApplicationWindow):
         It will show the health view.
         '''
         ht = HealthChecker().get_results(plain=True)
-        TextDialog(
+        SourceDialog(
             parent=self,
             title=_("Health check"),
             message=ht,
