@@ -347,9 +347,9 @@ class InstallerManager:
 
     def install(self, config, installer, widget):
         if config.get("Environment") == "Layered":
-            wineboot = WineBoot(self.__layer.runtime_conf)
             self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
             self.__layer.mount_bottle(config)
+            wineboot = WineBoot(self.__layer.runtime_conf)
             wineboot.init()
 
         manifest = self.get_installer(
