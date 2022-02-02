@@ -124,6 +124,7 @@ class InstallerEntry(Handy.ActionRow):
         self.label_step.set_visible(False)
         self.img_installed.set_visible(True)
         self.get_parent().set_sensitive(True)
+        self.window.page_details.update_programs()
 
     def set_err(self, msg="Something went wrong"):
         '''Set error status'''
