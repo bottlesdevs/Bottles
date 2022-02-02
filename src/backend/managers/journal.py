@@ -30,13 +30,8 @@ class JournalManager:
     The JournalManager class is used to store and retrieve data from the
     journal file, which is a YAML file containing all Bottles logged events.
     '''
-    __journal: dict
-    
-    def __init__(self):
-        self.__journal = {}
-        self.__load_journal()
-    
-    def __load_journal(self):
+    @staticmethod
+    def __get_journal():
         '''
         Load the journal file.
         '''
@@ -45,19 +40,44 @@ class JournalManager:
             with open(Paths.journal, "w") as f:
                 f.write("")
         with open(Paths.journal, "r") as f:
-            self.__journal = yaml.safe_load(f)
-        
-    def __save_journal(self):
-        '''
-        Save the journal file.
-        '''
-        with open(Paths.journal, "w") as f:
-            yaml.dump(self.__journal, f)
+            journal = yaml.safe_load(f)
+
+        if journal is None:
+            journal = {}
+        return journal
     
-    def get(self, period: str = "today"):
+    @staticmethod
+    def __clean_old():
+        '''
+        Clean events old then 1 month.
+        '''
+        journal = JournalManager.__get_journal()
+        old_events = []
+
+        for event_id, event in journal.items():
+            timestamp = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S")
+            if timestamp < datetime.now() - timedelta(days=30):
+                old_events.append(event_id)
+        for event_id in old_events:
+            del journal[event_id]
+        JournalManager.__save_journal(journal)
+
+    @staticmethod
+    def __save_journal(journal: dict = None):
+        '''
+        Save the journal to the journal file.
+        '''
+        if journal is None:
+            journal = JournalManager.__get_journal()
+        with open(Paths.journal, "w") as f:
+            yaml.dump(journal, f)
+    
+    @staticmethod
+    def get(period: str = "today", plain: bool = False):
         '''
         Return all events in the journal.
         '''
+        journal = JournalManager.__get_journal()
         periods = [
             "all",
             "today",
@@ -69,46 +89,57 @@ class JournalManager:
             logging.warning(f"Invalid period '{period}', falling back to 'today'")
             period = "today"
         
-        return self.__filter_by_date(period)
+        _journal = JournalManager.__filter_by_date(journal, period)
+        if plain:
+            _journal = yaml.dump(_journal, sort_keys=False, indent=4)
+        return _journal
     
-    def __filter_by_date(self, date: str, period: str):
+    @staticmethod
+    def __filter_by_date(journal: dict, period: str):
         '''
         Filter the journal by date.
         '''
+        _journal = {}
         if period == "today":
-            start = datetime.utcnow().date()
+            start = datetime.now().date()
             end = start + timedelta(days=1)
         elif period == "yesterday":
-            start = datetime.utcnow().date() - timedelta(days=1)
+            start = datetime.now().date() - timedelta(days=1)
             end = start + timedelta(days=1)
         elif period == "week":
-            start = datetime.utcnow().date() - timedelta(days=datetime.utcnow().weekday())
-            end = start + timedelta(days=7)
+            start = datetime.now().date() - timedelta(days=7)
+            end = datetime.now().date() + timedelta(days=1)
         elif period == "month":
-            start = datetime.utcnow().date().replace(day=1)
-            end = start + timedelta(days=31)
+            start = datetime.now().date() - timedelta(days=30)
+            end = datetime.now().date() + timedelta(days=1)
+        elif period == "all":
+            return journal
         else:
-            start = datetime.min
-            end = datetime.max
-        
-        filtered_journal = {}
-        for event_id, event in self.__journal.items():
-            timestamp = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S")
-            if start <= timestamp <= end:
-                filtered_journal[event_id] = event
+            logging.error(f"Invalid period '{period}', falling back to 'today'")
+            start = datetime.now().date()
+            end = start + timedelta(days=1)
 
-        return filtered_journal
+        for event_id, event in journal.items():
+            timestamp = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S").date()
+            if start <= timestamp <= end:
+                _journal[event_id] = event
+        return _journal
+
     
-    def get_event(self, event_id: str):
+    @staticmethod
+    def get_event(event_id: str):
         '''
         Return the event with the given ID.
         '''
-        return self.__journal[event_id]
+        journal = JournalManager.__get_journal()
+        return journal.get(event_id, None)
     
-    def add_event(self, severity: str, message: str):
+    @staticmethod
+    def write(severity: str, message: str):
         '''
         Add an event to the journal.
         '''
+        journal = JournalManager.__get_journal()
         severities = [
             "info",
             "warning",
@@ -121,10 +152,10 @@ class JournalManager:
             logging.warning(f"Invalid severity '{severity}', falling back to 'info'")
             severity = "info"
 
-        self.__journal[event_id] = {
+        journal[event_id] = {
             "severity": severity,
             "message": message,
             "timestamp": now.strftime("%Y-%m-%d %H:%M:%S")
         }
-        self.__save_journal()
-        return event_id
+        JournalManager.__save_journal(journal)
+        JournalManager.__clean_old()
