@@ -17,9 +17,9 @@
 
 import os
 import yaml
+from pathlib import Path
 
 from bottles.backend.logger import Logger # pyright: reportMissingImports=false
-from bottles.backend.globals import Paths
 from bottles.backend.models.samples import Samples
 
 logging = Logger()
@@ -32,22 +32,25 @@ class DataManager:
     '''
 
     __data: dict = {}
+    __p_xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+    __p_base = f"{__p_xdg_data_home}/bottles"
+    __p_data = f"{__p_base}/data.yml"
     
     def __init__(self):
         self.__get_data()
     
     def __get_data(self):
         try:
-            with open(Paths.data, 'r') as s:
+            with open(self.__p_data, 'r') as s:
                 self.__data = yaml.safe_load(s)
         except FileNotFoundError:
             logging.error('Data file not found. Creating new one.')
             self.__create_data_file()
     
     def __create_data_file(self):
-        if not os.path.exists(Paths.base):
-            os.makedirs(Paths.base)
-        with open(Paths.data, 'w') as s:
+        if not os.path.exists(self.__p_base):
+            os.makedirs(self.__p_base)
+        with open(self.__p_data, 'w') as s:
             yaml.dump(Samples.data, s)
         self.__get_data()
     
@@ -61,19 +64,34 @@ class DataManager:
         '''
         This function sets a value in the data dictionary.
         '''
-        if isinstance(self.__data[key], list):
-            self.__data[key].append(value)
+        if self.__data.get(key):
+            if isinstance(self.__data[key], list):
+                self.__data[key].append(value)
+            else:
+                self.__data[key] = value
         else:
             self.__data[key] = value
         
         try:
-            with open(Paths.data, 'w') as s:
+            with open(self.__p_data, 'w') as s:
                 yaml.dump(self.__data, s)
         except FileNotFoundError:
             pass
+    
+    def remove(self, key):
+        '''
+        This function removes a key from the data dictionary.
+        '''
+        if self.__data.get(key):
+            del self.__data[key]
+            try:
+                with open(self.__p_data, 'w') as s:
+                    yaml.dump(self.__data, s)
+            except FileNotFoundError:
+                pass
     
     def get(self, key):
         '''
         This function returns the value of a key in the data dictionary.
         '''
-        return self.__data[key]
+        return self.__data.get(key)

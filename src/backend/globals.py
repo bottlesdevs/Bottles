@@ -20,6 +20,7 @@ import shutil
 from pathlib import Path
 from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.utils.display import DisplayUtils
+from bottles.backend.managers.data import DataManager
 
 
 logging = Logger()
@@ -88,7 +89,13 @@ class Paths:
     nvapi = f"{base}/nvapi"
     data = f"{base}/data.yml"
     journal = f"{base}/journal.yml"
-    
+
+    data = DataManager()
+    if data.get("custom_bottles_path"):
+        if os.path.exists(data.get("custom_bottles_path")):
+            bottles = data.get("custom_bottles_path")
+        else:
+            logging.warning(f"Custom bottles path {data.get('custom_bottles_path')} does not exist, falling back to default")
 
 class TrdyPaths:
 

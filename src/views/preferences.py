@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
 from bottles.widgets.component import ComponentEntry # pyright: reportMissingImports=false
+from bottles.backend.managers.data import DataManager
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
@@ -38,6 +40,9 @@ class PreferencesWindow(Handy.PreferencesWindow):
     list_vkd3d = Gtk.Template.Child()
     list_nvapi = Gtk.Template.Child()
     actionrow_prerelease = Gtk.Template.Child()
+    btn_bottles_path = Gtk.Template.Child()
+    btn_bottles_path_reset = Gtk.Template.Child()
+    flatpak_notice = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, **kwargs):
@@ -49,6 +54,13 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.settings = window.settings
         self.default_settings = window.default_settings
         self.manager = window.manager
+        self.data = DataManager()
+
+        if "FLATPAK_ID" not in os.environ:
+            self.flatpak_notice.set_visible(False)
+
+        if self.data.get("custom_bottles_path"):
+            self.btn_bottles_path_reset.set_visible(True)
 
         # set widget defaults
         self.switch_theme.set_active(
@@ -85,6 +97,8 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_installers.connect('state-set', self.__toggle_installers)
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
+        self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
+        self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
 
     def __toggle_night(self, widget, state):
         self.settings.set_boolean("night-theme", state)
@@ -113,6 +127,26 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
     def __toggle_autoclose(self, widget, state):
         self.settings.set_boolean("auto-close-bottles", state)
+    
+    def __choose_bottles_path(self, widget):
+        file_dialog = Gtk.FileChooserNative.new(
+            _("Choose new bottles path"),
+            self.window,
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            _("Done"),
+            _("Cancel")
+        )
+        response = file_dialog.run()
+
+        if response == -3:
+            self.data.set("custom_bottles_path", file_dialog.get_filename())
+
+        file_dialog.destroy()
+        self.btn_bottles_path_reset.set_visible(True)
+    
+    def __reset_bottles_path(self, widget):
+        self.data.remove("custom_bottles_path")
+        self.btn_bottles_path_reset.set_visible(False)
 
     def populate_dxvk_list(self):
         for dxvk in self.manager.supported_dxvk.items():
