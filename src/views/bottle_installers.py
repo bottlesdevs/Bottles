@@ -81,6 +81,10 @@ class InstallersView(Gtk.ScrolledWindow):
 
         if len(supported_installers) > 0:
             for installer in supported_installers:
+                if len(installer) != 2:
+                    continue
+                if installer[1].get("Arch", "win64") != self.config["Arch"]:
+                    continue
                 self.list_installers.add(
                     InstallerEntry(
                         window=self.window,
