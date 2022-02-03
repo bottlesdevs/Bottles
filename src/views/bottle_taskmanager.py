@@ -31,6 +31,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
     treeview_processes = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     btn_taskmanager_update = Gtk.Template.Child()
+    btn_taskmanager_kill = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -42,6 +43,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
         self.config = config
 
         self.btn_taskmanager_update.connect("clicked", self.sensitive_update)
+        self.btn_taskmanager_kill.connect("clicked", self.kill_process)
         
         # apply model to treeview_processes
         self.liststore_processes = Gtk.ListStore(str, str, str, str)
@@ -97,3 +99,22 @@ class TaskManagerView(Gtk.ScrolledWindow):
             widget=False, 
             config=self.config
         )
+    
+    def kill_process(self, widget):
+        winedbg = WineDbg(self.config)
+        selected = self.treeview_processes.get_selection()
+        model, treeiter = selected.get_selected()
+        pid = model[treeiter][0]
+
+        def reset(result, error):
+            self.btn_taskmanager_kill.set_sensitive(True)
+            self.liststore_processes.remove(treeiter)
+            
+
+        self.btn_taskmanager_kill.set_sensitive(False)
+        RunAsync(
+            task_func=winedbg.kill_process,
+            callback=reset,
+            pid=pid
+        )
+        
