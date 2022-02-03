@@ -44,6 +44,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
 
         self.btn_update.connect("clicked", self.sensitive_update)
         self.btn_kill.connect("clicked", self.kill_process)
+        self.treeview_processes.connect("cursor-changed", self.show_kill_btn)
         
         # apply model to treeview_processes
         self.liststore_processes = Gtk.ListStore(str, str, str, str)
@@ -64,7 +65,16 @@ class TaskManagerView(Gtk.ScrolledWindow):
         
     def set_config(self, config):
         self.config = config
-        
+    
+    def show_kill_btn(self, widget):
+        selected = self.treeview_processes.get_selection()
+        model, treeiter = selected.get_selected()
+
+        if model is None:
+            self.btn_kill.set_sensitive(False)
+
+        self.btn_kill.set_sensitive(True)
+
     def update(self, widget=False, config={}):
         '''
         This function scan for new processed and update the
@@ -104,14 +114,17 @@ class TaskManagerView(Gtk.ScrolledWindow):
         winedbg = WineDbg(self.config)
         selected = self.treeview_processes.get_selection()
         model, treeiter = selected.get_selected()
+        
+        if model is None:
+            self.btn_kill.set_sensitive(False)
+            return
+
         pid = model[treeiter][0]
+        self.btn_kill.set_sensitive(False)
 
         def reset(result, error):
-            self.btn_kill.set_sensitive(True)
             self.liststore_processes.remove(treeiter)
             
-
-        self.btn_kill.set_sensitive(False)
         RunAsync(
             task_func=winedbg.kill_process,
             callback=reset,
