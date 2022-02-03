@@ -167,6 +167,7 @@ class ListView(Gtk.ScrolledWindow):
     clamp_list = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
+    entry_search = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, arg_exe, **kwargs):
@@ -178,9 +179,28 @@ class ListView(Gtk.ScrolledWindow):
 
         '''Connect signals'''
         self.btn_create.connect("clicked", self.window.show_add_view)
+        self.entry_search.connect('changed', self.__search_bottles)
 
         '''Populate list_bottles'''
         self.update_bottles()
+
+    def __search_bottles(self, widget, event=None, data=None):
+        '''
+        This function search in the list of bottles the
+        text written in the search entry.
+        '''
+        terms = widget.get_text()
+        self.list_bottles.set_filter_func(
+            self.__filter_bottles,
+            terms
+        )
+
+    @staticmethod
+    def __filter_bottles(row, terms=None):
+        text = row.get_title().lower()
+        if terms.lower() in text:
+            return True
+        return False
 
     '''Find and append bottles to list_bottles'''
     def idle_update_bottles(self):
@@ -195,6 +215,9 @@ class ListView(Gtk.ScrolledWindow):
         else:
             self.clamp_list.set_visible(True)
             self.hdy_status.set_visible(False)
+            
+        if len(bottles) >= 10:
+            self.entry_search.set_visible(True)
 
         for bottle in bottles:
             self.list_bottles.add(
