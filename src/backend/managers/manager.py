@@ -1375,31 +1375,4 @@ class Manager:
             manager.install(config, overrides_only, exclude)
         
         return Result(status=True)
-
-    def remove_dxvk(self, config: BottleConfig):
-        '''
-        This is a wrapper function for the install_dxvk function,
-        using the remove option.
-        '''
-        logging.info(f"Removing dxvk for bottle: [{config['Name']}].")
-
-        self.install_dxvk(config, remove=True)
-
-    def remove_vkd3d(self, config: BottleConfig):
-        '''
-        This is a wrapper function for the install_vkd3d function,
-        using the remove option.
-        '''
-        logging.info(f"Removing VKD3D for bottle: [{config['Name']}].")
-
-        self.install_vkd3d(config, remove=True)
-
-    def remove_nvapi(self, config: BottleConfig):
-        '''
-        This is a wrapper function for the install_nvapi function,
-        using the remove option.
-        '''
-        logging.info(f"Removing dxvk-nvapi for bottle: [{config['Name']}].")
-
-        self.install_nvapi(config, remove=True)
         
