@@ -286,13 +286,12 @@
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="spacing">10</property>
                                         <child>
                                           <object class="GtkComboBoxText" id="combo_runner">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="valign">center</property>
-                                            <property name="margin-right">5</property>
-                                            <property name="margin-end">5</property>
                                             <property name="active">0</property>
                                             <style>
                                               <class name="borderless"/>
@@ -307,9 +306,8 @@
                                         </child>
                                         <child>
                                           <object class="GtkSeparator">
+                                            <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="margin-top">5</property>
-                                            <property name="margin-bottom">5</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -325,8 +323,6 @@
                                             <property name="tooltip-text" translatable="yes">Manage runners</property>
                                             <property name="halign">center</property>
                                             <property name="valign">center</property>
-                                            <property name="margin-left">5</property>
-                                            <property name="margin-start">5</property>
                                             <property name="relief">none</property>
                                             <child>
                                               <object class="GtkImage">
@@ -336,7 +332,6 @@
                                               </object>
                                             </child>
                                             <style>
-                                              <class name="circular"/>
                                               <class name="image-button"/>
                                             </style>
                                           </object>
@@ -360,13 +355,12 @@
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="spacing">10</property>
                                         <child>
                                           <object class="GtkComboBoxText" id="combo_dxvk">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="valign">center</property>
-                                            <property name="margin-right">5</property>
-                                            <property name="margin-end">5</property>
                                             <property name="active">0</property>
                                             <style>
                                               <class name="borderless"/>
@@ -381,9 +375,8 @@
                                         </child>
                                         <child>
                                           <object class="GtkSeparator">
+                                            <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="margin-top">5</property>
-                                            <property name="margin-bottom">5</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -399,8 +392,6 @@
                                             <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
                                             <property name="halign">center</property>
                                             <property name="valign">center</property>
-                                            <property name="margin-left">5</property>
-                                            <property name="margin-start">5</property>
                                             <property name="relief">none</property>
                                             <child>
                                               <object class="GtkImage">
@@ -410,7 +401,6 @@
                                               </object>
                                             </child>
                                             <style>
-                                              <class name="circular"/>
                                               <class name="image-button"/>
                                             </style>
                                           </object>
