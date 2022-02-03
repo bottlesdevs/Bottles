@@ -11,6 +11,7 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="spacing">10</property>
         <child>
           <object class="GtkButton" id="btn_remove">
             <property name="visible">True</property>
@@ -18,8 +19,6 @@
             <property name="receives-default">True</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="margin-left">5</property>
-            <property name="margin-start">5</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
@@ -29,7 +28,6 @@
               </object>
             </child>
             <style>
-              <class name="circular"/>
               <class name="image-button"/>
             </style>
           </object>
@@ -46,8 +44,6 @@
             <property name="receives-default">True</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="margin-left">5</property>
-            <property name="margin-start">5</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
@@ -57,7 +53,6 @@
               </object>
             </child>
             <style>
-              <class name="circular"/>
               <class name="image-button"/>
             </style>
           </object>
@@ -72,8 +67,6 @@
           <object class="GtkSeparator">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
           </object>
           <packing>
             <property name="expand">False</property>

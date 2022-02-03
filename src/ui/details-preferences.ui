@@ -169,14 +169,13 @@ Turn this off if you experience graphical glitches.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkComboBoxText" id="combo_fsr">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-end">5</property>
                                 <property name="active-id">add</property>
                                 <items>
                                   <item id="5" translatable="yes">Ultra Quality</item>
@@ -292,14 +291,13 @@ Disable if you're experiencing graphical glitches.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkComboBoxText" id="combo_virt_res">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-end">5</property>
                                 <property name="active-id">add</property>
                                 <items>
                                   <item id="1920x1080">1920x1080</item>
@@ -342,8 +340,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="can-focus">True</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-start">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -490,6 +486,7 @@ Disable if you're experiencing graphical glitches.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_runner">
                                 <property name="visible">True</property>
@@ -511,8 +508,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-end">5</property>
                                 <style>
                                   <class name="borderless"/>
                                   <class name="plain"/>
@@ -528,8 +523,6 @@ Disable if you're experiencing graphical glitches.</property>
                               <object class="GtkSeparator">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -545,8 +538,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="tooltip-text" translatable="yes">Manage runners</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-start">5</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -556,7 +547,6 @@ Disable if you're experiencing graphical glitches.</property>
                                   </object>
                                 </child>
                                 <style>
-                                  <class name="circular"/>
                                   <class name="image-button"/>
                                 </style>
                               </object>
@@ -580,6 +570,7 @@ Disable if you're experiencing graphical glitches.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_dxvk">
                                 <property name="visible">True</property>
@@ -600,8 +591,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-end">5</property>
                                 <property name="active">0</property>
                                 <style>
                                   <class name="borderless"/>
@@ -618,8 +607,6 @@ Disable if you're experiencing graphical glitches.</property>
                               <object class="GtkSeparator">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -635,8 +622,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-start">5</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -646,7 +631,6 @@ Disable if you're experiencing graphical glitches.</property>
                                   </object>
                                 </child>
                                 <style>
-                                  <class name="circular"/>
                                   <class name="image-button"/>
                                 </style>
                               </object>
@@ -670,6 +654,7 @@ Disable if you're experiencing graphical glitches.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_vkd3d">
                                 <property name="visible">True</property>
@@ -691,8 +676,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-end">5</property>
                                 <property name="active">0</property>
                                 <style>
                                   <class name="borderless"/>
@@ -709,8 +692,6 @@ Disable if you're experiencing graphical glitches.</property>
                               <object class="GtkSeparator">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -726,8 +707,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="tooltip-text" translatable="yes">Manage VKD3D versions</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-start">5</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -737,7 +716,6 @@ Disable if you're experiencing graphical glitches.</property>
                                   </object>
                                 </child>
                                 <style>
-                                  <class name="circular"/>
                                   <class name="image-button"/>
                                 </style>
                               </object>
@@ -761,6 +739,7 @@ Disable if you're experiencing graphical glitches.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_nvapi">
                                 <property name="visible">True</property>
@@ -768,8 +747,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-end">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -782,8 +759,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-end">5</property>
                                 <property name="active">0</property>
                                 <style>
                                   <class name="borderless"/>
@@ -800,8 +775,6 @@ Disable if you're experiencing graphical glitches.</property>
                               <object class="GtkSeparator">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -817,8 +790,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-start">5</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -828,7 +799,6 @@ Disable if you're experiencing graphical glitches.</property>
                                   </object>
                                 </child>
                                 <style>
-                                  <class name="circular"/>
                                   <class name="image-button"/>
                                 </style>
                               </object>
@@ -916,6 +886,8 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -950,6 +922,7 @@ Disable if you're experiencing graphical glitches.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <placeholder/>
                             </child>
@@ -964,8 +937,6 @@ Disable if you're experiencing graphical glitches.</property>
                                 <property name="tooltip-text" translatable="yes">Choose a directory</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-start">5</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -975,7 +946,6 @@ Disable if you're experiencing graphical glitches.</property>
                                   </object>
                                 </child>
                                 <style>
-                                  <class name="circular"/>
                                   <class name="image-button"/>
                                 </style>
                               </object>
@@ -1053,14 +1023,13 @@ disable if you run into issues.</property>
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkSwitch" id="switch_gamescope">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-end">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1072,8 +1041,6 @@ disable if you run into issues.</property>
                               <object class="GtkSeparator">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1089,8 +1056,6 @@ disable if you run into issues.</property>
                                 <property name="tooltip-text" translatable="yes">Manage Gamescope settings</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-start">5</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -1100,7 +1065,6 @@ disable if you run into issues.</property>
                                   </object>
                                 </child>
                                 <style>
-                                  <class name="circular"/>
                                   <class name="image-button"/>
                                 </style>
                               </object>

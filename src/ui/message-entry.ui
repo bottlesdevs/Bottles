@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
@@ -11,12 +10,7 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-left">6</property>
-        <property name="margin-right">6</property>
-        <property name="margin-start">6</property>
-        <property name="margin-end">6</property>
-        <property name="margin-top">6</property>
-        <property name="margin-bottom">6</property>
+        <property name="spacing">10</property>
         <child>
           <object class="GtkButton" id="btn_details">
             <property name="can-focus">True</property>
@@ -60,7 +54,6 @@
               </object>
             </child>
             <style>
-              <class name="circular"/>
               <class name="image-button"/>
             </style>
           </object>

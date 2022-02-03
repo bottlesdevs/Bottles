@@ -246,11 +246,12 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
+            <property name="halign">start</property>
             <property name="draw-indicator">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="position">2</property>
           </packing>
         </child>
@@ -307,6 +308,8 @@
                         </child>
                         <style>
                           <class name="destructive-action"/>
+                          <class name="circular"/>
+                          <class name="image-button"/>
                         </style>
                       </object>
                       <packing>
@@ -617,7 +620,6 @@
                               </object>
                             </child>
                             <style>
-                              <class name="circular"/>
                               <class name="image-button"/>
                             </style>
                           </object>
@@ -774,11 +776,14 @@
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_winecfg">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -813,11 +818,14 @@
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_browse">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -852,11 +860,14 @@
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_cmd">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -891,11 +902,14 @@
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_regedit">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -930,11 +944,14 @@
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_debug">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -971,7 +988,6 @@
                                   </object>
                                 </child>
                                 <style>
-                                  <class name="circular"/>
                                   <class name="image-button"/>
                                 </style>
                               </object>
@@ -996,11 +1012,14 @@
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_taskmanager">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -1035,11 +1054,14 @@
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_uninstaller">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
@@ -1074,11 +1096,14 @@
                           <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_controlpanel">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
                                 <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
