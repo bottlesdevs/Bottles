@@ -30,7 +30,7 @@ class API:
     
 class Repositories:
     components = "https://raw.githubusercontent.com/bottlesdevs/components/main/"
-    components_index = f"{components}/index.yml"
+    components_index = f"{components}/2022.2.14.yml" # TODO: reset to index.yml after release
 
     dependencies = "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/"
     dependencies_index = f"{dependencies}/index.yml"
