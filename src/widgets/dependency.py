@@ -30,6 +30,7 @@ class DependencyEntry(Handy.ActionRow):
     # region Widgets
     label_category = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
+    btn_reinstall = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
     btn_license = Gtk.Template.Child()
@@ -55,7 +56,8 @@ class DependencyEntry(Handy.ActionRow):
             self.set_subtitle("")
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(False)
-            return None
+            self.btn_reinstall.set_visible(True)
+            return
 
         # populate widgets
         self.set_title(dependency[0])
@@ -64,6 +66,7 @@ class DependencyEntry(Handy.ActionRow):
 
         # connect signals
         self.btn_install.connect("clicked", self.install_dependency)
+        self.btn_reinstall.connect("clicked", self.install_dependency, True)
         self.btn_remove.connect("clicked", self.remove_dependency)
         self.btn_manifest.connect("clicked", self.open_manifest)
         self.btn_license.connect("clicked", self.open_license)
@@ -75,6 +78,7 @@ class DependencyEntry(Handy.ActionRow):
             '''
             self.btn_install.set_visible(False)
             self.btn_remove.set_visible(True)
+            self.btn_reinstall.set_visible(True)
 
         if dependency[0] in self.config.get("Uninstallers").keys():
             '''
@@ -111,7 +115,7 @@ class DependencyEntry(Handy.ActionRow):
         )
         webbrowser.open(manifest["License_url"])
 
-    def install_dependency(self, widget):
+    def install_dependency(self, widget, reinstall=False):
         '''
         This function install the dependency in the bottle, it
         will also prevent user from installing other dependencies
@@ -119,9 +123,10 @@ class DependencyEntry(Handy.ActionRow):
         and set the dependency as installed in the bottle
         configuration
         '''
-        self.get_parent().set_sensitive(False)
-        for w in widget.get_children():
-            w.destroy()
+        if widget != self.btn_reinstall:
+            self.get_parent().set_sensitive(False)
+            for w in widget.get_children():
+                w.destroy()
 
         widget.set_sensitive(False)
         widget.add(self.spinner)
@@ -133,7 +138,8 @@ class DependencyEntry(Handy.ActionRow):
             task_func=self.manager.dependency_manager.install,
             callback=self.set_install_status,
             config=self.config,
-            dependency=self.dependency
+            dependency=self.dependency,
+            reinstall=reinstall
         )
 
     def remove_dependency(self, widget):
@@ -188,6 +194,8 @@ class DependencyEntry(Handy.ActionRow):
         else:
             self.btn_remove.set_visible(False)
             self.btn_install.set_visible(True)
+
+        self.btn_reinstall.set_sensitive(True)
 
         try:
             self.get_parent().set_sensitive(True)

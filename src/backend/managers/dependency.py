@@ -116,7 +116,8 @@ class DependencyManager:
     def install(
         self,
         config: BottleConfig,
-        dependency: list
+        dependency: list,
+        reinstall: bool = False
     ) -> Result:
         '''
         This function install a given dependency in a bottle. It will
@@ -191,7 +192,8 @@ class DependencyManager:
             if not res.data.get("uninstaller"):
                 uninstaller = False
 
-        if dependency[0] not in config.get("Installed_Dependencies"):
+        if dependency[0] not in config.get("Installed_Dependencies") \
+            or reinstall:
             '''
             If the dependency is not already listed in the installed
             dependencies list of the bottle, add it.

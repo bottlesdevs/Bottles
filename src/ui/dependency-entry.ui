@@ -39,7 +39,16 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkModelButton" id="btn_reinstall">
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="text" translatable="yes">Reinstall</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
         </child>
         <child>
           <object class="GtkSeparator">
