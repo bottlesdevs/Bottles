@@ -72,11 +72,13 @@ class Manager:
     '''
 
     # component lists
+    runtimes_available = []
     runners_available = []
     dxvk_available = []
     vkd3d_available = []
     nvapi_available = []
     local_bottles = {}
+    supported_runtimes = {}
     supported_wine_runners = {}
     supported_proton_runners = {}
     supported_dxvk = {}
@@ -106,6 +108,7 @@ class Manager:
         self.check_dxvk(install_latest)
         self.check_vkd3d(install_latest)
         self.check_nvapi(install_latest)
+        self.check_runtimes(install_latest)
         self.check_runners(install_latest)
         if first_run:
             self.organize_components()
@@ -153,6 +156,10 @@ class Manager:
             logging.info("Runners path doesn't exist, creating now.")
             os.makedirs(Paths.runners, exist_ok=True)
 
+        if not os.path.isdir(Paths.runtimes):
+            logging.info("Runtimes path doesn't exist, creating now.")
+            os.makedirs(Paths.runtimes, exist_ok=True)
+
         if not os.path.isdir(Paths.bottles):
             logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
@@ -189,6 +196,7 @@ class Manager:
 
         self.supported_wine_runners = catalog["wine"]
         self.supported_proton_runners = catalog["proton"]
+        self.supported_runtimes = catalog["runtimes"]
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
@@ -327,128 +335,108 @@ class Manager:
             else:
                 return False
 
-        # sort component lists alphabetically
         self.runners_available = sorted(self.runners_available, reverse=True)
-        self.dxvk_available = sorted(self.dxvk_available, reverse=True)
-        self.nvapi_available = sorted(self.nvapi_available, reverse=True)
-
         return True
 
-    def check_dxvk(
-        self,
-        install_latest: bool = True
-    ) -> bool:
-        '''
-        This function check for installed DXVKs and appends them to the
-        dxvk_available list. If there are none available, it will
-        install the latest DXVK from the repository if a connection is
-        available, then update the list with the new one.
-        '''
-        dxvk_list = glob("%s/*/" % Paths.dxvk)
-        self.dxvk_available = []
+    def check_runtimes(self, install_latest: bool = True) -> bool:
+        self.runtimes_available = []
+        runtimes = glob("%s/*/" % Paths.runtimes)
+        if len(runtimes) == 0:
+            if install_latest and self.utils_conn.check_connection():
+                logging.warning("No runtime found.")
+                try:
+                    version = next(iter(self.supported_runtimes))
+                    return self.component_manager.install(
+                        component_type="runtime", 
+                        component_name=version, 
+                        checks=False
+                    )
+                except StopIteration:
+                    return False
+            return False
+        
+        runtime = runtimes[0] # runtimes cannot be more than one
+        manifest = f"{runtime}/manifest.yml"
+        if os.path.exists(manifest):
+            with open(manifest, "r") as f:
+                data = yaml.safe_load(f)
+                version = data.get("version")
+                if version:
+                    version = f"runtime-{version}"
+                    self.runtimes_available = [version]
 
-        for dxvk in dxvk_list:
-            self.dxvk_available.append(dxvk.split("/")[-2])
 
-        if len(self.dxvk_available) > 0:
-            logging.info("DXVKs found:\n - {0}".format(
-                "\n - ".join(self.dxvk_available)
+    def check_dxvk(self, install_latest: bool = True) -> bool:
+        res = self.__check_component("dxvk", install_latest)
+        if res:
+            self.dxvk_available = sorted(res, reverse=True)
+
+    def check_vkd3d(self, install_latest: bool = True) -> bool:
+        res = self.__check_component("vkd3d", install_latest)
+        if res:
+            self.vkd3d_available = sorted(res, reverse=True)
+
+    def check_nvapi(self, install_latest: bool = True) -> bool:
+        res = self.__check_component("nvapi", install_latest)
+        if res:
+            self.nvapi_available = sorted(res, reverse=True)
+    
+    def __check_component(self, component_type: str, install_latest: bool = True):
+        components = {
+            "dxvk": {
+                "available": self.dxvk_available,
+                "supported": self.supported_dxvk,
+                "path": Paths.dxvk
+            },
+            "vkd3d": {
+                "available": self.vkd3d_available,
+                "supported": self.supported_vkd3d,
+                "path": Paths.vkd3d
+            },
+            "nvapi": {
+                "available": self.nvapi_available,
+                "supported": self.supported_nvapi,
+                "path": Paths.nvapi
+            },
+            "runtime": {
+                "available": self.runtimes_available,
+                "supported": self.supported_runtimes,
+                "path": Paths.runtimes
+            }
+        }
+
+        if component_type not in components:
+            raise ValueError("Component type not supported.")
+        
+        component = components[component_type]
+        component_list = glob("%s/*/" % component["path"])
+        component["available"] = []
+
+        for comp in component_list:
+            component["available"].append(comp.split("/")[-2])
+
+        if len(component["available"]) > 0:
+            logging.info("{0}s found:\n - {1}".format(
+                component_type.capitalize(),
+                "\n - ".join(component["available"])
             ))
-        if len(self.dxvk_available) == 0 and install_latest:
-            logging.warning("No dxvk found.")
+        if len(component["available"]) == 0 and install_latest:
+            logging.warning("No {0} found.".format(component_type))
 
             if self.utils_conn.check_connection():
-                # if connected, install latest dxvk from repository
+                # if connected, install latest component from repository
                 try:
-                    dxvk_version = next(iter(self.supported_dxvk))
+                    component_version = next(iter(component["supported"]))
                     self.component_manager.install(
-                        component_type="dxvk", 
-                        component_name=dxvk_version, 
+                        component_type=component_type, 
+                        component_name=component_version, 
                         checks=False
                     )
                 except StopIteration:
                     return False
             else:
                 return False
-        return True
-
-    def check_vkd3d(
-        self,
-        install_latest: bool = True
-    ) -> bool:
-        '''
-        This function check for installed VKD3Ds and appends them to the
-        vkd3d_available list. If there are no VKD3Ds available, it will
-        install the latest VKD3D from the repository if a connection is
-        available, then update the list with the new one.
-        '''
-        vkd3d_list = glob("%s/*/" % Paths.vkd3d)
-        self.vkd3d_available = []
-
-        for vkd3d in vkd3d_list:
-            self.vkd3d_available.append(vkd3d.split("/")[-2])
-
-        if len(self.vkd3d_available) > 0:
-            logging.info("VKD3Ds found:\n - {0}".format(
-                "\n - ".join(self.vkd3d_available)
-            ))
-
-        if len(self.vkd3d_available) == 0 and install_latest:
-            logging.warning("No vkd3d found.")
-
-            if self.utils_conn.check_connection():
-                # if connected, install latest vkd3d from repository
-                try:
-                    vkd3d_version = next(iter(self.supported_vkd3d))
-                    self.component_manager.install(
-                        component_type="vkd3d", 
-                        component_name=vkd3d_version, 
-                        checks=False
-                    )
-                except StopIteration:
-                    return False
-            else:
-                return False
-        return True
-
-    def check_nvapi(
-        self,
-        install_latest: bool = True
-    ) -> bool:
-        '''
-        This function checks for installed NVAPIs and appends them to the
-        nvapi_available list. If there are none available, it will
-        install the latest NVAPI from the repository if a connection is
-        available, then update the list with the new one.
-        '''
-        nvapi_list = glob("%s/*/" % Paths.nvapi)
-        self.nvapi_available = []
-
-        for nvapi in nvapi_list:
-            self.nvapi_available.append(nvapi.split("/")[-2])
-
-        if len(self.nvapi_available) > 0:
-            logging.info("NVAPIs found:\n - {0}".format(
-                "\n - ".join(self.nvapi_available)
-            ))
-
-        if len(self.nvapi_available) == 0 and install_latest:
-            logging.warning("No nvapi found.")
-
-            if self.utils_conn.check_connection():
-                # if connected, install latest nvapi from repository
-                try:
-                    nvapi_version = next(iter(self.supported_nvapi))
-                    self.component_manager.install(
-                        component_type="nvapi", 
-                        component_name=nvapi_version, 
-                        checks=False
-                    )
-                except StopIteration:
-                    return False
-            else:
-                return False
-        return True
+        return component["available"]
 
     def __find_program_icon(self, program_name):
         '''

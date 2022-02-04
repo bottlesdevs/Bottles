@@ -58,12 +58,15 @@ class ComponentManager:
         '''
 
         # Make a copy of the lists of available components
+        supported_runtimes = self.__manager.supported_runtimes
         supported_wine_runners = self.__manager.supported_wine_runners
         supported_proton_runners = self.__manager.supported_proton_runners
         supported_dxvk = self.__manager.supported_dxvk
         supported_vkd3d = self.__manager.supported_vkd3d
         supported_nvapi = self.__manager.supported_nvapi
 
+        if component_type == "runtime":
+            component = supported_runtimes[component_name]
         if component_type == "runner":
             component = supported_wine_runners[component_name]
         if component_type == "runner:proton":
@@ -118,6 +121,7 @@ class ComponentManager:
             return {}
 
         catalog = {
+            "runtimes": {},
             "wine": {},
             "proton": {},
             "dxvk": {},
@@ -125,6 +129,7 @@ class ComponentManager:
             "nvapi": {}
         }
         components_available = {
+            "runtimes": self.__manager.runtimes_available,
             "wine": self.__manager.runners_available,
             "proton": self.__manager.runners_available,
             "dxvk": self.__manager.dxvk_available,
@@ -133,9 +138,7 @@ class ComponentManager:
         }
 
         try:
-            with urllib.request.urlopen(
-                Repositories.components_index
-            ) as req:
+            with urllib.request.urlopen(Repositories.components_index) as req:
                 index = yaml.safe_load(req.read())
         except:
             logging.error(f"Cannot fetch components list.")
@@ -162,7 +165,7 @@ class ComponentManager:
                     catalog[sub_category][component[0]]["Installed"] = True
 
                 continue
-
+            
             category = component[1]["Category"]
             catalog[category][component[0]] = component[1]
             if component[0] in components_available[category]:
@@ -321,6 +324,8 @@ class ComponentManager:
             path = Paths.vkd3d
         if component == "nvapi":
             path = Paths.nvapi
+        if component == "runtime":
+            path = Paths.runtimes
 
         try:
             '''
@@ -449,6 +454,9 @@ class ComponentManager:
 
         if component_type == "nvapi":
             self.__manager.check_nvapi()
+
+        if component_type == "runtime":
+            self.__manager.check_runtimes()
 
         self.__manager.organize_components()
 

@@ -81,6 +81,7 @@ class Paths:
     applications = f"{xdg_data_home}/applications/"
 
     temp = f"{base}/temp"
+    runtimes = f"{base}/runtimes"
     runners = f"{base}/runners"
     bottles = f"{base}/bottles"
     layers = f"{base}/layers"
