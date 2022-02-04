@@ -93,7 +93,7 @@ class DLLComponent():
         if target is not None:
             if not remove:
                 if not overrides_only:
-                    if os.path.exists(target):
+                    if os.path.exists(target) and not os.path.exists(f"{target}.bck"):
                         shutil.copy(target, f"{target}.bck")
                     shutil.copyfile(source, target)
                 reg.add(
