@@ -22,6 +22,7 @@ from gi.repository import Gtk
 from bottles.utils import RunAsync # pyright: reportMissingImports=false
 
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available
+from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.dialogs.envvars import EnvVarsDialog
@@ -130,7 +131,7 @@ class PreferencesView(Gtk.ScrolledWindow):
 
         self.__prevent_scroll()
 
-        if "FLATPAK_ID" in os.environ:
+        if RuntimeManager.get_runtimes:
             self.action_runtime.set_visible(True)
             self.switch_runtime.connect('state-set', self.__toggle_runtime)
 
