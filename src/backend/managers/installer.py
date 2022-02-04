@@ -26,7 +26,7 @@ from datetime import datetime
 from gi.repository import Gtk, GLib
 
 from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
-from bottles.backend.globals import BottlesRepositories, Paths
+from bottles.backend.globals import Repositories, Paths
 from bottles.backend.logger import Logger
 from bottles.backend.layers import LayersStore, Layer
 
@@ -56,7 +56,7 @@ class InstallerManager:
         return an empty text.
         '''
         review = ""
-        review_url = f"{BottlesRepositories.installers}Reviews/{installer_name}.md"
+        review_url = f"{Repositories.installers}Reviews/{installer_name}.md"
 
         try:
             with urllib.request.urlopen(review_url) as response:
@@ -82,7 +82,7 @@ class InstallerManager:
         if self.__utils_conn.check_connection():
             try:
                 manifest_url = "%s/%s/%s.yml" % (
-                    BottlesRepositories.installers,
+                    Repositories.installers,
                     installer_category,
                     installer_name
                 )
@@ -105,7 +105,7 @@ class InstallerManager:
 
     def __download_icon(self, config, executable: dict, manifest):
         icon_url = "%s/data/%s/%s" % (
-            BottlesRepositories.installers,
+            Repositories.installers,
             manifest.get('Name'),
             executable.get('icon')
         )

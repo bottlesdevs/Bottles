@@ -32,7 +32,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
 from bottles.backend.logger import Logger
 from bottles.backend.cabextract import CabExtract
-from bottles.backend.globals import BottlesRepositories, Paths
+from bottles.backend.globals import Repositories, Paths
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg 
@@ -68,7 +68,7 @@ class DependencyManager:
         if self.__utils_conn.check_connection():
             try:
                 with urllib.request.urlopen("%s/%s/%s.yml" % (
-                    BottlesRepositories.dependencies,
+                    Repositories.dependencies,
                     dependency_category,
                     dependency_name
                 )) as url:
@@ -100,7 +100,7 @@ class DependencyManager:
 
         try:
             with urllib.request.urlopen(
-                BottlesRepositories.dependencies_index
+                Repositories.dependencies_index
             ) as url:
                 index = yaml.safe_load(url.read())
         except:

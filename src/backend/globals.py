@@ -28,7 +28,7 @@ logging = Logger()
 class API:
     notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
     
-class BottlesRepositories:
+class Repositories:
     components = "https://raw.githubusercontent.com/bottlesdevs/components/main/"
     components_index = f"{components}/index.yml"
 

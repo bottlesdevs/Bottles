@@ -1,4 +1,4 @@
-# component.py
+# syscomponent.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -36,7 +36,7 @@ from bottles.backend.logger import Logger
 logging = Logger()
 
 
-class ComponentManager:
+class SysComponentManager:
 
     def __init__(self, manager):
         self.__manager = manager
