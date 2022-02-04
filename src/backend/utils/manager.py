@@ -63,6 +63,9 @@ class ManagerUtils:
             if path_type == "nvapi":
                 path = ManagerUtils.get_nvapi_path(component)
 
+            if path_type == "runtime":
+                path = Paths.runtimes
+
         if path_type == "custom" and custom_path != "":
             path = custom_path
 

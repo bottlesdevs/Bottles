@@ -35,6 +35,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     switch_installers = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
+    list_runtimes = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
@@ -43,6 +44,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
     flatpak_notice = Gtk.Template.Child()
+    pref_core = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, **kwargs):
@@ -58,6 +60,8 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
         if "FLATPAK_ID" not in os.environ:
             self.flatpak_notice.set_visible(False)
+        else:
+            self.pref_core.set_visible(False)
 
         if self.data.get("custom_bottles_path"):
             self.btn_bottles_path_reset.set_visible(True)
@@ -84,6 +88,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_update_date.set_active(
             self.settings.get_boolean("update-date")
         )
+        self.populate_runtimes_list()
         self.populate_runners_list()
         self.populate_dxvk_list()
         self.populate_vkd3d_list()
@@ -147,6 +152,10 @@ class PreferencesWindow(Handy.PreferencesWindow):
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
+
+    def populate_runtimes_list(self):
+        for runtime in self.manager.supported_runtimes.items():
+            self.list_runtimes.add(ComponentEntry(self.window, runtime, "runtime", is_upgradable=True))
 
     def populate_dxvk_list(self):
         for dxvk in self.manager.supported_dxvk.items():

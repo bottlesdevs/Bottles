@@ -29,6 +29,7 @@ class ComponentEntry(Handy.ActionRow):
     }
 
     # region Widgets
+    img_download = Gtk.Template.Child()
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
@@ -37,7 +38,7 @@ class ComponentEntry(Handy.ActionRow):
     label_task_status = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, component, component_type, **kwargs):
+    def __init__(self, window, component, component_type, is_upgradable=False, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -46,6 +47,7 @@ class ComponentEntry(Handy.ActionRow):
         self.component_manager = self.manager.component_manager
         self.name = component[0]
         self.component_type = component_type
+        self.is_upgradable = is_upgradable
         self.spinner = Gtk.Spinner()
 
         # populate widgets
@@ -56,6 +58,13 @@ class ComponentEntry(Handy.ActionRow):
         else:
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
+        
+        if is_upgradable:
+            self.img_download.set_from_icon_name(
+                'software-update-available-symbolic', 
+                Gtk.IconSize.BUTTON
+            )
+            self.btn_download.set_tooltip_text(_("Upgrade"))
 
         # connect signals
         self.btn_download.connect("clicked", self.download)
