@@ -167,6 +167,9 @@ class ComponentManager:
                 continue
             
             category = component[1]["Category"]
+            if category not in catalog:
+                continue
+            
             catalog[category][component[0]] = component[1]
             if component[0] in components_available[category]:
                 catalog[category][component[0]]["Installed"] = True
