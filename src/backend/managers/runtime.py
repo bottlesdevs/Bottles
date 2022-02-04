@@ -18,6 +18,8 @@
 import os
 from pathlib import Path
 
+from bottles.backend.globals import Paths # pyright: reportMissingImports=false
+
 
 class RuntimeManager:
         
@@ -75,7 +77,7 @@ class RuntimeManager:
     def __get_bottles_runtime():
         paths = [
             f"/app/etc/runtime",
-            f"{Path.home()}/.local/share/bottles/runtime",
+            Paths.runtimes
         ]
         structure = ["lib", "lib32"]
 
