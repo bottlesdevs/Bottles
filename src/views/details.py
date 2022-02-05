@@ -128,9 +128,6 @@ class DetailsView(Handy.Leaflet):
             }
         }
 
-        if not self.window.settings.get_boolean("experiments-installers"):
-            del pages["installers"]
-
         if self.config.get("Environment") == "Layered":
             del pages["dependencies"]
             del pages["preferences"]
