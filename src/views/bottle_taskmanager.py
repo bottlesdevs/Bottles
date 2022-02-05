@@ -69,10 +69,9 @@ class TaskManagerView(Gtk.ScrolledWindow):
     def show_kill_btn(self, widget):
         selected = self.treeview_processes.get_selection()
         model, treeiter = selected.get_selected()
-
-        if model is None:
+        if model is None or len(model) == 0:
             self.btn_kill.set_sensitive(False)
-
+            return
         self.btn_kill.set_sensitive(True)
 
     def update(self, widget=False, config={}):
