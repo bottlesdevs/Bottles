@@ -459,14 +459,16 @@ This will break the sandbox!</property>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Installers</property>
+                <property name="title" translatable="yes">WineBridge</property>
+                <property name="subtitle" translatable="yes">Use WineBridge for process and program management.</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <object class="GtkSwitch" id="switch_installers">
+                      <object class="GtkSwitch" id="switch_winebridge">
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="can-focus">True</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>

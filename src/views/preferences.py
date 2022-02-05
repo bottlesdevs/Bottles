@@ -32,7 +32,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
-    switch_installers = Gtk.Template.Child()
+    switch_winebridge = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     list_runtimes = Gtk.Template.Child()
@@ -79,8 +79,8 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_release_candidate.set_active(
             self.settings.get_boolean("release-candidate")
         )
-        self.switch_installers.set_active(
-            self.settings.get_boolean("experiments-installers")
+        self.switch_winebridge.set_active(
+            self.settings.get_boolean("experiments-winebridge")
         )
         self.switch_auto_close.set_active(
             self.settings.get_boolean("auto-close-bottles")
@@ -99,7 +99,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_notifications.connect('state-set', self.__toggle_notify)
         self.switch_temp.connect('state-set', self.__toggle_temp)
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
-        self.switch_installers.connect('state-set', self.__toggle_installers)
+        self.switch_winebridge.connect('state-set', self.__toggle_winebridge)
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
@@ -126,8 +126,8 @@ class PreferencesWindow(Handy.PreferencesWindow):
     def __toggle_temp(self, widget, state):
         self.settings.set_boolean("temp", state)
 
-    def __toggle_installers(self, widget, state):
-        self.settings.set_boolean("experiments-installers", state)
+    def __toggle_winebridge(self, widget, state):
+        self.settings.set_boolean("experiments-winebridge", state)
         self.window.page_details.build_pages()
 
     def __toggle_autoclose(self, widget, state):
