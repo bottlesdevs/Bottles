@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-05 22:07+0100\n"
-"PO-Revision-Date: 2022-01-06 22:19+0000\n"
-"Last-Translator: neko <smurfkandy@tutanota.com>\n"
+"PO-Revision-Date: 2022-02-06 15:26+0000\n"
+"Last-Translator: Farhan Makarim <farhanp35@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
 "bottles/id/>\n"
 "Language: id\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -239,14 +239,12 @@ msgstr ""
 "Rilis untuk Runners."
 
 #: data/com.usebottles.bottles.gschema.xml:56
-#, fuzzy
 msgid "Experiments:winebridge"
-msgstr "Eksperimen: pemasang"
+msgstr "Eksperimen:winebridge"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental winebridge implementation."
-msgstr "Alihkan fitur pemasang eksperimental."
+msgstr "Alihkan fitur winebridge eksperimental."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
@@ -259,7 +257,7 @@ msgstr "Tutup Bottle setelah memulai executable dari file manager."
 #: src/ui/about.ui:10 src/ui/about.ui:11
 #, fuzzy
 msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2021 - Pengembang Bottles"
+msgstr "© 2017-2022 - Pengembang Bottles"
 
 #: src/ui/about.ui:11 src/ui/about.ui:12
 msgid "Easily manage wineprefix using environments"
@@ -314,13 +312,12 @@ msgid "Read documentation"
 msgstr "Baca dokumentasi"
 
 #: src/ui/details-dependencies.ui:221 src/ui/details-dependencies.ui:222
-#, fuzzy
 msgid "Report a problem or a missing dependency."
-msgstr "Laporkan dependensi yang hilang"
+msgstr "Laporkan masalah atau dependensi yang kurang"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games Store .."
 
 #: src/ui/details-installers.ui:126 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:93 src/ui/details-installers.ui:160 src/ui/importer.ui:94
@@ -345,9 +342,8 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:43 src/ui/details-preferences.ui:578
 #: src/ui/details-preferences.ui:44 src/ui/details-preferences.ui:573
-#, fuzzy
 msgid "Updating DXVK, please wait…"
-msgstr "Memperbarui status…"
+msgstr "Memperbarui DXVK, mohon tunggu…"
 
 #: src/ui/details-preferences.ui:76 src/ui/details-preferences.ui:77
 #: src/ui/details-preferences.ui:61
@@ -365,9 +361,8 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:87 src/ui/details-preferences.ui:662
 #: src/ui/details-preferences.ui:88 src/ui/details-preferences.ui:663
-#, fuzzy
 msgid "Updating VKD3D, please wait…"
-msgstr "Memperbarui status…"
+msgstr "Memperbarui VKD3D, mohon tunggu…"
 
 #: src/ui/details-preferences.ui:120 src/ui/details-preferences.ui:121
 #: src/ui/details-preferences.ui:116
@@ -381,9 +376,8 @@ msgstr "Berikan dukungan DLSS jika tersedia dan NVAPI Nvidia."
 
 #: src/ui/details-preferences.ui:130 src/ui/details-preferences.ui:747
 #: src/ui/details-preferences.ui:131 src/ui/details-preferences.ui:754
-#, fuzzy
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "Memasang DXVK-NVAPI…"
+msgstr "Memperbarui DXVK-NVAPI, mohon tunggu…"
 
 #: src/ui/details-preferences.ui:165 src/ui/details-preferences.ui:166
 #: src/ui/details-preferences.ui:145
@@ -456,11 +450,11 @@ msgstr "Gunakan desktop virtual Wine."
 
 #: src/ui/details-preferences.ui:358 src/ui/details-preferences.ui:363
 msgid "Mouse capture fullscreen"
-msgstr ""
+msgstr "Tangkap tetikus saat layar penuh"
 
 #: src/ui/details-preferences.ui:359 src/ui/details-preferences.ui:364
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "Buat program menangkap tetikus saat layar penuh."
 
 #: src/ui/details-preferences.ui:401 src/ui/details-preferences.ui:414
 #: src/ui/details-preferences.ui:406 src/ui/details-preferences.ui:419
@@ -485,7 +479,7 @@ msgstr "Sinkronisasi"
 #: src/ui/details-preferences.ui:423 src/ui/details-preferences.ui:438
 #: src/ui/details-preferences.ui:453
 msgid "Will restart the wineserver."
-msgstr ""
+msgstr "Akan memuat ulang wineserver."
 
 #: src/ui/details-preferences.ui:429 src/ui/details-preferences.ui:434
 #: src/ui/details-preferences.ui:407
@@ -499,7 +493,7 @@ msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:459
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:483 src/ui/new.ui:283
 #: src/ui/details-preferences.ui:473 src/ui/new.ui:284
@@ -509,7 +503,7 @@ msgstr "Runner"
 
 #: src/ui/details-preferences.ui:494 src/ui/details-preferences.ui:483
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Memperbarui Runner dan komponen, mohon tunggu…"
 
 #: src/ui/details-preferences.ui:538 src/ui/new.ui:323
 #: src/ui/details-preferences.ui:531 src/ui/new.ui:326
@@ -541,9 +535,8 @@ msgid "Manage VKD3D versions"
 msgstr "Kelola versi VKD3D"
 
 #: src/ui/details-preferences.ui:736 src/ui/details-preferences.ui:744
-#, fuzzy
 msgid "DXVK NVAPI version"
-msgstr "Versi NVAPI"
+msgstr "Versi DXVK NVAPI"
 
 #: src/ui/details-preferences.ui:819 src/ui/details-preferences.ui:835
 #: src/ui/details-preferences.ui:744
@@ -551,9 +544,8 @@ msgid "Windows version"
 msgstr "Versi Windows"
 
 #: src/ui/details-preferences.ui:829 src/ui/details-preferences.ui:845
-#, fuzzy
 msgid "Updating Windows version, please wait…"
-msgstr "Menyetel versi Windows…"
+msgstr "Memperbarui versi Windows, mohon tunggu…"
 
 #: src/ui/details-preferences.ui:878 src/ui/dialog-dll-overrides.ui:25
 #: src/ui/dialog-dll-overrides.ui:51 src/ui/details-preferences.ui:894
@@ -568,9 +560,8 @@ msgid "Working directory"
 msgstr "Direktori kerja"
 
 #: src/ui/details-preferences.ui:920 src/ui/details-preferences.ui:934
-#, fuzzy
 msgid "Default to the bottle path."
-msgstr "Arahkan ke jalur bottle"
+msgstr "Arahkan ke path bawaan bottle."
 
 #: src/ui/details-preferences.ui:937 src/ui/dialog-launch-options.ui:182
 #: src/ui/preferences.ui:255 src/ui/details-preferences.ui:950
@@ -580,9 +571,8 @@ msgstr "Pilih direktori"
 
 #: src/ui/details-preferences.ui:965 src/ui/details-preferences.ui:981
 #: src/ui/details-preferences.ui:341
-#, fuzzy
 msgid "Use Bottles runtime"
-msgstr "Nama bottle"
+msgstr "Gunakan runtime Bottles"
 
 #: src/ui/details-preferences.ui:966 src/ui/details-preferences.ui:982
 #: src/ui/details-preferences.ui:342
@@ -590,6 +580,8 @@ msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
+"Menyediakan bundel pustaka tambahan untuk kompatibilitas lebih,\n"
+"matikan jika menemui masalah."
 
 #: src/ui/details-preferences.ui:993 src/ui/details-preferences.ui:1009
 #: src/ui/details-preferences.ui:89
@@ -602,18 +594,16 @@ msgid "Optimise gaming performance on demand."
 msgstr "Optimalkan kinerja game sesuai permintaan"
 
 #: src/ui/details-preferences.ui:1020 src/ui/details-preferences.ui:1036
-#, fuzzy
 msgid "Use Gamescope"
-msgstr "Gunakan GameMode"
+msgstr "Gunakan Gamescope"
 
 #: src/ui/details-preferences.ui:1021 src/ui/details-preferences.ui:1037
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Gunakan micro-compositor Gamescope."
 
 #: src/ui/details-preferences.ui:1056 src/ui/details-preferences.ui:1075
-#, fuzzy
 msgid "Manage Gamescope settings"
-msgstr "Kelola pengaturan subsistem wine."
+msgstr "Kelola pengaturan Gamescope"
 
 #: src/ui/details-preferences.ui:1096 src/ui/details-preferences.ui:1118
 #: src/ui/details-preferences.ui:886
@@ -635,12 +625,12 @@ msgstr ""
 #: src/ui/details-preferences.ui:1139 src/ui/details-preferences.ui:1161
 #: src/ui/details-preferences.ui:929
 msgid "Developers & Debug"
-msgstr "Pengembang & debug"
+msgstr "Pengembang & Pengawakutuan"
 
 #: src/ui/details-preferences.ui:1144 src/ui/dialog-env-vars.ui:24
 #: src/ui/details-preferences.ui:1166 src/ui/details-preferences.ui:934
 msgid "Environment variables"
-msgstr "Variabel lokasi"
+msgstr "Variabel Environment"
 
 #: src/ui/details-preferences.ui:1182 src/ui/details-preferences.ui:1204
 #: src/ui/details-preferences.ui:972
@@ -674,7 +664,7 @@ msgstr "Program baru akan ditemukan secara otomatis."
 
 #: src/ui/details-programs.ui:73 src/ui/details-programs.ui:74
 msgid "Add a custom executable path"
-msgstr "Tambahkan jalur khusus yang dapat dieksekusi"
+msgstr "Tambahkan jalur eksekusi kustom"
 
 #: src/ui/details-programs.ui:99 src/ui/details-programs.ui:100
 msgid "Search for installed programs"
@@ -682,7 +672,7 @@ msgstr "Cari program yang terpasang"
 
 #: src/ui/details-programs.ui:151
 msgid "Show/hide removed programs"
-msgstr ""
+msgstr "Tampilkan/sembunyikan program yang telah dihapus"
 
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
@@ -710,7 +700,7 @@ msgstr "Buat status baru"
 
 #: src/ui/details-taskmanager.ui:59
 msgid "Stop process"
-msgstr ""
+msgstr "Hentikan proses"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
