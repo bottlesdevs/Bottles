@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-05 22:07+0100\n"
 "PO-Revision-Date: 2022-02-06 15:26+0000\n"
-"Last-Translator: Sergio Varela <sergitroll9@gmail.com>\n"
+"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -238,14 +238,12 @@ msgstr ""
 "instaladores. Versión candidata para los ejecutores."
 
 #: data/com.usebottles.bottles.gschema.xml:56
-#, fuzzy
 msgid "Experiments:winebridge"
-msgstr "Experimental:instaladores"
+msgstr "Experimental:winebridge"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental winebridge implementation."
-msgstr "Conmuta las características experimentales del instalador."
+msgstr "Conmuta la implementación experimental de winebridge."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
@@ -566,9 +564,8 @@ msgid "Working directory"
 msgstr "Directorio de trabajo"
 
 #: src/ui/details-preferences.ui:920 src/ui/details-preferences.ui:934
-#, fuzzy
 msgid "Default to the bottle path."
-msgstr "Apuntar a la ruta de la botella"
+msgstr "Ruta predeterminada de la botella."
 
 #: src/ui/details-preferences.ui:937 src/ui/dialog-launch-options.ui:182
 #: src/ui/preferences.ui:255 src/ui/details-preferences.ui:950
@@ -597,14 +594,12 @@ msgid "Use GameMode"
 msgstr "Usar GameMode"
 
 #: src/ui/details-preferences.ui:994 src/ui/details-preferences.ui:1010
-#, fuzzy
 msgid "Optimise gaming performance on demand."
-msgstr "Optimice el rendimiento al jugar según la exigencia"
+msgstr "Optimizar el rendimiento de los juegos a la carta."
 
 #: src/ui/details-preferences.ui:1020 src/ui/details-preferences.ui:1036
-#, fuzzy
 msgid "Use Gamescope"
-msgstr "Usar GameMode"
+msgstr "Usar Gamescope"
 
 #: src/ui/details-preferences.ui:1021 src/ui/details-preferences.ui:1037
 msgid "Use the Gamescope micro-compositor."
@@ -872,9 +867,8 @@ msgid "Type here.."
 msgstr "Escriba aquí…"
 
 #: src/ui/dialog-gamescope.ui:24
-#, fuzzy
 msgid "Gamescope settings"
-msgstr "Gestionar la configuración del subsistema de Wine."
+msgstr "Ajustes de Gamescope"
 
 #: src/ui/dialog-gamescope.ui:63
 msgid ""
@@ -884,9 +878,8 @@ msgstr ""
 "ejecutar."
 
 #: src/ui/dialog-gamescope.ui:79
-#, fuzzy
 msgid "Game resolution"
-msgstr "Resolución de escritorio virtual"
+msgstr "Resolución del juego"
 
 #: src/ui/dialog-gamescope.ui:84 src/ui/dialog-gamescope.ui:162
 msgid "Width"
@@ -905,14 +898,12 @@ msgid "e.g. 720"
 msgstr "p. ej. 720"
 
 #: src/ui/dialog-gamescope.ui:157
-#, fuzzy
 msgid "Gamescope resolution"
-msgstr "Resolución de escritorio virtual"
+msgstr "Resolución de Gamescope"
 
 #: src/ui/dialog-gamescope.ui:235
-#, fuzzy
 msgid "Extra settings"
-msgstr "Ajuste la configuración interna."
+msgstr "Ajustes adicionales"
 
 #: src/ui/dialog-gamescope.ui:240
 msgid "Frame rate limit"
@@ -931,14 +922,12 @@ msgid "e.g. 30"
 msgstr "p. ej. 30"
 
 #: src/ui/dialog-gamescope.ui:302
-#, fuzzy
 msgid "Use integer scaling"
-msgstr "Usar versiones"
+msgstr "Usar la escala de enteros"
 
 #: src/ui/dialog-gamescope.ui:329
-#, fuzzy
 msgid "Window type"
-msgstr "Anchura de ventana"
+msgstr "Tipo de ventana"
 
 #: src/ui/dialog-gamescope.ui:341
 msgid "Borderless"
@@ -1036,6 +1025,7 @@ msgstr "Script de post-ejecución"
 #: src/ui/dialog-launch-options.ui:165
 msgid "Choose a script which should be executed after run."
 msgstr ""
+"Elija una secuencia de comandos que debe ejecutarse después de la ejecución."
 
 #: src/ui/importer.ui:20 src/ui/importer.ui:21
 msgid ""
@@ -1077,9 +1067,8 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Este prefijo de Wine ya se ha sido importado en Bottles."
 
 #: src/ui/list.ui:39
-#, fuzzy
 msgid "Search your bottles .."
-msgstr "Nombrar su botella"
+msgstr "Buscar sus bottles …"
 
 #: src/ui/list.ui:77 src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
@@ -1147,7 +1136,7 @@ msgstr "Descargar e instalar"
 
 #: src/ui/component-entry.ui:123 src/ui/component-entry.ui:129
 msgid "0%"
-msgstr "0 %"
+msgstr "0%"
 
 #: src/ui/component-entry.ui:186 src/ui/program-entry.ui:160
 #: src/ui/component-entry.ui:177 src/ui/program-entry.ui:159
@@ -1165,9 +1154,8 @@ msgid "License"
 msgstr "Licencia"
 
 #: src/ui/dependency-entry.ui:45
-#, fuzzy
 msgid "Reinstall"
-msgstr "Desinstalar"
+msgstr "Reinstalar"
 
 #: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
 #: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
@@ -1442,7 +1430,7 @@ msgstr "Si Bottles debe usar la variante del tema nocturno."
 
 #: src/ui/preferences.ui:45
 msgid "Reset default"
-msgstr ""
+msgstr "Restablecer predeterminado"
 
 #: src/ui/preferences.ui:67 src/ui/window.ui:33 src/views/details.py:106
 #: src/ui/preferences.ui:7 src/views/details.py:107
@@ -1487,24 +1475,27 @@ msgid "Close Bottles after starting a program from the file manager"
 msgstr "Cerrar Bottles tras iniciar un programa en el gestor de archivos"
 
 #: src/ui/preferences.ui:238
-#, fuzzy
 msgid "Advanced"
-msgstr "Opciones avanzadas"
+msgstr "Avanzado"
 
 #: src/ui/preferences.ui:243
 msgid "Custom bottles path (require restart)"
-msgstr ""
+msgstr "Ruta de bottles personalizada (requiere reinicio)"
 
 #: src/ui/preferences.ui:244
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr ""
+"Elija dónde almacenar las bottles nuevas (esto no moverá las existentes)"
 
 #: src/ui/preferences.ui:280
 msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
+"Advertencia: Asegúrese de dar permiso al Flatpak para acceder a la ruta "
+"nueva.\n"
+"¡Esto romperá el depósito!"
 
 #: src/ui/preferences.ui:353 src/ui/preferences.ui:189
 msgid "Pre-release"
@@ -1532,19 +1523,19 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:426
 msgid "Core"
-msgstr ""
+msgstr "Núcleo"
 
 #: src/ui/preferences.ui:431
 msgid "Runtime"
-msgstr ""
+msgstr "Tiempo de ejecución"
 
 #: src/ui/preferences.ui:440 src/ui/preferences.ui:462
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
 #: src/ui/preferences.ui:463
 msgid "Use WineBridge for process and program management."
-msgstr ""
+msgstr "Usar WineBridge para la gestión de procesos y programas."
 
 #: src/ui/state-entry.ui:86 src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1662,9 +1653,8 @@ msgid "Importing backup: {0}"
 msgstr "Importando copia de respaldo: {0}"
 
 #: src/backend/managers/installer.py:377
-#, fuzzy
 msgid "Dependencies installation failed."
-msgstr "Las dependencias ahora pueden instalar más de un dll en un paso"
+msgstr "La instalación de las dependencias ha fallado."
 
 #: src/backend/managers/manager.py:985 src/backend/manager.py:1007
 #: src/backend/manager.py:1004
@@ -1826,7 +1816,7 @@ msgstr "Copiar al portapapeles"
 
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
-msgstr ""
+msgstr "Elija el script"
 
 #: src/views/details.py:102 src/views/details.py:103
 msgid "Details & Utilities"
@@ -1905,10 +1895,8 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "¿Confirma que quiere eliminar esta botella y todos sus archivos?"
 
 #: src/views/bottle_preferences.py:145 src/views/bottle_preferences.py:142
-#, fuzzy
 msgid "This feature is not available on your system."
-msgstr ""
-"El modo juego no está disponible en el sistema o no se está ejecutando."
+msgstr "Esta característica no está disponible en su sistema."
 
 #: src/views/bottle_preferences.py:159 src/views/bottle_preferences.py:156
 #: src/views/bottle_preferences.py:138
@@ -1988,9 +1976,8 @@ msgid "A bottle named “{0}” was created successfully"
 msgstr "Se ha creado con éxito una botella llamada \"{0}\""
 
 #: src/views/preferences.py:138
-#, fuzzy
 msgid "Choose new bottles path"
-msgstr "Elija una ruta de ejecutable"
+msgstr "Elija una ruta de bottles nueva"
 
 #: src/widgets/dependency.py:99 src/widgets/installer.py:77
 #: src/widgets/dependency.py:95 src/widgets/installer.py:70
