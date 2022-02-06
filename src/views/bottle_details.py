@@ -43,6 +43,7 @@ from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.taskmgr import Taskmgr
 from bottles.backend.wine.control import Control
 from bottles.backend.wine.regedit import Regedit
+from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.executor import WineExecutor
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
@@ -79,6 +80,7 @@ class BottleView(Gtk.ScrolledWindow):
     btn_flatpak_doc_upgrade = Gtk.Template.Child()
     btn_flatpak_doc_silent_crash = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
+    btn_explorer = Gtk.Template.Child()
     box_run_extra = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     check_terminal = Gtk.Template.Child()
@@ -110,6 +112,7 @@ class BottleView(Gtk.ScrolledWindow):
         self.btn_execute.connect("clicked", self.run_executable)
         self.btn_run_args.connect("clicked", self.__run_executable_with_args)
         self.btn_browse.connect("clicked", self.run_browse)
+        self.btn_explorer.connect("clicked", self.run_explorer)
         self.btn_cmd.connect("clicked", self.run_cmd)
         self.btn_taskmanager.connect("clicked", self.run_taskmanager)
         self.btn_controlpanel.connect("clicked", self.run_controlpanel)
@@ -451,6 +454,10 @@ class BottleView(Gtk.ScrolledWindow):
 
     def run_browse(self, widget):
         ManagerUtils.open_filemanager(self.config)
+    
+    def run_explorer(self, widget):
+        program = Explorer(self.config)
+        RunAsync(program.launch)
 
     def run_cmd(self, widget):
         program = CMD(self.config)
