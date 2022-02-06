@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-05 22:07+0100\n"
-"PO-Revision-Date: 2022-01-23 11:55+0000\n"
+"PO-Revision-Date: 2022-02-06 15:26+0000\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -229,14 +229,12 @@ msgid ""
 msgstr "开关如版本控制、安装器和运行器候选版本等实验性功能。"
 
 #: data/com.usebottles.bottles.gschema.xml:56
-#, fuzzy
 msgid "Experiments:winebridge"
-msgstr "实验功能：安装器"
+msgstr "实验功能：winebridge"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental winebridge implementation."
-msgstr "开关实验性的安装器功能。"
+msgstr "开关实验性的 winebridge 功能。"
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
@@ -303,7 +301,7 @@ msgstr "报告问题或丢失的依赖项。"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic 游戏商店 .."
 
 #: src/ui/details-installers.ui:126 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:93 src/ui/details-installers.ui:160 src/ui/importer.ui:94
@@ -478,7 +476,7 @@ msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:459
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:483 src/ui/new.ui:283
 #: src/ui/details-preferences.ui:473 src/ui/new.ui:284
@@ -652,7 +650,7 @@ msgstr "搜索已安装的程序"
 
 #: src/ui/details-programs.ui:151
 msgid "Show/hide removed programs"
-msgstr ""
+msgstr "显示/隐藏已移除程序"
 
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
@@ -680,7 +678,7 @@ msgstr "创建新状态"
 
 #: src/ui/details-taskmanager.ui:59
 msgid "Stop process"
-msgstr ""
+msgstr "停止进程"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
@@ -837,78 +835,73 @@ msgid "Type here.."
 msgstr "在此输入.."
 
 #: src/ui/dialog-gamescope.ui:24
-#, fuzzy
 msgid "Gamescope settings"
-msgstr "管理 Gamescope 设置"
+msgstr "Gamescope 设置"
 
 #: src/ui/dialog-gamescope.ui:63
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
-msgstr ""
+msgstr "配置 Gamescope 应如何为您将运行的游戏管理窗口。"
 
 #: src/ui/dialog-gamescope.ui:79
 msgid "Game resolution"
-msgstr ""
+msgstr "游戏分辨率"
 
 #: src/ui/dialog-gamescope.ui:84 src/ui/dialog-gamescope.ui:162
 msgid "Width"
-msgstr ""
+msgstr "宽度"
 
 #: src/ui/dialog-gamescope.ui:95 src/ui/dialog-gamescope.ui:173
 msgid "e.g. 1280"
-msgstr ""
+msgstr "比如 1280"
 
 #: src/ui/dialog-gamescope.ui:115 src/ui/dialog-gamescope.ui:193
 msgid "Height"
-msgstr ""
+msgstr "高度"
 
 #: src/ui/dialog-gamescope.ui:126 src/ui/dialog-gamescope.ui:204
 msgid "e.g. 720"
-msgstr ""
+msgstr "比如 720"
 
 #: src/ui/dialog-gamescope.ui:157
-#, fuzzy
 msgid "Gamescope resolution"
-msgstr "管理 Gamescope 设置"
+msgstr "Gamescope 分辨率"
 
 #: src/ui/dialog-gamescope.ui:235
-#, fuzzy
 msgid "Extra settings"
-msgstr "调整内部设置。"
+msgstr "额外设置"
 
 #: src/ui/dialog-gamescope.ui:240
 msgid "Frame rate limit"
-msgstr ""
+msgstr "帧率限制"
 
 #: src/ui/dialog-gamescope.ui:251
 msgid "e.g. 60"
-msgstr ""
+msgstr "比如 60"
 
 #: src/ui/dialog-gamescope.ui:271
 msgid "Frame rate limit (when no focus)"
-msgstr ""
+msgstr "帧率限制（失去焦点时）"
 
 #: src/ui/dialog-gamescope.ui:282
 msgid "e.g. 30"
-msgstr ""
+msgstr "比如 30"
 
 #: src/ui/dialog-gamescope.ui:302
-#, fuzzy
 msgid "Use integer scaling"
-msgstr "使用版本控制"
+msgstr "使用整数缩放"
 
 #: src/ui/dialog-gamescope.ui:329
-#, fuzzy
 msgid "Window type"
-msgstr "窗口宽度"
+msgstr "窗口类型"
 
 #: src/ui/dialog-gamescope.ui:341
 msgid "Borderless"
-msgstr ""
+msgstr "无边框"
 
 #: src/ui/dialog-gamescope.ui:357
 msgid "Fullscreen"
-msgstr ""
+msgstr "全屏"
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
@@ -984,14 +977,16 @@ msgid ""
 "\"https://docs.usebottles.com/flatpak/expose-directories\">Flatseal</a> if "
 "the script path is outside the sandbox."
 msgstr ""
+"您在使用 Flatpak 版本的 Bottles，如果脚本路径在沙盒外面请记得通过 <a href=\"https://docs.usebottles."
+"com/flatpak/expose-directories\">Flatseal</a> 授予权限。"
 
 #: src/ui/dialog-launch-options.ui:163
 msgid "Post-run script"
-msgstr ""
+msgstr "运行后脚本"
 
 #: src/ui/dialog-launch-options.ui:165
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "选择应该在运行后执行的脚本。"
 
 #: src/ui/importer.ui:20 src/ui/importer.ui:21
 msgid ""
@@ -1031,7 +1026,7 @@ msgstr "该 wineprefix 已导入 Bottles 中。"
 
 #: src/ui/list.ui:39
 msgid "Search your bottles .."
-msgstr ""
+msgstr "搜索您的 Bottles .."
 
 #: src/ui/list.ui:77 src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
@@ -1114,9 +1109,8 @@ msgid "License"
 msgstr "许可证"
 
 #: src/ui/dependency-entry.ui:45
-#, fuzzy
 msgid "Reinstall"
-msgstr "卸载"
+msgstr "重新安装"
 
 #: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
 #: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
@@ -1384,7 +1378,7 @@ msgstr "Bottles 是否应使用夜间主题。"
 
 #: src/ui/preferences.ui:45
 msgid "Reset default"
-msgstr ""
+msgstr "重置为默认"
 
 #: src/ui/preferences.ui:67 src/ui/window.ui:33 src/views/details.py:106
 #: src/ui/preferences.ui:7 src/views/details.py:107
@@ -1429,24 +1423,25 @@ msgid "Close Bottles after starting a program from the file manager"
 msgstr "从文件管理器启动程序后关闭 Bottles"
 
 #: src/ui/preferences.ui:238
-#, fuzzy
 msgid "Advanced"
-msgstr "高级选项"
+msgstr "高级"
 
 #: src/ui/preferences.ui:243
 msgid "Custom bottles path (require restart)"
-msgstr ""
+msgstr "自定义 Bottles 路径（需要重启）"
 
 #: src/ui/preferences.ui:244
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
-msgstr ""
+msgstr "选择新 Bottles 的存储位置（不会移动现有 Bottles）"
 
 #: src/ui/preferences.ui:280
 msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
+"警告：确保授予 Flatpak 访问新路径的权限。\n"
+"这将破坏沙盒环境！"
 
 #: src/ui/preferences.ui:353 src/ui/preferences.ui:189
 msgid "Pre-release"
@@ -1474,19 +1469,19 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:426
 msgid "Core"
-msgstr ""
+msgstr "核心"
 
 #: src/ui/preferences.ui:431
 msgid "Runtime"
-msgstr ""
+msgstr "运行时"
 
 #: src/ui/preferences.ui:440 src/ui/preferences.ui:462
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
 #: src/ui/preferences.ui:463
 msgid "Use WineBridge for process and program management."
-msgstr ""
+msgstr "为进程和程序管理使用 WineBridge。"
 
 #: src/ui/state-entry.ui:86 src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1603,9 +1598,8 @@ msgid "Importing backup: {0}"
 msgstr "正在导入备份：{0}"
 
 #: src/backend/managers/installer.py:377
-#, fuzzy
 msgid "Dependencies installation failed."
-msgstr "依赖项现在可以一步安装更多的dll"
+msgstr "依赖安装失败。"
 
 #: src/backend/managers/manager.py:985 src/backend/manager.py:1007
 #: src/backend/manager.py:1004
@@ -1765,7 +1759,7 @@ msgstr "复制到剪贴板"
 
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
-msgstr ""
+msgstr "选择脚本"
 
 #: src/views/details.py:102 src/views/details.py:103
 msgid "Details & Utilities"
@@ -1925,9 +1919,8 @@ msgid "A bottle named “{0}” was created successfully"
 msgstr "成功创建了名为“{0}”的 bottle"
 
 #: src/views/preferences.py:138
-#, fuzzy
 msgid "Choose new bottles path"
-msgstr "选择一个可执行路径"
+msgstr "选择新的 Bottles 路径"
 
 #: src/widgets/dependency.py:99 src/widgets/installer.py:77
 #: src/widgets/dependency.py:95 src/widgets/installer.py:70
