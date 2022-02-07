@@ -71,13 +71,14 @@ class TerminalUtils():
         colors = self.colors[colors]
         
         if self.terminal[0] == 'easyterm.py':
-            command = ' '.join(self.terminal) % (colors, f"bash -c '{command}'")
+            command = ' '.join(self.terminal) % (colors, f'bash -c "{command}"')
             if "ENABLE_BASH" in os.environ:
                 command = ' '.join(self.terminal) % (colors, f"bash")
         elif self.terminal[0] == 'xfce4-terminal':
             command = ' '.join(self.terminal) % "'sh -c %s'" % f'"{command}"'
         else:
             command = ' '.join(self.terminal) % f"'bash -c {command}'"
+
         subprocess.Popen(
             command,
             shell=True,

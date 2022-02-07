@@ -46,6 +46,7 @@ class ProgramEntry(Handy.ActionRow):
     btn_rename = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_add_entry = Gtk.Template.Child()
+    btn_launch_terminal = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config, program, is_layer=False, **kwargs):
@@ -85,6 +86,7 @@ class ProgramEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_run.connect("clicked", self.run_executable)
+        self.btn_launch_terminal.connect("clicked", self.run_executable, True)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_winehq.connect("clicked", self.open_search_url, "winehq")
         self.btn_protondb.connect("clicked", self.open_search_url, "protondb")
@@ -139,7 +141,7 @@ class ProgramEntry(Handy.ActionRow):
             name=self.executable
         )
 
-    def run_executable(self, widget):
+    def run_executable(self, widget, with_terminal=False):
         if self.is_layer:
             RunAsync(
                 self.manager.launch_layer_program,
@@ -153,7 +155,8 @@ class ProgramEntry(Handy.ActionRow):
                 exec_path=self.program["path"],
                 args=self.program["arguments"],
                 cwd=self.program["folder"],
-                post_script=self.program.get("script", None)
+                post_script=self.program.get("script", None),
+                terminal=with_terminal
             )
             RunAsync(executor.run, callback=self.__reset_buttons)
 
