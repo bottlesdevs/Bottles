@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-05 22:07+0100\n"
-"PO-Revision-Date: 2022-02-07 21:57+0000\n"
+"PO-Revision-Date: 2022-02-08 22:54+0000\n"
 "Last-Translator: Dhizaes <dhizaes@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -237,14 +237,12 @@ msgstr ""
 "Çalıştırıcılar için sürüm adayı."
 
 #: data/com.usebottles.bottles.gschema.xml:56
-#, fuzzy
 msgid "Experiments:winebridge"
-msgstr "Deneyler: kurucular"
+msgstr "Deneyler:winebridge"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental winebridge implementation."
-msgstr "Deneysel kurucu özelliklerini aç/kapat."
+msgstr "Deneysel winebridge uygulamasını aç/kapat."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
@@ -318,7 +316,7 @@ msgstr "Sorun veya eksik bağımlılık bildir."
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games Store .."
 
 #: src/ui/details-installers.ui:126 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:93 src/ui/details-installers.ui:160 src/ui/importer.ui:94
@@ -496,7 +494,7 @@ msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:459
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:483 src/ui/new.ui:283
 #: src/ui/details-preferences.ui:473 src/ui/new.ui:284
@@ -911,29 +909,27 @@ msgstr "Örnek: 60"
 
 #: src/ui/dialog-gamescope.ui:271
 msgid "Frame rate limit (when no focus)"
-msgstr ""
+msgstr "Çizim sıklığı limiti (Odak dışındayken)"
 
 #: src/ui/dialog-gamescope.ui:282
 msgid "e.g. 30"
-msgstr ""
+msgstr "Örnek: 30"
 
 #: src/ui/dialog-gamescope.ui:302
-#, fuzzy
 msgid "Use integer scaling"
-msgstr "Sürüm oluşturmayı kullan"
+msgstr "Tamsayı ölçeklemeyi kullan"
 
 #: src/ui/dialog-gamescope.ui:329
-#, fuzzy
 msgid "Window type"
-msgstr "Pencere genişliği"
+msgstr "Pencere tipi"
 
 #: src/ui/dialog-gamescope.ui:341
 msgid "Borderless"
-msgstr ""
+msgstr "Çerçevesiz"
 
 #: src/ui/dialog-gamescope.ui:357
 msgid "Fullscreen"
-msgstr ""
+msgstr "Tam ekran"
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
@@ -1012,14 +1008,17 @@ msgid ""
 "\"https://docs.usebottles.com/flatpak/expose-directories\">Flatseal</a> if "
 "the script path is outside the sandbox."
 msgstr ""
+"Bottle Flatpak sürümünü kullanıyorsun, eğer komut yolu Sandbox dışındaysa <a "
+"href=\"https://docs.usebottles.com/flatpak/expose-directories\">Flatseal</a> "
+"ile gerekli izinleri vermeyi unutma."
 
 #: src/ui/dialog-launch-options.ui:163
 msgid "Post-run script"
-msgstr ""
+msgstr "Çalışma-sonrası komutu"
 
 #: src/ui/dialog-launch-options.ui:165
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Çalışmadan sonra aktif edilecek komutu seç."
 
 #: src/ui/importer.ui:20 src/ui/importer.ui:21
 msgid ""
@@ -1060,9 +1059,8 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Bu wineprefix zaten Şişeler'e aktarılmıştı."
 
 #: src/ui/list.ui:39
-#, fuzzy
 msgid "Search your bottles .."
-msgstr "Şişenize isim verin"
+msgstr "Şişelerini ara .."
 
 #: src/ui/list.ui:77 src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
@@ -1148,9 +1146,8 @@ msgid "License"
 msgstr "Lisans"
 
 #: src/ui/dependency-entry.ui:45
-#, fuzzy
 msgid "Reinstall"
-msgstr "Kaldır"
+msgstr "Yeniden yükle"
 
 #: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
 #: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
@@ -1427,7 +1424,7 @@ msgstr "Şişelerin Gece teması çeşidini kullanıp kullanmaması."
 
 #: src/ui/preferences.ui:45
 msgid "Reset default"
-msgstr ""
+msgstr "Varsayılana sıfırla"
 
 #: src/ui/preferences.ui:67 src/ui/window.ui:33 src/views/details.py:106
 #: src/ui/preferences.ui:7 src/views/details.py:107
@@ -1472,24 +1469,26 @@ msgid "Close Bottles after starting a program from the file manager"
 msgstr "Dosya yöneticisinden bir program başlattıktan sonra Şişeler'i kapat"
 
 #: src/ui/preferences.ui:238
-#, fuzzy
 msgid "Advanced"
-msgstr "Gelişmiş seçenekler"
+msgstr "Gelişmiş"
 
 #: src/ui/preferences.ui:243
 msgid "Custom bottles path (require restart)"
-msgstr ""
+msgstr "Özel Şişeler yolu (yeniden başlatma gerekli)"
 
 #: src/ui/preferences.ui:244
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr ""
+"Yeni Şişelerin nereye depolanacağını seç (zaten kurulu olanları taşımayacak)"
 
 #: src/ui/preferences.ui:280
 msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
+"Uyarı: Flatpak'ın yeni yola erişim izni olduğundan emin olun.\n"
+"Sandbox'ı bozacaktır!"
 
 #: src/ui/preferences.ui:353 src/ui/preferences.ui:189
 msgid "Pre-release"
@@ -1517,19 +1516,19 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:426
 msgid "Core"
-msgstr ""
+msgstr "Çekirdek"
 
 #: src/ui/preferences.ui:431
 msgid "Runtime"
-msgstr ""
+msgstr "Çalışma-zamanı"
 
 #: src/ui/preferences.ui:440 src/ui/preferences.ui:462
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
 #: src/ui/preferences.ui:463
 msgid "Use WineBridge for process and program management."
-msgstr ""
+msgstr "WineBridge kullanarak işlem ve programları yönetin."
 
 #: src/ui/state-entry.ui:86 src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1646,9 +1645,8 @@ msgid "Importing backup: {0}"
 msgstr "Yedekleme içe aktarılıyor: {0}"
 
 #: src/backend/managers/installer.py:377
-#, fuzzy
 msgid "Dependencies installation failed."
-msgstr "Bağımlılık bulunamadı!"
+msgstr "Bağımlı uygulama kurulumu başarısız oldu."
 
 #: src/backend/managers/manager.py:985 src/backend/manager.py:1007
 #: src/backend/manager.py:1004
@@ -1808,7 +1806,7 @@ msgstr "Panoya kopyala"
 
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
-msgstr ""
+msgstr "Komutu seç"
 
 #: src/views/details.py:102 src/views/details.py:103
 msgid "Details & Utilities"
@@ -1968,9 +1966,8 @@ msgid "A bottle named “{0}” was created successfully"
 msgstr "“{0}” adlı bir şişe başarıyla oluşturuldu"
 
 #: src/views/preferences.py:138
-#, fuzzy
 msgid "Choose new bottles path"
-msgstr "Çalıştırılabilir dosya yolu seç"
+msgstr "Yeni bir Şişeler yolu seç"
 
 #: src/widgets/dependency.py:99 src/widgets/installer.py:77
 #: src/widgets/dependency.py:95 src/widgets/installer.py:70
