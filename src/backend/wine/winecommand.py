@@ -115,8 +115,10 @@ class WineCommand:
     def __get_env(self, environment) -> dict:
         env = WineEnv()
         config = self.config
-        arch = config["Arch"]
-        params = config["Parameters"]
+        arch = config.get("Arch", None)
+        params = config.get("Parameters", None)
+        if None in [arch, params]:
+            return
         bottle = ManagerUtils.get_bottle_path(config)
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
@@ -337,7 +339,7 @@ class WineCommand:
         return " ".join(gamescope_cmd)
 
     def run(self):
-        if self.runner is None:
+        if None in [self.runner, self.env]:
             return
 
         if self.terminal:
