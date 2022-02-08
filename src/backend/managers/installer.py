@@ -223,8 +223,8 @@ class InstallerManager:
         bottle = ManagerUtils.get_bottle_path(config)
         conf_path = step.get("path")
         conf_type = step.get("type")
-        del_keys = step.get("del_keys")
-        upd_keys = step.get("upd_keys")
+        del_keys = step.get("del_keys", {})
+        upd_keys = step.get("upd_keys", {})
         conf_path = f"{bottle}/{conf_path}"
         _conf = ConfigManager(conf_path, conf_type)
 
