@@ -225,6 +225,10 @@ class InstallerManager:
         conf_type = step.get("type")
         del_keys = step.get("del_keys", {})
         upd_keys = step.get("upd_keys", {})
+
+        if conf_path.startswith("userdir/"):
+            current_user = os.getenv("USER")
+            conf_path = conf_path.replace("userdir/", f"drive_c/users/{current_user}/")
         conf_path = f"{bottle}/{conf_path}"
         _conf = ConfigManager(conf_path, conf_type)
 
