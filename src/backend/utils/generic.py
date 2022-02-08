@@ -98,6 +98,7 @@ def is_glibc_min_available():
         gnu_get_libc_version = process_namespace.gnu_get_libc_version
         gnu_get_libc_version.restype = ctypes.c_char_p
         version = gnu_get_libc_version().decode('ascii')
-        return version >= '2.32'
+        if version >= '2.32':
+            return version
     except:
         return False

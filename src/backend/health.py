@@ -23,6 +23,7 @@ import subprocess
 
 from bottles.backend.utils.display import DisplayUtils # pyright: reportMissingImports=false
 from bottles.backend.utils.gpu import GPUUtils
+from bottles.backend.utils.generic import is_glibc_min_available
 
 
 class HealthChecker:
@@ -35,6 +36,7 @@ class HealthChecker:
     cabextract: bool = False
     p7zip: bool = False
     patool: bool = False
+    glibc_min: str = ""
     kernel: str = ""
     kernel_version: str = ""
     distro: str = ""
@@ -49,6 +51,7 @@ class HealthChecker:
         self.cabextract = self.check_cabextract()
         self.p7zip = self.check_p7zip()
         self.patool = self.check_patool()
+        self.glibc_min = is_glibc_min_available()
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
     
@@ -171,7 +174,8 @@ class HealthChecker:
             "Tools": {
                 "cabextract": self.cabextract,
                 "p7zip": self.p7zip,
-                "patool": self.patool
+                "patool": self.patool,
+                "glibc_min": self.glibc_min
             },
             "Bottles_envs": self.bottles_envs
         }
