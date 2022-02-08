@@ -581,7 +581,7 @@ class Manager:
         installed_programs = []
         ignored_patterns = [
             "*installer*",
-            "*uninstall*",
+            "*uninst*",
             "*setup*",
             "*debug*",
             "*report*",
