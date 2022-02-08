@@ -87,3 +87,17 @@ def detect_encoding(text: bytes):
             pass
 
     return None
+
+def is_glibc_min_available():
+    '''
+    This function checks if the glibc version is greater or equal to 2.32
+    '''
+    try:
+        import ctypes
+        process_namespace = ctypes.CDLL(None)
+        gnu_get_libc_version = process_namespace.gnu_get_libc_version
+        gnu_get_libc_version.restype = ctypes.c_char_p
+        version = gnu_get_libc_version().decode('ascii')
+        return version >= '2.32'
+    except:
+        return False

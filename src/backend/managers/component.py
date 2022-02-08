@@ -27,6 +27,7 @@ from gi.repository import GLib
 from typing import Union
 
 from bottles.operation import OperationManager # pyright: reportMissingImports=false
+from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.globals import Paths, Repositories
 from bottles.backend.models.result import Result
@@ -158,6 +159,17 @@ class ComponentManager:
                     https://github.com/bottlesdevs/components/issues/54
                     '''
                     continue
+                if "caffe" in component[0].lower():
+                    if not is_glibc_min_available():
+                        logging.warning(
+                            f"{component[0]} was found but it requires "
+                            "glibc >= 2.32 and your system is running an older "
+                            "version. Use the Flatpak instead if you can't "
+                            "upgrade your system. This runner will be ignored, "
+                            "please keep in mind that Bottles and all our "
+                            "installers are only tested with Caffe runners."
+                        )
+                        continue
 
                 sub_category = component[1]["Sub-category"]
                 catalog[sub_category][component[0]] = component[1]
