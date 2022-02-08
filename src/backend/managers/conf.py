@@ -30,15 +30,19 @@ class ConfigManager(object):
         if self.config_type == 'ini':
             config = ConfigParser()
             config.read(self.config_file)
-            return config._sections
+            res = config._sections
         elif self.config_type == 'json':
             with open(self.config_file, 'r') as f:
-                return json.load(f)
+                res = json.load(f)
         elif self.config_type == 'yaml':
             with open(self.config_file, 'r') as f:
-                return yaml.safe_load(f)
+                res = yaml.safe_load(f)
         else:
             raise ValueError('Invalid configuration type')
+        
+        if res in [None, ""]:
+            res = {}
+        return res
     
     def get_dict(self):
         '''
