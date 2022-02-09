@@ -65,10 +65,11 @@ class DependencyManager:
         and return these as a dictionary. It also returns an empty dictionary
         if there are no dependencies or fails to fetch them.
         '''
-        catalog = {}
-        index = self.__repo.catalog
         if not self.__utils_conn.check_connection():
             return {}
+            
+        catalog = {}
+        index = self.__repo.catalog
 
         for dependency in index.items():
             catalog[dependency[0]] = dependency[1]
