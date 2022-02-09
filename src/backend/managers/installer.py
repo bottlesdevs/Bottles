@@ -17,7 +17,6 @@
 
 import os
 import subprocess
-import yaml
 import markdown
 import urllib.request
 from typing import Union, NewType

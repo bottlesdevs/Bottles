@@ -16,16 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import yaml
-import uuid
-import shutil
-import requests
-import patoolib
-from glob import glob
 import urllib.request
-from functools import lru_cache
 from typing import Union, NewType
-from gi.repository import GLib
 
 from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.repos.dependency import DependencyRepo

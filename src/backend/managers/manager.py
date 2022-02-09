@@ -23,7 +23,6 @@ import shlex
 import shutil
 import struct
 import locale
-import urllib.request
 import fnmatch
 from glob import glob
 from datetime import datetime

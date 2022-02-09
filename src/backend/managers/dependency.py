@@ -16,12 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import yaml
 import uuid
 import shutil
 import patoolib
 from glob import glob
-import urllib.request
 from functools import lru_cache
 from typing import Union, NewType
 from gi.repository import GLib
@@ -67,7 +65,7 @@ class DependencyManager:
         '''
         if not self.__utils_conn.check_connection():
             return {}
-            
+
         catalog = {}
         index = self.__repo.catalog
 
