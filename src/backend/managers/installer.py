@@ -307,10 +307,7 @@ class InstallerManager:
             f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
 
     def count_steps(self, installer):
-        manifest = self.get_installer(
-            installer_name=installer[0],
-            installer_category=installer[1]["Category"]
-        )
+        manifest = self.get_installer(installer[0])
         steps = 0
         if manifest.get("Dependencies"):
             steps += int(len(manifest.get("Dependencies")))

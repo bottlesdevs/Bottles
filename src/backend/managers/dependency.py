@@ -110,10 +110,7 @@ class DependencyManager:
                 config['Name']
             )
         )
-        manifest = self.get_dependency(
-            dependency_name=dependency[0],
-            dependency_category=dependency[1]["Category"]
-        )
+        manifest = self.get_dependency(dependency[0])
         if not manifest:
             '''
             If the manifest is not found, return a Result
