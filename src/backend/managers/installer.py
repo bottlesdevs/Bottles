@@ -260,6 +260,10 @@ class InstallerManager:
             c.sweep()
             c.save()
 
+        # avoid sync type change if not set to "wine"
+        if parameters.get("sync") and config["Parameters"]["sync"] != "wine":
+            del parameters["sync"]
+
         for param in parameters:
             self.__manager.update_config(
                 config=config,
@@ -327,10 +331,7 @@ class InstallerManager:
             wineboot = WineBoot(self.__layer.runtime_conf)
             wineboot.init()
 
-        manifest = self.get_installer(
-            installer_name=installer[0],
-            installer_category=installer[1]["Category"]
-        )
+        manifest = self.get_installer(installer[0])
         _config = config
 
         bottle = ManagerUtils.get_bottle_path(config)
