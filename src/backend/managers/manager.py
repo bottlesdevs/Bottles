@@ -35,8 +35,9 @@ from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
-from bottles.backend.globals import Repositories, Paths
+from bottles.backend.globals import Paths
 from bottles.backend.managers.versioning import RunnerVersioning
+from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.dependency import DependencyManager
@@ -94,6 +95,7 @@ class Manager:
         self.window = window
         self.settings = window.settings
         self.utils_conn = window.utils_conn
+        self.repository_manager = RepositoryManager()
         self.versioning_manager = RunnerVersioning(window, self)
         self.component_manager = ComponentManager(self)
         self.installer_manager = InstallerManager(self)
@@ -115,7 +117,7 @@ class Manager:
             self.__clear_temp()
         self.check_bottles()
         self.organize_dependencies()
-        self.fetch_installers()
+        self.organize_installers()
         # TODO: self.check_vulkan_support()
 
     def __clear_temp(self, force: bool = False):
@@ -212,6 +214,18 @@ class Manager:
             return
 
         self.supported_dependencies = catalog
+
+    def organize_installers(self):
+        '''
+        This function gets the installers catalog and organizes
+        them into the supported_installers list.
+        '''
+        catalog = self.installer_manager.fetch_catalog()
+        if len(catalog) == 0:
+            logging.info("No installers found!")
+            return
+
+        self.supported_installers = catalog
 
     def remove_dependency(
         self,
@@ -650,28 +664,6 @@ class Manager:
                     found.append(executable_name)
 
         return installed_programs
-
-    def fetch_installers(self) -> bool:
-        '''
-        This function fetches the installers from the repository and
-        appends them to the supported_installers list. It will return
-        True if the installers are found, and False otherwise.
-        TODO: this function should be moved to the installer manager.
-        '''
-        if not self.utils_conn.check_connection():
-            return False
-
-        try:
-            url = urllib.request.urlopen(Repositories.installers_index)
-            index = yaml.safe_load(url.read())
-
-            for installer in index.items():
-                self.supported_installers[installer[0]] = installer[1]
-        except:
-            logging.error(
-                "Cannot fetch installers index from repository."
-            )
-            return False
 
     def check_bottles(self, silent: bool = False):
         '''

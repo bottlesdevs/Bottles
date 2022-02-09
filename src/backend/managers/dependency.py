@@ -32,7 +32,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
 from bottles.backend.logger import Logger
 from bottles.backend.cabextract import CabExtract
-from bottles.backend.globals import Repositories, Paths
+from bottles.backend.globals import Paths
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg 
@@ -49,43 +49,14 @@ class DependencyManager:
 
     def __init__(self, manager):
         self.__manager = manager
+        self.__repo = manager.repository_manager.get_repo("dependencies")
         self.__window = manager.window
         self.__utils_conn = manager.utils_conn
         self.__operation_manager = OperationManager(self.__window)
 
     @lru_cache
-    def get_dependency(
-        self,
-        dependency_name: str,
-        dependency_category: str,
-        plain: bool = False
-    ) -> Union[str, dict, bool]:
-        '''
-        This function can be used to fetch the manifest for a given
-        dependency. It can be returned as plain text or as a dictionary.
-        It will return False if the dependency is not found.
-        '''
-        if self.__utils_conn.check_connection():
-            try:
-                with urllib.request.urlopen("%s/%s/%s.yml" % (
-                    Repositories.dependencies,
-                    dependency_category,
-                    dependency_name
-                )) as url:
-                    if plain:
-                        '''
-                        Caller required the component manifest
-                        as plain text.
-                        '''
-                        return url.read().decode("utf-8")
-
-                    # return as dictionary
-                    return yaml.safe_load(url.read())
-            except:
-                logging.error(f"Cannot fetch manifest for {dependency_name}.")
-                return False
-
-        return False
+    def get_dependency(self, name: str, plain: bool = False) -> Union[str, dict]:
+        return self.__repo.get(name, plain)
 
     @lru_cache
     def fetch_catalog(self) -> list:
@@ -95,16 +66,8 @@ class DependencyManager:
         if there are no dependencies or fails to fetch them.
         '''
         catalog = {}
+        index = self.__repo.catalog
         if not self.__utils_conn.check_connection():
-            return {}
-
-        try:
-            with urllib.request.urlopen(
-                Repositories.dependencies_index
-            ) as url:
-                index = yaml.safe_load(url.read())
-        except:
-            logging.error(F"Cannot fetch dependencies list.")
             return {}
 
         for dependency in index.items():

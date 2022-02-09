@@ -15,6 +15,7 @@ bottles_sources = [
   'importer.py',
   'conf.py',
   'journal.py',
+  'repository.py',
 ]
 
 install_data(bottles_sources, install_dir: managersdir)

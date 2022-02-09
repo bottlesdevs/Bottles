@@ -29,7 +29,7 @@ from typing import Union
 from bottles.operation import OperationManager # pyright: reportMissingImports=false
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.file import FileUtils
-from bottles.backend.globals import Paths, Repositories
+from bottles.backend.globals import Paths
 from bottles.backend.models.result import Result
 from bottles.backend.downloader import Downloader
 from bottles.backend.logger import Logger
@@ -41,75 +41,14 @@ class ComponentManager:
 
     def __init__(self, manager):
         self.__manager = manager
+        self.__repo = manager.repository_manager.get_repo("components")
         self.__utils_conn = manager.utils_conn
         self.__window = manager.window
         self.__operation_manager = OperationManager(self.__window)
 
     @lru_cache
-    def get_component(
-        self,
-        component_type: str,
-        component_name: str,
-        plain: bool = False
-    ) -> Union[str, dict, bool]:
-        '''
-        This function can be used to fetch the manifest for a given
-        component. It can be returned as plain text or as a dictionary.
-        It will return False if the component is not found.
-        '''
-
-        # Make a copy of the lists of available components
-        supported_runtimes = self.__manager.supported_runtimes
-        supported_wine_runners = self.__manager.supported_wine_runners
-        supported_proton_runners = self.__manager.supported_proton_runners
-        supported_dxvk = self.__manager.supported_dxvk
-        supported_vkd3d = self.__manager.supported_vkd3d
-        supported_nvapi = self.__manager.supported_nvapi
-
-        if component_type == "runtime":
-            component = supported_runtimes[component_name]
-        if component_type == "runner":
-            component = supported_wine_runners[component_name]
-        if component_type == "runner:proton":
-            component = supported_proton_runners[component_name]
-        if component_type == "dxvk":
-            component = supported_dxvk[component_name]
-        if component_type == "vkd3d":
-            component = supported_vkd3d[component_name]
-        if component_type == "nvapi":
-            component = supported_nvapi[component_name]
-
-        if self.__utils_conn.check_connection():
-            if "Sub-category" in component:
-                manifest_url = "%s/%s/%s/%s.yml" % (
-                    Repositories.components,
-                    component["Category"],
-                    component["Sub-category"],
-                    component_name
-                )
-            else:
-                manifest_url = "%s/%s/%s.yml" % (
-                    Repositories.components,
-                    component["Category"],
-                    component_name
-                )
-            try:
-                with urllib.request.urlopen(manifest_url) as url:
-                    if plain:
-                        '''
-                        Caller required the component manifest
-                        as plain text.
-                        '''
-                        return url.read().decode("utf-8")
-
-                    # return as dictionary
-                    return yaml.safe_load(url.read())
-            except Exception as e:
-                logging.error(f"Cannot fetch manifest for {component_name}.")
-                print(e)
-                return False
-
-        return False
+    def get_component(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
+        return self.__repo.get(name, plain)
 
     @lru_cache
     def fetch_catalog(self) -> dict:
@@ -138,12 +77,7 @@ class ComponentManager:
             "nvapi": self.__manager.nvapi_available
         }
 
-        try:
-            with urllib.request.urlopen(Repositories.components_index) as req:
-                index = yaml.safe_load(req.read())
-        except:
-            logging.error(f"Cannot fetch components list.")
-            return {}
+        index = self.__repo.catalog
 
         for component in index.items():
             '''
@@ -407,7 +341,7 @@ class ComponentManager:
         get the manifest from the given component and then calls the
         download and extract functions.
         '''
-        manifest = self.get_component(component_type, component_name)
+        manifest = self.get_component(component_name)
 
         if not manifest:
             return Result(False)

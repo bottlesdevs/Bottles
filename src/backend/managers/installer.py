@@ -26,7 +26,7 @@ from datetime import datetime
 from gi.repository import Gtk, GLib
 
 from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
-from bottles.backend.globals import Repositories, Paths
+from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.layers import LayersStore, Layer
 
@@ -44,6 +44,7 @@ class InstallerManager:
 
     def __init__(self, manager):
         self.__manager = manager
+        self.__repo = manager.repository_manager.get_repo("installers")
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
         self.__layer = None
@@ -55,60 +56,34 @@ class InstallerManager:
         the HTML formatted text if the review is found, else it will
         return an empty text.
         '''
-        review = ""
-        review_url = f"{Repositories.installers}Reviews/{installer_name}.md"
-
-        try:
-            with urllib.request.urlopen(review_url) as response:
-                review = response.read().decode('utf-8')
-                review = markdown.markdown(review)
-        except:
-            logging.error(f"Cannot fetch review for {installer_name}.")
-
-        return review
+        review = self.__repo.get_review(installer_name)
+        if review:
+            return markdown.markdown(review)
+        return "No review found for this installer."
 
     @lru_cache
     def get_installer(
         self,
         installer_name: str,
-        installer_category: str,
         plain: bool = False
     ) -> Union[str, dict, bool]:
-        '''
-        This function can be used to fetch the manifest for a given
-        installer. It can be returned as plain text or as a dictionary.
-        It will return False if the installer is not found.
-        '''
-        if self.__utils_conn.check_connection():
-            try:
-                manifest_url = "%s/%s/%s.yml" % (
-                    Repositories.installers,
-                    installer_category,
-                    installer_name
-                )
-                with urllib.request.urlopen(manifest_url) as url:
-                    if plain:
-                        '''
-                        Caller required the component manifest
-                        as plain text.
-                        '''
-                        return url.read().decode("utf-8")
+        return self.__repo.get(installer_name, plain)
 
-                    # return as dictionary
-                    return yaml.safe_load(url.read())
-            except Exception as e:
-                logging.error(f"Cannot fetch manifest for {installer_name}.")
-                print(e)
-                return False
+    @lru_cache
+    def fetch_catalog(self) -> bool:
+        catalog = {}
+        index = self.__repo.catalog
+        if not self.__utils_conn.check_connection():
+            return {}
 
-        return False
+        for installer in index.items():
+            catalog[installer[0]] = installer[1]
+            
+        catalog = dict(sorted(catalog.items()))
+        return catalog
 
     def __download_icon(self, config, executable: dict, manifest):
-        icon_url = "%s/data/%s/%s" % (
-            Repositories.installers,
-            manifest.get('Name'),
-            executable.get('icon')
-        )
+        icon_url = self.__repo.get_icon(manifest.get("name"))
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
 

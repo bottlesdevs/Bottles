@@ -98,8 +98,7 @@ class DependencyEntry(Handy.ActionRow):
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
             message=self.manager.dependency_manager.get_dependency(
-                dependency_name=self.dependency[0],
-                dependency_category=self.dependency[1]["Category"],
+                name=self.dependency[0],
                 plain=True
             )
         )
@@ -110,8 +109,7 @@ class DependencyEntry(Handy.ActionRow):
         of the dependency
         '''
         manifest = self.manager.dependency_manager.get_dependency(
-            dependency_name=self.dependency[0],
-            dependency_category=self.dependency[1]["Category"]
+            name=self.dependency[0]
         )
         webbrowser.open(manifest["License_url"])
 

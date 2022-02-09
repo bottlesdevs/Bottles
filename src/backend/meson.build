@@ -5,6 +5,7 @@ subdir('wine')
 subdir('models')
 subdir('utils')
 subdir('dlls')
+subdir('repos')
 subdir('managers')
 
 bottles_sources = [

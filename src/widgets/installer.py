@@ -69,7 +69,6 @@ class InstallerEntry(Handy.ActionRow):
         '''Open installer manifest'''
         plain_manifest = self.manager.installer_manager.get_installer(
             installer_name=self.installer[0],
-            installer_category=self.installer[1]["Category"],
             plain=True
         )
         SourceDialog(
