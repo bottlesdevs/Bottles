@@ -22,7 +22,7 @@ from bottles.backend.logger import Logger
 from bottles.backend.globals import gamemode_available, gamescope_available
 from bottles.backend.models.result import Result
 from bottles.backend.wine.catalogs import win_versions
-from bottles.backend.wine.winecommand import WineCommand
+from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.reg import Reg
 
@@ -47,12 +47,11 @@ class Runner:
         '''
         Run a layer executable.
         '''
-        WineCommand(
+        WineExecutor(
             config=config,
-            file_path=layer["exec_path"],
-            arguments=layer["exec_args"],
-            environment=layer["exec_env"],
-            no_async=True
+            exec_path=layer["exec_path"],
+            args=layer["exec_args"],
+            environment=layer["exec_env"]
         ).run()
 
     @staticmethod
