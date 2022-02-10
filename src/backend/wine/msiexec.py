@@ -22,7 +22,6 @@ class MsiExec(WineProgram):
         environment: dict = {}
     ):
         args = f"/i {pkg_path} {args}"
-        print(args)
         
         self.launch(
             args=args,

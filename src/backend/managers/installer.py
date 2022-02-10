@@ -191,7 +191,6 @@ class InstallerManager:
         )
         stdout, stderr = res.communicate()
         logging.info(f"Executing installer script..")
-        print(stdout.decode('utf-8'))
         logging.info(f"Finished executing installer script.")
     
     def __step_update_config(self, config, step: dict):
