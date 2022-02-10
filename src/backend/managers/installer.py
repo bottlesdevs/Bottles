@@ -82,14 +82,15 @@ class InstallerManager:
         return catalog
 
     def __download_icon(self, config, executable: dict, manifest):
-        icon_url = self.__repo.get_icon(manifest.get("name"))
+        icon_url = self.__repo.get_icon(manifest.get("Name"))
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
 
-        if not os.path.exists(bottle_icons_path):
-            os.makedirs(bottle_icons_path)
-        if not os.path.isfile(icon_path):
-            urllib.request.urlretrieve(icon_url, icon_path)
+        if icon_url is not None:
+            if not os.path.exists(bottle_icons_path):
+                os.makedirs(bottle_icons_path)
+            if not os.path.isfile(icon_path):
+                urllib.request.urlretrieve(icon_url, icon_path)
 
     def __install_dependencies(
         self,

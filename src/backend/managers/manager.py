@@ -671,7 +671,7 @@ class Manager:
         bottles list view. It also tries to update old bottle configurations
         and sets them to broken if the configuration is missing.
         '''
-        bottles = glob("%s/*/" % Paths.bottles)
+        bottles = glob(f"{Paths.bottles}/*/")
 
         for bottle in bottles:
             '''
