@@ -35,7 +35,7 @@ from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
 from bottles.backend.globals import Paths
-from bottles.backend.managers.versioning import RunnerVersioning
+from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.installer import InstallerManager
@@ -95,7 +95,7 @@ class Manager:
         self.settings = window.settings
         self.utils_conn = window.utils_conn
         self.repository_manager = RepositoryManager()
-        self.versioning_manager = RunnerVersioning(window, self)
+        self.versioning_manager = VersioningManager(window, self)
         self.component_manager = ComponentManager(self)
         self.installer_manager = InstallerManager(self)
         self.dependency_manager = DependencyManager(self)

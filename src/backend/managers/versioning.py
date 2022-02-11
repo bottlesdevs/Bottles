@@ -39,7 +39,7 @@ RunnerName = NewType('RunnerName', str)
 RunnerType = NewType('RunnerType', str)
 
 
-class RunnerVersioning:
+class VersioningManager:
 
     def __init__(self, window, manager):
         self.window = window
