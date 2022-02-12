@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-05 22:07+0100\n"
-"PO-Revision-Date: 2022-01-23 11:55+0000\n"
+"PO-Revision-Date: 2022-02-15 07:59+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
@@ -242,14 +242,12 @@ msgstr ""
 "de versions ou les installeurs. Release Candidate pour les exécuteurs."
 
 #: data/com.usebottles.bottles.gschema.xml:56
-#, fuzzy
 msgid "Experiments:winebridge"
-msgstr "Expérimental : installateurs"
+msgstr "Experiments:winebridge"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental winebridge implementation."
-msgstr "Activer/désactiver les fonctionnalités expérimentales des installeurs."
+msgstr "Activer/désactiver l’implémentation expérimentale de winebridge."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Automatically close Bottles"
@@ -323,7 +321,7 @@ msgstr "Signale un problème ou une dépendance manquante."
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games Store…"
 
 #: src/ui/details-installers.ui:126 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:93 src/ui/details-installers.ui:160 src/ui/importer.ui:94
@@ -502,7 +500,7 @@ msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:459
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:483 src/ui/new.ui:283
 #: src/ui/details-preferences.ui:473 src/ui/new.ui:284
@@ -680,7 +678,7 @@ msgstr "Rechercher des programmes installés"
 
 #: src/ui/details-programs.ui:151
 msgid "Show/hide removed programs"
-msgstr ""
+msgstr "Afficher/masquer les programmes supprimés"
 
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
@@ -709,7 +707,7 @@ msgstr "Créer un nouvel état"
 
 #: src/ui/details-taskmanager.ui:59
 msgid "Stop process"
-msgstr ""
+msgstr "Arrêter le processus"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
@@ -871,79 +869,75 @@ msgid "Type here.."
 msgstr "Saisissez ici…"
 
 #: src/ui/dialog-gamescope.ui:24
-#, fuzzy
 msgid "Gamescope settings"
-msgstr "Gérer les paramètres de Gamescope"
+msgstr "Paramètres de Gamescope"
 
 #: src/ui/dialog-gamescope.ui:63
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
 msgstr ""
+"Configure la manière dont Gamescope doit gérer la fenêtre des jeux que vous "
+"allez exécuter."
 
 #: src/ui/dialog-gamescope.ui:79
-#, fuzzy
 msgid "Game resolution"
-msgstr "Résolution du bureau virtuelle"
+msgstr "Résolution du jeu"
 
 #: src/ui/dialog-gamescope.ui:84 src/ui/dialog-gamescope.ui:162
 msgid "Width"
-msgstr ""
+msgstr "Largeur"
 
 #: src/ui/dialog-gamescope.ui:95 src/ui/dialog-gamescope.ui:173
 msgid "e.g. 1280"
-msgstr ""
+msgstr "p. ex. 1280"
 
 #: src/ui/dialog-gamescope.ui:115 src/ui/dialog-gamescope.ui:193
 msgid "Height"
-msgstr ""
+msgstr "Hauteur"
 
 #: src/ui/dialog-gamescope.ui:126 src/ui/dialog-gamescope.ui:204
 msgid "e.g. 720"
-msgstr ""
+msgstr "p. ex. 720"
 
 #: src/ui/dialog-gamescope.ui:157
-#, fuzzy
 msgid "Gamescope resolution"
-msgstr "Résolution du bureau virtuelle"
+msgstr "Résolution de gamescope"
 
 #: src/ui/dialog-gamescope.ui:235
-#, fuzzy
 msgid "Extra settings"
-msgstr "Ajuster les paramètres internes."
+msgstr "Paramètres supplémentaires"
 
 #: src/ui/dialog-gamescope.ui:240
 msgid "Frame rate limit"
-msgstr ""
+msgstr "Limite de fréquence d’images"
 
 #: src/ui/dialog-gamescope.ui:251
 msgid "e.g. 60"
-msgstr ""
+msgstr "p. ex. 60"
 
 #: src/ui/dialog-gamescope.ui:271
 msgid "Frame rate limit (when no focus)"
-msgstr ""
+msgstr "Limite de fréquence d’images (en l’absence de focus)"
 
 #: src/ui/dialog-gamescope.ui:282
 msgid "e.g. 30"
-msgstr ""
+msgstr "p. ex. 30"
 
 #: src/ui/dialog-gamescope.ui:302
-#, fuzzy
 msgid "Use integer scaling"
-msgstr "Utiliser la gestion de versions"
+msgstr "Utiliser la mise à l’échelle des nombres entiers"
 
 #: src/ui/dialog-gamescope.ui:329
-#, fuzzy
 msgid "Window type"
-msgstr "Largeur de la fenêtre"
+msgstr "Type de fenêtre"
 
 #: src/ui/dialog-gamescope.ui:341
 msgid "Borderless"
-msgstr ""
+msgstr "Sans bordure"
 
 #: src/ui/dialog-gamescope.ui:357
 msgid "Fullscreen"
-msgstr ""
+msgstr "Plein écran"
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
@@ -1024,14 +1018,17 @@ msgid ""
 "\"https://docs.usebottles.com/flatpak/expose-directories\">Flatseal</a> if "
 "the script path is outside the sandbox."
 msgstr ""
+"Vous utilisez la version Flatpak de Bouteilles, pensez à lui donner les "
+"permissions via <a href=\"https://docs.usebottles.com/flatpak/expose-"
+"directories\">Flatseal</a> si le chemin du script est en hors du bac à sable."
 
 #: src/ui/dialog-launch-options.ui:163
 msgid "Post-run script"
-msgstr ""
+msgstr "Script de post-exécution"
 
 #: src/ui/dialog-launch-options.ui:165
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Choisissez un script qui doit être exécuté après l’exécution."
 
 #: src/ui/importer.ui:20 src/ui/importer.ui:21
 msgid ""
@@ -1074,9 +1071,8 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Ce préfixe Wine a déjà été importé dans Bouteilles."
 
 #: src/ui/list.ui:39
-#, fuzzy
 msgid "Search your bottles .."
-msgstr "Nommer votre bottle"
+msgstr "Nommer vos bouteilles…"
 
 #: src/ui/list.ui:77 src/ui/list.ui:65
 msgid "Start off by creating a Bottle."
@@ -1162,9 +1158,8 @@ msgid "License"
 msgstr "Licence"
 
 #: src/ui/dependency-entry.ui:45
-#, fuzzy
 msgid "Reinstall"
-msgstr "Désinstaller"
+msgstr "Réinstaller"
 
 #: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
 #: src/ui/dependency-entry.ui:61 src/ui/installer-entry.ui:34
@@ -1443,7 +1438,7 @@ msgstr "Si les bouteilles doivent utiliser la variante du thème sombre."
 
 #: src/ui/preferences.ui:45
 msgid "Reset default"
-msgstr ""
+msgstr "Réinitialiser à la valeur par défaut"
 
 #: src/ui/preferences.ui:67 src/ui/window.ui:33 src/views/details.py:106
 #: src/ui/preferences.ui:7 src/views/details.py:107
@@ -1492,24 +1487,27 @@ msgstr ""
 "de fichiers"
 
 #: src/ui/preferences.ui:238
-#, fuzzy
 msgid "Advanced"
-msgstr "Options avancées"
+msgstr "Avancé"
 
 #: src/ui/preferences.ui:243
 msgid "Custom bottles path (require restart)"
-msgstr ""
+msgstr "Chemin d’accès aux bouteilles personnalisé (nécessite un redémarrage)"
 
 #: src/ui/preferences.ui:244
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr ""
+"Choisissez où stocker les nouvelles bouteilles (cela ne déplacera pas les "
+"bouteilles existantes)"
 
 #: src/ui/preferences.ui:280
 msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
+"Avertissement : Veillez à autoriser Flatpak à accéder au nouveau chemin.\n"
+"Ceci va casser le bac à sable !"
 
 #: src/ui/preferences.ui:353 src/ui/preferences.ui:189
 msgid "Pre-release"
@@ -1537,20 +1535,19 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:426
 msgid "Core"
-msgstr ""
+msgstr "Cœur"
 
 #: src/ui/preferences.ui:431
 msgid "Runtime"
-msgstr ""
+msgstr "Environnement d’exécution"
 
 #: src/ui/preferences.ui:440 src/ui/preferences.ui:462
-#, fuzzy
 msgid "WineBridge"
-msgstr "Winetricks"
+msgstr "WineBridge"
 
 #: src/ui/preferences.ui:463
 msgid "Use WineBridge for process and program management."
-msgstr ""
+msgstr "Utiliser WineBridge pour la gestion des processus et des programmes."
 
 #: src/ui/state-entry.ui:86 src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1668,11 +1665,8 @@ msgid "Importing backup: {0}"
 msgstr "Importation de la sauvegarde : {0}"
 
 #: src/backend/managers/installer.py:377
-#, fuzzy
 msgid "Dependencies installation failed."
-msgstr ""
-"Les dépendances peuvent désormais installer des polices sans intervention de "
-"l’utilisateur"
+msgstr "L’installation des dépendances a échoué."
 
 #: src/backend/managers/manager.py:985 src/backend/manager.py:1007
 #: src/backend/manager.py:1004
@@ -1835,7 +1829,7 @@ msgstr "Copier dans le presse-papier"
 
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
-msgstr ""
+msgstr "Choisissez le script"
 
 #: src/views/details.py:102 src/views/details.py:103
 msgid "Details & Utilities"
@@ -1998,9 +1992,8 @@ msgid "A bottle named “{0}” was created successfully"
 msgstr "La bouteille « {0} » a été créée"
 
 #: src/views/preferences.py:138
-#, fuzzy
 msgid "Choose new bottles path"
-msgstr "Choisir un chemin d’exécutable"
+msgstr "Choisissez le chemin des nouvelles bouteilles"
 
 #: src/widgets/dependency.py:99 src/widgets/installer.py:77
 #: src/widgets/dependency.py:95 src/widgets/installer.py:70
