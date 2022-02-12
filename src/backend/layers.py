@@ -217,8 +217,8 @@ class Layer:
         This method will mount a layer to the current layer and
         append it to the __mounts list.
         '''
-        logging.info(f"Mounting layer {name}…")
         layer = LayersStore.get(name, uuid)
+        logging.info(f"Mounting layer {layer['Name']}…")
         if layer:
             layer["Type"] = "layer"
             self.__mounts.append(layer)

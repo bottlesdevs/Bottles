@@ -566,7 +566,8 @@ class Manager:
             program_layer.mount(uuid=mount)
             
         logging.info("Launching program..")
-        Runner.run_layer_executable(config, layer)
+        runtime_conf = program_layer.runtime_conf
+        Runner.run_layer_executable(runtime_conf, layer)
 
         logging.info("Program exited, unmounting layers..")
         program_layer.sweep()
@@ -1181,7 +1182,7 @@ class Manager:
         
         # create Layers key if Layered
         if environment == "Layered":
-            config["Layers"] = []
+            config["Layers"] = {}
 
         # save bottle config
         with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:

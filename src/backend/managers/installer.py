@@ -397,7 +397,7 @@ class InstallerManager:
                 "uuid": self.__layer.get_uuid(),
                 "name": manifest["Name"],
                 "icon": "com.usebottles.bottles-program",
-                "exec_path": f'{executable["path"]}/{executable["file"]}',
+                "exec_path": f'C:\{executable["path"]}/',
                 "exec_name": executable["file"],
                 "exec_args": executable["arguments"],
                 "exec_env": {},

@@ -62,7 +62,7 @@ class ProgramEntry(Handy.ActionRow):
         if not is_layer:
             self.executable = program["executable"]
         else:
-            self.executable = self.program["exec_name"]
+            self.executable = program["exec_name"]
         
         # populate widgets
         self.set_title(self.program["name"])
