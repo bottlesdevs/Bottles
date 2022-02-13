@@ -50,9 +50,9 @@ class GPUUtils:
     def assume_discrete(self, vendors: list):
         if "nvidia" in vendors and "amd" in vendors:
             return {"integrated": "amd", "discrete": "nvidia"}
-        elif "nvidia" in vendors and "intel" in vendors:
+        if "nvidia" in vendors and "intel" in vendors:
             return {"integrated": "intel", "discrete": "nvidia"}
-        elif "amd" in vendors and "intel" in vendors:
+        if "amd" in vendors and "intel" in vendors:
             return {"integrated": "intel", "discrete": "amd"}
         return {}
 

@@ -60,8 +60,8 @@ class RuntimeManager:
             
             structure_found = []
             for root, dirs, files in os.walk(runtime_path):
-                for dir in dirs:
-                    structure_found.append(dir)
+                for d in dirs:
+                    structure_found.append(d)
 
             if not check_structure(structure_found, structure ):
                 continue

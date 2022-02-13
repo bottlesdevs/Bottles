@@ -63,21 +63,21 @@ class RepositoryManager:
         logging.error(f"Repository {name} not found")
     
     def __check_locals(self):
-        locals = {}
+        _locals = {}
         if "LOCAL_COMPONENTS" in os.environ:
-            locals["components"] = os.environ["LOCAL_COMPONENTS"]
+            _locals["components"] = os.environ["LOCAL_COMPONENTS"]
         if "LOCAL_DEPENDENCIES" in os.environ:
-            locals["dependencies"] = os.environ["LOCAL_DEPENDENCIES"]
+            _locals["dependencies"] = os.environ["LOCAL_DEPENDENCIES"]
         if "LOCAL_INSTALLERS" in os.environ:
-            locals["installers"] = os.environ["LOCAL_INSTALLERS"]
+            _locals["installers"] = os.environ["LOCAL_INSTALLERS"]
 
-        if not locals:
+        if not _locals:
             return
 
         for repo in self.__repositories:
-            if repo not in locals:
+            if repo not in _locals:
                 continue
-            _path = locals[repo]
+            _path = _locals[repo]
             if os.path.exists(_path):
                 self.__repositories[repo]["url"] = f"file://{_path}/"
                 logging.info(f"Using local {repo} repository at {_path}")

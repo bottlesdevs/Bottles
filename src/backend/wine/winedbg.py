@@ -112,7 +112,8 @@ class WineDbg(WineProgram):
                 )
                 return res
             return wineboot.kill()
-        elif name:
+            
+        if name:
             processes = self.get_processes()
             for p in processes:
                 if p["name"] == name:
