@@ -1,63 +1,63 @@
 com.usebottles.bottles (2022.2.14-trento) precise; urgency=low
 
-  * Each runner change will re-initialize the installed components (DXVK, VKD3D, DXVK-Nvapi ..) to avoid breackage
-  * New WINE backend ensures stable and faster operations
-  * New WINE registry WineProgram, allows to write multiple keys in a single call, reducing waiting times
-  * New net WineProgram allows Bottles to manage bottle services
-  * New wineserver WineProgram checks the bottle status to prevent commands from being executed when the server is down
-  * New start/msiexec/cmd WineProgram(s) for handling .lnk shortcuts, .msi/.batch files
-  * New executor manager handle all executables launched in Bottles, automatically redirecting the call to the correct WineProgram based on the extension
-  * Choose a shell script to be executed after a program
-  * Bottles handle 2 types of commands: minimal and full, allowing to run commands on lighter environments when needed (no gamescope, gamemode..)
-  * Changing Windows/DXVK/VKD3D/DXVK-Nvapi/Runner version displays visual feedback
-  * Support for Futex2 sync (need kernel 5.16 or patched)
-  * Iinstallers can edit config files (json, ini, yaml) using the update_config action
-  * Bottles shows in the console which WineProgram(s) are running
-  * Manifests are now shown in a source view
-  * Bottle detail page icon changed
-  * Installers view now shows the pretty title and compatibility grade
-  * Search in installers view
-  * Hide and show items in the programs list
-  * Rename auto-detected programs
-  * Fixed Health Check crash in some distributions
-  * Fixed Wayland support
-  * Fixed unwanted program start ups when Bottles asks for the process list 
-  * Fixed 3D controller GPU detection
-  * Fixed backup import feature
-  * Fixed programs list, was disappearing after renaming a program
-  * Fixed 64-bit dependencies installation, some actions was not able to place the DLLs in the correct folder
-  * Fixed Windows version switch, some keys was missing causing some dependencies to fail to install (like .NET 3.5)
-  * Fixed installers, was not interrupting the installation process when a dependency failed to install
-  * Fixed bottle creation, was allowing some special characters in the name
-  * Fixed Desktop entires, was setting the wrong path to the executable
-  * Fixed the Download manager, was unable to reach some resources (e.g. physx) due to lack of User-Agent
-  * Fixed dependencies installation during bottle creation, was breaking the bottle if a dependency is unreadable
-  * Fixed a recursion in gamescope settings
-  * Portuguese translations thanks to @hugok79, @laralem
-  * Bulgarian translations thanks to @kostadin04
+  * Install programs in one-click using our community installers
+  * Change default bottles location from preferences
+  * New repositories manager makes fewer requests and takes less time to load
+  * Runtime is now also available for non-Flatpak packages
+  * Search in bottles list if there are at least 10 items
+  * Automatically fallback to another runner if the system doesn't support Caffe 7+
+  * Installers can now declare their architecture, so incompatible installers will not be shown
+  * Dependencies can now be re-installed if something goes wrong
+  * Programs can now be launched trough terminal right from the context menu
+  * Task manager can now terminate processes
+  * WINE Explorer now available from utilities
+  * New userdir/ placeholder for installers to access sandboxed user directory
+  * Improved Windows version switch, other keys are updated to ensure that programs detect the correct version
+  * Improved health check dialog with syntax highlighting
+  * General UI improvements for consistency
+  * Introducing SystemComponents to handle unpackable components for non-Flatpak packages
+  * Support dxvk-async as a component
+  * Using XDG_DATA_HOME for default Bottles paths (Thanks @nanonyme)
+  * Gamescope support in Flatpak (Thanks @BigmenPixel0)
+  * Fixed missing GtkSource namespace, was causing crashes
+  * Fixed preferences regression, vkd3d was not displayed
+  * Fixed a bug in Executor, was passing wrong arguments
+  * Fixed a bug in WineCommand, was not getting the bottle parameters
+  * Fixed a bug in components manager, was trying to remove non-existent files
+  * Fixed a bug in DXVK version change, was removing the initial backup
+  * Fixed a bug in installers, programs list was not updated immediately
+  * Fixed a bug in programs list, uninstallers were not hidden
+  * Fixed a bug in components manager, was causing crashes with not-known componnets
+  * Fixed gamemode in Flatpak
+  * Fixed a bug in WineCommand cwd, was not setting the value
+  * Fixed a bug in Layered environment, layers key was set as list instead of dict
+  * Fixed a bug in layered programs, was not able to launch due to wrong runtime configuration location
+  * Fixed a bug in layered dependencies, tree was not updated correctly
+  * Fixed a bug with config files, was causing exceptions with missing keys
+  * Fixed a bug in update_config action, was try to handle a None value, providing a default value instead
+  * Swedish translations thanks to @bittin, @Lemonmeth, @eson57
   * Italian translations thanks to @albanobattistella, @phaerrax
-  * Portuguese (Brazil) translations thanks to @davipatricio, @andrelomba86, @farribeiro
-  * Sweedish translations thanks to @Lemonmeth, @eson57
-  * Basque translations thanks to Sergio Varela
-  * Greek translations thanks to @dim20
-  * Croatian translations thanks to @milotype
-  * Danish translations thanks to @emiltang, @ettmetal
-  * Dutch translations thanks to @MichelN86
-  * Polish translations thanks to Krzysztof Marcinek
-  * French translations thanks to @julroy67
+  * Czech translations thanks to @panmourovaty
+  * Galician translations thanks to @frandieguez
+  * Russian translations thanks to @Smoque
+  * Vietnamese translations thanks to Giai Ngo
+  * French translations thanks to @ulroy67
   * German translations thanks to Lasse Palm
-  * Spanish translations thanks to @Lvaskz, @d33vliter
+  * Portuguese translations thanks to @laralem
+  * Spanish translations thanks to @oscfdezdz, @d33vliter
   * Norwegian Bokmål translations thanks to @comradekingu
-  * Indonesian translations thanks to @rezaalmanda
-  * Turkish translations thanks to @ersen0
-  * Russian translations thanks to @mclvren
+  * Portuguese (Brazil) translations thanks to @andrelomba86
+  * Indonesian translations thanks to @rezaalmanda, @frnmz
+  * Turkish translations thanks to @ersen0, @Dhizaes
   * Esperanto translations thanks to phlostically
   * Chinese (Simplified) translations thanks to Eric, @lumingzh
   * Finnish translations thanks to Jiri Grönroos
   * Japanese translations thanks to @shuriken1812
-  * Czech translations thanks to @panmourovaty
+  * Croatian translations thanks to @milotype
   * Hungarian translations thanks to @ovari
-  * Chinese (Traditional) translations thanks to @XiaoPanPanKevinPan
-  * Vietnamese translations thanks to Giai Ngo
+  * Polish translations thanks to Krzysztof Marcinek
+  * Hindi translations thanks to @athenasaurav
+  * Basque translations thanks to Sergio Varela
+  * Greek translations thanks to @dim20
 
- -- Mirko Brombin <send@mirko.pm>  Thu, 27 Jan 2022 17:46:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Sat, 13 Feb 2022 11:22:00 +0000
