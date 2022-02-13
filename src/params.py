@@ -2,8 +2,8 @@
 APP_NAME = "Bottles"
 APP_NAME_LOWER = APP_NAME.lower()
 APP_ID = "com.usebottles.bottles"
-VERSION = "2022.1.28-trento-4"
-VERSION_NUM = "2022.1.28"
+VERSION = "2022.2.14-trento"
+VERSION_NUM = "2022.2.14"
 
 # Internal settings not user editable
 ANIM_DURATION = 120
