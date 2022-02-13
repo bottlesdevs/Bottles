@@ -130,6 +130,6 @@ class WineDbg(WineProgram):
 
         if pid:
             return pid in [p["pid"] for p in processes]
-        elif name:
+        if name:
             return name in [p["name"] for p in processes]
         return False

@@ -112,9 +112,9 @@ class ConfigManager(object):
         Deletes a key from the configuration
         '''
         key = self.config_dict
-        for i in range(len(keyStruct)):
+        for i, k in enumerate(keyStruct):
             if i == len(keyStruct) - 1:
-                del key[keyStruct[i]]
-            else:
-                key = key[keyStruct[i]]
+                del key[k]
+                continue
+            key = key[k]
         self.write_dict()
