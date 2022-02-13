@@ -404,6 +404,10 @@ class ComponentManager:
 
         if component_type == "runtime":
             self.__manager.check_runtimes()
+            try:
+                os.remove(os.path.join(Paths.temp, archive))
+            except:
+                pass # safely ignore the error, there is nothing to remove
 
         self.__manager.organize_components()
 
