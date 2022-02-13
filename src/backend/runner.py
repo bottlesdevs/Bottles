@@ -81,11 +81,12 @@ class Runner:
         reg = Reg(config)
         wineboot = WineBoot(config)
         del_keys = {
-            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "SubVersionNumber",
-            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": "VersionNumber",
-            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CSDVersion",
-            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CurrentBuildNumber",
-            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": "CurrentVersion",
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": [
+                "SubVersionNumber", "VersionNumber"
+            ],
+            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": [
+                "CSDVersion", "CurrentBuildNumber", "CurrentVersion"
+            ],
             "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ProductOptions": "ProductType",
             "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\ServiceCurrent": "OS",
             "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": "CSDVersion",
@@ -93,7 +94,12 @@ class Runner:
             "HKEY_CURRENT_USER\\Software\\Wine": "Version"
         }
         for d in del_keys:
-            reg.remove(d, del_keys[d])
+            _val = del_keys.get(d)
+            if isinstance(_val, list):
+                for v in _val:
+                    reg.remove(d, v)
+            else:
+                reg.remove(d, _val)
             
         bundle = {
             "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": [
