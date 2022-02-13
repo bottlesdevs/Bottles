@@ -60,9 +60,7 @@ class Diff:
             elif parent[f] != child[f]:
                 changed.append(f)
         
-        for f in parent:
-            if f not in child:
-                removed.append(f)
+        removed = [f for f in parent if f not in child]
         
         return {
             "added": added, 

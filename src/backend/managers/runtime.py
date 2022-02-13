@@ -66,9 +66,7 @@ class RuntimeManager:
             if not check_structure(structure_found, structure ):
                 continue
             
-            res = []
-            for s in structure:
-                res.append(f"{runtime_path}/{s}")
+            res = [f"{runtime_path}/{s}" for s in structure]
 
             return res
         

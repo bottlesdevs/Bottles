@@ -121,24 +121,21 @@ class VersioningManager:
                 "Changes": []
             }
 
-            for file in additions:
-                new_state_index["Additions"].append({
-                    "file": file[0],
-                    "checksum": file[1]
-                })
-
-            for file in removed:
-                new_state_index["Removed"].append({
-                    "file": file[0],
-                    "checksum": file[1]
-                })
-
-            for file in cur_index["Files"]:
-                if file["checksum"] not in state_temp_checksums:
-                    new_state_index["Changes"].append({
-                        "file": file["file"],
-                        "checksum": file["checksum"]
-                    })
+            new_state_index["Additions"] = [
+                {"file": f[0], "checksum": f[1]} 
+                for f in additions
+            ]
+            
+            new_state_index["Removed"] = [
+                {"file": f[0], "checksum": f[1]}
+                for f in removed
+            ]
+            
+            new_state_index["Changes"] = [
+                {"file": f["file"], "checksum": f["checksum"]}
+                for f in cur_index["Files"]
+                if f["checksum"] not in state_temp_checksums
+            ]
 
             state_id = int(str(len(states_file_yaml.get("States"))))
         else:

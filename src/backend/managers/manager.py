@@ -423,10 +423,7 @@ class Manager:
         
         component = components[component_type]
         component_list = glob("%s/*/" % component["path"])
-        component["available"] = []
-
-        for comp in component_list:
-            component["available"].append(comp.split("/")[-2])
+        component["available"] = [c.split("/")[-2] for c in component_list]
 
         if len(component["available"]) > 0:
             logging.info("{0}s found:\n - {1}".format(

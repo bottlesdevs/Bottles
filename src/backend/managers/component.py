@@ -434,4 +434,3 @@ class ComponentManager:
                 src=os.path.join(path, source),
                 dst=os.path.join(path, dest)
             )
-

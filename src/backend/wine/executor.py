@@ -78,17 +78,17 @@ class WineExecutor:
     def __get_exec_type(self, exec_path):
         if exec_path.endswith(".exe"):
             return "exe"
-        elif exec_path.endswith(".msi"):
+        if exec_path.endswith(".msi"):
             return "msi"
-        elif exec_path.endswith(".bat"):
+        if exec_path.endswith(".bat"):
             return "batch"
-        elif exec_path.endswith(".lnk"):
+        if exec_path.endswith(".lnk"):
             return "lnk"
-        elif exec_path.endswith(".dll"):
+        if exec_path.endswith(".dll"):
             return "dll"
-        else:
-            logging.error(f"Unsupported executable type: {exec_path}")
-            return False
+
+        logging.error(f"Unsupported executable type: {exec_path}")
+        return False
     
     def run(self):
         if self.exec_type in ["exe"]:
