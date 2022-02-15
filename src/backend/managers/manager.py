@@ -578,10 +578,14 @@ class Manager:
         '''
         bottle = ManagerUtils.get_bottle_path(config)
         results = glob(
+            f"{bottle}/drive_c/users/*/Desktop/*.lnk",
+            recursive=True
+        )
+        results += glob(
             f"{bottle}/drive_c/users/*/Start Menu/Programs/**/*.lnk",
             recursive=True
         )
-        results = glob(
+        results += glob(
             f"{bottle}/drive_c/ProgramData/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
             recursive=True
         )
@@ -589,6 +593,7 @@ class Manager:
             f"{bottle}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
             recursive=True
         )
+        print(results)
         installed_programs = []
         ignored_patterns = [
             "*installer*",
