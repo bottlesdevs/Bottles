@@ -351,27 +351,15 @@ class PreferencesView(Gtk.ScrolledWindow):
         to the widget state. It will also update the bottle configuration
         once the process is finished.
         '''
-        if widget:
-            widget.set_sensitive(False)
-            self.combo_dxvk.set_sensitive(False)
-            self.spinner_dxvk.start()
-            self.spinner_dxvkbool.start()
+        self.set_dxvk_status(pending=True)
 
-        if state:
-            RunAsync(
-                task_func=self.manager.install_dll_component,
-                callback=self.set_dxvk_status,
-                config=self.config,
-                component="dxvk"
-            )
-        else:
-            RunAsync(
-                self.manager.install_dll_component,
-                callback=self.set_dxvk_status,
-                config=self.config,
-                component="dxvk",
-                remove=True
-            )
+        RunAsync(
+            task_func=self.manager.install_dll_component,
+            callback=self.set_dxvk_status,
+            config=self.config,
+            component="dxvk",
+            remove=not state
+        )
 
         new_config = self.manager.update_config(
             config=self.config,
@@ -400,27 +388,15 @@ class PreferencesView(Gtk.ScrolledWindow):
         to the widget state. It will also update the bottle configuration
         once the process is finished.
         '''
-        if widget:
-            widget.set_sensitive(False)
-            self.combo_vkd3d.set_sensitive(False)
-            self.spinner_vkd3d.start()
-            self.spinner_vkd3dbool.start()
+        self.set_vkd3d_status(pending=True)
 
-        if state:
-            RunAsync(
-                task_func=self.manager.install_dll_component,
-                callback=self.set_vkd3d_status,
-                config=self.config,
-                component="vkd3d"
-            )
-        else:
-            RunAsync(
-                task_func=self.manager.install_dll_component,
-                callback=self.set_vkd3d_status,
-                config=self.config,
-                component="vkd3d",
-                remove=True
-            )
+        RunAsync(
+            task_func=self.manager.install_dll_component,
+            callback=self.set_vkd3d_status,
+            config=self.config,
+            component="vkd3d",
+            remove=not state
+        )
 
         new_config = self.manager.update_config(
             config=self.config,
@@ -436,27 +412,15 @@ class PreferencesView(Gtk.ScrolledWindow):
         to the widget state. It will also update the bottle configuration
         once the process is finished.
         '''
-        if widget:
-            widget.set_sensitive(False)
-            self.combo_nvapi.set_sensitive(False)
-            self.spinner_nvapi.start()
-            self.spinner_nvapibool.start()
+        self.set_nvapi_status(pending=True)
 
-        if state:
-            RunAsync(
-                task_func=self.manager.install_dll_component,
-                callback=self.set_nvapi_status,
-                config=self.config,
-                component="nvapi"
-            )
-        else:
-            RunAsync(
-                task_func=self.manager.install_dll_component,
-                callback=self.set_nvapi_status,
-                config=self.config,
-                component="nvapi",
-                remove=True
-            )
+        RunAsync(
+            task_func=self.manager.install_dll_component,
+            callback=self.set_nvapi_status,
+            config=self.config,
+            component="nvapi",
+            remove=not state
+        )
 
         new_config = self.manager.update_config(
             config=self.config,
@@ -637,14 +601,19 @@ class PreferencesView(Gtk.ScrolledWindow):
             manager= self.manager
         )
 
+    def __dll_component_task_func(self, *args, **kwargs):
+        # Remove old version
+        self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"], remove=True)
+        # Install new version
+        self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
+    
     def __set_dxvk(self, widget):
         '''
         This function update the dxvk version on the bottle 
-        configuration according to the selected one. It will
-        also trigger the toggle_dxvk method to force the
-        installation of the new version.
+        configuration according to the selected one and installs
+        new version.
         '''
-        self.__toggle_dxvk(widget=self.switch_dxvk, state=False)
+        self.set_dxvk_status(pending=True)
 
         dxvk = widget.get_active_id()
         new_config = self.manager.update_config(
@@ -653,16 +622,21 @@ class PreferencesView(Gtk.ScrolledWindow):
             value=dxvk
         )
         self.config = new_config
-        self.__toggle_dxvk(state=True)
+        
+        RunAsync(
+            task_func=self.__dll_component_task_func,
+            callback=self.set_dxvk_status,
+            config=self.config,
+            component="dxvk"
+        )
 
     def __set_vkd3d(self, widget):
         '''
         This function update the vkd3d version on the bottle 
-        configuration according to the selected one. It will
-        also trigger the toggle_vkd3d method to force the
-        installation of the new version.
+        configuration according to the selected one and installs
+        new version.
         '''
-        self.__toggle_vkd3d(widget=self.switch_vkd3d, state=False)
+        self.set_vkd3d_status(pending=True)
 
         vkd3d = widget.get_active_id()
         new_config = self.manager.update_config(
@@ -671,16 +645,21 @@ class PreferencesView(Gtk.ScrolledWindow):
             value=vkd3d
         )
         self.config = new_config
-        self.__toggle_vkd3d(state=True)
+
+        RunAsync(
+            task_func=self.__dll_component_task_func,
+            callback=self.set_vkd3d_status,
+            config=self.config,
+            component="vkd3d"
+        )
 
     def __set_nvapi(self, widget):
         '''
         This function update the dxvk-nvapi version on the bottle 
-        configuration according to the selected one. It will
-        also trigger the toggle_dxvk method to force the
-        installation of the new version.
+        configuration according to the selected one and installs
+        new version.
         '''
-        self.__toggle_nvapi(widget=self.switch_nvapi, state=False)
+        self.set_nvapi_status(pending=True)
 
         nvapi = widget.get_active_id()
         new_config = self.manager.update_config(
@@ -689,7 +668,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             value=nvapi
         )
         self.config = new_config
-        self.__toggle_nvapi(state=True)
+
+        RunAsync(
+            task_func=self.__dll_component_task_func,
+            callback=self.set_nvapi_status,
+            config=self.config,
+            component="nvapi"
+        )
 
     def __set_windows(self, widget):
         '''
@@ -782,23 +767,35 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
         new_window.present()
     
-    def set_dxvk_status(self, status, error=None):
-        self.switch_dxvk.set_sensitive(True)
-        self.combo_dxvk.set_sensitive(True)
-        self.spinner_dxvk.stop()
-        self.spinner_dxvkbool.stop()
+    def set_dxvk_status(self, status=None, error=None, pending=False):
+        self.switch_dxvk.set_sensitive(not pending)
+        self.combo_dxvk.set_sensitive(not pending)
+        if pending:
+            self.spinner_dxvk.start()
+            self.spinner_dxvkbool.start()
+        else:
+            self.spinner_dxvk.stop()
+            self.spinner_dxvkbool.stop()
     
-    def set_vkd3d_status(self, status, error=None):
-        self.switch_vkd3d.set_sensitive(True)
-        self.combo_vkd3d.set_sensitive(True)
-        self.spinner_vkd3d.stop()
-        self.spinner_vkd3dbool.stop()
+    def set_vkd3d_status(self, status=None, error=None, pending=False):
+        self.switch_vkd3d.set_sensitive(not pending)
+        self.combo_vkd3d.set_sensitive(not pending)
+        if pending:
+            self.spinner_vkd3d.start()
+            self.spinner_vkd3dbool.start()
+        else:
+            self.spinner_vkd3d.stop()
+            self.spinner_vkd3dbool.stop()
     
-    def set_nvapi_status(self, status, error=None):
-        self.switch_nvapi.set_sensitive(True)
-        self.combo_nvapi.set_sensitive(True)
-        self.spinner_nvapi.stop()
-        self.spinner_nvapibool.stop()
+    def set_nvapi_status(self, status=None, error=None, pending=False):
+        self.switch_nvapi.set_sensitive(not pending)
+        self.combo_nvapi.set_sensitive(not pending)
+        if pending:
+            self.spinner_nvapi.start()
+            self.spinner_nvapibool.start()
+        else:
+            self.spinner_nvapi.stop()
+            self.spinner_nvapibool.stop()
     
     def __prevent_scroll(self):
         def no_action(widget, event):
