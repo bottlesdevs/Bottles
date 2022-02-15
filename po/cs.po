@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-05 22:07+0100\n"
-"PO-Revision-Date: 2022-02-15 07:59+0000\n"
+"PO-Revision-Date: 2022-02-16 10:58+0000\n"
 "Last-Translator: panmourovaty <panmourovaty@centrum.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
 ">\n"
@@ -587,9 +587,8 @@ msgid "Use GameMode"
 msgstr "Použít herní režim (GameMode)"
 
 #: src/ui/details-preferences.ui:994 src/ui/details-preferences.ui:1010
-#, fuzzy
 msgid "Optimise gaming performance on demand."
-msgstr "Optimalizovat herní výkon na vyžádání"
+msgstr "Optimalizovat herní výkon na vyžádání."
 
 #: src/ui/details-preferences.ui:1020 src/ui/details-preferences.ui:1036
 msgid "Use Gamescope"
@@ -820,7 +819,6 @@ msgid "Take a break, it may take a while"
 msgstr "Dejte si pauzu, může to chvíli trvat"
 
 #: src/ui/dialog-duplicate.ui:195
-#, fuzzy
 msgid "page_duplicating"
 msgstr "page_duplicating"
 
@@ -1102,9 +1100,8 @@ msgid "Run .exe/.msi in this bottle"
 msgstr "Spustit .exe/.msi v této láhvi"
 
 #: src/ui/component-entry.ui:8 src/ui/component-entry.ui:9
-#, fuzzy
 msgid "Component version"
-msgstr "Zobrazit verzi"
+msgstr "Verze komponenty"
 
 #: src/ui/component-entry.ui:44 src/ui/component-entry.ui:19
 msgid ""
@@ -1352,12 +1349,10 @@ msgid "Wine"
 msgstr "Wine"
 
 #: src/ui/onboard.ui:221 src/ui/onboard.ui:222
-#, fuzzy
 msgid "We Are Almost There"
 msgstr "Už tam skoro jsme"
 
 #: src/ui/onboard.ui:240 src/ui/onboard.ui:241
-#, fuzzy
 msgid ""
 "We need to download and install a runner to allow you to create your own "
 "bottles.\n"
@@ -1370,7 +1365,7 @@ msgid ""
 "\n"
 "When you are ready press the <b>Install</b> button."
 msgstr ""
-"Musíme si stáhnout a nainstalovat runner, který vám umožní vytvořit si "
+"Musíme si stáhnout a nainstalovat spoučtěč, který vám umožní vytvořit si "
 "vlastní lahve.\n"
 "Velikost souboru ke stažení je <b>~70MB</b>.\n"
 "<a href=\"https://docs.usebottles.com/getting-started/first-run\">Přečtěte "
@@ -1378,7 +1373,7 @@ msgstr ""
 "\n"
 "Nemůžeme tyto soubory poskytovat s Láhvemi, jelikož mají jiné cykly vydání.\n"
 "\n"
-"<b>Až budete připraveni, stiskněte tlačítko Instalovat</b>."
+"Až budete připraveni, stiskněte tlačítko <b>Instalovat</b>."
 
 #: src/ui/onboard.ui:262 src/ui/preferences.ui:344 src/ui/onboard.ui:263
 #: src/ui/preferences.ui:180
@@ -1398,7 +1393,6 @@ msgid "Download"
 msgstr "Stáhnout"
 
 #: src/ui/onboard.ui:348 src/ui/onboard.ui:349
-#, fuzzy
 msgid "Everything Is Ready!"
 msgstr "Vše je připraveno!"
 
@@ -1417,13 +1411,12 @@ msgstr "Tmavý režim"
 
 #: src/ui/preferences.ui:9 src/ui/preferences.ui:89 src/ui/preferences.ui:28
 #: src/ui/preferences.ui:305
-#, fuzzy
 msgid "Whether Bottles should use the Night theme variant."
-msgstr "Zda mají lahve používat temnou variantu motivu."
+msgstr "Zda mají láhve používat temnou variantu motivu."
 
 #: src/ui/preferences.ui:45
 msgid "Reset default"
-msgstr ""
+msgstr "Resetovat do výchozího stavu"
 
 #: src/ui/preferences.ui:67 src/ui/window.ui:33 src/views/details.py:106
 #: src/ui/preferences.ui:7 src/views/details.py:107
@@ -1468,28 +1461,29 @@ msgid "Close Bottles after starting a program from the file manager"
 msgstr "Zavřít Láhve po spuštění programu ze správce souborů"
 
 #: src/ui/preferences.ui:238
-#, fuzzy
 msgid "Advanced"
-msgstr "Pokročilé možnosti"
+msgstr "Pokročilé"
 
 #: src/ui/preferences.ui:243
 msgid "Custom bottles path (require restart)"
-msgstr ""
+msgstr "Vlastní cesta Láhví (vyžaduje restart)"
 
 #: src/ui/preferences.ui:244
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
-msgstr ""
+msgstr "Vyberte kam se budou ukládat nové láhve (nepřesune stávající)"
 
 #: src/ui/preferences.ui:280
 msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
+"Varování: Ujistěte se že dáte povolení Flatpaku pracovat s novou cestou.\n"
+"Tohle rozbije sandbox!"
 
 #: src/ui/preferences.ui:353 src/ui/preferences.ui:189
 msgid "Pre-release"
-msgstr "Před-vydání"
+msgstr "Vývojové verze"
 
 #: src/ui/preferences.ui:354 src/ui/preferences.ui:190
 msgid "Whether the above list should display unstable versions."
@@ -1513,19 +1507,19 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:426
 msgid "Core"
-msgstr ""
+msgstr "Jádro"
 
 #: src/ui/preferences.ui:431
 msgid "Runtime"
-msgstr ""
+msgstr "Runtime"
 
 #: src/ui/preferences.ui:440 src/ui/preferences.ui:462
 msgid "WineBridge"
-msgstr ""
+msgstr "WineBridge"
 
 #: src/ui/preferences.ui:463
 msgid "Use WineBridge for process and program management."
-msgstr ""
+msgstr "Použít WineBridge pro správu procesů a programů."
 
 #: src/ui/state-entry.ui:86 src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1644,7 +1638,7 @@ msgstr "Importuji zálohu: {0}"
 
 #: src/backend/managers/installer.py:377
 msgid "Dependencies installation failed."
-msgstr ""
+msgstr "Instalace závislostí selhala."
 
 #: src/backend/managers/manager.py:985 src/backend/manager.py:1007
 #: src/backend/manager.py:1004
@@ -1815,7 +1809,7 @@ msgstr "Zkopírovat do schránky"
 
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
-msgstr ""
+msgstr "Vyberte skript"
 
 #: src/views/details.py:102 src/views/details.py:103
 #, fuzzy
