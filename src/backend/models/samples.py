@@ -45,6 +45,7 @@ class Samples:
             "virtual_desktop_res": "1280x720",
             "pulseaudio_latency": False,
             "fullscreen_capture": False,
+            "take_focus": False,
             "fixme_logs": False,
             "use_runtime": False,
         },

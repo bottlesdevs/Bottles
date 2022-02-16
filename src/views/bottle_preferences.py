@@ -58,6 +58,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_fixme = Gtk.Template.Child()
     switch_runtime = Gtk.Template.Child()
     switch_mouse_capture = Gtk.Template.Child()
+    switch_take_focus = Gtk.Template.Child()
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
@@ -113,14 +114,11 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_aco.connect('state-set', self.__toggle_aco)
         self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
-        self.switch_virt_desktop.connect(
-            'state-set', self.__toggle_virt_desktop
-        )
-        self.switch_pulse_latency.connect(
-            'state-set', self.__toggle_pulse_latency
-        )
+        self.switch_virt_desktop.connect('state-set', self.__toggle_virt_desktop)
+        self.switch_pulse_latency.connect('state-set', self.__toggle_pulse_latency)
         self.switch_fixme.connect('state-set', self.__toggle_fixme)
-        self.switch_mouse_capture.connect('state-set', self.__toggle_full_capt)
+        self.switch_mouse_capture.connect('state-set', self.__toggle_x11_reg_key, "GrabFullscreen", "fullscreen_capture")
+        self.switch_take_focus.connect('state-set', self.__toggle_x11_reg_key, "UseTakeFocus", "take_focus")
         self.combo_fsr.connect('changed', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_runner.connect('changed', self.__set_runner)
@@ -728,16 +726,16 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
         self.config = new_config
     
-    def __toggle_full_capt(self, widget, state):
+    def __toggle_x11_reg_key(self, widget, state, rkey, ckey):
         '''
-        This function update the full capture status on the bottle
+        This function update the a X11 Driverkey status (Y/N) on the bottle
         configuration according to the widget state.
         '''
         def update(result, error=False):
             nonlocal widget
             new_config = self.manager.update_config(
                 config=self.config,
-                key="fullscreen_capture",
+                key=ckey,
                 value=state,
                 scope="Parameters"
             )
@@ -752,7 +750,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             reg.add,
             callback=update,
             key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
-            value="GrabFullscreen",
+            value=rkey,
             data=_rule
         )
 
