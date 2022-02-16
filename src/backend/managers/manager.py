@@ -593,7 +593,6 @@ class Manager:
             f"{bottle}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/**/*.lnk",
             recursive=True
         )
-        print(results)
         installed_programs = []
         ignored_patterns = [
             "*installer*",

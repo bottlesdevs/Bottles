@@ -248,7 +248,7 @@ class WineCommand:
         env.concat("WINEDLLOVERRIDES", dll_overrides, sep=";")
 
         # Wine prefix
-        env.add("WINEPREFIX", bottle)
+        env.add("WINEPREFIX", bottle, override=True)
 
         # Wine arch
         env.add("WINEARCH", arch)
