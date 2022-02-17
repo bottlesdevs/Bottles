@@ -20,9 +20,9 @@ import shutil
 from typing import NewType
 from abc import abstractmethod
 
-from bottles.backend.runner import Runner # pyright: reportMissingImports=false
-from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
 from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.wineboot import WineBoot
 
 BottleConfig = NewType('BottleConfig', dict)
 
@@ -63,12 +63,15 @@ class DLLComponent():
             for dll in self.dlls[path]:
                 if dll not in exclude:
                     self.__install_dll(config, path, dll, False, overrides_only)
+        
+        WineBoot(config).update()
 
     def uninstall(self, config:BottleConfig, exclude:list=[]):
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
                     self.__uninstall_dll(config, path, dll)
+        WineBoot(config).update()
     
     def __get_sys_path(self, config, path:str):
         if config["Arch"] == "win32":
