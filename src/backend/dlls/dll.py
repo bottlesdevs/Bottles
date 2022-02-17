@@ -90,7 +90,13 @@ class DLLComponent():
         bottle = ManagerUtils.get_bottle_path(config)
         bottle = f"{bottle}/drive_c/windows/"
         source = f"{self.base_path}/{path}/{dll}"
-        target = f"{bottle}/{self.__get_sys_path(config, path)}/{dll_name}"
+
+        path = self.__get_sys_path(config, path)
+        if path is not None:
+            target = f"{bottle}/{path}/{dll_name}"
+        else
+            target = None
+
         #print(f"{source} -> {target}")
         
         if target is not None:
