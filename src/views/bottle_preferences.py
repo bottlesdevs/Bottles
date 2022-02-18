@@ -216,13 +216,11 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk.handler_block_by_func(self.__toggle_dxvk)
         self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
-        self.switch_virt_desktop.handler_block_by_func(
-            self.__toggle_virt_desktop
-        )
+        self.switch_virt_desktop.handler_block_by_func(self.__toggle_virt_desktop)
+        self.switch_mouse_capture.handler_block_by_func(self.__toggle_x11_reg_key)
+        self.switch_take_focus.handler_block_by_func(self.__toggle_x11_reg_key)
         self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
-        self.combo_virt_res.handler_block_by_func(
-            self.__set_virtual_desktop_res
-        )
+        self.combo_virt_res.handler_block_by_func(self.__set_virtual_desktop_res)
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
@@ -250,12 +248,10 @@ class PreferencesView(Gtk.ScrolledWindow):
 
         self.switch_discrete.set_active(parameters["discrete_gpu"])
         self.switch_virt_desktop.set_active(parameters["virtual_desktop"])
-        self.switch_pulse_latency.set_active(
-            parameters["pulseaudio_latency"]
-        )
-        self.combo_virt_res.set_active_id(
-            parameters["virtual_desktop_res"]
-        )
+        self.switch_mouse_capture.set_active(parameters["fullscreen_capture"])
+        self.switch_take_focus.set_active(parameters["take_focus"])
+        self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
+        self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
         self.combo_fsr.set_active_id(str(parameters["fsr_level"]))
         self.combo_runner.set_active_id(self.config.get("Runner"))
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
@@ -267,15 +263,11 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
         self.switch_vkd3d.handler_unblock_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
-        self.switch_virt_desktop.handler_unblock_by_func(
-            self.__toggle_virt_desktop
-        )
-        self.combo_fsr.handler_unblock_by_func(
-            self.__set_fsr_level
-        )
-        self.combo_virt_res.handler_unblock_by_func(
-            self.__set_virtual_desktop_res
-        )
+        self.switch_virt_desktop.handler_unblock_by_func(self.__toggle_virt_desktop)
+        self.switch_mouse_capture.handler_unblock_by_func(self.__toggle_x11_reg_key)
+        self.switch_take_focus.handler_unblock_by_func(self.__toggle_x11_reg_key)
+        self.combo_fsr.handler_unblock_by_func(self.__set_fsr_level)
+        self.combo_virt_res.handler_unblock_by_func(self.__set_virtual_desktop_res)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
