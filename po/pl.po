@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-05 22:07+0100\n"
-"PO-Revision-Date: 2022-01-21 20:56+0000\n"
-"Last-Translator: Krzysztof Marcinek <krzymar2002@gmail.com>\n"
+"PO-Revision-Date: 2022-02-19 19:54+0000\n"
+"Last-Translator: Paweł Lidwin <lidwinpawel@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
 "pl/>\n"
 "Language: pl\n"
@@ -350,9 +350,8 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:43 src/ui/details-preferences.ui:578
 #: src/ui/details-preferences.ui:44 src/ui/details-preferences.ui:573
-#, fuzzy
 msgid "Updating DXVK, please wait…"
-msgstr "Aktualizuję stany…"
+msgstr "Aktualizowanie DXVK, proszę czekać…"
 
 #: src/ui/details-preferences.ui:76 src/ui/details-preferences.ui:77
 #: src/ui/details-preferences.ui:61
@@ -506,7 +505,7 @@ msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:459
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:483 src/ui/new.ui:283
 #: src/ui/details-preferences.ui:473 src/ui/new.ui:284
@@ -620,7 +619,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1056 src/ui/details-preferences.ui:1075
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "Zarządzaj ustawieniami Gamescope"
 
 #: src/ui/details-preferences.ui:1096 src/ui/details-preferences.ui:1118
 #: src/ui/details-preferences.ui:886
@@ -688,7 +687,7 @@ msgstr "Szukaj zainstalowanych programów"
 
 #: src/ui/details-programs.ui:151
 msgid "Show/hide removed programs"
-msgstr ""
+msgstr "Pokaż/ukryj usunięte programy"
 
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
@@ -716,7 +715,7 @@ msgstr "Stwórz nowy stan"
 
 #: src/ui/details-taskmanager.ui:59
 msgid "Stop process"
-msgstr ""
+msgstr "Zatrzymaj proces"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
@@ -880,36 +879,38 @@ msgstr "Pisz tutaj..."
 
 #: src/ui/dialog-gamescope.ui:24
 msgid "Gamescope settings"
-msgstr ""
+msgstr "Ustawienia Gamescope"
 
 #: src/ui/dialog-gamescope.ui:63
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
 msgstr ""
+"Skonfiguruj jak Gamescope powinien zarządzać oknem gier które będziesz "
+"uruchamiać."
 
 #: src/ui/dialog-gamescope.ui:79
 msgid "Game resolution"
-msgstr ""
+msgstr "Rozdzielczość gry"
 
 #: src/ui/dialog-gamescope.ui:84 src/ui/dialog-gamescope.ui:162
 msgid "Width"
-msgstr ""
+msgstr "Szerokość"
 
 #: src/ui/dialog-gamescope.ui:95 src/ui/dialog-gamescope.ui:173
 msgid "e.g. 1280"
-msgstr ""
+msgstr "np. 1280"
 
 #: src/ui/dialog-gamescope.ui:115 src/ui/dialog-gamescope.ui:193
 msgid "Height"
-msgstr ""
+msgstr "Wysokość"
 
 #: src/ui/dialog-gamescope.ui:126 src/ui/dialog-gamescope.ui:204
 msgid "e.g. 720"
-msgstr ""
+msgstr "np. 720"
 
 #: src/ui/dialog-gamescope.ui:157
 msgid "Gamescope resolution"
-msgstr ""
+msgstr "Rozdzielczość Gamescope"
 
 #: src/ui/dialog-gamescope.ui:235
 #, fuzzy
@@ -918,11 +919,11 @@ msgstr "Dostosuj ustawienia wewnętrzne."
 
 #: src/ui/dialog-gamescope.ui:240
 msgid "Frame rate limit"
-msgstr ""
+msgstr "Limit FPS"
 
 #: src/ui/dialog-gamescope.ui:251
 msgid "e.g. 60"
-msgstr ""
+msgstr "np. 60"
 
 #: src/ui/dialog-gamescope.ui:271
 msgid "Frame rate limit (when no focus)"
@@ -930,7 +931,7 @@ msgstr ""
 
 #: src/ui/dialog-gamescope.ui:282
 msgid "e.g. 30"
-msgstr ""
+msgstr "np. 30"
 
 #: src/ui/dialog-gamescope.ui:302
 #, fuzzy
@@ -944,11 +945,11 @@ msgstr "Szerokość okna"
 
 #: src/ui/dialog-gamescope.ui:341
 msgid "Borderless"
-msgstr ""
+msgstr "Bez ramki"
 
 #: src/ui/dialog-gamescope.ui:357
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pełny ekran"
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
@@ -1027,14 +1028,17 @@ msgid ""
 "\"https://docs.usebottles.com/flatpak/expose-directories\">Flatseal</a> if "
 "the script path is outside the sandbox."
 msgstr ""
+"Używasz Bottles w wersji Flatpak, pamiętaj aby przyznać uprawnienia w <a "
+"href=\"https://docs.usebottles.com/flatpak/expose-directories\">Flatseal</a> "
+"jeśli ścieżka skryptu jest poza piaskownicą."
 
 #: src/ui/dialog-launch-options.ui:163
 msgid "Post-run script"
-msgstr ""
+msgstr "Skrypt po uruchomieniu"
 
 #: src/ui/dialog-launch-options.ui:165
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Wybierz skrypt który powinien być wykonany po uruchomieniu."
 
 #: src/ui/importer.ui:20 src/ui/importer.ui:21
 msgid ""
