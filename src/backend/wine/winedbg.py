@@ -32,7 +32,7 @@ class WineDbg(WineProgram):
         res = self.launch(
             args='--command "info proc"', 
             comunicate=True, 
-            method_name="get_processes"
+            action_name="get_processes"
         )
         if res in [None, ""]:
             return processes
@@ -109,7 +109,7 @@ class WineDbg(WineProgram):
             res = self.launch(
                 args=args, 
                 comunicate=True, 
-                method_name="kill_process"
+                action_name="kill_process"
             )
             if "error 5" in res and name:
                 res = subprocess.Popen(

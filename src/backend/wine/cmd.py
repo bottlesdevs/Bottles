@@ -29,5 +29,5 @@ class CMD(WineProgram):
             terminal=terminal,
             environment=environment,
             cwd=cwd,
-            method_name="run_batch"
+            action_name="run_batch"
         )

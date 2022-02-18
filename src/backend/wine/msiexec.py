@@ -30,5 +30,5 @@ class MsiExec(WineProgram):
             environment=environment,
             terminal=terminal,
             cwd=cwd,
-            method_name="install"
+            action_name="install"
         )

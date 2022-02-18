@@ -19,7 +19,7 @@ class Net(WineProgram):
         if name is not None:
             args = f"start '{name}'"
         
-        return self.launch(args=args, comunicate=True, method_name="start")
+        return self.launch(args=args, comunicate=True, action_name="start")
 
     def stop(self, name: str = None):
         args = "stop"
@@ -27,7 +27,7 @@ class Net(WineProgram):
         if name is not None:
             args = f"stop '{name}'"
         
-        return self.launch(args=args, comunicate=True, method_name="stop")
+        return self.launch(args=args, comunicate=True, action_name="stop")
 
     def use(self, name: str = None):
         # this command has no documentation, not tested yet
@@ -36,7 +36,7 @@ class Net(WineProgram):
         if name is not None:
             args = f"use '{name}'"
         
-        return self.launch(args=args, comunicate=True, method_name="use")
+        return self.launch(args=args, comunicate=True, action_name="use")
 
     def list(self):
         services = []

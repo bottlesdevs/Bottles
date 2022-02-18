@@ -29,5 +29,5 @@ class Start(WineProgram):
             terminal=terminal,
             environment=environment,
             cwd=cwd,
-            method_name="run"
+            action_name="run"
         )
