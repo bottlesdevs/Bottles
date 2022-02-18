@@ -123,7 +123,11 @@ class BackupManager:
         directory. It returns True if the backup was successful (it 
         will also update the bottles' list), False otherwise.
         '''
+        if path is None:
+            Result(status=False)
+            
         BackupManager.operation_manager = OperationManager(window)
+
         task_id = str(uuid.uuid4())
         backup_name = os.path.basename(path)
         import_status = False
