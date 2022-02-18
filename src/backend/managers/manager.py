@@ -378,11 +378,20 @@ class Manager:
                     version = f"runtime-{version}"
                     self.runtimes_available = [version]
 
-
     def check_dxvk(self, install_latest: bool = True) -> bool:
         res = self.__check_component("dxvk", install_latest)
         if res:
-            self.dxvk_available = sorted(res, reverse=True)
+            d_non_async, d_async = [], []
+            for r in res:
+                if "-async" in r:
+                    d_async.append(r)
+                else:
+                    d_non_async.append(r)
+            
+            d_non_async = sorted(d_non_async, reverse=True)
+            d_async = sorted(d_async, reverse=True)
+
+            self.dxvk_available = d_non_async + d_async
 
     def check_vkd3d(self, install_latest: bool = True) -> bool:
         res = self.__check_component("vkd3d", install_latest)
