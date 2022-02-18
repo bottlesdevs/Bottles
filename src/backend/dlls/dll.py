@@ -94,7 +94,7 @@ class DLLComponent():
         path = self.__get_sys_path(config, path)
         if path is not None:
             target = f"{bottle}/{path}/{dll_name}"
-        else
+        else:
             target = None
 
         #print(f"{source} -> {target}")
