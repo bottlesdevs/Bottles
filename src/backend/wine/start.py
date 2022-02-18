@@ -28,5 +28,6 @@ class Start(WineProgram):
             comunicate=True,
             terminal=terminal,
             environment=environment,
-            cwd=cwd
+            cwd=cwd,
+            method_name="run"
         )

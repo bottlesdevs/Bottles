@@ -36,7 +36,8 @@ class WineBoot(WineProgram):
             self.launch(
                 args=args,
                 environment=envs,
-                comunicate=True
+                comunicate=True,
+                method_name=f"send_status({states[status]})"
             )
         else:
             raise ValueError(f"[{status}] is not a valid status for wineboot!")

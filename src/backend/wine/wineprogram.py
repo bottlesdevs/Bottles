@@ -40,9 +40,10 @@ class WineProgram:
         comunicate: bool = False,
         environment: dict = {},
         cwd: str = None,
+        method_name: str = "launch"
     ):
         if not self.silent:
-            logging.info(f"Using {self.program}")
+            logging.info(f"Using {self.program} -- {method_name}")
             
         command = self.get_command(args)
         res = WineCommand(
@@ -58,8 +59,8 @@ class WineProgram:
         return res
 
     def launch_terminal(self, args: str = None):
-        self.launch(args=args, terminal=True)
+        self.launch(args=args, terminal=True, method_name="launch_terminal")
     
     def launch_minimal(self, args: str = None):
-        self.launch(args=args, minimal=True)
+        self.launch(args=args, minimal=True, method_name="launch_minimal")
     
