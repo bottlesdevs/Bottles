@@ -60,7 +60,8 @@ class DependenciesView(Gtk.ScrolledWindow):
             self.infobar_testing.set_visible(True)
     
     def __select_dependency(self, widget, row, data=None):
-        self.selected_dependencies.append(row.dependency)
+        if row is not None:
+            self.selected_dependencies.append(row.dependency)
     
     def __install_dependencies(self, widget):
         def callback(result, error=False):
