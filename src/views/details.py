@@ -71,6 +71,7 @@ class DetailsView(Handy.Leaflet):
         Update headerbar title according to the current page.
         '''
         global pages
+        self.window.toggle_selection_mode(False)
 
         page = self.stack_bottle.get_visible_child_name()
         if page is None:

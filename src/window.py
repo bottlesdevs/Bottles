@@ -262,6 +262,8 @@ class MainWindow(Handy.ApplicationWindow):
         It will toggle some widget visibility and show the previous
         page (previous_page).
         '''
+        self.toggle_selection_mode(False)
+        
         for w in [self.btn_add, self.btn_menu]:
             w.set_visible(True)
 
@@ -354,6 +356,13 @@ class MainWindow(Handy.ApplicationWindow):
                 self.list_notifications.add(entry)
             
             self.btn_notifications.set_visible(True)
+    
+    def toggle_selection_mode(self, status:bool=True):
+        context = self.headerbar.get_style_context()
+        if status:
+            context.add_class("selection-mode")
+        else:
+            context.remove_class("selection-mode")
 
     @staticmethod
     def proper_close():

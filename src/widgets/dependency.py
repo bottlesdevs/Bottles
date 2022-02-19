@@ -35,9 +35,10 @@ class DependencyEntry(Handy.ActionRow):
     btn_manifest = Gtk.Template.Child()
     btn_license = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
+    box_actions = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, config, dependency, plain=False, **kwargs):
+    def __init__(self, window, config, dependency, plain=False, selection=False, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -70,6 +71,12 @@ class DependencyEntry(Handy.ActionRow):
         self.btn_remove.connect("clicked", self.remove_dependency)
         self.btn_manifest.connect("clicked", self.open_manifest)
         self.btn_license.connect("clicked", self.open_license)
+
+        # hide action widgets on selection
+        if selection:
+            for w in self.box_actions.get_children():
+                if w != self.label_category:
+                    w.set_visible(False)
 
         if dependency[0] in self.config.get("Installed_Dependencies"):
             '''
