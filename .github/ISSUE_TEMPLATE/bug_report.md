@@ -7,11 +7,11 @@ assignees: mirkobrombin
 
 ---
 
----
+
 
 !!!!! PLEASE FILL THIS TEMPLATE, DO NOT LEAVE IT BLANK !!!!!  
 
----
+
 
 Please don't fill issue for a Windows executable that doesn't work in Bottles (if not installed through our installers). Our software is a Wine prefix manager. If a Windows application doesn't work, it could be a Wine problem (**Wine is NOT a software developed by Bottles**) or a misconfiguration of the wineprefix (take a look at WineHQ: https://www.winehq.org) or ProtonDB: https://www.protondb.com for more information on the software you are trying to run).
 
