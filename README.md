@@ -54,6 +54,7 @@ translate Bottles in your language or how to help improve existing ones.
 ## 🦾 Features
 - Create bottles based on environments (a set of rules and dependencies)
 - Access to a customizable environment for all your experiments
+- Automated installers
 - Run every executable (.exe/.msi/.bat) in your bottles, using the context menu in your file manager
 - Integrated management and storage for executable file arguments
 - Support for custom environment variables
@@ -69,13 +70,11 @@ translate Bottles in your language or how to help improve existing ones.
 - Easy access to ProtonDB and WineHQ for support
 - Configurations update system across Bottles versions
 - Backup and Import bottles from older version and from other managers (Lutris, POL, ..)
-- Bottles versioning (experimental)
+- Bottles versioning
 - ... and much more that you can find by installing Bottles!
 
 ### 🚧 Work in progress
-- Installer manager [#55](https://github.com/bottlesdevs/Bottles/issues/55)
-- Import backup from configuration file
-- Optional sandboxed bottles
+- Layers (dependencies and programs on different layers) [#510](https://github.com/bottlesdevs/Bottles/issues/510)
 
 ## ↗️ Install
 Bottles is officially provided as Flatpak, AppImage, [AUR package](https://aur.archlinux.org/packages/bottles/). 
