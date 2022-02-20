@@ -66,6 +66,7 @@ class DependenciesView(Gtk.ScrolledWindow):
     def __install_dependencies(self, widget):
         def callback(result, error=False):
             nonlocal self
+            self.selected_dependencies = []
             self.update(config=self.config)
 
         def process_queue():
