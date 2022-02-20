@@ -32,6 +32,11 @@ class API:
 # xdg data path
 xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
 class Paths:
+    def get_apps_dir():
+        _dir = f"{xdg_data_home}/applications/"
+        if "FLATPAK_ID" in os.environ:
+            _dir = f"{Path.home()}/.local/share/applications"
+        return _dir
 
     # Icon paths
     icons_user = f"{xdg_data_home}/icons"
@@ -40,7 +45,7 @@ class Paths:
     base = f"{xdg_data_home}/bottles"
 
     # User applications path
-    applications = f"{xdg_data_home}/applications/"
+    applications = get_apps_dir()
 
     temp = f"{base}/temp"
     runtimes = f"{base}/runtimes"
@@ -74,3 +79,8 @@ gamemode_available = shutil.which("gamemoderun") or False
 gamescope_available = shutil.which("gamescope") or False
 
 x_display = DisplayUtils.get_x_display()
+
+# Check if ~/.local/share/applications exists
+user_apps_dir = False
+if os.path.exists(Paths.applications):
+    user_apps_dir = True

@@ -24,6 +24,8 @@ from bottles.utils import RunAsync # pyright: reportMissingImports=false
 from bottles.dialogs.launchoptions import LaunchOptionsDialog
 from bottles.dialogs.rename import RenameDialog
 
+from bottles.backend.globals import user_apps_dir
+
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.executor import WineExecutor
@@ -71,10 +73,10 @@ class ProgramEntry(Handy.ActionRow):
         if program.get("removed"):
             self.get_style_context().add_class("removed")
 
-        if "FLATPAK_ID" in os.environ:
+        if not user_apps_dir:
             '''
-            Disable the btn_add_entry button since the flatpak has no access
-            to the user .loocal directory, so the entry cannot be created.
+            Disable the btn_add_entry button if the user apps dir is
+            not accessible.
             '''
             self.btn_add_entry.set_visible(False)
 
@@ -212,7 +214,8 @@ class ProgramEntry(Handy.ActionRow):
             config=self.config,
             program={
                 "name": self.program["name"],
-                "executable": self.program["executable"]
+                "executable": self.program["executable"],
+                "path": self.program["path"],
             }
         )
 

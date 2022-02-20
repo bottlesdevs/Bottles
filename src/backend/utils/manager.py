@@ -23,7 +23,7 @@ from datetime import datetime
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger # pyright: reportMissingImports=false
-from bottles.backend.globals import Paths
+from bottles.backend.globals import Paths, user_apps_dir
 
 logging = Logger()
 
@@ -143,7 +143,7 @@ class ManagerUtils:
 
     @staticmethod
     def create_desktop_entry(config, program: dict):
-        if "FLATPAK_ID" in os.environ:
+        if not user_apps_dir:
             return None
 
         desktop_file = "%s/%s--%s--%s.desktop" % (
@@ -153,10 +153,14 @@ class ManagerUtils:
             datetime.now().timestamp()
         )
 
+        cmd = "bottles"
+        if "FLATPAK_ID" in os.environ:
+            cmd = "flatpak run com.usebottles.bottles"
+
         with open(desktop_file, "w") as f:
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={program.get('name')}\n")
-            f.write(f"Exec=bottles -e '{program.get('path')}' -b '{config.get('Name')}'\n")
+            f.write(f"Exec={cmd} -e '{program.get('path')}' -b '{config.get('Name')}'\n")
             f.write(f"Type=Application\n")
             f.write(f"Terminal=false\n")
             f.write(f"Categories=Application;\n")
@@ -166,7 +170,7 @@ class ManagerUtils:
             f.write("Actions=Configure;\n")
             f.write("[Desktop Action Configure]\n")
             f.write("Name=Configure in Bottles\n")
-            f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
+            f.write(f"Exec={cmd} -b '{config.get('Name')}'\n")
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict) -> bool:
