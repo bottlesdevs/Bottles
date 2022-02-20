@@ -173,7 +173,7 @@ class MainWindow(Handy.ApplicationWindow):
             self.show_list_view()
 
         arg_exe = False
-        logging.info(_("Bottles Started!"))
+        logging.info("Bottles Started!")
 
     def on_page_changed(self, stack, param):
         '''
