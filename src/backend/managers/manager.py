@@ -18,6 +18,7 @@
 import os
 import subprocess
 import random
+import time
 import yaml
 import shlex
 import shutil
@@ -35,6 +36,7 @@ from bottles.backend.runner import Runner
 from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
 from bottles.backend.globals import Paths
+from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.component import ComponentManager
@@ -105,6 +107,7 @@ class Manager:
 
     def checks(self, install_latest=False, first_run=False):
         logging.info("Performing Bottles checks...")
+        start = time.time()
         self.check_app_dirs()
         self.check_dxvk(install_latest)
         self.check_vkd3d(install_latest)
@@ -117,7 +120,11 @@ class Manager:
         self.check_bottles()
         self.organize_dependencies()
         self.organize_installers()
-        # TODO: self.check_vulkan_support()
+        
+        JournalManager.write(
+            severity=JournalSeverity.INFO,
+            message="Startup took %s seconds" % (time.time() - start)
+        )
 
     def __clear_temp(self, force: bool = False):
         '''
@@ -428,6 +435,10 @@ class Manager:
         }
 
         if component_type not in components:
+            JournalManager.write(
+                severity=JournalSeverity.WARNING,
+                message=f"Unknown component type found: {component_type}"
+            )
             raise ValueError("Component type not supported.")
         
         component = components[component_type]
