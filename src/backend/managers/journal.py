@@ -25,6 +25,17 @@ from bottles.backend.globals import Paths
 
 logging = Logger()
 
+class JournalSeverity:
+    '''
+    This class is used to store the severity of a journal entry.
+    '''
+    DEBUG = "debug"
+    INFO = "info"
+    WARNING = "warning"
+    ERROR = "error"
+    CRITICAL = "critical"
+    CRASH = "crash"
+
 class JournalManager:
     '''
     The JournalManager class is used to store and retrieve data from the
@@ -135,22 +146,17 @@ class JournalManager:
         return journal.get(event_id, None)
     
     @staticmethod
-    def write(severity: str, message: str):
+    def write(severity: JournalSeverity, message: str):
         '''
         Add an event to the journal.
         '''
         journal = JournalManager.__get_journal()
-        severities = [
-            "info",
-            "warning",
-            "error",
-        ]
         event_id = str(uuid.uuid4())
         now = datetime.now()
 
-        if severity not in severities:
+        if severity not in JournalSeverity.__dict__.values():
             logging.warning(f"Invalid severity '{severity}', falling back to 'info'")
-            severity = "info"
+            severity = JournalSeverity.INFO
 
         journal[event_id] = {
             "severity": severity,
