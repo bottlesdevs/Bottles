@@ -32,6 +32,8 @@ from bottles.backend.models.result import Result
 from bottles.backend.downloader import Downloader
 from bottles.backend.logger import Logger
 
+from bottles.backend.managers.journal import JournalManager, JournalSeverity
+
 logging = Logger()
 
 
@@ -410,6 +412,10 @@ class ComponentManager:
                 pass # safely ignore the error, there is nothing to remove
 
         self.__manager.organize_components()
+        JournalManager.write(
+            severity=JournalSeverity.INFO,
+            message=f"Component installed: {component_type} {component_name}"
+        )
 
         return Result(True)
 
