@@ -58,7 +58,6 @@ logging = Logger()
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
 RunnerName = NewType('RunnerName', str)
-RunnerType = NewType('RunnerType', str)
 
 
 class Manager:
@@ -1257,7 +1256,7 @@ class Manager:
         
         return self.runners_available[0] if fallback else []
         
-    def get_latest_runner(self, runner_type: RunnerType = "wine") -> list:
+    def get_latest_runner(self, runner_type: str = "wine") -> list:
         '''
         This function returns the latest version of the given runner, 
         from the runners_available list.

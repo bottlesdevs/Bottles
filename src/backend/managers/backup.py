@@ -36,7 +36,6 @@ logging = Logger()
 # Define custom types for better understanding of the code
 BottleConfig = NewType('BottleConfig', dict)
 RunnerName = NewType('RunnerName', str)
-RunnerType = NewType('RunnerType', str)
 
 
 class BackupManager:
