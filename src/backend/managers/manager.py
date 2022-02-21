@@ -584,6 +584,7 @@ class Manager:
             
         logging.info("Launching program..")
         runtime_conf = program_layer.runtime_conf
+        
         Runner.run_layer_executable(runtime_conf, layer)
 
         logging.info("Program exited, unmounting layers..")
