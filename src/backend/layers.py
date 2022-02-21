@@ -18,6 +18,7 @@
 import os
 import uuid
 import yaml
+import shutil
 from glob import glob
 from typing import NewType
 
@@ -135,10 +136,15 @@ class Layer:
         '''
         self.__uuid = layer["UUID"]
         self.__path = layer["Path"]
+
+        _conf = Samples.config.copy()
+        _conf["Name"] = layer["Name"]
+        _conf["Path"] = layer["Path"]
+        self.runtime_conf = _conf
+
         self.__config = layer
 
         return self
-
 
     def new(self, name: str, runner: str = None):
         '''
@@ -178,20 +184,26 @@ class Layer:
         '''
         return self.__uuid
     
-    def __link_files(self, path):
+    def __link_files(self, path, duplicate=False):
         for root, dirs, files in os.walk(path):
             if "dosdevices" in root:
                 continue
             for f in files:
                 _source = os.path.join(root, f)
                 _layer = _source.replace(path, self.__path)
+
                 os.makedirs(os.path.dirname(_layer), exist_ok=True) # should not be ok, need handling
+                
                 if os.path.exists(_layer):
                     if os.path.islink(_layer):
                         os.unlink(_layer)
-                os.symlink(_source, _layer)
+                
+                if not duplicate:
+                    os.symlink(_source, _layer)
+                else:
+                    shutil.copy2(_source, _layer)
 
-    def mount_dir(self, path: str, name: str = None):
+    def mount_dir(self, path: str, name: str = None, duplicate: bool = False):
         '''
         This method will mount a directory (which is not a layer)
         to the current layer and append it to the __mounts list. This
@@ -210,9 +222,9 @@ class Layer:
             "Tree": hashes,
             "Type": "absDir",
         })
-        self.__link_files(path)
+        self.__link_files(path, duplicate)
     
-    def mount(self, name: str=None, uuid: str = None):
+    def mount(self, name: str=None, uuid: str = None, duplicate: bool = False):
         '''
         This method will mount a layer to the current layer and
         append it to the __mounts list.
@@ -222,16 +234,16 @@ class Layer:
         if layer:
             layer["Type"] = "layer"
             self.__mounts.append(layer)
-            self.__link_files(layer["Path"])
+            self.__link_files(layer["Path"], duplicate)
 
-    def mount_bottle(self, config: BottleConfig):
+    def mount_bottle(self, config: BottleConfig, duplicate: bool = False):
         '''
         This is just a wrapper to mount_dir to get the bottle
         path and mount it to the current layer.
         '''
         logging.info(f"Mounting bottle {config['Name']}…")
         _path = ManagerUtils.get_bottle_path(config)
-        self.mount_dir(_path, config["Name"])
+        self.mount_dir(_path, config["Name"], duplicate)
     
     def sweep(self) -> BottleConfig:
         '''
@@ -247,6 +259,8 @@ class Layer:
                     _link = f"{self.__path}/{f}"
                     if os.path.islink(_link):
                         os.unlink(_link)
+                    else:
+                        os.remove(_link)
                 except FileNotFoundError:
                     pass
                 
