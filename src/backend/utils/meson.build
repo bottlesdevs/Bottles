@@ -10,6 +10,7 @@ bottles_sources = [
   'terminal.py',
   'file.py',
   'generic.py',
+  'wine.py',
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

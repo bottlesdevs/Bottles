@@ -25,12 +25,14 @@ from datetime import datetime
 from gi.repository import Gtk, GLib
 
 from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
+from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.layers import LayersStore, Layer
 
+from bottles.backend.utils.wine import WineUtils
+
 from bottles.backend.wine.wineboot import WineBoot
-from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.wine.executor import WineExecutor
 
 logging = Logger()
@@ -370,6 +372,11 @@ class InstallerManager:
 
         # register executable
         if self.__layer is None:
+            if executable['path'].startswith("userdir/"):
+                _userdir = WineUtils.get_user_dir(bottle)
+                executable['path'] = executable['path'].replace(
+                    "userdir/", f"/users/{_userdir}/"
+                )
             _program = {
                 "executable": executable["file"],
                 "arguments": executable.get("arguments", ""),
