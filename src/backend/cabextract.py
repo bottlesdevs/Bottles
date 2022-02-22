@@ -70,11 +70,20 @@ class CabExtract():
         try:
             if len(self.files) > 0:
                 for file in self.files:
+
+                    '''
+                    if file already exists as a symlink, remove it
+                    preventing broken symlinks when using layers
+                    '''
+                    if os.path.exists(os.path.join(self.destination, file)):
+                        if os.path.islink(os.path.join(self.destination, file)):
+                            os.unlink(os.path.join(self.destination, file))
+
                     command = [
                         "cabextract",
                         f"-F '*{file}*'",
                         f"-d {self.destination}",
-                        f"-q {self.path}"
+                        f" {self.path}"
                     ]
                     command = " ".join(command)
                     subprocess.Popen(
