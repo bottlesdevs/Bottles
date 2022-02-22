@@ -1188,19 +1188,22 @@ class Manager:
                 if prm in env["Parameters"]:
                     config["Parameters"][prm] = env["Parameters"][prm]
             
-            if not template and config["Parameters"]["dxvk"]:
+            if (not template and config["Parameters"]["dxvk"]) \
+                or (template and template["config"]["DXVK"] != dxvk):
                 # perform dxvk installation if configured
                 logging.info("Installing DXVK…")
                 log_update(_("Installing DXVK…"))
                 self.install_dll_component(config, "dxvk", version=dxvk_name)
 
-            if not template and config["Parameters"]["vkd3d"]:
+            if not template and config["Parameters"]["vkd3d"] \
+                or (template and template["config"]["VKD3D"] != vkd3d):
                 # perform vkd3d installation if configured
                 logging.info("Installing VKD3D…")
                 log_update(_("Installing VKD3D…"))
                 self.install_dll_component(config, "vkd3d", version=vkd3d_name)
 
-            if not template and config["Parameters"]["dxvk_nvapi"]:
+            if not template and config["Parameters"]["dxvk_nvapi"] \
+                or (template and template["config"]["NVAPI"] != nvapi):
                 # perform nvapi installation if configured
                 logging.info("Installing DXVK-NVAPI…")
                 log_update(_("Installing DXVK-NVAPI…"))
