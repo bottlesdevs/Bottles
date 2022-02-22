@@ -55,6 +55,7 @@ class Paths:
     dxvk = f"{base}/dxvk"
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
+    templates = f"{base}/templates"
     data = f"{base}/data.yml"
     journal = f"{base}/journal.yml"
 

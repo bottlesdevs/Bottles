@@ -105,6 +105,10 @@ class ManagerUtils:
         return f"{Paths.temp}/{dest}"
 
     @staticmethod
+    def get_template_path(template: str) -> str:
+        return f"{Paths.templates}/{template}"
+
+    @staticmethod
     def move_file_to_bottle(
         file_path: str, 
         config: BottleConfig,

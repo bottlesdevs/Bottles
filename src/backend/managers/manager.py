@@ -37,6 +37,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.models.samples import Samples
 from bottles.backend.globals import Paths
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
+from bottles.backend.managers.template import TemplateManager
 from bottles.backend.managers.versioning import VersioningManager
 from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.component import ComponentManager
@@ -186,6 +187,10 @@ class Manager:
         if not os.path.isdir(Paths.nvapi):
             logging.info("Nvapi path doesn't exist, creating now.")
             os.makedirs(Paths.nvapi, exist_ok=True)
+
+        if not os.path.isdir(Paths.templates):
+            logging.info("Templates path doesn't exist, creating now.")
+            os.makedirs(Paths.templates, exist_ok=True)
 
         if not os.path.isdir(Paths.temp):
             logging.info("Temp path doesn't exist, creating now.")
@@ -1106,6 +1111,13 @@ class Manager:
         if versioning:
             config["Versioning"] = True
 
+        # get template
+        template = TemplateManager.get_env_template(environment)
+        if template:
+            log_update(_("Template found, applying…"))
+            TemplateManager.unpack_template(template, config)
+        
+        # initialize wineprefix
         reg = Reg(config)
         wineboot = WineBoot(config)
 
@@ -1138,31 +1150,32 @@ class Manager:
         FileUtils.wait_for_files(reg_files)
 
         # apply Windows version
-        logging.info("Setting Windows version…")
-        log_update(_("Setting Windows version…"))
-        Runner.set_windows(config, config["Windows"])
-        wineboot.update()
-        
-        FileUtils.wait_for_files(reg_files)
+        if not template:
+            logging.info("Setting Windows version…")
+            log_update(_("Setting Windows version…"))
+            Runner.set_windows(config, config["Windows"])
+            wineboot.update()
+            
+            FileUtils.wait_for_files(reg_files)
 
-        # apply CMD settings
-        logging.info("Setting CMD default settings…")
-        log_update(_("Apply CMD default settings…"))
-        Runner.apply_cmd_settings(config)
-        wineboot.update()
-        
-        FileUtils.wait_for_files(reg_files)
-        
-        # blacklisting processes
-        logging.info("Optimizing environment…")
-        log_update(_("Optimizing environment…"))
-        _blacklist_dll = ["winemenubuilder.exe"]
-        for _dll in _blacklist_dll:
-            reg.add(
-                key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                value=_dll,
-                data=""
-            )
+            # apply CMD settings
+            logging.info("Setting CMD default settings…")
+            log_update(_("Apply CMD default settings…"))
+            Runner.apply_cmd_settings(config)
+            wineboot.update()
+            
+            FileUtils.wait_for_files(reg_files)
+            
+            # blacklisting processes
+            logging.info("Optimizing environment…")
+            log_update(_("Optimizing environment…"))
+            _blacklist_dll = ["winemenubuilder.exe"]
+            for _dll in _blacklist_dll:
+                reg.add(
+                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                    value=_dll,
+                    data=""
+                )
 
         # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…")
@@ -1174,26 +1187,28 @@ class Manager:
             for prm in config["Parameters"]:
                 if prm in env["Parameters"]:
                     config["Parameters"][prm] = env["Parameters"][prm]
-
-            if config["Parameters"]["dxvk"]:
+            
+            if not template and config["Parameters"]["dxvk"]:
                 # perform dxvk installation if configured
                 logging.info("Installing DXVK…")
                 log_update(_("Installing DXVK…"))
                 self.install_dll_component(config, "dxvk", version=dxvk_name)
 
-            if config["Parameters"]["vkd3d"]:
+            if not template and config["Parameters"]["vkd3d"]:
                 # perform vkd3d installation if configured
                 logging.info("Installing VKD3D…")
                 log_update(_("Installing VKD3D…"))
                 self.install_dll_component(config, "vkd3d", version=vkd3d_name)
 
-            if config["Parameters"]["dxvk_nvapi"]:
+            if not template and config["Parameters"]["dxvk_nvapi"]:
                 # perform nvapi installation if configured
                 logging.info("Installing DXVK-NVAPI…")
                 log_update(_("Installing DXVK-NVAPI…"))
                 self.install_dll_component(config, "dxvk_nvapi", version=nvapi_name)
-                    
+            
             for dep in env["Installed_Dependencies"]:
+                if template and dep in template["config"]["Installed_Dependencies"]:
+                    continue
                 if dep in self.supported_dependencies:
                     _dep = self.supported_dependencies[dep]
                     log_update(_("Installing dependency: {0}…").format(
@@ -1228,6 +1243,10 @@ class Manager:
         
         # perform wineboot
         wineboot.update()
+
+        # storing new template
+        if not template and environment != "layered":
+            TemplateManager.new(environment, config)
         
         return Result(
             status=True,
