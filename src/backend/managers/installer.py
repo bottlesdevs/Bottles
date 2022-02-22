@@ -368,7 +368,10 @@ class InstallerManager:
         # set parameters
         if parameters:
             widget.next_step()
-            self.__set_parameters(_config, parameters)
+            if self.__layer is not None:
+                self.__set_parameters(self.__layer.runtime_conf, parameters)
+            else:
+                self.__set_parameters(_config, parameters)
 
         # register executable
         if self.__layer is None:
