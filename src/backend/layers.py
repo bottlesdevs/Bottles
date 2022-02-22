@@ -185,10 +185,14 @@ class Layer:
         return self.__uuid
     
     def __link_files(self, path, duplicate=False):
-        for root, dirs, files in os.walk(path):
+        print("Path:", path)
+        for root, __, files in os.walk(path):
+            print("Root:", root)
             if "dosdevices" in root:
                 continue
+
             for f in files:
+                print("File:", f)
                 _source = os.path.join(root, f)
                 _layer = _source.replace(path, self.__path)
 
@@ -233,8 +237,9 @@ class Layer:
         logging.info(f"Mounting layer {layer['Name']}…")
         if layer:
             layer["Type"] = "layer"
+            path = f"{Paths.layers}/@__{layer['Name']}__{layer['UUID']}" # TODO: please don't hardcode this :S
             self.__mounts.append(layer)
-            self.__link_files(layer["Path"], duplicate)
+            self.__link_files(path, duplicate) 
 
     def mount_bottle(self, config: BottleConfig, duplicate: bool = False):
         '''
