@@ -42,6 +42,16 @@ class Diff:
                 _files[_key] = _hash
         
         return _files
+    
+    @staticmethod
+    def file_hashify(path: str) -> str:
+        '''
+        Hash (SHA-1) a file and return it.
+        '''
+        with open(path, "rb") as fr:
+            _hash = hashlib.sha1(fr.read()).hexdigest()
+        
+        return _hash
 
     @staticmethod
     def compare(parent: dict, child: dict) -> dict:

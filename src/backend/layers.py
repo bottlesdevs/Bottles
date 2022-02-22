@@ -255,14 +255,18 @@ class Layer:
             _tree = mount["Tree"]
             
             for f in _tree:
-                try:
-                    _link = f"{self.__path}/{f}"
-                    if os.path.islink(_link):
-                        os.unlink(_link)
-                    else:
-                        os.remove(_link)
-                except FileNotFoundError:
-                    pass
+                _file = f"{self.__path}/{f}"
+                
+                if not os.path.exists(_file):
+                    continue
+
+                if Diff.file_hashify(_file) != _tree[f]:
+                    continue
+
+                if os.path.islink(_file):
+                    os.unlink(_file)
+                else:
+                    os.remove(_file)
                 
             self.__mounts.remove(mount)
         
