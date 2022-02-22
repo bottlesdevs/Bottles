@@ -349,7 +349,6 @@ class WineCommand:
         if self.terminal:
             return TerminalUtils().execute(self.command, self.env, self.colors)
             
-        print(self.command)
         if self.comunicate:
             try:
                 res = subprocess.Popen(
