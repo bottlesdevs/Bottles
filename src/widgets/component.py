@@ -141,3 +141,11 @@ class ComponentEntry(Handy.ActionRow):
         self.btn_err.set_visible(False)
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
+
+class ComponentExpander(Handy.ExpanderRow):
+
+    def __init__(self, title, **kwargs):
+        super().__init__(**kwargs)
+        
+        self.set_title(title)
+        self.show_all()

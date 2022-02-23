@@ -19,7 +19,7 @@ import os
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
-from bottles.widgets.component import ComponentEntry # pyright: reportMissingImports=false
+from bottles.widgets.component import ComponentEntry, ComponentExpander # pyright: reportMissingImports=false
 from bottles.backend.managers.data import DataManager
 
 
@@ -173,20 +173,33 @@ class PreferencesWindow(Handy.PreferencesWindow):
         for w in self.list_runners:
             if w != self.actionrow_prerelease:
                 w.destroy()
+        
+        exp_caffe = ComponentExpander(_("Caffe runners"))
+        exp_lutris = ComponentExpander(_("Lutris runners"))
+        exp_proton = ComponentExpander(_("Proton runners"))
+        exp_other = ComponentExpander(_("Other runners"))
 
         for runner in self.manager.supported_wine_runners.items():
+            _runner_name = runner[0].lower()
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            self.list_runners.add(ComponentEntry(self.window, runner, "runner"))
+            
+            if _runner_name.startswith("caffe"):
+                exp_caffe.add(ComponentEntry(self.window, runner, "runner"))
+            elif _runner_name.startswith("lutris"):
+                exp_lutris.add(ComponentEntry(self.window, runner, "runner"))
+            else:
+                exp_other.add(ComponentEntry(self.window, runner, "runner"))
 
         for runner in self.manager.supported_proton_runners.items():
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            self.list_runners.add(ComponentEntry(
-                self.window, 
-                runner, 
-                "runner:proton"
-                )
-            )
+            
+            exp_proton.add(ComponentEntry(self.window, runner, "runner:proton"))
+            
+        self.list_runners.add(exp_caffe)
+        self.list_runners.add(exp_lutris)
+        self.list_runners.add(exp_proton)
+        self.list_runners.add(exp_other)
