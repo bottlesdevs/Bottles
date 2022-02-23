@@ -51,7 +51,7 @@ class CabExtract():
             return False
 
         if not shutil.which("cabextract"):
-            logging.fatal(
+            logging.critical(
                 "cabextract utility not found, please install to use "
                 "dependencies which need this feature"
             )
