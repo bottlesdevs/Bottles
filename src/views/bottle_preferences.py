@@ -99,9 +99,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.btn_manage_nvapi.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
-        self.btn_environment_variables.connect(
-            "clicked", self.__show_environment_variables
-        )
+        self.btn_environment_variables.connect("clicked", self.__show_environment_variables)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
         self.toggle_esync.connect('toggled', self.__set_esync)
         self.toggle_fsync.connect('toggled', self.__set_fsync)

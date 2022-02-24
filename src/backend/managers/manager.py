@@ -698,6 +698,7 @@ class Manager:
         local_bottles list. If silent is True, it will not update the
         bottles list view. It also tries to update old bottle configurations
         and sets them to broken if the configuration is missing.
+        TODO: move to bottle.py (Bottle manager)
         '''
         bottles = glob(f"{Paths.bottles}/*/")
 
@@ -813,6 +814,7 @@ class Manager:
         With the remove flag, it will remove the parameter from the
         configuration. Use no_update to avoid updating the local bottle
         list and view. It also updates the Update_Date key.
+        TODO: move to bottle.py (Bottle manager)
         '''
         if "IsLayer" in config:
             return
@@ -856,6 +858,7 @@ class Manager:
         '''
         This function creates a new bottle from a configuration. It will
         return the path of the new bottle.
+        TODO: move to bottle.py (Bottle manager)
         '''
         logging.info(
             f"Creating new {config['Name']} bottle from config…"
@@ -992,6 +995,7 @@ class Manager:
         the configuration file in the bottle root.
         On Flatpak, it also unlinks all folders from the user directory
         and creates these as normal folders instead.
+        TODO: move to bottle.py (Bottle manager)
         '''
         def log_update(message):
             if fn_logger:
@@ -1299,6 +1303,7 @@ class Manager:
         '''
         This function deletes the given bottle, consisting of
         the configuration and files.
+        TODO: move to bottle.py (Bottle manager)
         '''
         logging.info("Stopping bottle…")
         wineboot = WineBoot(config)
@@ -1333,6 +1338,7 @@ class Manager:
         This function tries to repair a broken bottle, creating a
         new bottle configuration with the latest runner. Each fixed
         bottle will use the Custom environment.
+        TODO: move to bottle.py (Bottle manager)
         '''
         logging.info(
             f"Trying to repair the bottle: [{config['Name']}]…"
