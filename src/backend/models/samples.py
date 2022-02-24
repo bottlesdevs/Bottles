@@ -39,6 +39,7 @@ class Samples:
             "sync": "wine",
             "fsr": False,
             "fsr_level": 5,
+            "custom_dpi": 96,
             "aco_compiler": False,
             "discrete_gpu": False,
             "virtual_desktop": False,

@@ -65,6 +65,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     toggle_futex2 = Gtk.Template.Child()
     combo_fsr = Gtk.Template.Child()
     combo_virt_res = Gtk.Template.Child()
+    combo_dpi = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
@@ -121,6 +122,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_take_focus.connect('state-set', self.__toggle_x11_reg_key, "UseTakeFocus", "take_focus")
         self.combo_fsr.connect('changed', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
+        self.combo_dpi.connect('changed', self.__set_custom_dpi)
         self.combo_runner.connect('changed', self.__set_runner)
         self.combo_dxvk.connect('changed', self.__set_dxvk)
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
@@ -226,6 +228,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_windows.handler_block_by_func(self.__set_windows)
+        self.combo_dpi.handler_block_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_block_by_func(self.__set_esync)
         self.toggle_fsync.handler_block_by_func(self.__set_fsync)
@@ -258,6 +261,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
         self.combo_windows.set_active_id(self.config.get("Windows"))
+        self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
 
         # unlock functions connected to the widgets
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
@@ -273,6 +277,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
+        self.combo_dpi.handler_unblock_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
         self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
@@ -541,7 +546,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         This function update the AMD FSR level of sharpness
         (from 0 to 5, where 5 is the default).
         '''
-        level = widget.get_active_id()
+        level = int(widget.get_active_id())
         new_config = self.manager.update_config(
             config=self.config,
             key="fsr_level",
@@ -744,6 +749,33 @@ class PreferencesView(Gtk.ScrolledWindow):
             key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
             value=rkey,
             data=_rule
+        )
+    
+    def __set_custom_dpi(self, widget):
+        '''
+        This function update the custom dpi value on the bottle
+        configuration according to the widget value.
+        '''
+        def update(result, error=False):
+            new_config = self.manager.update_config(
+                config=self.config,
+                key="custom_dpi",
+                value=dpi,
+                scope="Parameters"
+            )
+            self.config = new_config
+            widget.set_sensitive(True)
+
+        reg = Reg(self.config)
+        widget.set_sensitive(False)
+        dpi = int(widget.get_active_id())
+        RunAsync(
+            reg.add,
+            callback=update,
+            key="HKEY_CURRENT_USER\\Control Panel\\Desktop",
+            value="LogPixels",
+            data=dpi,
+            keyType="REG_DWORD"
         )
 
     def __show_dll_overrides_view(self, widget=False):

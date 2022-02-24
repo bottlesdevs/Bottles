@@ -421,6 +421,53 @@ Disable if you're experiencing graphical glitches.</property>
                             </child>
                           </object>
                         </child>
+                        <child>
+                          <object class="HdyActionRow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Screen scaling</property>
+                            <property name="subtitle" translatable="yes">Set custom DPI</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
+                                <child>
+                                  <object class="GtkComboBoxText" id="combo_dpi">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="valign">center</property>
+                                    <property name="active-id">add</property>
+                                    <items>
+                                      <item id="96" translatable="yes">96</item>
+                                      <item id="120" translatable="yes">120</item>
+                                      <item id="144" translatable="yes">144</item>
+                                      <item id="168" translatable="yes">168</item>
+                                      <item id="192" translatable="yes">192</item>
+                                      <item id="216" translatable="yes">216</item>
+                                      <item id="240" translatable="yes">240</item>
+                                      <item id="288" translatable="yes">288</item>
+                                      <item id="336" translatable="yes">336</item>
+                                      <item id="384" translatable="yes">384</item>
+                                      <item id="432" translatable="yes">432</item>
+                                      <item id="480" translatable="yes">480</item>
+                                    </items>
+                                    <style>
+                                      <class name="borderless"/>
+                                      <class name="plain"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
