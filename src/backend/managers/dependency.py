@@ -35,6 +35,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg 
 from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.executor import WineExecutor
 
 logging = Logger()
@@ -698,7 +699,8 @@ class DependencyManager:
         '''
         This function set the windows version in the bottle registry.
         '''
-        Runner.set_windows(config, step.get("version"))
+        rk = RegKeys(config)
+        rk.set_windows(step.get("version"))
         return True
 
     def __step_use_windows(self, config: BottleConfig, step: dict):
@@ -706,5 +708,6 @@ class DependencyManager:
         This function set the windows version for a specifc executable 
         in the bottle registry.
         '''
-        Runner.set_app_default(config, step.get("version"), step.get("executable"))
+        rk = RegKeys(config)
+        rk.set_app_default(step.get("version"), step.get("executable"))
         return True

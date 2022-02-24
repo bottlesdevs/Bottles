@@ -30,6 +30,7 @@ from bottles.dialogs.dlloverrides import DLLOverridesDialog
 from bottles.dialogs.gamescope import GamescopeDialog
 
 from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.regkeys import RegKeys
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-preferences.ui')
 class PreferencesView(Gtk.ScrolledWindow):
@@ -508,9 +509,9 @@ class PreferencesView(Gtk.ScrolledWindow):
         This function update the virtual desktop status on the bottle
         configuration according to the widget state.
         '''
+        rk = RegKeys(self.config)
         resolution = self.combo_virt_res.get_active_id()
-        Runner.toggle_virtual_desktop(
-            config=self.config,
+        rk.toggle_virtual_desktop(
             state=state,
             resolution=resolution
         )
@@ -518,7 +519,8 @@ class PreferencesView(Gtk.ScrolledWindow):
             config=self.config,
             key="virtual_desktop",
             value=state,
-            scope="Parameters")
+            scope="Parameters"
+        )
         self.config = new_config
 
     def __set_virtual_desktop_res(self, widget):
@@ -526,10 +528,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         This function update the virtual desktop resolution on the bottle
         configuration according to the selected one.
         '''
+        rk = RegKeys(self.config)
         resolution = widget.get_active_id()
         if self.switch_virt_desktop.get_active():
-            Runner.toggle_virtual_desktop(
-                config=self.config,
+            rk.toggle_virtual_desktop(
                 state=True,
                 resolution=resolution
             )
@@ -683,6 +685,7 @@ class PreferencesView(Gtk.ScrolledWindow):
 
         self.spinner_win.start()
         widget.set_sensitive(False)
+        rk = RegKeys(self.config)
 
         win = widget.get_active_id()
         new_config = self.manager.update_config(
@@ -691,9 +694,8 @@ class PreferencesView(Gtk.ScrolledWindow):
             value=win
         )
         RunAsync(
-            Runner.set_windows,
+            rk.set_windows,
             callback=update,
-            config=new_config, 
             version=win
         )
 

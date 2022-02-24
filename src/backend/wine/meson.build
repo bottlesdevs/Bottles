@@ -16,6 +16,7 @@ bottles_sources = [
   'control.py',
   'regedit.py',
   'reg.py',
+  'regkeys.py',
   'net.py',
   'msiexec.py',
   'executor.py',

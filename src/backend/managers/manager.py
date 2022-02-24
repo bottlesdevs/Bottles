@@ -53,6 +53,7 @@ from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.wineboot import WineBoot 
 from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.regkeys import RegKeys
 
 logging = Logger()
 
@@ -1122,6 +1123,7 @@ class Manager:
         
         # initialize wineprefix
         reg = Reg(config)
+        rk = RegKeys(config)
         wineboot = WineBoot(config)
 
         # execute wineboot on the bottle path
@@ -1156,7 +1158,7 @@ class Manager:
         if not template:
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
-            Runner.set_windows(config, config["Windows"])
+            rk.set_windows(config["Windows"])
             wineboot.update()
             
             FileUtils.wait_for_files(reg_files)
@@ -1164,7 +1166,7 @@ class Manager:
             # apply CMD settings
             logging.info("Setting CMD default settings…")
             log_update(_("Apply CMD default settings…"))
-            Runner.apply_cmd_settings(config)
+            rk.apply_cmd_settings()
             wineboot.update()
             
             FileUtils.wait_for_files(reg_files)
