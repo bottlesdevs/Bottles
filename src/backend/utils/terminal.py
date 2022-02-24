@@ -32,6 +32,7 @@ class TerminalUtils():
     colors = {
         "default": "#00ffff #2b2d2e",
         "debug": "#ff9800 #2e2c2b",
+        "easter": "#0bff00 #2b2e2c",
     }
 
     terminals = [
@@ -60,7 +61,7 @@ class TerminalUtils():
 
         return False
 
-    def execute(self, command, env={}, colors="default"):
+    def execute(self, command, env=os.environ.copy(), colors="default"):
         if not self.check_support():
             logging.warning("Terminal not supported.")
             return False
@@ -87,3 +88,11 @@ class TerminalUtils():
         ).communicate()[0].decode("utf-8")
 
         return True
+    
+    def launch_snake(self):
+        snake_path = os.path.dirname(os.path.realpath(__file__))
+        snake_path = os.path.join(snake_path, "snake.py")
+        self.execute(
+            command = "python %s" % snake_path,
+            colors= "easter"
+        )

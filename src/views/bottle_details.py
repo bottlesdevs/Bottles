@@ -26,6 +26,7 @@ from bottles.utils import RunAsync, GtkUtils # pyright: reportMissingImports=fal
 
 from bottles.backend.runner import Runner
 from bottles.backend.managers.backup import BackupManager
+from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.widgets.program import ProgramEntry
@@ -114,6 +115,7 @@ class BottleView(Gtk.ScrolledWindow):
         self.btn_browse.connect("clicked", self.run_browse)
         self.btn_explorer.connect("clicked", self.run_explorer)
         self.btn_cmd.connect("clicked", self.run_cmd)
+        self.btn_cmd.connect("button-press-event", self.run_snake)
         self.btn_taskmanager.connect("clicked", self.run_taskmanager)
         self.btn_controlpanel.connect("clicked", self.run_controlpanel)
         self.btn_uninstaller.connect("clicked", self.run_uninstaller)
@@ -462,6 +464,10 @@ class BottleView(Gtk.ScrolledWindow):
     def run_cmd(self, widget):
         program = CMD(self.config)
         RunAsync(program.launch_terminal)
+    
+    def run_snake(self, widget, event):
+        if event.button == 2:
+            TerminalUtils().launch_snake()
 
     def run_taskmanager(self, widget):
         program = Taskmgr(self.config)

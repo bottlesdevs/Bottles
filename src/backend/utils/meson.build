@@ -11,6 +11,7 @@ bottles_sources = [
   'file.py',
   'generic.py',
   'wine.py',
+  'snake.py',
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)
