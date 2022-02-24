@@ -711,6 +711,9 @@ class Manager:
                 conf_file = open(f"{bottle}/bottle.yml")
                 conf_file_yaml = yaml.safe_load(conf_file)
                 conf_file.close()
+
+                if conf_file_yaml is None:
+                    raise AttributeError
                 
                 # Migrate old environment_variables to new format
                 if "Parameters" in conf_file_yaml:
