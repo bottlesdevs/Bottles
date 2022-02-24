@@ -233,3 +233,25 @@ class RegKeys:
             data=value,
             keyType="REG_DWORD"
         )
+    
+    def set_grab_fullscreen(self, state: bool):
+        '''
+        Set the grab fullscreen setting for a bottle.
+        '''
+        value = "Y" if state else "N"
+        self.reg.add(
+            key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
+            value="GrabFullscreen",
+            data=value
+        )
+    
+    def set_take_focus(self, state: bool):
+        '''
+        Set the take focus setting for a bottle.
+        '''
+        value = "Y" if state else "N"
+        self.reg.add(
+            key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
+            value="UseTakeFocus",
+            data=value
+        )
