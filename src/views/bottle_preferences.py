@@ -768,16 +768,14 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.config = new_config
             widget.set_sensitive(True)
 
-        reg = Reg(self.config)
+        rk = RegKeys(self.config)
         widget.set_sensitive(False)
         dpi = int(widget.get_active_id())
+
         RunAsync(
-            reg.add,
+            rk.set_dpi,
             callback=update,
-            key="HKEY_CURRENT_USER\\Control Panel\\Desktop",
-            value="LogPixels",
-            data=dpi,
-            keyType="REG_DWORD"
+            value=dpi
         )
 
     def __show_dll_overrides_view(self, widget=False):

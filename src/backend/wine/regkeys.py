@@ -222,3 +222,14 @@ class RegKeys:
                 }
             ]
         })
+    
+    def set_dpi(self, value: int):
+        '''
+        Set the DPI for a bottle.
+        '''
+        self.reg.add(
+            key="HKEY_CURRENT_USER\\Control Panel\\Desktop",
+            value="LogPixels",
+            data=value,
+            keyType="REG_DWORD"
+        )
