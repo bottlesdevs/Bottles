@@ -12,6 +12,7 @@ bottles_sources = [
   'onboard.py',
   'runargs.py',
   'rename.py',
+  'drives.py',
   'gamescope.py'
 ]
 

@@ -24,6 +24,7 @@ bottles_sources = [
   'register.py',
   'winebridge.py',
   'explorer.py',
+  'drives.py',
 ]
 
 install_data(bottles_sources, install_dir: winedir)

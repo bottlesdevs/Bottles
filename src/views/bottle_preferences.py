@@ -26,6 +26,7 @@ from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.dialogs.envvars import EnvVarsDialog
+from bottles.dialogs.drives import DrivesDialog
 from bottles.dialogs.dlloverrides import DLLOverridesDialog
 from bottles.dialogs.gamescope import GamescopeDialog
 
@@ -44,6 +45,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     btn_manage_gamescope = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_environment_variables = Gtk.Template.Child()
+    btn_drives = Gtk.Template.Child()
     btn_overrides = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
@@ -99,6 +101,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.btn_manage_nvapi.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
+        self.btn_drives.connect("clicked", self.__show_drives)
         self.btn_environment_variables.connect("clicked", self.__show_environment_variables)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
         self.toggle_esync.connect('toggled', self.__set_esync)
@@ -285,6 +288,13 @@ class PreferencesView(Gtk.ScrolledWindow):
 
     def __show_gamescope_settings(self, widget):
         new_window = GamescopeDialog(
+            window=self.window,
+            config=self.config
+        )
+        new_window.present()
+    
+    def __show_drives(self, widget):
+        new_window = DrivesDialog(
             window=self.window,
             config=self.config
         )
