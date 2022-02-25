@@ -83,7 +83,6 @@ class DrivesDialog(Handy.Window):
     # region Widgets
     combo_letter = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
-    btn_cancel = Gtk.Template.Child()
     list_drives = Gtk.Template.Child()
     # endregion
 
@@ -101,7 +100,6 @@ class DrivesDialog(Handy.Window):
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
-        self.btn_cancel.connect("clicked", self.__destroy)
 
     def __idle_save(self, widget=False):
         '''
@@ -123,9 +121,6 @@ class DrivesDialog(Handy.Window):
     def __save(self, widget=False):
         GLib.idle_add(self.__idle_save)
     
-    def __destroy(self, widget=False):
-        self.destroy()
-
     def __idle_populate_vars_list(self):
         '''
         This function populate the list of env vars

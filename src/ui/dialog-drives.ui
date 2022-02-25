@@ -22,14 +22,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="title" translatable="yes">Drives</property>
-            <child>
-              <object class="GtkButton" id="btn_cancel">
-                <property name="label" translatable="yes">Cancel</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-              </object>
-            </child>
+            <property name="show-close-button">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
