@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-25 16:25+0100\n"
-"PO-Revision-Date: 2022-02-20 20:58+0000\n"
+"PO-Revision-Date: 2022-02-27 15:33+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/bottles/bottles/"
 "it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -325,7 +325,7 @@ msgstr "Installatori"
 
 #: src/ui/details-dependencies.ui:246
 msgid "We strongly advise against installing multiple dependencies at once."
-msgstr ""
+msgstr "Sconsigliamo vivamente di installare più dipendenze contemporaneamente."
 
 #: src/ui/details-dependencies.ui:265
 #, fuzzy
@@ -334,7 +334,7 @@ msgstr "Dipendenze"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games Store .."
 
 #: src/ui/details-installers.ui:126 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:93 src/ui/details-installers.ui:160 src/ui/importer.ui:94
@@ -499,55 +499,55 @@ msgstr "Abilita versionamento"
 
 #: src/ui/details-preferences.ui:429
 msgid "Set custom DPI"
-msgstr ""
+msgstr "Imposta DPI personalizzati"
 
 #: src/ui/details-preferences.ui:443
 msgid "96"
-msgstr ""
+msgstr "96"
 
 #: src/ui/details-preferences.ui:444
 msgid "120"
-msgstr ""
+msgstr "120"
 
 #: src/ui/details-preferences.ui:445
 msgid "144"
-msgstr ""
+msgstr "144"
 
 #: src/ui/details-preferences.ui:446
 msgid "168"
-msgstr ""
+msgstr "168"
 
 #: src/ui/details-preferences.ui:447
 msgid "192"
-msgstr ""
+msgstr "192"
 
 #: src/ui/details-preferences.ui:448
 msgid "216"
-msgstr ""
+msgstr "216"
 
 #: src/ui/details-preferences.ui:449
 msgid "240"
-msgstr ""
+msgstr "240"
 
 #: src/ui/details-preferences.ui:450
 msgid "288"
-msgstr ""
+msgstr "288"
 
 #: src/ui/details-preferences.ui:451
 msgid "336"
-msgstr ""
+msgstr "336"
 
 #: src/ui/details-preferences.ui:452
 msgid "384"
-msgstr ""
+msgstr "384"
 
 #: src/ui/details-preferences.ui:453
 msgid "432"
-msgstr ""
+msgstr "432"
 
 #: src/ui/details-preferences.ui:454
 msgid "480"
-msgstr ""
+msgstr "480"
 
 #: src/ui/details-preferences.ui:488 src/ui/details-preferences.ui:845
 #: src/ui/details-preferences.ui:401 src/ui/details-preferences.ui:414
@@ -1135,14 +1135,17 @@ msgid ""
 "\"https://docs.usebottles.com/flatpak/expose-directories\">Flatseal</a> if "
 "the script path is outside the sandbox."
 msgstr ""
+"Stai utilizzando Bottles Flatpak, ricordati di concedergli le autorizzazioni "
+"tramite <a href=\"https://docs.usebottles.com/flatpak/expose-directories\""
+">Flatseal</a> se il percorso dello script è al di fuori della sandbox."
 
 #: src/ui/dialog-launch-options.ui:163
 msgid "Post-run script"
-msgstr ""
+msgstr "Script post-esecuzione"
 
 #: src/ui/dialog-launch-options.ui:165
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Scegli uno script che dovrebbe essere eseguito dopo l'esecuzione."
 
 #: src/ui/importer.ui:20 src/ui/importer.ui:21
 msgid ""
@@ -1323,7 +1326,7 @@ msgstr "Cancellare il messaggio"
 
 #: src/ui/program-entry.ui:20
 msgid "Launch with terminal"
-msgstr ""
+msgstr "Lancia da terminale"
 
 #: src/ui/program-entry.ui:46 src/ui/program-entry.ui:34
 #: src/ui/program-entry.ui:33
@@ -1604,7 +1607,7 @@ msgstr "Avanzate"
 
 #: src/ui/preferences.ui:243
 msgid "Custom bottles path (require restart)"
-msgstr ""
+msgstr "Percorso bottles personalizzato (richiede riavvio)"
 
 #: src/ui/preferences.ui:244
 msgid ""
@@ -1618,6 +1621,9 @@ msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
+"Attenzione: assicurati di dare il permesso al Flatpak per accedere al nuovo "
+"percorso.\n"
+"Questo romperà la sandbox!"
 
 #: src/ui/preferences.ui:353 src/ui/preferences.ui:189
 msgid "Pre-release"
@@ -1649,7 +1655,7 @@ msgstr ""
 
 #: src/ui/preferences.ui:431
 msgid "Runtime"
-msgstr ""
+msgstr "Runtime"
 
 #: src/ui/preferences.ui:440 src/ui/preferences.ui:462
 #, fuzzy
@@ -1658,7 +1664,7 @@ msgstr "Winetricks"
 
 #: src/ui/preferences.ui:463
 msgid "Use WineBridge for process and program management."
-msgstr ""
+msgstr "Usa WineBridge per la gestione dei processi e dei programmi."
 
 #: src/ui/state-entry.ui:86 src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1795,7 +1801,7 @@ msgstr "Generazione configurazione della bottiglia…"
 
 #: src/backend/managers/manager.py:1125
 msgid "Template found, applying…"
-msgstr ""
+msgstr "Modello trovato, applicazione in corso…"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1134 src/backend/managers/manager.py:1100
