@@ -558,7 +558,7 @@ class Manager:
             content = content[position:position+size].split(b'\x00', 1)
 
             decode = locale.getdefaultlocale()[1]
-            if len(content) > 1:
+            if len(content) > 1 or decode is None:
                 decode = 'utf-16'
 
             return content[-1].decode(decode)
