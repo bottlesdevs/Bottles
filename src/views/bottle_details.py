@@ -256,8 +256,9 @@ class BottleView(Gtk.ScrolledWindow):
             w.destroy()
 
         programs = self.manager.get_programs(self.config)
+        hidden = len([x for x in programs if x["removed"]])
 
-        if len(programs) == 0:
+        if len(programs) == 0 or len(programs) == hidden:
             self.group_programs.set_visible(False)
             return
 
