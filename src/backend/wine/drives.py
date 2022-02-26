@@ -54,5 +54,5 @@ class Drives:
         Remove a drive from the bottle
         '''
         if letter.upper() in self.get_all():
-            os.remove(f"{self.dosdevices_path}/{letter}")
+            os.remove(f"{self.dosdevices_path}/{letter.lower()}:")
             logging.info(f"Drive {letter} removed from the bottle")

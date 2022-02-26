@@ -26,7 +26,8 @@ class Snake:
     def generate_food(self):
         self.food = [int(random.random() * 20), int(random.random() * 20)]
         while self.food in self.snake:
-            self.food = [int(random.random() * 20), int(random.random() * 20)]
+            bounds = self.stdscr.getmaxyx()
+            self.food = [int(random.random() * (bounds[0] - 2)) + 1, int(random.random() * (bounds[1] - 2)) + 1]
 
     def draw(self):
         self.stdscr.clear()
@@ -36,11 +37,13 @@ class Snake:
             f'Score: {self.score}',
             curses.color_pair(3)
         )
+
         for i, j in self.snake:
             try:
                 self.stdscr.addstr(i, j, '◍', curses.color_pair(1))
             except:
                 self.is_running = False
+
         self.stdscr.addstr(self.food[0], self.food[1], '🍎', curses.color_pair(2))
         self.stdscr.refresh()
     
