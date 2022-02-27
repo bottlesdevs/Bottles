@@ -561,7 +561,10 @@ class Manager:
             if len(content) > 1 or decode is None:
                 decode = 'utf-16'
 
-            return content[-1].decode(decode)
+            try:
+                return content[-1].decode(decode)
+            except UnicodeDecodeError:
+                return None
 
     def launch_layer_program(self, config, layer):
         '''
@@ -658,6 +661,8 @@ class Manager:
             skip if the path contains the "Uninstall" word.
             '''
             executable_path = self.__getLnkData(program)
+            if executable_path is None:
+                continue
             executable_name = executable_path.split("\\")[-1]
             program_folder = self.__get_exe_parent_dir(
                 config,
