@@ -38,7 +38,7 @@ class TerminalUtils():
     terminals = [
         ['easyterm.py', '-d -p "%s" -c %s'],
         ['xterm', '-e %s'],
-        ['konsole', '-e %s'],
+        ['konsole', '-e --noclose %s'],
         ['gnome-terminal', '-- %s'],
         ['xfce4-terminal', '-e %s'],
         ['mate-terminal', '--command %s'],
