@@ -126,6 +126,7 @@
                 <li>Fixed programs ignored_patterns, which was allowing unins* files to be listed in programs view</li>
                 <li>Fixed a bug with DLL components which was not ensuring the prefix was updated before registering DLL overrides</li>
                 <li>Fixed winbind issue (Thanks to @arashsm79)</li>
+                <li>Fixed a bug with hidden programs, which were not excluded from is_alive check</li>
             </ul>
 
             <p>Translations</p>

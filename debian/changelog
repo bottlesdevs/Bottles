@@ -30,6 +30,7 @@ com.usebottles.bottles (2022.2.28-trento) precise; urgency=low
   * Fixed programs ignored_patterns, which was allowing unins* files to be listed in programs view
   * Fixed a bug with DLL components which was not ensuring the prefix was updated before registering DLL overrides
   * Fixed winbind issue (Thanks to @arashsm79)
+  * Fixed a bug with hidden programs, which were not excluded from is_alive check
   * Czech translations thanks to @panmourovaty, @uzu128, @tuzu128
   * French translations thanks to @julroy67
   * Italian translations thanks to @albanobattistella, @phaerrax
