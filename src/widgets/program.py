@@ -99,7 +99,8 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
 
-        self.__is_alive()
+        if not program.get("removed"):
+            self.__is_alive()
 
     '''Show dialog for launch options'''
 
