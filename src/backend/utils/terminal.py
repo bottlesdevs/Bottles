@@ -37,6 +37,7 @@ class TerminalUtils():
 
     terminals = [
         ['easyterm.py', '-d -p "%s" -c %s'],
+        ['kitty', '%s'],
         ['xterm', '-e %s'],
         ['konsole', '-e --noclose %s'],
         ['gnome-terminal', '-- %s'],
@@ -77,6 +78,8 @@ class TerminalUtils():
                 command = ' '.join(self.terminal) % (colors, f"bash")
         elif self.terminal[0] == 'xfce4-terminal':
             command = ' '.join(self.terminal) % "'sh -c %s'" % f'"{command}"'
+        elif self.terminal[0] == 'kitty':
+            command = ' '.join(self.terminal) % "sh -c %s" % f'"{command}"'
         else:
             command = ' '.join(self.terminal) % f"'bash -c {command}'"
 
