@@ -272,9 +272,10 @@ class WineCommand:
             If the runner is Proton, set the pat to /dist or /files 
             based on check if files exists.
             '''
-            runner = f"{runner}/files"
+            _runner = f"{runner}/files"
             if os.path.exists(f"{Paths.runners}/{runner}/dist"):
-                runner = f"{runner}/dist"
+                _runner = f"{runner}/dist"
+            runner = _runner
 
         if runner.startswith("sys-"):
             '''
