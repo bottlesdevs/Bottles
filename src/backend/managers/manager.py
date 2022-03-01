@@ -51,7 +51,8 @@ from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
 from bottles.backend.wine.uninstaller import Uninstaller
-from bottles.backend.wine.wineboot import WineBoot 
+from bottles.backend.wine.wineboot import WineBoot
+from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 
@@ -1134,6 +1135,7 @@ class Manager:
         reg = Reg(config)
         rk = RegKeys(config)
         wineboot = WineBoot(config)
+        wineserver = WineServer(config)
 
         # execute wineboot on the bottle path
         log_update(_("The WINE config is being updated…"))
@@ -1150,7 +1152,7 @@ class Manager:
             if sandbox:
                 log_update(_("Sandboxing userdir…"))
             users_dir = glob(f"{bottle_complete_path}/drive_c/users/*/*")
-            users_dir+= glob(f"{bottle_complete_path}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/*")
+            users_dir += glob(f"{bottle_complete_path}/drive_c/users/*/AppData/Roaming/Microsoft/Windows/*")
 
             for user_path in users_dir:
                 if os.path.islink(user_path):
@@ -1197,6 +1199,9 @@ class Manager:
         if environment not in ["Custom", "Layered"]:
             env = Samples.environments[environment.lower()]
             wineboot.kill()
+
+            while wineserver.is_alive():
+                time.sleep(1)
             
             for prm in config["Parameters"]:
                 if prm in env["Parameters"]:
