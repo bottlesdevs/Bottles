@@ -20,6 +20,7 @@ import yaml
 import uuid
 import shutil
 from datetime import datetime
+from pathlib import Path
 
 from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils
@@ -61,7 +62,28 @@ class TemplateManager:
             yaml.dump(template, f)
         
         logging.info("Template created successfully!")
-    
+
+        if not TemplateManager.__validate_template(_uuid):
+            logging.error("Template validation failed, will retry with next bottle.")
+            shutil.rmtree(_path)
+
+    @staticmethod
+    def __validate_template(template_uuid: str):
+        # TODO: just a workaround, need to be improved
+        result = True
+        template_path = f"{Paths.templates}/{template_uuid}"
+
+        if not os.path.exists(template_path):
+            logging.error(f"Template {template_uuid} not found!")
+            result = False
+
+        path_size = sum(file.stat().st_size for file in Path(template_path).rglob('*'))
+        if path_size < 300000000:
+            logging.error(f"Template {template_uuid} is too small!")
+            result = False
+
+        return result
+
     @staticmethod
     def get_template_manifest(template: str):
         with open(f"{Paths.templates}/{template}/template.yml", "r") as f:
