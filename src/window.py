@@ -19,7 +19,7 @@ import os
 import time
 import webbrowser
 from gettext import gettext as _
-from gi.repository import Gtk, Gio, Notify, Handy
+from gi.repository import Gtk, Gio, Handy
 from pathlib import Path
 
 from bottles.params import * # pyright: reportMissingImports=false
@@ -78,9 +78,6 @@ class MainWindow(Handy.ApplicationWindow):
     default_settings = Gtk.Settings.get_default()
     settings = Gio.Settings.new(APP_ID)
     argument_executed = False
-
-    # Notify instance
-    Notify.init(APP_ID)
 
     def __init__(self, arg_exe, arg_bottle, arg_passed, **kwargs):
         super().__init__(**kwargs)
@@ -237,13 +234,18 @@ class MainWindow(Handy.ApplicationWindow):
     def send_notification(self, title, text, image="", ignore_user=True):
         '''
         This method is used to send a notification to the user using
-        the Notify instance. The notification is sent only if the
+        Gio.Notification. The notification is sent only if the
         user has enabled it in the settings. It is possibile to ignore the
         user settings by passing the argument ignore_user=False.
         '''
         if ignore_user or self.settings.get_boolean("notifications"):
-            notification = Notify.Notification.new(title, text, image)
-            notification.show()
+            notification = Gio.Notification.new(title)
+            notification.set_body(text)
+            if image:
+                icon = Gio.ThemedIcon.new(image)
+                notification.set_icon(icon)
+
+            self.props.application.send_notification(None, notification)
 
     def set_previous_page_status(self):
         '''
