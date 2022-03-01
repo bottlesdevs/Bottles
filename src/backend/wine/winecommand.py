@@ -267,7 +267,7 @@ class WineCommand:
         if runner in [None, ""]:
             return
 
-        if runner.startswith("Proton"):
+        if "Proton" in runner:
             '''
             If the runner is Proton, set the pat to /dist or /files 
             based on check if files exists.
