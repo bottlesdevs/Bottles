@@ -64,13 +64,21 @@ class JournalManager:
         '''
         journal = JournalManager.__get_journal()
         old_events = []
+        latest = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         for event_id, event in journal.items():
-            timestamp = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S")
-            if timestamp < datetime.now() - timedelta(days=30):
+            if event.get("timestamp", None) is None:
+                latest_datetime = datetime.strptime(latest, "%Y-%m-%d %H:%M:%S")
+            else:
+                latest_datetime = datetime.strptime(event["timestamp"], "%Y-%m-%d %H:%M:%S")
+                latest = event["timestamp"]
+
+            if latest_datetime < datetime.now() - timedelta(days=30):
                 old_events.append(event_id)
+
         for event_id in old_events:
             del journal[event_id]
+
         JournalManager.__save_journal(journal)
 
     @staticmethod
