@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import shlex
 import shutil
 import subprocess
 from gettext import gettext as _
@@ -24,20 +25,25 @@ from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 
 logging = Logger()
 
-class CabExtract():
+
+class CabExtract:
     '''
     This class is used to extract a Windows cabinet file.
     It takes the cabinet file path and the destination name as input. Then it
     extracts the file in a new directory with the input name under the Bottles'
     temp directory.
     '''
-    requirements = False
+    requirements: bool = False
+    path: str
+    name: str
+    files: list
+    destination: str
 
     def run(self, path: str, name: str = "", files: list = [], destination: str = ""):
         self.path = path
         self.name = name
         self.files = files
-        self.destination = destination
+        self.destination = shlex.quote(destination)
         self.name = self.name.replace(".", "_")
 
         if not self.__checks():

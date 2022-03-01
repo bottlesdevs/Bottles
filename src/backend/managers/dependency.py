@@ -490,8 +490,8 @@ class DependencyManager:
         if rename:
             _file_name = file_name.split("/")[-1]
             shutil.move(
-                f"{dest}/{_file_name}",
-                f"{dest}/{rename}"
+                os.path.join(dest, _file_name),
+                os.path.join(dest, rename)
             )
 
         if not res:
