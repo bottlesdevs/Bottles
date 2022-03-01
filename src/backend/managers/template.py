@@ -49,7 +49,7 @@ class TemplateManager:
         ]
         _path = f"{Paths.templates}/{_uuid}"
         logging.info("Copying files …")
-        shutil.copytree(bottle, _path, symlinks=False, ignore=shutil.ignore_patterns(*ignored))
+        shutil.copytree(bottle, _path, symlinks=True, ignore=shutil.ignore_patterns(*ignored))
 
         template = {
             "uuid": _uuid,
