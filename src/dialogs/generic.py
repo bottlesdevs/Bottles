@@ -230,14 +230,12 @@ class Dialog(Gtk.Dialog):
             If log is defined, display it as output, also change the
             the foreground according to the user preferences.
             '''
-            is_night = False
-            if parent is not None and parent.settings.get_boolean("night-theme"):
-                is_night = True
+            is_dark = Handy.StyleManager.get_default().get_dark()
 
             self.resize(600, 700)
             color = "#3e0622"
 
-            if is_night:
+            if is_dark:
                 color = "#d4036d"
                 stylesheet = WebKit2.UserStyleSheet(
                     "body { color: #fff; background-color: #242424; }",
@@ -264,7 +262,7 @@ class Dialog(Gtk.Dialog):
 
             if html:
                 ucntm = WebKit2.UserContentManager()
-                if is_night:
+                if is_dark:
                     ucntm.add_style_sheet(stylesheet)
                 webview = WebKit2.WebView(
                     user_content_manager=ucntm
