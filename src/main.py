@@ -73,6 +73,7 @@ class Bottles(Gtk.Application):
     arg_exe = False
     arg_bottle = False
     arg_passed = False
+    dark_provider = None
 
     def __init__(self):
         super().__init__(
@@ -184,6 +185,14 @@ class Bottles(Gtk.Application):
         manager = Handy.StyleManager.get_default()
         manager.set_color_scheme(Handy.ColorScheme.PREFER_LIGHT)
 
+        # TODO AdwApplication manages this automatically for us.
+        self.dark_provider = Gtk.CssProvider()
+        self.dark_provider.load_from_resource(
+            "/com/usebottles/bottles/style-dark.css"
+        )
+        self.__update_dark_style(manager)
+        manager.connect("notify::dark", self.__update_dark_style)
+
     def do_activate(self):
         '''
         This function is called when the application is activated.
@@ -288,6 +297,23 @@ class Bottles(Gtk.Application):
             self.add_action(simple_action)
             if accel is not None:
                 self.set_accels_for_action(*accel)
+
+    def __update_dark_style(self, style_manager, pspec=None):
+        """
+        Loads style-dark.css when we enter dark mode.
+        """
+        is_dark = style_manager.get_dark()
+        screen = Gdk.Screen.get_default()
+
+        if is_dark:
+            Gtk.StyleContext.add_provider_for_screen(
+                screen, self.dark_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION + 1
+            )
+        else:
+            Gtk.StyleContext.remove_provider_for_screen(
+                screen, self.dark_provider
+            )
 
 
 GObject.threads_init()
