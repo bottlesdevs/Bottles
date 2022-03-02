@@ -29,7 +29,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
     __gtype_name__ = 'PreferencesWindow'
 
     # region Widgets
-    switch_theme = Gtk.Template.Child()
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
@@ -71,9 +70,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
             self.btn_bottles_path_reset.set_visible(True)
 
         # set widget defaults
-        self.switch_theme.set_active(
-            self.settings.get_boolean("night-theme")
-        )
         self.switch_notifications.set_active(
             self.settings.get_boolean("notifications")
         )
@@ -101,7 +97,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.populate_latencyflex_list()
 
         # connect signals
-        self.switch_theme.connect('state-set', self.__toggle_night)
         self.switch_notifications.connect('state-set', self.__toggle_notify)
         self.switch_temp.connect('state-set', self.__toggle_temp)
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
@@ -113,13 +108,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
         if not SteamManager.is_steam_supported():
             self.switch_steam.set_sensitive(False)
-
-    def __toggle_night(self, widget, state):
-        self.settings.set_boolean("night-theme", state)
-        self.default_settings.set_property(
-            "gtk-application-prefer-dark-theme",
-            state
-        )
 
     def __toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)
