@@ -87,10 +87,9 @@ class MainWindow(Handy.ApplicationWindow):
         self.manager = Manager(self)
 
         # Set night theme according to user settings
-        self.default_settings.set_property(
-            "gtk-application-prefer-dark-theme",
-            self.settings.get_boolean("night-theme")
-        )
+        if self.settings.get_boolean("dark-theme"):
+            manager = Handy.StyleManager.get_default()
+            manager.set_color_scheme(Handy.ColorScheme.FORCE_DARK)
 
         # Validate arg_exe extension
         if not str(arg_exe).endswith(EXECUTABLE_EXTS):

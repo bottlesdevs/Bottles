@@ -2,7 +2,7 @@
   "id": "com.usebottles.bottles",
   "sdk": "org.gnome.Sdk",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "41",
+  "runtime-version": "42",
   "base": "org.winehq.Wine",
   "base-version": "stable-21.08",
   "command": "bottles",
@@ -32,11 +32,11 @@
   "add-extensions": {
     "org.gnome.Platform.Compat.i386": {
       "directory": "lib/i386-linux-gnu",
-      "version": "41"
+      "version": "42"
     },
     "org.gnome.Platform.Compat.i386.Debug": {
       "directory": "lib/debug/lib/i386-linux-gnu",
-      "version": "41",
+      "version": "42",
       "no-autodownload": true
     },
     "com.valvesoftware.Steam.Utility": {

@@ -26,7 +26,7 @@ from os import path
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 gi.require_version('WebKit2', '4.0')
-from gi.repository import Gtk, Gio, Gdk, GLib, GObject
+from gi.repository import Gtk, Gio, Gdk, GLib, GObject, Handy
 
 from bottles.params import *
 from bottles.backend.logger import Logger
@@ -178,6 +178,11 @@ class Bottles(Gtk.Application):
         '''
         Gtk.Application.do_startup(self)
         self.__register_actions()
+
+        # Opt-in to follow dark mode user preference.
+        # TODO Remove after porting to libadwaita.
+        manager = Handy.StyleManager.get_default()
+        manager.set_color_scheme(Handy.ColorScheme.PREFER_LIGHT)
 
     def do_activate(self):
         '''
