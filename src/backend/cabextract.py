@@ -27,12 +27,12 @@ logging = Logger()
 
 
 class CabExtract:
-    '''
+    """
     This class is used to extract a Windows cabinet file.
     It takes the cabinet file path and the destination name as input. Then it
     extracts the file in a new directory with the input name under the Bottles'
     temp directory.
-    '''
+    """
     requirements: bool = False
     path: str
     name: str

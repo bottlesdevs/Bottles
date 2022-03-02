@@ -24,7 +24,7 @@ from functools import lru_cache
 from typing import Union, NewType
 from gi.repository import GLib
 
-from bottles.operation import OperationManager # pyright: reportMissingImports=false
+from bottles.operation import OperationManager  # pyright: reportMissingImports=false
 from bottles.backend.utils.generic import validate_url
 from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
@@ -33,7 +33,7 @@ from bottles.backend.cabextract import CabExtract
 from bottles.backend.globals import Paths
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
-from bottles.backend.wine.winedbg import WineDbg 
+from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.executor import WineExecutor
@@ -58,12 +58,12 @@ class DependencyManager:
         return self.__repo.get(name, plain)
 
     @lru_cache
-    def fetch_catalog(self) -> list:
-        '''
-        This function fetch all dependencies from the Bottles repository
+    def fetch_catalog(self) -> dict:
+        """
+        Fetch all dependencies from the Bottles repository
         and return these as a dictionary. It also returns an empty dictionary
         if there are no dependencies or fails to fetch them.
-        '''
+        """
         if not self.__utils_conn.check_connection():
             return {}
 
@@ -72,20 +72,20 @@ class DependencyManager:
 
         for dependency in index.items():
             catalog[dependency[0]] = dependency[1]
-            
+
         catalog = dict(sorted(catalog.items()))
         return catalog
 
     def install(
-        self,
-        config: BottleConfig,
-        dependency: list,
-        reinstall: bool = False
+            self,
+            config: BottleConfig,
+            dependency: list,
+            reinstall: bool = False
     ) -> Result:
-        '''
-        This function install a given dependency in a bottle. It will
+        """
+        Install a given dependency in a bottle. It will
         return True if the installation was successful.
-        '''
+        """
         task_id = str(uuid.uuid4())
         uninstaller = True
 
@@ -102,7 +102,7 @@ class DependencyManager:
             )
 
         GLib.idle_add(
-            self.__operation_manager.new_task, task_id, dependency[0],  False
+            self.__operation_manager.new_task, task_id, dependency[0], False
         )
 
         logging.info(
@@ -123,7 +123,7 @@ class DependencyManager:
                 message=f"Cannot find manifest for {dependency[0]}."
             )
 
-        if  manifest.get("Dependencies"):
+        if manifest.get("Dependencies"):
             '''
             If the manifest has dependencies, we need to install them
             before installing the current one.
@@ -153,7 +153,7 @@ class DependencyManager:
                 uninstaller = False
 
         if dependency[0] not in config.get("Installed_Dependencies") \
-            or reinstall:
+                or reinstall:
             '''
             If the dependency is not already listed in the installed
             dependencies list of the bottle, add it.
@@ -162,7 +162,7 @@ class DependencyManager:
 
             if config.get("Installed_Dependencies"):
                 dependencies = config["Installed_Dependencies"] + \
-                    [dependency[0]]
+                               [dependency[0]]
 
             self.__manager.update_config(
                 config=config,
@@ -200,9 +200,9 @@ class DependencyManager:
         )
 
     def __perform_steps(
-        self, 
-        config:BottleConfig, 
-        step:dict
+            self,
+            config: BottleConfig,
+            step: dict
     ) -> bool:
         """
         This method execute a step in the bottle (e.g. changing the Windows
@@ -211,7 +211,7 @@ class DependencyManager:
         Returns True if the dependency cannot be uninstalled.
         """
         uninstaller = True
-        
+
         if step["action"] == "download_archive":
             if not self.__step_download_archive(step):
                 return Result(status=False)
@@ -236,7 +236,7 @@ class DependencyManager:
 
         if step["action"] == "get_from_cab":
             uninstaller = False
-            if not self.__step_get_from_cab(config=config, step=step):
+            if not self.__step_get_from_cab(self, config=config, step=step):
                 return Result(status=False)
 
         if step["action"] == "archive_extract":
@@ -251,7 +251,7 @@ class DependencyManager:
 
         if step["action"] in ["copy_dll", "copy_file"]:
             uninstaller = False
-            if not self.__step_copy_dll(config=config, step=step):
+            if not self.__step_copy_dll(self, config=config, step=step):
                 return Result(status=False)
 
         if step["action"] == "override_dll":
@@ -289,22 +289,47 @@ class DependencyManager:
                 config=config,
                 step=step
             )
-        
+
         return Result(
             status=True,
             data={"uninstaller": uninstaller}
         )
 
+    @staticmethod
+    def __get_real_dest(config: BottleConfig, dest: str) -> Union[str,  bool]:
+        """This function return the real destination path."""
+        bottle = ManagerUtils.get_bottle_path(config)
+        _dest = dest
+
+        if dest.startswith("temp/"):
+            dest = dest.replace("temp/", f"{Paths.temp}/")
+        elif dest.startswith("windows/"):
+            dest = f"{bottle}/drive_c/{dest}"
+        elif dest.startswith("win32"):
+            dest = f"{bottle}/drive_c/windows/system32/"
+            if config.get("Arch") == "win64":
+                dest = f"{bottle}/drive_c/windows/syswow64/"
+            dest = _dest.replace("win32", dest)
+        elif dest.startswith("win64"):
+            if config.get("Arch") == "win64":
+                dest = f"{bottle}/drive_c/windows/system32/"
+                dest = _dest.replace("win64", dest)
+            else:
+                return True
+        else:
+            logging.error("Destination path not supported!")
+            return False
+
+        return dest
 
     def __step_download_archive(self, step: dict):
-        '''
+        """
         This function download an archive from the given step.
         Can be used for any file type (cab, zip, ...). Please don't
         use this method for exe/msi files as the install_exe already
         download the exe/msi file before installation.
-        '''
+        """
         download = self.__manager.component_manager.download(
-            component="dependency",
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
@@ -313,13 +338,11 @@ class DependencyManager:
 
         return download
 
-    def __step_delete_sys32_dlls(self, config: BottleConfig, dlls: list):
-        '''
-        This function deletes the given dlls from the system32 folder
-        of the bottle.
-        '''
+    @staticmethod
+    def __step_delete_sys32_dlls(config: BottleConfig, dlls: list):
+        """Deletes the given dlls from the system32 folder"""
         path = ManagerUtils.get_bottle_path(config)
-        
+
         for dll in dlls:
             try:
                 logging.info(
@@ -336,22 +359,17 @@ class DependencyManager:
                         config['Name'],
                     )
                 )
-        
+
         # return True in both cases, has it is a non-critical error
         return True
 
-    def __step_install_exe_msi(
-        self,
-        config: BottleConfig,
-        step: dict
-    ) -> bool:
-        '''
-        This function download and install the .exe or .msi file
+    def __step_install_exe_msi(self, config: BottleConfig, step: dict) -> bool:
+        """
+        Download and install the .exe or .msi file
         declared in the step, in a bottle.
-        '''     
-        winedbg = WineDbg(config)       
+        """
+        winedbg = WineDbg(config)
         download = self.__manager.component_manager.download(
-            component="dependency",
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
@@ -379,19 +397,20 @@ class DependencyManager:
 
         return False
 
-    def __step_uninstall(self, config: BottleConfig, file_name: str) -> bool:
-        '''
+    @staticmethod
+    def __step_uninstall(config: BottleConfig, file_name: str) -> bool:
+        """
         This function find an uninstaller in the bottle by the given
         file name and execute it.
-        '''
+        """
         Uninstaller(config).from_name(file_name)
         return True
 
     def __step_cab_extract(self, step: dict):
-        '''
+        """
         This function download and extract a Windows Cabinet to the
         temp folder.
-        '''
+        """
         dest = step.get("dest")
         if dest.startswith("temp/"):
             dest = dest.replace("temp/", f"{Paths.temp}/")
@@ -401,7 +420,6 @@ class DependencyManager:
 
         if validate_url(step["url"]):
             download = self.__manager.component_manager.download(
-                component="dependency",
                 download_url=step.get("url"),
                 file=step.get("file_name"),
                 rename=step.get("rename"),
@@ -415,16 +433,16 @@ class DependencyManager:
                     file = step.get("file_name")
 
                 if not CabExtract().run(
-                    path=f"{Paths.temp}/{file}",
-                    name=file,
-                    destination=dest
+                        path=f"{Paths.temp}/{file}",
+                        name=file,
+                        destination=dest
                 ):
                     return False
 
                 if not CabExtract().run(
-                    f"{Paths.temp}/{file}",
-                    os.path.splitext(f"{file}")[0],
-                    destination=dest
+                        f"{Paths.temp}/{file}",
+                        os.path.splitext(f"{file}")[0],
+                        destination=dest
                 ):
                     return False
 
@@ -440,46 +458,20 @@ class DependencyManager:
                     f"{step.get('file_name')}")[0]
 
             if not CabExtract().run(
-                f"{path}/{step.get('file_name')}",
-                file_path
+                    f"{path}/{step.get('file_name')}",
+                    file_path
             ):
                 return False
-        
+
         return True
 
-    def __step_get_from_cab(
-        self,
-        config: BottleConfig,
-        step: dict
-    ):
-        '''
-        This function take a file from a cab file and extract it to
-        the defined path.
-        '''
+    @staticmethod
+    def __step_get_from_cab(self, config: BottleConfig, step: dict):
+        """Take a file from a cabiner and extract to a path."""
         source = step.get("source")
         file_name = step.get("file_name")
-        dest = step.get("dest")
-        bottle = ManagerUtils.get_bottle_path(config)
         rename = step.get("rename")
-
-        if dest.startswith("temp/"):
-            dest = dest.replace("temp/", f"{Paths.temp}/")
-        elif dest.startswith("windows/"):
-            dest = f"{bottle}/drive_c/{dest}"
-        elif dest.startswith("win32"):
-            dest = f"{bottle}/drive_c/windows/system32/"
-            if config.get("Arch") == "win64":
-                dest = f"{bottle}/drive_c/windows/syswow64/"
-            dest = step.get("dest").replace("win32", dest)
-        elif dest.startswith("win64"):
-            if config.get("Arch") == "win64":
-                dest = f"{bottle}/drive_c/windows/system32/"
-                dest = step.get("dest").replace("win64", dest)
-            else:
-                return True
-        else:
-            logging.error("Destination path not supported!")
-            return False
+        dest = self.__get_real_dest(config, step.get("dest"))
 
         res = CabExtract().run(
             path=f"{Paths.temp}/{source}",
@@ -499,12 +491,8 @@ class DependencyManager:
         return True
 
     def __step_archive_extract(self, step: dict):
-        '''
-        This function download and extract the archive declared
-        in the step, in the temp folder.
-        '''
+        """Download and extract an archive to the temp folder."""
         download = self.__manager.component_manager.download(
-            component="dependency",
             download_url=step.get("url"),
             file=step.get("file_name"),
             rename=step.get("rename"),
@@ -532,14 +520,12 @@ class DependencyManager:
             except:
                 return False
             return True
-        
+
         return False
 
-    def __step_install_fonts(self, config: BottleConfig, step: dict):
-        '''
-        This function copy the fonts declared in the step in
-        the bottle drive_c/windows/Fonts path.
-        '''
+    @staticmethod
+    def __step_install_fonts(config: BottleConfig, step: dict):
+        """Move fonts to the drive_c/windows/Fonts path."""
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
         bottle_path = ManagerUtils.get_bottle_path(config)
@@ -551,39 +537,21 @@ class DependencyManager:
 
             shutil.copyfile(f"{path}/{font}", f"{font_path}/{font}")
             print(f"Copying {font} to {bottle_path}/drive_c/windows/Fonts/")
-        
+
         return True
 
     def __step_copy_dll(self, config: BottleConfig, step: dict):
-        '''
+        """
         This function copy dlls from temp folder to a directory
         declared in the step. The bottle drive_c path will be used as
         root path.
-        '''
-        bottle = ManagerUtils.get_bottle_path(config)
+        """
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
-        bottle_path = ManagerUtils.get_bottle_path(config)
-        dest = step.get('dest')
+        dest = self.__get_real_dest(config, step.get("dest"))
 
-        if dest.startswith("temp/"):
-            dest = dest.replace("temp/", f"{Paths.temp}/")
-        elif dest.startswith("windows/"):
-            dest = f"{bottle}/drive_c/{dest}"
-        elif dest.startswith("win32"):
-            dest = f"{bottle}/drive_c/windows/system32/"
-            if config.get("Arch") == "win64":
-                dest = f"{bottle}/drive_c/windows/syswow64/"
-            dest = step.get("dest").replace("win32", dest)
-        elif dest.startswith("win64"):
-            if config.get("Arch") == "win64":
-                dest = f"{bottle}/drive_c/windows/system32/"
-                dest = step.get("dest").replace("win64", dest)
-            else:
-                return True
-        else:
-            logging.error("Destination path not supported!")
-            return False
+        if isinstance(dest, bool):
+            return dest
 
         try:
             if "*" in step.get('file_name'):
@@ -612,14 +580,12 @@ class DependencyManager:
         except Exception as e:
             print(e)
             return False
-        
+
         return True
 
-    def __step_override_dll(self, config: BottleConfig, step: dict):
-        '''
-        This function register a new override for each dll declared
-        in the step, for a bottle.
-        '''
+    @staticmethod
+    def __step_override_dll(config: BottleConfig, step: dict):
+        """Register a new override for each dll."""
         reg = Reg(config)
 
         if step.get("url") and step.get("url").startswith("temp/"):
@@ -645,11 +611,9 @@ class DependencyManager:
         )
         return True
 
-    def __step_set_register_key(self, config: BottleConfig, step: dict):
-        '''
-        This function set a register key in the bottle registry. It is
-        just a mirror of the reg_add function from the manager. 
-        '''
+    @staticmethod
+    def __step_set_register_key(config: BottleConfig, step: dict):
+        """Set a registry key."""
         reg = Reg(config)
         reg.add(
             key=step.get("key"),
@@ -659,11 +623,9 @@ class DependencyManager:
         )
         return True
 
-    def __step_register_font(self, config: BottleConfig, step: dict):
-        '''
-        This function register a font in the bottle registry. It is
-        important to make the font available in the system.
-        '''
+    @staticmethod
+    def __step_register_font(config: BottleConfig, step: dict):
+        """Register a font in the registry."""
         reg = Reg(config)
         reg.add(
             key="HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts",
@@ -672,11 +634,9 @@ class DependencyManager:
         )
         return True
 
-    def __step_replace_font(self, config: BottleConfig, step: dict):
-        '''
-        This function replace the font declared in the step in
-        the bottle registry.
-        '''
+    @staticmethod
+    def __step_replace_font(config: BottleConfig, step: dict):
+        """Register a font replacement in the registry."""
         reg = Reg(config)
         replaces = step.get("replace")
 
@@ -695,19 +655,16 @@ class DependencyManager:
                 )
         return True
 
-    def __step_set_windows(self, config: BottleConfig, step: dict):
-        '''
-        This function set the windows version in the bottle registry.
-        '''
+    @staticmethod
+    def __step_set_windows(config: BottleConfig, step: dict):
+        """Set the Windows version."""
         rk = RegKeys(config)
         rk.set_windows(step.get("version"))
         return True
 
-    def __step_use_windows(self, config: BottleConfig, step: dict):
-        '''
-        This function set the windows version for a specifc executable 
-        in the bottle registry.
-        '''
+    @staticmethod
+    def __step_use_windows(config: BottleConfig, step: dict):
+        """Set a Windows version per program."""
         rk = RegKeys(config)
         rk.set_app_default(step.get("version"), step.get("executable"))
         return True

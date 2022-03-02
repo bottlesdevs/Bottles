@@ -52,11 +52,10 @@ class ComponentManager:
 
     @lru_cache
     def fetch_catalog(self) -> dict:
-        '''
-        This function fetch all components from the Bottles repository
-        and mark the installed ones. Then return a dictionary with all
-        the components, divided by type.
-        '''
+        """
+        Fetch all components from the Bottles repository, mark the installed
+        ones and return a dict with the catalog.
+        """
         if not self.__utils_conn.check_connection():
             return {}
 
@@ -124,13 +123,14 @@ class ComponentManager:
 
     def download(
         self,
-        component: str,
         download_url: str,
         file: str,
         rename: bool = False,
         checksum: bool = False,
         func=False
     ) -> bool:
+        """Download a component from the Bottles repository."""
+
         # Check for missing Bottles paths before download
         self.__manager.check_app_dirs()
 
@@ -197,31 +197,28 @@ class ComponentManager:
                 )
                 download_url = response.url
                 req_code = response.status_code
-            except:
+            except requests.exceptions.RequestException:
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
             if req_code == 200:
-                '''
+                """
                 If the status code is 200, the resource should be available
                 and the download should be started. Any exceptions return
                 False and the download is removed from the download manager.
-                '''
-                try:
-                    Downloader(
-                        url=download_url,
-                        file=f"{Paths.temp}/{file}",
-                        func=update_func
-                    ).download()
-                except:
+                """
+                res = Downloader(
+                    url=download_url,
+                    file=f"{Paths.temp}/{file}",
+                    func=update_func
+                ).download()
+
+                if not res:
                     GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
                 if not os.path.isfile(f"{Paths.temp}/{file}"):
-                    '''
-                    If the file is not available in the /temp directory,
-                    then the download failed.
-                    '''
+                    """Fail if the file is not available in the /temp directory."""
                     GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
@@ -231,7 +228,7 @@ class ComponentManager:
                 return False
 
         if rename and just_downloaded:
-            # Rename the downloaded file if the caller asked for it.
+            """Renaming the downloaded file if requested."""
             logging.info(f"Renaming [{file}] to [{rename}].")
             file_path = f"{Paths.temp}/{rename}"
             os.rename(f"{Paths.temp}/{file}", file_path)
@@ -239,42 +236,43 @@ class ComponentManager:
             file_path = f"{Paths.temp}/{existing_file}"
 
         if checksum:
-            '''
+            """
             Compare the checksum of the downloaded file with the one
             provided by the caller. If they don't match, remove the
             file from the /temp directory, remove the entry from the
             download manager and return False.
-            '''
+            """
             checksum = checksum.lower()
             local_checksum = FileUtils().get_checksum(file_path)
 
             if local_checksum != checksum:
                 logging.error(f"Downloaded file [{file}] looks corrupted.")
-                logging.error(
-                    f"Source cksum: [{checksum}] downloaded: [{local_checksum}]"
-                )
+                logging.error(f"Source cksum: [{checksum}] downloaded: [{local_checksum}]")
                 logging.info(f"Removing corrupted file [{file}].")
                 os.remove(file_path)
-
-                #os.remove(file_path)
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
         GLib.idle_add(self.__operation_manager.remove_task, task_id)
         return True
 
-    def extract(self, name: str, component: str, archive: str) -> True:
-        # Set the destination path according to the component type
+    @staticmethod
+    def extract(name: str, component: str, archive: str) -> True:
+        """Extract a component from an archive."""
+
         if component in ["runner", "runner:proton"]:
             path = Paths.runners
-        if component == "dxvk":
+        elif component == "dxvk":
             path = Paths.dxvk
-        if component == "vkd3d":
+        elif component == "vkd3d":
             path = Paths.vkd3d
-        if component == "nvapi":
+        elif component == "nvapi":
             path = Paths.nvapi
-        if component == "runtime":
+        elif component == "runtime":
             path = Paths.runtimes
+        else:
+            logging.error(f"Unknown component [{component}].")
+            return False
 
         try:
             '''
@@ -323,7 +321,7 @@ class ComponentManager:
                     src=f"{path}/{root_dir}",
                     dst=f"{path}/{root_dir[:-7]}"
                 )
-            except:
+            except (FileExistsError, shutil.Error):
                 logging.error("Extraction failed! Component already exists.")
                 return False
         return True
@@ -332,15 +330,13 @@ class ComponentManager:
         self,
         component_type: str,
         component_name: str,
-        after=False,
         func=False,
-        checks=True
     ):
-        '''
+        """
         This function is used to install a component. It automatically
-        get the manifest from the given component and then calls the
+        gets the manifest from the given component and then calls the
         download and extract functions.
-        '''
+        """
         manifest = self.get_component(component_name)
 
         if not manifest:
@@ -350,7 +346,6 @@ class ComponentManager:
 
         # Download component
         download = self.download(
-            component=component_type,
             download_url=manifest["File"][0]["url"],
             file=manifest["File"][0]["file_name"],
             rename=manifest["File"][0]["rename"],
@@ -419,21 +414,22 @@ class ComponentManager:
 
         return Result(True)
 
-    def __post_rename(self, component_type: str, post: dict):
+    @staticmethod
+    def __post_rename(component_type: str, post: dict):
         source = post.get("source")
         dest = post.get("dest")
 
         if component_type in ["runner", "runner:proton"]:
             path = Paths.runners
-
-        if component_type == "dxvk":
+        elif component_type == "dxvk":
             path = Paths.dxvk
-
-        if component_type == "vkd3d":
+        elif component_type == "vkd3d":
             path = Paths.vkd3d
-
-        if component_type == "nvapi":
+        elif component_type == "nvapi":
             path = Paths.nvapi
+        else:
+            logging.error(f"Unknown component type: {component_type}")
+            return
 
         if not os.path.isdir(os.path.join(path, dest)):
             shutil.move(

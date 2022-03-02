@@ -25,19 +25,23 @@ from bottles.backend.managers.data import DataManager
 
 logging = Logger()
 
+
 class API:
     notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
 
 
 # xdg data path
 xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
-class Paths:
-    def get_apps_dir():
-        _dir = f"{xdg_data_home}/applications/"
-        if "FLATPAK_ID" in os.environ:
-            _dir = f"{Path.home()}/.local/share/applications"
-        return _dir
 
+
+def get_apps_dir():
+    _dir = f"{xdg_data_home}/applications/"
+    if "FLATPAK_ID" in os.environ:
+        _dir = f"{Path.home()}/.local/share/applications"
+    return _dir
+
+
+class Paths:
     # Icon paths
     icons_user = f"{xdg_data_home}/icons"
 
@@ -56,7 +60,6 @@ class Paths:
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
     templates = f"{base}/templates"
-    data = f"{base}/data.yml"
     journal = f"{base}/journal.yml"
 
     data = DataManager()
@@ -66,8 +69,8 @@ class Paths:
         else:
             logging.warning(f"Custom bottles path {data.get('custom_bottles_path')} does not exist, falling back to default")
 
-class TrdyPaths:
 
+class TrdyPaths:
     # External managers paths
     lutris = f"{xdg_data_home}*/Games"
     playonlinux = f"{xdg_data_home}/.PlayOnLinux/wineprefix/"

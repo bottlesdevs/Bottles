@@ -24,12 +24,13 @@ from bottles.backend.models.samples import Samples
 
 logging = Logger()
 
+
 class DataManager:
-    '''
+    """
     The DataManager class is used to store and retrieve data
     from the user data.yml file. Should be stored only info
     and settings that should not be stored in gsettings.
-    '''
+    """
 
     __data: dict = {}
     __p_xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
@@ -55,15 +56,11 @@ class DataManager:
         self.__get_data()
     
     def list(self):
-        '''
-        This function returns the whole data dictionary.
-        '''
+        """Returns the whole data dictionary."""
         return self.__data
     
     def set(self, key, value):
-        '''
-        This function sets a value in the data dictionary.
-        '''
+        """Sets a value in the data dictionary."""
         if self.__data.get(key):
             if isinstance(self.__data[key], list):
                 self.__data[key].append(value)
@@ -79,9 +76,7 @@ class DataManager:
             pass
     
     def remove(self, key):
-        '''
-        This function removes a key from the data dictionary.
-        '''
+        """Removes a key from the data dictionary."""
         if self.__data.get(key):
             del self.__data[key]
             try:
@@ -91,7 +86,5 @@ class DataManager:
                 pass
     
     def get(self, key):
-        '''
-        This function returns the value of a key in the data dictionary.
-        '''
+        """Returns the value of a key in the data dictionary."""
         return self.__data.get(key)

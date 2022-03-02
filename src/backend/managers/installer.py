@@ -144,11 +144,11 @@ class InstallerManager:
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
                 download = self.__component_manager.download(
-                    "installer",
                     st.get("url"),
                     st.get("file_name"),
                     st.get("rename"),
-                    checksum=st.get("file_checksum"))
+                    checksum=st.get("file_checksum")
+                )
 
                 if download:
                     if st.get("rename"):

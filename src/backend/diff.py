@@ -13,13 +13,13 @@ class Diff:
 
     @staticmethod
     def hashify(path: str) -> dict:
-        '''
+        """
         Hash (SHA-1) all files in a directory and return
         them in a dictionary. Here we use SHA-1 instead of
         better ones like SHA-256 because we only need to
-        compare the file hashes, it's faster and it's
+        compare the file hashes, it's faster, and it's
         not a security risk.
-        '''
+        """
         _files = {}
 
         if path[-1] != os.sep:
@@ -45,9 +45,7 @@ class Diff:
     
     @staticmethod
     def file_hashify(path: str) -> str:
-        '''
-        Hash (SHA-1) a file and return it.
-        '''
+        """Hash (SHA-1) a file and return it."""
         with open(path, "rb") as fr:
             _hash = hashlib.sha1(fr.read()).hexdigest()
         
@@ -55,23 +53,21 @@ class Diff:
 
     @staticmethod
     def compare(parent: dict, child: dict) -> dict:
-        '''
+        """
         Compare two hashes dictionaries and return the
         differences (added, removed, changed).
-        '''
+        """
         
         added = []
-        removed = []
         changed = []
+        removed = [f for f in parent if f not in child]
         
         for f in child:
             if f not in parent:
                 added.append(f)
             elif parent[f] != child[f]:
                 changed.append(f)
-        
-        removed = [f for f in parent if f not in child]
-        
+
         return {
             "added": added, 
             "removed": removed, 

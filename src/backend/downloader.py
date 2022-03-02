@@ -22,21 +22,20 @@ from bottles.backend.logger import Logger # pyright: reportMissingImports=false
 
 logging = Logger()
 
+
 class Downloader:
-    '''
-    This class is used to download a resource from a given URL. It shows
-    and update a progress bar while downloading but can also be used to
-    update external progress bars using the func parameter.
-    '''
+    """
+    Download a resource from a given URL. It shows and update a progress
+    bar while downloading but can also be used to pdate external progress
+    bars using the func parameter.
+    """
     def __init__(self, url: str, file: str, func: callable = None):
         self.url = url
         self.file = file
         self.func = func
 
     def download(self):
-        '''
-        Download the file.
-        '''
+        """Start the download."""
         try:
             with open(self.file, "wb") as file:
                 headers = {"User-Agent": "curl/7.79.1"}
@@ -62,18 +61,14 @@ class Downloader:
                     if self.func is not None:
                         GLib.idle_add(self.func, 1, 1, 1)
                         self.__progress(1, 1, 1)
-        except:
-            logging.error(
-                "Download failed! Check your internet connection."
-            )
+        except (requests.exceptions.RequestException, OSError):
+            logging.error("Download failed! Check your internet connection.")
             return False
 
         return True
     
     def __progress(self, count, block_size, total_size):
-        '''
-        This function is used to update the progress bar.
-        '''
+        """Update the progress bar."""
         percent = int(count * block_size * 100 / total_size)
         name = self.file.split("/")[-1]
         print(f"\rDownloading {name}: {percent}% [{'=' * int(percent / 2)}>", end="")

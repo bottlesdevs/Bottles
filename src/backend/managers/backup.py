@@ -47,33 +47,27 @@ class BackupManager:
         scope: str,
         path: str
     ) -> bool:
-        '''
-        This function is used to make a backup of a bottle.
-        If the backup type is "config", the backup will be done
-        by exporting the bottle.yml file. If the backup type is
-        "full", the backup will be done by exporting the entire
-        bottle's directory as a tar.gz file.
-        It returns True if the backup was successful, False otherwise.
-        '''
+        """
+        Exports a bottle backup to the specified path.
+        Use the scope parameter to specify the backup type: config, full.
+        Config will only export the bottle configuration, full will export
+        the full bottle in tar.gz format.
+        """
         BackupManager.operation_manager = OperationManager(window)
         task_id = str(uuid.uuid4())
 
+        logging.info(f"New {scope} backup for [{config['Name']}] in [{path}]")
+
         if scope == "config":
-            logging.info(
-                f"Backuping config: [{config['Name']}] in [{path}]"
-            )
             try:
                 with open(path, "w") as config_backup:
                     yaml.dump(config, config_backup, indent=4)
                     config_backup.close()
                 backup_created = True
-            except:
+            except (FileNotFoundError, PermissionError, YAMLError):
                 backup_created = False
 
         else:
-            logging.info(
-                f"Backuping bottle: [{config['Name']}] in [{path}]"
-            )
             GLib.idle_add(
                 BackupManager.operation_manager.new_task, 
                 task_id, 
@@ -88,7 +82,7 @@ class BackupManager:
                     os.chdir(parent)
                     tar.add(folder, filter=BackupManager.exclude_filter)
                 backup_created = True
-            except:
+            except (FileNotFoundError, PermissionError, tarfile.TarError):
                 backup_created = False
 
             GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
@@ -102,11 +96,7 @@ class BackupManager:
     
     @staticmethod
     def exclude_filter(tarinfo):
-        '''
-        This function is used to exclude some files from the backup.
-        E.g. dosdevices should be excluded as this contains symlinks
-        to the real devices and may cause loops.
-        '''
+        """Filter which excludes some unwanted files from the backup."""
         if "dosdevices" in tarinfo.name:
             return None
 
@@ -114,14 +104,12 @@ class BackupManager:
 
     @staticmethod
     def import_backup(window, scope: str, path: str, manager: Manager) -> bool:
-        '''
-        This function is used to import a backup of a bottle.
-        If the backup type is "config", the configuration will be
-        used to replicate the bottle's environment. If the backup
-        type is "full", the backup will be extracted in the bottle's
-        directory. It returns True if the backup was successful (it 
-        will also update the bottles' list), False otherwise.
-        '''
+        """
+        Imports a backup from the specified path.
+        Use the scope parameter to specify the backup type: config, full.
+        Config will make a new bottle reproducing the configuration, full will
+        import the full bottle from a tar.gz file.
+        """
         if path is None:
             Result(status=False)
             
@@ -155,7 +143,7 @@ class BackupManager:
                 
                 if manager.create_bottle_from_config(config):
                     import_status = True
-            except:
+            except (FileNotFoundError, PermissionError, YAMLError):
                 import_status = False
         else:
             if backup_name.endswith(".tar.gz"):
@@ -169,7 +157,7 @@ class BackupManager:
                 with tarfile.open(path, "r:gz") as tar:
                     tar.extractall(Paths.bottles)
                 import_status = True
-            except:
+            except (FileNotFoundError, PermissionError, tarfile.TarError):
                 import_status = False
 
         GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
@@ -184,11 +172,7 @@ class BackupManager:
 
     @staticmethod
     def duplicate_bottle(config, name) -> bool:
-        '''
-        This function is used to duplicate a bottle.
-        The new bottle will be created in the bottles' directory
-        using the given name for the bottle's Name and Path.
-        '''
+        """Duplicates the bottle with the specified new name."""
         logging.info(f"Duplicating bottle: [{config.get('Name')}] to [{name}]")
 
         source = ManagerUtils.get_bottle_path(config)
@@ -232,7 +216,7 @@ class BackupManager:
                 ignore=shutil.ignore_patterns(".*"),
                 symlinks=False
             )
-        except:
+        except (FileNotFoundError, PermissionError, OSError):
             logging.error(f"Failed duplicate bottle: [{name}]")
             return Result(status=False)
 

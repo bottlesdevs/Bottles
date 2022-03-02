@@ -374,8 +374,7 @@ class Manager:
                     version = next(iter(self.supported_runtimes))
                     return self.component_manager.install(
                         component_type="runtime", 
-                        component_name=version, 
-                        checks=False
+                        component_name=version
                     )
                 except StopIteration:
                     return False
@@ -465,8 +464,7 @@ class Manager:
                     component_version = next(iter(component["supported"]))
                     self.component_manager.install(
                         component_type=component_type, 
-                        component_name=component_version, 
-                        checks=False
+                        component_name=component_version
                     )
                 except StopIteration:
                     return False

@@ -20,15 +20,14 @@ import yaml
 import uuid
 from datetime import datetime, timedelta
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths
 
 logging = Logger()
 
+
 class JournalSeverity:
-    '''
-    This class is used to store the severity of a journal entry.
-    '''
+    """Represents the severity of a journal entry."""
     DEBUG = "debug"
     INFO = "info"
     WARNING = "warning"
@@ -36,16 +35,15 @@ class JournalSeverity:
     CRITICAL = "critical"
     CRASH = "crash"
 
+
 class JournalManager:
-    '''
-    The JournalManager class is used to store and retrieve data from the
-    journal file, which is a YAML file containing all Bottles logged events.
-    '''
+    """
+    Store and retrieve data from the journal file (YAML). This should
+    contain only important Bottles events.
+    """
     @staticmethod
-    def __get_journal():
-        '''
-        Load the journal file.
-        '''
+    def __get_journal() -> dict:
+        """Return the journal as a dictionary."""
         if not os.path.exists(Paths.journal):
             logging.info("Creating journal file...")
             with open(Paths.journal, "w") as f:
@@ -59,9 +57,7 @@ class JournalManager:
     
     @staticmethod
     def __clean_old():
-        '''
-        Clean events old then 1 month.
-        '''
+        """Clean old journal entries (1 month)."""
         journal = JournalManager.__get_journal()
         old_events = []
         latest = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -83,9 +79,7 @@ class JournalManager:
 
     @staticmethod
     def __save_journal(journal: dict = None):
-        '''
-        Save the journal to the journal file.
-        '''
+        """Save the journal to the journal file."""
         if journal is None:
             journal = JournalManager.__get_journal()
         with open(Paths.journal, "w") as f:
@@ -93,9 +87,11 @@ class JournalManager:
     
     @staticmethod
     def get(period: str = "today", plain: bool = False):
-        '''
-        Return all events in the journal.
-        '''
+        """
+        Return all events for the given period.
+        Supported periods: all, today, yesterday, week, month
+        Set plain to True to get the response as plain text.
+        """
         journal = JournalManager.__get_journal()
         periods = [
             "all",
@@ -115,9 +111,7 @@ class JournalManager:
     
     @staticmethod
     def __filter_by_date(journal: dict, period: str):
-        '''
-        Filter the journal by date.
-        '''
+        """Filter the journal by date."""
         _journal = {}
         if period == "today":
             start = datetime.now().date()
@@ -144,20 +138,15 @@ class JournalManager:
                 _journal[event_id] = event
         return _journal
 
-    
     @staticmethod
     def get_event(event_id: str):
-        '''
-        Return the event with the given ID.
-        '''
+        """Return the event with the given id."""
         journal = JournalManager.__get_journal()
         return journal.get(event_id, None)
     
     @staticmethod
     def write(severity: JournalSeverity, message: str):
-        '''
-        Add an event to the journal.
-        '''
+        """Write an event to the journal."""
         journal = JournalManager.__get_journal()
         event_id = str(uuid.uuid4())
         now = datetime.now()
