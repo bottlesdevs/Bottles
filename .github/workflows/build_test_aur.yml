@@ -43,14 +43,13 @@ jobs:
 
           pip install patool
       
-      - name: Install AUR packages
+      - name: Install libhandy-git from aur
         run: |
-          git clone https://aur.archlinux.org/paru.git
-          cd paru
-          makepkg -si
+          git clone https://aur.archlinux.org/libhandy-git.git
+          cd libhandy-git
+          makepkg -si --asroot
           cd ..
-          rm -rf paru
-          paru -S --noconfirm libhandy-git 
+          rm -rf libhandy-git
       - name: Build
         run: |
           chown user -R .
