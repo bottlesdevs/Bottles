@@ -45,6 +45,13 @@ jobs:
             xorg-xdpyinfo
 
           pip install patool
+        
+      - name: libhandy-1.5.90
+        run: |
+          git clone https://gitlab.gnome.org/GNOME/libhandy.git && cd libhandy
+          git checkout c09c1503237dc719d91b52182fc4ab632cc390ad
+          meson build . -Dprofiling=false -Dintrospection=enabled -Dgtk_doc=false -Dtests=false -Dexamples=false -Dvapi=false -Dglade_catalog=disable32
+          ninja install
 
       - name: Build
         run: |
