@@ -20,7 +20,7 @@ import urllib.request
 from functools import lru_cache
 from datetime import datetime, timedelta
 
-from bottles.params import VERSION # pyright: reportMissingImports=false
+from bottles.params import VERSION  # pyright: reportMissingImports=false
 from bottles.backend.globals import API
 from bottles.backend.managers.data import DataManager
 

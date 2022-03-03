@@ -4,7 +4,7 @@ import time
 import subprocess
 from typing import NewType
 
-from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
+from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.logger import Logger
 

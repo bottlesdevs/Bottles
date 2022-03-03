@@ -20,7 +20,7 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
-from bottles.backend.runner import Runner # pyright: reportMissingImports=false
+from bottles.backend.runner import Runner  # pyright: reportMissingImports=false
 from bottles.backend.wine.executor import WineExecutor
 from bottles.utils import RunAsync
 

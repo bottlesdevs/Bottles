@@ -17,7 +17,7 @@
 
 from typing import NewType
 
-from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.logger import Logger
 from bottles.backend.globals import gamemode_available, gamescope_available
 from bottles.backend.models.result import Result

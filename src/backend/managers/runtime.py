@@ -18,7 +18,7 @@
 import os
 from pathlib import Path
 
-from bottles.backend.globals import Paths # pyright: reportMissingImports=false
+from bottles.backend.globals import Paths  # pyright: reportMissingImports=false
 
 
 class RuntimeManager:

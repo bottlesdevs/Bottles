@@ -2,7 +2,7 @@ import os
 import shlex
 from typing import NewType
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winecommand import WineCommand

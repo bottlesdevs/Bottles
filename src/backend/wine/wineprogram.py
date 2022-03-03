@@ -1,6 +1,6 @@
 from typing import NewType
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths
 from bottles.backend.wine.winecommand import WineCommand
 

@@ -2,7 +2,7 @@ import os
 import subprocess
 from typing import NewType
 
-from bottles.backend.utils.generic import detect_encoding # pyright: reportMissingImports=false
+from bottles.backend.utils.generic import detect_encoding  # pyright: reportMissingImports=false
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils

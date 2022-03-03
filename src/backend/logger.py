@@ -81,7 +81,7 @@ class Logger(logging.getLoggerClass()):
         It finds and replace the user's home directory
         with "USER" as a proposed standard for crash reports.
         '''
-        from bottles.backend.managers.journal import JournalManager, JournalSeverity # pyright: reportMissingImports=false
+        from bottles.backend.managers.journal import JournalManager, JournalSeverity  # pyright: reportMissingImports=false
         xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
         log_path = f"{xdg_data_home}/bottles/crash.log"
 

@@ -19,7 +19,7 @@ import os
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
-from bottles.widgets.component import ComponentEntry, ComponentExpander # pyright: reportMissingImports=false
+from bottles.widgets.component import ComponentEntry, ComponentExpander  # pyright: reportMissingImports=false
 from bottles.backend.managers.data import DataManager
 
 

@@ -20,7 +20,7 @@ import yaml
 import uuid
 from datetime import datetime, timedelta
 
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger   # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths
 
 logging = Logger()

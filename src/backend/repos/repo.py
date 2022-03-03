@@ -18,7 +18,7 @@
 import yaml
 import urllib.request
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 
 logging = Logger()
 

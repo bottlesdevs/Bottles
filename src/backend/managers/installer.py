@@ -24,7 +24,7 @@ from functools import lru_cache
 from datetime import datetime
 from gi.repository import Gtk, GLib
 
-from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
+from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
 from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
@@ -51,12 +51,8 @@ class InstallerManager:
         self.__layer = None
 
     @lru_cache
-    def get_review(self, installer_name):
-        '''
-        This function fetch the review for a given installer. It return
-        the HTML formatted text if the review is found, else it will
-        return an empty text.
-        '''
+    def get_review(self, installer_name) -> str:
+        """Return an installer review from the repository (as HTML)"""
         review = self.__repo.get_review(installer_name)
         if review:
             return markdown.markdown(review)
@@ -64,14 +60,19 @@ class InstallerManager:
 
     @lru_cache
     def get_installer(
-        self,
-        installer_name: str,
-        plain: bool = False
+            self,
+            installer_name: str,
+            plain: bool = False
     ) -> Union[str, dict, bool]:
+        """
+        Return an installer manifest from the repository. Use the plain
+        argument to get the manifest as plain text.
+        """
         return self.__repo.get(installer_name, plain)
 
     @lru_cache
-    def fetch_catalog(self) -> bool:
+    def fetch_catalog(self) -> dict:
+        """Fetch the installers catalog from the repository"""
         catalog = {}
         index = self.__repo.catalog
         if not self.__utils_conn.check_connection():
@@ -79,11 +80,15 @@ class InstallerManager:
 
         for installer in index.items():
             catalog[installer[0]] = installer[1]
-            
+
         catalog = dict(sorted(catalog.items()))
         return catalog
 
     def __download_icon(self, config, executable: dict, manifest):
+        """
+        Download the installer icon from the repository to the bottle
+        icons path.
+        """
         icon_url = self.__repo.get_icon(manifest.get("Name"))
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
@@ -95,22 +100,24 @@ class InstallerManager:
                 urllib.request.urlretrieve(icon_url, icon_path)
 
     def __install_dependencies(
-        self,
-        config,
-        dependencies: list,
-        widget: Gtk.Widget
+            self,
+            config,
+            dependencies: list,
+            widget: Gtk.Widget
     ):
+        """Install a list of dependencies"""
         _config = config
         wineboot = WineBoot(_config)
 
         for dep in dependencies:
+            layer = None
             widget.next_step()
 
             if dep in config.get("Installed_Dependencies"):
                 continue
 
             _dep = [dep, self.__manager.supported_dependencies.get(dep)]
-            
+
             if config.get("Environment") == "Layered":
                 if LayersStore.get_layer_by_name(dep):
                     continue
@@ -122,16 +129,17 @@ class InstallerManager:
 
             res = self.__manager.dependency_manager.install(_config, _dep)
 
-            if config.get("Environment") == "Layered":
+            if config.get("Environment") == "Layered" and layer:
                 layer.sweep()
                 layer.save()
 
-            if res.status == False:
+            if not res.status:
                 return False
-        
+
         return True
 
     def __perform_steps(self, config, steps: list):
+        """Perform a list of actions"""
         for st in steps:
             # Step type: run_script
             if st.get("action") == "run_script":
@@ -140,7 +148,7 @@ class InstallerManager:
             # Step type: update_config
             if st.get("action") == "update_config":
                 self.__step_update_config(config, st)
-                
+
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
                 download = self.__component_manager.download(
@@ -163,8 +171,9 @@ class InstallerManager:
                         environment=st.get("environment")
                     )
                     executor.run()
-    
-    def __step_run_script(self, config, step: dict):
+
+    @staticmethod
+    def __step_run_script(config, step: dict):
         placeholders = {
             "!bottle_path": ManagerUtils.get_bottle_path(config),
             "!bottle_drive": f"{ManagerUtils.get_bottle_path(config)}/drive_c",
@@ -178,24 +187,24 @@ class InstallerManager:
 
         for key, value in placeholders.items():
             script = script.replace(key, value)
-        
+
         for key, value in preventions.items():
             if script.find(key) != -1:
                 logging.error(value)
                 return False
 
-        res = subprocess.Popen(
+        subprocess.Popen(
             f"bash -c '{script}'",
             shell=True,
             cwd=ManagerUtils.get_bottle_path(config),
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
-        )
-        stdout, stderr = res.communicate()
+        ).communicate()
         logging.info(f"Executing installer script..")
         logging.info(f"Finished executing installer script.")
-    
-    def __step_update_config(self, config, step: dict):
+
+    @staticmethod
+    def __step_update_config(config, step: dict):
         bottle = ManagerUtils.get_bottle_path(config)
         conf_path = step.get("path")
         conf_type = step.get("type")
@@ -210,7 +219,7 @@ class InstallerManager:
 
         for d in del_keys:
             _conf.del_key(d)
-        
+
         _conf.merge_dict(upd_keys)
 
     def __set_parameters(self, config, parameters: dict):
@@ -243,7 +252,7 @@ class InstallerManager:
                 wineboot.init()
 
             self.__manager.install_dll_component(_config, "vkd3d")
-        
+
         if parameters.get("dxvk_nvapi") and not config.get("Parameters")["dxvk_nvapi"]:
             if config["Environment"] == "Layered":
                 if LayersStore.get_layer_by_name("dxvk_nvapi"):
@@ -256,7 +265,7 @@ class InstallerManager:
                 wineboot.init()
 
             self.__manager.install_dll_component(_config, "nvapi")
-        
+
         # sweep and save layers
         for c in _components_layers:
             c.sweep()
@@ -274,7 +283,8 @@ class InstallerManager:
                 scope="Parameters"
             )
 
-    def __create_desktop_entry(self, config, manifest, executable: dict):
+    @staticmethod
+    def __create_desktop_entry(config, manifest, executable: dict):
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
 
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
@@ -323,7 +333,7 @@ class InstallerManager:
             steps += int(len(manifest.get("Steps")))
         if manifest.get("Executable"):
             steps += 1
-        
+
         return steps
 
     def install(self, config, installer, widget):
@@ -401,13 +411,13 @@ class InstallerManager:
             # sweep and save
             self.__layer.sweep()
             self.__layer.save()
-            
+
             # register layer
             _layer_launcher = {
                 "uuid": self.__layer.get_uuid(),
                 "name": manifest["Name"],
                 "icon": "com.usebottles.bottles-program",
-                "exec_path": f'C:\{executable["path"]}/',
+                "exec_path": f'C:\\{executable["path"]}/',
                 "exec_name": executable["file"],
                 "exec_args": executable["arguments"],
                 "exec_env": {},

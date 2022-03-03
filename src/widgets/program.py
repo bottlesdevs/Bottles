@@ -19,7 +19,7 @@ import os
 import webbrowser
 from gi.repository import Gtk, GLib, Handy
 
-from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 
 from bottles.dialogs.launchoptions import LaunchOptionsDialog
 from bottles.dialogs.rename import RenameDialog

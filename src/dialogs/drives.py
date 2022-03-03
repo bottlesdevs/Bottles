@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk, GLib, Handy
 
-from bottles.backend.wine.drives import Drives # pyright: reportMissingImports=false
+from bottles.backend.wine.drives import Drives  # pyright: reportMissingImports=false
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/drive-entry.ui')

@@ -22,7 +22,7 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import RunAsync, GtkUtils # pyright: reportMissingImports=false
+from bottles.utils import RunAsync, GtkUtils  # pyright: reportMissingImports=false
 
 from bottles.backend.runner import Runner
 from bottles.backend.managers.backup import BackupManager

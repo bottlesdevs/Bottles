@@ -20,7 +20,7 @@ import shutil
 from typing import NewType
 from abc import abstractmethod
 
-from bottles.backend.utils.manager import ManagerUtils # pyright: reportMissingImports=false
+from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.wineboot import WineBoot
 

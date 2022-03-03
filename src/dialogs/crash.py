@@ -22,7 +22,7 @@ import urllib.request
 from urllib.parse import quote
 from gi.repository import Gtk, Handy
 
-from bottles.params import VERSION # pyright: reportMissingImports=false
+from bottles.params import VERSION  # pyright: reportMissingImports=false
 
 
 class SimilarReportEntry(Gtk.Box):

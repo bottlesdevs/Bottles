@@ -22,7 +22,7 @@ from typing import NewType, Union
 from datetime import datetime
 from gi.repository import GLib
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths, user_apps_dir
 
 logging = Logger()

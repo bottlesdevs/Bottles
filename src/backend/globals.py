@@ -18,7 +18,7 @@
 import os
 import shutil
 from pathlib import Path
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.managers.data import DataManager
 

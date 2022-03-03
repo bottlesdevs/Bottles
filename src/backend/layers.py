@@ -22,7 +22,7 @@ import shutil
 from glob import glob
 from typing import NewType
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.models.samples import Samples
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.globals import Paths

@@ -19,7 +19,7 @@ import os
 import urllib.request
 from typing import Union, NewType
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.repos.dependency import DependencyRepo
 from bottles.backend.repos.component import ComponentRepo
 from bottles.backend.repos.installer import InstallerRepo

@@ -19,7 +19,7 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
-from bottles.utils import GtkUtils, RunAsync # pyright: reportMissingImports=false
+from bottles.utils import GtkUtils, RunAsync  # pyright: reportMissingImports=false
 from bottles.widgets.page import PageRow
 
 from bottles.views.bottle_details import BottleView

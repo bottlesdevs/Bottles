@@ -18,7 +18,7 @@
 import requests
 from gi.repository import GLib
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 
 logging = Logger()
 

@@ -19,7 +19,7 @@ import os
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import RunAsync # pyright: reportMissingImports=false
+from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils import GtkUtils
 from bottles.widgets.dependency import DependencyEntry
 

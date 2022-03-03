@@ -21,7 +21,7 @@ import subprocess
 from glob import glob
 from datetime import datetime
 
-from bottles.backend.logger import Logger # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger   # pyright: reportMissingImports=false
 from bottles.backend.globals import TrdyPaths, Paths
 from bottles.backend.models.samples import Samples
 from bottles.backend.models.result import Result
@@ -29,12 +29,15 @@ from bottles.backend.models.result import Result
 
 logging = Logger()
 
+
 class ImportManager:
 
     def __init__(self, manager):
         self.manager = manager
 
-    def search_wineprefixes(self) -> list:
+    @staticmethod
+    def search_wineprefixes() -> list:
+        """Look and return all 3rd party available wineprefixes"""
         importer_wineprefixes = []
 
         # search wine prefixes in external managers paths
@@ -82,11 +85,7 @@ class ImportManager:
         )
 
     def import_wineprefix(self, wineprefix: dict) -> bool:
-        '''
-        This function imports a wineprefix from an external wineprefix
-        manager and converts it into a bottle. It also creates a lock file
-        in the source path to prevent multiple imports.
-        '''
+        """Import wineprefix from external manager and convert in a bottle"""
         logging.info(
             f"Importing wineprefix [{wineprefix['Name']}] in a new bottle…"
         )
@@ -97,7 +96,7 @@ class ImportManager:
 
         try:
             os.makedirs(bottle_complete_path, exist_ok=False)
-        except:
+        except (FileExistsError, OSError):
             logging.error(
                 "Error creating bottle path for wineprefix "
                 f"[{wineprefix['Name']}], aborting."

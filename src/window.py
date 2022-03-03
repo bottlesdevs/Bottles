@@ -22,7 +22,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Gio, Handy
 from pathlib import Path
 
-from bottles.params import * # pyright: reportMissingImports=false
+from bottles.params import *  # pyright: reportMissingImports=false
 from bottles.widgets.message import MessageEntry
 from bottles.utils import UtilsConnection, Logger, RunAsync
 
