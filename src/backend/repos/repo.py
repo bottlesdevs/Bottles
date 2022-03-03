@@ -23,7 +23,7 @@ from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 logging = Logger()
 
 
-class Repo():
+class Repo:
 
     name: str = ""
     
@@ -35,8 +35,8 @@ class Repo():
         try:
             with urllib.request.urlopen(index) as url:
                 index = yaml.safe_load(url.read())
-        except:
-            logging.error(f"Cannot fetch {self.name} repository index.")
+        except (urllib.error.HTTPError, urllib.error.URLError, YAMLError):
+            logging.error(f"Cannot fetch {self.name} repository index.", )
             return {}
             
         return index
@@ -48,6 +48,6 @@ class Repo():
                 if plain:
                     return res.decode("utf-8")
                 return yaml.safe_load(res)
-        except:
-            logging.error(f"Cannot fetch {self.name} manifest.")
+        except (urllib.error.HTTPError, urllib.error.URLError, YAMLError):
+            logging.error(f"Cannot fetch {self.name} manifest.", )
             return False

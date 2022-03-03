@@ -31,7 +31,7 @@ class WineExecutor:
         move_upd_fn: callable = None,
         post_script: str = None
     ):
-        logging.info("Launching an executable…")
+        logging.info("Launching an executable…", )
         self.config = config
         self.__validate_path(exec_path)
 
@@ -46,20 +46,21 @@ class WineExecutor:
         self.environment = environment
         self.post_script = post_script
 
-    def __validate_path(self, exec_path):
+    @staticmethod
+    def __validate_path(exec_path):
         if exec_path in [None, ""]:
-            logging.error("No executable file path provided.")
+            logging.error("No executable file path provided.", )
             return False
         
         if ":\\" in exec_path:
-            logging.warning("Windows path detected. Avoiding validation.")
+            logging.warning("Windows path detected. Avoiding validation.", )
             return True
         
         if not os.path.isfile(exec_path):
             _msg = f"Executable file path does not exist: {exec_path}"
             if "FLATPAK_ID" in os.environ:
                 _msg = f"Executable file path does not exist or is not accessible by the Flatpak: {exec_path}"
-            logging.error(_msg)
+            logging.error(_msg, )
             return False
 
     def __move_file(self, exec_path, move_upd_fn):
@@ -75,7 +76,8 @@ class WineExecutor:
         
         return exec_path
     
-    def __get_exec_type(self, exec_path):
+    @staticmethod
+    def __get_exec_type(exec_path):
         if exec_path.endswith(".exe"):
             return "exe"
         if exec_path.endswith(".msi"):
@@ -87,7 +89,7 @@ class WineExecutor:
         if exec_path.endswith(".dll"):
             return "dll"
 
-        logging.error(f"Unsupported executable type: {exec_path}")
+        logging.error(f"Unsupported executable type: {exec_path}", )
         return False
     
     def run(self):
@@ -186,8 +188,9 @@ class WineExecutor:
             data={"output": res}
         )
 
-    def __launch_dll(self):
-        logging.warning("DLLs are not supported yet.")
+    @staticmethod
+    def __launch_dll():
+        logging.warning("DLLs are not supported yet.", )
         return Result(
             status=False, 
             data={"error": "DLLs are not supported yet."}

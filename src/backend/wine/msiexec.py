@@ -19,7 +19,7 @@ class MsiExec(WineProgram):
         args: str = "",
         terminal: bool = False, 
         cwd: str = None,
-        environment: dict = {}
+        environment: dict = None
     ):
         args = f"/i {pkg_path} {args}"
         

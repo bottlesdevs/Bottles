@@ -45,7 +45,7 @@ class JournalManager:
     def __get_journal() -> dict:
         """Return the journal as a dictionary."""
         if not os.path.exists(Paths.journal):
-            logging.info("Creating journal file...")
+            logging.info("Creating journal file...", )
             with open(Paths.journal, "w") as f:
                 f.write("")
         with open(Paths.journal, "r") as f:
@@ -101,7 +101,7 @@ class JournalManager:
             "month",
         ]
         if period not in periods:
-            logging.warning(f"Invalid period '{period}', falling back to 'today'")
+            logging.warning(f"Invalid period '{period}', falling back to 'today'", )
             period = "today"
         
         _journal = JournalManager.__filter_by_date(journal, period)
@@ -128,7 +128,7 @@ class JournalManager:
         elif period == "all":
             return journal
         else:
-            logging.error(f"Invalid period '{period}', falling back to 'today'")
+            logging.error(f"Invalid period '{period}', falling back to 'today'", )
             start = datetime.now().date()
             end = start + timedelta(days=1)
 
@@ -152,7 +152,7 @@ class JournalManager:
         now = datetime.now()
 
         if severity not in JournalSeverity.__dict__.values():
-            logging.warning(f"Invalid severity '{severity}', falling back to 'info'")
+            logging.warning(f"Invalid severity '{severity}', falling back to 'info'", )
             severity = JournalSeverity.INFO
 
         journal[event_id] = {

@@ -24,11 +24,11 @@ from typing import Union
 from pathlib import Path
 
 
-class FileUtils():
-    '''
+class FileUtils:
+    """
     This class provide some useful methods to work with files.
     Like get checksum, human size, etc.
-    '''
+    """
     @staticmethod
     def get_checksum(file):
         '''
@@ -46,19 +46,14 @@ class FileUtils():
 
     @staticmethod
     def use_insensitive_ext(string):
-        '''
-        This function converts a glob pattern into a case-insensitive
-        glob pattern
-        '''
+        """Converts a glob pattern into a case-insensitive glob pattern"""
         ext = string.split('.')[1]
         globlist = ["[%s%s]" % (c.lower(), c.upper()) for c in ext]
         return '*.%s' % ''.join(globlist)
 
     @staticmethod
     def get_human_size(size: float) -> str:
-        '''
-        This function returns a human readable size from a given float size.
-        '''
+        """Returns a human readable size from a given float size"""
         for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
             if abs(size) < 1024.0:
                 return "%3.1f%s%s" % (size, unit, 'B')
@@ -67,11 +62,10 @@ class FileUtils():
         return "%.1f%s%s" % (size, 'Yi', 'B')
 
     def get_path_size(self, path: str, human: bool = True) -> Union[str, float]:
-        '''
-        This function returns the size of a given path in human readable
-        format or in bytes. Default is human readable, set human to False
-        to get bytes.
-        '''
+        """
+        Returns the size of a given path. If human is True, returns as a
+        human-readable size.
+        """
         path = Path(path)
         size = sum(f.stat().st_size for f in path.glob('**/*') if f.is_file())
 
@@ -81,17 +75,16 @@ class FileUtils():
         return size
 
     def get_disk_size(self, human: bool = True) -> dict:
-        '''
-        This function returns the size of the disk in human readable format
-        or in bytes. Default is human readable, set human to False to get
-        bytes.
-        '''
+        """
+        Returns the size of the disk. If human is True, returns as a
+        human-readable size.
+        """
         disk_total, disk_used, disk_free = shutil.disk_usage('/')
 
         if human:
-            disk_total = self().get_human_size(disk_total)
-            disk_used = self().get_human_size(disk_used)
-            disk_free = self().get_human_size(disk_free)
+            disk_total = self.get_human_size(disk_total)
+            disk_used = self.get_human_size(disk_used)
+            disk_free = self.get_human_size(disk_free)
 
         return {
             "total": disk_total,
@@ -101,9 +94,7 @@ class FileUtils():
     
     @staticmethod
     def wait_for_files(files: list, timeout: int = .5) -> bool:
-        '''
-        This function waits for a list of files to be created or modified.
-        '''
+        """Wait for a file to be created or modified."""
         for file in files:
             if not os.path.isfile(file):
                 return False

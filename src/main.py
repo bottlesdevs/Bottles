@@ -243,7 +243,7 @@ class Bottles(Gtk.Application):
         This function close the application.
         It is used by the [Ctrl+Q] shortcut.
         '''
-        logging.info(_("[Quit] request received."))
+        logging.info(_("[Quit] request received."), )
         quit()
 
     @staticmethod
@@ -252,7 +252,7 @@ class Bottles(Gtk.Application):
         This function open the documentation in the user's default browser.
         It is used by the [F1] shortcut.
         '''
-        logging.info(_("[Help] request received."))
+        logging.info(_("[Help] request received."), )
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
     def __refresh(self, action=None, param=None):
@@ -260,7 +260,7 @@ class Bottles(Gtk.Application):
         This function refresh the user bottle list.
         It is used by the [Ctrl+R] shortcut.
         '''
-        logging.info(_("[Refresh] request received."))
+        logging.info(_("[Refresh] request received."), )
         self.win.manager.update_bottles()
 
     def __register_actions(self):

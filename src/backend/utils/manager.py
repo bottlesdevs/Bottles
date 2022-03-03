@@ -32,10 +32,10 @@ BottleConfig = NewType('BottleConfig', dict)
 
 
 class ManagerUtils:
-    '''
+    """
     This class contains methods (tools, utilities) that are not
     directly related to the Manager.
-    '''
+    """
 
     @staticmethod
     def open_filemanager(
@@ -43,34 +43,30 @@ class ManagerUtils:
         path_type: str = "bottle",
         component: str = "",
         custom_path: str = ""
-    ) -> bool:
-        logging.info("Opening the file manager in the path …")
+    ):
+        logging.info("Opening the file manager in the path …", )
+        path = ""
 
         if path_type == "bottle":
             bottle_path = ManagerUtils.get_bottle_path(config)
             path = f"{bottle_path}/drive_c"
-
-        if component != "":
+        elif component != "":
             if path_type in ["runner", "runner:proton"]:
                 path = ManagerUtils.get_runner_path(component)
-
-            if path_type == "dxvk":
+            elif path_type == "dxvk":
                 path = ManagerUtils.get_dxvk_path(component)
-
-            if path_type == "vkd3d":
+            elif path_type == "vkd3d":
                 path = ManagerUtils.get_vkd3d_path(component)
-
-            if path_type == "nvapi":
+            elif path_type == "nvapi":
                 path = ManagerUtils.get_nvapi_path(component)
-
-            if path_type == "runtime":
+            elif path_type == "runtime":
                 path = Paths.runtimes
 
         if path_type == "custom" and custom_path != "":
             path = custom_path
 
         command = f"xdg-open '{path}'"
-        return subprocess.Popen(command, shell=True).communicate()
+        subprocess.Popen(command, shell=True).communicate()
     
     @staticmethod
     def get_layer_path(layer: str) -> str:
@@ -114,7 +110,7 @@ class ManagerUtils:
         config: BottleConfig,
         fn_update: callable = None
     ) -> Union[str, bool]:
-        logging.info(f"Adding file {file_path} to the bottle …")
+        logging.info(f"Adding file {file_path} to the bottle …", )
         bottle_path = ManagerUtils.get_bottle_path(config)
         
         if not os.path.exists(f"{bottle_path}/storage"):
@@ -128,7 +124,7 @@ class ManagerUtils:
         file_size = os.path.getsize(file_path)
         file_new_path = f"{bottle_path}/storage/{file_name}"
 
-        logging.info(f"Copying file {file_path} to the bottle …")
+        logging.info(f"Copying file {file_path} to the bottle …", )
         try:
             with open(file_path, "rb") as f_in:
                 with open(file_new_path, "wb") as f_out:
@@ -141,8 +137,8 @@ class ManagerUtils:
                                 GLib.idle_add(fn_update, _size)
                     GLib.idle_add(fn_update, 1)
             return file_new_path
-        except:
-            logging.error(f"Could not copy file {file_path} to the bottle.")
+        except (OSError, IOError):
+            logging.error(f"Could not copy file {file_path} to the bottle.", )
             return False
 
     @staticmethod
@@ -177,12 +173,9 @@ class ManagerUtils:
             f.write(f"Exec={cmd} -b '{config.get('Name')}'\n")
 
     @staticmethod
-    def browse_wineprefix(wineprefix: dict) -> bool:
-        '''
-        This function popup the system file manager to browse
-        the wineprefix path.
-        '''
-        return ManagerUtils.open_filemanager(
+    def browse_wineprefix(wineprefix: dict):
+        """Presents a dialog to browse the wineprefix."""
+        ManagerUtils.open_filemanager(
             path_type="custom",
             custom_path=wineprefix.get("Path")
         )

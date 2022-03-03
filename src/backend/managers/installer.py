@@ -121,7 +121,7 @@ class InstallerManager:
             if config.get("Environment") == "Layered":
                 if LayersStore.get_layer_by_name(dep):
                     continue
-                logging.info(f"Installing {dep} in a new layer.")
+                logging.info(f"Installing {dep} in a new layer.", )
                 layer = Layer().new(dep, self.__manager.get_latest_runner())
                 layer.mount_bottle(config)
                 _config = layer.runtime_conf
@@ -190,7 +190,7 @@ class InstallerManager:
 
         for key, value in preventions.items():
             if script.find(key) != -1:
-                logging.error(value)
+                logging.error(value, )
                 return False
 
         subprocess.Popen(
@@ -200,8 +200,8 @@ class InstallerManager:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         ).communicate()
-        logging.info(f"Executing installer script..")
-        logging.info(f"Finished executing installer script.")
+        logging.info(f"Executing installer script..", )
+        logging.info(f"Finished executing installer script.", )
 
     @staticmethod
     def __step_update_config(config, step: dict):
@@ -231,7 +231,7 @@ class InstallerManager:
             if config["Environment"] == "Layered":
                 if LayersStore.get_layer_by_name("dxvk"):
                     return
-                logging.info(f"Installing DXVK in a new layer.")
+                logging.info(f"Installing DXVK in a new layer.", )
                 layer = Layer().new("dxvk", self.__manager.get_latest_runner())
                 layer.mount_bottle(config)
                 _components_layers.append(layer)
@@ -244,7 +244,7 @@ class InstallerManager:
             if config["Environment"] == "Layered":
                 if LayersStore.get_layer_by_name("vkd3d"):
                     return
-                logging.info(f"Installing VKD3D in a new layer.")
+                logging.info(f"Installing VKD3D in a new layer.", )
                 layer = Layer().new("vkd3d", self.__manager.get_latest_runner())
                 layer.mount_bottle(config)
                 _components_layers.append(layer)
@@ -257,7 +257,7 @@ class InstallerManager:
             if config["Environment"] == "Layered":
                 if LayersStore.get_layer_by_name("dxvk_nvapi"):
                     return
-                logging.info(f"Installing DXVK NVAPI in a new layer.")
+                logging.info(f"Installing DXVK NVAPI in a new layer.", )
                 layer = Layer().new("dxvk_nvapi", self.__manager.get_latest_runner())
                 layer.mount_bottle(config)
                 _components_layers.append(layer)

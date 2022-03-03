@@ -59,8 +59,8 @@ class RepositoryManager:
         if name in self.__repositories:
             repo = self.__repositories[name]
             return repo["cls"](repo["url"], repo["index"])
-        
-        logging.error(f"Repository {name} not found")
+
+        logging.error(f"Repository {name} not found", )
     
     def __check_locals(self):
         _locals = {}
@@ -80,9 +80,9 @@ class RepositoryManager:
             _path = _locals[repo]
             if os.path.exists(_path):
                 self.__repositories[repo]["url"] = f"file://{_path}/"
-                logging.info(f"Using local {repo} repository at {_path}")
+                logging.info(f"Using local {repo} repository at {_path}", )
             else:
-                logging.error(f"Local {repo} path does not exist: {_path}")
+                logging.error(f"Local {repo} path does not exist: {_path}", )
     
     def __get_index(self):
         for repo, data in self.__repositories.items():
@@ -92,11 +92,11 @@ class RepositoryManager:
             try:
                 with urllib.request.urlopen(__index) as res:
                     data["index"] = __index
-            except:
+            except (urllib.error.HTTPError, urllib.error.URLError):
                 try:
                     with urllib.request.urlopen(__fallback) as res:
                         data["index"] = __fallback
-                except:
-                    logging.error(f"Could not get index for {repo} repository")
+                except (urllib.error.HTTPError, urllib.error.URLError):
+                    logging.error(f"Could not get index for {repo} repository", )
                     continue
         

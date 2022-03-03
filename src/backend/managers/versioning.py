@@ -50,19 +50,12 @@ class VersioningManager:
         comment: str = "No comment",
         update: bool = False
     ):
-        '''
-        This function creates a new bottle state.
-        It will list all files in the bottle and compare them with the
-        current index, looking for differences. So it will create a new
-        state with the differences and its index/files yaml files. If 
-        this is the first state, it will create the states folder and
-        the index file. It will return True if the state was created, 
-        False otherwise.
-        '''
+        """
+        Create a new bottle state. It will list all files in the bottle and
+        compare them with the current index, looking for differences.
+        """
         task_id = str(uuid.uuid4())
-        logging.info(
-            f"Creating new state for bottle: [{config['Name']}] …"
-        )
+        logging.info(f"Creating new state for bottle: [{config['Name']}] …", )
 
         bottle_path = ManagerUtils.get_bottle_path(config)
         GLib.idle_add(
@@ -71,6 +64,8 @@ class VersioningManager:
             _("Generating state files index …"),  
             False
         )
+
+        states_file_yaml = None
 
         # check if this is the first state
         first = True
@@ -114,26 +109,20 @@ class VersioningManager:
 
             new_state_index = {
                 "Update_Date": str(datetime.now()),
-                "Additions": [],
-                "Removed": [],
-                "Changes": []
+                "Additions": [
+                    {"file": f[0], "checksum": f[1]}
+                    for f in additions
+                ],
+                "Removed": [
+                    {"file": f[0], "checksum": f[1]}
+                    for f in removed
+                ],
+                "Changes": [
+                    {"file": f["file"], "checksum": f["checksum"]}
+                    for f in cur_index["Files"]
+                    if f["checksum"] not in state_temp_checksums
+                ]
             }
-
-            new_state_index["Additions"] = [
-                {"file": f[0], "checksum": f[1]} 
-                for f in additions
-            ]
-            
-            new_state_index["Removed"] = [
-                {"file": f[0], "checksum": f[1]}
-                for f in removed
-            ]
-            
-            new_state_index["Changes"] = [
-                {"file": f["file"], "checksum": f["checksum"]}
-                for f in cur_index["Files"]
-                if f["checksum"] not in state_temp_checksums
-            ]
 
             state_id = int(str(len(states_file_yaml.get("States"))))
         else:
@@ -172,7 +161,7 @@ class VersioningManager:
             with open(f"{state_path}/files.yml", "w") as state_files_file:
                 yaml.dump(cur_index, state_files_file, indent=4)
                 state_files_file.close()
-        except:
+        except (OSError, IOError, YAMLError):
             return Result(
                 status=False,
                 message=_("Could not create the state folder.")
@@ -232,7 +221,7 @@ class VersioningManager:
             with open('%s/states/states.yml' % bottle_path, "w") as states_file:
                 yaml.dump(new_state_file, states_file, indent=4)
                 states_file.close()
-        except:
+        except (OSError, IOError, YAMLError):
             return Result(
                 status=False,
                 message=_("Could not update the states file.")
@@ -246,7 +235,7 @@ class VersioningManager:
             with open(f'{bottle_path}/states/index.yml', "w") as cur_index_file:
                 yaml.dump(cur_index, cur_index_file, indent=4)
                 cur_index_file.close()
-        except:
+        except (OSError, IOError, YAMLError):
             return Result(
                 status=False,
                 message=_("Could not update the index file.")
@@ -256,7 +245,7 @@ class VersioningManager:
         self.manager.update_config(config, "State", state_id)
         self.manager.update_config(config, "Versioning", True)
 
-        logging.info(f"New state [{state_id}] created successfully!")
+        logging.info(f"New state [{state_id}] created successfully!", )
 
         if update:
             '''
@@ -283,18 +272,16 @@ class VersioningManager:
             }
         )
 
+    @staticmethod
     def get_state_edits(
-        self,
-        config: BottleConfig,
-        state_id: str,
-        plain: bool = False
+            config: BottleConfig,
+            state_id: str,
+            plain: bool = False
     ) -> dict:
-        '''
-        This function will return the index.yml content for the given
-        state. It will be returned as plain text if the plain flag is
-        set, otherwise it will be returned as a dictionary.
-        NOTE: maybe this function should be called get_state_index
-        '''
+        """
+        Return the state index. Use the plain argument to return the
+        index as plain text.
+        """
         bottle_path = ManagerUtils.get_bottle_path(config)
         try:
             file = open('%s/states/%s/index.yml' % (bottle_path, state_id))
@@ -315,20 +302,19 @@ class VersioningManager:
                 }
             
             return files
-        except:
+        except (OSError, IOError, YAMLError):
             return {}
 
+    @staticmethod
     def get_state_files(
-        self,
-        config: BottleConfig,
-        state_id: int,
-        plain: bool = False
+            config: BottleConfig,
+            state_id: int,
+            plain: bool = False
     ) -> dict:
-        '''
-        This function will return the files.yml content for the given
-        state. It will be returned as plain text if the plain flag is
-        set, otherwise it will be returned as a dictionary.
-        '''
+        """
+        Return the files.yml content of the state. Use the plain argument
+        to return the content as plain text.
+        """
         bottle_path = ManagerUtils.get_bottle_path(config)
 
         try:
@@ -336,14 +322,12 @@ class VersioningManager:
             files = file.read() if plain else yaml.safe_load(file.read())
             file.close()
             return files
-        except:
+        except (OSError, IOError, YAMLError):
             return {}
 
-    def get_index(self, config: BottleConfig):
-        '''
-        This function list all files in a bottle and return them
-        in a dict (index).
-        '''
+    @staticmethod
+    def get_index(config: BottleConfig):
+        """List all files in a bottle and return as dict."""
         bottle_path = ManagerUtils.get_bottle_path(config)
 
         cur_index = {
@@ -368,20 +352,12 @@ class VersioningManager:
         config: BottleConfig, 
         state_id: int, 
         after=False
-    ):
-        '''
-        This function restore the given state to the bottle.
-        It compare the state files with bottle ones and restore
-        all differences. It will return True if the state is 
-        restored successfully, False otherwise.
-        NOTE: I know this function is not very optimized and
-        well documented, but I'm a bit scared to put my hands
-        on it again °_°
-        '''
+    ) -> bool:
+        """Restore a bottle to a state."""
 
         bottle_path = ManagerUtils.get_bottle_path(config)
 
-        logging.info(f"Restoring to state: [{state_id}]")
+        logging.info(f"Restoring to state: [{state_id}]", )
 
         # get bottle and state indexes
         bottle_index = self.get_index(config)
@@ -398,15 +374,15 @@ class VersioningManager:
                 remove_files.append(file)
             elif file["checksum"] not in [file["checksum"] for file in state_index.get("Files")]:
                 edit_files.append(file)
-        logging.info(f"[{len(remove_files)}] files to remove.")
-        logging.info(f"[{len(edit_files)}] files to replace.")
+        logging.info(f"[{len(remove_files)}] files to remove.", )
+        logging.info(f"[{len(edit_files)}] files to replace.", )
 
         # check for new files
         add_files = []
         for file in state_index.get("Files"):
             if file["file"] not in [file["file"] for file in bottle_index.get("Files")]:
                 add_files.append(file)
-        logging.info(f"[{len(add_files)}] files to add.")
+        logging.info(f"[{len(add_files)}] files to add.", )
 
         # perform file updates
         for file in remove_files:
@@ -415,11 +391,12 @@ class VersioningManager:
         for file in add_files:
             for i in search_sources:
                 source = "%s/states/%s/drive_c/%s" % (
-                    bottle_path, str(i), file["file"])
+                    bottle_path, str(i), file["file"]
+                )
                 if os.path.isfile(source):
                     break
-            target = "%s/drive_c/%s" % (bottle_path, file["file"])
-            shutil.copyfile(source, target)
+                target = "%s/drive_c/%s" % (bottle_path, file["file"])
+                shutil.copyfile(source, target)
 
         for file in edit_files:
             for i in search_sources:
@@ -429,8 +406,8 @@ class VersioningManager:
                     checksum = FileUtils().get_checksum(source)
                     if file["checksum"] == checksum:
                         break
-            target = "%s/drive_c/%s" % (bottle_path, file["file"])
-            shutil.copyfile(source, target)
+                target = "%s/drive_c/%s" % (bottle_path, file["file"])
+                shutil.copyfile(source, target)
 
         # update State in bottle config
         self.manager.update_config(config, "State", state_id)
@@ -464,12 +441,8 @@ class VersioningManager:
             states_file.close()
             states = states_file_yaml.get("States")
 
-            logging.info(
-                f"Found [{len(states)}] states for bottle: [{config['Name']}]"
-            )
+            logging.info(f"Found [{len(states)}] states for bottle: [{config['Name']}]", )
         except:
-            logging.warning(
-                f"Cannot find states.yml file for bottle: [{config['Name']}]"
-            )
+            logging.warning(f"Cannot find states.yml file for bottle: [{config['Name']}]", )
 
         return states

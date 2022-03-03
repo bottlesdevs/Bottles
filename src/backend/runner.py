@@ -44,9 +44,7 @@ class Runner:
 
     @staticmethod
     def run_layer_executable(config: BottleConfig, layer: dict):
-        '''
-        Run a layer executable.
-        '''
+        """Run an executable in a layer."""
         WineExecutor(
             config=config,
             exec_path=layer["exec_path"],
@@ -56,12 +54,12 @@ class Runner:
     
     @staticmethod
     def runner_update(config:BottleConfig, manager:object):
-        '''
+        """
         This method should be executed after changing the runner
-        for a bottle. It do a prefix update and re-initialize the
-        active DLLComponents (dxvk, dxvk-nvapi, vkd3d..).
-        '''
-        logging.info(f"Doing runner update for bottle: {config['Name']}")
+        for a bottle. It does a prefix update and re-initialize the
+        active DLLComponents (dxvk, dxvk-nvapi, vkd3d…).
+        """
+        logging.info(f"Doing runner update for bottle: {config['Name']}", )
         wineboot = WineBoot(config)
 
         # perform a prefix update

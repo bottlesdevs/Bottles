@@ -23,12 +23,12 @@ from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 logging = Logger()
 
 
-class TerminalUtils():
-    '''
+class TerminalUtils:
+    """
     This class is used to launch commands in the system terminal.
     It will loop all the "supported" terminals to find the one
     that is available, so it will be used to launch the command.
-    '''
+    """
     colors = {
         "default": "#00ffff #2b2d2e",
         "debug": "#ff9800 #2e2c2b",
@@ -45,8 +45,11 @@ class TerminalUtils():
         ['mate-terminal', '--command %s'],
         ['tilix', '-- %s'],
         ['qterminal', '--execute %s'],
-        ['lxterminal', '-e %s'], 
+        ['lxterminal', '-e %s'],
     ]
+
+    def __init__(self):
+        self.terminal = None
 
     def check_support(self):
         for terminal in self.terminals:
@@ -62,16 +65,19 @@ class TerminalUtils():
 
         return False
 
-    def execute(self, command, env=os.environ.copy(), colors="default"):
+    def execute(self, command, env=None, colors="default"):
+        if env is None:
+            env = os.environ.copy()
+
         if not self.check_support():
-            logging.warning("Terminal not supported.")
+            logging.warning("Terminal not supported.", )
             return False
-        
+
         if colors not in self.colors:
             colors = "default"
-            
+
         colors = self.colors[colors]
-        
+
         if self.terminal[0] == 'easyterm.py':
             command = ' '.join(self.terminal) % (colors, f'bash -c "{command}"')
             if "ENABLE_BASH" in os.environ:
@@ -91,11 +97,11 @@ class TerminalUtils():
         ).communicate()[0].decode("utf-8")
 
         return True
-    
+
     def launch_snake(self):
         snake_path = os.path.dirname(os.path.realpath(__file__))
         snake_path = os.path.join(snake_path, "snake.py")
         self.execute(
-            command = "python %s" % snake_path,
-            colors= "easter"
+            command="python %s" % snake_path,
+            colors="easter"
         )

@@ -21,7 +21,6 @@ from bottles.backend.utils.vulkan import VulkanUtils  # pyright: reportMissingIm
 
 
 class GPUUtils:
-
     __vendors = {
         "nvidia": "NVIDIA Corporation",
         "amd": "Advanced Micro Devices, Inc.",
@@ -44,10 +43,11 @@ class GPUUtils:
 
             if len(stdout) > 0:
                 found.append(_vendor)
-            
+
         return found
-    
-    def assume_discrete(self, vendors: list):
+
+    @staticmethod
+    def assume_discrete(vendors: list):
         if "nvidia" in vendors and "amd" in vendors:
             return {"integrated": "amd", "discrete": "nvidia"}
         if "nvidia" in vendors and "intel" in vendors:
@@ -55,7 +55,6 @@ class GPUUtils:
         if "amd" in vendors and "intel" in vendors:
             return {"integrated": "intel", "discrete": "amd"}
         return {}
-
 
     def get_gpu(self):
         checks = {
@@ -115,7 +114,7 @@ class GPUUtils:
             if len(stdout) > 0:
                 found.append(_check)
                 result["vendors"][_check] = gpus[_check]
-        
+
         if len(found) >= 2:
             _discrete = self.assume_discrete(found)
             if _discrete:
@@ -123,5 +122,5 @@ class GPUUtils:
                 _discrete = _discrete["discrete"]
                 result["prime"]["integrated"] = gpus[_integrated]
                 result["prime"]["discrete"] = gpus[_discrete]
-        
+
         return result

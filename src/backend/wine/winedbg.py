@@ -18,35 +18,36 @@ class WineDbg(WineProgram):
     program = "WINE debug tool"
     command = "winedbg"
     colors = "debug"
-    
+
     def __wineserver_status(self):
         return WineServer(self.config).is_alive()
 
     def get_processes(self):
+        """Get all processes running on the wineprefix."""
         processes = []
         parent = None
 
         if not self.__wineserver_status:
             return processes
-        
+
         res = self.launch(
-            args='--command "info proc"', 
-            comunicate=True, 
+            args='--command "info proc"',
+            comunicate=True,
             action_name="get_processes"
         )
         if res in [None, ""]:
             return processes
-        
+
         res = res.split("\n")
-        
+
         # remove the first line from the output (the header)
         del res[0]
 
         for w in res:
-            w = re.sub("\s{2,}", " ", w)[1:].replace("'", "")
+            w = re.sub("\\s{2,}", " ", w)[1:].replace("'", "")
 
-            if "\_" in w:
-                w = w.replace("\_ ", "")
+            if "\\_" in w:
+                w = w.replace("\\_ ", "")
                 w += " child"
 
             w = w.split(" ")
@@ -72,10 +73,8 @@ class WineDbg(WineProgram):
 
         return processes
 
-    def wait_for_process(self, name:str, timeout:int = .5):
-        '''
-        Wait for a process to exit.
-        '''
+    def wait_for_process(self, name: str, timeout: int = .5):
+        """Wait for a process to exit."""
         wineserver = WineServer(self.config)
         if not wineserver.is_alive():
             return True
@@ -89,7 +88,7 @@ class WineDbg(WineProgram):
             time.sleep(timeout)
         return True
 
-    def kill_process(self, pid:str=None, name:str=None):
+    def kill_process(self, pid: str = None, name: str = None):
         '''
         Kill a process by its PID or name.
         '''
@@ -107,8 +106,8 @@ class WineDbg(WineProgram):
                 "END_OF_INPUTS"
             ])
             res = self.launch(
-                args=args, 
-                comunicate=True, 
+                args=args,
+                comunicate=True,
                 action_name="kill_process"
             )
             if "error 5" in res and name:
@@ -120,14 +119,14 @@ class WineDbg(WineProgram):
                 )
                 return res
             return wineboot.kill()
-            
+
         if name:
             processes = self.get_processes()
             for p in processes:
                 if p["name"] == name:
                     self.kill_process(p["pid"], name)
 
-    def is_process_alive(self, pid:str=None, name:str=None):
+    def is_process_alive(self, pid: str = None, name: str = None):
         '''
         Check if a process is running on the wineprefix.
         '''

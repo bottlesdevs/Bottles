@@ -39,7 +39,10 @@ class CabExtract:
     files: list
     destination: str
 
-    def run(self, path: str, name: str = "", files: list = [], destination: str = ""):
+    def run(self, path: str, name: str = "", files: list = None, destination: str = ""):
+        if files is None:
+            files = []
+
         self.path = path
         self.name = name
         self.files = files
@@ -52,15 +55,13 @@ class CabExtract:
 
     def __checks(self):
         if not os.path.exists(self.path) and "*" not in self.path:
-            logging.error(f"Cab file {self.path} not found")
+            logging.error(f"Cab file {self.path} not found", )
             logging.write_log(f"Cab file {self.path} not found")
             return False
 
         if not shutil.which("cabextract"):
-            logging.critical(
-                "cabextract utility not found, please install to use "
-                "dependencies which need this feature"
-            )
+            logging.critical("cabextract utility not found, please install to use "
+                             "dependencies which need this feature", )
             logging.write_log(
                 "cabextract utility not found, please install to use "
                 "dependencies which need this feature"
@@ -116,7 +117,6 @@ class CabExtract:
 
             return True
         except Exception as exception:
-            logging.error(
-                f"Error while extracting cab file {self.path}:\n{exception}")
+            logging.error(f"Error while extracting cab file {self.path}:\n{exception}", )
 
         return False

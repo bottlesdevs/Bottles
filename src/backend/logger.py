@@ -26,10 +26,10 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 class Logger(logging.getLoggerClass()):
-    '''
+    """
     This class is a wrapper for the logging module. It provides
     custom formats for the log messages.
-    '''
+    """
     __color_map = {
         "debug": 37,
         "info": 36,
@@ -60,27 +60,27 @@ class Logger(logging.getLoggerClass()):
         handler.setFormatter(formatter)
         self.root.addHandler(handler)
 
-    def debug(self, message):
-        self.root.debug(self.__color("debug", message))
+    def debug(self, message, **kwargs):
+        self.root.debug(self.__color("debug", message), )
 
-    def info(self, message):
-        self.root.info(self.__color("info", message))
+    def info(self, message, **kwargs):
+        self.root.info(self.__color("info", message), )
 
-    def warning(self, message):
-        self.root.warning(self.__color("warning", message))
+    def warning(self, message, **kwargs):
+        self.root.warning(self.__color("warning", message), )
 
-    def error(self, message):
-        self.root.error(self.__color("error", message))
+    def error(self, message, **kwargs):
+        self.root.error(self.__color("error", message), )
 
-    def critical(self, message):
-        self.root.critical(self.__color("critical", message))
+    def critical(self, message, **kwargs):
+        self.root.critical(self.__color("critical", message), )
 
-    def write_log(self, data: list):
-        '''
-        This function writes a crash.log file.
-        It finds and replace the user's home directory
+    @staticmethod
+    def write_log(data: list):
+        """
+        Writes a crash.log file. It finds and replace the user's home directory
         with "USER" as a proposed standard for crash reports.
-        '''
+        """
         from bottles.backend.managers.journal import JournalManager, JournalSeverity  # pyright: reportMissingImports=false
         xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
         log_path = f"{xdg_data_home}/bottles/crash.log"

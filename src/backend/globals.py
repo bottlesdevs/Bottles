@@ -67,7 +67,8 @@ class Paths:
         if os.path.exists(data.get("custom_bottles_path")):
             bottles = data.get("custom_bottles_path")
         else:
-            logging.warning(f"Custom bottles path {data.get('custom_bottles_path')} does not exist, falling back to default")
+            logging.warning(
+                f"Custom bottles path {data.get('custom_bottles_path')} does not exist, falling back to default", )
 
 
 class TrdyPaths:

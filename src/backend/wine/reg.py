@@ -17,36 +17,29 @@ class Reg(WineProgram):
     program = "WINE Registry CLI"
     command = "reg"
 
-    def add(self, key: str, value: str, data: str, keyType: str=False):
+    def add(self, key: str, value: str, data: str, key_type: str = False):
         config = self.config
-        logging.info(
-            f"Adding Key: [{key}] with Value: [{value}] and "
-            f"Data: [{data}] in {config['Name']} registry"
-        )
+        logging.info(f"Adding Key: [{key}] with Value: [{value}] and "
+                     f"Data: [{data}] in {config['Name']} registry", )
         winedbg = WineDbg(config)
         args = "add '%s' /v '%s' /d '%s' /f" % (key, value, data)
         
-        if keyType:
+        if key_type:
             args = "add '%s' /v '%s' /t %s /d '%s' /f" % (
-                key, value, keyType, data
+                key, value, key_type, data
             )
         
         # avoid conflicts when executing async
         winedbg.wait_for_process("reg.exe")
         
         res = self.launch(args, comunicate=True, action_name="add")
-        logging.info(res)
+        logging.info(res, )
         
     def remove(self, key: str, value: str):
-        '''
-        This function remove a value with its data in the given
-        bottle registry key.
-        '''
+        """Remove a key from the registry"""
         config = self.config
-        logging.info(
-            f"Removing Value: [{key}] from Key: [{value}] in "
-            f"{config['Name']} registry"
-        )
+        logging.info(f"Removing Value: [{key}] from Key: [{value}] in "
+                     f"{config['Name']} registry", )
         winedbg = WineDbg(config)
         args = "delete '%s' /v %s /f" % (key, value)
 
@@ -54,16 +47,12 @@ class Reg(WineProgram):
         winedbg.wait_for_process("reg.exe")
 
         res = self.launch(args, comunicate=True, action_name="remove")
-        logging.info(res)
+        logging.info(res, )
     
     def import_bundle(self, bundle: dict):
-        '''
-        This function import a bundle to the given bottle registry.
-        '''
+        """Import a bundle of keys into the registry"""
         config = self.config
-        logging.info(
-            f"Importing bundle to {config['Name']} registry"
-        )
+        logging.info(f"Importing bundle to {config['Name']} registry", )
         winedbg = WineDbg(config)
         reg_file = ManagerUtils.get_temp_path(f"{uuid.uuid4()}.reg")
         
@@ -75,8 +64,8 @@ class Reg(WineProgram):
                 f.write(f"[{key}]\n")
 
                 for value in bundle[key]:
-                    if "keyType" in value:
-                        f.write(f'"{value["value"]}"={value["keyType"]}:{value["data"]}\n')
+                    if "key_type" in value:
+                        f.write(f'"{value["value"]}"={value["key_type"]}:{value["data"]}\n')
                     else:
                         f.write(f'"{value["value"]}"="{value["data"]}"\n')
 
@@ -88,7 +77,7 @@ class Reg(WineProgram):
         winedbg.wait_for_process("reg.exe")
 
         res = self.launch(args, comunicate=True, action_name="import_bundle")
-        logging.info(res)
+        logging.info(res, )
 
         # remove reg file
         os.remove(reg_file)

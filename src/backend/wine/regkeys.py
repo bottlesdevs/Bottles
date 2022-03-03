@@ -86,19 +86,19 @@ class RegKeys:
                 {
                     "value": "CurrentMinorVersionNumber",
                     "data": win_versions.get(version)["CurrentMinorVersionNumber"],
-                    "keyType": "dword"
+                    "key_type": "dword"
                 },
                 {
                     "value": "CurrentMajorVersionNumber",
                     "data": win_versions.get(version)["CurrentMajorVersionNumber"],
-                    "keyType": "dword"
+                    "key_type": "dword"
                 },
             ],
             "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": [
                 {
                     "value": "CSDVersion",
                     "data": win_versions.get(version)["CSDVersionHex"],
-                    "keyType": "dword"
+                    "key_type": "dword"
                 }
             ]
         }
@@ -128,12 +128,12 @@ class RegKeys:
                 {
                     "value": "CurrentMinorVersionNumber",
                     "data": win_versions.get(version)["CurrentMinorVersionNumber"],
-                    "keyType": "dword"
+                    "key_type": "dword"
                 },
                 {
                     "value": "CurrentMajorVersionNumber",
                     "data": win_versions.get(version)["CurrentMajorVersionNumber"],
-                    "keyType": "dword"
+                    "key_type": "dword"
                 }
             ]
 
@@ -206,7 +206,7 @@ class RegKeys:
                 {"value": "CursorSize","data": "25" },
                 {"value": "CursorVisible","data": "1" },
                 {"value": "EditionMode","data": "0" },
-                {"value": "FaceName","data": "Monospace", "keyType": "dword"},
+                {"value": "FaceName","data": "Monospace", "key_type": "dword"},
                 {"value": "FontPitchFamily","data": "1" },
                 {"value": "FontSize","data": "1248584" },
                 {"value": "FontWeight","data": "400" },
@@ -231,7 +231,7 @@ class RegKeys:
             key="HKEY_CURRENT_USER\\Control Panel\\Desktop",
             value="LogPixels",
             data=value,
-            keyType="REG_DWORD"
+            key_type="REG_DWORD"
         )
     
     def set_grab_fullscreen(self, state: bool):

@@ -24,11 +24,12 @@ from bottles.params import VERSION  # pyright: reportMissingImports=false
 from bottles.backend.globals import API
 from bottles.backend.managers.data import DataManager
 
+
 class NotificationsManager:
-    '''
+    """
     The NotificationsManager class is used to fetch and manage
     the notifications from the repository.
-    '''
+    """
 
     messages = []
     data = DataManager()
@@ -44,7 +45,7 @@ class NotificationsManager:
             with urllib.request.urlopen(API.notifications) as url:
                 res = url.read().decode('utf-8')
                 _messages = yaml.safe_load(res)
-        except:
+        except (urllib.error.HTTPError, urllib.error.URLError):
             _messages = []
         
         for message in _messages.items():
@@ -52,8 +53,9 @@ class NotificationsManager:
             _date = message.get("date")
             _date =  datetime(_date.year, _date.month, _date.day)
 
-            if _date < datetime.today() - timedelta(days=1) and not message.get("recurrent"):
-                    continue
+            if _date < datetime.today() - timedelta(days=1) \
+                    and not message.get("recurrent"):
+                continue
             
             if message.get("id") in self.data.list().get("notifications"):
                 continue
@@ -64,11 +66,7 @@ class NotificationsManager:
             self.messages.append(message)
     
     def mark_as_read(self, nid):
-        '''
-        This function marks a notification as read, updating the
-        user data file and marking the notification as read in the
-        local list.
-        '''
+        """Mark a notification as read."""
         for message in self.messages:
             if message.get("id") == nid:
                 message["read"] = True

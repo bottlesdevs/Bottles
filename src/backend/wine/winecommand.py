@@ -18,10 +18,9 @@ BottleConfig = NewType('BottleConfig', dict)
 
 
 class WineEnv:
-    '''
-    Thic class is used to store and return an command environment.
-    '''
-
+    """
+    Thic class is used to store and return a command environment.
+    """
     __env: dict = {}
     __result: dict = {
         "envs": {},
@@ -64,10 +63,10 @@ class WineEnv:
 
 
 class WineCommand:
-    '''
+    """
     This class is used to run a wine command with a custom environment.
     It also handles the launch in a terminal or not.
-    '''
+    """
 
     def __init__(
         self,
@@ -118,12 +117,12 @@ class WineCommand:
         arch = config.get("Arch", None)
         params = config.get("Parameters", None)
         if None in [arch, params]:
-            return
+            return env.get()
 
         if not config.get("IsLayer"):
             bottle = ManagerUtils.get_bottle_path(config)
         else:
-            bottle = ManagerUtils.get_layer_path(config["Name"]) # TODO: should not be handled here, just for testing
+            bottle = ManagerUtils.get_layer_path(config["Name"])  # TODO: should not be handled here, just for testing
             
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
@@ -154,7 +153,7 @@ class WineCommand:
         
         # Get Runtime libraries
         if "FLATPAK_ID" in os.environ and \
-            params["use_runtime"] and not self.terminal:
+                params.get("use_runtime") and not self.terminal:
             ld += RuntimeManager.get_runtime_env()
 
         # Get Runner libraries
@@ -176,7 +175,6 @@ class WineCommand:
             env.add("__GL_SHADER_DISK_CACHE", "1")
             env.add("__GL_SHADER_DISK_CACHE_PATH", bottle)
 
-        
         # DXVK-Nvapi environment variables
         if params["dxvk_nvapi"]:
             conf = self.__set_dxvk_nvapi_conf(bottle)
@@ -247,7 +245,7 @@ class WineCommand:
                     _first = list(gpu["vendors"].keys())[0]
                     env.add("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
                 else:
-                    logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES..")
+                    logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES..", )
 
         # DLL Overrides
         env.concat("WINEDLLOVERRIDES", dll_overrides, sep=";")
@@ -265,7 +263,7 @@ class WineCommand:
         arch = config.get("Arch")
 
         if runner in [None, ""]:
-            return
+            return ""
 
         if "Proton" in runner and "lutris" not in runner:
             '''
@@ -397,18 +395,19 @@ class WineCommand:
 
             if "ShellExecuteEx" in res:
                 raise Exception("ShellExecuteEx")
-        except Exception as e:
+        except:
             # workaround for `No such file or directory` error
             res = subprocess.Popen(self.command, shell=True, env=self.env)
             if self.comunicate:
                 return res.communicate()
             return res
 
-    def __set_dxvk_nvapi_conf(self, bottle:str):
-        '''
+    @staticmethod
+    def __set_dxvk_nvapi_conf(bottle:str):
+        """
         TODO: This should be moved to a dedicated DXVKConf class when
               we will provide a way to set the DXVK configuration.
-        '''
+        """
         dxvk_conf = f"{bottle}/dxvk.conf"
         if not os.path.exists(dxvk_conf):
             # create dxvk.conf if doesn't exist

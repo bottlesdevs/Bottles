@@ -4,11 +4,14 @@ class Result:
     message: str = ""
 
     def __init__(
-        self, 
-        status: bool=False, 
-        data: dict = {}, 
-        message: str = ""
+            self,
+            status: bool = False,
+            data: dict = None,
+            message: str = ""
     ):
+        if data is None:
+            data = {}
+
         self.status = status
         self.data = data
         self.message = message

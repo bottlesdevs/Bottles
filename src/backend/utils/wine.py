@@ -4,7 +4,7 @@ import os
 class WineUtils:
 
     @staticmethod
-    def get_user_dir(prefix_path:str):
+    def get_user_dir(prefix_path: str):
         ignored = ["Public"]
         usersdir = os.path.join(prefix_path, "drive_c", "users")
         found = []

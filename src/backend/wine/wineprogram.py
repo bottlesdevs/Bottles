@@ -38,12 +38,15 @@ class WineProgram:
         terminal: bool = False, 
         minimal: bool = True,
         comunicate: bool = False,
-        environment: dict = {},
+        environment: dict = None,
         cwd: str = None,
         action_name: str = "launch"
     ):
+        if environment is None:
+            environment = {}
+
         if not self.silent:
-            logging.info(f"Using {self.program} -- {action_name}")
+            logging.info(f"Using {self.program} -- {action_name}", )
             
         command = self.get_command(args)
         res = WineCommand(

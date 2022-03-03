@@ -15,13 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from typing import Union
 from bottles.backend.repos.repo import Repo  # pyright: reportMissingImports=false
 
 
 class ComponentRepo(Repo):
     name = "components"
 
-    def get(self, name: str, plain: bool = False) -> dict:
+    def get(self, name: str, plain: bool = False) -> Union[str, dict, bool]:
         if name in self.catalog:
             entry = self.catalog[name]
             category = entry["Category"]

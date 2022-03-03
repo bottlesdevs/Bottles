@@ -22,33 +22,34 @@ import json
 
 class WinRegister:
     
+    def __init__(self):
+        self.path = None
+        self.diff = {}
+        self.exclude = []
+        self.reg_dict = {}
+
     def new(self, path: str):
-        '''
-        This function creates a new WinRegister object
-        with the given path.
-        '''
+        """Create a new WinRegister object with the given path."""
+
         self.path = path
-        self.diff = {} # will store last diff
+        self.diff = {}  # will store last diff
         self.exclude = []
         self.reg_dict = self.__parse_dict(path)
         return self
     
     def __get_header(self):
-        '''
-        This function returns the header of the register. This
-        handle only Windows registry files, not WINE.
-        '''
+        """Return the header of the registry file."""
         with open(self.path, "r") as reg:
             header = reg.readlines(2)
             return header
     
-    def __parse_dict(self, path: str):
-        '''
-        This function parses the registry file and 
-        return it in a dictionary.
+    @staticmethod
+    def __parse_dict(path: str):
+        """
+        Parse the registry file and return a dictionary.
         TODO: this use regex, tests seems to be ok but should
               be the first method to be checked if problems occur.
-        '''
+        """
         _dict = {}
         exclude = [] # append here the keys to exclude, not safe
 
@@ -102,11 +103,8 @@ class WinRegister:
         
         return _dict
     
-    def compare(self, path: str=None, register: object=None):
-        '''
-        This function compares the current register with the
-        given path and returns the difference.
-        '''
+    def compare(self, path: str = None, register: object = None):
+        """Compare the current register with the given path or register."""
         if path is not None:
             register = WinRegister().new(path)
         elif register is None:
@@ -117,10 +115,7 @@ class WinRegister:
         return diff
     
     def __get_diff(self, register: object):
-        '''
-        This function returns the difference between the current
-        register and the given register.
-        '''
+        """Return the difference between the current register and the given one."""
         diff = {}
         other_reg = register.reg_dict
 
@@ -143,10 +138,7 @@ class WinRegister:
         return diff
     
     def update(self, diff: dict = None):
-        '''
-        This function updates the current register with the
-        given diff.
-        '''
+        """Update the current register with the given diff."""
         if diff is None:
             diff = self.diff # use last diff
 
@@ -173,8 +165,6 @@ class WinRegister:
                 reg.write("\n")
 
     def export_json(self, path: str):
-        '''
-        This function exports the current register in json format.
-        '''
+        """Export the current register to a json file."""
         with open(path, "w") as json_file:
             json.dump(self.reg_dict, json_file, indent=4)

@@ -105,12 +105,10 @@ class DependencyManager:
             self.__operation_manager.new_task, task_id, dependency[0], False
         )
 
-        logging.info(
-            "Installing dependency [%s] in bottle [%s]." % (
-                dependency[0],
-                config['Name']
-            )
-        )
+        logging.info("Installing dependency [%s] in bottle [%s]." % (
+            dependency[0],
+            config['Name']
+        ), )
         manifest = self.get_dependency(dependency[0])
         if not manifest:
             '''
@@ -317,7 +315,7 @@ class DependencyManager:
             else:
                 return True
         else:
-            logging.error("Destination path not supported!")
+            logging.error("Destination path not supported!", )
             return False
 
         return dest
@@ -345,20 +343,16 @@ class DependencyManager:
 
         for dll in dlls:
             try:
-                logging.info(
-                    "Removing [%s] from system32 in bottle: [%s]" % (
-                        dll,
-                        config['Name']
-                    )
-                )
+                logging.info("Removing [%s] from system32 in bottle: [%s]" % (
+                    dll,
+                    config['Name']
+                ), )
                 os.remove(f"{path}/drive_c/windows/system32/{dll}")
             except FileNotFoundError:
-                logging.error(
-                    "DLL [%s] not found in bottle [%s]." % (
-                        dll,
-                        config['Name'],
-                    )
-                )
+                logging.error("DLL [%s] not found in bottle [%s]." % (
+                    dll,
+                    config['Name'],
+                ), )
 
         # return True in both cases, has it is a non-critical error
         return True
@@ -415,7 +409,7 @@ class DependencyManager:
         if dest.startswith("temp/"):
             dest = dest.replace("temp/", f"{Paths.temp}/")
         else:
-            logging.error("Destination path not supported!")
+            logging.error("Destination path not supported!", )
             return False
 
         if validate_url(step["url"]):
@@ -622,7 +616,7 @@ class DependencyManager:
             key=step.get("key"),
             value=step.get("value"),
             data=step.get("data"),
-            keyType=step.get("type")
+            key_type=step.get("type")
         )
         return True
 

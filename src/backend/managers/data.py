@@ -45,7 +45,7 @@ class DataManager:
             with open(self.__p_data, 'r') as s:
                 self.__data = yaml.safe_load(s)
         except FileNotFoundError:
-            logging.error('Data file not found. Creating new one.')
+            logging.error('Data file not found. Creating new one.', )
             self.__create_data_file()
     
     def __create_data_file(self):

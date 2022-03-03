@@ -76,10 +76,12 @@ class VulkanUtils:
 
         return icd
 
-    def check_support(self):
+    @staticmethod
+    def check_support():
         return True
 
-    def test_vulkan(self):
+    @staticmethod
+    def test_vulkan():
         if shutil.which("vulkaninfo") is None:
             return "vulkaninfo tool not found"
         

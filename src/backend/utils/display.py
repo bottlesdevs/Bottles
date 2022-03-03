@@ -6,6 +6,7 @@ class DisplayUtils:
     
     @staticmethod
     def get_x_display():
+        """Get the X display port."""
         env_var = "DISPLAY"
         ports_range = range(3)
 
@@ -27,9 +28,7 @@ class DisplayUtils:
     
     @staticmethod
     def check_nvidia_device():
-        '''
-        TODO: move to gpu.py
-        '''
+        """Check if there is an nvidia device connected"""
         _query = "NVIDIA Corporation".lower()
         _proc = subprocess.Popen(
                 "lspci | grep 'VGA'",

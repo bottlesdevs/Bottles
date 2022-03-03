@@ -46,7 +46,7 @@ class Snake:
 
         self.stdscr.addstr(self.food[0], self.food[1], '🍎', curses.color_pair(2))
         self.stdscr.refresh()
-    
+
     def move(self):
         new_head = [self.snake[0][0], self.snake[0][1]]
 
@@ -79,7 +79,7 @@ class Snake:
             self.direction = 'RIGHT'
         elif key == ord('q'):
             exit()
-    
+
     def get_result(self):
         return f'Your score is {self.score}'
 
@@ -91,13 +91,17 @@ class Snake:
             self.draw()
             time.sleep(0.1)
 
+
 result = "Game over!"
+
+
 def main(stdscr):
     global result
     snake = Snake(stdscr)
     snake.run()
     result = snake.get_result()
-    
+
+
 if __name__ == '__main__':
     os.system('clear')
     logo = """
@@ -126,7 +130,7 @@ if __name__ == '__main__':
         print("Start again? (y/n)")
 
         if input() == 'y':
-            os.execl(sys.executable, os.path.abspath(__file__), *sys.argv) 
+            os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
         else:
             exit()
     elif choice == '2':

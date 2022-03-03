@@ -55,7 +55,8 @@ class HealthChecker:
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
     
-    def check_gpus(self):
+    @staticmethod
+    def check_gpus():
         return GPUUtils().get_gpu()
 
     def check_x11(self):
@@ -65,7 +66,8 @@ class HealthChecker:
             return True
         return False
 
-    def check_wayland(self):
+    @staticmethod
+    def check_wayland():
         if "WAYLAND_DISPLAY" in os.environ:
             return True
         return False
@@ -75,26 +77,30 @@ class HealthChecker:
             return True
         return False
 
-    def check_cabextract(self):
+    @staticmethod
+    def check_cabextract():
         res = shutil.which("cabextract")
         if res is None:
             return False
         return True
 
-    def check_p7zip(self):
+    @staticmethod
+    def check_p7zip():
         res = shutil.which("7z")
         if res is None:
             return False
         return True
 
-    def check_patool(self):
+    @staticmethod
+    def check_patool():
         res = shutil.which("patool")
         if res is None:
             return False
         return True
     
-    def __get_distro(self):
-        try: # only Python 3.10+
+    @staticmethod
+    def __get_distro():
+        try:  # only Python 3.10+
             _platform = platform.freedesktop_os_release()
             return {
                 "name": _platform.get("NAME", "Unknown"),
@@ -133,7 +139,8 @@ class HealthChecker:
             "version": "Unknown"
         }
     
-    def get_bottles_envs(self):
+    @staticmethod
+    def get_bottles_envs():
         look = [
             "LAYERS",
             "TESTING_REPOS",
@@ -155,7 +162,7 @@ class HealthChecker:
         self.distro = distro["name"]
         self.distro_version = distro["version"]
 
-    def get_results(self, plain:bool = False):
+    def get_results(self, plain: bool = False):
         results = {
             "Display": {
                 "X.org": self.x11,

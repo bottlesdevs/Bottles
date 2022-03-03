@@ -18,7 +18,7 @@ class Start(WineProgram):
         file: str, 
         terminal: bool = True, 
         args: str = "",
-        environment: dict = {},
+        environment: dict = None,
         cwd: str = None
     ):
         args = f"{file} {args}"

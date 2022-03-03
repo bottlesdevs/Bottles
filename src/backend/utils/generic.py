@@ -22,10 +22,7 @@ from datetime import datetime
 
 
 def validate_url(url: str):
-    '''
-    This function validates a given URL.
-    It returns True if the URL is valid, False otherwise.
-    '''
+    """Validate a URL."""
     regex = re.compile(
         r'^(?:http|ftp)s?://'
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
@@ -40,10 +37,10 @@ def validate_url(url: str):
 
 
 def detect_encoding(text: bytes):
-    '''
-    This function detects the encoding of a given file.
-    It returns the encoding if it is valid, None otherwise.
-    '''
+    """
+    Detect the encoding of a text by its bytes. Return None if it
+    can't be detected.
+    """
     encodings = [
         sys.stdout.encoding,
         "ascii",
@@ -88,10 +85,9 @@ def detect_encoding(text: bytes):
 
     return None
 
+
 def is_glibc_min_available():
-    '''
-    This function checks if the glibc version is greater or equal to 2.32
-    '''
+    """Check if the glibc minimum version is available."""
     try:
         import ctypes
         process_namespace = ctypes.CDLL(None)

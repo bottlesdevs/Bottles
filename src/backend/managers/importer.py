@@ -75,7 +75,7 @@ class ImportManager:
                     })
             i += 1
 
-        logging.info(f"Found {len(importer_wineprefixes)} wineprefixes…")
+        logging.info(f"Found {len(importer_wineprefixes)} wineprefixes…", )
 
         return Result(
             status=True,
@@ -86,9 +86,7 @@ class ImportManager:
 
     def import_wineprefix(self, wineprefix: dict) -> bool:
         """Import wineprefix from external manager and convert in a bottle"""
-        logging.info(
-            f"Importing wineprefix [{wineprefix['Name']}] in a new bottle…"
-        )
+        logging.info(f"Importing wineprefix [{wineprefix['Name']}] in a new bottle…", )
 
         # prepare bottle path for the wine prefix
         bottle_path = "Imported_%s" % wineprefix.get("Name")
@@ -97,14 +95,12 @@ class ImportManager:
         try:
             os.makedirs(bottle_complete_path, exist_ok=False)
         except (FileExistsError, OSError):
-            logging.error(
-                "Error creating bottle path for wineprefix "
-                f"[{wineprefix['Name']}], aborting."
-            )
+            logging.error("Error creating bottle path for wineprefix "
+                          f"[{wineprefix['Name']}], aborting.", )
             return Result(False)
 
         # create lockfile in source path
-        logging.info("Creating lock file in source path…")
+        logging.info("Creating lock file in source path…", )
         open(f'{wineprefix.get("Path")}/bottle.lock', 'a').close()
 
         # copy wineprefix files in the new bottle
@@ -128,7 +124,5 @@ class ImportManager:
         # update bottles view
         self.manager.update_bottles(silent=True)
 
-        logging.info(
-            f"Wineprefix: [{wineprefix['Name']}] imported!"
-        )
+        logging.info(f"Wineprefix: [{wineprefix['Name']}] imported!", )
         return Result(True)
