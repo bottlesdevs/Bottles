@@ -473,8 +473,8 @@ class DependencyManager:
         rename = step.get("rename")
         dest = self.__get_real_dest(config, step.get("dest"))
 
-         if isinstance(dest, bool):
-             return dest
+        if isinstance(dest, bool):
+            return dest
 
         res = CabExtract().run(
             path=f"{Paths.temp}/{source}",
