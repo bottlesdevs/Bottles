@@ -1166,7 +1166,7 @@ class Manager:
                 if dep in self.supported_dependencies:
                     _dep = self.supported_dependencies[dep]
                     log_update(_("Installing dependency: {0}…").format(
-                        _dep["Description"]
+                        _dep.get("Description", "n/a")
                     ))
                     self.dependency_manager.install(config, [dep, _dep])
 
