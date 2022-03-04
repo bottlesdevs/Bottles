@@ -594,7 +594,11 @@ class Manager:
             "*debug*",
             "*report*",
             "*crash*",
-            "*err*"
+            "*err*",
+            "_*",
+            "start",
+            "*website*",
+            "*web site*"
         ]
         found = []
         ext_programs = config.get("External_Programs")
