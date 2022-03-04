@@ -97,13 +97,10 @@ class WineExecutor:
             return self.__launch_with_bridge()
         if self.exec_type == "batch":
             return self.__launch_batch()
-        if self.exec_type == "dll":
-            return self.__launch_dll()
         if self.exec_type == "lnk":
             return self.__launch_lnk()
-        else:
-            winepath = WinePath(self.config)
-
+        if self.exec_type == "dll":
+            return self.__launch_dll()
         return False
 
     def __launch_with_bridge(self):
