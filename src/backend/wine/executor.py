@@ -93,18 +93,19 @@ class WineExecutor:
         return False
     
     def run(self):
-        if self.exec_type in ["exe"]:
+        if self.exec_type in ["exe", "msi"]:
             return self.__launch_with_bridge()
-        if self.exec_type == "msi":
-            return self.__launch_exe()
         if self.exec_type == "batch":
             return self.__launch_batch()
-        if self.exec_type == "lnk":
-            return self.__launch_lnk()
         if self.exec_type == "dll":
             return self.__launch_dll()
+        if self.exec_type == "lnk":
+            return self.__launch_lnk()
+        else:
+            winepath = WinePath(self.config)
+
         return False
-    
+
     def __launch_with_bridge(self):
         winebridge = WineBridge(self.config)
 
@@ -118,7 +119,7 @@ class WineExecutor:
             return self.__launch_exe()
         if self.exec_type == "msi":
             return self.__launch_msi()
-        
+
         return False
 
     def __launch_exe(self):

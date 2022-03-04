@@ -11,6 +11,7 @@ bottles_sources = [
   'winedbg.py',
   'wineserver.py',
   'wineboot.py',
+  'winepath.py',
   'cmd.py',
   'taskmgr.py',
   'control.py',
