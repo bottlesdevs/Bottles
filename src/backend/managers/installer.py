@@ -365,16 +365,6 @@ class InstallerManager:
                     GLib.idle_add(widget.set_err, _("Dependencies installation failed."))
                 return False
 
-        # execute steps
-        if steps:
-            widget.next_step()
-            if self.__layer is not None:
-                for d in dependencies:
-                    self.__layer.mount(name=d)
-                self.__perform_steps(self.__layer.runtime_conf, steps)
-            else:
-                self.__perform_steps(_config, steps)
-
         # set parameters
         if parameters:
             widget.next_step()
@@ -382,6 +372,18 @@ class InstallerManager:
                 self.__set_parameters(self.__layer.runtime_conf, parameters)
             else:
                 self.__set_parameters(_config, parameters)
+
+        # execute steps
+        if steps:
+            widget.next_step()
+            if self.__layer is not None:
+                for d in dependencies:
+                    self.__layer.mount(name=d)
+                wineboot = WineBoot(self.__layer.runtime_conf)
+                wineboot.update()
+                self.__perform_steps(self.__layer.runtime_conf, steps)
+            else:
+                self.__perform_steps(_config, steps)
 
         # register executable
         if self.__layer is None:

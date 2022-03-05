@@ -34,12 +34,12 @@ class InstallerRepo(Repo):
             return self.get_manifest(f"{self.url}/Reviews/{name}.md", plain=True)
         return False
     
-    def get_icon(self, name: str) -> Union[str, bool]:
+    def get_icon(self, name: str) -> Union[str, bytes, None]:
         if name in self.catalog:
             entry = self.catalog[name]
             executable = entry.get("Executable", {})
             icon = executable.get("icon")
             if icon:
                 return f"{self.url}/data/{name}/{icon}"
-        return False
+        return None
                 

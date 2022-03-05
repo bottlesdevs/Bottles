@@ -127,8 +127,8 @@ class Layer:
         _conf = Samples.config.copy()
         _conf["Name"] = layer["Name"]
         _conf["Path"] = layer["Path"]
-        self.runtime_conf = _conf
 
+        self.runtime_conf = _conf
         self.__config = layer
 
         return self
@@ -175,6 +175,9 @@ class Layer:
                 continue
 
             for f in files:
+                if "layer.yml" in f or "bottle.yml" in f:
+                    continue # TODO: avoid replacing configurations, need improvement
+
                 print("File:", f)
                 _source = os.path.join(root, f)
                 _layer = _source.replace(path, self.__path)
@@ -216,18 +219,22 @@ class Layer:
         append it to the __mounts list.
         """
         layer = LayersStore.get(name, _uuid)
-        logging.info(f"Mounting layer {layer['Name']}…", )
         if layer:
+            logging.info(f"Mounting layer {layer['Name']}…", )
             layer["Type"] = "layer"
             path = f"{Paths.layers}/@__{layer['Name']}__{layer['UUID']}"  # TODO: please don't hardcode this :S
             self.__mounts.append(layer)
             self.__link_files(path, duplicate)
+        else:
+            logging.error(f"Layer {_uuid} not found…", )
 
     def mount_bottle(self, config: BottleConfig, duplicate: bool = False):
         """Mount a bottle to the current layer."""
         logging.info(f"Mounting bottle {config['Name']}…", )
         _path = ManagerUtils.get_bottle_path(config)
         self.mount_dir(_path, config["Name"], duplicate)
+        self.runtime_conf["Runner"] = config["Runner"]
+        self.runtime_conf["IsLayer"] = True
 
     def sweep(self):
         """

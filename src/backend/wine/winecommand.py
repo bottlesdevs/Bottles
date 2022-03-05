@@ -122,8 +122,8 @@ class WineCommand:
         if not config.get("IsLayer"):
             bottle = ManagerUtils.get_bottle_path(config)
         else:
-            bottle = ManagerUtils.get_layer_path(config["Name"])  # TODO: should not be handled here, just for testing
-            
+            bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
+
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
         ld = []
@@ -347,7 +347,7 @@ class WineCommand:
 
         if self.terminal:
             return TerminalUtils().execute(self.command, self.env, self.colors)
-            
+
         if self.comunicate:
             try:
                 res = subprocess.Popen(
