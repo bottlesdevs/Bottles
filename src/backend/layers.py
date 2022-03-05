@@ -159,7 +159,7 @@ class Layer:
         self.__config = {
             "Name": name,
             "UUID": self.__uuid,
-            "Path": f"@__{self.__uuid}",
+            "Path": _conf["Path"],
             "Tree": {},
         }
 
