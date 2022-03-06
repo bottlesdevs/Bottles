@@ -79,7 +79,6 @@ class Manager:
     # component lists
     runtimes_available = []
     runners_available = []
-    steam_runners_available = []
     dxvk_available = []
     vkd3d_available = []
     nvapi_available = []
@@ -212,7 +211,6 @@ class Manager:
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
-        self.steam_runners_available = catalog["steam"]  # store as available but not supported by "standard" bottles
 
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
