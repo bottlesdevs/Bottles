@@ -24,6 +24,7 @@ from bottles.backend.models.result import Result
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.wineboot import WineBoot
+from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 
 logging = Logger()
@@ -51,9 +52,9 @@ class Runner:
             args=layer["exec_args"],
             environment=layer["exec_env"]
         ).run()
-    
+
     @staticmethod
-    def runner_update(config:BottleConfig, manager:object):
+    def runner_update(config: BottleConfig, manager: object, runner: str):
         """
         This method should be executed after changing the runner
         for a bottle. It does a prefix update and re-initialize the
@@ -61,17 +62,29 @@ class Runner:
         """
         logging.info(f"Doing runner update for bottle: {config['Name']}", )
         wineboot = WineBoot(config)
+        wineserver = WineServer(config)
 
-        # perform a prefix update
-        wineboot.update()
         # kill wineserver after update
         wineboot.kill()
-        
+        # wait for wineserver to go away
+        wineserver.wait()
+        # update bottle config
+        new_config = manager.update_config(
+            config=config,
+            key="Runner",
+            value=runner
+        )
+        # perform a prefix update
+        wineboot.update()
+        # re-initialize DLLComponents
         if config["Parameters"]["dxvk"]:
             manager.install_dll_component(config, "dxvk", overrides_only=True)
         if config["Parameters"]["dxvk_nvapi"]:
             manager.install_dll_component(config, "nvapi", overrides_only=True)
         if config["Parameters"]["vkd3d"]:
             manager.install_dll_component(config, "vkd3d", overrides_only=True)
-        
-        return Result(status=True)
+
+        return Result(
+            status=True,
+            data={"config": new_config}
+        )

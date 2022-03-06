@@ -293,7 +293,8 @@ class Manager:
                 stdout=subprocess.PIPE,
                 shell=True
             ).communicate()[0].decode("utf-8")
-            version = f'sys-{version.split(" ")[0]}'
+            version = version.split("\n")[0].split(" ")[0]
+            version = f'sys-{version}'
             self.runners_available.append(version)
 
         # check bottles runners

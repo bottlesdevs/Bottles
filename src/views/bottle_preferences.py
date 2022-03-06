@@ -587,23 +587,19 @@ class PreferencesView(Gtk.ScrolledWindow):
                 self.spinner_runner.start()
 
         def update(result, error=False):
+            if result and "config" in result.data.keys():
+                self.config = result.data["config"]
             set_widgets_status(True)
 
         set_widgets_status(False)
-
         runner = widget.get_active_id()
-        new_config = self.manager.update_config(
-            config=self.config,
-            key="Runner",
-            value=runner
-        )
-        self.config = new_config
 
         RunAsync(
             Runner.runner_update,
             callback=update,
             config=self.config,
-            manager= self.manager
+            manager=self.manager,
+            runner=runner
         )
 
     def __dll_component_task_func(self, *args, **kwargs):
