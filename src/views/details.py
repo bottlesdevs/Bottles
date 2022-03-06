@@ -133,6 +133,9 @@ class DetailsView(Handy.Leaflet):
             del pages["dependencies"]
             del pages["preferences"]
             del pages["versioning"]
+        elif self.config.get("Environment") == "Steam":
+            del pages["programs"]
+            del pages["versioning"]
 
         for w in self.list_pages.get_children():
             w.destroy()

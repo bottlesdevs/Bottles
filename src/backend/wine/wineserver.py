@@ -27,6 +27,10 @@ class WineServer(WineProgram):
             
         bottle = ManagerUtils.get_bottle_path(config)
         runner = ManagerUtils.get_runner_path(config.get("Runner"))
+
+        if config.get("Environment", "Custom") == "Steam":
+            bottle = config.get("Path")
+            runner = config.get("RunnerPath")
             
         env = os.environ.copy()
         env["WINEPREFIX"] = bottle

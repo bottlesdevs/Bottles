@@ -55,6 +55,7 @@ class Paths:
     runtimes = f"{base}/runtimes"
     runners = f"{base}/runners"
     bottles = f"{base}/bottles"
+    steam = f"{base}/steam"
     layers = f"{base}/layers"
     dxvk = f"{base}/dxvk"
     vkd3d = f"{base}/vkd3d"

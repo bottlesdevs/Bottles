@@ -94,7 +94,13 @@ class WineCommand:
 
     def __get_cwd(self, cwd) -> str:
         config = self.config
-        bottle = ManagerUtils.get_bottle_path(config)
+
+        if config.get("IsLayer"):
+            bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
+        elif config.get("Environment", "Custom") == "Steam":
+            bottle = config.get("Path")
+        else:
+            bottle = ManagerUtils.get_bottle_path(config)
 
         if not cwd:
             '''
@@ -119,10 +125,12 @@ class WineCommand:
         if None in [arch, params]:
             return env.get()
 
-        if not config.get("IsLayer"):
-            bottle = ManagerUtils.get_bottle_path(config)
-        else:
+        if config.get("IsLayer"):
             bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
+        elif config.get("Environment", "Custom") == "Steam":
+            bottle = config.get("Path")
+        else:
+            bottle = ManagerUtils.get_bottle_path(config)
 
         dll_overrides = []
         gpu = GPUUtils().get_gpu()
@@ -262,10 +270,13 @@ class WineCommand:
         runner = config.get("Runner")
         arch = config.get("Arch")
 
+        if config.get("Environment", "Custom") == "Steam":
+            runner = config.get("RunnerPath", None)
+
         if runner in [None, ""]:
             return ""
 
-        if "Proton" in runner and "lutris" not in runner:
+        if "Proton" in runner and "lutris" not in runner and config.get("Environment", "Custom") != "Steam":
             '''
             If the runner is Proton, set the pat to /dist or /files 
             based on check if files exists.
@@ -274,8 +285,14 @@ class WineCommand:
             if os.path.exists(f"{Paths.runners}/{runner}/dist"):
                 _runner = f"{runner}/dist"
             runner = _runner
-
-        if runner.startswith("sys-"):
+        elif config.get("Environment", "Custom") == "Steam":
+            '''
+            If the environment is Steam, runner path is defined
+            in the bottle configuration and point to the right
+            main folder.
+            '''
+            runner = f"{runner}/bin/wine"
+        elif runner.startswith("sys-"):
             '''
             If the runner type is system, set the runner binary
             path to the system command. Else set it to the full path.
@@ -286,6 +303,8 @@ class WineCommand:
         
         if arch == "win64":
             runner = f"{runner}64"
+
+        runner = runner.replace(" ", "\\ ")
         
         return runner
 
@@ -311,6 +330,7 @@ class WineCommand:
         
         if post_script is not None:
             command = f"{command} && sh {post_script}"
+
         return command
 
     def __get_gamescope_cmd(self) -> str:

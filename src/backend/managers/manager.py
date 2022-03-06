@@ -43,6 +43,7 @@ from bottles.backend.managers.repository import RepositoryManager
 from bottles.backend.managers.component import ComponentManager
 from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.dependency import DependencyManager
+from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.managers.importer import ImportManager
@@ -78,6 +79,7 @@ class Manager:
     # component lists
     runtimes_available = []
     runners_available = []
+    steam_runners_available = []
     dxvk_available = []
     vkd3d_available = []
     nvapi_available = []
@@ -150,8 +152,7 @@ class Manager:
         except AttributeError:
             pass
 
-    @staticmethod
-    def check_app_dirs():
+    def check_app_dirs(self):
         """
         Checks for the existence of the bottles' directories, and creates them
         if they don't exist.
@@ -167,6 +168,12 @@ class Manager:
         if not os.path.isdir(Paths.bottles):
             logging.info("Bottles path doesn't exist, creating now.", )
             os.makedirs(Paths.bottles, exist_ok=True)
+
+        if self.settings.get_boolean("experiments-steam") \
+                and SteamManager.is_steam_supported():
+            if not os.path.isdir(Paths.steam):
+                logging.info("Steam path doesn't exist, creating now.", )
+                os.makedirs(Paths.steam, exist_ok=True)
 
         if not os.path.isdir(Paths.layers):
             logging.info("Layers path doesn't exist, creating now.", )
@@ -205,6 +212,7 @@ class Manager:
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
+        self.steam_runners_available = catalog["steam"]  # store as available but not supported by "standard" bottles
 
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
@@ -763,6 +771,11 @@ class Manager:
             logging.info("Bottles found:\n - {0}".format(
                 "\n - ".join(self.local_bottles)
             ), )
+
+        if self.settings.get_boolean("experiments-steam") \
+                and SteamManager.is_steam_supported():
+            SteamManager.update_bottles()
+            self.local_bottles.update(SteamManager.list_prefixes())
 
     # Update parameters in bottle config
     def update_config(
