@@ -276,7 +276,7 @@ class WineCommand:
         if runner in [None, ""]:
             return ""
 
-        if "Proton" in runner and "lutris" not in runner and config.get("Environment", "Custom") != "Steam":
+        if "Proton" in runner and config.get("Environment", "") != "Steam":
             '''
             If the runner is Proton, set the pat to /dist or /files 
             based on check if files exists.
@@ -284,20 +284,23 @@ class WineCommand:
             _runner = f"{runner}/files"
             if os.path.exists(f"{Paths.runners}/{runner}/dist"):
                 _runner = f"{runner}/dist"
-            runner = _runner
-        elif config.get("Environment", "Custom") == "Steam":
+            runner = f"{Paths.runners}/{_runner}/bin/wine"
+
+        elif config.get("Environment", "") == "Steam":
             '''
             If the environment is Steam, runner path is defined
             in the bottle configuration and point to the right
             main folder.
             '''
             runner = f"{runner}/bin/wine"
+
         elif runner.startswith("sys-"):
             '''
             If the runner type is system, set the runner binary
             path to the system command. Else set it to the full path.
             '''
             runner = "wine"
+
         else:
             runner = f"{Paths.runners}/{runner}/bin/wine"
         
