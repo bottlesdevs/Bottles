@@ -1,9 +1,9 @@
 id: com.usebottles.bottles
 sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
-runtime-version: '41'
 base: org.winehq.Wine
 base-version: stable-21.08
+runtime-version: '41'
 command: bottles
 
 finish-args:
@@ -38,7 +38,7 @@ add-extensions:
     directory: lib/debug/lib/i386-linux-gnu
     version: '41'
     no-autodownload: true
-  
+
   com.valvesoftware.Steam.Utility:
     subdirectories: true
     directory: utils
@@ -191,29 +191,15 @@ modules:
     build-commands:
       - install -Dm755 data/gamemoderun -t /app/bin
     sources: *gamemode_sources
-
   - name: xdpyinfo
     buildsystem: autotools
     sources:
       - type: archive
         url: https://github.com/freedesktop/xdpyinfo/archive/refs/tags/xdpyinfo-1.3.2.tar.gz
         sha256: 4c6942cb55e965f1192c0e2efc78429e2f4281cc2bc185d6ea09d609f32c51de
-  
+
   # Libraries
   # ----------------------------------------------------------------------------
-  - name: compat
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/i386-linux-gnu /app/lib/debug/lib/i386-linux-gnu
-
-  - name: i386-libs
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/i386-linux-gnu
-      - install -Dm644 ld.so.conf -t /app/etc/
-    sources:
-      - type: file
-        path: ld.so.conf
 
   - name: mesa-glu
     config-opts: &mesa_glu_opts
@@ -229,7 +215,6 @@ modules:
         x86_64: *compat_i386_opts
     config-opts: *mesa_glu_opts
     sources: *mesa_glu_sources
-  
   - name: openldap
     config-opts: &openldap_opts
       - --disable-slapd
@@ -287,18 +272,6 @@ modules:
         x86_64: *compat_i386_opts
     sources: *libcapi20_sources
 
-  - name: libbsd
-    sources: &libbsd_sources
-      - type: archive
-        url: https://libbsd.freedesktop.org/releases/libbsd-0.10.0.tar.xz
-        sha256: 34b8adc726883d0e85b3118fa13605e179a62b31ba51f676136ecb2d0bc1a887
-
-  - name: libbsd-32bit
-    build-options:
-      arch:
-        x86_64: *compat_i386_opts
-    sources: *libbsd_sources
-
   - name: libcaca
     config-opts: &libcaca_opts
       - --disable-doc
@@ -320,44 +293,44 @@ modules:
   - name: rpcsvc-proto
     buildsystem: autotools
     sources:
-    - type: archive
-      url: https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.3.tar.gz
-      sha256: 6906e0f81bb016bd0216460fc879d3d9f2f6d743be7dfb0d8b32d140226d5ef8
+      - type: archive
+        url: https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.3.tar.gz
+        sha256: 6906e0f81bb016bd0216460fc879d3d9f2f6d743be7dfb0d8b32d140226d5ef8
 
   - name: parse-yapp
     buildsystem: simple
     build-commands:
-    - perl Makefile.PL
-    - make install
+      - perl Makefile.PL
+      - make install
     build-options:
       env:
-        PERL5LIB: "/app/lib/perl5/"
+        PERL5LIB: /app/lib/perl5/
         PERL_MM_OPT: INSTALL_BASE=/app
     cleanup:
-    - "*"
+      - '*'
     sources:
-    - type: archive
-      url: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz
-      sha256: 3810e998308fba2e0f4f26043035032b027ce51ce5c8a52a8b8e340ca65f13e5
+      - type: archive
+        url: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz
+        sha256: 3810e998308fba2e0f4f26043035032b027ce51ce5c8a52a8b8e340ca65f13e5
 
   - name: samba
     buildsystem: autotools
     config-opts:
-    - --prefix=/app
-    - --sbindir=/app/bin
-    - --libdir=/app/lib
-    - --enable-fhs
-    - --disable-python
-    - --without-json
-    - --without-ad-dc
-    - --without-ads
-    - --without-pam
-    - --without-ldap
-    - --without-acl-support
-    - --without-systemd
+      - --prefix=/app
+      - --sbindir=/app/bin
+      - --libdir=/app/lib
+      - --enable-fhs
+      - --disable-python
+      - --without-json
+      - --without-ad-dc
+      - --without-ads
+      - --without-pam
+      - --without-ldap
+      - --without-acl-support
+      - --without-systemd
     build-options:
       env:
-        PERL5LIB: "/app/lib/perl5/"
+        PERL5LIB: /app/lib/perl5/
         PERL_MM_OPT: INSTALL_BASE=/app
     sources:
       - type: archive
@@ -408,4 +381,3 @@ modules:
     sources:
       - type: dir
         path: .
-

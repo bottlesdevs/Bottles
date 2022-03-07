@@ -477,6 +477,10 @@ class DependencyManager:
 
         if rename:
             _file_name = file_name.split("/")[-1]
+
+            if os.path.exists(os.path.join(dest, rename)):
+                os.remove(os.path.join(dest, rename))
+
             shutil.move(
                 os.path.join(dest, _file_name),
                 os.path.join(dest, rename)
