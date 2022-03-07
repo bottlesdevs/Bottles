@@ -20,6 +20,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Handy
 
 from bottles.widgets.component import ComponentEntry, ComponentExpander  # pyright: reportMissingImports=false
+from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.data import DataManager
 
 
@@ -109,6 +110,9 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
+
+        if not SteamManager.is_steam_supported():
+            self.switch_steam.set_sensitive(False)
 
     def __toggle_night(self, widget, state):
         self.settings.set_boolean("night-theme", state)

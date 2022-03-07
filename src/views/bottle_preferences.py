@@ -33,6 +33,7 @@ from bottles.dialogs.gamescope import GamescopeDialog
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-preferences.ui')
 class PreferencesView(Gtk.ScrolledWindow):
     __gtype_name__ = 'DetailsPreferences'
