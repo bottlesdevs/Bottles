@@ -234,7 +234,7 @@ class DependencyManager:
 
         if step["action"] == "get_from_cab":
             uninstaller = False
-            if not self.__step_get_from_cab(self, config=config, step=step):
+            if not self.__step_get_from_cab(config=config, step=step):
                 return Result(status=False)
 
         if step["action"] == "archive_extract":
@@ -249,7 +249,7 @@ class DependencyManager:
 
         if step["action"] in ["copy_dll", "copy_file"]:
             uninstaller = False
-            if not self.__step_copy_dll(self, config=config, step=step):
+            if not self.__step_copy_dll(config=config, step=step):
                 return Result(status=False)
 
         if step["action"] == "override_dll":
@@ -459,7 +459,6 @@ class DependencyManager:
 
         return True
 
-    @staticmethod
     def __step_get_from_cab(self, config: BottleConfig, step: dict):
         """Take a file from a cabiner and extract to a path."""
         source = step.get("source")
