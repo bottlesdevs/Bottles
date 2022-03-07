@@ -108,7 +108,7 @@ class MainWindow(Handy.ApplicationWindow):
                     exec_path=arg_exe,
                     args=arg_passed
                 )
-                RunAsync(executor.run)
+                executor.run_cli()
                 self.proper_close()
 
         # Pages
@@ -369,10 +369,8 @@ class MainWindow(Handy.ApplicationWindow):
     @staticmethod
     def proper_close():
         '''
-        Properly close Bottles, giving 1s to the wine process to spawn the 
-        window if an executable is passed as argument
+	Properly close Bottles
         '''
-        time.sleep(1)
         quit()
 
     @staticmethod

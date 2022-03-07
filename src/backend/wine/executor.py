@@ -92,6 +92,23 @@ class WineExecutor:
         logging.error(f"Unsupported executable type: {exec_path}", )
         return False
     
+    def run_cli(self):
+        #We need to launch the application and then exit
+        #so we use WINE Starter, which will exit as soon
+        #as the program is launched
+        start = Start(self.config)
+        res = start.run(
+            file=self.exec_path,
+            terminal=self.terminal,
+            args=self.args,
+            environment=self.environment,
+            cwd=self.cwd
+        )
+        return Result(
+            status=True,
+            data={"output": res}
+        )
+
     def run(self):
         if self.exec_type in ["exe", "msi"]:
             return self.__launch_with_bridge()
