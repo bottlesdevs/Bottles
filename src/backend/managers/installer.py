@@ -26,6 +26,7 @@ from gi.repository import Gtk, GLib
 
 from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
 from bottles.backend.managers.conf import ConfigManager
+from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.layers import LayersStore, Layer
@@ -171,6 +172,12 @@ class InstallerManager:
                         environment=st.get("environment")
                     )
                     executor.run()
+                else:
+                    _err = f"Failed to download {st.get('file_name')}, or checksum failed."
+                    logging.error(_err)
+                    JournalManager.write(severity=JournalSeverity.ERROR, message=_err)
+                    return False
+        return True
 
     @staticmethod
     def __step_run_script(config, step: dict):
@@ -381,9 +388,15 @@ class InstallerManager:
                     self.__layer.mount(name=d)
                 wineboot = WineBoot(self.__layer.runtime_conf)
                 wineboot.update()
-                self.__perform_steps(self.__layer.runtime_conf, steps)
+                if not self.__perform_steps(self.__layer.runtime_conf, steps):
+                    if widget is not None:  # unlock widget
+                        GLib.idle_add(widget.set_err, _("Installation failed, please check the logs."))
+                    return False
             else:
-                self.__perform_steps(_config, steps)
+                if not self.__perform_steps(_config, steps):
+                    if widget is not None:  # unlock widget
+                        GLib.idle_add(widget.set_err, _("Installation failed, please check the logs."))
+                    return False
 
         # register executable
         if self.__layer is None:
