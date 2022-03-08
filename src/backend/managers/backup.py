@@ -64,7 +64,7 @@ class BackupManager:
                     yaml.dump(config, config_backup, indent=4)
                     config_backup.close()
                 backup_created = True
-            except (FileNotFoundError, PermissionError, YAMLError):
+            except (FileNotFoundError, PermissionError, yaml.YAMLError):
                 backup_created = False
 
         else:
@@ -143,7 +143,7 @@ class BackupManager:
                 
                 if manager.create_bottle_from_config(config):
                     import_status = True
-            except (FileNotFoundError, PermissionError, YAMLError):
+            except (FileNotFoundError, PermissionError, yaml.YAMLError):
                 import_status = False
         else:
             if backup_name.endswith(".tar.gz"):

@@ -161,7 +161,7 @@ class VersioningManager:
             with open(f"{state_path}/files.yml", "w") as state_files_file:
                 yaml.dump(cur_index, state_files_file, indent=4)
                 state_files_file.close()
-        except (OSError, IOError, YAMLError):
+        except (OSError, IOError, yaml.YAMLError):
             return Result(
                 status=False,
                 message=_("Could not create the state folder.")
@@ -221,7 +221,7 @@ class VersioningManager:
             with open('%s/states/states.yml' % bottle_path, "w") as states_file:
                 yaml.dump(new_state_file, states_file, indent=4)
                 states_file.close()
-        except (OSError, IOError, YAMLError):
+        except (OSError, IOError, yaml.YAMLError):
             return Result(
                 status=False,
                 message=_("Could not update the states file.")
@@ -235,7 +235,7 @@ class VersioningManager:
             with open(f'{bottle_path}/states/index.yml', "w") as cur_index_file:
                 yaml.dump(cur_index, cur_index_file, indent=4)
                 cur_index_file.close()
-        except (OSError, IOError, YAMLError):
+        except (OSError, IOError, yaml.YAMLError):
             return Result(
                 status=False,
                 message=_("Could not update the index file.")
@@ -302,7 +302,7 @@ class VersioningManager:
                 }
             
             return files
-        except (OSError, IOError, YAMLError):
+        except (OSError, IOError, yaml.YAMLError):
             return {}
 
     @staticmethod
@@ -322,7 +322,7 @@ class VersioningManager:
             files = file.read() if plain else yaml.safe_load(file.read())
             file.close()
             return files
-        except (OSError, IOError, YAMLError):
+        except (OSError, IOError, yaml.YAMLError):
             return {}
 
     @staticmethod
