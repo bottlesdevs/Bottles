@@ -305,29 +305,33 @@ class InstallerManager:
         if "FLATPAK_ID" in os.environ:
             return None
 
-        with open(desktop_file, "w") as f:
-            ex_path = "%s/%s/drive_c/%s/%s" % (
-                Paths.bottles,
-                config.get('Path'),
-                executable.get('path'),
-                executable.get('file')
-            )
-            f.write(f"[Desktop Entry]\n")
-            f.write(f"Name={executable.get('name')}\n")
-            f.write(f"Exec=bottles -e '{ex_path}' -b '{config.get('Name')}'\n")
-            f.write(f"Type=Application\n")
-            f.write(f"Terminal=false\n")
-            f.write(f"Categories=Application;\n")
-            if executable.get("icon"):
-                f.write(f"Icon={icon_path}\n")
-            else:
-                f.write(f"Icon=com.usebottles.bottles")
-            f.write(f"Comment={manifest.get('Description')}\n")
-            # Actions
-            f.write("Actions=Configure;\n")
-            f.write("[Desktop Action Configure]\n")
-            f.write("Name=Configure in Bottles\n")
-            f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
+        try:
+            # TODO: move to an util
+            with open(desktop_file, "w") as f:
+                ex_path = "%s/%s/drive_c/%s/%s" % (
+                    Paths.bottles,
+                    config.get('Path'),
+                    executable.get('path'),
+                    executable.get('file')
+                )
+                f.write(f"[Desktop Entry]\n")
+                f.write(f"Name={executable.get('name')}\n")
+                f.write(f"Exec=bottles -e '{ex_path}' -b '{config.get('Name')}'\n")
+                f.write(f"Type=Application\n")
+                f.write(f"Terminal=false\n")
+                f.write(f"Categories=Application;\n")
+                if executable.get("icon"):
+                    f.write(f"Icon={icon_path}\n")
+                else:
+                    f.write(f"Icon=com.usebottles.bottles")
+                f.write(f"Comment={manifest.get('Description')}\n")
+                # Actions
+                f.write("Actions=Configure;\n")
+                f.write("[Desktop Action Configure]\n")
+                f.write("Name=Configure in Bottles\n")
+                f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
+        except (OSError, IOError) as e:
+            logging.error(f"Failed to create desktop file. {e}")
 
     def count_steps(self, installer):
         manifest = self.get_installer(installer[0])
