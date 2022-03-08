@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 16:25+0100\n"
+"POT-Creation-Date: 2022-03-08 18:43+0100\n"
 "PO-Revision-Date: 2021-12-21 08:25+0000\n"
 "Last-Translator: Kumar Saurav <athena.saurav@gmail.com>\n"
 "Language-Team: Hindi <https://hosted.weblate.org/projects/bottles/bottles/hi/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
-#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:138
-#: src/window.py:188
+#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:135
+#: src/window.py:185
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -241,10 +241,18 @@ msgid "Toggle experimental winebridge implementation."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:61
-msgid "Automatically close Bottles"
+msgid "Experiments:steam"
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:62
+msgid "Toggle experimental Steam Proton prefixes support."
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:66
+msgid "Automatically close Bottles"
+msgstr ""
+
+#: data/com.usebottles.bottles.gschema.xml:67
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
 
@@ -718,10 +726,10 @@ msgstr ""
 #: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
 #: src/ui/dialog-run-args.ui:27 src/ui/dialog-environment-variables.ui:27
 #: src/ui/dialog-launch-options.ui:26 src/ui/new.ui:27
-#: src/dialogs/launchoptions.py:85 src/views/bottle_details.py:295
-#: src/views/bottle_details.py:368 src/views/bottle_preferences.py:165
+#: src/dialogs/launchoptions.py:85 src/views/bottle_details.py:296
+#: src/views/bottle_details.py:369 src/views/bottle_preferences.py:166
 #: src/views/bottle_programs.py:74 src/views/list.py:127
-#: src/views/preferences.py:142
+#: src/views/preferences.py:155
 msgid "Cancel"
 msgstr ""
 
@@ -946,7 +954,7 @@ msgid "Run with arguments"
 msgstr ""
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
-#: src/views/bottle_details.py:294 src/views/list.py:126
+#: src/views/bottle_details.py:295 src/views/list.py:126
 msgid "Run"
 msgstr "चलाये"
 
@@ -1017,7 +1025,7 @@ msgstr ""
 msgid "Full archive"
 msgstr ""
 
-#: src/ui/importer.ui:74 src/window.py:143
+#: src/ui/importer.ui:74 src/window.py:140
 msgid "Importer"
 msgstr ""
 
@@ -1465,6 +1473,14 @@ msgstr ""
 msgid "Use WineBridge for process and program management."
 msgstr ""
 
+#: src/ui/preferences.ui:490
+msgid "Steam Proton prefixes"
+msgstr ""
+
+#: src/ui/preferences.ui:491
+msgid "In early development (requires restart)"
+msgstr ""
+
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
 msgstr ""
@@ -1485,7 +1501,7 @@ msgstr ""
 msgid "Forums"
 msgstr ""
 
-#: src/ui/window.ui:83 src/window.py:283
+#: src/ui/window.ui:83 src/window.py:285
 msgid "Health check"
 msgstr ""
 
@@ -1516,35 +1532,35 @@ msgstr "वापस जाए"
 msgid "Calculating..."
 msgstr ""
 
-#: src/main.py:97
+#: src/main.py:96
 msgid "Show version"
 msgstr ""
 
-#: src/main.py:105
+#: src/main.py:104
 msgid "Executable path"
 msgstr ""
 
-#: src/main.py:113
+#: src/main.py:112
 msgid "lnk path"
 msgstr ""
 
-#: src/main.py:121
+#: src/main.py:120
 msgid "Bottle name"
 msgstr ""
 
-#: src/main.py:129
+#: src/main.py:128
 msgid "Pass arguments"
 msgstr ""
 
-#: src/main.py:247
+#: src/main.py:246
 msgid "[Quit] request received."
 msgstr "[Quit] अनुरोध प्राप्त"
 
-#: src/main.py:256
+#: src/main.py:255
 msgid "[Help] request received."
 msgstr "[Help] अनुरोध प्राप्त"
 
-#: src/main.py:264
+#: src/main.py:263
 msgid "[Refresh] request received."
 msgstr "[Refresh] अनुरोध प्राप्त"
 
@@ -1552,135 +1568,140 @@ msgstr "[Refresh] अनुरोध प्राप्त"
 msgid "You are offline, unable to download."
 msgstr "आप ऑफ़लाइन हैं, हम डाउनलोड करने में असमर्थ हैं। "
 
-#: src/window.py:133 src/window.py:186
+#: src/window.py:130 src/window.py:183
 msgid "Bottle details"
 msgstr ""
 
-#: src/window.py:190
+#: src/window.py:187
 msgid "Import & export"
 msgstr ""
 
-#: src/backend/managers/backup.py:80
+#: src/backend/managers/backup.py:74
 #, python-brace-format
 msgid "Backup {0}"
 msgstr "Backup {0}"
 
-#: src/backend/managers/backup.py:137
+#: src/backend/managers/backup.py:125
 #, python-brace-format
 msgid "Importing backup: {0}"
 msgstr ""
 
-#: src/backend/managers/installer.py:355
+#: src/backend/managers/installer.py:372
 msgid "Dependencies installation failed."
 msgstr ""
 
-#: src/backend/managers/manager.py:1011
+#. unlock widget
+#: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
+msgid "Installation failed, please check the logs."
+msgstr ""
+
+#: src/backend/managers/manager.py:979
 msgid "Fail to install components, tried 3 times."
 msgstr ""
 
-#: src/backend/managers/manager.py:1021
+#: src/backend/managers/manager.py:989
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1104
+#: src/backend/managers/manager.py:1059
 #, fuzzy
 msgid "Generating bottle configuration…"
 msgstr "Bottle कॉन्फ़िग फ़ाइल जनरेट कर रहे है ..."
 
-#: src/backend/managers/manager.py:1125
+#: src/backend/managers/manager.py:1080
 msgid "Template found, applying…"
 msgstr ""
 
 #. execute wineboot on the bottle path
-#: src/backend/managers/manager.py:1134
+#: src/backend/managers/manager.py:1090
 #, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "Wine कॉन्फिग को अपडेट किया जा रहा है …"
 
-#: src/backend/managers/manager.py:1136
+#: src/backend/managers/manager.py:1092
 #, fuzzy
 msgid "WINE config updated!"
 msgstr "Wine कॉन्फिग अपडेट हो गया!"
 
-#: src/backend/managers/manager.py:1144
+#: src/backend/managers/manager.py:1100
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1146
+#: src/backend/managers/manager.py:1102
 msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1164
+#: src/backend/managers/manager.py:1120
 msgid "Setting Windows version…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1172
+#: src/backend/managers/manager.py:1128
 msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1180
+#: src/backend/managers/manager.py:1136
 msgid "Optimizing environment…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1191
+#: src/backend/managers/manager.py:1147
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1204
+#: src/backend/managers/manager.py:1163
 msgid "Installing DXVK…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1211
+#: src/backend/managers/manager.py:1170
 msgid "Installing VKD3D…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1218
+#: src/backend/managers/manager.py:1177
 msgid "Installing DXVK-NVAPI…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1226
+#: src/backend/managers/manager.py:1185
 #, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1243
+#: src/backend/managers/manager.py:1202
 msgid "Creating versioning state 0…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1251
+#: src/backend/managers/manager.py:1210
 msgid "Finalizing…"
 msgstr ""
 
-#: src/backend/managers/versioning.py:71
+#: src/backend/managers/versioning.py:64
 msgid "Generating state files index …"
 msgstr ""
 
-#: src/backend/managers/versioning.py:154
+#: src/backend/managers/versioning.py:143
 msgid "Creating a restore point …"
 msgstr ""
 
-#: src/backend/managers/versioning.py:178
+#: src/backend/managers/versioning.py:167
 msgid "Could not create the state folder."
 msgstr ""
 
-#: src/backend/managers/versioning.py:185
+#: src/backend/managers/versioning.py:174
 msgid "Updating index …"
 msgstr ""
 
-#: src/backend/managers/versioning.py:209
+#: src/backend/managers/versioning.py:198
 msgid "Updating states …"
 msgstr ""
 
-#: src/backend/managers/versioning.py:238
+#: src/backend/managers/versioning.py:227
 msgid "Could not update the states file."
 msgstr ""
 
-#: src/backend/managers/versioning.py:252
+#: src/backend/managers/versioning.py:241
 msgid "Could not update the index file."
 msgstr ""
 
-#: src/backend/managers/versioning.py:278
+#: src/backend/managers/versioning.py:267
 #, fuzzy, python-brace-format
 msgid "New state [{0}] created successfully!"
 msgstr "“{0}” नामक एक bottle बन गयी"
@@ -1754,40 +1775,40 @@ msgstr ""
 msgid "32-bit"
 msgstr ""
 
-#: src/views/bottle_details.py:291 src/views/list.py:123
+#: src/views/bottle_details.py:292 src/views/list.py:123
 msgid "Choose a Windows executable file"
 msgstr ""
 
-#: src/views/bottle_details.py:357
+#: src/views/bottle_details.py:358
 msgid "Select the location where to save the backup config"
 msgstr ""
 
-#: src/views/bottle_details.py:361
+#: src/views/bottle_details.py:362
 msgid "Select the location where to save the backup archive"
 msgstr ""
 
-#: src/views/bottle_details.py:368
+#: src/views/bottle_details.py:369
 msgid "Export"
 msgstr ""
 
-#: src/views/bottle_details.py:399
+#: src/views/bottle_details.py:400
 msgid "Confirm deletion"
 msgstr ""
 
-#: src/views/bottle_details.py:401
+#: src/views/bottle_details.py:402
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "क्या आप इस bottle और सारी फ़ाइलें सचमे हटाना चाहते हैं?"
 
-#: src/views/bottle_preferences.py:147
+#: src/views/bottle_preferences.py:148
 #, fuzzy
 msgid "This feature is not available on your system."
 msgstr "Gamemode या तो आपके सिस्टम पर उपलब्ध नहीं है या नहीं चल रहा है"
 
-#: src/views/bottle_preferences.py:161
+#: src/views/bottle_preferences.py:162
 msgid "Choose working directory for executables"
 msgstr ""
 
-#: src/views/bottle_preferences.py:164 src/views/preferences.py:141
+#: src/views/bottle_preferences.py:165 src/views/preferences.py:154
 msgid "Done"
 msgstr "हो गया"
 
@@ -1858,23 +1879,23 @@ msgstr ""
 msgid "A bottle named “{0}” was created successfully"
 msgstr "“{0}” नामक एक bottle बन गयी"
 
-#: src/views/preferences.py:138
+#: src/views/preferences.py:151
 msgid "Choose new bottles path"
 msgstr ""
 
-#: src/views/preferences.py:177
+#: src/views/preferences.py:190
 msgid "Caffe runners"
 msgstr ""
 
-#: src/views/preferences.py:178
+#: src/views/preferences.py:191
 msgid "Lutris runners"
 msgstr ""
 
-#: src/views/preferences.py:179
+#: src/views/preferences.py:192
 msgid "Proton runners"
 msgstr ""
 
-#: src/views/preferences.py:180
+#: src/views/preferences.py:193
 msgid "Other runners"
 msgstr ""
 
