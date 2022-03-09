@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 18:43+0100\n"
+"POT-Creation-Date: 2022-03-09 11:03+0100\n"
 "PO-Revision-Date: 2022-01-30 15:10+0000\n"
 "Last-Translator: Fran Diéguez <fran.dieguez@mabishu.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -290,6 +290,288 @@ msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles/\">Twitter</a>"
 
+#: src/ui/component-entry.ui:8
+msgid "Component version"
+msgstr "Versión do compoñente"
+
+#: src/ui/component-entry.ui:18 src/ui/importer-entry.ui:20
+msgid "Browse files"
+msgstr "Buscar ficheiros"
+
+#: src/ui/component-entry.ui:44
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch.\n"
+"\n"
+"Press to try again."
+msgstr ""
+
+#: src/ui/component-entry.ui:95
+msgid "Download & Install"
+msgstr "Descargar e instalar"
+
+#: src/ui/component-entry.ui:123
+msgid "0%"
+msgstr "0%"
+
+#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
+msgid "Uninstall"
+msgstr "Desinstalar"
+
+#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
+#: src/ui/state-entry.ui:20
+msgid "Show manifest"
+msgstr "Mostrar manifesto"
+
+#: src/ui/dependency-entry.ui:33
+msgid "License"
+msgstr "Licenza"
+
+#: src/ui/dependency-entry.ui:45
+#, fuzzy
+msgid "Reinstall"
+msgstr "Desinstalar"
+
+#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
+msgid "Bug report"
+msgstr "Informe de error"
+
+#: src/ui/dependency-entry.ui:159
+msgid "Download & Install this dependency"
+msgstr "Descargar e instalar esta dependencia"
+
+#: src/ui/dependency-entry.ui:185
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+
+#: src/ui/details-bottle.ui:20 src/ui/details-bottle.ui:85
+#: src/ui/importer.ui:20
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Esta é só a configuración da botella, é perfecta se desexa crear unha nova "
+"pero sen ficheiros personais."
+
+#: src/ui/details-bottle.ui:21 src/ui/importer.ui:21
+msgid "Configuration"
+msgstr "Configuración"
+
+#: src/ui/details-bottle.ui:34 src/ui/importer.ui:34
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr ""
+
+#: src/ui/details-bottle.ui:35 src/ui/importer.ui:35
+msgid "Full archive"
+msgstr "Ficheiro completo"
+
+#: src/ui/details-bottle.ui:59
+#, fuzzy
+msgid "Duplicate bottle"
+msgstr "Duplicar unha botella"
+
+#: src/ui/details-bottle.ui:86
+msgid "Open with explorer"
+msgstr ""
+
+#: src/ui/details-bottle.ui:112
+msgid "Flatpak help"
+msgstr ""
+
+#: src/ui/details-bottle.ui:136
+msgid "I can't see my old bottles after upgrade."
+msgstr ""
+
+#: src/ui/details-bottle.ui:149
+msgid "I don't see some directories."
+msgstr ""
+
+#: src/ui/details-bottle.ui:162
+msgid "I can't see the files in my home."
+msgstr ""
+
+#: src/ui/details-bottle.ui:175
+msgid "Executable silently crash or black screen"
+msgstr ""
+
+#: src/ui/details-bottle.ui:201
+msgid "Simulate a Windows system reboot."
+msgstr ""
+
+#: src/ui/details-bottle.ui:202
+msgid "Reboot"
+msgstr ""
+
+#: src/ui/details-bottle.ui:215
+msgid "Simulate a Windows system shutdown."
+msgstr ""
+
+#: src/ui/details-bottle.ui:216
+msgid "Shutdown"
+msgstr ""
+
+#: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
+msgid "Run with arguments"
+msgstr "Executar con argumentos"
+
+#: src/ui/details-bottle.ui:252
+msgid "Move inside the sandbox"
+msgstr ""
+
+#: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
+msgid "Launch with terminal"
+msgstr ""
+
+#: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
+#, fuzzy
+msgid "Destroy this bottle"
+msgstr "Executar nesta botella"
+
+#: src/ui/details-bottle.ui:352 src/main.py:120
+msgid "Bottle name"
+msgstr "Nome da botella"
+
+#: src/ui/details-bottle.ui:356
+#, fuzzy
+msgid "Type a name for your bottle"
+msgstr "Escolla un nome para a súa botella"
+
+#: src/ui/details-bottle.ui:374
+#, fuzzy
+msgid "Rename bottle"
+msgstr "Botella nova"
+
+#: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
+msgid "Versioning enabled for this bottle"
+msgstr "Esta botella ten o versionado activado"
+
+#: src/ui/details-bottle.ui:409 src/ui/list-entry.ui:42
+msgid "Versioning is active in this bottle."
+msgstr "O control de versións está activado nesta botella."
+
+#: src/ui/details-bottle.ui:432 src/ui/list-entry.ui:61
+msgid "0"
+msgstr "0"
+
+#: src/ui/details-bottle.ui:462 src/ui/new.ui:160
+msgid "Environment"
+msgstr "Ambiente"
+
+#: src/ui/details-bottle.ui:496
+msgid "64 Bit"
+msgstr ""
+
+#: src/ui/details-bottle.ui:515
+msgid "Vaniglia-6.21-x86_64"
+msgstr ""
+
+#: src/ui/details-bottle.ui:540
+msgid "Layers"
+msgstr ""
+
+#: src/ui/details-bottle.ui:563
+#, fuzzy
+msgid "Run executable"
+msgstr "Ruta de executábel"
+
+#: src/ui/details-bottle.ui:637
+msgid "Kill all WINE processes"
+msgstr ""
+
+#: src/ui/details-bottle.ui:662
+#, fuzzy
+msgid "Make a backup of this bottle."
+msgstr "Executar nesta botella"
+
+#: src/ui/details-bottle.ui:758
+msgid "Moving inside the sandbox…"
+msgstr ""
+
+#: src/ui/details-bottle.ui:774 src/views/details.py:115
+msgid "Programs"
+msgstr ""
+
+#: src/ui/details-bottle.ui:790
+#, fuzzy
+msgid "Utilities"
+msgstr "Detalles e utilidades"
+
+#: src/ui/details-bottle.ui:795
+msgid "Wine config"
+msgstr ""
+
+#: src/ui/details-bottle.ui:797
+msgid "Adjust internal settings."
+msgstr ""
+
+#: src/ui/details-bottle.ui:837
+#, fuzzy
+msgid "Browse C:"
+msgstr "Examinar directorio"
+
+#: src/ui/details-bottle.ui:839
+#, fuzzy
+msgid "Browse internal files."
+msgstr "Buscar ficheiros"
+
+#: src/ui/details-bottle.ui:918
+msgid "Command line"
+msgstr ""
+
+#: src/ui/details-bottle.ui:920
+#, fuzzy
+msgid "Run commands inside the Bottle."
+msgstr "Instalar .exe/.msi nesta botella"
+
+#: src/ui/details-bottle.ui:960
+msgid "Registry editor"
+msgstr ""
+
+#: src/ui/details-bottle.ui:962
+msgid "Edit the internal registry."
+msgstr ""
+
+#: src/ui/details-bottle.ui:1002
+msgid "Debug"
+msgstr ""
+
+#: src/ui/details-bottle.ui:1004
+msgid "Debug wine processes."
+msgstr ""
+
+#: src/ui/details-bottle.ui:1041 src/ui/details-dependencies.ui:195
+#: src/ui/details-installers.ui:100 src/ui/details-programs.ui:125
+#: src/ui/details-versioning.ui:162
+msgid "Read documentation"
+msgstr "Ler documentación"
+
+#: src/ui/details-bottle.ui:1069 src/views/details.py:127
+msgid "Task manager"
+msgstr "Xestor de tarefas"
+
+#: src/ui/details-bottle.ui:1071
+msgid "Manage processes with the Wine task manager."
+msgstr ""
+
+#: src/ui/details-bottle.ui:1111
+#, fuzzy
+msgid "Uninstaller"
+msgstr "Desinstalar"
+
+#: src/ui/details-bottle.ui:1113
+msgid "Uninstall programs using wine uninstaller"
+msgstr ""
+
+#: src/ui/details-bottle.ui:1153
+msgid "Control panel"
+msgstr ""
+
+#: src/ui/details-bottle.ui:1155
+msgid "Access the internal wine control panel."
+msgstr ""
+
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
@@ -307,11 +589,6 @@ msgid ""
 msgstr ""
 "Aínda que os ficheiros desta páxian foron verificados, poden estar "
 "dispoñíbeis con unha licencia privativa."
-
-#: src/ui/details-dependencies.ui:195 src/ui/details-installers.ui:100
-#: src/ui/details-programs.ui:125 src/ui/details-versioning.ui:162
-msgid "Read documentation"
-msgstr "Ler documentación"
 
 #: src/ui/details-dependencies.ui:221
 msgid "Report a problem or a missing dependency."
@@ -632,7 +909,7 @@ msgid "Default to the bottle path."
 msgstr ""
 
 #: src/ui/details-preferences.ui:1110 src/ui/dialog-launch-options.ui:182
-#: src/ui/preferences.ui:255
+#: src/ui/drive-entry.ui:61 src/ui/preferences.ui:255
 msgid "Choose a directory"
 msgstr "Seleccione un cartafol"
 
@@ -706,6 +983,10 @@ msgstr "Buscar os programas instalados"
 msgid "Show/hide removed programs"
 msgstr ""
 
+#: src/ui/details-taskmanager.ui:59
+msgid "Stop process"
+msgstr ""
+
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
 msgstr "Non se atoparon estados"
@@ -730,50 +1011,19 @@ msgstr "Garde o estado da botella."
 msgid "Create new state"
 msgstr "Crear estado novo"
 
-#: src/ui/details-taskmanager.ui:59
-msgid "Stop process"
-msgstr ""
-
-#: src/ui/dialog.ui:6
-msgid "Message goes here."
-msgstr "O mensaxe vai aquí."
-
-#: src/ui/dialog.ui:23 src/ui/dialog-crash-report.ui:27
-#: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
-#: src/ui/dialog-run-args.ui:27 src/ui/dialog-environment-variables.ui:27
-#: src/ui/dialog-launch-options.ui:26 src/ui/new.ui:27
-#: src/dialogs/launchoptions.py:85 src/views/bottle_details.py:296
-#: src/views/bottle_details.py:369 src/views/bottle_preferences.py:166
-#: src/views/bottle_programs.py:74 src/views/list.py:127
-#: src/views/preferences.py:155
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: src/ui/dialog.ui:36
-msgid "Confirm"
-msgstr "Confirmar"
-
-#: src/ui/dialog-dll-overrides.ui:50
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)"
-msgstr ""
-
-#: src/ui/dialog-dll-overrides.ui:56
-msgid "New override"
-msgstr "Nova sobrescritura"
-
-#: src/ui/dialog-dll-overrides.ui:67
-msgid "e.g. ucrtbase"
-msgstr "p. ex., ucrtbase"
-
-#: src/ui/dialog-dll-overrides.ui:124
-msgid "Existing overrides"
-msgstr "Anulacións existentes"
-
 #: src/ui/dialog-crash-report.ui:24
 msgid "Bottles Crash Report"
 msgstr "Informe sobre o accidente das botellas"
+
+#: src/ui/dialog-crash-report.ui:27 src/ui/dialog-duplicate.ui:28
+#: src/ui/dialog-environment-variables.ui:27 src/ui/dialog-launch-options.ui:26
+#: src/ui/dialog-rename.ui:27 src/ui/dialog-run-args.ui:27 src/ui/dialog.ui:23
+#: src/ui/new.ui:27 src/dialogs/drives.py:62 src/dialogs/launchoptions.py:85
+#: src/views/bottle_details.py:296 src/views/bottle_details.py:369
+#: src/views/bottle_preferences.py:166 src/views/bottle_programs.py:74
+#: src/views/list.py:127 src/views/preferences.py:155
+msgid "Cancel"
+msgstr "Cancelar"
 
 #: src/ui/dialog-crash-report.ui:35
 msgid "Send report"
@@ -801,6 +1051,43 @@ msgstr "Aínda así quero informar."
 #: src/ui/new.ui:208
 msgid "Advanced options"
 msgstr "Opcións avanzadas"
+
+#: src/ui/dialog-dll-overrides.ui:50
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)"
+msgstr ""
+
+#: src/ui/dialog-dll-overrides.ui:56
+msgid "New override"
+msgstr "Nova sobrescritura"
+
+#: src/ui/dialog-dll-overrides.ui:67
+msgid "e.g. ucrtbase"
+msgstr "p. ex., ucrtbase"
+
+#: src/ui/dialog-dll-overrides.ui:124
+msgid "Existing overrides"
+msgstr "Anulacións existentes"
+
+#: src/ui/dialog-drives.ui:24
+msgid "Drives"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:49
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:..)."
+msgstr ""
+
+#: src/ui/dialog-drives.ui:54
+msgid "Letter"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:134
+#, fuzzy
+msgid "Existing drives"
+msgstr "Anulacións existentes"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -850,27 +1137,46 @@ msgstr "Botella duplicada"
 msgid "page_duplicated"
 msgstr "page_duplicated"
 
-#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
-msgid "Rename"
-msgstr "Renomear"
+#: src/ui/dialog-env-vars.ui:49
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
 
-#: src/ui/dialog-rename.ui:35 src/ui/dialog-gamescope.ui:28
-#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-launch-options.ui:34
+#: src/ui/dialog-env-vars.ui:54
+msgid "New variable"
+msgstr "Variable nova"
+
+#: src/ui/dialog-env-vars.ui:65
+msgid "e.g. MY_VAR"
+msgstr "p. ex. MI_VAR"
+
+#: src/ui/dialog-env-vars.ui:123
+msgid "Existing variables"
+msgstr "Variables existentes"
+
+#: src/ui/dialog-environment-variables.ui:24
+msgid "Change environment variables"
+msgstr "Cambiar variables de ambiente"
+
+#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-gamescope.ui:28
+#: src/ui/dialog-launch-options.ui:34 src/ui/dialog-rename.ui:35
 msgid "Save"
 msgstr "Gardar"
 
-#: src/ui/dialog-rename.ui:74
-msgid "Type the new name:"
-msgstr "Escriba un nome novo:"
-
-#: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:85
-#: src/ui/dialog-launch-options.ui:88
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+#: src/ui/dialog-environment-variables.ui:74
+msgid ""
+"Here you can change the environment variables for the commands that are "
+"executed."
 msgstr ""
 
-#: src/ui/dialog-rename.ui:88
-msgid "Type here.."
-msgstr "Escriba aquí…"
+#: src/ui/dialog-environment-variables.ui:86
+msgid "e.g.: VAR1=value VAR2=value"
+msgstr "p. ex..: VAR1=valor VAR2=valor"
+
+#: src/ui/dialog-environment-variables.ui:89
+msgid "e.g: VAR1=value VAR2=value .."
+msgstr ""
 
 #: src/ui/dialog-gamescope.ui:24
 #, fuzzy
@@ -945,59 +1251,6 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: src/ui/dialog-env-vars.ui:49
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-
-#: src/ui/dialog-env-vars.ui:54
-msgid "New variable"
-msgstr "Variable nova"
-
-#: src/ui/dialog-env-vars.ui:65
-msgid "e.g. MY_VAR"
-msgstr "p. ex. MI_VAR"
-
-#: src/ui/dialog-env-vars.ui:123
-msgid "Existing variables"
-msgstr "Variables existentes"
-
-#: src/ui/dialog-run-args.ui:24
-msgid "Run with arguments"
-msgstr "Executar con argumentos"
-
-#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
-#: src/views/bottle_details.py:295 src/views/list.py:126
-msgid "Run"
-msgstr "Executar"
-
-#: src/ui/dialog-run-args.ui:74
-msgid "Write below the arguments to be passed to the executable."
-msgstr ""
-
-#: src/ui/dialog-run-args.ui:89
-msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr "ej.: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-environment-variables.ui:24
-msgid "Change environment variables"
-msgstr "Cambiar variables de ambiente"
-
-#: src/ui/dialog-environment-variables.ui:74
-msgid ""
-"Here you can change the environment variables for the commands that are "
-"executed."
-msgstr ""
-
-#: src/ui/dialog-environment-variables.ui:86
-msgid "e.g.: VAR1=value VAR2=value"
-msgstr "p. ex..: VAR1=valor VAR2=valor"
-
-#: src/ui/dialog-environment-variables.ui:89
-msgid "e.g: VAR1=value VAR2=value .."
-msgstr ""
-
 #: src/ui/dialog-launch-options.ui:23 src/ui/program-entry.ui:33
 msgid "Change launch options"
 msgstr "Cambiar as opcións de lanzamento"
@@ -1005,6 +1258,11 @@ msgstr "Cambiar as opcións de lanzamento"
 #: src/ui/dialog-launch-options.ui:73
 msgid "These arguments are passed on program launch:"
 msgstr "Estos argumentos transmítense ao iniciar o programa:"
+
+#: src/ui/dialog-launch-options.ui:85 src/ui/dialog-launch-options.ui:88
+#: src/ui/dialog-rename.ui:86
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr ""
 
 #: src/ui/dialog-launch-options.ui:127
 msgid ""
@@ -1021,25 +1279,66 @@ msgstr ""
 msgid "Choose a script which should be executed after run."
 msgstr ""
 
-#: src/ui/importer.ui:20
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
+#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
+msgid "Rename"
+msgstr "Renomear"
+
+#: src/ui/dialog-rename.ui:74
+msgid "Type the new name:"
+msgstr "Escriba un nome novo:"
+
+#: src/ui/dialog-rename.ui:88
+msgid "Type here.."
+msgstr "Escriba aquí…"
+
+#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
+#: src/views/bottle_details.py:295 src/views/list.py:126
+msgid "Run"
+msgstr "Executar"
+
+#: src/ui/dialog-run-args.ui:74
+msgid "Write below the arguments to be passed to the executable."
 msgstr ""
-"Esta é só a configuración da botella, é perfecta se desexa crear unha nova "
-"pero sen ficheiros personais."
 
-#: src/ui/importer.ui:21
-msgid "Configuration"
-msgstr "Configuración"
+#: src/ui/dialog-run-args.ui:89
+msgid "e.g: -opengl -SkipBuildPatchPrereq"
+msgstr "ej.: -opengl -SkipBuildPatchPrereq"
 
-#: src/ui/importer.ui:34
-msgid "This is the complete archive of your bottle, including personal files."
+#: src/ui/dialog.ui:6
+msgid "Message goes here."
+msgstr "O mensaxe vai aquí."
+
+#: src/ui/dialog.ui:36
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: src/ui/dll-override-entry.ui:22
+msgid "Builtin (Wine)"
+msgstr "Incorporado (Wine)"
+
+#: src/ui/dll-override-entry.ui:23
+msgid "Native (Windows)"
+msgstr "Nativo (Windows)"
+
+#: src/ui/dll-override-entry.ui:24
+msgid "Builtin then Native"
+msgstr "Incorporado, despois nativo"
+
+#: src/ui/dll-override-entry.ui:25
+msgid "Native then Builtin"
+msgstr "Nativo, despois incorporado"
+
+#: src/ui/drive-entry.ui:9
+msgid "/point/to/path"
 msgstr ""
 
-#: src/ui/importer.ui:35
-msgid "Full archive"
-msgstr "Ficheiro completo"
+#: src/ui/env-var-entry.ui:84
+msgid "value"
+msgstr "valor"
+
+#: src/ui/importer-entry.ui:130
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Este prefixo deWine xa foi importado en Botellas."
 
 #: src/ui/importer.ui:74 src/window.py:140
 msgid "Importer"
@@ -1049,37 +1348,9 @@ msgstr "Importador"
 msgid "Import Bottles backup"
 msgstr "Importar copia de seguridade de Botellas"
 
-#: src/ui/importer-entry.ui:20 src/ui/component-entry.ui:18
-msgid "Browse files"
-msgstr "Buscar ficheiros"
-
-#: src/ui/importer-entry.ui:130
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Este prefixo deWine xa foi importado en Botellas."
-
-#: src/ui/list.ui:39
-msgid "Search your bottles .."
-msgstr ""
-
-#: src/ui/list.ui:77
-msgid "Start off by creating a Bottle."
-msgstr "Comece por crear unha botella."
-
-#: src/ui/list.ui:80
-msgid "Create a new Bottle"
-msgstr "Crear unha botella nova"
-
-#: src/ui/list-entry.ui:35
-msgid "Versioning enabled for this bottle"
-msgstr "Esta botella ten o versionado activado"
-
-#: src/ui/list-entry.ui:42
-msgid "Versioning is active in this bottle."
-msgstr "O control de versións está activado nesta botella."
-
-#: src/ui/list-entry.ui:61
-msgid "0"
-msgstr "0"
+#: src/ui/installer-entry.ui:47
+msgid "Read review"
+msgstr "Ler reseña"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1103,113 +1374,26 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Instalar .exe/.msi nesta botella"
 
-#: src/ui/component-entry.ui:8
-msgid "Component version"
-msgstr "Versión do compoñente"
-
-#: src/ui/component-entry.ui:44
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch.\n"
-"\n"
-"Press to try again."
+#: src/ui/list.ui:39
+msgid "Search your bottles .."
 msgstr ""
 
-#: src/ui/component-entry.ui:95
-msgid "Download & Install"
-msgstr "Descargar e instalar"
+#: src/ui/list.ui:77
+msgid "Start off by creating a Bottle."
+msgstr "Comece por crear unha botella."
 
-#: src/ui/component-entry.ui:123
-msgid "0%"
-msgstr "0%"
+#: src/ui/list.ui:80
+msgid "Create a new Bottle"
+msgstr "Crear unha botella nova"
 
-#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
-msgid "Uninstall"
-msgstr "Desinstalar"
-
-#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
-#: src/ui/state-entry.ui:20
-msgid "Show manifest"
-msgstr "Mostrar manifesto"
-
-#: src/ui/dependency-entry.ui:33
-msgid "License"
-msgstr "Licenza"
-
-#: src/ui/dependency-entry.ui:45
+#: src/ui/message-entry.ui:18
 #, fuzzy
-msgid "Reinstall"
-msgstr "Desinstalar"
+msgid "Utility & Preferences"
+msgstr "Preferencias"
 
-#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
-msgid "Bug report"
-msgstr "Informe de error"
-
-#: src/ui/dependency-entry.ui:159
-msgid "Download & Install this dependency"
-msgstr "Descargar e instalar esta dependencia"
-
-#: src/ui/dependency-entry.ui:185
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-
-#: src/ui/dll-override-entry.ui:22
-msgid "Builtin (Wine)"
-msgstr "Incorporado (Wine)"
-
-#: src/ui/dll-override-entry.ui:23
-msgid "Native (Windows)"
-msgstr "Nativo (Windows)"
-
-#: src/ui/dll-override-entry.ui:24
-msgid "Builtin then Native"
-msgstr "Incorporado, despois nativo"
-
-#: src/ui/dll-override-entry.ui:25
-msgid "Native then Builtin"
-msgstr "Nativo, despois incorporado"
-
-#: src/ui/env-var-entry.ui:84
-msgid "value"
-msgstr "valor"
-
-#: src/ui/installer-entry.ui:47
-msgid "Read review"
-msgstr "Ler reseña"
-
-#: src/ui/task-entry.ui:44
+#: src/ui/message-entry.ui:45 src/ui/task-entry.ui:44
 msgid "Delete message"
 msgstr "Eliminar mensaxe"
-
-#: src/ui/program-entry.ui:20
-msgid "Launch with terminal"
-msgstr ""
-
-#: src/ui/program-entry.ui:46
-msgid "Browse path"
-msgstr "Examinar directorio"
-
-#: src/ui/program-entry.ui:83
-msgid "WineHQ"
-msgstr "WineHQ"
-
-#: src/ui/program-entry.ui:96
-msgid "ProtonDB"
-msgstr "ProtonDB"
-
-#: src/ui/program-entry.ui:109
-msgid "Bottles' Forums"
-msgstr "Foros de Botellas"
-
-#: src/ui/program-entry.ui:133
-msgid "Remove from Programs"
-msgstr "Quitar dos programas"
-
-#: src/ui/program-entry.ui:146
-msgid "Add desktop entry"
-msgstr "Engadir acceso directo"
 
 #: src/ui/new.ui:24 src/ui/window.ui:328
 msgid "New bottle"
@@ -1238,10 +1422,6 @@ msgstr "Este campo non pode conter caracteres especiais!"
 #: src/ui/new.ui:129
 msgid "My beautiful bottle"
 msgstr "A miña fermosa botella"
-
-#: src/ui/new.ui:160
-msgid "Environment"
-msgstr "Ambiente"
 
 #: src/ui/new.ui:229
 msgid "Use versioning"
@@ -1497,6 +1677,30 @@ msgstr ""
 msgid "In early development (requires restart)"
 msgstr ""
 
+#: src/ui/program-entry.ui:46
+msgid "Browse path"
+msgstr "Examinar directorio"
+
+#: src/ui/program-entry.ui:83
+msgid "WineHQ"
+msgstr "WineHQ"
+
+#: src/ui/program-entry.ui:96
+msgid "ProtonDB"
+msgstr "ProtonDB"
+
+#: src/ui/program-entry.ui:109
+msgid "Bottles' Forums"
+msgstr "Foros de Botellas"
+
+#: src/ui/program-entry.ui:133
+msgid "Remove from Programs"
+msgstr "Quitar dos programas"
+
+#: src/ui/program-entry.ui:146
+msgid "Add desktop entry"
+msgstr "Engadir acceso directo"
+
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
 msgstr ""
@@ -1544,10 +1748,6 @@ msgstr ""
 msgid "Go back"
 msgstr ""
 
-#: src/operation.py:63
-msgid "Calculating..."
-msgstr ""
-
 #: src/main.py:96
 msgid "Show version"
 msgstr ""
@@ -1559,10 +1759,6 @@ msgstr "Ruta de executábel"
 #: src/main.py:112
 msgid "lnk path"
 msgstr ""
-
-#: src/main.py:120
-msgid "Bottle name"
-msgstr "Nome da botella"
 
 #: src/main.py:128
 msgid "Pass arguments"
@@ -1579,6 +1775,10 @@ msgstr "Recibiuse a solicitude [Axuda]."
 #: src/main.py:263
 msgid "[Refresh] request received."
 msgstr "Recibiuse a solicitude [Actualizar]."
+
+#: src/operation.py:63
+msgid "Calculating..."
+msgstr ""
 
 #: src/utils.py:62
 msgid "You are offline, unable to download."
@@ -1602,12 +1802,12 @@ msgstr ""
 msgid "Importing backup: {0}"
 msgstr ""
 
-#: src/backend/managers/installer.py:372
+#: src/backend/managers/installer.py:376
 msgid "Dependencies installation failed."
 msgstr ""
 
 #. unlock widget
-#: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
+#: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 msgid "Installation failed, please check the logs."
 msgstr ""
 
@@ -1729,6 +1929,15 @@ msgid ""
 "            Report your feedback in one of the below existing reports."
 msgstr ""
 
+#: src/dialogs/drives.py:58
+#, fuzzy
+msgid "Choose path"
+msgstr "Examinar directorio"
+
+#: src/dialogs/drives.py:61
+msgid "Select"
+msgstr ""
+
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
 msgstr ""
@@ -1745,34 +1954,6 @@ msgstr "Copiar ao portapapeis"
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
 msgstr ""
-
-#: src/views/details.py:103
-msgid "Details & Utilities"
-msgstr "Detalles e utilidades"
-
-#: src/views/details.py:111
-msgid "Dependencies"
-msgstr ""
-
-#: src/views/details.py:115
-msgid "Programs"
-msgstr ""
-
-#: src/views/details.py:116
-msgid "Found in your bottle's Start menu."
-msgstr ""
-
-#: src/views/details.py:119
-msgid "Versioning"
-msgstr "Control de versións"
-
-#: src/views/details.py:123
-msgid "Installers"
-msgstr ""
-
-#: src/views/details.py:127
-msgid "Task manager"
-msgstr "Xestor de tarefas"
 
 #: src/views/bottle_details.py:176
 #, python-format
@@ -1830,6 +2011,26 @@ msgstr ""
 
 #: src/views/bottle_programs.py:73
 msgid "Add"
+msgstr ""
+
+#: src/views/details.py:103
+msgid "Details & Utilities"
+msgstr "Detalles e utilidades"
+
+#: src/views/details.py:111
+msgid "Dependencies"
+msgstr ""
+
+#: src/views/details.py:116
+msgid "Found in your bottle's Start menu."
+msgstr ""
+
+#: src/views/details.py:119
+msgid "Versioning"
+msgstr "Control de versións"
+
+#: src/views/details.py:123
+msgid "Installers"
 msgstr ""
 
 #: src/views/importer.py:78
@@ -1913,6 +2114,10 @@ msgstr "Xestionar executores"
 #, fuzzy
 msgid "Other runners"
 msgstr "Xestionar executores"
+
+#: src/widgets/component.py:67
+msgid "Upgrade"
+msgstr ""
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
