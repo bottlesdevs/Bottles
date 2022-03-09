@@ -42,7 +42,7 @@ class Repo:
             logging.error(f"Cannot fetch {self.name} repository index.", )
             return {}
             
-        return {}
+        return index
     
     def get_manifest(self, url: str, plain: bool = False) -> dict:
         try:
