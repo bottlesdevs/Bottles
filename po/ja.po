@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 13:50+0530\n"
-"PO-Revision-Date: 2024-04-10 16:01+0000\n"
+"PO-Revision-Date: 2025-01-20 13:32+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #: bottles/backend/managers/backup.py:48 bottles/backend/managers/backup.py:95
 msgid "No path specified"
@@ -47,8 +47,7 @@ msgstr "ボトルのディレクトリを作成できませんでした。"
 
 #: bottles/backend/managers/manager.py:1157
 msgid "Failed to create placeholder directory/file."
-msgstr ""
-"プレースホルダーとなるディレクトリまたはファイルを作成できませんでした。"
+msgstr "プレースホルダーとなるディレクトリまたはファイルを作成できませんでした。"
 
 #: bottles/backend/managers/manager.py:1162
 msgid "Generating bottle configuration…"
@@ -246,8 +245,8 @@ msgid ""
 "download or checksum mismatch. Press to try again."
 msgstr ""
 "インストールに失敗しました。これは、リポジトリエラー、不完全なダウンロード、"
-"またはチェックサムの不一致が原因の可能性があります。押して再試行してくださ"
-"い。"
+"またはチェックサムの不一致が原因の可能性があります。押して再試行してください"
+"。"
 
 #: bottles/frontend/ui/component-entry.blp:45
 msgid "Download & Install"
@@ -294,8 +293,9 @@ msgstr "この依存関係をダウンロードしてインストールします
 msgid ""
 "An installation error occurred. Restart Bottles to read the Crash Report or "
 "run it via terminal to read the output."
-msgstr "インストールエラーが発生しました。Bottles を再起動してクラッシュレポートを読"
-"み取るか、ターミナルから実行して出力を読み取ります。"
+msgstr "インストールエラーが発生しました。Bottles "
+"を再起動してクラッシュレポートを読み取るか、ターミナルから実行して出力を読み"
+"取ります。"
 
 #: bottles/frontend/ui/dependency-entry.blp:93
 msgid "Dependency Menu"
@@ -327,8 +327,7 @@ msgstr "フルバックアップ…"
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
-msgstr ""
-"これは単なるボトル設定なので、個人ファイルなしで新しいボトルを作成したい場合"
+msgstr "これは単なるボトル設定なので、個人ファイルなしで新しいボトルを作成したい場合"
 "に最適です。"
 
 #: bottles/frontend/ui/details-bottle.blp:38
@@ -434,10 +433,10 @@ msgid ""
 "executable to the Programs list, or \"Install Programs…\" to install "
 "programs curated by the community."
 msgstr ""
-"実行可能ファイルを実行するには\"実行可能ファイルを実行…\"を、"
-"プログラム一覧に実行可能ファイルを追加するには\"ショートカットを追加…\"を、コ"
-"ミュニティーがキュレーションしたプログラムをインストールするには\"プログラム"
-"をインストール…\"をクリックします。"
+"実行可能ファイルを実行するには\"実行可能ファイルを実行…"
+"\"を、プログラム一覧に実行可能ファイルを追加するには\"ショートカットを追加…"
+"\"を、コミュニティーがキュレーションしたプログラムをインストールするには\""
+"プログラムをインストール…\"をクリックします。"
 
 #: bottles/frontend/ui/details-bottle.blp:298
 msgid "Add Shortcuts…"
@@ -609,8 +608,7 @@ msgstr "インストーラーが見つかりませんでした"
 #: bottles/frontend/ui/details-installers.blp:32
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
-"リポジトリに到達できないか、このボトルと互換性のあるインストーラーがありませ"
+msgstr "リポジトリに到達できないか、このボトルと互換性のあるインストーラーがありませ"
 "ん。"
 
 #: bottles/frontend/ui/details-installers.blp:50
@@ -1038,8 +1036,9 @@ msgstr "不具合を報告"
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
-msgstr "前回、Bottles はクラッシュしました。開発者がこの不具合を修正できるよう、以下"
-"のスタックトレースと一緒に報告してください。"
+msgstr "前回、Bottles "
+"はクラッシュしました。開発者がこの不具合を修正できるよう、以下のスタックトレ"
+"ースと一緒に報告してください。"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:74
 msgid ""
@@ -1048,10 +1047,11 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
-"類似する (または同一の) 不具合報告が、一つまたは複数あることを確認しました。"
-"新しく不具合を報告する前に、すでに報告されているものでないかよく確認してくだ"
-"さい。開発者はすべての不具合報告に対応しなくてはいけません。開発者の負担を減"
-"らすためにも、重複して報告しないよう確認をお願いします。"
+"類似する (または同一の) "
+"不具合報告が、一つまたは複数あることを確認しました。新しく不具合を報告する前"
+"に、すでに報告されているものでないかよく確認してください。開発者はすべての不"
+"具合報告に対応しなくてはいけません。開発者の負担を減らすためにも、重複して報"
+"告しないよう確認をお願いします。"
 
 #: bottles/frontend/ui/dialog-crash-report.blp:89
 msgid "I still want to report."
@@ -1141,8 +1141,7 @@ msgstr "ボトルを複製しました"
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
-msgstr ""
-"環境変数は動的に与えられる値で、ボトル上の実行中のプロセスの挙動に影響し得ま"
+msgstr "環境変数は動的に与えられる値で、ボトル上の実行中のプロセスの挙動に影響し得ま"
 "す。"
 
 #: bottles/frontend/ui/dialog-env-vars.blp:31
@@ -2825,9 +2824,8 @@ msgstr "アプリケーション起動時に表示する画面を選択します
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
-msgstr ""
-"バージョン管理やインストーラーなどの実験的な機能を有効／無効にします。ラン"
-"ナーのリリース候補です。"
+msgstr "バージョン管理やインストーラーなどの実験的な機能を有効／無効にします。ランナ"
+"ーのリリース候補です。"
 
 #: data/com.usebottles.bottles.gschema.xml:71
 msgid "Steam Proton Support"
