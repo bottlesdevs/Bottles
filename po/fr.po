@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-08 18:43+0100\n"
-"PO-Revision-Date: 2022-02-27 15:33+0000\n"
+"PO-Revision-Date: 2022-03-09 10:02+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -248,15 +248,12 @@ msgid "Toggle experimental winebridge implementation."
 msgstr "Activer/désactiver l’implémentation expérimentale de winebridge."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:steam"
-msgstr "Fonctionnalités expérimentales"
+msgstr "Expérimental : Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr ""
-"Activer/désactiver la fonctionnalité expérimentale de gestion de versions."
+msgstr "Activer/désactiver la prise en charge expérimentale de Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -1564,12 +1561,11 @@ msgstr "Utiliser WineBridge pour la gestion des processus et des programmes."
 
 #: src/ui/preferences.ui:490
 msgid "Steam Proton prefixes"
-msgstr ""
+msgstr "Préfixes Steam Proton"
 
 #: src/ui/preferences.ui:491
-#, fuzzy
 msgid "In early development (requires restart)"
-msgstr "Chemin d’accès aux bouteilles personnalisé (nécessite un redémarrage)"
+msgstr "En développement (nécessite un redémarrage)"
 
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
@@ -1686,7 +1682,7 @@ msgstr "L’installation des dépendances a échoué."
 #. unlock widget
 #: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
 msgid "Installation failed, please check the logs."
-msgstr ""
+msgstr "L’installation a échoué, veuillez vérifier les journaux."
 
 #: src/backend/managers/manager.py:979
 msgid "Fail to install components, tried 3 times."
