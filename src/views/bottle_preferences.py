@@ -77,7 +77,9 @@ class PreferencesView(Gtk.ScrolledWindow):
     combo_nvapi = Gtk.Template.Child()
     combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
-    row_cwd = Gtk.Template.Child()
+    action_cwd = Gtk.Template.Child()
+    action_discrete = Gtk.Template.Child()
+    action_runner = Gtk.Template.Child()
     action_runtime = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_dxvkbool = Gtk.Template.Child()
@@ -303,6 +305,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
         self.toggle_futex2.handler_unblock_by_func(self.__set_futex2)
 
+        self.__set_steam_rules()
 
     def __show_gamescope_settings(self, widget):
         new_window = GamescopeDialog(
@@ -910,3 +913,14 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.combo_windows
         ]:
             c.connect('scroll-event', no_action)
+
+    def __set_steam_rules(self):
+        status = False if self.config.get("Environment") == "Steam" else True
+
+        for w in [
+            self.action_discrete,
+            self.action_runner,
+            self.action_runtime
+        ]:
+            w.set_visible(status)
+            w.set_sensitive(status)

@@ -299,7 +299,7 @@ Disable if you're experiencing graphical glitches.</property>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
+                      <object class="HdyActionRow" id="action_discrete">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Discrete GPU</property>
@@ -537,7 +537,7 @@ Disable if you're experiencing graphical glitches.</property>
                         <property name="activatable">False</property>
                         <property name="title" translatable="yes">Components version</property>
                         <child>
-                          <object class="HdyActionRow">
+                          <object class="HdyActionRow" id="action_runner">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="title" translatable="yes">Runner</property>
@@ -1212,7 +1212,7 @@ disable if you run into issues.</property>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="row_cwd">
+                      <object class="HdyActionRow" id="action_cwd">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Working directory</property>
