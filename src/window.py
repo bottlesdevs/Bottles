@@ -375,7 +375,7 @@ class MainWindow(Handy.ApplicationWindow):
 
     @staticmethod
     def show_about_dialog(widget):
-        AboutDialog().show_all()
+        AboutDialog().run()
 
     @staticmethod
     def open_url(widget, url):
