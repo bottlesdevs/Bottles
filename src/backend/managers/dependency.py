@@ -535,8 +535,12 @@ class DependencyManager:
             if not os.path.exists(font_path):
                 os.makedirs(font_path)
 
-            shutil.copyfile(f"{path}/{font}", f"{font_path}/{font}")
-            print(f"Copying {font} to {bottle_path}/drive_c/windows/Fonts/")
+            try:
+                shutil.copyfile(f"{path}/{font}", f"{font_path}/{font}")
+            except (FileNotFoundError, FileExistsError):
+                logger.warning(f"Font {font} already exists or is not found.")
+
+            # print(f"Copying {font} to {bottle_path}/drive_c/windows/Fonts/")
 
         return True
 
