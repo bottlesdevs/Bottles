@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-03-09 10:02+0000\n"
+"PO-Revision-Date: 2022-03-10 13:12+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -358,13 +358,12 @@ msgid "Full archive"
 msgstr "完全归档"
 
 #: src/ui/details-bottle.ui:59
-#, fuzzy
 msgid "Duplicate bottle"
 msgstr "复制 bottle"
 
 #: src/ui/details-bottle.ui:86
 msgid "Open with explorer"
-msgstr ""
+msgstr "用资源管理器打开"
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
@@ -384,25 +383,23 @@ msgstr "我在主页中看不到文件。"
 
 #: src/ui/details-bottle.ui:175
 msgid "Executable silently crash or black screen"
-msgstr ""
+msgstr "可执行文件静默崩溃或黑屏"
 
 #: src/ui/details-bottle.ui:201
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "模拟 Windows 系统重启。"
 
 #: src/ui/details-bottle.ui:202
-#, fuzzy
 msgid "Reboot"
-msgstr "重启 Windows"
+msgstr "重启"
 
 #: src/ui/details-bottle.ui:215
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "模拟 Windows 系统关机。"
 
 #: src/ui/details-bottle.ui:216
-#, fuzzy
 msgid "Shutdown"
-msgstr "关闭 Windows"
+msgstr "关机"
 
 #: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
@@ -410,7 +407,7 @@ msgstr "带有参数运行"
 
 #: src/ui/details-bottle.ui:252
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "移入沙箱"
 
 #: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
@@ -425,14 +422,12 @@ msgid "Bottle name"
 msgstr "Bottle 名称"
 
 #: src/ui/details-bottle.ui:356
-#, fuzzy
 msgid "Type a name for your bottle"
-msgstr "为您的 bottle 选择一个名称"
+msgstr "输入 bottle 名称"
 
 #: src/ui/details-bottle.ui:374
-#, fuzzy
 msgid "Rename bottle"
-msgstr "创建 bottle"
+msgstr "重命名 bottle"
 
 #: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
 msgid "Versioning enabled for this bottle"
@@ -455,32 +450,28 @@ msgid "64 Bit"
 msgstr "64 位"
 
 #: src/ui/details-bottle.ui:515
-#, fuzzy
 msgid "Vaniglia-6.21-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:540
-#, fuzzy
 msgid "Layers"
-msgstr "分层的"
+msgstr "层"
 
 #: src/ui/details-bottle.ui:563
 msgid "Run executable"
 msgstr "运行可执行文件"
 
 #: src/ui/details-bottle.ui:637
-#, fuzzy
 msgid "Kill all WINE processes"
 msgstr "杀死所有 wine 进程"
 
 #: src/ui/details-bottle.ui:662
-#, fuzzy
 msgid "Make a backup of this bottle."
-msgstr "在该 bottle 中执行"
+msgstr "备份该 bottle。"
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "正在移入沙箱…"
 
 #: src/ui/details-bottle.ui:774 src/views/details.py:115
 msgid "Programs"
@@ -507,7 +498,6 @@ msgid "Browse internal files."
 msgstr "浏览内部文件。"
 
 #: src/ui/details-bottle.ui:918
-#, fuzzy
 msgid "Command line"
 msgstr "命令行"
 
@@ -516,7 +506,6 @@ msgid "Run commands inside the Bottle."
 msgstr "在 Bottle 内运行命令。"
 
 #: src/ui/details-bottle.ui:960
-#, fuzzy
 msgid "Registry editor"
 msgstr "注册表编辑器"
 
@@ -555,7 +544,6 @@ msgid "Uninstall programs using wine uninstaller"
 msgstr "使用 wine 卸载器卸载程序"
 
 #: src/ui/details-bottle.ui:1153
-#, fuzzy
 msgid "Control panel"
 msgstr "控制面板"
 
@@ -1062,22 +1050,21 @@ msgstr "现存覆盖"
 
 #: src/ui/dialog-drives.ui:24
 msgid "Drives"
-msgstr ""
+msgstr "驱动器"
 
 #: src/ui/dialog-drives.ui:49
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..)."
-msgstr ""
+msgstr "这些是来自你主机系统的路径，由运行器映射并识别为设备（如 C: D:..)。"
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
-msgstr ""
+msgstr "字母"
 
 #: src/ui/dialog-drives.ui:134
-#, fuzzy
 msgid "Existing drives"
-msgstr "现存覆盖"
+msgstr "现存驱动器"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -1319,7 +1306,7 @@ msgstr "原生先于内置"
 
 #: src/ui/drive-entry.ui:9
 msgid "/point/to/path"
-msgstr ""
+msgstr "/point/to/path"
 
 #: src/ui/env-var-entry.ui:84
 msgid "value"
@@ -1938,13 +1925,12 @@ msgstr ""
 "            在以下现有的报告中报告反馈。"
 
 #: src/dialogs/drives.py:58
-#, fuzzy
 msgid "Choose path"
-msgstr "浏览路径"
+msgstr "选择路径"
 
 #: src/dialogs/drives.py:61
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
@@ -2121,7 +2107,7 @@ msgstr "其他运行器"
 
 #: src/widgets/component.py:67
 msgid "Upgrade"
-msgstr ""
+msgstr "升级"
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
