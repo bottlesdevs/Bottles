@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-08 18:43+0100\n"
-"PO-Revision-Date: 2022-03-07 23:35+0000\n"
+"PO-Revision-Date: 2022-03-09 10:02+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -232,7 +232,8 @@ msgstr "実験的な機能"
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
-msgstr ""
+msgstr "バージョン管理やインストーラーなどの実験的な機能を有効／無効にします。ランナ"
+"ーのリリース候補です。"
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:winebridge"
@@ -243,14 +244,12 @@ msgid "Toggle experimental winebridge implementation."
 msgstr "実験的なwinebridge機能を有効／無効にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:steam"
-msgstr "実験的な機能"
+msgstr "実験的な機能: Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "実験的なバージョン管理機能を切り替えます"
+msgstr "実験的なSteam Proton環境対応機能を有効／無効にします。"
 
 #: data/com.usebottles.bottles.gschema.xml:66
 #: data/com.usebottles.bottles.gschema.xml:61
@@ -354,9 +353,9 @@ msgid ""
 "Improves performance of DirectX 11 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"DirectX 11を使用する、ゲームや3Dアプリケーションのパフォーマンスを向上させま"
-"す。\n"
-"視覚上の不具合が発生している場合は無効にしてください。"
+"DirectX "
+"11を使用する、ゲームや3Dアプリケーションのパフォーマンスを向上させます。\n"
+"視覚上の不具合が発生する場合は無効にしてください。"
 
 #: src/ui/details-preferences.ui:43 src/ui/details-preferences.ui:593
 #: src/ui/details-preferences.ui:578 src/ui/details-preferences.ui:44
@@ -375,9 +374,9 @@ msgid ""
 "Improves performance of DirectX 12 games and 3D applications.\n"
 "Disable if you're experiencing graphical glitches."
 msgstr ""
-"DirectX 12を使用する、ゲームや3Dアプリケーションのパフォーマンスを向上させま"
-"す。\n"
-"視覚上の不具合が発生している場合は無効にしてください。"
+"DirectX "
+"12を使用する、ゲームや3Dアプリケーションのパフォーマンスを向上させます。\n"
+"視覚上の不具合が発生する場合は無効にしてください。"
 
 #: src/ui/details-preferences.ui:87 src/ui/details-preferences.ui:678
 #: src/ui/details-preferences.ui:662 src/ui/details-preferences.ui:88
@@ -412,6 +411,9 @@ msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
 "Turn this off if you experience graphical glitches."
 msgstr ""
+"FSRは最先端のアップスケーリング技術を使用することで、高フレームレートを目指し"
+"ます。\n"
+"視覚上の不具合が発生する場合は無効にしてください。"
 
 #: src/ui/details-preferences.ui:181 src/ui/details-preferences.ui:183
 #: src/ui/details-preferences.ui:162
@@ -445,7 +447,7 @@ msgid ""
 "Disable if you're experiencing graphical glitches."
 msgstr ""
 "ゲームや3Dアプリケーションのパフォーマンスを向上させます。\n"
-"視覚上の不具合が発生している場合は無効にしてください。"
+"視覚上の不具合が発生する場合は無効にしてください。"
 
 #: src/ui/details-preferences.ui:261 src/ui/details-preferences.ui:263
 #: src/ui/details-preferences.ui:242
@@ -474,20 +476,20 @@ msgstr "Wine仮想デスクトップを使用します。"
 #: src/ui/details-preferences.ui:364 src/ui/details-preferences.ui:358
 #: src/ui/details-preferences.ui:363
 msgid "Mouse capture fullscreen"
-msgstr ""
+msgstr "全画面表示時マウスを捕捉"
 
 #: src/ui/details-preferences.ui:365 src/ui/details-preferences.ui:359
 #: src/ui/details-preferences.ui:364
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "全画面で表示中のプログラムにマウス操作が反映されます。"
 
 #: src/ui/details-preferences.ui:396
 msgid "Take focus"
-msgstr ""
+msgstr "フォーカスを取得"
 
 #: src/ui/details-preferences.ui:397
 msgid "Activate it if the program does not retake focus on switch."
-msgstr ""
+msgstr "プログラムを切り替えてもフォーカスが移行しない場合は有効にしてください。"
 
 #: src/ui/details-preferences.ui:428
 msgid "Screen scaling"
@@ -872,7 +874,8 @@ msgstr "不具合を報告"
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
-msgstr ""
+msgstr "前回、Bottlesはクラッシュしました。開発者がこの不具合を修正できるよう、以下の"
+"スタックトレースと一緒に報告してください。"
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -881,6 +884,10 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"類似する (または同一の) 不具合報告が、一つまたは複数あることを確認しました。"
+"新しく不具合を報告する前に、すでに報告されているものでないかよく確認してくだ"
+"さい。開発者はすべての不具合報告に対応しなくてはいけません。開発者の負担を減"
+"らすためにも、重複して報告しないよう確認をお願いします。"
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
@@ -906,7 +913,7 @@ msgstr "閉じる"
 
 #: src/ui/dialog-duplicate.ui:95
 msgid "Type a name for the new bottle"
-msgstr "新しいボトルの名前を入力"
+msgstr "新しいボトルの名前を入力してください"
 
 #: src/ui/dialog-duplicate.ui:107 src/ui/dialog-run-args.ui:86
 #: src/ui/dialog-run-args.ui:87
@@ -955,7 +962,7 @@ msgstr "保存"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr "新しい名前を入力:"
+msgstr "新しい名前を入力してください:"
 
 #: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:85
 #: src/ui/dialog-launch-options.ui:88 src/ui/dialog-launch-options.ui:87
@@ -1103,7 +1110,7 @@ msgstr "例: VAR1=value VAR2=value .."
 #: src/ui/program-entry.ui:21 src/ui/dialog-launch-options.ui:25
 #: src/ui/program-entry.ui:20
 msgid "Change launch options"
-msgstr "起動オプションの変更"
+msgstr "起動オプションを変更"
 
 #: src/ui/dialog-launch-options.ui:73 src/ui/dialog-launch-options.ui:75
 msgid "These arguments are passed on program launch:"
@@ -1642,12 +1649,11 @@ msgstr "プロセスとプログラムの管理にWineBridgeを使用します�
 
 #: src/ui/preferences.ui:490
 msgid "Steam Proton prefixes"
-msgstr ""
+msgstr "Steam Proton環境"
 
 #: src/ui/preferences.ui:491
-#, fuzzy
 msgid "In early development (requires restart)"
-msgstr "ボトルパスのカスタマイズ (再起動が必要)"
+msgstr "開発初期段階の機能 (再起動が必要)"
 
 #: src/ui/state-entry.ui:86 src/ui/state-entry.ui:47
 msgid "Restore this state"
@@ -1771,7 +1777,7 @@ msgstr "依存関係をインストールできませんでした。"
 #. unlock widget
 #: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
 msgid "Installation failed, please check the logs."
-msgstr ""
+msgstr "インストールできませんでした。ログを確認してください。"
 
 #: src/backend/managers/manager.py:979 src/backend/managers/manager.py:1011
 #: src/backend/managers/manager.py:985 src/backend/manager.py:1007
