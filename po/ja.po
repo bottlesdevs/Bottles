@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-03-09 10:02+0000\n"
+"PO-Revision-Date: 2022-03-10 13:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/bottles/bottles/"
 "ja/>\n"
@@ -379,51 +379,48 @@ msgid "Full archive"
 msgstr "完全なアーカイブ"
 
 #: src/ui/details-bottle.ui:59
-#, fuzzy
 msgid "Duplicate bottle"
 msgstr "ボトルを複製"
 
 #: src/ui/details-bottle.ui:86
 msgid "Open with explorer"
-msgstr ""
+msgstr "エクスプローラーで開く"
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
-msgstr ""
+msgstr "Flatpak版に関するヘルプ"
 
 #: src/ui/details-bottle.ui:136
 msgid "I can't see my old bottles after upgrade."
-msgstr ""
+msgstr "Flatpak版への移行前にはあったボトルが見当たりません。"
 
 #: src/ui/details-bottle.ui:149
 msgid "I don't see some directories."
-msgstr ""
+msgstr "表示されないディレクトリがあります。"
 
 #: src/ui/details-bottle.ui:162
 msgid "I can't see the files in my home."
-msgstr ""
+msgstr "ホームディレクトリ内のファイルが表示されません。"
 
 #: src/ui/details-bottle.ui:175
 msgid "Executable silently crash or black screen"
-msgstr ""
+msgstr "実行可能ファイルが急にクラッシュしたり、黒い画面が表示されたりします"
 
 #: src/ui/details-bottle.ui:201
 msgid "Simulate a Windows system reboot."
 msgstr ""
 
 #: src/ui/details-bottle.ui:202
-#, fuzzy
 msgid "Reboot"
-msgstr "Windowsを再起動します"
+msgstr "再起動"
 
 #: src/ui/details-bottle.ui:215
 msgid "Simulate a Windows system shutdown."
 msgstr ""
 
 #: src/ui/details-bottle.ui:216
-#, fuzzy
 msgid "Shutdown"
-msgstr "Windowsをシャットダウンします"
+msgstr "シャットダウン"
 
 #: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
 #: src/ui/dialog-run-args.ui:25
@@ -432,7 +429,7 @@ msgstr "引数を指定して実行"
 
 #: src/ui/details-bottle.ui:252
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "サンドボックス内に移動"
 
 #: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
@@ -447,14 +444,12 @@ msgid "Bottle name"
 msgstr "ボトル名"
 
 #: src/ui/details-bottle.ui:356
-#, fuzzy
 msgid "Type a name for your bottle"
 msgstr "ボトルの名前を入力してください"
 
 #: src/ui/details-bottle.ui:374
-#, fuzzy
 msgid "Rename bottle"
-msgstr "ボトルを作成する"
+msgstr "ボトル名を変更"
 
 #: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35 src/ui/list-entry.ui:34
 msgid "Versioning enabled for this bottle"
@@ -477,12 +472,10 @@ msgid "64 Bit"
 msgstr "64ビット"
 
 #: src/ui/details-bottle.ui:515
-#, fuzzy
 msgid "Vaniglia-6.21-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:540
-#, fuzzy
 msgid "Layers"
 msgstr "レイヤー"
 
@@ -491,18 +484,16 @@ msgid "Run executable"
 msgstr "実行可能ファイルを実行する"
 
 #: src/ui/details-bottle.ui:637
-#, fuzzy
 msgid "Kill all WINE processes"
-msgstr "すべてのワインプロセスを殺す"
+msgstr "すべてのWINEプロセスをkillします"
 
 #: src/ui/details-bottle.ui:662
-#, fuzzy
 msgid "Make a backup of this bottle."
-msgstr "このボトルで実行"
+msgstr "このボトルのバックアップを作成します。"
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "サンドボックス内に移動しています…"
 
 #: src/ui/details-bottle.ui:774 src/views/details.py:115
 #: src/views/details.py:114
@@ -530,7 +521,6 @@ msgid "Browse internal files."
 msgstr "内部ファイルを参照します。"
 
 #: src/ui/details-bottle.ui:918
-#, fuzzy
 msgid "Command line"
 msgstr "コマンドライン"
 
@@ -539,9 +529,8 @@ msgid "Run commands inside the Bottle."
 msgstr "ボトル内でコマンドを実行します。"
 
 #: src/ui/details-bottle.ui:960
-#, fuzzy
 msgid "Registry editor"
-msgstr "レジストリエディタ"
+msgstr "レジストリ エディター"
 
 #: src/ui/details-bottle.ui:962
 msgid "Edit the internal registry."
@@ -580,9 +569,8 @@ msgid "Uninstall programs using wine uninstaller"
 msgstr "ワインアンインストーラーを使用してプログラムをアンインストールする"
 
 #: src/ui/details-bottle.ui:1153
-#, fuzzy
 msgid "Control panel"
-msgstr "コントロールパネル"
+msgstr "コントロール パネル"
 
 #: src/ui/details-bottle.ui:1155
 msgid "Access the internal wine control panel."
@@ -1185,7 +1173,7 @@ msgstr "既存のオーバーライド"
 
 #: src/ui/dialog-drives.ui:24
 msgid "Drives"
-msgstr ""
+msgstr "ドライブ"
 
 #: src/ui/dialog-drives.ui:49
 msgid ""
@@ -1195,12 +1183,11 @@ msgstr ""
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
-msgstr ""
+msgstr "ドライブレター"
 
 #: src/ui/dialog-drives.ui:134
-#, fuzzy
 msgid "Existing drives"
-msgstr "既存のオーバーライド"
+msgstr "既存のドライブ"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -1408,7 +1395,7 @@ msgstr "起動後に実行するスクリプトを選択してください。"
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
 #: src/ui/program-entry.ui:47 src/ui/program-entry.ui:46
 msgid "Rename"
-msgstr "ボトル名を変更"
+msgstr "名前を変更"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
@@ -1460,7 +1447,7 @@ msgstr "ネイティブが利用できなければ組み込みを使う"
 
 #: src/ui/drive-entry.ui:9
 msgid "/point/to/path"
-msgstr ""
+msgstr "パスを指定"
 
 #: src/ui/env-var-entry.ui:84 src/ui/env-var-entry.ui:91
 msgid "value"
@@ -2165,13 +2152,12 @@ msgstr ""
 "            以下の既存の報告の中から選んでフィードバックを報告してください。"
 
 #: src/dialogs/drives.py:58
-#, fuzzy
 msgid "Choose path"
-msgstr "パスを表示"
+msgstr "パスを選択"
 
 #: src/dialogs/drives.py:61
 msgid "Select"
-msgstr ""
+msgstr "選択"
 
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 #: src/dialogs/generic.py:26 src/dialogs/generic.py:154
@@ -2373,7 +2359,7 @@ msgstr "そのほかのランナー"
 
 #: src/widgets/component.py:67
 msgid "Upgrade"
-msgstr ""
+msgstr "アップグレード"
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #: src/widgets/dependency.py:99 src/widgets/installer.py:77
