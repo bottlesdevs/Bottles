@@ -32,6 +32,9 @@ class Repo:
         self.catalog = self.__get_catalog(index)
     
     def __get_catalog(self, index: str):
+        if index in ["", None]:
+            return {}
+
         try:
             with urllib.request.urlopen(index) as url:
                 index = yaml.safe_load(url.read())
@@ -39,7 +42,7 @@ class Repo:
             logging.error(f"Cannot fetch {self.name} repository index.", )
             return {}
             
-        return index
+        return {}
     
     def get_manifest(self, url: str, plain: bool = False) -> dict:
         try:
