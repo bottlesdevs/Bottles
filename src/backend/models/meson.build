@@ -5,6 +5,7 @@ bottles_sources = [
   '__init__.py',
   'result.py',
   'samples.py',
+  'vdict.py',
 ]
 
 install_data(bottles_sources, install_dir: modelsdir)

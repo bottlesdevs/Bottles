@@ -13,6 +13,7 @@ bottles_sources = [
   'wine.py',
   'steam.py',
   'snake.py',
+  'vdf.py',
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

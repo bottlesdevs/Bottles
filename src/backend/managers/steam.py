@@ -129,11 +129,11 @@ class SteamManager:
             _creation_date = datetime.fromtimestamp(os.path.getctime(path))\
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
-            if _acf is None:
+            if _acf is None or not _acf.get("AppState"):
                 logging.warning(f"A Steam prefix was found, but there is no ACF for it: {_dir_name}, skipping...")
                 continue
 
-            if _acf["Name"] == "Proton Experimental":
+            if _acf["AppState"]["name"] == "Proton Experimental":
                 # skip Proton default prefix
                 continue
 
@@ -142,7 +142,7 @@ class SteamManager:
                 continue
 
             _conf = Samples.config.copy()
-            _conf["Name"] = _acf["Name"]
+            _conf["Name"] = _acf["AppState"]["name"]
             _conf["Environment"] = "Steam"
             _conf["CompatData"] = _dir_name
             _conf["Path"] = os.path.join(path, "pfx")
@@ -150,7 +150,8 @@ class SteamManager:
             _conf["RunnerPath"] = _runner[1]
             _conf["WorkingDir"] = os.path.join(_conf["Path"], "drive_c")
             _conf["Creation_Date"] = _creation_date
-            _conf["Update_Date"] = datetime.fromtimestamp(_acf["LastUpdated"]).strftime("%Y-%m-%d %H:%M:%S.%f")
+            _conf["Update_Date"] = datetime.fromtimestamp(int(_acf["AppState"]["LastUpdated"]))\
+                .strftime("%Y-%m-%d %H:%M:%S.%f")
 
             prefixes[_dir_name] = _conf
 

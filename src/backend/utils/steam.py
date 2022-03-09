@@ -18,30 +18,22 @@
 import subprocess
 from typing import Union
 
+from bottles.backend.models.vdict import VDFDict
+from bottles.backend.utils import vdf
+
 
 class SteamUtils:
 
     @staticmethod
-    def parse_acf(data: str) -> Union[dict, None]:
+    def parse_acf(data: str) -> VDFDict:
         """
-        Parse a steam app manifest file (.acf) into a dictionary with
-        only AppID, Name, LastUpdated keys.
-        TODO: need to be improved to parse all the keys
+        Parses aN ACF file. Just a wrapper for vdf.loads.
         """
+        return vdf.loads(data)
 
-        acf = {}
-
-        for line in data.splitlines():
-            line = line.strip()
-
-            if "appid" in line:
-                acf["AppID"] = line.split('"')[3]
-            elif "name" in line:
-                acf["Name"] = line.split('"')[3]
-            elif "LastUpdated" in line:
-                acf["LastUpdated"] = int(line.split('"')[3])
-
-        if acf == {}:
-            return None
-
-        return acf
+    @staticmethod
+    def parse_vdf(data: str) -> VDFDict:
+        """
+        Parses a VDF file. Just a wrapper for vdf.loads.
+        """
+        return vdf.loads(data)
