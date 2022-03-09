@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 18:43+0100\n"
+"POT-Creation-Date: 2022-03-09 11:03+0100\n"
 "PO-Revision-Date: 2022-02-15 07:59+0000\n"
 "Last-Translator: Farhan Makarim <farhanp35@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
@@ -292,6 +292,292 @@ msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
+#: src/ui/component-entry.ui:8
+msgid "Component version"
+msgstr "Versi komponen"
+
+#: src/ui/component-entry.ui:18 src/ui/importer-entry.ui:20
+msgid "Browse files"
+msgstr "Jelajahi Berkas-berkas"
+
+#: src/ui/component-entry.ui:44
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch.\n"
+"\n"
+"Press to try again."
+msgstr ""
+"Instalasi gagal. Ini mungkin karena kesalahan repositori, unduhan parsial "
+"atau ketidakcocokan checksum.\n"
+"\n"
+"Tekan untuk mencoba lagi."
+
+#: src/ui/component-entry.ui:95
+msgid "Download & Install"
+msgstr "Unduh & Instal"
+
+#: src/ui/component-entry.ui:123
+msgid "0%"
+msgstr "0%"
+
+#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
+msgid "Uninstall"
+msgstr "Hapus Pemasangan"
+
+#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
+#: src/ui/state-entry.ui:20
+msgid "Show manifest"
+msgstr "Tampilkan manifest"
+
+#: src/ui/dependency-entry.ui:33
+msgid "License"
+msgstr "Lisensi"
+
+#: src/ui/dependency-entry.ui:45
+msgid "Reinstall"
+msgstr "Instal ulang"
+
+#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
+msgid "Bug report"
+msgstr "Laporan bug"
+
+#: src/ui/dependency-entry.ui:159
+msgid "Download & Install this dependency"
+msgstr "Unduh & Instal dependensi ini"
+
+#: src/ui/dependency-entry.ui:185
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"Terjadi kesalahan penginstalan. Restart Bottles untuk membaca Crash Report "
+"atau jalankan melalui terminal untuk membaca output."
+
+#: src/ui/details-bottle.ui:20 src/ui/details-bottle.ui:85
+#: src/ui/importer.ui:20
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Ini hanya konfigurasi botol, sangat cocok jika Anda ingin membuat yang baru "
+"tetapi tanpa file pribadi."
+
+#: src/ui/details-bottle.ui:21 src/ui/importer.ui:21
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+#: src/ui/details-bottle.ui:34 src/ui/importer.ui:34
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr "Ini adalah arsip lengkap bottle Anda, termasuk berkas pribadi."
+
+#: src/ui/details-bottle.ui:35 src/ui/importer.ui:35
+msgid "Full archive"
+msgstr "Arsip lengkap"
+
+#: src/ui/details-bottle.ui:59
+#, fuzzy
+msgid "Duplicate bottle"
+msgstr "Duplikat bottle"
+
+#: src/ui/details-bottle.ui:86
+msgid "Open with explorer"
+msgstr ""
+
+#: src/ui/details-bottle.ui:112
+msgid "Flatpak help"
+msgstr "Bantuan flatpak"
+
+#: src/ui/details-bottle.ui:136
+msgid "I can't see my old bottles after upgrade."
+msgstr "Saya tidak bisa melihat bottle lama saya setelah upgrade."
+
+#: src/ui/details-bottle.ui:149
+msgid "I don't see some directories."
+msgstr "Saya tidak melihat beberapa direktori."
+
+#: src/ui/details-bottle.ui:162
+msgid "I can't see the files in my home."
+msgstr "Saya tidak dapat melihat file di rumah saya."
+
+#: src/ui/details-bottle.ui:175
+msgid "Executable silently crash or black screen"
+msgstr ""
+
+#: src/ui/details-bottle.ui:201
+msgid "Simulate a Windows system reboot."
+msgstr ""
+
+#: src/ui/details-bottle.ui:202
+msgid "Reboot"
+msgstr "Mulai ulang"
+
+#: src/ui/details-bottle.ui:215
+msgid "Simulate a Windows system shutdown."
+msgstr ""
+
+#: src/ui/details-bottle.ui:216
+#, fuzzy
+msgid "Shutdown"
+msgstr "Matikan Windows"
+
+#: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
+msgid "Run with arguments"
+msgstr "Jalankan dengan argumen"
+
+#: src/ui/details-bottle.ui:252
+msgid "Move inside the sandbox"
+msgstr ""
+
+#: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
+msgid "Launch with terminal"
+msgstr ""
+
+#: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
+msgid "Destroy this bottle"
+msgstr "Musnahkan bottle"
+
+#: src/ui/details-bottle.ui:352 src/main.py:120
+msgid "Bottle name"
+msgstr "Nama bottle"
+
+#: src/ui/details-bottle.ui:356
+#, fuzzy
+msgid "Type a name for your bottle"
+msgstr "Pilih sebuah nama untuk bottle Anda"
+
+#: src/ui/details-bottle.ui:374
+msgid "Rename bottle"
+msgstr "Ubah nama bottle"
+
+#: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
+msgid "Versioning enabled for this bottle"
+msgstr "Pembuatan versi diaktifkan untuk bottle ini"
+
+#: src/ui/details-bottle.ui:409 src/ui/list-entry.ui:42
+msgid "Versioning is active in this bottle."
+msgstr "Pembuatan versi aktif di bottle ini."
+
+#: src/ui/details-bottle.ui:432 src/ui/list-entry.ui:61
+msgid "0"
+msgstr "0"
+
+#: src/ui/details-bottle.ui:462 src/ui/new.ui:160
+msgid "Environment"
+msgstr "Lingkungan"
+
+#: src/ui/details-bottle.ui:496
+msgid "64 Bit"
+msgstr "64 Bit"
+
+#: src/ui/details-bottle.ui:515
+#, fuzzy
+msgid "Vaniglia-6.21-x86_64"
+msgstr "lutris-6.0-rc1-x86_64"
+
+#: src/ui/details-bottle.ui:540
+#, fuzzy
+msgid "Layers"
+msgstr "Berlapis"
+
+#: src/ui/details-bottle.ui:563
+msgid "Run executable"
+msgstr "Jalankan executable"
+
+#: src/ui/details-bottle.ui:637
+#, fuzzy
+msgid "Kill all WINE processes"
+msgstr "Bunuh semua proses wine"
+
+#: src/ui/details-bottle.ui:662
+#, fuzzy
+msgid "Make a backup of this bottle."
+msgstr "Pembaruan terakhir untuk bottle ini."
+
+#: src/ui/details-bottle.ui:758
+msgid "Moving inside the sandbox…"
+msgstr ""
+
+#: src/ui/details-bottle.ui:774 src/views/details.py:115
+msgid "Programs"
+msgstr "Program-program"
+
+#: src/ui/details-bottle.ui:790
+msgid "Utilities"
+msgstr "Utilitas"
+
+#: src/ui/details-bottle.ui:795
+msgid "Wine config"
+msgstr "Konfigurasi Wine"
+
+#: src/ui/details-bottle.ui:797
+msgid "Adjust internal settings."
+msgstr "Sesuaikan pengaturan internal."
+
+#: src/ui/details-bottle.ui:837
+msgid "Browse C:"
+msgstr "Jelajahi C:"
+
+#: src/ui/details-bottle.ui:839
+msgid "Browse internal files."
+msgstr "Jelajahi berkas-berkas internal."
+
+#: src/ui/details-bottle.ui:918
+#, fuzzy
+msgid "Command line"
+msgstr "Baris Perintah"
+
+#: src/ui/details-bottle.ui:920
+msgid "Run commands inside the Bottle."
+msgstr "Jalankan perintah di dalam Bottle."
+
+#: src/ui/details-bottle.ui:960
+#, fuzzy
+msgid "Registry editor"
+msgstr "Editor Registri"
+
+#: src/ui/details-bottle.ui:962
+msgid "Edit the internal registry."
+msgstr "Edit registri internal."
+
+#: src/ui/details-bottle.ui:1002
+msgid "Debug"
+msgstr "Debug"
+
+#: src/ui/details-bottle.ui:1004
+msgid "Debug wine processes."
+msgstr "Debug proses-proses wine."
+
+#: src/ui/details-bottle.ui:1041 src/ui/details-dependencies.ui:195
+#: src/ui/details-installers.ui:100 src/ui/details-programs.ui:125
+#: src/ui/details-versioning.ui:162
+msgid "Read documentation"
+msgstr "Baca dokumentasi"
+
+#: src/ui/details-bottle.ui:1069 src/views/details.py:127
+msgid "Task manager"
+msgstr "Pengelola tugas"
+
+#: src/ui/details-bottle.ui:1071
+msgid "Manage processes with the Wine task manager."
+msgstr "Kelola proses dengan Wine task manager."
+
+#: src/ui/details-bottle.ui:1111
+msgid "Uninstaller"
+msgstr "Penghapus Instalasi"
+
+#: src/ui/details-bottle.ui:1113
+msgid "Uninstall programs using wine uninstaller"
+msgstr "Copot program menggunakan wine uninstaller"
+
+#: src/ui/details-bottle.ui:1153
+#, fuzzy
+msgid "Control panel"
+msgstr "Panel Kontrol"
+
+#: src/ui/details-bottle.ui:1155
+msgid "Access the internal wine control panel."
+msgstr "Akses panel kontrol internal wine."
+
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
@@ -309,11 +595,6 @@ msgid ""
 msgstr ""
 "File pada halaman ini telah diverifikasi mungkin berada di bawah lisensi "
 "kepemilikan."
-
-#: src/ui/details-dependencies.ui:195 src/ui/details-installers.ui:100
-#: src/ui/details-programs.ui:125 src/ui/details-versioning.ui:162
-msgid "Read documentation"
-msgstr "Baca dokumentasi"
 
 #: src/ui/details-dependencies.ui:221
 msgid "Report a problem or a missing dependency."
@@ -643,7 +924,7 @@ msgid "Default to the bottle path."
 msgstr "Arahkan ke path bawaan bottle."
 
 #: src/ui/details-preferences.ui:1110 src/ui/dialog-launch-options.ui:182
-#: src/ui/preferences.ui:255
+#: src/ui/drive-entry.ui:61 src/ui/preferences.ui:255
 msgid "Choose a directory"
 msgstr "Pilih direktori"
 
@@ -717,6 +998,10 @@ msgstr "Cari program yang terpasang"
 msgid "Show/hide removed programs"
 msgstr "Tampilkan/sembunyikan program yang telah dihapus"
 
+#: src/ui/details-taskmanager.ui:59
+msgid "Stop process"
+msgstr "Hentikan proses"
+
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
 msgstr "Tidak ada status ditemukan"
@@ -741,52 +1026,19 @@ msgstr "Simpan status bottle."
 msgid "Create new state"
 msgstr "Buat status baru"
 
-#: src/ui/details-taskmanager.ui:59
-msgid "Stop process"
-msgstr "Hentikan proses"
-
-#: src/ui/dialog.ui:6
-msgid "Message goes here."
-msgstr "Pesan ditempatkan di sini."
-
-#: src/ui/dialog.ui:23 src/ui/dialog-crash-report.ui:27
-#: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
-#: src/ui/dialog-run-args.ui:27 src/ui/dialog-environment-variables.ui:27
-#: src/ui/dialog-launch-options.ui:26 src/ui/new.ui:27
-#: src/dialogs/launchoptions.py:85 src/views/bottle_details.py:296
-#: src/views/bottle_details.py:369 src/views/bottle_preferences.py:166
-#: src/views/bottle_programs.py:74 src/views/list.py:127
-#: src/views/preferences.py:155
-msgid "Cancel"
-msgstr "Batalkan"
-
-#: src/ui/dialog.ui:36
-msgid "Confirm"
-msgstr "Konfirmasi"
-
-#: src/ui/dialog-dll-overrides.ui:50
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)"
-msgstr ""
-"Perpustakaan Tautan Dinamis dapat ditentukan untuk dibangun (disediakan oleh "
-"Wine) atau asli (disediakan oleh program)"
-
-#: src/ui/dialog-dll-overrides.ui:56
-msgid "New override"
-msgstr "Timpaan baru"
-
-#: src/ui/dialog-dll-overrides.ui:67
-msgid "e.g. ucrtbase"
-msgstr "contoh. ucrtbase"
-
-#: src/ui/dialog-dll-overrides.ui:124
-msgid "Existing overrides"
-msgstr "Timpaan yang sudah ada"
-
 #: src/ui/dialog-crash-report.ui:24
 msgid "Bottles Crash Report"
 msgstr "Laporan Crash Bottles"
+
+#: src/ui/dialog-crash-report.ui:27 src/ui/dialog-duplicate.ui:28
+#: src/ui/dialog-environment-variables.ui:27 src/ui/dialog-launch-options.ui:26
+#: src/ui/dialog-rename.ui:27 src/ui/dialog-run-args.ui:27 src/ui/dialog.ui:23
+#: src/ui/new.ui:27 src/dialogs/drives.py:62 src/dialogs/launchoptions.py:85
+#: src/views/bottle_details.py:296 src/views/bottle_details.py:369
+#: src/views/bottle_preferences.py:166 src/views/bottle_programs.py:74
+#: src/views/list.py:127 src/views/preferences.py:155
+msgid "Cancel"
+msgstr "Batalkan"
 
 #: src/ui/dialog-crash-report.ui:35
 msgid "Send report"
@@ -820,6 +1072,45 @@ msgstr "Saya tetap ingin melaporkan."
 #: src/ui/new.ui:208
 msgid "Advanced options"
 msgstr "Opsi lanjutan"
+
+#: src/ui/dialog-dll-overrides.ui:50
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)"
+msgstr ""
+"Perpustakaan Tautan Dinamis dapat ditentukan untuk dibangun (disediakan oleh "
+"Wine) atau asli (disediakan oleh program)"
+
+#: src/ui/dialog-dll-overrides.ui:56
+msgid "New override"
+msgstr "Timpaan baru"
+
+#: src/ui/dialog-dll-overrides.ui:67
+msgid "e.g. ucrtbase"
+msgstr "contoh. ucrtbase"
+
+#: src/ui/dialog-dll-overrides.ui:124
+msgid "Existing overrides"
+msgstr "Timpaan yang sudah ada"
+
+#: src/ui/dialog-drives.ui:24
+msgid "Drives"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:49
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:..)."
+msgstr ""
+
+#: src/ui/dialog-drives.ui:54
+msgid "Letter"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:134
+#, fuzzy
+msgid "Existing drives"
+msgstr "Timpaan yang sudah ada"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -869,27 +1160,49 @@ msgstr "Bottle telah diduplikasi"
 msgid "page_duplicated"
 msgstr "halaman_diduplikasi"
 
-#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
-msgid "Rename"
-msgstr "Ubah nama"
+#: src/ui/dialog-env-vars.ui:49
+#, fuzzy
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr "Variabel environment"
 
-#: src/ui/dialog-rename.ui:35 src/ui/dialog-gamescope.ui:28
-#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-launch-options.ui:34
+#: src/ui/dialog-env-vars.ui:54
+msgid "New variable"
+msgstr "Variabel baru"
+
+#: src/ui/dialog-env-vars.ui:65
+msgid "e.g. MY_VAR"
+msgstr "contoh VAR_KU"
+
+#: src/ui/dialog-env-vars.ui:123
+msgid "Existing variables"
+msgstr "Variabel yang sudah ada"
+
+#: src/ui/dialog-environment-variables.ui:24
+msgid "Change environment variables"
+msgstr "Ubah variabel lingkungan"
+
+#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-gamescope.ui:28
+#: src/ui/dialog-launch-options.ui:34 src/ui/dialog-rename.ui:35
 msgid "Save"
 msgstr "Simpan"
 
-#: src/ui/dialog-rename.ui:74
-msgid "Type the new name:"
-msgstr "Ketik nama yang baru:"
+#: src/ui/dialog-environment-variables.ui:74
+msgid ""
+"Here you can change the environment variables for the commands that are "
+"executed."
+msgstr ""
+"Di sini Anda dapat mengubah variabel lingkungan untuk perintah-perintah yang "
+"dijalankan."
 
-#: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:85
-#: src/ui/dialog-launch-options.ui:88
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "contoh: VAR=nilai %perintah% -contoh1 -contoh2 -contoh3=halo"
+#: src/ui/dialog-environment-variables.ui:86
+msgid "e.g.: VAR1=value VAR2=value"
+msgstr "contoh: VAR1=nilai VAR2=nilai"
 
-#: src/ui/dialog-rename.ui:88
-msgid "Type here.."
-msgstr "Ketik di sini.."
+#: src/ui/dialog-environment-variables.ui:89
+msgid "e.g: VAR1=value VAR2=value .."
+msgstr "contoh: VAR1=nilai VAR2=nilai .."
 
 #: src/ui/dialog-gamescope.ui:24
 msgid "Gamescope settings"
@@ -960,62 +1273,6 @@ msgstr "Tanpa batasan"
 msgid "Fullscreen"
 msgstr "Layar penuh"
 
-#: src/ui/dialog-env-vars.ui:49
-#, fuzzy
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr "Variabel environment"
-
-#: src/ui/dialog-env-vars.ui:54
-msgid "New variable"
-msgstr "Variabel baru"
-
-#: src/ui/dialog-env-vars.ui:65
-msgid "e.g. MY_VAR"
-msgstr "contoh VAR_KU"
-
-#: src/ui/dialog-env-vars.ui:123
-msgid "Existing variables"
-msgstr "Variabel yang sudah ada"
-
-#: src/ui/dialog-run-args.ui:24
-msgid "Run with arguments"
-msgstr "Jalankan dengan argumen"
-
-#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
-#: src/views/bottle_details.py:295 src/views/list.py:126
-msgid "Run"
-msgstr "Jalankan"
-
-#: src/ui/dialog-run-args.ui:74
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Tulis di bawah ini argumen untuk diteruskan ke executable."
-
-#: src/ui/dialog-run-args.ui:89
-msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr "contoh: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-environment-variables.ui:24
-msgid "Change environment variables"
-msgstr "Ubah variabel lingkungan"
-
-#: src/ui/dialog-environment-variables.ui:74
-msgid ""
-"Here you can change the environment variables for the commands that are "
-"executed."
-msgstr ""
-"Di sini Anda dapat mengubah variabel lingkungan untuk perintah-perintah yang "
-"dijalankan."
-
-#: src/ui/dialog-environment-variables.ui:86
-msgid "e.g.: VAR1=value VAR2=value"
-msgstr "contoh: VAR1=nilai VAR2=nilai"
-
-#: src/ui/dialog-environment-variables.ui:89
-msgid "e.g: VAR1=value VAR2=value .."
-msgstr "contoh: VAR1=nilai VAR2=nilai .."
-
 #: src/ui/dialog-launch-options.ui:23 src/ui/program-entry.ui:33
 msgid "Change launch options"
 msgstr "Ubah opsi peluncuran"
@@ -1023,6 +1280,11 @@ msgstr "Ubah opsi peluncuran"
 #: src/ui/dialog-launch-options.ui:73
 msgid "These arguments are passed on program launch:"
 msgstr "Argumen-argumen ini diberikan saat peluncuran program:"
+
+#: src/ui/dialog-launch-options.ui:85 src/ui/dialog-launch-options.ui:88
+#: src/ui/dialog-rename.ui:86
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "contoh: VAR=nilai %perintah% -contoh1 -contoh2 -contoh3=halo"
 
 #: src/ui/dialog-launch-options.ui:127
 msgid ""
@@ -1042,25 +1304,66 @@ msgstr "Skrip pasca-berjalan"
 msgid "Choose a script which should be executed after run."
 msgstr "Pilih skrip yang akan dieksekusi setelah berjalan."
 
-#: src/ui/importer.ui:20
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
+#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
+msgid "Rename"
+msgstr "Ubah nama"
+
+#: src/ui/dialog-rename.ui:74
+msgid "Type the new name:"
+msgstr "Ketik nama yang baru:"
+
+#: src/ui/dialog-rename.ui:88
+msgid "Type here.."
+msgstr "Ketik di sini.."
+
+#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
+#: src/views/bottle_details.py:295 src/views/list.py:126
+msgid "Run"
+msgstr "Jalankan"
+
+#: src/ui/dialog-run-args.ui:74
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Tulis di bawah ini argumen untuk diteruskan ke executable."
+
+#: src/ui/dialog-run-args.ui:89
+msgid "e.g: -opengl -SkipBuildPatchPrereq"
+msgstr "contoh: -opengl -SkipBuildPatchPrereq"
+
+#: src/ui/dialog.ui:6
+msgid "Message goes here."
+msgstr "Pesan ditempatkan di sini."
+
+#: src/ui/dialog.ui:36
+msgid "Confirm"
+msgstr "Konfirmasi"
+
+#: src/ui/dll-override-entry.ui:22
+msgid "Builtin (Wine)"
+msgstr "Bawaan (Wine)"
+
+#: src/ui/dll-override-entry.ui:23
+msgid "Native (Windows)"
+msgstr "Asli (Windows)"
+
+#: src/ui/dll-override-entry.ui:24
+msgid "Builtin then Native"
+msgstr "Bawaan lalu Asli"
+
+#: src/ui/dll-override-entry.ui:25
+msgid "Native then Builtin"
+msgstr "Asli lalu Bawaan"
+
+#: src/ui/drive-entry.ui:9
+msgid "/point/to/path"
 msgstr ""
-"Ini hanya konfigurasi botol, sangat cocok jika Anda ingin membuat yang baru "
-"tetapi tanpa file pribadi."
 
-#: src/ui/importer.ui:21
-msgid "Configuration"
-msgstr "Konfigurasi"
+#: src/ui/env-var-entry.ui:84
+msgid "value"
+msgstr "nilai"
 
-#: src/ui/importer.ui:34
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Ini adalah arsip lengkap bottle Anda, termasuk berkas pribadi."
-
-#: src/ui/importer.ui:35
-msgid "Full archive"
-msgstr "Arsip lengkap"
+#: src/ui/importer-entry.ui:130
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Wineprefix ini sudah diimpor ke Bottles."
 
 #: src/ui/importer.ui:74 src/window.py:140
 msgid "Importer"
@@ -1070,37 +1373,9 @@ msgstr "Pengimpor"
 msgid "Import Bottles backup"
 msgstr "Impor cadangan Bottles"
 
-#: src/ui/importer-entry.ui:20 src/ui/component-entry.ui:18
-msgid "Browse files"
-msgstr "Jelajahi Berkas-berkas"
-
-#: src/ui/importer-entry.ui:130
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Wineprefix ini sudah diimpor ke Bottles."
-
-#: src/ui/list.ui:39
-msgid "Search your bottles .."
-msgstr "Cari bottles anda .."
-
-#: src/ui/list.ui:77
-msgid "Start off by creating a Bottle."
-msgstr "Mulai dengan membuat bottle."
-
-#: src/ui/list.ui:80
-msgid "Create a new Bottle"
-msgstr "Buat Bottle baru"
-
-#: src/ui/list-entry.ui:35
-msgid "Versioning enabled for this bottle"
-msgstr "Pembuatan versi diaktifkan untuk bottle ini"
-
-#: src/ui/list-entry.ui:42
-msgid "Versioning is active in this bottle."
-msgstr "Pembuatan versi aktif di bottle ini."
-
-#: src/ui/list-entry.ui:61
-msgid "0"
-msgstr "0"
+#: src/ui/installer-entry.ui:47
+msgid "Read review"
+msgstr "Baca ulasan"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1126,118 +1401,25 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Jalankan .exe/.msi di bottle ini"
 
-#: src/ui/component-entry.ui:8
-msgid "Component version"
-msgstr "Versi komponen"
+#: src/ui/list.ui:39
+msgid "Search your bottles .."
+msgstr "Cari bottles anda .."
 
-#: src/ui/component-entry.ui:44
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch.\n"
-"\n"
-"Press to try again."
-msgstr ""
-"Instalasi gagal. Ini mungkin karena kesalahan repositori, unduhan parsial "
-"atau ketidakcocokan checksum.\n"
-"\n"
-"Tekan untuk mencoba lagi."
+#: src/ui/list.ui:77
+msgid "Start off by creating a Bottle."
+msgstr "Mulai dengan membuat bottle."
 
-#: src/ui/component-entry.ui:95
-msgid "Download & Install"
-msgstr "Unduh & Instal"
+#: src/ui/list.ui:80
+msgid "Create a new Bottle"
+msgstr "Buat Bottle baru"
 
-#: src/ui/component-entry.ui:123
-msgid "0%"
-msgstr "0%"
+#: src/ui/message-entry.ui:18
+msgid "Utility & Preferences"
+msgstr "Utilitas & Preferensi"
 
-#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
-msgid "Uninstall"
-msgstr "Hapus Pemasangan"
-
-#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
-#: src/ui/state-entry.ui:20
-msgid "Show manifest"
-msgstr "Tampilkan manifest"
-
-#: src/ui/dependency-entry.ui:33
-msgid "License"
-msgstr "Lisensi"
-
-#: src/ui/dependency-entry.ui:45
-msgid "Reinstall"
-msgstr "Instal ulang"
-
-#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
-msgid "Bug report"
-msgstr "Laporan bug"
-
-#: src/ui/dependency-entry.ui:159
-msgid "Download & Install this dependency"
-msgstr "Unduh & Instal dependensi ini"
-
-#: src/ui/dependency-entry.ui:185
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"Terjadi kesalahan penginstalan. Restart Bottles untuk membaca Crash Report "
-"atau jalankan melalui terminal untuk membaca output."
-
-#: src/ui/dll-override-entry.ui:22
-msgid "Builtin (Wine)"
-msgstr "Bawaan (Wine)"
-
-#: src/ui/dll-override-entry.ui:23
-msgid "Native (Windows)"
-msgstr "Asli (Windows)"
-
-#: src/ui/dll-override-entry.ui:24
-msgid "Builtin then Native"
-msgstr "Bawaan lalu Asli"
-
-#: src/ui/dll-override-entry.ui:25
-msgid "Native then Builtin"
-msgstr "Asli lalu Bawaan"
-
-#: src/ui/env-var-entry.ui:84
-msgid "value"
-msgstr "nilai"
-
-#: src/ui/installer-entry.ui:47
-msgid "Read review"
-msgstr "Baca ulasan"
-
-#: src/ui/task-entry.ui:44
+#: src/ui/message-entry.ui:45 src/ui/task-entry.ui:44
 msgid "Delete message"
 msgstr "Hapus pesan"
-
-#: src/ui/program-entry.ui:20
-msgid "Launch with terminal"
-msgstr ""
-
-#: src/ui/program-entry.ui:46
-msgid "Browse path"
-msgstr "Jelajahi alamat"
-
-#: src/ui/program-entry.ui:83
-msgid "WineHQ"
-msgstr "WineHQ"
-
-#: src/ui/program-entry.ui:96
-msgid "ProtonDB"
-msgstr "ProtonDB"
-
-#: src/ui/program-entry.ui:109
-msgid "Bottles' Forums"
-msgstr "Forum Bottles"
-
-#: src/ui/program-entry.ui:133
-msgid "Remove from Programs"
-msgstr "Hapus dari Program"
-
-#: src/ui/program-entry.ui:146
-msgid "Add desktop entry"
-msgstr "Tambahkan entri desktop"
 
 #: src/ui/new.ui:24 src/ui/window.ui:328
 msgid "New bottle"
@@ -1266,10 +1448,6 @@ msgstr "Bidang ini tidak boleh berisi karakter khusus!"
 #: src/ui/new.ui:129
 msgid "My beautiful bottle"
 msgstr "Bottle saya yang indah"
-
-#: src/ui/new.ui:160
-msgid "Environment"
-msgstr "Lingkungan"
 
 #: src/ui/new.ui:229
 msgid "Use versioning"
@@ -1553,6 +1731,30 @@ msgstr ""
 msgid "In early development (requires restart)"
 msgstr "Alamat bottles kustom (butuh mulai ulang)"
 
+#: src/ui/program-entry.ui:46
+msgid "Browse path"
+msgstr "Jelajahi alamat"
+
+#: src/ui/program-entry.ui:83
+msgid "WineHQ"
+msgstr "WineHQ"
+
+#: src/ui/program-entry.ui:96
+msgid "ProtonDB"
+msgstr "ProtonDB"
+
+#: src/ui/program-entry.ui:109
+msgid "Bottles' Forums"
+msgstr "Forum Bottles"
+
+#: src/ui/program-entry.ui:133
+msgid "Remove from Programs"
+msgstr "Hapus dari Program"
+
+#: src/ui/program-entry.ui:146
+msgid "Add desktop entry"
+msgstr "Tambahkan entri desktop"
+
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
 msgstr "Kembalikan keadaan ini"
@@ -1603,10 +1805,6 @@ msgstr ""
 msgid "Go back"
 msgstr "Kembali"
 
-#: src/operation.py:63
-msgid "Calculating..."
-msgstr "Menghitung..."
-
 #: src/main.py:96
 msgid "Show version"
 msgstr "Tampilkan versi"
@@ -1618,10 +1816,6 @@ msgstr "Jalur .exe"
 #: src/main.py:112
 msgid "lnk path"
 msgstr "Jalur lnk"
-
-#: src/main.py:120
-msgid "Bottle name"
-msgstr "Nama bottle"
 
 #: src/main.py:128
 msgid "Pass arguments"
@@ -1638,6 +1832,10 @@ msgstr "Permintaan [Tolong] diterima."
 #: src/main.py:263
 msgid "[Refresh] request received."
 msgstr "Permintaan [Segarkan] diterima."
+
+#: src/operation.py:63
+msgid "Calculating..."
+msgstr "Menghitung..."
 
 #: src/utils.py:62
 msgid "You are offline, unable to download."
@@ -1661,12 +1859,12 @@ msgstr "Cadangan {0}"
 msgid "Importing backup: {0}"
 msgstr "Mengimpor cadangan: {0}"
 
-#: src/backend/managers/installer.py:372
+#: src/backend/managers/installer.py:376
 msgid "Dependencies installation failed."
 msgstr "Instalasi dependency gagal."
 
 #. unlock widget
-#: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
+#: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 msgid "Installation failed, please check the logs."
 msgstr ""
 
@@ -1791,6 +1989,15 @@ msgstr ""
 "dilaporkan lagi.\n"
 "………Laporkan umpan bali di salah satu laporan yang sudah ada di bawah."
 
+#: src/dialogs/drives.py:58
+#, fuzzy
+msgid "Choose path"
+msgstr "Jelajahi alamat"
+
+#: src/dialogs/drives.py:61
+msgid "Select"
+msgstr ""
+
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
 msgstr "Peringatan"
@@ -1807,34 +2014,6 @@ msgstr "Salin ke papan klip"
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
 msgstr "Pilih skrip"
-
-#: src/views/details.py:103
-msgid "Details & Utilities"
-msgstr "Detail & Utilitas"
-
-#: src/views/details.py:111
-msgid "Dependencies"
-msgstr "Dependensi"
-
-#: src/views/details.py:115
-msgid "Programs"
-msgstr "Program-program"
-
-#: src/views/details.py:116
-msgid "Found in your bottle's Start menu."
-msgstr "Ditemukan di menu Start bottle Anda."
-
-#: src/views/details.py:119
-msgid "Versioning"
-msgstr "Versi"
-
-#: src/views/details.py:123
-msgid "Installers"
-msgstr "Pemasang"
-
-#: src/views/details.py:127
-msgid "Task manager"
-msgstr "Pengelola tugas"
 
 #: src/views/bottle_details.py:176
 #, python-format
@@ -1893,6 +2072,26 @@ msgstr "Pilih jalur yang dapat dieksekusi"
 #: src/views/bottle_programs.py:73
 msgid "Add"
 msgstr "Tambah"
+
+#: src/views/details.py:103
+msgid "Details & Utilities"
+msgstr "Detail & Utilitas"
+
+#: src/views/details.py:111
+msgid "Dependencies"
+msgstr "Dependensi"
+
+#: src/views/details.py:116
+msgid "Found in your bottle's Start menu."
+msgstr "Ditemukan di menu Start bottle Anda."
+
+#: src/views/details.py:119
+msgid "Versioning"
+msgstr "Versi"
+
+#: src/views/details.py:123
+msgid "Installers"
+msgstr "Pemasang"
 
 #: src/views/importer.py:78
 msgid "Choose a backup archive"
@@ -1975,6 +2174,10 @@ msgstr "Kelola runner"
 #, fuzzy
 msgid "Other runners"
 msgstr "Kelola runner"
+
+#: src/widgets/component.py:67
+msgid "Upgrade"
+msgstr ""
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
@@ -2069,92 +2272,14 @@ msgstr "Indeks untuk keadaan{0}"
 #~ msgid "Check for running processes."
 #~ msgstr "Periksa proses-proses yang berjalan."
 
-#~ msgid "Flatpak help"
-#~ msgstr "Bantuan flatpak"
-
-#~ msgid "I can't see my old bottles after upgrade."
-#~ msgstr "Saya tidak bisa melihat bottle lama saya setelah upgrade."
-
-#~ msgid "I don't see some directories."
-#~ msgstr "Saya tidak melihat beberapa direktori."
-
-#~ msgid "I can't see the files in my home."
-#~ msgstr "Saya tidak dapat melihat file di rumah saya."
-
-#~ msgid "Rename bottle"
-#~ msgstr "Ubah nama bottle"
-
-#~ msgid "64 Bit"
-#~ msgstr "64 Bit"
-
-#~ msgid "lutris-6.0-rc1-x86_64"
-#~ msgstr "lutris-6.0-rc1-x86_64"
-
-#~ msgid "Run executable"
-#~ msgstr "Jalankan executable"
-
 #~ msgid "Backup bottle"
 #~ msgstr "Cadangkan bottle"
 
 #~ msgid "Reboot Windows"
 #~ msgstr "Reboot Windows"
 
-#~ msgid "Shutdown Windows"
-#~ msgstr "Matikan Windows"
-
-#~ msgid "Kill all wine processes"
-#~ msgstr "Bunuh semua proses wine"
-
-#~ msgid "Destroy this bottle"
-#~ msgstr "Musnahkan bottle"
-
-#~ msgid "Utilities"
-#~ msgstr "Utilitas"
-
-#~ msgid "Wine config"
-#~ msgstr "Konfigurasi Wine"
-
-#~ msgid "Browse C:"
-#~ msgstr "Jelajahi C:"
-
-#~ msgid "Browse internal files."
-#~ msgstr "Jelajahi berkas-berkas internal."
-
-#~ msgid "Command Line"
-#~ msgstr "Baris Perintah"
-
-#~ msgid "Run commands inside the Bottle."
-#~ msgstr "Jalankan perintah di dalam Bottle."
-
-#~ msgid "Registry Editor"
-#~ msgstr "Editor Registri"
-
-#~ msgid "Edit the internal registry."
-#~ msgstr "Edit registri internal."
-
-#~ msgid "Debug"
-#~ msgstr "Debug"
-
-#~ msgid "Debug wine processes."
-#~ msgstr "Debug proses-proses wine."
-
 #~ msgid "Task Manager"
 #~ msgstr "Pengelola Tugas"
-
-#~ msgid "Manage processes with the Wine task manager."
-#~ msgstr "Kelola proses dengan Wine task manager."
-
-#~ msgid "Uninstaller"
-#~ msgstr "Penghapus Instalasi"
-
-#~ msgid "Uninstall programs using wine uninstaller"
-#~ msgstr "Copot program menggunakan wine uninstaller"
-
-#~ msgid "Control Panel"
-#~ msgstr "Panel Kontrol"
-
-#~ msgid "Access the internal wine control panel."
-#~ msgstr "Akses panel kontrol internal wine."
 
 #~ msgid "Bottle"
 #~ msgstr "Bottle"
@@ -2221,9 +2346,6 @@ msgstr "Indeks untuk keadaan{0}"
 #, fuzzy
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "Terjemahan Jerman oleh @thericosanto"
-
-#~ msgid "Utility & Preferences"
-#~ msgstr "Utilitas & Preferensi"
 
 #~ msgid "Create bottle"
 #~ msgstr "Buat bottle"
@@ -2690,9 +2812,6 @@ msgstr "Indeks untuk keadaan{0}"
 #~ msgid "Runner can be changed from Preferences tab."
 #~ msgstr "Runner dapat diubah dari tab Preferensi."
 
-#~ msgid "Last update for this bottle."
-#~ msgstr "Pembaruan terakhir untuk bottle ini."
-
 #~ msgid "Open winecfg in this Bottle for advanced configurations."
 #~ msgstr "Buka winecfg dalam Bottle ini untuk konfigurasi lanjutan."
 
@@ -2728,9 +2847,6 @@ msgstr "Indeks untuk keadaan{0}"
 
 #~ msgid "Simulates a system reboot (this does not terminate processes)."
 #~ msgstr "Mensimulasikan reboot sistem (ini tidak menghentikan proses)."
-
-#~ msgid "Reboot"
-#~ msgstr "Mulai ulang"
 
 #~ msgid "Simulates a system shutdown (this does not terminate processes)."
 #~ msgstr "Mensimulasikan matikan sistem (ini tidak menghentikan proses)."
@@ -2789,9 +2905,6 @@ msgstr "Indeks untuk keadaan{0}"
 
 #~ msgid "Manage the wine subsystem settings."
 #~ msgstr "Kelola pengaturan subsistem wine."
-
-#~ msgid "Adjust internal settings."
-#~ msgstr "Sesuaikan pengaturan internal."
 
 #~ msgid "Name your bottle"
 #~ msgstr "Beri nama bottle Anda"

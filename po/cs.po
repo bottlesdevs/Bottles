@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 18:43+0100\n"
+"POT-Creation-Date: 2022-03-09 11:03+0100\n"
 "PO-Revision-Date: 2022-02-16 10:58+0000\n"
 "Last-Translator: Vojta Z <vojtazan@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/bottles/bottles/cs/"
@@ -291,6 +291,294 @@ msgstr "<a href=\"https://usebottles.com/blog\">Blog</a>"
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
+#: src/ui/component-entry.ui:8
+msgid "Component version"
+msgstr "Verze komponenty"
+
+#: src/ui/component-entry.ui:18 src/ui/importer-entry.ui:20
+msgid "Browse files"
+msgstr "Procházet soubory"
+
+#: src/ui/component-entry.ui:44
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch.\n"
+"\n"
+"Press to try again."
+msgstr ""
+"Instalace selhala. Toto může být z důvodu chyby repozitáře, neshoda "
+"checksumu.\n"
+"\n"
+"Stiskněte pro vyzkoušení znovu."
+
+#: src/ui/component-entry.ui:95
+msgid "Download & Install"
+msgstr "Stáhnout a nainstalovat"
+
+#: src/ui/component-entry.ui:123
+msgid "0%"
+msgstr "0%"
+
+#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
+msgid "Uninstall"
+msgstr "Odinstalovat"
+
+#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
+#: src/ui/state-entry.ui:20
+msgid "Show manifest"
+msgstr "Zobrazit manifest"
+
+#: src/ui/dependency-entry.ui:33
+msgid "License"
+msgstr "Licence"
+
+#: src/ui/dependency-entry.ui:45
+msgid "Reinstall"
+msgstr "Přeinstalovat"
+
+#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
+msgid "Bug report"
+msgstr "Zpráva o chybě"
+
+#: src/ui/dependency-entry.ui:159
+msgid "Download & Install this dependency"
+msgstr "Stáhnout a nainstalovat tuto závislost"
+
+#: src/ui/dependency-entry.ui:185
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"Došlo k chybě při instalaci. Restartujte Bottles a přečtěte si hlášení o "
+"pádu nebo jej spusťte přes terminál a přečtěte si výstup."
+
+#: src/ui/details-bottle.ui:20 src/ui/details-bottle.ui:85
+#: src/ui/importer.ui:20
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Toto je pouze konfigurace láhve, je to perfektní, pokud chcete vytvořit "
+"novou, ale bez osobních souborů."
+
+#: src/ui/details-bottle.ui:21 src/ui/importer.ui:21
+msgid "Configuration"
+msgstr "Konfigurace"
+
+#: src/ui/details-bottle.ui:34 src/ui/importer.ui:34
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr "Toto je kompletní archiv vaší lahve, včetně osobních souborů."
+
+#: src/ui/details-bottle.ui:35 src/ui/importer.ui:35
+msgid "Full archive"
+msgstr "Kompletní archiv"
+
+#: src/ui/details-bottle.ui:59
+#, fuzzy
+msgid "Duplicate bottle"
+msgstr "Duplikovat Láhev"
+
+#: src/ui/details-bottle.ui:86
+msgid "Open with explorer"
+msgstr ""
+
+#: src/ui/details-bottle.ui:112
+msgid "Flatpak help"
+msgstr "Flatpak nápověda"
+
+#: src/ui/details-bottle.ui:136
+msgid "I can't see my old bottles after upgrade."
+msgstr "Po aktualizaci nevidím své staré lahve."
+
+#: src/ui/details-bottle.ui:149
+msgid "I don't see some directories."
+msgstr "Nevidím některé adresáře."
+
+#: src/ui/details-bottle.ui:162
+msgid "I can't see the files in my home."
+msgstr "Nevidím soubory v domovské složce."
+
+#: src/ui/details-bottle.ui:175
+msgid "Executable silently crash or black screen"
+msgstr ""
+
+#: src/ui/details-bottle.ui:201
+msgid "Simulate a Windows system reboot."
+msgstr ""
+
+#: src/ui/details-bottle.ui:202
+#, fuzzy
+msgid "Reboot"
+msgstr "Restartovat Windows"
+
+#: src/ui/details-bottle.ui:215
+msgid "Simulate a Windows system shutdown."
+msgstr ""
+
+#: src/ui/details-bottle.ui:216
+#, fuzzy
+msgid "Shutdown"
+msgstr "Vypnut Windows"
+
+#: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
+msgid "Run with arguments"
+msgstr "Spustit s argumenty"
+
+#: src/ui/details-bottle.ui:252
+msgid "Move inside the sandbox"
+msgstr ""
+
+#: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
+msgid "Launch with terminal"
+msgstr ""
+
+#: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
+msgid "Destroy this bottle"
+msgstr "Zničit tuto láhev"
+
+#: src/ui/details-bottle.ui:352 src/main.py:120
+msgid "Bottle name"
+msgstr "Název láhve"
+
+#: src/ui/details-bottle.ui:356
+#, fuzzy
+msgid "Type a name for your bottle"
+msgstr "Vyberte nové jméno pro vaši láhev"
+
+#: src/ui/details-bottle.ui:374
+#, fuzzy
+msgid "Rename bottle"
+msgstr "Vytvořit láhev"
+
+#: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
+msgid "Versioning enabled for this bottle"
+msgstr "U této lahve je povolena správa verzí"
+
+#: src/ui/details-bottle.ui:409 src/ui/list-entry.ui:42
+msgid "Versioning is active in this bottle."
+msgstr "V této láhvi je aktivní správa verzí."
+
+#: src/ui/details-bottle.ui:432 src/ui/list-entry.ui:61
+msgid "0"
+msgstr "0"
+
+#: src/ui/details-bottle.ui:462 src/ui/new.ui:160
+msgid "Environment"
+msgstr "Prostředí"
+
+#: src/ui/details-bottle.ui:496
+msgid "64 Bit"
+msgstr "64 bitový"
+
+#: src/ui/details-bottle.ui:515
+#, fuzzy
+msgid "Vaniglia-6.21-x86_64"
+msgstr "lutris-6.0-rc1-x86_64"
+
+#: src/ui/details-bottle.ui:540
+#, fuzzy
+msgid "Layers"
+msgstr "Vrstvené"
+
+#: src/ui/details-bottle.ui:563
+msgid "Run executable"
+msgstr "Spustit spustitelný soubor"
+
+#: src/ui/details-bottle.ui:637
+#, fuzzy
+msgid "Kill all WINE processes"
+msgstr "Ukončení všech procesů wine"
+
+#: src/ui/details-bottle.ui:662
+#, fuzzy
+msgid "Make a backup of this bottle."
+msgstr "Spustit v této láhvi"
+
+#: src/ui/details-bottle.ui:758
+msgid "Moving inside the sandbox…"
+msgstr ""
+
+#: src/ui/details-bottle.ui:774 src/views/details.py:115
+msgid "Programs"
+msgstr "Programy"
+
+#: src/ui/details-bottle.ui:790
+msgid "Utilities"
+msgstr "Nástroje"
+
+#: src/ui/details-bottle.ui:795
+msgid "Wine config"
+msgstr "Nastavení Wine"
+
+#: src/ui/details-bottle.ui:797
+msgid "Adjust internal settings."
+msgstr "Upravit vnitřní nastavení."
+
+#: src/ui/details-bottle.ui:837
+msgid "Browse C:"
+msgstr "Procházet C:"
+
+#: src/ui/details-bottle.ui:839
+msgid "Browse internal files."
+msgstr "Procházet interní soubory."
+
+#: src/ui/details-bottle.ui:918
+#, fuzzy
+msgid "Command line"
+msgstr "Příkazový řádek"
+
+#: src/ui/details-bottle.ui:920
+msgid "Run commands inside the Bottle."
+msgstr "Spustit příkazy uvnitř láhve."
+
+#: src/ui/details-bottle.ui:960
+#, fuzzy
+msgid "Registry editor"
+msgstr "Editor Registru"
+
+#: src/ui/details-bottle.ui:962
+msgid "Edit the internal registry."
+msgstr "Upravit interní registr."
+
+#: src/ui/details-bottle.ui:1002
+msgid "Debug"
+msgstr "Ladit"
+
+#: src/ui/details-bottle.ui:1004
+msgid "Debug wine processes."
+msgstr "Ladění Wine procesů."
+
+#: src/ui/details-bottle.ui:1041 src/ui/details-dependencies.ui:195
+#: src/ui/details-installers.ui:100 src/ui/details-programs.ui:125
+#: src/ui/details-versioning.ui:162
+msgid "Read documentation"
+msgstr "Číst dokumentaci"
+
+#: src/ui/details-bottle.ui:1069 src/views/details.py:127
+msgid "Task manager"
+msgstr "Správce úloh"
+
+#: src/ui/details-bottle.ui:1071
+msgid "Manage processes with the Wine task manager."
+msgstr "Spravovat procesy pomocí Wine Správce úloh."
+
+#: src/ui/details-bottle.ui:1111
+msgid "Uninstaller"
+msgstr "Odinstalovat"
+
+#: src/ui/details-bottle.ui:1113
+msgid "Uninstall programs using wine uninstaller"
+msgstr "Odinstalovat programy pomocí Wine odinstalátoru"
+
+#: src/ui/details-bottle.ui:1153
+#, fuzzy
+msgid "Control panel"
+msgstr "Ovládací panel"
+
+#: src/ui/details-bottle.ui:1155
+msgid "Access the internal wine control panel."
+msgstr "Přístup k internímu Wine Ovládacímu panelu."
+
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
@@ -308,11 +596,6 @@ msgid ""
 msgstr ""
 "Zatímco soubory na této stránce byly ověřeny, mohou být pod proprietární "
 "licencí."
-
-#: src/ui/details-dependencies.ui:195 src/ui/details-installers.ui:100
-#: src/ui/details-programs.ui:125 src/ui/details-versioning.ui:162
-msgid "Read documentation"
-msgstr "Číst dokumentaci"
 
 #: src/ui/details-dependencies.ui:221
 msgid "Report a problem or a missing dependency."
@@ -642,7 +925,7 @@ msgid "Default to the bottle path."
 msgstr "Výchozí nastavení cesty láhve."
 
 #: src/ui/details-preferences.ui:1110 src/ui/dialog-launch-options.ui:182
-#: src/ui/preferences.ui:255
+#: src/ui/drive-entry.ui:61 src/ui/preferences.ui:255
 msgid "Choose a directory"
 msgstr "Výběr adresáře"
 
@@ -714,6 +997,10 @@ msgstr "Hledat nainstalované programy"
 msgid "Show/hide removed programs"
 msgstr "Zobrazit/Schovat odstraněné programy"
 
+#: src/ui/details-taskmanager.ui:59
+msgid "Stop process"
+msgstr "Zastavit proces"
+
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
 msgstr "Nebyly nalezeny žádné stavy"
@@ -738,52 +1025,19 @@ msgstr "Uložit stav láhve."
 msgid "Create new state"
 msgstr "Vytvořit nový stav"
 
-#: src/ui/details-taskmanager.ui:59
-msgid "Stop process"
-msgstr "Zastavit proces"
-
-#: src/ui/dialog.ui:6
-msgid "Message goes here."
-msgstr "Zpráva jde sem."
-
-#: src/ui/dialog.ui:23 src/ui/dialog-crash-report.ui:27
-#: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
-#: src/ui/dialog-run-args.ui:27 src/ui/dialog-environment-variables.ui:27
-#: src/ui/dialog-launch-options.ui:26 src/ui/new.ui:27
-#: src/dialogs/launchoptions.py:85 src/views/bottle_details.py:296
-#: src/views/bottle_details.py:369 src/views/bottle_preferences.py:166
-#: src/views/bottle_programs.py:74 src/views/list.py:127
-#: src/views/preferences.py:155
-msgid "Cancel"
-msgstr "Zrušit"
-
-#: src/ui/dialog.ui:36
-msgid "Confirm"
-msgstr "Potvrdit"
-
-#: src/ui/dialog-dll-overrides.ui:50
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)"
-msgstr ""
-"Knihovny Dynamic Link lze specifikovat tak, aby byly integrovány "
-"(poskytovány Wine) nebo nativní (poskytovány programem)"
-
-#: src/ui/dialog-dll-overrides.ui:56
-msgid "New override"
-msgstr "Nové přepsání"
-
-#: src/ui/dialog-dll-overrides.ui:67
-msgid "e.g. ucrtbase"
-msgstr "např. ucrtbase"
-
-#: src/ui/dialog-dll-overrides.ui:124
-msgid "Existing overrides"
-msgstr "Existující přepsání"
-
 #: src/ui/dialog-crash-report.ui:24
 msgid "Bottles Crash Report"
 msgstr "Láhve - Oznámení pádu"
+
+#: src/ui/dialog-crash-report.ui:27 src/ui/dialog-duplicate.ui:28
+#: src/ui/dialog-environment-variables.ui:27 src/ui/dialog-launch-options.ui:26
+#: src/ui/dialog-rename.ui:27 src/ui/dialog-run-args.ui:27 src/ui/dialog.ui:23
+#: src/ui/new.ui:27 src/dialogs/drives.py:62 src/dialogs/launchoptions.py:85
+#: src/views/bottle_details.py:296 src/views/bottle_details.py:369
+#: src/views/bottle_preferences.py:166 src/views/bottle_programs.py:74
+#: src/views/list.py:127 src/views/preferences.py:155
+msgid "Cancel"
+msgstr "Zrušit"
 
 #: src/ui/dialog-crash-report.ui:35
 msgid "Send report"
@@ -818,6 +1072,45 @@ msgstr "I přes to chci nahlásit."
 #: src/ui/new.ui:208
 msgid "Advanced options"
 msgstr "Pokročilé možnosti"
+
+#: src/ui/dialog-dll-overrides.ui:50
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)"
+msgstr ""
+"Knihovny Dynamic Link lze specifikovat tak, aby byly integrovány "
+"(poskytovány Wine) nebo nativní (poskytovány programem)"
+
+#: src/ui/dialog-dll-overrides.ui:56
+msgid "New override"
+msgstr "Nové přepsání"
+
+#: src/ui/dialog-dll-overrides.ui:67
+msgid "e.g. ucrtbase"
+msgstr "např. ucrtbase"
+
+#: src/ui/dialog-dll-overrides.ui:124
+msgid "Existing overrides"
+msgstr "Existující přepsání"
+
+#: src/ui/dialog-drives.ui:24
+msgid "Drives"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:49
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:..)."
+msgstr ""
+
+#: src/ui/dialog-drives.ui:54
+msgid "Letter"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:134
+#, fuzzy
+msgid "Existing drives"
+msgstr "Existující přepsání"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -868,27 +1161,48 @@ msgstr "Láhev duplikována"
 msgid "page_duplicated"
 msgstr "page_duplicated"
 
-#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
-msgid "Rename"
-msgstr "Přejmenovat"
+#: src/ui/dialog-env-vars.ui:49
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+"Proměnné prostředí jsou dynamické hodnoty které mohou ovlivnit způsob jakým "
+"procesy běží ve vaší láhvi."
 
-#: src/ui/dialog-rename.ui:35 src/ui/dialog-gamescope.ui:28
-#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-launch-options.ui:34
+#: src/ui/dialog-env-vars.ui:54
+msgid "New variable"
+msgstr "Nová proměnná"
+
+#: src/ui/dialog-env-vars.ui:65
+msgid "e.g. MY_VAR"
+msgstr "tzn. MOJE_PROMENA"
+
+#: src/ui/dialog-env-vars.ui:123
+msgid "Existing variables"
+msgstr "Existující proměnné"
+
+#: src/ui/dialog-environment-variables.ui:24
+msgid "Change environment variables"
+msgstr "Změňte proměnné prostředí"
+
+#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-gamescope.ui:28
+#: src/ui/dialog-launch-options.ui:34 src/ui/dialog-rename.ui:35
 msgid "Save"
 msgstr "Uložit"
 
-#: src/ui/dialog-rename.ui:74
-msgid "Type the new name:"
-msgstr "Napište nové jméno:"
+#: src/ui/dialog-environment-variables.ui:74
+msgid ""
+"Here you can change the environment variables for the commands that are "
+"executed."
+msgstr "Zde můžete změnit proměnné prostředí pro prováděné příkazy."
 
-#: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:85
-#: src/ui/dialog-launch-options.ui:88
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "např .: -příklad1 -příklad2 -příklad3 = ahoj"
+#: src/ui/dialog-environment-variables.ui:86
+msgid "e.g.: VAR1=value VAR2=value"
+msgstr "např .: VAR1 = hodnota VAR2 = hodnota"
 
-#: src/ui/dialog-rename.ui:88
-msgid "Type here.."
-msgstr "Pište sem..."
+#: src/ui/dialog-environment-variables.ui:89
+msgid "e.g: VAR1=value VAR2=value .."
+msgstr "např .: VAR1 = hodnota VAR2 = hodnota .."
 
 #: src/ui/dialog-gamescope.ui:24
 msgid "Gamescope settings"
@@ -959,61 +1273,6 @@ msgstr "Bez ohraničení"
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
 
-#: src/ui/dialog-env-vars.ui:49
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-"Proměnné prostředí jsou dynamické hodnoty které mohou ovlivnit způsob jakým "
-"procesy běží ve vaší láhvi."
-
-#: src/ui/dialog-env-vars.ui:54
-msgid "New variable"
-msgstr "Nová proměnná"
-
-#: src/ui/dialog-env-vars.ui:65
-msgid "e.g. MY_VAR"
-msgstr "tzn. MOJE_PROMENA"
-
-#: src/ui/dialog-env-vars.ui:123
-msgid "Existing variables"
-msgstr "Existující proměnné"
-
-#: src/ui/dialog-run-args.ui:24
-msgid "Run with arguments"
-msgstr "Spustit s argumenty"
-
-#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
-#: src/views/bottle_details.py:295 src/views/list.py:126
-msgid "Run"
-msgstr "Spustit"
-
-#: src/ui/dialog-run-args.ui:74
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Dolů napište argumenty které mají být předány spustitelnému souboru."
-
-#: src/ui/dialog-run-args.ui:89
-msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr "tzn: -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-environment-variables.ui:24
-msgid "Change environment variables"
-msgstr "Změňte proměnné prostředí"
-
-#: src/ui/dialog-environment-variables.ui:74
-msgid ""
-"Here you can change the environment variables for the commands that are "
-"executed."
-msgstr "Zde můžete změnit proměnné prostředí pro prováděné příkazy."
-
-#: src/ui/dialog-environment-variables.ui:86
-msgid "e.g.: VAR1=value VAR2=value"
-msgstr "např .: VAR1 = hodnota VAR2 = hodnota"
-
-#: src/ui/dialog-environment-variables.ui:89
-msgid "e.g: VAR1=value VAR2=value .."
-msgstr "např .: VAR1 = hodnota VAR2 = hodnota .."
-
 #: src/ui/dialog-launch-options.ui:23 src/ui/program-entry.ui:33
 msgid "Change launch options"
 msgstr "Změnit hodnoty spoušťení"
@@ -1021,6 +1280,11 @@ msgstr "Změnit hodnoty spoušťení"
 #: src/ui/dialog-launch-options.ui:73
 msgid "These arguments are passed on program launch:"
 msgstr "Při spuštění programu jsou předány tyto argumenty:"
+
+#: src/ui/dialog-launch-options.ui:85 src/ui/dialog-launch-options.ui:88
+#: src/ui/dialog-rename.ui:86
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "např .: -příklad1 -příklad2 -příklad3 = ahoj"
 
 #: src/ui/dialog-launch-options.ui:127
 msgid ""
@@ -1040,25 +1304,66 @@ msgstr "Skript po spuštění"
 msgid "Choose a script which should be executed after run."
 msgstr "Vyberte který skript by měl být spuštěn po spuštění."
 
-#: src/ui/importer.ui:20
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
+#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
+msgid "Rename"
+msgstr "Přejmenovat"
+
+#: src/ui/dialog-rename.ui:74
+msgid "Type the new name:"
+msgstr "Napište nové jméno:"
+
+#: src/ui/dialog-rename.ui:88
+msgid "Type here.."
+msgstr "Pište sem..."
+
+#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
+#: src/views/bottle_details.py:295 src/views/list.py:126
+msgid "Run"
+msgstr "Spustit"
+
+#: src/ui/dialog-run-args.ui:74
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Dolů napište argumenty které mají být předány spustitelnému souboru."
+
+#: src/ui/dialog-run-args.ui:89
+msgid "e.g: -opengl -SkipBuildPatchPrereq"
+msgstr "tzn: -opengl -SkipBuildPatchPrereq"
+
+#: src/ui/dialog.ui:6
+msgid "Message goes here."
+msgstr "Zpráva jde sem."
+
+#: src/ui/dialog.ui:36
+msgid "Confirm"
+msgstr "Potvrdit"
+
+#: src/ui/dll-override-entry.ui:22
+msgid "Builtin (Wine)"
+msgstr "Vestavěné (Wine)"
+
+#: src/ui/dll-override-entry.ui:23
+msgid "Native (Windows)"
+msgstr "Nativní (Windows)"
+
+#: src/ui/dll-override-entry.ui:24
+msgid "Builtin then Native"
+msgstr "Vestavěné potom Nativní"
+
+#: src/ui/dll-override-entry.ui:25
+msgid "Native then Builtin"
+msgstr "Nativní potom Vestavěné"
+
+#: src/ui/drive-entry.ui:9
+msgid "/point/to/path"
 msgstr ""
-"Toto je pouze konfigurace láhve, je to perfektní, pokud chcete vytvořit "
-"novou, ale bez osobních souborů."
 
-#: src/ui/importer.ui:21
-msgid "Configuration"
-msgstr "Konfigurace"
+#: src/ui/env-var-entry.ui:84
+msgid "value"
+msgstr "hodnota"
 
-#: src/ui/importer.ui:34
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr "Toto je kompletní archiv vaší lahve, včetně osobních souborů."
-
-#: src/ui/importer.ui:35
-msgid "Full archive"
-msgstr "Kompletní archiv"
+#: src/ui/importer-entry.ui:130
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Tento wineprefix byl již importován do lahví."
 
 #: src/ui/importer.ui:74 src/window.py:140
 msgid "Importer"
@@ -1068,37 +1373,9 @@ msgstr "Importovat"
 msgid "Import Bottles backup"
 msgstr "Importovat zálohu láhve"
 
-#: src/ui/importer-entry.ui:20 src/ui/component-entry.ui:18
-msgid "Browse files"
-msgstr "Procházet soubory"
-
-#: src/ui/importer-entry.ui:130
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Tento wineprefix byl již importován do lahví."
-
-#: src/ui/list.ui:39
-msgid "Search your bottles .."
-msgstr "Prohledat vaše Láhve.."
-
-#: src/ui/list.ui:77
-msgid "Start off by creating a Bottle."
-msgstr "Začněte vytvořením láhve."
-
-#: src/ui/list.ui:80
-msgid "Create a new Bottle"
-msgstr "Vytvořit novou láhev"
-
-#: src/ui/list-entry.ui:35
-msgid "Versioning enabled for this bottle"
-msgstr "U této lahve je povolena správa verzí"
-
-#: src/ui/list-entry.ui:42
-msgid "Versioning is active in this bottle."
-msgstr "V této láhvi je aktivní správa verzí."
-
-#: src/ui/list-entry.ui:61
-msgid "0"
-msgstr "0"
+#: src/ui/installer-entry.ui:47
+msgid "Read review"
+msgstr "Přečíst recenzi"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1124,120 +1401,26 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Spustit .exe/.msi v této láhvi"
 
-#: src/ui/component-entry.ui:8
-msgid "Component version"
-msgstr "Verze komponenty"
+#: src/ui/list.ui:39
+msgid "Search your bottles .."
+msgstr "Prohledat vaše Láhve.."
 
-#: src/ui/component-entry.ui:44
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch.\n"
-"\n"
-"Press to try again."
-msgstr ""
-"Instalace selhala. Toto může být z důvodu chyby repozitáře, neshoda "
-"checksumu.\n"
-"\n"
-"Stiskněte pro vyzkoušení znovu."
+#: src/ui/list.ui:77
+msgid "Start off by creating a Bottle."
+msgstr "Začněte vytvořením láhve."
 
-#: src/ui/component-entry.ui:95
-msgid "Download & Install"
-msgstr "Stáhnout a nainstalovat"
+#: src/ui/list.ui:80
+msgid "Create a new Bottle"
+msgstr "Vytvořit novou láhev"
 
-#: src/ui/component-entry.ui:123
-msgid "0%"
-msgstr "0%"
+#: src/ui/message-entry.ui:18
+msgid "Utility & Preferences"
+msgstr "Nástroje a předvolby"
 
-#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
-msgid "Uninstall"
-msgstr "Odinstalovat"
-
-#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
-#: src/ui/state-entry.ui:20
-msgid "Show manifest"
-msgstr "Zobrazit manifest"
-
-#: src/ui/dependency-entry.ui:33
-msgid "License"
-msgstr "Licence"
-
-#: src/ui/dependency-entry.ui:45
-msgid "Reinstall"
-msgstr "Přeinstalovat"
-
-#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
-msgid "Bug report"
-msgstr "Zpráva o chybě"
-
-#: src/ui/dependency-entry.ui:159
-msgid "Download & Install this dependency"
-msgstr "Stáhnout a nainstalovat tuto závislost"
-
-#: src/ui/dependency-entry.ui:185
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"Došlo k chybě při instalaci. Restartujte Bottles a přečtěte si hlášení o "
-"pádu nebo jej spusťte přes terminál a přečtěte si výstup."
-
-#: src/ui/dll-override-entry.ui:22
-msgid "Builtin (Wine)"
-msgstr "Vestavěné (Wine)"
-
-#: src/ui/dll-override-entry.ui:23
-msgid "Native (Windows)"
-msgstr "Nativní (Windows)"
-
-#: src/ui/dll-override-entry.ui:24
-msgid "Builtin then Native"
-msgstr "Vestavěné potom Nativní"
-
-#: src/ui/dll-override-entry.ui:25
-msgid "Native then Builtin"
-msgstr "Nativní potom Vestavěné"
-
-#: src/ui/env-var-entry.ui:84
-msgid "value"
-msgstr "hodnota"
-
-#: src/ui/installer-entry.ui:47
-msgid "Read review"
-msgstr "Přečíst recenzi"
-
-#: src/ui/task-entry.ui:44
+#: src/ui/message-entry.ui:45 src/ui/task-entry.ui:44
 #, fuzzy
 msgid "Delete message"
 msgstr "Odstranit stav"
-
-#: src/ui/program-entry.ui:20
-msgid "Launch with terminal"
-msgstr ""
-
-#: src/ui/program-entry.ui:46
-#, fuzzy
-msgid "Browse path"
-msgstr "Procházet umístění"
-
-#: src/ui/program-entry.ui:83
-msgid "WineHQ"
-msgstr "WineHQ"
-
-#: src/ui/program-entry.ui:96
-msgid "ProtonDB"
-msgstr "ProtonDB"
-
-#: src/ui/program-entry.ui:109
-msgid "Bottles' Forums"
-msgstr "Fórum Láhví"
-
-#: src/ui/program-entry.ui:133
-msgid "Remove from Programs"
-msgstr "Odebrat z programů"
-
-#: src/ui/program-entry.ui:146
-msgid "Add desktop entry"
-msgstr "Přidání položky na plochu"
 
 #: src/ui/new.ui:24 src/ui/window.ui:328
 msgid "New bottle"
@@ -1267,10 +1450,6 @@ msgstr "Toto pole nesmí obsahovat speciální znaky!"
 #: src/ui/new.ui:129
 msgid "My beautiful bottle"
 msgstr "Moje láhev"
-
-#: src/ui/new.ui:160
-msgid "Environment"
-msgstr "Prostředí"
 
 #: src/ui/new.ui:229
 msgid "Use versioning"
@@ -1546,6 +1725,31 @@ msgstr ""
 msgid "In early development (requires restart)"
 msgstr "Vlastní cesta Láhví (vyžaduje restart)"
 
+#: src/ui/program-entry.ui:46
+#, fuzzy
+msgid "Browse path"
+msgstr "Procházet umístění"
+
+#: src/ui/program-entry.ui:83
+msgid "WineHQ"
+msgstr "WineHQ"
+
+#: src/ui/program-entry.ui:96
+msgid "ProtonDB"
+msgstr "ProtonDB"
+
+#: src/ui/program-entry.ui:109
+msgid "Bottles' Forums"
+msgstr "Fórum Láhví"
+
+#: src/ui/program-entry.ui:133
+msgid "Remove from Programs"
+msgstr "Odebrat z programů"
+
+#: src/ui/program-entry.ui:146
+msgid "Add desktop entry"
+msgstr "Přidání položky na plochu"
+
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
 msgstr "Obnovit tento stav"
@@ -1595,10 +1799,6 @@ msgstr ""
 msgid "Go back"
 msgstr "Jít zpět"
 
-#: src/operation.py:63
-msgid "Calculating..."
-msgstr "Výpočet..."
-
 #: src/main.py:96
 msgid "Show version"
 msgstr "Zobrazit verzi"
@@ -1610,10 +1810,6 @@ msgstr "Cesta ke spustitelnému souboru"
 #: src/main.py:112
 msgid "lnk path"
 msgstr "lnk cesta"
-
-#: src/main.py:120
-msgid "Bottle name"
-msgstr "Název láhve"
 
 #: src/main.py:128
 #, fuzzy
@@ -1631,6 +1827,10 @@ msgstr "[Help] žádost přijata."
 #: src/main.py:263
 msgid "[Refresh] request received."
 msgstr "[Refresh] žádost přijata."
+
+#: src/operation.py:63
+msgid "Calculating..."
+msgstr "Výpočet..."
 
 #: src/utils.py:62
 msgid "You are offline, unable to download."
@@ -1654,12 +1854,12 @@ msgstr "Záloha {0}"
 msgid "Importing backup: {0}"
 msgstr "Importuji zálohu: {0}"
 
-#: src/backend/managers/installer.py:372
+#: src/backend/managers/installer.py:376
 msgid "Dependencies installation failed."
 msgstr "Instalace závislostí selhala."
 
 #. unlock widget
-#: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
+#: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 msgid "Installation failed, please check the logs."
 msgstr ""
 
@@ -1794,6 +1994,15 @@ msgstr ""
 "            Tento problém byl nahlášen 5krát a nemůže být poslán znovu.\n"
 "Nahlaste svoji odezvu v jednom z existujících nahlášení."
 
+#: src/dialogs/drives.py:58
+#, fuzzy
+msgid "Choose path"
+msgstr "Procházet umístění"
+
+#: src/dialogs/drives.py:61
+msgid "Select"
+msgstr ""
+
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
 msgstr "Varování"
@@ -1810,36 +2019,6 @@ msgstr "Zkopírovat do schránky"
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
 msgstr "Vyberte skript"
-
-#: src/views/details.py:103
-#, fuzzy
-msgid "Details & Utilities"
-msgstr "Nástroje"
-
-#: src/views/details.py:111
-msgid "Dependencies"
-msgstr "Závislosti"
-
-#: src/views/details.py:115
-msgid "Programs"
-msgstr "Programy"
-
-#: src/views/details.py:116
-#, fuzzy
-msgid "Found in your bottle's Start menu."
-msgstr "Tyto programy se nacházejí v nabídce Start vaší láhve"
-
-#: src/views/details.py:119
-msgid "Versioning"
-msgstr "Správa verzí"
-
-#: src/views/details.py:123
-msgid "Installers"
-msgstr "Instalátory"
-
-#: src/views/details.py:127
-msgid "Task manager"
-msgstr "Správce úloh"
 
 #: src/views/bottle_details.py:176
 #, fuzzy, python-format
@@ -1899,6 +2078,28 @@ msgstr "Výběr cesty ke spustitelnému souboru"
 #: src/views/bottle_programs.py:73
 msgid "Add"
 msgstr "Přidat"
+
+#: src/views/details.py:103
+#, fuzzy
+msgid "Details & Utilities"
+msgstr "Nástroje"
+
+#: src/views/details.py:111
+msgid "Dependencies"
+msgstr "Závislosti"
+
+#: src/views/details.py:116
+#, fuzzy
+msgid "Found in your bottle's Start menu."
+msgstr "Tyto programy se nacházejí v nabídce Start vaší láhve"
+
+#: src/views/details.py:119
+msgid "Versioning"
+msgstr "Správa verzí"
+
+#: src/views/details.py:123
+msgid "Installers"
+msgstr "Instalátory"
 
 #: src/views/importer.py:78
 msgid "Choose a backup archive"
@@ -1984,6 +2185,10 @@ msgstr "Spravovat runnery"
 #, fuzzy
 msgid "Other runners"
 msgstr "Spravovat runnery"
+
+#: src/widgets/component.py:67
+msgid "Upgrade"
+msgstr ""
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
@@ -2077,89 +2282,11 @@ msgstr "Index pro stav {0}"
 #~ msgid "Check for running processes."
 #~ msgstr "Zkontrolovat spuštěné procesy."
 
-#~ msgid "Flatpak help"
-#~ msgstr "Flatpak nápověda"
-
-#~ msgid "I can't see my old bottles after upgrade."
-#~ msgstr "Po aktualizaci nevidím své staré lahve."
-
-#~ msgid "I don't see some directories."
-#~ msgstr "Nevidím některé adresáře."
-
-#~ msgid "I can't see the files in my home."
-#~ msgstr "Nevidím soubory v domovské složce."
-
-#~ msgid "64 Bit"
-#~ msgstr "64 bitový"
-
-#~ msgid "lutris-6.0-rc1-x86_64"
-#~ msgstr "lutris-6.0-rc1-x86_64"
-
-#~ msgid "Run executable"
-#~ msgstr "Spustit spustitelný soubor"
-
 #~ msgid "Backup bottle"
 #~ msgstr "Zálohovat láhev"
 
-#~ msgid "Reboot Windows"
-#~ msgstr "Restartovat Windows"
-
-#~ msgid "Shutdown Windows"
-#~ msgstr "Vypnut Windows"
-
-#~ msgid "Kill all wine processes"
-#~ msgstr "Ukončení všech procesů wine"
-
-#~ msgid "Destroy this bottle"
-#~ msgstr "Zničit tuto láhev"
-
-#~ msgid "Utilities"
-#~ msgstr "Nástroje"
-
-#~ msgid "Wine config"
-#~ msgstr "Nastavení Wine"
-
-#~ msgid "Browse C:"
-#~ msgstr "Procházet C:"
-
-#~ msgid "Browse internal files."
-#~ msgstr "Procházet interní soubory."
-
-#~ msgid "Command Line"
-#~ msgstr "Příkazový řádek"
-
-#~ msgid "Run commands inside the Bottle."
-#~ msgstr "Spustit příkazy uvnitř láhve."
-
-#~ msgid "Registry Editor"
-#~ msgstr "Editor Registru"
-
-#~ msgid "Edit the internal registry."
-#~ msgstr "Upravit interní registr."
-
-#~ msgid "Debug"
-#~ msgstr "Ladit"
-
-#~ msgid "Debug wine processes."
-#~ msgstr "Ladění Wine procesů."
-
 #~ msgid "Task Manager"
 #~ msgstr "Správce úloh"
-
-#~ msgid "Manage processes with the Wine task manager."
-#~ msgstr "Spravovat procesy pomocí Wine Správce úloh."
-
-#~ msgid "Uninstaller"
-#~ msgstr "Odinstalovat"
-
-#~ msgid "Uninstall programs using wine uninstaller"
-#~ msgstr "Odinstalovat programy pomocí Wine odinstalátoru"
-
-#~ msgid "Control Panel"
-#~ msgstr "Ovládací panel"
-
-#~ msgid "Access the internal wine control panel."
-#~ msgstr "Přístup k internímu Wine Ovládacímu panelu."
 
 #~ msgid "Bottle"
 #~ msgstr "Láhev"
@@ -2246,12 +2373,6 @@ msgstr "Index pro stav {0}"
 
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "Německé překlady díky @thericosanto"
-
-#~ msgid "Utility & Preferences"
-#~ msgstr "Nástroje a předvolby"
-
-#~ msgid "Create bottle"
-#~ msgstr "Vytvořit láhev"
 
 #~ msgid "New Bottle"
 #~ msgstr "Nová láhev"
@@ -2672,9 +2793,6 @@ msgstr "Index pro stav {0}"
 
 #~ msgid "Slovak translations thanks to @MartinIIOT"
 #~ msgstr "Slovenský překlad díky @MartinIIOT"
-
-#~ msgid "Adjust internal settings."
-#~ msgstr "Upravit vnitřní nastavení."
 
 #~ msgid "Wine Runners"
 #~ msgstr "Wine Runnery"

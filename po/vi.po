@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 18:43+0100\n"
+"POT-Creation-Date: 2022-03-09 11:03+0100\n"
 "PO-Revision-Date: 2022-02-03 00:54+0000\n"
 "Last-Translator: Giai Ngo <giai.ngo@disroot.org>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
@@ -292,6 +292,296 @@ msgstr "<a href=\"https://usebottles.com/blog\"> Blog </a>"
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/Usebottles\"> Twitter </a>"
 
+#: src/ui/component-entry.ui:8
+msgid "Component version"
+msgstr "Thành phần phiên bản"
+
+#: src/ui/component-entry.ui:18 src/ui/importer-entry.ui:20
+msgid "Browse files"
+msgstr "Duyệt các tập tin"
+
+#: src/ui/component-entry.ui:44
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch.\n"
+"\n"
+"Press to try again."
+msgstr ""
+"Việc cài đặt thất bại. Điều này có thể là do lỗi kho lưu trữ, tải về chỉ một "
+"phần hoặc kiểm tra không khớp.\n"
+"\n"
+"Nhấn để thử lại."
+
+#: src/ui/component-entry.ui:95
+msgid "Download & Install"
+msgstr "Tải xuống và cài đặt"
+
+#: src/ui/component-entry.ui:123
+msgid "0%"
+msgstr "0%"
+
+#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
+msgid "Uninstall"
+msgstr "Gỡ cài đặt"
+
+#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
+#: src/ui/state-entry.ui:20
+msgid "Show manifest"
+msgstr "Xem bản kê khai"
+
+#: src/ui/dependency-entry.ui:33
+msgid "License"
+msgstr "Giấy phép"
+
+#: src/ui/dependency-entry.ui:45
+#, fuzzy
+msgid "Reinstall"
+msgstr "Gỡ cài đặt"
+
+#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
+msgid "Bug report"
+msgstr "Báo cáo lỗi"
+
+#: src/ui/dependency-entry.ui:159
+msgid "Download & Install this dependency"
+msgstr "Tải xuống và Cài đặt phụ thuộc này"
+
+#: src/ui/dependency-entry.ui:185
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+"Xảy ra lỗi cài đặt. Khởi động lại các Chai để đọc Báo cáo sự cố hoặc chạy nó "
+"qua thiết bị đầu cuối để đọc đầu ra."
+
+#: src/ui/details-bottle.ui:20 src/ui/details-bottle.ui:85
+#: src/ui/importer.ui:20
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Đây chỉ là cấu hình chai, nó hoàn hảo nếu bạn muốn tạo một cái mới nhưng "
+"không có tệp cá nhân."
+
+#: src/ui/details-bottle.ui:21 src/ui/importer.ui:21
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#: src/ui/details-bottle.ui:34 src/ui/importer.ui:34
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr ""
+"Đây là kho lưu trữ đầy đủ của chai của bạn, bao gồm cả các tệp cá nhân."
+
+#: src/ui/details-bottle.ui:35 src/ui/importer.ui:35
+msgid "Full archive"
+msgstr "Lưu trữ đầy đủ"
+
+#: src/ui/details-bottle.ui:59
+#, fuzzy
+msgid "Duplicate bottle"
+msgstr "Nhân bản một chai"
+
+#: src/ui/details-bottle.ui:86
+msgid "Open with explorer"
+msgstr ""
+
+#: src/ui/details-bottle.ui:112
+msgid "Flatpak help"
+msgstr ""
+
+#: src/ui/details-bottle.ui:136
+msgid "I can't see my old bottles after upgrade."
+msgstr ""
+
+#: src/ui/details-bottle.ui:149
+msgid "I don't see some directories."
+msgstr ""
+
+#: src/ui/details-bottle.ui:162
+msgid "I can't see the files in my home."
+msgstr ""
+
+#: src/ui/details-bottle.ui:175
+msgid "Executable silently crash or black screen"
+msgstr ""
+
+#: src/ui/details-bottle.ui:201
+msgid "Simulate a Windows system reboot."
+msgstr ""
+
+#: src/ui/details-bottle.ui:202
+msgid "Reboot"
+msgstr ""
+
+#: src/ui/details-bottle.ui:215
+msgid "Simulate a Windows system shutdown."
+msgstr ""
+
+#: src/ui/details-bottle.ui:216
+msgid "Shutdown"
+msgstr ""
+
+#: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
+msgid "Run with arguments"
+msgstr "Chạy với các đối số"
+
+#: src/ui/details-bottle.ui:252
+msgid "Move inside the sandbox"
+msgstr ""
+
+#: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
+msgid "Launch with terminal"
+msgstr ""
+
+#: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
+#, fuzzy
+msgid "Destroy this bottle"
+msgstr "Khôi phục trạng thái này"
+
+#: src/ui/details-bottle.ui:352 src/main.py:120
+msgid "Bottle name"
+msgstr "Tên chai"
+
+#: src/ui/details-bottle.ui:356
+#, fuzzy
+msgid "Type a name for your bottle"
+msgstr "Chọn một tên cho chai của bạn"
+
+#: src/ui/details-bottle.ui:374
+#, fuzzy
+msgid "Rename bottle"
+msgstr "Chai mới"
+
+#: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
+msgid "Versioning enabled for this bottle"
+msgstr "Phiên bản đã bật cho chai này"
+
+#: src/ui/details-bottle.ui:409 src/ui/list-entry.ui:42
+msgid "Versioning is active in this bottle."
+msgstr "Phiên bản đang hoạt động trong chai này."
+
+#: src/ui/details-bottle.ui:432 src/ui/list-entry.ui:61
+msgid "0"
+msgstr "0"
+
+#: src/ui/details-bottle.ui:462 src/ui/new.ui:160
+msgid "Environment"
+msgstr "Môi trường"
+
+#: src/ui/details-bottle.ui:496
+msgid "64 Bit"
+msgstr ""
+
+#: src/ui/details-bottle.ui:515
+msgid "Vaniglia-6.21-x86_64"
+msgstr ""
+
+#: src/ui/details-bottle.ui:540
+#, fuzzy
+msgid "Layers"
+msgstr "Nhiều lớp"
+
+#: src/ui/details-bottle.ui:563
+#, fuzzy
+msgid "Run executable"
+msgstr "Đường dẫn thực thi"
+
+#: src/ui/details-bottle.ui:637
+msgid "Kill all WINE processes"
+msgstr ""
+
+#: src/ui/details-bottle.ui:662
+#, fuzzy
+msgid "Make a backup of this bottle."
+msgstr "Thực thi trong chai này"
+
+#: src/ui/details-bottle.ui:758
+msgid "Moving inside the sandbox…"
+msgstr ""
+
+#: src/ui/details-bottle.ui:774 src/views/details.py:115
+msgid "Programs"
+msgstr "Chương trình"
+
+#: src/ui/details-bottle.ui:790
+#, fuzzy
+msgid "Utilities"
+msgstr "Chi tiết & Tiện ích"
+
+#: src/ui/details-bottle.ui:795
+msgid "Wine config"
+msgstr ""
+
+#: src/ui/details-bottle.ui:797
+msgid "Adjust internal settings."
+msgstr ""
+
+#: src/ui/details-bottle.ui:837
+#, fuzzy
+msgid "Browse C:"
+msgstr "Duyệt đường dẫn"
+
+#: src/ui/details-bottle.ui:839
+#, fuzzy
+msgid "Browse internal files."
+msgstr "Duyệt các tập tin"
+
+#: src/ui/details-bottle.ui:918
+msgid "Command line"
+msgstr ""
+
+#: src/ui/details-bottle.ui:920
+#, fuzzy
+msgid "Run commands inside the Bottle."
+msgstr "Chạy .exe / .msi trong chai này"
+
+#: src/ui/details-bottle.ui:960
+msgid "Registry editor"
+msgstr ""
+
+#: src/ui/details-bottle.ui:962
+msgid "Edit the internal registry."
+msgstr ""
+
+#: src/ui/details-bottle.ui:1002
+msgid "Debug"
+msgstr ""
+
+#: src/ui/details-bottle.ui:1004
+msgid "Debug wine processes."
+msgstr ""
+
+#: src/ui/details-bottle.ui:1041 src/ui/details-dependencies.ui:195
+#: src/ui/details-installers.ui:100 src/ui/details-programs.ui:125
+#: src/ui/details-versioning.ui:162
+msgid "Read documentation"
+msgstr "Đọc tài liệu"
+
+#: src/ui/details-bottle.ui:1069 src/views/details.py:127
+msgid "Task manager"
+msgstr "Quản lý công việc"
+
+#: src/ui/details-bottle.ui:1071
+msgid "Manage processes with the Wine task manager."
+msgstr ""
+
+#: src/ui/details-bottle.ui:1111
+#, fuzzy
+msgid "Uninstaller"
+msgstr "Gỡ cài đặt"
+
+#: src/ui/details-bottle.ui:1113
+msgid "Uninstall programs using wine uninstaller"
+msgstr ""
+
+#: src/ui/details-bottle.ui:1153
+msgid "Control panel"
+msgstr ""
+
+#: src/ui/details-bottle.ui:1155
+msgid "Access the internal wine control panel."
+msgstr ""
+
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
@@ -309,11 +599,6 @@ msgid ""
 msgstr ""
 "Mặc dù các tệp trên trang này đã được xác minh, chúng có thể được cấp phép "
 "độc quyền."
-
-#: src/ui/details-dependencies.ui:195 src/ui/details-installers.ui:100
-#: src/ui/details-programs.ui:125 src/ui/details-versioning.ui:162
-msgid "Read documentation"
-msgstr "Đọc tài liệu"
 
 #: src/ui/details-dependencies.ui:221
 msgid "Report a problem or a missing dependency."
@@ -644,7 +929,7 @@ msgid "Default to the bottle path."
 msgstr "Mặc định đường dẫn cho chai."
 
 #: src/ui/details-preferences.ui:1110 src/ui/dialog-launch-options.ui:182
-#: src/ui/preferences.ui:255
+#: src/ui/drive-entry.ui:61 src/ui/preferences.ui:255
 msgid "Choose a directory"
 msgstr "Chọn một thư mục"
 
@@ -717,6 +1002,10 @@ msgstr "Tìm kiếm các chương trình đã cài đặt"
 msgid "Show/hide removed programs"
 msgstr ""
 
+#: src/ui/details-taskmanager.ui:59
+msgid "Stop process"
+msgstr ""
+
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
 msgstr "Không tìm thấy trạng thái nào"
@@ -741,52 +1030,19 @@ msgstr "Lưu trạng thái chai."
 msgid "Create new state"
 msgstr "Tạo trạng thái mới"
 
-#: src/ui/details-taskmanager.ui:59
-msgid "Stop process"
-msgstr ""
-
-#: src/ui/dialog.ui:6
-msgid "Message goes here."
-msgstr "Tin nhắn đến đây."
-
-#: src/ui/dialog.ui:23 src/ui/dialog-crash-report.ui:27
-#: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
-#: src/ui/dialog-run-args.ui:27 src/ui/dialog-environment-variables.ui:27
-#: src/ui/dialog-launch-options.ui:26 src/ui/new.ui:27
-#: src/dialogs/launchoptions.py:85 src/views/bottle_details.py:296
-#: src/views/bottle_details.py:369 src/views/bottle_preferences.py:166
-#: src/views/bottle_programs.py:74 src/views/list.py:127
-#: src/views/preferences.py:155
-msgid "Cancel"
-msgstr "Hủy bỏ"
-
-#: src/ui/dialog.ui:36
-msgid "Confirm"
-msgstr "Xác nhận"
-
-#: src/ui/dialog-dll-overrides.ui:50
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)"
-msgstr ""
-"Thư viện Liên kết Động (DLL) có thể được chỉ định là tích hợp (được cung cấp "
-"bởi Wine) hoặc bản địa (được cung cấp bởi chương trình)"
-
-#: src/ui/dialog-dll-overrides.ui:56
-msgid "New override"
-msgstr "Thay thế mới"
-
-#: src/ui/dialog-dll-overrides.ui:67
-msgid "e.g. ucrtbase"
-msgstr "ví dụ. ucrtbase"
-
-#: src/ui/dialog-dll-overrides.ui:124
-msgid "Existing overrides"
-msgstr "Thay thế hiện tại"
-
 #: src/ui/dialog-crash-report.ui:24
 msgid "Bottles Crash Report"
 msgstr "Báo cáo Sự cố của Chai"
+
+#: src/ui/dialog-crash-report.ui:27 src/ui/dialog-duplicate.ui:28
+#: src/ui/dialog-environment-variables.ui:27 src/ui/dialog-launch-options.ui:26
+#: src/ui/dialog-rename.ui:27 src/ui/dialog-run-args.ui:27 src/ui/dialog.ui:23
+#: src/ui/new.ui:27 src/dialogs/drives.py:62 src/dialogs/launchoptions.py:85
+#: src/views/bottle_details.py:296 src/views/bottle_details.py:369
+#: src/views/bottle_preferences.py:166 src/views/bottle_programs.py:74
+#: src/views/list.py:127 src/views/preferences.py:155
+msgid "Cancel"
+msgstr "Hủy bỏ"
 
 #: src/ui/dialog-crash-report.ui:35
 msgid "Send report"
@@ -820,6 +1076,45 @@ msgstr "Tôi vẫn muốn báo cáo."
 #: src/ui/new.ui:208
 msgid "Advanced options"
 msgstr "Tùy chọn nâng cao"
+
+#: src/ui/dialog-dll-overrides.ui:50
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)"
+msgstr ""
+"Thư viện Liên kết Động (DLL) có thể được chỉ định là tích hợp (được cung cấp "
+"bởi Wine) hoặc bản địa (được cung cấp bởi chương trình)"
+
+#: src/ui/dialog-dll-overrides.ui:56
+msgid "New override"
+msgstr "Thay thế mới"
+
+#: src/ui/dialog-dll-overrides.ui:67
+msgid "e.g. ucrtbase"
+msgstr "ví dụ. ucrtbase"
+
+#: src/ui/dialog-dll-overrides.ui:124
+msgid "Existing overrides"
+msgstr "Thay thế hiện tại"
+
+#: src/ui/dialog-drives.ui:24
+msgid "Drives"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:49
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:..)."
+msgstr ""
+
+#: src/ui/dialog-drives.ui:54
+msgid "Letter"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:134
+#, fuzzy
+msgid "Existing drives"
+msgstr "Thay thế hiện tại"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -869,27 +1164,48 @@ msgstr "Chai được sao chép"
 msgid "page_duplicated"
 msgstr "trang_đã_nhân_bản"
 
-#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
-msgid "Rename"
-msgstr "Đổi tên"
+#: src/ui/dialog-env-vars.ui:49
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
+"Các biến môi trường có giá trị động, nó có thể ảnh hưởng đến cách các trình "
+"đang hoạt động trên chai của bạn."
 
-#: src/ui/dialog-rename.ui:35 src/ui/dialog-gamescope.ui:28
-#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-launch-options.ui:34
+#: src/ui/dialog-env-vars.ui:54
+msgid "New variable"
+msgstr "Biến mới"
+
+#: src/ui/dialog-env-vars.ui:65
+msgid "e.g. MY_VAR"
+msgstr "vd. MY_VAR"
+
+#: src/ui/dialog-env-vars.ui:123
+msgid "Existing variables"
+msgstr "Các biến hiện có"
+
+#: src/ui/dialog-environment-variables.ui:24
+msgid "Change environment variables"
+msgstr "Thay đổi biến môi trường"
+
+#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-gamescope.ui:28
+#: src/ui/dialog-launch-options.ui:34 src/ui/dialog-rename.ui:35
 msgid "Save"
 msgstr "Lưu"
 
-#: src/ui/dialog-rename.ui:74
-msgid "Type the new name:"
-msgstr "Nhập tên mới:"
+#: src/ui/dialog-environment-variables.ui:74
+msgid ""
+"Here you can change the environment variables for the commands that are "
+"executed."
+msgstr "Tại đây bạn có thể thay đổi các biến môi trường cho các lệnh thực thi."
 
-#: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:85
-#: src/ui/dialog-launch-options.ui:88
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "vd: VAR=value %command% -ví_dụ1 -ví_dụ2 -ví_dụ3=hello"
+#: src/ui/dialog-environment-variables.ui:86
+msgid "e.g.: VAR1=value VAR2=value"
+msgstr "vd: VAR1 = giá_trị VAR2 = giá_trị"
 
-#: src/ui/dialog-rename.ui:88
-msgid "Type here.."
-msgstr "Nhập ở đây.."
+#: src/ui/dialog-environment-variables.ui:89
+msgid "e.g: VAR1=value VAR2=value .."
+msgstr "vd: VAR1=value VAR2=value .."
 
 #: src/ui/dialog-gamescope.ui:24
 #, fuzzy
@@ -964,61 +1280,6 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: src/ui/dialog-env-vars.ui:49
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-"Các biến môi trường có giá trị động, nó có thể ảnh hưởng đến cách các trình "
-"đang hoạt động trên chai của bạn."
-
-#: src/ui/dialog-env-vars.ui:54
-msgid "New variable"
-msgstr "Biến mới"
-
-#: src/ui/dialog-env-vars.ui:65
-msgid "e.g. MY_VAR"
-msgstr "vd. MY_VAR"
-
-#: src/ui/dialog-env-vars.ui:123
-msgid "Existing variables"
-msgstr "Các biến hiện có"
-
-#: src/ui/dialog-run-args.ui:24
-msgid "Run with arguments"
-msgstr "Chạy với các đối số"
-
-#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
-#: src/views/bottle_details.py:295 src/views/list.py:126
-msgid "Run"
-msgstr "Chạy"
-
-#: src/ui/dialog-run-args.ui:74
-msgid "Write below the arguments to be passed to the executable."
-msgstr "Viết các đối số sẽ được thực thi dưới đây."
-
-#: src/ui/dialog-run-args.ui:89
-msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr "vd: -opengl -Bỏ_qua_Bản_vá_Trước"
-
-#: src/ui/dialog-environment-variables.ui:24
-msgid "Change environment variables"
-msgstr "Thay đổi biến môi trường"
-
-#: src/ui/dialog-environment-variables.ui:74
-msgid ""
-"Here you can change the environment variables for the commands that are "
-"executed."
-msgstr "Tại đây bạn có thể thay đổi các biến môi trường cho các lệnh thực thi."
-
-#: src/ui/dialog-environment-variables.ui:86
-msgid "e.g.: VAR1=value VAR2=value"
-msgstr "vd: VAR1 = giá_trị VAR2 = giá_trị"
-
-#: src/ui/dialog-environment-variables.ui:89
-msgid "e.g: VAR1=value VAR2=value .."
-msgstr "vd: VAR1=value VAR2=value .."
-
 #: src/ui/dialog-launch-options.ui:23 src/ui/program-entry.ui:33
 msgid "Change launch options"
 msgstr "Thay đổi tùy chọn khởi chạy"
@@ -1026,6 +1287,11 @@ msgstr "Thay đổi tùy chọn khởi chạy"
 #: src/ui/dialog-launch-options.ui:73
 msgid "These arguments are passed on program launch:"
 msgstr "Những đối số này được thông qua khi khởi chạy chương trình:"
+
+#: src/ui/dialog-launch-options.ui:85 src/ui/dialog-launch-options.ui:88
+#: src/ui/dialog-rename.ui:86
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "vd: VAR=value %command% -ví_dụ1 -ví_dụ2 -ví_dụ3=hello"
 
 #: src/ui/dialog-launch-options.ui:127
 msgid ""
@@ -1042,26 +1308,66 @@ msgstr ""
 msgid "Choose a script which should be executed after run."
 msgstr ""
 
-#: src/ui/importer.ui:20
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
+#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
+msgid "Rename"
+msgstr "Đổi tên"
+
+#: src/ui/dialog-rename.ui:74
+msgid "Type the new name:"
+msgstr "Nhập tên mới:"
+
+#: src/ui/dialog-rename.ui:88
+msgid "Type here.."
+msgstr "Nhập ở đây.."
+
+#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
+#: src/views/bottle_details.py:295 src/views/list.py:126
+msgid "Run"
+msgstr "Chạy"
+
+#: src/ui/dialog-run-args.ui:74
+msgid "Write below the arguments to be passed to the executable."
+msgstr "Viết các đối số sẽ được thực thi dưới đây."
+
+#: src/ui/dialog-run-args.ui:89
+msgid "e.g: -opengl -SkipBuildPatchPrereq"
+msgstr "vd: -opengl -Bỏ_qua_Bản_vá_Trước"
+
+#: src/ui/dialog.ui:6
+msgid "Message goes here."
+msgstr "Tin nhắn đến đây."
+
+#: src/ui/dialog.ui:36
+msgid "Confirm"
+msgstr "Xác nhận"
+
+#: src/ui/dll-override-entry.ui:22
+msgid "Builtin (Wine)"
+msgstr "Tích hợp (Wine)"
+
+#: src/ui/dll-override-entry.ui:23
+msgid "Native (Windows)"
+msgstr "Có sẵn (Windows)"
+
+#: src/ui/dll-override-entry.ui:24
+msgid "Builtin then Native"
+msgstr "Tích hợp sau đó là có sẵn"
+
+#: src/ui/dll-override-entry.ui:25
+msgid "Native then Builtin"
+msgstr "Có sẵn sau đó là Tích hợp"
+
+#: src/ui/drive-entry.ui:9
+msgid "/point/to/path"
 msgstr ""
-"Đây chỉ là cấu hình chai, nó hoàn hảo nếu bạn muốn tạo một cái mới nhưng "
-"không có tệp cá nhân."
 
-#: src/ui/importer.ui:21
-msgid "Configuration"
-msgstr "Cấu hình"
+#: src/ui/env-var-entry.ui:84
+msgid "value"
+msgstr "giá trị"
 
-#: src/ui/importer.ui:34
-msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
-"Đây là kho lưu trữ đầy đủ của chai của bạn, bao gồm cả các tệp cá nhân."
-
-#: src/ui/importer.ui:35
-msgid "Full archive"
-msgstr "Lưu trữ đầy đủ"
+#: src/ui/importer-entry.ui:130
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Wineprefix này đã được nhập vào Chai."
 
 #: src/ui/importer.ui:74 src/window.py:140
 msgid "Importer"
@@ -1071,37 +1377,9 @@ msgstr "Trình Nhập"
 msgid "Import Bottles backup"
 msgstr "Nhập một chai Sao lưu"
 
-#: src/ui/importer-entry.ui:20 src/ui/component-entry.ui:18
-msgid "Browse files"
-msgstr "Duyệt các tập tin"
-
-#: src/ui/importer-entry.ui:130
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Wineprefix này đã được nhập vào Chai."
-
-#: src/ui/list.ui:39
-msgid "Search your bottles .."
-msgstr ""
-
-#: src/ui/list.ui:77
-msgid "Start off by creating a Bottle."
-msgstr "Bắt đầu bằng cách tạo một Chai."
-
-#: src/ui/list.ui:80
-msgid "Create a new Bottle"
-msgstr "Tạo một Chai mới"
-
-#: src/ui/list-entry.ui:35
-msgid "Versioning enabled for this bottle"
-msgstr "Phiên bản đã bật cho chai này"
-
-#: src/ui/list-entry.ui:42
-msgid "Versioning is active in this bottle."
-msgstr "Phiên bản đang hoạt động trong chai này."
-
-#: src/ui/list-entry.ui:61
-msgid "0"
-msgstr "0"
+#: src/ui/installer-entry.ui:47
+msgid "Read review"
+msgstr "Đọc các đánh giá"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1127,119 +1405,26 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Chạy .exe / .msi trong chai này"
 
-#: src/ui/component-entry.ui:8
-msgid "Component version"
-msgstr "Thành phần phiên bản"
-
-#: src/ui/component-entry.ui:44
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch.\n"
-"\n"
-"Press to try again."
+#: src/ui/list.ui:39
+msgid "Search your bottles .."
 msgstr ""
-"Việc cài đặt thất bại. Điều này có thể là do lỗi kho lưu trữ, tải về chỉ một "
-"phần hoặc kiểm tra không khớp.\n"
-"\n"
-"Nhấn để thử lại."
 
-#: src/ui/component-entry.ui:95
-msgid "Download & Install"
-msgstr "Tải xuống và cài đặt"
+#: src/ui/list.ui:77
+msgid "Start off by creating a Bottle."
+msgstr "Bắt đầu bằng cách tạo một Chai."
 
-#: src/ui/component-entry.ui:123
-msgid "0%"
-msgstr "0%"
+#: src/ui/list.ui:80
+msgid "Create a new Bottle"
+msgstr "Tạo một Chai mới"
 
-#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
-msgid "Uninstall"
-msgstr "Gỡ cài đặt"
-
-#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
-#: src/ui/state-entry.ui:20
-msgid "Show manifest"
-msgstr "Xem bản kê khai"
-
-#: src/ui/dependency-entry.ui:33
-msgid "License"
-msgstr "Giấy phép"
-
-#: src/ui/dependency-entry.ui:45
+#: src/ui/message-entry.ui:18
 #, fuzzy
-msgid "Reinstall"
-msgstr "Gỡ cài đặt"
+msgid "Utility & Preferences"
+msgstr "Tùy chọn"
 
-#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
-msgid "Bug report"
-msgstr "Báo cáo lỗi"
-
-#: src/ui/dependency-entry.ui:159
-msgid "Download & Install this dependency"
-msgstr "Tải xuống và Cài đặt phụ thuộc này"
-
-#: src/ui/dependency-entry.ui:185
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
-msgstr ""
-"Xảy ra lỗi cài đặt. Khởi động lại các Chai để đọc Báo cáo sự cố hoặc chạy nó "
-"qua thiết bị đầu cuối để đọc đầu ra."
-
-#: src/ui/dll-override-entry.ui:22
-msgid "Builtin (Wine)"
-msgstr "Tích hợp (Wine)"
-
-#: src/ui/dll-override-entry.ui:23
-msgid "Native (Windows)"
-msgstr "Có sẵn (Windows)"
-
-#: src/ui/dll-override-entry.ui:24
-msgid "Builtin then Native"
-msgstr "Tích hợp sau đó là có sẵn"
-
-#: src/ui/dll-override-entry.ui:25
-msgid "Native then Builtin"
-msgstr "Có sẵn sau đó là Tích hợp"
-
-#: src/ui/env-var-entry.ui:84
-msgid "value"
-msgstr "giá trị"
-
-#: src/ui/installer-entry.ui:47
-msgid "Read review"
-msgstr "Đọc các đánh giá"
-
-#: src/ui/task-entry.ui:44
+#: src/ui/message-entry.ui:45 src/ui/task-entry.ui:44
 msgid "Delete message"
 msgstr "Xóa tin nhắn"
-
-#: src/ui/program-entry.ui:20
-msgid "Launch with terminal"
-msgstr ""
-
-#: src/ui/program-entry.ui:46
-msgid "Browse path"
-msgstr "Duyệt đường dẫn"
-
-#: src/ui/program-entry.ui:83
-msgid "WineHQ"
-msgstr "WineHQ"
-
-#: src/ui/program-entry.ui:96
-msgid "ProtonDB"
-msgstr "ProtonDB"
-
-#: src/ui/program-entry.ui:109
-msgid "Bottles' Forums"
-msgstr "Diễn đàn về Chai"
-
-#: src/ui/program-entry.ui:133
-msgid "Remove from Programs"
-msgstr "Xóa các chương trình"
-
-#: src/ui/program-entry.ui:146
-msgid "Add desktop entry"
-msgstr "Thêm mục nhập vào cửa sổ làm việc"
 
 #: src/ui/new.ui:24 src/ui/window.ui:328
 msgid "New bottle"
@@ -1268,10 +1453,6 @@ msgstr "Trường này không thể chứa các ký tự đặc biệt!"
 #: src/ui/new.ui:129
 msgid "My beautiful bottle"
 msgstr "Chai đẹp của tôi"
-
-#: src/ui/new.ui:160
-msgid "Environment"
-msgstr "Môi trường"
 
 #: src/ui/new.ui:229
 msgid "Use versioning"
@@ -1545,6 +1726,30 @@ msgstr ""
 msgid "In early development (requires restart)"
 msgstr ""
 
+#: src/ui/program-entry.ui:46
+msgid "Browse path"
+msgstr "Duyệt đường dẫn"
+
+#: src/ui/program-entry.ui:83
+msgid "WineHQ"
+msgstr "WineHQ"
+
+#: src/ui/program-entry.ui:96
+msgid "ProtonDB"
+msgstr "ProtonDB"
+
+#: src/ui/program-entry.ui:109
+msgid "Bottles' Forums"
+msgstr "Diễn đàn về Chai"
+
+#: src/ui/program-entry.ui:133
+msgid "Remove from Programs"
+msgstr "Xóa các chương trình"
+
+#: src/ui/program-entry.ui:146
+msgid "Add desktop entry"
+msgstr "Thêm mục nhập vào cửa sổ làm việc"
+
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
 msgstr "Khôi phục trạng thái này"
@@ -1595,10 +1800,6 @@ msgstr ""
 msgid "Go back"
 msgstr "Quay lại"
 
-#: src/operation.py:63
-msgid "Calculating..."
-msgstr "Tính toán..."
-
 #: src/main.py:96
 msgid "Show version"
 msgstr "Hiển thị phiên bản"
@@ -1610,10 +1811,6 @@ msgstr "Đường dẫn thực thi"
 #: src/main.py:112
 msgid "lnk path"
 msgstr "đường dẫn"
-
-#: src/main.py:120
-msgid "Bottle name"
-msgstr "Tên chai"
 
 #: src/main.py:128
 msgid "Pass arguments"
@@ -1630,6 +1827,10 @@ msgstr "[Trợ giúp] yêu cầu đã nhận."
 #: src/main.py:263
 msgid "[Refresh] request received."
 msgstr "[Làm mới] yêu cầu đã nhận."
+
+#: src/operation.py:63
+msgid "Calculating..."
+msgstr "Tính toán..."
 
 #: src/utils.py:62
 msgid "You are offline, unable to download."
@@ -1653,12 +1854,12 @@ msgstr "Sao lưu {0}"
 msgid "Importing backup: {0}"
 msgstr "Nhập bản sao lưu: {0}"
 
-#: src/backend/managers/installer.py:372
+#: src/backend/managers/installer.py:376
 msgid "Dependencies installation failed."
 msgstr ""
 
 #. unlock widget
-#: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
+#: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 msgid "Installation failed, please check the logs."
 msgstr ""
 
@@ -1783,6 +1984,15 @@ msgstr ""
 "             Báo cáo phản hồi của bạn bằng một trong các báo cáo hiện có "
 "dưới đây."
 
+#: src/dialogs/drives.py:58
+#, fuzzy
+msgid "Choose path"
+msgstr "Duyệt đường dẫn"
+
+#: src/dialogs/drives.py:61
+msgid "Select"
+msgstr ""
+
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
 msgstr "Cảnh báo"
@@ -1799,34 +2009,6 @@ msgstr "Sao chép vào bảng tạm"
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
 msgstr ""
-
-#: src/views/details.py:103
-msgid "Details & Utilities"
-msgstr "Chi tiết & Tiện ích"
-
-#: src/views/details.py:111
-msgid "Dependencies"
-msgstr "Phụ thuộc"
-
-#: src/views/details.py:115
-msgid "Programs"
-msgstr "Chương trình"
-
-#: src/views/details.py:116
-msgid "Found in your bottle's Start menu."
-msgstr "Tìm thấy trong menu Khởi động của chai."
-
-#: src/views/details.py:119
-msgid "Versioning"
-msgstr "Trình phiên bản"
-
-#: src/views/details.py:123
-msgid "Installers"
-msgstr "Trình cài đặt"
-
-#: src/views/details.py:127
-msgid "Task manager"
-msgstr "Quản lý công việc"
 
 #: src/views/bottle_details.py:176
 #, python-format
@@ -1885,6 +2067,26 @@ msgstr "Chọn một đường dẫn thực thi"
 #: src/views/bottle_programs.py:73
 msgid "Add"
 msgstr "Thêm"
+
+#: src/views/details.py:103
+msgid "Details & Utilities"
+msgstr "Chi tiết & Tiện ích"
+
+#: src/views/details.py:111
+msgid "Dependencies"
+msgstr "Phụ thuộc"
+
+#: src/views/details.py:116
+msgid "Found in your bottle's Start menu."
+msgstr "Tìm thấy trong menu Khởi động của chai."
+
+#: src/views/details.py:119
+msgid "Versioning"
+msgstr "Trình phiên bản"
+
+#: src/views/details.py:123
+msgid "Installers"
+msgstr "Trình cài đặt"
 
 #: src/views/importer.py:78
 msgid "Choose a backup archive"
@@ -1967,6 +2169,10 @@ msgstr "Tình quản lý thực thi"
 #, fuzzy
 msgid "Other runners"
 msgstr "Tình quản lý thực thi"
+
+#: src/widgets/component.py:67
+msgid "Upgrade"
+msgstr ""
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format

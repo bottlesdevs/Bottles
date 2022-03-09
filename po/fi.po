@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 18:43+0100\n"
+"POT-Creation-Date: 2022-03-09 11:03+0100\n"
 "PO-Revision-Date: 2022-02-15 07:59+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -299,6 +299,294 @@ msgstr "<a href=\"https://usebottles.com/blog\">Blogi</a>"
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
+#: src/ui/component-entry.ui:8
+msgid "Component version"
+msgstr "Komponentin versio"
+
+#: src/ui/component-entry.ui:18 src/ui/importer-entry.ui:20
+msgid "Browse files"
+msgstr "Selaa tiedostoja"
+
+#: src/ui/component-entry.ui:44
+msgid ""
+"The installation failed. This may be due to a repository error, partial "
+"download or checksum mismatch.\n"
+"\n"
+"Press to try again."
+msgstr ""
+"Asennus epäonnistui. Tämä saattaa johtua tietovaraston virheestä, "
+"osittaisesta latauksesta tai ettei tarkistussumma vastaa odotettua arvoa.\n"
+"\n"
+"Yritä uudelleen."
+
+#: src/ui/component-entry.ui:95
+msgid "Download & Install"
+msgstr "Lataa ja asenna"
+
+#: src/ui/component-entry.ui:123
+msgid "0%"
+msgstr "0 %"
+
+#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
+msgid "Uninstall"
+msgstr "Poista asennus"
+
+#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
+#: src/ui/state-entry.ui:20
+msgid "Show manifest"
+msgstr "Näytä manifesti"
+
+#: src/ui/dependency-entry.ui:33
+msgid "License"
+msgstr "Lisenssi"
+
+#: src/ui/dependency-entry.ui:45
+msgid "Reinstall"
+msgstr "Asenna uudestaan"
+
+#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
+msgid "Bug report"
+msgstr "Virheraportti"
+
+#: src/ui/dependency-entry.ui:159
+msgid "Download & Install this dependency"
+msgstr "Lataa ja asenna tämä riippuvuus"
+
+#: src/ui/dependency-entry.ui:185
+msgid ""
+"An installation error occurred. Restart Bottles to read the Crash Report or "
+"run it via terminal to read the output."
+msgstr ""
+
+#: src/ui/details-bottle.ui:20 src/ui/details-bottle.ui:85
+#: src/ui/importer.ui:20
+msgid ""
+"This is just the bottle configuration, it's perfect if you want to create a "
+"new one but without personal files."
+msgstr ""
+"Tämä on vain pullon kokoonpano. Se on hyvä lähtökohta, jos haluat luoda "
+"uuden kokoonpanon ilman henkilökohtaisia tiedostoja."
+
+#: src/ui/details-bottle.ui:21 src/ui/importer.ui:21
+msgid "Configuration"
+msgstr "Kokoonpano"
+
+#: src/ui/details-bottle.ui:34 src/ui/importer.ui:34
+msgid "This is the complete archive of your bottle, including personal files."
+msgstr ""
+"Tämä on pullosi täydellinen arkisto, mukaan lukien henkilökohtaiset "
+"tiedostot."
+
+#: src/ui/details-bottle.ui:35 src/ui/importer.ui:35
+msgid "Full archive"
+msgstr "Täydellinen arkisto"
+
+#: src/ui/details-bottle.ui:59
+#, fuzzy
+msgid "Duplicate bottle"
+msgstr "Monista pullo"
+
+#: src/ui/details-bottle.ui:86
+msgid "Open with explorer"
+msgstr ""
+
+#: src/ui/details-bottle.ui:112
+msgid "Flatpak help"
+msgstr ""
+
+#: src/ui/details-bottle.ui:136
+msgid "I can't see my old bottles after upgrade."
+msgstr ""
+
+#: src/ui/details-bottle.ui:149
+msgid "I don't see some directories."
+msgstr ""
+
+#: src/ui/details-bottle.ui:162
+msgid "I can't see the files in my home."
+msgstr ""
+
+#: src/ui/details-bottle.ui:175
+msgid "Executable silently crash or black screen"
+msgstr ""
+
+#: src/ui/details-bottle.ui:201
+msgid "Simulate a Windows system reboot."
+msgstr ""
+
+#: src/ui/details-bottle.ui:202
+#, fuzzy
+msgid "Reboot"
+msgstr "Käynnistä Windows uudelleen"
+
+#: src/ui/details-bottle.ui:215
+msgid "Simulate a Windows system shutdown."
+msgstr ""
+
+#: src/ui/details-bottle.ui:216
+#, fuzzy
+msgid "Shutdown"
+msgstr "Sammuta Windows"
+
+#: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
+msgid "Run with arguments"
+msgstr "Suorita argumenteilla"
+
+#: src/ui/details-bottle.ui:252
+msgid "Move inside the sandbox"
+msgstr ""
+
+#: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
+msgid "Launch with terminal"
+msgstr ""
+
+#: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
+msgid "Destroy this bottle"
+msgstr "Tuhoa tämä pullo"
+
+#: src/ui/details-bottle.ui:352 src/main.py:120
+msgid "Bottle name"
+msgstr "Pullon nimi"
+
+#: src/ui/details-bottle.ui:356
+#, fuzzy
+msgid "Type a name for your bottle"
+msgstr "Valitse pullolle nimi"
+
+#: src/ui/details-bottle.ui:374
+#, fuzzy
+msgid "Rename bottle"
+msgstr "Luo pullo"
+
+#: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
+msgid "Versioning enabled for this bottle"
+msgstr "Versiointi on käytössä tälle pullolle"
+
+#: src/ui/details-bottle.ui:409 src/ui/list-entry.ui:42
+msgid "Versioning is active in this bottle."
+msgstr "Versiointi on aktiivisena tässä pullossa."
+
+#: src/ui/details-bottle.ui:432 src/ui/list-entry.ui:61
+msgid "0"
+msgstr "0"
+
+#: src/ui/details-bottle.ui:462 src/ui/new.ui:160
+msgid "Environment"
+msgstr "Ympäristö"
+
+#: src/ui/details-bottle.ui:496
+msgid "64 Bit"
+msgstr "64-bittinen"
+
+#: src/ui/details-bottle.ui:515
+#, fuzzy
+msgid "Vaniglia-6.21-x86_64"
+msgstr "lutris-6.0-rc1-x86_64"
+
+#: src/ui/details-bottle.ui:540
+#, fuzzy
+msgid "Layers"
+msgstr "Tasot"
+
+#: src/ui/details-bottle.ui:563
+msgid "Run executable"
+msgstr "Käynnistä suoritustiedosto"
+
+#: src/ui/details-bottle.ui:637
+#, fuzzy
+msgid "Kill all WINE processes"
+msgstr "Tapa kaikki wine-prosessit"
+
+#: src/ui/details-bottle.ui:662
+#, fuzzy
+msgid "Make a backup of this bottle."
+msgstr "Suorita tässä pullossa"
+
+#: src/ui/details-bottle.ui:758
+msgid "Moving inside the sandbox…"
+msgstr ""
+
+#: src/ui/details-bottle.ui:774 src/views/details.py:115
+msgid "Programs"
+msgstr "Ohjelmat"
+
+#: src/ui/details-bottle.ui:790
+msgid "Utilities"
+msgstr "Apuohjelmat"
+
+#: src/ui/details-bottle.ui:795
+msgid "Wine config"
+msgstr "Wine-kokoonpano"
+
+#: src/ui/details-bottle.ui:797
+msgid "Adjust internal settings."
+msgstr "Säädä sisäisiä asetuksia."
+
+#: src/ui/details-bottle.ui:837
+msgid "Browse C:"
+msgstr "Selaa C:"
+
+#: src/ui/details-bottle.ui:839
+msgid "Browse internal files."
+msgstr "Selaa sisäisiä tiedostoja."
+
+#: src/ui/details-bottle.ui:918
+#, fuzzy
+msgid "Command line"
+msgstr "Komentorivi"
+
+#: src/ui/details-bottle.ui:920
+msgid "Run commands inside the Bottle."
+msgstr "Suorita komentoja pullon sisällä."
+
+#: src/ui/details-bottle.ui:960
+#, fuzzy
+msgid "Registry editor"
+msgstr "Rekisterimuokkain"
+
+#: src/ui/details-bottle.ui:962
+msgid "Edit the internal registry."
+msgstr "Muokkaa sisäistä rekisteriä."
+
+#: src/ui/details-bottle.ui:1002
+msgid "Debug"
+msgstr "Virheenkorjaus"
+
+#: src/ui/details-bottle.ui:1004
+msgid "Debug wine processes."
+msgstr "wine-prosessien selvittäminen."
+
+#: src/ui/details-bottle.ui:1041 src/ui/details-dependencies.ui:195
+#: src/ui/details-installers.ui:100 src/ui/details-programs.ui:125
+#: src/ui/details-versioning.ui:162
+msgid "Read documentation"
+msgstr "Lue dokumentaatio"
+
+#: src/ui/details-bottle.ui:1069 src/views/details.py:127
+msgid "Task manager"
+msgstr "Tehtävienhallinta"
+
+#: src/ui/details-bottle.ui:1071
+msgid "Manage processes with the Wine task manager."
+msgstr "Hallitse prosesseja Wine-tehtävänhallinnan avulla."
+
+#: src/ui/details-bottle.ui:1111
+msgid "Uninstaller"
+msgstr "Asennuksen poistaja"
+
+#: src/ui/details-bottle.ui:1113
+msgid "Uninstall programs using wine uninstaller"
+msgstr "Poista ohjelmat Wine-asennuksen poistajalla"
+
+#: src/ui/details-bottle.ui:1153
+#, fuzzy
+msgid "Control panel"
+msgstr "Ohjauspaneeli"
+
+#: src/ui/details-bottle.ui:1155
+msgid "Access the internal wine control panel."
+msgstr "Avaa sisäinen Winen hallintapaneeli."
+
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
 msgstr ""
@@ -313,11 +601,6 @@ msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
 msgstr ""
-
-#: src/ui/details-dependencies.ui:195 src/ui/details-installers.ui:100
-#: src/ui/details-programs.ui:125 src/ui/details-versioning.ui:162
-msgid "Read documentation"
-msgstr "Lue dokumentaatio"
 
 #: src/ui/details-dependencies.ui:221
 #, fuzzy
@@ -655,7 +938,7 @@ msgid "Default to the bottle path."
 msgstr "Osoita pullon polkuun"
 
 #: src/ui/details-preferences.ui:1110 src/ui/dialog-launch-options.ui:182
-#: src/ui/preferences.ui:255
+#: src/ui/drive-entry.ui:61 src/ui/preferences.ui:255
 msgid "Choose a directory"
 msgstr "Valitse kansio"
 
@@ -728,6 +1011,10 @@ msgstr "Etsi asennettuja ohjelmia"
 msgid "Show/hide removed programs"
 msgstr "Näytä/piilota poistetut ohjelmat"
 
+#: src/ui/details-taskmanager.ui:59
+msgid "Stop process"
+msgstr "Pysäytä prosessi"
+
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
 msgstr "Tiloja ei löytynyt"
@@ -752,53 +1039,20 @@ msgstr "Tallenna pullon tila."
 msgid "Create new state"
 msgstr "Luo uusi tila"
 
-#: src/ui/details-taskmanager.ui:59
-msgid "Stop process"
-msgstr "Pysäytä prosessi"
-
-#: src/ui/dialog.ui:6
-msgid "Message goes here."
-msgstr "Viesti menee tänne."
-
-#: src/ui/dialog.ui:23 src/ui/dialog-crash-report.ui:27
-#: src/ui/dialog-duplicate.ui:28 src/ui/dialog-rename.ui:27
-#: src/ui/dialog-run-args.ui:27 src/ui/dialog-environment-variables.ui:27
-#: src/ui/dialog-launch-options.ui:26 src/ui/new.ui:27
-#: src/dialogs/launchoptions.py:85 src/views/bottle_details.py:296
-#: src/views/bottle_details.py:369 src/views/bottle_preferences.py:166
-#: src/views/bottle_programs.py:74 src/views/list.py:127
-#: src/views/preferences.py:155
-msgid "Cancel"
-msgstr "Peru"
-
-#: src/ui/dialog.ui:36
-msgid "Confirm"
-msgstr "Vahvista"
-
-#: src/ui/dialog-dll-overrides.ui:50
-msgid ""
-"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
-"native (provided by the program)"
-msgstr ""
-"Dynaaminen linkki -kirjastot voidaan määritellä joko sisäänrakennetuiksi "
-"(toimittaa Wine) tai alkuperäisiksi (ohjelman tarjoamat)"
-
-#: src/ui/dialog-dll-overrides.ui:56
-msgid "New override"
-msgstr "Uusi ohitus"
-
-#: src/ui/dialog-dll-overrides.ui:67
-msgid "e.g. ucrtbase"
-msgstr "esim. ucrtbase"
-
-#: src/ui/dialog-dll-overrides.ui:124
-msgid "Existing overrides"
-msgstr "Olemassa olevat ohitukset"
-
 #: src/ui/dialog-crash-report.ui:24
 #, fuzzy
 msgid "Bottles Crash Report"
 msgstr "Pullot aloitettu!"
+
+#: src/ui/dialog-crash-report.ui:27 src/ui/dialog-duplicate.ui:28
+#: src/ui/dialog-environment-variables.ui:27 src/ui/dialog-launch-options.ui:26
+#: src/ui/dialog-rename.ui:27 src/ui/dialog-run-args.ui:27 src/ui/dialog.ui:23
+#: src/ui/new.ui:27 src/dialogs/drives.py:62 src/dialogs/launchoptions.py:85
+#: src/views/bottle_details.py:296 src/views/bottle_details.py:369
+#: src/views/bottle_preferences.py:166 src/views/bottle_programs.py:74
+#: src/views/list.py:127 src/views/preferences.py:155
+msgid "Cancel"
+msgstr "Peru"
 
 #: src/ui/dialog-crash-report.ui:35
 msgid "Send report"
@@ -826,6 +1080,45 @@ msgstr ""
 #: src/ui/new.ui:208
 msgid "Advanced options"
 msgstr "Lisäasetukset"
+
+#: src/ui/dialog-dll-overrides.ui:50
+msgid ""
+"Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
+"native (provided by the program)"
+msgstr ""
+"Dynaaminen linkki -kirjastot voidaan määritellä joko sisäänrakennetuiksi "
+"(toimittaa Wine) tai alkuperäisiksi (ohjelman tarjoamat)"
+
+#: src/ui/dialog-dll-overrides.ui:56
+msgid "New override"
+msgstr "Uusi ohitus"
+
+#: src/ui/dialog-dll-overrides.ui:67
+msgid "e.g. ucrtbase"
+msgstr "esim. ucrtbase"
+
+#: src/ui/dialog-dll-overrides.ui:124
+msgid "Existing overrides"
+msgstr "Olemassa olevat ohitukset"
+
+#: src/ui/dialog-drives.ui:24
+msgid "Drives"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:49
+msgid ""
+"These are paths from your host system that are mapped and recognized as "
+"devices by the runner (e.g. C: D:..)."
+msgstr ""
+
+#: src/ui/dialog-drives.ui:54
+msgid "Letter"
+msgstr ""
+
+#: src/ui/dialog-drives.ui:134
+#, fuzzy
+msgid "Existing drives"
+msgstr "Olemassa olevat ohitukset"
 
 #: src/ui/dialog-duplicate.ui:25
 #, fuzzy
@@ -882,28 +1175,47 @@ msgstr "Pullo luotu"
 msgid "page_duplicated"
 msgstr ""
 
-#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
-msgid "Rename"
-msgstr "Nimeä uudelleen"
+#: src/ui/dialog-env-vars.ui:49
+msgid ""
+"Environment variables are dynamic-named value that can affect the way "
+"running processes will behave on your bottle."
+msgstr ""
 
-#: src/ui/dialog-rename.ui:35 src/ui/dialog-gamescope.ui:28
-#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-launch-options.ui:34
+#: src/ui/dialog-env-vars.ui:54
+msgid "New variable"
+msgstr "Uusi muuttuja"
+
+#: src/ui/dialog-env-vars.ui:65
+msgid "e.g. MY_VAR"
+msgstr "esim. MY_VAR"
+
+#: src/ui/dialog-env-vars.ui:123
+msgid "Existing variables"
+msgstr "Olemassa olevat muuttujat"
+
+#: src/ui/dialog-environment-variables.ui:24
+msgid "Change environment variables"
+msgstr "Muuta ympäristömuuttujia"
+
+#: src/ui/dialog-environment-variables.ui:35 src/ui/dialog-gamescope.ui:28
+#: src/ui/dialog-launch-options.ui:34 src/ui/dialog-rename.ui:35
 msgid "Save"
 msgstr "Tallenna"
 
-#: src/ui/dialog-rename.ui:74
-msgid "Type the new name:"
-msgstr "Kirjoita uusi nimi:"
+#: src/ui/dialog-environment-variables.ui:74
+msgid ""
+"Here you can change the environment variables for the commands that are "
+"executed."
+msgstr "Täällä voit muuttaa suoritettavien komentojen ympäristömuuttujia."
 
-#: src/ui/dialog-rename.ui:86 src/ui/dialog-launch-options.ui:85
-#: src/ui/dialog-launch-options.ui:88
+#: src/ui/dialog-environment-variables.ui:86
 #, fuzzy
-msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "esim .: -esimerkki1 -esimerkki2 -esimerkki3=hei"
+msgid "e.g.: VAR1=value VAR2=value"
+msgstr "esim. VAR1=arvo VAR2=arvo ..."
 
-#: src/ui/dialog-rename.ui:88
-msgid "Type here.."
-msgstr ""
+#: src/ui/dialog-environment-variables.ui:89
+msgid "e.g: VAR1=value VAR2=value .."
+msgstr "esim. VAR1=arvo VAR2=arvo ..."
 
 #: src/ui/dialog-gamescope.ui:24
 msgid "Gamescope settings"
@@ -974,60 +1286,6 @@ msgstr "Reunaton"
 msgid "Fullscreen"
 msgstr "Koko näyttö"
 
-#: src/ui/dialog-env-vars.ui:49
-msgid ""
-"Environment variables are dynamic-named value that can affect the way "
-"running processes will behave on your bottle."
-msgstr ""
-
-#: src/ui/dialog-env-vars.ui:54
-msgid "New variable"
-msgstr "Uusi muuttuja"
-
-#: src/ui/dialog-env-vars.ui:65
-msgid "e.g. MY_VAR"
-msgstr "esim. MY_VAR"
-
-#: src/ui/dialog-env-vars.ui:123
-msgid "Existing variables"
-msgstr "Olemassa olevat muuttujat"
-
-#: src/ui/dialog-run-args.ui:24
-msgid "Run with arguments"
-msgstr "Suorita argumenteilla"
-
-#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
-#: src/views/bottle_details.py:295 src/views/list.py:126
-msgid "Run"
-msgstr "Suorita"
-
-#: src/ui/dialog-run-args.ui:74
-msgid "Write below the arguments to be passed to the executable."
-msgstr ""
-
-#: src/ui/dialog-run-args.ui:89
-msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr "esim. -opengl -SkipBuildPatchPrereq"
-
-#: src/ui/dialog-environment-variables.ui:24
-msgid "Change environment variables"
-msgstr "Muuta ympäristömuuttujia"
-
-#: src/ui/dialog-environment-variables.ui:74
-msgid ""
-"Here you can change the environment variables for the commands that are "
-"executed."
-msgstr "Täällä voit muuttaa suoritettavien komentojen ympäristömuuttujia."
-
-#: src/ui/dialog-environment-variables.ui:86
-#, fuzzy
-msgid "e.g.: VAR1=value VAR2=value"
-msgstr "esim. VAR1=arvo VAR2=arvo ..."
-
-#: src/ui/dialog-environment-variables.ui:89
-msgid "e.g: VAR1=value VAR2=value .."
-msgstr "esim. VAR1=arvo VAR2=arvo ..."
-
 #: src/ui/dialog-launch-options.ui:23 src/ui/program-entry.ui:33
 msgid "Change launch options"
 msgstr "Muuta käynnistysvalintoja"
@@ -1035,6 +1293,12 @@ msgstr "Muuta käynnistysvalintoja"
 #: src/ui/dialog-launch-options.ui:73
 msgid "These arguments are passed on program launch:"
 msgstr "Nämä argumentit välitetään ohjelman käynnistämisen yhteydessä:"
+
+#: src/ui/dialog-launch-options.ui:85 src/ui/dialog-launch-options.ui:88
+#: src/ui/dialog-rename.ui:86
+#, fuzzy
+msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
+msgstr "esim .: -esimerkki1 -esimerkki2 -esimerkki3=hei"
 
 #: src/ui/dialog-launch-options.ui:127
 msgid ""
@@ -1051,27 +1315,66 @@ msgstr ""
 msgid "Choose a script which should be executed after run."
 msgstr ""
 
-#: src/ui/importer.ui:20
-msgid ""
-"This is just the bottle configuration, it's perfect if you want to create a "
-"new one but without personal files."
+#: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
+msgid "Rename"
+msgstr "Nimeä uudelleen"
+
+#: src/ui/dialog-rename.ui:74
+msgid "Type the new name:"
+msgstr "Kirjoita uusi nimi:"
+
+#: src/ui/dialog-rename.ui:88
+msgid "Type here.."
 msgstr ""
-"Tämä on vain pullon kokoonpano. Se on hyvä lähtökohta, jos haluat luoda "
-"uuden kokoonpanon ilman henkilökohtaisia tiedostoja."
 
-#: src/ui/importer.ui:21
-msgid "Configuration"
-msgstr "Kokoonpano"
+#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
+#: src/views/bottle_details.py:295 src/views/list.py:126
+msgid "Run"
+msgstr "Suorita"
 
-#: src/ui/importer.ui:34
-msgid "This is the complete archive of your bottle, including personal files."
+#: src/ui/dialog-run-args.ui:74
+msgid "Write below the arguments to be passed to the executable."
 msgstr ""
-"Tämä on pullosi täydellinen arkisto, mukaan lukien henkilökohtaiset "
-"tiedostot."
 
-#: src/ui/importer.ui:35
-msgid "Full archive"
-msgstr "Täydellinen arkisto"
+#: src/ui/dialog-run-args.ui:89
+msgid "e.g: -opengl -SkipBuildPatchPrereq"
+msgstr "esim. -opengl -SkipBuildPatchPrereq"
+
+#: src/ui/dialog.ui:6
+msgid "Message goes here."
+msgstr "Viesti menee tänne."
+
+#: src/ui/dialog.ui:36
+msgid "Confirm"
+msgstr "Vahvista"
+
+#: src/ui/dll-override-entry.ui:22
+msgid "Builtin (Wine)"
+msgstr "Sisäänrakennettu (Wine)"
+
+#: src/ui/dll-override-entry.ui:23
+msgid "Native (Windows)"
+msgstr "Alkuperäinen (Windows)"
+
+#: src/ui/dll-override-entry.ui:24
+msgid "Builtin then Native"
+msgstr "Sisäänrakennettu sitten alkuperäinen"
+
+#: src/ui/dll-override-entry.ui:25
+msgid "Native then Builtin"
+msgstr "Alkuperäinen sitten sisäänrakennettu"
+
+#: src/ui/drive-entry.ui:9
+msgid "/point/to/path"
+msgstr ""
+
+#: src/ui/env-var-entry.ui:84
+msgid "value"
+msgstr "arvo"
+
+#: src/ui/importer-entry.ui:130
+msgid "This wineprefix was already imported in Bottles."
+msgstr "Tämä wine-etuliite tuotiin jo Pullot-sovellukseen."
 
 #: src/ui/importer.ui:74 src/window.py:140
 msgid "Importer"
@@ -1081,37 +1384,9 @@ msgstr "Tuoja"
 msgid "Import Bottles backup"
 msgstr "Tuo Pullo-varmuuskopio"
 
-#: src/ui/importer-entry.ui:20 src/ui/component-entry.ui:18
-msgid "Browse files"
-msgstr "Selaa tiedostoja"
-
-#: src/ui/importer-entry.ui:130
-msgid "This wineprefix was already imported in Bottles."
-msgstr "Tämä wine-etuliite tuotiin jo Pullot-sovellukseen."
-
-#: src/ui/list.ui:39
-msgid "Search your bottles .."
+#: src/ui/installer-entry.ui:47
+msgid "Read review"
 msgstr ""
-
-#: src/ui/list.ui:77
-msgid "Start off by creating a Bottle."
-msgstr "Aloita luomalla pullo."
-
-#: src/ui/list.ui:80
-msgid "Create a new Bottle"
-msgstr "Luo uusi pullo"
-
-#: src/ui/list-entry.ui:35
-msgid "Versioning enabled for this bottle"
-msgstr "Versiointi on käytössä tälle pullolle"
-
-#: src/ui/list-entry.ui:42
-msgid "Versioning is active in this bottle."
-msgstr "Versiointi on aktiivisena tässä pullossa."
-
-#: src/ui/list-entry.ui:61
-msgid "0"
-msgstr "0"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1137,117 +1412,25 @@ msgstr ""
 msgid "Run .exe/.msi in this bottle"
 msgstr "Suorita .exe/.msi tässä pullossa"
 
-#: src/ui/component-entry.ui:8
-msgid "Component version"
-msgstr "Komponentin versio"
-
-#: src/ui/component-entry.ui:44
-msgid ""
-"The installation failed. This may be due to a repository error, partial "
-"download or checksum mismatch.\n"
-"\n"
-"Press to try again."
-msgstr ""
-"Asennus epäonnistui. Tämä saattaa johtua tietovaraston virheestä, "
-"osittaisesta latauksesta tai ettei tarkistussumma vastaa odotettua arvoa.\n"
-"\n"
-"Yritä uudelleen."
-
-#: src/ui/component-entry.ui:95
-msgid "Download & Install"
-msgstr "Lataa ja asenna"
-
-#: src/ui/component-entry.ui:123
-msgid "0%"
-msgstr "0 %"
-
-#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
-msgid "Uninstall"
-msgstr "Poista asennus"
-
-#: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
-#: src/ui/state-entry.ui:20
-msgid "Show manifest"
-msgstr "Näytä manifesti"
-
-#: src/ui/dependency-entry.ui:33
-msgid "License"
-msgstr "Lisenssi"
-
-#: src/ui/dependency-entry.ui:45
-msgid "Reinstall"
-msgstr "Asenna uudestaan"
-
-#: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
-msgid "Bug report"
-msgstr "Virheraportti"
-
-#: src/ui/dependency-entry.ui:159
-msgid "Download & Install this dependency"
-msgstr "Lataa ja asenna tämä riippuvuus"
-
-#: src/ui/dependency-entry.ui:185
-msgid ""
-"An installation error occurred. Restart Bottles to read the Crash Report or "
-"run it via terminal to read the output."
+#: src/ui/list.ui:39
+msgid "Search your bottles .."
 msgstr ""
 
-#: src/ui/dll-override-entry.ui:22
-msgid "Builtin (Wine)"
-msgstr "Sisäänrakennettu (Wine)"
+#: src/ui/list.ui:77
+msgid "Start off by creating a Bottle."
+msgstr "Aloita luomalla pullo."
 
-#: src/ui/dll-override-entry.ui:23
-msgid "Native (Windows)"
-msgstr "Alkuperäinen (Windows)"
+#: src/ui/list.ui:80
+msgid "Create a new Bottle"
+msgstr "Luo uusi pullo"
 
-#: src/ui/dll-override-entry.ui:24
-msgid "Builtin then Native"
-msgstr "Sisäänrakennettu sitten alkuperäinen"
+#: src/ui/message-entry.ui:18
+msgid "Utility & Preferences"
+msgstr "Apuohjelma ja asetukset"
 
-#: src/ui/dll-override-entry.ui:25
-msgid "Native then Builtin"
-msgstr "Alkuperäinen sitten sisäänrakennettu"
-
-#: src/ui/env-var-entry.ui:84
-msgid "value"
-msgstr "arvo"
-
-#: src/ui/installer-entry.ui:47
-msgid "Read review"
-msgstr ""
-
-#: src/ui/task-entry.ui:44
+#: src/ui/message-entry.ui:45 src/ui/task-entry.ui:44
 msgid "Delete message"
 msgstr "Poista viesti"
-
-#: src/ui/program-entry.ui:20
-msgid "Launch with terminal"
-msgstr ""
-
-#: src/ui/program-entry.ui:46
-#, fuzzy
-msgid "Browse path"
-msgstr "Selaa polkua"
-
-#: src/ui/program-entry.ui:83
-msgid "WineHQ"
-msgstr "WineHQ"
-
-#: src/ui/program-entry.ui:96
-msgid "ProtonDB"
-msgstr "ProtonDB"
-
-#: src/ui/program-entry.ui:109
-msgid "Bottles' Forums"
-msgstr "Pullojen keskustelualue"
-
-#: src/ui/program-entry.ui:133
-msgid "Remove from Programs"
-msgstr "Poista ohjelmista"
-
-#: src/ui/program-entry.ui:146
-msgid "Add desktop entry"
-msgstr "Lisää työpöytätietue"
 
 #: src/ui/new.ui:24 src/ui/window.ui:328
 msgid "New bottle"
@@ -1276,10 +1459,6 @@ msgstr "Tämä kenttä ei voi sisältää erikoismerkkejä!"
 #: src/ui/new.ui:129
 msgid "My beautiful bottle"
 msgstr "Kaunis pulloni"
-
-#: src/ui/new.ui:160
-msgid "Environment"
-msgstr "Ympäristö"
 
 #: src/ui/new.ui:229
 msgid "Use versioning"
@@ -1555,6 +1734,31 @@ msgstr ""
 msgid "In early development (requires restart)"
 msgstr ""
 
+#: src/ui/program-entry.ui:46
+#, fuzzy
+msgid "Browse path"
+msgstr "Selaa polkua"
+
+#: src/ui/program-entry.ui:83
+msgid "WineHQ"
+msgstr "WineHQ"
+
+#: src/ui/program-entry.ui:96
+msgid "ProtonDB"
+msgstr "ProtonDB"
+
+#: src/ui/program-entry.ui:109
+msgid "Bottles' Forums"
+msgstr "Pullojen keskustelualue"
+
+#: src/ui/program-entry.ui:133
+msgid "Remove from Programs"
+msgstr "Poista ohjelmista"
+
+#: src/ui/program-entry.ui:146
+msgid "Add desktop entry"
+msgstr "Lisää työpöytätietue"
+
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
 msgstr "Palauta tämä tila"
@@ -1605,10 +1809,6 @@ msgstr ""
 msgid "Go back"
 msgstr "Siirry takaisin"
 
-#: src/operation.py:63
-msgid "Calculating..."
-msgstr "Lasketaan..."
-
 #: src/main.py:96
 msgid "Show version"
 msgstr "Näytä versio"
@@ -1620,10 +1820,6 @@ msgstr "Suoritustiedoston polku"
 #: src/main.py:112
 msgid "lnk path"
 msgstr ""
-
-#: src/main.py:120
-msgid "Bottle name"
-msgstr "Pullon nimi"
 
 #: src/main.py:128
 #, fuzzy
@@ -1641,6 +1837,10 @@ msgstr "[Help]-pyyntö vastaanotettu."
 #: src/main.py:263
 msgid "[Refresh] request received."
 msgstr "[Refresh]-pyyntö vastaanotettu."
+
+#: src/operation.py:63
+msgid "Calculating..."
+msgstr "Lasketaan..."
 
 #: src/utils.py:62
 msgid "You are offline, unable to download."
@@ -1664,12 +1864,12 @@ msgstr "Varmuuskopio {0}"
 msgid "Importing backup: {0}"
 msgstr "Varmuuskopion tuominen: {0}"
 
-#: src/backend/managers/installer.py:372
+#: src/backend/managers/installer.py:376
 msgid "Dependencies installation failed."
 msgstr ""
 
 #. unlock widget
-#: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
+#: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 msgid "Installation failed, please check the logs."
 msgstr ""
 
@@ -1792,6 +1992,15 @@ msgid ""
 "            Report your feedback in one of the below existing reports."
 msgstr ""
 
+#: src/dialogs/drives.py:58
+#, fuzzy
+msgid "Choose path"
+msgstr "Selaa polkua"
+
+#: src/dialogs/drives.py:61
+msgid "Select"
+msgstr ""
+
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
 msgstr "Varoitus"
@@ -1808,34 +2017,6 @@ msgstr "Kopioi leikepöydälle"
 #: src/dialogs/launchoptions.py:81
 msgid "Choose the script"
 msgstr ""
-
-#: src/views/details.py:103
-msgid "Details & Utilities"
-msgstr "Tiedot ja työkalut"
-
-#: src/views/details.py:111
-msgid "Dependencies"
-msgstr "Riippuvuudet"
-
-#: src/views/details.py:115
-msgid "Programs"
-msgstr "Ohjelmat"
-
-#: src/views/details.py:116
-msgid "Found in your bottle's Start menu."
-msgstr "Löytyi pullosi Käynnistä-valikosta."
-
-#: src/views/details.py:119
-msgid "Versioning"
-msgstr "Versiointi"
-
-#: src/views/details.py:123
-msgid "Installers"
-msgstr "Asentajat"
-
-#: src/views/details.py:127
-msgid "Task manager"
-msgstr "Tehtävienhallinta"
 
 #: src/views/bottle_details.py:176
 #, python-format
@@ -1896,6 +2077,26 @@ msgstr "Valitse suoritustiedoston polku"
 #: src/views/bottle_programs.py:73
 msgid "Add"
 msgstr "Lisää"
+
+#: src/views/details.py:103
+msgid "Details & Utilities"
+msgstr "Tiedot ja työkalut"
+
+#: src/views/details.py:111
+msgid "Dependencies"
+msgstr "Riippuvuudet"
+
+#: src/views/details.py:116
+msgid "Found in your bottle's Start menu."
+msgstr "Löytyi pullosi Käynnistä-valikosta."
+
+#: src/views/details.py:119
+msgid "Versioning"
+msgstr "Versiointi"
+
+#: src/views/details.py:123
+msgid "Installers"
+msgstr "Asentajat"
 
 #: src/views/importer.py:78
 msgid "Choose a backup archive"
@@ -1981,6 +2182,10 @@ msgstr "Hallitse ajajia"
 #, fuzzy
 msgid "Other runners"
 msgstr "Hallitse ajajia"
+
+#: src/widgets/component.py:67
+msgid "Upgrade"
+msgstr ""
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
@@ -2077,77 +2282,11 @@ msgstr "Indeksi tilalle {0}"
 #~ msgid "Check for running processes."
 #~ msgstr "Tarkista käynnissä olevat prosessit."
 
-#~ msgid "64 Bit"
-#~ msgstr "64-bittinen"
-
-#~ msgid "lutris-6.0-rc1-x86_64"
-#~ msgstr "lutris-6.0-rc1-x86_64"
-
-#~ msgid "Run executable"
-#~ msgstr "Käynnistä suoritustiedosto"
-
 #~ msgid "Backup bottle"
 #~ msgstr "Varmuuskopioi pullo"
 
-#~ msgid "Reboot Windows"
-#~ msgstr "Käynnistä Windows uudelleen"
-
-#~ msgid "Shutdown Windows"
-#~ msgstr "Sammuta Windows"
-
-#~ msgid "Kill all wine processes"
-#~ msgstr "Tapa kaikki wine-prosessit"
-
-#~ msgid "Destroy this bottle"
-#~ msgstr "Tuhoa tämä pullo"
-
-#~ msgid "Utilities"
-#~ msgstr "Apuohjelmat"
-
-#~ msgid "Wine config"
-#~ msgstr "Wine-kokoonpano"
-
-#~ msgid "Browse C:"
-#~ msgstr "Selaa C:"
-
-#~ msgid "Browse internal files."
-#~ msgstr "Selaa sisäisiä tiedostoja."
-
-#~ msgid "Command Line"
-#~ msgstr "Komentorivi"
-
-#~ msgid "Run commands inside the Bottle."
-#~ msgstr "Suorita komentoja pullon sisällä."
-
-#~ msgid "Registry Editor"
-#~ msgstr "Rekisterimuokkain"
-
-#~ msgid "Edit the internal registry."
-#~ msgstr "Muokkaa sisäistä rekisteriä."
-
-#~ msgid "Debug"
-#~ msgstr "Virheenkorjaus"
-
-#~ msgid "Debug wine processes."
-#~ msgstr "wine-prosessien selvittäminen."
-
 #~ msgid "Task Manager"
 #~ msgstr "Tehtävienhallinta"
-
-#~ msgid "Manage processes with the Wine task manager."
-#~ msgstr "Hallitse prosesseja Wine-tehtävänhallinnan avulla."
-
-#~ msgid "Uninstaller"
-#~ msgstr "Asennuksen poistaja"
-
-#~ msgid "Uninstall programs using wine uninstaller"
-#~ msgstr "Poista ohjelmat Wine-asennuksen poistajalla"
-
-#~ msgid "Control Panel"
-#~ msgstr "Ohjauspaneeli"
-
-#~ msgid "Access the internal wine control panel."
-#~ msgstr "Avaa sisäinen Winen hallintapaneeli."
 
 #~ msgid "Bottle"
 #~ msgstr "Pullo"
@@ -2212,12 +2351,6 @@ msgstr "Indeksi tilalle {0}"
 #, fuzzy
 #~ msgid "German translations thanks to @thericosanto"
 #~ msgstr "Saksan käännökset kiitos @thericosanto"
-
-#~ msgid "Utility & Preferences"
-#~ msgstr "Apuohjelma ja asetukset"
-
-#~ msgid "Create bottle"
-#~ msgstr "Luo pullo"
 
 #~ msgid "New Bottle"
 #~ msgstr "Uusi pullo"
@@ -2594,9 +2727,6 @@ msgstr "Indeksi tilalle {0}"
 
 #~ msgid "Slovak translations thanks to @MartinIIOT"
 #~ msgstr "Slovakian käännökset @MartinIIOT ansiosta"
-
-#~ msgid "Adjust internal settings."
-#~ msgstr "Säädä sisäisiä asetuksia."
 
 #~ msgid "Wine Runners"
 #~ msgstr "Wine-ajajat"
