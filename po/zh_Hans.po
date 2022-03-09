@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-08 18:43+0100\n"
-"PO-Revision-Date: 2022-02-27 15:34+0000\n"
+"PO-Revision-Date: 2022-03-09 10:02+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -235,14 +235,12 @@ msgid "Toggle experimental winebridge implementation."
 msgstr "开关实验性的 winebridge 功能。"
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:steam"
-msgstr "实验功能"
+msgstr "实验功能：steam"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "开关实验性的版本控制功能。"
+msgstr "开关实验性的 Steam Proton 前缀支持。"
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -1496,12 +1494,11 @@ msgstr "为进程和程序管理使用 WineBridge。"
 
 #: src/ui/preferences.ui:490
 msgid "Steam Proton prefixes"
-msgstr ""
+msgstr "Steam Proton 前缀"
 
 #: src/ui/preferences.ui:491
-#, fuzzy
 msgid "In early development (requires restart)"
-msgstr "自定义 Bottles 路径（需要重启）"
+msgstr "早期开发中（需要重启）"
 
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
@@ -1617,7 +1614,7 @@ msgstr "依赖安装失败。"
 #. unlock widget
 #: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
 msgid "Installation failed, please check the logs."
-msgstr ""
+msgstr "安装失败，请检查日志。"
 
 #: src/backend/managers/manager.py:979
 msgid "Fail to install components, tried 3 times."
