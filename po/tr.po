@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-02-27 15:34+0000\n"
-"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
+"PO-Revision-Date: 2022-03-10 13:12+0000\n"
+"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -243,14 +243,12 @@ msgid "Toggle experimental winebridge implementation."
 msgstr "Deneysel winebridge uygulamasını aç/kapat."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:steam"
-msgstr "Deneyler"
+msgstr "Deneyler: Steam"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "Deneysel sürüm oluşturma özelliğini aç/kapat."
+msgstr "Deneysel Steam Proton prefix desteğini aç/kapat."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -375,13 +373,12 @@ msgid "Full archive"
 msgstr "Tam arşiv"
 
 #: src/ui/details-bottle.ui:59
-#, fuzzy
 msgid "Duplicate bottle"
 msgstr "Şişeyi kopyala"
 
 #: src/ui/details-bottle.ui:86
 msgid "Open with explorer"
-msgstr ""
+msgstr "Gezgin ile aç"
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
@@ -401,11 +398,11 @@ msgstr "Ev dizinimdeki dosyaları göremiyorum."
 
 #: src/ui/details-bottle.ui:175
 msgid "Executable silently crash or black screen"
-msgstr ""
+msgstr "Program sessizce çöküyor veya siyah ekran oluyor"
 
 #: src/ui/details-bottle.ui:201
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Bir Windows sistemi gibi yeniden başlat."
 
 #: src/ui/details-bottle.ui:202
 msgid "Reboot"
@@ -413,12 +410,11 @@ msgstr "Yeniden başlat"
 
 #: src/ui/details-bottle.ui:215
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Bir Windows sistemi gibi kapat."
 
 #: src/ui/details-bottle.ui:216
-#, fuzzy
 msgid "Shutdown"
-msgstr "Windows'u kapat"
+msgstr "Kapat"
 
 #: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
@@ -426,7 +422,7 @@ msgstr "Argümanlarla çalıştır"
 
 #: src/ui/details-bottle.ui:252
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "Korumalı alan içinde taşı"
 
 #: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
@@ -441,9 +437,8 @@ msgid "Bottle name"
 msgstr "Şişe adı"
 
 #: src/ui/details-bottle.ui:356
-#, fuzzy
 msgid "Type a name for your bottle"
-msgstr "Şişeniz için bir ad seçin"
+msgstr "Şişeniz için bir ad yazın"
 
 #: src/ui/details-bottle.ui:374
 msgid "Rename bottle"
@@ -470,32 +465,28 @@ msgid "64 Bit"
 msgstr "64 Bit"
 
 #: src/ui/details-bottle.ui:515
-#, fuzzy
 msgid "Vaniglia-6.21-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:540
-#, fuzzy
 msgid "Layers"
-msgstr "Katmanlı"
+msgstr "Katmanlar"
 
 #: src/ui/details-bottle.ui:563
 msgid "Run executable"
 msgstr "Dosyayı çalıştır"
 
 #: src/ui/details-bottle.ui:637
-#, fuzzy
 msgid "Kill all WINE processes"
-msgstr "Tüm wine işlemlerini sonlandır"
+msgstr "Tüm WINE işlemlerini sonlandır"
 
 #: src/ui/details-bottle.ui:662
-#, fuzzy
 msgid "Make a backup of this bottle."
-msgstr "Bu şişe için son güncelleme."
+msgstr "Bu şişenin bir yedeklemesi alın."
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "Korumalı alan içinde taşınıyor…"
 
 #: src/ui/details-bottle.ui:774 src/views/details.py:115
 msgid "Programs"
@@ -515,25 +506,23 @@ msgstr "Dahili ayarları düzenleyin."
 
 #: src/ui/details-bottle.ui:837
 msgid "Browse C:"
-msgstr "C: Gözat"
+msgstr "Göz at: C:"
 
 #: src/ui/details-bottle.ui:839
 msgid "Browse internal files."
 msgstr "Dahili dosyalara göz atın."
 
 #: src/ui/details-bottle.ui:918
-#, fuzzy
 msgid "Command line"
-msgstr "Komut Satırı"
+msgstr "Komut satırı"
 
 #: src/ui/details-bottle.ui:920
 msgid "Run commands inside the Bottle."
 msgstr "Şişenin içindeki komutları çalıştırın."
 
 #: src/ui/details-bottle.ui:960
-#, fuzzy
 msgid "Registry editor"
-msgstr "Kayıt Defteri Düzenleyicisi"
+msgstr "Kayıt defteri düzenleyicisi"
 
 #: src/ui/details-bottle.ui:962
 msgid "Edit the internal registry."
@@ -570,7 +559,6 @@ msgid "Uninstall programs using wine uninstaller"
 msgstr "Wine kaldırıcıyı kullanarak programları kaldırın"
 
 #: src/ui/details-bottle.ui:1153
-#, fuzzy
 msgid "Control panel"
 msgstr "Denetim masası"
 
@@ -1093,22 +1081,23 @@ msgstr "Mevcut geçersiz kılmalar"
 
 #: src/ui/dialog-drives.ui:24
 msgid "Drives"
-msgstr ""
+msgstr "Sürücüler"
 
 #: src/ui/dialog-drives.ui:49
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..)."
 msgstr ""
+"Bunlar, ana sisteminizden eşlenen ve çalıştırıcı tarafından aygıtlar (örneğin"
+".C: D:..) olarak tanınan yollardır."
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
-msgstr ""
+msgstr "Harf"
 
 #: src/ui/dialog-drives.ui:134
-#, fuzzy
 msgid "Existing drives"
-msgstr "Mevcut geçersiz kılmalar"
+msgstr "Mevcut sürücüler"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -1354,7 +1343,7 @@ msgstr "Yerel sonra Yerleşik"
 
 #: src/ui/drive-entry.ui:9
 msgid "/point/to/path"
-msgstr ""
+msgstr "/yolu/göster"
 
 #: src/ui/env-var-entry.ui:84
 msgid "value"
@@ -1720,12 +1709,11 @@ msgstr "WineBridge kullanarak işlem ve programları yönetin."
 
 #: src/ui/preferences.ui:490
 msgid "Steam Proton prefixes"
-msgstr ""
+msgstr "Steam Proton prefix'leri"
 
 #: src/ui/preferences.ui:491
-#, fuzzy
 msgid "In early development (requires restart)"
-msgstr "Özel Şişeler yolu (yeniden başlatma gerekli)"
+msgstr "Erken geliştirme aşamasında (yeniden başlatma gerekli)"
 
 #: src/ui/program-entry.ui:46
 msgid "Browse path"
@@ -1862,7 +1850,7 @@ msgstr "Bağımlı uygulama kurulumu başarısız oldu."
 #: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 #: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
 msgid "Installation failed, please check the logs."
-msgstr ""
+msgstr "Kurulum başarısız oldu, lütfen günlüklere bakın."
 
 #: src/backend/managers/manager.py:979
 msgid "Fail to install components, tried 3 times."
@@ -1985,13 +1973,12 @@ msgstr ""
 "            Geri bildiriminizi aşağıdaki mevcut raporlardan birinde bildirin."
 
 #: src/dialogs/drives.py:58
-#, fuzzy
 msgid "Choose path"
-msgstr "Yola göz at"
+msgstr "Yol seç"
 
 #: src/dialogs/drives.py:61
 msgid "Select"
-msgstr ""
+msgstr "Seç"
 
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
@@ -2168,7 +2155,7 @@ msgstr "Diğer çalıştırıcılar"
 
 #: src/widgets/component.py:67
 msgid "Upgrade"
-msgstr ""
+msgstr "Yükselt"
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
