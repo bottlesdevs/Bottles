@@ -42,6 +42,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     list_dxvk = Gtk.Template.Child()
     list_vkd3d = Gtk.Template.Child()
     list_nvapi = Gtk.Template.Child()
+    list_latencyflex = Gtk.Template.Child()
     actionrow_prerelease = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
@@ -98,6 +99,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.populate_dxvk_list()
         self.populate_vkd3d_list()
         self.populate_nvapi_list()
+        self.populate_latencyflex_list()
 
         # connect signals
         self.switch_theme.connect('state-set', self.__toggle_night)
@@ -181,6 +183,10 @@ class PreferencesWindow(Handy.PreferencesWindow):
     def populate_nvapi_list(self):
         for nvapi in self.manager.supported_nvapi.items():
             self.list_nvapi.add(ComponentEntry(self.window, nvapi, "nvapi"))
+
+    def populate_latencyflex_list(self):
+        for latencyflex in self.manager.supported_latencyflex.items():
+            self.list_latencyflex.add(ComponentEntry(self.window, latencyflex, "latencyflex"))
 
     def populate_runners_list(self):
         for w in self.list_runners:

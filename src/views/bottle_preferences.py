@@ -52,6 +52,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_dxvk_hud = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
+    switch_latencyflex = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
     switch_aco = Gtk.Template.Child()
@@ -74,6 +75,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     combo_dxvk = Gtk.Template.Child()
     combo_vkd3d = Gtk.Template.Child()
     combo_nvapi = Gtk.Template.Child()
+    combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
     row_cwd = Gtk.Template.Child()
     action_runtime = Gtk.Template.Child()
@@ -83,6 +85,8 @@ class PreferencesView(Gtk.ScrolledWindow):
     spinner_vkd3dbool = Gtk.Template.Child()
     spinner_nvapi = Gtk.Template.Child()
     spinner_nvapibool = Gtk.Template.Child()
+    spinner_latencyflex = Gtk.Template.Child()
+    spinner_latencyflexbool = Gtk.Template.Child()
     spinner_runner = Gtk.Template.Child()
     spinner_win = Gtk.Template.Child()
     # endregion
@@ -113,6 +117,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk_hud.connect('state-set', self.__toggle_dxvk_hud)
         self.switch_vkd3d.connect('state-set', self.__toggle_vkd3d)
         self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
+        self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
         self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
         self.switch_gamescope.connect('state-set', self.__toggle_gamescope)
         self.switch_aco.connect('state-set', self.__toggle_aco)
@@ -130,6 +135,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_dxvk.connect('changed', self.__set_dxvk)
         self.combo_vkd3d.connect('changed', self.__set_vkd3d)
         self.combo_nvapi.connect('changed', self.__set_nvapi)
+        self.combo_latencyflex.connect('changed', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
 
         self.__prevent_scroll()
@@ -190,11 +196,13 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
+        self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
 
         self.combo_runner.remove_all()
         self.combo_dxvk.remove_all()
         self.combo_vkd3d.remove_all()
         self.combo_nvapi.remove_all()
+        self.combo_latencyflex.remove_all()
 
         for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
@@ -208,10 +216,14 @@ class PreferencesView(Gtk.ScrolledWindow):
         for nvapi in self.manager.nvapi_available:
             self.combo_nvapi.append(nvapi, nvapi)
 
+        for latencyflex in self.manager.latencyflex_available:
+            self.combo_latencyflex.append(latencyflex, latencyflex)
+
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
+        self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
     
     def set_config(self, config):
         self.config = config
@@ -221,6 +233,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk.handler_block_by_func(self.__toggle_dxvk)
         self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
+        self.switch_latencyflex.handler_block_by_func(self.__toggle_latencyflex)
         self.switch_virt_desktop.handler_block_by_func(self.__toggle_virt_desktop)
         self.switch_mouse_capture.handler_block_by_func(self.__toggle_x11_reg_key)
         self.switch_take_focus.handler_block_by_func(self.__toggle_x11_reg_key)
@@ -230,6 +243,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
+        self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
         self.combo_dpi.handler_block_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
@@ -241,6 +255,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_vkd3d.set_active(parameters["vkd3d"])
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
+        self.switch_latencyflex.set_active(parameters["latencyflex"])
         self.switch_gamemode.set_active(parameters["gamemode"])
         self.switch_gamescope.set_active(parameters["gamescope"])
         self.switch_fsr.set_active(parameters["fsr"])
@@ -270,6 +285,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
         self.switch_vkd3d.handler_unblock_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
+        self.switch_latencyflex.handler_unblock_by_func(self.__toggle_latencyflex)
         self.switch_virt_desktop.handler_unblock_by_func(self.__toggle_virt_desktop)
         self.switch_mouse_capture.handler_unblock_by_func(self.__toggle_x11_reg_key)
         self.switch_take_focus.handler_unblock_by_func(self.__toggle_x11_reg_key)
@@ -279,6 +295,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_dxvk.handler_unblock_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
+        self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
         self.combo_dpi.handler_unblock_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
@@ -430,6 +447,30 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="dxvk_nvapi",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+
+    def __toggle_latencyflex(self, widget=False, state=False):
+        '''
+        This function perform LatencyFlex installation or removal, according
+        to the widget state. It will also update the bottle configuration
+        once the process is finished.
+        '''
+        self.set_latencyflex_status(pending=True)
+
+        RunAsync(
+            task_func=self.manager.install_dll_component,
+            callback=self.set_latencyflex_status,
+            config=self.config,
+            component="latencyflex",
+            remove=not state
+        )
+
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="latencyflex",
             value=state,
             scope="Parameters"
         )
@@ -678,6 +719,26 @@ class PreferencesView(Gtk.ScrolledWindow):
             component="nvapi"
         )
 
+    def __set_latencyflex(self, widget):
+        '''
+        This function update the latencyflex on the bottle
+        configuration according to the selected one.
+        '''
+        latencyflex = widget.get_active_id()
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="LatencyFleX",
+            value=latencyflex
+        )
+        self.config = new_config
+
+        RunAsync(
+            task_func=self.__dll_component_task_func,
+            callback=self.set_latencyflex_status,
+            config=self.config,
+            component="latencyflex"
+        )
+
     def __set_windows(self, widget):
         '''
         This function update the Windows version on the bottle 
@@ -823,6 +884,16 @@ class PreferencesView(Gtk.ScrolledWindow):
         else:
             self.spinner_nvapi.stop()
             self.spinner_nvapibool.stop()
+
+    def set_latencyflex_status(self, status=None, error=None, pending=False):
+        self.switch_latencyflex.set_sensitive(not pending)
+        self.combo_latencyflex.set_sensitive(not pending)
+        if pending:
+            self.spinner_latencyflex.start()
+            self.spinner_latencyflexbool.start()
+        else:
+            self.spinner_latencyflex.stop()
+            self.spinner_latencyflexbool.stop()
     
     def __prevent_scroll(self):
         def no_action(widget, event):
@@ -835,6 +906,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.combo_dxvk,
             self.combo_vkd3d,
             self.combo_nvapi,
+            self.combo_latencyflex,
             self.combo_windows
         ]:
             c.connect('scroll-event', no_action)

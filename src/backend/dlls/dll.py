@@ -78,7 +78,7 @@ class DLLComponent():
             if path in ["x32", "x86"]:
                 return "system32"
         if config["Arch"] == "win64":
-            if path in ["x64"]:
+            if path in ["x64"] or "x86_64" in path:
                 return "system32"
             if path in ["x32", "x86"]:
                 return "syswow64"
@@ -97,7 +97,7 @@ class DLLComponent():
         else:
             target = None
 
-        #print(f"{source} -> {target}")
+        print(f"{source} -> {target}")
         
         if target is not None:
             if not remove:

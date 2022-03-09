@@ -60,6 +60,7 @@ class Paths:
     dxvk = f"{base}/dxvk"
     vkd3d = f"{base}/vkd3d"
     nvapi = f"{base}/nvapi"
+    latencyflex = f"{base}/latencyflex"
     templates = f"{base}/templates"
     journal = f"{base}/journal.yml"
 

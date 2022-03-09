@@ -51,6 +51,7 @@ from bottles.backend.layers import Layer, LayersStore
 from bottles.backend.dlls.dxvk import DXVKComponent
 from bottles.backend.dlls.vkd3d import VKD3DComponent
 from bottles.backend.dlls.nvapi import NVAPIComponent
+from bottles.backend.dlls.latencyflex import LatencyFleXComponent
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.wineserver import WineServer
@@ -82,6 +83,7 @@ class Manager:
     dxvk_available = []
     vkd3d_available = []
     nvapi_available = []
+    latencyflex_available = []
     local_bottles = {}
     supported_runtimes = {}
     supported_wine_runners = {}
@@ -89,6 +91,7 @@ class Manager:
     supported_dxvk = {}
     supported_vkd3d = {}
     supported_nvapi = {}
+    supported_latencyflex = {}
     supported_dependencies = {}
     supported_installers = {}
 
@@ -115,6 +118,7 @@ class Manager:
         self.check_dxvk(install_latest)
         self.check_vkd3d(install_latest)
         self.check_nvapi(install_latest)
+        self.check_latencyflex(install_latest)
         self.check_runtimes(install_latest)
         self.check_runners(install_latest)
         if first_run:
@@ -211,6 +215,7 @@ class Manager:
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
+        self.supported_latencyflex = catalog["latencyflex"]
 
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
@@ -388,6 +393,11 @@ class Manager:
         if res:
             self.nvapi_available = sorted(res, reverse=True)
 
+    def check_latencyflex(self, install_latest: bool = True):
+        res = self.__check_component("latencyflex", install_latest)
+        if res:
+            self.latencyflex_available = sorted(res, reverse=True)
+
     def __check_component(
             self,
             component_type: str,
@@ -408,6 +418,11 @@ class Manager:
                 "available": self.nvapi_available,
                 "supported": self.supported_nvapi,
                 "path": Paths.nvapi
+            },
+            "latencyflex": {
+                "available": self.latencyflex_available,
+                "supported": self.supported_latencyflex,
+                "path": Paths.latencyflex
             },
             "runtime": {
                 "available": self.runtimes_available,
@@ -1355,6 +1370,12 @@ class Manager:
             if not _version:
                 _version = self.nvapi_available[0]
             manager = NVAPIComponent(_version)
+        elif component == "latencyflex":
+            _version = config.get("LatencyFleX")
+            _version = version if version else _version
+            if not _version:
+                _version = self.latencyflex_available[0]
+            manager = LatencyFleXComponent(_version)
         else:
             return Result(
                 status=False,

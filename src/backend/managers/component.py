@@ -65,7 +65,8 @@ class ComponentManager:
             "proton": {},
             "dxvk": {},
             "vkd3d": {},
-            "nvapi": {}
+            "nvapi": {},
+            "latencyflex": {}
         }
         components_available = {
             "runtimes": self.__manager.runtimes_available,
@@ -73,7 +74,8 @@ class ComponentManager:
             "proton": self.__manager.runners_available,
             "dxvk": self.__manager.dxvk_available,
             "vkd3d": self.__manager.vkd3d_available,
-            "nvapi": self.__manager.nvapi_available
+            "nvapi": self.__manager.nvapi_available,
+            "latencyflex": self.__manager.latencyflex_available
         }
 
         index = self.__repo.catalog
@@ -264,6 +266,8 @@ class ComponentManager:
             path = Paths.vkd3d
         elif component == "nvapi":
             path = Paths.nvapi
+        elif component == "latencyflex":
+            path = Paths.latencyflex
         elif component == "runtime":
             path = Paths.runtimes
         else:

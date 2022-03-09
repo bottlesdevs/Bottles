@@ -158,7 +158,7 @@ class WineCommand:
         # Default DLL overrides
         dll_overrides.append("mshtml=d")
         dll_overrides.append("winemenubuilder=''")
-        
+
         # Get Runtime libraries
         if "FLATPAK_ID" in os.environ and \
                 params.get("use_runtime") and not self.terminal:
@@ -169,10 +169,6 @@ class WineCommand:
         for lib in ["lib", "lib64"]:
             if os.path.exists(f"{runner_path}/{lib}"):
                 ld.append(f"{runner_path}/{lib}")
-        
-        # Add ld to LD_LIBRARY_PATH
-        if ld:
-            env.concat("LD_LIBRARY_PATH", ld)
         
         # DXVK environment variables
         if params["dxvk"]:
@@ -214,6 +210,11 @@ class WineCommand:
             debug_level = "+fixme-all"
         env.add("WINEDEBUG", debug_level)
         
+        # LatencyFleX
+        if params["latencyflex"]:
+            _lf_path = ManagerUtils.get_latencyflex_path(config["LatencyFleX"])
+            ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
+
         # Aco compiler
         if params["aco_compiler"]:
             env.add("ACO_COMPILER", "aco")
@@ -254,6 +255,10 @@ class WineCommand:
                     env.add("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
                 else:
                     logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES..", )
+
+        # Add ld to LD_LIBRARY_PATH
+        if ld:
+            env.concat("LD_LIBRARY_PATH", ld)
 
         # DLL Overrides
         env.concat("WINEDLLOVERRIDES", dll_overrides, sep=";")

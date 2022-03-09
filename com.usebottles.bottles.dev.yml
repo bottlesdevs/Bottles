@@ -337,6 +337,18 @@ modules:
         url: https://download.samba.org/pub/samba/samba-4.15.5.tar.gz
         sha256: 69115e33831937ba5151be0247943147765aece658ba743f44741672ad68d17f
 
+  - name: LatencyFleX
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lib/x86_64-linux-gnu/
+      - mkdir -p /app/share/vulkan/implicit_layer.d/
+      - cp layer/usr/lib/x86_64-linux-gnu/liblatencyflex_layer.so /app/lib/x86_64-linux-gnu/liblatencyflex_layer.so
+      - cp layer/usr/share/vulkan/implicit_layer.d/latencyflex.json /app/share/vulkan/implicit_layer.d/latencyflex.json
+    sources:
+      - type: archive
+        url: https://github.com/ishitatsuyuki/LatencyFleX/releases/download/v0.1.0/latencyflex-v0.1.0.tar.xz
+        sha256: 9862c7608b85ac6bff018d5926c4692490ff84ca3e649119b7fc53680e64dd1a
+
   # Bottles components
   # ----------------------------------------------------------------------------
   - name: EasyTerm

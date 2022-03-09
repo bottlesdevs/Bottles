@@ -59,6 +59,8 @@ class ManagerUtils:
                 path = ManagerUtils.get_vkd3d_path(component)
             elif path_type == "nvapi":
                 path = ManagerUtils.get_nvapi_path(component)
+            elif path_type == "latencyflex":
+                path = ManagerUtils.get_latencyflex_path(component)
             elif path_type == "runtime":
                 path = Paths.runtimes
 
@@ -95,6 +97,10 @@ class ManagerUtils:
     @staticmethod
     def get_nvapi_path(nvapi: str) -> str:
         return f"{Paths.nvapi}/{nvapi}"
+
+    @staticmethod
+    def get_latencyflex_path(latencyflex: str) -> str:
+        return f"{Paths.latencyflex}/{latencyflex}"
 
     @staticmethod
     def get_temp_path(dest: str) -> str:

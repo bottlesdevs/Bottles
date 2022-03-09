@@ -385,7 +385,7 @@ This will break the sandbox!</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="icon-name">applications-games-symbolic</property>
-        <property name="title" translatable="yes">DXVK/VKD3D</property>
+        <property name="title" translatable="yes">DLL Components</property>
         <child>
           <object class="HdyPreferencesGroup" id="list_dxvk">
             <property name="visible">True</property>
@@ -411,6 +411,16 @@ This will break the sandbox!</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="title" translatable="yes">DXVK-NVAPI</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="HdyPreferencesGroup" id="list_latencyflex">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="title" translatable="yes">LatencyFleX</property>
             <child>
               <placeholder/>
             </child>

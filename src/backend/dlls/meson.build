@@ -7,6 +7,7 @@ bottles_sources = [
   'dxvk.py',
   'vkd3d.py',
   'nvapi.py',
+  'latencyflex.py',
 ]
 
 install_data(bottles_sources, install_dir: dllsdir)
