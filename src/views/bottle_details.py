@@ -506,7 +506,8 @@ class BottleView(Gtk.ScrolledWindow):
         for w in [
             self.btn_delete,
             self.btn_backup_full,
-            self.btn_rename
+            self.btn_rename,
+            self.btn_duplicate
         ]:
             w.set_visible(status)
             w.set_sensitive(status)
