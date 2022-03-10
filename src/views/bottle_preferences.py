@@ -21,7 +21,7 @@ from gi.repository import Gtk
 
 from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 
-from bottles.backend.runner import Runner, gamemode_available, gamescope_available
+from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.utils.manager import ManagerUtils
 
@@ -50,6 +50,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     btn_overrides = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
+    switch_mangohud = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_latencyflex = Gtk.Template.Child()
@@ -117,6 +118,7 @@ class PreferencesView(Gtk.ScrolledWindow):
 
         self.switch_dxvk.connect('state-set', self.__toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.__toggle_dxvk_hud)
+        self.switch_mangohud.connect('state-set', self.__toggle_mangohud)
         self.switch_vkd3d.connect('state-set', self.__toggle_vkd3d)
         self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
         self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
@@ -146,18 +148,17 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.action_runtime.set_visible(True)
             self.switch_runtime.connect('state-set', self.__toggle_runtime)
 
-        '''
-        Toggle the gamemode sensitivity based on gamemode_available
-        also update the tooltip text with an helpfull message if it
-        is not available.
-        '''
+        '''Toggle some utilites according to its availability'''
         self.switch_gamemode.set_sensitive(gamemode_available)
         self.switch_gamescope.set_sensitive(gamescope_available)
+        self.switch_mangohud.set_sensitive(mangohud_available)
         _not_available = _("This feature is not available on your system.")
         if not gamemode_available:
             self.switch_gamemode.set_tooltip_text(_not_available)
         if not gamescope_available:
             self.switch_gamescope.set_tooltip_text(_not_available)
+        if not mangohud_available:
+            self.switch_mangohud.set_tooltip_text(_not_available)
 
     def choose_cwd(self, widget):
         '''
@@ -255,6 +256,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
+        self.switch_mangohud.set_active(parameters["mangohud"])
         self.switch_vkd3d.set_active(parameters["vkd3d"])
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
         self.switch_latencyflex.set_active(parameters["latencyflex"])
@@ -402,6 +404,19 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="dxvk_hud",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+
+    def __toggle_mangohud(self, widget, state):
+        '''
+        This function update the MangoHud status on the bottle
+        configuration according to the widget state.
+        '''
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="mangohud",
             value=state,
             scope="Parameters"
         )

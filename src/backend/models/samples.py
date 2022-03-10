@@ -27,6 +27,7 @@ class Samples:
             "dxvk_nvapi": False,
             "vkd3d": False,
             "latencyflex": False,
+            "mangohud": False,
             "gamemode": False,
             "gamescope": False,
             "gamescope_game_width": 0,

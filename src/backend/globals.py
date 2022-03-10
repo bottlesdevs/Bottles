@@ -80,10 +80,10 @@ class TrdyPaths:
     bottlesv1 = f"{xdg_data_home}/.Bottles"
 
 
-# Check if gamemode is available
+# Check if some tools are available
 gamemode_available = shutil.which("gamemoderun") or False
-# Check if gamescope is available
 gamescope_available = shutil.which("gamescope") or False
+mangohud_available = shutil.which("mangohud") or False
 
 x_display = DisplayUtils.get_x_display()
 

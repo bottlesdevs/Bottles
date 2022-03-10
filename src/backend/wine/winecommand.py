@@ -8,7 +8,7 @@ from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
-from bottles.backend.globals import Paths, gamemode_available, gamescope_available
+from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available
 from bottles.backend.logger import Logger
 
 logging = Logger()
@@ -337,6 +337,8 @@ class WineCommand:
                 command = f"{gamemode_available} {command}"
             if gamescope_available and params.get("gamescope"):
                 command = f"{self.__get_gamescope_cmd()} {command}"
+            if mangohud_available and params.get("mangohud"):
+                command = f"{mangohud_available} {command}"
         
         if post_script is not None:
             command = f"{command} && sh {post_script}"
