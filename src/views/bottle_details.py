@@ -201,6 +201,7 @@ class BottleView(Gtk.ScrolledWindow):
         self.grid_versioning.set_visible(self.config.get("Versioning"))
         self.label_state.set_text(str(self.config.get("State")))
 
+        self.__set_steam_rules()
 
     def __check_entry_name(self, widget, event_key):
         '''
@@ -498,6 +499,17 @@ class BottleView(Gtk.ScrolledWindow):
             callback=reset,
             status=status
         )
+
+    def __set_steam_rules(self):
+        status = False if self.config.get("Environment") == "Steam" else True
+
+        for w in [
+            self.btn_delete,
+            self.btn_backup_full,
+            self.btn_rename
+        ]:
+            w.set_visible(status)
+            w.set_sensitive(status)
 
     '''
     The following methods open resources (URLs) in the
