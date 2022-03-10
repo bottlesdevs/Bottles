@@ -35,17 +35,17 @@ class RepositoryManager:
 
     __repositories = {
         "components": {
-            "url": "https://raw.githubusercontent.com/bottlesdevs/components/main/",
+            "url": "https://repo.usebottles.com/components/",
             "index": "",
             "cls": ComponentRepo
         },
         "dependencies": {
-            "url": "https://raw.githubusercontent.com/bottlesdevs/dependencies/main/",
+            "url": "https://repo.usebottles.com/dependencies/",
             "index": "",
             "cls": DependencyRepo
         },
         "installers": {
-            "url": "https://raw.githubusercontent.com/bottlesdevs/programs/main/",
+            "url": "https://repo.usebottles.com/programs/",
             "index": "",
             "cls": InstallerRepo
         }
