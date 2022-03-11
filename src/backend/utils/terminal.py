@@ -40,7 +40,7 @@ class TerminalUtils:
         ['foot', '%s'],
         ['kitty', '%s'],
         ['xterm', '-e %s'],
-        ['konsole', '-e --noclose %s'],
+        ['konsole', '--noclose -e %s'],
         ['gnome-terminal', '-- %s'],
         ['xfce4-terminal', '-e %s'],
         ['mate-terminal', '--command %s'],
@@ -83,9 +83,7 @@ class TerminalUtils:
             command = ' '.join(self.terminal) % (colors, f'bash -c "{command}"')
             if "ENABLE_BASH" in os.environ:
                 command = ' '.join(self.terminal) % (colors, f"bash")
-        elif self.terminal[0] == 'xfce4-terminal':
-            command = ' '.join(self.terminal) % "'sh -c %s'" % f'"{command}"'
-        elif self.terminal[0] in ['kitty', 'foot']:
+        elif self.terminal[0] in ['kitty', 'foot', 'konsole', 'xfce4-terminal']:
             command = ' '.join(self.terminal) % "sh -c %s" % f'"{command}"'
         else:
             command = ' '.join(self.terminal) % f"'bash -c {command}'"

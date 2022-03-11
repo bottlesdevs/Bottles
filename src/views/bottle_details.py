@@ -469,7 +469,7 @@ class BottleView(Gtk.ScrolledWindow):
     
     def run_snake(self, widget, event):
         if event.button == 2:
-            TerminalUtils().launch_snake()
+            RunAsync(TerminalUtils().launch_snake)
 
     def run_taskmanager(self, widget):
         program = Taskmgr(self.config)
