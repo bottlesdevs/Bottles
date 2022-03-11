@@ -88,6 +88,4 @@ mangohud_available = shutil.which("mangohud") or False
 x_display = DisplayUtils.get_x_display()
 
 # Check if ~/.local/share/applications exists
-user_apps_dir = False
-if os.path.exists(Paths.applications):
-    user_apps_dir = True
+user_apps_dir = os.path.exists(Paths.applications)
