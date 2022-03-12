@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-02-15 07:59+0000\n"
+"PO-Revision-Date: 2022-03-13 18:01+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -247,14 +247,12 @@ msgid "Toggle experimental winebridge implementation."
 msgstr "Uključi/Isključi eksperimentalnu implementaciju winebridge."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:steam"
-msgstr "Eksperimenti"
+msgstr "Eksperimenti:steam"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "Uključi/Isključi eksperimentalnu funkciju za upravljanje verzijama."
+msgstr "Uključi/Isključi eksperimentalnu podršku za Steam Proton mapa."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -378,13 +376,12 @@ msgid "Full archive"
 msgstr "Kompletna arhiva"
 
 #: src/ui/details-bottle.ui:59
-#, fuzzy
 msgid "Duplicate bottle"
 msgstr "Dupliciraj butelju"
 
 #: src/ui/details-bottle.ui:86
 msgid "Open with explorer"
-msgstr ""
+msgstr "Otvori s preglednikom"
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
@@ -404,25 +401,23 @@ msgstr "Ne mogu vidjeti datoteke u svojoj početnoj mapi."
 
 #: src/ui/details-bottle.ui:175
 msgid "Executable silently crash or black screen"
-msgstr ""
+msgstr "Prekid izvršne datoteke bez obavještavanja ili crni ekran"
 
 #: src/ui/details-bottle.ui:201
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Simuliraj ponovno pokretanje sustava Windows."
 
 #: src/ui/details-bottle.ui:202
-#, fuzzy
 msgid "Reboot"
-msgstr "Ponovo pokreni Windows"
+msgstr "Ponovo pokreni sustav"
 
 #: src/ui/details-bottle.ui:215
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Simuliraj isključivanje sustava Windows."
 
 #: src/ui/details-bottle.ui:216
-#, fuzzy
 msgid "Shutdown"
-msgstr "Isključi Windows"
+msgstr "Isključi sustav"
 
 #: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
@@ -430,11 +425,11 @@ msgstr "Pokreni s agrumentima"
 
 #: src/ui/details-bottle.ui:252
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "Pomići u okruženju za testiranje"
 
 #: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
-msgstr ""
+msgstr "Pokreni s terminalom"
 
 #: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
 msgid "Destroy this bottle"
@@ -445,14 +440,12 @@ msgid "Bottle name"
 msgstr "Ime butelje"
 
 #: src/ui/details-bottle.ui:356
-#, fuzzy
 msgid "Type a name for your bottle"
-msgstr "Odaberi ime za butelju"
+msgstr "Upiši ime za tvoju butelju"
 
 #: src/ui/details-bottle.ui:374
-#, fuzzy
 msgid "Rename bottle"
-msgstr "Stvori butelju"
+msgstr "Preimenuj butelju"
 
 #: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
 msgid "Versioning enabled for this bottle"
@@ -475,32 +468,28 @@ msgid "64 Bit"
 msgstr "64-bitno"
 
 #: src/ui/details-bottle.ui:515
-#, fuzzy
 msgid "Vaniglia-6.21-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:540
-#, fuzzy
 msgid "Layers"
-msgstr "Slojevito"
+msgstr "Slojevi"
 
 #: src/ui/details-bottle.ui:563
 msgid "Run executable"
 msgstr "Pokreni izvršnu datoteku"
 
 #: src/ui/details-bottle.ui:637
-#, fuzzy
 msgid "Kill all WINE processes"
-msgstr "Prekini sve Wine procese"
+msgstr "Prekini sve WINE procese"
 
 #: src/ui/details-bottle.ui:662
-#, fuzzy
 msgid "Make a backup of this bottle."
-msgstr "Izvrši u ovoj butelji"
+msgstr "Spremi sigurnosnu kopiju ove butelje."
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "Pomicanje u okruženju za testiranje …"
 
 #: src/ui/details-bottle.ui:774 src/views/details.py:115
 msgid "Programs"
@@ -527,7 +516,6 @@ msgid "Browse internal files."
 msgstr "Pregledaj interne datoteke."
 
 #: src/ui/details-bottle.ui:918
-#, fuzzy
 msgid "Command line"
 msgstr "Naredbeni redak"
 
@@ -536,7 +524,6 @@ msgid "Run commands inside the Bottle."
 msgstr "Pokreni naredbe unutar butelje."
 
 #: src/ui/details-bottle.ui:960
-#, fuzzy
 msgid "Registry editor"
 msgstr "Uređivač registra"
 
@@ -575,7 +562,6 @@ msgid "Uninstall programs using wine uninstaller"
 msgstr "Deinstaliraj programe koristeći Wineov deinstalacijski program"
 
 #: src/ui/details-bottle.ui:1153
-#, fuzzy
 msgid "Control panel"
 msgstr "Upravljačka ploča"
 
@@ -606,18 +592,16 @@ msgid "Report a problem or a missing dependency."
 msgstr "Prijavi problem ili nedostajuću ovisnost."
 
 #: src/ui/details-dependencies.ui:243
-#, fuzzy
 msgid "Install selected"
-msgstr "Instalacijski programi"
+msgstr "Instaliraj odabrano"
 
 #: src/ui/details-dependencies.ui:246
 msgid "We strongly advise against installing multiple dependencies at once."
-msgstr ""
+msgstr "Nemoj instalirati više ovisnosti odjednom."
 
 #: src/ui/details-dependencies.ui:265
-#, fuzzy
 msgid "Select dependencies"
-msgstr "Ovisnosti"
+msgstr "Odberi ovisnosti"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
@@ -726,9 +710,8 @@ msgid "Improves performance at the cost of increased power usage."
 msgstr "Poboljšava izvođenje, ali troši više energije."
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Display settings"
-msgstr "Dodatne postavke"
+msgstr "Postavke prikaza"
 
 #: src/ui/details-preferences.ui:294
 msgid "Use a virtual desktop"
@@ -748,75 +731,75 @@ msgstr "Dozvoli programu snimanje unosa mišem u cjeloekranskom prikazu."
 
 #: src/ui/details-preferences.ui:396
 msgid "Take focus"
-msgstr ""
+msgstr "Postavi aktivnim"
 
 #: src/ui/details-preferences.ui:397
 msgid "Activate it if the program does not retake focus on switch."
 msgstr ""
+"Aktiviraj, ako prozor programa ne postane aktivnim prilikom prebacivanja "
+"između prozora."
 
 #: src/ui/details-preferences.ui:428
-#, fuzzy
 msgid "Screen scaling"
-msgstr "Koristi cijele brojeve za mijenjanje"
+msgstr "Rezolucija ekrana"
 
 #: src/ui/details-preferences.ui:429
 msgid "Set custom DPI"
-msgstr ""
+msgstr "Postavi prilagođeni DPI"
 
 #: src/ui/details-preferences.ui:443
 msgid "96"
-msgstr ""
+msgstr "96"
 
 #: src/ui/details-preferences.ui:444
 msgid "120"
-msgstr ""
+msgstr "120"
 
 #: src/ui/details-preferences.ui:445
 msgid "144"
-msgstr ""
+msgstr "144"
 
 #: src/ui/details-preferences.ui:446
 msgid "168"
-msgstr ""
+msgstr "168"
 
 #: src/ui/details-preferences.ui:447
 msgid "192"
-msgstr ""
+msgstr "192"
 
 #: src/ui/details-preferences.ui:448
 msgid "216"
-msgstr ""
+msgstr "216"
 
 #: src/ui/details-preferences.ui:449
 msgid "240"
-msgstr ""
+msgstr "240"
 
 #: src/ui/details-preferences.ui:450
 msgid "288"
-msgstr ""
+msgstr "288"
 
 #: src/ui/details-preferences.ui:451
 msgid "336"
-msgstr ""
+msgstr "336"
 
 #: src/ui/details-preferences.ui:452
 msgid "384"
-msgstr ""
+msgstr "384"
 
 #: src/ui/details-preferences.ui:453
 msgid "432"
-msgstr ""
+msgstr "432"
 
 #: src/ui/details-preferences.ui:454
 msgid "480"
-msgstr ""
+msgstr "480"
 
 #: src/ui/details-preferences.ui:488 src/ui/details-preferences.ui:845
 msgid "System"
 msgstr "Sustav"
 
 #: src/ui/details-preferences.ui:494
-#, fuzzy
 msgid "Components version"
 msgstr "Verzija komponente"
 
@@ -944,9 +927,8 @@ msgid "Environment variables"
 msgstr "Varijable okruženja"
 
 #: src/ui/details-preferences.ui:1218
-#, fuzzy
 msgid "Manage drives"
-msgstr "Upravljaj pokretačima"
+msgstr "Upravljaj pogonima"
 
 #: src/ui/details-preferences.ui:1267
 msgid "Audio"
@@ -978,11 +960,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1342
 msgid "Enable wine fixme logs"
-msgstr "Aktiviraj wine zapise za ispravljanje"
+msgstr "Aktiviraj wine dnevnike za ispravljanje"
 
 #: src/ui/details-preferences.ui:1343
 msgid "Log code paths that are unimplemented in Wine."
-msgstr "Zapiši putanje kodova koji u Wineu nisu implementirani."
+msgstr "Zapiši staze kodova koji u Wineu nisu implementirani."
 
 #: src/ui/details-programs.ui:28
 msgid "No programs found"
@@ -1102,22 +1084,23 @@ msgstr "Postojeće zamjene"
 
 #: src/ui/dialog-drives.ui:24
 msgid "Drives"
-msgstr ""
+msgstr "Pogoni"
 
 #: src/ui/dialog-drives.ui:49
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..)."
 msgstr ""
+"Ovo su staze tvog host sustava koje pokretač mapira i prepoznaje kao uređaje "
+"(npr. C: D: …)."
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
-msgstr ""
+msgstr "Slovo"
 
 #: src/ui/dialog-drives.ui:134
-#, fuzzy
 msgid "Existing drives"
-msgstr "Postojeće zamjene"
+msgstr "Postojeći pogoni"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -1364,7 +1347,7 @@ msgstr "Izvorno zatim ugrađeno"
 
 #: src/ui/drive-entry.ui:9
 msgid "/point/to/path"
-msgstr ""
+msgstr "/uputi/na/stazu"
 
 #: src/ui/env-var-entry.ui:84
 msgid "value"
@@ -1728,12 +1711,11 @@ msgstr "Koristi WineBridge za upravljanje procesima i programima."
 
 #: src/ui/preferences.ui:490
 msgid "Steam Proton prefixes"
-msgstr ""
+msgstr "Steam Proton mape"
 
 #: src/ui/preferences.ui:491
-#, fuzzy
 msgid "In early development (requires restart)"
-msgstr "Prilagođena staza butelja (zahtijeva ponovno pokretanje)"
+msgstr "U ranoj fazi razvoja (zahtijeva ponovno pokretanje)"
 
 #: src/ui/program-entry.ui:46
 msgid "Browse path"
@@ -1870,7 +1852,7 @@ msgstr "Instalacija ovisnih komponenata nije uspjela."
 #: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 #: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
 msgid "Installation failed, please check the logs."
-msgstr ""
+msgstr "Instalacija nije uspjela, provjeri dnevnike."
 
 #: src/backend/managers/manager.py:979
 msgid "Fail to install components, tried 3 times."
@@ -1886,7 +1868,7 @@ msgstr "Generiranje konfiguracije butelje …"
 
 #: src/backend/managers/manager.py:1080
 msgid "Template found, applying…"
-msgstr ""
+msgstr "Predložak je pronađen, primjenjuje se …"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1090
@@ -1996,13 +1978,12 @@ msgstr ""
 "izvještaja."
 
 #: src/dialogs/drives.py:58
-#, fuzzy
 msgid "Choose path"
-msgstr "Pregledaj stazu"
+msgstr "Odaberi stazu"
 
 #: src/dialogs/drives.py:61
 msgid "Select"
-msgstr ""
+msgstr "Odaberi"
 
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
@@ -2162,28 +2143,24 @@ msgid "Choose new bottles path"
 msgstr "Odaberi novu stazu za butelje"
 
 #: src/views/preferences.py:190
-#, fuzzy
 msgid "Caffe runners"
-msgstr "Upravljaj pokretačima"
+msgstr "Caffe pokretači"
 
 #: src/views/preferences.py:191
-#, fuzzy
 msgid "Lutris runners"
-msgstr "Wine pokretači"
+msgstr "Lutris pokretači"
 
 #: src/views/preferences.py:192
-#, fuzzy
 msgid "Proton runners"
-msgstr "Upravljaj pokretačima"
+msgstr "Proton pokretači"
 
 #: src/views/preferences.py:193
-#, fuzzy
 msgid "Other runners"
-msgstr "Upravljaj pokretačima"
+msgstr "Drugi pokretači"
 
 #: src/widgets/component.py:67
 msgid "Upgrade"
-msgstr ""
+msgstr "Nadogradi"
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
