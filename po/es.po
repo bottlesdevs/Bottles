@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-02-27 15:33+0000\n"
+"PO-Revision-Date: 2022-03-13 18:01+0000\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -244,14 +244,13 @@ msgid "Toggle experimental winebridge implementation."
 msgstr "Conmuta la implementación experimental de winebridge."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:steam"
-msgstr "Experimentos"
+msgstr "Experimentos:steam"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "Conmuta la función de versionado experimental."
+msgstr ""
+"Conmutar la compatibilidad con los prefijos experimentales de Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -377,13 +376,12 @@ msgid "Full archive"
 msgstr "Archivo completo"
 
 #: src/ui/details-bottle.ui:59
-#, fuzzy
 msgid "Duplicate bottle"
-msgstr "Duplicar una botella"
+msgstr "Duplicar botella"
 
 #: src/ui/details-bottle.ui:86
 msgid "Open with explorer"
-msgstr ""
+msgstr "Abrir con el explorador"
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
@@ -403,11 +401,11 @@ msgstr "No puedo ver los archivos en mi carpeta personal."
 
 #: src/ui/details-bottle.ui:175
 msgid "Executable silently crash or black screen"
-msgstr ""
+msgstr "El ejecutable se rompe silenciosamente o la pantalla se queda en negro"
 
 #: src/ui/details-bottle.ui:201
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Simular un reinicio del sistema Windows."
 
 #: src/ui/details-bottle.ui:202
 msgid "Reboot"
@@ -415,12 +413,11 @@ msgstr "Reinicio"
 
 #: src/ui/details-bottle.ui:215
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Simular un apagado del sistema Windows."
 
 #: src/ui/details-bottle.ui:216
-#, fuzzy
 msgid "Shutdown"
-msgstr "Apagar Windows"
+msgstr "Apagar"
 
 #: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
@@ -428,7 +425,7 @@ msgstr "Ejecutar con argumentos"
 
 #: src/ui/details-bottle.ui:252
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "Mover dentro del depósito seguro"
 
 #: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
@@ -443,9 +440,8 @@ msgid "Bottle name"
 msgstr "Nombre de la botella"
 
 #: src/ui/details-bottle.ui:356
-#, fuzzy
 msgid "Type a name for your bottle"
-msgstr "Escoja un nombre para su botella"
+msgstr "Escriba un nombre para su botella"
 
 #: src/ui/details-bottle.ui:374
 msgid "Rename bottle"
@@ -472,12 +468,10 @@ msgid "64 Bit"
 msgstr "64 bits"
 
 #: src/ui/details-bottle.ui:515
-#, fuzzy
 msgid "Vaniglia-6.21-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:540
-#, fuzzy
 msgid "Layers"
 msgstr "Capas"
 
@@ -486,18 +480,16 @@ msgid "Run executable"
 msgstr "Iniciar ejecutable"
 
 #: src/ui/details-bottle.ui:637
-#, fuzzy
 msgid "Kill all WINE processes"
-msgstr "Forzar cierre de todos los procesos de Wine"
+msgstr "Terminar todos los procesos de WINE"
 
 #: src/ui/details-bottle.ui:662
-#, fuzzy
 msgid "Make a backup of this bottle."
-msgstr "Última actualización para esta botella."
+msgstr "Hacer una copia de seguridad de esta botella."
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "Moviendo dentro del depósito seguro…"
 
 #: src/ui/details-bottle.ui:774 src/views/details.py:115
 msgid "Programs"
@@ -524,18 +516,16 @@ msgid "Browse internal files."
 msgstr "Explore los archivos internos."
 
 #: src/ui/details-bottle.ui:918
-#, fuzzy
 msgid "Command line"
-msgstr "Linea de órdenes"
+msgstr "Linea de comandos"
 
 #: src/ui/details-bottle.ui:920
 msgid "Run commands inside the Bottle."
 msgstr "Ejecute órdenes dentro de la botella."
 
 #: src/ui/details-bottle.ui:960
-#, fuzzy
 msgid "Registry editor"
-msgstr "Editor de Registro"
+msgstr "Editor de registro"
 
 #: src/ui/details-bottle.ui:962
 msgid "Edit the internal registry."
@@ -572,7 +562,6 @@ msgid "Uninstall programs using wine uninstaller"
 msgstr "Desinstale programas mediante el desinstalador de Wine"
 
 #: src/ui/details-bottle.ui:1153
-#, fuzzy
 msgid "Control panel"
 msgstr "Panel de control"
 
@@ -1100,22 +1089,23 @@ msgstr "Anulaciones existentes"
 
 #: src/ui/dialog-drives.ui:24
 msgid "Drives"
-msgstr ""
+msgstr "Unidades"
 
 #: src/ui/dialog-drives.ui:49
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..)."
 msgstr ""
+"Se trata de rutas de su sistema anfitrión que son mapeadas y reconocidas "
+"como dispositivos por el ejecutor (por ejemplo, C: D:..)."
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
-msgstr ""
+msgstr "Carácter"
 
 #: src/ui/dialog-drives.ui:134
-#, fuzzy
 msgid "Existing drives"
-msgstr "Anulaciones existentes"
+msgstr "Unidades existentes"
 
 #: src/ui/dialog-duplicate.ui:25
 msgid "Duplicate a bottle"
@@ -1363,7 +1353,7 @@ msgstr "Nativo, después incorporado"
 
 #: src/ui/drive-entry.ui:9
 msgid "/point/to/path"
-msgstr ""
+msgstr "/punto/a/ruta"
 
 #: src/ui/env-var-entry.ui:84
 msgid "value"
@@ -1728,12 +1718,11 @@ msgstr "Usar WineBridge para la gestión de procesos y programas."
 
 #: src/ui/preferences.ui:490
 msgid "Steam Proton prefixes"
-msgstr ""
+msgstr "Prefijos de Steam Proton"
 
 #: src/ui/preferences.ui:491
-#, fuzzy
 msgid "In early development (requires restart)"
-msgstr "Ruta de bottles personalizada (requiere reinicio)"
+msgstr "En fase de desarrollo (requiere reinicio)"
 
 #: src/ui/program-entry.ui:46
 msgid "Browse path"
@@ -1871,7 +1860,7 @@ msgstr "La instalación de las dependencias ha fallado."
 #: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 #: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
 msgid "Installation failed, please check the logs."
-msgstr ""
+msgstr "La instalación ha fallado, por favor, compruebe los registros."
 
 #: src/backend/managers/manager.py:979
 msgid "Fail to install components, tried 3 times."
@@ -1996,13 +1985,12 @@ msgstr ""
 "existentes."
 
 #: src/dialogs/drives.py:58
-#, fuzzy
 msgid "Choose path"
-msgstr "Examinar directorio"
+msgstr "Elegir ruta"
 
 #: src/dialogs/drives.py:61
 msgid "Select"
-msgstr ""
+msgstr "Seleccionar"
 
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
@@ -2179,7 +2167,7 @@ msgstr "Otros ejecutores"
 
 #: src/widgets/component.py:67
 msgid "Upgrade"
-msgstr ""
+msgstr "Actualizar"
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
