@@ -33,7 +33,8 @@ that are not aligned to this Code of Conduct, or to ban temporarily or
 permanently any contributor for other behaviors that they deem inappropriate,
 threatening, offensive, or harmful.
 
-Finding yourselves unable, e-mail send@mirko.pm answered by Mirko Brombin, the project maintainer. 
+## Contact
+In case you feel unconfortable with an occurred situation, e-mail send@mirko.pm answered by Mirko Brombin, the project maintainer.
 
 ## Attribution
 
