@@ -49,6 +49,8 @@ class ManagerUtils:
 
         if path_type == "bottle":
             bottle_path = ManagerUtils.get_bottle_path(config)
+            if config.get("Environment") == "Steam":
+                bottle_path = config.get("Path")
             path = f"{bottle_path}/drive_c"
         elif component != "":
             if path_type in ["runner", "runner:proton"]:
