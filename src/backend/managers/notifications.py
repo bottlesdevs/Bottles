@@ -36,10 +36,12 @@ class NotificationsManager:
 
     def __init__(self):
         self.__get_messages()
-    
+
     @lru_cache
     def __get_messages(self):
         _messages = []
+        notifications = self.data.list().get("notifications")
+        notifications = [notifications] if isinstance(notifications, int) else notifications
 
         try:
             with urllib.request.urlopen(API.notifications) as url:
@@ -47,24 +49,24 @@ class NotificationsManager:
                 _messages = yaml.safe_load(res)
         except (urllib.error.HTTPError, urllib.error.URLError):
             _messages = []
-        
+
         for message in _messages.items():
             message = message[1]
             _date = message.get("date")
-            _date =  datetime(_date.year, _date.month, _date.day)
+            _date = datetime(_date.year, _date.month, _date.day)
 
             if _date < datetime.today() - timedelta(days=1) \
                     and not message.get("recurrent"):
                 continue
-            
-            if message.get("id") in self.data.list().get("notifications"):
+
+            if message.get("id") in notifications:
                 continue
 
             if message.get("before") and message.get("before") == VERSION:
                 continue
 
             self.messages.append(message)
-    
+
     def mark_as_read(self, nid):
         """Mark a notification as read."""
         for message in self.messages:
