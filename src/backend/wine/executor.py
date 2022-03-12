@@ -90,8 +90,8 @@ class WineExecutor:
         if _exec.endswith(".dll"):
             return "dll"
 
-        logging.error(f"Unsupported executable type: {exec_path}", )
-        return False
+        logging.warning(f"Not a common executable type, trying to launch it anyway.")
+        return "unsupported"
     
     def run_cli(self):
         """
@@ -117,7 +117,7 @@ class WineExecutor:
             return self.__launch_with_bridge()
         if self.exec_type == "batch":
             return self.__launch_batch()
-        if self.exec_type == "lnk":
+        if self.exec_type in ["lnk", "unsupported"]:
             return self.__launch_lnk()
         if self.exec_type == "dll":
             return self.__launch_dll()
