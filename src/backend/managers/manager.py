@@ -319,7 +319,7 @@ class Manager:
             logging.warning("No runners found.", )
 
             if self.utils_conn.check_connection():
-                # if connected, install latest runner from repository
+                # if connected, install the latest runner from repository
                 try:
                     if not self.window.settings.get_boolean("release-candidate"):
                         tmp_runners = []
