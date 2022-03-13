@@ -215,18 +215,6 @@ modules:
         x86_64: *compat_i386_opts
     config-opts: *mesa_glu_opts
     sources: *mesa_glu_sources
-  - name: openldap
-    config-opts: &openldap_opts
-      - --disable-slapd
-      - --disable-slurpd
-      - --disable-bdb
-      - --disable-hdb
-    cleanup: &openldap_cleanup
-      - /bin
-    sources: &openldap_sources
-      - type: archive
-        url: https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.0.tgz
-        sha256: b71c580eac573e9aba15d95f33dd4dd08f2ed4f0d7fc09e08ad4be7ed1e41a4f
 
   - name: rpcsvc-proto
     buildsystem: autotools
