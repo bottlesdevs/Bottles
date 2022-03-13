@@ -88,62 +88,63 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.3.14-trento" date="2022-02-26">
+        <release version="2022.3.14-trento" date="2022-03-13">
           <description>
             <p>News</p>
             <ul>
-                <li>Template caching creates a copy of the first bottle created with one environment, to use it as the basis of the next one, greatly reduces creation time. Templates are regenerated when a rule changes in the default configuration of an environment, while components are still updated if new ones are installed.</li>
-                <li>Now it is possible to install multiple dependencies at once (really not recommended)</li>
-                <li>The components screen has been reorganized into groups to make it easier to navigate</li>
-                <li>Change DPI directly from the bottle preferences</li>
-                <li>The Take focus option has added to preferences, allowing the user to resume focus on app change when these hold it</li>
-                <li>Improved WinePrograms logs with the effective running action</li>
-                <li>DXVK-async is now always at the bottom of the list, preventing it from being taken by Bottles as the most recent version on bottle creation</li>
-                <li>Add a journal file which collect all the most important actions and events</li>
-                <li>The userdir/ placeholder was added allowing maintainers to reach executables from the user bottle directory</li>
-                <li>New bottles are now sandboxed by default, despite if running as flatpak or not (in other packages the link to the user home is simply removed)</li>
-                <li>Manage your virtual drives directly from the bottle preferences</li>
-                <li>Programs list in bottle details is now hidden if there are only hidden entries</li>
-                <li>Flatpak users can now generate desktop entries too if the ~/.local/share/applications path is exposed</li>
+                <li>MangoHud support (use org.freedesktop.Platform.VulkanLayer.MangoHud with flatpak)</li>
+                <li>Now installers provide a visual feedback if a checksum is wrong</li>
+                <li>Experimental support for Steam Proton prefixes (Flatpak need steam path permission)</li>
+                <li>Extended search and filters for installed programs</li>
+                <li>WinePath has now a WineProgram interface</li>
+                <li>Support for GE-Proton runners</li>
+                <li>Now starting executables is case insensitive</li>
+                <li>Added new screen resolutions in the dedicated menu</li>
+                <li>Now you can run other extensions as well, a program that supports them will be used if installed</li>
+                <li>Initial LatencyFleX support</li>
+                <li>Using the new repositories for components, dependencies and installers, should solve some countries restrictions problems seen with GitHub</li>
+                <li>WineBridge is now supported as core component (currently in testing)</li>
+                <li>Flatpak is now based on org.winehq.Wine, thanks to @TheEvilSkeleton</li>
+                <li>Switchd from libnotify to GNotification, thanks to @A6GibKm</li>
+                <li>Kitty terminal is now supported, thanks to @Bartkk0</li>
+                <li>Foot terminal is now supported, thanks to @QuantMint</li>
                 <li>General improvements to the WINE backend</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fixed a problem with Windows version change, was trying to set duplicate keys on registry</li>
-                <li>Fixed a race condition on DLL components remove and install tasks (Thanks to @asbytes)</li>
-                <li>Fixed a bug in command execution, the WINEPREFIX env var was not rewritten if already present in the environment</li>
-                <li>Fixed DLL components for 32 bit bottles (Thanks to @ffuugoo)</li>
-                <li>Fixed a bug in Mouse Capture Fullscreen setting which was resetting on restart</li>
-                <li>Fixed a bug in backup export, the backup was not aborting if the user have not picked a path</li>
-                <li>Fixed a bug with generated desktop entries, was setting the wrong executable path</li>
-                <li>Fixed a bug in layered executables support, which was unable to launch executables due to structure mismatch</li>
-                <li>Fixed a bug with CabExtract implementation, which was extracting resources to the wrong directory if symlink</li>
-                <li>Fixed a bug in layer sweep function, which was sweeping all files instead of the different ones</li>
-                <li>Fixed a bug in layer mount function, which was mounting the wrong directory if reading from the configuration</li>
-                <li>Fixed a bug in WINE command execution, which was defaulting to the bottle path instead of the layered one</li>
-                <li>Fixed a bug in bottles initial check, which was causing a crash if the configuration file was not found</li>
-                <li>Fixed programs ignored_patterns, which was allowing unins* files to be listed in programs view</li>
-                <li>Fixed a bug with DLL components which was not ensuring the prefix was updated before registering DLL overrides</li>
-                <li>Fixed winbind issue (Thanks to @arashsm79)</li>
-                <li>Fixed a bug with hidden programs, which were not excluded from is_alive check</li>
+                <li>Fixed a bug with Konsole and xterm which was closing just after launching</li>
+                <li>Fixed a regression with Proton, Bottles was looking for the binaries in the wrong place</li>
+                <li>Fixed a bug in bottle creation, wineserver was not being awaited before update sync type</li>
+                <li>Fixed a bug with templates, if the build went wrong, the template was still stored and used for the next bottle</li>
+                <li>Fixed a bug with cabextract, was not supporting whitespaces in filenames</li>
+                <li>Fixed a bug in the journal, was crashing if a date was not set</li>
+                <li>Fixed a bug with layers, the executable path was not being set correctly</li>
+                <li>Fixed a bug during dependencies installation when it was not possible to read the repository index</li>
+                <li>Fixed a bug with DLL Components installation, a new layer was not being created if the bottle environment was Layered</li>
+                <li>Fixed a bug on runner change, the prefix was being updated before the new runner was set</li>
+                <li>Fixed a bug with dependencies installation, was failing if a file was already in place</li>
+                <li>Fixed a bug with CLI, Bottles was closing too early avoiding the program to be launched, thanks to @tgschultz</li>
+                <li>Fixed a bug with translations, some translations were not being loaded, thanks to @ryonakano</li>
+                <li>Fixed a bug with the about dialog, the close button was not working, thanks to @ryonakano</li>
+                <li>Fixed a bug with the notifications manager, was raising an error if there was just one notification</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Czech translations thanks to @panmourovaty, @uzu128, @tuzu128</li>
-                <li>French translations thanks to @julroy67</li>
+                <li>French translations thanks to @julroy67, クリスDownix</li>
                 <li>Italian translations thanks to @albanobattistella, @phaerrax</li>
-                <li>Indonesian translations thanks to @frnmz</li>
-                <li>Russian translations thanks to @Knebergish, @Smoque</li>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
+                <li>Portuguese translations thanks to @davidpatricio, @hugok79</li>
+                <li>Spanish translations thanks to @oscfdezdz</li>
+                <li>Portuguese (Brazil) translations thanks to @vitorhcl</li>
+                <li>Turkish translations thanks to @ersen0</li>
+                <li>Chineese (Simplified) translations thanks to Eric</li>
+                <li>Russian translations thanks to @Knebergish</li>
+                <li>Japanese translations thanks to @ryonakano</li>
+                <li>German translations thanks to @mkar1984, @thericosanto</li>
+                <li>Polish translations thanks to Zszywek, @mbledkowski</li>
                 <li>Croatian translations thanks to @milotype</li>
-                <li>Slovak translations thanks to @prescott66</li>
-                <li>Romanian translations thanks to @tiberiufrat</li>
-                <li>Portuguese translations thanks to @Xico26</li>
-                <li>Hungarian translations thanks to @swanux</li>
-                <li>Polish translations thanks to @imLinguin</li>
-                <li>German translations thanks to @thericosanto</li>
+                <li>Hungarian translations thanks to @zoli111, @swanux</li>
             </ul>
           </description>
         </release>
