@@ -66,7 +66,8 @@ class ComponentManager:
             "dxvk": {},
             "vkd3d": {},
             "nvapi": {},
-            "latencyflex": {}
+            "latencyflex": {},
+            "winebridge": {}
         }
         components_available = {
             "runtimes": self.__manager.runtimes_available,
@@ -75,7 +76,8 @@ class ComponentManager:
             "dxvk": self.__manager.dxvk_available,
             "vkd3d": self.__manager.vkd3d_available,
             "nvapi": self.__manager.nvapi_available,
-            "latencyflex": self.__manager.latencyflex_available
+            "latencyflex": self.__manager.latencyflex_available,
+            "winebridge": self.__manager.winebridge_available
         }
 
         index = self.__repo.catalog
@@ -270,6 +272,8 @@ class ComponentManager:
             path = Paths.latencyflex
         elif component == "runtime":
             path = Paths.runtimes
+        elif component == "winebridge":
+            path = Paths.winebridge
         else:
             logging.error(f"Unknown component [{component}].", )
             return False
@@ -385,24 +389,29 @@ class ComponentManager:
         Note: I know that this is not the most efficient way to do this,
         please give feedback if you know a better way to avoid this.
         '''
+        if component_type in ["runtime", "winebridge"]:
+            try:
+                os.remove(os.path.join(Paths.temp, archive))
+            except FileNotFoundError:
+                pass  # safely ignore the error, there is nothing to remove
+
         if component_type in ["runner", "runner:proton"]:
             self.__manager.check_runners()
 
-        if component_type == "dxvk":
+        elif component_type == "dxvk":
             self.__manager.check_dxvk()
 
-        if component_type == "vkd3d":
+        elif component_type == "vkd3d":
             self.__manager.check_vkd3d()
 
-        if component_type == "nvapi":
+        elif component_type == "nvapi":
             self.__manager.check_nvapi()
 
-        if component_type == "runtime":
+        elif component_type == "runtime":
             self.__manager.check_runtimes()
-            try:
-                os.remove(os.path.join(Paths.temp, archive))
-            except:
-                pass # safely ignore the error, there is nothing to remove
+
+        elif component_type == "winebridge":
+            self.__manager.check_winebridge()
 
         self.__manager.organize_components()
         JournalManager.write(

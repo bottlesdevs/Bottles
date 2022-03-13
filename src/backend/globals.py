@@ -53,6 +53,7 @@ class Paths:
 
     temp = f"{base}/temp"
     runtimes = f"{base}/runtimes"
+    winebridge = f"{base}/winebridge"
     runners = f"{base}/runners"
     bottles = f"{base}/bottles"
     steam = f"{base}/steam"

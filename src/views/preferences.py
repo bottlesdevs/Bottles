@@ -33,10 +33,10 @@ class PreferencesWindow(Handy.PreferencesWindow):
     switch_notifications = Gtk.Template.Child()
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
-    switch_winebridge = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
+    list_winebridge = Gtk.Template.Child()
     list_runtimes = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
     list_dxvk = Gtk.Template.Child()
@@ -82,9 +82,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_release_candidate.set_active(
             self.settings.get_boolean("release-candidate")
         )
-        self.switch_winebridge.set_active(
-            self.settings.get_boolean("experiments-winebridge")
-        )
         self.switch_steam.set_active(
             self.settings.get_boolean("experiments-steam")
         )
@@ -95,6 +92,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
             self.settings.get_boolean("update-date")
         )
         self.populate_runtimes_list()
+        self.populate_winebridge_list()
         self.populate_runners_list()
         self.populate_dxvk_list()
         self.populate_vkd3d_list()
@@ -106,7 +104,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_notifications.connect('state-set', self.__toggle_notify)
         self.switch_temp.connect('state-set', self.__toggle_temp)
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
-        self.switch_winebridge.connect('state-set', self.__toggle_winebridge)
         self.switch_steam.connect('state-set', self.__toggle_steam)
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
@@ -136,10 +133,6 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
     def __toggle_temp(self, widget, state):
         self.settings.set_boolean("temp", state)
-
-    def __toggle_winebridge(self, widget, state):
-        self.settings.set_boolean("experiments-winebridge", state)
-        self.window.page_details.build_pages()
 
     def __toggle_steam(self, widget, state):
         self.settings.set_boolean("experiments-steam", state)
@@ -171,6 +164,10 @@ class PreferencesWindow(Handy.PreferencesWindow):
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():
             self.list_runtimes.add(ComponentEntry(self.window, runtime, "runtime", is_upgradable=True))
+
+    def populate_winebridge_list(self):
+        for bridge in self.manager.supported_winebridge.items():
+            self.list_winebridge.add(ComponentEntry(self.window, bridge, "winebridge", is_upgradable=True))
 
     def populate_dxvk_list(self):
         for dxvk in self.manager.supported_dxvk.items():

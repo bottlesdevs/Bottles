@@ -48,13 +48,18 @@ class TaskManagerView(Gtk.ScrolledWindow):
         self.treeview_processes.connect("cursor-changed", self.show_kill_btn)
         
         # apply model to treeview_processes
-        self.liststore_processes = Gtk.ListStore(str, str, str, str)
+        self.liststore_processes = Gtk.ListStore(str, str, str)
         self.treeview_processes.set_model(self.liststore_processes)
 
         cell_renderer = Gtk.CellRendererText()
         i = 0
 
-        for column in ["PID", "Name", "Threads", "Parent"]:
+        for column in [
+            "PID",
+            "Name",
+            "Threads",
+            # "Parent"
+        ]:
             '''
             For each column, add it to the treeview_processes
             '''
@@ -99,7 +104,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
                     process.get("pid"),
                     process.get("name", "n/a"),
                     process.get("threads", "0"),
-                    process.get("parent", "0")
+                    # process.get("parent", "0")
                 ])  
 
     def sensitive_update(self, widget):

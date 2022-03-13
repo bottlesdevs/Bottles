@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import hashlib
 import subprocess
 import random
 import time
@@ -79,6 +80,7 @@ class Manager:
 
     # component lists
     runtimes_available = []
+    winebridge_available = []
     runners_available = []
     dxvk_available = []
     vkd3d_available = []
@@ -86,6 +88,7 @@ class Manager:
     latencyflex_available = []
     local_bottles = {}
     supported_runtimes = {}
+    supported_winebridge = {}
     supported_wine_runners = {}
     supported_proton_runners = {}
     supported_dxvk = {}
@@ -120,6 +123,7 @@ class Manager:
         self.check_nvapi(install_latest)
         self.check_latencyflex(install_latest)
         self.check_runtimes(install_latest)
+        self.check_winebridge(install_latest)
         self.check_runners(install_latest)
         if first_run:
             self.organize_components()
@@ -168,6 +172,10 @@ class Manager:
             logging.info("Runtimes path doesn't exist, creating now.", )
             os.makedirs(Paths.runtimes, exist_ok=True)
 
+        if not os.path.isdir(Paths.winebridge):
+            logging.info("WineBridge path doesn't exist, creating now.", )
+            os.makedirs(Paths.winebridge, exist_ok=True)
+
         if not os.path.isdir(Paths.bottles):
             logging.info("Bottles path doesn't exist, creating now.", )
             os.makedirs(Paths.bottles, exist_ok=True)
@@ -212,6 +220,7 @@ class Manager:
         self.supported_wine_runners = catalog["wine"]
         self.supported_proton_runners = catalog["proton"]
         self.supported_runtimes = catalog["runtimes"]
+        self.supported_winebridge = catalog["winebridge"]
         self.supported_dxvk = catalog["dxvk"]
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
@@ -367,6 +376,30 @@ class Manager:
                 if version:
                     version = f"runtime-{version}"
                     self.runtimes_available = [version]
+
+    def check_winebridge(self, install_latest: bool = True) -> bool:
+        self.winebridge_available = []
+        winebridge = glob("%s/WineBridge.exe" % Paths.winebridge)
+        if len(winebridge) == 0:
+            if install_latest and self.utils_conn.check_connection():
+                logging.warning("No WineBridge found.", )
+                try:
+                    version = next(iter(self.supported_winebridge))
+                    return self.component_manager.install(
+                        component_type="winebridge",
+                        component_name=version
+                    )
+                except StopIteration:
+                    return False
+            return False
+
+        version_file = os.path.join(Paths.winebridge, "VERSION")
+        if os.path.exists(version_file):
+            with open(version_file, "r") as f:
+                version = f.read().strip()
+                if version:
+                    version = f"winebridge-{version}"
+                    self.winebridge_available = [version]
 
     def check_dxvk(self, install_latest: bool = True):
         res = self.__check_component("dxvk", install_latest)

@@ -446,6 +446,7 @@ This will break the sandbox!</property>
         </child>
         <child>
           <object class="HdyPreferencesGroup" id="list_winebridge">
+            <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="title" translatable="yes">WineBridge</property>
             <child>
@@ -465,34 +466,6 @@ This will break the sandbox!</property>
           <object class="HdyPreferencesGroup">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">WineBridge</property>
-                <property name="subtitle" translatable="yes">Use WineBridge for process and program management.</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <child>
-                      <object class="GtkSwitch" id="switch_winebridge">
-                        <property name="visible">True</property>
-                        <property name="sensitive">False</property>
-                        <property name="can-focus">True</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>

@@ -15,6 +15,7 @@ class WineBridge(WineProgram):
     program = "WINE Bridge"
     command = "WineBridge.exe"
     is_internal = True
+    internal_path = "winebridge"
 
     def __wineserver_status(self):
         return WineServer(self.config).is_alive()
@@ -47,11 +48,14 @@ class WineBridge(WineProgram):
 
             r = r.split("|")
 
+            if len(r) < 3:
+                continue
+
             processes.append({
                 "pid": r[1],
-                "threads": "0",
+                "threads": r[2],
                 "name": r[0],
-                "parent": "0"
+                # "parent": r[3]
             })
 
         return processes

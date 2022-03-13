@@ -1,3 +1,4 @@
+import os
 from typing import NewType
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
@@ -16,6 +17,7 @@ class WineProgram:
     config: dict = {}
     colors: str = "default"
     is_internal: bool = False
+    internal_path: str = ""
 
     def __init__(self, config: BottleConfig, silent=False):
         self.config = config
@@ -25,7 +27,7 @@ class WineProgram:
         command = self.command
         
         if self.is_internal:
-            command = f"{Paths.base}/{command}"
+            command = os.path.join(Paths.base, self.internal_path, command)
 
         if args is not None:
             command += f" {args}"
