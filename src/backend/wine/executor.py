@@ -124,14 +124,13 @@ class WineExecutor:
         return False
 
     def __launch_with_bridge(self):
-        winebridge = WineBridge(self.config)
-
-        if winebridge.is_available():
-            res = winebridge.run_exe(self.exec_path)
-            return Result(
-                status=True,
-                data={"output": res}
-            )
+        # winebridge = WineBridge(self.config)
+        # if winebridge.is_available():
+        #     res = winebridge.run_exe(self.exec_path)
+        #     return Result(
+        #         status=True,
+        #         data={"output": res}
+        #     )
         if self.exec_type == "exe":
             return self.__launch_exe()
         if self.exec_type == "msi":
@@ -140,13 +139,13 @@ class WineExecutor:
         return False
 
     def __launch_exe(self):
-        winebridge = WineBridge(self.config)
-        if winebridge.is_available():
-            res = winebridge.run_exe(self.exec_path)
-            return Result(
-                status=True,
-                data={"output": res}
-            )
+        # winebridge = WineBridge(self.config)
+        # if winebridge.is_available():
+        #     res = winebridge.run_exe(self.exec_path)
+        #     return Result(
+        #         status=True,
+        #         data={"output": res}
+        #     )
 
         winecmd = WineCommand(
             self.config,

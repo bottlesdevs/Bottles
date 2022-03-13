@@ -21,6 +21,7 @@ from gi.repository import Gtk
 from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
 from bottles.backend.wine.winedbg import WineDbg
+from bottles.backend.wine.winebridge import WineBridge
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-taskmanager.ui')
@@ -82,11 +83,15 @@ class TaskManagerView(Gtk.ScrolledWindow):
         self.config = config
         if not config.get("Runner"):
             return
-            
-        winedbg = WineDbg(config)
 
         self.liststore_processes.clear()
-        processes = winedbg.get_processes()
+        winebridge = WineBridge(config)
+
+        if winebridge.is_available():
+            processes = winebridge.get_procs()
+        else:
+            winedbg = WineDbg(config)
+            processes = winedbg.get_processes()
 
         if len(processes) > 0:
             for process in processes:
@@ -110,7 +115,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
         )
     
     def kill_process(self, widget):
-        winedbg = WineDbg(self.config)
+        winebridge = WineBridge(self.config)
         selected = self.treeview_processes.get_selection()
         model, treeiter = selected.get_selected()
         
@@ -123,10 +128,17 @@ class TaskManagerView(Gtk.ScrolledWindow):
 
         def reset(result, error):
             self.liststore_processes.remove(treeiter)
-            
-        RunAsync(
-            task_func=winedbg.kill_process,
-            callback=reset,
-            pid=pid
-        )
-        
+
+        if winebridge.is_available():
+            RunAsync(
+                task_func=winebridge.kill_proc,
+                callback=reset,
+                pid=pid
+            )
+        else:
+            winedbg = WineDbg(self.config)
+            RunAsync(
+                task_func=winedbg.kill_process,
+                callback=reset,
+                pid=pid
+            )
