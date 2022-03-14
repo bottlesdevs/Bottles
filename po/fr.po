@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-03-13 18:01+0000\n"
-"Last-Translator: クリスDownix <chris.techer0@gmail.com>\n"
+"PO-Revision-Date: 2022-03-15 18:53+0000\n"
+"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
 "Language: fr\n"
@@ -386,7 +386,7 @@ msgstr "Dupliquer la bouteille"
 
 #: src/ui/details-bottle.ui:86
 msgid "Open with explorer"
-msgstr "Ouvrir avec l'explorateur"
+msgstr "Ouvrir avec l’explorateur"
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
@@ -406,11 +406,11 @@ msgstr "Je ne peux pas voir les fichiers de mon dossier personnel."
 
 #: src/ui/details-bottle.ui:175
 msgid "Executable silently crash or black screen"
-msgstr "Crash silencieux ou écran noir de l'Executable"
+msgstr "Crash silencieux de l’exécutable ou écran noir"
 
 #: src/ui/details-bottle.ui:201
 msgid "Simulate a Windows system reboot."
-msgstr "Simuler un redémarrage système Windows."
+msgstr "Simuler un redémarrage système de Windows."
 
 #: src/ui/details-bottle.ui:202
 msgid "Reboot"
@@ -422,7 +422,7 @@ msgstr "Simuler un arrêt système Windows."
 
 #: src/ui/details-bottle.ui:216
 msgid "Shutdown"
-msgstr "Arrêt"
+msgstr "Éteindre"
 
 #: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
@@ -446,7 +446,7 @@ msgstr "Nom de la bouteille"
 
 #: src/ui/details-bottle.ui:356
 msgid "Type a name for your bottle"
-msgstr "Entrez un nom pour votre bouteille"
+msgstr "Saisissez un nom pour votre bouteille"
 
 #: src/ui/details-bottle.ui:374
 msgid "Rename bottle"
@@ -490,11 +490,11 @@ msgstr "Tuer tous les processus WINE"
 
 #: src/ui/details-bottle.ui:662
 msgid "Make a backup of this bottle."
-msgstr "Faire une récupération de cette bouteille."
+msgstr "Créer une sauvegarde de cette bouteille."
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
-msgstr "Déplacement au sein de la sandbox …"
+msgstr "Déplacement vers le bac à sable…"
 
 #: src/ui/details-bottle.ui:774 src/views/details.py:115
 msgid "Programs"
@@ -568,11 +568,11 @@ msgstr "Désinstaller les programmes à l’aide du désinstallateur de Wine"
 
 #: src/ui/details-bottle.ui:1153
 msgid "Control panel"
-msgstr "Panneau de Contrôle"
+msgstr "Panneau de configuration"
 
 #: src/ui/details-bottle.ui:1155
 msgid "Access the internal wine control panel."
-msgstr "Accéder au panneau de contrôle interne de Wine."
+msgstr "Accéder au panneau de configuration interne de Wine."
 
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
@@ -581,7 +581,7 @@ msgstr ""
 
 #: src/ui/details-dependencies.ui:126
 msgid "Microsoft .NET Framework 4 .."
-msgstr "Microsoft .NET Framework 4 .."
+msgstr "Microsoft .NET Framework 4…"
 
 #: src/ui/details-dependencies.ui:138 src/ui/details-installers.ui:48
 msgid ""
@@ -611,7 +611,7 @@ msgstr "Sélectionner les dépendances"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
-msgstr "Epic Games Store .."
+msgstr "Epic Games Store…"
 
 #: src/ui/details-installers.ui:126 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:93
@@ -660,7 +660,8 @@ msgstr "Activer DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:121
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "Fournir la prise en charge DLSS si disponible et NVAPI de Nvidia."
+msgstr ""
+"Fournir la prise en charge de DLSS si disponible et utilise NVAPI de Nvidia."
 
 #: src/ui/details-preferences.ui:130 src/ui/details-preferences.ui:763
 msgid "Updating DXVK-NVAPI, please wait…"
@@ -709,7 +710,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:261
 msgid "Discrete GPU"
-msgstr "GPU Discrète"
+msgstr "GPU dédié"
 
 #: src/ui/details-preferences.ui:262
 msgid "Improves performance at the cost of increased power usage."
@@ -1099,8 +1100,8 @@ msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..)."
 msgstr ""
-"Ceci sont les adresses depuis votre système hôte qui sont cartographiées et "
-"reconnues comme appareils par l'éxécutable (par ex: C:, D:, ...)."
+"Ceci sont les chemins de votre système hôte qui sont assignés et reconnus "
+"comme périphériques par l’exécuteur (p. ex : C:, D:, …)."
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
@@ -2183,7 +2184,7 @@ msgstr "Autres exécuteurs"
 
 #: src/widgets/component.py:67
 msgid "Upgrade"
-msgstr "Améliorer"
+msgstr "Mettre à niveau"
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
