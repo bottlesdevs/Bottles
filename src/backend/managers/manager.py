@@ -122,8 +122,8 @@ class Manager:
         self.check_vkd3d(install_latest)
         self.check_nvapi(install_latest)
         self.check_latencyflex(install_latest)
-        self.check_runtimes(install_latest=True)
-        self.check_winebridge(install_latest=True)
+        self.check_runtimes(install_latest)
+        self.check_winebridge(install_latest)
         self.check_runners(install_latest)
         if first_run:
             self.organize_components()
@@ -225,6 +225,10 @@ class Manager:
         self.supported_vkd3d = catalog["vkd3d"]
         self.supported_nvapi = catalog["nvapi"]
         self.supported_latencyflex = catalog["latencyflex"]
+
+        # handle winebridge updates
+        if self.winebridge_available[0] != next(iter(self.supported_winebridge)):
+            self.check_winebridge(install_latest=True, update=True)
 
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
@@ -377,18 +381,20 @@ class Manager:
                     version = f"runtime-{version}"
                     self.runtimes_available = [version]
 
-    def check_winebridge(self, install_latest: bool = True) -> bool:
+    def check_winebridge(self, install_latest: bool = True, update: bool = False) -> bool:
         self.winebridge_available = []
-        winebridge = glob("%s/WineBridge.exe" % Paths.winebridge)
-        if len(winebridge) == 0:
+        winebridge = os.listdir(Paths.winebridge)
+        if len(winebridge) == 0 or update:
             if install_latest and self.utils_conn.check_connection():
                 logging.warning("No WineBridge found.", )
                 try:
                     version = next(iter(self.supported_winebridge))
-                    return self.component_manager.install(
+                    self.component_manager.install(
                         component_type="winebridge",
                         component_name=version
                     )
+                    self.winebridge_available = [version]
+                    return True
                 except StopIteration:
                     return False
             return False
