@@ -122,8 +122,8 @@ class Manager:
         self.check_vkd3d(install_latest)
         self.check_nvapi(install_latest)
         self.check_latencyflex(install_latest)
-        self.check_runtimes(install_latest)
-        self.check_winebridge(install_latest)
+        self.check_runtimes(install_latest=True)
+        self.check_winebridge(install_latest=True)
         self.check_runners(install_latest)
         if first_run:
             self.organize_components()
