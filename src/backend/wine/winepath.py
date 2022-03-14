@@ -13,6 +13,14 @@ class WinePath(WineProgram):
     program = "WINE path converter"
     command = "winepath"
 
+    @staticmethod
+    def is_windows(path: str):
+        return ":" in path or "\\" in path
+
+    @staticmethod
+    def is_unix(path: str):
+        return not WinePath.is_windows(path)
+
     def to_unix(self, path: str):
         args = f"--unix {path}"
 
