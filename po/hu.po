@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-03-13 22:56+0000\n"
+"PO-Revision-Date: 2022-03-15 18:53+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -299,7 +299,7 @@ msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/component-entry.ui:8
 msgid "Component version"
-msgstr "Összetevő-verzió"
+msgstr "Összetevőverzió"
 
 #: src/ui/component-entry.ui:18 src/ui/importer-entry.ui:20
 msgid "Browse files"
@@ -356,7 +356,7 @@ msgid ""
 "run it via terminal to read the output."
 msgstr ""
 "Telepítési hiba történt. Indítsa újra a Palackokat az összeomlási jelentés "
-"elolvasásához, vagy futtassa a terminállal a kimenet elolvasásához."
+"elolvasásához, vagy futtassa a terminállal a kimenet megtekintéséhez."
 
 #: src/ui/details-bottle.ui:20 src/ui/details-bottle.ui:85
 #: src/ui/importer.ui:20
@@ -548,7 +548,7 @@ msgstr "Wine folyamatok hibakeresése."
 #: src/ui/details-installers.ui:100 src/ui/details-programs.ui:125
 #: src/ui/details-versioning.ui:162
 msgid "Read documentation"
-msgstr "Dokumentáció olvasása"
+msgstr "Dokumentáció elolvasása"
 
 #: src/ui/details-bottle.ui:1069 src/views/details.py:127
 msgid "Task manager"
@@ -821,12 +821,12 @@ msgstr "Futtatók kezelése"
 
 #: src/ui/details-preferences.ui:582 src/ui/new.ui:353
 msgid "DXVK version"
-msgstr "DXVK-verzió"
+msgstr "DXVK verzió"
 
 #: src/ui/details-preferences.ui:638 src/ui/details-preferences.ui:806
 #: src/ui/new.ui:393
 msgid "Manage DXVK versions"
-msgstr "DXVK-verzióinak kezelése"
+msgstr "DXVK verziók kezelése"
 
 #: src/ui/details-preferences.ui:667
 msgid "VKD3D version"
@@ -834,7 +834,7 @@ msgstr "VKD3D verzió"
 
 #: src/ui/details-preferences.ui:723
 msgid "Manage VKD3D versions"
-msgstr "VKD3D-verzióinak kezelése"
+msgstr "VKD3D verziók kezelése"
 
 #: src/ui/details-preferences.ui:752
 msgid "DXVK NVAPI version"
@@ -998,11 +998,12 @@ msgstr "Folyamat leállítása"
 
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
-msgstr ""
+msgstr "Nem található állapot"
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
 msgstr ""
+"Hozza létre az első állapotot, hogy elkezdhesse a verziókezelést használni."
 
 #: src/ui/details-versioning.ui:93
 msgid "Type a really short comment:"
@@ -1056,6 +1057,11 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Találtunk egy vagy több hasonló (vagy megegyező) jelentést. Győződjön meg, "
+"hogy leellenőrizte, hogy ez nem lett-e már jelentve, mielőtt újat küld be. "
+"Minden jelentés erőfeszítést igényel a fejlesztők részéről a hiba "
+"diagnosztizáláshoz, kérjük, tartsa tiszteletben a munkájukat, és ügyeljen "
+"arra, hogy ne tegyen közzé ismétlődő jelentéseket."
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
@@ -1088,7 +1094,7 @@ msgstr "Meglévő felülbírálások"
 
 #: src/ui/dialog-drives.ui:24
 msgid "Drives"
-msgstr ""
+msgstr "Meghajtók"
 
 #: src/ui/dialog-drives.ui:49
 msgid ""
@@ -1369,6 +1375,7 @@ msgid "Import Bottles backup"
 msgstr "Palackok biztonsági másolatának importálása"
 
 #: src/ui/installer-entry.ui:47
+#, fuzzy
 msgid "Read review"
 msgstr "Felülvizsgálat olvasása"
 
@@ -1447,7 +1454,7 @@ msgstr "A gyönyörű palackom"
 
 #: src/ui/new.ui:229
 msgid "Use versioning"
-msgstr "Verziókészítés használata"
+msgstr "Verziókezelés használata"
 
 #: src/ui/new.ui:230
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -1593,7 +1600,7 @@ msgstr "Minden készen áll!"
 
 #: src/ui/onboard.ui:349
 msgid "You are now ready to create your first bottles."
-msgstr "Most készen áll az első palackok elkészítésére."
+msgstr "Most már készen áll az első palackjai létrehozására."
 
 #: src/ui/onboard.ui:353
 msgid "Finish"
@@ -1897,7 +1904,7 @@ msgstr ""
 
 #: src/backend/managers/manager.py:1120
 msgid "Setting Windows version…"
-msgstr "A Windows verzió beállítása folyamatban van…"
+msgstr "Windows verzió beállítása…"
 
 #: src/backend/managers/manager.py:1128
 msgid "Apply CMD default settings…"
@@ -1931,7 +1938,7 @@ msgstr "Függőség telepítése folyamatban van: {0}…"
 
 #: src/backend/managers/manager.py:1202
 msgid "Creating versioning state 0…"
-msgstr "A(z) 0 verziószámozási állapot létrehozása folyamatban van…"
+msgstr "A(z) 0 verziószámozási állapot létrehozása…"
 
 #: src/backend/managers/manager.py:1210
 msgid "Finalizing…"
@@ -1939,7 +1946,7 @@ msgstr "Véglegesítés folyamatban van…"
 
 #: src/backend/managers/versioning.py:64
 msgid "Generating state files index …"
-msgstr "Állapotfájlok tárgymutatójának létrehozása folyamatban van…"
+msgstr "Állapotfájlok tárgymutatójának létrehozása…"
 
 #: src/backend/managers/versioning.py:143
 msgid "Creating a restore point …"
@@ -1947,7 +1954,7 @@ msgstr "Visszaállítási pont létrehozása folyamatban van…"
 
 #: src/backend/managers/versioning.py:167
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "Nem sikerült létrehozni az állapotmappát."
 
 #: src/backend/managers/versioning.py:174
 msgid "Updating index …"
@@ -1955,20 +1962,20 @@ msgstr "Tárgymutató frissítése…"
 
 #: src/backend/managers/versioning.py:198
 msgid "Updating states …"
-msgstr "Az állapotok frissítése …"
+msgstr "Állapotok frissítése …"
 
 #: src/backend/managers/versioning.py:227
 msgid "Could not update the states file."
-msgstr ""
+msgstr "Nem sikerült frissíteni az állapotok fájlt."
 
 #: src/backend/managers/versioning.py:241
 msgid "Could not update the index file."
 msgstr ""
 
 #: src/backend/managers/versioning.py:267
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Az új {0}állapot sikeresen létrehozva!"
+msgstr "Az új [{0}] állapot sikeresen létrehozva!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -2077,7 +2084,7 @@ msgstr "A palack Start menüjében található."
 
 #: src/views/details.py:119
 msgid "Versioning"
-msgstr "Verziókészítés"
+msgstr "Verziókezelés"
 
 #: src/views/details.py:123
 msgid "Installers"
@@ -2184,7 +2191,7 @@ msgstr ""
 #: src/widgets/state.py:96
 #, python-brace-format
 msgid "Index for state {0}"
-msgstr "Tárgymutató: {0}"
+msgstr "Állapot tárgymutató: {0}"
 
 #~ msgid "Bottles' Issues"
 #~ msgstr "Tárolók kérdései"
