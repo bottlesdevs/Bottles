@@ -497,6 +497,7 @@ class Manager:
                         component_type=component_type,
                         component_name=component_version
                     )
+                    component["available"] = [component_version]
                 except StopIteration:
                     return False
             else:
@@ -1422,6 +1423,8 @@ class Manager:
             _version = config.get("LatencyFleX")
             _version = version if version else _version
             if not _version:
+                if len(self.latencyflex_available) == 0:
+                    self.check_latencyflex(install_latest=True)
                 _version = self.latencyflex_available[0]
             manager = LatencyFleXComponent(_version)
         else:
