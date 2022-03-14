@@ -78,7 +78,7 @@ class NewView(Handy.Window):
         {
             "id": "Application",
             "name": _("Application"),
-            "description": _("An environment improved for Windows application."),
+            "description": _("An environment improved for Windows applications."),
             "icon": "applications-engineering-symbolic"
         },
         {
