@@ -1031,7 +1031,8 @@ class Manager:
                 len(self.runners_available),
                 len(self.dxvk_available),
                 len(self.vkd3d_available),
-                len(self.nvapi_available)
+                len(self.nvapi_available),
+                len(self.latencyflex_available)
             ]:
                 logging.error("Missing essential components. Installing…", )
                 log_update(_("Missing essential components. Installing…"))
@@ -1039,6 +1040,7 @@ class Manager:
                 self.check_dxvk()
                 self.check_vkd3d()
                 self.check_nvapi()
+                self.check_latencyflex()
                 self.organize_components()
 
                 check_attempts += 1
