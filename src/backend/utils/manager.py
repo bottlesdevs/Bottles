@@ -65,6 +65,8 @@ class ManagerUtils:
                 path = ManagerUtils.get_latencyflex_path(component)
             elif path_type == "runtime":
                 path = Paths.runtimes
+            elif patk_type == "winebridge":
+                path = Paths.winebridge
 
         if path_type == "custom" and custom_path != "":
             path = custom_path
