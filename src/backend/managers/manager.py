@@ -1002,6 +1002,7 @@ class Manager:
             dxvk: bool = False,
             vkd3d: bool = False,
             nvapi: bool = False,
+            latencyflex: bool = False,
             versioning: bool = False,
             sandbox: bool = False,
             fn_logger: callable = None,
@@ -1072,6 +1073,11 @@ class Manager:
             nvapi = self.nvapi_available[0]
         nvapi_name = nvapi
 
+        if not latencyflex:
+            # if no latencyflex is specified, use the first one from available
+            latencyflex = self.latencyflex_available[0]
+        latencyflex_name = latencyflex
+
         # define bottle parameters
         bottle_name = name
         bottle_name_path = bottle_name.replace(" ", "-")
@@ -1114,6 +1120,7 @@ class Manager:
         config["DXVK"] = dxvk_name
         config["VKD3D"] = vkd3d_name
         config["NVAPI"] = nvapi_name
+        config["LatencyFleX"] = latencyflex_name
         config["Path"] = bottle_name_path
         if path != "":
             config["Path"] = bottle_complete_path
