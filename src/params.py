@@ -2,7 +2,7 @@
 APP_NAME = "Bottles"
 APP_NAME_LOWER = APP_NAME.lower()
 APP_ID = "com.usebottles.bottles"
-VERSION = "2022.3.14-trento-2"
+VERSION = "2022.3.14-trento-3"
 VERSION_NUM = "2022.2.28"
 
 # Internal settings not user editable
