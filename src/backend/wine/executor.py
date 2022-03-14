@@ -9,6 +9,7 @@ from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
+from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.winebridge import WineBridge
 
 logging = Logger()
@@ -99,7 +100,12 @@ class WineExecutor:
         so we use WINE Starter, which will exit as soon
         as the program is launched
         """
+        winepath = WinePath(self.config)
         start = Start(self.config)
+
+        if winepath.is_unix(self.exec_path):
+            return self.__launch_with_bridge()
+
         res = start.run(
             file=self.exec_path,
             terminal=self.terminal,
