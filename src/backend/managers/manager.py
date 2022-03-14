@@ -227,7 +227,8 @@ class Manager:
         self.supported_latencyflex = catalog["latencyflex"]
 
         # handle winebridge updates
-        if self.winebridge_available[0] != next(iter(self.supported_winebridge)):
+        if len(self.winebridge_available) == 0 \
+                or self.winebridge_available[0] != next(iter(self.supported_winebridge)):
             self.check_winebridge(install_latest=True, update=True)
 
     def organize_dependencies(self):
