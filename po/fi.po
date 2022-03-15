@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-03-15 18:53+0000\n"
+"PO-Revision-Date: 2022-03-15 20:08+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -1143,9 +1143,8 @@ msgid "page_duplicating"
 msgstr ""
 
 #: src/ui/dialog-duplicate.ui:204
-#, fuzzy
 msgid "Bottle duplicated"
-msgstr "Pullo luotu"
+msgstr "Pullo monistettu"
 
 #: src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
@@ -1185,9 +1184,8 @@ msgid ""
 msgstr "Täällä voit muuttaa suoritettavien komentojen ympäristömuuttujia."
 
 #: src/ui/dialog-environment-variables.ui:86
-#, fuzzy
 msgid "e.g.: VAR1=value VAR2=value"
-msgstr "esim. VAR1=arvo VAR2=arvo ..."
+msgstr "esim. VAR1=arvo VAR2=arvo"
 
 #: src/ui/dialog-environment-variables.ui:89
 msgid "e.g: VAR1=value VAR2=value .."
@@ -1301,7 +1299,7 @@ msgstr "Kirjoita uusi nimi:"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Kirjoita tähän..."
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
 #: src/views/bottle_details.py:295 src/views/list.py:126
@@ -1390,7 +1388,7 @@ msgstr "Suorita .exe/.msi tässä pullossa"
 
 #: src/ui/list.ui:39
 msgid "Search your bottles .."
-msgstr ""
+msgstr "Etsi pulloja..."
 
 #: src/ui/list.ui:77
 msgid "Start off by creating a Bottle."
@@ -1643,7 +1641,6 @@ msgid "Close Bottles after starting a program from the file manager"
 msgstr "Sulje Pullot, kun ohjelma on käynnistetty tiedostonhallinnasta"
 
 #: src/ui/preferences.ui:238
-#, fuzzy
 msgid "Advanced"
 msgstr "Lisäasetukset"
 
@@ -1842,13 +1839,13 @@ msgstr "Varmuuskopion tuominen: {0}"
 
 #: src/backend/managers/installer.py:376 src/backend/managers/installer.py:372
 msgid "Dependencies installation failed."
-msgstr ""
+msgstr "Riippuvuuksien asentaminen epäonnistui."
 
 #. unlock widget
 #: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
 #: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
 msgid "Installation failed, please check the logs."
-msgstr ""
+msgstr "Asennus epäonnistu, tarkista lokit."
 
 #: src/backend/managers/manager.py:979
 msgid "Fail to install components, tried 3 times."
@@ -1970,13 +1967,12 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/drives.py:58
-#, fuzzy
 msgid "Choose path"
-msgstr "Selaa polkua"
+msgstr "Valitse polku"
 
 #: src/dialogs/drives.py:61
 msgid "Select"
-msgstr ""
+msgstr "Valitse"
 
 #: src/dialogs/generic.py:30 src/dialogs/generic.py:215
 msgid "Warning"
@@ -2034,10 +2030,8 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Haluatko varmasti poistaa tämän pullon ja kaikki tiedostot?"
 
 #: src/views/bottle_preferences.py:148
-#, fuzzy
 msgid "This feature is not available on your system."
-msgstr ""
-"Pelitila ei ole käytettävissä järjestelmässäsi tai se ei ole käynnissä."
+msgstr "Tämä ominaisuus ei ole käytettävissä järjestelmässäsi."
 
 #: src/views/bottle_preferences.py:162
 msgid "Choose working directory for executables"
@@ -2128,7 +2122,7 @@ msgstr ""
 
 #: src/views/new.py:248
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "Virhe pulloa luotaessa."
 
 #: src/views/new.py:255
 #, python-brace-format
@@ -2141,24 +2135,20 @@ msgid "Choose new bottles path"
 msgstr "Valitse suoritustiedoston polku"
 
 #: src/views/preferences.py:190
-#, fuzzy
 msgid "Caffe runners"
-msgstr "Hallitse ajajia"
+msgstr "Caffe-ajajat"
 
 #: src/views/preferences.py:191
-#, fuzzy
 msgid "Lutris runners"
-msgstr "Wine-ajajat"
+msgstr "Lutris-ajajat"
 
 #: src/views/preferences.py:192
-#, fuzzy
 msgid "Proton runners"
-msgstr "Hallitse ajajia"
+msgstr "Proton-ajajat"
 
 #: src/views/preferences.py:193
-#, fuzzy
 msgid "Other runners"
-msgstr "Hallitse ajajia"
+msgstr "Muut ajajat"
 
 #: src/widgets/component.py:67
 msgid "Upgrade"
