@@ -9,8 +9,8 @@ body:
     attributes:
       value: |
         ### Read here first
-        Please don't fill issue for a Windows executable that doesn't work in Bottles (if not installed through our installers). Our software is a Wine prefix manager. If a Windows application doesn't work, it could be a Wine problem (**Wine is NOT a software developed by Bottles**) or a misconfiguration of the wineprefix (take a look at WineHQ: https://www.winehq.org) or ProtonDB: https://www.protondb.com for more information on the software you are trying to run).
-  
+        **Please don't fill issue for a Windows executable that doesn't work in Bottles (if not installed through our installers).** Our software is a Wine prefix manager. If a Windows application doesn't work, it could be a Wine problem or a misconfiguration of the wineprefix. Please visit [WineHQ](https://www.winehq.org) or [ProtonDB](https://www.protondb.com) for more information on the software you are trying to run.
+
   - type: textarea
     id: what-happened
     attributes:
@@ -19,7 +19,7 @@ body:
       placeholder: A clear and concise description of what the bug is.
     validations:
       required: true
-  
+
   - type: textarea
     id: to-reproduce
     attributes:
@@ -32,12 +32,12 @@ body:
         4. See error
     validations:
       required: true
-  
+
   - type: markdown
     attributes:
       value: |
         ## System information
-      
+
   - type: dropdown
     id: package
     attributes:
@@ -45,12 +45,12 @@ body:
       description: How did you install Bottles?
       options:
         - Flatpak from Flathub
-        - AUR (`bottles` package)
+        - AUR ("bottles" package)
         - From source
         - Other, unofficial package
     validations:
       required: true
-      
+
   - type: input
     id: distro
     attributes:
@@ -59,17 +59,70 @@ body:
       placeholder: Fedora 35, Arch linux, Ubuntu 21.10..
     validations:
       required: true
-      
-  - type: dropdown
-    id: display-server
+
+  - type: textarea
+    id: health-check
     attributes:
-      label: Display Server
+      label: Health Check
+      description: Copy-paste the box inside Health Check. To do so, press the hamburger menu (`☰`) at the top right. Then press "Health check". Lastly, select everything, copy then paste here.
+      placeholder: |
+        Display:
+            X.org: true
+            X.org (port): :99.0
+            Wayland: false
+        Graphics:
+            vendors:
+                nvidia:
+                    vendor: nvidia
+                    envs:
+                        __NV_PRIME_RENDER_OFFLOAD: '1'
+                        __GLX_VENDOR_LIBRARY_NAME: nvidia
+                        __VK_LAYER_NV_optimus: NVIDIA_only
+                    icd: /usr/lib/x86_64-linux-gnu/GL/vulkan/icd.d/nvidia_icd.json:/usr/lib/i386-linux-gnu/GL/vulkan/icd.d/nvidia_icd.json
+                amd:
+                    vendor: amd
+                    envs:
+                        DRI_PRIME: '1'
+                    icd: /usr/lib/x86_64-linux-gnu/GL/vulkan/icd.d/radeon_icd.x86_64.json:/usr/lib/i386-linux-gnu/GL/vulkan/icd.d/radeon_icd.i686.json
+            prime:
+                integrated: *id001
+                discrete: *id002
+        Kernel:
+            Type: Linux
+            Version: 5.16.9-200.fc35.x86_64
+        Distro:
+            Name: GNOME
+            Version: '"41 (Flatpak runtime)"'
+        Tools:
+            cabextract: true
+            p7zip: true
+            patool: true
+            glibc_min: '2.33'
+        Bottles_envs: null
+    validations:
+      required: true
+
+  - type: dropdown
+    id: display-protocol
+    attributes:
+      label: Display Protocol
+      description: What display protocol is your system using? You can determine the display protocol used by the system by running `echo $XDG_SESSION_TYPE` in the terminal.
       multiple: true
       options:
-        - Xorg
+        - X11
+        - Wayland
+
+  - type: dropdown
+    id: display-backend-bottles
+    attributes:
+      label: Display Backend used by Bottles
+      description: What display backend is Bottles using? You can install the `xeyes` package from your distribution repositories. Once installed, run `xeyes` in the terminal and move your cursor around inside the Bottles window. If the eye follows your cursor, it means Bottles is running on the X11 backend, otherwise it is running on the Wayland backend.
+      multiple: true
+      options:
+        - X11
         - Wayland
         - I don't know
-  
+
   - type: textarea
     id: additional-context
     attributes:
