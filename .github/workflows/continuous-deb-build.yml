@@ -1,0 +1,26 @@
+name: "build-deb"
+on:
+  push:
+    branches: [ v1 ]
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+      - uses: actions/checkout@v2
+      
+      - name: Install prerequisite packages
+        run: |
+          sudo apt-get install fakeroot dh-virtualenv debhelper
+          
+      - name: build deb package
+        run: |
+          dpkg-buildpackage -rfakeroot -b -uc -us -d
+          ls
+          mv ../*.deb bottles.$GITHUB_SHA.deb
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "continuous-v1"
+        prerelease: false
+        title: "bottles v1 build $GITHUB_SHA"
+        files: |
+          bottles.$GITHUB_SHA.deb
