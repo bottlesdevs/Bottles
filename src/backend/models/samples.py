@@ -52,6 +52,7 @@ class Samples:
             "take_focus": False,
             "fixme_logs": False,
             "use_runtime": False,
+            "use_steam_runtime": False,
         },
         "Environment_Variables": {},
         "Installed_Dependencies": [],

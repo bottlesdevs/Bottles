@@ -24,20 +24,23 @@ from bottles.backend.globals import Paths  # pyright: reportMissingImports=false
 class RuntimeManager:
         
     @staticmethod
-    def get_runtimes():
-        runtimes = [
-            RuntimeManager.__get_bottles_runtime()
-        ]
-        
-        for runtime in runtimes:
-            if runtime:
-                return runtime
-        
-        return False
+    def get_runtimes(_filter: str = "bottles"):
+        runtimes = {
+            "bottles": RuntimeManager.__get_bottles_runtime(),
+            "steam": RuntimeManager.__get_steam_runtime()
+        }
+
+        if _filter not in runtimes or len(runtimes[_filter]) == 0:
+            return False
+
+        return runtimes[_filter]
     
     @staticmethod
-    def get_runtime_env():
-        runtime = RuntimeManager.get_runtimes()
+    def get_runtime_env(_filter: str = "bottles"):
+        runtime = RuntimeManager.get_runtimes(_filter)
+
+        if not runtime:
+            return False
 
         env = ""
         if runtime:

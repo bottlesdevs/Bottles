@@ -29,7 +29,7 @@ class WineEnv:
 
     def __init__(self):
         self.__env = os.environ.copy()
-    
+
     def add(self, key, value, override=False):
         if key in self.__env:
             if override:
@@ -37,18 +37,18 @@ class WineEnv:
             else:
                 return
         self.__env[key] = value
-    
+
     def add_bundle(self, bundle, override=False):
         for key, value in bundle.items():
             self.add(key, value, override)
-    
+
     def get(self):
         result = self.__result
         result["count_envs"] = len(result["envs"])
         result["count_overrides"] = len(result["overrides"])
         result["envs"] = self.__env
         return result
-    
+
     def concat(self, key, values, sep=":"):
         if isinstance(values, str):
             values = [values]
@@ -69,17 +69,17 @@ class WineCommand:
     """
 
     def __init__(
-        self,
-        config: BottleConfig,
-        command: str,
-        terminal: bool = False,
-        arguments: str = False,
-        environment: dict = False,
-        comunicate: bool = False,
-        cwd: str = None,
-        colors: str = "default",
-        minimal: bool = False,  # avoid gamemode/gamescope usage
-        post_script: str = None
+            self,
+            config: BottleConfig,
+            command: str,
+            terminal: bool = False,
+            arguments: str = False,
+            environment: dict = False,
+            comunicate: bool = False,
+            cwd: str = None,
+            colors: str = "default",
+            minimal: bool = False,  # avoid gamemode/gamescope usage
+            post_script: str = None
     ):
         self.config = config
         self.minimal = minimal
@@ -149,7 +149,7 @@ class WineCommand:
 
             for e in environment:
                 env.add(e, environment[e], override=True)
-        
+
         # Bottle DLL_Overrides
         if config["DLL_Overrides"]:
             for dll in config.get("DLL_Overrides").items():
@@ -160,9 +160,20 @@ class WineCommand:
         dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
-        if "FLATPAK_ID" in os.environ and \
-                params.get("use_runtime") and not self.terminal:
-            ld += RuntimeManager.get_runtime_env()
+        if params.get("use_runtime") and not self.terminal:
+            _rb = RuntimeManager.get_runtime_env("bottles")
+            if _rb:
+                logging.info("Using Bottles runtime")
+                ld += _rb
+            else:
+                logging.warning("Bottles runtime was requested but not found")
+        if params.get("use_steam_runtime") and not self.terminal:
+            _rs = RuntimeManager.get_runtime_env("steam")
+            if _rs:
+                logging.info("Using Steam runtime")
+                ld += _rs
+            else:
+                logging.warning("Steam runtime was requested but not found")
 
         # Get Runner libraries
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
@@ -195,21 +206,21 @@ class WineCommand:
         # Esync environment variable
         if params["sync"] == "esync":
             env.add("WINEESYNC", "1")
-        
+
         # Fsync environment variable
         if params["sync"] == "fsync":
             env.add("WINEFSYNC", "1")
-        
+
         # Futex2 environment variable
         if params["sync"] == "futex2":
             env.add("WINEFSYNC_FUTEX2", "1")
-        
+
         # Wine debug level
         debug_level = "fixme-all"
         if params["fixme_logs"]:
             debug_level = "+fixme-all"
         env.add("WINEDEBUG", debug_level)
-        
+
         # LatencyFleX
         if params["latencyflex"]:
             _lf_path = ManagerUtils.get_latencyflex_path(config["LatencyFleX"])
@@ -218,12 +229,12 @@ class WineCommand:
         # Aco compiler
         if params["aco_compiler"]:
             env.add("ACO_COMPILER", "aco")
-        
+
         # FSR
         if params["fsr"]:
             env.add("WINE_FULLSCREEN_FSR", "1")
             env.add("WINE_FULLSCREEN_FSR_STRENGHT", str(params["fsr_level"]))
-        
+
         # PulseAudio latency
         if params["pulseaudio_latency"]:
             env.add("PULSE_LATENCY_MSEC", "60")
@@ -310,12 +321,12 @@ class WineCommand:
 
         else:
             runner = f"{Paths.runners}/{runner}/bin/wine"
-        
+
         if arch == "win64":
             runner = f"{runner}64"
 
         runner = runner.replace(" ", "\\ ")
-        
+
         return runner
 
     def __get_cmd(self, command, post_script) -> str:
@@ -339,7 +350,7 @@ class WineCommand:
                 command = f"{self.__get_gamescope_cmd()} {command}"
             if mangohud_available and params.get("mangohud"):
                 command = f"{mangohud_available} {command}"
-        
+
         if post_script is not None:
             command = f"{command} && sh {post_script}"
 
@@ -435,7 +446,7 @@ class WineCommand:
             return res
 
     @staticmethod
-    def __set_dxvk_nvapi_conf(bottle:str):
+    def __set_dxvk_nvapi_conf(bottle: str):
         """
         TODO: This should be moved to a dedicated DXVKConf class when
               we will provide a way to set the DXVK configuration.

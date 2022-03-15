@@ -63,6 +63,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_pulse_latency = Gtk.Template.Child()
     switch_fixme = Gtk.Template.Child()
     switch_runtime = Gtk.Template.Child()
+    switch_steam_runtime = Gtk.Template.Child()
     switch_mouse_capture = Gtk.Template.Child()
     switch_take_focus = Gtk.Template.Child()
     toggle_sync = Gtk.Template.Child()
@@ -82,6 +83,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     action_discrete = Gtk.Template.Child()
     action_runner = Gtk.Template.Child()
     action_runtime = Gtk.Template.Child()
+    action_steam_runtime = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_dxvkbool = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
@@ -144,9 +146,13 @@ class PreferencesView(Gtk.ScrolledWindow):
 
         self.__prevent_scroll()
 
-        if RuntimeManager.get_runtimes:
+        if RuntimeManager.get_runtimes("bottles"):
             self.action_runtime.set_visible(True)
             self.switch_runtime.connect('state-set', self.__toggle_runtime)
+
+        if RuntimeManager.get_runtimes("steam"):
+            self.action_steam_runtime.set_visible(True)
+            self.switch_steam_runtime.connect('state-set', self.__toggle_steam_runtime)
 
         '''Toggle some utilites according to its availability'''
         self.switch_gamemode.set_sensitive(gamemode_available)
@@ -264,6 +270,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_gamescope.set_active(parameters["gamescope"])
         self.switch_fsr.set_active(parameters["fsr"])
         self.switch_runtime.set_active(parameters["use_runtime"])
+        self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
         self.switch_aco.set_active(parameters["aco_compiler"])
 
         self.toggle_sync.set_active(parameters["sync"] == "wine")
@@ -541,6 +548,19 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="use_runtime",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+
+    def __toggle_steam_runtime(self, widget, state):
+        '''
+        This function update the steam runtime status on the bottle
+        configuration according to the widget state.
+        '''
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="use_steam_runtime",
             value=state,
             scope="Parameters"
         )
