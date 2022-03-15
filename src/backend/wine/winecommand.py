@@ -166,10 +166,10 @@ class WineCommand:
 
         # Get Runner libraries
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
-        for lib in ["lib", "lib64"]:
+        for lib in ["lib/wine", "lib32/wine", "lib64/wine"]:
             if os.path.exists(f"{runner_path}/{lib}"):
                 ld.append(f"{runner_path}/{lib}")
-        
+
         # DXVK environment variables
         if params["dxvk"]:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
