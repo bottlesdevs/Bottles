@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-02-15 07:59+0000\n"
+"PO-Revision-Date: 2022-03-15 18:53+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -382,7 +382,6 @@ msgid "Full archive"
 msgstr "Täydellinen arkisto"
 
 #: src/ui/details-bottle.ui:59
-#, fuzzy
 msgid "Duplicate bottle"
 msgstr "Monista pullo"
 
@@ -392,7 +391,7 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
-msgstr ""
+msgstr "Flatpak-ohje"
 
 #: src/ui/details-bottle.ui:136
 msgid "I can't see my old bottles after upgrade."
@@ -415,18 +414,16 @@ msgid "Simulate a Windows system reboot."
 msgstr ""
 
 #: src/ui/details-bottle.ui:202
-#, fuzzy
 msgid "Reboot"
-msgstr "Käynnistä Windows uudelleen"
+msgstr "Käynnistä uudelleen"
 
 #: src/ui/details-bottle.ui:215
 msgid "Simulate a Windows system shutdown."
 msgstr ""
 
 #: src/ui/details-bottle.ui:216
-#, fuzzy
 msgid "Shutdown"
-msgstr "Sammuta Windows"
+msgstr "Sammuta"
 
 #: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
@@ -449,14 +446,12 @@ msgid "Bottle name"
 msgstr "Pullon nimi"
 
 #: src/ui/details-bottle.ui:356
-#, fuzzy
 msgid "Type a name for your bottle"
-msgstr "Valitse pullolle nimi"
+msgstr "Anna pullolle nimi"
 
 #: src/ui/details-bottle.ui:374
-#, fuzzy
 msgid "Rename bottle"
-msgstr "Luo pullo"
+msgstr "Nimeä pullo uudelleen"
 
 #: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
 msgid "Versioning enabled for this bottle"
@@ -479,9 +474,8 @@ msgid "64 Bit"
 msgstr "64-bittinen"
 
 #: src/ui/details-bottle.ui:515
-#, fuzzy
 msgid "Vaniglia-6.21-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:540
 #, fuzzy
@@ -493,14 +487,12 @@ msgid "Run executable"
 msgstr "Käynnistä suoritustiedosto"
 
 #: src/ui/details-bottle.ui:637
-#, fuzzy
 msgid "Kill all WINE processes"
 msgstr "Tapa kaikki wine-prosessit"
 
 #: src/ui/details-bottle.ui:662
-#, fuzzy
 msgid "Make a backup of this bottle."
-msgstr "Suorita tässä pullossa"
+msgstr "Tee varmuuskopio tästä pullosta"
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
@@ -531,7 +523,6 @@ msgid "Browse internal files."
 msgstr "Selaa sisäisiä tiedostoja."
 
 #: src/ui/details-bottle.ui:918
-#, fuzzy
 msgid "Command line"
 msgstr "Komentorivi"
 
@@ -540,7 +531,6 @@ msgid "Run commands inside the Bottle."
 msgstr "Suorita komentoja pullon sisällä."
 
 #: src/ui/details-bottle.ui:960
-#, fuzzy
 msgid "Registry editor"
 msgstr "Rekisterimuokkain"
 
@@ -579,7 +569,6 @@ msgid "Uninstall programs using wine uninstaller"
 msgstr "Poista ohjelmat Wine-asennuksen poistajalla"
 
 #: src/ui/details-bottle.ui:1153
-#, fuzzy
 msgid "Control panel"
 msgstr "Ohjauspaneeli"
 
@@ -608,18 +597,16 @@ msgid "Report a problem or a missing dependency."
 msgstr "Ilmoita puuttuvasta riippuvuudesta"
 
 #: src/ui/details-dependencies.ui:243
-#, fuzzy
 msgid "Install selected"
-msgstr "Asentajat"
+msgstr "Asenna valitut"
 
 #: src/ui/details-dependencies.ui:246
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr ""
 
 #: src/ui/details-dependencies.ui:265
-#, fuzzy
 msgid "Select dependencies"
-msgstr "Riippuvuudet"
+msgstr "Valitse riippuvuudet"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
@@ -648,9 +635,8 @@ msgstr ""
 "Poista käytöstä jos havaitset graafisia ongelmia."
 
 #: src/ui/details-preferences.ui:43 src/ui/details-preferences.ui:593
-#, fuzzy
 msgid "Updating DXVK, please wait…"
-msgstr "Päivitetään tilat…"
+msgstr "Päivitetään DXVK:ta…"
 
 #: src/ui/details-preferences.ui:76
 msgid "Use VKD3D"
@@ -666,9 +652,8 @@ msgstr ""
 "Poista käytöstä jos havaitset graafisia ongelmia."
 
 #: src/ui/details-preferences.ui:87 src/ui/details-preferences.ui:678
-#, fuzzy
 msgid "Updating VKD3D, please wait…"
-msgstr "Päivitetään tilat…"
+msgstr "Päivitetään VKD3D:tä…"
 
 #: src/ui/details-preferences.ui:120
 msgid "Enable DLSS (DXVK-NVAPI)"
@@ -730,9 +715,8 @@ msgid "Improves performance at the cost of increased power usage."
 msgstr "Parantaa suorituskykyä lisääntyneen virrankulutuksen kustannuksella."
 
 #: src/ui/details-preferences.ui:289
-#, fuzzy
 msgid "Display settings"
-msgstr "Lisäasetukset"
+msgstr "Näyttöasetukset"
 
 #: src/ui/details-preferences.ui:294
 msgid "Use a virtual desktop"
@@ -759,13 +743,12 @@ msgid "Activate it if the program does not retake focus on switch."
 msgstr ""
 
 #: src/ui/details-preferences.ui:428
-#, fuzzy
 msgid "Screen scaling"
-msgstr "Käytä kokonaisluvulla skaalausta"
+msgstr "Näytönskaalaus"
 
 #: src/ui/details-preferences.ui:429
 msgid "Set custom DPI"
-msgstr ""
+msgstr "Aseta mukautettu DPI"
 
 #: src/ui/details-preferences.ui:443
 msgid "96"
@@ -820,7 +803,6 @@ msgid "System"
 msgstr "Järjestelmä"
 
 #: src/ui/details-preferences.ui:494
-#, fuzzy
 msgid "Components version"
 msgstr "Komponentin versio"
 
@@ -854,9 +836,8 @@ msgid "Manage VKD3D versions"
 msgstr "Hallitse VKD3D-versioita"
 
 #: src/ui/details-preferences.ui:752
-#, fuzzy
 msgid "DXVK NVAPI version"
-msgstr "NVAPI-versio"
+msgstr "DXVK NVAPI -versio"
 
 #: src/ui/details-preferences.ui:837
 #, fuzzy
@@ -885,16 +866,15 @@ msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:890
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:914
 msgid "Windows version"
 msgstr "Windows-versio"
 
 #: src/ui/details-preferences.ui:924
-#, fuzzy
 msgid "Updating Windows version, please wait…"
-msgstr "Asetetaan Windows-versiota…"
+msgstr "Päivitetään Windows-versiota…"
 
 #: src/ui/details-preferences.ui:971
 #, fuzzy
@@ -1040,9 +1020,8 @@ msgid "Create new state"
 msgstr "Luo uusi tila"
 
 #: src/ui/dialog-crash-report.ui:24
-#, fuzzy
 msgid "Bottles Crash Report"
-msgstr "Pullot aloitettu!"
+msgstr "Pullojen kaatumisraportti"
 
 #: src/ui/dialog-crash-report.ui:27 src/ui/dialog-duplicate.ui:28
 #: src/ui/dialog-environment-variables.ui:27 src/ui/dialog-launch-options.ui:26
@@ -1103,7 +1082,7 @@ msgstr "Olemassa olevat ohitukset"
 
 #: src/ui/dialog-drives.ui:24
 msgid "Drives"
-msgstr ""
+msgstr "Asemat"
 
 #: src/ui/dialog-drives.ui:49
 msgid ""
@@ -1113,15 +1092,13 @@ msgstr ""
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
-msgstr ""
+msgstr "Kirjain"
 
 #: src/ui/dialog-drives.ui:134
-#, fuzzy
 msgid "Existing drives"
-msgstr "Olemassa olevat ohitukset"
+msgstr "Olemassa olevat asemat"
 
 #: src/ui/dialog-duplicate.ui:25
-#, fuzzy
 msgid "Duplicate a bottle"
 msgstr "Monista pullo"
 
@@ -1154,9 +1131,8 @@ msgid "page_name"
 msgstr "Nimeä pullo uudelleen"
 
 #: src/ui/dialog-duplicate.ui:147
-#, fuzzy
 msgid "Duplicating…"
-msgstr "Ladataan…"
+msgstr "Monistetaan…"
 
 #: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:523
 msgid "Take a break, it may take a while"
