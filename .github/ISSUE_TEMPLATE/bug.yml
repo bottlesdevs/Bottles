@@ -1,0 +1,92 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Read here first
+        Please don't fill issue for a Windows executable that doesn't work in Bottles (if not installed through our installers). Our software is a Wine prefix manager. If a Windows application doesn't work, it could be a Wine problem (**Wine is NOT a software developed by Bottles**) or a misconfiguration of the wineprefix (take a look at WineHQ: https://www.winehq.org) or ProtonDB: https://www.protondb.com for more information on the software you are trying to run).
+  
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Describe the bug
+      description: Also tell us, what did you expect to happen?
+      placeholder: A clear and concise description of what the bug is.
+      value: ""
+    validations:
+      required: true
+  
+  - type: textarea
+    id: to-reproduce
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+      value: ""
+    validations:
+      required: true
+  
+  - type: markdown
+    attributes:
+      value: |
+        ## System information
+      
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      description: How did you install Bottles?
+      options:
+        - Flatpak from Flathub
+        - AUR (`bottles` package)
+        - From source
+        - Other, unofficial package
+    validations:
+      required: true
+      
+  - type: input
+    id: distro
+    attributes:
+      label: Distribution
+      description: In which Linux distribution did you encounter the bug?
+      placeholder: Fedora 35, Arch linux, Ubuntu 21.10..
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: display-server
+    attributes:
+      label: Display Server
+      multiple: true
+      options:
+        - Xorg
+        - Wayland
+        - I don't know
+  
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+      placeholder: ""
+      value: ""
+    validations:
+      required: false
+      
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
