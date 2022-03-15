@@ -1,4 +1,4 @@
-name: Feature request
+name: Feature Request
 description: Suggest an idea for this project
 title: "[Request]: "
 labels: ["Feature request"]
@@ -10,7 +10,7 @@ body:
       value: |
         ### Read here first
         Please try to respect the layout, be as concise as possible and link some resources if they can be useful to us to better understand the request. Maintain a friendly tone.
-        
+
   - type: textarea
     id: what-happened
     attributes:
@@ -19,7 +19,7 @@ body:
       placeholder: Ex. I'm always frustrated when [...]
     validations:
       required: true
-  
+
   - type: textarea
     id: your-solution
     attributes:
@@ -28,7 +28,7 @@ body:
       placeholder: To fix this, I would [...]
     validations:
       required: true
-  
+
   - type: textarea
     id: other-solutions
     attributes:
@@ -36,7 +36,7 @@ body:
       description: A clear and concise description of any alternative solutions or features you've considered.
     validations:
       required: false
-  
+
   - type: textarea
     id: additional-context
     attributes:
