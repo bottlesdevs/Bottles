@@ -16,7 +16,7 @@ jobs:
         run: |
           dpkg-buildpackage -rfakeroot -b -uc -us -d
           ls
-          mv ../*.deb bottles.$GITHUB_SHA.deb
+          mv ../*.deb bottles.${{ github.sha }}.deb
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
