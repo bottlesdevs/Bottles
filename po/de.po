@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-03-10 13:12+0000\n"
+"PO-Revision-Date: 2022-03-17 22:15+0000\n"
 "Last-Translator: ThatRedKite <lambdarho950@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
@@ -418,13 +418,12 @@ msgid "Simulate a Windows system reboot."
 msgstr "Einen Windows Neustart simulieren."
 
 #: src/ui/details-bottle.ui:202
-#, fuzzy
 msgid "Reboot"
-msgstr "Windows neu starten"
+msgstr "Rebooten"
 
 #: src/ui/details-bottle.ui:215
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Einen Windows-Neustart simulieren."
 
 #: src/ui/details-bottle.ui:216
 msgid "Shutdown"
@@ -440,7 +439,7 @@ msgstr "In die Sandbox bewegen"
 
 #: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
-msgstr ""
+msgstr "Starten im Terminal"
 
 #: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
 msgid "Destroy this bottle"
@@ -619,7 +618,7 @@ msgstr "Abhängigkeiten auswählen"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games Store .."
 
 #: src/ui/details-installers.ui:126 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:93
@@ -750,6 +749,8 @@ msgstr "Fokus erzwingen"
 #: src/ui/details-preferences.ui:397
 msgid "Activate it if the program does not retake focus on switch."
 msgstr ""
+"Aktivieren, falls das Programm den Fokus nach einem Programmwechsel nicht "
+"zurückerhält."
 
 #: src/ui/details-preferences.ui:428
 #, fuzzy
@@ -914,11 +915,11 @@ msgstr "Spielemodus verwenden"
 
 #: src/ui/details-preferences.ui:1027
 msgid "Use the Gamescope micro-compositor."
-msgstr ""
+msgstr "Den Gamescope Micro-Compositor verwenden."
 
 #: src/ui/details-preferences.ui:1062
 msgid "Manage Gamescope settings"
-msgstr ""
+msgstr "Gamescope Einstellungen verwalten"
 
 #: src/ui/details-preferences.ui:1091
 msgid "Working directory"
@@ -1000,11 +1001,11 @@ msgstr "Suche nach installierten Programmen"
 
 #: src/ui/details-programs.ui:151
 msgid "Show/hide removed programs"
-msgstr ""
+msgstr "Zeige/Verstecke entfernte Programme"
 
 #: src/ui/details-taskmanager.ui:59
 msgid "Stop process"
-msgstr ""
+msgstr "Prozess stoppen"
 
 #: src/ui/details-versioning.ui:60
 msgid "No states found"
@@ -1053,6 +1054,9 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
+"Bottles ist das letzte Mal abgestürzt. Bitte Fülle einen Fehlerbericht aus "
+"und füge den folgenden Traceback bei, um uns bei der Fehlersuche zu helfen "
+"und zu verhindern, dass der Fehler erneut auftritt."
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -1061,10 +1065,15 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Wir haben mindestens einen übereinstimmenden oder ähnlichen Bericht "
+"gefunden. Bitte vergewissere dich sorgfältig, dass dieser Bericht nicht "
+"bereits übermittelt wurde. Jeder Bericht bedeutet eine Menge Arbeit seitens "
+"der Entwickler. Bitte respektiere die Entwickler und stelle sicher, dass "
+"keine Duplikate gesendet werden."
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr ""
+msgstr "Ich möchte den Bericht trotzdem senden."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/dialog-launch-options.ui:226
 #: src/ui/new.ui:208
@@ -1100,6 +1109,8 @@ msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..)."
 msgstr ""
+"Dies sind Dateipfade auf dem Hostsystem, die vom Runner als Geräte erkannt "
+"werden (z. B. C: D: ...)."
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
@@ -1163,6 +1174,8 @@ msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Umgebungsvariablen sind dynamisch benannte Werte, die die laufenden Prozesse "
+"in der Bottle beeinflussen können."
 
 #: src/ui/dialog-env-vars.ui:54
 #, fuzzy
@@ -1171,7 +1184,7 @@ msgstr "Neue Überbrückung"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr ""
+msgstr "z. B. MEINE_VARIABLE"
 
 #: src/ui/dialog-env-vars.ui:123
 #, fuzzy
@@ -1205,36 +1218,38 @@ msgstr "z. B.: VAR1=value VAR2=value ..."
 
 #: src/ui/dialog-gamescope.ui:24
 msgid "Gamescope settings"
-msgstr ""
+msgstr "Gamescope Einstellungen"
 
 #: src/ui/dialog-gamescope.ui:63
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
 msgstr ""
+"Konfiguriere, wie Gamescope das Fenster für Spiele, die du spielen willst, "
+"verwalten soll."
 
 #: src/ui/dialog-gamescope.ui:79
 msgid "Game resolution"
-msgstr ""
+msgstr "Bildschirmauflösung des Spiels"
 
 #: src/ui/dialog-gamescope.ui:84 src/ui/dialog-gamescope.ui:162
 msgid "Width"
-msgstr ""
+msgstr "Breite"
 
 #: src/ui/dialog-gamescope.ui:95 src/ui/dialog-gamescope.ui:173
 msgid "e.g. 1280"
-msgstr ""
+msgstr "z. B. 1280"
 
 #: src/ui/dialog-gamescope.ui:115 src/ui/dialog-gamescope.ui:193
 msgid "Height"
-msgstr ""
+msgstr "Höhe"
 
 #: src/ui/dialog-gamescope.ui:126 src/ui/dialog-gamescope.ui:204
 msgid "e.g. 720"
-msgstr ""
+msgstr "z. B. 720"
 
 #: src/ui/dialog-gamescope.ui:157
 msgid "Gamescope resolution"
-msgstr ""
+msgstr "Bildschirmauflösung von Gamescope"
 
 #: src/ui/dialog-gamescope.ui:235
 msgid "Extra settings"
@@ -1242,19 +1257,19 @@ msgstr "Zusätzliche Einstellungen"
 
 #: src/ui/dialog-gamescope.ui:240
 msgid "Frame rate limit"
-msgstr ""
+msgstr "Bildratenlimit"
 
 #: src/ui/dialog-gamescope.ui:251
 msgid "e.g. 60"
-msgstr ""
+msgstr "z. B. 60"
 
 #: src/ui/dialog-gamescope.ui:271
 msgid "Frame rate limit (when no focus)"
-msgstr ""
+msgstr "Bildratenlimit (wenn nicht im Fokus)"
 
 #: src/ui/dialog-gamescope.ui:282
 msgid "e.g. 30"
-msgstr ""
+msgstr "z. B. 30"
 
 #: src/ui/dialog-gamescope.ui:302
 #, fuzzy
@@ -1268,11 +1283,11 @@ msgstr "Fensterbreite"
 
 #: src/ui/dialog-gamescope.ui:341
 msgid "Borderless"
-msgstr ""
+msgstr "Randlos"
 
 #: src/ui/dialog-gamescope.ui:357
 msgid "Fullscreen"
-msgstr ""
+msgstr "Vollbild"
 
 #: src/ui/dialog-launch-options.ui:23 src/ui/program-entry.ui:33
 msgid "Change launch options"
@@ -1293,6 +1308,10 @@ msgid ""
 "\"https://docs.usebottles.com/flatpak/expose-directories\">Flatseal</a> if "
 "the script path is outside the sandbox."
 msgstr ""
+"Wenn die Flatpak Version von Bottles verwendet wird und der Pfad des "
+"Skriptes außerhalb der Sandbox liegt, dann vergiss nicht, die "
+"Bereichtigungen mithilfe von <a href=\"https://docs.usebottles.com/flatpak/"
+"expose-directories\"> Flatseal </a> richtig einzustellen."
 
 #: src/ui/dialog-launch-options.ui:163
 msgid "Post-run script"
@@ -1301,6 +1320,7 @@ msgstr ""
 #: src/ui/dialog-launch-options.ui:165
 msgid "Choose a script which should be executed after run."
 msgstr ""
+"Wähle ein Skript, das ausgeführt wird, nachdem das Programm beendet wurde."
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
 #, fuzzy
@@ -1309,11 +1329,11 @@ msgstr "Bottle umbenennen"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Einen neuen Namen eingeben:"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr ""
+msgstr "Schreibe hier.."
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
 #: src/views/bottle_details.py:295 src/views/list.py:126
@@ -1326,7 +1346,7 @@ msgstr ""
 
 #: src/ui/dialog-run-args.ui:89
 msgid "e.g: -opengl -SkipBuildPatchPrereq"
-msgstr ""
+msgstr "z. B. -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dialog.ui:6
 msgid "Message goes here."
@@ -1354,7 +1374,7 @@ msgstr "Native dann Builtin"
 
 #: src/ui/drive-entry.ui:9
 msgid "/point/to/path"
-msgstr ""
+msgstr "/pfad/hier/eingeben"
 
 #: src/ui/env-var-entry.ui:84
 msgid "value"
@@ -1402,7 +1422,7 @@ msgstr ".exe/.msi in dieser Bottle ausführen"
 
 #: src/ui/list.ui:39
 msgid "Search your bottles .."
-msgstr ""
+msgstr "Durchsuche deine Bottles .."
 
 #: src/ui/list.ui:77
 msgid "Start off by creating a Bottle."
@@ -1472,18 +1492,17 @@ msgid "Architecture"
 msgstr "Architektur"
 
 #: src/ui/new.ui:424
-#, fuzzy
 msgid "We recommend using 32bit only if strictly necessary"
 msgstr ""
-"Wir empfehlen 32bit nur dann zu nutzen, wenn es zwingend erforderlich ist"
+"Wir empfehlen 32 Bit nur dann zu nutzen, wenn es zwingend erforderlich ist"
 
 #: src/ui/new.ui:438
 msgid "64 bit"
-msgstr "64 bit"
+msgstr "64 Bit"
 
 #: src/ui/new.ui:439
 msgid "32 bit"
-msgstr "32 bit"
+msgstr "32 Bit"
 
 #: src/ui/new.ui:504
 msgid "Creating bottle…"
@@ -1519,7 +1538,8 @@ msgstr "Willkommen bei Bottles"
 
 #: src/ui/onboard.ui:117
 msgid "Bottles makes running Windows Software on Linux much easier."
-msgstr "Bottles macht es einfacher Windows-Programme in Linux auszuführen."
+msgstr ""
+"Bottles macht es viel einfacher, Windows-Programme unter Linux auszuführen."
 
 #: src/ui/onboard.ui:151
 msgid "What Are Runners?"
