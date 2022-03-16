@@ -1,7 +1,8 @@
 name: "build-deb"
 on:
   push:
-    branches: [ v1 ]
+    branches:
+      - 'v1'
 jobs:
   build:
     runs-on: "ubuntu-18.04"
@@ -23,4 +24,4 @@ jobs:
           automatic_release_tag: "continuous-v1"
           prerelease: true
           title: "bottles v1 build ${{ github.sha }}"
-          files: bottles.${{ github.sha }}.deb
+          files: "bottles.${{ github.sha }}.deb"
