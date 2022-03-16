@@ -21,6 +21,6 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "continuous-v1"
-          prerelease: false
-          title: "bottles v1 build $GITHUB_SHA"
-          files: bottles.$GITHUB_SHA.deb
+          prerelease: true
+          title: "bottles v1 build ${{ github.sha }}"
+          files: bottles.${{ github.sha }}.deb
