@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-09 11:03+0100\n"
-"PO-Revision-Date: 2022-02-15 07:59+0000\n"
-"Last-Translator: Farhan Makarim <farhanp35@gmail.com>\n"
+"PO-Revision-Date: 2022-03-17 22:15+0000\n"
+"Last-Translator: CoreXGit <aulia.ikbal09@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
 "bottles/id/>\n"
 "Language: id\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -381,7 +381,7 @@ msgstr "Duplikat bottle"
 
 #: src/ui/details-bottle.ui:86
 msgid "Open with explorer"
-msgstr ""
+msgstr "Buka dengan explorer (wine)"
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
@@ -430,7 +430,7 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
-msgstr ""
+msgstr "Jalankan dengan terminal"
 
 #: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
 msgid "Destroy this bottle"
@@ -470,9 +470,8 @@ msgid "64 Bit"
 msgstr "64 Bit"
 
 #: src/ui/details-bottle.ui:515
-#, fuzzy
 msgid "Vaniglia-6.21-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:540
 #, fuzzy
@@ -489,9 +488,8 @@ msgid "Kill all WINE processes"
 msgstr "Bunuh semua proses wine"
 
 #: src/ui/details-bottle.ui:662
-#, fuzzy
 msgid "Make a backup of this bottle."
-msgstr "Pembaruan terakhir untuk bottle ini."
+msgstr "Buat sebuah cadangan dari bottle ini."
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
@@ -601,18 +599,16 @@ msgid "Report a problem or a missing dependency."
 msgstr "Laporkan masalah atau dependensi yang kurang."
 
 #: src/ui/details-dependencies.ui:243
-#, fuzzy
 msgid "Install selected"
-msgstr "Pemasang"
+msgstr "Instal yang dipilih"
 
 #: src/ui/details-dependencies.ui:246
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr ""
 
 #: src/ui/details-dependencies.ui:265
-#, fuzzy
 msgid "Select dependencies"
-msgstr "Dependensi"
+msgstr "Pilih dependensi"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
@@ -1727,9 +1723,8 @@ msgid "Steam Proton prefixes"
 msgstr ""
 
 #: src/ui/preferences.ui:491
-#, fuzzy
 msgid "In early development (requires restart)"
-msgstr "Alamat bottles kustom (butuh mulai ulang)"
+msgstr "Sedang dalam pengembangan awal (butuh mulai ulang)"
 
 #: src/ui/program-entry.ui:46
 msgid "Browse path"
@@ -2157,28 +2152,24 @@ msgid "Choose new bottles path"
 msgstr "Pilih alamat bottle baru"
 
 #: src/views/preferences.py:190
-#, fuzzy
 msgid "Caffe runners"
-msgstr "Kelola runner"
+msgstr "Runner caffe"
 
 #: src/views/preferences.py:191
-#, fuzzy
 msgid "Lutris runners"
-msgstr "Runner Wine"
+msgstr "Runner lutris"
 
 #: src/views/preferences.py:192
-#, fuzzy
 msgid "Proton runners"
-msgstr "Kelola runner"
+msgstr "Runner proton"
 
 #: src/views/preferences.py:193
-#, fuzzy
 msgid "Other runners"
-msgstr "Kelola runner"
+msgstr "Runner lainnya"
 
 #: src/widgets/component.py:67
 msgid "Upgrade"
-msgstr ""
+msgstr "Meningkatkan"
 
 #: src/widgets/dependency.py:106 src/widgets/installer.py:76
 #, python-brace-format
