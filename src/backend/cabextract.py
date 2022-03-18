@@ -56,7 +56,6 @@ class CabExtract:
     def __checks(self):
         if not os.path.exists(self.path) and "*" not in self.path:
             logging.error(f"Cab file {self.path} not found", )
-            logging.write_log(f"Cab file {self.path} not found")
             return False
 
         if not shutil.which("cabextract"):
