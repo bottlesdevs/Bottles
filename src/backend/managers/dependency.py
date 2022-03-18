@@ -538,7 +538,7 @@ class DependencyManager:
             try:
                 shutil.copyfile(f"{path}/{font}", f"{font_path}/{font}")
             except (FileNotFoundError, FileExistsError):
-                logger.warning(f"Font {font} already exists or is not found.")
+                logging.warning(f"Font {font} already exists or is not found.")
 
             # print(f"Copying {font} to {bottle_path}/drive_c/windows/Fonts/")
 
