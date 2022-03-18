@@ -409,11 +409,12 @@ class InstallerManager:
                 executable['path'] = executable['path'].replace(
                     "userdir/", f"/users/{_userdir}/"
                 )
+            _path = f'C:\\{executable["path"]}'.replace("/", "\\")
             _program = {
                 "executable": executable["file"],
                 "arguments": executable.get("arguments", ""),
                 "name": executable["name"],
-                "path": f"{bottle}/drive_c/{executable['path']}"
+                "path": _path
             }
             self.__manager.update_config(
                 config=config,
@@ -430,15 +431,16 @@ class InstallerManager:
             # sweep and save
             self.__layer.sweep()
             self.__layer.save()
+            _path = f'C:\\{executable["path"]}'.replace("/", "\\")
 
             # register layer
             _layer_launcher = {
                 "uuid": self.__layer.get_uuid(),
                 "name": manifest["Name"],
                 "icon": "com.usebottles.bottles-program",
-                "exec_path": f'C:\\{executable["path"]}/',
+                "exec_path": _path,
                 "exec_name": executable["file"],
-                "exec_args": executable["arguments"],
+                "exec_args": executable.get("arguments", ""),
                 "exec_env": {},
                 "exec_cwd": executable["path"],
                 "parameters": parameters,
