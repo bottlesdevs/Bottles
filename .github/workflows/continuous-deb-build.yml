@@ -23,5 +23,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "continuous-v1"
           prerelease: true
-          title: "bottles v1 build ${{ github.sha }}"
+          title: "(legacy) Bottles v1 build ${{ github.sha }}"
           files: "bottles.${{ github.sha }}.deb"
