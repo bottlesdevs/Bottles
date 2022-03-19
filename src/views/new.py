@@ -133,8 +133,6 @@ class NewView(Handy.Window):
 
         # populate combo_dxvk with dxvk versions from the manager
         for dxvk in self.manager.dxvk_available:
-            if "-async" in dxvk:
-                continue  # NOTE: had a lot of problems with dxvk-async, let the user choose it manually
             self.combo_dxvk.append(dxvk, dxvk)
 
         self.combo_dxvk.set_active(0)
