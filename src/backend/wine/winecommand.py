@@ -201,7 +201,7 @@ class WineCommand:
 
         # DXVK HUD environment variable
         if params["dxvk_hud"]:
-            env.add("DXVK_HUD", "device,memory,drawcalls,fps,version,api,compiler")
+            env.add("DXVK_HUD", "full")
 
         # Esync environment variable
         if params["sync"] == "esync":
