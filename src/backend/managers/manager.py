@@ -29,7 +29,7 @@ import fnmatch
 from glob import glob
 from datetime import datetime
 from gettext import gettext as _
-from typing import Union, NewType
+from typing import Union, NewType, Any, List
 from gi.repository import GLib
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
@@ -47,6 +47,7 @@ from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.layers import Layer, LayersStore
 from bottles.backend.dlls.dxvk import DXVKComponent
@@ -411,38 +412,28 @@ class Manager:
     def check_dxvk(self, install_latest: bool = True):
         res = self.__check_component("dxvk", install_latest)
         if res:
-            d_non_async, d_async = [], []
-            for r in res:
-                if "-async" in r:
-                    d_async.append(r)
-                else:
-                    d_non_async.append(r)
-
-            d_non_async = sorted(d_non_async, reverse=True)
-            d_async = sorted(d_async, reverse=True)
-
-            self.dxvk_available = d_non_async + d_async
+            self.dxvk_available = res
 
     def check_vkd3d(self, install_latest: bool = True):
         res = self.__check_component("vkd3d", install_latest)
         if res:
-            self.vkd3d_available = sorted(res, reverse=True)
+            self.vkd3d_available = res
 
     def check_nvapi(self, install_latest: bool = True):
         res = self.__check_component("nvapi", install_latest)
         if res:
-            self.nvapi_available = sorted(res, reverse=True)
+            self.nvapi_available = res
 
     def check_latencyflex(self, install_latest: bool = True):
         res = self.__check_component("latencyflex", install_latest)
         if res:
-            self.latencyflex_available = sorted(res, reverse=True)
+            self.latencyflex_available = res
 
     def __check_component(
             self,
             component_type: str,
             install_latest: bool = True
-    ) -> Union[dict, bool]:
+    ) -> Union[Union[bool, list[Any]], Any]:
         components = {
             "dxvk": {
                 "available": self.dxvk_available,
@@ -503,7 +494,11 @@ class Manager:
                     return False
             else:
                 return False
-        return component["available"]
+
+        try:
+            return sort_by_version(component["available"])
+        except ValueError:
+            return sorted(component["available"], reverse=True)
 
     @staticmethod
     def __find_program_icon(program_name):

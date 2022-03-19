@@ -98,3 +98,43 @@ def is_glibc_min_available():
             return version
     except:
         return False
+
+
+def sort_by_version(_list: list, sep: str = "-"):
+    _dict = {}
+    _final = []
+    version_structs = []
+
+    for item in _list:
+        _item = item.split(sep)
+        _dict[_item[-1]] = {"prefix": sep.join(_item[:-1])}
+
+    for key in _dict.keys():
+        _lenght = len(key.split("."))
+        if _lenght not in version_structs:
+            version_structs.append(_lenght)
+
+    max_struct = max(version_structs)
+
+    for item in _dict.copy():
+        _original = item
+
+        if len(item.split(".")) < max_struct:
+            item = item + ".0" * (max_struct - len(item.split(".")))
+            _dict[item] = _dict.pop(_original)
+            _dict[item]["original"] = _original
+
+    order = list(_dict.keys())
+    order.sort(key=lambda x: [int(i) for i in x.split(".")], reverse=True)
+
+    for item in order:
+        _d_item = _dict[item]
+        _v = item
+        _pfx = _d_item["prefix"]
+
+        if "original" in _d_item:
+            _v = _d_item["original"]
+
+        _final.append(_pfx + sep + _v)
+
+    return _final
