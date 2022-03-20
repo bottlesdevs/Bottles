@@ -18,8 +18,6 @@
 import re
 import sys
 
-from datetime import datetime
-
 
 def validate_url(url: str):
     """Validate a URL."""
@@ -97,7 +95,8 @@ def is_glibc_min_available():
         if version >= '2.32':
             return version
     except:
-        return False
+        pass
+    return False
 
 
 def sort_by_version(_list: list, extra_check: str = "async"):
