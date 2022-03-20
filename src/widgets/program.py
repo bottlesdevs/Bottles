@@ -25,6 +25,7 @@ from bottles.dialogs.launchoptions import LaunchOptionsDialog
 from bottles.dialogs.rename import RenameDialog
 
 from bottles.backend.globals import user_apps_dir
+from bottles.backend.managers.steam import SteamManager
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
@@ -179,7 +180,7 @@ class ProgramEntry(Handy.ActionRow):
         self.__reset_buttons()
 
     def run_steam(self, widget):
-        print("Not implemented yet")
+        SteamManager.launch_app(self.config["CompatData"])
     
     def stop_process(self, widget):
         winedbg = WineDbg(self.config)
