@@ -37,3 +37,10 @@ class SteamUtils:
         Parses a VDF file. Just a wrapper for vdf.loads.
         """
         return vdf.loads(data)
+
+    @staticmethod
+    def to_vdf(data: VDFDict) -> None:
+        """
+        Saves a VDF file. Just a wrapper for vdf.dumps.
+        """
+        vdf.dumps(data, path)
