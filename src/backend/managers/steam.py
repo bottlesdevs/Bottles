@@ -198,6 +198,23 @@ class SteamManager:
         return local_config
 
     @staticmethod
+    def save_local_config(local_config: dict):
+        steam_path = SteamManager.__find_steam_path("userdata")
+
+        if steam_path is None:
+            return
+
+        conf_path = os.path.join(steam_path, "config/localconfig.vdf")
+
+        if os.path.isfile(conf_path):
+            shutil.copy(conf_path, f"{conf_path}.bck.{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
+
+        with open(conf_path, "w") as f:
+            f.write(SteamUtils.to_vdf(local_config))
+
+        logging.info(f"Steam config saved")
+
+    @staticmethod
     def get_app_config(prefix: str) -> dict:
         local_config = SteamManager.get_local_config()
         _fail_msg = f"Fail to get app config from Steam for: {prefix}"
@@ -216,9 +233,37 @@ class SteamManager:
             logging.warning(_fail_msg)
             return {}
 
-        app_conf = apps[prefix]
-        if app_conf is None:
-            logging.warning(_fail_msg)
-            return {}
+        return apps[prefix]
 
-        return app_conf
+    @staticmethod
+    def get_launch_options(prefix: str) -> str:
+        app_conf = SteamManager.get_app_config(prefix)
+        _fail_msg = f"Fail to get launch options from Steam for: {prefix}"
+
+        if len(app_conf) == 0:
+            logging.warning(_fail_msg)
+            return ""
+
+        launch_options = app_conf.get("LaunchOptions", "")
+        return launch_options
+
+    @staticmethod
+    def set_launch_options(prefix: str, launch_options: str):
+        local_config = SteamManager.get_local_config()
+        _fail_msg = f"Fail to set launch options for: {prefix}"
+
+        apps = local_config.get("UserLocalConfigStore", {}) \
+            .get("Software", {}) \
+            .get("Valve", {}) \
+            .get("Steam", {}) \
+            .get("apps", {})
+
+        if len(apps) == 0 or prefix not in apps:
+            logging.warning(_fail_msg)
+            return
+
+        app_conf = apps[prefix]
+        app_conf["LaunchOptions"] = launch_options
+        SteamManager.save_local_config(local_config)
+
+        logging.info(f"Steam launch options set for: {prefix}")
