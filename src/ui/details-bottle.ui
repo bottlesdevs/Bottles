@@ -771,6 +771,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">20</property>
+                    <property name="margin-bottom">10</property>
                     <property name="title" translatable="yes">Programs</property>
                     <child>
                       <placeholder/>
@@ -786,403 +787,409 @@
                   <object class="HdyPreferencesGroup" id="group_utilities">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-top">20</property>
-                    <property name="title" translatable="yes">Utilities</property>
                     <child>
-                      <object class="HdyActionRow">
+                      <object class="HdyExpanderRow">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Wine config</property>
-                        <property name="activatable-widget">btn_winecfg</property>
-                        <property name="subtitle" translatable="yes">Adjust internal settings.</property>
+                        <property name="activatable">False</property>
+                        <property name="title" translatable="yes">Utilities</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="HdyActionRow">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Wine config</property>
+                            <property name="activatable-widget">btn_winecfg</property>
+                            <property name="subtitle" translatable="yes">Adjust internal settings.</property>
                             <child>
-                              <object class="GtkButton" id="btn_winecfg">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">system-run-symbolic</property>
-                                  </object>
-                                </child>
-                                <style>
-                                  <class name="btn_undecorated"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="HdyActionRow" id="row_browse">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Browse C:</property>
-                        <property name="activatable-widget">btn_browse</property>
-                        <property name="subtitle" translatable="yes">Browse internal files.</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
-                            <child>
-                              <object class="GtkMenuButton">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="focus-on-click">False</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
-                                <property name="popover">pop_browse</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">view-more-symbolic</property>
-                                  </object>
-                                </child>
-                                <style>
-                                  <class name="image-button"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSeparator">
+                              <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="btn_browse">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
+                                <property name="spacing">10</property>
                                 <child>
-                                  <object class="GtkImage">
+                                  <object class="GtkButton" id="btn_winecfg">
                                     <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">system-run-symbolic</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
                                   </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
-                                <style>
-                                  <class name="btn_undecorated"/>
-                                </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">2</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Command line</property>
-                        <property name="activatable-widget">btn_cmd</property>
-                        <property name="subtitle" translatable="yes">Run commands inside the Bottle.</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="HdyActionRow" id="row_browse">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Browse C:</property>
+                            <property name="activatable-widget">btn_browse</property>
+                            <property name="subtitle" translatable="yes">Browse internal files.</property>
                             <child>
-                              <object class="GtkButton" id="btn_cmd">
+                              <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
                                 <child>
-                                  <object class="GtkImage">
+                                  <object class="GtkMenuButton">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="focus-on-click">False</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <property name="popover">pop_browse</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">view-more-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="image-button"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkSeparator">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="icon-name">system-run-symbolic</property>
                                   </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">1</property>
+                                  </packing>
                                 </child>
-                                <style>
-                                  <class name="btn_undecorated"/>
-                                </style>
+                                <child>
+                                  <object class="GtkButton" id="btn_browse">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="HdyActionRow" id="row_regedit">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Registry editor</property>
-                        <property name="activatable-widget">btn_regedit</property>
-                        <property name="subtitle" translatable="yes">Edit the internal registry.</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="HdyActionRow">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Command line</property>
+                            <property name="activatable-widget">btn_cmd</property>
+                            <property name="subtitle" translatable="yes">Run commands inside the Bottle.</property>
                             <child>
-                              <object class="GtkButton" id="btn_regedit">
+                              <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
                                 <child>
-                                  <object class="GtkImage">
+                                  <object class="GtkButton" id="btn_cmd">
                                     <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">system-run-symbolic</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
                                   </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
-                                <style>
-                                  <class name="btn_undecorated"/>
-                                </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Debug</property>
-                        <property name="activatable-widget">btn_debug</property>
-                        <property name="subtitle" translatable="yes">Debug wine processes.</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="HdyActionRow" id="row_regedit">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Registry editor</property>
+                            <property name="activatable-widget">btn_regedit</property>
+                            <property name="subtitle" translatable="yes">Edit the internal registry.</property>
                             <child>
-                              <object class="GtkButton" id="btn_debug">
+                              <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
                                 <child>
-                                  <object class="GtkImage">
+                                  <object class="GtkButton" id="btn_regedit">
                                     <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">system-run-symbolic</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
                                   </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
-                                <style>
-                                  <class name="btn_undecorated"/>
-                                </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="btn_help_debug">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="tooltip-text" translatable="yes">Read documentation</property>
-                                <property name="halign">end</property>
-                                <property name="valign">center</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">dialog-information-symbolic</property>
-                                  </object>
-                                </child>
-                                <style>
-                                  <class name="image-button"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Task manager</property>
-                        <property name="activatable-widget">btn_taskmanager</property>
-                        <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="HdyActionRow">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Debug</property>
+                            <property name="activatable-widget">btn_debug</property>
+                            <property name="subtitle" translatable="yes">Debug wine processes.</property>
                             <child>
-                              <object class="GtkButton" id="btn_taskmanager">
+                              <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
                                 <child>
-                                  <object class="GtkImage">
+                                  <object class="GtkButton" id="btn_debug">
                                     <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">system-run-symbolic</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
                                   </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">1</property>
+                                  </packing>
                                 </child>
-                                <style>
-                                  <class name="btn_undecorated"/>
-                                </style>
+                                <child>
+                                  <object class="GtkButton" id="btn_help_debug">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="tooltip-text" translatable="yes">Read documentation</property>
+                                    <property name="halign">end</property>
+                                    <property name="valign">center</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">dialog-information-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="image-button"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="HdyActionRow" id="row_uninstaller">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Uninstaller</property>
-                        <property name="activatable-widget">btn_uninstaller</property>
-                        <property name="subtitle" translatable="yes">Uninstall programs using wine uninstaller</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="HdyActionRow">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Task manager</property>
+                            <property name="activatable-widget">btn_taskmanager</property>
+                            <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
                             <child>
-                              <object class="GtkButton" id="btn_uninstaller">
+                              <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
                                 <child>
-                                  <object class="GtkImage">
+                                  <object class="GtkButton" id="btn_taskmanager">
                                     <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">system-run-symbolic</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
                                   </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
-                                <style>
-                                  <class name="btn_undecorated"/>
-                                </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Control panel</property>
-                        <property name="activatable-widget">btn_controlpanel</property>
-                        <property name="subtitle" translatable="yes">Access the internal wine control panel.</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="HdyActionRow" id="row_uninstaller">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="spacing">10</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Uninstaller</property>
+                            <property name="activatable-widget">btn_uninstaller</property>
+                            <property name="subtitle" translatable="yes">Uninstall programs using wine uninstaller</property>
                             <child>
-                              <object class="GtkButton" id="btn_controlpanel">
+                              <object class="GtkBox">
                                 <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="relief">none</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
                                 <child>
-                                  <object class="GtkImage">
+                                  <object class="GtkButton" id="btn_uninstaller">
                                     <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="icon-name">system-run-symbolic</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
                                   </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
                                 </child>
-                                <style>
-                                  <class name="btn_undecorated"/>
-                                </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="HdyActionRow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Control panel</property>
+                            <property name="activatable-widget">btn_controlpanel</property>
+                            <property name="subtitle" translatable="yes">Access the internal wine control panel.</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
+                                <child>
+                                  <object class="GtkButton" id="btn_controlpanel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                              </object>
                             </child>
                           </object>
                         </child>
