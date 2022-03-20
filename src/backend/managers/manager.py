@@ -784,8 +784,7 @@ class Manager:
                     self.update_config(
                         config=conf_file_yaml,
                         key=key,
-                        value=Samples.config[key],
-                        no_update=True
+                        value=Samples.config[key]
                     )
 
                 miss_params_keys = Samples.config["Parameters"].keys(
@@ -803,8 +802,7 @@ class Manager:
                         config=conf_file_yaml,
                         key=key,
                         value=Samples.config["Parameters"][key],
-                        scope="Parameters",
-                        no_update=True
+                        scope="Parameters"
                     )
                 self.local_bottles[bottle_name_path] = conf_file_yaml
 
@@ -834,7 +832,6 @@ class Manager:
             key: str,
             value: str,
             scope: str = "",
-            no_update: bool = False,
             remove: bool = False
     ) -> dict:
         """
@@ -842,8 +839,10 @@ class Manager:
         update the parameters in the specified scope (e.g. Parameters).
         TODO: move to bottle.py (Bottle manager)
         """
-        if "IsLayer" in config:
+        if config.get("IsLayer"):
             return {}
+        elif config.get("Environment") == "Steam":
+            return SteamManager.update_bottle(config, key, value, scope, remove)
 
         logging.info(f"Setting Key: [{key}] to [{value}] for "
                      f"bottle: [{config['Name']}]…", )
@@ -872,9 +871,6 @@ class Manager:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
 
-        if not no_update:
-            self.update_bottles(silent=True)
-
         config["Update_Date"] = str(datetime.now())
         return config
 
@@ -891,8 +887,7 @@ class Manager:
                 self.update_config(
                     config=config,
                     key=key,
-                    value=Samples.config[key],
-                    no_update=True
+                    value=Samples.config[key]
                 )
 
         if config["Runner"] not in self.runners_available:
