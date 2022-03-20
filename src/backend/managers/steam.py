@@ -236,15 +236,15 @@ class SteamManager:
         return apps[prefix]
 
     @staticmethod
-    def get_launch_options(prefix: str) -> str:
+    def get_launch_options(prefix: str) -> {}:
         app_conf = SteamManager.get_app_config(prefix)
+        launch_options = app_conf.get("LaunchOptions", "")
         _fail_msg = f"Fail to get launch options from Steam for: {prefix}"
 
-        if len(app_conf) == 0:
+        if len(launch_options) == 0:
             logging.warning(_fail_msg)
-            return ""
-
-        launch_options = app_conf.get("LaunchOptions", "")
+            return {}
+        # TODO: parse to dict
         return launch_options
 
     @staticmethod

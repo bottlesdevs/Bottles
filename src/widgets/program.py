@@ -36,12 +36,15 @@ class ProgramEntry(Handy.ActionRow):
     __gtype_name__ = 'ProgramEntry'
 
     # region Widgets
+    sep = Gtk.Template.Child()
+    btn_menu = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
     btn_winehq = Gtk.Template.Child()
     btn_protondb = Gtk.Template.Child()
     btn_forum = Gtk.Template.Child()
     btn_launch_options = Gtk.Template.Child()
+    btn_launch_steam = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_rename = Gtk.Template.Child()
@@ -50,7 +53,7 @@ class ProgramEntry(Handy.ActionRow):
     btn_launch_terminal = Gtk.Template.Child()
     # endregion
 
-    def __init__(self, window, config, program, is_layer=False, **kwargs):
+    def __init__(self, window, config, program, is_layer=False, is_steam=False, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -61,14 +64,25 @@ class ProgramEntry(Handy.ActionRow):
         self.program = program
         self.is_layer = is_layer
 
-        if not is_layer:
-            self.executable = program["executable"]
-        else:
-            self.executable = program["exec_name"]
-        
-        # populate widgets
         self.set_title(self.program["name"])
-        self.set_icon_name(program["icon"])
+        self.set_icon_name(program.get("icon", ""))
+
+        if is_layer:
+            self.executable = program["exec_name"]
+        elif is_steam:
+            self.set_subtitle(_("This is a Steam application"))
+            for w in [
+                self.btn_run,
+                self.btn_stop,
+                self.btn_menu,
+                self.sep
+            ]:
+                w.set_visible(False)
+                w.set_sensitive(False)
+            self.btn_launch_steam.set_visible(True)
+            self.btn_launch_steam.set_sensitive(True)
+        else:
+            self.executable = program.get("executable", "")
 
         if program.get("removed"):
             self.get_style_context().add_class("removed")
@@ -87,6 +101,7 @@ class ProgramEntry(Handy.ActionRow):
 
         '''Signal connections'''
         self.btn_run.connect("clicked", self.run_executable)
+        self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_launch_terminal.connect("clicked", self.run_executable, True)
         self.btn_stop.connect("clicked", self.stop_process)
         self.btn_winehq.connect("clicked", self.open_search_url, "winehq")
@@ -99,7 +114,7 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
 
-        if not program.get("removed"):
+        if not program.get("removed") and not is_steam:
             self.__is_alive()
 
     '''Show dialog for launch options'''
@@ -162,6 +177,9 @@ class ProgramEntry(Handy.ActionRow):
             RunAsync(executor.run, callback=self.__reset_buttons)
 
         self.__reset_buttons()
+
+    def run_steam(self, widget):
+        print("Not implemented yet")
     
     def stop_process(self, widget):
         winedbg = WineDbg(self.config)

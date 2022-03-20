@@ -248,18 +248,27 @@ class BottleView(Gtk.ScrolledWindow):
     def update_programs(self, widget=False, config=None):
         '''
         This function update the programs lists. The list in the
-        details page is limited to 5 items.
+        details' page is limited to 5 items.
         '''
         if config:
             self.config = config
-            
+
         for w in self.group_programs:
             w.destroy()
+
+        if self.config.get("Environment") == "Steam":
+            self.group_programs.add(ProgramEntry(
+                self.window,
+                self.config,
+                {"name": self.config["Name"]},
+                is_steam=True
+            ))
 
         programs = self.manager.get_programs(self.config)
         hidden = len([x for x in programs if x.get("removed")])
 
-        if len(programs) == 0 or len(programs) == hidden:
+        if (len(programs) == 0 or len(programs) == hidden)\
+                and self.config.get("Environment") != "Steam":
             self.group_programs.set_visible(False)
             return
 
