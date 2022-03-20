@@ -794,48 +794,6 @@
                         <property name="activatable">False</property>
                         <property name="title" translatable="yes">Utilities</property>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="title" translatable="yes">Wine config</property>
-                            <property name="activatable-widget">btn_winecfg</property>
-                            <property name="subtitle" translatable="yes">Adjust internal settings.</property>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="spacing">10</property>
-                                <child>
-                                  <object class="GtkButton" id="btn_winecfg">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="receives-default">True</property>
-                                    <property name="halign">center</property>
-                                    <property name="valign">center</property>
-                                    <property name="relief">none</property>
-                                    <child>
-                                      <object class="GtkImage">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="icon-name">system-run-symbolic</property>
-                                      </object>
-                                    </child>
-                                    <style>
-                                      <class name="btn_undecorated"/>
-                                    </style>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="pack-type">end</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
                           <object class="HdyActionRow" id="row_browse">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -1081,6 +1039,48 @@
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkButton" id="btn_taskmanager">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">system-run-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="btn_undecorated"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="HdyActionRow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Wine config</property>
+                            <property name="activatable-widget">btn_winecfg</property>
+                            <property name="subtitle" translatable="yes">Adjust internal settings.</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
+                                <child>
+                                  <object class="GtkButton" id="btn_winecfg">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
