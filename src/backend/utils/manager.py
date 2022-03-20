@@ -80,11 +80,13 @@ class ManagerUtils:
 
     @staticmethod
     def get_bottle_path(config: BottleConfig) -> str:
-        if "IsLayer" in config.keys():
+        if config.get("IsLayer"):
             return ManagerUtils.get_layer_path(config["Path"])
-        if config.get("Custom_Path"):
+        elif config.get("Custom_Path"):
             return config.get("Path")
-        return f"{Paths.bottles}/{config.get('Path')}"
+        elif config.get("Environment") == "Steam":
+            return os.path.join(Paths.steam, config.get("CompatData"))
+        return os.path.join(Paths.bottles, config.get("Path"))
 
     @staticmethod
     def get_runner_path(runner: str) -> str:
