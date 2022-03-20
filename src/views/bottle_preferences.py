@@ -23,6 +23,7 @@ from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available
 from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.dialogs.envvars import EnvVarsDialog
@@ -950,6 +951,11 @@ class PreferencesView(Gtk.ScrolledWindow):
             c.connect('scroll-event', no_action)
 
     def __set_steam_rules(self):
+        # SteamManager.set_launch_options(self.config["CompatData"], {
+        #     "command": "wine",
+        #     "env_vars": {"HELLO": "WORLD"}
+        # })
+
         status = False if self.config.get("Environment") == "Steam" else True
 
         for w in [
