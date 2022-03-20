@@ -100,12 +100,11 @@ def is_glibc_min_available():
         return False
 
 
-def sort_by_version(_list: list):
-    def atoi(text):
-        return int(text) if text.isdigit() else text
-
+def sort_by_version(_list: list, extra_check: str = "async"):
     def natural_keys(text):
-        return [ atoi(c) for c in re.split('(\d+)',text) ]
+        result = [int(re.search(extra_check, text) is None)]
+        result.extend([int(c) for c in re.findall(r'\d+', text)])
+        return result
 
     _list.sort(key=natural_keys, reverse=True)
     return _list
