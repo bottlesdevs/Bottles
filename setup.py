@@ -4,11 +4,11 @@ import glob, os
 from distutils.core import setup
 
 share_path = '/usr/share'
-inst_path = share_path+'/com.github.mirkobrombin.bottles/bottles'
+inst_path = share_path+'/com.usebottles.bottles/bottles'
 icons_path = share_path+'/icons/hicolor/scalable/apps'
 
-install_data = [(share_path+'/metainfo', ['data/com.github.mirkobrombin.bottles.appdata.xml']),
-                (share_path+'/applications', ['data/com.github.mirkobrombin.bottles.desktop']),
+install_data = [(share_path+'/metainfo', ['data/com.usebottles.bottles.appdata.xml']),
+                (share_path+'/applications', ['data/com.usebottles.bottles.desktop']),
                 (icons_path,['data/com.github.mirkobrombin.bottles.svg']),
                 (icons_path,['data/bottles_notepad.svg']),
                 (icons_path,['data/bottles_wine.svg']),
@@ -44,6 +44,6 @@ setup(  name='Bottles',
         description='Easily manage your Wine bottles',
         url='https://github.com/mirkobrombin/bottles',
         license='GNU GPL3',
-        scripts=['com.github.mirkobrombin.bottles'],
+        scripts=['com.usebottles.bottles'],
         packages=['bottles'],
         data_files=install_data)
