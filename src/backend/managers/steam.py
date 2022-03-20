@@ -19,7 +19,7 @@ import os
 import uuid
 import yaml
 import shutil
-import patoolib
+import subprocess
 from glob import glob
 from pathlib import Path
 from functools import lru_cache
@@ -267,3 +267,12 @@ class SteamManager:
         SteamManager.save_local_config(local_config)
 
         logging.info(f"Steam launch options set for: {prefix}")
+
+    @staticmethod
+    def launch_app(prefix: str):
+        logging.info(f"Launching AppID {prefix} with Steam")
+        cmd = [
+            "xdg-open",
+            "steam://rungameid/{}".format(prefix)
+        ]
+        subprocess.Popen(cmd)
