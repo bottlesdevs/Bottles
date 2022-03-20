@@ -37,10 +37,10 @@ logging = Logger()
 class SteamManager:
 
     @staticmethod
-    def __find_steam_path() -> Union[str, None]:
+    def __find_steam_path(scope: str = "steamapps") -> Union[str, None]:
         paths = [
-            f"{Path.home()}/.local/share/Steam/steamapps",
-            f"{Path.home()}/.var/app/com.valvesoftware.Steam/data/Steam/steamapps"
+            os.path.join(Path.home(), ".local/share/Steam", scope),
+            os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam", scope),
         ]
         for path in paths:
             if os.path.isdir(path):
@@ -126,7 +126,7 @@ class SteamManager:
             _dir_name = os.path.basename(path)
             _acf = SteamManager.get_acf_data(_dir_name)
             _runner = SteamManager.get_runner_path(path)
-            _creation_date = datetime.fromtimestamp(os.path.getctime(path))\
+            _creation_date = datetime.fromtimestamp(os.path.getctime(path)) \
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
             if _acf is None or not _acf.get("AppState"):
@@ -150,7 +150,7 @@ class SteamManager:
             _conf["RunnerPath"] = _runner[1]
             _conf["WorkingDir"] = os.path.join(_conf["Path"], "drive_c")
             _conf["Creation_Date"] = _creation_date
-            _conf["Update_Date"] = datetime.fromtimestamp(int(_acf["AppState"]["LastUpdated"]))\
+            _conf["Update_Date"] = datetime.fromtimestamp(int(_acf["AppState"]["LastUpdated"])) \
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
 
             prefixes[_dir_name] = _conf
@@ -174,3 +174,51 @@ class SteamManager:
 
             with open(os.path.join(_bottle, "config.yml"), "w") as f:
                 yaml.dump(_conf, f)
+
+    @staticmethod
+    def get_local_config() -> dict:
+        steam_path = SteamManager.__find_steam_path("userdata")
+
+        if steam_path is None:
+            return {}
+
+        confs = glob(os.path.join(steam_path, "*/config/localconfig.vdf"))
+        if len(confs) == 0:
+            logging.warning("Could not find any localconfig.vdf files in Steam userdata")
+            return {}
+
+        conf_path = confs[0]
+        with open(conf_path, "r") as f:
+            local_config = SteamUtils.parse_acf(f.read())
+
+        if local_config is None:
+            logging.warning(f"Could not parse localconfig.vdf")
+            return {}
+
+        return local_config
+
+    @staticmethod
+    def get_app_config(prefix: str) -> dict:
+        local_config = SteamManager.get_local_config()
+        _fail_msg = f"Fail to get app config from Steam for: {prefix}"
+
+        if len(local_config) == 0:
+            logging.warning(_fail_msg)
+            return {}
+
+        apps = local_config.get("UserLocalConfigStore", {}) \
+            .get("Software", {}) \
+            .get("Valve", {}) \
+            .get("Steam", {}) \
+            .get("apps", {})
+
+        if len(apps) == 0 or prefix not in apps:
+            logging.warning(_fail_msg)
+            return {}
+
+        app_conf = apps[prefix]
+        if app_conf is None:
+            logging.warning(_fail_msg)
+            return {}
+
+        return app_conf
