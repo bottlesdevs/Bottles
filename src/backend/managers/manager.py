@@ -839,14 +839,12 @@ class Manager:
         """
         if config.get("IsLayer"):
             return {}
-        elif config.get("Environment") == "Steam":
-            return SteamManager.update_bottle(config, key, value, scope, remove)
 
         logging.info(f"Setting Key: [{key}] to [{value}] for "
                      f"bottle: [{config['Name']}]…", )
 
         wineboot = WineBoot(config)
-        bottle_complete_path = ManagerUtils.get_bottle_path(config)
+        bottle_path = ManagerUtils.get_bottle_path(config)
 
         if scope != "":
             config[scope][key] = value
@@ -865,11 +863,15 @@ class Manager:
             '''
             wineboot.kill()
 
-        with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
+        with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
 
         config["Update_Date"] = str(datetime.now())
+
+        if config.get("Environment") == "Steam":
+            config = SteamManager.update_bottle(config)
+
         return config
 
     def create_bottle_from_config(self, config: dict) -> bool:
