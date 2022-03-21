@@ -29,8 +29,7 @@ class RuntimeManager:
             "bottles": RuntimeManager.__get_bottles_runtime(),
             "steam": RuntimeManager.__get_steam_runtime()
         }
-
-        if _filter not in runtimes or len(runtimes[_filter]) == 0:
+        if not runtimes.get(_filter):
             return False
 
         return runtimes[_filter]
