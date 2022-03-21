@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import subprocess
-from typing import Union
+from typing import Union, TextIO
 
 from bottles.backend.models.vdict import VDFDict
 from bottles.backend.utils import vdf
@@ -39,8 +39,8 @@ class SteamUtils:
         return vdf.loads(data)
 
     @staticmethod
-    def to_vdf(data: VDFDict) -> None:
+    def to_vdf(data: VDFDict, fp: TextIO):
         """
         Saves a VDF file. Just a wrapper for vdf.dumps.
         """
-        vdf.dumps(data, path)
+        vdf.dump(data, fp, pretty=True)
