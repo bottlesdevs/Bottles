@@ -35,6 +35,7 @@ from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 
 
+# noinspection PyUnusedLocal
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-preferences.ui')
 class PreferencesView(Gtk.ScrolledWindow):
     __gtype_name__ = 'DetailsPreferences'
@@ -168,12 +169,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.switch_mangohud.set_tooltip_text(_not_available)
 
     def choose_cwd(self, widget):
-        '''
-        This function pop up a file chooser to choose the
-        cwd (current working directory) of the bottle and update
-        the bottle configuration with the new value.
-        The default path for the file chooser is the bottle path by default.
-        '''
+        """Change the default current working directory for the bottle"""
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose working directory for executables"),
             self.window,
@@ -196,12 +192,12 @@ class PreferencesView(Gtk.ScrolledWindow):
         file_dialog.destroy()
 
     def update_combo_components(self):
-        '''
-        This function update the components combo boxes with the
-        items in the manager catalogs. It also temporarily disable 
-        the functions connected to the combo boxes to avoid the 
+        """
+        This function update the components' combo boxes with the
+        items in the manager catalogs. It also temporarily disable
+        the functions connected to the combo boxes to avoid the
         bottle configuration to be updated during the process.
-        '''
+        """
         self.combo_runner.handler_block_by_func(self.__set_runner)
         self.combo_dxvk.handler_block_by_func(self.__set_dxvk)
         self.combo_vkd3d.handler_block_by_func(self.__set_vkd3d)
@@ -331,10 +327,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_window.present()
 
     def __show_environment_variables(self, widget=False):
-        '''
-        This function popup the environment variables dialog
-        to the user.
-        '''
+        """Show the environment variables dialog"""
         new_window = EnvVarsDialog(
             window=self.window,
             config=self.config
@@ -342,10 +335,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_window.present()
 
     def __set_sync_type(self, sync):
-        '''
-        This function update the sync type on the bottle
-        configuration according to the widget state.
-        '''
+        """
+        Set the sync type (wine, esync, fsync, futext2)
+        Don't use this directly, use dedicated wrappers instead (e.g. __set_wine_sync)
+        """
         new_config = self.manager.update_config(
             config=self.config,
             key="sync",
@@ -380,11 +373,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.__set_sync_type("futex2")
 
     def __toggle_dxvk(self, widget=False, state=False):
-        '''
-        This function perform DXVK installation or removal, according
-        to the widget state. It will also update the bottle configuration
-        once the process is finished.
-        '''
+        """Install/Uninstall DXVK from the bottle"""
         self.set_dxvk_status(pending=True)
 
         RunAsync(
@@ -404,10 +393,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_dxvk_hud(self, widget, state):
-        '''
-        This function update the DXVK HUD status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the DXVK HUD for current bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="dxvk_hud",
@@ -417,10 +403,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_mangohud(self, widget, state):
-        '''
-        This function update the MangoHud status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the Mangohud for current bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="mangohud",
@@ -430,11 +413,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_vkd3d(self, widget=False, state=False):
-        '''
-        This function perform VKD3D installation or removal, according
-        to the widget state. It will also update the bottle configuration
-        once the process is finished.
-        '''
+        """Install/Uninstall VKD3D from the bottle"""
         self.set_vkd3d_status(pending=True)
 
         RunAsync(
@@ -454,11 +433,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_nvapi(self, widget=False, state=False):
-        '''
-        This function perform DXVK-NVAPI installation or removal, according
-        to the widget state. It will also update the bottle configuration
-        once the process is finished.
-        '''
+        """Install/Uninstall NVAPI from the bottle"""
         self.set_nvapi_status(pending=True)
 
         RunAsync(
@@ -478,11 +453,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_latencyflex(self, widget=False, state=False):
-        '''
-        This function perform LatencyFlex installation or removal, according
-        to the widget state. It will also update the bottle configuration
-        once the process is finished.
-        '''
+        """Install/Uninstall LatencyFlex from the bottle"""
         self.set_latencyflex_status(pending=True)
 
         RunAsync(
@@ -502,10 +473,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_gamemode(self, widget=False, state=False):
-        '''
-        This function update the gamemode status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the gamemode for current bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="gamemode",
@@ -515,10 +483,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_gamescope(self, widget=False, state=False):
-        '''
-        This function update the gamescope status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the gamescope for current bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="gamescope",
@@ -528,10 +493,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_fsr(self, widget, state):
-        '''
-        This function update the aco status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the FSR for current bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="fsr",
@@ -541,10 +503,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_runtime(self, widget, state):
-        '''
-        This function update the runtime status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the Bottles runtime for current bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="use_runtime",
@@ -554,10 +513,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_steam_runtime(self, widget, state):
-        '''
-        This function update the steam runtime status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the Steam runtime for current bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="use_steam_runtime",
@@ -567,10 +523,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_discrete_gpu(self, widget, state):
-        '''
-        This function update the discrete gpu status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the discrete GPU for current bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="discrete_gpu",
@@ -580,49 +533,54 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_virt_desktop(self, widget, state):
-        '''
-        This function update the virtual desktop status on the bottle
-        configuration according to the widget state.
-        '''
+        """Toggle the virtual desktop option."""
+        widget.set_sensitive(False)
+
+        def update(result, error=False):
+            new_config = self.manager.update_config(
+                config=self.config,
+                key="virtual_desktop",
+                value=state,
+                scope="Parameters"
+            )
+            self.config = new_config
+            widget.set_sensitive(True)
+
         rk = RegKeys(self.config)
         resolution = self.combo_virt_res.get_active_id()
-        rk.toggle_virtual_desktop(
+        RunAsync(
+            task_func=rk.toggle_virtual_desktop,
+            callback=update,
             state=state,
             resolution=resolution
         )
-        new_config = self.manager.update_config(
-            config=self.config,
-            key="virtual_desktop",
-            value=state,
-            scope="Parameters"
-        )
-        self.config = new_config
 
     def __set_virtual_desktop_res(self, widget):
-        '''
-        This function update the virtual desktop resolution on the bottle
-        configuration according to the selected one.
-        '''
+        """Set the virtual desktop resolution."""
+        widget.set_sensitive(False)
+
+        def update(result, error=False):
+            new_config = self.manager.update_config(
+                config=self.config,
+                key="virtual_desktop_res",
+                value=resolution,
+                scope="Parameters"
+            )
+            self.config = new_config
+            widget.set_sensitive(True)
+
         rk = RegKeys(self.config)
         resolution = widget.get_active_id()
         if self.switch_virt_desktop.get_active():
-            rk.toggle_virtual_desktop(
+            RunAsync(
+                task_func=rk.toggle_virtual_desktop,
+                callback=update,
                 state=True,
                 resolution=resolution
             )
-        new_config = self.manager.update_config(
-            config=self.config,
-            key="virtual_desktop_res",
-            value=resolution,
-            scope="Parameters"
-        )
-        self.config = new_config
 
     def __set_fsr_level(self, widget):
-        '''
-        This function update the AMD FSR level of sharpness
-        (from 0 to 5, where 5 is the default).
-        '''
+        """Set the FSR level of sharpness (from 0 to 5, where 5 is the default)"""
         level = int(widget.get_active_id())
         new_config = self.manager.update_config(
             config=self.config,
@@ -633,10 +591,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __set_runner(self, widget):
-        '''
-        This function update the runner on the bottle configuration
-        according to the selected one.
-        '''
+        """Set the runner to use for the bottle"""
 
         def set_widgets_status(status=True):
             for w in [
@@ -677,11 +632,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
 
     def __set_dxvk(self, widget):
-        '''
-        This function update the dxvk version on the bottle 
-        configuration according to the selected one and installs
-        new version.
-        '''
+        """Set the DXVK version to use for the bottle"""
         self.set_dxvk_status(pending=True)
 
         dxvk = widget.get_active_id()
@@ -700,11 +651,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
 
     def __set_vkd3d(self, widget):
-        '''
-        This function update the vkd3d version on the bottle 
-        configuration according to the selected one and installs
-        new version.
-        '''
+        """Set the VKD3D version to use for the bottle"""
         self.set_vkd3d_status(pending=True)
 
         vkd3d = widget.get_active_id()
@@ -723,11 +670,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
 
     def __set_nvapi(self, widget):
-        '''
-        This function update the dxvk-nvapi version on the bottle 
-        configuration according to the selected one and installs
-        new version.
-        '''
+        """Set the NVAPI version to use for the bottle"""
         self.set_nvapi_status(pending=True)
 
         nvapi = widget.get_active_id()
@@ -746,10 +689,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
 
     def __set_latencyflex(self, widget):
-        '''
-        This function update the latencyflex on the bottle
-        configuration according to the selected one.
-        '''
+        """Set the latency flex value"""
         latencyflex = widget.get_active_id()
         new_config = self.manager.update_config(
             config=self.config,
@@ -766,10 +706,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
 
     def __set_windows(self, widget):
-        '''
-        This function update the Windows version on the bottle 
-        configuration according to the selected one.
-        '''
+        """Set the windows version to use for the bottle"""
 
         def update(result, error=False):
             self.spinner_win.stop()
@@ -793,10 +730,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
 
     def __toggle_pulse_latency(self, widget, state):
-        '''
-        This function update the pulseaudio latency status on the bottle
-        configuration according to the widget state.
-        '''
+        """Set the pulse latency to use for the bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="pulseaudio_latency",
@@ -806,10 +740,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_fixme(self, widget, state):
-        '''
-        This function update the fixme logs status on the bottle
-        configuration according to the widget state.
-        '''
+        """Set the WINE logging level to use for the bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="fixme_logs",
@@ -819,10 +750,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_x11_reg_key(self, widget, state, rkey, ckey):
-        '''
-        This function update the a X11 Driverkey status (Y/N) on the bottle
-        configuration according to the widget state.
-        '''
+        """Update x11 registry keys"""
 
         def update(result, error=False):
             nonlocal widget
@@ -848,10 +776,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
 
     def __set_custom_dpi(self, widget):
-        '''
-        This function update the custom dpi value on the bottle
-        configuration according to the widget value.
-        '''
+        """Set the custom dpi value"""
 
         def update(result, error=False):
             new_config = self.manager.update_config(
@@ -874,10 +799,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
 
     def __show_dll_overrides_view(self, widget=False):
-        '''
-        This function pop up the DLL overrides dialog, where the
-        user can add and remove new ones.
-        '''
+        """Show the DLL overrides view"""
         new_window = DLLOverridesDialog(
             window=self.window,
             config=self.config
@@ -885,6 +807,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_window.present()
 
     def set_dxvk_status(self, status=None, error=None, pending=False):
+        """Set the dxvk status"""
         self.switch_dxvk.set_sensitive(not pending)
         self.combo_dxvk.set_sensitive(not pending)
         if pending:
@@ -895,6 +818,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.spinner_dxvkbool.stop()
 
     def set_vkd3d_status(self, status=None, error=None, pending=False):
+        """Set the vkd3d status"""
         self.switch_vkd3d.set_sensitive(not pending)
         self.combo_vkd3d.set_sensitive(not pending)
         if pending:
@@ -905,6 +829,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.spinner_vkd3dbool.stop()
 
     def set_nvapi_status(self, status=None, error=None, pending=False):
+        """Set the nvapi status"""
         self.switch_nvapi.set_sensitive(not pending)
         self.combo_nvapi.set_sensitive(not pending)
         if pending:
@@ -915,6 +840,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.spinner_nvapibool.stop()
 
     def set_latencyflex_status(self, status=None, error=None, pending=False):
+        """Set the latencyflex status"""
         self.switch_latencyflex.set_sensitive(not pending)
         self.combo_latencyflex.set_sensitive(not pending)
         if pending:
@@ -925,6 +851,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.spinner_latencyflexbool.stop()
 
     def __prevent_scroll(self):
+        """Prevent the scroll event when the mouse enter a combobox"""
         def no_action(widget, event):
             return True
 
@@ -941,11 +868,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             c.connect('scroll-event', no_action)
 
     def __set_steam_rules(self):
-        # SteamManager.set_launch_options(self.config["CompatData"], {
-        #     "command": "wine",
-        #     "env_vars": {"HELLO": "WORLD"}
-        # })
-
+        """Set the Steam Environment specific rules"""
         status = False if self.config.get("Environment") == "Steam" else True
 
         for w in [
