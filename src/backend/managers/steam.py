@@ -28,6 +28,7 @@ from typing import Union, NewType
 from datetime import datetime
 
 from bottles.backend.models.samples import Samples  # pyright: reportMissingImports=false
+from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.globals import Paths
 from bottles.backend.utils.steam import SteamUtils
 from bottles.backend.logger import Logger
@@ -68,18 +69,25 @@ class SteamManager:
         return data
 
     @staticmethod
-    def get_local_config() -> dict:
+    def get_local_config_path() -> Union[str, None]:
         steam_path = SteamManager.__find_steam_path("userdata")
 
         if steam_path is None:
-            return {}
+            return None
 
         confs = glob(os.path.join(steam_path, "*/config/localconfig.vdf"))
         if len(confs) == 0:
             logging.warning("Could not find any localconfig.vdf files in Steam userdata")
+            return None
+
+        return confs[0]
+
+    @staticmethod
+    def get_local_config() -> dict:
+        conf_path = SteamManager.get_local_config_path()
+        if conf_path is None:
             return {}
 
-        conf_path = confs[0]
         with open(conf_path, "r") as f:
             local_config = SteamUtils.parse_acf(f.read())
 
@@ -88,6 +96,20 @@ class SteamManager:
             return {}
 
         return local_config
+
+    @staticmethod
+    def save_local_config(local_config: dict):
+        conf_path = SteamManager.get_local_config_path()
+        if conf_path is None:
+            return
+
+        if os.path.isfile(conf_path):
+            shutil.copy(conf_path, f"{conf_path}.bck.{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
+
+        with open(conf_path, "w") as f:
+            SteamUtils.to_vdf(local_config, f)
+
+        logging.info(f"Steam config saved")
 
     @staticmethod
     def get_runner_path(pfx_path: str) -> Union[tuple, None]:
@@ -133,7 +155,6 @@ class SteamManager:
                 continue
 
             _launch_options = SteamManager.get_launch_options(appid, appdata)
-            print(_launch_options)
             _dir_name = os.path.basename(_path)
             _acf = SteamManager.get_acf_data(_dir_name)
             _runner = SteamManager.get_runner_path(_path)
@@ -189,23 +210,6 @@ class SteamManager:
 
             with open(os.path.join(_bottle, "bottle.yml"), "w") as f:
                 yaml.dump(_conf, f)
-
-    @staticmethod
-    def save_local_config(local_config: dict):
-        steam_path = SteamManager.__find_steam_path("userdata")
-
-        if steam_path is None:
-            return
-
-        conf_path = os.path.join(steam_path, "config/localconfig.vdf")
-
-        if os.path.isfile(conf_path):
-            shutil.copy(conf_path, f"{conf_path}.bck.{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
-
-        with open(conf_path, "w") as f:
-            f.write(SteamUtils.to_vdf(local_config))
-
-        logging.info(f"Steam config saved")
 
     @staticmethod
     def get_app_config(prefix: str) -> dict:
@@ -283,9 +287,6 @@ class SteamManager:
         command = options.get("command", "")
         env_vars = options.get("env_vars", {})
 
-        if command not in original_launch_options["command"]:
-            command = f"{command} {original_launch_options['command']}"
-
         if len(env_vars) > 0:
             for k, v in env_vars.items():
                 v = shlex.quote(v) if " " in v else v
@@ -336,15 +337,28 @@ class SteamManager:
         SteamManager.save_local_config(local_config)
 
     @staticmethod
-    def update_bottle(
-            self,
-            config: dict,
-            key: str,
-            value: str,
-            scope: str = "",
-            remove: bool = False
-    ) -> dict:
-        return {}  # TODO: need to be implemented
+    def update_bottle(config: dict) -> dict:
+        pfx = config.get("CompatData")
+        launch_options = SteamManager.get_launch_options(pfx)
+        _fail_msg = f"Fail to update bottle for: {pfx}"
+
+        args = launch_options.get("args", "")
+        winecmd = WineCommand(config, "%command%", args)
+
+        command = winecmd.get_cmd("%command%", return_steam_cmd=True)
+        env_vars = winecmd.get_env(launch_options["env_vars"], return_steam_env=True)
+
+        if "%command%" in command:
+            command, _args = command.split("%command%", 1)
+            args = args + " " + _args
+
+        options = {
+            "command": command,
+            "args": args,
+            "env_vars": env_vars
+        }
+        SteamManager.set_launch_options(pfx, options)
+        return config
 
     @staticmethod
     def launch_app(prefix: str):
