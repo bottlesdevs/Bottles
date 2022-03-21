@@ -36,6 +36,7 @@ class InstallerEntry(Handy.ActionRow):
     img_error = Gtk.Template.Child()
     label_step = Gtk.Template.Child()
     label_grade = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, installer, plain=False, **kwargs):
@@ -87,7 +88,6 @@ class InstallerEntry(Handy.ActionRow):
             title=_("Review for {0}").format(self.installer[0]),
             message=html_review,
         )
-
 
     def __open_bug_report(self, widget):
         '''Open bug report'''

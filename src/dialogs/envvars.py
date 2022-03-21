@@ -27,6 +27,7 @@ class EnvVarEntry(Handy.ActionRow):
     btn_remove = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     entry_value = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, env, **kwargs):
@@ -49,7 +50,7 @@ class EnvVarEntry(Handy.ActionRow):
         self.btn_remove.connect("clicked", self.__remove)
         self.btn_save.connect("clicked", self.__save)
         self.entry_value.connect('key-release-event', self.on_change)
-    
+
     def on_change(self, widget, event):
         self.btn_save.set_visible(True)
 
@@ -89,6 +90,7 @@ class EnvVarsDialog(Handy.Window):
     entry_name = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     list_vars = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -110,7 +112,7 @@ class EnvVarsDialog(Handy.Window):
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,\'"]')
         name = widget.get_text()
 
-        if(regex.search(name) is None) and name != "":
+        if (regex.search(name) is None) and name != "":
             self.btn_save.set_sensitive(True)
             widget.set_icon_from_icon_name(1, "")
         else:

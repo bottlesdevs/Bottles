@@ -11,7 +11,7 @@ class ConfigManager(object):
         self.config_type = config_type
         self.checks()
         self.config_dict = self.read()
-    
+
     def checks(self):
         """Checks if the configuration file exists, if not, create it."""
         if not os.path.exists(self.config_file):
@@ -34,15 +34,15 @@ class ConfigManager(object):
                 res = yaml.safe_load(f)
         else:
             raise ValueError('Invalid configuration type')
-        
+
         if res in [None, ""]:
             res = {}
         return res
-    
+
     def get_dict(self):
         """Returns the configuration as a dictionary"""
         return self.config_dict
-    
+
     def write_json(self):
         """Writes the configuration to a JSON file"""
         with open(self.config_file, 'w') as f:
@@ -52,7 +52,7 @@ class ConfigManager(object):
         """Writes the configuration to a YAML file"""
         with open(self.config_file, 'w') as f:
             yaml.dump(self.config_dict, f)
-    
+
     def write_ini(self):
         """Writes the configuration to an INI file"""
         config = ConfigParser()
@@ -62,7 +62,7 @@ class ConfigManager(object):
                 config.set(section, key, value)
         with open(self.config_file, 'w') as f:
             config.write(f)
-    
+
     def write_dict(self):
         """Writes the configuration to the file"""
         if self.config_type == 'ini':
@@ -73,7 +73,7 @@ class ConfigManager(object):
             self.write_yaml()
         else:
             raise ValueError('Invalid configuration type')
-    
+
     def merge_dict(self, changes: dict):
         """Merges a dictionary into the configuration"""
         for section in changes:

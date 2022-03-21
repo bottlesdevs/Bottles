@@ -24,21 +24,19 @@ from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissing
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.wineboot import WineBoot
 
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class DLLComponent():
-    base_path:str = None
-    dlls:dict = {}
-    version:str = None
+    base_path: str = None
+    dlls: dict = {}
+    version: str = None
 
-    def __init__(self, version:str):
+    def __init__(self, version: str):
         self.version = version
         self.base_path = self.get_base_path(version)
         self.check()
-    
+
     @abstractmethod
-    def get_base_path(self, version:str):
+    def get_base_path(self, version: str):
         pass
 
     def check(self):
@@ -51,29 +49,29 @@ class DLLComponent():
             for dll in self.dlls[path]:
                 if not os.path.exists(f"{self.base_path}/{path}/{dll}"):
                     del found[path][dll]
-                    
+
         if len(found) == 0:
             return False
 
         self.dlls = found
         return True
-    
-    def install(self, config:BottleConfig, overrides_only:bool=False, exclude:list=[]):
+
+    def install(self, config: dict, overrides_only: bool = False, exclude: list = []):
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
                     self.__install_dll(config, path, dll, False, overrides_only)
-        
+
         WineBoot(config).update()
 
-    def uninstall(self, config:BottleConfig, exclude:list=[]):
+    def uninstall(self, config: dict, exclude: list = []):
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
                     self.__uninstall_dll(config, path, dll)
         WineBoot(config).update()
-    
-    def __get_sys_path(self, config, path:str):
+
+    def __get_sys_path(self, config, path: str):
         if config["Arch"] == "win32":
             if path in ["x32", "x86"]:
                 return "system32"
@@ -84,7 +82,7 @@ class DLLComponent():
                 return "syswow64"
         return None
 
-    def __install_dll(self, config, path:str, dll:str, remove:bool=False, overrides_only:bool=False):
+    def __install_dll(self, config, path: str, dll: str, remove: bool = False, overrides_only: bool = False):
         reg = Reg(config)
         dll_name = dll.split('/')[-1]
         bottle = ManagerUtils.get_bottle_path(config)
@@ -98,7 +96,7 @@ class DLLComponent():
             target = None
 
         print(f"{source} -> {target}")
-        
+
         if target is not None:
             if not remove:
                 if not overrides_only:
@@ -120,5 +118,5 @@ class DLLComponent():
                 elif os.path.exists(target):
                     os.remove(target)
 
-    def __uninstall_dll(self, config, path:str, dll:str):
+    def __uninstall_dll(self, config, path: str, dll: str):
         self.__install_dll(config, path, dll, remove=True)

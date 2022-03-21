@@ -112,11 +112,11 @@ class ComponentManager:
                     catalog[sub_category][component[0]]["Installed"] = True
 
                 continue
-            
+
             category = component[1]["Category"]
             if category not in catalog:
                 continue
-            
+
             catalog[category][component[0]] = component[1]
             if component[0] in components_available[category]:
                 catalog[category][component[0]]["Installed"] = True
@@ -124,12 +124,12 @@ class ComponentManager:
         return catalog
 
     def download(
-        self,
-        download_url: str,
-        file: str,
-        rename: bool = False,
-        checksum: bool = False,
-        func=False
+            self,
+            download_url: str,
+            file: str,
+            rename: bool = False,
+            checksum: bool = False,
+            func=False
     ) -> bool:
         """Download a component from the Bottles repository."""
 
@@ -142,7 +142,7 @@ class ComponentManager:
         '''
         task_id = str(uuid.uuid4())
         GLib.idle_add(
-            self.__operation_manager.new_task, task_id, file,  False
+            self.__operation_manager.new_task, task_id, file, False
         )
 
         _update_func = self.__operation_manager.update_task
@@ -160,13 +160,13 @@ class ComponentManager:
             can be used to check the download status or update progress bars.
             '''
             _update_func = func
-        
+
         def update_func(
-            task_id,
-            count=False,
-            block_size=False,
-            total_size=False,
-            completed=False
+                task_id,
+                count=False,
+                block_size=False,
+                total_size=False,
+                completed=False
         ):
             GLib.idle_add(_update_func, task_id, count, block_size, total_size, completed)
 
@@ -191,8 +191,8 @@ class ComponentManager:
                 requests.packages.urllib3.disable_warnings()
                 headers = {"User-Agent": "curl/7.79.1"}
                 response = requests.head(
-                    download_url, 
-                    allow_redirects=True, 
+                    download_url,
+                    allow_redirects=True,
                     headers=headers
                 )
                 download_url = response.url
@@ -302,13 +302,13 @@ class ComponentManager:
                 try:
                     os.remove(os.path.join(Paths.temp, archive))
                 except:
-                    pass # safely ignore the error, there is nothing to remove
+                    pass  # safely ignore the error, there is nothing to remove
 
             if os.path.isdir(os.path.join(path, archive[:-7])):
                 try:
                     shutil.rmtree(os.path.join(path, archive[:-7]))
                 except:
-                    pass # safely ignore the error, there is nothing to remove
+                    pass  # safely ignore the error, there is nothing to remove
 
             logging.error("Extraction failed! Archive ends earlier than expected.", )
             return False
@@ -329,10 +329,10 @@ class ComponentManager:
         return True
 
     def install(
-        self,
-        component_type: str,
-        component_name: str,
-        func=False,
+            self,
+            component_type: str,
+            component_name: str,
+            func=False,
     ):
         """
         This function is used to install a component. It automatically

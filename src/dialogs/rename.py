@@ -26,6 +26,7 @@ class RenameDialog(Handy.Window):
     entry = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, name, on_save, **kwargs):
@@ -52,4 +53,3 @@ class RenameDialog(Handy.Window):
 
     def __close_window(self, widget):
         self.destroy()
-        

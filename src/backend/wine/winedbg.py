@@ -10,9 +10,6 @@ from bottles.backend.wine.wineboot import WineBoot
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class WineDbg(WineProgram):
     program = "WINE debug tool"

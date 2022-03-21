@@ -33,6 +33,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
     actions = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
     btn_kill = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -46,7 +47,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
         self.btn_update.connect("clicked", self.sensitive_update)
         self.btn_kill.connect("clicked", self.kill_process)
         self.treeview_processes.connect("cursor-changed", self.show_kill_btn)
-        
+
         # apply model to treeview_processes
         self.liststore_processes = Gtk.ListStore(str, str, str)
         self.treeview_processes.set_model(self.liststore_processes)
@@ -68,10 +69,10 @@ class TaskManagerView(Gtk.ScrolledWindow):
             i += 1
 
         self.update()
-        
+
     def set_config(self, config):
         self.config = config
-    
+
     def show_kill_btn(self, widget):
         selected = self.treeview_processes.get_selection()
         model, treeiter = selected.get_selected()
@@ -105,7 +106,7 @@ class TaskManagerView(Gtk.ScrolledWindow):
                     process.get("name", "n/a"),
                     process.get("threads", "0"),
                     # process.get("parent", "0")
-                ])  
+                ])
 
     def sensitive_update(self, widget):
         def reset(result, error):
@@ -113,17 +114,17 @@ class TaskManagerView(Gtk.ScrolledWindow):
 
         self.btn_update.set_sensitive(False)
         RunAsync(
-            task_func=self.update, 
-            callback=reset, 
-            widget=False, 
+            task_func=self.update,
+            callback=reset,
+            widget=False,
             config=self.config
         )
-    
+
     def kill_process(self, widget):
         winebridge = WineBridge(self.config)
         selected = self.treeview_processes.get_selection()
         model, treeiter = selected.get_selected()
-        
+
         if model is None:
             self.btn_kill.set_sensitive(False)
             return

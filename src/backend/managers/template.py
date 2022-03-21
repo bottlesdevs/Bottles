@@ -98,29 +98,29 @@ class TemplateManager:
             if os.path.exists(f"{Paths.templates}/{template}/template.yml"):
                 _manifest = TemplateManager.get_template_manifest(template)
                 res.append(_manifest)
-        
+
         return res
-    
+
     @staticmethod
     def delete_template(template_uuid: str):
         logging.info(f"Deleting template: {template_uuid}", )
         shutil.rmtree(f"{Paths.templates}/{template_uuid}")
         logging.info("Template deleted successfully!", )
-    
+
     @staticmethod
     def check_outdated(template: dict):
         env = template.get("env", "")
         if env not in Samples.environments:
             TemplateManager.delete_template(template.get("uuid"))
             return True
-        
+
         _sample = Samples.environments[env]
         for p in _sample.get("Parameters", {}):
             _params = template.get("config", {}).get("Parameters", {})
             if p not in _params or _params[p] != _sample["Parameters"][p]:
                 TemplateManager.delete_template(template.get("uuid"))
                 return True
-        
+
         for d in _sample.get("Installed_Dependencies", []):
             _deps = template.get("config", {}).get("Installed_Dependencies", [])
             if d not in _deps:
@@ -128,7 +128,7 @@ class TemplateManager:
                 return True
 
         return False
-        
+
     @staticmethod
     def get_env_template(env: str):
         _templates = TemplateManager.get_templates()
@@ -139,7 +139,7 @@ class TemplateManager:
                     return None
                 return template
         return None
-    
+
     @staticmethod
     def unpack_template(template: dict, config: dict):
         logging.info(f"Unpacking template: {template['uuid']}", )

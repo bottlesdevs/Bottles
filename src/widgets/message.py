@@ -21,6 +21,7 @@ from gettext import gettext as _
 
 from bottles.backend.managers.notifications import NotificationsManager  # pyright: reportMissingImports=false
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/message-entry.ui')
 class MessageEntry(Handy.ActionRow):
     __gtype_name__ = 'MessageEntry'
@@ -28,6 +29,7 @@ class MessageEntry(Handy.ActionRow):
     # region Widgets
     btn_mark = Gtk.Template.Child()
     btn_details = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, nid, title, body, url, message_type, **kwargs):
@@ -52,12 +54,12 @@ class MessageEntry(Handy.ActionRow):
         if url:
             self.btn_details.connect('clicked', self.__open_url)
             self.btn_details.set_visible(True)
-        
+
         self.btn_mark.connect('clicked', self.__mark_as_read)
-        
+
     def __open_url(self, widget):
         webbrowser.open(self.url)
-    
+
     def __mark_as_read(self, widget):
         NotificationsManager().mark_as_read(self.nid)
         self.destroy()

@@ -62,8 +62,6 @@ from bottles.backend.wine.regkeys import RegKeys
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
 RunnerName = NewType('RunnerName', str)
 
 
@@ -250,7 +248,7 @@ class Manager:
 
         self.supported_installers = catalog
 
-    def remove_dependency(self, config: BottleConfig, dependency: list):
+    def remove_dependency(self, config: dict, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""
         logging.info(f"Removing dependency: [{dependency[0]}] from " +
                      f"bottle: [{config['Name']}] config.", )
@@ -273,7 +271,7 @@ class Manager:
         )
 
     @staticmethod
-    def remove_program(config: BottleConfig, program_name: str):
+    def remove_program(config: dict, program_name: str):
         """Find a program uninstaller and run it."""
         logging.info(f"Removing program: [{program_name}] from " +
                      f"bottle: [{config['Name']}] config.", )
@@ -623,7 +621,7 @@ class Manager:
         program_layer.sweep()
         program_layer.save()
 
-    def get_programs(self, config: BottleConfig) -> list:
+    def get_programs(self, config: dict) -> list:
         """
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
@@ -828,7 +826,7 @@ class Manager:
     # Update parameters in bottle config
     def update_config(
             self,
-            config: BottleConfig,
+            config: dict,
             key: str,
             value: str,
             scope: str = "",
@@ -1308,7 +1306,7 @@ class Manager:
         except IndexError:
             return []
 
-    def delete_bottle(self, config: BottleConfig) -> bool:
+    def delete_bottle(self, config: dict) -> bool:
         """
         Perform wineserver shutdown and delete the bottle.
         TODO: move to bottle.py (Bottle manager)
@@ -1340,7 +1338,7 @@ class Manager:
         logging.error("Empty path found. Disasters unavoidable.", )
         return False
 
-    def repair_bottle(self, config: BottleConfig) -> bool:
+    def repair_bottle(self, config: dict) -> bool:
         '''
         This function tries to repair a broken bottle, creating a
         new bottle configuration with the latest runner. Each fixed
@@ -1382,7 +1380,7 @@ class Manager:
 
     def install_dll_component(
             self,
-            config: BottleConfig,
+            config: dict,
             component: str,
             remove: bool = False,
             version: str = False,

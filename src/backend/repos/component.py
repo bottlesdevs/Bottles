@@ -32,6 +32,6 @@ class ComponentRepo(Repo):
                 url = f"{self.url}/{category}/{subcategory}/{name}.yml"
             else:
                 url = f"{self.url}/{category}/{name}.yml"
-            
+
             return self.get_manifest(url, plain)
         return False

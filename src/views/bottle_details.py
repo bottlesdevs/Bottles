@@ -47,6 +47,7 @@ from bottles.backend.wine.regedit import Regedit
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.executor import WineExecutor
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
 class BottleView(Gtk.ScrolledWindow):
     __gtype_name__ = 'DetailsBottle'
@@ -95,6 +96,7 @@ class BottleView(Gtk.ScrolledWindow):
     extra_separator = Gtk.Template.Child()
     reveal_progress = Gtk.Template.Child()
     progress_bar = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -212,7 +214,7 @@ class BottleView(Gtk.ScrolledWindow):
         regex = re.compile('\\\[@!#$%^&*()<>?/\|}{~:.;,]')
         name = widget.get_text()
 
-        if(regex.search(name) is None) and name != "" and not name.isspace():
+        if (regex.search(name) is None) and name != "" and not name.isspace():
             self.btn_rename.set_sensitive(True)
             widget.set_icon_from_icon_name(1, "")
         else:
@@ -232,7 +234,7 @@ class BottleView(Gtk.ScrolledWindow):
         if widget == self.entry_name:
             status = not status
         self.entry_name.set_editable(status)
-        
+
         if status:
             self.entry_name.grab_focus()
         else:
@@ -267,7 +269,7 @@ class BottleView(Gtk.ScrolledWindow):
         programs = self.manager.get_programs(self.config)
         hidden = len([x for x in programs if x.get("removed")])
 
-        if (len(programs) == 0 or len(programs) == hidden)\
+        if (len(programs) == 0 or len(programs) == hidden) \
                 and self.config.get("Environment") != "Steam":
             self.group_programs.set_visible(False)
             return
@@ -327,7 +329,7 @@ class BottleView(Gtk.ScrolledWindow):
             self.manager.update_config(
                 config=self.config,
                 key="Latest_Executables",
-                value=_execs+[{
+                value=_execs + [{
                     "name": file_dialog.get_filename().split("/")[-1],
                     "file": file_dialog.get_filename(),
                     "args": args
@@ -344,7 +346,7 @@ class BottleView(Gtk.ScrolledWindow):
         '''
         for w in self.box_run_extra.get_children():
             if w not in [
-                self.btn_run_args, 
+                self.btn_run_args,
                 self.check_move_file,
                 self.check_terminal,
                 self.extra_separator]:
@@ -439,7 +441,7 @@ class BottleView(Gtk.ScrolledWindow):
             for widget in widgets:
                 widget.set_visible(True)
             self.btn_delete_top.set_visible(False)
-    
+
     def update_move_progress(self, progress):
         '''
         This function update the progress bar when the user
@@ -467,7 +469,7 @@ class BottleView(Gtk.ScrolledWindow):
 
     def run_browse(self, widget):
         ManagerUtils.open_filemanager(self.config)
-    
+
     def run_explorer(self, widget):
         program = Explorer(self.config)
         RunAsync(program.launch)
@@ -475,7 +477,7 @@ class BottleView(Gtk.ScrolledWindow):
     def run_cmd(self, widget):
         program = CMD(self.config)
         RunAsync(program.launch_terminal)
-    
+
     def run_snake(self, widget, event):
         if event.button == 2:
             RunAsync(TerminalUtils().launch_snake)
@@ -502,7 +504,7 @@ class BottleView(Gtk.ScrolledWindow):
 
         wineboot = WineBoot(self.config)
         widget.set_sensitive(False)
-        
+
         RunAsync(
             wineboot.send_status,
             callback=reset,
@@ -525,6 +527,7 @@ class BottleView(Gtk.ScrolledWindow):
     The following methods open resources (URLs) in the
     system browser.
     '''
+
     @staticmethod
     def open_report_url(widget):
         webbrowser.open_new_tab(

@@ -20,7 +20,7 @@ import yaml
 import uuid
 from datetime import datetime, timedelta
 
-from bottles.backend.logger import Logger   # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths
 
 logging = Logger()
@@ -41,6 +41,7 @@ class JournalManager:
     Store and retrieve data from the journal file (YAML). This should
     contain only important Bottles events.
     """
+
     @staticmethod
     def __get_journal() -> dict:
         """Return the journal as a dictionary."""
@@ -54,7 +55,7 @@ class JournalManager:
         if journal is None:
             journal = {}
         return journal
-    
+
     @staticmethod
     def __clean_old():
         """Clean old journal entries (1 month)."""
@@ -84,7 +85,7 @@ class JournalManager:
             journal = JournalManager.__get_journal()
         with open(Paths.journal, "w") as f:
             yaml.dump(journal, f)
-    
+
     @staticmethod
     def get(period: str = "today", plain: bool = False):
         """
@@ -103,12 +104,12 @@ class JournalManager:
         if period not in periods:
             logging.warning(f"Invalid period '{period}', falling back to 'today'", )
             period = "today"
-        
+
         _journal = JournalManager.__filter_by_date(journal, period)
         if plain:
             _journal = yaml.dump(_journal, sort_keys=False, indent=4)
         return _journal
-    
+
     @staticmethod
     def __filter_by_date(journal: dict, period: str):
         """Filter the journal by date."""
@@ -143,7 +144,7 @@ class JournalManager:
         """Return the event with the given id."""
         journal = JournalManager.__get_journal()
         return journal.get(event_id, None)
-    
+
     @staticmethod
     def write(severity: JournalSeverity, message: str):
         """Write an event to the journal."""

@@ -29,7 +29,6 @@ from bottles.backend.globals import Paths
 from bottles.backend.diff import Diff
 
 logging = Logger()
-BottleConfig = NewType('BottleConfig', dict)
 
 
 class LayersStore:
@@ -176,7 +175,7 @@ class Layer:
 
             for f in files:
                 if "layer.yml" in f or "bottle.yml" in f:
-                    continue # TODO: avoid replacing configurations, need improvement
+                    continue  # TODO: avoid replacing configurations, need improvement
 
                 print("File:", f)
                 _source = os.path.join(root, f)
@@ -228,7 +227,7 @@ class Layer:
         else:
             logging.error(f"Layer {_uuid} not found…", )
 
-    def mount_bottle(self, config: BottleConfig, duplicate: bool = False):
+    def mount_bottle(self, config: dict, duplicate: bool = False):
         """Mount a bottle to the current layer."""
         logging.info(f"Mounting bottle {config['Name']}…", )
         _path = ManagerUtils.get_bottle_path(config)

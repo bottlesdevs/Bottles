@@ -34,6 +34,7 @@ class GamescopeDialog(Handy.Window):
     toggle_borderless = Gtk.Template.Child()
     toggle_fullscreen = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -49,9 +50,9 @@ class GamescopeDialog(Handy.Window):
         self.btn_save.connect("clicked", self.__save)
         self.toggle_borderless.connect("toggled", self.__change_wtype, "b")
         self.toggle_fullscreen.connect("toggled", self.__change_wtype, "f")
-        
+
         self.__update(config)
-    
+
     def __change_wtype(self, widget, wtype):
         self.toggle_borderless.handler_block_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_block_by_func(self.__change_wtype)
@@ -102,7 +103,7 @@ class GamescopeDialog(Handy.Window):
                 value=settings[setting],
                 scope="Parameters"
             )
-        
+
         self.destroy()
 
     def __save(self, widget=False):

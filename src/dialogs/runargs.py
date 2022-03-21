@@ -17,6 +17,7 @@
 
 from gi.repository import Gtk, Handy
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-run-args.ui')
 class RunArgsDialog(Handy.Window):
     __gtype_name__ = 'RunArgsDialog'
@@ -25,6 +26,7 @@ class RunArgsDialog(Handy.Window):
     entry_args = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, parent, **kwargs):

@@ -32,6 +32,7 @@ class ImporterView(Gtk.ScrolledWindow):
     btn_find_prefixes = Gtk.Template.Child()
     btn_import_config = Gtk.Template.Child()
     btn_import_full = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, **kwargs):
@@ -52,6 +53,7 @@ class ImporterView(Gtk.ScrolledWindow):
         This function remove all entries from the list_prefixes, ask the
         manager to find all prefixes in the system and add them to the list
         '''
+
         def update(result, error=False):
             widget.set_sensitive(True)
             if result.status:
@@ -61,7 +63,7 @@ class ImporterView(Gtk.ScrolledWindow):
                     self.list_prefixes.add(ImporterEntry(self.window, prefix))
 
         widget.set_sensitive(False)
-        
+
         RunAsync(
             self.import_manager.search_wineprefixes,
             callback=update
@@ -97,7 +99,7 @@ class ImporterView(Gtk.ScrolledWindow):
             )
 
         file_dialog.destroy()
-    
+
     def __import_config_bck(self, widget):
         '''
         This function show a dialog to the user, from which it can choose an

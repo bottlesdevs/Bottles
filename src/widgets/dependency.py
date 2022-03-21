@@ -36,6 +36,7 @@ class DependencyEntry(Handy.ActionRow):
     btn_license = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, dependency, plain=False, selection=False, **kwargs):

@@ -18,6 +18,7 @@
 import os
 from gi.repository import Gtk, GLib, Handy
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class LaunchOptionsDialog(Handy.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
@@ -29,6 +30,7 @@ class LaunchOptionsDialog(Handy.Window):
     btn_script = Gtk.Template.Child()
     flatpak_warn = Gtk.Template.Child()
     expander = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, program, **kwargs):

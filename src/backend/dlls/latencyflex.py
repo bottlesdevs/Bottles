@@ -27,5 +27,5 @@ class LatencyFleXComponent(DLLComponent):
         ]
     }
 
-    def get_base_path(self, version:str):
+    def get_base_path(self, version: str):
         return ManagerUtils.get_latencyflex_path(version)

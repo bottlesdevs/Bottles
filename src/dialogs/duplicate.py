@@ -22,6 +22,7 @@ from gi.repository import Gtk, Handy
 from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.managers.backup import BackupManager
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
 class DuplicateDialog(Handy.Window):
     __gtype_name__ = 'DuplicateDialog'
@@ -33,6 +34,7 @@ class DuplicateDialog(Handy.Window):
     btn_duplicate = Gtk.Template.Child()
     stack_switcher = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, parent, **kwargs):
@@ -58,7 +60,7 @@ class DuplicateDialog(Handy.Window):
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         name = widget.get_text()
 
-        if(regex.search(name) is None) and name != "":
+        if (regex.search(name) is None) and name != "":
             self.btn_duplicate.set_sensitive(True)
             widget.set_icon_from_icon_name(1, "")
         else:

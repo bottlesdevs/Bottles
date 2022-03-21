@@ -35,6 +35,7 @@ class VersioningView(Gtk.ScrolledWindow):
     btn_help = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -45,7 +46,7 @@ class VersioningView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.versioning_manager = window.manager.versioning_manager
         self.config = config
-        
+
         self.btn_save.connect("clicked", self.add_state)
         self.entry_state_comment.connect(
             'key-release-event', self.check_entry_state_comment
@@ -65,10 +66,10 @@ class VersioningView(Gtk.ScrolledWindow):
 
         for w in self.list_states.get_children():
             w.destroy()
-        
+
         if len(states) == 0:
             states = self.versioning_manager.list_states(self.config)
-        
+
         states = states.items()
         self.hdy_status.set_visible(not len(states) > 0)
 

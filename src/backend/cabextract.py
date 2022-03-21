@@ -72,7 +72,7 @@ class CabExtract:
     def __extract(self) -> bool:
         if not os.path.exists(self.destination):
             os.makedirs(self.destination)
-            
+
         try:
             if len(self.files) > 0:
                 for file in self.files:

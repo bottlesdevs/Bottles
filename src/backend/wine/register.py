@@ -21,7 +21,7 @@ import json
 
 
 class WinRegister:
-    
+
     def __init__(self):
         self.path = None
         self.diff = {}
@@ -36,13 +36,13 @@ class WinRegister:
         self.exclude = []
         self.reg_dict = self.__parse_dict(path)
         return self
-    
+
     def __get_header(self):
         """Return the header of the registry file."""
         with open(self.path, "r") as reg:
             header = reg.readlines(2)
             return header
-    
+
     @staticmethod
     def __parse_dict(path: str):
         """
@@ -51,7 +51,7 @@ class WinRegister:
               be the first method to be checked if problems occur.
         """
         _dict = {}
-        exclude = [] # append here the keys to exclude, not safe
+        exclude = []  # append here the keys to exclude, not safe
 
         with open(path, "rb") as _reg:
             content = _reg.read()
@@ -59,7 +59,7 @@ class WinRegister:
             cur_line = 0
             regs = content.split("\r")
             print("Total keys:", len(regs))
-            
+
             for reg in regs:
 
                 if cur_line <= 2:
@@ -85,7 +85,7 @@ class WinRegister:
                         if any(key.startswith(ex) for ex in exclude):
                             key = None
                             continue
-                        
+
                         _dict[key] = {}
                         continue
                     elif line not in ["", "\n"]:
@@ -97,23 +97,23 @@ class WinRegister:
                             continue
 
                         _key = line.split("=")[0]
-                        _value = line[len(_key)+1:]
+                        _value = line[len(_key) + 1:]
                         _dict[key][_key] = _value
                         continue
-        
+
         return _dict
-    
+
     def compare(self, path: str = None, register: object = None):
         """Compare the current register with the given path or register."""
         if path is not None:
             register = WinRegister().new(path)
         elif register is None:
             raise ValueError("No register given")
-        
+
         diff = self.__get_diff(register)
         self.diff = diff
         return diff
-    
+
     def __get_diff(self, register: object):
         """Return the difference between the current register and the given one."""
         diff = {}
@@ -130,27 +130,27 @@ class WinRegister:
                 if _key not in other_reg[key]:
                     diff[key] = self.reg_dict[key]
                     break
-                
+
                 if self.reg_dict[key][_key] != other_reg[key][_key]:
                     diff[key] = self.reg_dict[key]
                     break
 
         return diff
-    
+
     def update(self, diff: dict = None):
         """Update the current register with the given diff."""
         if diff is None:
-            diff = self.diff # use last diff
+            diff = self.diff  # use last diff
 
         for key in diff:
             self.reg_dict[key] = diff[key]
-        
+
         if os.path.exists(self.path):
             '''
             Make a backup before overwriting the register.
             '''
             os.rename(self.path, f"{self.path}.{uuid.uuid4()}.bak")
-        
+
         with open(self.path, "w") as reg:
             for h in self.__get_header():
                 reg.write(h)

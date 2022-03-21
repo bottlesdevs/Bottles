@@ -7,13 +7,10 @@ from bottles.backend.wine.wineboot import WineBoot
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class RegKeys:
-    
-    def __init__(self, config: BottleConfig):
+
+    def __init__(self, config: dict):
         self.config = config
         self.reg = Reg(self.config)
 
@@ -36,7 +33,7 @@ class RegKeys:
         '''
         if version not in win_versions:
             raise ValueError("Given version is not supported.")
-            
+
         if version == "winxp" and self.config.get("Arch") == "win64":
             version = "winxp64"
 
@@ -60,7 +57,7 @@ class RegKeys:
                     self.reg.remove(d, v)
             else:
                 self.reg.remove(d, _val)
-            
+
         bundle = {
             "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": [
                 {
@@ -150,7 +147,7 @@ class RegKeys:
 
         wineboot.restart()
         wineboot.update()
-    
+
     def set_app_default(self, version: str, executable: str):
         '''
         Change default Windows version per application in a bottle
@@ -158,10 +155,10 @@ class RegKeys:
         '''
         if version not in win_versions:
             raise ValueError("Given version is not supported.")
-            
+
         if version == "winxp" and self.config.get("Arch") == "win64":
             version = "winxp64"
-            
+
         self.reg.add(
             key=f"HKEY_CURRENT_USER\\Software\\Wine\\AppDefaults\\{executable}",
             value="Version",
@@ -193,7 +190,7 @@ class RegKeys:
             )
         wineboot.update()
 
-    def apply_cmd_settings(self, scheme:dict={}):
+    def apply_cmd_settings(self, scheme: dict = {}):
         '''
         Change settings for the wine command line in a bottle.
         This method can also be used to apply the default settings, part
@@ -203,26 +200,26 @@ class RegKeys:
         self.reg.import_bundle({
             "HKEY_CURRENT_USER\\Console\\C:_windows_system32_wineconsole.exe": [
                 {"value": "ColorTable00", "data": "2368548"},
-                {"value": "CursorSize","data": "25" },
-                {"value": "CursorVisible","data": "1" },
-                {"value": "EditionMode","data": "0" },
-                {"value": "FaceName","data": "Monospace", "key_type": "dword"},
-                {"value": "FontPitchFamily","data": "1" },
-                {"value": "FontSize","data": "1248584" },
-                {"value": "FontWeight","data": "400" },
-                {"value": "HistoryBufferSize","data": "50" },
-                {"value": "HistoryNoDup","data": "0" },
-                {"value": "InsertMode","data": "1" },
-                {"value": "MenuMask","data": "0" },
-                {"value": "PopupColors","data": "245" },
-                {"value": "QuickEdit","data": "1" },
-                {"value": "ScreenBufferSize","data": "9830480" },
-                {"value": "ScreenColors","data": "11" },
-                {"value": "WindowSize","data": "1638480"
-                }
+                {"value": "CursorSize", "data": "25"},
+                {"value": "CursorVisible", "data": "1"},
+                {"value": "EditionMode", "data": "0"},
+                {"value": "FaceName", "data": "Monospace", "key_type": "dword"},
+                {"value": "FontPitchFamily", "data": "1"},
+                {"value": "FontSize", "data": "1248584"},
+                {"value": "FontWeight", "data": "400"},
+                {"value": "HistoryBufferSize", "data": "50"},
+                {"value": "HistoryNoDup", "data": "0"},
+                {"value": "InsertMode", "data": "1"},
+                {"value": "MenuMask", "data": "0"},
+                {"value": "PopupColors", "data": "245"},
+                {"value": "QuickEdit", "data": "1"},
+                {"value": "ScreenBufferSize", "data": "9830480"},
+                {"value": "ScreenColors", "data": "11"},
+                {"value": "WindowSize", "data": "1638480"
+                 }
             ]
         })
-    
+
     def set_dpi(self, value: int):
         '''
         Set the DPI for a bottle.
@@ -233,7 +230,7 @@ class RegKeys:
             data=value,
             key_type="REG_DWORD"
         )
-    
+
     def set_grab_fullscreen(self, state: bool):
         '''
         Set the grab fullscreen setting for a bottle.
@@ -244,7 +241,7 @@ class RegKeys:
             value="GrabFullscreen",
             data=value
         )
-    
+
     def set_take_focus(self, state: bool):
         '''
         Set the take focus setting for a bottle.

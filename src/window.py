@@ -195,14 +195,14 @@ class MainWindow(Handy.ApplicationWindow):
     def set_title(self, title, subtitle: str = ""):
         self.headerbar.set_title(title)
         self.headerbar.set_subtitle(subtitle)
-    
+
     def set_actions(self, widget: Gtk.Widget = False):
         '''
         This function is used to set the actions buttons in the headerbar.
         '''
         for w in self.box_actions.get_children():
             self.box_actions.remove(w)
-        
+
         if widget:
             self.box_actions.add(widget)
 
@@ -267,7 +267,7 @@ class MainWindow(Handy.ApplicationWindow):
         page (previous_page).
         '''
         self.toggle_selection_mode(False)
-        
+
         for w in [self.btn_add, self.btn_menu]:
             w.set_visible(True)
 
@@ -287,7 +287,6 @@ class MainWindow(Handy.ApplicationWindow):
             title=_("Health check"),
             message=ht,
         )
-
 
     def show_details_view(self, widget=False, config=dict):
         self.set_previous_page_status()
@@ -341,11 +340,11 @@ class MainWindow(Handy.ApplicationWindow):
                 CrashReportDialog(self, crash_log)
         except FileNotFoundError:
             pass
-    
+
     def check_notifications(self):
         if not self.utils_conn.check_connection():
             return
-            
+
         messages = NotificationsManager().messages
         if len(messages) > 0:
             for message in messages:
@@ -358,10 +357,10 @@ class MainWindow(Handy.ApplicationWindow):
                 )
                 entry.set_visible(True)
                 self.list_notifications.add(entry)
-            
+
             self.btn_notifications.set_visible(True)
-    
-    def toggle_selection_mode(self, status:bool=True):
+
+    def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()
         if status:
             context.add_class("selection-mode")

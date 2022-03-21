@@ -7,14 +7,11 @@ from bottles.backend.wine.wineserver import WineServer
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class WineBoot(WineProgram):
     program = "WINE Runtime tool"
     command = "wineboot"
-    
+
     def send_status(self, status: int):
         states = {
             -1: "force",
@@ -29,7 +26,7 @@ class WineBoot(WineProgram):
         if status == 0 and not WineServer(self.config).is_alive():
             logging.info("There is no running wineserver.", )
             return
-        
+
         if status in states:
             args = f"{states[status]} /nogui"
             self.launch(
@@ -43,18 +40,18 @@ class WineBoot(WineProgram):
 
     def force(self):
         return self.send_status(-1)
-    
+
     def kill(self):
         return self.send_status(0)
 
     def restart(self):
         return self.send_status(1)
-    
+
     def shutdown(self):
         return self.send_status(2)
-    
+
     def update(self):
         return self.send_status(3)
-    
+
     def init(self):
         return self.send_status(4)

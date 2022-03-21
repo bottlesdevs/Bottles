@@ -1,5 +1,4 @@
 class Samples:
-
     data = {
         "notifications": []
     }

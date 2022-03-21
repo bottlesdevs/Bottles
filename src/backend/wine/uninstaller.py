@@ -5,9 +5,6 @@ from bottles.backend.wine.wineprogram import WineProgram
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class Uninstaller(WineProgram):
     program = "WINE Uninstaller"

@@ -29,5 +29,5 @@ class NVAPIComponent(DLLComponent):
         ]
     }
 
-    def get_base_path(self, version:str):
+    def get_base_path(self, version: str):
         return ManagerUtils.get_nvapi_path(version)

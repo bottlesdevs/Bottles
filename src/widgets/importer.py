@@ -30,6 +30,7 @@ class ImporterEntry(Handy.ActionRow):
     btn_import = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     img_lock = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, prefix, **kwargs):
@@ -67,9 +68,9 @@ class ImporterEntry(Handy.ActionRow):
         def set_imported(result, error=False):
             if result.status:
                 self.destroy()
-                
+
             self.set_sensitive(True)
-        
+
         self.set_sensitive(False)
 
         RunAsync(

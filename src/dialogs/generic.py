@@ -25,11 +25,11 @@ from gi.repository import Gtk, GtkSource, Gdk, Handy, Pango, WebKit2
 class MessageDialog(Gtk.MessageDialog):
 
     def __init__(
-        self,
-        parent,
-        title=_("Warning"),
-        message=_("An error has occurred."),
-        log=False
+            self,
+            parent,
+            title=_("Warning"),
+            message=_("An error has occurred."),
+            log=False
     ):
 
         Gtk.MessageDialog.__init__(
@@ -65,7 +65,7 @@ class MessageDialog(Gtk.MessageDialog):
 
 
 class SourceDialog(Handy.Window):
-    
+
     def __init__(self, parent, title, message, **kwargs):
         super().__init__(**kwargs)
         self.set_position(Gtk.WindowPosition.CENTER)
@@ -74,9 +74,9 @@ class SourceDialog(Handy.Window):
         self.parent = parent
         self.title = title
         self.message = message
-        
+
         self.__build_ui()
-    
+
     def __build_ui(self):
         headerbar = Handy.HeaderBar()
         btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic", Gtk.IconSize.BUTTON)
@@ -112,17 +112,17 @@ class SourceDialog(Handy.Window):
 
         box.add(headerbar)
         box.add(scrolled)
-        
+
         self.add(box)
         self.show_all()
-    
+
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_text(self.message, -1)
 
 
 class TextDialog(Handy.Window):
-    
+
     def __init__(self, parent, title, message, **kwargs):
         super().__init__(**kwargs)
         self.set_position(Gtk.WindowPosition.CENTER)
@@ -131,9 +131,9 @@ class TextDialog(Handy.Window):
         self.parent = parent
         self.title = title
         self.message = message
-        
+
         self.__build_ui()
-    
+
     def __build_ui(self):
         headerbar = Handy.HeaderBar()
         btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic", Gtk.IconSize.BUTTON)
@@ -155,10 +155,10 @@ class TextDialog(Handy.Window):
 
         box.add(headerbar)
         box.add(scrolled)
-        
+
         self.add(box)
         self.show_all()
-    
+
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_text(self.message, -1)
@@ -176,9 +176,9 @@ class WebDialog(Handy.Window):
         self.parent = parent
         self.title = title
         self.message = message
-        
+
         self.__build_ui()
-    
+
     def __build_ui(self):
         headerbar = Handy.HeaderBar()
         btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic", Gtk.IconSize.BUTTON)
@@ -198,10 +198,10 @@ class WebDialog(Handy.Window):
 
         box.add(headerbar)
         box.add(scrolled)
-        
+
         self.add(box)
         self.show_all()
-    
+
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_text(self.message, -1)
@@ -210,12 +210,12 @@ class WebDialog(Handy.Window):
 class Dialog(Gtk.Dialog):
 
     def __init__(
-        self,
-        parent,
-        title=_("Warning"),
-        message=False,
-        log=False,
-        html=False
+            self,
+            parent,
+            title=_("Warning"),
+            message=False,
+            log=False,
+            html=False
     ):
 
         Gtk.Dialog.__init__(
@@ -256,7 +256,7 @@ class Dialog(Gtk.Dialog):
                 buffer_iter = message_buffer.get_end_iter()
                 for l in log.split("\n"):
                     message_buffer.insert_markup(
-                        buffer_iter, 
+                        buffer_iter,
                         f"<span foreground='{color}'>{l}</span>\n",
                         -1
                     )

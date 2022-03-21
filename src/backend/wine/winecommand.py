@@ -13,9 +13,6 @@ from bottles.backend.logger import Logger
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class WineEnv:
     """
@@ -70,7 +67,7 @@ class WineCommand:
 
     def __init__(
             self,
-            config: BottleConfig,
+            config: dict,
             command: str,
             terminal: bool = False,
             arguments: str = False,

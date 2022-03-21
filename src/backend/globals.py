@@ -22,7 +22,6 @@ from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.managers.data import DataManager
 
-
 logging = Logger()
 
 

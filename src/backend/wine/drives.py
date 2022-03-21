@@ -6,13 +6,10 @@ from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class Drives:
-    
-    def __init__(self, config: BottleConfig):
+
+    def __init__(self, config: dict):
         self.config = config
         bottle = ManagerUtils.get_bottle_path(self.config)
         self.dosdevices_path = f"{bottle}/dosdevices"
@@ -28,13 +25,13 @@ class Drives:
                         path = os.readlink(f"{self.dosdevices_path}/{drive}")
                         drives[letter] = path
         return drives
-    
+
     def get_drive(self, letter: str):
         """Get a drive from the bottle"""
         if letter in self.get_all():
             return self.get_all().get(letter)
         return None
-    
+
     def new_drive(self, letter: str, path: str):
         """Add a new drive to the bottle"""
         letter = f"{letter}:".lower()
@@ -42,7 +39,7 @@ class Drives:
             os.makedirs(self.dosdevices_path)
         os.symlink(path, f"{self.dosdevices_path}/{letter}")
         logging.info(f"New drive {letter} added to the bottle", )
-    
+
     def remove_drive(self, letter: str):
         """Remove a drive from the bottle"""
         if letter.upper() in self.get_all():

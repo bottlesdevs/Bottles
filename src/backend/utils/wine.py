@@ -13,7 +13,7 @@ class WineUtils:
             if user_dir in ignored:
                 continue
             found.append(user_dir)
-        
+
         if len(found) == 0:
             raise Exception("No user directories found.")
 

@@ -30,8 +30,8 @@ from bottles.views.bottle_programs import ProgramsView
 from bottles.views.bottle_versioning import VersioningView
 from bottles.views.bottle_taskmanager import TaskManagerView
 
-
 pages = {}
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
 class DetailsView(Handy.Leaflet):
@@ -40,6 +40,7 @@ class DetailsView(Handy.Leaflet):
     # region Widgets
     list_pages = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config={}, **kwargs):
@@ -181,10 +182,9 @@ class DetailsView(Handy.Leaflet):
         self.view_bottle.update_programs()
 
         self.build_pages()
-        
+
     def update_programs(self, widget=None, config=None):
         if config:
             self.config = config
         self.view_bottle.update_programs(config=self.config)
         self.view_programs.update(config=self.config)
-        

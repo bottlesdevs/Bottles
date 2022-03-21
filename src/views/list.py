@@ -24,6 +24,7 @@ from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
 class ListViewEntry(Handy.ActionRow):
     __gtype_name__ = 'ListViewEntry'
@@ -40,6 +41,7 @@ class ListViewEntry(Handy.ActionRow):
     icon_damaged = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     spinner = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, arg_exe, **kwargs):
@@ -85,7 +87,7 @@ class ListViewEntry(Handy.ActionRow):
 
         '''If config is broken'''
         if self.config.get("Broken"):
-            for w in [self.btn_repair,self.icon_damaged]:
+            for w in [self.btn_repair, self.icon_damaged]:
                 w.set_visible(True)
                 w.set_sensitive(True)
 
@@ -97,7 +99,7 @@ class ListViewEntry(Handy.ActionRow):
             if self.arg_exe:
                 logging.info(
                     _("Arguments found for executable: [{executable}].").format(
-                        executable = self.arg_exe))
+                        executable=self.arg_exe))
 
                 self.disconnect(activate_handler)
                 self.connect('activated', self.run_executable)
@@ -107,6 +109,7 @@ class ListViewEntry(Handy.ActionRow):
                 self.btn_run_executable.set_visible(True)
 
     '''Repair bottle'''
+
     def repair(self, widget):
         self.disable()
         RunAsync(
@@ -115,6 +118,7 @@ class ListViewEntry(Handy.ActionRow):
         )
 
     '''Display file dialog for executable'''
+
     def run_executable(self, widget):
         exec_path = self.arg_exe
 
@@ -130,13 +134,13 @@ class ListViewEntry(Handy.ActionRow):
             if response == -3:
                 exec_path = file_dialog.get_filename()
             file_dialog.destroy()
-        
+
         executor = WineExecutor(
             self.config,
             exec_path=exec_path
         )
         RunAsync(executor.run)
-        
+
         if self.window.settings.get_boolean("auto-close-bottles"):
             self.window.proper_close()
 
@@ -144,10 +148,11 @@ class ListViewEntry(Handy.ActionRow):
         self.manager.update_bottles()
 
     '''Show details page'''
+
     def show_details(self, widget):
         self.window.page_details.view_preferences.update_combo_components()
         self.window.show_details_view(config=self.config)
-    
+
     def disable(self):
         self.handler_block_by_func(self.show_details)
 
@@ -157,6 +162,7 @@ class ListViewEntry(Handy.ActionRow):
         self.spinner.start()
         self.spinner.set_visible(True)
         self.set_sensitive(False)
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
 class ListView(Gtk.ScrolledWindow):
@@ -168,6 +174,7 @@ class ListView(Gtk.ScrolledWindow):
     hdy_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, arg_exe, **kwargs):
@@ -203,6 +210,7 @@ class ListView(Gtk.ScrolledWindow):
         return False
 
     '''Find and append bottles to list_bottles'''
+
     def idle_update_bottles(self):
         for bottle in self.list_bottles.get_children():
             bottle.destroy()
@@ -215,7 +223,7 @@ class ListView(Gtk.ScrolledWindow):
         else:
             self.clamp_list.set_visible(True)
             self.hdy_status.set_visible(False)
-            
+
         if len(bottles) >= 10:
             self.entry_search.set_visible(True)
 
@@ -227,7 +235,7 @@ class ListView(Gtk.ScrolledWindow):
 
     def update_bottles(self):
         GLib.idle_add(self.idle_update_bottles)
-    
+
     def disable_bottle(self, config):
         for bottle in self.list_bottles.get_children():
             if bottle.config["Path"] == config["Path"]:

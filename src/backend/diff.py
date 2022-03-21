@@ -36,19 +36,19 @@ class Diff:
                     continue
                 with open(os.path.join(root, f), "rb") as fr:
                     _hash = hashlib.sha1(fr.read()).hexdigest()
-                
+
                 _key = os.path.join(root, f)
                 _key = _key.replace(path, "")
                 _files[_key] = _hash
-        
+
         return _files
-    
+
     @staticmethod
     def file_hashify(path: str) -> str:
         """Hash (SHA-1) a file and return it."""
         with open(path, "rb") as fr:
             _hash = hashlib.sha1(fr.read()).hexdigest()
-        
+
         return _hash
 
     @staticmethod
@@ -57,11 +57,11 @@ class Diff:
         Compare two hashes dictionaries and return the
         differences (added, removed, changed).
         """
-        
+
         added = []
         changed = []
         removed = [f for f in parent if f not in child]
-        
+
         for f in child:
             if f not in parent:
                 added.append(f)
@@ -69,7 +69,7 @@ class Diff:
                 changed.append(f)
 
         return {
-            "added": added, 
-            "removed": removed, 
+            "added": added,
+            "removed": removed,
             "changed": changed
         }

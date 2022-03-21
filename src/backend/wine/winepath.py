@@ -5,9 +5,6 @@ from bottles.backend.wine.wineprogram import WineProgram
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class WinePath(WineProgram):
     program = "WINE path converter"

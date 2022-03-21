@@ -24,7 +24,6 @@ from bottles.backend.utils.display import DisplayUtils  # pyright: reportMissing
 
 
 class VulkanUtils:
-
     __vk_icd_dirs = [
         "/usr/share/vulkan",
         "/etc/vulkan",
@@ -36,7 +35,7 @@ class VulkanUtils:
             "/usr/lib/x86_64-linux-gnu/GL/vulkan",
             "/usr/lib/i386-linux-gnu/GL/vulkan",
         ]
-    
+
     def __init__(self):
         self.loaders = self.__get_vk_icd_loaders()
 
@@ -57,10 +56,10 @@ class VulkanUtils:
                     loaders["amd"] += [file]
                 elif "intel" in file.lower():
                     loaders["intel"] += [file]
-            
+
         return loaders
 
-    def get_vk_icd(self, vendor: str, as_string=False): 
+    def get_vk_icd(self, vendor: str, as_string=False):
         vendors = [
             "nvidia",
             "amd",
@@ -84,7 +83,7 @@ class VulkanUtils:
     def test_vulkan():
         if shutil.which("vulkaninfo") is None:
             return "vulkaninfo tool not found"
-        
+
         res = subprocess.Popen(
             "vulkaninfo",
             stdout=subprocess.PIPE,

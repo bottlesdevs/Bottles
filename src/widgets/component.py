@@ -20,6 +20,7 @@ from gi.repository import Gtk, GLib, GObject, Handy
 from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
 from bottles.utils import RunAsync
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
 class ComponentEntry(Handy.ActionRow):
     __gtype_name__ = 'ComponentEntry'
@@ -36,6 +37,7 @@ class ComponentEntry(Handy.ActionRow):
     btn_err = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_task_status = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, component, component_type, is_upgradable=False, **kwargs):
@@ -58,10 +60,10 @@ class ComponentEntry(Handy.ActionRow):
         else:
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
-        
+
         if is_upgradable:
             self.img_download.set_from_icon_name(
-                'software-update-available-symbolic', 
+                'software-update-available-symbolic',
                 Gtk.IconSize.BUTTON
             )
             self.btn_download.set_tooltip_text(_("Upgrade"))
@@ -75,9 +77,9 @@ class ComponentEntry(Handy.ActionRow):
         def install_finished(result, error=False):
             if result:
                 return self.set_installed()
-            
+
             return self.update_status(failed=True)
-            
+
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
@@ -102,12 +104,12 @@ class ComponentEntry(Handy.ActionRow):
         )
 
     def update_status(
-        self,
-        count=False,
-        block_size=False,
-        total_size=False,
-        completed=False,
-        failed=False
+            self,
+            count=False,
+            block_size=False,
+            total_size=False,
+            completed=False,
+            failed=False
     ):
         if failed:
             self.set_err()
@@ -142,10 +144,11 @@ class ComponentEntry(Handy.ActionRow):
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
 
+
 class ComponentExpander(Handy.ExpanderRow):
 
     def __init__(self, title, **kwargs):
         super().__init__(**kwargs)
-        
+
         self.set_title(title)
         self.show_all()

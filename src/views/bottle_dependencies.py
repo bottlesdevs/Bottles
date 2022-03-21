@@ -37,6 +37,7 @@ class DependenciesView(Gtk.ScrolledWindow):
     entry_search_deps = Gtk.Template.Child()
     infobar_testing = Gtk.Template.Child()
     actions = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -58,11 +59,11 @@ class DependenciesView(Gtk.ScrolledWindow):
 
         if "TESTING_REPOS" in os.environ and os.environ["TESTING_REPOS"] == "1":
             self.infobar_testing.set_visible(True)
-    
+
     def __select_dependency(self, widget, row, data=None):
         if row is not None:
             self.selected_dependencies.append(row.dependency)
-    
+
     def __install_dependencies(self, widget):
         def callback(result, error=False):
             nonlocal self
@@ -73,10 +74,10 @@ class DependenciesView(Gtk.ScrolledWindow):
             nonlocal self
             for d in self.selected_dependencies:
                 self.manager.dependency_manager.install(self.config, d)
-        
+
         self.btn_toggle_selection.set_active(False)
         self.list_dependencies.set_sensitive(False)
-        
+
         RunAsync(process_queue, callback=callback)
 
     def __search_dependencies(self, widget, event=None, data=None):
@@ -89,7 +90,7 @@ class DependenciesView(Gtk.ScrolledWindow):
             self.__filter_dependencies,
             terms
         )
-    
+
     def __toggle_selection(self, widget):
         '''
         This function toggle the selection of the dependencies
@@ -123,7 +124,7 @@ class DependenciesView(Gtk.ScrolledWindow):
         supported by the manager.
         '''
         self.config = config
-        
+
         for w in self.list_dependencies:
             w.destroy()
 
@@ -160,5 +161,5 @@ class DependenciesView(Gtk.ScrolledWindow):
                         plain=plain
                     )
                 )
-        
+
         self.list_dependencies.set_sensitive(True)

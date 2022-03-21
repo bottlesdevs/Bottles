@@ -29,6 +29,7 @@ class Downloader:
     bar while downloading but can also be used to pdate external progress
     bars using the func parameter.
     """
+
     def __init__(self, url: str, file: str, func: callable = None):
         self.url = url
         self.file = file
@@ -66,13 +67,12 @@ class Downloader:
             return False
 
         return True
-    
+
     def __progress(self, count, block_size, total_size):
         """Update the progress bar."""
         percent = int(count * block_size * 100 / total_size)
         name = self.file.split("/")[-1]
         print(f"\rDownloading {name}: {percent}% [{'=' * int(percent / 2)}>", end="")
-        
+
         if percent == 100:
             print("\n")
-        

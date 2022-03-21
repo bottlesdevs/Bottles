@@ -92,12 +92,12 @@ Once the package is published, you can open a [Pull Request](https://github.com/
 - Package version should follow the CalVer model (year.month.day) and the release cycle of the project. Bottles has 2 released per month: one on 14th and one on 28th. When an hotfix came, this will be appended to the release (e.g. 2022.2.14-1). Bottles as a codename too which is not mandatory and currently only used by the Flatpak.
 
 ## Shortcuts
-|Shortcut|Action
-|:----:|:----:|
-| `Ctrl+Q` | Close Bottles |
+| Shortcut |         Action          |
+|:--------:|:-----------------------:|
+| `Ctrl+Q` |      Close Bottles      |
 | `Ctrl+R` | Reload the Bottles list |
-| `F1` | Go to the documentation |
-| `Esc` | Go back |
+|   `F1`   | Go to the documentation |
+|  `Esc`   |         Go back         |
 
 ## FAQ
 - [Why Bottles?](https://docs.usebottles.com/faq/why-bottles)

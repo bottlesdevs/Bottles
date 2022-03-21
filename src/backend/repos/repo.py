@@ -24,13 +24,12 @@ logging = Logger()
 
 
 class Repo:
-
     name: str = ""
-    
+
     def __init__(self, url: str, index: str):
         self.url = url
         self.catalog = self.__get_catalog(index)
-    
+
     def __get_catalog(self, index: str):
         if index in ["", None]:
             return {}
@@ -41,9 +40,9 @@ class Repo:
         except (urllib.error.HTTPError, urllib.error.URLError, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} repository index.", )
             return {}
-            
+
         return index
-    
+
     def get_manifest(self, url: str, plain: bool = False) -> dict:
         try:
             with urllib.request.urlopen(url) as u:

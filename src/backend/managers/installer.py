@@ -38,9 +38,6 @@ from bottles.backend.wine.executor import WineExecutor
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class InstallerManager:
 

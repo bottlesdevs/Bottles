@@ -22,6 +22,7 @@ import locale
 import webbrowser
 import subprocess
 from os import path
+
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 gi.require_version('WebKit2', '4.0')
@@ -63,6 +64,8 @@ locale.textdomain("bottles")
 gettext.bindtextdomain("bottles", locale_dir)
 gettext.textdomain("bottles")
 _ = gettext.gettext
+
+
 # endregion
 
 
@@ -150,7 +153,7 @@ class Bottles(Gtk.Application):
 
         if commands.contains("bottle"):
             self.arg_bottle = commands.lookup_value("bottle").get_string()
-        
+
         if commands.contains("arguments"):
             self.arg_passed = commands.lookup_value("arguments").get_string()
 

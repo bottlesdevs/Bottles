@@ -31,6 +31,7 @@ from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 
 logging = Logger()
 
+
 class UtilsConnection():
     '''
     This class is used to check the connection, pinging the official
@@ -113,6 +114,7 @@ class RunAsync(threading.Thread):
             logging.write_log([str(exception), traceback_info])
         self.source_id = GLib.idle_add(self.callback, result, error)
         return self.source_id
+
 
 class GtkUtils:
     @staticmethod

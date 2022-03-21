@@ -28,12 +28,12 @@ class InstallerRepo(Repo):
             url = f"{self.url}/{entry['Category']}/{name}.yml"
             return self.get_manifest(url, plain)
         return False
-    
+
     def get_review(self, name: str) -> Union[str, bool]:
         if name in self.catalog:
             return self.get_manifest(f"{self.url}/Reviews/{name}.md", plain=True)
         return False
-    
+
     def get_icon(self, name: str) -> Union[str, bytes, None]:
         if name in self.catalog:
             entry = self.catalog[name]
@@ -42,4 +42,3 @@ class InstallerRepo(Repo):
             if icon:
                 return f"{self.url}/data/{name}/{icon}"
         return None
-                

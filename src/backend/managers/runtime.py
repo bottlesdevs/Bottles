@@ -22,7 +22,7 @@ from bottles.backend.globals import Paths  # pyright: reportMissingImports=false
 
 
 class RuntimeManager:
-        
+
     @staticmethod
     def get_runtimes(_filter: str = "bottles"):
         runtimes = {
@@ -34,7 +34,7 @@ class RuntimeManager:
             return False
 
         return runtimes[_filter]
-    
+
     @staticmethod
     def get_runtime_env(_filter: str = "bottles"):
         runtime = RuntimeManager.get_runtimes(_filter)
@@ -63,7 +63,7 @@ class RuntimeManager:
         for runtime_path in paths:
             if not os.path.exists(runtime_path):
                 continue
-            
+
             structure_found = []
             for root, dirs, files in os.walk(runtime_path):
                 for d in dirs:
@@ -71,13 +71,13 @@ class RuntimeManager:
 
             if not check_structure(structure_found, structure):
                 continue
-            
+
             res = [f"{runtime_path}/{s}" for s in structure]
 
             return res
-        
+
         return False
-    
+
     @staticmethod
     def __get_bottles_runtime():
         paths = [
@@ -87,7 +87,7 @@ class RuntimeManager:
         structure = ["lib", "lib32"]
 
         return RuntimeManager.__get_runtime(paths, structure)
-    
+
     @staticmethod
     def __get_steam_runtime():
         # NOTE: Not implemented, here just for testing purposes

@@ -24,7 +24,7 @@ from functools import lru_cache
 from typing import Union, NewType
 from gi.repository import GLib
 
-from bottles.operation import OperationManager   # pyright: reportMissingImports=false
+from bottles.operation import OperationManager  # pyright: reportMissingImports=false
 from bottles.backend.utils.generic import validate_url
 from bottles.backend.models.result import Result
 from bottles.backend.runner import Runner
@@ -39,9 +39,6 @@ from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.executor import WineExecutor
 
 logging = Logger()
-
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
 
 
 class DependencyManager:
@@ -78,7 +75,7 @@ class DependencyManager:
 
     def install(
             self,
-            config: BottleConfig,
+            config: dict,
             dependency: list,
             reinstall: bool = False
     ) -> Result:
@@ -199,7 +196,7 @@ class DependencyManager:
 
     def __perform_steps(
             self,
-            config: BottleConfig,
+            config: dict,
             step: dict
     ) -> bool:
         """
@@ -294,7 +291,7 @@ class DependencyManager:
         )
 
     @staticmethod
-    def __get_real_dest(config: BottleConfig, dest: str) -> Union[str,  bool]:
+    def __get_real_dest(config: dict, dest: str) -> Union[str, bool]:
         """This function return the real destination path."""
         bottle = ManagerUtils.get_bottle_path(config)
         _dest = dest
@@ -337,7 +334,7 @@ class DependencyManager:
         return download
 
     @staticmethod
-    def __step_delete_sys32_dlls(config: BottleConfig, dlls: list):
+    def __step_delete_sys32_dlls(config: dict, dlls: list):
         """Deletes the given dlls from the system32 folder"""
         path = ManagerUtils.get_bottle_path(config)
 
@@ -357,7 +354,7 @@ class DependencyManager:
         # return True in both cases, has it is a non-critical error
         return True
 
-    def __step_install_exe_msi(self, config: BottleConfig, step: dict) -> bool:
+    def __step_install_exe_msi(self, config: dict, step: dict) -> bool:
         """
         Download and install the .exe or .msi file
         declared in the step, in a bottle.
@@ -392,7 +389,7 @@ class DependencyManager:
         return False
 
     @staticmethod
-    def __step_uninstall(config: BottleConfig, file_name: str) -> bool:
+    def __step_uninstall(config: dict, file_name: str) -> bool:
         """
         This function find an uninstaller in the bottle by the given
         file name and execute it.
@@ -459,7 +456,7 @@ class DependencyManager:
 
         return True
 
-    def __step_get_from_cab(self, config: BottleConfig, step: dict):
+    def __step_get_from_cab(self, config: dict, step: dict):
         """Take a file from a cabiner and extract to a path."""
         source = step.get("source")
         file_name = step.get("file_name")
@@ -524,7 +521,7 @@ class DependencyManager:
         return False
 
     @staticmethod
-    def __step_install_fonts(config: BottleConfig, step: dict):
+    def __step_install_fonts(config: dict, step: dict):
         """Move fonts to the drive_c/windows/Fonts path."""
         path = step["url"]
         path = path.replace("temp/", f"{Paths.temp}/")
@@ -544,7 +541,7 @@ class DependencyManager:
 
         return True
 
-    def __step_copy_dll(self, config: BottleConfig, step: dict):
+    def __step_copy_dll(self, config: dict, step: dict):
         """
         This function copy dlls from temp folder to a directory
         declared in the step. The bottle drive_c path will be used as
@@ -588,7 +585,7 @@ class DependencyManager:
         return True
 
     @staticmethod
-    def __step_override_dll(config: BottleConfig, step: dict):
+    def __step_override_dll(config: dict, step: dict):
         """Register a new override for each dll."""
         reg = Reg(config)
 
@@ -616,7 +613,7 @@ class DependencyManager:
         return True
 
     @staticmethod
-    def __step_set_register_key(config: BottleConfig, step: dict):
+    def __step_set_register_key(config: dict, step: dict):
         """Set a registry key."""
         reg = Reg(config)
         reg.add(
@@ -628,7 +625,7 @@ class DependencyManager:
         return True
 
     @staticmethod
-    def __step_register_font(config: BottleConfig, step: dict):
+    def __step_register_font(config: dict, step: dict):
         """Register a font in the registry."""
         reg = Reg(config)
         reg.add(
@@ -639,7 +636,7 @@ class DependencyManager:
         return True
 
     @staticmethod
-    def __step_replace_font(config: BottleConfig, step: dict):
+    def __step_replace_font(config: dict, step: dict):
         """Register a font replacement in the registry."""
         reg = Reg(config)
         replaces = step.get("replace")
@@ -660,14 +657,14 @@ class DependencyManager:
         return True
 
     @staticmethod
-    def __step_set_windows(config: BottleConfig, step: dict):
+    def __step_set_windows(config: dict, step: dict):
         """Set the Windows version."""
         rk = RegKeys(config)
         rk.set_windows(step.get("version"))
         return True
 
     @staticmethod
-    def __step_use_windows(config: BottleConfig, step: dict):
+    def __step_use_windows(config: dict, step: dict):
         """Set a Windows version per program."""
         rk = RegKeys(config)
         rk.set_app_default(step.get("version"), step.get("executable"))

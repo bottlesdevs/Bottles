@@ -7,9 +7,6 @@ from bottles.backend.wine.wineserver import WineServer
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class WineBridge(WineProgram):
     program = "WINE Bridge"
@@ -34,8 +31,8 @@ class WineBridge(WineProgram):
             return processes
 
         res = self.launch(
-            args=args, 
-            comunicate=True, 
+            args=args,
+            comunicate=True,
             action_name="get_procs"
         )
         if res in [None, ""]:
@@ -64,22 +61,22 @@ class WineBridge(WineProgram):
         args = f"killProc {pid}"
         return self.launch(
             args=args,
-            comunicate=True, 
+            comunicate=True,
             action_name="kill_proc"
         )
 
     def kill_proc_by_name(self, name: str):
         args = f"killProcByName {name}"
         return self.launch(
-            args=args, 
-            comunicate=True, 
+            args=args,
+            comunicate=True,
             action_name="kill_proc_by_name"
         )
 
     def run_exe(self, exec_path: str):
         args = f"runExe {exec_path}"
         return self.launch(
-            args=args, 
-            comunicate=True, 
+            args=args,
+            comunicate=True,
             action_name="run_exe"
         )

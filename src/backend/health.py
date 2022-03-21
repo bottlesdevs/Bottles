@@ -27,7 +27,6 @@ from bottles.backend.utils.generic import is_glibc_min_available
 
 
 class HealthChecker:
-
     x11: bool = False
     x11_port: str = ""
     wayland: bool = False
@@ -54,7 +53,7 @@ class HealthChecker:
         self.glibc_min = is_glibc_min_available()
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
-    
+
     @staticmethod
     def check_gpus():
         return GPUUtils().get_gpu()
@@ -97,7 +96,7 @@ class HealthChecker:
         if res is None:
             return False
         return True
-    
+
     @staticmethod
     def __get_distro():
         try:  # only Python 3.10+
@@ -112,7 +111,7 @@ class HealthChecker:
         if shutil.which("lsb_release"):
             _proc = subprocess.Popen(
                 "lsb_release -a",
-                stdout=subprocess.PIPE, 
+                stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 shell=True
             ).communicate()[0].decode("utf-8").lower()
@@ -123,7 +122,7 @@ class HealthChecker:
                 "name": _name,
                 "version": _version
             }
-        
+
         if os.path.exists("/etc/os-release"):
             with open("/etc/os-release", "r") as _file:
                 _lines = _file.readlines()
@@ -133,12 +132,12 @@ class HealthChecker:
                     "name": _name,
                     "version": _version
                 }
-        
+
         return {
             "name": "Unknown",
             "version": "Unknown"
         }
-    
+
     @staticmethod
     def get_bottles_envs():
         look = [
@@ -154,7 +153,7 @@ class HealthChecker:
                 return {
                     _look: os.environ[_look]
                 }
-        
+
     def check_system_info(self):
         distro = self.__get_distro()
         self.kernel = os.uname().sysname
@@ -186,10 +185,10 @@ class HealthChecker:
             },
             "Bottles_envs": self.bottles_envs
         }
-        
+
         if plain:
             _yaml = yaml.dump(results, sort_keys=False, indent=4)
             _yaml = _yaml.replace("&id", "&amp;id")
             return _yaml
-        
+
         return results

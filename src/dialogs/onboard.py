@@ -21,6 +21,7 @@ from gi.repository import Gtk, Handy
 
 from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
 class OnboardDialog(Handy.Window):
     __gtype_name__ = 'OnboardDialog'
@@ -108,7 +109,7 @@ class OnboardDialog(Handy.Window):
     def __install_runner(self, widget):
         def set_completed(result, error=False):
             self.__next_page()
-            
+
         '''
         This method ask the manager to performs its checks, then
         it will install the latest runner if there is no one installed.

@@ -36,10 +36,10 @@ class DataManager:
     __p_xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
     __p_base = f"{__p_xdg_data_home}/bottles"
     __p_data = f"{__p_base}/data.yml"
-    
+
     def __init__(self):
         self.__get_data()
-    
+
     def __get_data(self):
         try:
             with open(self.__p_data, 'r') as s:
@@ -47,18 +47,18 @@ class DataManager:
         except FileNotFoundError:
             logging.error('Data file not found. Creating new one.', )
             self.__create_data_file()
-    
+
     def __create_data_file(self):
         if not os.path.exists(self.__p_base):
             os.makedirs(self.__p_base)
         with open(self.__p_data, 'w') as s:
             yaml.dump(Samples.data, s)
         self.__get_data()
-    
+
     def list(self):
         """Returns the whole data dictionary."""
         return self.__data
-    
+
     def set(self, key, value):
         """Sets a value in the data dictionary."""
         if self.__data.get(key):
@@ -68,13 +68,13 @@ class DataManager:
                 self.__data[key] = value
         else:
             self.__data[key] = value
-        
+
         try:
             with open(self.__p_data, 'w') as s:
                 yaml.dump(self.__data, s)
         except FileNotFoundError:
             pass
-    
+
     def remove(self, key):
         """Removes a key from the data dictionary."""
         if self.__data.get(key):
@@ -84,7 +84,7 @@ class DataManager:
                     yaml.dump(self.__data, s)
             except FileNotFoundError:
                 pass
-    
+
     def get(self, key):
         """Returns the value of a key in the data dictionary."""
         return self.__data.get(key)

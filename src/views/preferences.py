@@ -48,6 +48,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     btn_bottles_path_reset = Gtk.Template.Child()
     flatpak_notice = Gtk.Template.Child()
     pref_core = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, **kwargs):
@@ -140,7 +141,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
     def __toggle_autoclose(self, widget, state):
         self.settings.set_boolean("auto-close-bottles", state)
-    
+
     def __choose_bottles_path(self, widget):
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose new bottles path"),
@@ -156,7 +157,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
         file_dialog.destroy()
         self.btn_bottles_path_reset.set_visible(True)
-    
+
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
@@ -189,7 +190,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         for w in self.list_runners:
             if w != self.actionrow_prerelease:
                 w.destroy()
-        
+
         exp_caffe = ComponentExpander(_("Caffe runners"))
         exp_lutris = ComponentExpander(_("Lutris runners"))
         exp_proton = ComponentExpander(_("Proton runners"))
@@ -200,7 +201,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            
+
             if _runner_name.startswith("caffe"):
                 exp_caffe.add(ComponentEntry(self.window, runner, "runner"))
             elif _runner_name.startswith("lutris"):
@@ -212,9 +213,9 @@ class PreferencesWindow(Handy.PreferencesWindow):
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
-            
+
             exp_proton.add(ComponentEntry(self.window, runner, "runner:proton"))
-            
+
         self.list_runners.add(exp_caffe)
         self.list_runners.add(exp_lutris)
         self.list_runners.add(exp_proton)

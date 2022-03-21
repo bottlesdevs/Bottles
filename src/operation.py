@@ -27,6 +27,7 @@ class TaskEntry(Handy.ActionRow):
     btn_cancel = Gtk.Template.Child()
     spinner_task = Gtk.Template.Child()
     label_task_status = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, title, cancellable=True, **kwargs):
@@ -50,11 +51,11 @@ class TaskEntry(Handy.ActionRow):
         self.spinner_task.start()
 
     def update_status(
-        self,
-        count=False,
-        block_size=False,
-        total_size=False,
-        completed=False
+            self,
+            count=False,
+            block_size=False,
+            total_size=False,
+            completed=False
     ):
         if not self.label_task_status.get_visible():
             self.label_task_status.set_visible(True)
@@ -62,7 +63,7 @@ class TaskEntry(Handy.ActionRow):
         if total_size == 0:
             self.label_task_status.set_text(_("Calculating..."))
             return
-            
+
         if not completed:
             percent = int(count * block_size * 100 / total_size)
             self.label_task_status.set_text(f'{str(percent)}%')
@@ -82,7 +83,6 @@ class TaskEntry(Handy.ActionRow):
 
 
 class OperationManager():
-
     __tasks = {}
 
     def __init__(self, window, **kwargs):
@@ -96,40 +96,40 @@ class OperationManager():
         task_entry = TaskEntry(self.window, title, cancellable)
         self.list_tasks.add(task_entry)
         return task_entry
-    
+
     def new_task(self, task_id, title, cancellable=True):
         self.__tasks[task_id] = self.__new_widget(title, cancellable)
-    
-    def update_task(self, 
-        task_id,
-        count=False,
-        block_size=False,
-        total_size=False,
-        completed=False
-    ):
+
+    def update_task(self,
+                    task_id,
+                    count=False,
+                    block_size=False,
+                    total_size=False,
+                    completed=False
+                    ):
         if self.get_task(task_id):
             self.__tasks[task_id].update_status(
                 count, block_size, total_size, completed
             )
-    
+
     def remove_task(self, task_id):
         if self.get_task(task_id):
             self.__tasks[task_id].remove()
             del self.__tasks[task_id]
-    
+
     def remove_all_tasks(self):
         for task in self.__tasks:
             self.__tasks[task].remove()
         self.__tasks = {}
-    
+
     def get_tasks(self):
         return self.__tasks
-    
+
     def get_task(self, task_id):
         return self.__tasks.get(task_id)
-    
+
     def get_task_count(self):
         return len(self.__tasks)
-    
+
     def get_task_ids(self):
         return list(self.__tasks.keys())

@@ -21,6 +21,7 @@ from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
 
+
 class ExecButton(Gtk.ModelButton):
 
     def __init__(self, parent, data, config, **kwargs):

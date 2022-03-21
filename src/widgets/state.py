@@ -31,6 +31,7 @@ class StateEntry(Handy.ActionRow):
     label_creation_date = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, state, **kwargs):
@@ -76,8 +77,8 @@ class StateEntry(Handy.ActionRow):
         GLib.idle_add(self.spinner.start)
         RunAsync(
             task_func=self.versioning_manager.set_state,
-            config=self.config, 
-            state_id=self.state[0], 
+            config=self.config,
+            state_id=self.state[0],
             after=self.set_completed
         )
 

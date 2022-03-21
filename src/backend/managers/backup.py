@@ -33,8 +33,6 @@ from bottles.operation import OperationManager
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
 RunnerName = NewType('RunnerName', str)
 
 
@@ -42,10 +40,10 @@ class BackupManager:
 
     @staticmethod
     def export_backup(
-        window,
-        config: BottleConfig,
-        scope: str,
-        path: str
+            window,
+            config: dict,
+            scope: str,
+            path: str
     ) -> bool:
         """
         Exports a bottle backup to the specified path.
@@ -69,9 +67,9 @@ class BackupManager:
 
         else:
             GLib.idle_add(
-                BackupManager.operation_manager.new_task, 
-                task_id, 
-                _("Backup {0}").format(config.get("Name")),  
+                BackupManager.operation_manager.new_task,
+                task_id,
+                _("Backup {0}").format(config.get("Name")),
                 False
             )
             bottle_path = ManagerUtils.get_bottle_path(config)
@@ -93,7 +91,7 @@ class BackupManager:
 
         logging.error(f"Failed to save backup in path: {path}.", )
         return Result(status=False)
-    
+
     @staticmethod
     def exclude_filter(tarinfo):
         """Filter which excludes some unwanted files from the backup."""
@@ -112,7 +110,7 @@ class BackupManager:
         """
         if path is None:
             Result(status=False)
-            
+
         BackupManager.operation_manager = OperationManager(window)
 
         task_id = str(uuid.uuid4())
@@ -120,9 +118,9 @@ class BackupManager:
         import_status = False
 
         GLib.idle_add(
-            BackupManager.operation_manager.new_task, 
-            task_id, 
-            _("Importing backup: {0}").format(backup_name), 
+            BackupManager.operation_manager.new_task,
+            task_id,
+            _("Importing backup: {0}").format(backup_name),
             False
         )
         logging.info(f"Importing backup: {backup_name}", )
@@ -140,7 +138,7 @@ class BackupManager:
                 with open(path, "r") as config_backup:
                     config = yaml.safe_load(config_backup)
                     config_backup.close()
-                
+
                 if manager.create_bottle_from_config(config):
                     import_status = True
             except (FileNotFoundError, PermissionError, yaml.YAMLError):

@@ -29,6 +29,7 @@ class FileUtils:
     This class provide some useful methods to work with files.
     Like get checksum, human size, etc.
     """
+
     @staticmethod
     def get_checksum(file):
         '''
@@ -91,14 +92,14 @@ class FileUtils:
             "used": disk_used,
             "free": disk_free,
         }
-    
+
     @staticmethod
     def wait_for_files(files: list, timeout: int = .5) -> bool:
         """Wait for a file to be created or modified."""
         for file in files:
             if not os.path.isfile(file):
                 return False
-            
+
             while not os.path.exists(file):
                 time.sleep(timeout)
 

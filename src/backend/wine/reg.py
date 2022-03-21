@@ -9,9 +9,6 @@ from bottles.backend.utils.manager import ManagerUtils
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class Reg(WineProgram):
     program = "WINE Registry CLI"
@@ -23,18 +20,18 @@ class Reg(WineProgram):
                      f"Data: [{data}] in {config['Name']} registry", )
         winedbg = WineDbg(config)
         args = "add '%s' /v '%s' /d '%s' /f" % (key, value, data)
-        
+
         if key_type:
             args = "add '%s' /v '%s' /t %s /d '%s' /f" % (
                 key, value, key_type, data
             )
-        
+
         # avoid conflicts when executing async
         winedbg.wait_for_process("reg.exe")
-        
+
         res = self.launch(args, comunicate=True, action_name="add")
         logging.info(res, )
-        
+
     def remove(self, key: str, value: str):
         """Remove a key from the registry"""
         config = self.config
@@ -48,14 +45,14 @@ class Reg(WineProgram):
 
         res = self.launch(args, comunicate=True, action_name="remove")
         logging.info(res, )
-    
+
     def import_bundle(self, bundle: dict):
         """Import a bundle of keys into the registry"""
         config = self.config
         logging.info(f"Importing bundle to {config['Name']} registry", )
         winedbg = WineDbg(config)
         reg_file = ManagerUtils.get_temp_path(f"{uuid.uuid4()}.reg")
-        
+
         # prepare reg file
         with open(reg_file, "w") as f:
             f.write("REGEDIT4\n\n")
@@ -70,7 +67,7 @@ class Reg(WineProgram):
                         f.write(f'"{value["value"]}"="{value["data"]}"\n')
 
                 f.write("\n")
-            
+
         args = f"import {reg_file}"
 
         # avoid conflicts when executing async

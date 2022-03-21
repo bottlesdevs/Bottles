@@ -14,23 +14,20 @@ from bottles.backend.wine.winebridge import WineBridge
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class WineExecutor:
-    
+
     def __init__(
-        self,
-        config: BottleConfig,
-        exec_path: str,
-        args: str = "",
-        terminal: bool = False,
-        cwd: str = None,
-        environment: dict = False,
-        move_file: bool = False,
-        move_upd_fn: callable = None,
-        post_script: str = None
+            self,
+            config: dict,
+            exec_path: str,
+            args: str = "",
+            terminal: bool = False,
+            cwd: str = None,
+            environment: dict = False,
+            move_file: bool = False,
+            move_upd_fn: callable = None,
+            post_script: str = None
     ):
         logging.info("Launching an executable…", )
         self.config = config
@@ -38,7 +35,7 @@ class WineExecutor:
 
         if move_file:
             exec_path = self.__move_file(exec_path, move_upd_fn)
-        
+
         self.exec_type = self.__get_exec_type(exec_path)
         self.exec_path = shlex.quote(exec_path)
         self.args = args
@@ -52,11 +49,11 @@ class WineExecutor:
         if exec_path in [None, ""]:
             logging.error("No executable file path provided.", )
             return False
-        
+
         if ":\\" in exec_path:
             logging.warning("Windows path detected. Avoiding validation.", )
             return True
-        
+
         if not os.path.isfile(exec_path):
             _msg = f"Executable file path does not exist: {exec_path}"
             if "FLATPAK_ID" in os.environ:
@@ -72,11 +69,11 @@ class WineExecutor:
         )
         if new_path:
             exec_path = new_path
-        
+
         self.__validate_path(exec_path)
-        
+
         return exec_path
-    
+
     @staticmethod
     def __get_exec_type(exec_path):
         _exec = exec_path.lower()
@@ -93,7 +90,7 @@ class WineExecutor:
 
         logging.warning(f"Not a common executable type, trying to launch it anyway.")
         return "unsupported"
-    
+
     def run_cli(self):
         """
         We need to launch the application and then exit,
@@ -168,7 +165,7 @@ class WineExecutor:
             status=True,
             data={"output": res}
         )
-    
+
     def __launch_msi(self):
         msiexec = MsiExec(self.config)
         res = msiexec.install(
@@ -182,7 +179,7 @@ class WineExecutor:
             status=True,
             data={"output": res}
         )
-    
+
     def __launch_batch(self):
         cmd = CMD(self.config)
         res = cmd.run_batch(
@@ -196,7 +193,7 @@ class WineExecutor:
             status=True,
             data={"output": res}
         )
-    
+
     def __launch_lnk(self):
         start = Start(self.config)
         res = start.run(
@@ -215,6 +212,6 @@ class WineExecutor:
     def __launch_dll():
         logging.warning("DLLs are not supported yet.", )
         return Result(
-            status=False, 
+            status=False,
             data={"error": "DLLs are not supported yet."}
         )

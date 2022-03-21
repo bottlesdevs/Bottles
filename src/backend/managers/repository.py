@@ -27,12 +27,8 @@ from bottles.params import VERSION_NUM
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class RepositoryManager:
-
     __repositories = {
         "components": {
             "url": "https://repo.usebottles.com/components/",
@@ -54,14 +50,14 @@ class RepositoryManager:
     def __init__(self):
         self.__check_locals()
         self.__get_index()
-    
+
     def get_repo(self, name: str):
         if name in self.__repositories:
             repo = self.__repositories[name]
             return repo["cls"](repo["url"], repo["index"])
 
         logging.error(f"Repository {name} not found", )
-    
+
     def __check_locals(self):
         _locals = {}
         if "LOCAL_COMPONENTS" in os.environ:
@@ -83,7 +79,7 @@ class RepositoryManager:
                 logging.info(f"Using local {repo} repository at {_path}", )
             else:
                 logging.error(f"Local {repo} path does not exist: {_path}", )
-    
+
     def __get_index(self):
         for repo, data in self.__repositories.items():
             __index = os.path.join(data["url"], f"{VERSION_NUM}.yml")
@@ -99,4 +95,3 @@ class RepositoryManager:
                 except (urllib.error.HTTPError, urllib.error.URLError):
                     logging.error(f"Could not get index for {repo} repository", )
                     continue
-        

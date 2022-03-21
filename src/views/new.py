@@ -170,7 +170,7 @@ class NewView(Handy.Window):
         regex = re.compile('[\\\@!#$%^&*()<>?/\|}{~:.;,\'"]')
         name = widget.get_text()
 
-        if(regex.search(name) is None) and name != "" and not name.isspace():
+        if (regex.search(name) is None) and name != "" and not name.isspace():
             self.btn_create.set_visible(True)
             widget.set_icon_from_icon_name(1, "")
         else:

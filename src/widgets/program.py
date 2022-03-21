@@ -52,6 +52,7 @@ class ProgramEntry(Handy.ActionRow):
     btn_browse = Gtk.Template.Child()
     btn_add_entry = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, program, is_layer=False, is_steam=False, **kwargs):
@@ -137,7 +138,7 @@ class ProgramEntry(Handy.ActionRow):
                 status = result.status
         self.btn_run.set_visible(status)
         self.btn_stop.set_visible(not status)
-    
+
     def __is_alive(self):
         winedbg = WineDbg(self.config)
 
@@ -163,7 +164,7 @@ class ProgramEntry(Handy.ActionRow):
             RunAsync(
                 self.manager.launch_layer_program,
                 callback=self.__reset_buttons,
-                config=self.config, 
+                config=self.config,
                 layer=self.program
             )
         else:
@@ -181,7 +182,7 @@ class ProgramEntry(Handy.ActionRow):
 
     def run_steam(self, widget):
         SteamManager.launch_app(self.config["CompatData"])
-    
+
     def stop_process(self, widget):
         winedbg = WineDbg(self.config)
         winedbg.kill_process(name=self.executable)
@@ -219,7 +220,7 @@ class ProgramEntry(Handy.ActionRow):
                 scope="External_Programs"
             )
             self.update_programs()
-        
+
         RenameDialog(self.window, on_save=func, name=self.program["name"])
 
     def browse_program_folder(self, widget):
@@ -228,7 +229,7 @@ class ProgramEntry(Handy.ActionRow):
             path_type="custom",
             custom_path=self.program["folder"]
         )
-    
+
     def add_entry(self, widget):
         ManagerUtils.create_desktop_entry(
             config=self.config,

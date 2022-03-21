@@ -338,7 +338,7 @@ class SteamManager:
     @staticmethod
     def update_bottle(
             self,
-            config: BottleConfig,
+            config: dict,
             key: str,
             value: str,
             scope: str = "",

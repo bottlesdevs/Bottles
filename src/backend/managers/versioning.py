@@ -33,9 +33,6 @@ from bottles.backend.logger import Logger
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class VersioningManager:
 
@@ -45,10 +42,10 @@ class VersioningManager:
         self.__operation_manager = OperationManager(self.window)
 
     def create_state(
-        self,
-        config: BottleConfig,
-        comment: str = "No comment",
-        update: bool = False
+            self,
+            config: dict,
+            comment: str = "No comment",
+            update: bool = False
     ):
         """
         Create a new bottle state. It will list all files in the bottle and
@@ -59,9 +56,9 @@ class VersioningManager:
 
         bottle_path = ManagerUtils.get_bottle_path(config)
         GLib.idle_add(
-            self.__operation_manager.new_task, 
-            task_id, 
-            _("Generating state files index …"),  
+            self.__operation_manager.new_task,
+            task_id,
+            _("Generating state files index …"),
             False
         )
 
@@ -88,12 +85,12 @@ class VersioningManager:
             state_index_file = open('%s/states/%s/index.yml' % (
                 bottle_path,
                 str(config.get("State")))
-            )
+                                    )
             state_index = yaml.safe_load(state_index_file)
             state_index_file.close()
-            state_index_files = state_index["Additions"] +\
-                state_index["Removed"] +\
-                state_index["Changes"]
+            state_index_files = state_index["Additions"] + \
+                                state_index["Removed"] + \
+                                state_index["Changes"]
 
             state_temp_checksums = [f["checksum"] for f in state_index_files]
             state_temp_files = [
@@ -135,12 +132,12 @@ class VersioningManager:
             state_id = 0
 
         state_path = "%s/states/%s" % (bottle_path, state_id)
-        
+
         GLib.idle_add(self.__operation_manager.remove_task, task_id)
         GLib.idle_add(
-            self.__operation_manager.new_task, 
-            task_id, 
-            _("Creating a restore point …"),  
+            self.__operation_manager.new_task,
+            task_id,
+            _("Creating a restore point …"),
             False
         )
 
@@ -169,9 +166,9 @@ class VersioningManager:
 
         GLib.idle_add(self.__operation_manager.remove_task, task_id)
         GLib.idle_add(
-            self.__operation_manager.new_task, 
-            task_id, 
-            _("Updating index …"),  
+            self.__operation_manager.new_task,
+            task_id,
+            _("Updating index …"),
             False
         )
 
@@ -193,9 +190,9 @@ class VersioningManager:
 
         GLib.idle_add(self.__operation_manager.remove_task, task_id)
         GLib.idle_add(
-            self.__operation_manager.new_task, 
-            task_id, 
-            _("Updating states …"),  
+            self.__operation_manager.new_task,
+            task_id,
+            _("Updating states …"),
             False
         )
 
@@ -274,7 +271,7 @@ class VersioningManager:
 
     @staticmethod
     def get_state_edits(
-            config: BottleConfig,
+            config: dict,
             state_id: str,
             plain: bool = False
     ) -> dict:
@@ -288,7 +285,7 @@ class VersioningManager:
             content = file.read()
             files = yaml.safe_load(content)
             file.close()
-            
+
             additions = len(files["Additions"])
             removed = len(files["Removed"])
             changes = len(files["Changes"])
@@ -300,14 +297,14 @@ class VersioningManager:
                     "Removed": removed,
                     "Changes": changes
                 }
-            
+
             return files
         except (OSError, IOError, yaml.YAMLError):
             return {}
 
     @staticmethod
     def get_state_files(
-            config: BottleConfig,
+            config: dict,
             state_id: int,
             plain: bool = False
     ) -> dict:
@@ -326,7 +323,7 @@ class VersioningManager:
             return {}
 
     @staticmethod
-    def get_index(config: BottleConfig):
+    def get_index(config: dict):
         """List all files in a bottle and return as dict."""
         bottle_path = ManagerUtils.get_bottle_path(config)
 
@@ -338,20 +335,20 @@ class VersioningManager:
             if not os.path.isfile(file):
                 continue
 
-            if file[len(bottle_path)+9:].split("/")[0] in ["users"]:
+            if file[len(bottle_path) + 9:].split("/")[0] in ["users"]:
                 continue
 
             cur_index["Files"].append({
-                "file": file[len(bottle_path)+9:],
+                "file": file[len(bottle_path) + 9:],
                 "checksum": FileUtils().get_checksum(file)
             })
         return cur_index
 
     def set_state(
-        self, 
-        config: BottleConfig, 
-        state_id: int, 
-        after=False
+            self,
+            config: dict,
+            state_id: int,
+            after=False
     ) -> bool:
         """Restore a bottle to a state."""
 
@@ -363,7 +360,7 @@ class VersioningManager:
         bottle_index = self.get_index(config)
         state_index = self.get_state_files(config, state_id)
 
-        search_sources = list(range(int(state_id)+1))
+        search_sources = list(range(int(state_id) + 1))
         search_sources.reverse()
 
         # check for removed and chaged files
@@ -427,7 +424,7 @@ class VersioningManager:
 
         return True
 
-    def list_states(self, config: BottleConfig) -> dict:
+    def list_states(self, config: dict) -> dict:
         '''
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.

@@ -27,9 +27,6 @@ from bottles.backend.globals import Paths, user_apps_dir
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class ManagerUtils:
     """
@@ -39,10 +36,10 @@ class ManagerUtils:
 
     @staticmethod
     def open_filemanager(
-        config: BottleConfig = dict,
-        path_type: str = "bottle",
-        component: str = "",
-        custom_path: str = ""
+            config: dict = dict,
+            path_type: str = "bottle",
+            component: str = "",
+            custom_path: str = ""
     ):
         logging.info("Opening the file manager in the path …", )
         path = ""
@@ -79,7 +76,7 @@ class ManagerUtils:
         return f"{Paths.layers}/{layer}"
 
     @staticmethod
-    def get_bottle_path(config: BottleConfig) -> str:
+    def get_bottle_path(config: dict) -> str:
         if config.get("IsLayer"):
             return ManagerUtils.get_layer_path(config["Path"])
         elif config.get("Custom_Path"):
@@ -118,20 +115,20 @@ class ManagerUtils:
 
     @staticmethod
     def move_file_to_bottle(
-        file_path: str, 
-        config: BottleConfig,
-        fn_update: callable = None
+            file_path: str,
+            config: dict,
+            fn_update: callable = None
     ) -> Union[str, bool]:
         logging.info(f"Adding file {file_path} to the bottle …", )
         bottle_path = ManagerUtils.get_bottle_path(config)
-        
+
         if not os.path.exists(f"{bottle_path}/storage"):
             '''
             If the storage folder does not exist for the bottle,
             create it before moving the file.
             '''
             os.makedirs(f"{bottle_path}/storage")
-        
+
         file_name = os.path.basename(file_path)
         file_size = os.path.getsize(file_path)
         file_new_path = f"{bottle_path}/storage/{file_name}"
@@ -143,7 +140,7 @@ class ManagerUtils:
                     for i in range(file_size):
                         f_out.write(f_in.read(1))
                         _size = i / file_size
-                        
+
                         if fn_update:
                             if _size % 0.1 == 0:
                                 GLib.idle_add(fn_update, _size)

@@ -5,9 +5,6 @@ from bottles.backend.wine.wineprogram import WineProgram
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class Net(WineProgram):
     program = "WINE Services manager"
@@ -18,7 +15,7 @@ class Net(WineProgram):
 
         if name is not None:
             args = f"start '{name}'"
-        
+
         return self.launch(args=args, comunicate=True, action_name="start")
 
     def stop(self, name: str = None):
@@ -26,7 +23,7 @@ class Net(WineProgram):
 
         if name is not None:
             args = f"stop '{name}'"
-        
+
         return self.launch(args=args, comunicate=True, action_name="stop")
 
     def use(self, name: str = None):
@@ -35,16 +32,16 @@ class Net(WineProgram):
 
         if name is not None:
             args = f"use '{name}'"
-        
+
         return self.launch(args=args, comunicate=True, action_name="use")
 
     def list(self):
         services = []
         res = self.start()
-        
+
         if len(res) == 0:
             return services
-        
+
         res = res.strip().splitlines()
         i = 0
 
@@ -52,9 +49,9 @@ class Net(WineProgram):
             if i == 0:
                 i += 1
                 continue
-            
+
             r = r[4:]
             services.append(r)
-            i+=1
-        
+            i += 1
+
         return services

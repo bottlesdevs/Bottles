@@ -5,9 +5,6 @@ from bottles.backend.wine.wineprogram import WineProgram
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class Control(WineProgram):
     program = "WINE Control Panel"

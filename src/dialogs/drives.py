@@ -27,6 +27,7 @@ class DriveEntry(Handy.ActionRow):
     # region Widgets
     btn_remove = Gtk.Template.Child()
     btn_path = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, drive, **kwargs):
@@ -84,6 +85,7 @@ class DrivesDialog(Handy.Window):
     combo_letter = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     list_drives = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -120,7 +122,7 @@ class DrivesDialog(Handy.Window):
 
     def __save(self, widget=False):
         GLib.idle_add(self.__idle_save)
-    
+
     def __idle_populate_vars_list(self):
         '''
         This function populate the list of env vars
@@ -138,7 +140,7 @@ class DrivesDialog(Handy.Window):
 
     def __populate_drives_list(self):
         GLib.idle_add(self.__idle_populate_vars_list)
-    
+
     def __populate_combo_letter(self):
         drives = Drives(self.config).get_all()
         self.combo_letter.remove_all()
@@ -147,6 +149,5 @@ class DrivesDialog(Handy.Window):
             if letter not in drives:
                 self.combo_letter.append(letter, letter)
                 self.btn_save.set_sensitive(True)
-        
+
         self.combo_letter.set_active(0)
-        

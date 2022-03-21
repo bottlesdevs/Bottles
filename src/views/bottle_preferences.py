@@ -95,6 +95,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     spinner_latencyflexbool = Gtk.Template.Child()
     spinner_runner = Gtk.Template.Child()
     spinner_win = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -133,7 +134,8 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_virt_desktop.connect('state-set', self.__toggle_virt_desktop)
         self.switch_pulse_latency.connect('state-set', self.__toggle_pulse_latency)
         self.switch_fixme.connect('state-set', self.__toggle_fixme)
-        self.switch_mouse_capture.connect('state-set', self.__toggle_x11_reg_key, "GrabFullscreen", "fullscreen_capture")
+        self.switch_mouse_capture.connect('state-set', self.__toggle_x11_reg_key, "GrabFullscreen",
+                                          "fullscreen_capture")
         self.switch_take_focus.connect('state-set', self.__toggle_x11_reg_key, "UseTakeFocus", "take_focus")
         self.combo_fsr.connect('changed', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
@@ -234,7 +236,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_vkd3d.handler_unblock_by_func(self.__set_vkd3d)
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
-    
+
     def set_config(self, config):
         self.config = config
         parameters = self.config.get("Parameters")
@@ -260,7 +262,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.toggle_esync.handler_block_by_func(self.__set_esync)
         self.toggle_fsync.handler_block_by_func(self.__set_fsync)
         self.toggle_futex2.handler_block_by_func(self.__set_futex2)
-        
+
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_mangohud.set_active(parameters["mangohud"])
@@ -323,7 +325,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             config=self.config
         )
         new_window.present()
-    
+
     def __show_drives(self, widget):
         new_window = DrivesDialog(
             window=self.window,
@@ -379,7 +381,7 @@ class PreferencesView(Gtk.ScrolledWindow):
 
     def __set_futex2(self, widget):
         self.__set_sync_type("futex2")
-    
+
     def __toggle_dxvk(self, widget=False, state=False):
         '''
         This function perform DXVK installation or removal, according
@@ -514,7 +516,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             scope="Parameters"
         )
         self.config = new_config
-    
+
     def __toggle_gamescope(self, widget=False, state=False):
         '''
         This function update the gamescope status on the bottle
@@ -540,7 +542,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             scope="Parameters"
         )
         self.config = new_config
-    
+
     def __toggle_runtime(self, widget, state):
         '''
         This function update the runtime status on the bottle
@@ -651,6 +653,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         This function update the runner on the bottle configuration
         according to the selected one.
         '''
+
         def set_widgets_status(status=True):
             for w in [
                 widget,
@@ -688,7 +691,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"], remove=True)
         # Install new version
         self.manager.install_dll_component(config=kwargs["config"], component=kwargs["component"])
-    
+
     def __set_dxvk(self, widget):
         '''
         This function update the dxvk version on the bottle 
@@ -704,7 +707,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             value=dxvk
         )
         self.config = new_config
-        
+
         RunAsync(
             task_func=self.__dll_component_task_func,
             callback=self.set_dxvk_status,
@@ -783,6 +786,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         This function update the Windows version on the bottle 
         configuration according to the selected one.
         '''
+
         def update(result, error=False):
             self.spinner_win.stop()
             widget.set_sensitive(True)
@@ -829,12 +833,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             scope="Parameters"
         )
         self.config = new_config
-    
+
     def __toggle_x11_reg_key(self, widget, state, rkey, ckey):
         '''
         This function update the a X11 Driverkey status (Y/N) on the bottle
         configuration according to the widget state.
         '''
+
         def update(result, error=False):
             nonlocal widget
             new_config = self.manager.update_config(
@@ -849,7 +854,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         reg = Reg(self.config)
         widget.set_sensitive(False)
         _rule = "Y" if state else "N"
-        
+
         RunAsync(
             reg.add,
             callback=update,
@@ -857,12 +862,13 @@ class PreferencesView(Gtk.ScrolledWindow):
             value=rkey,
             data=_rule
         )
-    
+
     def __set_custom_dpi(self, widget):
         '''
         This function update the custom dpi value on the bottle
         configuration according to the widget value.
         '''
+
         def update(result, error=False):
             new_config = self.manager.update_config(
                 config=self.config,
@@ -893,7 +899,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             config=self.config
         )
         new_window.present()
-    
+
     def set_dxvk_status(self, status=None, error=None, pending=False):
         self.switch_dxvk.set_sensitive(not pending)
         self.combo_dxvk.set_sensitive(not pending)
@@ -903,7 +909,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         else:
             self.spinner_dxvk.stop()
             self.spinner_dxvkbool.stop()
-    
+
     def set_vkd3d_status(self, status=None, error=None, pending=False):
         self.switch_vkd3d.set_sensitive(not pending)
         self.combo_vkd3d.set_sensitive(not pending)
@@ -913,7 +919,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         else:
             self.spinner_vkd3d.stop()
             self.spinner_vkd3dbool.stop()
-    
+
     def set_nvapi_status(self, status=None, error=None, pending=False):
         self.switch_nvapi.set_sensitive(not pending)
         self.combo_nvapi.set_sensitive(not pending)
@@ -933,7 +939,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         else:
             self.spinner_latencyflex.stop()
             self.spinner_latencyflexbool.stop()
-    
+
     def __prevent_scroll(self):
         def no_action(widget, event):
             return True

@@ -29,9 +29,6 @@ from bottles.backend.wine.reg import Reg
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class Runner:
     '''
@@ -44,7 +41,7 @@ class Runner:
     '''
 
     @staticmethod
-    def run_layer_executable(config: BottleConfig, layer: dict):
+    def run_layer_executable(config: dict, layer: dict):
         """Run an executable in a layer."""
         WineExecutor(
             config=config,
@@ -54,7 +51,7 @@ class Runner:
         ).run()
 
     @staticmethod
-    def runner_update(config: BottleConfig, manager: object, runner: str):
+    def runner_update(config: dict, manager: object, runner: str):
         """
         This method should be executed after changing the runner
         for a bottle. It does a prefix update and re-initialize the

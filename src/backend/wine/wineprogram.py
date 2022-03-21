@@ -7,9 +7,6 @@ from bottles.backend.wine.winecommand import WineCommand
 
 logging = Logger()
 
-# Define custom types for better understanding of the code
-BottleConfig = NewType('BottleConfig', dict)
-
 
 class WineProgram:
     program: str = "unknown"
@@ -19,13 +16,13 @@ class WineProgram:
     is_internal: bool = False
     internal_path: str = ""
 
-    def __init__(self, config: BottleConfig, silent=False):
+    def __init__(self, config: dict, silent=False):
         self.config = config
         self.silent = silent
 
     def get_command(self, args: str = None):
         command = self.command
-        
+
         if self.is_internal:
             command = os.path.join(Paths.base, self.internal_path, command)
 
@@ -35,21 +32,21 @@ class WineProgram:
         return command
 
     def launch(
-        self, 
-        args: str = None,
-        terminal: bool = False, 
-        minimal: bool = True,
-        comunicate: bool = False,
-        environment: dict = None,
-        cwd: str = None,
-        action_name: str = "launch"
+            self,
+            args: str = None,
+            terminal: bool = False,
+            minimal: bool = True,
+            comunicate: bool = False,
+            environment: dict = None,
+            cwd: str = None,
+            action_name: str = "launch"
     ):
         if environment is None:
             environment = {}
 
         if not self.silent:
             logging.info(f"Using {self.program} -- {action_name}", )
-            
+
         command = self.get_command(args)
         res = WineCommand(
             self.config,
@@ -65,7 +62,6 @@ class WineProgram:
 
     def launch_terminal(self, args: str = None):
         self.launch(args=args, terminal=True, action_name="launch_terminal")
-    
+
     def launch_minimal(self, args: str = None):
         self.launch(args=args, minimal=True, action_name="launch_minimal")
-    

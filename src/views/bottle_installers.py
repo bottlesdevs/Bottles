@@ -31,6 +31,7 @@ class InstallersView(Gtk.ScrolledWindow):
     btn_help = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
     actions = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -73,7 +74,7 @@ class InstallersView(Gtk.ScrolledWindow):
         supported by the manager.
         '''
         self.config = config
-        
+
         for w in self.list_installers:
             w.destroy()
 

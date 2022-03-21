@@ -25,6 +25,7 @@ class DLLEntry(Handy.ActionRow):
     # region Widgets
     btn_remove = Gtk.Template.Child()
     combo_type = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, override, **kwargs):
@@ -48,7 +49,6 @@ class DLLEntry(Handy.ActionRow):
         self.combo_type.connect('changed', self.__set_override_type)
 
         self.__prevent_scroll()
-
 
     def __set_override_type(self, widget):
         '''
@@ -76,7 +76,7 @@ class DLLEntry(Handy.ActionRow):
             remove=True
         )
         self.destroy()
-    
+
     def __prevent_scroll(self):
         def no_action(widget, event):
             return True
@@ -92,6 +92,7 @@ class DLLOverridesDialog(Handy.Window):
     entry_name = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     list_overrides = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config, **kwargs):

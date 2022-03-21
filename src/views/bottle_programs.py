@@ -35,6 +35,7 @@ class ProgramsView(Gtk.ScrolledWindow):
     btn_toggle_removed = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, parent, config, **kwargs):
@@ -102,15 +103,15 @@ class ProgramsView(Gtk.ScrolledWindow):
         details page is limited to 5 items.
         '''
         self.config = config
-        
+
         for w in self.list_programs:
             w.destroy()
 
         if "Environment" in self.config \
-            and self.config["Environment"] == "Layered":
+                and self.config["Environment"] == "Layered":
             for layer in self.config["Layers"]:
                 entry = ProgramEntry(
-                    window=self.window, 
+                    window=self.window,
                     config=self.config,
                     program=self.config["Layers"][layer],
                     is_layer=True
@@ -129,16 +130,15 @@ class ProgramsView(Gtk.ScrolledWindow):
                 continue
             self.list_programs.add(
                 ProgramEntry(
-                    window=self.window, 
+                    window=self.window,
                     config=self.config,
                     program=program
                 )
             )
-        
+
     def __toggle_removed(self, widget=False):
         '''
         This function toggle the show_removed variable.
         '''
         self.show_removed = not self.show_removed
         self.update(config=self.config)
-
