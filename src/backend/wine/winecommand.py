@@ -197,6 +197,14 @@ class WineCommand:
             env.add("__GL_SHADER_DISK_CACHE", "1")
             env.add("__GL_SHADER_DISK_CACHE_PATH", bottle)
 
+        # LatencyFleX environment variables
+        if params["latencyflex"]:
+            _lf_path = ManagerUtils.get_latencyflex_path(config.get("LatencyFleX"))
+            _lf_icd = os.path.join(
+                _lf_path,
+                "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
+            env.concat("VK_ICD_FILENAMES", _lf_icd)
+
         # Mangohud environment variables
         if params["mangohud"]:
             env.add("MANGOHUD", "1")
