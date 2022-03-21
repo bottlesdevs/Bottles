@@ -234,7 +234,8 @@ class WineCommand:
             env.add("WINEDEBUG", debug_level)
 
         # LatencyFleX
-        if not return_steam_env and params["latencyflex"]:
+        if not return_steam_env \
+                and params["latencyflex"] and params["dxvk_nvapi"]:
             _lf_path = ManagerUtils.get_latencyflex_path(config["LatencyFleX"])
             ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
 
