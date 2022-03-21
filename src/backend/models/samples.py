@@ -93,7 +93,7 @@ class Samples:
                 "arial32",
                 "times32",
                 "courie32",
-                "mono",
+                # "mono",
                 # "dotnet40",
                 # "dotnet48"
             ]
