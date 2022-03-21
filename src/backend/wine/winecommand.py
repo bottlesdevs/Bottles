@@ -24,8 +24,10 @@ class WineEnv:
         "overrides": []
     }
 
-    def __init__(self):
-        self.__env = os.environ.copy()
+    def __init__(self, clean: bool = False):
+        self.__env = {}
+        if not clean:
+            self.__env = os.environ.copy()
 
     def add(self, key, value, override=False):
         if key in self.__env:
@@ -45,6 +47,13 @@ class WineEnv:
         result["count_overrides"] = len(result["overrides"])
         result["envs"] = self.__env
         return result
+
+    def remove(self, key):
+        if key in self.__env:
+            del self.__env[key]
+
+    def is_empty(self, key):
+        return len(self.__env.get(key, "").strip()) == 0
 
     def concat(self, key, values, sep=":"):
         if isinstance(values, str):
@@ -83,9 +92,9 @@ class WineCommand:
         self.arguments = arguments
         self.cwd = self.__get_cwd(cwd)
         self.runner = self.__get_runner()
-        self.command = self.__get_cmd(command, post_script)
+        self.command = self.get_cmd(command, post_script)
         self.terminal = terminal
-        self.env = self.__get_env(environment)
+        self.env = self.get_env(environment)
         self.comunicate = comunicate
         self.colors = colors
 
@@ -114,8 +123,8 @@ class WineCommand:
 
         return cwd
 
-    def __get_env(self, environment) -> dict:
-        env = WineEnv()
+    def get_env(self, environment, return_steam_env: bool = False) -> dict:
+        env = WineEnv(clean=return_steam_env)
         config = self.config
         arch = config.get("Arch", None)
         params = config.get("Parameters", None)
@@ -153,8 +162,9 @@ class WineCommand:
                 dll_overrides.append(f"{dll[0]}={dll[1]}")
 
         # Default DLL overrides
-        dll_overrides.append("mshtml=d")
-        dll_overrides.append("winemenubuilder=''")
+        if not return_steam_env:
+            dll_overrides.append("mshtml=d")
+            dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
         if params.get("use_runtime") and not self.terminal:
@@ -187,8 +197,12 @@ class WineCommand:
             env.add("__GL_SHADER_DISK_CACHE", "1")
             env.add("__GL_SHADER_DISK_CACHE_PATH", bottle)
 
+        # Mangohud environment variables
+        if params["mangohud"]:
+            env.add("MANGOHUD", "1")
+
         # DXVK-Nvapi environment variables
-        if params["dxvk_nvapi"]:
+        if not return_steam_env and params["dxvk_nvapi"]:
             conf = self.__set_dxvk_nvapi_conf(bottle)
             env.add("DXVK_CONFIG_FILE", conf)
 
@@ -213,13 +227,14 @@ class WineCommand:
             env.add("WINEFSYNC_FUTEX2", "1")
 
         # Wine debug level
-        debug_level = "fixme-all"
-        if params["fixme_logs"]:
-            debug_level = "+fixme-all"
-        env.add("WINEDEBUG", debug_level)
+        if not return_steam_env:
+            debug_level = "fixme-all"
+            if params["fixme_logs"]:
+                debug_level = "+fixme-all"
+            env.add("WINEDEBUG", debug_level)
 
         # LatencyFleX
-        if params["latencyflex"]:
+        if not return_steam_env and params["latencyflex"]:
             _lf_path = ManagerUtils.get_latencyflex_path(config["LatencyFleX"])
             ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
 
@@ -237,45 +252,50 @@ class WineCommand:
             env.add("PULSE_LATENCY_MSEC", "60")
 
         # Discrete GPU
-        if params["discrete_gpu"]:
-            discrete = gpu["prime"]["discrete"]
-            if discrete is not None:
-                gpu_envs = discrete["envs"]
-                for p in gpu_envs:
-                    env.add(p, gpu_envs[p])
-                env.add("VK_ICD_FILENAMES", discrete["icd"])
+        if not return_steam_env:
+            if params["discrete_gpu"]:
+                discrete = gpu["prime"]["discrete"]
+                if discrete is not None:
+                    gpu_envs = discrete["envs"]
+                    for p in gpu_envs:
+                        env.add(p, gpu_envs[p])
+                    env.add("VK_ICD_FILENAMES", discrete["icd"])
 
-        # VK_ICD
-        if not env.has("VK_ICD_FILENAMES"):
-            if gpu["prime"]["integrated"] is not None:
-                '''
-                System support PRIME but user disabled the discrete GPU
-                setting (previus check skipped), so using the integrated one.
-                '''
-                env.add("VK_ICD_FILENAMES", gpu["prime"]["integrated"]["icd"])
-            else:
-                '''
-                System doesn't support PRIME, so using the first result
-                from the gpu vendors list.
-                '''
-                if "vendors" in gpu and len(gpu["vendors"]) > 0:
-                    _first = list(gpu["vendors"].keys())[0]
-                    env.add("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
+            # VK_ICD
+            if not env.has("VK_ICD_FILENAMES"):
+                if gpu["prime"]["integrated"] is not None:
+                    '''
+                    System support PRIME but user disabled the discrete GPU
+                    setting (previus check skipped), so using the integrated one.
+                    '''
+                    env.add("VK_ICD_FILENAMES", gpu["prime"]["integrated"]["icd"])
                 else:
-                    logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES..", )
+                    '''
+                    System doesn't support PRIME, so using the first result
+                    from the gpu vendors list.
+                    '''
+                    if "vendors" in gpu and len(gpu["vendors"]) > 0:
+                        _first = list(gpu["vendors"].keys())[0]
+                        env.add("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
+                    else:
+                        logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES..", )
 
-        # Add ld to LD_LIBRARY_PATH
-        if ld:
-            env.concat("LD_LIBRARY_PATH", ld)
+            # Add ld to LD_LIBRARY_PATH
+            if ld:
+                env.concat("LD_LIBRARY_PATH", ld)
 
         # DLL Overrides
         env.concat("WINEDLLOVERRIDES", dll_overrides, sep=";")
+        if env.is_empty("WINEDLLOVERRIDES"):
+            env.remove("WINEDLLOVERRIDES")
 
         # Wine prefix
-        env.add("WINEPREFIX", bottle, override=True)
+        if not return_steam_env:
+            env.add("WINEPREFIX", bottle, override=True)
 
         # Wine arch
-        env.add("WINEARCH", arch)
+        if not return_steam_env:
+            env.add("WINEARCH", arch)
         return env.get()["envs"]
 
     def __get_runner(self) -> str:
@@ -326,11 +346,12 @@ class WineCommand:
 
         return runner
 
-    def __get_cmd(self, command, post_script) -> str:
+    def get_cmd(self, command, post_script: str = None, return_steam_cmd: bool = False) -> str:
         config = self.config
         params = config.get("Parameters", {})
         runner = self.runner
-        command = f"{runner} {command}"
+        if not return_steam_cmd:
+            command = f"{runner} {command}"
 
         if self.arguments:
             if "%command%" in self.arguments:
@@ -342,24 +363,32 @@ class WineCommand:
 
         if not self.minimal:
             if gamemode_available and params.get("gamemode"):
-                command = f"{gamemode_available} {command}"
+                if not return_steam_cmd:
+                    command = f"{gamemode_available} {command}"
+                else:
+                    command = f"gamemode {command}"
             if gamescope_available and params.get("gamescope"):
-                command = f"{self.__get_gamescope_cmd()} {command}"
+                command = f"{self.__get_gamescope_cmd(return_steam_cmd)} {command}"
             if mangohud_available and params.get("mangohud"):
-                command = f"{mangohud_available} {command}"
+                if not return_steam_cmd:
+                    command = f"{mangohud_available} {command}"
+                else:
+                    command = f"mangohud {command}"
 
         if post_script is not None:
             command = f"{command} && sh {post_script}"
 
         return command
 
-    def __get_gamescope_cmd(self) -> str:
+    def __get_gamescope_cmd(self, return_steam_cmd: bool = False) -> str:
         config = self.config
         params = config["Parameters"]
         gamescope_cmd = []
 
         if gamescope_available and params["gamescope"]:
             gamescope_cmd = [gamescope_available]
+            if return_steam_cmd:
+                gamescope_cmd = ["gamescope"]
             if params["gamescope_fullscreen"]:
                 gamescope_cmd.append("-f")
             if params["gamescope_borderless"]:
