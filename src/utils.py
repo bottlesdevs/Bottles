@@ -17,10 +17,11 @@
 
 import os
 import sys
-import socket
+import time
 import threading
 import traceback
 import webbrowser
+import urllib.request
 
 from datetime import datetime
 from gettext import gettext as _
@@ -32,12 +33,12 @@ from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 logging = Logger()
 
 
-class UtilsConnection():
-    '''
+class UtilsConnection:
+    """
     This class is used to check the connection, pinging the official
     Bottles's website. If the connection is offline, the user will be
     notified and False will be returned, otherwise True.
-    '''
+    """
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -45,15 +46,16 @@ class UtilsConnection():
         self.window = window
 
     def check_connection(self, show_notification=False):
+        # check connection using gethostbyname, check if it hangs, then raise
         try:
-            socket.gethostbyname('usebottles.com')
+            urllib.request.urlopen('https://usebottles.com/', timeout=5)
             self.window.toggle_btn_noconnection(False)
 
             self.last_check = datetime.now()
             self.status = True
 
             return True
-        except socket.error:
+        except urllib.error.URLError:
             logging.warning("Connection status: offline …", )
             self.window.toggle_btn_noconnection(True)
 
@@ -70,10 +72,10 @@ class UtilsConnection():
 
 
 class RunAsync(threading.Thread):
-    '''
+    """
     This class is used to execute a function asynchronously.
     It take a function, a callback and a list of arguments as input.
-    '''
+    """
 
     def __init__(self, task_func, callback=None, *args, **kwargs):
         if "DEBUG_MODE" in os.environ:
