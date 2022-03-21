@@ -57,7 +57,6 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_latencyflex = Gtk.Template.Child()
     switch_gamemode = Gtk.Template.Child()
     switch_gamescope = Gtk.Template.Child()
-    switch_aco = Gtk.Template.Child()
     switch_fsr = Gtk.Template.Child()
     switch_discrete = Gtk.Template.Child()
     switch_virt_desktop = Gtk.Template.Child()
@@ -128,7 +127,6 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
         self.switch_gamemode.connect('state-set', self.__toggle_gamemode)
         self.switch_gamescope.connect('state-set', self.__toggle_gamescope)
-        self.switch_aco.connect('state-set', self.__toggle_aco)
         self.switch_fsr.connect('state-set', self.__toggle_fsr)
         self.switch_discrete.connect('state-set', self.__toggle_discrete_gpu)
         self.switch_virt_desktop.connect('state-set', self.__toggle_virt_desktop)
@@ -274,7 +272,6 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_fsr.set_active(parameters["fsr"])
         self.switch_runtime.set_active(parameters["use_runtime"])
         self.switch_steam_runtime.set_active(parameters["use_steam_runtime"])
-        self.switch_aco.set_active(parameters["aco_compiler"])
 
         self.toggle_sync.set_active(parameters["sync"] == "wine")
         self.toggle_esync.set_active(parameters["sync"] == "esync")
@@ -564,19 +561,6 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="use_steam_runtime",
-            value=state,
-            scope="Parameters"
-        )
-        self.config = new_config
-
-    def __toggle_aco(self, widget, state):
-        '''
-        This function update the aco status on the bottle
-        configuration according to the widget state.
-        '''
-        new_config = self.manager.update_config(
-            config=self.config,
-            key="aco_compiler",
             value=state,
             scope="Parameters"
         )

@@ -239,8 +239,8 @@ class WineCommand:
             ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
 
         # Aco compiler
-        if params["aco_compiler"]:
-            env.add("ACO_COMPILER", "aco")
+        # if params["aco_compiler"]:
+        #     env.add("ACO_COMPILER", "aco")
 
         # FSR
         if params["fsr"]:
