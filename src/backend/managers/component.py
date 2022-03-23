@@ -245,7 +245,7 @@ class ComponentManager:
             checksum = checksum.lower()
             local_checksum = FileUtils().get_checksum(file_path)
 
-            if local_checksum != checksum:
+            if local_checksum and local_checksum != checksum:
                 logging.error(f"Downloaded file [{file}] looks corrupted.", )
                 logging.error(f"Source cksum: [{checksum}] downloaded: [{local_checksum}]", )
                 logging.info(f"Removing corrupted file [{file}].", )
