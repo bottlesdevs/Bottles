@@ -97,13 +97,14 @@ class Manager:
     supported_dependencies = {}
     supported_installers = {}
 
-    def __init__(self, window, **kwargs):
+    def __init__(self, window, is_cli=False, **kwargs):
         super().__init__(**kwargs)
 
         # common variables
         self.window = window
         self.settings = window.settings
         self.utils_conn = window.utils_conn
+        self.is_cli = is_cli
         self.repository_manager = RepositoryManager()
         self.versioning_manager = VersioningManager(window, self)
         self.component_manager = ComponentManager(self)
@@ -111,7 +112,10 @@ class Manager:
         self.dependency_manager = DependencyManager(self)
         self.import_manager = ImportManager(self)
 
-        self.checks(install_latest=False, first_run=True)
+        if not is_cli:
+            self.checks(install_latest=False, first_run=True)
+        else:
+            logging.set_silent()
 
     def checks(self, install_latest=False, first_run=False):
         logging.info("Performing Bottles checks...", )
@@ -819,7 +823,8 @@ class Manager:
             ), )
 
         if self.settings.get_boolean("experiments-steam") \
-                and SteamManager.is_steam_supported():
+                and SteamManager.is_steam_supported() \
+                and not self.is_cli:
             SteamManager.update_bottles()
             self.local_bottles.update(SteamManager.list_prefixes())
 
