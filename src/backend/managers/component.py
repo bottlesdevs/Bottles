@@ -127,8 +127,8 @@ class ComponentManager:
             self,
             download_url: str,
             file: str,
-            rename: bool = False,
-            checksum: bool = False,
+            rename: str = "",
+            checksum: str = "",
             func=False
     ) -> bool:
         """Download a component from the Bottles repository."""
