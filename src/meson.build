@@ -19,6 +19,14 @@ configure_file(
   install_dir: get_option('bindir')
 )
 
+configure_file(
+  input: 'cli.in',
+  output: 'bottles-cli',
+  configuration: conf,
+  install: true,
+  install_dir: get_option('bindir')
+)
+
 subdir('backend')
 subdir('dialogs')
 subdir('ui')
@@ -31,6 +39,7 @@ bottles_sources = [
   'window.py',
   'params.py',
   'operation.py',
+  'operation_cli.py',
   'utils.py',
 ]
 

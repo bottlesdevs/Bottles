@@ -1,0 +1,118 @@
+#!@PYTHON@
+
+# cli.in
+#
+# Copyright 2020 brombinmirko <send@mirko.pm>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+import gi
+import os
+import sys
+import json
+import signal
+import argparse
+import warnings
+
+warnings.filterwarnings("ignore")
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gio
+
+VERSION = "@VERSION@"
+pkgdatadir = "@pkgdatadir@"
+# noinspection DuplicatedCode
+gresource_path = f"{pkgdatadir}/bottles.gresource"
+sys.path.insert(1, pkgdatadir)
+
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+from bottles.params import *  # pyright: reportMissingImports=false
+from bottles.backend.managers.manager import Manager
+from bottles.utils import UtilsConnection
+
+
+class CLI:
+    default_settings = Gtk.Settings.get_default()
+    utils_conn = UtilsConnection()
+    settings = Gio.Settings.new(APP_ID)
+
+    def __init__(self):
+        # self.__clear()
+
+        self.parser = argparse.ArgumentParser(description="Bottles is a tool to manage your bottles")
+        self.parser.add_argument("-v", "--version", action="version", version=f"Bottles {VERSION}")
+        self.parser.add_argument("--json", action="store_true", help="output json")
+
+        self.list_parser = self.parser.add_subparsers(dest="list", help="List stuff")
+        self.list_parser.required = True
+        self.list_parser.add_parser("bottles", help="List all bottles")
+        self.list_parser.add_parser("components", help="List all components")
+
+        self.__process_args()
+
+    @staticmethod
+    def __clear():
+        os.system("clear")
+
+    def __process_args(self):
+        args = self.parser.parse_args()
+        self._json = args.json
+
+        if args.list == "bottles":
+            self.list_bottles()
+        elif args.list == "components":
+            self.list_components()
+
+    def list_bottles(self):
+        mng = Manager(self, is_cli=True)
+        mng.check_bottles()
+        bottles = mng.local_bottles
+
+        if self._json:
+            sys.stdout.write(json.dumps(bottles))
+            exit(0)
+
+        if len(bottles) > 0:
+            sys.stdout.write(f"Found {len(bottles)} bottles:\n")
+            for b in bottles:
+                sys.stdout.write(f"- {b}\n")
+
+    def list_components(self):
+        mng = Manager(self, is_cli=True)
+        mng.check_runners(False)
+        mng.check_dxvk(False)
+        mng.check_vkd3d(False)
+        mng.check_nvapi(False)
+        mng.check_latencyflex(False)
+        components = {
+            "runners": mng.runners_available,
+            "dxvk": mng.dxvk_available,
+            "vkd3d": mng.vkd3d_available,
+            "nvapi": mng.nvapi_available,
+            "latencyflex": mng.latencyflex_available
+        }
+
+        if self._json:
+            sys.stdout.write(json.dumps(components))
+            exit(0)
+
+        for c in components:
+            sys.stdout.write(f"Found {len(components[c])} {c}\n")
+            for i in components[c]:
+                sys.stdout.write(f"- {i}\n")
+
+
+if __name__ == '__main__':
+    cli = CLI()
