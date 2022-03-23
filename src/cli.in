@@ -53,12 +53,13 @@ class CLI:
 
         self.parser = argparse.ArgumentParser(description="Bottles is a tool to manage your bottles")
         self.parser.add_argument("-v", "--version", action="version", version=f"Bottles {VERSION}")
-        self.parser.add_argument("--json", action="store_true", help="output json")
+        self.parser.add_argument("-j", "--json", action="store_true", help="Outputs in JSON format")
 
-        self.list_parser = self.parser.add_subparsers(dest="list", help="List stuff")
-        self.list_parser.required = True
-        self.list_parser.add_parser("bottles", help="List all bottles")
-        self.list_parser.add_parser("components", help="List all components")
+        subparsers = self.parser.add_subparsers(dest='command', help='sub-command help')
+
+        list_parser = subparsers.add_parser("list", help="List stuff")
+        list_parser.add_argument('type', choices=['bottles', 'components'])
+        list_parser.add_argument("-f", "--filter", help="Filter bottles and components (e.g. '-f 'environment:gaming')")
 
         self.__process_args()
 
@@ -67,20 +68,27 @@ class CLI:
         os.system("clear")
 
     def __process_args(self):
-        args = self.parser.parse_args()
-        self._json = args.json
+        self.args = self.parser.parse_args()
 
-        if args.list == "bottles":
-            self.list_bottles()
-        elif args.list == "components":
-            self.list_components()
+        if self.args.command == "list":
+            _filter = None if self.args.filter is None else self.args.filter
+            _type = self.args.type
 
-    def list_bottles(self):
+            if _type == "bottles":
+                self.list_bottles(c_filter=_filter)
+            elif _type == "components":
+                self.list_components(c_filter=_filter)
+
+    def list_bottles(self, c_filter=None):
         mng = Manager(self, is_cli=True)
         mng.check_bottles()
         bottles = mng.local_bottles
 
-        if self._json:
+        if c_filter and c_filter.startswith("environment:"):
+            environment = c_filter.split(":")[1].lower()
+            bottles = [b[0] for b in bottles.items() if b[1].get("Environment", "Custom").lower() == environment]
+
+        if self.args.json:
             sys.stdout.write(json.dumps(bottles))
             exit(0)
 
@@ -89,13 +97,14 @@ class CLI:
             for b in bottles:
                 sys.stdout.write(f"- {b}\n")
 
-    def list_components(self):
+    def list_components(self, c_filter=None):
         mng = Manager(self, is_cli=True)
         mng.check_runners(False)
         mng.check_dxvk(False)
         mng.check_vkd3d(False)
         mng.check_nvapi(False)
         mng.check_latencyflex(False)
+
         components = {
             "runners": mng.runners_available,
             "dxvk": mng.dxvk_available,
@@ -104,7 +113,12 @@ class CLI:
             "latencyflex": mng.latencyflex_available
         }
 
-        if self._json:
+        if c_filter and c_filter.startswith("category:"):
+            category = c_filter.split(":")[1].lower()
+            if category in components:
+                components = {category: components[category]}
+
+        if self.args.json:
             sys.stdout.write(json.dumps(components))
             exit(0)
 
