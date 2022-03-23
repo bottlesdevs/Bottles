@@ -43,7 +43,7 @@ class FileUtils:
                     checksum.update(chunk)
             return checksum.hexdigest().lower()
         except FileNotFoundError:
-            return False
+            return None
 
     @staticmethod
     def use_insensitive_ext(string):
