@@ -25,7 +25,11 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import GLib
 
-from bottles.operation import OperationManager  # pyright: reportMissingImports=false
+try:
+    from bottles.operation import OperationManager  # pyright: reportMissingImports=false
+except (RuntimeError, GLib.GError):
+    from bottles.operation_cli import OperationManager
+
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
