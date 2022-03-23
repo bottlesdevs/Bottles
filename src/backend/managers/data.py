@@ -59,7 +59,7 @@ class DataManager:
         """Returns the whole data dictionary."""
         return self.__data
 
-    def set(self, key, value):
+    def set(self, key, value, of_type=None):
         """Sets a value in the data dictionary."""
         if self.__data.get(key):
             if isinstance(self.__data[key], list):
@@ -67,7 +67,10 @@ class DataManager:
             else:
                 self.__data[key] = value
         else:
-            self.__data[key] = value
+            if of_type == list:
+                self.__data[key] = [value]
+            else:
+                self.__data[key] = value
 
         try:
             with open(self.__p_data, 'w') as s:
