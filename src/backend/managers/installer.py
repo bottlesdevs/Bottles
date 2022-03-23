@@ -24,7 +24,11 @@ from functools import lru_cache
 from datetime import datetime
 from gi.repository import Gtk, GLib
 
-from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
+try:
+    from bottles.operation import OperationManager  # pyright: reportMissingImports=false
+except (RuntimeError, GLib.GError):
+    from bottles.operation_cli import OperationManager
+
 from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.globals import Paths

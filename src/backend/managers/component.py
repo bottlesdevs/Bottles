@@ -24,7 +24,11 @@ from functools import lru_cache
 from gi.repository import GLib
 from typing import Union
 
-from bottles.operation import OperationManager  # pyright: reportMissingImports=false
+try:
+    from bottles.operation import OperationManager  # pyright: reportMissingImports=false
+except (RuntimeError, GLib.GError):
+    from bottles.operation_cli import OperationManager
+
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.globals import Paths

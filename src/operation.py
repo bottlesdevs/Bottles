@@ -15,7 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import gi
 from gettext import gettext as _
+gi.require_version('Handy', '1')
 from gi.repository import Gtk, Handy
 
 
@@ -82,7 +84,7 @@ class TaskEntry(Handy.ActionRow):
         self.destroy()
 
 
-class OperationManager():
+class OperationManager:
     __tasks = {}
 
     def __init__(self, window, **kwargs):
