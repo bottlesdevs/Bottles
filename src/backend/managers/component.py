@@ -227,13 +227,12 @@ class ComponentManager:
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
+        file_path = f"{Paths.temp}/{existing_file}"
         if rename and just_downloaded:
             """Renaming the downloaded file if requested."""
             logging.info(f"Renaming [{file}] to [{rename}].", )
             file_path = f"{Paths.temp}/{rename}"
             os.rename(f"{Paths.temp}/{file}", file_path)
-        else:
-            file_path = f"{Paths.temp}/{existing_file}"
 
         if checksum:
             """
