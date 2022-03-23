@@ -40,7 +40,7 @@ class UtilsConnection:
     notified and False will be returned, otherwise True.
     """
 
-    def __init__(self, window, **kwargs):
+    def __init__(self, window=None, **kwargs):
         super().__init__(**kwargs)
 
         self.window = window
@@ -49,7 +49,8 @@ class UtilsConnection:
         # check connection using gethostbyname, check if it hangs, then raise
         try:
             urllib.request.urlopen('https://usebottles.com/', timeout=5)
-            self.window.toggle_btn_noconnection(False)
+            if self.window is not None:
+                self.window.toggle_btn_noconnection(False)
 
             self.last_check = datetime.now()
             self.status = True
@@ -57,9 +58,10 @@ class UtilsConnection:
             return True
         except urllib.error.URLError:
             logging.warning("Connection status: offline …", )
-            self.window.toggle_btn_noconnection(True)
+            if self.window is not None:
+                self.window.toggle_btn_noconnection(True)
 
-            if show_notification:
+            if show_notification and self.window is not None:
                 self.window.send_notification(
                     title="Bottles",
                     text=_("You are offline, unable to download."),
