@@ -22,26 +22,12 @@ import sys
 import signal
 import gettext
 
-if "APPDIR" in os.environ:
-	APPDIR = os.environ["APPDIR"]
-	VERSION = "2022.2.28"
-	pkgdatadir = "/usr/local/share/bottles"
-	localedir = "/usr/local/share/locale"
-	gresource_path = f"{APPDIR}/{pkgdatadir}/bottles.gresource"
-	sys.path.insert(1, f"{APPDIR}/{pkgdatadir}")
-elif "SNAP" in os.environ:
-	SNAP = os.environ["SNAP"]
-	VERSION = "2022.2.28"
-	pkgdatadir = "usr/share/bottles"
-	localedir = "usr/share/locale"
-	gresource_path = f"{SNAP}/{pkgdatadir}/bottles.gresource"
-	sys.path.insert(1, f"{SNAP}/{pkgdatadir}")
-else:
-	VERSION = "@VERSION@"
-	pkgdatadir = "@pkgdatadir@"
-	localedir = "@localedir@"
-	gresource_path = f"{pkgdatadir}/bottles.gresource"
-	sys.path.insert(1, pkgdatadir)
+VERSION = "@VERSION@"
+pkgdatadir = "@pkgdatadir@"
+localedir = "@localedir@"
+# noinspection DuplicatedCode
+gresource_path = f"{pkgdatadir}/bottles.gresource"
+sys.path.insert(1, pkgdatadir)
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('bottles', localedir)
