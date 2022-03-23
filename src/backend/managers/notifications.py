@@ -72,5 +72,5 @@ class NotificationsManager:
         for message in self.messages:
             if message.get("id") == nid:
                 message["read"] = True
-                self.data.set("notifications", nid)
+                self.data.set("notifications", nid, of_type=list)
                 break
