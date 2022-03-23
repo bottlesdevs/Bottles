@@ -198,6 +198,7 @@ class ComponentManager:
                 download_url = response.url
                 req_code = response.status_code
             except requests.exceptions.RequestException:
+                logging.exception(f"Failed to download [{download_url}]")
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
@@ -224,6 +225,7 @@ class ComponentManager:
 
                 just_downloaded = True
             else:
+                logging.warning(f"Failed to download [{download_url}] with code: {req_code} != 200")
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
