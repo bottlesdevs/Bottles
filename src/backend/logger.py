@@ -98,3 +98,6 @@ class Logger(logging.getLoggerClass()):
             severity=JournalSeverity.CRASH,
             message="A crash has been detected."
         )
+
+    def set_silent(self):
+        self.root.handlers = []
