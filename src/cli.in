@@ -99,7 +99,8 @@ class CLI:
         edit_parser = subparsers.add_parser("edit", help="Edit a bottle configuration")
         edit_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         edit_parser.add_argument("--params", help="Set parameters (e.g. '-p dxvk:true')")
-        edit_parser.add_argument("--env-var", help="Add new environment variable (e.g. '-e WINEDEBUG=-all')")
+        edit_parser.add_argument("--env-var",
+                                 help="Add new environment variable (e.g. '-env-var WINEDEBUG=-all')")
         edit_parser.add_argument("--win", help="Change Windows version (e.g. '-w win7')")
         edit_parser.add_argument("--runner", help="Change Runner (e.g. '-r caffe-7.2')")
         edit_parser.add_argument("--dxvk", help="Change DXVK (e.g. '-d dxvk-1.9.0')")
@@ -339,9 +340,9 @@ class CLI:
 
                 mng.update_config(bottle, k, v, scope="Parameters")
 
-        if _env_var is not None:
-            print("Not implemented yet")
-            exit(1)
+        if _env_var is not None and "=" in _env_var:
+            k, v = _env_var.split("=", 1)
+            mng.update_config(bottle, k, v, scope="Environment_Variables")
 
         if _win is not None:
             RegKeys.set_windows(bottle, _win)
@@ -350,20 +351,44 @@ class CLI:
             Runner.runner_update(bottles, mng, _runner)
 
         if _dxvk is not None:
-            print("Not implemented yet")
-            exit(1)
+            mng.check_dxvk(False)
+
+            if _dxvk not in mng.dxvk_available:
+                sys.stderr.write(f"DXVK version {_dxvk} not available\n")
+                exit(1)
+
+            if mng.install_dll_component(bottle, "dxvk", version=_dxvk):
+                mng.update_config(bottle, "DXVK", _dxvk)
 
         if _vkd3d is not None:
-            print("Not implemented yet")
-            exit(1)
+            mng.check_vkd3d(False)
+
+            if _vkd3d not in mng.vkd3d_available:
+                sys.stderr.write(f"VKD3D version {_vkd3d} not available\n")
+                exit(1)
+
+            if mng.install_dll_component(bottle, "vkd3d", version=_vkd3d):
+                mng.update_config(bottle, "VKD3D", _vkd3d)
 
         if _nvapi is not None:
-            print("Not implemented yet")
-            exit(1)
+            mng.check_nvapi(False)
+
+            if _nvapi not in mng.nvapi_available:
+                sys.stderr.write(f"NVAPI version {_nvapi} not available\n")
+                exit(1)
+
+            if mng.install_dll_component(bottle, "nvapi", version=_nvapi):
+                mng.update_config(bottle, "NVAPI", _nvapi)
 
         if _latencyflex is not None:
-            print("Not implemented yet")
-            exit(1)
+            mng.check_latencyflex(False)
+
+            if _latencyflex not in mng.latencyflex_available:
+                sys.stderr.write(f"LatencyFlex version {_latencyflex} not available\n")
+                exit(1)
+
+            if mng.install_dll_component(bottle, "latencyflex", version=_latencyflex):
+                mng.update_config(bottle, "LatencyFlex", _latencyflex)
 
     # endregion
 
