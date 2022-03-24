@@ -1346,12 +1346,12 @@ class Manager:
         return False
 
     def repair_bottle(self, config: dict) -> bool:
-        '''
+        """
         This function tries to repair a broken bottle, creating a
         new bottle configuration with the latest runner. Each fixed
         bottle will use the Custom environment.
         TODO: move to bottle.py (Bottle manager)
-        '''
+        """
         logging.info(f"Trying to repair the bottle: [{config['Name']}]…", )
 
         wineboot = WineBoot(config)

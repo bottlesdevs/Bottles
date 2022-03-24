@@ -50,12 +50,12 @@ class EnvVarsDialog(Handy.Window):
         self.btn_save.connect("clicked", self.__save_variables)
 
     def __check_entries(self, widget, event_key):
-        '''
+        """
         This function checks if entries in entry_variables are valid, by
         splitting the content by space and "=". If it raises an exception,
         the warning symbolic icon will be shown and the save button will be
         disabled preventing the user to save the invalid entries.
-        '''
+        """
         entries = widget.get_text()
         try:
             entries = shlex.split(entries)
@@ -81,11 +81,11 @@ class EnvVarsDialog(Handy.Window):
         self.destroy()
 
     def __save_variables(self, widget):
-        '''
+        """
         This function take the new variables from the entry
         and save them to the bottle configuration. It will also
         close the window.
-        '''
+        """
         variables = self.entry_variables.get_text()
         self.manager.update_config(
             config=self.config,

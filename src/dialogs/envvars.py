@@ -55,10 +55,10 @@ class EnvVarEntry(Handy.ActionRow):
         self.btn_save.set_visible(True)
 
     def __save(self, widget):
-        '''
-        Change the env var value according to the 
+        """
+        Change the env var value according to the
         user input and update the bottle configuration
-        '''
+        """
         env_value = self.entry_value.get_text()
         self.manager.update_config(
             config=self.config,
@@ -68,10 +68,10 @@ class EnvVarEntry(Handy.ActionRow):
         )
 
     def __remove(self, widget):
-        '''
+        """
         Remove the env var from the bottle configuration and
         destroy the widget
-        '''
+        """
         self.manager.update_config(
             config=self.config,
             key=self.env[0],
@@ -120,10 +120,10 @@ class EnvVarsDialog(Handy.Window):
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     def __idle_save_var(self, widget=False):
-        '''
-        This function save the new env var to the 
+        """
+        This function save the new env var to the
         bottle configuration
-        '''
+        """
         env_name = self.entry_name.get_text()
 
         self.manager.update_config(
@@ -148,10 +148,10 @@ class EnvVarsDialog(Handy.Window):
         GLib.idle_add(self.__idle_save_var)
 
     def __idle_populate_vars_list(self):
-        '''
+        """
         This function populate the list of env vars
         with the existing ones from the bottle configuration
-        '''
+        """
         for env in self.config.get("Environment_Variables").items():
             self.list_vars.add(
                 EnvVarEntry(

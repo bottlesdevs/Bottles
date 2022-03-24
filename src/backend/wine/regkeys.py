@@ -166,10 +166,10 @@ class RegKeys:
         )
 
     def toggle_virtual_desktop(self, state: bool, resolution: str = "800x600"):
-        '''
+        """
         This function toggles the virtual desktop for a bottle, updating
         the Desktops registry key.
-        '''
+        """
         wineboot = WineBoot(self.config)
 
         if state:
@@ -191,12 +191,12 @@ class RegKeys:
         wineboot.update()
 
     def apply_cmd_settings(self, scheme: dict = {}):
-        '''
+        """
         Change settings for the wine command line in a bottle.
         This method can also be used to apply the default settings, part
         of the Bottles experience, these are meant to improve the
         readability and usability.
-        '''
+        """
         self.reg.import_bundle({
             "HKEY_CURRENT_USER\\Console\\C:_windows_system32_wineconsole.exe": [
                 {"value": "ColorTable00", "data": "2368548"},
@@ -221,9 +221,9 @@ class RegKeys:
         })
 
     def set_dpi(self, value: int):
-        '''
+        """
         Set the DPI for a bottle.
-        '''
+        """
         self.reg.add(
             key="HKEY_CURRENT_USER\\Control Panel\\Desktop",
             value="LogPixels",
@@ -232,9 +232,9 @@ class RegKeys:
         )
 
     def set_grab_fullscreen(self, state: bool):
-        '''
+        """
         Set the grab fullscreen setting for a bottle.
-        '''
+        """
         value = "Y" if state else "N"
         self.reg.add(
             key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
@@ -243,9 +243,9 @@ class RegKeys:
         )
 
     def set_take_focus(self, state: bool):
-        '''
+        """
         Set the take focus setting for a bottle.
-        '''
+        """
         value = "Y" if state else "N"
         self.reg.add(
             key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",

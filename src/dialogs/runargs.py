@@ -41,10 +41,10 @@ class RunArgsDialog(Handy.Window):
         self.btn_run.connect("clicked", self.__run_executable)
 
     def __run_executable(self, widget):
-        '''
+        """
         This function return the user to the executable selection with
         the new typed arguments, then close the window.
-        '''
+        """
         args = self.entry_args.get_text()
         self.parent.run_executable(False, args)
         self.__close_window()

@@ -64,9 +64,9 @@ class StateEntry(Handy.ActionRow):
         self.btn_manifest.connect("clicked", self.open_index)
 
     def set_state(self, widget):
-        '''
+        """
         Set the bottle state to this one.
-        '''
+        """
         for w in widget.get_children():
             w.destroy()
 
@@ -83,10 +83,10 @@ class StateEntry(Handy.ActionRow):
         )
 
     def open_index(self, widget):
-        '''
+        """
         Open the manifest for the state index in a new
         dialog.
-        '''
+        """
         plain_state = self.versioning_manager.get_state_edits(
             self.config,
             self.state[0],
@@ -99,9 +99,9 @@ class StateEntry(Handy.ActionRow):
         )
 
     def set_completed(self):
-        '''
+        """
         Set completed status to the widget.
-        '''
+        """
         self.spinner.stop()
         self.btn_restore.set_visible(False)
         self.set_sensitive(True)

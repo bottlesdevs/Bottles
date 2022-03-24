@@ -83,7 +83,7 @@ class Bottles(Gtk.Application):
         self.__register_arguments()
 
     def __register_arguments(self):
-        '''
+        """
         This function registers the command line arguments.
             --version, -v: Prints the version of the application.
             --executable, -e: The path of the executable to be launched.
@@ -91,7 +91,7 @@ class Bottles(Gtk.Application):
             --bottle, -b: The name of the bottle to be used.
             --arguments, -a: The arguments to be passed to the executable.
             --help, -h: Prints the help.
-        '''
+        """
         self.add_main_option(
             "version",
             ord("v"),
@@ -134,12 +134,12 @@ class Bottles(Gtk.Application):
         )
 
     def do_command_line(self, command):
-        '''
+        """
         This function is called when the application is launched from the
         command line. It parses the command line arguments and calls the
         corresponding functions.
         See: __register_arguments()
-        '''
+        """
         commands = command.get_options_dict()
 
         if commands.contains("executable"):
@@ -172,11 +172,11 @@ class Bottles(Gtk.Application):
         return 0
 
     def do_startup(self):
-        '''
+        """
         This function is called when the application is started.
         Here we register the application actions (shortcuts).
         See: __register_actions()
-        '''
+        """
         Gtk.Application.do_startup(self)
         self.__register_actions()
 
@@ -194,11 +194,11 @@ class Bottles(Gtk.Application):
         manager.connect("notify::dark", self.__update_dark_style)
 
     def do_activate(self):
-        '''
+        """
         This function is called when the application is activated.
-        We use this to load the custom css providers and spawn the 
+        We use this to load the custom css providers and spawn the
         main window.
-        '''
+        """
 
         # region css_provider
         # check the user theme and load the corresponding css
@@ -256,35 +256,35 @@ class Bottles(Gtk.Application):
 
     @staticmethod
     def __quit(action=None, param=None):
-        '''
+        """
         This function close the application.
         It is used by the [Ctrl+Q] shortcut.
-        '''
+        """
         logging.info(_("[Quit] request received."), )
         quit()
 
     @staticmethod
     def __help(action=None, param=None):
-        '''
+        """
         This function open the documentation in the user's default browser.
         It is used by the [F1] shortcut.
-        '''
+        """
         logging.info(_("[Help] request received."), )
         webbrowser.open_new_tab("https://docs.usebottles.com")
 
     def __refresh(self, action=None, param=None):
-        '''
+        """
         This function refresh the user bottle list.
         It is used by the [Ctrl+R] shortcut.
-        '''
+        """
         logging.info(_("[Refresh] request received."), )
         self.win.manager.update_bottles()
 
     def __register_actions(self):
-        '''
+        """
         This function registers the application actions.
         The actions are the application shortcuts (accellerators).
-        '''
+        """
         action_entries = [
             ("quit", self.__quit, ("app.quit", ["<Ctrl>Q"])),
             ("help", self.__help, ("app.help", ["F1"])),

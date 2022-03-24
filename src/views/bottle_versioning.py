@@ -57,10 +57,10 @@ class VersioningView(Gtk.ScrolledWindow):
         self.entry_state_comment.connect("activate", self.add_state)
 
     def update(self, widget=False, config={}, states={}):
-        '''
+        """
         This function update the states list with the
         ones from the bottle configuration.
-        '''
+        """
         if len(config) > 0:
             self.config = config
 
@@ -84,11 +84,11 @@ class VersioningView(Gtk.ScrolledWindow):
                 )
 
     def check_entry_state_comment(self, widget, event_key):
-        '''
+        """
         This function check if the entry state comment is valid,
         looking for special characters. It also toggle the widget icon
         and the save button sensitivity according to the result.
-        '''
+        """
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         comment = widget.get_text()
         check = regex.search(comment) is None
@@ -99,10 +99,10 @@ class VersioningView(Gtk.ScrolledWindow):
         )
 
     def add_state(self, widget):
-        '''
+        """
         This function create ask the versioning manager to
         create a new bottle state with the given comment.
-        '''
+        """
         if not self.btn_save.get_sensitive():
             return
 

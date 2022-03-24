@@ -51,10 +51,10 @@ class DLLEntry(Handy.ActionRow):
         self.__prevent_scroll()
 
     def __set_override_type(self, widget):
-        '''
+        """
         Change the override type according to the selected
         and update the bottle configuration
-        '''
+        """
         override_type = widget.get_active_id()
         self.manager.update_config(
             config=self.config,
@@ -64,10 +64,10 @@ class DLLEntry(Handy.ActionRow):
         )
 
     def __remove_override(self, widget):
-        '''
+        """
         Remove the override from the bottle configuration and
         destroy the widget
-        '''
+        """
         self.manager.update_config(
             config=self.config,
             key=self.override[0],
@@ -110,11 +110,11 @@ class DLLOverridesDialog(Handy.Window):
         self.btn_save.connect("clicked", self.__save_override)
 
     def __idle_save_override(self, widget=False):
-        '''
-        This function check if the override name is not empty, then 
-        store it in the bottle configuration and add a new entry to 
+        """
+        This function check if the override name is not empty, then
+        store it in the bottle configuration and add a new entry to
         the list. It also clear the entry field
-        '''
+        """
         dll_name = self.entry_name.get_text()
 
         if dll_name != "":
@@ -139,10 +139,10 @@ class DLLOverridesDialog(Handy.Window):
         GLib.idle_add(self.__idle_save_override)
 
     def __idle_populate_overrides_list(self):
-        '''
+        """
         This function populate the list of overrides
         with the existing overrides from the bottle configuration
-        '''
+        """
         for override in self.config.get("DLL_Overrides").items():
             self.list_overrides.add(
                 DLLEntry(

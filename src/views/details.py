@@ -68,9 +68,9 @@ class DetailsView(Handy.Leaflet):
         # self.build_pages()
 
     def __on_page_change(self, *args):
-        '''
+        """
         Update headerbar title according to the current page.
-        '''
+        """
         global pages
         self.window.toggle_selection_mode(False)
 
@@ -93,11 +93,11 @@ class DetailsView(Handy.Leaflet):
             self.window.set_actions(None)
 
     def build_pages(self):
-        '''
+        """
         This function build the pages list according to the
         user settings (some pages are shown only if experimental
         features are enabled).
-        '''
+        """
         global pages
         pages = {
             "bottle": {
@@ -153,22 +153,22 @@ class DetailsView(Handy.Leaflet):
         self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
     def __change_page(self, widget, row):
-        '''
+        """
         This function try to change the page based on user choice, if
         the page is not available, it will show the "bottle" page.
-        '''
+        """
         try:
             self.stack_bottle.set_visible_child_name(row.page_name)
         except AttributeError:
             self.stack_bottle.set_visible_child_name("bottle")
 
     def set_config(self, config):
-        '''
+        """
         This function update widgets according to the bottle
         configuration. It also temporarily disable the functions
         connected to the widgets to avoid the bottle configuration
         to be updated during this process.
-        '''
+        """
         self.config = config
 
         # update widgets data with bottle configuration        

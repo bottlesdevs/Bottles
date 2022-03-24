@@ -174,10 +174,10 @@ class MainWindow(Handy.ApplicationWindow):
         logging.info("Bottles Started!", )
 
     def on_page_changed(self, stack, param):
-        '''
+        """
         When the user changes the page, update the window title
         according to the page.
-        '''
+        """
         self.set_actions(None)
         page = self.stack_main.get_visible_child_name()
         if page == "page_details":
@@ -196,9 +196,9 @@ class MainWindow(Handy.ApplicationWindow):
         self.headerbar.set_subtitle(subtitle)
 
     def set_actions(self, widget: Gtk.Widget = False):
-        '''
+        """
         This function is used to set the actions buttons in the headerbar.
-        '''
+        """
         for w in self.box_actions.get_children():
             self.box_actions.remove(w)
 
@@ -206,11 +206,11 @@ class MainWindow(Handy.ApplicationWindow):
             self.box_actions.add(widget)
 
     def check_for_connection(self, status):
-        '''
+        """
         This method checks if the client has an internet connection.
         If true, the manager checks will be performed, unlocking all the
         features locked for no internet connection.
-        '''
+        """
         if self.utils_conn.check_connection():
             self.manager.checks(install_latest=False, first_run=True)
 
@@ -218,11 +218,11 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_noconnection.set_visible(status)
 
     def __on_start(self):
-        '''
+        """
         This method is called before the window is shown. This check if there
         is at least one local runner installed. If not, the user will be
         prompted with the onboard dialog.
-        '''
+        """
         tmp_runners = [
             x for x in self.manager.runners_available if not x.startswith('sys-')
         ]
@@ -233,12 +233,12 @@ class MainWindow(Handy.ApplicationWindow):
         self.check_notifications()
 
     def send_notification(self, title, text, image="", ignore_user=True):
-        '''
+        """
         This method is used to send a notification to the user using
         Gio.Notification. The notification is sent only if the
         user has enabled it in the settings. It is possibile to ignore the
         user settings by passing the argument ignore_user=False.
-        '''
+        """
         if ignore_user or self.settings.get_boolean("notifications"):
             notification = Gio.Notification.new(title)
             notification.set_body(text)
@@ -249,22 +249,22 @@ class MainWindow(Handy.ApplicationWindow):
             self.props.application.send_notification(None, notification)
 
     def set_previous_page_status(self):
-        '''
+        """
         This method set the previous page status according to the
         current page, so that the previous page is correctly
         selected when the user goes back to the previous page.
-        '''
+        """
         self.previous_page = self.stack_main.get_visible_child_name()
         self.btn_add.set_visible(False)
         self.btn_menu.set_visible(False)
         self.btn_back.set_visible(True)
 
     def go_back(self, widget=False):
-        '''
+        """
         This method is called when the user presses the back button.
         It will toggle some widget visibility and show the previous
         page (previous_page).
-        '''
+        """
         self.toggle_selection_mode(False)
 
         for w in [self.btn_add, self.btn_menu]:
@@ -276,10 +276,10 @@ class MainWindow(Handy.ApplicationWindow):
         self.stack_main.set_visible_child_name(self.previous_page)
 
     def show_health_view(self, widget):
-        '''
+        """
         This method is called when the user presses the health button.
         It will show the health view.
-        '''
+        """
         ht = HealthChecker().get_results(plain=True)
         SourceDialog(
             parent=self,
@@ -368,9 +368,9 @@ class MainWindow(Handy.ApplicationWindow):
 
     @staticmethod
     def proper_close():
-        '''
+        """
 	Properly close Bottles
-        '''
+        """
         quit()
 
     @staticmethod

@@ -192,10 +192,10 @@ class ListView(Gtk.ScrolledWindow):
         self.update_bottles()
 
     def __search_bottles(self, widget, event=None, data=None):
-        '''
+        """
         This function search in the list of bottles the
         text written in the search entry.
-        '''
+        """
         terms = widget.get_text()
         self.list_bottles.set_filter_func(
             self.__filter_bottles,

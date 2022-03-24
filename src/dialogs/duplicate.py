@@ -52,11 +52,11 @@ class DuplicateDialog(Handy.Window):
         self.entry_name.connect('key-release-event', self.__check_entry_name)
 
     def __check_entry_name(self, widget, event_key):
-        '''
+        """
         This function check if the entry name contains no
         special characters. The widget icon will be toggled
         according to the result.
-        '''
+        """
         regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
         name = widget.get_text()
 
@@ -71,11 +71,11 @@ class DuplicateDialog(Handy.Window):
         self.destroy()
 
     def __duplicate_bottle(self, widget):
-        '''
+        """
         This function take the new bottle name from the entry
         and create a new duplicate of the bottle. It also change the
         stack_switcher page when the process is finished.
-        '''
+        """
         self.stack_switcher.set_visible_child_name("page_duplicating")
 
         widget.set_visible(False)

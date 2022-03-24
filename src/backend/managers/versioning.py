@@ -429,10 +429,10 @@ class VersioningManager:
         return True
 
     def list_states(self, config: dict) -> dict:
-        '''
+        """
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.
-        '''
+        """
         bottle_path = ManagerUtils.get_bottle_path(config)
         states = {}
 

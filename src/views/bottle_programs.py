@@ -60,13 +60,13 @@ class ProgramsView(Gtk.ScrolledWindow):
         )
 
     def add(self, widget=False):
-        '''
+        """
         This function popup the add program dialog to the user. It
         will also update the bottle configuration, appending the
         path to the program picked by the user. It will also update
         the programs list.
         The file chooser path is set to the bottle path by default.
-        '''
+        """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose an executable path"),
             self.window,
@@ -98,10 +98,10 @@ class ProgramsView(Gtk.ScrolledWindow):
         file_dialog.destroy()
 
     def update(self, widget=False, config={}):
-        '''
+        """
         This function update the programs lists. The list in the
         details page is limited to 5 items.
-        '''
+        """
         self.config = config
 
         for w in self.list_programs:
@@ -137,8 +137,8 @@ class ProgramsView(Gtk.ScrolledWindow):
             )
 
     def __toggle_removed(self, widget=False):
-        '''
+        """
         This function toggle the show_removed variable.
-        '''
+        """
         self.show_removed = not self.show_removed
         self.update(config=self.config)

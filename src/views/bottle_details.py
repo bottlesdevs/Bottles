@@ -206,11 +206,11 @@ class BottleView(Gtk.ScrolledWindow):
         self.__set_steam_rules()
 
     def __check_entry_name(self, widget, event_key):
-        '''
+        """
         This function check if the entry name is valid, looking
         for special characters. It also toggle the widget icon
         and the save button sensitivity according to the result.
-        '''
+        """
         regex = re.compile('\\\[@!#$%^&*()<>?/\|}{~:.;,]')
         name = widget.get_text()
 
@@ -222,11 +222,11 @@ class BottleView(Gtk.ScrolledWindow):
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     def __toggle_rename(self, widget):
-        '''
+        """
         This function toggle the entry_name editability. It will
         also update the bottle configuration with the new bottle name
         if the entry_name status is False (not editable).
-        '''
+        """
         if not self.btn_rename.get_sensitive():
             return
 
@@ -248,10 +248,10 @@ class BottleView(Gtk.ScrolledWindow):
             self.btn_rename.handler_unblock_by_func(self.__toggle_rename)
 
     def update_programs(self, widget=False, config=None):
-        '''
+        """
         This function update the programs lists. The list in the
         details' page is limited to 5 items.
-        '''
+        """
         if config:
             self.config = config
 
@@ -287,19 +287,19 @@ class BottleView(Gtk.ScrolledWindow):
             i = + 1
 
     def __run_executable_with_args(self, widget):
-        '''
+        """
         This function pop up the dialog to run an executable with
         custom arguments.
-        '''
+        """
         new_window = RunArgsDialog(self)
         new_window.present()
 
     def run_executable(self, widget, args=False):
-        '''
+        """
         This function pop up the dialog to run an executable.
         The file will be executed by the runner after the
         user confirmation.
-        '''
+        """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a Windows executable file"),
             self.window,
@@ -341,9 +341,9 @@ class BottleView(Gtk.ScrolledWindow):
         file_dialog.destroy()
 
     def __update_latest_executables(self):
-        '''
+        """
         This function update the latest executables list.
-        '''
+        """
         for w in self.box_run_extra.get_children():
             if w not in [
                 self.btn_run_args,
@@ -362,11 +362,11 @@ class BottleView(Gtk.ScrolledWindow):
             self.box_run_extra.add(_btn)
 
     def __backup(self, widget, backup_type):
-        '''
+        """
         This function pop up the a file chooser where the user
         can select the path where to export the bottle backup.
         Use the backup_type param to export config or full.
-        '''
+        """
         title = _("Select the location where to save the backup config")
         hint = f"backup_{self.config.get('Path')}.yml"
 
@@ -394,19 +394,19 @@ class BottleView(Gtk.ScrolledWindow):
         file_dialog.destroy()
 
     def __duplicate(self, widget):
-        '''
+        """
         This function pop up the duplicate dialog, so the user can
         choose the new bottle name and perform duplication.
-        '''
+        """
         new_window = DuplicateDialog(self)
         new_window.present()
 
     def __confirm_delete(self, widget):
-        '''
+        """
         This function pop up the delete confirm dialog. If user confirm
         it will ask the manager to delete the bottle and will return
         to the bottles list.
-        '''
+        """
         dialog_delete = MessageDialog(
             parent=self.window,
             title=_("Confirm deletion"),
@@ -443,10 +443,10 @@ class BottleView(Gtk.ScrolledWindow):
             self.btn_delete_top.set_visible(False)
 
     def update_move_progress(self, progress):
-        '''
+        """
         This function update the progress bar when the user
         is moving a file.
-        '''
+        """
         if progress == 1:
             self.reveal_progress.set_reveal_child(False)
             self.progress_bar.set_fraction(0)

@@ -82,10 +82,10 @@ class TaskManagerView(Gtk.ScrolledWindow):
         self.btn_kill.set_sensitive(True)
 
     def update(self, widget=False, config={}):
-        '''
+        """
         This function scan for new processed and update the
         liststore_processes with the new data
-        '''
+        """
         self.config = config
         if not config.get("Runner"):
             return

@@ -60,11 +60,11 @@ class LaunchOptionsDialog(Handy.Window):
         self.destroy()
 
     def __save_options(self, widget):
-        '''
+        """
         This function save the launch options in the bottle
         configuration. It also close the window and update the
         programs list.
-        '''
+        """
         self.program["arguments"] = self.entry_arguments.get_text()
         self.config = self.manager.update_config(
             config=self.config,
@@ -75,10 +75,10 @@ class LaunchOptionsDialog(Handy.Window):
         GLib.idle_add(self.__close_window)
 
     def __choose_script(self, widget):
-        '''
+        """
         This function open a file chooser dialog to choose the
         script which will be executed before the program.
-        '''
+        """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose the script"),
             self.window,

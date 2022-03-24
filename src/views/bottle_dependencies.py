@@ -81,10 +81,10 @@ class DependenciesView(Gtk.ScrolledWindow):
         RunAsync(process_queue, callback=callback)
 
     def __search_dependencies(self, widget, event=None, data=None):
-        '''
+        """
         This function search in the list of dependencies the
         text written in the search entry.
-        '''
+        """
         terms = widget.get_text()
         self.list_dependencies.set_filter_func(
             self.__filter_dependencies,
@@ -92,10 +92,10 @@ class DependenciesView(Gtk.ScrolledWindow):
         )
 
     def __toggle_selection(self, widget):
-        '''
+        """
         This function toggle the selection of the dependencies
         in the list.
-        '''
+        """
         widgets = [self.btn_help, self.btn_report, self.btn_install]
         list_statues = {
             True: Gtk.SelectionMode.MULTIPLE,
@@ -119,10 +119,10 @@ class DependenciesView(Gtk.ScrolledWindow):
         return False
 
     def update(self, widget=False, config={}, selection=False):
-        '''
+        """
         This function update the dependencies list with the
         supported by the manager.
-        '''
+        """
         self.config = config
 
         for w in self.list_dependencies:

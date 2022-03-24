@@ -49,10 +49,10 @@ class ImporterView(Gtk.ScrolledWindow):
         self.btn_import_config.connect("clicked", self.__import_config_bck)
 
     def __find_prefixes(self, widget):
-        '''
+        """
         This function remove all entries from the list_prefixes, ask the
         manager to find all prefixes in the system and add them to the list
-        '''
+        """
 
         def update(result, error=False):
             widget.set_sensitive(True)
@@ -70,12 +70,12 @@ class ImporterView(Gtk.ScrolledWindow):
         )
 
     def __import_full_bck(self, widget):
-        '''
+        """
         This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It support only .tar.gz files
         as Bottles export bottles in this format. Once selected, it will
         be imported.
-        '''
+        """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a backup archive"),
             self.window,
@@ -101,12 +101,12 @@ class ImporterView(Gtk.ScrolledWindow):
         file_dialog.destroy()
 
     def __import_config_bck(self, widget):
-        '''
+        """
         This function show a dialog to the user, from which it can choose an
         archive backup to import into Bottles. It support only .yml files
         which are the Bottles configuration file. Once selected, it will
         be imported.
-        '''
+        """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a configuration file"),
             self.window,

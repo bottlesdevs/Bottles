@@ -67,7 +67,7 @@ class InstallerEntry(Handy.ActionRow):
         self.btn_report.connect("clicked", self.__open_bug_report)
 
     def __open_manifest(self, widget):
-        '''Open installer manifest'''
+        """Open installer manifest"""
         plain_manifest = self.manager.installer_manager.get_installer(
             installer_name=self.installer[0],
             plain=True
@@ -79,7 +79,7 @@ class InstallerEntry(Handy.ActionRow):
         )
 
     def __open_review(self, widget):
-        '''Open review'''
+        """Open review"""
         html_review = self.manager.installer_manager.get_review(
             installer_name=self.installer[0],
         )
@@ -90,11 +90,11 @@ class InstallerEntry(Handy.ActionRow):
         )
 
     def __open_bug_report(self, widget):
-        '''Open bug report'''
+        """Open bug report"""
         webbrowser.open("https://github.com/bottlesdevs/programs/issues")
 
     def __execute_installer(self, widget):
-        '''Execute installer'''
+        """Execute installer"""
         self.set_steps(
             self.manager.installer_manager.count_steps(self.installer)
         )
@@ -117,7 +117,7 @@ class InstallerEntry(Handy.ActionRow):
         )
 
     def set_installed(self):
-        '''Set installed status'''
+        """Set installed status"""
         self.spinner.stop()
         self.btn_install.set_visible(False)
         self.label_step.set_visible(False)
@@ -126,7 +126,7 @@ class InstallerEntry(Handy.ActionRow):
         self.window.page_details.update_programs()
 
     def set_err(self, msg="Something went wrong"):
-        '''Set error status'''
+        """Set error status"""
         self.spinner.stop()
         self.btn_install.set_visible(False)
         self.img_error.set_visible(True)
@@ -135,12 +135,12 @@ class InstallerEntry(Handy.ActionRow):
         self.get_parent().set_sensitive(True)
 
     def next_step(self):
-        '''Next step'''
+        """Next step"""
         self.__step += 1
         self.label_step.set_text(
             _(f"Step {self.__step} of {self.steps}")
         )
 
     def set_steps(self, steps):
-        '''Set steps'''
+        """Set steps"""
         self.steps = steps

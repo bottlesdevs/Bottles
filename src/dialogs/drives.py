@@ -51,10 +51,10 @@ class DriveEntry(Handy.ActionRow):
         self.btn_remove.connect("clicked", self.__remove)
 
     def __choose_path(self, widget):
-        '''
+        """
         Open the file chooser dialog and set the path to the
         selected file
-        '''
+        """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose path"),
             self.window,
@@ -69,10 +69,10 @@ class DriveEntry(Handy.ActionRow):
             self.set_subtitle(path)
 
     def __remove(self, widget):
-        '''
+        """
         Remove the drive from the bottle configuration and
         destroy the widget
-        '''
+        """
         Drives(self.config).remove_drive(self.drive[0])
         self.destroy()
 
@@ -104,9 +104,9 @@ class DrivesDialog(Handy.Window):
         self.btn_save.connect("clicked", self.__save)
 
     def __idle_save(self, widget=False):
-        '''
+        """
         This function save the driveto the bottle configuration
-        '''
+        """
         drive_letter = self.combo_letter.get_active_id()
 
         self.list_drives.add(
@@ -124,10 +124,10 @@ class DrivesDialog(Handy.Window):
         GLib.idle_add(self.__idle_save)
 
     def __idle_populate_vars_list(self):
-        '''
+        """
         This function populate the list of env vars
         with the existing ones from the bottle configuration
-        '''
+        """
         drives = Drives(self.config).get_all()
         for drive in drives:
             self.list_drives.add(

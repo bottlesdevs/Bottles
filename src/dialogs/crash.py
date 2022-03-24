@@ -44,10 +44,10 @@ class SimilarReportEntry(Gtk.Box):
 
     @staticmethod
     def __on_btn_report_clicked(button: Gtk.Button, report):
-        '''
+        """
         This function opens the report in the default browser, it will
         use the active instance if there is one.
-        '''
+        """
         webbrowser.open(report["html_url"])
 
 
@@ -107,18 +107,18 @@ class CrashReportDialog(Handy.Window):
             self.btn_send.set_sensitive(True)
 
     def __on_unlock_send(self, widget):
-        '''
+        """
         This function make the btn_send sensitive, so the user can send
         the new report.
-        '''
+        """
         self.btn_send.set_sensitive(widget.get_active())
 
     @staticmethod
     def __get_similarity(log: str, issue: dict) -> int:
-        '''
+        """
         This function returns the similarity between the log and the
         issue body.
-        '''
+        """
         log = log.lower()
         report = issue["body"].lower()
 
@@ -135,11 +135,11 @@ class CrashReportDialog(Handy.Window):
 
     @staticmethod
     def __get_similar_issues(log):
-        '''
+        """
         This function will get the similar reports from the github
         api and return them as a list. It will return an empty list
         if there are no similar reports.
-        '''
+        """
         similar_issues = []
         api_url = "https://api.github.com/repos/bottlesdevs/Bottles/issues?filter=all&state=all"
         try:
@@ -162,10 +162,10 @@ class CrashReportDialog(Handy.Window):
     '''Run executable with args'''
 
     def __open_github(self, widget, log):
-        '''
+        """
         This function opens the page for creating a new issue on github,
         with the form filled in with the report details and log.
-        '''
+        """
         log = quote(log)
         details_list = {}
 

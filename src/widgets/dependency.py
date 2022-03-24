@@ -98,10 +98,10 @@ class DependencyEntry(Handy.ActionRow):
                 self.btn_remove.set_sensitive(False)
 
     def open_manifest(self, widget):
-        '''
+        """
         This function pop up a dialog with the manifest
         of the dependency
-        '''
+        """
         SourceDialog(
             parent=self.window,
             title=_("Manifest for {0}").format(self.dependency[0]),
@@ -112,23 +112,23 @@ class DependencyEntry(Handy.ActionRow):
         )
 
     def open_license(self, widget):
-        '''
+        """
         This function pop up a dialog with the license
         of the dependency
-        '''
+        """
         manifest = self.manager.dependency_manager.get_dependency(
             name=self.dependency[0]
         )
         webbrowser.open(manifest["License_url"])
 
     def install_dependency(self, widget, reinstall=False):
-        '''
+        """
         This function install the dependency in the bottle, it
         will also prevent user from installing other dependencies
         during the installation process, will show a spinner
         and set the dependency as installed in the bottle
         configuration
-        '''
+        """
         if widget != self.btn_reinstall:
             self.get_parent().set_sensitive(False)
             for w in widget.get_children():
@@ -149,10 +149,10 @@ class DependencyEntry(Handy.ActionRow):
         )
 
     def remove_dependency(self, widget):
-        '''
+        """
         This function remove the dependency from the bottle
         configuration
-        '''
+        """
         widget.set_sensitive(False)
         RunAsync(
             task_func=self.manager.remove_dependency,
@@ -162,10 +162,10 @@ class DependencyEntry(Handy.ActionRow):
         )
 
     def set_install_status(self, result, error=None):
-        '''
+        """
         This function set the dependency as installed
         if the installation is successful
-        '''
+        """
         if result.status:
             if self.config.get("Versioning"):
                 self.window.page_details.view_versioning.update(
@@ -177,10 +177,10 @@ class DependencyEntry(Handy.ActionRow):
         self.set_err()
 
     def set_err(self):
-        '''
+        """
         This function set the dependency as not installed
         if errors occur during installation
-        '''
+        """
         self.spinner.stop()
         self.btn_install.set_visible(False)
         self.btn_remove.set_visible(False)
@@ -188,9 +188,9 @@ class DependencyEntry(Handy.ActionRow):
         self.get_parent().set_sensitive(True)
 
     def set_installed(self, installer=True, removed=False):
-        '''
+        """
         This function set the dependency as installed
-        '''
+        """
         self.spinner.stop()
         if not removed:
             self.btn_install.set_visible(False)

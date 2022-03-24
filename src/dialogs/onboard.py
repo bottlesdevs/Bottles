@@ -65,11 +65,11 @@ class OnboardDialog(Handy.Window):
         self.__page_changed()
 
     def __page_changed(self, widget=False, event=False):
-        '''
+        """
         This function is called on first load and when the user require
         to change the page. It sets the widgets status according to
         the step of the onboard progress.
-        '''
+        """
         page = self.stack_onboard.get_visible_child_name()
 
         if page == "page_welcome":

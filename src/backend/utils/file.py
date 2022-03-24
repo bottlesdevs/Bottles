@@ -32,9 +32,9 @@ class FileUtils:
 
     @staticmethod
     def get_checksum(file):
-        '''
+        """
         This function returns the MD5 checksum of the given file.
-        '''
+        """
         checksum = hashlib.md5()
 
         try:

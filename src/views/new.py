@@ -143,11 +143,11 @@ class NewView(Handy.Window):
             self.row_sandbox.set_visible(False)
 
     def set_active_env(self, widget, row):
-        '''
+        """
         This function set the active environment on row selection.
         If the environment is "Custom" it will display the advanced
         options.
-        '''
+        """
         self.selected_env = row.get_env_id()
 
         status = row.get_env_id() == "Custom"
@@ -162,11 +162,11 @@ class NewView(Handy.Window):
         self.revealer_advanced.set_reveal_child(status)
 
     def check_entry_name(self, widget, event_key):
-        '''
+        """
         This function checks if the name of the bottle is valid. So it
         checks if the name is not empty and if it contains special
         characters. Then it toggle the entry icon according to the result.
-        '''
+        """
         regex = re.compile('[\\\@!#$%^&*()<>?/\|}{~:.;,\'"]')
         name = widget.get_text()
 
@@ -235,10 +235,10 @@ class NewView(Handy.Window):
         )
 
     def update_output(self, text):
-        '''
+        """
         This function update the label_output with the given text.
         It will be concatenated with the previous one.
-        '''
+        """
         current_text = self.label_output.get_text()
         text = f"{current_text}{text}\n"
         self.label_output.set_text(text)
@@ -270,12 +270,12 @@ class NewView(Handy.Window):
         self.window.page_list.update_bottles()
 
     def __close_window(self, widget):
-        '''
+        """
         This function check if an executable was passed to Bottles as
         a command line argument. If so, it will be launched in the new
         bottles and will close the bottle creation dialog. If there is
         no arguments, it will simply close the dialog.
-        '''
+        """
         if self.arg_exe:
             executor = WineExecutor(
                 self.new_bottle_config,

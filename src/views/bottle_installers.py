@@ -51,10 +51,10 @@ class InstallersView(Gtk.ScrolledWindow):
         self.entry_search.connect('changed', self.__search_installers)
 
     def __search_installers(self, widget, event=None, data=None):
-        '''
+        """
         This function search in the list of installers the
         text written in the search entry.
-        '''
+        """
         terms = widget.get_text()
         self.list_installers.set_filter_func(
             self.__filter_installers,
@@ -69,10 +69,10 @@ class InstallersView(Gtk.ScrolledWindow):
         return False
 
     def update(self, widget=False, config={}):
-        '''
+        """
         This function update the installers list with the
         supported by the manager.
-        '''
+        """
         self.config = config
 
         for w in self.list_installers:

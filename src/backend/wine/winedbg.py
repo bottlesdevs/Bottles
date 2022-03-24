@@ -86,9 +86,9 @@ class WineDbg(WineProgram):
         return True
 
     def kill_process(self, pid: str = None, name: str = None):
-        '''
+        """
         Kill a process by its PID or name.
-        '''
+        """
         wineserver = WineServer(self.config)
         wineboot = WineBoot(self.config)
         if not wineserver.is_alive():
@@ -124,9 +124,9 @@ class WineDbg(WineProgram):
                     self.kill_process(p["pid"], name)
 
     def is_process_alive(self, pid: str = None, name: str = None):
-        '''
+        """
         Check if a process is running on the wineprefix.
-        '''
+        """
         if not self.__wineserver_status:
             return False
 
