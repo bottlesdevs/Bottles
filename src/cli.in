@@ -39,6 +39,8 @@ sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 from bottles.params import *  # pyright: reportMissingImports=false
+from bottles.backend.globals import Paths
+from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
 from bottles.backend.models.samples import Samples
 from bottles.backend.wine.cmd import CMD
@@ -69,6 +71,9 @@ class CLI:
         self.parser.add_argument("-j", "--json", action="store_true", help="Outputs in JSON format")
 
         subparsers = self.parser.add_subparsers(dest='command', help='sub-command help')
+
+        info_parser = subparsers.add_parser("info", help="Show information about a bottle")
+        info_parser.add_argument('type', choices=['bottles-path', 'health-check'], help="Type of information")
 
         list_parser = subparsers.add_parser("list", help="List entities")
         list_parser.add_argument('type', choices=['bottles', 'components'], help="Type of entity")
@@ -111,8 +116,12 @@ class CLI:
     def __process_args(self):
         self.args = self.parser.parse_args()
 
+        # INFO parser
+        if self.args.command == "info":
+            self.show_info(self.args.type)
+
         # LIST parser
-        if self.args.command == "list":
+        elif self.args.command == "list":
             _filter = None if self.args.filter is None else self.args.filter
             _type = self.args.type
 
@@ -155,6 +164,21 @@ class CLI:
             _latencyflex = self.args.latencyflex
 
             self.edit_bottle(_bottle, _params, _env_var, _win, _runner, _dxvk, _vkd3d, _nvapi, _latencyflex)
+
+    # region INFO
+    def show_info(self, _type):
+        if _type == "bottles-path":
+            res = Paths.bottles
+            sys.stdout.write(res)
+            exit(0)
+        elif _type == "health-check":
+            hc = HealthChecker()
+            if self.args.json:
+                sys.stdout.write(json.dumps(hc.get_results()) + "\n")
+                exit(0)
+            sys.stdout.write(hc.get_results(plain=True))
+
+    # endregion
 
     # region LIST
     def list_bottles(self, c_filter=None):
