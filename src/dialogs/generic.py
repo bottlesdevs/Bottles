@@ -297,5 +297,5 @@ class AboutDialog(Gtk.AboutDialog):
         super().__init__(**kwargs)
 
     def do_response(self, response_id):
-        if (response_id == Gtk.ResponseType.DELETE_EVENT):
+        if response_id == Gtk.ResponseType.DELETE_EVENT:
             self.destroy()
