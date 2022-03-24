@@ -206,7 +206,7 @@ class WineCommand:
             env.concat("VK_ICD_FILENAMES", _lf_icd)
 
         # Mangohud environment variables
-        if params["mangohud"]:
+        if params["mangohud"] and not self.minimal:
             env.add("MANGOHUD", "1")
 
         # DXVK-Nvapi environment variables
