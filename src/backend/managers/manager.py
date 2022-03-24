@@ -1393,7 +1393,7 @@ class Manager:
             version: str = False,
             overrides_only: bool = False,
             exclude: list = None
-    ) -> bool:
+    ) -> Result:
         if exclude is None:
             exclude = []
 
