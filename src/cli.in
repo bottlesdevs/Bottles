@@ -43,6 +43,7 @@ from bottles.backend.managers.manager import Manager
 from bottles.utils import UtilsConnection
 
 
+# noinspection DuplicatedCode
 class CLI:
     default_settings = Gtk.Settings.get_default()
     utils_conn = UtilsConnection()
@@ -57,9 +58,12 @@ class CLI:
 
         subparsers = self.parser.add_subparsers(dest='command', help='sub-command help')
 
-        list_parser = subparsers.add_parser("list", help="List stuff")
-        list_parser.add_argument('type', choices=['bottles', 'components'])
+        list_parser = subparsers.add_parser("list", help="List entities")
+        list_parser.add_argument('type', choices=['bottles', 'components'], help="Type of entity")
         list_parser.add_argument("-f", "--filter", help="Filter bottles and components (e.g. '-f 'environment:gaming')")
+
+        programs_parser = subparsers.add_parser("programs", help="List programs")
+        programs_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
 
         self.__process_args()
 
@@ -70,6 +74,7 @@ class CLI:
     def __process_args(self):
         self.args = self.parser.parse_args()
 
+        # LIST parser
         if self.args.command == "list":
             _filter = None if self.args.filter is None else self.args.filter
             _type = self.args.type
@@ -79,6 +84,12 @@ class CLI:
             elif _type == "components":
                 self.list_components(c_filter=_filter)
 
+        # PROGRAMS parser
+        elif self.args.command == "programs":
+            _bottle = self.args.bottle
+            self.list_programs(_bottle)
+
+    # region LIST
     def list_bottles(self, c_filter=None):
         mng = Manager(self, is_cli=True)
         mng.check_bottles()
@@ -126,6 +137,31 @@ class CLI:
             sys.stdout.write(f"Found {len(components[c])} {c}\n")
             for i in components[c]:
                 sys.stdout.write(f"- {i}\n")
+
+    # endregion
+
+    # region PROGRAMS
+    def list_programs(self, _bottle):
+        mng = Manager(self, is_cli=True)
+        mng.check_bottles()
+
+        if _bottle not in mng.local_bottles:
+            sys.stderr.write(f"Bottle {_bottle} not found\n")
+            exit(1)
+
+        bottle = mng.local_bottles[_bottle]
+        programs = mng.get_programs(bottle)
+        programs = [p for p in programs if not p.get("removed", False)]
+
+        if self.args.json:
+            sys.stdout.write(json.dumps(programs))
+            exit(0)
+
+        if len(programs) > 0:
+            sys.stdout.write(f"Found {len(programs)} programs:\n")
+            for p in programs:
+                sys.stdout.write(f"- {p['name']}\n")
+    # endregion
 
 
 if __name__ == '__main__':
