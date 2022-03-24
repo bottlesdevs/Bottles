@@ -79,6 +79,15 @@ class CLI:
                                                    'explorer'], help="Tool to launch")
         tools_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
 
+        reg_parser = subparsers.add_parser("reg", help="Manage registry")
+        reg_parser.add_argument('action', choices=['add', 'edit', 'del'], help="Action to perform")
+        reg_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+        reg_parser.add_argument("-k", "--key", help="Registry key", required=True)
+        reg_parser.add_argument("-v", "--value", help="Registry value", required=True)
+        reg_parser.add_argument("-d", "--data", help="Data to be set")
+        reg_parser.add_argument("-t", "--key-type", help="Data type",
+                                choices=['REG_DWORD', 'REG_SZ', 'REG_BINARY', 'REG_MULTI_SZ'])
+
         self.__process_args()
 
     @staticmethod
@@ -108,6 +117,16 @@ class CLI:
             _bottle = self.args.bottle
             _tool = self.args.tool
             self.launch_tool(_bottle, _tool)
+
+        # REG parser
+        elif self.args.command == "reg":
+            _bottle = self.args.bottle
+            _action = self.args.action
+            _key = self.args.key
+            _value = self.args.value
+            _data = self.args.data
+            _key_type = self.args.key_type
+            self.manage_reg(_bottle, _action, _key, _value, _data, _key_type)
 
     # region LIST
     def list_bottles(self, c_filter=None):
@@ -209,6 +228,29 @@ class CLI:
             Control(bottle).launch()
         elif _tool == "explorer":
             Explorer(bottle).launch()
+
+    # endregion
+
+    # region REG
+    def manage_reg(self, _bottle, _action, _key, _value, _data, _key_type):
+        mng = Manager(self, is_cli=True)
+        mng.check_bottles()
+
+        if _bottle not in mng.local_bottles:
+            sys.stderr.write(f"Bottle {_bottle} not found\n")
+            exit(1)
+
+        bottle = mng.local_bottles[_bottle]
+        allowed_types = ["REG_SZ", "REG_DWORD", "REG_BINARY", "REG_MULTI_SZ"]
+        _key_type = "REG_SZ" if _key_type is None else _key_type.upper()
+
+        if _action in ["add", "edit"]:
+            if _data is None or _key_type not in allowed_types:
+                sys.stderr.write(f"Missing or invalid data or key type\n")
+                exit(1)
+            Reg(bottle).add(_key, _value, _data, _key_type)
+        elif _action == "del":
+            Reg(bottle).remove(_key, _value)
 
     # endregion
 
