@@ -25,7 +25,7 @@ from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.wineboot import WineBoot
 
 
-class DLLComponent():
+class DLLComponent:
     base_path: str = None
     dlls: dict = {}
     version: str = None
@@ -56,7 +56,10 @@ class DLLComponent():
         self.dlls = found
         return True
 
-    def install(self, config: dict, overrides_only: bool = False, exclude: list = []):
+    def install(self, config: dict, overrides_only: bool = False, exclude=None):
+        if exclude is None:
+            exclude = []
+
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
@@ -64,14 +67,18 @@ class DLLComponent():
 
         WineBoot(config).update()
 
-    def uninstall(self, config: dict, exclude: list = []):
+    def uninstall(self, config: dict, exclude=None):
+        if exclude is None:
+            exclude = []
+
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
                     self.__uninstall_dll(config, path, dll)
         WineBoot(config).update()
 
-    def __get_sys_path(self, config, path: str):
+    @staticmethod
+    def __get_sys_path(config, path: str):
         if config["Arch"] == "win32":
             if path in ["x32", "x86"]:
                 return "system32"
