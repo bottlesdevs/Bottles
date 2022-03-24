@@ -17,6 +17,7 @@
 
 import gi
 from gettext import gettext as _
+
 gi.require_version('Handy', '1')
 from gi.repository import Gtk, Handy
 

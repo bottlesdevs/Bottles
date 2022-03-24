@@ -67,7 +67,7 @@ class Bottle:
         self.sync = conf.get('sync', self.sync)
         self.fsr = conf.get('fsr', self.fsr)
         self.fsr_level = conf.get('fsr_level', self.fsr_level)
-        #self.aco_compiler = conf.get('aco_compiler', self.aco_compiler)
+        # self.aco_compiler = conf.get('aco_compiler', self.aco_compiler)
         self.discrete_gpu = conf.get('discrete_gpu', self.discrete_gpu)
         self.virtual_desktop = conf.get('virtual_desktop', self.virtual_desktop)
         self.virtual_desktop_res = conf.get('virtual_desktop_res', self.virtual_desktop_res)

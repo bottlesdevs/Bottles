@@ -852,6 +852,7 @@ class PreferencesView(Gtk.ScrolledWindow):
 
     def __prevent_scroll(self):
         """Prevent the scroll event when the mouse enter a combobox"""
+
         def no_action(widget, event):
             return True
 

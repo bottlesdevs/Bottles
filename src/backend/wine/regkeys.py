@@ -15,7 +15,7 @@ class RegKeys:
         self.reg = Reg(self.config)
 
     def set_windows(self, version: str):
-        '''
+        """
         Change Windows version in a bottle from the given
         configuration.
         ----------
@@ -30,7 +30,7 @@ class RegKeys:
         ------
         raises: ValueError
             If the given version is invalid.
-        '''
+        """
         if version not in win_versions:
             raise ValueError("Given version is not supported.")
 
@@ -149,10 +149,10 @@ class RegKeys:
         wineboot.update()
 
     def set_app_default(self, version: str, executable: str):
-        '''
+        """
         Change default Windows version per application in a bottle
         from the given configuration.
-        '''
+        """
         if version not in win_versions:
             raise ValueError("Given version is not supported.")
 
