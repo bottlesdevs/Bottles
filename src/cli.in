@@ -101,12 +101,12 @@ class CLI:
         edit_parser.add_argument("--params", help="Set parameters (e.g. '-p dxvk:true')")
         edit_parser.add_argument("--env-var",
                                  help="Add new environment variable (e.g. '-env-var WINEDEBUG=-all')")
-        edit_parser.add_argument("--win", help="Change Windows version (e.g. '-w win7')")
-        edit_parser.add_argument("--runner", help="Change Runner (e.g. '-r caffe-7.2')")
-        edit_parser.add_argument("--dxvk", help="Change DXVK (e.g. '-d dxvk-1.9.0')")
-        edit_parser.add_argument("--vkd3d", help="Change VKD3D (e.g. '-d vkd3d-proton-2.6')")
-        edit_parser.add_argument("--nvapi", help="Change DXVK-Nvapi (e.g. '-d dxvk-nvapi-1.9.0')")
-        edit_parser.add_argument("--latencyflex", help="Change LatencyFleX (e.g. '-d latencyflex-v0.1.0')")
+        edit_parser.add_argument("--win", help="Change Windows version (e.g. '--win win7')")
+        edit_parser.add_argument("--runner", help="Change Runner (e.g. '--runner caffe-7.2')")
+        edit_parser.add_argument("--dxvk", help="Change DXVK (e.g. '--dxvk dxvk-1.9.0')")
+        edit_parser.add_argument("--vkd3d", help="Change VKD3D (e.g. '--vkd3d vkd3d-proton-2.6')")
+        edit_parser.add_argument("--nvapi", help="Change DXVK-Nvapi (e.g. '--nvapi dxvk-nvapi-1.9.0')")
+        edit_parser.add_argument("--latencyflex", help="Change LatencyFleX (e.g. '--latencyflex latencyflex-v0.1.0')")
 
         self.__process_args()
 
