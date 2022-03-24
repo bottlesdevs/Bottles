@@ -40,6 +40,15 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 from bottles.params import *  # pyright: reportMissingImports=false
 from bottles.backend.managers.manager import Manager
+from bottles.backend.wine.cmd import CMD
+from bottles.backend.wine.control import Control
+from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.regedit import Regedit
+from bottles.backend.wine.taskmgr import Taskmgr
+from bottles.backend.wine.uninstaller import Uninstaller
+from bottles.backend.wine.winecfg import WineCfg
+from bottles.backend.wine.explorer import Explorer
 from bottles.utils import UtilsConnection
 
 
@@ -65,6 +74,11 @@ class CLI:
         programs_parser = subparsers.add_parser("programs", help="List programs")
         programs_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
 
+        tools_parser = subparsers.add_parser("tools", help="Launch WINE tools")
+        tools_parser.add_argument('tool', choices=['cmd', 'winecfg', 'uninstaller', 'regedit', 'taskmgr', 'control',
+                                                   'explorer'], help="Tool to launch")
+        tools_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+
         self.__process_args()
 
     @staticmethod
@@ -88,6 +102,12 @@ class CLI:
         elif self.args.command == "programs":
             _bottle = self.args.bottle
             self.list_programs(_bottle)
+
+        # TOOLS parser
+        elif self.args.command == "tools":
+            _bottle = self.args.bottle
+            _tool = self.args.tool
+            self.launch_tool(_bottle, _tool)
 
     # region LIST
     def list_bottles(self, c_filter=None):
@@ -161,6 +181,35 @@ class CLI:
             sys.stdout.write(f"Found {len(programs)} programs:\n")
             for p in programs:
                 sys.stdout.write(f"- {p['name']}\n")
+
+    # endregion
+
+    # region TOOLS
+    def launch_tool(self, _bottle, _tool):
+        mng = Manager(self, is_cli=True)
+        mng.check_bottles()
+
+        if _bottle not in mng.local_bottles:
+            sys.stderr.write(f"Bottle {_bottle} not found\n")
+            exit(1)
+
+        bottle = mng.local_bottles[_bottle]
+
+        if _tool == "cmd":
+            Cmd(bottle).launch()
+        elif _tool == "winecfg":
+            WineCfg(bottle).launch()
+        elif _tool == "uninstaller":
+            Uninstaller(bottle).launch()
+        elif _tool == "regedit":
+            Regedit(bottle).launch()
+        elif _tool == "taskmgr":
+            Taskmgr(bottle).launch()
+        elif _tool == "control":
+            Control(bottle).launch()
+        elif _tool == "explorer":
+            Explorer(bottle).launch()
+
     # endregion
 
 
