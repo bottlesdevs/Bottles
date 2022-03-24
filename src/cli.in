@@ -40,6 +40,7 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 from bottles.params import *  # pyright: reportMissingImports=false
 from bottles.backend.managers.manager import Manager
+from bottles.backend.models.samples import Samples
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.control import Control
 from bottles.backend.wine.executor import WineExecutor
@@ -49,6 +50,8 @@ from bottles.backend.wine.taskmgr import Taskmgr
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.explorer import Explorer
+from bottles.backend.wine.regkeys import RegKeys
+from bottles.backend.runner import Runner
 from bottles.utils import UtilsConnection
 
 
@@ -87,6 +90,17 @@ class CLI:
         reg_parser.add_argument("-d", "--data", help="Data to be set")
         reg_parser.add_argument("-t", "--key-type", help="Data type",
                                 choices=['REG_DWORD', 'REG_SZ', 'REG_BINARY', 'REG_MULTI_SZ'])
+
+        edit_parser = subparsers.add_parser("edit", help="Edit a bottle configuration")
+        edit_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+        edit_parser.add_argument("--params", help="Set parameters (e.g. '-p dxvk:true')")
+        edit_parser.add_argument("--env-var", help="Add new environment variable (e.g. '-e WINEDEBUG=-all')")
+        edit_parser.add_argument("--win", help="Change Windows version (e.g. '-w win7')")
+        edit_parser.add_argument("--runner", help="Change Runner (e.g. '-r caffe-7.2')")
+        edit_parser.add_argument("--dxvk", help="Change DXVK (e.g. '-d dxvk-1.9.0')")
+        edit_parser.add_argument("--vkd3d", help="Change VKD3D (e.g. '-d vkd3d-proton-2.6')")
+        edit_parser.add_argument("--nvapi", help="Change DXVK-Nvapi (e.g. '-d dxvk-nvapi-1.9.0')")
+        edit_parser.add_argument("--latencyflex", help="Change LatencyFleX (e.g. '-d latencyflex-v0.1.0')")
 
         self.__process_args()
 
@@ -127,6 +141,20 @@ class CLI:
             _data = self.args.data
             _key_type = self.args.key_type
             self.manage_reg(_bottle, _action, _key, _value, _data, _key_type)
+
+        # EDIT parser
+        elif self.args.command == "edit":
+            _bottle = self.args.bottle
+            _params = self.args.params
+            _env_var = self.args.env_var
+            _win = self.args.win
+            _runner = self.args.runner
+            _dxvk = self.args.dxvk
+            _vkd3d = self.args.vkd3d
+            _nvapi = self.args.nvapi
+            _latencyflex = self.args.latencyflex
+
+            self.edit_bottle(_bottle, _params, _env_var, _win, _runner, _dxvk, _vkd3d, _nvapi, _latencyflex)
 
     # region LIST
     def list_bottles(self, c_filter=None):
@@ -253,6 +281,65 @@ class CLI:
             Reg(bottle).remove(_key, _value)
 
     # endregion
+
+    # region EDIT
+    def edit_bottle(self, _bottle, _params, _env_var, _win, _runner, _dxvk, _vkd3d, _nvapi, _latencyflex):
+        mng = Manager(self, is_cli=True)
+        mng.check_bottles()
+
+        valid_parameters = Samples.config.get("Parameters").keys()
+
+        if _bottle not in mng.local_bottles:
+            sys.stderr.write(f"Bottle {_bottle} not found\n")
+            exit(1)
+
+        bottle = mng.local_bottles[_bottle]
+
+        if _params is not None:
+            _params = _params.split(",")
+            _params = [p.split(":") for p in _params]
+            for k, v in _params:
+                if k not in valid_parameters:
+                    sys.stderr.write(f"Invalid parameter {k}\n")
+                    exit(1)
+
+                if v.lower() == "true":
+                    v = True
+                elif v.lower() == "false":
+                    v = False
+                else:
+                    try:
+                        v = int(v)
+                    except ValueError:
+                        pass
+
+                mng.update_config(bottle, k, v, scope="Parameters")
+
+        if _env_var is not None:
+            print("Not implemented yet")
+            exit(1)
+
+        if _win is not None:
+            RegKeys.set_windows(bottle, _win)
+
+        if _runner is not None:
+            Runner.runner_update(bottles, mng, _runner)
+
+        if _dxvk is not None:
+            print("Not implemented yet")
+            exit(1)
+
+        if _vkd3d is not None:
+            print("Not implemented yet")
+            exit(1)
+
+        if _nvapi is not None:
+            print("Not implemented yet")
+            exit(1)
+
+        if _latencyflex is not None:
+            print("Not implemented yet")
+            exit(1)
 
 
 if __name__ == '__main__':
