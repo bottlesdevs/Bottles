@@ -21,6 +21,7 @@ from bottles.utils import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.logger import Logger
 from bottles.backend.globals import gamemode_available, gamescope_available, mangohud_available
 from bottles.backend.models.result import Result
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.wineboot import WineBoot
@@ -60,6 +61,14 @@ class Runner:
         logging.info(f"Doing runner update for bottle: {config['Name']}", )
         wineboot = WineBoot(config)
         wineserver = WineServer(config)
+        runner_path = ManagerUtils.get_runner_path(runner)
+
+        if not os.path.exists(runner_path):
+            logging.error(f"Runner {runner} not found in {runner_path}")
+            return Result(
+                status=False,
+                data={"config": config}
+            )
 
         # kill wineserver after update
         wineboot.kill()
