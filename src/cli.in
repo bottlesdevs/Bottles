@@ -72,7 +72,7 @@ class CLI:
 
         subparsers = self.parser.add_subparsers(dest='command', help='sub-command help')
 
-        info_parser = subparsers.add_parser("info", help="Show information about a bottle")
+        info_parser = subparsers.add_parser("info", help="Show information about Bottles")
         info_parser.add_argument('type', choices=['bottles-path', 'health-check'], help="Type of information")
 
         list_parser = subparsers.add_parser("list", help="List entities")
@@ -107,6 +107,9 @@ class CLI:
         edit_parser.add_argument("--vkd3d", help="Change VKD3D (e.g. '--vkd3d vkd3d-proton-2.6')")
         edit_parser.add_argument("--nvapi", help="Change DXVK-Nvapi (e.g. '--nvapi dxvk-nvapi-1.9.0')")
         edit_parser.add_argument("--latencyflex", help="Change LatencyFleX (e.g. '--latencyflex latencyflex-v0.1.0')")
+
+        new_parser = subparsers.add_parser("new", help="Create a new bottle")
+        # new_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
 
         self.__process_args()
 
