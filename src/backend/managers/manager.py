@@ -1000,7 +1000,7 @@ class Manager:
             self,
             name,
             environment: str,
-            path: str = False,
+            path: str = "",
             runner: str = False,
             dxvk: bool = False,
             vkd3d: bool = False,
@@ -1009,7 +1009,8 @@ class Manager:
             versioning: bool = False,
             sandbox: bool = False,
             fn_logger: callable = None,
-            arch: str = "win64"
+            arch: str = "win64",
+            custom_environment: str = None
     ):
         """
         Create a new bottle from the givven arguments.
@@ -1206,14 +1207,19 @@ class Manager:
         logging.info(f"Applying environment: [{environment}]…", )
         log_update(_("Applying environment: {0}…").format(environment))
         if environment not in ["Custom", "Layered"]:
-            env = Samples.environments[environment.lower()]
+            if not custom_environment:
+                env = Samples.environments[environment.lower()]
+            else:
+                with open(custom_environment, "r") as f:
+                    env = yaml.safe_load(f.read())
+
             wineboot.kill()
 
             while wineserver.is_alive():
                 time.sleep(1)
 
             for prm in config["Parameters"]:
-                if prm in env["Parameters"]:
+                if prm in env.get("Parameters", {}):
                     config["Parameters"][prm] = env["Parameters"][prm]
 
             if (not template and config["Parameters"]["dxvk"]) \
@@ -1237,7 +1243,7 @@ class Manager:
                 log_update(_("Installing DXVK-NVAPI…"))
                 self.install_dll_component(config, "dxvk_nvapi", version=nvapi_name)
 
-            for dep in env["Installed_Dependencies"]:
+            for dep in env.get("Installed_Dependencies", []):
                 if template and dep in template["config"]["Installed_Dependencies"]:
                     continue
                 if dep in self.supported_dependencies:
