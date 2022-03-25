@@ -35,6 +35,7 @@ from bottles.backend.globals import Paths
 from bottles.backend.logger import Logger
 from bottles.backend.layers import LayersStore, Layer
 
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.wine import WineUtils
 
 from bottles.backend.wine.wineboot import WineBoot
