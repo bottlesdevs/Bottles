@@ -129,7 +129,7 @@ class WineCommand:
         arch = config.get("Arch", None)
         params = config.get("Parameters", None)
         if None in [arch, params]:
-            return env.get()
+            return env.get()["envs"]
 
         if config.get("IsLayer"):
             bottle = f"{Paths.layers}/{config['Path']}"  # TODO: should not be handled here, just for testing
