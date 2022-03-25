@@ -21,6 +21,7 @@
 import gi
 import os
 import sys
+import yaml
 import json
 import signal
 import argparse
@@ -109,7 +110,15 @@ class CLI:
         edit_parser.add_argument("--latencyflex", help="Change LatencyFleX (e.g. '--latencyflex latencyflex-v0.1.0')")
 
         new_parser = subparsers.add_parser("new", help="Create a new bottle")
-        # new_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+        new_parser.add_argument("--bottle-name", help="Bottle name", required=True)
+        new_parser.add_argument("--environment", help="Envorinment to apply (gaming|application|custom)", required=True)
+        new_parser.add_argument("--custom-environment", help="Path to a custom environment.yml file")
+        new_parser.add_argument("--arch", help="Architecture (win32|win64)")
+        new_parser.add_argument("--runner", help="Name of the runner to be used")
+        new_parser.add_argument("--dxvk", help="Name of the dxvk to be used")
+        new_parser.add_argument("--vkd3d", help="Name of the vkd3d to be used")
+        new_parser.add_argument("--nvapi", help="Name of the dxvk-nvapi to be used")
+        new_parser.add_argument("--latencyflex", help="Name of the latencyflex to be used")
 
         self.__process_args()
 
@@ -122,7 +131,7 @@ class CLI:
 
         # INFO parser
         if self.args.command == "info":
-            self.show_info(self.args.type)
+            self.show_info()
 
         # LIST parser
         elif self.args.command == "list":
@@ -136,41 +145,27 @@ class CLI:
 
         # PROGRAMS parser
         elif self.args.command == "programs":
-            _bottle = self.args.bottle
-            self.list_programs(_bottle)
+            self.list_programs()
 
         # TOOLS parser
         elif self.args.command == "tools":
-            _bottle = self.args.bottle
-            _tool = self.args.tool
-            self.launch_tool(_bottle, _tool)
+            self.launch_tool()
 
         # REG parser
         elif self.args.command == "reg":
-            _bottle = self.args.bottle
-            _action = self.args.action
-            _key = self.args.key
-            _value = self.args.value
-            _data = self.args.data
-            _key_type = self.args.key_type
-            self.manage_reg(_bottle, _action, _key, _value, _data, _key_type)
+            self.manage_reg()
 
         # EDIT parser
         elif self.args.command == "edit":
-            _bottle = self.args.bottle
-            _params = self.args.params
-            _env_var = self.args.env_var
-            _win = self.args.win
-            _runner = self.args.runner
-            _dxvk = self.args.dxvk
-            _vkd3d = self.args.vkd3d
-            _nvapi = self.args.nvapi
-            _latencyflex = self.args.latencyflex
+            self.edit_bottle()
 
-            self.edit_bottle(_bottle, _params, _env_var, _win, _runner, _dxvk, _vkd3d, _nvapi, _latencyflex)
+        # NEW parser
+        elif self.args.command == "new":
+            self.new_bottle()
 
     # region INFO
-    def show_info(self, _type):
+    def show_info(self):
+        _type = self.args.type
         if _type == "bottles-path":
             res = Paths.bottles
             sys.stdout.write(res)
@@ -236,9 +231,10 @@ class CLI:
     # endregion
 
     # region PROGRAMS
-    def list_programs(self, _bottle):
+    def list_programs(self):
         mng = Manager(self, is_cli=True)
         mng.check_bottles()
+        _bottle = self.args.bottle
 
         if _bottle not in mng.local_bottles:
             sys.stderr.write(f"Bottle {_bottle} not found\n")
@@ -260,7 +256,9 @@ class CLI:
     # endregion
 
     # region TOOLS
-    def launch_tool(self, _bottle, _tool):
+    def launch_tool(self):
+        _bottle = self.args.bottle
+        _tool = self.args.tool
         mng = Manager(self, is_cli=True)
         mng.check_bottles()
 
@@ -288,7 +286,13 @@ class CLI:
     # endregion
 
     # region REG
-    def manage_reg(self, _bottle, _action, _key, _value, _data, _key_type):
+    def manage_reg(self):
+        _bottle = self.args.bottle
+        _action = self.args.action
+        _key = self.args.key
+        _value = self.args.value
+        _data = self.args.data
+        _key_type = self.args.key_type
         mng = Manager(self, is_cli=True)
         mng.check_bottles()
 
@@ -311,7 +315,16 @@ class CLI:
     # endregion
 
     # region EDIT
-    def edit_bottle(self, _bottle, _params, _env_var, _win, _runner, _dxvk, _vkd3d, _nvapi, _latencyflex):
+    def edit_bottle(self):
+        _bottle = self.args.bottle
+        _params = self.args.params
+        _env_var = self.args.env_var
+        _win = self.args.win
+        _runner = self.args.runner
+        _dxvk = self.args.dxvk
+        _vkd3d = self.args.vkd3d
+        _nvapi = self.args.nvapi
+        _latencyflex = self.args.latencyflex
         mng = Manager(self, is_cli=True)
         mng.check_bottles()
 
@@ -348,7 +361,7 @@ class CLI:
             mng.update_config(bottle, k, v, scope="Environment_Variables")
 
         if _win is not None:
-            RegKeys.set_windows(bottle, _win)
+            RegKeys(bottle).set_windows(_win)
 
         if _runner is not None:
             Runner.runner_update(bottles, mng, _runner)
@@ -394,6 +407,32 @@ class CLI:
                 mng.update_config(bottle, "LatencyFlex", _latencyflex)
 
     # endregion
+
+    # region NEW
+    def new_bottle(self):
+        _name = self.args.bottle_name
+        _environment = self.args.environment
+        _custom_environment = self.args.custom_environment
+        _arch = "win64" if self.args.arch is None else self.args.arch
+        _runner = self.args.runner
+        _dxvk = self.args.dxvk
+        _vkd3d = self.args.vkd3d
+        _nvapi = self.args.nvapi
+        _latencyflex = self.args.latencyflex
+        mng = Manager(self, is_cli=True)
+        mng.checks()
+
+        mng.create_bottle(
+            name=_name,
+            environment=_environment,
+            runner=_runner,
+            dxvk=_dxvk,
+            vkd3d=_vkd3d,
+            nvapi=_nvapi,
+            latencyflex=_latencyflex,
+            arch=_arch,
+            custom_environment=_custom_environment
+        )
 
 
 if __name__ == '__main__':
