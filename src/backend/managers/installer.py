@@ -359,6 +359,7 @@ class InstallerManager:
         _config = config
 
         bottle = ManagerUtils.get_bottle_path(config)
+        installers = manifest.get("Installers")
         dependencies = manifest.get("Dependencies")
         parameters = manifest.get("Parameters")
         executable = manifest.get("Executable")
@@ -368,8 +369,15 @@ class InstallerManager:
         if executable.get("icon"):
             self.__download_icon(_config, executable, manifest)
 
+        # install dependent installers
+        if installers:
+            logging.info("Installing dependent installers")
+            for i in installers:
+                self.install(config, i, widget)
+
         # install dependencies
         if dependencies:
+            logging.info("Installing dependencies")
             res = self.__install_dependencies(_config, dependencies, widget)
             if not res:
                 # unlock widget
@@ -379,6 +387,7 @@ class InstallerManager:
 
         # set parameters
         if parameters:
+            logging.info("Updating bottle parameters")
             widget.next_step()
             if self.__layer is not None:
                 self.__set_parameters(self.__layer.runtime_conf, parameters)
@@ -387,6 +396,7 @@ class InstallerManager:
 
         # execute steps
         if steps:
+            logging.info("Executing installer steps")
             widget.next_step()
             if self.__layer is not None:
                 for d in dependencies:
