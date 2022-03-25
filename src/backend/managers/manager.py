@@ -1059,7 +1059,7 @@ class Manager:
         # default components versions if not specified
         if not runner:
             # if no runner is specified, use the first one from available
-            runner = self.runners_available[0]
+            runner = self.get_latest_runner()
         runner_name = runner
 
         if not dxvk:
@@ -1176,7 +1176,7 @@ class Manager:
         FileUtils.wait_for_files(reg_files)
 
         # apply Windows version
-        if not template:
+        if not template and not custom_environment:
             logging.info("Setting Windows version…", )
             log_update(_("Setting Windows version…"))
             rk.set_windows(config["Windows"])
