@@ -1206,15 +1206,24 @@ class Manager:
         # apply environment configuration
         logging.info(f"Applying environment: [{environment}]…", )
         log_update(_("Applying environment: {0}…").format(environment))
+        env = None
+
         if environment not in ["Custom", "Layered"]:
-            if not custom_environment:
-                env = Samples.environments[environment.lower()]
-            else:
+            env = Samples.environments[environment.lower()]
+        elif custom_environment:
+            try:
                 with open(custom_environment, "r") as f:
                     env = yaml.safe_load(f.read())
+                    logging.warning("Using a custom environment recipe…", )
+                    log_update(_("(!) Using a custom environment recipe…"))
+            except (FileNotFoundError, PermissionError, yaml.YAMLError):
+                logging.error("Recipe not not found or not valid…", )
+                log_update(_("(!) Recipe not not found or not valid…"))
+                log_update(_("(!) Proceeding with default environment…"))
 
             wineboot.kill()
 
+        if env:
             while wineserver.is_alive():
                 time.sleep(1)
 

@@ -49,6 +49,7 @@ class NewView(Handy.Window):
     btn_create = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
+    btn_choose_env = Gtk.Template.Child()
     btn_pref_runners = Gtk.Template.Child()
     btn_pref_dxvk = Gtk.Template.Child()
     list_envs = Gtk.Template.Child()
@@ -106,12 +107,14 @@ class NewView(Handy.Window):
         self.manager = window.manager
         self.arg_exe = arg_exe
         self.selected_env = "gaming"
+        self.env_recipe_path = None
         self.new_bottle_config = {}
 
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_create.connect("clicked", self.create_bottle)
+        self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.list_envs.connect('row-selected', self.set_active_env)
         self.entry_name.connect('key-release-event', self.check_entry_name)
         self.entry_name.connect('activate', self.create_bottle)
@@ -177,6 +180,26 @@ class NewView(Handy.Window):
             self.btn_create.set_visible(False)
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
+    def choose_env_recipe(self, widget):
+        file_dialog = Gtk.FileChooserNative.new(
+            _("Choose a recipe file"),
+            self.window,
+            Gtk.FileChooserAction.OPEN
+        )
+
+        filter_yaml = Gtk.FileFilter()
+        filter_yaml.set_name(".yml")
+        filter_yaml.add_pattern("*yml")
+        filter_yaml.add_pattern("*yaml")
+        file_dialog.add_filter(filter_yaml)
+
+        response = file_dialog.run()
+
+        if response == -3:
+            self.env_recipe_path = file_dialog.get_filename()
+
+        file_dialog.destroy()
+
     '''Create the bottle'''
 
     def create_bottle(self, widget):
@@ -231,7 +254,8 @@ class NewView(Handy.Window):
             versioning=versioning_state,
             sandbox=sandbox_state,
             arch=self.combo_arch.get_active_id(),
-            fn_logger=self.update_output
+            fn_logger=self.update_output,
+            custom_environment=self.env_recipe_path
         )
 
     def update_output(self, text):

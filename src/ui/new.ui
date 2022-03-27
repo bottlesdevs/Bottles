@@ -227,6 +227,7 @@
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="title" translatable="yes">Use versioning</property>
+                                    <property name="activatable-widget">switch_versioning</property>
                                     <property name="subtitle" translatable="yes">Enable versioning to save and restore the bottle to a state.</property>
                                     <child>
                                       <object class="GtkBox">
@@ -254,6 +255,7 @@
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="title" translatable="yes">Unlinked homedir</property>
+                                    <property name="activatable-widget">switch_sandbox</property>
                                     <property name="subtitle" translatable="yes">Do not link the userdir to the homedir</property>
                                     <child>
                                       <object class="GtkBox">
@@ -447,6 +449,54 @@
                                             <property name="expand">False</property>
                                             <property name="fill">True</property>
                                             <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="HdyActionRow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="title" translatable="yes">Use custom recipe</property>
+                                    <property name="activatable-widget">btn_choose_env</property>
+                                    <property name="subtitle" translatable="yes">Choose a custom recipe for the environment if you have one.</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="spacing">10</property>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton" id="btn_choose_env">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="receives-default">True</property>
+                                            <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                            <property name="halign">center</property>
+                                            <property name="valign">center</property>
+                                            <property name="relief">none</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="icon-name">document-open-symbolic</property>
+                                              </object>
+                                            </child>
+                                            <style>
+                                              <class name="image-button"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">3</property>
                                           </packing>
                                         </child>
                                       </object>
