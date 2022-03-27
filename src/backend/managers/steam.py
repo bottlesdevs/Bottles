@@ -59,7 +59,7 @@ class SteamManager:
         if steam_path is None:
             return None
 
-        acf_path = f"{steam_path}/appmanifest_{app_id}.acf"
+        acf_path = os.path.join(steam_path, f"appmanifest_{app_id}.acf")
         if not os.path.isfile(acf_path):
             return None
 
@@ -104,7 +104,8 @@ class SteamManager:
             return
 
         if os.path.isfile(conf_path):
-            shutil.copy(conf_path, f"{conf_path}.bck.{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}")
+            now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+            shutil.copy(conf_path, f"{conf_path}.bck.{now}")
 
         with open(conf_path, "w") as f:
             SteamUtils.to_vdf(local_config, f)

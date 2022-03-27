@@ -29,21 +29,17 @@ class RuntimeManager:
             "bottles": RuntimeManager.__get_bottles_runtime(),
             "steam": RuntimeManager.__get_steam_runtime()
         }
-        if not runtimes.get(_filter):
-            return False
 
-        return runtimes[_filter]
+        return runtimes.get(_filter, False)
 
     @staticmethod
     def get_runtime_env(_filter: str = "bottles"):
         runtime = RuntimeManager.get_runtimes(_filter)
 
-        if not runtime:
-            return False
-
-        env = ""
         if runtime:
             env = ':'.join(runtime)
+        else:
+            return False
 
         ld = os.environ.get('LD_LIBRARY_PATH')
         if ld:
@@ -80,7 +76,7 @@ class RuntimeManager:
     @staticmethod
     def __get_bottles_runtime():
         paths = [
-            f"/app/etc/runtime",
+            "/app/etc/runtime",
             Paths.runtimes
         ]
         structure = ["lib", "lib32"]
@@ -89,10 +85,9 @@ class RuntimeManager:
 
     @staticmethod
     def __get_steam_runtime():
-        # NOTE: Not implemented, here just for testing purposes
         paths = [
-            f"{Path.home()}/.local/share/Steam/ubuntu12_32/steam-runtime/lib",
-            f"{Path.home()}/.var/app/com.valvesoftware.Steam/data/Steam/ubuntu12_32/steam-runtime/lib"
+            os.path.join(Path.home(), ".local/share/Steam/ubuntu12_32/steam-runtime/lib"),
+            os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam/ubuntu12_32/steam-runtime/lib"),
         ]
         structure = ["i386-linux-gnu", "x86_64-linux-gnu"]
 
