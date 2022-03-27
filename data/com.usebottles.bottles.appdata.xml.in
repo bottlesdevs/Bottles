@@ -88,63 +88,54 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.3.28-trento" date="2022-03-13">
+        <release version="2022.3.28-trento" date="2022-03-27">
           <description>
             <p>News</p>
             <ul>
-                <li>MangoHud support (use org.freedesktop.Platform.VulkanLayer.MangoHud with flatpak)</li>
-                <li>Now installers provide a visual feedback if a checksum is wrong</li>
-                <li>Experimental support for Steam Proton prefixes (Flatpak need steam path permission)</li>
-                <li>Extended search and filters for installed programs</li>
-                <li>WinePath has now a WineProgram interface</li>
-                <li>Support for GE-Proton runners</li>
-                <li>Now starting executables is case insensitive</li>
-                <li>Added new screen resolutions in the dedicated menu</li>
-                <li>Now you can run other extensions as well, a program that supports them will be used if installed</li>
-                <li>Initial LatencyFleX support</li>
-                <li>Using the new repositories for components, dependencies and installers, should solve some countries restrictions problems seen with GitHub</li>
-                <li>WineBridge is now supported as core component (currently in testing)</li>
-                <li>Flatpak is now based on org.winehq.Wine, thanks to @TheEvilSkeleton</li>
-                <li>Switchd from libnotify to GNotification, thanks to @A6GibKm</li>
-                <li>Kitty terminal is now supported, thanks to @Bartkk0</li>
-                <li>Foot terminal is now supported, thanks to @QuantMint</li>
-                <li>General improvements to the WINE backend</li>
+                <li>Now it is possible to use custom environment recipes, just choose its YAML file when creating a new bottle</li>
+                <li>Support for Steam Runtime</li>
+                <li>Installers can now depend by other installers</li>
+                <li>Installers now uses Windows paths by default for new entries in the Programs list</li>
+                <li>Runners paths are now appended to the environment to ensure those to get picked up</li>
+                <li>The DXVK Hud option now uses the default configuration, use the Environment Variables section to tweak it</li>
+                <li>Now you can launch the game linked to a Steam Proton prefix directly from Bottles</li>
+                <li>Now enabling some options (e.g. MangoHud) for a Steam Proton prefix, the Launch options on Steam are updated (requires Steam restart)</li>
+                <li>Now Steam Proton prefixes are parsed from the vdf LocalSettings file</li>
+                <li>Now by updating the Launch options in a Steam Proton prefix, Bottles will read the changes and update the dedicated bottle</li>
+                <li>The ACO shader compiler has been removed from the preferences as it is active by default</li>
+                <li>Legacy WINE tools are now grouped in the Utilities menu</li> 
+                <li>Now LatencyFleX will be used only with DXVK-Nvapi installed and the Vulkan layer is automatically appended to the environment, no need to set it manually</li>
+                <li>WineBridge is now automatically updated</li>
+                <li>Registry is now updated using the minimal WineCommand interface</li>
+                <li>New CLI much more powerful (bottles-cli --help)</li>
+                <li>Now Caffe is always the default runner when making a bottle with the Gaming or Application environment</li>
+                <li>Support for system Dark mode and general UI improvements (Thanks to @A6GibKm)</li>
+                <li>Better Download logging (Thanks to @thopiekar)</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fixed a bug with Konsole and xterm which was closing just after launching</li>
-                <li>Fixed a regression with Proton, Bottles was looking for the binaries in the wrong place</li>
-                <li>Fixed a bug in bottle creation, wineserver was not being awaited before update sync type</li>
-                <li>Fixed a bug with templates, if the build went wrong, the template was still stored and used for the next bottle</li>
-                <li>Fixed a bug with cabextract, was not supporting whitespaces in filenames</li>
-                <li>Fixed a bug in the journal, was crashing if a date was not set</li>
-                <li>Fixed a bug with layers, the executable path was not being set correctly</li>
-                <li>Fixed a bug during dependencies installation when it was not possible to read the repository index</li>
-                <li>Fixed a bug with DLL Components installation, a new layer was not being created if the bottle environment was Layered</li>
-                <li>Fixed a bug on runner change, the prefix was being updated before the new runner was set</li>
-                <li>Fixed a bug with dependencies installation, was failing if a file was already in place</li>
-                <li>Fixed a bug with CLI, Bottles was closing too early avoiding the program to be launched, thanks to @tgschultz</li>
-                <li>Fixed a bug with translations, some translations were not being loaded, thanks to @ryonakano</li>
-                <li>Fixed a bug with the about dialog, the close button was not working, thanks to @ryonakano</li>
-                <li>Fixed a bug with the notifications manager, was raising an error if there was just one notification</li>
+                <li>Fixed a bug when updating Core components</li>
+                <li>Fixed a bug in installing LatencyFleX, was causing a crash if there was no version selected</li>
+                <li>Fixed a bug with unix path when using CLI, was treated as a Windows path</li>
+                <li>Fixed a bug in the component version listing, the most recent version was not always picked up (Thanks to @CleoMenezesJr and @psydvl)</li>
+                <li>Fixed a bug with offline mode, connection check would not fail when stalled</li>
+                <li>Fixed a bug with changing the screen resolution, it wasn't async and caused a freeze</li>
+                <li>Fixed a bug with WineCommand, was using MangoHud on minimal mode too</li>
+                <li>Fixed a bug with Runner update, was not checking if the runner exist</li>
+                <li>Fixed a bug with WineEnv, was not returning the env list when asking for a clean one</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>French translations thanks to @julroy67, クリスDownix</li>
-                <li>Italian translations thanks to @albanobattistella, @phaerrax</li>
-                <li>Portuguese translations thanks to @davidpatricio, @hugok79</li>
-                <li>Spanish translations thanks to @oscfdezdz</li>
-                <li>Portuguese (Brazil) translations thanks to @vitorhcl</li>
-                <li>Turkish translations thanks to @ersen0</li>
-                <li>Chineese (Simplified) translations thanks to Eric</li>
-                <li>Russian translations thanks to @Knebergish</li>
+                <li>Malay translations thanks to @amiruldevkun</li>
+                <li>French translations thanks to @julroy67</li>
+                <li>Finnish translations thanks to Jiri Grönroos</li>
+                <li>Hungarian translations thanks to @zoli111, @aronkvh, @Oliver-EMRLD</li>
+                <li>Galician translations thanks to @frandieguez</li>
+                <li>German translations thanks to @ThatRedKite, @CoreXGit</li>
                 <li>Japanese translations thanks to @ryonakano</li>
-                <li>German translations thanks to @mkar1984, @thericosanto</li>
-                <li>Polish translations thanks to Zszywek, @mbledkowski</li>
-                <li>Croatian translations thanks to @milotype</li>
-                <li>Hungarian translations thanks to @zoli111, @swanux</li>
+                <li>Italian translations thanks to @albanobattistella</li>
             </ul>
           </description>
         </release>

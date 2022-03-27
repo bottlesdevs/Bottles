@@ -1,49 +1,40 @@
 com.usebottles.bottles (2022.3.28-trento) precise; urgency=low
 
-  * MangoHud support (use org.freedesktop.Platform.VulkanLayer.MangoHud with flatpak)
-  * Now installers provide a visual feedback if a checksum is wrong
-  * Experimental support for Steam Proton prefixes (Flatpak need steam path permission)
-  * Extended search and filters for installed programs
-  * WinePath has now a WineProgram interface
-  * Support for GE-Proton runners
-  * Now starting executables is case insensitive
-  * Added new screen resolutions in the dedicated menu
-  * Now you can run other extensions as well, a program that supports them will be used if installed
-  * Initial LatencyFleX support
-  * Using the new repositories for components, dependencies and installers, should solve some countries restrictions problems seen with GitHub
-  * WineBridge is now supported as core component (currently in testing)
-  * Flatpak is now based on org.winehq.Wine, thanks to @TheEvilSkeleton
-  * Switchd from libnotify to GNotification, thanks to @A6GibKm
-  * Kitty terminal is now supported, thanks to @Bartkk0
-  * Foot terminal is now supported, thanks to @QuantMint
-  * General improvements to the WINE backend
-  * Fixed a bug with Konsole and xterm which was closing just after launching
-  * Fixed a regression with Proton, Bottles was looking for the binaries in the wrong place
-  * Fixed a bug in bottle creation, wineserver was not being awaited before update sync type
-  * Fixed a bug with templates, if the build went wrong, the template was still stored and used for the next bottle
-  * Fixed a bug with cabextract, was not supporting whitespaces in filenames
-  * Fixed a bug in the journal, was crashing if a date was not set
-  * Fixed a bug with layers, the executable path was not being set correctly
-  * Fixed a bug during dependencies installation when it was not possible to read the repository index
-  * Fixed a bug with DLL Components installation, a new layer was not being created if the bottle environment was Layered
-  * Fixed a bug on runner change, the prefix was being updated before the new runner was set
-  * Fixed a bug with dependencies installation, was failing if a file was already in place
-  * Fixed a bug with CLI, Bottles was closing too early avoiding the program to be launched, thanks to @tgschultz
-  * Fixed a bug with translations, some translations were not being loaded, thanks to @ryonakano
-  * Fixed a bug with the about dialog, the close button was not working, thanks to @ryonakano
-  * Fixed a bug with the notifications manager, was raising an error if there was just one notification
-  * French translations thanks to @julroy67, クリスDownix
-  * Italian translations thanks to @albanobattistella, @phaerrax
-  * Portuguese translations thanks to @davidpatricio, @hugok79
-  * Spanish translations thanks to @oscfdezdz
-  * Portuguese (Brazil) translations thanks to @vitorhcl
-  * Turkish translations thanks to @ersen0
-  * Chineese (Simplified) translations thanks to Eric
-  * Russian translations thanks to @Knebergish
+  * Now it is possible to use custom environment recipes, just choose its YAML file when creating a new bottle
+  * Support for Steam Runtime
+  * Installers can now depend by other installers
+  * Installers now uses Windows paths by default for new entries in the Programs list
+  * Runners paths are now appended to the environment to ensure those to get picked up
+  * The DXVK Hud option now uses the default configuration, use the Environment Variables section to tweak it
+  * Now you can launch the game linked to a Steam Proton prefix directly from Bottles
+  * Now enabling some options (e.g. MangoHud) for a Steam Proton prefix, the Launch options on Steam are updated (requires Steam restart)
+  * Now Steam Proton prefixes are parsed from the vdf LocalSettings file
+  * Now by updating the Launch options in a Steam Proton prefix, Bottles will read the changes and update the dedicated bottle
+  * The ACO shader compiler has been removed from the preferences as it is active by default
+  * Legacy WINE tools are now grouped in the Utilities menu 
+  * Now LatencyFleX will be used only with DXVK-Nvapi installed and the Vulkan layer is automatically appended to the environment, no need to set it manually
+  * WineBridge is now automatically updated
+  * Registry is now updated using the minimal WineCommand interface
+  * New CLI much more powerful (bottles-cli --help)
+  * Now Caffe is always the default runner when making a bottle with the Gaming or Application environment
+  * Support for system Dark mode and general UI improvements (Thanks to @A6GibKm)
+  * Better Download logging (Thanks to @thopiekar)
+  * Fixed a bug when updating Core components
+  * Fixed a bug in installing LatencyFleX, was causing a crash if there was no version selected
+  * Fixed a bug with unix path when using CLI, was treated as a Windows path
+  * Fixed a bug in the component version listing, the most recent version was not always picked up (Thanks to @CleoMenezesJr and @psydvl)
+  * Fixed a bug with offline mode, connection check would not fail when stalled
+  * Fixed a bug with changing the screen resolution, it wasn't async and caused a freeze
+  * Fixed a bug with WineCommand, was using MangoHud on minimal mode too
+  * Fixed a bug with Runner update, was not checking if the runner exist
+  * Fixed a bug with WineEnv, was not returning the env list when asking for a clean one
+  * Malay translations thanks to @amiruldevkun
+  * French translations thanks to @julroy67
+  * Finnish translations thanks to Jiri Grönroos
+  * Hungarian translations thanks to @zoli111, @aronkvh, @Oliver-EMRLD
+  * Galician translations thanks to @frandieguez
+  * German translations thanks to @ThatRedKite, @CoreXGit
   * Japanese translations thanks to @ryonakano
-  * German translations thanks to @mkar1984, @thericosanto
-  * Polish translations thanks to Zszywek, @mbledkowski
-  * Croatian translations thanks to @milotype
-  * Hungarian translations thanks to @zoli111, @swanux
+  * Italian translations thanks to @albanobattistella
 
- -- Mirko Brombin <send@mirko.pm>  Sat, 26 Feb 2022 19:05:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Sun, 27 Feb 2022 19:57:00 +0000
