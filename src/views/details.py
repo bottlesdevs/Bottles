@@ -43,10 +43,12 @@ class DetailsView(Handy.Leaflet):
 
     # endregion
 
-    def __init__(self, window, config={}, **kwargs):
+    def __init__(self, window, config=None, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
+        if config is None:
+            config = {}
         self.window = window
         self.manager = window.manager
         self.versioning_manager = window.manager.versioning_manager

@@ -80,6 +80,7 @@ class Bottles(Gtk.Application):
             application_id='com.usebottles.bottles',
             flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE
         )
+        self.win = None
         self.__register_arguments()
 
     def __register_arguments(self):

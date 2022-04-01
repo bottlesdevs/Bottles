@@ -133,7 +133,7 @@ class ComponentManager:
             file: str,
             rename: str = "",
             checksum: str = "",
-            func=False
+            func: callable=None
     ) -> bool:
         """Download a component from the Bottles repository."""
 
@@ -294,10 +294,10 @@ class ComponentManager:
             root_dir = tar.getnames()[0]
             if component == "nvapi":
                 '''
-                TODO: this check should be make on archive root, so other
+                TODO: this check should be done on archive root, so other
                 components can benefit from it.
                 '''
-                xtr_path = f"{path}/{name}"
+                xtr_path = os.path.join(path, name)
                 tar.extractall(xtr_path)
             else:
                 tar.extractall(path)
@@ -337,7 +337,7 @@ class ComponentManager:
             self,
             component_type: str,
             component_name: str,
-            func=False,
+            func: callable = None,
     ):
         """
         This function is used to install a component. It automatically

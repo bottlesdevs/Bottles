@@ -190,13 +190,15 @@ class RegKeys:
             )
         wineboot.update()
 
-    def apply_cmd_settings(self, scheme: dict = {}):
+    def apply_cmd_settings(self, scheme=None):
         """
         Change settings for the wine command line in a bottle.
         This method can also be used to apply the default settings, part
         of the Bottles experience, these are meant to improve the
         readability and usability.
         """
+        if scheme is None:
+            scheme = {}
         self.reg.import_bundle({
             "HKEY_CURRENT_USER\\Console\\C:_windows_system32_wineconsole.exe": [
                 {"value": "ColorTable00", "data": "2368548"},

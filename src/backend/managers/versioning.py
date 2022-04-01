@@ -428,7 +428,8 @@ class VersioningManager:
 
         return True
 
-    def list_states(self, config: dict) -> dict:
+    @staticmethod
+    def list_states(config: dict) -> dict:
         """
         This function take all the states from the states.yml file
         of the given bottle and return them as a dict.

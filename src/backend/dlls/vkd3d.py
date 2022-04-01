@@ -29,5 +29,6 @@ class VKD3DComponent(DLLComponent):
         ]
     }
 
-    def get_base_path(self, version: str):
+    @staticmethod
+    def get_base_path(version: str):
         return ManagerUtils.get_vkd3d_path(version)

@@ -275,7 +275,7 @@ class MainWindow(Handy.ApplicationWindow):
 
         self.stack_main.set_visible_child_name(self.previous_page)
 
-    def show_health_view(self, widget):
+    def show_health_view(self, _widget):
         """
         This method is called when the user presses the health button.
         It will show the health view.

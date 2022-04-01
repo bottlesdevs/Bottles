@@ -89,7 +89,8 @@ class InstallerEntry(Handy.ActionRow):
             message=html_review,
         )
 
-    def __open_bug_report(self, widget):
+    @staticmethod
+    def __open_bug_report(widget):
         """Open bug report"""
         webbrowser.open("https://github.com/bottlesdevs/programs/issues")
 

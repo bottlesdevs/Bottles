@@ -85,16 +85,15 @@ class GamescopeDialog(Handy.Window):
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
 
     def __idle_save(self, widget=False):
-        settings = {}
-        settings["gamescope_game_width"] = int(self.arg_w.get_text())
-        settings["gamescope_game_height"] = int(self.arg_h.get_text())
-        settings["gamescope_window_width"] = int(self.arg_W.get_text())
-        settings["gamescope_window_height"] = int(self.arg_H.get_text())
-        settings["gamescope_fps"] = int(self.arg_fps.get_text())
-        settings["gamescope_fps_no_focus"] = int(self.arg_fps_no_focus.get_text())
-        settings["gamescope_scaling"] = self.switch_scaling.get_state()
-        settings["gamescope_borderless"] = self.toggle_borderless.get_active()
-        settings["gamescope_fullscreen"] = self.toggle_fullscreen.get_active()
+        settings = {"gamescope_game_width": int(self.arg_w.get_text()),
+                    "gamescope_game_height": int(self.arg_h.get_text()),
+                    "gamescope_window_width": int(self.arg_W.get_text()),
+                    "gamescope_window_height": int(self.arg_H.get_text()),
+                    "gamescope_fps": int(self.arg_fps.get_text()),
+                    "gamescope_fps_no_focus": int(self.arg_fps_no_focus.get_text()),
+                    "gamescope_scaling": self.switch_scaling.get_state(),
+                    "gamescope_borderless": self.toggle_borderless.get_active(),
+                    "gamescope_fullscreen": self.toggle_fullscreen.get_active()}
 
         for setting in settings.keys():
             self.manager.update_config(

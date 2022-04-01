@@ -829,8 +829,8 @@ class Manager:
             self.local_bottles.update(SteamManager.list_prefixes())
 
     # Update parameters in bottle config
+    @staticmethod
     def update_config(
-            self,
             config: dict,
             key: str,
             value: str,

@@ -68,11 +68,13 @@ class InstallersView(Gtk.ScrolledWindow):
             return True
         return False
 
-    def update(self, widget=False, config={}):
+    def update(self, widget=False, config=None):
         """
         This function update the installers list with the
         supported by the manager.
         """
+        if config is None:
+            config = {}
         self.config = config
 
         for w in self.list_installers:

@@ -56,11 +56,15 @@ class VersioningView(Gtk.ScrolledWindow):
         )
         self.entry_state_comment.connect("activate", self.add_state)
 
-    def update(self, widget=False, config={}, states={}):
+    def update(self, widget=False, config=None, states=None):
         """
         This function update the states list with the
         ones from the bottle configuration.
         """
+        if config is None:
+            config = {}
+        if states is None:
+            states = {}
         if len(config) > 0:
             self.config = config
 
@@ -89,7 +93,7 @@ class VersioningView(Gtk.ScrolledWindow):
         looking for special characters. It also toggle the widget icon
         and the save button sensitivity according to the result.
         """
-        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
+        regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,"]')
         comment = widget.get_text()
         check = regex.search(comment) is None
 

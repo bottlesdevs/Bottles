@@ -39,10 +39,11 @@ class UtilsConnection:
     Bottles's website. If the connection is offline, the user will be
     notified and False will be returned, otherwise True.
     """
+    status = None
+    last_check = None
 
     def __init__(self, window=None, **kwargs):
         super().__init__(**kwargs)
-
         self.window = window
 
     def check_connection(self, show_notification=False):

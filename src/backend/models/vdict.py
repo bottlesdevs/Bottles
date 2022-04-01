@@ -73,7 +73,8 @@ class VDFDict(dict):
     def __len__(self):
         return len(self.__omap)
 
-    def _verify_key_tuple(self, key):
+    @staticmethod
+    def _verify_key_tuple(key):
         if len(key) != 2:
             raise ValueError("Expected key tuple length to be 2, got %d" % len(key))
         if not isinstance(key[0], int):

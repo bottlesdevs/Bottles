@@ -211,7 +211,7 @@ class BottleView(Gtk.ScrolledWindow):
         for special characters. It also toggle the widget icon
         and the save button sensitivity according to the result.
         """
-        regex = re.compile('\\\[@!#$%^&*()<>?/\|}{~:.;,]')
+        regex = re.compile('\\\[@!#$%^&*()<>?/|}{~:.;,]')
         name = widget.get_text()
 
         if (regex.search(name) is None) and name != "" and not name.isspace():
@@ -478,7 +478,8 @@ class BottleView(Gtk.ScrolledWindow):
         program = CMD(self.config)
         RunAsync(program.launch_terminal)
 
-    def run_snake(self, widget, event):
+    @staticmethod
+    def run_snake(widget, event):
         if event.button == 2:
             RunAsync(TerminalUtils().launch_snake)
 

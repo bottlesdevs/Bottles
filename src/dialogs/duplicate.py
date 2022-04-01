@@ -57,7 +57,7 @@ class DuplicateDialog(Handy.Window):
         special characters. The widget icon will be toggled
         according to the result.
         """
-        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,"]')
+        regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,"]')
         name = widget.get_text()
 
         if (regex.search(name) is None) and name != "":

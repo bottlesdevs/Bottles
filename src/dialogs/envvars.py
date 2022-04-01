@@ -109,7 +109,7 @@ class EnvVarsDialog(Handy.Window):
         self.entry_name.connect('key-release-event', self.__validate)
 
     def __validate(self, widget, event_key):
-        regex = re.compile('[@!#$%^&*()<>?/\|}{~:.;,\'"]')
+        regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,\'"]')
         name = widget.get_text()
 
         if (regex.search(name) is None) and name != "":

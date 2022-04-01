@@ -41,6 +41,11 @@ class MessageDialog(Gtk.MessageDialog):
             message_format=message
         )
 
+        content = self.get_content_area()
+
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        box.set_border_width(20)
+
         if log:
             # display log as output if defined
             message_scroll = Gtk.ScrolledWindow()
@@ -52,12 +57,6 @@ class MessageDialog(Gtk.MessageDialog):
             message_buffer.set_text(log)
             message_scroll.add(message_view)
 
-        content = self.get_content_area()
-
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        box.set_border_width(20)
-
-        if log:
             box.add(message_scroll)
 
         content.add(box)
@@ -225,6 +224,11 @@ class Dialog(Gtk.Dialog):
             flags=Gtk.DialogFlags.USE_HEADER_BAR
         )
 
+        content = self.get_content_area()
+
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        box.set_border_width(20)
+
         if log or html:
             '''
             If log is defined, display it as output, also change the
@@ -234,15 +238,6 @@ class Dialog(Gtk.Dialog):
 
             self.resize(600, 700)
             color = "#3e0622"
-
-            if is_dark:
-                color = "#d4036d"
-                stylesheet = WebKit2.UserStyleSheet(
-                    "body { color: #fff; background-color: #242424; }",
-                    WebKit2.UserContentInjectedFrames.TOP_FRAME,
-                    WebKit2.UserStyleLevel.USER,
-                    None, None
-                )
 
             message_scroll = Gtk.ScrolledWindow()
             message_scroll.set_hexpand(True)
@@ -259,30 +254,29 @@ class Dialog(Gtk.Dialog):
                         -1
                     )
                 message_scroll.add(message_view)
+                box.add(message_scroll)
 
-            if html:
+            elif html:
                 ucntm = WebKit2.UserContentManager()
                 if is_dark:
+                    stylesheet = WebKit2.UserStyleSheet(
+                        "body { color: #fff; background-color: #242424; }",
+                        WebKit2.UserContentInjectedFrames.TOP_FRAME,
+                        WebKit2.UserStyleLevel.USER,
+                        None, None
+                    )
                     ucntm.add_style_sheet(stylesheet)
                 webview = WebKit2.WebView(
                     user_content_manager=ucntm
                 )
                 webview.load_html(html, "file://")
                 message_scroll.add(webview)
+                box.add(message_scroll)
 
-        else:
+        elif message:
             message_label = Gtk.Label(label=message)
             message_label.wrap_width = 500
             message_label.wrap_mode = Pango.WrapMode.WORD_CHAR
-
-        content = self.get_content_area()
-
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        box.set_border_width(20)
-
-        if log or html:
-            box.add(message_scroll)
-        if message:
             box.add(message_label)
 
         content.add(box)

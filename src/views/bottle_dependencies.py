@@ -118,11 +118,13 @@ class DependenciesView(Gtk.ScrolledWindow):
             return True
         return False
 
-    def update(self, widget=False, config={}, selection=False):
+    def update(self, widget=False, config=None, selection=False):
         """
         This function update the dependencies list with the
         supported by the manager.
         """
+        if config is None:
+            config = {}
         self.config = config
 
         for w in self.list_dependencies:

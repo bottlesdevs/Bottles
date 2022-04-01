@@ -7,6 +7,7 @@ import os
 
 class Snake:
     def __init__(self, stdscr: curses.window):
+        self.__is_running = None
         self.stdscr = stdscr
         self.stdscr.nodelay(True)
         self.stdscr.timeout(0)
@@ -42,7 +43,7 @@ class Snake:
             try:
                 self.stdscr.addstr(i, j, '◍', curses.color_pair(1))
             except:
-                self.is_running = False
+                self.__is_running = False
 
         self.stdscr.addstr(self.food[0], self.food[1], '🍎', curses.color_pair(2))
         self.stdscr.refresh()
@@ -84,8 +85,8 @@ class Snake:
         return f'Your score is {self.score}'
 
     def run(self):
-        self.is_running = True
-        while self.is_running:
+        self.__is_running = True
+        while self.__is_running:
             self.get_input()
             self.move()
             self.draw()
