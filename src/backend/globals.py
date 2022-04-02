@@ -75,8 +75,9 @@ class Paths:
 
 class TrdyPaths:
     # External managers paths
+    wine = f"{xdg_data_home}/.wine"
     lutris = f"{xdg_data_home}*/Games"
-    playonlinux = f"{xdg_data_home}/.PlayOnLinux/wineprefix/"
+    playonlinux = f"{xdg_data_home}/.PlayOnLinux/wineprefix"
     bottlesv1 = f"{xdg_data_home}/.Bottles"
 
 

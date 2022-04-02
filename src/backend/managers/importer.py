@@ -40,13 +40,15 @@ class ImportManager:
         importer_wineprefixes = []
 
         # search wine prefixes in external managers paths
+        wine_standard = glob(f"{TrdyPaths.wine}")
         lutris_results = glob(f"{TrdyPaths.lutris}/*/")
         playonlinux_results = glob(f"{TrdyPaths.playonlinux}/*/")
         bottlesv1_results = glob(f"{TrdyPaths.bottlesv1}/*/")
 
-        results = lutris_results + playonlinux_results + bottlesv1_results
+        results = wine_standard + lutris_results + playonlinux_results + bottlesv1_results
 
         # count results
+        is_wine = len(wine_standard)
         is_lutris = len(lutris_results)
         is_playonlinux = len(playonlinux_results)
         i = 1
@@ -55,9 +57,11 @@ class ImportManager:
             wineprefix_name = wineprefix.split("/")[-2]
 
             # identify manager by index
-            if i <= is_lutris:
+            if i <= is_wine:
+                wineprefix_manager = "Legacy Wine"
+            elif i <= is_wine + is_lutris:
                 wineprefix_manager = "Lutris"
-            elif i <= is_playonlinux:
+            elif i <= is_wine + is_lutris + is_playonlinux:
                 wineprefix_manager = "PlayOnLinux"
             else:
                 wineprefix_manager = "Bottles v1"
