@@ -435,7 +435,7 @@ class Manager:
             self,
             component_type: str,
             install_latest: bool = True
-    ) -> Union[Union[bool, list[Any]], Any]:
+    ) -> Union[bool, list]:
         components = {
             "dxvk": {
                 "available": self.dxvk_available,
