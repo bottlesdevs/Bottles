@@ -17,6 +17,7 @@
 
 import os
 import shutil
+from gi.repository import GLib
 from pathlib import Path
 from functools import lru_cache
 
@@ -32,7 +33,7 @@ class API:
 
 
 # xdg data path
-xdg_data_home = os.environ.get("XDG_DATA_HOME", os.path.join(Path.home(), ".local/share"))
+xdg_data_home = GLib.get_user_data_dir()
 
 # check if bottles exists in xdg data path
 os.makedirs(f"{xdg_data_home}/bottles", exist_ok=True)
