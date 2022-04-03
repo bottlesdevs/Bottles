@@ -20,8 +20,8 @@ import uuid
 from bottles.backend.utils import yaml
 import shlex
 import shutil
-import subprocess
 import contextlib
+from gi.repository import Gtk, Gdk
 from glob import glob
 from pathlib import Path
 from functools import lru_cache
@@ -486,13 +486,10 @@ class SteamManager:
         return config
 
     @staticmethod
-    def launch_app(prefix: str):
+    def launch_app(prefix: str, window: Gtk.Window):
         logging.info(f"Launching AppID {prefix} with Steam")
-        cmd = [
-            "xdg-open",
-            "steam://rungameid/{}".format(prefix)
-        ]
-        subprocess.Popen(cmd)
+        uri = f"steam://rungameid/{prefix}"
+        Gtk.show_uri(window, uri, Gdk.CURRENT_TIME)
 
     def get_runners(self) -> dict:
         """

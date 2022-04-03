@@ -19,12 +19,11 @@ import shutil
 import gi
 import os
 import locale
-import subprocess
 import icoextract
 from glob import glob
 from typing import NewType, Union
 from datetime import datetime
-from gi.repository import GLib
+from gi.repository import Gdk, Gio, GLib, Gtk
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths, user_apps_dir
@@ -74,8 +73,10 @@ class ManagerUtils:
         if path_type == "custom" and custom_path != "":
             path = custom_path
 
-        command = f"xdg-open '{path}'"
-        subprocess.Popen(command, shell=True).communicate()
+        app = Gio.Application.get_default()
+        window = app.get_active_window()
+        path = f"file://{path}"
+        Gtk.show_uri(window, path, Gdk.CURRENT_TIME)
 
     @staticmethod
     def get_layer_path(layer: str) -> str:
