@@ -5,6 +5,7 @@ bottles_sources = [
   '__init__.py',
   'new.py',
   'list.py',
+  'library.py',
   'details.py',
   'preferences.py',
   'importer.py',

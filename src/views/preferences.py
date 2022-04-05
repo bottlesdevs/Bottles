@@ -33,6 +33,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     switch_temp = Gtk.Template.Child()
     switch_release_candidate = Gtk.Template.Child()
     switch_steam = Gtk.Template.Child()
+    switch_library = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
     list_winebridge = Gtk.Template.Child()
@@ -82,6 +83,9 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_steam.set_active(
             self.settings.get_boolean("experiments-steam")
         )
+        self.switch_library.set_active(
+            self.settings.get_boolean("experiments-library")
+        )
         self.switch_auto_close.set_active(
             self.settings.get_boolean("auto-close-bottles")
         )
@@ -101,6 +105,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.switch_temp.connect('state-set', self.__toggle_temp)
         self.switch_release_candidate.connect('state-set', self.__toggle_rc)
         self.switch_steam.connect('state-set', self.__toggle_steam)
+        self.switch_library.connect('state-set', self.__toggle_library)
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
@@ -125,7 +130,9 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
     def __toggle_steam(self, widget, state):
         self.settings.set_boolean("experiments-steam", state)
-        self.window.page_details.build_pages()
+
+    def __toggle_library(self, widget, state):
+        self.settings.set_boolean("experiments-library", state)
 
     def __toggle_autoclose(self, widget, state):
         self.settings.set_boolean("auto-close-bottles", state)

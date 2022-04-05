@@ -19,12 +19,14 @@ import os
 import time
 import webbrowser
 from gettext import gettext as _
-from gi.repository import Gtk, Gio, Handy
+from gi.repository import Gtk, GLib, Gio, Handy
 from pathlib import Path
 
 from bottles.params import *  # pyright: reportMissingImports=false
 from bottles.widgets.message import MessageEntry
-from bottles.utils import UtilsConnection, Logger, RunAsync
+from bottles.backend.logger import Logger
+from bottles.utils.threading import RunAsync
+from bottles.utils.connection import ConnectionUtils
 
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
@@ -34,6 +36,7 @@ from bottles.backend.wine.executor import WineExecutor
 from bottles.views.new import NewView
 from bottles.views.details import DetailsView
 from bottles.views.list import ListView
+from bottles.views.library import LibraryView
 from bottles.views.preferences import PreferencesWindow
 from bottles.views.importer import ImporterView
 
@@ -66,6 +69,7 @@ class MainWindow(Handy.ApplicationWindow):
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     btn_health = Gtk.Template.Child()
+    btn_library = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     list_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
@@ -83,13 +87,17 @@ class MainWindow(Handy.ApplicationWindow):
     def __init__(self, arg_exe, arg_bottle, arg_passed, **kwargs):
         super().__init__(**kwargs)
 
-        self.utils_conn = UtilsConnection(self)
+        self.utils_conn = ConnectionUtils(self)
         self.manager = Manager(self)
 
         # Set night theme according to user settings
         if self.settings.get_boolean("dark-theme"):
             manager = Handy.StyleManager.get_default()
             manager.set_color_scheme(Handy.ColorScheme.FORCE_DARK)
+
+        # Set Library view according to user settings
+        if self.settings.get_boolean("experiments-library"):
+            self.btn_library.set_visible(True)
 
         # Validate arg_exe extension
         if not str(arg_exe).endswith(EXECUTABLE_EXTS):
@@ -115,11 +123,13 @@ class MainWindow(Handy.ApplicationWindow):
         page_details = DetailsView(self)
         page_list = ListView(self, arg_exe)
         page_importer = ImporterView(self)
+        page_library = LibraryView(self)
 
         # Reusable variables
         self.page_list = page_list
         self.page_details = page_details
         self.page_importer = page_importer
+        self.page_library = page_library
 
         # Populate stack
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
@@ -139,6 +149,11 @@ class MainWindow(Handy.ApplicationWindow):
             name="page_importer",
             title=_("Importer")
         )
+        self.stack_main.add_titled(
+            child=page_library,
+            name="page_library",
+            title=_("Your library")
+        )
 
         # Add the main stack to the main grid
         self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
@@ -152,6 +167,7 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_forum.connect("clicked", self.open_url, FORUMS_URL)
         self.btn_preferences.connect("clicked", self.show_prefs_view)
         self.btn_importer.connect("clicked", self.show_importer_view)
+        self.btn_library.connect('clicked', self.show_library_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.btn_health.connect("clicked", self.show_health_view)
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
@@ -186,6 +202,11 @@ class MainWindow(Handy.ApplicationWindow):
             self.set_title(_("Bottles"))
         elif page == "page_importer":
             self.set_title(_("Import & export"))
+        elif page == "page_library":
+            self.set_title(_("Your library"))
+
+    def update_library(self):
+        GLib.idle_add(self.page_library.update)
 
     def on_operations_toggled(self, widget):
         if len(self.list_tasks.get_children()) == 0:
@@ -314,6 +335,10 @@ class MainWindow(Handy.ApplicationWindow):
     def show_importer_view(self, widget=False):
         self.set_previous_page_status()
         self.stack_main.set_visible_child_name("page_importer")
+
+    def show_library_view(self, widget=False):
+        self.set_previous_page_status()
+        self.stack_main.set_visible_child_name("page_library")
 
     def show_prefs_view(self, widget=False, view=0):
         preferences_window = PreferencesWindow(self)

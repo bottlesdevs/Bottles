@@ -12,6 +12,7 @@ bottles_sources = [
   'state.py',
   'message.py',
   'component.py',
+  'library.py',
 ]
 
 install_data(bottles_sources, install_dir: widgetsdir)

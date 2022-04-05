@@ -19,13 +19,14 @@ import os
 import webbrowser
 from gi.repository import Gtk, GLib, Handy
 
-from bottles.utils import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 
 from bottles.dialogs.launchoptions import LaunchOptionsDialog
 from bottles.dialogs.rename import RenameDialog
 
 from bottles.backend.globals import user_apps_dir
 from bottles.backend.managers.steam import SteamManager
+from bottles.backend.managers.library import LibraryManager
 
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
@@ -51,6 +52,7 @@ class ProgramEntry(Handy.ActionRow):
     btn_rename = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_add_entry = Gtk.Template.Child()
+    btn_add_library = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
 
     # endregion
@@ -96,6 +98,9 @@ class ProgramEntry(Handy.ActionRow):
             '''
             self.btn_add_entry.set_visible(False)
 
+        if window.settings.get_boolean("experiments-library"):
+            self.btn_add_library.set_visible(True)
+
         external_programs = []
         for p in self.config.get("External_Programs"):
             _p = self.config["External_Programs"][p]["name"]
@@ -115,6 +120,7 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_rename.connect("clicked", self.rename_program)
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
+        self.btn_add_library.connect("clicked", self.add_to_library)
 
         if not program.get("removed") and not is_steam:
             self.__is_alive()
@@ -239,6 +245,13 @@ class ProgramEntry(Handy.ActionRow):
                 "path": self.program["path"],
             }
         )
+
+    def add_to_library(self, widget):
+        LibraryManager().add_to_library({
+            "bottle": {"name": self.config["Name"], "path": self.config["Path"]},
+            "name": self.program["name"],
+        })
+        self.window.update_library()
 
     def open_search_url(self, widget, site):
         query = self.program["name"].replace(" ", "+")
