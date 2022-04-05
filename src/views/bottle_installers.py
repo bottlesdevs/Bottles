@@ -18,7 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import GtkUtils  # pyright: reportMissingImports=false
+from bottles.utils.common import open_doc_url  # pyright: reportMissingImports=false
 from bottles.widgets.installer import InstallerEntry
 
 
@@ -43,7 +43,7 @@ class InstallersView(Gtk.ScrolledWindow):
         self.config = config
 
         self.btn_help.connect(
-            "clicked", GtkUtils.open_doc_url, "bottles/installers"
+            "clicked", open_doc_url, "bottles/installers"
         )
         self.entry_search.connect(
             'key-release-event', self.__search_installers

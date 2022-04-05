@@ -19,7 +19,7 @@ import os
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available
 from bottles.backend.managers.runtime import RuntimeManager

@@ -19,7 +19,7 @@ from gettext import gettext as _
 from gi.repository import Gtk
 
 from bottles.backend.managers.backup import BackupManager  # pyright: reportMissingImports=false
-from bottles.utils import RunAsync
+from bottles.utils.threading import RunAsync
 from bottles.widgets.importer import ImporterEntry
 
 

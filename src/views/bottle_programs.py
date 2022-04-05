@@ -18,7 +18,7 @@
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import GtkUtils  # pyright: reportMissingImports=false
+from bottles.utils.common import open_doc_url  # pyright: reportMissingImports=false
 from bottles.widgets.program import ProgramEntry
 from bottles.backend.utils.manager import ManagerUtils
 
@@ -53,7 +53,7 @@ class ProgramsView(Gtk.ScrolledWindow):
             "clicked", self.parent.update_programs
         )
         self.btn_help.connect(
-            "clicked", GtkUtils.open_doc_url, "bottles/programs"
+            "clicked", open_doc_url, "bottles/programs"
         )
         self.btn_toggle_removed.connect(
             "toggled", self.__toggle_removed

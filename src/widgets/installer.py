@@ -19,7 +19,7 @@ from gi.repository import Gtk, GLib, Handy
 from gettext import gettext as _
 import webbrowser
 
-from bottles.utils import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.dialogs.generic import SourceDialog, WebDialog
 
 

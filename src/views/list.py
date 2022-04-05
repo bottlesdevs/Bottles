@@ -20,7 +20,7 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Handy
 
-from bottles.utils import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
 

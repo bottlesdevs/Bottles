@@ -22,7 +22,8 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import RunAsync, GtkUtils  # pyright: reportMissingImports=false
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.common import open_doc_url
 
 from bottles.backend.runner import Runner
 from bottles.backend.managers.backup import BackupManager
@@ -132,27 +133,27 @@ class BottleView(Gtk.ScrolledWindow):
         self.btn_duplicate.connect("clicked", self.__duplicate)
         self.btn_help_debug.connect(
             "clicked",
-            GtkUtils.open_doc_url,
+            open_doc_url,
             "utilities/logs-and-debugger#wine-debugger"
         )
         self.btn_flatpak_doc_home.connect(
             "clicked",
-            GtkUtils.open_doc_url,
+            open_doc_url,
             "flatpak/expose-directories/use-system-home"
         )
         self.btn_flatpak_doc_expose.connect(
             "clicked",
-            GtkUtils.open_doc_url,
+            open_doc_url,
             "flatpak/expose-directories"
         )
         self.btn_flatpak_doc_upgrade.connect(
             "clicked",
-            GtkUtils.open_doc_url,
+            open_doc_url,
             "flatpak/migrate-bottles-to-flatpak"
         )
         self.btn_flatpak_doc_silent_crash.connect(
             "clicked",
-            GtkUtils.open_doc_url,
+            open_doc_url,
             "flatpak/black-screen-or-silent-crash"
         )
 

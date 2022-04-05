@@ -39,7 +39,8 @@ logging = Logger()
 class SteamManager:
 
     @staticmethod
-    def __find_steam_path(scope: str = "steamapps") -> Union[str, None]:
+    def __find_steam_path(scope: str = "") -> Union[str, None]:
+        """scopes: steamapps, userdata, empty for base path"""
         paths = [
             os.path.join(Path.home(), ".local/share/Steam", scope),
             os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam", scope),
@@ -55,7 +56,7 @@ class SteamManager:
 
     @staticmethod
     def get_acf_data(app_id: str) -> Union[dict, None]:
-        steam_path = SteamManager.__find_steam_path()
+        steam_path = SteamManager.__find_steam_path("steamapps")
         if steam_path is None:
             return None
 
@@ -81,6 +82,28 @@ class SteamManager:
             return None
 
         return confs[0]
+
+    @staticmethod
+    def get_library_folders() -> Union[dict, None]:
+        steam_path = SteamManager.__find_steam_path("steamapps")
+        libraryfolders_path = os.path.join(steam_path, "libraryfolders.vdf")
+
+        if steam_path is None:
+            return None
+
+        if not os.path.exists(libraryfolders_path):
+            logging.warning("Could not find the libraryfolders.vdf file")
+            return None
+
+        with open(libraryfolders_path, "r") as f:
+            libraryfolders = SteamUtils.parse_acf(f.read())
+
+        if libraryfolders is None:
+            logging.warning(f"Could not parse libraryfolders.vdf")
+            return {}
+        from pprint import pprint
+        pprint(libraryfolders)
+        return libraryfolders
 
     @staticmethod
     def get_local_config() -> dict:
@@ -137,7 +160,8 @@ class SteamManager:
 
     @staticmethod
     def list_prefixes() -> dict:
-        steam_path = SteamManager.__find_steam_path()
+        # TODO: SteamManager.get_library_folders()
+        steam_path = SteamManager.__find_steam_path("steamapps")
         local_config = SteamManager.get_local_config()
         prefixes = {}
         apps = local_config.get("UserLocalConfigStore", {}) \
@@ -376,7 +400,7 @@ class SteamManager:
         TODO: not used, here for reference or later use
               Bottles get Proton runner from config_info file
         """
-        steam_path = SteamManager.__find_steam_path()
+        steam_path = SteamManager.__find_steam_path("steamapps")
         if steam_path is None:
             return {}
 

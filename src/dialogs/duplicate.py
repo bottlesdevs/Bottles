@@ -19,7 +19,7 @@ import re
 import time
 from gi.repository import Gtk, Handy
 
-from bottles.utils import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.managers.backup import BackupManager
 
 

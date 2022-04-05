@@ -19,7 +19,8 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import RunAsync, GtkUtils  # pyright: reportMissingImports=false
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.common import open_doc_url
 from bottles.widgets.state import StateEntry
 
 
@@ -52,7 +53,7 @@ class VersioningView(Gtk.ScrolledWindow):
             'key-release-event', self.check_entry_state_comment
         )
         self.btn_help.connect(
-            "clicked", GtkUtils.open_doc_url, "bottles/versioning"
+            "clicked", open_doc_url, "bottles/versioning"
         )
         self.entry_state_comment.connect("activate", self.add_state)
 

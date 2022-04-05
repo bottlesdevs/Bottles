@@ -28,6 +28,7 @@ configure_file(
 )
 
 subdir('backend')
+subdir('utils')
 subdir('dialogs')
 subdir('ui')
 subdir('views')
@@ -40,7 +41,6 @@ bottles_sources = [
   'params.py',
   'operation.py',
   'operation_cli.py',
-  'utils.py',
 ]
 
 install_data(bottles_sources, install_dir: moduledir)

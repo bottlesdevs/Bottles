@@ -63,6 +63,7 @@ class Paths:
     latencyflex = f"{base}/latencyflex"
     templates = f"{base}/templates"
     journal = f"{base}/journal.yml"
+    library = f"{base}/library.yml"
 
     data = DataManager()
     if data.get("custom_bottles_path"):

@@ -19,8 +19,8 @@ import os
 from gettext import gettext as _
 from gi.repository import Gtk
 
-from bottles.utils import RunAsync  # pyright: reportMissingImports=false
-from bottles.utils import GtkUtils
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.common import open_doc_url
 from bottles.widgets.dependency import DependencyEntry
 
 
@@ -49,8 +49,8 @@ class DependenciesView(Gtk.ScrolledWindow):
         self.config = config
         self.selected_dependencies = []
 
-        self.btn_report.connect("clicked", GtkUtils.open_doc_url, "contribute/missing-dependencies")
-        self.btn_help.connect("clicked", GtkUtils.open_doc_url, "bottles/dependencies")
+        self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
+        self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
         self.btn_toggle_selection.connect('toggled', self.__toggle_selection)
         self.btn_install.connect('clicked', self.__install_dependencies)
         self.entry_search_deps.connect('key-release-event', self.__search_dependencies)
