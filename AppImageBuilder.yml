@@ -5,11 +5,12 @@ script:
   - rm -rf build  | true
   # Building with meson and ninja
   - mkdir build
-  - meson build --prefix=/usr/bin/
+  - meson build --prefix=/usr
   - cd build
   - ninja
-  - ninja bottles-pot
-  - ninja bottles-update-po
+  - DESTDIR=$APPDIR ninja install
+  # - ninja bottles-pot
+  # - ninja bottles-update-po
   - cd ..
   # Preparing directories
   - mkdir -p AppDir/usr AppDir/usr/local/share/bottles AppDir/usr/bin AppDir/usr/share/glib-2.0/schemas AppDir/usr/share/applications AppDir/usr/share/metainfo AppDir/usr/share/icons
@@ -37,7 +38,9 @@ script:
   - glib-compile-schemas AppDir/usr/share/glib-2.0/schemas/
   # Copying appdata
   - cp -a data/com.usebottles.bottles.appdata.xml.in AppDir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
-
+  # Set bash as default shell
+  - mkdir -p $APPDIR/bin
+  - ln -s bash $APPDIR/bin/sh
 
 AppDir:
   path: ./AppDir
@@ -59,6 +62,8 @@ AppDir:
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
 
     include:
+    - bash
+    - coreutils
     - gsettings-desktop-schemas
     - dconf-gsettings-backend
     - gsettings-backend
@@ -88,6 +93,7 @@ AppDir:
     - python3-requests
     - python3-markdown
     - gir1.2-gtk-3.0
+    - gir1.2-gtksource-4
     - gir1.2-handy-1
     - gir1.2-notify-0.7
     - ibus-gtk3
@@ -110,7 +116,7 @@ AppDir:
      rm -rf $APPDIR/usr/share/doc
      rm -rf $APPDIR/usr/share/man
      mkdir -p $APPDIR/usr/local/lib/p7zip/ 
-     ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/ 
+     ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/
 
   files:
     include:
@@ -129,13 +135,14 @@ AppDir:
     env:
       GDK_BACKEND: x11
       # Set python home
-      LD_LIBRARY_PATH: '${APPDIR}/usr/lib:${LD_LIBRARY_PATH}'
       PYTHONPATH: '${APPDIR}/usr/lib/python3/dist-packages'
       # SSL CERTIFICATE_VERIFY_FAILED python3.8 -m pip install --ignore-installed --prefix=/usr --root=$APPDIR install --upgrade certifi
       #SSL_CERT_DIR: "/etc/ssl/certs:/etc/pki/ca-trust/extracted/pem:/etc/pki/ca-trust/extracted/openssl:/etc/ssl:/etc/pki/tls:/etc/pki:/etc/pki/ca-trust:/usr/local/share/certs:/usr/share/pki/ca-trust-source:/etc/openssl/certs:/var/ssl/certs"
       SSL_CERT_FILE: "$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem"
       # if you want to use Adwaita just uncomment bellow
       # GTK_THEME: Adwaita
+    path_mappings:
+      - /usr/share/bottles:$APPDIR/usr/local/share/bottles
 
   test:
     fedora:
