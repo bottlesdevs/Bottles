@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-09 11:03+0100\n"
+"POT-Creation-Date: 2022-04-07 22:07+0200\n"
 "PO-Revision-Date: 2022-01-21 20:56+0000\n"
 "Last-Translator: MichelN86 <micheln1986@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
@@ -21,8 +21,8 @@ msgstr ""
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
-#: src/ui/window.ui:197 src/ui/window.ui:212 src/window.py:135
-#: src/window.py:185
+#: src/ui/window.ui:222 src/ui/window.ui:237 src/window.py:145
+#: src/window.py:202
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -171,13 +171,12 @@ msgid "Toggle the Flatpak migration dialog."
 msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:11
-msgid "Night theme"
-msgstr ""
+msgid "Dark theme"
+msgstr "Donker thema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
-#, fuzzy
-msgid "Use the night theme."
-msgstr "Schakel het donkere thema in."
+msgid "Force the use of dark theme."
+msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -203,8 +202,8 @@ msgstr ""
 msgid "Change the window height."
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:152
-#: src/ui/window.ui:348
+#: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:100
+#: src/ui/window.ui:373
 msgid "Notifications"
 msgstr "Notificaties"
 
@@ -240,7 +239,7 @@ msgstr "Opstartscherm"
 msgid "Choose which view the application should be started in."
 msgstr "Kies welk scherm geladen moet worden als het programma start."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:453
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:412
 msgid "Experiments"
 msgstr "Experimenten"
 
@@ -255,22 +254,22 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:56
 #, fuzzy
-msgid "Experiments:winebridge"
+msgid "Experiments:steam"
 msgstr "Experimenten"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 #, fuzzy
-msgid "Toggle experimental winebridge implementation."
+msgid "Toggle experimental Steam Proton prefixes support."
 msgstr "Experimenten"
 
 #: data/com.usebottles.bottles.gschema.xml:61
 #, fuzzy
-msgid "Experiments:steam"
+msgid "Experiments:library"
 msgstr "Experimenten"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 #, fuzzy
-msgid "Toggle experimental Steam Proton prefixes support."
+msgid "Toggle experimental Library mode."
 msgstr "Experimenten"
 
 #: data/com.usebottles.bottles.gschema.xml:66
@@ -340,7 +339,7 @@ msgstr "Downloads"
 msgid "0%"
 msgstr "0"
 
-#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:159
+#: src/ui/component-entry.ui:186 src/ui/program-entry.ui:171
 #, fuzzy
 msgid "Uninstall"
 msgstr "Deïnstallateur"
@@ -460,7 +459,7 @@ msgstr ""
 msgid "Destroy this bottle"
 msgstr "Vernietig bottle"
 
-#: src/ui/details-bottle.ui:352 src/main.py:120
+#: src/ui/details-bottle.ui:352 src/main.py:125
 msgid "Bottle name"
 msgstr "Naam van de bottle"
 
@@ -521,90 +520,94 @@ msgstr "Laatste update voor deze bottle."
 msgid "Moving inside the sandbox…"
 msgstr ""
 
-#: src/ui/details-bottle.ui:774 src/views/details.py:115
+#: src/ui/details-bottle.ui:775 src/views/details.py:119
 msgid "Programs"
 msgstr "Programma's"
 
-#: src/ui/details-bottle.ui:790
+#: src/ui/details-bottle.ui:791
+msgid "Other"
+msgstr ""
+
+#: src/ui/details-bottle.ui:797
 #, fuzzy
 msgid "Utilities"
 msgstr "Toepassing"
 
-#: src/ui/details-bottle.ui:795
-#, fuzzy
-msgid "Wine config"
-msgstr "Winecfg"
-
-#: src/ui/details-bottle.ui:797
-msgid "Adjust internal settings."
-msgstr ""
-
-#: src/ui/details-bottle.ui:837
+#: src/ui/details-bottle.ui:802
 msgid "Browse C:"
 msgstr "Blader door C:"
 
-#: src/ui/details-bottle.ui:839
+#: src/ui/details-bottle.ui:804
 #, fuzzy
 msgid "Browse internal files."
 msgstr "Blader door bestanden"
 
-#: src/ui/details-bottle.ui:918
+#: src/ui/details-bottle.ui:883
 msgid "Command line"
 msgstr ""
 
-#: src/ui/details-bottle.ui:920
+#: src/ui/details-bottle.ui:885
 #, fuzzy
 msgid "Run commands inside the Bottle."
 msgstr "Start in deze bottle"
 
-#: src/ui/details-bottle.ui:960
+#: src/ui/details-bottle.ui:925
 #, fuzzy
 msgid "Registry editor"
 msgstr "Regedit"
 
-#: src/ui/details-bottle.ui:962
+#: src/ui/details-bottle.ui:927
 msgid "Edit the internal registry."
 msgstr ""
 
-#: src/ui/details-bottle.ui:1002
+#: src/ui/details-bottle.ui:967
 msgid "Debug"
 msgstr "Debug"
 
-#: src/ui/details-bottle.ui:1004
+#: src/ui/details-bottle.ui:969
 #, fuzzy
 msgid "Debug wine processes."
 msgstr "Sluit alle processen"
 
-#: src/ui/details-bottle.ui:1041 src/ui/details-dependencies.ui:195
+#: src/ui/details-bottle.ui:1006 src/ui/details-dependencies.ui:195
 #: src/ui/details-installers.ui:100 src/ui/details-programs.ui:125
 #: src/ui/details-versioning.ui:162
 #, fuzzy
 msgid "Read documentation"
 msgstr "Documentatie"
 
-#: src/ui/details-bottle.ui:1069 src/views/details.py:127
+#: src/ui/details-bottle.ui:1034 src/views/details.py:131
 msgid "Task manager"
 msgstr "Taakbeheerder"
 
-#: src/ui/details-bottle.ui:1071
+#: src/ui/details-bottle.ui:1036
 #, fuzzy
 msgid "Manage processes with the Wine task manager."
 msgstr "Beheer de draaiende processen in deze bottle."
 
-#: src/ui/details-bottle.ui:1111
+#: src/ui/details-bottle.ui:1076
+#, fuzzy
+msgid "Wine config"
+msgstr "Winecfg"
+
+#: src/ui/details-bottle.ui:1078
+msgid "Adjust internal settings."
+msgstr ""
+
+#: src/ui/details-bottle.ui:1118
 msgid "Uninstaller"
 msgstr "Deïnstallateur"
 
-#: src/ui/details-bottle.ui:1113
+#: src/ui/details-bottle.ui:1120
 msgid "Uninstall programs using wine uninstaller"
 msgstr ""
 
-#: src/ui/details-bottle.ui:1153
+#: src/ui/details-bottle.ui:1160
 #, fuzzy
 msgid "Control panel"
 msgstr "Controlepaneel"
 
-#: src/ui/details-bottle.ui:1155
+#: src/ui/details-bottle.ui:1162
 msgid "Access the internal wine control panel."
 msgstr ""
 
@@ -659,223 +662,220 @@ msgid "Use DXVK"
 msgstr ""
 
 #: src/ui/details-preferences.ui:33
-msgid ""
-"Improves performance of DirectX 11 games and 3D applications.\n"
-"Disable if you're experiencing graphical glitches."
+msgid "Improves performance of DirectX 11 games and 3D applications."
 msgstr ""
 
-#: src/ui/details-preferences.ui:43 src/ui/details-preferences.ui:593
+#: src/ui/details-preferences.ui:42 src/ui/details-preferences.ui:612
 #, fuzzy
 msgid "Updating DXVK, please wait…"
 msgstr "Maak een nieuwe bottle"
 
-#: src/ui/details-preferences.ui:76
+#: src/ui/details-preferences.ui:75
 msgid "Use VKD3D"
 msgstr ""
 
-#: src/ui/details-preferences.ui:77
-msgid ""
-"Improves performance of DirectX 12 games and 3D applications.\n"
-"Disable if you're experiencing graphical glitches."
+#: src/ui/details-preferences.ui:76
+msgid "Improves performance of DirectX 12 games and 3D applications."
 msgstr ""
 
-#: src/ui/details-preferences.ui:87 src/ui/details-preferences.ui:678
+#: src/ui/details-preferences.ui:85 src/ui/details-preferences.ui:697
 #, fuzzy
 msgid "Updating VKD3D, please wait…"
 msgstr "Maak een nieuwe bottle"
 
-#: src/ui/details-preferences.ui:120
+#: src/ui/details-preferences.ui:118
 msgid "Enable DLSS (DXVK-NVAPI)"
 msgstr ""
 
-#: src/ui/details-preferences.ui:121
+#: src/ui/details-preferences.ui:119
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr ""
 
-#: src/ui/details-preferences.ui:130 src/ui/details-preferences.ui:763
+#: src/ui/details-preferences.ui:128 src/ui/details-preferences.ui:240
+#: src/ui/details-preferences.ui:782 src/ui/details-preferences.ui:865
 msgid "Updating DXVK-NVAPI, please wait…"
 msgstr ""
 
-#: src/ui/details-preferences.ui:165
+#: src/ui/details-preferences.ui:163
 msgid "Enable FSR"
 msgstr ""
 
-#: src/ui/details-preferences.ui:166
+#: src/ui/details-preferences.ui:164
 msgid ""
-"FSR uses cutting-edge upscaling technologies to help boost your framerates.\n"
-"Turn this off if you experience graphical glitches."
+"FSR uses cutting-edge upscaling technologies to help boost your framerates."
 msgstr ""
 
-#: src/ui/details-preferences.ui:181
+#: src/ui/details-preferences.ui:178
 msgid "Ultra Quality"
 msgstr ""
 
-#: src/ui/details-preferences.ui:182
+#: src/ui/details-preferences.ui:179
 msgid "Quality"
 msgstr ""
 
-#: src/ui/details-preferences.ui:183
+#: src/ui/details-preferences.ui:180
 msgid "Balanced"
 msgstr ""
 
-#: src/ui/details-preferences.ui:184
+#: src/ui/details-preferences.ui:181
 msgid "Performance"
 msgstr ""
 
-#: src/ui/details-preferences.ui:233
-#, fuzzy
-msgid "Enable ACO shader compiler"
-msgstr "ACO shader compiler"
-
-#: src/ui/details-preferences.ui:234
-msgid ""
-"Improves performance in games and 3D applications.\n"
-"Disable if you're experiencing graphical glitches."
+#: src/ui/details-preferences.ui:230
+msgid "Enable LatencyFleX"
 msgstr ""
 
-#: src/ui/details-preferences.ui:261
+#: src/ui/details-preferences.ui:231
+msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
+msgstr ""
+
+#: src/ui/details-preferences.ui:274
 msgid "Discrete GPU"
 msgstr ""
 
-#: src/ui/details-preferences.ui:262
+#: src/ui/details-preferences.ui:275
 msgid "Improves performance at the cost of increased power usage."
 msgstr ""
 
-#: src/ui/details-preferences.ui:289
+#: src/ui/details-preferences.ui:302
 #, fuzzy
 msgid "Display settings"
 msgstr "Beheer de subsysteeminstellingen van Wine."
 
-#: src/ui/details-preferences.ui:294
+#: src/ui/details-preferences.ui:307
 #, fuzzy
 msgid "Use a virtual desktop"
 msgstr "Virtueel Bureaublad"
 
-#: src/ui/details-preferences.ui:295
+#: src/ui/details-preferences.ui:308
 msgid "Use the Wine virtual desktop."
 msgstr ""
 
-#: src/ui/details-preferences.ui:364
+#: src/ui/details-preferences.ui:383
 msgid "Mouse capture fullscreen"
 msgstr ""
 
-#: src/ui/details-preferences.ui:365
+#: src/ui/details-preferences.ui:384
 msgid "Let the program capture mouse input when fullscreen."
 msgstr ""
 
-#: src/ui/details-preferences.ui:396
+#: src/ui/details-preferences.ui:415
 msgid "Take focus"
 msgstr ""
 
-#: src/ui/details-preferences.ui:397
+#: src/ui/details-preferences.ui:416
 msgid "Activate it if the program does not retake focus on switch."
 msgstr ""
 
-#: src/ui/details-preferences.ui:428
+#: src/ui/details-preferences.ui:447
 #, fuzzy
 msgid "Screen scaling"
 msgstr "Versiebeheer inschakelen"
 
-#: src/ui/details-preferences.ui:429
+#: src/ui/details-preferences.ui:448
 msgid "Set custom DPI"
 msgstr ""
 
-#: src/ui/details-preferences.ui:443
+#: src/ui/details-preferences.ui:462
 msgid "96"
 msgstr ""
 
-#: src/ui/details-preferences.ui:444
+#: src/ui/details-preferences.ui:463
 msgid "120"
 msgstr ""
 
-#: src/ui/details-preferences.ui:445
+#: src/ui/details-preferences.ui:464
 msgid "144"
 msgstr ""
 
-#: src/ui/details-preferences.ui:446
+#: src/ui/details-preferences.ui:465
 msgid "168"
 msgstr ""
 
-#: src/ui/details-preferences.ui:447
+#: src/ui/details-preferences.ui:466
 msgid "192"
 msgstr ""
 
-#: src/ui/details-preferences.ui:448
+#: src/ui/details-preferences.ui:467
 msgid "216"
 msgstr ""
 
-#: src/ui/details-preferences.ui:449
+#: src/ui/details-preferences.ui:468
 msgid "240"
 msgstr ""
 
-#: src/ui/details-preferences.ui:450
+#: src/ui/details-preferences.ui:469
 msgid "288"
 msgstr ""
 
-#: src/ui/details-preferences.ui:451
+#: src/ui/details-preferences.ui:470
 msgid "336"
 msgstr ""
 
-#: src/ui/details-preferences.ui:452
+#: src/ui/details-preferences.ui:471
 msgid "384"
 msgstr ""
 
-#: src/ui/details-preferences.ui:453
+#: src/ui/details-preferences.ui:472
 msgid "432"
 msgstr ""
 
-#: src/ui/details-preferences.ui:454
+#: src/ui/details-preferences.ui:473
 msgid "480"
 msgstr ""
 
-#: src/ui/details-preferences.ui:488 src/ui/details-preferences.ui:845
+#: src/ui/details-preferences.ui:507 src/ui/details-preferences.ui:947
 #, fuzzy
 msgid "System"
 msgstr "Systeemcontrole"
 
-#: src/ui/details-preferences.ui:494
+#: src/ui/details-preferences.ui:513
 #, fuzzy
 msgid "Components version"
 msgstr "Versiebeheer"
 
-#: src/ui/details-preferences.ui:499 src/ui/new.ui:284
+#: src/ui/details-preferences.ui:518 src/ui/new.ui:286
 msgid "Runner"
 msgstr "Runner"
 
-#: src/ui/details-preferences.ui:510
+#: src/ui/details-preferences.ui:529
 msgid "Updating Runner and components, please wait…"
 msgstr ""
 
-#: src/ui/details-preferences.ui:553 src/ui/new.ui:324
+#: src/ui/details-preferences.ui:572 src/ui/new.ui:326
 msgid "Manage runners"
 msgstr "Beheer runners"
 
-#: src/ui/details-preferences.ui:582 src/ui/new.ui:353
+#: src/ui/details-preferences.ui:601 src/ui/new.ui:355
 #, fuzzy
 msgid "DXVK version"
 msgstr "Versiebeheer"
 
-#: src/ui/details-preferences.ui:638 src/ui/details-preferences.ui:806
-#: src/ui/new.ui:393
+#: src/ui/details-preferences.ui:657 src/ui/details-preferences.ui:825
+#: src/ui/details-preferences.ui:908 src/ui/new.ui:395
 msgid "Manage DXVK versions"
 msgstr ""
 
-#: src/ui/details-preferences.ui:667
+#: src/ui/details-preferences.ui:686
 #, fuzzy
 msgid "VKD3D version"
 msgstr "Versiebeheer"
 
-#: src/ui/details-preferences.ui:723
+#: src/ui/details-preferences.ui:742
 #, fuzzy
 msgid "Manage VKD3D versions"
 msgstr "Versiebeheer"
 
-#: src/ui/details-preferences.ui:752
+#: src/ui/details-preferences.ui:771
 #, fuzzy
 msgid "DXVK NVAPI version"
 msgstr "Versiebeheer"
 
-#: src/ui/details-preferences.ui:837
+#: src/ui/details-preferences.ui:854
+msgid "LatencyFleX version"
+msgstr ""
+
+#: src/ui/details-preferences.ui:939
 #, fuzzy
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
@@ -883,126 +883,135 @@ msgstr ""
 "Futex-gebaseerde synchronisatie inschakelen om prestaties van multi-core "
 "processors te verbeteren."
 
-#: src/ui/details-preferences.ui:838
+#: src/ui/details-preferences.ui:940
 #, fuzzy
 msgid "Synchronization"
 msgstr "DXVK/Synchronisatie"
 
-#: src/ui/details-preferences.ui:849 src/ui/details-preferences.ui:864
-#: src/ui/details-preferences.ui:879 src/ui/details-preferences.ui:894
+#: src/ui/details-preferences.ui:951 src/ui/details-preferences.ui:966
+#: src/ui/details-preferences.ui:981 src/ui/details-preferences.ui:996
 #: src/ui/dialog-gamescope.ui:345 src/ui/dialog-gamescope.ui:361
 msgid "Will restart the wineserver."
 msgstr ""
 
-#: src/ui/details-preferences.ui:860
+#: src/ui/details-preferences.ui:962
 msgid "Esync"
 msgstr ""
 
-#: src/ui/details-preferences.ui:875
+#: src/ui/details-preferences.ui:977
 msgid "Fsync"
 msgstr ""
 
-#: src/ui/details-preferences.ui:890
+#: src/ui/details-preferences.ui:992
 msgid "Futex2"
 msgstr ""
 
-#: src/ui/details-preferences.ui:914
+#: src/ui/details-preferences.ui:1016
 #, fuzzy
 msgid "Windows version"
 msgstr "Versiebeheer"
 
-#: src/ui/details-preferences.ui:924
+#: src/ui/details-preferences.ui:1026
 #, fuzzy
 msgid "Updating Windows version, please wait…"
 msgstr "Versiebeheer"
 
-#: src/ui/details-preferences.ui:971
+#: src/ui/details-preferences.ui:1073
 #, fuzzy
 msgid "Use Bottles runtime"
 msgstr "Naam van de bottle"
 
-#: src/ui/details-preferences.ui:972
+#: src/ui/details-preferences.ui:1074
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
 
-#: src/ui/details-preferences.ui:999
+#: src/ui/details-preferences.ui:1100
+#, fuzzy
+msgid "Use Steam runtime"
+msgstr "Naam van de bottle"
+
+#: src/ui/details-preferences.ui:1101
+msgid "The same as the Bottles one but provided by Steam."
+msgstr ""
+
+#: src/ui/details-preferences.ui:1127
 msgid "Use GameMode"
 msgstr ""
 
-#: src/ui/details-preferences.ui:1000
+#: src/ui/details-preferences.ui:1128
 msgid "Optimise gaming performance on demand."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1026
+#: src/ui/details-preferences.ui:1154
 msgid "Use Gamescope"
 msgstr ""
 
-#: src/ui/details-preferences.ui:1027
+#: src/ui/details-preferences.ui:1155
 msgid "Use the Gamescope micro-compositor."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1062
+#: src/ui/details-preferences.ui:1190
 #, fuzzy
 msgid "Manage Gamescope settings"
 msgstr "Beheer de subsysteeminstellingen van Wine."
 
-#: src/ui/details-preferences.ui:1091
+#: src/ui/details-preferences.ui:1219
 msgid "Working directory"
 msgstr ""
 
-#: src/ui/details-preferences.ui:1093
+#: src/ui/details-preferences.ui:1221
 #, fuzzy
 msgid "Default to the bottle path."
 msgstr "Sla de bottle-status op."
 
-#: src/ui/details-preferences.ui:1110 src/ui/dialog-launch-options.ui:182
-#: src/ui/drive-entry.ui:61 src/ui/preferences.ui:255
+#: src/ui/details-preferences.ui:1238 src/ui/dialog-launch-options.ui:182
+#: src/ui/drive-entry.ui:61 src/ui/new.ui:481 src/ui/preferences.ui:203
 #, fuzzy
 msgid "Choose a directory"
 msgstr "Kies de omgeving"
 
-#: src/ui/details-preferences.ui:1140 src/ui/dialog-dll-overrides.ui:25
+#: src/ui/details-preferences.ui:1268 src/ui/dialog-dll-overrides.ui:25
 #: src/ui/dialog-dll-overrides.ui:51
 #, fuzzy
 msgid "DLL overrides"
 msgstr "Overschrijvingen DLL"
 
-#: src/ui/details-preferences.ui:1180 src/ui/dialog-env-vars.ui:24
+#: src/ui/details-preferences.ui:1308 src/ui/dialog-env-vars.ui:24
 msgid "Environment variables"
 msgstr "Omgevingsvariabelen"
 
-#: src/ui/details-preferences.ui:1218
+#: src/ui/details-preferences.ui:1346
 #, fuzzy
 msgid "Manage drives"
 msgstr "Beheer runners"
 
-#: src/ui/details-preferences.ui:1267
+#: src/ui/details-preferences.ui:1395
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details-preferences.ui:1272
+#: src/ui/details-preferences.ui:1400
 #, fuzzy
 msgid "Reduce PulseAudio latency"
 msgstr "Verminder latentie PulseAudio"
 
-#: src/ui/details-preferences.ui:1273
+#: src/ui/details-preferences.ui:1401
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
 msgstr ""
 "Stel de latentie van PulseAudio in op 60 milliseconden om de audiokwaliteit "
 "te verbeteren."
 
-#: src/ui/details-preferences.ui:1310
+#: src/ui/details-preferences.ui:1438
 #, fuzzy
 msgid "Developers & Debug"
 msgstr "Ontwikkelaars en debug"
 
-#: src/ui/details-preferences.ui:1315
+#: src/ui/details-preferences.ui:1443
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details-preferences.ui:1316
+#: src/ui/details-preferences.ui:1444
 #, fuzzy
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
@@ -1010,11 +1019,21 @@ msgstr ""
 "weergeeft. Wanneer uitgeschakeld is de standaardwaarde ingesteld op "
 "\"compiler\"."
 
-#: src/ui/details-preferences.ui:1342
+#: src/ui/details-preferences.ui:1470
+msgid "MangoHud"
+msgstr ""
+
+#: src/ui/details-preferences.ui:1471
+msgid ""
+"A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
+"and more."
+msgstr ""
+
+#: src/ui/details-preferences.ui:1497
 msgid "Enable wine fixme logs"
 msgstr ""
 
-#: src/ui/details-preferences.ui:1343
+#: src/ui/details-preferences.ui:1498
 msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
@@ -1079,10 +1098,10 @@ msgstr "Back-up en importeer bottles"
 #: src/ui/dialog-crash-report.ui:27 src/ui/dialog-duplicate.ui:28
 #: src/ui/dialog-environment-variables.ui:27 src/ui/dialog-launch-options.ui:26
 #: src/ui/dialog-rename.ui:27 src/ui/dialog-run-args.ui:27 src/ui/dialog.ui:23
-#: src/ui/new.ui:27 src/dialogs/drives.py:62 src/dialogs/launchoptions.py:85
-#: src/views/bottle_details.py:296 src/views/bottle_details.py:369
-#: src/views/bottle_preferences.py:166 src/views/bottle_programs.py:74
-#: src/views/list.py:127 src/views/preferences.py:155
+#: src/ui/new.ui:27 src/dialogs/drives.py:63 src/dialogs/launchoptions.py:87
+#: src/views/bottle_details.py:309 src/views/bottle_details.py:382
+#: src/views/bottle_preferences.py:178 src/views/bottle_programs.py:75
+#: src/views/list.py:131 src/views/preferences.py:146
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -1192,7 +1211,7 @@ msgstr "Runner"
 msgid "Duplicating…"
 msgstr "Downloads"
 
-#: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:523
+#: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:573
 msgid "Take a break, it may take a while"
 msgstr ""
 
@@ -1372,8 +1391,8 @@ msgstr ""
 msgid "Type here.."
 msgstr ""
 
-#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:84
-#: src/views/bottle_details.py:295 src/views/list.py:126
+#: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:86
+#: src/views/bottle_details.py:308 src/views/list.py:130
 #, fuzzy
 msgid "Run"
 msgstr "Runner"
@@ -1423,7 +1442,7 @@ msgstr ""
 msgid "This wineprefix was already imported in Bottles."
 msgstr ""
 
-#: src/ui/importer.ui:74 src/window.py:140
+#: src/ui/importer.ui:74 src/window.py:150
 msgid "Importer"
 msgstr "Importeur"
 
@@ -1483,7 +1502,7 @@ msgstr "Toepassingen & Voorkeuren"
 msgid "Delete message"
 msgstr ""
 
-#: src/ui/new.ui:24 src/ui/window.ui:328
+#: src/ui/new.ui:24 src/ui/window.ui:353
 msgid "New bottle"
 msgstr "Nieuwe bottle"
 
@@ -1519,40 +1538,48 @@ msgstr ""
 msgid "Use versioning"
 msgstr "Versiebeheer inschakelen"
 
-#: src/ui/new.ui:230
+#: src/ui/new.ui:231
 msgid "Enable versioning to save and restore the bottle to a state."
 msgstr ""
 
-#: src/ui/new.ui:256
+#: src/ui/new.ui:257
 msgid "Unlinked homedir"
 msgstr ""
 
-#: src/ui/new.ui:257
+#: src/ui/new.ui:259
 msgid "Do not link the userdir to the homedir"
 msgstr ""
 
-#: src/ui/new.ui:422
+#: src/ui/new.ui:424
 msgid "Architecture"
 msgstr ""
 
-#: src/ui/new.ui:424
+#: src/ui/new.ui:426
 msgid "We recommend using 32bit only if strictly necessary"
 msgstr ""
 
-#: src/ui/new.ui:438
+#: src/ui/new.ui:440
 msgid "64 bit"
 msgstr ""
 
-#: src/ui/new.ui:439
+#: src/ui/new.ui:441
 msgid "32 bit"
 msgstr ""
 
-#: src/ui/new.ui:504
+#: src/ui/new.ui:462
+msgid "Use custom recipe"
+msgstr ""
+
+#: src/ui/new.ui:464
+msgid "Choose a custom recipe for the environment if you have one."
+msgstr ""
+
+#: src/ui/new.ui:554
 #, fuzzy
 msgid "Creating bottle…"
 msgstr "Maak een nieuwe bottle"
 
-#: src/ui/new.ui:573
+#: src/ui/new.ui:623
 #, fuzzy
 msgid "Bottle created"
 msgstr "Bottles Gestart!"
@@ -1630,7 +1657,7 @@ msgid ""
 "When you are ready press the <b>Install</b> button."
 msgstr ""
 
-#: src/ui/onboard.ui:262 src/ui/preferences.ui:344
+#: src/ui/onboard.ui:262 src/ui/preferences.ui:292
 #, fuzzy
 msgid "Runners"
 msgstr "Runner"
@@ -1661,127 +1688,123 @@ msgstr ""
 msgid "Finish"
 msgstr ""
 
-#: src/ui/preferences.ui:8 src/ui/preferences.ui:88
-msgid "Night mode"
-msgstr ""
-
-#: src/ui/preferences.ui:9 src/ui/preferences.ui:89
-msgid "Whether Bottles should use the Night theme variant."
-msgstr ""
-
-#: src/ui/preferences.ui:45
+#: src/ui/preferences.ui:20
 msgid "Reset default"
 msgstr ""
 
-#: src/ui/preferences.ui:67 src/ui/window.ui:33 src/views/details.py:107
+#: src/ui/preferences.ui:42 src/ui/window.ui:45 src/views/details.py:111
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: src/ui/preferences.ui:78 src/ui/preferences.ui:147
+#: src/ui/preferences.ui:53 src/ui/preferences.ui:95
 msgid "General"
 msgstr ""
 
-#: src/ui/preferences.ui:83
+#: src/ui/preferences.ui:58
 msgid "Apperance"
 msgstr ""
 
-#: src/ui/preferences.ui:115
+#: src/ui/preferences.ui:63
 msgid "Show update date"
 msgstr ""
 
-#: src/ui/preferences.ui:116
+#: src/ui/preferences.ui:64
 msgid "Whether to show the update date in the bottle list."
 msgstr ""
 
-#: src/ui/preferences.ui:153
+#: src/ui/preferences.ui:101
 msgid "Show notifications for downloads and installs."
 msgstr ""
 
-#: src/ui/preferences.ui:179
+#: src/ui/preferences.ui:127
 #, fuzzy
 msgid "Temp files"
 msgstr "Temp opruimen"
 
-#: src/ui/preferences.ui:180
+#: src/ui/preferences.ui:128
 msgid "Clean temp files when Bottles launches?"
 msgstr ""
 
-#: src/ui/preferences.ui:206
+#: src/ui/preferences.ui:154
 msgid "Close Bottles after starting a program"
 msgstr ""
 
-#: src/ui/preferences.ui:207
+#: src/ui/preferences.ui:155
 msgid "Close Bottles after starting a program from the file manager"
 msgstr ""
 
-#: src/ui/preferences.ui:238
+#: src/ui/preferences.ui:186
 #, fuzzy
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: src/ui/preferences.ui:243
+#: src/ui/preferences.ui:191
 msgid "Custom bottles path (require restart)"
 msgstr ""
 
-#: src/ui/preferences.ui:244
+#: src/ui/preferences.ui:192
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr ""
 
-#: src/ui/preferences.ui:280
+#: src/ui/preferences.ui:228
 msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
 
-#: src/ui/preferences.ui:353
+#: src/ui/preferences.ui:301
 msgid "Pre-release"
 msgstr ""
 
-#: src/ui/preferences.ui:354
+#: src/ui/preferences.ui:302
 msgid "Whether the above list should display unstable versions."
 msgstr ""
 
-#: src/ui/preferences.ui:388
+#: src/ui/preferences.ui:336
 #, fuzzy
-msgid "DXVK/VKD3D"
-msgstr "DXVK/VKD3D voor Direct3D"
+msgid "DLL Components"
+msgstr "Versiebeheer"
 
-#: src/ui/preferences.ui:393
+#: src/ui/preferences.ui:341
 #, fuzzy
 msgid "DXVK"
 msgstr "DXVK HUD"
 
-#: src/ui/preferences.ui:403
+#: src/ui/preferences.ui:351
 msgid "VKD3D"
 msgstr ""
 
-#: src/ui/preferences.ui:413
+#: src/ui/preferences.ui:361
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:426
+#: src/ui/preferences.ui:371
+msgid "LatencyFleX"
+msgstr ""
+
+#: src/ui/preferences.ui:384
 msgid "Core"
 msgstr ""
 
-#: src/ui/preferences.ui:431
+#: src/ui/preferences.ui:389
 msgid "Runtime"
 msgstr ""
 
-#: src/ui/preferences.ui:440 src/ui/preferences.ui:462
+#: src/ui/preferences.ui:399
 msgid "WineBridge"
 msgstr ""
 
-#: src/ui/preferences.ui:463
-msgid "Use WineBridge for process and program management."
-msgstr ""
-
-#: src/ui/preferences.ui:490
+#: src/ui/preferences.ui:421
 msgid "Steam Proton prefixes"
 msgstr ""
 
-#: src/ui/preferences.ui:491
+#: src/ui/preferences.ui:422 src/ui/preferences.ui:449
 msgid "In early development (requires restart)"
+msgstr ""
+
+#: src/ui/preferences.ui:448
+msgid "Library mode"
 msgstr ""
 
 #: src/ui/program-entry.ui:46
@@ -1804,11 +1827,19 @@ msgid "Bottles' Forums"
 msgstr "Bottle-grootte:"
 
 #: src/ui/program-entry.ui:133
+msgid "Add desktop entry"
+msgstr ""
+
+#: src/ui/program-entry.ui:145
+msgid "Add to my library"
+msgstr ""
+
+#: src/ui/program-entry.ui:158
 msgid "Remove from Programs"
 msgstr ""
 
-#: src/ui/program-entry.ui:146
-msgid "Add desktop entry"
+#: src/ui/program-entry.ui:195
+msgid "Launch with Steam"
 msgstr ""
 
 #: src/ui/state-entry.ui:86
@@ -1821,36 +1852,44 @@ msgstr "Voer uit in deze bottle"
 msgid "Creation date"
 msgstr "Maak bottle"
 
-#: src/ui/window.ui:20
+#: src/ui/window.ui:19 src/window.py:155 src/window.py:206
+msgid "Your library"
+msgstr ""
+
+#: src/ui/window.ui:32
 #, fuzzy
 msgid "Import/export"
 msgstr "Importeur"
 
-#: src/ui/window.ui:57
+#: src/ui/window.ui:69
+msgid "Support us"
+msgstr ""
+
+#: src/ui/window.ui:82
 msgid "Documentation"
 msgstr "Documentatie"
 
-#: src/ui/window.ui:70
+#: src/ui/window.ui:95
 msgid "Forums"
 msgstr ""
 
-#: src/ui/window.ui:83 src/window.py:285
+#: src/ui/window.ui:108 src/window.py:307
 msgid "Health check"
 msgstr ""
 
-#: src/ui/window.ui:96
+#: src/ui/window.ui:121
 msgid "About Bottles"
 msgstr "Over Bottles"
 
-#: src/ui/window.ui:221 src/ui/window.ui:264
+#: src/ui/window.ui:246 src/ui/window.ui:289
 msgid "Open menu"
 msgstr "Open menu"
 
-#: src/ui/window.ui:242
+#: src/ui/window.ui:267
 msgid "Operations"
 msgstr ""
 
-#: src/ui/window.ui:286
+#: src/ui/window.ui:311
 msgid ""
 "You don't seem connected to the internet. Without it you will not be able to "
 "download essential components. Click this icon when you have reestablished "
@@ -1860,191 +1899,202 @@ msgstr ""
 "geen essentiële onderdelen downloaden. Klik op dit icoon wanneer je weer "
 "verbinding hebt."
 
-#: src/ui/window.ui:307
+#: src/ui/window.ui:332
 msgid "Go back"
 msgstr "Ga terug"
 
-#: src/main.py:96
+#: src/main.py:101
 #, fuzzy
 msgid "Show version"
 msgstr "Versiebeheer"
 
-#: src/main.py:104
+#: src/main.py:109
 #, fuzzy
 msgid "Executable path"
 msgstr "Start .exe"
 
-#: src/main.py:112
+#: src/main.py:117
 msgid "lnk path"
 msgstr ""
 
-#: src/main.py:128
+#: src/main.py:133
 msgid "Pass arguments"
 msgstr ""
 
-#: src/main.py:246
+#: src/main.py:264
 msgid "[Quit] request received."
 msgstr "[Stoppen] verzoek ontvangen."
 
-#: src/main.py:255
+#: src/main.py:273
 msgid "[Help] request received."
 msgstr "[Help] verzoek ontvangen."
 
-#: src/main.py:263
+#: src/main.py:281
 msgid "[Refresh] request received."
 msgstr "[Verversen] verzoek ontvangen."
 
-#: src/operation.py:63
+#: src/operation.py:67
 msgid "Calculating..."
 msgstr ""
 
-#: src/utils.py:62
-msgid "You are offline, unable to download."
-msgstr ""
-
-#: src/window.py:130 src/window.py:183
+#: src/window.py:140 src/window.py:200
 msgid "Bottle details"
 msgstr "Details bottle"
 
-#: src/window.py:187
+#: src/window.py:204
 #, fuzzy
 msgid "Import & export"
 msgstr "Importeur"
 
-#: src/backend/managers/backup.py:74
+#: src/utils/connection.py:60
+msgid "You are offline, unable to download."
+msgstr ""
+
+#: src/backend/managers/backup.py:72
 #, fuzzy, python-brace-format
 msgid "Backup {0}"
 msgstr "Back-up {0}"
 
-#: src/backend/managers/backup.py:125
+#: src/backend/managers/backup.py:123
 #, fuzzy, python-brace-format
 msgid "Importing backup: {0}"
 msgstr "Importeer vanuit een back-up: {0}"
 
-#: src/backend/managers/installer.py:376 src/backend/managers/installer.py:372
+#: src/backend/managers/installer.py:386
 #, fuzzy
 msgid "Dependencies installation failed."
 msgstr "Geen afhankelijkheden gevonden!"
 
 #. unlock widget
-#: src/backend/managers/installer.py:397 src/backend/managers/installer.py:402
-#: src/backend/managers/installer.py:393 src/backend/managers/installer.py:398
+#: src/backend/managers/installer.py:409 src/backend/managers/installer.py:414
 msgid "Installation failed, please check the logs."
 msgstr ""
 
-#: src/backend/managers/manager.py:979
+#: src/backend/managers/manager.py:1032
 msgid "Fail to install components, tried 3 times."
 msgstr ""
 
-#: src/backend/managers/manager.py:989
+#: src/backend/managers/manager.py:1043
 msgid "Missing essential components. Installing…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1059
+#: src/backend/managers/manager.py:1119
 #, fuzzy
 msgid "Generating bottle configuration…"
 msgstr "Makkelijk beheer van wineprefix"
 
-#: src/backend/managers/manager.py:1080
+#: src/backend/managers/manager.py:1141
 msgid "Template found, applying…"
 msgstr ""
 
 #. execute wineboot on the bottle path
-#: src/backend/managers/manager.py:1090
+#: src/backend/managers/manager.py:1151
 #, fuzzy
 msgid "The WINE config is being updated…"
 msgstr "Configuratie"
 
-#: src/backend/managers/manager.py:1092
+#: src/backend/managers/manager.py:1153
 #, fuzzy
 msgid "WINE config updated!"
 msgstr "Configuratie"
 
-#: src/backend/managers/manager.py:1100
+#: src/backend/managers/manager.py:1161
 msgid "Running as Flatpak, sandboxing userdir…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1102
+#: src/backend/managers/manager.py:1163
 msgid "Sandboxing userdir…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1120
+#: src/backend/managers/manager.py:1181
 #, fuzzy
 msgid "Setting Windows version…"
 msgstr "Versiebeheer"
 
-#: src/backend/managers/manager.py:1128
+#: src/backend/managers/manager.py:1189
 msgid "Apply CMD default settings…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1136
+#: src/backend/managers/manager.py:1197
 msgid "Optimizing environment…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1147
+#: src/backend/managers/manager.py:1208
 #, python-brace-format
 msgid "Applying environment: {0}…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1163
+#: src/backend/managers/manager.py:1218
+msgid "(!) Using a custom environment recipe…"
+msgstr ""
+
+#: src/backend/managers/manager.py:1221
+msgid "(!) Recipe not not found or not valid…"
+msgstr ""
+
+#: src/backend/managers/manager.py:1222
+msgid "(!) Proceeding with default environment…"
+msgstr ""
+
+#: src/backend/managers/manager.py:1238
 msgid "Installing DXVK…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1170
+#: src/backend/managers/manager.py:1245
 msgid "Installing VKD3D…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1177
+#: src/backend/managers/manager.py:1252
 msgid "Installing DXVK-NVAPI…"
 msgstr ""
 
-#: src/backend/managers/manager.py:1185
+#: src/backend/managers/manager.py:1260
 #, fuzzy, python-brace-format
 msgid "Installing dependency: {0}…"
 msgstr "Afhankelijkheden"
 
-#: src/backend/managers/manager.py:1202
+#: src/backend/managers/manager.py:1277
 #, fuzzy
 msgid "Creating versioning state 0…"
 msgstr "Maak een nieuwe bottle"
 
-#: src/backend/managers/manager.py:1210
+#: src/backend/managers/manager.py:1285
 msgid "Finalizing…"
 msgstr ""
 
-#: src/backend/managers/versioning.py:64
+#: src/backend/managers/versioning.py:65
 #, fuzzy
 msgid "Generating state files index …"
 msgstr "Makkelijk beheer van wineprefix"
 
-#: src/backend/managers/versioning.py:143
+#: src/backend/managers/versioning.py:144
 #, fuzzy
 msgid "Creating a restore point …"
 msgstr "Makkelijk beheer van wineprefix"
 
-#: src/backend/managers/versioning.py:167
+#: src/backend/managers/versioning.py:168
 msgid "Could not create the state folder."
 msgstr ""
 
-#: src/backend/managers/versioning.py:174
+#: src/backend/managers/versioning.py:175
 #, fuzzy
 msgid "Updating index …"
 msgstr "Makkelijk beheer van wineprefix"
 
-#: src/backend/managers/versioning.py:198
+#: src/backend/managers/versioning.py:199
 #, fuzzy
 msgid "Updating states …"
 msgstr "Maak een nieuwe bottle"
 
-#: src/backend/managers/versioning.py:227
+#: src/backend/managers/versioning.py:228
 msgid "Could not update the states file."
 msgstr ""
 
-#: src/backend/managers/versioning.py:241
+#: src/backend/managers/versioning.py:242
 msgid "Could not update the index file."
 msgstr ""
 
-#: src/backend/managers/versioning.py:267
+#: src/backend/managers/versioning.py:268
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
 msgstr ""
@@ -2054,22 +2104,22 @@ msgstr ""
 msgid "Show report"
 msgstr "Bugrapportage"
 
-#: src/dialogs/crash.py:87
+#: src/dialogs/crash.py:88
 msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
 
-#: src/dialogs/drives.py:58
+#: src/dialogs/drives.py:59
 #, fuzzy
 msgid "Choose path"
 msgstr "Blader bestandspad"
 
-#: src/dialogs/drives.py:61
+#: src/dialogs/drives.py:62
 msgid "Select"
 msgstr ""
 
-#: src/dialogs/generic.py:30 src/dialogs/generic.py:215
+#: src/dialogs/generic.py:30 src/dialogs/generic.py:214
 msgid "Warning"
 msgstr ""
 
@@ -2077,210 +2127,235 @@ msgstr ""
 msgid "An error has occurred."
 msgstr ""
 
-#: src/dialogs/generic.py:107 src/dialogs/generic.py:150
-#: src/dialogs/generic.py:194
+#: src/dialogs/generic.py:106 src/dialogs/generic.py:149
+#: src/dialogs/generic.py:193
 msgid "Copy to clipboard"
 msgstr ""
 
-#: src/dialogs/launchoptions.py:81
+#: src/dialogs/launchoptions.py:83
 msgid "Choose the script"
 msgstr ""
 
-#: src/views/bottle_details.py:176
+#: src/views/bottle_details.py:179
 #, fuzzy, python-format
 msgid "Updated: %s"
 msgstr "Updates: %s"
 
 #. set arch
-#: src/views/bottle_details.py:179
+#: src/views/bottle_details.py:182
 msgid "64-bit"
 msgstr ""
 
-#: src/views/bottle_details.py:181
+#: src/views/bottle_details.py:184
 msgid "32-bit"
 msgstr ""
 
-#: src/views/bottle_details.py:292 src/views/list.py:123
+#: src/views/bottle_details.py:305 src/views/list.py:127
 msgid "Choose a Windows executable file"
 msgstr "Kies een uitvoerbaar Windows-bestand"
 
-#: src/views/bottle_details.py:358
+#: src/views/bottle_details.py:371
 #, fuzzy
 msgid "Select the location where to save the backup config"
 msgstr "Selecteer de locatie waar de back-upconfiguratie opgeslagen zal worden"
 
-#: src/views/bottle_details.py:362
+#: src/views/bottle_details.py:375
 msgid "Select the location where to save the backup archive"
 msgstr "Selecteer de locatie waar het back-uparchief opgeslagen zal worden"
 
-#: src/views/bottle_details.py:369
+#: src/views/bottle_details.py:382
 msgid "Export"
 msgstr ""
 
-#: src/views/bottle_details.py:400
+#: src/views/bottle_details.py:413
 msgid "Confirm deletion"
 msgstr "Bevestig verwijderen"
 
-#: src/views/bottle_details.py:402
+#: src/views/bottle_details.py:415
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Weet je zeker dat je deze bottle en alle bestanden wilt verwijderen?"
 
-#: src/views/bottle_preferences.py:148
+#: src/views/bottle_preferences.py:163
 msgid "This feature is not available on your system."
 msgstr ""
 
-#: src/views/bottle_preferences.py:162
+#: src/views/bottle_preferences.py:174
 #, fuzzy
 msgid "Choose working directory for executables"
 msgstr "Kies een uitvoerbaar Windows-bestand"
 
-#: src/views/bottle_preferences.py:165 src/views/preferences.py:154
+#: src/views/bottle_preferences.py:177 src/views/preferences.py:145
 msgid "Done"
 msgstr ""
 
-#: src/views/bottle_programs.py:70
+#: src/views/bottle_programs.py:71
 #, fuzzy
 msgid "Choose an executable path"
 msgstr "Kies een uitvoerbaar Windows-bestand"
 
-#: src/views/bottle_programs.py:73
+#: src/views/bottle_programs.py:74
 msgid "Add"
 msgstr ""
 
-#: src/views/details.py:103
+#: src/views/details.py:107
 #, fuzzy
 msgid "Details & Utilities"
 msgstr "Toepassing"
 
-#: src/views/details.py:111
+#: src/views/details.py:115
 msgid "Dependencies"
 msgstr "Afhankelijkheden"
 
-#: src/views/details.py:116
+#: src/views/details.py:120
 #, fuzzy
 msgid "Found in your bottle's Start menu."
 msgstr ""
 "Dit zijn de geïnstalleerde programma's in deze bottle die ik gevonden heb "
 "(mogelijk zijn dit ze niet allemaal)."
 
-#: src/views/details.py:119
+#: src/views/details.py:123
 msgid "Versioning"
 msgstr "Versiebeheer"
 
-#: src/views/details.py:123
+#: src/views/details.py:127
 msgid "Installers"
 msgstr "Installers"
 
-#: src/views/importer.py:78
+#: src/views/importer.py:80
 #, fuzzy
 msgid "Choose a backup archive"
 msgstr "Kies een back-up"
 
-#: src/views/importer.py:109
+#: src/views/importer.py:111
 #, fuzzy
 msgid "Choose a configuration file"
 msgstr "Configuratie"
 
-#: src/views/list.py:56 src/views/list.py:62
+#: src/views/list.py:58 src/views/list.py:64
 msgid "N/A"
 msgstr ""
 
-#: src/views/list.py:99
+#: src/views/list.py:101
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Argumenten gevonden voor uitvoerbaar bestand: [{executable}]."
 
-#: src/views/new.py:74
+#: src/views/new.py:75
 msgid "Gaming"
 msgstr "Gaming"
 
-#: src/views/new.py:75
+#: src/views/new.py:76
 msgid "An environment improved for Windows games."
 msgstr ""
 
-#: src/views/new.py:80
+#: src/views/new.py:81
 #, fuzzy
 msgid "Application"
 msgstr "Downloads"
 
-#: src/views/new.py:81
-msgid "An environment improved for Windows application."
+#: src/views/new.py:82
+msgid "An environment improved for Windows applications."
 msgstr ""
 
-#: src/views/new.py:86
+#: src/views/new.py:87
 msgid "Custom"
 msgstr "Aangepast"
 
-#: src/views/new.py:87
+#: src/views/new.py:88
 #, fuzzy
 msgid "A clear environment for your experiments."
 msgstr "Een kale omgeving, zonder enige optimalisatie."
 
-#: src/views/new.py:95
+#: src/views/new.py:96
 msgid "Layered"
 msgstr ""
 
-#: src/views/new.py:96
+#: src/views/new.py:97
 msgid "A layered environment, where every app is a layer."
 msgstr ""
 
-#: src/views/new.py:248
+#: src/views/new.py:185
+#, fuzzy
+msgid "Choose a recipe file"
+msgstr "Configuratie"
+
+#: src/views/new.py:272
 msgid "There was an error creating the bottle."
 msgstr ""
 
-#: src/views/new.py:255
+#: src/views/new.py:279
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr ""
 
-#: src/views/preferences.py:151
+#: src/views/preferences.py:142
 #, fuzzy
 msgid "Choose new bottles path"
 msgstr "Kies een uitvoerbaar Windows-bestand"
 
-#: src/views/preferences.py:190
+#: src/views/preferences.py:189
 #, fuzzy
 msgid "Caffe runners"
 msgstr "Verander runner"
 
-#: src/views/preferences.py:191
+#: src/views/preferences.py:190
 #, fuzzy
 msgid "Lutris runners"
 msgstr "Beheer runners"
 
-#: src/views/preferences.py:192
+#: src/views/preferences.py:191
 #, fuzzy
 msgid "Proton runners"
 msgstr "Beheer runners"
 
-#: src/views/preferences.py:193
+#: src/views/preferences.py:192
 #, fuzzy
 msgid "Other runners"
 msgstr "Verander runner"
 
-#: src/widgets/component.py:67
+#: src/widgets/component.py:69
 msgid "Upgrade"
 msgstr ""
 
-#: src/widgets/dependency.py:106 src/widgets/installer.py:76
+#: src/widgets/dependency.py:107 src/widgets/installer.py:77
 #, python-brace-format
 msgid "Manifest for {0}"
 msgstr "Manifest voor {0}"
 
-#: src/widgets/installer.py:87
+#: src/widgets/installer.py:88
 #, fuzzy, python-brace-format
 msgid "Review for {0}"
 msgstr "Manifest voor {0}"
 
-#: src/widgets/installer.py:141
+#: src/widgets/installer.py:142
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
 msgstr ""
 
-#: src/widgets/state.py:96
+#: src/widgets/state.py:97
 #, python-brace-format
 msgid "Index for state {0}"
 msgstr "Index voor staat {0}"
+
+#, fuzzy
+#~ msgid "Use the night theme."
+#~ msgstr "Schakel het donkere thema in."
+
+#, fuzzy
+#~ msgid "Experiments:winebridge"
+#~ msgstr "Experimenten"
+
+#, fuzzy
+#~ msgid "Toggle experimental winebridge implementation."
+#~ msgstr "Experimenten"
+
+#, fuzzy
+#~ msgid "Enable ACO shader compiler"
+#~ msgstr "ACO shader compiler"
+
+#, fuzzy
+#~ msgid "DXVK/VKD3D"
+#~ msgstr "DXVK/VKD3D voor Direct3D"
 
 #, fuzzy
 #~ msgid "Bottles' Issues"
@@ -2305,15 +2380,8 @@ msgstr "Index voor staat {0}"
 #~ msgid "Experiments:installers"
 #~ msgstr "Experimenten"
 
-#, fuzzy
-#~ msgid "Toggle experimental installer features."
-#~ msgstr "Experimenten"
-
 #~ msgid "Software"
 #~ msgstr "Software"
-
-#~ msgid "Dark theme"
-#~ msgstr "Donker thema"
 
 #, fuzzy
 #~ msgid "DXVK Version"
