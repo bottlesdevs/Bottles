@@ -487,6 +487,44 @@
                             </child>
                           </object>
                         </child>
+                        <child>
+                          <object class="HdyActionRow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="title" translatable="yes">Renderer</property>
+                            <property name="subtitle" translatable="yes">Select what backend to use for wined3d</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="spacing">10</property>
+                                <child>
+                                  <object class="GtkComboBoxText" id="combo_renderer">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="valign">center</property>
+                                    <property name="active-id">add</property>
+                                    <items>
+                                      <item id="gl" translatable="yes">gl (default)</item>
+                                      <item id="gdi" translatable="yes">gdi</item>
+                                      <item id="vulkan" translatable="yes">vulkan</item>
+                                    </items>
+                                    <style>
+                                      <class name="borderless"/>
+                                      <class name="plain"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>

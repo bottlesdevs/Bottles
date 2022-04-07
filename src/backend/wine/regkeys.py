@@ -168,7 +168,7 @@ class RegKeys:
     def toggle_virtual_desktop(self, state: bool, resolution: str = "800x600"):
         """
         This function toggles the virtual desktop for a bottle, updating
-        the Desktops registry key.
+        the Desktop's registry key.
         """
         wineboot = WineBoot(self.config)
 
@@ -221,6 +221,20 @@ class RegKeys:
                  }
             ]
         })
+
+    def set_renderer(self, value: str):
+        """
+        Set what backend to use for wined3d.
+        """
+        if value not in ["gl", "gdi", "vulkan"]:
+            raise ValueError(f"{value} is not a valid renderer (gl, gdi, vulkan)")
+
+        self.reg.add(
+            key="HKEY_CURRENT_USER\\Software\\Wine\\Direct3D",
+            value="renderer",
+            data=value,
+            key_type="REG_SZ"
+        )
 
     def set_dpi(self, value: int):
         """

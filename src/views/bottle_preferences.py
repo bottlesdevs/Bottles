@@ -80,6 +80,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     combo_nvapi = Gtk.Template.Child()
     combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
+    combo_renderer = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
     action_discrete = Gtk.Template.Child()
     action_runner = Gtk.Template.Child()
@@ -145,6 +146,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_nvapi.connect('changed', self.__set_nvapi)
         self.combo_latencyflex.connect('changed', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
+        self.combo_renderer.connect('changed', self.__set_renderer)
 
         self.__prevent_scroll()
 
@@ -251,6 +253,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_nvapi.handler_block_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_block_by_func(self.__set_latencyflex)
         self.combo_windows.handler_block_by_func(self.__set_windows)
+        self.combo_renderer.handler_block_by_func(self.__set_renderer)
         self.combo_dpi.handler_block_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_block_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_block_by_func(self.__set_esync)
@@ -286,6 +289,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
         self.combo_windows.set_active_id(self.config.get("Windows"))
+        self.combo_renderer.set_active_id(parameters["renderer"])
         self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
 
         # unlock functions connected to the widgets
@@ -304,6 +308,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_nvapi.handler_unblock_by_func(self.__set_nvapi)
         self.combo_latencyflex.handler_unblock_by_func(self.__set_latencyflex)
         self.combo_windows.handler_unblock_by_func(self.__set_windows)
+        self.combo_renderer.handler_unblock_by_func(self.__set_renderer)
         self.combo_dpi.handler_unblock_by_func(self.__set_custom_dpi)
         self.toggle_sync.handler_unblock_by_func(self.__set_wine_sync)
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
@@ -706,7 +711,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         )
 
     def __set_windows(self, widget):
-        """Set the windows version to use for the bottle"""
+        """Set the Windows version to use for the bottle"""
 
         def update(result, error=False):
             self.spinner_win.stop()
@@ -727,6 +732,28 @@ class PreferencesView(Gtk.ScrolledWindow):
             rk.set_windows,
             callback=update,
             version=win
+        )
+
+    def __set_renderer(self, widget):
+        """Set the renderer to use for the bottle"""
+        def update(result, error=False):
+            new_config = self.manager.update_config(
+                config=self.config,
+                key="renderer",
+                value=renderer,
+                scope="Parameters"
+            )
+            self.config = new_config
+            widget.set_sensitive(True)
+
+        rk = RegKeys(self.config)
+        widget.set_sensitive(False)
+        renderer = widget.get_active_id()
+
+        RunAsync(
+            rk.set_renderer,
+            callback=update,
+            value=renderer
         )
 
     def __toggle_pulse_latency(self, widget, state):
@@ -864,7 +891,8 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.combo_vkd3d,
             self.combo_nvapi,
             self.combo_latencyflex,
-            self.combo_windows
+            self.combo_windows,
+            self.combo_renderer
         ]:
             c.connect('scroll-event', no_action)
 

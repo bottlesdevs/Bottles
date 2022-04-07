@@ -42,7 +42,7 @@ class Samples:
             "fsr": False,
             "fsr_level": 5,
             "custom_dpi": 96,
-            # "aco_compiler": False,
+            "renderer": "gl",
             "discrete_gpu": False,
             "virtual_desktop": False,
             "virtual_desktop_res": "1280x720",
