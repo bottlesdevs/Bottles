@@ -507,6 +507,21 @@ class BottleView(Gtk.ScrolledWindow):
         wineboot = WineBoot(self.config)
         widget.set_sensitive(False)
 
+        if status == 0:
+            # show confirmation dialog
+            dialog = MessageDialog(
+                parent=self.window,
+                title=_("Confirm"),
+                message=_(
+                    "Are you sure you want to terminate all processes?\nThis can cause data loss."
+                )
+            )
+            response = dialog.run()
+            dialog.destroy()
+            if response != -5:
+                reset(None)
+                return
+
         RunAsync(
             wineboot.send_status,
             callback=reset,
