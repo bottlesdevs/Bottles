@@ -51,7 +51,6 @@ class NewView(Handy.Window):
     btn_close = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
     btn_pref_runners = Gtk.Template.Child()
-    btn_pref_dxvk = Gtk.Template.Child()
     list_envs = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
@@ -63,7 +62,6 @@ class NewView(Handy.Window):
     label_output = Gtk.Template.Child()
     box_advanced = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
-    combo_dxvk = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     revealer_advanced = Gtk.Template.Child()
     row_sandbox = Gtk.Template.Child()
@@ -119,7 +117,6 @@ class NewView(Handy.Window):
         self.entry_name.connect('key-release-event', self.check_entry_name)
         self.entry_name.connect('activate', self.create_bottle)
         self.btn_pref_runners.connect("clicked", self.window.show_prefs_view)
-        self.btn_pref_dxvk.connect("clicked", self.window.show_prefs_view)
 
         for env in self.environments:
             env_row = EnvironmentRow(env)
@@ -133,12 +130,6 @@ class NewView(Handy.Window):
             self.combo_runner.append(runner, runner)
 
         self.combo_runner.set_active(0)
-
-        # populate combo_dxvk with dxvk versions from the manager
-        for dxvk in self.manager.dxvk_available:
-            self.combo_dxvk.append(dxvk, dxvk)
-
-        self.combo_dxvk.set_active(0)
         self.combo_arch.set_active_id("win64")
 
         # if running under Flatpak, hide row_sandbox
@@ -250,7 +241,7 @@ class NewView(Handy.Window):
             path="",
             environment=self.selected_env,
             runner=runner,
-            dxvk=self.combo_dxvk.get_active_id(),
+            dxvk=self.manager.dxvk_available[0],
             versioning=versioning_state,
             sandbox=sandbox_state,
             arch=self.combo_arch.get_active_id(),
