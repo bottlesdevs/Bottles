@@ -35,6 +35,8 @@ class ComponentEntry(Handy.ActionRow):
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
+    btn_menu = Gtk.Template.Child()
+    sep = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_task_status = Gtk.Template.Child()
 
@@ -57,6 +59,8 @@ class ComponentEntry(Handy.ActionRow):
 
         if component[1].get("Installed"):
             self.btn_browse.set_visible(True)
+            if not self.manager.component_manager.is_in_use(self.component_type, self.name):
+                self.btn_menu.set_visible(True)
         else:
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
@@ -71,11 +75,12 @@ class ComponentEntry(Handy.ActionRow):
         # connect signals
         self.btn_download.connect("clicked", self.download)
         self.btn_err.connect("clicked", self.download)
+        self.btn_remove.connect("clicked", self.uninstall)
         self.btn_browse.connect("clicked", self.run_browse)
 
     def download(self, widget):
-        def install_finished(result, error=False):
-            if result:
+        def update(result, error=False):
+            if result.status:
                 return self.set_installed()
 
             return self.update_status(failed=True)
@@ -89,10 +94,29 @@ class ComponentEntry(Handy.ActionRow):
 
         RunAsync(
             task_func=self.component_manager.install,
-            callback=install_finished,
+            callback=update,
             component_type=self.component_type,
             component_name=self.name,
             func=self.update_status
+        )
+
+    def uninstall(self, widget):
+        def update(result, error=False):
+            self.spinner.stop()
+            if result.status:
+                return self.set_uninstalled()
+
+            return self.set_err(result.data.get("message"), retry=False)
+
+        self.btn_err.set_visible(False)
+        self.btn_menu.set_visible(False)
+        self.spinner.start()
+
+        RunAsync(
+            task_func=self.component_manager.uninstall,
+            callback=update,
+            component_type=self.component_type,
+            component_name=self.name
         )
 
     def run_browse(self, widget):
@@ -131,18 +155,28 @@ class ComponentEntry(Handy.ActionRow):
             self.spinner.set_visible(True)
             self.spinner.start()
 
-    def set_err(self):
+    def set_err(self, msg=None, retry=True):
         self.spinner.stop()
         self.box_download_status.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_browse.set_visible(False)
         self.btn_err.set_visible(True)
+        if msg:
+            self.btn_err.set_tooltip_text(msg)
+        if not retry:
+            self.btn_err.set_sensitive(False)
 
     def set_installed(self):
         self.spinner.stop()
         self.btn_err.set_visible(False)
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
+
+    def set_uninstalled(self):
+        self.spinner.stop()
+        self.btn_browse.set_visible(False)
+        self.btn_err.set_visible(False)
+        self.btn_download.set_visible(True)
 
 
 class ComponentExpander(Handy.ExpanderRow):

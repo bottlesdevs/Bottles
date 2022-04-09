@@ -30,6 +30,7 @@ except (RuntimeError, GLib.GError):
     from bottles.operation_cli import OperationManager
 
 from bottles.backend.utils.generic import is_glibc_min_available
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.file import FileUtils
 from bottles.backend.globals import Paths
 from bottles.backend.models.result import Result
@@ -133,7 +134,7 @@ class ComponentManager:
             file: str,
             rename: str = "",
             checksum: str = "",
-            func: callable=None
+            func: callable = None
     ) -> bool:
         """Download a component from the Bottles repository."""
 
@@ -448,3 +449,60 @@ class ComponentManager:
                 src=os.path.join(path, source),
                 dst=os.path.join(path, dest)
             )
+
+    def is_in_use(self, component_type: str, component_name: str):
+        bottles = self.__manager.local_bottles
+
+        if component_type in ["runner", "runner:proton"]:
+            return component_name in [b["Runner"] for _, b in bottles.items()]
+        elif component_type == "dxvk":
+            return component_name in [b["DXVK"] for _, b in bottles.items()]
+        elif component_type == "vkd3d":
+            return component_name in [b["VKD3D"] for _, b in bottles.items()]
+        elif component_type == "nvapi":
+            return component_name in [b["NVAPI"] for _, b in bottles.items()]
+        elif component_type == "latencyflex":
+            return component_name in [b["LatencyFleX"] for _, b in bottles.items()]
+        elif component_type in ["runtime", "winebridge"]:
+            return True
+        else:
+            return False
+
+    def uninstall(self, component_type: str, component_name: str):
+        if self.is_in_use(component_type, component_name):
+            return Result(False, data={"message": f"Component in use and cannot be removed: {component_name}"})
+
+        if component_type in ["runner", "runner:proton"]:
+            path = ManagerUtils.get_runner_path(component_name)
+
+        elif component_type == "dxvk":
+            path = ManagerUtils.get_dxvk_path(component_name)
+
+        elif component_type == "vkd3d":
+            path = ManagerUtils.get_vkd3d_path(component_name)
+
+        elif component_type == "nvapi":
+            path = ManagerUtils.get_nvapi_path(component_name)
+
+        elif component_type == "latencyflex":
+            path = ManagerUtils.get_latencyflex_path(component_name)
+
+        else:
+            logging.error(f"Unknown component type: {component_type}")
+            return Result(False, data={"message": "Unknown component type."})
+
+        if not os.path.isdir(path):
+            return Result(False, data={"message": "Component not installed."})
+
+        try:
+            shutil.rmtree(path)
+        except Exception as e:
+            logging.error(f"Failed to uninstall component: {component_name}, {e}")
+            return Result(False, data={"message": "Failed to uninstall component."})
+
+        JournalManager.write(
+            severity=JournalSeverity.INFO,
+            message=f"Component uninstalled: {component_type} {component_name}"
+        )
+
+        return Result(True)

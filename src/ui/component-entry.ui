@@ -12,6 +12,54 @@
         <property name="can-focus">False</property>
         <property name="spacing">10</property>
         <child>
+          <object class="GtkMenuButton" id="btn_menu">
+            <property name="can-focus">True</property>
+            <property name="focus-on-click">False</property>
+            <property name="receives-default">True</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="relief">none</property>
+            <property name="popover">pop_actions</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">view-more-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="image-button"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinner" id="spinner">
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="sep">
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkButton" id="btn_browse">
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -34,7 +82,7 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="pack-type">end</property>
-            <property name="position">0</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
@@ -51,30 +99,6 @@ Press to try again.</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="icon-name">emblem-important-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btn_cancel">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">edit-delete-symbolic</property>
               </object>
             </child>
             <style>
@@ -147,25 +171,33 @@ Press to try again.</property>
             <property name="position">4</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkButton" id="btn_cancel">
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">edit-delete-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="image-button"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack-type">end</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
       </object>
     </child>
   </template>
-  <object class="GtkBox">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <placeholder/>
-    </child>
-    <style>
-      <class name="linked"/>
-    </style>
-  </object>
   <object class="GtkPopover" id="pop_actions">
     <property name="can-focus">False</property>
     <child>
@@ -181,6 +213,7 @@ Press to try again.</property>
         </child>
         <child>
           <object class="GtkModelButton" id="btn_remove">
+            <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
             <property name="text" translatable="yes">Uninstall</property>
