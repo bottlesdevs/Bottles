@@ -33,6 +33,7 @@ from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.executor import WineExecutor
 
 
+# noinspection PyUnusedLocal
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
 class ProgramEntry(Handy.ActionRow):
     __gtype_name__ = 'ProgramEntry'
@@ -48,7 +49,8 @@ class ProgramEntry(Handy.ActionRow):
     btn_launch_options = Gtk.Template.Child()
     btn_launch_steam = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
-    btn_remove = Gtk.Template.Child()
+    btn_hide = Gtk.Template.Child()
+    btn_unhide = Gtk.Template.Child()
     btn_rename = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_add_entry = Gtk.Template.Child()
@@ -90,6 +92,8 @@ class ProgramEntry(Handy.ActionRow):
 
         if program.get("removed"):
             self.get_style_context().add_class("removed")
+        self.btn_hide.set_visible(not program.get("removed"))
+        self.btn_unhide.set_visible(program.get("removed"))
 
         if not user_apps_dir:
             '''
@@ -116,7 +120,8 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_forum.connect("clicked", self.open_search_url, "forum")
         self.btn_launch_options.connect("clicked", self.show_launch_options_view)
         self.btn_uninstall.connect("clicked", self.uninstall_program)
-        self.btn_remove.connect("clicked", self.remove_program)
+        self.btn_hide.connect("clicked", self.hide_program)
+        self.btn_unhide.connect("clicked", self.hide_program)
         self.btn_rename.connect("clicked", self.rename_program)
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
@@ -205,14 +210,17 @@ class ProgramEntry(Handy.ActionRow):
             program_name=self.program["name"]
         )
 
-    def remove_program(self, widget=None, update=True):
-        self.program["removed"] = True
+    def hide_program(self, widget=None, update=True):
+        status = not self.program.get("removed")
+        self.program["removed"] = status
         self.config = self.manager.update_config(
             config=self.config,
             key=self.program["executable"],
             value=self.program,
             scope="External_Programs"
         )
+        self.btn_hide.set_visible(not status)
+        self.btn_unhide.set_visible(status)
         if update:
             self.update_programs()
 

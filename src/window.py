@@ -216,7 +216,7 @@ class MainWindow(Handy.ApplicationWindow):
         self.headerbar.set_title(title)
         self.headerbar.set_subtitle(subtitle)
 
-    def set_actions(self, widget: Gtk.Widget = False):
+    def set_actions(self, widget: Gtk.Widget = None):
         """
         This function is used to set the actions buttons in the headerbar.
         """

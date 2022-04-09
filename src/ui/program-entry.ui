@@ -151,16 +151,28 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="btn_remove">
+          <object class="GtkModelButton" id="btn_hide">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Remove from Programs</property>
+            <property name="text" translatable="yes">Hide this program</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">11</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="btn_unhide">
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="text" translatable="yes">Unhide this program</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">12</property>
           </packing>
         </child>
         <child>
@@ -173,7 +185,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">12</property>
+            <property name="position">13</property>
           </packing>
         </child>
       </object>
