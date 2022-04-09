@@ -212,6 +212,8 @@ class WineCommand:
         # OBS Vulkan Capture environment variables
         if params["obsvkc"]:
             env.add("OBS_VKCAPTURE", "1")
+            if DisplayUtils.display_server_type() == "x11":
+                env.add("OBS_USE_EGL", "1")
 
         # DXVK-Nvapi environment variables
         if not return_steam_env and params["dxvk_nvapi"]:

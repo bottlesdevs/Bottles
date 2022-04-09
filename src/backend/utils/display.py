@@ -40,3 +40,9 @@ class DisplayUtils:
         if _query in _proc:
             return True
         return False
+
+    @staticmethod
+    def display_server_type():
+        """Return the display server type"""
+        return os.environ.get("XDG_SESSION_TYPE", "x11").lower()
+
