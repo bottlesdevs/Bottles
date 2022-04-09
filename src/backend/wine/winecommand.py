@@ -8,7 +8,7 @@ from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
-from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available
+from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
 from bottles.backend.logger import Logger
 
 logging = Logger()
@@ -209,6 +209,10 @@ class WineCommand:
         if params["mangohud"] and not self.minimal:
             env.add("MANGOHUD", "1")
 
+        # OBS Vulkan Capture environment variables
+        if params["obsvkc"]:
+            env.add("OBS_VKCAPTURE", "1")
+
         # DXVK-Nvapi environment variables
         if not return_steam_env and params["dxvk_nvapi"]:
             conf = self.__set_dxvk_nvapi_conf(bottle)
@@ -376,13 +380,18 @@ class WineCommand:
                     command = f"{gamemode_available} {command}"
                 else:
                     command = f"gamemode {command}"
+
             if gamescope_available and params.get("gamescope"):
                 command = f"{self.__get_gamescope_cmd(return_steam_cmd)} {command}"
+
             if mangohud_available and params.get("mangohud"):
                 if not return_steam_cmd:
                     command = f"{mangohud_available} {command}"
                 else:
                     command = f"mangohud {command}"
+
+            if obs_vkc_available and params.get("obsvkc"):
+                command = f"{obs_vkc_available} {command}"
 
         if post_script is not None:
             command = f"{command} && sh {post_script}"

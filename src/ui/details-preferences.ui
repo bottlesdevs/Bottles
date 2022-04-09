@@ -1532,6 +1532,33 @@ disable if you run into issues.</property>
                       <object class="HdyActionRow">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="title" translatable="yes">OBS Vulkan Capture</property>
+                        <property name="subtitle" translatable="yes">Toggle OBS game capture for all next launches</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkSwitch" id="switch_obsvkc">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="HdyActionRow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Enable wine fixme logs</property>
                         <property name="subtitle" translatable="yes">Log code paths that are unimplemented in Wine.</property>
                         <child>

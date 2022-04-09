@@ -20,7 +20,7 @@ from typing import NewType
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.logger import Logger
-from bottles.backend.globals import gamemode_available, gamescope_available, mangohud_available
+from bottles.backend.globals import gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.catalogs import win_versions

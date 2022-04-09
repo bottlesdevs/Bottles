@@ -86,6 +86,7 @@ class TrdyPaths:
 gamemode_available = shutil.which("gamemoderun") or False
 gamescope_available = shutil.which("gamescope") or False
 mangohud_available = shutil.which("mangohud") or False
+obs_vkc_available = shutil.which("obs-vkcapture") or False
 
 x_display = DisplayUtils.get_x_display()
 

@@ -27,6 +27,7 @@ class Samples:
             "vkd3d": False,
             "latencyflex": False,
             "mangohud": False,
+            "obsvkc": False,
             "gamemode": False,
             "gamescope": False,
             "gamescope_game_width": 0,

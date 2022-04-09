@@ -21,7 +21,7 @@ from gi.repository import Gtk
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 
-from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available
+from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
 from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.manager import ManagerUtils
@@ -53,6 +53,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
+    switch_obsvkc = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_latencyflex = Gtk.Template.Child()
@@ -124,6 +125,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk.connect('state-set', self.__toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.__toggle_dxvk_hud)
         self.switch_mangohud.connect('state-set', self.__toggle_mangohud)
+        self.switch_obsvkc.connect('state-set', self.__toggle_obsvkc)
         self.switch_vkd3d.connect('state-set', self.__toggle_vkd3d)
         self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
         self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
@@ -162,6 +164,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_gamemode.set_sensitive(gamemode_available)
         self.switch_gamescope.set_sensitive(gamescope_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
+        self.switch_obsvkc.set_sensitive(obs_vkc_available)
         _not_available = _("This feature is not available on your system.")
         if not gamemode_available:
             self.switch_gamemode.set_tooltip_text(_not_available)
@@ -169,6 +172,8 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.switch_gamescope.set_tooltip_text(_not_available)
         if not mangohud_available:
             self.switch_mangohud.set_tooltip_text(_not_available)
+        if not obs_vkc_available:
+            self.switch_obsvkc.set_tooltip_text(_not_available)
 
     def choose_cwd(self, widget):
         """Change the default current working directory for the bottle"""
@@ -263,6 +268,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_mangohud.set_active(parameters["mangohud"])
+        self.switch_obsvkc.set_active(parameters["obsvkc"])
         self.switch_vkd3d.set_active(parameters["vkd3d"])
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
         self.switch_latencyflex.set_active(parameters["latencyflex"])
@@ -412,6 +418,16 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="mangohud",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+
+    def __toggle_obsvkc(self, widget, state):
+        """Toggle the OBS Vulkan capture for current bottle"""
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="obsvkc",
             value=state,
             scope="Parameters"
         )
