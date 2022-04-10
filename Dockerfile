@@ -7,9 +7,6 @@ RUN wget https://github.com/AppImage/AppImageKit/releases/download/continuous/ap
 RUN cd /opt && chmod +x appimagetool-x86_64.AppImage && ./appimagetool-x86_64.AppImage --appimage-extract 
 RUN cd /opt && mv squashfs-root appimagetool-x86_64.AppDir && ls && ln -s /opt/appimagetool-x86_64.AppDir/AppRun /usr/bin/appimagetool 
 
-RUN apt install -y git
+RUN DEBIAN_FRONTEND=noninteractive apt install -y  git libhandy-1-dev appstream-util
 
 RUN pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git
-
-RUN DEBIAN_FRONTEND=noninteractive apt install -y libhandy-1-dev
-RUN apt install -y appstream-util
