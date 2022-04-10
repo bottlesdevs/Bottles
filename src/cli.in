@@ -55,13 +55,13 @@ from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.runner import Runner
-from bottles.utils import UtilsConnection
+from bottles.utils.connection import ConnectionUtils
 
 
 # noinspection DuplicatedCode
 class CLI:
     default_settings = Gtk.Settings.get_default()
-    utils_conn = UtilsConnection()
+    utils_conn = ConnectionUtils()
     settings = Gio.Settings.new(APP_ID)
 
     def __init__(self):
