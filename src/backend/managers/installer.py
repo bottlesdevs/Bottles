@@ -29,6 +29,8 @@ try:
 except (RuntimeError, GLib.GError):
     from bottles.operation_cli import OperationManager
 
+from bottles.dialogs.generic import MessageDialog
+
 from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.globals import Paths
@@ -52,6 +54,7 @@ class InstallerManager:
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
         self.__layer = None
+        self.__local_resources = {}
 
     @lru_cache
     def get_review(self, installer_name) -> str:
@@ -101,6 +104,44 @@ class InstallerManager:
                 os.makedirs(bottle_icons_path)
             if not os.path.isfile(icon_path):
                 urllib.request.urlretrieve(icon_url, icon_path)
+
+    def __ask_for_local_resources(self, exe_msi_steps, _config):
+        files = [s.get("file_name", "") for s in exe_msi_steps]
+
+        # show confirmation dialog
+        dialog = MessageDialog(
+            parent=None,
+            title=_("Installer requires local resources"),
+            message=_(
+                _("This installer requires some local resources: %s") % ", ".join(files)
+            )
+        )
+        res = dialog.run()
+        GLib.idle_add(dialog.destroy)
+        if res != -5:
+            return False
+
+        for s in exe_msi_steps:
+            _file_name = s.get("file_name")
+            _ext = _file_name.split(".")[-1]
+            _fd = Gtk.FileChooserNative.new(
+                _("Pick executable for %s") % _file_name,
+                None,
+                Gtk.FileChooserAction.OPEN,
+                _("Proceed"),
+                _("Cancel")
+            )
+            _flt = Gtk.FileFilter()
+            _flt.set_name(f".{_ext}")
+            _flt.add_pattern(f"*.{_ext}")
+            _fd.add_filter(_flt)
+            _res = _fd.run()
+
+            if _res == -3:
+                self.__local_resources[_file_name] = _fd.get_filename()
+            else:
+                return False
+        return True
 
     def __install_dependencies(
             self,
@@ -154,22 +195,29 @@ class InstallerManager:
 
             # Step type: install_exe, install_msi
             if st["action"] in ["install_exe", "install_msi"]:
-                download = self.__component_manager.download(
-                    st.get("url"),
-                    st.get("file_name"),
-                    st.get("rename"),
-                    checksum=st.get("file_checksum")
-                )
+                if st["url"] != "local":
+                    download = self.__component_manager.download(
+                        st.get("url"),
+                        st.get("file_name"),
+                        st.get("rename"),
+                        checksum=st.get("file_checksum")
+                    )
+                else:
+                    download = True
 
                 if download:
-                    if st.get("rename"):
-                        file = st.get("rename")
+                    if st["url"] != "local":
+                        if st.get("rename"):
+                            file = st.get("rename")
+                        else:
+                            file = st.get("file_name")
+                        file_path = f"{Paths.temp}/{file}"
                     else:
-                        file = st.get("file_name")
+                        file_path = self.__local_resources[st.get("file_name")]
 
                     executor = WineExecutor(
                         config,
-                        exec_path=f"{Paths.temp}/{file}",
+                        exec_path=file_path,
                         args=st.get("arguments"),
                         environment=st.get("environment")
                     )
@@ -376,11 +424,21 @@ class InstallerManager:
             for i in installers:
                 self.install(config, i, widget)
 
+        # ask for local resources
+        exe_msi_steps = [s for s in steps
+                         if s.get("action", "") in ["install_exe", "install_msi"]
+                         and s.get("url", "") == "local"]
+        if exe_msi_steps:
+            if not self.__ask_for_local_resources(exe_msi_steps, _config):
+                # unlock widget
+                if widget is not None:
+                    GLib.idle_add(widget.set_err, _("Local resources not found or invalid"))
+                return False
+
         # install dependencies
         if dependencies:
             logging.info("Installing dependencies")
-            res = self.__install_dependencies(_config, dependencies, widget)
-            if not res:
+            if not self.__install_dependencies(_config, dependencies, widget):
                 # unlock widget
                 if widget is not None:
                     GLib.idle_add(widget.set_err, _("Dependencies installation failed."))
