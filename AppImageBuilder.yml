@@ -133,6 +133,7 @@ AppDir:
       - AppDir/usr/share/doc/*/TODO.*
 
   runtime:
+    arch: [ x86_64, i386 ]
     env:
       GDK_BACKEND: x11
       # Set python home
