@@ -39,6 +39,7 @@ from bottles.views.list import ListView
 from bottles.views.library import LibraryView
 from bottles.views.preferences import PreferencesWindow
 from bottles.views.importer import ImporterView
+from bottles.views.loading import LoadingView
 
 from bottles.dialogs.crash import CrashReportDialog
 from bottles.dialogs.generic import AboutDialog, SourceDialog
@@ -88,7 +89,8 @@ class MainWindow(Handy.ApplicationWindow):
         super().__init__(**kwargs)
 
         self.utils_conn = ConnectionUtils(self)
-        self.manager = Manager(self)
+        self.manager = None
+        self.arg_exe = arg_exe
 
         # Set night theme according to user settings
         if self.settings.get_boolean("dark-theme"):
@@ -101,58 +103,36 @@ class MainWindow(Handy.ApplicationWindow):
 
         # Validate arg_exe extension
         if not str(arg_exe).endswith(EXECUTABLE_EXTS):
-            arg_exe = False
+            self.arg_exe = False
 
-        if arg_bottle and arg_bottle in self.manager.local_bottles.keys():
-            '''
-            If Bottles was started with a bottle and an executable as
-            arguments, then the executable will be run in the bottle.
-            '''
-            bottle_config = self.manager.local_bottles[arg_bottle]
-            arg_passed = arg_passed or ""
-            if arg_exe:
-                executor = WineExecutor(
-                    bottle_config,
-                    exec_path=arg_exe,
-                    args=arg_passed
-                )
-                executor.run_cli()
-                self.proper_close()
+        if arg_bottle:
+            self.manager = Manager(self)
+            if arg_bottle in self.manager.local_bottles.keys():
+                '''
+                If Bottles was started with a bottle and an executable as
+                arguments, then the executable will be run in the bottle.
+                '''
+                bottle_config = self.manager.local_bottles[arg_bottle]
+                arg_passed = arg_passed or ""
+                if self.arg_exe:
+                    executor = WineExecutor(
+                        bottle_config,
+                        exec_path=self.arg_exe,
+                        args=arg_passed
+                    )
+                    executor.run_cli()
+                    self.proper_close()
 
-        # Pages
-        page_details = DetailsView(self)
-        page_list = ListView(self, arg_exe)
-        page_importer = ImporterView(self)
-        page_library = LibraryView(self)
-
-        # Reusable variables
-        self.page_list = page_list
-        self.page_details = page_details
-        self.page_importer = page_importer
-        self.page_library = page_library
+        # Loading view
+        self.page_loading = LoadingView()
 
         # Populate stack
         self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.stack_main.set_transition_duration(ANIM_DURATION)
         self.stack_main.add_titled(
-            child=page_details,
-            name="page_details",
-            title=_("Bottle details")
-        )
-        self.stack_main.add_titled(
-            child=page_list,
-            name="page_list",
-            title=_("Bottles")
-        )
-        self.stack_main.add_titled(
-            child=page_importer,
-            name="page_importer",
-            title=_("Importer")
-        )
-        self.stack_main.add_titled(
-            child=page_library,
-            name="page_library",
-            title=_("Your library")
+            child=self.page_loading,
+            name="page_loading",
+            title=_("Loading...")
         )
 
         # Add the main stack to the main grid
@@ -160,7 +140,7 @@ class MainWindow(Handy.ApplicationWindow):
 
         # Signal connections
         self.btn_back.connect("clicked", self.go_back)
-        self.btn_add.connect("clicked", self.show_add_view, arg_exe)
+        self.btn_add.connect("clicked", self.show_add_view, self.arg_exe)
         self.btn_about.connect("clicked", self.show_about_dialog)
         self.btn_support.connect("clicked", self.open_url, FUNDING_URL)
         self.btn_docs.connect("clicked", self.open_url, DOC_URL)
@@ -173,12 +153,9 @@ class MainWindow(Handy.ApplicationWindow):
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
         self.btn_operations.connect('toggled', self.on_operations_toggled)
 
-        # Set the bottles list page as the default page
-        self.stack_main.set_visible_child_name("page_list")
-
         self.__on_start()
 
-        if arg_exe:
+        if self.arg_exe:
             '''
             If Bottles was started with an executable as argument, without
             a bottle, the user will be prompted to select a bottle from the
@@ -186,7 +163,7 @@ class MainWindow(Handy.ApplicationWindow):
             '''
             self.show_list_view()
 
-        arg_exe = False
+        self.arg_exe = False
         logging.info("Bottles Started!", )
 
     def on_page_changed(self, stack, param):
@@ -204,6 +181,8 @@ class MainWindow(Handy.ApplicationWindow):
             self.set_title(_("Import & export"))
         elif page == "page_library":
             self.set_title(_("Your library"))
+        elif page == "page_loading":
+            self.set_title(_("Loading..."))
 
     def update_library(self):
         GLib.idle_add(self.page_library.update)
@@ -244,11 +223,50 @@ class MainWindow(Handy.ApplicationWindow):
         is at least one local runner installed. If not, the user will be
         prompted with the onboard dialog.
         """
-        tmp_runners = [
-            x for x in self.manager.runners_available if not x.startswith('sys-')
-        ]
-        if len(tmp_runners) == 0:
-            self.show_onboard_view()
+        def set_manager(result, error=None):
+            self.manager = result
+
+            # Pages
+            self.page_details = DetailsView(self)
+            self.page_list = ListView(self, self.arg_exe)
+            self.page_importer = ImporterView(self)
+            self.page_library = LibraryView(self)
+
+            self.stack_main.add_titled(
+                child=self.page_details,
+                name="page_details",
+                title=_("Bottle details")
+            )
+            self.stack_main.add_titled(
+                child=self.page_list,
+                name="page_list",
+                title=_("Bottles")
+            )
+            self.stack_main.add_titled(
+                child=self.page_importer,
+                name="page_importer",
+                title=_("Importer")
+            )
+            self.stack_main.add_titled(
+                child=self.page_library,
+                name="page_library",
+                title=_("Your library")
+            )
+            self.stack_main.set_visible_child_name("page_list")
+            self.lock_ui(False)
+
+        def check_first_run(window):
+            mng = Manager(window)
+            tmp_runners = [
+                x for x in mng.runners_available if not x.startswith('sys-')
+            ]
+            if len(tmp_runners) == 0:
+                self.show_onboard_view()
+
+            return mng
+
+        self.show_loading_view()
+        RunAsync(check_first_run, callback=set_manager, window=self)
 
         self.check_crash_log()
         self.check_notifications()
@@ -317,6 +335,10 @@ class MainWindow(Handy.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_details")
         self.page_details.set_visible_child_name("bottle")
 
+    def show_loading_view(self, widget=False):
+        self.lock_ui()
+        self.stack_main.set_visible_child_name("page_loading")
+
     def show_onboard_view(self, widget=False):
         onboard_window = OnboardDialog(self)
         onboard_window.present()
@@ -324,7 +346,7 @@ class MainWindow(Handy.ApplicationWindow):
     def show_add_view(self, widget=False, arg_exe=None):
         if not self.argument_executed:
             self.argument_executed = True
-            new_window = NewView(self, arg_exe)
+            new_window = NewView(self, self.arg_exe)
         else:
             new_window = NewView(self)
         new_window.present()
@@ -391,11 +413,18 @@ class MainWindow(Handy.ApplicationWindow):
         else:
             context.remove_class("selection-mode")
 
+    def lock_ui(self, status: bool = True):
+        for w in [
+            self.btn_add,
+            self.btn_menu,
+            self.btn_noconnection,
+            self.btn_notifications
+        ]:
+            w.set_sensitive(not status)
+
     @staticmethod
     def proper_close():
-        """
-	Properly close Bottles
-        """
+        """Properly close Bottles"""
         quit()
 
     @staticmethod
