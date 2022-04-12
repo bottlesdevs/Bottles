@@ -1,6 +1,6 @@
 import os
 import shlex
-from typing import NewType
+from typing import NewType, Union
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.models.result import Result
@@ -40,9 +40,17 @@ class WineExecutor:
         self.exec_path = shlex.quote(exec_path)
         self.args = args
         self.terminal = terminal
-        self.cwd = cwd
+        self.cwd = self.__get_cwd(cwd)
         self.environment = environment
         self.post_script = post_script
+
+    def __get_cwd(self, cwd: str) -> Union[str, None]:
+        winepath = WinePath(self.config)
+        if cwd is not None or not winepath.is_windows(self.exec_path):
+            path = os.path.dirname(self.exec_path)
+            if path != "":
+                return path
+        return cwd  # will be set by WineCommand if None
 
     @staticmethod
     def __validate_path(exec_path):
