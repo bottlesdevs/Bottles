@@ -190,7 +190,7 @@ class VersioningManager:
             )
             source = "{0}/drive_c/{1}".format(bottle_path, file["file"])
             target = "{0}/drive_c/{1}".format(state_path, file["file"])
-            shutil.copyfile(source, target)
+            shutil.copy2(source, target)
 
         GLib.idle_add(self.__operation_manager.remove_task, task_id)
         GLib.idle_add(
@@ -335,8 +335,11 @@ class VersioningManager:
             "Update_Date": str(datetime.now()),
             "Files": []
         }
-        for file in glob("%s/drive_c/**" % bottle_path, recursive=True):
+        for file in glob("%s/drive_c/**" % bottle_path):
             if not os.path.isfile(file):
+                continue
+
+            if os.path.islink(os.path.dirname(file)):
                 continue
 
             if file[len(bottle_path) + 9:].split("/")[0] in ["users"]:
@@ -397,7 +400,7 @@ class VersioningManager:
                 if os.path.isfile(source):
                     break
                 target = "%s/drive_c/%s" % (bottle_path, file["file"])
-                shutil.copyfile(source, target)
+                shutil.copy2(source, target)
 
         for file in edit_files:
             for i in search_sources:
@@ -408,7 +411,7 @@ class VersioningManager:
                     if file["checksum"] == checksum:
                         break
                 target = "%s/drive_c/%s" % (bottle_path, file["file"])
-                shutil.copyfile(source, target)
+                shutil.copy2(source, target)
 
         # update State in bottle config
         self.manager.update_config(config, "State", state_id)
