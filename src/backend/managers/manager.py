@@ -1257,9 +1257,7 @@ class Manager:
                     continue
                 if dep in self.supported_dependencies:
                     _dep = self.supported_dependencies[dep]
-                    log_update(_("Installing dependency: {0}…").format(
-                        _dep.get("Description", "n/a")
-                    ))
+                    log_update(_("Installing dependency: %s …") % _dep.get("Description", "n/a"))
                     self.dependency_manager.install(config, [dep, _dep])
 
         # create Layers key if Layered
