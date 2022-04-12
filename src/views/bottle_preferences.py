@@ -54,6 +54,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_dxvk_hud = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
     switch_obsvkc = Gtk.Template.Child()
+    switch_vkbasalt = Gtk.Template.Child()
     switch_vkd3d = Gtk.Template.Child()
     switch_nvapi = Gtk.Template.Child()
     switch_latencyflex = Gtk.Template.Child()
@@ -126,6 +127,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk_hud.connect('state-set', self.__toggle_dxvk_hud)
         self.switch_mangohud.connect('state-set', self.__toggle_mangohud)
         self.switch_obsvkc.connect('state-set', self.__toggle_obsvkc)
+        self.switch_vkbasalt.connect('state-set', self.__toggle_vkbasalt)
         self.switch_vkd3d.connect('state-set', self.__toggle_vkd3d)
         self.switch_nvapi.connect('state-set', self.__toggle_nvapi)
         self.switch_latencyflex.connect('state-set', self.__toggle_latencyflex)
@@ -269,6 +271,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
         self.switch_mangohud.set_active(parameters["mangohud"])
         self.switch_obsvkc.set_active(parameters["obsvkc"])
+        self.switch_vkbasalt.set_active(parameters["vkbasalt"])
         self.switch_vkd3d.set_active(parameters["vkd3d"])
         self.switch_nvapi.set_active(parameters["dxvk_nvapi"])
         self.switch_latencyflex.set_active(parameters["latencyflex"])
@@ -428,6 +431,16 @@ class PreferencesView(Gtk.ScrolledWindow):
         new_config = self.manager.update_config(
             config=self.config,
             key="obsvkc",
+            value=state,
+            scope="Parameters"
+        )
+        self.config = new_config
+
+    def __toggle_vkbasalt(self, widget, state):
+        """Toggle the vkBasalt for current bottle"""
+        new_config = self.manager.update_config(
+            config=self.config,
+            key="vkbasalt",
             value=state,
             scope="Parameters"
         )

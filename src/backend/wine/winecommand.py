@@ -209,8 +209,12 @@ class WineCommand:
         if params["mangohud"] and not self.minimal:
             env.add("MANGOHUD", "1")
 
+        # vkBasalt environment variables
+        if params["vkbasalt"] and not self.minimal:
+            env.add("ENABLE_VKBASALT", "1")
+
         # OBS Vulkan Capture environment variables
-        if params["obsvkc"]:
+        if params["obsvkc"] and not self.minimal:
             env.add("OBS_VKCAPTURE", "1")
             if DisplayUtils.display_server_type() == "x11":
                 env.add("OBS_USE_EGL", "1")

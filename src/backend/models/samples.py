@@ -28,6 +28,7 @@ class Samples:
             "latencyflex": False,
             "mangohud": False,
             "obsvkc": False,
+            "vkbasalt": False,
             "gamemode": False,
             "gamescope": False,
             "gamescope_game_width": 0,
