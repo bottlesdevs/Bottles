@@ -13,7 +13,7 @@ jobs:
       # --------------------------------------
       - name: Install build dependencies
         run: |
-          sudo apt update && sudo apt install -y debhelper python3 python3.9-minimal python3-pip python3-setuptools gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind python3-yaml python3-requests flatpak-builder
+          sudo apt update && sudo apt install -y debhelper python3 python3.9-minimal python3-pip python3-setuptools gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind python3-yaml python3-requests
 
       # Fix python interpreter
       # --------------------------------------
@@ -46,11 +46,11 @@ jobs:
 
       # Flatpak
       # --------------------------------------
-      - name: Build flatpak
-        run: |
-          flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak-builder --user  --force-clean --repo=repo --install-deps-from=flathub flatpak com.usebottles.bottles.dev.json
-          flatpak build-bundle repo com.usebottles.bottles-unstable.flatpak com.usebottles.bottles --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
+      #- name: Build flatpak
+      #  run: |
+      #    flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      #    flatpak-builder --user  --force-clean --repo=repo --install-deps-from=flathub flatpak com.usebottles.bottles.dev.json
+      #    flatpak build-bundle repo com.usebottles.bottles-unstable.flatpak com.usebottles.bottles --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
 
       # Rename and release packages
       # --------------------------------------
@@ -58,7 +58,7 @@ jobs:
         run: |
           mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
           mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
-          # mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
+      # mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
 
       - name: Upload AppImage to Artifacts
         uses: actions/upload-artifact@v2
@@ -72,11 +72,11 @@ jobs:
       #     name: Unstable Build - Debian Package
       #     path: com.usebottles.bottles-unstable.deb
       
-      - name: Upload Flatpak to Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: Unstable Build - Flatpak
-          path: com.usebottles.bottles-unstable.flatpak
+      #- name: Upload Flatpak to Artifacts
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: Unstable Build - Flatpak
+      #    path: com.usebottles.bottles-unstable.flatpak
           
       - name: Upload zsync to Artifacts
         uses: actions/upload-artifact@v2
