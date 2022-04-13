@@ -40,7 +40,7 @@ script:
   - cp -a data/com.usebottles.bottles.appdata.xml.in AppDir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
   # Set bash as default shell
   - mkdir -p $APPDIR/bin
-  - ln -s bash $APPDIR/bin/sh
+  - ln -sf bash $APPDIR/bin/sh
 
 AppDir:
   path: ./AppDir
