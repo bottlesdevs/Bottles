@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-07 22:07+0200\n"
-"PO-Revision-Date: 2022-03-10 13:12+0000\n"
+"PO-Revision-Date: 2022-04-13 11:19+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -157,7 +157,7 @@ msgstr "深色主题"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "强制使用深色主题。"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -235,14 +235,12 @@ msgid "Toggle experimental Steam Proton prefixes support."
 msgstr "开关实验性的 Steam Proton 前缀支持。"
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:library"
-msgstr "实验功能"
+msgstr "实验性：库"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Library mode."
-msgstr "开关实验性的安装器功能。"
+msgstr "开关实验性的库模式。"
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -481,7 +479,7 @@ msgstr "程序"
 
 #: src/ui/details-bottle.ui:791
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #: src/ui/details-bottle.ui:797
 msgid "Utilities"
@@ -605,11 +603,8 @@ msgid "Use DXVK"
 msgstr "使用 DXVK"
 
 #: src/ui/details-preferences.ui:33
-#, fuzzy
 msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr ""
-"改进 Directx 11 游戏和 3D 应用程序的性能。\n"
-"如果您遭遇图形故障请禁用。"
+msgstr "改进 Directx 11 游戏和 3D 应用程序的性能。"
 
 #: src/ui/details-preferences.ui:42 src/ui/details-preferences.ui:612
 msgid "Updating DXVK, please wait…"
@@ -620,11 +615,8 @@ msgid "Use VKD3D"
 msgstr "使用 VKD3D"
 
 #: src/ui/details-preferences.ui:76
-#, fuzzy
 msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr ""
-"改进 Directx 12 游戏和 3D 应用程序的性能。\n"
-"如果您遭遇图形故障请禁用。"
+msgstr "改进 Directx 12 游戏和 3D 应用程序的性能。"
 
 #: src/ui/details-preferences.ui:85 src/ui/details-preferences.ui:697
 msgid "Updating VKD3D, please wait…"
@@ -648,12 +640,9 @@ msgid "Enable FSR"
 msgstr "启用 FSR"
 
 #: src/ui/details-preferences.ui:164
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates."
-msgstr ""
-"FSR 使用尖端的分辨率提升技术来帮助提高您的帧率。\n"
-"如果您遇到图形故障，请将其关闭。"
+msgstr "FSR 使用尖端的分辨率提升技术来帮助提高您的帧率。"
 
 #: src/ui/details-preferences.ui:178
 msgid "Ultra Quality"
@@ -673,11 +662,11 @@ msgstr "性能"
 
 #: src/ui/details-preferences.ui:230
 msgid "Enable LatencyFleX"
-msgstr ""
+msgstr "启用 LatencyFleX"
 
 #: src/ui/details-preferences.ui:231
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
-msgstr ""
+msgstr "NVIDIA Reflex 的替代。某些反作弊程序可以检测到它。"
 
 #: src/ui/details-preferences.ui:274
 msgid "Discrete GPU"
@@ -813,9 +802,8 @@ msgid "DXVK NVAPI version"
 msgstr "DXVK NVAPI 版本"
 
 #: src/ui/details-preferences.ui:854
-#, fuzzy
 msgid "LatencyFleX version"
-msgstr "管理 DXVK 版本"
+msgstr "LatencyFleX 版本"
 
 #: src/ui/details-preferences.ui:939
 msgid ""
@@ -865,13 +853,12 @@ msgstr ""
 "如遇到问题则禁用。"
 
 #: src/ui/details-preferences.ui:1100
-#, fuzzy
 msgid "Use Steam runtime"
-msgstr "使用 Bottles runtime"
+msgstr "使用 Stream runtime"
 
 #: src/ui/details-preferences.ui:1101
 msgid "The same as the Bottles one but provided by Steam."
-msgstr ""
+msgstr "和 Bottles 的一样，但由 Steam 提供。"
 
 #: src/ui/details-preferences.ui:1127
 msgid "Use GameMode"
@@ -945,13 +932,13 @@ msgstr "切换 DXVK 在 D3D 应用程序中叠加显示帧率和其它详情。"
 
 #: src/ui/details-preferences.ui:1470
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:1471
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
-msgstr ""
+msgstr "监测 FPS，温度，CPU/GPU 负载等等的 Vulkan 和 OpenGL overlay。"
 
 #: src/ui/details-preferences.ui:1497
 msgid "Enable wine fixme logs"
@@ -1456,13 +1443,12 @@ msgid "32 bit"
 msgstr "32 位"
 
 #: src/ui/new.ui:462
-#, fuzzy
 msgid "Use custom recipe"
-msgstr "使用 Gamescope"
+msgstr "使用定制配方"
 
 #: src/ui/new.ui:464
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "如果你有一个自定义配方，请为环境选择一个。"
 
 #: src/ui/new.ui:554
 msgid "Creating bottle…"
@@ -1654,9 +1640,8 @@ msgid "Whether the above list should display unstable versions."
 msgstr "上面的列表是否应显示不稳定版本。"
 
 #: src/ui/preferences.ui:336
-#, fuzzy
 msgid "DLL Components"
-msgstr "组件版本"
+msgstr "DLL 组件"
 
 #: src/ui/preferences.ui:341
 msgid "DXVK"
@@ -1672,7 +1657,7 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:371
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: src/ui/preferences.ui:384
 msgid "Core"
@@ -1696,7 +1681,7 @@ msgstr "早期开发中（需要重启）"
 
 #: src/ui/preferences.ui:448
 msgid "Library mode"
-msgstr ""
+msgstr "库模式"
 
 #: src/ui/program-entry.ui:46
 msgid "Browse path"
@@ -1720,16 +1705,15 @@ msgstr "添加桌面条目"
 
 #: src/ui/program-entry.ui:145
 msgid "Add to my library"
-msgstr ""
+msgstr "添加到我的库"
 
 #: src/ui/program-entry.ui:158
 msgid "Remove from Programs"
 msgstr "从程序中删除"
 
 #: src/ui/program-entry.ui:195
-#, fuzzy
 msgid "Launch with Steam"
-msgstr "用终端启动"
+msgstr "随 Steam 启动"
 
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
@@ -1741,7 +1725,7 @@ msgstr "创建日期"
 
 #: src/ui/window.ui:19 src/window.py:155 src/window.py:206
 msgid "Your library"
-msgstr ""
+msgstr "你的库"
 
 #: src/ui/window.ui:32
 msgid "Import/export"
@@ -1749,7 +1733,7 @@ msgstr "导入和导出"
 
 #: src/ui/window.ui:69
 msgid "Support us"
-msgstr ""
+msgstr "支持我们"
 
 #: src/ui/window.ui:82
 msgid "Documentation"
@@ -1903,15 +1887,15 @@ msgstr "正在应用环境：{0} …"
 
 #: src/backend/managers/manager.py:1218
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) 正使用定制环境配方…"
 
 #: src/backend/managers/manager.py:1221
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) 未找到配方或配方无效…"
 
 #: src/backend/managers/manager.py:1222
 msgid "(!) Proceeding with default environment…"
-msgstr ""
+msgstr "(!) 继续默认环境…"
 
 #: src/backend/managers/manager.py:1238
 msgid "Installing DXVK…"
@@ -2116,7 +2100,6 @@ msgid "Application"
 msgstr "应用程序"
 
 #: src/views/new.py:82
-#, fuzzy
 msgid "An environment improved for Windows applications."
 msgstr "改善了 Windows 程序的环境。"
 
@@ -2137,9 +2120,8 @@ msgid "A layered environment, where every app is a layer."
 msgstr "一个分层的环境，每个应用都是一层。"
 
 #: src/views/new.py:185
-#, fuzzy
 msgid "Choose a recipe file"
-msgstr "选择一个配置文件"
+msgstr "选择一个配方文件"
 
 #: src/views/new.py:272
 msgid "There was an error creating the bottle."
