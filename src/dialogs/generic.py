@@ -20,6 +20,7 @@ import gi
 gi.require_version('GtkSource', '4')
 
 from gi.repository import Gtk, GtkSource, Gdk, Handy, Pango, WebKit2
+from gettext import gettext as _
 
 
 class MessageDialog(Gtk.MessageDialog):
