@@ -55,12 +55,8 @@ class SteamManager:
         return SteamManager.__find_steam_path() is not None
 
     @staticmethod
-    def get_acf_data(app_id: str) -> Union[dict, None]:
-        steam_path = SteamManager.__find_steam_path("steamapps")
-        if steam_path is None:
-            return None
-
-        acf_path = os.path.join(steam_path, f"appmanifest_{app_id}.acf")
+    def get_acf_data(libraryfolder: str, app_id: str) -> Union[dict, None]:
+        acf_path = os.path.join(libraryfolder, f"steamapps/appmanifest_{app_id}.acf")
         if not os.path.isfile(acf_path):
             return None
 
@@ -84,9 +80,10 @@ class SteamManager:
         return confs[0]
 
     @staticmethod
-    def get_library_folders() -> Union[dict, None]:
+    def get_library_folders() -> Union[list, None]:
         steam_path = SteamManager.__find_steam_path("steamapps")
         libraryfolders_path = os.path.join(steam_path, "libraryfolders.vdf")
+        libraryfolders = []
 
         if steam_path is None:
             return None
@@ -96,14 +93,34 @@ class SteamManager:
             return None
 
         with open(libraryfolders_path, "r") as f:
-            libraryfolders = SteamUtils.parse_acf(f.read())
+            _libraryfolders = SteamUtils.parse_acf(f.read())
+
+        if _libraryfolders is None or not _libraryfolders.get("libraryfolders"):
+            logging.warning(f"Could not parse libraryfolders.vdf")
+            return None
+
+        for _, folder in _libraryfolders["libraryfolders"].items():
+            if not isinstance(folder, dict) \
+                    or not folder.get("path") \
+                    or not folder.get("apps"):
+                continue
+
+            libraryfolders.append(folder)
+
+        return libraryfolders if len(libraryfolders) > 0 else None
+
+    @staticmethod
+    def get_appid_library_path(appid: str) -> Union[str, None]:
+        libraryfolders = SteamManager.get_library_folders()
 
         if libraryfolders is None:
-            logging.warning(f"Could not parse libraryfolders.vdf")
-            return {}
-        from pprint import pprint
-        pprint(libraryfolders)
-        return libraryfolders
+            return None
+
+        for folder in libraryfolders:
+            if appid in folder["apps"].keys():
+                return folder["path"]
+
+        return None
 
     @staticmethod
     def get_local_config() -> dict:
@@ -160,8 +177,6 @@ class SteamManager:
 
     @staticmethod
     def list_prefixes() -> dict:
-        # TODO: SteamManager.get_library_folders()
-        steam_path = SteamManager.__find_steam_path("steamapps")
         local_config = SteamManager.get_local_config()
         prefixes = {}
         apps = local_config.get("UserLocalConfigStore", {}) \
@@ -170,18 +185,20 @@ class SteamManager:
             .get("Steam", {}) \
             .get("apps", {})
 
-        if steam_path is None or len(local_config) == 0:
-            return {}
-
         for appid, appdata in apps.items():
-            _path = os.path.join(steam_path, "compatdata", appid)
+            _library_path = SteamManager.get_appid_library_path(appid)
+            if _library_path is None:
+                continue
+
+            _path = os.path.join(_library_path, "steamapps/compatdata", appid)
 
             if not os.path.isdir(os.path.join(_path, "pfx")):
+                logging.warning(f"{os.path.join(_path, 'pfx')} does not contain a prefix")
                 continue
 
             _launch_options = SteamManager.get_launch_options(appid, appdata)
             _dir_name = os.path.basename(_path)
-            _acf = SteamManager.get_acf_data(_dir_name)
+            _acf = SteamManager.get_acf_data(_library_path, _dir_name)
             _runner = SteamManager.get_runner_path(_path)
             _creation_date = datetime.fromtimestamp(os.path.getctime(_path)) \
                 .strftime("%Y-%m-%d %H:%M:%S.%f")
