@@ -230,7 +230,6 @@ class MainWindow(Handy.ApplicationWindow):
                 x for x in self.manager.runners_available if not x.startswith('sys-')
             ]
             if len(tmp_runners) == 0:
-                print("No local runners installed. Please install one.")
                 self.show_onboard_view()
 
             # Pages
