@@ -1,40 +1,28 @@
 com.usebottles.bottles (2022.4.14-trento) precise; urgency=low
 
-  * Now it is possible to use custom environment recipes, just choose its YAML file when creating a new bottle
-  * Support for Steam Runtime
-  * Installers can now depend by other installers
-  * Installers now uses Windows paths by default for new entries in the Programs list
-  * Runners paths are now appended to the environment to ensure those to get picked up
-  * The DXVK Hud option now uses the default configuration, use the Environment Variables section to tweak it
-  * Now you can launch the game linked to a Steam Proton prefix directly from Bottles
-  * Now enabling some options (e.g. MangoHud) for a Steam Proton prefix, the Launch options on Steam are updated (requires Steam restart)
-  * Now Steam Proton prefixes are parsed from the vdf LocalSettings file
-  * Now by updating the Launch options in a Steam Proton prefix, Bottles will read the changes and update the dedicated bottle
-  * The ACO shader compiler has been removed from the preferences as it is active by default
-  * Legacy WINE tools are now grouped in the Utilities menu 
-  * Now LatencyFleX will be used only with DXVK-Nvapi installed and the Vulkan layer is automatically appended to the environment, no need to set it manually
-  * WineBridge is now automatically updated
-  * Registry is now updated using the minimal WineCommand interface
-  * New CLI much more powerful (bottles-cli --help)
-  * Now Caffe is always the default runner when making a bottle with the Gaming or Application environment
-  * Support for system Dark mode and general UI improvements (Thanks to @A6GibKm)
-  * Better Download logging (Thanks to @thopiekar)
-  * Fixed a bug when updating Core components
-  * Fixed a bug in installing LatencyFleX, was causing a crash if there was no version selected
-  * Fixed a bug with unix path when using CLI, was treated as a Windows path
-  * Fixed a bug in the component version listing, the most recent version was not always picked up (Thanks to @CleoMenezesJr and @psydvl)
-  * Fixed a bug with offline mode, connection check would not fail when stalled
-  * Fixed a bug with changing the screen resolution, it wasn't async and caused a freeze
-  * Fixed a bug with WineCommand, was using MangoHud on minimal mode too
-  * Fixed a bug with Runner update, was not checking if the runner exist
-  * Fixed a bug with WineEnv, was not returning the env list when asking for a clean one
-  * Malay translations thanks to @amiruldevkun
+  * The importer can find and import the default .wine prefix too
+  * New experimental Library mode feature is now available
+  * New Loading screen for startup
+  * New option to restore hidden programs
+  * The Versioning manager preserve symlinks
+  * Working directory is now automatically set to the executable parent directory for manual launch
+  * The experimental Steam Proton Prefixes now supports third-party libraries
+  * The Direct3D renderer mode can now be changed from the bottle's preferences
+  * The "Kill all" button now show a confirmation dialog
+  * The DXVK version selection was removed when creating a custom bottle
+  * DLL Components and Runners can be removed from Bottles' preferences
+  * Support for obs-vkcapture
+  * Support for VKBasalt
+  * Fixed a bug with runner updates
+  * Fixed a bug with initial components check
+  * Fixed some missing translations
+  * Fixed a bug with bottle creation during dependencies installation
+  * Fixed a bug with gnome-terminal, spaces was not escaped
+  * Fixed a bug with DLL components installation, was causing a crash on missing DLLs
+  * Fixed a bug during Steam Proton prefixes update, was failing on missing launch options
+  * Kurdish (Central) translations thanks to @petrichor-494
+  * Turkish translations thanks to jose.gonzalez. 2007, @ersen0
+  * Chinese (Simplified) translations thanks to Eric
   * French translations thanks to @julroy67
-  * Finnish translations thanks to Jiri Grönroos
-  * Hungarian translations thanks to @zoli111, @aronkvh, @Oliver-EMRLD
-  * Galician translations thanks to @frandieguez
-  * German translations thanks to @ThatRedKite, @CoreXGit
-  * Japanese translations thanks to @ryonakano
-  * Italian translations thanks to @albanobattistella
 
- -- Mirko Brombin <send@mirko.pm>  Sun, 27 Feb 2022 19:57:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Wen, 13 Feb 2022 21:50:00 +0000

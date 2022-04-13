@@ -88,54 +88,42 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.4.14-trento" date="2022-03-27">
+        <release version="2022.4.14-trento" date="2022-04-13">
           <description>
             <p>News</p>
             <ul>
-                <li>Now it is possible to use custom environment recipes, just choose its YAML file when creating a new bottle</li>
-                <li>Support for Steam Runtime</li>
-                <li>Installers can now depend by other installers</li>
-                <li>Installers now uses Windows paths by default for new entries in the Programs list</li>
-                <li>Runners paths are now appended to the environment to ensure those to get picked up</li>
-                <li>The DXVK Hud option now uses the default configuration, use the Environment Variables section to tweak it</li>
-                <li>Now you can launch the game linked to a Steam Proton prefix directly from Bottles</li>
-                <li>Now enabling some options (e.g. MangoHud) for a Steam Proton prefix, the Launch options on Steam are updated (requires Steam restart)</li>
-                <li>Now Steam Proton prefixes are parsed from the vdf LocalSettings file</li>
-                <li>Now by updating the Launch options in a Steam Proton prefix, Bottles will read the changes and update the dedicated bottle</li>
-                <li>The ACO shader compiler has been removed from the preferences as it is active by default</li>
-                <li>Legacy WINE tools are now grouped in the Utilities menu</li> 
-                <li>Now LatencyFleX will be used only with DXVK-Nvapi installed and the Vulkan layer is automatically appended to the environment, no need to set it manually</li>
-                <li>WineBridge is now automatically updated</li>
-                <li>Registry is now updated using the minimal WineCommand interface</li>
-                <li>New CLI much more powerful (bottles-cli --help)</li>
-                <li>Now Caffe is always the default runner when making a bottle with the Gaming or Application environment</li>
-                <li>Support for system Dark mode and general UI improvements (Thanks to @A6GibKm)</li>
-                <li>Better Download logging (Thanks to @thopiekar)</li>
+                <li>The importer can find and import the default .wine prefix too</li>
+                <li>New experimental Library mode feature is now available</li>
+                <li>New Loading screen for startup</li>
+                <li>New option to restore hidden programs</li>
+                <li>The Versioning manager preserve symlinks</li>
+                <li>Working directory is now automatically set to the executable parent directory for manual launch</li>
+                <li>The experimental Steam Proton Prefixes now supports third-party libraries</li>
+                <li>The Direct3D renderer mode can now be changed from the bottle's preferences</li>
+                <li>The "Kill all" button now show a confirmation dialog</li>
+                <li>The DXVK version selection was removed when creating a custom bottle</li>
+                <li>DLL Components and Runners can be removed from Bottles' preferences</li>
+                <li>Support for obs-vkcapture</li>
+                <li>Support for VKBasalt</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fixed a bug when updating Core components</li>
-                <li>Fixed a bug in installing LatencyFleX, was causing a crash if there was no version selected</li>
-                <li>Fixed a bug with unix path when using CLI, was treated as a Windows path</li>
-                <li>Fixed a bug in the component version listing, the most recent version was not always picked up (Thanks to @CleoMenezesJr and @psydvl)</li>
-                <li>Fixed a bug with offline mode, connection check would not fail when stalled</li>
-                <li>Fixed a bug with changing the screen resolution, it wasn't async and caused a freeze</li>
-                <li>Fixed a bug with WineCommand, was using MangoHud on minimal mode too</li>
-                <li>Fixed a bug with Runner update, was not checking if the runner exist</li>
-                <li>Fixed a bug with WineEnv, was not returning the env list when asking for a clean one</li>
+                <li>Fixed a bug with runner updates</li>
+                <li>Fixed a bug with initial components check</li>
+                <li>Fixed some missing translations</li>
+                <li>Fixed a bug with bottle creation during dependencies installation</li>
+                <li>Fixed a bug with gnome-terminal, spaces was not escaped</li>
+                <li>Fixed a bug with DLL components installation, was causing a crash on missing DLLs</li>
+                <li>Fixed a bug during Steam Proton prefixes update, was failing on missing launch options</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Malay translations thanks to @amiruldevkun</li>
+                <li>Kurdish (Central) translations thanks to @petrichor-494</li>
+                <li>Turkish translations thanks to jose.gonzalez. 2007, @ersen0</li>
+                <li>Chinese (Simplified) translations thanks to Eric</li>
                 <li>French translations thanks to @julroy67</li>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Hungarian translations thanks to @zoli111, @aronkvh, @Oliver-EMRLD</li>
-                <li>Galician translations thanks to @frandieguez</li>
-                <li>German translations thanks to @ThatRedKite, @CoreXGit</li>
-                <li>Japanese translations thanks to @ryonakano</li>
-                <li>Italian translations thanks to @albanobattistella</li>
             </ul>
           </description>
         </release>
