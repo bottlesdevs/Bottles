@@ -385,6 +385,9 @@ class SteamManager:
         _fail_msg = f"Fail to update bottle for: {pfx}"
 
         args = launch_options.get("args", "")
+        if isinstance(args, dict):
+            args = ""
+
         winecmd = WineCommand(config, "%command%", args)
 
         command = winecmd.get_cmd("%command%", return_steam_cmd=True)
