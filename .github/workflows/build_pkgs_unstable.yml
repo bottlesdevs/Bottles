@@ -22,21 +22,21 @@ jobs:
 
       # AppImage Build
       # --------------------------------------
-      #- name: Install appimagetool
-      #  run: |
-      #     sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
-      #     sudo chmod +x /usr/local/bin/appimagetool
+      - name: Install appimagetool
+        run: |
+           sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
+           sudo chmod +x /usr/local/bin/appimagetool
 
-      #- name: Setup Python
-      #  uses: actions/setup-python@v2
-      #  with:
-      #    python-version: 3.9
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
 
-      #- name: Install appimage-builder tool
-      #  run: yes | sudo pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git
+      - name: Install appimage-builder tool
+        run: yes | sudo pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git
 
-      #- name: Build AppImage
-      #  run: appimage-builder --recipe AppImageBuilder.yml --skip-test
+      - name: Build AppImage
+        run: appimage-builder --recipe AppImageBuilder.yml --skip-test
 
       # Deb Build
       # --------------------------------------
@@ -54,29 +54,32 @@ jobs:
 
       # Rename and release packages
       # --------------------------------------
-      #- name: Rename packages
-      #  run: |
-      #    mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
-      #    mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
-      #    mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
+      - name: Rename packages
+        run: |
+          mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
+          mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
+          mv ../com.usebottles.bottles*.deb com.usebottles.bottles-unstable.deb
 
-      #- name: Upload AppImage to Artifacts
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: Unstable Build - Appimage
-      #    path: Bottles-devel-x86_64.AppImage
+      - name: Upload AppImage to Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Unstable Build - Appimage
+          path: Bottles-devel-x86_64.AppImage
+          
       # - name: Upload Debian Package to Artifacts
       #   uses: actions/upload-artifact@v2
       #   with:
       #     name: Unstable Build - Debian Package
       #     path: com.usebottles.bottles-unstable.deb
+      
       - name: Upload Flatpak to Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Unstable Build - Flatpak
           path: com.usebottles.bottles-unstable.flatpak
-      #- name: Upload zsync to Artifacts
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: Unstable Build - Zsync
-      #    path: Bottles-devel-x86_64.AppImage.zsync
+          
+      - name: Upload zsync to Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Unstable Build - Zsync
+          path: Bottles-devel-x86_64.AppImage.zsync
