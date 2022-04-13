@@ -226,6 +226,13 @@ class MainWindow(Handy.ApplicationWindow):
         def set_manager(result, error=None):
             self.manager = result
 
+            tmp_runners = [
+                x for x in self.manager.runners_available if not x.startswith('sys-')
+            ]
+            if len(tmp_runners) == 0:
+                print("No local runners installed. Please install one.")
+                self.show_onboard_view()
+
             # Pages
             self.page_details = DetailsView(self)
             self.page_list = ListView(self, self.arg_exe)
@@ -255,18 +262,12 @@ class MainWindow(Handy.ApplicationWindow):
             self.stack_main.set_visible_child_name("page_list")
             self.lock_ui(False)
 
-        def check_first_run(window):
+        def get_manaher(window):
             mng = Manager(window)
-            tmp_runners = [
-                x for x in mng.runners_available if not x.startswith('sys-')
-            ]
-            if len(tmp_runners) == 0:
-                self.show_onboard_view()
-
             return mng
 
         self.show_loading_view()
-        RunAsync(check_first_run, callback=set_manager, window=self)
+        RunAsync(get_manaher, callback=set_manager, window=self)
 
         self.check_crash_log()
         self.check_notifications()
