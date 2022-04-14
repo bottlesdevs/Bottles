@@ -75,12 +75,13 @@ class LibraryEntry(Gtk.Box):
         bottles = self.manager.local_bottles
         if self.entry['bottle']['name'] in bottles:
             return bottles[self.entry['bottle']['name']]
+        self.destroy()  # TODO: Remove from list
 
     def __get_program(self):
         programs = self.manager.get_programs(self.config)
-        programs = [p for p in programs if not p.get("removed", False)]
+        programs = [p for p in programs if p["name"] == self.entry['name']]
         if len(programs) == 0:
-            return None #  TODO: remove entry from library
+            return None  # TODO: remove entry from library
         return programs[0]
 
     def __reset_buttons(self, result=False, error=False):
