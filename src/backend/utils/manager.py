@@ -156,16 +156,17 @@ class ManagerUtils:
         if not user_apps_dir:
             return None
 
-        file_name_template = "%s/%s--%s--*.desktop"
+        file_name_template = "%s/%s--%s--%s.desktop"
 
         existing_files = glob(file_name_template % (
             Paths.applications,
             config.get('Name'),
-            program.get("name")
+            program.get("name"),
+            "*"
         ))
 
         if existing_files:
-            return None
+            [os.remove(file) for file in existing_files]
 
         desktop_file = file_name_template % (
             Paths.applications,
