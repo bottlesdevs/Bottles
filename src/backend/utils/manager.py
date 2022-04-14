@@ -166,7 +166,8 @@ class ManagerUtils:
         ))
 
         if existing_files:
-            [os.remove(file) for file in existing_files]
+            for file in existing_files:
+                os.remove(file)
 
         desktop_file = file_name_template % (
             Paths.applications,
