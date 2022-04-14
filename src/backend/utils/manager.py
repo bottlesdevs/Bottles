@@ -18,6 +18,7 @@
 import gi
 import os
 import subprocess
+from glob import glob
 from typing import NewType, Union
 from datetime import datetime
 from gi.repository import GLib
@@ -155,7 +156,18 @@ class ManagerUtils:
         if not user_apps_dir:
             return None
 
-        desktop_file = "%s/%s--%s--%s.desktop" % (
+        file_name_template = "%s/%s--%s--*.desktop"
+
+        existing_files = glob(file_name_template % (
+            Paths.applications,
+            config.get('Name'),
+            program.get("name")
+        ))
+
+        if existing_files:
+            return None
+
+        desktop_file = file_name_template % (
             Paths.applications,
             config.get('Name'),
             program.get("name"),
