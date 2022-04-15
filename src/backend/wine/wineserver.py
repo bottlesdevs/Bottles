@@ -24,8 +24,8 @@ class WineServer(WineProgram):
 
         # Perform native chedck before wasting time using wine
         res = subprocess.Popen(["pgrep", "wineserver"], stdout=subprocess.PIPE)
-        if res.returncode == 0:
-            return True
+        if res.stdout.read() == b"":
+            return False
 
         # Check using wine
         bottle = ManagerUtils.get_bottle_path(config)
