@@ -176,11 +176,11 @@ class BackupManager:
         source = ManagerUtils.get_bottle_path(config)
         dest = f"{Paths.bottles}/{name}"
 
-        source_drive = f"{source}/drive_c"
-        dest_drive = f"{dest}/drive_c"
+        source_drive = os.path.join(source, "drive_c")
+        dest_drive = os.path.join(dest, "drive_c")
 
-        source_config = f"{source}/bottle.yml"
-        dest_config = f"{dest}/bottle.yml"
+        source_config = os.path.join(source, "bottle.yml")
+        dest_config = os.path.join(dest, "bottle.yml")
 
         if not os.path.exists(dest):
             os.makedirs(dest)
@@ -193,8 +193,8 @@ class BackupManager:
 
         try:
             for reg in regs:
-                source_reg = f"{source}/{reg}"
-                dest_reg = f"{dest}/{reg}"
+                source_reg = os.path.join(source, reg)
+                dest_reg = os.path.join(dest, reg)
                 if os.path.exists(source_reg):
                     shutil.copyfile(source_reg, dest_reg)
 
