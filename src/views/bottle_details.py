@@ -47,6 +47,7 @@ from bottles.backend.wine.control import Control
 from bottles.backend.wine.regedit import Regedit
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.wineserver import WineServer
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
@@ -256,6 +257,8 @@ class BottleView(Gtk.ScrolledWindow):
         if config:
             self.config = config
 
+        wineserver = WineServer(self.config)
+
         for w in self.group_programs:
             w.destroy()
 
@@ -283,8 +286,14 @@ class BottleView(Gtk.ScrolledWindow):
             if program.get("removed"):
                 continue
             if i < 5:
-                self.group_programs.add(ProgramEntry(
-                    self.window, self.config, program))
+                self.group_programs.add(
+                    ProgramEntry(
+                        window=self.window,
+                        config=self.config,
+                        program=program,
+                        check_boot=wineserver.is_alive()
+                    )
+                )
             i = + 1
 
     def __run_executable_with_args(self, widget):

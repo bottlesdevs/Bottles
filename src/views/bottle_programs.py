@@ -21,6 +21,7 @@ from gi.repository import Gtk
 from bottles.utils.common import open_doc_url  # pyright: reportMissingImports=false
 from bottles.widgets.program import ProgramEntry
 from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.wine.wineserver import WineServer
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-programs.ui')
@@ -104,7 +105,9 @@ class ProgramsView(Gtk.ScrolledWindow):
         """
         if config is None:
             config = {}
+
         self.config = config
+        wineserver = WineServer(self.config)
 
         for w in self.list_programs:
             w.destroy()
@@ -134,7 +137,8 @@ class ProgramsView(Gtk.ScrolledWindow):
                 ProgramEntry(
                     window=self.window,
                     config=self.config,
-                    program=program
+                    program=program,
+                    check_boot=wineserver.is_alive()
                 )
             )
 
