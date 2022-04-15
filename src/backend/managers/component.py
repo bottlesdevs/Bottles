@@ -176,9 +176,10 @@ class ComponentManager:
             GLib.idle_add(_update_func, task_id, count, block_size, total_size, completed)
 
         existing_file = rename if rename else file
+        temp_dest = os.path.join(Paths.temp, file)
         just_downloaded = False
 
-        if os.path.isfile(f"{Paths.temp}/{existing_file}"):
+        if os.path.isfile(os.path.join(Paths.temp, existing_file)):
             '''
             Check if the file already exists in the /temp directory.
             If so, then skip the download process and set the update_func
@@ -215,7 +216,7 @@ class ComponentManager:
                 """
                 res = Downloader(
                     url=download_url,
-                    file=f"{Paths.temp}/{file}",
+                    file=temp_dest,
                     func=update_func
                 ).download()
 
@@ -223,7 +224,7 @@ class ComponentManager:
                     GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
 
-                if not os.path.isfile(f"{Paths.temp}/{file}"):
+                if not os.path.isfile(temp_dest):
                     """Fail if the file is not available in the /temp directory."""
                     GLib.idle_add(self.__operation_manager.remove_task, task_id)
                     return False
@@ -234,12 +235,12 @@ class ComponentManager:
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
 
-        file_path = f"{Paths.temp}/{existing_file}"
+        file_path = os.path.join(Paths.temp, existing_file)
         if rename and just_downloaded:
             """Renaming the downloaded file if requested."""
             logging.info(f"Renaming [{file}] to [{rename}].", )
-            file_path = f"{Paths.temp}/{rename}"
-            os.rename(f"{Paths.temp}/{file}", file_path)
+            file_path = os.path.join(Paths.temp, rename)
+            os.rename(temp_dest, file_path)
 
         if checksum:
             """
@@ -325,9 +326,10 @@ class ComponentManager:
                 If the folder ends with x86_64, remove this from its name.
                 Return False if an folder with the same name already exists.
                 '''
+                root_dir = os.path.join(path, root_dir)
                 shutil.move(
-                    src=f"{path}/{root_dir}",
-                    dst=f"{path}/{root_dir[:-7]}"
+                    src=root_dir,
+                    dst=root_dir[:-7]
                 )
             except (FileExistsError, shutil.Error):
                 logging.error("Extraction failed! Component already exists.", )
