@@ -309,6 +309,8 @@ class BottleView(Gtk.ScrolledWindow):
             _("Cancel")
         )
 
+        file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config) + '/drive_c/')
+
         response = file_dialog.run()
         _execs = self.config.get("Latest_Executables")
 
