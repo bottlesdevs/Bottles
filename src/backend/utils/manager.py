@@ -183,7 +183,7 @@ class ManagerUtils:
         with open(desktop_file, "w") as f:
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={program.get('name')}\n")
-            f.write(f"Exec={cmd} -e '{program.get('path')}' -b '{config.get('Name')}'\n")
+            f.write(f"Exec={cmd} -e '{program.get('path')}' -b '{config.get('Path')}'\n")
             f.write(f"Type=Application\n")
             f.write(f"Terminal=false\n")
             f.write(f"Categories=Application;\n")
@@ -193,7 +193,7 @@ class ManagerUtils:
             f.write("Actions=Configure;\n")
             f.write("[Desktop Action Configure]\n")
             f.write("Name=Configure in Bottles\n")
-            f.write(f"Exec={cmd} -b '{config.get('Name')}'\n")
+            f.write(f"Exec={cmd} -b '{config.get('Path')}'\n")
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict):
