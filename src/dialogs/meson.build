@@ -13,7 +13,8 @@ bottles_sources = [
   'runargs.py',
   'rename.py',
   'drives.py',
-  'gamescope.py'
+  'gamescope.py',
+  'generic_cli.py'
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)
