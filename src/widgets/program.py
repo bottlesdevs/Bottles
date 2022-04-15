@@ -59,7 +59,7 @@ class ProgramEntry(Handy.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, program, is_layer=False, is_steam=False, **kwargs):
+    def __init__(self, window, config, program, is_layer=False, is_steam=False, check_boot=True, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -127,7 +127,7 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_add_entry.connect("clicked", self.add_entry)
         self.btn_add_library.connect("clicked", self.add_to_library)
 
-        if not program.get("removed") and not is_steam:
+        if not program.get("removed") and not is_steam and check_boot:
             self.__is_alive()
 
     '''Show dialog for launch options'''

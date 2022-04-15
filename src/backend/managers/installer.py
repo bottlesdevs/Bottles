@@ -26,10 +26,11 @@ from gi.repository import Gtk, GLib
 
 try:
     from bottles.operation import OperationManager  # pyright: reportMissingImports=false
+    from bottles.dialogs.generic import MessageDialog
 except (RuntimeError, GLib.GError):
     from bottles.operation_cli import OperationManager
+    from bottles.dialogs.generic_cli import MessageDialog
 
-from bottles.dialogs.generic import MessageDialog
 
 from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.managers.journal import JournalManager, JournalSeverity

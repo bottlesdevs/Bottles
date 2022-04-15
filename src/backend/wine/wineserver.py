@@ -22,6 +22,12 @@ class WineServer(WineProgram):
         if not config.get("Runner"):
             return False
 
+        # Perform native chedck before wasting time using wine
+        res = subprocess.Popen(["pgrep", "wineserver"], stdout=subprocess.PIPE)
+        if res.stdout.read() == b"":
+            return False
+
+        # Check using wine
         bottle = ManagerUtils.get_bottle_path(config)
         runner = ManagerUtils.get_runner_path(config.get("Runner"))
 

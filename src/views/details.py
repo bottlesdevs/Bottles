@@ -50,6 +50,7 @@ class DetailsView(Handy.Leaflet):
         # common variables and references
         if config is None:
             config = {}
+
         self.window = window
         self.manager = window.manager
         self.versioning_manager = window.manager.versioning_manager
