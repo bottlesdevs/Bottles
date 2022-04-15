@@ -100,7 +100,7 @@ class ProgramsView(Gtk.ScrolledWindow):
     def update(self, widget=False, config=None):
         """
         This function update the programs lists. The list in the
-        details page is limited to 5 items.
+        details' page is limited to 5 items.
         """
         if config is None:
             config = {}
