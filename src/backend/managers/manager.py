@@ -230,9 +230,12 @@ class Manager:
         self.supported_latencyflex = catalog["latencyflex"]
 
         # handle winebridge updates
+        '''
+        TODO: retiring winebridge support for now
         if len(self.winebridge_available) == 0 \
                 or self.winebridge_available[0] != next(iter(self.supported_winebridge)):
             self.check_winebridge(install_latest=True, update=True)
+        '''
 
     def organize_dependencies(self):
         """Organizes dependencies into supported_dependencies."""
