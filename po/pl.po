@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-07 22:07+0200\n"
-"PO-Revision-Date: 2022-03-13 18:01+0000\n"
-"Last-Translator: Maciej Błędkowski <mble@tuta.io>\n"
+"PO-Revision-Date: 2022-04-19 12:07+0000\n"
+"Last-Translator: Krzysztof Marcinek <krzymar2002@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/bottles/bottles/"
 "pl/>\n"
 "Language: pl\n"
@@ -169,7 +169,7 @@ msgstr "Ciemny motyw"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Wymuś użycie ciemnego motywu."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -246,17 +246,15 @@ msgstr "Eksperymenty:steam"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "Włącz eksperymentalne wsparcie prefixów Steam Proton."
+msgstr "Przełącz eksperymentalną obsługę prefiksów Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:library"
-msgstr "Eksperymenty"
+msgstr "Eksperymenty:biblioteka"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Library mode."
-msgstr "Włącz eksperymentalną funkcję instalatorów."
+msgstr "Włącz eksperymentalny tryb Biblioteki."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -269,15 +267,15 @@ msgstr ""
 
 #: src/ui/about.ui:10
 msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2022 - Developerzy Bottles"
+msgstr "© 2017-2022 - Programiści Bottles"
 
 #: src/ui/about.ui:11
 msgid "Easily manage wineprefix using environments"
-msgstr "Łatwo zarządzaj wineprefix przy użyciu środowisk"
+msgstr "Łatwo zarządzaj prefiksami wineprefix przy użyciu środowisk"
 
 #: src/ui/about.ui:137
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
-msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Tłumaczenie</a>"
+msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">Tłumacz</a>"
 
 #: src/ui/about.ui:150
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
@@ -503,7 +501,7 @@ msgstr "Programy"
 
 #: src/ui/details-bottle.ui:791
 msgid "Other"
-msgstr ""
+msgstr "Inne"
 
 #: src/ui/details-bottle.ui:797
 msgid "Utilities"
@@ -599,7 +597,7 @@ msgstr ""
 
 #: src/ui/details-dependencies.ui:221
 msgid "Report a problem or a missing dependency."
-msgstr "Zgłoś Problem lub brakującą zależlość"
+msgstr "Zgłoś problem lub brakującą zależność."
 
 #: src/ui/details-dependencies.ui:243
 msgid "Install selected"
@@ -607,7 +605,7 @@ msgstr "Zainstaluj zaznaczone"
 
 #: src/ui/details-dependencies.ui:246
 msgid "We strongly advise against installing multiple dependencies at once."
-msgstr "Zdecydowanie zaradzamy przeciwko instalowaniu kilku zależności na raz."
+msgstr "Zdecydowanie odradzamy instalowanie wielu zależności naraz."
 
 #: src/ui/details-dependencies.ui:265
 msgid "Select dependencies"
@@ -631,11 +629,8 @@ msgid "Use DXVK"
 msgstr "Użyj DXVK"
 
 #: src/ui/details-preferences.ui:33
-#, fuzzy
 msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr ""
-"Zwiększa wydajność gier DirectX11 i aplikacji 3D.\n"
-"Wyłącz, jeśli występują problemy z grafiką."
+msgstr "Zwiększa wydajność gier DirectX 11 i aplikacji 3D."
 
 #: src/ui/details-preferences.ui:42 src/ui/details-preferences.ui:612
 msgid "Updating DXVK, please wait…"
@@ -646,15 +641,12 @@ msgid "Use VKD3D"
 msgstr "Użyj VKD3D"
 
 #: src/ui/details-preferences.ui:76
-#, fuzzy
 msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr ""
-"Zwiększa wydajność gier DirectX12 i aplikacji 3D.\n"
-"Wyłącz, jeśli występują problemy z grafiką."
+msgstr "Zwiększa wydajność gier DirectX 12 i aplikacji 3D."
 
 #: src/ui/details-preferences.ui:85 src/ui/details-preferences.ui:697
 msgid "Updating VKD3D, please wait…"
-msgstr "Aktualizowanie VKD3D, proszę czekać…"
+msgstr "Aktualizuję VKD3D, proszę czekać…"
 
 #: src/ui/details-preferences.ui:118
 msgid "Enable DLSS (DXVK-NVAPI)"
@@ -662,7 +654,7 @@ msgstr "Włącz DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:119
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
-msgstr "Włącz obsługę DLSS, jeśli jest dostępna, oraz NVAPI firmy Nvidia."
+msgstr "Zapewnij obsługę DLSS, jeśli jest dostępna, oraz NVAPI firmy Nvidia."
 
 #: src/ui/details-preferences.ui:128 src/ui/details-preferences.ui:240
 #: src/ui/details-preferences.ui:782 src/ui/details-preferences.ui:865
@@ -674,13 +666,11 @@ msgid "Enable FSR"
 msgstr "Włącz FSR"
 
 #: src/ui/details-preferences.ui:164
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates."
 msgstr ""
-"FSR wykorzystuje najnowocześniejsze technologie skalowania obrazu, aby "
-"zwiększyć liczbę klatek na sekundę.\n"
-"Wyłącz tę funkcję, jeśli wystąpią problemy z grafiką."
+"FSR wykorzystuje najnowocześniejszą technologię skalowania obrazu w celu "
+"zwiększenia liczby klatek na sekundę."
 
 #: src/ui/details-preferences.ui:178
 msgid "Ultra Quality"
@@ -700,11 +690,13 @@ msgstr "Wydajność"
 
 #: src/ui/details-preferences.ui:230
 msgid "Enable LatencyFleX"
-msgstr ""
+msgstr "Włącz LatencyFleX"
 
 #: src/ui/details-preferences.ui:231
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
 msgstr ""
+"Alternatywa dla NVIDIA Reflex. Może być wykryta przez niektóre systemy "
+"wykrywania i zwalczania cheatów."
 
 #: src/ui/details-preferences.ui:274
 msgid "Discrete GPU"
@@ -712,7 +704,7 @@ msgstr "Dedykowane GPU"
 
 #: src/ui/details-preferences.ui:275
 msgid "Improves performance at the cost of increased power usage."
-msgstr "Zwiększa wydajność kosztem zwiększonego zużycia energii."
+msgstr "Poprawia wydajność kosztem zwiększonego zużycia energii."
 
 #: src/ui/details-preferences.ui:302
 msgid "Display settings"
@@ -732,12 +724,11 @@ msgstr "Przechwytywanie ruchów myszki w trybie pełnego ekranu"
 
 #: src/ui/details-preferences.ui:384
 msgid "Let the program capture mouse input when fullscreen."
-msgstr "Pozwól aplikacji przechwytywać ruchy myszki w trybie pełnego ekranu"
+msgstr "Pozwól aplikacji przechwytywać ruchy myszki w trybie pełnego ekranu."
 
 #: src/ui/details-preferences.ui:415
-#, fuzzy
 msgid "Take focus"
-msgstr "Zaznacz program"
+msgstr "Skup się"
 
 #: src/ui/details-preferences.ui:416
 msgid "Activate it if the program does not retake focus on switch."
@@ -813,7 +804,7 @@ msgstr "Program uruchamiający"
 
 #: src/ui/details-preferences.ui:529
 msgid "Updating Runner and components, please wait…"
-msgstr "Aktualizowanie Runner'a i komponentów, proszę czekać…"
+msgstr "Aktualizowanie programu uruchamiającego i komponentów, proszę czekać…"
 
 #: src/ui/details-preferences.ui:572 src/ui/new.ui:326
 msgid "Manage runners"
@@ -841,9 +832,8 @@ msgid "DXVK NVAPI version"
 msgstr "Wersja DXVK NVAPI"
 
 #: src/ui/details-preferences.ui:854
-#, fuzzy
 msgid "LatencyFleX version"
-msgstr "Zarządzaj wersjami DXVK"
+msgstr "Wersja LatencyFleX"
 
 #: src/ui/details-preferences.ui:939
 msgid ""
@@ -860,7 +850,7 @@ msgstr "Synchronizacja"
 #: src/ui/details-preferences.ui:981 src/ui/details-preferences.ui:996
 #: src/ui/dialog-gamescope.ui:345 src/ui/dialog-gamescope.ui:361
 msgid "Will restart the wineserver."
-msgstr "Zrestartuje serwerwine."
+msgstr "Zrestartuje wineserver."
 
 #: src/ui/details-preferences.ui:962
 msgid "Esync"
@@ -891,17 +881,17 @@ msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
-"Udostępnia pakiet dodatkowych bibliotek dla większej kompatybilności,\n"
+"Udostępnia zestaw dodatkowych bibliotek zapewniających większą "
+"kompatybilność,\n"
 "wyłącz, jeśli napotkasz problemy."
 
 #: src/ui/details-preferences.ui:1100
-#, fuzzy
 msgid "Use Steam runtime"
-msgstr "Użyj czasu wykonania (runtime) Bottles"
+msgstr "Użyj runtime'u Steam"
 
 #: src/ui/details-preferences.ui:1101
 msgid "The same as the Bottles one but provided by Steam."
-msgstr ""
+msgstr "Ten sam, co w przypadku Bottles, ale dostarczany przez Steam."
 
 #: src/ui/details-preferences.ui:1127
 msgid "Use GameMode"
@@ -978,13 +968,15 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1470
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:1471
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"Nakładka Vulkan i OpenGL do monitorowania liczby klatek na sekundę, "
+"temperatur, obciążenia CPU/GPU i nie tylko."
 
 #: src/ui/details-preferences.ui:1497
 msgid "Enable wine fixme logs"
@@ -1044,7 +1036,7 @@ msgstr "Stwórz nowy stan"
 
 #: src/ui/dialog-crash-report.ui:24
 msgid "Bottles Crash Report"
-msgstr "Raport błędów Bottles"
+msgstr "Raport błędu Bottles"
 
 #: src/ui/dialog-crash-report.ui:27 src/ui/dialog-duplicate.ui:28
 #: src/ui/dialog-environment-variables.ui:27 src/ui/dialog-launch-options.ui:26
@@ -1058,16 +1050,16 @@ msgstr "Anuluj"
 
 #: src/ui/dialog-crash-report.ui:35
 msgid "Send report"
-msgstr "Wyślij raport"
+msgstr "Wyślij zgłoszenie"
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"Ostatnim razem Bottles uległo awarii. Wypełnij raport, załączając poniższy "
-"ślad, aby pomóc nam zidentyfikować problem i zapobiec powtórzeniu się "
-"podobnej sytuacji w przyszłości."
+"Podczas ostatniego uruchomienia Bottles wystąpił błąd. Prosimy wypełnić "
+"zgłoszenie i załączyć ten traceback by pomóć nam zidentyfikować problem i "
+"zapobiec wystąpieniu jego w przyszłości."
 
 #: src/ui/dialog-crash-report.ui:138
 msgid ""
@@ -1084,7 +1076,7 @@ msgstr ""
 
 #: src/ui/dialog-crash-report.ui:183
 msgid "I still want to report."
-msgstr "Nadal chcę to zgłosić."
+msgstr "Wciąż chcę zgłosić."
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/dialog-launch-options.ui:226
 #: src/ui/new.ui:208
@@ -1193,7 +1185,7 @@ msgstr "Nowa zmienna"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
-msgstr "np. MOJA_ZMIENNA"
+msgstr "np: MOJA_ZMIENNA"
 
 #: src/ui/dialog-env-vars.ui:123
 msgid "Existing variables"
@@ -1336,7 +1328,7 @@ msgstr "Wpisz nową nazwę:"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr "Pisz tutaj..."
+msgstr "Pisz tutaj.."
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:86
 #: src/views/bottle_details.py:308 src/views/list.py:130
@@ -1506,13 +1498,12 @@ msgid "32 bit"
 msgstr "32-bitowa"
 
 #: src/ui/new.ui:462
-#, fuzzy
 msgid "Use custom recipe"
-msgstr "Użyj Gamescope"
+msgstr "Użyj własnej receptury"
 
 #: src/ui/new.ui:464
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Wybierz niestandardową recepturę dla środowiska, jeśli taką posiadasz."
 
 #: src/ui/new.ui:554
 msgid "Creating bottle…"
@@ -1714,9 +1705,8 @@ msgstr ""
 "wersje."
 
 #: src/ui/preferences.ui:336
-#, fuzzy
 msgid "DLL Components"
-msgstr "Wersja komponentu"
+msgstr "Komponenty DLL"
 
 #: src/ui/preferences.ui:341
 msgid "DXVK"
@@ -1732,7 +1722,7 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:371
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: src/ui/preferences.ui:384
 msgid "Core"
@@ -1756,7 +1746,7 @@ msgstr "We wczesnym rozwoju (wymaga ponownego uruchomienia)"
 
 #: src/ui/preferences.ui:448
 msgid "Library mode"
-msgstr ""
+msgstr "Tryb biblioteki"
 
 #: src/ui/program-entry.ui:46
 msgid "Browse path"
@@ -1780,16 +1770,15 @@ msgstr "Dodaj wpis pulpitowy"
 
 #: src/ui/program-entry.ui:145
 msgid "Add to my library"
-msgstr ""
+msgstr "Dodaj do mojej biblioteki"
 
 #: src/ui/program-entry.ui:158
 msgid "Remove from Programs"
 msgstr "Usuń z Programów"
 
 #: src/ui/program-entry.ui:195
-#, fuzzy
 msgid "Launch with Steam"
-msgstr "Uruchom przy pomocy terminalu"
+msgstr "Uruchom za pomocą Steam"
 
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
@@ -1801,7 +1790,7 @@ msgstr "Data utworzenia"
 
 #: src/ui/window.ui:19 src/window.py:155 src/window.py:206
 msgid "Your library"
-msgstr ""
+msgstr "Twoja biblioteka"
 
 #: src/ui/window.ui:32
 msgid "Import/export"
@@ -1809,7 +1798,7 @@ msgstr "Importuj/eksportuj"
 
 #: src/ui/window.ui:69
 msgid "Support us"
-msgstr ""
+msgstr "Wesprzyj nas"
 
 #: src/ui/window.ui:82
 msgid "Documentation"
@@ -1821,7 +1810,7 @@ msgstr "Fora"
 
 #: src/ui/window.ui:108 src/window.py:307
 msgid "Health check"
-msgstr "Sprawdź stan zdrowia programu"
+msgstr "Test zdrowia"
 
 #: src/ui/window.ui:121
 msgid "About Bottles"
@@ -1956,7 +1945,7 @@ msgstr "Stosuję ustawienia domyślne CMD…"
 
 #: src/backend/managers/manager.py:1197
 msgid "Optimizing environment…"
-msgstr "Optymalizuję środowisko…"
+msgstr "Optymalizowanie środowiska…"
 
 #: src/backend/managers/manager.py:1208
 #, python-brace-format
@@ -1965,15 +1954,15 @@ msgstr "Stosuję środowisko: {0}…"
 
 #: src/backend/managers/manager.py:1218
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Używam niestandardowej receptury środowiskowej…"
 
 #: src/backend/managers/manager.py:1221
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Receptura nie została znaleziona lub jest nieprawidłowa…"
 
 #: src/backend/managers/manager.py:1222
 msgid "(!) Proceeding with default environment…"
-msgstr ""
+msgstr "(!) Kontynuuję pracę z domyślnym środowiskiem…"
 
 #: src/backend/managers/manager.py:1238
 msgid "Installing DXVK…"
@@ -2180,9 +2169,8 @@ msgid "Application"
 msgstr "Aplikacja"
 
 #: src/views/new.py:82
-#, fuzzy
 msgid "An environment improved for Windows applications."
-msgstr "Środowisko ulepszone dla aplikacji Windows."
+msgstr "Środowisko ulepszone dla aplikacji systemu Windows."
 
 #: src/views/new.py:87
 msgid "Custom"
@@ -2201,9 +2189,8 @@ msgid "A layered environment, where every app is a layer."
 msgstr "Środowisko warstwowe, w którym każda aplikacja jest warstwą."
 
 #: src/views/new.py:185
-#, fuzzy
 msgid "Choose a recipe file"
-msgstr "Wybierz plik konfiguracyjny"
+msgstr "Wybierz plik receptury"
 
 #: src/views/new.py:272
 msgid "There was an error creating the bottle."
@@ -2223,14 +2210,12 @@ msgid "Caffe runners"
 msgstr "Kawowe wykonywacze programów"
 
 #: src/views/preferences.py:190
-#, fuzzy
 msgid "Lutris runners"
-msgstr "Wykonywacze programów Lutris"
+msgstr "Programy uruchamiające Lutris"
 
 #: src/views/preferences.py:191
-#, fuzzy
 msgid "Proton runners"
-msgstr "Zarządzaj programami uruchamiającymi"
+msgstr "Programy uruchamiające Proton"
 
 #: src/views/preferences.py:192
 msgid "Other runners"
