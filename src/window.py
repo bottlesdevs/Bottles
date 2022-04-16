@@ -261,12 +261,12 @@ class MainWindow(Handy.ApplicationWindow):
             self.stack_main.set_visible_child_name("page_list")
             self.lock_ui(False)
 
-        def get_manaher(window):
+        def get_manager(window):
             mng = Manager(window)
             return mng
 
         self.show_loading_view()
-        RunAsync(get_manaher, callback=set_manager, window=self)
+        RunAsync(get_manager, callback=set_manager, window=self)
 
         self.check_crash_log()
         self.check_notifications()
