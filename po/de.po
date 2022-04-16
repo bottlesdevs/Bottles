@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-07 22:07+0200\n"
-"PO-Revision-Date: 2022-03-17 22:15+0000\n"
-"Last-Translator: ThatRedKite <lambdarho950@gmail.com>\n"
+"PO-Revision-Date: 2022-04-19 12:07+0000\n"
+"Last-Translator: t0mt3ch <thomas.esser96@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
 "Language: de\n"
@@ -172,7 +172,7 @@ msgstr "Dunkles Thema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Erzwinge die Verwendung des dunklen Themas."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -252,14 +252,12 @@ msgid "Toggle experimental Steam Proton prefixes support."
 msgstr "Unterstützung für experimentelle Steam Proton Prefixe umschalten."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:library"
-msgstr "Versuche"
+msgstr "Experimente:Bibliothek"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Library mode."
-msgstr "Schalten Sie die Funktion für experimentelle Installer um."
+msgstr "Schaltet den experimentellen Bibliotheksmodus ein ."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -452,7 +450,6 @@ msgid "Bottle name"
 msgstr "Name der Bottle"
 
 #: src/ui/details-bottle.ui:356
-#, fuzzy
 msgid "Type a name for your bottle"
 msgstr "Wähle einen Namen für deine Bottle"
 
@@ -481,9 +478,8 @@ msgid "64 Bit"
 msgstr "64 Bit"
 
 #: src/ui/details-bottle.ui:515
-#, fuzzy
 msgid "Vaniglia-6.21-x86_64"
-msgstr "lutris-6.0-rc1-x86_64"
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:540
 msgid "Layers"
@@ -511,7 +507,7 @@ msgstr "Programme"
 
 #: src/ui/details-bottle.ui:791
 msgid "Other"
-msgstr ""
+msgstr "Andere"
 
 #: src/ui/details-bottle.ui:797
 msgid "Utilities"
@@ -640,11 +636,8 @@ msgid "Use DXVK"
 msgstr "DXVK verwenden"
 
 #: src/ui/details-preferences.ui:33
-#, fuzzy
 msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr ""
-"Verbessert die Leistung für Directx 11-Spiele und 3D-Anwendungen.\n"
-"Deaktivieren Sie diese Option, wenn Sie grafische Probleme haben."
+msgstr "Verbessert die Leistung von DirectX 11-Spielen und 3D-Anwendungen."
 
 #: src/ui/details-preferences.ui:42 src/ui/details-preferences.ui:612
 msgid "Updating DXVK, please wait…"
@@ -655,11 +648,8 @@ msgid "Use VKD3D"
 msgstr "VKD3D verwenden"
 
 #: src/ui/details-preferences.ui:76
-#, fuzzy
 msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr ""
-"Verbessert die Leistung für DirectX 12-Spiele und 3D-Anwendungen.\n"
-"Deaktivieren Sie diese Option, wenn Sie Probleme mit der Grafik haben."
+msgstr "Verbessert die Leistung von DirectX 12-Spielen und 3D-Anwendungen."
 
 #: src/ui/details-preferences.ui:85 src/ui/details-preferences.ui:697
 msgid "Updating VKD3D, please wait…"
@@ -684,12 +674,9 @@ msgid "Enable FSR"
 msgstr "Aktiviere FSR"
 
 #: src/ui/details-preferences.ui:164
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates."
-msgstr ""
-"FSR nutzt neuste Upscaling-Technologien um die Framerate zu boosten.\n"
-"Schalte dies aus, falls es zu grafischen Fehlern kommt."
+msgstr "FSR nutzt neuste Upscaling-Technologien um die Framerate zu boosten."
 
 #: src/ui/details-preferences.ui:178
 msgid "Ultra Quality"
@@ -709,11 +696,13 @@ msgstr "Leistung"
 
 #: src/ui/details-preferences.ui:230
 msgid "Enable LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX einschalten"
 
 #: src/ui/details-preferences.ui:231
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
 msgstr ""
+"Eine Alternative zu NVIDIA Reflex. Kann von einigen Anticheatprogrammen "
+"erkannt werden."
 
 #: src/ui/details-preferences.ui:274
 msgid "Discrete GPU"
@@ -754,9 +743,8 @@ msgstr ""
 "zurückerhält."
 
 #: src/ui/details-preferences.ui:447
-#, fuzzy
 msgid "Screen scaling"
-msgstr "Versionierung verwenden"
+msgstr "Bildschirmskalierung"
 
 #: src/ui/details-preferences.ui:448
 msgid "Set custom DPI"
@@ -815,7 +803,6 @@ msgid "System"
 msgstr "System"
 
 #: src/ui/details-preferences.ui:513
-#, fuzzy
 msgid "Components version"
 msgstr "Komponentenversion"
 
@@ -853,9 +840,8 @@ msgid "DXVK NVAPI version"
 msgstr "DXVK NVAPI Version"
 
 #: src/ui/details-preferences.ui:854
-#, fuzzy
 msgid "LatencyFleX version"
-msgstr "DXVK Version verwalten"
+msgstr "LatencyFleX Version"
 
 #: src/ui/details-preferences.ui:939
 msgid ""
@@ -907,13 +893,12 @@ msgstr ""
 "deaktivieren falls Probleme auftreten."
 
 #: src/ui/details-preferences.ui:1100
-#, fuzzy
 msgid "Use Steam runtime"
-msgstr "Bottles Laufzeit verwenden"
+msgstr "Steam Runtime verwenden"
 
 #: src/ui/details-preferences.ui:1101
 msgid "The same as the Bottles one but provided by Steam."
-msgstr ""
+msgstr "Genau wie die von Bottles, aber von Steam bereitgestellt."
 
 #: src/ui/details-preferences.ui:1127
 msgid "Use GameMode"
@@ -924,9 +909,8 @@ msgid "Optimise gaming performance on demand."
 msgstr "Optimieren Sie die Spielleistung bei Bedarf."
 
 #: src/ui/details-preferences.ui:1154
-#, fuzzy
 msgid "Use Gamescope"
-msgstr "Spielemodus verwenden"
+msgstr "Gamescope verwenden"
 
 #: src/ui/details-preferences.ui:1155
 msgid "Use the Gamescope micro-compositor."
@@ -992,13 +976,15 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1470
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:1471
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"Ein Vulkan- und OpenGL-Overlay zur Überwachung von FPS, Temperaturen, CPU/"
+"GPU-Auslastung und weiterem."
 
 #: src/ui/details-preferences.ui:1497
 msgid "Enable wine fixme logs"
@@ -1183,12 +1169,11 @@ msgstr "Machen Sie eine Pause, es kann eine Weile dauern"
 
 #: src/ui/dialog-duplicate.ui:195
 msgid "page_duplicating"
-msgstr ""
+msgstr "page_duplicating"
 
 #: src/ui/dialog-duplicate.ui:204
-#, fuzzy
 msgid "Bottle duplicated"
-msgstr "Bottle angelegt"
+msgstr "Bottle dupliziert"
 
 #: src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
@@ -1203,18 +1188,16 @@ msgstr ""
 "in der Bottle beeinflussen können."
 
 #: src/ui/dialog-env-vars.ui:54
-#, fuzzy
 msgid "New variable"
-msgstr "Neue Überbrückung"
+msgstr "Neue Variable"
 
 #: src/ui/dialog-env-vars.ui:65
 msgid "e.g. MY_VAR"
 msgstr "z. B. MEINE_VARIABLE"
 
 #: src/ui/dialog-env-vars.ui:123
-#, fuzzy
 msgid "Existing variables"
-msgstr "Vorhandene Überbrückungen"
+msgstr "Vorhandene Variablen"
 
 #: src/ui/dialog-environment-variables.ui:24
 msgid "Change environment variables"
@@ -1297,14 +1280,12 @@ msgid "e.g. 30"
 msgstr "z. B. 30"
 
 #: src/ui/dialog-gamescope.ui:302
-#, fuzzy
 msgid "Use integer scaling"
-msgstr "Versionierung verwenden"
+msgstr "Integer-Skalierung benutzen"
 
 #: src/ui/dialog-gamescope.ui:329
-#, fuzzy
 msgid "Window type"
-msgstr "Fensterbreite"
+msgstr "Fenstertyp"
 
 #: src/ui/dialog-gamescope.ui:341
 msgid "Borderless"
@@ -1340,7 +1321,7 @@ msgstr ""
 
 #: src/ui/dialog-launch-options.ui:163
 msgid "Post-run script"
-msgstr ""
+msgstr "Post-run Script"
 
 #: src/ui/dialog-launch-options.ui:165
 msgid "Choose a script which should be executed after run."
@@ -1348,9 +1329,8 @@ msgstr ""
 "Wähle ein Skript, das ausgeführt wird, nachdem das Programm beendet wurde."
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:59
-#, fuzzy
 msgid "Rename"
-msgstr "Bottle umbenennen"
+msgstr "Umbenennen"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
@@ -1368,6 +1348,8 @@ msgstr "Ausführen"
 #: src/ui/dialog-run-args.ui:74
 msgid "Write below the arguments to be passed to the executable."
 msgstr ""
+"Gib hier die Argumente ein, die an die ausführbare Datei übergeben werden "
+"sollen."
 
 #: src/ui/dialog-run-args.ui:89
 msgid "e.g: -opengl -SkipBuildPatchPrereq"
@@ -1474,9 +1456,8 @@ msgid "Create"
 msgstr "Anlegen"
 
 #: src/ui/new.ui:96
-#, fuzzy
 msgid "Bottle information"
-msgstr "Bottle angelegt"
+msgstr "Bottleinformationen"
 
 #: src/ui/new.ui:117
 msgid "Name"
@@ -1530,13 +1511,12 @@ msgid "32 bit"
 msgstr "32 Bit"
 
 #: src/ui/new.ui:462
-#, fuzzy
 msgid "Use custom recipe"
-msgstr "Spielemodus verwenden"
+msgstr "Angepasstes Rezept verwenden"
 
 #: src/ui/new.ui:464
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Wähle ein benutzerdefiniertes Rezept für die Umgebung, falls vorhanden."
 
 #: src/ui/new.ui:554
 msgid "Creating bottle…"
@@ -1662,7 +1642,7 @@ msgstr "Fertig"
 
 #: src/ui/preferences.ui:20
 msgid "Reset default"
-msgstr ""
+msgstr "Standard wiederherstellen"
 
 #: src/ui/preferences.ui:42 src/ui/window.ui:45 src/views/details.py:111
 msgid "Preferences"
@@ -1717,12 +1697,17 @@ msgstr "Benutzerdefinierter Bottles Pfad (benötigt Neustart)"
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr ""
+"Auswählen wo neue Bottles gespeichert werden sollen (Bestehende werden nicht "
+"verschoben)"
 
 #: src/ui/preferences.ui:228
 msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
+"Achtung! Stellen Sie sicher, dass Sie dem Flatpak die Erlaubnis geben, auf "
+"den neuen Pfad zuzugreifen.\n"
+"Dies wird die Funktion der Sandbox einschränken!"
 
 #: src/ui/preferences.ui:301
 msgid "Pre-release"
@@ -1733,9 +1718,8 @@ msgid "Whether the above list should display unstable versions."
 msgstr "Ob die obere Liste instabile Versionen anzeigen soll."
 
 #: src/ui/preferences.ui:336
-#, fuzzy
 msgid "DLL Components"
-msgstr "Komponentenversion"
+msgstr "DLL Komponenten"
 
 #: src/ui/preferences.ui:341
 msgid "DXVK"
