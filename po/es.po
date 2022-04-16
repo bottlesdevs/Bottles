@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-07 22:07+0200\n"
-"PO-Revision-Date: 2022-03-13 18:01+0000\n"
+"PO-Revision-Date: 2022-04-19 12:07+0000\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
@@ -164,7 +164,7 @@ msgstr "Tema oscuro"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Forzar el uso del tema oscuro."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -245,14 +245,12 @@ msgstr ""
 "Conmutar la compatibilidad con los prefijos experimentales de Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:library"
-msgstr "Experimentos"
+msgstr "Experimentos:bibliotecas"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Library mode."
-msgstr "Conmuta las características experimentales del instalador."
+msgstr "Conmutar el modo Biblioteca experimental."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -499,7 +497,7 @@ msgstr "Programas"
 
 #: src/ui/details-bottle.ui:791
 msgid "Other"
-msgstr ""
+msgstr "Otros"
 
 #: src/ui/details-bottle.ui:797
 msgid "Utilities"
@@ -628,11 +626,8 @@ msgid "Use DXVK"
 msgstr "Usar DXVK"
 
 #: src/ui/details-preferences.ui:33
-#, fuzzy
 msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr ""
-"Mejora el rendimiento de los juegos DirectX 11 y las aplicaciones 3D.\n"
-"Desactívelo si experimenta fallos gráficos."
+msgstr "Mejora el rendimiento de los juegos DirectX 11 y las aplicaciones 3D."
 
 #: src/ui/details-preferences.ui:42 src/ui/details-preferences.ui:612
 msgid "Updating DXVK, please wait…"
@@ -643,11 +638,8 @@ msgid "Use VKD3D"
 msgstr "Usar VKD3D"
 
 #: src/ui/details-preferences.ui:76
-#, fuzzy
 msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr ""
-"Mejora el rendimiento de los juegos DirectX 12 y las aplicaciones 3D.\n"
-"Desactívelo si experimenta fallos gráficos."
+msgstr "Mejora el rendimiento de los juegos DirectX 12 y las aplicaciones 3D."
 
 #: src/ui/details-preferences.ui:85 src/ui/details-preferences.ui:697
 msgid "Updating VKD3D, please wait…"
@@ -671,13 +663,11 @@ msgid "Enable FSR"
 msgstr "Activar FSR"
 
 #: src/ui/details-preferences.ui:164
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates."
 msgstr ""
 "FSR usa tecnologías de escalado de última generación para ayudar a aumentar "
-"la velocidad de los fotogramas.\n"
-"Desactívalo si experimenta fallos gráficos."
+"la velocidad de los fotogramas."
 
 #: src/ui/details-preferences.ui:178
 msgid "Ultra Quality"
@@ -697,11 +687,12 @@ msgstr "Rendimiento"
 
 #: src/ui/details-preferences.ui:230
 msgid "Enable LatencyFleX"
-msgstr ""
+msgstr "Activar LatencyFleX"
 
 #: src/ui/details-preferences.ui:231
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
 msgstr ""
+"Una alternativa a NVIDIA Reflex. Puede ser detectado por algunos Anticheats."
 
 #: src/ui/details-preferences.ui:274
 msgid "Discrete GPU"
@@ -839,9 +830,8 @@ msgid "DXVK NVAPI version"
 msgstr "Versión de NVAPI DXVK"
 
 #: src/ui/details-preferences.ui:854
-#, fuzzy
 msgid "LatencyFleX version"
-msgstr "Gestionar versiones de DXVK"
+msgstr "Versión de LatencyFleX"
 
 #: src/ui/details-preferences.ui:939
 msgid ""
@@ -894,13 +884,12 @@ msgstr ""
 "desactívelo si tienes problemas."
 
 #: src/ui/details-preferences.ui:1100
-#, fuzzy
 msgid "Use Steam runtime"
-msgstr "Usar el tiempo de ejecución de Bottles"
+msgstr "Usar el tiempo de ejecución de Steam"
 
 #: src/ui/details-preferences.ui:1101
 msgid "The same as the Bottles one but provided by Steam."
-msgstr ""
+msgstr "El mismo que el de Bottles pero proporcionado por Steam."
 
 #: src/ui/details-preferences.ui:1127
 msgid "Use GameMode"
@@ -978,13 +967,15 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1470
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:1471
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"Una capa de Vulkan y OpenGL para controlar los FPS, las temperaturas, la "
+"carga de la CPU/GPU y mucho más."
 
 #: src/ui/details-preferences.ui:1497
 msgid "Enable wine fixme logs"
@@ -1507,13 +1498,12 @@ msgid "32 bit"
 msgstr "32 bits"
 
 #: src/ui/new.ui:462
-#, fuzzy
 msgid "Use custom recipe"
-msgstr "Usar Gamescope"
+msgstr "Usar receta personalizada"
 
 #: src/ui/new.ui:464
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Elija una receta personalizada para el entorno si tiene una."
 
 #: src/ui/new.ui:554
 msgid "Creating bottle…"
@@ -1711,9 +1701,8 @@ msgid "Whether the above list should display unstable versions."
 msgstr "Si la lista anterior debería mostrar versiones inestables."
 
 #: src/ui/preferences.ui:336
-#, fuzzy
 msgid "DLL Components"
-msgstr "Versión del componente"
+msgstr "Componentes DLL"
 
 #: src/ui/preferences.ui:341
 msgid "DXVK"
@@ -1729,7 +1718,7 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:371
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: src/ui/preferences.ui:384
 msgid "Core"
@@ -1753,7 +1742,7 @@ msgstr "En fase de desarrollo (requiere reinicio)"
 
 #: src/ui/preferences.ui:448
 msgid "Library mode"
-msgstr ""
+msgstr "Modo biblioteca"
 
 #: src/ui/program-entry.ui:46
 msgid "Browse path"
@@ -1777,16 +1766,15 @@ msgstr "Añadir acceso directo"
 
 #: src/ui/program-entry.ui:145
 msgid "Add to my library"
-msgstr ""
+msgstr "Añadir a mi biblioteca"
 
 #: src/ui/program-entry.ui:158
 msgid "Remove from Programs"
 msgstr "Quitar de Programas"
 
 #: src/ui/program-entry.ui:195
-#, fuzzy
 msgid "Launch with Steam"
-msgstr "Iniciar con el terminal"
+msgstr "Iniciar con Steam"
 
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
@@ -1798,16 +1786,15 @@ msgstr "Fecha de creación"
 
 #: src/ui/window.ui:19 src/window.py:155 src/window.py:206
 msgid "Your library"
-msgstr ""
+msgstr "Su biblioteca"
 
 #: src/ui/window.ui:32
 msgid "Import/export"
 msgstr "Importar/exportar"
 
 #: src/ui/window.ui:69
-#, fuzzy
 msgid "Support us"
-msgstr "Apoye el proyecto Bottles"
+msgstr "Apóyenos"
 
 #: src/ui/window.ui:82
 msgid "Documentation"
@@ -1962,15 +1949,15 @@ msgstr "Aplicando el entorno: {0}…"
 
 #: src/backend/managers/manager.py:1218
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Usando una receta de entorno personalizada…"
 
 #: src/backend/managers/manager.py:1221
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Receta no encontrada o no válida…"
 
 #: src/backend/managers/manager.py:1222
 msgid "(!) Proceeding with default environment…"
-msgstr ""
+msgstr "(!) Procediendo con el entorno predeterminado…"
 
 #: src/backend/managers/manager.py:1238
 msgid "Installing DXVK…"
@@ -2177,9 +2164,8 @@ msgid "Application"
 msgstr "Aplicación"
 
 #: src/views/new.py:82
-#, fuzzy
 msgid "An environment improved for Windows applications."
-msgstr "Un entorno mejorado para la aplicación de Windows."
+msgstr "Un entorno mejorado para las aplicaciones de Windows."
 
 #: src/views/new.py:87
 msgid "Custom"
@@ -2198,9 +2184,8 @@ msgid "A layered environment, where every app is a layer."
 msgstr "Un entorno por capas, donde cada aplicación es una capa."
 
 #: src/views/new.py:185
-#, fuzzy
 msgid "Choose a recipe file"
-msgstr "Elija un archivo de configuración"
+msgstr "Elija un archivo de recetas"
 
 #: src/views/new.py:272
 msgid "There was an error creating the bottle."
