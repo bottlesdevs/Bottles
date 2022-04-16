@@ -40,7 +40,7 @@ class TerminalUtils:
         ['foot', '%s'],
         ['kitty', '%s'],
         ['xfce4-terminal', '-e %s'],
-        ['xterm', '-e %s'],
+        ['xterm', '-hold -e %s'],
         ['konsole', '--noclose -e %s'],
         ['gnome-terminal', '-- %s'],
         ['mate-terminal', '--command %s'],
