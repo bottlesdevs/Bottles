@@ -35,6 +35,13 @@ class TemplateManager:
     @staticmethod
     def new(env: str, config: dict):
         env = env.lower()
+        templates = TemplateManager.get_templates()
+
+        for template in templates:
+            if template["env"] == env:
+                logging.info(f"Caching new template for {env}…")
+                TemplateManager.delete_template(template["uuid"])
+
         _uuid = str(uuid.uuid4())
         logging.info(f"Creating new template: {_uuid}", )
         bottle = ManagerUtils.get_bottle_path(config)
@@ -103,8 +110,16 @@ class TemplateManager:
 
     @staticmethod
     def delete_template(template_uuid: str):
+        if not template_uuid:
+            logging.error("Template uuid is not defined!", )
+            return
+
+        if not os.path.exists(os.path.join(Paths.templates, template_uuid)):
+            logging.error(f"Template {template_uuid} not found!", )
+            return
+
         logging.info(f"Deleting template: {template_uuid}", )
-        shutil.rmtree(f"{Paths.templates}/{template_uuid}")
+        shutil.rmtree(os.path.join(Paths.templates, template_uuid))
         logging.info("Template deleted successfully!", )
 
     @staticmethod

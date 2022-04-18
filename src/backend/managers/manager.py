@@ -1140,6 +1140,7 @@ class Manager:
 
         # get template
         template = TemplateManager.get_env_template(environment)
+        template_updated = False
         if template:
             log_update(_("Template found, applying…"))
             TemplateManager.unpack_template(template, config)
@@ -1240,6 +1241,7 @@ class Manager:
                 logging.info("Installing DXVK…", )
                 log_update(_("Installing DXVK…"))
                 self.install_dll_component(config, "dxvk", version=dxvk_name)
+                template_updated = True
 
             if not template and config["Parameters"]["vkd3d"] \
                     or (template and template["config"]["VKD3D"] != vkd3d):
@@ -1247,6 +1249,7 @@ class Manager:
                 logging.info("Installing VKD3D…", )
                 log_update(_("Installing VKD3D…"))
                 self.install_dll_component(config, "vkd3d", version=vkd3d_name)
+                template_updated = True
 
             if not template and config["Parameters"]["dxvk_nvapi"] \
                     or (template and template["config"]["NVAPI"] != nvapi):
@@ -1254,6 +1257,7 @@ class Manager:
                 logging.info("Installing DXVK-NVAPI…", )
                 log_update(_("Installing DXVK-NVAPI…"))
                 self.install_dll_component(config, "dxvk_nvapi", version=nvapi_name)
+                template_updated = True
 
             for dep in env.get("Installed_Dependencies", []):
                 if template and dep in template["config"]["Installed_Dependencies"]:
@@ -1262,6 +1266,7 @@ class Manager:
                     _dep = self.supported_dependencies[dep]
                     log_update(_("Installing dependency: %s …") % _dep.get("Description", "n/a"))
                     self.dependency_manager.install(config, [dep, _dep])
+                    template_updated = True
 
         # create Layers key if Layered
         if environment == "Layered":
@@ -1291,8 +1296,10 @@ class Manager:
         # perform wineboot
         wineboot.update()
 
-        # storing new template
-        if not template and environment != "layered":
+        # caching template
+        if (not template and environment != "layered") or template_updated:
+            logging.info("Caching template…", )
+            log_update(_("Caching template…"))
             TemplateManager.new(environment, config)
 
         return Result(
