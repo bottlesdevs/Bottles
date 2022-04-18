@@ -182,8 +182,8 @@ class SteamManager:
         apps = local_config.get("UserLocalConfigStore", {}) \
             .get("Software", {}) \
             .get("Valve", {}) \
-            .get("Steam", {}) \
-            .get("Apps", {})
+            .get("Steam", {})
+        apps = apps.get("apps") if apps.get("apps") else apps.get("Apps")
 
         for appid, appdata in apps.items():
             _library_path = SteamManager.get_appid_library_path(appid)
@@ -268,8 +268,8 @@ class SteamManager:
         apps = local_config.get("UserLocalConfigStore", {}) \
             .get("Software", {}) \
             .get("Valve", {}) \
-            .get("Steam", {}) \
-            .get("Apps", {})
+            .get("Steam", {})
+        apps = apps.get("apps") if apps.get("apps") else apps.get("Apps")
 
         if len(apps) == 0 or prefix not in apps:
             logging.warning(_fail_msg)
@@ -343,8 +343,13 @@ class SteamManager:
             launch_options += f"{e}={v} "
 
         launch_options += f"{command} %command% {original_launch_options['args']}"
-        local_config["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["Apps"][
-            prefix]["LaunchOptions"] = launch_options
+
+        try:
+            local_config["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"][
+                prefix]["LaunchOptions"] = launch_options
+        except:
+            local_config["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["Apps"][
+                prefix]["LaunchOptions"] = launch_options
 
         SteamManager.save_local_config(local_config)
 
@@ -376,8 +381,12 @@ class SteamManager:
             launch_options += f"{e}={v} "
 
         launch_options += f"{original_launch_options['command']} %command% {original_launch_options['args']}"
-        local_config["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"][
-            prefix]["LaunchOptions"] = launch_options
+        try:
+            local_config["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"][
+                prefix]["LaunchOptions"] = launch_options
+        except:
+            local_config["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["Apps"][
+                prefix]["LaunchOptions"] = launch_options
 
         SteamManager.save_local_config(local_config)
 
