@@ -3,7 +3,7 @@ sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
 base-version: stable-21.08
-runtime-version: '42'
+runtime-version: "42"
 command: bottles
 
 finish-args:
@@ -32,11 +32,11 @@ inherit-extensions:
 add-extensions:
   org.gnome.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
-    version: '42'
+    version: "42"
 
   org.gnome.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
-    version: '42'
+    version: "42"
     no-autodownload: true
 
   com.valvesoftware.Steam.Utility:
@@ -70,14 +70,13 @@ cleanup:
   - /share/gtk-doc
   - /share/man
   - /share/pkgconfig
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 
 cleanup-commands:
   - mkdir -p /app/utils
 
 modules:
-
   # Python modules
   # ----------------------------------------------------------------------------
   - name: PyYAML
@@ -233,7 +232,7 @@ modules:
         PERL5LIB: /app/lib/perl5/
         PERL_MM_OPT: INSTALL_BASE=/app
     cleanup:
-      - '*'
+      - "*"
     sources:
       - type: archive
         url: https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz
@@ -260,8 +259,8 @@ modules:
         PERL_MM_OPT: INSTALL_BASE=/app
     sources:
       - type: archive
-        url: https://download.samba.org/pub/samba/samba-4.15.5.tar.gz
-        sha256: 69115e33831937ba5151be0247943147765aece658ba743f44741672ad68d17f
+        url: https://download.samba.org/pub/samba/samba-4.15.6.tar.gz
+        sha256: 0575b999a9048445820428dc540ba8a9527ce596fa66af02ea2ba1ea9578bcb4
 
   - name: LatencyFleX
     buildsystem: simple
