@@ -749,16 +749,24 @@ class Manager:
 
             if os.path.exists(_placeholder):
                 with open(_placeholder, "r") as f:
-                    placeholder_yaml = yaml.safe_load(f)
-                    if placeholder_yaml.get("Path"):
-                        _config = os.path.join(placeholder_yaml.get("Path"), "bottle.yml")
+                    try:
+                        placeholder_yaml = yaml.safe_load(f)
+                        if placeholder_yaml.get("Path"):
+                            _config = os.path.join(placeholder_yaml.get("Path"), "bottle.yml")
+                        else:
+                            raise Exception("Missing Path in placeholder.yml")
+                    except (yaml.YAMLError, Exception):
+                        if not silent:
+                            logging.error("Placeholder found but could not be parsed")
+                        continue
 
             try:
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.safe_load(f)
             except FileNotFoundError:
                 if not silent:
-                    logging.warning(f"A placeholder found but unreadable config file: {_config}")
+                    logging.warning(f"A placeholder found but can't reach the config file: {_config}")
+                continue
 
             if conf_file_yaml is None:
                 raise AttributeError
@@ -1113,18 +1121,29 @@ class Manager:
 
         # define registers that should be awaited
         reg_files = [
-            f"{bottle_complete_path}/system.reg",
-            f"{bottle_complete_path}/user.reg"
+            os.path.join(bottle_complete_path, "system.reg"),
+            os.path.join(bottle_complete_path, "user.reg"),
         ]
 
         # create the bottle directory
-        os.makedirs(bottle_complete_path)
+        try:
+            os.makedirs(bottle_complete_path)
+        except:
+            logging.error("Failed to create bottle directory.")
+            log_update(_("Failed to create bottle directory."))
+            return Result(False)
+
         if bottle_custom_path:
             placeholder_dir = os.path.join(Paths.bottles, bottle_name_path)
-            os.makedirs(placeholder_dir)
-            with open(os.path.join(placeholder_dir, "placeholder.yml"), "w") as f:
-                placeholder = {"Path": os.path.join(Paths.bottles, bottle_name_path)}
-                f.write(yaml.dump(placeholder))
+            try:
+                os.makedirs(placeholder_dir)
+                with open(os.path.join(placeholder_dir, "placeholder.yml"), "w") as f:
+                    placeholder = {"Path": os.path.join(Paths.bottles, bottle_name_path)}
+                    f.write(yaml.dump(placeholder))
+            except:
+                logging.error("Failed to create placeholder directory/file.")
+                log_update(_("Failed to create placeholder directory/file."))
+                return Result(False)
 
         # generate bottle configuration
         logging.info("Generating bottle configuration…", )
