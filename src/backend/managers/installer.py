@@ -43,6 +43,7 @@ from bottles.backend.utils.wine import WineUtils
 
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.winecommand import WineCommand
 
 logging = Logger()
 
@@ -190,6 +191,10 @@ class InstallerManager:
             if st.get("action") == "run_script":
                 self.__step_run_script(config, st)
 
+            # Step type: run_winecommand
+            if st.get("action") == "run_winecommand":
+                self.__step_run_winecommand(config, st)
+
             # Step type: update_config
             if st.get("action") == "update_config":
                 self.__step_update_config(config, st)
@@ -229,6 +234,23 @@ class InstallerManager:
                     JournalManager.write(severity=JournalSeverity.ERROR, message=_err)
                     return False
         return True
+
+    @staticmethod
+    def __step_run_winecommand(config, step: dict):
+        """Run a wine command"""
+        commands = step.get("commands")
+
+        if not commands:
+            return
+
+        for command in commands:
+            _winecommand = WineCommand(
+                config,
+                command=command.get("command"),
+                arguments=command.get("arguments"),
+                minimal=command.get("minimal")
+            )
+            _winecommand.run()
 
     @staticmethod
     def __step_run_script(config, step: dict):
