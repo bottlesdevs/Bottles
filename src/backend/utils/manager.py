@@ -80,8 +80,6 @@ class ManagerUtils:
     def get_bottle_path(config: dict) -> str:
         if config.get("IsLayer"):
             return ManagerUtils.get_layer_path(config["Path"])
-        elif config.get("Custom_Path"):
-            return config.get("Path")
         elif config.get("Environment") == "Steam":
             return os.path.join(Paths.steam, config.get("CompatData"))
         return os.path.join(Paths.bottles, config.get("Path"))

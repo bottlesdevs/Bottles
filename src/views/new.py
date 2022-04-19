@@ -50,6 +50,7 @@ class NewView(Handy.Window):
     btn_cancel = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
+    btn_choose_path = Gtk.Template.Child()
     btn_pref_runners = Gtk.Template.Child()
     list_envs = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
@@ -107,12 +108,14 @@ class NewView(Handy.Window):
         self.selected_env = "gaming"
         self.env_recipe_path = None
         self.new_bottle_config = {}
+        self.custom_path = ""
 
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_create.connect("clicked", self.create_bottle)
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
+        self.btn_choose_path.connect("clicked", self.choose_path)
         self.list_envs.connect('row-selected', self.set_active_env)
         self.entry_name.connect('key-release-event', self.check_entry_name)
         self.entry_name.connect('activate', self.create_bottle)
@@ -191,6 +194,23 @@ class NewView(Handy.Window):
 
         file_dialog.destroy()
 
+    def choose_path(self, widget):
+        file_dialog = Gtk.FileChooserDialog(
+            _("Choose where to store the bottle"),
+            self.window,
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+             Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+        )
+
+        response = file_dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            self.custom_path = file_dialog.get_filename()
+            print(self.custom_path)
+
+        file_dialog.destroy()
+
     '''Create the bottle'''
 
     def create_bottle(self, widget):
@@ -238,7 +258,7 @@ class NewView(Handy.Window):
             task_func=self.manager.create_bottle,
             callback=self.finish,
             name=self.entry_name.get_text(),
-            path="",
+            path=self.custom_path,
             environment=self.selected_env,
             runner=runner,
             dxvk=self.manager.dxvk_available[0],

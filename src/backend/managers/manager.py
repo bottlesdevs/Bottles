@@ -744,81 +744,84 @@ class Manager:
             '''
             bottle_name_path = bottle.split("/")[-2]
 
+            _placeholder = os.path.join(bottle, "placeholder.yml")
+            _config = os.path.join(bottle, "bottle.yml")
+
+            if os.path.exists(_placeholder):
+                with open(_placeholder, "r") as f:
+                    placeholder_yaml = yaml.safe_load(f)
+                    if placeholder_yaml.get("Path"):
+                        _config = os.path.join(placeholder_yaml.get("Path"), "bottle.yml")
+
             try:
-                conf_file = open(f"{bottle}/bottle.yml")
-                conf_file_yaml = yaml.safe_load(conf_file)
-                conf_file.close()
-
-                if conf_file_yaml is None:
-                    raise AttributeError
-
-                # Migrate old environment_variables to new format
-                if "Parameters" in conf_file_yaml:
-                    _parameters = conf_file_yaml["Parameters"]
-                    if "environment_variables" in _parameters:
-                        entries = shlex.split(_parameters["environment_variables"])
-                        _env = {}
-
-                        if len(entries) > 0:
-                            for e in entries:
-                                kv = e.split("=")
-
-                                if len(kv) > 2:
-                                    kv[1] = "=".join(kv[1:])
-                                    kv = kv[:2]
-
-                                if len(kv) == 2:
-                                    _env[kv[0]] = kv[1]
-
-                            conf_file_yaml["Environment_Variables"] = _env
-                            if len(_env) > 0:
-                                del _parameters["environment_variables"]
-
-                # Migrate old Software env to the new Application
-                if conf_file_yaml["Environment"] == "Software":
-                    conf_file_yaml["Environment"] = "Application"
-
-                # Clear Latest_Executables on new session start
-                if conf_file_yaml.get("Latest_Executables"):
-                    conf_file_yaml["Latest_Executables"] = []
-
-                miss_keys = Samples.config.keys() - conf_file_yaml.keys()
-                for key in miss_keys:
-                    logging.warning(f"Key: [{key}] not in bottle: "
-                                    f"[{bottle.split('/')[-2]}] config, updating.", )
-                    self.update_config(
-                        config=conf_file_yaml,
-                        key=key,
-                        value=Samples.config[key]
-                    )
-
-                miss_params_keys = Samples.config["Parameters"].keys(
-                ) - conf_file_yaml["Parameters"].keys()
-
-                for key in miss_params_keys:
-                    '''
-                    For each missing key in the bottle configuration, set
-                    it to the default value.
-                    '''
-                    logging.warning(f"Key: [{key}] not in bottle: "
-                                    f"[{bottle.split('/')[-2]}] config Parameters, "
-                                    "updating.", )
-                    self.update_config(
-                        config=conf_file_yaml,
-                        key=key,
-                        value=Samples.config["Parameters"][key],
-                        scope="Parameters"
-                    )
-                self.local_bottles[bottle_name_path] = conf_file_yaml
-
+                with open(_config, "r") as f:
+                    conf_file_yaml = yaml.safe_load(f)
             except FileNotFoundError:
-                new_config_yaml = Samples.config.copy()
-                new_config_yaml["Broken"] = True
-                new_config_yaml["Name"] = bottle_name_path
-                new_config_yaml["Environment"] = "Undefined"
-                self.local_bottles[bottle_name_path] = new_config_yaml
-            except AttributeError:
-                pass
+                if not silent:
+                    logging.warning(f"A placeholder found but unreadable config file: {_config}")
+
+            if conf_file_yaml is None:
+                raise AttributeError
+
+            # Migrate old environment_variables to new format
+            if "Parameters" in conf_file_yaml:
+                _parameters = conf_file_yaml["Parameters"]
+                if "environment_variables" in _parameters:
+                    entries = shlex.split(_parameters["environment_variables"])
+                    _env = {}
+
+                    if len(entries) > 0:
+                        for e in entries:
+                            kv = e.split("=")
+
+                            if len(kv) > 2:
+                                kv[1] = "=".join(kv[1:])
+                                kv = kv[:2]
+
+                            if len(kv) == 2:
+                                _env[kv[0]] = kv[1]
+
+                        conf_file_yaml["Environment_Variables"] = _env
+                        if len(_env) > 0:
+                            del _parameters["environment_variables"]
+
+            # Migrate old Software env to the new Application
+            if conf_file_yaml["Environment"] == "Software":
+                conf_file_yaml["Environment"] = "Application"
+
+            # Clear Latest_Executables on new session start
+            if conf_file_yaml.get("Latest_Executables"):
+                conf_file_yaml["Latest_Executables"] = []
+
+            miss_keys = Samples.config.keys() - conf_file_yaml.keys()
+            for key in miss_keys:
+                logging.warning(f"Key: [{key}] not in bottle: "
+                                f"[{bottle.split('/')[-2]}] config, updating.", )
+                self.update_config(
+                    config=conf_file_yaml,
+                    key=key,
+                    value=Samples.config[key]
+                )
+
+            miss_params_keys = Samples.config["Parameters"].keys(
+            ) - conf_file_yaml["Parameters"].keys()
+
+            for key in miss_params_keys:
+                '''
+                For each missing key in the bottle configuration, set
+                it to the default value.
+                '''
+                logging.warning(f"Key: [{key}] not in bottle: "
+                                f"[{bottle.split('/')[-2]}] config Parameters, "
+                                "updating.", )
+                self.update_config(
+                    config=conf_file_yaml,
+                    key=key,
+                    value=Samples.config["Parameters"][key],
+                    scope="Parameters"
+                )
+            self.local_bottles[bottle_name_path] = conf_file_yaml
+
 
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format(
@@ -1093,10 +1096,10 @@ class Manager:
         if path == "":
             # if no path is specified, use the name as path
             bottle_custom_path = False
-            bottle_complete_path = f"{Paths.bottles}/{bottle_name_path}"
+            bottle_complete_path = os.path.join(Paths.bottles, bottle_name_path)
         else:
             bottle_custom_path = True
-            bottle_complete_path = path
+            bottle_complete_path = os.path.join(path, bottle_name_path)
 
         # if another bottle with same path exists, append a random number
         if os.path.exists(bottle_complete_path):
@@ -1116,6 +1119,12 @@ class Manager:
 
         # create the bottle directory
         os.makedirs(bottle_complete_path)
+        if bottle_custom_path:
+            placeholder_dir = os.path.join(Paths.bottles, bottle_name_path)
+            os.makedirs(placeholder_dir)
+            with open(os.path.join(placeholder_dir, "placeholder.yml"), "w") as f:
+                placeholder = {"Path": os.path.join(Paths.bottles, bottle_name_path)}
+                f.write(yaml.dump(placeholder))
 
         # generate bottle configuration
         logging.info("Generating bottle configuration…", )
@@ -1350,8 +1359,19 @@ class Manager:
             for inst in glob(f"{Paths.applications}/{config.get('Name')}--*"):
                 os.remove(inst)
 
+            if config.get("Custom_Path"):
+                logging.info(f"Removing placeholder ..")
+                try:
+                    os.remove(os.path.join(
+                        Paths.bottles,
+                        os.path.basename(config.get("Custom_Path")),
+                        "placeholder.yml"
+                    ))
+                except FileNotFoundError:
+                    pass
+
             logging.info(f"Removing the bottle…", )
-            path = f"{Paths.bottles}/{config.get('Path')}"
+            path = ManagerUtils.get_bottle_path(config)
             shutil.rmtree(path, ignore_errors=True)
 
             try:

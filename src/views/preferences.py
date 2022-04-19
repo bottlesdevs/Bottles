@@ -138,16 +138,16 @@ class PreferencesWindow(Handy.PreferencesWindow):
         self.settings.set_boolean("auto-close-bottles", state)
 
     def __choose_bottles_path(self, widget):
-        file_dialog = Gtk.FileChooserNative.new(
+        file_dialog = Gtk.FileChooserDialog(
             _("Choose new bottles path"),
             self.window,
             Gtk.FileChooserAction.SELECT_FOLDER,
-            _("Done"),
-            _("Cancel")
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+             Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
         )
         response = file_dialog.run()
 
-        if response == -3:
+        if response == Gtk.ResponseType.OK:
             self.data.set("custom_bottles_path", file_dialog.get_filename())
 
         file_dialog.destroy()

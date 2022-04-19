@@ -434,6 +434,54 @@
                                     </child>
                                   </object>
                                 </child>
+                                <child>
+                                  <object class="HdyActionRow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="title" translatable="yes">Use custom path</property>
+                                    <property name="activatable-widget">btn_choose_path</property>
+                                    <property name="subtitle" translatable="yes">Store this bottle in a different place.</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="spacing">10</property>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                        <child>
+                                          <placeholder/>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton" id="btn_choose_path">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="receives-default">True</property>
+                                            <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                            <property name="halign">center</property>
+                                            <property name="valign">center</property>
+                                            <property name="relief">none</property>
+                                            <child>
+                                              <object class="GtkImage">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="icon-name">document-open-symbolic</property>
+                                              </object>
+                                            </child>
+                                            <style>
+                                              <class name="image-button"/>
+                                            </style>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
                                 <style>
                                   <class name="content"/>
                                 </style>
