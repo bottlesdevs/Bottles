@@ -59,7 +59,9 @@ class JournalManager:
                 journal = {}
 
         if journal is None:
-            journal = {}
+            return {}
+
+        journal = {k: v for k, v in sorted(journal.items(), key=lambda item: item[1]["timestamp"], reverse=True)}
         return journal
 
     @staticmethod
