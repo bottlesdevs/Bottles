@@ -174,14 +174,14 @@ class ManagerUtils:
             datetime.now().timestamp()
         )
 
-        cmd = "bottles"
+        cmd = "bottles-cli"
         if "FLATPAK_ID" in os.environ:
-            cmd = "flatpak run com.usebottles.bottles"
+            cmd = "flatpak run --command=bottles-cli com.usebottles.bottles"
 
         with open(desktop_file, "w") as f:
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={program.get('name')}\n")
-            f.write(f"Exec={cmd} -e '{program.get('path')}' -b '{config.get('Name')}'\n")
+            f.write(f"Exec={cmd} run -p '{program.get('name')}' -b '{config.get('Name')}'\n")
             f.write(f"Type=Application\n")
             f.write(f"Terminal=false\n")
             f.write(f"Categories=Application;\n")
