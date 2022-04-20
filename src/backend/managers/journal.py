@@ -18,6 +18,7 @@
 import os
 import yaml
 import uuid
+import shutil
 from datetime import datetime, timedelta
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
@@ -49,8 +50,18 @@ class JournalManager:
             logging.info("Creating journal file...", )
             with open(Paths.journal, "w") as f:
                 f.write("")
+
         with open(Paths.journal, "r") as f:
-            journal = yaml.safe_load(f)
+            try:
+                journal = yaml.safe_load(f)
+            except yaml.YAMLError:
+                journal_backup = f"{Paths.journal}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.bak"
+                logging.error(
+                    f"Error parsing journal file, it's probably corrupted.\n\t" +
+                    f"Backuping to {journal_backup}...\n" +
+                    f"\tCreating new journal file...")
+                shutil.copy2(Paths.journal, journal_backup)
+                journal = {}
 
         if journal is None:
             journal = {}
