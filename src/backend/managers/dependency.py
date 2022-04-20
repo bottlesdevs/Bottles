@@ -188,6 +188,7 @@ class DependencyManager:
         GLib.idle_add(self.__operation_manager.remove_task, task_id)
 
         # Hide installation button and show remove button
+        logging.info(f"Dependency installed: {dependency[0]} in {config['Name']}", jn=True)
         if not uninstaller:
             return Result(
                 status=True,

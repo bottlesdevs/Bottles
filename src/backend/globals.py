@@ -62,7 +62,6 @@ class Paths:
     nvapi = f"{base}/nvapi"
     latencyflex = f"{base}/latencyflex"
     templates = f"{base}/templates"
-    journal = f"{base}/journal.yml"
     library = f"{base}/library.yml"
 
     data = DataManager()

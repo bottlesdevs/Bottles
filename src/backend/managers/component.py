@@ -37,8 +37,6 @@ from bottles.backend.models.result import Result
 from bottles.backend.downloader import Downloader
 from bottles.backend.logger import Logger
 
-from bottles.backend.managers.journal import JournalManager, JournalSeverity
-
 logging = Logger()
 
 
@@ -255,7 +253,7 @@ class ComponentManager:
             if local_checksum and local_checksum != checksum:
                 logging.error(f"Downloaded file [{file}] looks corrupted.", )
                 logging.error(f"Source cksum: [{checksum}] downloaded: [{local_checksum}]", )
-                logging.info(f"Removing corrupted file [{file}].", )
+                logging.error(f"Removing corrupted file [{file}].", )
                 os.remove(file_path)
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
@@ -422,10 +420,7 @@ class ComponentManager:
             self.__manager.check_winebridge()
 
         self.__manager.organize_components()
-        JournalManager.write(
-            severity=JournalSeverity.INFO,
-            message=f"Component installed: {component_type} {component_name}"
-        )
+        logging.info(f"Component installed: {component_type} {component_name}", jn=True)
 
         return Result(True)
 
@@ -502,9 +497,6 @@ class ComponentManager:
             logging.error(f"Failed to uninstall component: {component_name}, {e}")
             return Result(False, data={"message": "Failed to uninstall component."})
 
-        JournalManager.write(
-            severity=JournalSeverity.INFO,
-            message=f"Component uninstalled: {component_type} {component_name}"
-        )
+        logging.info(f"Component uninstalled: {component_type} {component_name}")
 
         return Result(True)

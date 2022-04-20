@@ -21,6 +21,8 @@ import logging
 from pathlib import Path
 from gettext import gettext as _
 
+from bottles.backend.managers.journal import JournalManager, JournalSeverity  # pyright: reportMissingImports=false
+
 # Set default logging level
 logging.basicConfig(level=logging.DEBUG)
 
@@ -63,17 +65,25 @@ class Logger(logging.getLoggerClass()):
     def debug(self, message, **kwargs):
         self.root.debug(self.__color("debug", message), )
 
-    def info(self, message, **kwargs):
+    def info(self, message, jn=False, **kwargs):
         self.root.info(self.__color("info", message), )
+        if jn:
+            JournalManager.write(JournalSeverity.INFO, message)
 
-    def warning(self, message, **kwargs):
+    def warning(self, message, jn=True, **kwargs):
         self.root.warning(self.__color("warning", message), )
+        if jn:
+            JournalManager.write(JournalSeverity.WARNING, message)
 
-    def error(self, message, **kwargs):
+    def error(self, message, jn=True, **kwargs):
         self.root.error(self.__color("error", message), )
+        if jn:
+            JournalManager.write(JournalSeverity.ERROR, message)
 
-    def critical(self, message, **kwargs):
+    def critical(self, message, jn=True, **kwargs):
         self.root.critical(self.__color("critical", message), )
+        if jn:
+            JournalManager.write(JournalSeverity.CRITICAL, message)
 
     @staticmethod
     def write_log(data: list):
@@ -81,8 +91,6 @@ class Logger(logging.getLoggerClass()):
         Writes a crash.log file. It finds and replace the user's home directory
         with "USER" as a proposed standard for crash reports.
         """
-        from bottles.backend.managers.journal import JournalManager, \
-            JournalSeverity  # pyright: reportMissingImports=false
         xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
         log_path = f"{xdg_data_home}/bottles/crash.log"
 

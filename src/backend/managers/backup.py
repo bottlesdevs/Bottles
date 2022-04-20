@@ -86,7 +86,7 @@ class BackupManager:
             GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
 
         if backup_created:
-            logging.info(f"Backup saved in path: {path}.", )
+            logging.info(f"New backup saved in path: {path}.", jn=True)
             return Result(status=True)
 
         logging.error(f"Failed to save backup in path: {path}.", )
@@ -162,16 +162,16 @@ class BackupManager:
 
         if import_status:
             window.manager.update_bottles()
-            logging.info(f"Backup: [{path}] imported successfully.", )
+            logging.info(f"Backup imported: {path}", jn=True)
             return Result(status=True)
 
-        logging.error(f"Failed importing backup: [{backup_name}]", )
+        logging.error(f"Failed importing backup: {backup_name}", )
         return Result(status=False)
 
     @staticmethod
     def duplicate_bottle(config, name) -> bool:
         """Duplicates the bottle with the specified new name."""
-        logging.info(f"Duplicating bottle: [{config.get('Name')}] to [{name}]", )
+        logging.info(f"Duplicating bottle: {config.get('Name')} to {name}", )
 
         source = ManagerUtils.get_bottle_path(config)
         dest = f"{Paths.bottles}/{name}"
@@ -215,8 +215,8 @@ class BackupManager:
                 symlinks=False
             )
         except (FileNotFoundError, PermissionError, OSError):
-            logging.error(f"Failed duplicate bottle: [{name}]", )
+            logging.error(f"Failed duplicate bottle: {name}", )
             return Result(status=False)
 
-        logging.info(f"Bottle [{name}] duplicated successfully.", )
+        logging.info(f"Bottle {name} duplicated.", jn=True)
         return Result(status=True)

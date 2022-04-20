@@ -127,5 +127,5 @@ class ImportManager:
         # update bottles view
         self.manager.update_bottles(silent=True)
 
-        logging.info(f"Wineprefix: [{wineprefix['Name']}] imported!", )
+        logging.info(f"Wineprefix imported: {wineprefix['Name']}", jn=True)
         return Result(True)

@@ -193,7 +193,7 @@ class SteamManager:
             _path = os.path.join(_library_path, "steamapps/compatdata", appid)
 
             if not os.path.isdir(os.path.join(_path, "pfx")):
-                logging.warning(f"{os.path.join(_path, 'pfx')} does not contain a prefix")
+                logging.warning(f"{appid} does not contain a prefix")
                 continue
 
             _launch_options = SteamManager.get_launch_options(appid, appdata)

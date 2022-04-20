@@ -14,7 +14,8 @@ bottles_sources = [
   'rename.py',
   'drives.py',
   'gamescope.py',
-  'generic_cli.py'
+  'generic_cli.py',
+  'journal.py'
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)

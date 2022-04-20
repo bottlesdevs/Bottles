@@ -150,7 +150,6 @@ class Manager:
                 os.makedirs(Paths.temp, exist_ok=True)
                 logging.info("Temp path cleaned successfully!", )
             except FileNotFoundError:
-                logging.error("Failed to clear temp path!", )
                 self.check_app_dirs()
 
     def update_bottles(self, silent: bool = False):
@@ -468,10 +467,7 @@ class Manager:
         }
 
         if component_type not in components:
-            JournalManager.write(
-                severity=JournalSeverity.WARNING,
-                message=f"Unknown component type found: {component_type}"
-            )
+            logging.warning(f"Unknown component type found: {component_type}")
             raise ValueError("Component type not supported.")
 
         component = components[component_type]
@@ -601,7 +597,7 @@ class Manager:
         logging.info(f"Preparing {len(layer['mounts'])} layer(s)..", )
         layer_conf = LayersStore.get_layer_by_uuid(layer['uuid'])
         if not layer_conf:
-            logging.error("Layer not found.", )
+            logging.error("Layer not found.")
             return False
         program_layer = Layer().init(layer_conf)
         program_layer.mount_bottle(config)
@@ -610,7 +606,7 @@ class Manager:
         for mount in layer['mounts']:
             _layer = LayersStore.get_layer_by_name(mount)
             if not _layer:
-                logging.error(f"Layer {mount} not found.", )
+                logging.error(f"Layer {mount} not found.")
                 return False
             mounts.append(_layer["UUID"])
 
@@ -969,11 +965,7 @@ class Manager:
                 yaml.dump(config, conf_file, indent=4)
                 conf_file.close()
         except (OSError, IOError, yaml.YAMLError) as e:
-            logging.error(f"Error writing bottle config file: {e}", )
-            JournalManager.write(
-                severity=JournalSeverity.ERROR,
-                message=f"Error writing config file for: {config.get('Name', 'Unknown')}"
-            )
+            logging.error(f"Error writing config file {e}")
             return False
 
         if config["Parameters"]["dxvk"]:
@@ -1005,6 +997,8 @@ class Manager:
                     self.supported_dependencies[dependency]
                 ]
                 self.dependency_manager.install(config, dep)
+
+        logging.info(f"New bottle from config created: {config['Path']}")
 
         self.update_bottles(silent=True)
 
@@ -1042,7 +1036,7 @@ class Manager:
             nonlocal check_attempts
 
             if check_attempts > 2:
-                logging.error("Fail to install components, tried 3 times.", )
+                logging.error("Fail to install components, tried 3 times.", jn=True)
                 log_update(_("Fail to install components, tried 3 times."))
                 return False
 
@@ -1129,7 +1123,7 @@ class Manager:
         try:
             os.makedirs(bottle_complete_path)
         except:
-            logging.error("Failed to create bottle directory.")
+            logging.error(f"Failed to create bottle directory: {bottle_complete_path}", jn=True)
             log_update(_("Failed to create bottle directory."))
             return Result(False)
 
@@ -1141,7 +1135,7 @@ class Manager:
                     placeholder = {"Path": os.path.join(Paths.bottles, bottle_name_path)}
                     f.write(yaml.dump(placeholder))
             except:
-                logging.error("Failed to create placeholder directory/file.")
+                logging.error(f"Failed to create placeholder directory/file at: {placeholder}", jn=True)
                 log_update(_("Failed to create placeholder directory/file."))
                 return Result(False)
 
@@ -1315,7 +1309,7 @@ class Manager:
             )
 
         # set status created and UI usability
-        logging.info(f"[{bottle_name}] is now bottled.", )
+        logging.info(f"New bottle created: {bottle_name}", jn=True)
         log_update(_("Finalizing…"))
 
         # wait for all registry changes to be applied
@@ -1433,11 +1427,7 @@ class Manager:
                 yaml.dump(new_config, conf_file, indent=4)
                 conf_file.close()
         except (OSError, IOError, yaml.YAMLError) as e:
-            logging.error(f"Failed to repair bottle: {e}", )
-            JournalManager.write(
-                severity=JournalSeverity.ERROR,
-                message=f"Failed to repair bottle: {config.get('Name', 'Unknown')}"
-            )
+            logging.error(f"Failed to repair bottle: {e}")
             return False
 
         # Execute wineboot in bottle to generate missing files

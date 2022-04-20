@@ -19,12 +19,8 @@ import os
 import yaml
 import uuid
 import shutil
+from pathlib import Path
 from datetime import datetime, timedelta
-
-from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
-from bottles.backend.globals import Paths
-
-logging = Logger()
 
 
 class JournalSeverity:
@@ -43,24 +39,23 @@ class JournalManager:
     contain only important Bottles events.
     """
 
+    _xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+    _base = f"{_xdg_data_home}/bottles"
+    path = f"{_base}/journal.yml"
+
     @staticmethod
     def __get_journal() -> dict:
         """Return the journal as a dictionary."""
-        if not os.path.exists(Paths.journal):
-            logging.info("Creating journal file...", )
-            with open(Paths.journal, "w") as f:
+        if not os.path.exists(JournalManager.path):
+            with open(JournalManager.path, "w") as f:
                 f.write("")
 
-        with open(Paths.journal, "r") as f:
+        with open(JournalManager.path, "r") as f:
             try:
                 journal = yaml.safe_load(f)
             except yaml.YAMLError:
-                journal_backup = f"{Paths.journal}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.bak"
-                logging.error(
-                    f"Error parsing journal file, it's probably corrupted.\n\t" +
-                    f"Backuping to {journal_backup}...\n" +
-                    f"\tCreating new journal file...")
-                shutil.copy2(Paths.journal, journal_backup)
+                journal_backup = f"{JournalManager.path}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.bak"
+                shutil.copy2(JournalManager.path, journal_backup)
                 journal = {}
 
         if journal is None:
@@ -94,8 +89,11 @@ class JournalManager:
         """Save the journal to the journal file."""
         if journal is None:
             journal = JournalManager.__get_journal()
-        with open(Paths.journal, "w") as f:
-            yaml.dump(journal, f)
+        try:
+            with open(JournalManager.path, "w") as f:
+                yaml.dump(journal, f)
+        except:
+            pass  # TODO: Handle this
 
     @staticmethod
     def get(period: str = "today", plain: bool = False):
@@ -113,7 +111,6 @@ class JournalManager:
             "month",
         ]
         if period not in periods:
-            logging.warning(f"Invalid period '{period}', falling back to 'today'", )
             period = "today"
 
         _journal = JournalManager.__filter_by_date(journal, period)
@@ -140,7 +137,6 @@ class JournalManager:
         elif period == "all":
             return journal
         else:
-            logging.error(f"Invalid period '{period}', falling back to 'today'", )
             start = datetime.now().date()
             end = start + timedelta(days=1)
 
@@ -164,7 +160,6 @@ class JournalManager:
         now = datetime.now()
 
         if severity not in JournalSeverity.__dict__.values():
-            logging.warning(f"Invalid severity '{severity}', falling back to 'info'", )
             severity = JournalSeverity.INFO
 
         journal[event_id] = {

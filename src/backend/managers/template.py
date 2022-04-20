@@ -68,7 +68,7 @@ class TemplateManager:
         with open(os.path.join(_path, "template.yml"), "w") as f:
             yaml.dump(template, f)
 
-        logging.info("Template created successfully!", )
+        logging.info(f" New template {env} created", jn=True)
 
         if not TemplateManager.__validate_template(_uuid):
             logging.error("Template validation failed, will retry with next bottle.", )

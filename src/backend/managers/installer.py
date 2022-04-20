@@ -229,9 +229,7 @@ class InstallerManager:
                     )
                     executor.run()
                 else:
-                    _err = f"Failed to download {st.get('file_name')}, or checksum failed."
-                    logging.error(_err)
-                    JournalManager.write(severity=JournalSeverity.ERROR, message=_err)
+                    logging.error(f"Failed to download {st.get('file_name')}, or checksum failed.")
                     return False
         return True
 
@@ -549,3 +547,5 @@ class InstallerManager:
         # unlock widget
         if widget is not None:
             GLib.idle_add(widget.set_installed)
+
+        logging.info(f"Program installed: {manifest['Name']} in {config['Name']}.", jn=True)
