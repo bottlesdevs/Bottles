@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-07 22:07+0200\n"
-"PO-Revision-Date: 2022-03-13 18:01+0000\n"
+"PO-Revision-Date: 2022-04-20 15:50+0000\n"
 "Last-Translator: Artem <github@knebergish.fastmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
@@ -167,7 +167,7 @@ msgstr "Тёмная тема"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Принудительное использование тёмной темы."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -247,14 +247,12 @@ msgid "Toggle experimental Steam Proton prefixes support."
 msgstr "Включить экспериментальную поддержку префиксов Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:library"
-msgstr "Эксперименты"
+msgstr "Эксперименты:библиотека"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Library mode."
-msgstr "Включить функцию экспериментальных установщиков."
+msgstr "Включить экспериментальный режим Библиотеки."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -498,7 +496,7 @@ msgstr "Программы"
 
 #: src/ui/details-bottle.ui:791
 msgid "Other"
-msgstr ""
+msgstr "Другое"
 
 #: src/ui/details-bottle.ui:797
 msgid "Utilities"
@@ -627,11 +625,8 @@ msgid "Use DXVK"
 msgstr "Использовать DXVK"
 
 #: src/ui/details-preferences.ui:33
-#, fuzzy
 msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr ""
-"Повышает производительность игр и 3D-приложений DirectX-11.\n"
-"Отключите, если наблюдаете проблемы с графикой."
+msgstr "Повышает производительность игр и 3D-приложений DirectX 11."
 
 #: src/ui/details-preferences.ui:42 src/ui/details-preferences.ui:612
 msgid "Updating DXVK, please wait…"
@@ -642,11 +637,8 @@ msgid "Use VKD3D"
 msgstr "Использовать VKD3D"
 
 #: src/ui/details-preferences.ui:76
-#, fuzzy
 msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr ""
-"Повышает производительность игр и 3D-приложений DirectX-12.\n"
-"Отключите, если наблюдаете проблемы с графикой."
+msgstr "Повышает производительность игр и 3D-приложений DirectX 12."
 
 #: src/ui/details-preferences.ui:85 src/ui/details-preferences.ui:697
 msgid "Updating VKD3D, please wait…"
@@ -670,12 +662,9 @@ msgid "Enable FSR"
 msgstr "FSR"
 
 #: src/ui/details-preferences.ui:164
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates."
-msgstr ""
-"Передовые технологии масштабирования для увеличения частоты кадров.\n"
-"Отключите при возникновении графических сбоев."
+msgstr "Передовые технологии масштабирования для увеличения частоты кадров."
 
 #: src/ui/details-preferences.ui:178
 msgid "Ultra Quality"
@@ -695,11 +684,11 @@ msgstr "Производительность"
 
 #: src/ui/details-preferences.ui:230
 msgid "Enable LatencyFleX"
-msgstr ""
+msgstr "Использовать LatencyFleX"
 
 #: src/ui/details-preferences.ui:231
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
-msgstr ""
+msgstr "Альтернатива NVIDIA Reflex. Может быть обнаружен некоторыми античитами."
 
 #: src/ui/details-preferences.ui:274
 msgid "Discrete GPU"
@@ -836,9 +825,8 @@ msgid "DXVK NVAPI version"
 msgstr "Версия DXVK NVAPI"
 
 #: src/ui/details-preferences.ui:854
-#, fuzzy
 msgid "LatencyFleX version"
-msgstr "Управление версиями DXVK"
+msgstr "Версия LatencyFleX"
 
 #: src/ui/details-preferences.ui:939
 msgid ""
@@ -890,13 +878,12 @@ msgstr ""
 "Отключите, если у вас возникли проблемы."
 
 #: src/ui/details-preferences.ui:1100
-#, fuzzy
 msgid "Use Steam runtime"
-msgstr "Использовать среду выполнения Bottles"
+msgstr "Использовать среду выполнения Steam"
 
 #: src/ui/details-preferences.ui:1101
 msgid "The same as the Bottles one but provided by Steam."
-msgstr ""
+msgstr "То же самое, что и Bottles, но предоставляется Steam."
 
 #: src/ui/details-preferences.ui:1127
 msgid "Use GameMode"
@@ -971,13 +958,15 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1470
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:1471
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"Включить слой Vulkan и OpenGL для мониторинга FPS, температуры, загрузки CPU/"
+"GPU и многого другого."
 
 #: src/ui/details-preferences.ui:1497
 msgid "Enable wine fixme logs"
@@ -1324,7 +1313,7 @@ msgstr "Введите новое название:"
 
 #: src/ui/dialog-rename.ui:88
 msgid "Type here.."
-msgstr "Введите здесь"
+msgstr "Введите здесь…"
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:86
 #: src/views/bottle_details.py:308 src/views/list.py:130
@@ -1494,13 +1483,12 @@ msgid "32 bit"
 msgstr "32 бита"
 
 #: src/ui/new.ui:462
-#, fuzzy
 msgid "Use custom recipe"
-msgstr "Режим Gamescope"
+msgstr "Использовать пользовательский «рецепт»"
 
 #: src/ui/new.ui:464
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Выберите пользовательский «рецепт» для среды, если он у вас есть."
 
 #: src/ui/new.ui:554
 msgid "Creating bottle…"
@@ -1696,9 +1684,8 @@ msgid "Whether the above list should display unstable versions."
 msgstr "Отображать ли в списке нестабильные версии."
 
 #: src/ui/preferences.ui:336
-#, fuzzy
 msgid "DLL Components"
-msgstr "Версия компонента"
+msgstr "DLL Компоненты"
 
 #: src/ui/preferences.ui:341
 msgid "DXVK"
@@ -1714,7 +1701,7 @@ msgstr "DXVK-NVAPI"
 
 #: src/ui/preferences.ui:371
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: src/ui/preferences.ui:384
 msgid "Core"
@@ -1738,7 +1725,7 @@ msgstr "На ранней стадии разработки (требуется 
 
 #: src/ui/preferences.ui:448
 msgid "Library mode"
-msgstr ""
+msgstr "Режим Библиотеки"
 
 #: src/ui/program-entry.ui:46
 msgid "Browse path"
@@ -1762,16 +1749,15 @@ msgstr "Добавить на рабочий стол"
 
 #: src/ui/program-entry.ui:145
 msgid "Add to my library"
-msgstr ""
+msgstr "Добавить в Библиотеку"
 
 #: src/ui/program-entry.ui:158
 msgid "Remove from Programs"
 msgstr "Удалить из Программ"
 
 #: src/ui/program-entry.ui:195
-#, fuzzy
 msgid "Launch with Steam"
-msgstr "Запуск с терминалом"
+msgstr "Запуск с Steam"
 
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
@@ -1783,7 +1769,7 @@ msgstr "Дата создания"
 
 #: src/ui/window.ui:19 src/window.py:155 src/window.py:206
 msgid "Your library"
-msgstr ""
+msgstr "Библиотека"
 
 #: src/ui/window.ui:32
 msgid "Import/export"
@@ -1791,7 +1777,7 @@ msgstr "Импорт и экспорт"
 
 #: src/ui/window.ui:69
 msgid "Support us"
-msgstr ""
+msgstr "Поддержать проект"
 
 #: src/ui/window.ui:82
 msgid "Documentation"
@@ -1947,15 +1933,15 @@ msgstr "Применение среды: {0}…"
 
 #: src/backend/managers/manager.py:1218
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Использование пользовательского «рецепта» для среды…"
 
 #: src/backend/managers/manager.py:1221
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) «Рецепт» не найден или недействителен…"
 
 #: src/backend/managers/manager.py:1222
 msgid "(!) Proceeding with default environment…"
-msgstr ""
+msgstr "(!) Продолжаем со средой по умолчанию…"
 
 #: src/backend/managers/manager.py:1238
 msgid "Installing DXVK…"
@@ -2161,7 +2147,6 @@ msgid "Application"
 msgstr "Приложения"
 
 #: src/views/new.py:82
-#, fuzzy
 msgid "An environment improved for Windows applications."
 msgstr "Среда, оптимизированная для приложений Windows."
 
@@ -2182,9 +2167,8 @@ msgid "A layered environment, where every app is a layer."
 msgstr "Среда, где каждое приложение — отдельный слой."
 
 #: src/views/new.py:185
-#, fuzzy
 msgid "Choose a recipe file"
-msgstr "Выберите конфигурационный файл"
+msgstr "Выберите файл с «рецептом»"
 
 #: src/views/new.py:272
 msgid "There was an error creating the bottle."
