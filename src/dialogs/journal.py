@@ -40,7 +40,7 @@ class JournalDialog(Handy.Window):
         super().__init__(**kwargs)
 
         self.journal = JournalManager.get().items()
-        self.store = Gtk.ListStore(str, str, str, str)
+        self.store = Gtk.ListStore(str, str, str)
 
         # connect signals
         self.search_entry.connect('search-changed', self.on_search_changed)
@@ -62,24 +62,22 @@ class JournalDialog(Handy.Window):
             JournalSeverity.INFO: '#3283a8'
         }
 
-        for key, value in self.journal:
+        for _, value in self.journal:
             if query.lower() in value['message'].lower() \
                     and (severity == "" or severity == value['severity']):
                 self.store.append([
-                    key,
                     '<span foreground="{}"><b>{}</b></span>'.format(
                         colors[value['severity']], value['severity'].capitalize()),
-                    value['message'],
-                    value['timestamp']
+                    value['timestamp'],
+                    value['message']
                 ])
 
         self.tree_view.set_model(self.store)
         self.tree_view.set_search_column(1)
 
-        self.tree_view.append_column(Gtk.TreeViewColumn('UUID', Gtk.CellRendererText(), text=0))
-        self.tree_view.append_column(Gtk.TreeViewColumn('Severity', Gtk.CellRendererText(), markup=1))
+        self.tree_view.append_column(Gtk.TreeViewColumn('Severity', Gtk.CellRendererText(), markup=0))
+        self.tree_view.append_column(Gtk.TreeViewColumn('Timestamp', Gtk.CellRendererText(), text=1))
         self.tree_view.append_column(Gtk.TreeViewColumn('Message', Gtk.CellRendererText(), text=2))
-        self.tree_view.append_column(Gtk.TreeViewColumn('Timestamp', Gtk.CellRendererText(), text=3))
 
     def on_search_changed(self, entry):
         self.populate_tree_view(entry.get_text())
