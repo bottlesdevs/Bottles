@@ -66,14 +66,18 @@ class MessageDialog(Gtk.MessageDialog):
 
 class SourceDialog(Handy.Window):
 
-    def __init__(self, parent, title, message, **kwargs):
+    def __init__(self, parent, title, message, buttons=None, **kwargs):
         super().__init__(**kwargs)
+        if buttons is None:
+            buttons = []
+
         self.set_position(Gtk.WindowPosition.CENTER)
         self.set_default_size(700, 700)
 
         self.parent = parent
         self.title = title
         self.message = message
+        self.buttons = buttons
 
         self.__build_ui()
 
@@ -105,6 +109,12 @@ class SourceDialog(Handy.Window):
 
         btn_copy.connect("clicked", self.__copy_text)
         btn_copy.set_tooltip_text(_("Copy to clipboard"))
+
+        for button in self.buttons:
+            _btn = Gtk.Button.new_from_icon_name(button["icon"], Gtk.IconSize.BUTTON)
+            _btn.connect("clicked", button["callback"])
+            _btn.set_tooltip_text(button["tooltip"])
+            headerbar.pack_end(_btn)
 
         buffer_iter = source_buffer.get_end_iter()
         source_buffer.insert(buffer_iter, self.message)
