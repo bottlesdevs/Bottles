@@ -40,7 +40,7 @@ class TerminalUtils:
         ['foot', '%s'],
         ['kitty', '%s'],
         ['xfce4-terminal', '-e %s'],
-        ['xterm', '-hold -e %s'],
+        ['xterm', '-e %s'],
         ['konsole', '--noclose -e %s'],
         ['gnome-terminal', '-- %s'],
         ['mate-terminal', '--command %s'],
@@ -88,7 +88,7 @@ class TerminalUtils:
         elif self.terminal[0] in ['kitty', 'foot', 'konsole']:
             command = ' '.join(self.terminal) % "sh -c %s" % f'"{command}"'
         else:
-            command = ' '.join(self.terminal) % f"'bash -c {command}'"
+            command = ' '.join(self.terminal) % "bash -c %s" % f'"{command}"'
 
         subprocess.Popen(
             command,
