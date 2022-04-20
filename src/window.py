@@ -71,7 +71,6 @@ class MainWindow(Handy.ApplicationWindow):
     btn_importer = Gtk.Template.Child()
     btn_noconnection = Gtk.Template.Child()
     btn_health = Gtk.Template.Child()
-    btn_journal = Gtk.Template.Child()
     btn_library = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     list_tasks = Gtk.Template.Child()
@@ -152,7 +151,6 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_library.connect('clicked', self.show_library_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.btn_health.connect("clicked", self.show_health_view)
-        self.btn_journal.connect("clicked", self.show_journal_view)
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
         self.btn_operations.connect('toggled', self.on_operations_toggled)
 
@@ -322,20 +320,20 @@ class MainWindow(Handy.ApplicationWindow):
         This method is called when the user presses the health button.
         It will show the health view.
         """
+        def show_journal_view(_widget):
+            JournalDialog()
+
         ht = HealthChecker().get_results(plain=True)
         SourceDialog(
             parent=self,
             title=_("Health check"),
             message=ht,
+            buttons=[{
+                "callback": show_journal_view,
+                "icon": "document-open-recent-symbolic",
+                "tooltip": _("Journal browser")
+            }]
         )
-
-    @staticmethod
-    def show_journal_view(_widget):
-        """
-        This method is called when the user presses the journal button.
-        It will show the journal view.
-        """
-        JournalDialog()
 
     def show_details_view(self, widget=False, config=dict):
         self.set_previous_page_status()
