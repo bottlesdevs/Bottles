@@ -48,7 +48,7 @@ class JournalManager:
         """Return the journal as a dictionary."""
         if not os.path.exists(JournalManager.path):
             with open(JournalManager.path, "w") as f:
-                f.write("")
+                yaml.dump({}, f)
 
         with open(JournalManager.path, "r") as f:
             try:

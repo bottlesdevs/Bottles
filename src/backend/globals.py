@@ -32,6 +32,9 @@ class API:
 # xdg data path
 xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
 
+# check if bottles exists in xdg data path
+os.makedirs(f"{xdg_data_home}/bottles", exist_ok=True)
+
 
 def get_apps_dir():
     _dir = f"{xdg_data_home}/applications/"
