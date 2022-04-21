@@ -574,7 +574,7 @@ class DependencyManager:
                     shutil.copyfile(fg, _dest)
             else:
                 _name = step.get('file_name')
-                _dest = f"{dest}"
+                _dest = f"{dest}/{_name}"
                 print(f"Copying {_name} to {_dest}")
 
                 if os.path.exists(_dest):
