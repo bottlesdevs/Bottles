@@ -59,7 +59,8 @@ class JournalDialog(Handy.Window):
             JournalSeverity.CRITICAL: '#db1600',
             JournalSeverity.ERROR: '#db6600',
             JournalSeverity.WARNING: '#dba100',
-            JournalSeverity.INFO: '#3283a8'
+            JournalSeverity.INFO: '#3283a8',
+            JournalSeverity.CRASH: '#db1600',
         }
 
         for _, value in self.journal:
