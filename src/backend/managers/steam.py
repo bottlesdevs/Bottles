@@ -297,7 +297,9 @@ class SteamManager:
             return res
 
         if "%command%" in launch_options:
-            prefix, args = launch_options.split("%command%")
+            _c = launch_options.split("%command%")
+            prefix = _c[0] if len(_c) > 0 else ""
+            args = _c[1] if len(_c) > 1 else ""
         else:
             args = launch_options
 
