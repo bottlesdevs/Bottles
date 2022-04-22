@@ -18,7 +18,7 @@ class CMD(WineProgram):
             environment: dict = None,
             cwd: str = None
     ):
-        args = f"/c {batch} {args}"
+        args = f"/c '{batch}' {args}"
 
         self.launch(
             args=args,
