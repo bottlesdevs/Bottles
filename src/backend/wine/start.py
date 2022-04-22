@@ -2,6 +2,7 @@ from typing import NewType
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.wine.wineprogram import WineProgram
+from bottles.backend.wine.winepath import WinePath
 
 logging = Logger()
 
@@ -18,7 +19,15 @@ class Start(WineProgram):
             environment: dict = None,
             cwd: str = None
     ):
-        args = f"{file} {args}"
+        winepath = WinePath(self.config)
+
+        if winepath.is_unix(file):
+            # running unix paths with start is not recommended
+            # as it can miss important files due to the wrong
+            # current working directory
+            args = f"/unix /wait {file} {args}"
+        else:
+            args = f"/wait {file} {args}"
 
         self.launch(
             args=args,
@@ -26,5 +35,6 @@ class Start(WineProgram):
             terminal=terminal,
             environment=environment,
             cwd=cwd,
+            minimal=False,
             action_name="run"
         )
