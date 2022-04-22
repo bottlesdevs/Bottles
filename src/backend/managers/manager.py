@@ -1132,10 +1132,10 @@ class Manager:
             try:
                 os.makedirs(placeholder_dir)
                 with open(os.path.join(placeholder_dir, "placeholder.yml"), "w") as f:
-                    placeholder = {"Path": os.path.join(Paths.bottles, bottle_name_path)}
+                    placeholder = {"Path": bottle_complete_path}
                     f.write(yaml.dump(placeholder))
             except:
-                logging.error(f"Failed to create placeholder directory/file at: {placeholder}", jn=True)
+                logging.error(f"Failed to create placeholder directory/file at: {placeholder_dir}", jn=True)
                 log_update(_("Failed to create placeholder directory/file."))
                 return Result(False)
 
