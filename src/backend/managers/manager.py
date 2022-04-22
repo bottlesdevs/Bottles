@@ -1377,7 +1377,7 @@ class Manager:
                 try:
                     os.remove(os.path.join(
                         Paths.bottles,
-                        os.path.basename(config.get("Custom_Path")),
+                        os.path.basename(config.get("Path")),
                         "placeholder.yml"
                     ))
                 except FileNotFoundError:
