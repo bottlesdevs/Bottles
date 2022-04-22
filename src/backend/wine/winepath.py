@@ -18,22 +18,26 @@ class WinePath(WineProgram):
     def is_unix(path: str):
         return not WinePath.is_windows(path)
 
+    @staticmethod
+    def __clean_path(path):
+        return path.replace("\n", " ").replace("\r", " ").replace("\t", " ")
+
     def to_unix(self, path: str):
         args = f"--unix {path}"
-
-        return self.launch(args=args, comunicate=True, action_name="--unix")
+        res = self.launch(args=args, comunicate=True, action_name="--unix")
+        return self.__clean_path(res)
 
     def to_windows(self, path: str):
         args = f"--windows {path}"
-
-        return self.launch(args=args, comunicate=True, action_name="--windows")
+        res = self.launch(args=args, comunicate=True, action_name="--windows")
+        return self.__clean_path(res)
 
     def to_long(self, path: str):
         args = f"--long {path}"
-
-        return self.launch(args=args, comunicate=True, action_name="--long")
+        res = self.launch(args=args, comunicate=True, action_name="--long")
+        return self.__clean_path(res)
 
     def to_short(self, path: str):
         args = f"--short {path}"
-
-        return self.launch(args=args, comunicate=True, action_name="--short")
+        res = self.launch(args=args, comunicate=True, action_name="--short")
+        return self.__clean_path(res)
