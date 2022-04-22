@@ -46,10 +46,14 @@ class WineExecutor:
 
     def __get_cwd(self, cwd: str) -> Union[str, None]:
         winepath = WinePath(self.config)
-        if cwd is not None or not winepath.is_windows(self.exec_path):
-            path = os.path.dirname(self.exec_path)
-            if path != "":
-                return path
+        if cwd in [None, ""]:
+            path = self.exec_path
+            if winepath.is_windows(self.exec_path):
+                if path.startswith(("'", '"')):
+                    path = path[1:-1]
+                path = "\\".join(path.split("\\")[:-1])
+                path = winepath.to_unix(path)
+            return os.path.dirname(path)
         return cwd  # will be set by WineCommand if None
 
     @staticmethod
@@ -129,7 +133,7 @@ class WineExecutor:
         if self.exec_type == "batch":
             return self.__launch_batch()
         if self.exec_type in ["lnk", "unsupported"]:
-            return self.__launch_lnk()
+            return self.__launch_with_starter()
         if self.exec_type == "dll":
             return self.__launch_dll()
         return False
@@ -142,6 +146,9 @@ class WineExecutor:
         #         status=True,
         #         data={"output": res}
         #     )
+        winepath = WinePath(self.config)
+        if winepath.is_windows(self.exec_path):
+            return self.__launch_with_starter()
         if self.exec_type == "exe":
             return self.__launch_exe()
         if self.exec_type == "msi":
@@ -202,7 +209,7 @@ class WineExecutor:
             data={"output": res}
         )
 
-    def __launch_lnk(self):
+    def __launch_with_starter(self):
         start = Start(self.config)
         res = start.run(
             file=self.exec_path,
