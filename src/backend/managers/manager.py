@@ -759,7 +759,7 @@ class Manager:
             try:
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.safe_load(f)
-            except FileNotFoundError:
+            except (FileNotFoundError, yaml.YAMLError):
                 if not silent:
                     logging.warning(f"A placeholder found but can't reach the config file: {_config}")
                 continue
