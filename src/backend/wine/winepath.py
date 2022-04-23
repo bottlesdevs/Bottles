@@ -23,21 +23,21 @@ class WinePath(WineProgram):
         return path.replace("\n", " ").replace("\r", " ").replace("\t", " ")
 
     def to_unix(self, path: str):
-        args = f"--unix {path}"
+        args = f"--unix '{path}'"
         res = self.launch(args=args, comunicate=True, action_name="--unix")
         return self.__clean_path(res)
 
     def to_windows(self, path: str):
-        args = f"--windows {path}"
+        args = f"--windows '{path}'"
         res = self.launch(args=args, comunicate=True, action_name="--windows")
         return self.__clean_path(res)
 
     def to_long(self, path: str):
-        args = f"--long {path}"
+        args = f"--long '{path}'"
         res = self.launch(args=args, comunicate=True, action_name="--long")
         return self.__clean_path(res)
 
     def to_short(self, path: str):
-        args = f"--short {path}"
+        args = f"--short '{path}'"
         res = self.launch(args=args, comunicate=True, action_name="--short")
         return self.__clean_path(res)
