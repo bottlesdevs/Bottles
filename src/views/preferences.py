@@ -44,6 +44,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
     list_nvapi = Gtk.Template.Child()
     list_latencyflex = Gtk.Template.Child()
     actionrow_prerelease = Gtk.Template.Child()
+    action_bottles_path = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
     flatpak_notice = Gtk.Template.Child()
@@ -68,6 +69,9 @@ class PreferencesWindow(Handy.PreferencesWindow):
             self.pref_core.set_visible(False)
 
         if self.data.get("custom_bottles_path"):
+            self.action_bottles_path.set_subtitle(
+                self.data.get("custom_bottles_path")
+            )
             self.btn_bottles_path_reset.set_visible(True)
 
         # set widget defaults
@@ -148,7 +152,12 @@ class PreferencesWindow(Handy.PreferencesWindow):
         response = file_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            self.data.set("custom_bottles_path", file_dialog.get_filename())
+            path = file_dialog.get_filename()
+            self.data.set("custom_bottles_path", path)
+            self.action_bottles_path.set_subtitle(path)
+        else:
+            self.action_bottles_path.set_subtitle(
+                _("Choose where to store the new bottles (this will not move the existing ones)"))
 
         file_dialog.destroy()
         self.btn_bottles_path_reset.set_visible(True)
@@ -156,6 +165,8 @@ class PreferencesWindow(Handy.PreferencesWindow):
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
         self.btn_bottles_path_reset.set_visible(False)
+        self.action_bottles_path.set_subtitle(
+            _("Choose where to store the new bottles (this will not move the existing ones)"))
 
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():
