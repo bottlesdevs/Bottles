@@ -134,7 +134,7 @@ class ProgramEntry(Handy.ActionRow):
 
     def show_launch_options_view(self, widget=False):
         new_window = LaunchOptionsDialog(
-            self.window,
+            self,
             self.config,
             self.program
         )

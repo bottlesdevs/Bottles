@@ -34,14 +34,15 @@ class LaunchOptionsDialog(Handy.Window):
 
     # endregion
 
-    def __init__(self, window, config, program, **kwargs):
+    def __init__(self, parent, config, program, **kwargs):
         super().__init__(**kwargs)
 
-        self.set_transient_for(window)
+        self.set_transient_for(parent.window)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
+        self.parent = parent
+        self.window = parent.window
+        self.manager = parent.window.manager
         self.config = config
         self.program = program
 
@@ -58,6 +59,7 @@ class LaunchOptionsDialog(Handy.Window):
         self.entry_arguments.connect("activate", self.__save_options)
 
     def __close_window(self, widget=None):
+        self.parent.page_details.set_config(self.config)
         self.destroy()
 
     def __save_options(self, widget):
