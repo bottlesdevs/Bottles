@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-07 22:07+0200\n"
-"PO-Revision-Date: 2022-02-03 00:54+0000\n"
-"Last-Translator: Giai Ngo <giai.ngo@disroot.org>\n"
+"PO-Revision-Date: 2022-04-25 07:53+0000\n"
+"Last-Translator: lebao3105 <bao12345yocoo@gmail.com>\n"
 "Language-Team: Vietnamese <https://hosted.weblate.org/projects/bottles/"
 "bottles/vi/>\n"
 "Language: vi\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
 #: src/ui/window.ui:222 src/ui/window.ui:237 src/window.py:145
 #: src/window.py:202
 msgid "Bottles"
-msgstr "Chai"
+msgstr "Bottles"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
@@ -44,11 +44,12 @@ msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Chạy phần mềm Windows trên Linux với Chai!"
+msgstr "Chạy phần mềm Windows trên Linux với Bottles!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
+#, fuzzy
 msgid "Bottle software and enjoy at your leisure!"
-msgstr "Đóng chai phần mềm và tận hưởng lúc rảnh rỗi!"
+msgstr "Mở Bottle và tận hưởng lúc rảnh rỗi!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -64,7 +65,7 @@ msgstr ""
 msgid ""
 "Bottle versioning keeps your work safe now and lets you restore it later!"
 msgstr ""
-"Phiên bản các chai, giữ cho công việc của bạn an toàn và cho phép bạn khôi "
+"Phiên bản các bottle giữ cho công việc của bạn an toàn và cho phép bạn khôi "
 "phục nó!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:16
@@ -82,12 +83,12 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Chạy phần mềm (.exe / .msi) trong chai của bạn, trực tiếp từ menu ngữ cảnh "
+"Chạy phần mềm (.exe / .msi) trong bottle của bạn, trực tiếp từ menu ngữ cảnh "
 "của trình quản lý tệp"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr "Phát hiện tự động các ứng dụng được cài đặt trong chai của bạn"
+msgstr "Phát hiện tự động các ứng dụng được cài đặt trong bottle của bạn"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -159,11 +160,11 @@ msgstr "Bật / Tắt hộp thoại di chuyển Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr ""
+msgstr "Chế độ tối"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Buộc kích hoạt chế độ tối"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -235,24 +236,22 @@ msgstr ""
 "cài đặt phiên bản. Phát hành ứng viên cho trình thực thi."
 
 #: data/com.usebottles.bottles.gschema.xml:56
-#, fuzzy
 msgid "Experiments:steam"
-msgstr "Thử nghiệm"
+msgstr "Thử nghiệm:steam"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 #, fuzzy
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "Kích hoạt / Hủy kích hoạt các tính năng thử nghiệm của trình cài đặt."
+msgstr "Kích hoạt / Hủy kích hoạt các tính năng thử nghiệm của Steam Proton."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:library"
-msgstr "Thử nghiệm"
+msgstr "Thử nghiệm:thư viện"
 
 #: data/com.usebottles.bottles.gschema.xml:62
 #, fuzzy
 msgid "Toggle experimental Library mode."
-msgstr "Kích hoạt / Hủy kích hoạt các tính năng thử nghiệm của trình cài đặt."
+msgstr "Kích hoạt / Hủy kích hoạt các tính năng thử nghiệm của chế độ Thư viện."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -334,9 +333,8 @@ msgid "License"
 msgstr "Giấy phép"
 
 #: src/ui/dependency-entry.ui:45
-#, fuzzy
 msgid "Reinstall"
-msgstr "Gỡ cài đặt"
+msgstr "Cài đặt lại"
 
 #: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
 msgid "Bug report"
@@ -377,9 +375,8 @@ msgid "Full archive"
 msgstr "Lưu trữ đầy đủ"
 
 #: src/ui/details-bottle.ui:59
-#, fuzzy
 msgid "Duplicate bottle"
-msgstr "Nhân bản một chai"
+msgstr "Nhân bản một bottle"
 
 #: src/ui/details-bottle.ui:86
 msgid "Open with explorer"
@@ -387,39 +384,39 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:112
 msgid "Flatpak help"
-msgstr ""
+msgstr "Trợ giúp"
 
 #: src/ui/details-bottle.ui:136
 msgid "I can't see my old bottles after upgrade."
-msgstr ""
+msgstr "Tôi không thể thấy các bottles cũ của mình sau khi nâng cấp."
 
 #: src/ui/details-bottle.ui:149
 msgid "I don't see some directories."
-msgstr ""
+msgstr "Tôi không thấy một số thư mục."
 
 #: src/ui/details-bottle.ui:162
 msgid "I can't see the files in my home."
-msgstr ""
+msgstr "Tôi không thể thấy tệp ở thư mục nhà của tôi."
 
 #: src/ui/details-bottle.ui:175
 msgid "Executable silently crash or black screen"
-msgstr ""
+msgstr "Tệp khởi chạy tự thoát hoặc có màn hình đen"
 
 #: src/ui/details-bottle.ui:201
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Giả lập một lần khởi động lại hệ thống Windows."
 
 #: src/ui/details-bottle.ui:202
 msgid "Reboot"
-msgstr ""
+msgstr "Khởi động lại"
 
 #: src/ui/details-bottle.ui:215
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Giả lập một lần tắt hệ thống Windows."
 
 #: src/ui/details-bottle.ui:216
 msgid "Shutdown"
-msgstr ""
+msgstr "Tắt nguồn"
 
 #: src/ui/details-bottle.ui:242 src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
@@ -427,30 +424,27 @@ msgstr "Chạy với các đối số"
 
 #: src/ui/details-bottle.ui:252
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "Chuyển vào trong hộp cát"
 
 #: src/ui/details-bottle.ui:266 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
-msgstr ""
+msgstr "Mở trong Terminal"
 
 #: src/ui/details-bottle.ui:324 src/ui/details-bottle.ui:701
-#, fuzzy
 msgid "Destroy this bottle"
-msgstr "Khôi phục trạng thái này"
+msgstr "Phá bỏ bottle này"
 
 #: src/ui/details-bottle.ui:352 src/main.py:125
 msgid "Bottle name"
 msgstr "Tên chai"
 
 #: src/ui/details-bottle.ui:356
-#, fuzzy
 msgid "Type a name for your bottle"
-msgstr "Chọn một tên cho chai của bạn"
+msgstr "Chọn một tên cho bottle của bạn"
 
 #: src/ui/details-bottle.ui:374
-#, fuzzy
 msgid "Rename bottle"
-msgstr "Chai mới"
+msgstr "Đổi tên bottle"
 
 #: src/ui/details-bottle.ui:401 src/ui/list-entry.ui:35
 msgid "Versioning enabled for this bottle"
@@ -470,7 +464,7 @@ msgstr "Môi trường"
 
 #: src/ui/details-bottle.ui:496
 msgid "64 Bit"
-msgstr ""
+msgstr "64 Bit"
 
 #: src/ui/details-bottle.ui:515
 msgid "Vaniglia-6.21-x86_64"
@@ -479,25 +473,23 @@ msgstr ""
 #: src/ui/details-bottle.ui:540
 #, fuzzy
 msgid "Layers"
-msgstr "Nhiều lớp"
+msgstr "Các lớp"
 
 #: src/ui/details-bottle.ui:563
-#, fuzzy
 msgid "Run executable"
-msgstr "Đường dẫn thực thi"
+msgstr "Thực thi chương trình"
 
 #: src/ui/details-bottle.ui:637
 msgid "Kill all WINE processes"
-msgstr ""
+msgstr "Đóng tất cả tiến trình của WINE"
 
 #: src/ui/details-bottle.ui:662
-#, fuzzy
 msgid "Make a backup of this bottle."
-msgstr "Thực thi trong chai này"
+msgstr "Sao lưu bottle này."
 
 #: src/ui/details-bottle.ui:758
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "Đang chuyển vào hộp cát…"
 
 #: src/ui/details-bottle.ui:775 src/views/details.py:119
 msgid "Programs"
@@ -505,17 +497,15 @@ msgstr "Chương trình"
 
 #: src/ui/details-bottle.ui:791
 msgid "Other"
-msgstr ""
+msgstr "Khác"
 
 #: src/ui/details-bottle.ui:797
-#, fuzzy
 msgid "Utilities"
-msgstr "Chi tiết & Tiện ích"
+msgstr "Tiện ích"
 
 #: src/ui/details-bottle.ui:802
-#, fuzzy
 msgid "Browse C:"
-msgstr "Duyệt đường dẫn"
+msgstr "Duyệt C:"
 
 #: src/ui/details-bottle.ui:804
 #, fuzzy
@@ -529,11 +519,11 @@ msgstr ""
 #: src/ui/details-bottle.ui:885
 #, fuzzy
 msgid "Run commands inside the Bottle."
-msgstr "Chạy .exe / .msi trong chai này"
+msgstr "Chạy .exe / .msi trong bottle này"
 
 #: src/ui/details-bottle.ui:925
 msgid "Registry editor"
-msgstr ""
+msgstr "Trình chỉnh sửa Registry"
 
 #: src/ui/details-bottle.ui:927
 msgid "Edit the internal registry."
@@ -541,11 +531,11 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:967
 msgid "Debug"
-msgstr ""
+msgstr "Gỡ lỗi"
 
 #: src/ui/details-bottle.ui:969
 msgid "Debug wine processes."
-msgstr ""
+msgstr "Thực hiện debug các tiến trình WINE."
 
 #: src/ui/details-bottle.ui:1006 src/ui/details-dependencies.ui:195
 #: src/ui/details-installers.ui:100 src/ui/details-programs.ui:125
@@ -554,12 +544,13 @@ msgid "Read documentation"
 msgstr "Đọc tài liệu"
 
 #: src/ui/details-bottle.ui:1034 src/views/details.py:131
+#, fuzzy
 msgid "Task manager"
-msgstr "Quản lý công việc"
+msgstr "Quản lý tác vụ"
 
 #: src/ui/details-bottle.ui:1036
 msgid "Manage processes with the Wine task manager."
-msgstr ""
+msgstr "Quản lý các tác vụ với trình quản lý tác vụ Wine."
 
 #: src/ui/details-bottle.ui:1076
 msgid "Wine config"
@@ -579,8 +570,9 @@ msgid "Uninstall programs using wine uninstaller"
 msgstr ""
 
 #: src/ui/details-bottle.ui:1160
+#, fuzzy
 msgid "Control panel"
-msgstr ""
+msgstr "Control panel"
 
 #: src/ui/details-bottle.ui:1162
 msgid "Access the internal wine control panel."
@@ -609,22 +601,22 @@ msgid "Report a problem or a missing dependency."
 msgstr "Báo cáo một vấn đề hoặc thiếu phần phụ thuộc."
 
 #: src/ui/details-dependencies.ui:243
-#, fuzzy
 msgid "Install selected"
-msgstr "Trình cài đặt"
+msgstr "Cài đặt (những) thứ được chọn"
 
 #: src/ui/details-dependencies.ui:246
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr ""
+"Chúng tôi đặc biệt khuyên bạn không nên cài đặt nhiều gói phụ thuộc cùng một "
+"lúc."
 
 #: src/ui/details-dependencies.ui:265
-#, fuzzy
 msgid "Select dependencies"
-msgstr "Phụ thuộc"
+msgstr "Chọn các gói phụ thuộc"
 
 #: src/ui/details-installers.ui:36
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games Store .."
 
 #: src/ui/details-installers.ui:126 src/ui/details-taskmanager.ui:32
 #: src/ui/importer.ui:93
