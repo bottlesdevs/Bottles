@@ -1,6 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?><interface>
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
+  <object class="GtkPopover" id="pop_script_extra">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="width-request">160</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="border-width">9</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkModelButton" id="btn_script_reset">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="text" translatable="yes">Reset default</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
   <template class="LaunchOptionsDialog" parent="HdyWindow">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -157,23 +193,16 @@
                         <property name="selection-mode">none</property>
                         <property name="activate-on-single-click">False</property>
                         <child>
-                          <object class="HdyActionRow">
+                          <object class="HdyActionRow" id="action_script">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="title" translatable="yes">Post-run script</property>
-                            <property name="activatable-widget">btn_script</property>
                             <property name="subtitle" translatable="yes">Choose a script which should be executed after run.</property>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
-                                  <placeholder/>
-                                </child>
                                 <child>
                                   <object class="GtkButton" id="btn_script">
                                     <property name="visible">True</property>
@@ -197,7 +226,47 @@
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="fill">True</property>
-                                    <property name="position">3</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkMenuButton">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="focus-on-click">False</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="valign">center</property>
+                                    <property name="relief">none</property>
+                                    <property name="popover">pop_script_extra</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="icon-name">view-more-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="image-button"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkSeparator">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="pack-type">end</property>
+                                    <property name="position">2</property>
                                   </packing>
                                 </child>
                               </object>

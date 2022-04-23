@@ -28,8 +28,9 @@ class LaunchOptionsDialog(Handy.Window):
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     btn_script = Gtk.Template.Child()
+    btn_script_reset = Gtk.Template.Child()
     flatpak_warn = Gtk.Template.Child()
-    expander = Gtk.Template.Child()
+    action_script = Gtk.Template.Child()
 
     # endregion
 
@@ -53,8 +54,8 @@ class LaunchOptionsDialog(Handy.Window):
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_save.connect("clicked", self.__save_options)
         self.btn_script.connect("clicked", self.__choose_script)
+        self.btn_script_reset.connect("clicked", self.__choose_script, True)
         self.entry_arguments.connect("activate", self.__save_options)
-        # self.expander.set_visible(False)
 
     def __close_window(self, widget=None):
         self.destroy()
@@ -74,18 +75,28 @@ class LaunchOptionsDialog(Handy.Window):
         )
         GLib.idle_add(self.__close_window)
 
-    def __choose_script(self, widget):
+    def __choose_script(self, widget, reset=False):
         """
         This function open a file chooser dialog to choose the
         script which will be executed before the program.
         """
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose the script"),
-            self.window,
-            Gtk.FileChooserAction.OPEN,
-            _("Run"),
-            _("Cancel")
-        )
-        response = file_dialog.run()
-        if response == -3:
-            self.program["script"] = file_dialog.get_filename()
+        path = ""
+        if not reset:
+            file_dialog = Gtk.FileChooserNative.new(
+                _("Choose the script"),
+                self.window,
+                Gtk.FileChooserAction.OPEN,
+                _("Run"),
+                _("Cancel")
+            )
+            response = file_dialog.run()
+            if response == -3:
+                path = file_dialog.get_filename()
+                self.program["script"] = path
+
+            file_dialog.destroy()
+
+        if path != "":
+            self.action_script.set_subtitle(path)
+        else:
+            self.action_script.set_subtitle(_("Choose a script which should be executed after run."))
