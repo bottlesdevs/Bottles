@@ -59,6 +59,7 @@ from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
+from bottles.backend.wine.winepath import WinePath
 
 logging = Logger()
 
@@ -630,6 +631,7 @@ class Manager:
         in the bottle configuration file).
         """
         bottle = ManagerUtils.get_bottle_path(config)
+        winepath = WinePath(config)
         results = glob(
             f"{bottle}/drive_c/users/*/Desktop/*.lnk",
             recursive=True
@@ -669,7 +671,10 @@ class Manager:
         for program in ext_programs:
             found.append(program)
             _program = ext_programs[program]
-            program_folder = os.path.dirname(_program["path"])
+            if winepath.is_windows(_program["path"]):
+                program_folder = self.__get_exe_parent_dir(config, _program["path"])
+            else:
+                program_folder = os.path.dirname(_program["path"])
             icon = self.__find_program_icon(program)
             installed_programs.append({
                 "executable": _program["executable"],
