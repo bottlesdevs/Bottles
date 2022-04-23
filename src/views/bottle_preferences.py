@@ -50,6 +50,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     btn_environment_variables = Gtk.Template.Child()
     btn_drives = Gtk.Template.Child()
     btn_overrides = Gtk.Template.Child()
+    btn_cwd_reset = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
@@ -116,6 +117,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.btn_manage_nvapi.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
+        self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
         self.btn_drives.connect("clicked", self.__show_drives)
         self.btn_environment_variables.connect("clicked", self.__show_environment_variables)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
@@ -177,28 +179,32 @@ class PreferencesView(Gtk.ScrolledWindow):
         if not obs_vkc_available:
             self.switch_obsvkc.set_tooltip_text(_not_available)
 
-    def choose_cwd(self, widget):
+    def choose_cwd(self, widget, reset=False):
         """Change the default current working directory for the bottle"""
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose working directory for executables"),
-            self.window,
-            Gtk.FileChooserAction.SELECT_FOLDER,
-            _("Done"),
-            _("Cancel")
-        )
-        file_dialog.set_current_folder(
-            ManagerUtils.get_bottle_path(self.config)
-        )
-        response = file_dialog.run()
-
-        if response == -3:
-            self.manager.update_config(
-                config=self.config,
-                key="WorkingDir",
-                value=file_dialog.get_filename()
+        path = ""
+        if not reset:
+            file_dialog = Gtk.FileChooserNative.new(
+                _("Choose working directory for executables"),
+                self.window,
+                Gtk.FileChooserAction.SELECT_FOLDER,
+                _("Done"),
+                _("Cancel")
             )
+            file_dialog.set_current_folder(
+                ManagerUtils.get_bottle_path(self.config)
+            )
+            response = file_dialog.run()
 
-        file_dialog.destroy()
+            if response == -3:
+                path = file_dialog.get_filename()
+
+            file_dialog.destroy()
+
+        self.manager.update_config(
+            config=self.config,
+            key="WorkingDir",
+            value=path
+        )
 
     def update_combo_components(self):
         """
