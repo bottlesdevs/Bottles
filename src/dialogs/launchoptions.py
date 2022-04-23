@@ -37,14 +37,14 @@ class LaunchOptionsDialog(Handy.Window):
     def __init__(self, parent, config, program, **kwargs):
         super().__init__(**kwargs)
 
-        self.set_transient_for(parent.window)
-
         # common variables and references
         self.parent = parent
         self.window = parent.window
         self.manager = parent.window.manager
         self.config = config
         self.program = program
+
+        self.set_transient_for(self.window)
 
         # set widget defaults
         self.entry_arguments.set_text(program.get("arguments", ""))
