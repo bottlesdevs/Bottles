@@ -83,6 +83,8 @@ class DetailsView(Handy.Leaflet):
             page = "bottle"
 
         self.window.set_title(pages[page]['title'], pages[page]['description'])
+        # if page == "bottle":
+        #     self.window.set_actions(self.view_bottle.actions)
         if page == "programs":
             self.window.set_actions(self.view_programs.actions)
         elif page == "dependencies":

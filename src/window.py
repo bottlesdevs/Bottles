@@ -172,8 +172,11 @@ class MainWindow(Handy.ApplicationWindow):
         When the user changes the page, update the window title
         according to the page.
         """
-        self.set_actions(None)
         page = self.stack_main.get_visible_child_name()
+
+        if page != "page_details":
+            self.set_actions(None)
+
         if page == "page_details":
             self.set_title(_("Bottle details"))
         elif page == "page_list":
