@@ -206,6 +206,11 @@ class PreferencesView(Gtk.ScrolledWindow):
             value=path
         )
 
+        if path != "":
+            self.action_cwd.set_subtitle(path)
+        else:
+            self.action_cwd.set_subtitle(_("Default to the bottle path."))
+
     def update_combo_components(self):
         """
         This function update the components' combo boxes with the
@@ -306,6 +311,11 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_windows.set_active_id(self.config.get("Windows"))
         self.combo_renderer.set_active_id(parameters["renderer"])
         self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
+
+        if self.config.get("WorkingDir") != "":
+            self.action_cwd.set_subtitle(self.config.get("WorkingDir"))
+        else:
+            self.action_cwd.set_subtitle(_("Default to the bottle path."))
 
         # unlock functions connected to the widgets
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
