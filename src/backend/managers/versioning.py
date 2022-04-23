@@ -447,7 +447,7 @@ class VersioningManager:
             states = states_file_yaml.get("States")
 
             logging.info(f"Found [{len(states)}] states for bottle: [{config['Name']}]", )
-        except:
-            logging.warning(f"Cannot find states.yml file for bottle: [{config['Name']}]", )
+        except (FileNotFoundError, yaml.YAMLError):
+            pass
 
         return states

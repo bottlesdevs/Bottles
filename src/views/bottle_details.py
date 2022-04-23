@@ -77,12 +77,7 @@ class BottleView(Gtk.ScrolledWindow):
     btn_backup_full = Gtk.Template.Child()
     btn_duplicate = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
-    btn_delete_top = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
-    btn_flatpak_doc_home = Gtk.Template.Child()
-    btn_flatpak_doc_expose = Gtk.Template.Child()
-    btn_flatpak_doc_upgrade = Gtk.Template.Child()
-    btn_flatpak_doc_silent_crash = Gtk.Template.Child()
     btn_help_debug = Gtk.Template.Child()
     btn_explorer = Gtk.Template.Child()
     box_run_extra = Gtk.Template.Child()
@@ -98,6 +93,7 @@ class BottleView(Gtk.ScrolledWindow):
     extra_separator = Gtk.Template.Child()
     reveal_progress = Gtk.Template.Child()
     progress_bar = Gtk.Template.Child()
+    actions = Gtk.Template.Child()
 
     # endregion
 
@@ -125,7 +121,6 @@ class BottleView(Gtk.ScrolledWindow):
         self.btn_uninstaller.connect("clicked", self.run_uninstaller)
         self.btn_regedit.connect("clicked", self.run_regedit)
         self.btn_delete.connect("clicked", self.__confirm_delete)
-        self.btn_delete_top.connect("clicked", self.__confirm_delete)
         self.btn_shutdown.connect("clicked", self.wineboot, 2)
         self.btn_reboot.connect("clicked", self.wineboot, 1)
         self.btn_killall.connect("clicked", self.wineboot, 0)
@@ -137,22 +132,7 @@ class BottleView(Gtk.ScrolledWindow):
             open_doc_url,
             "utilities/logs-and-debugger#wine-debugger"
         )
-        self.btn_flatpak_doc_home.connect(
-            "clicked",
-            open_doc_url,
-            "flatpak/expose-directories/use-system-home"
-        )
-        self.btn_flatpak_doc_expose.connect(
-            "clicked",
-            open_doc_url,
-            "flatpak/expose-directories"
-        )
-        self.btn_flatpak_doc_upgrade.connect(
-            "clicked",
-            open_doc_url,
-            "flatpak/migrate-bottles-to-flatpak"
-        )
-        self.btn_flatpak_doc_silent_crash.connect(
+        self.btn_flatpak_doc.connect(
             "clicked",
             open_doc_url,
             "flatpak/black-screen-or-silent-crash"
@@ -180,26 +160,14 @@ class BottleView(Gtk.ScrolledWindow):
         self.entry_name.set_tooltip_text(_("Updated: %s" % update_date))
 
         # set arch
-        arch = _("64-bit")
-        if self.config.get("Arch") == "win32":
-            arch = _("32-bit")
-        self.label_arch.set_text(arch)
+        self.label_arch.set_text(self.config.get("Arch", "n/a").capitalize())
 
         # set name and runner
         self.entry_name.set_text(self.config.get("Name"))
         self.label_runner.set_text(self.config.get("Runner"))
 
         # set environment
-        self.label_environment.set_text(
-            _(self.config.get("Environment"))
-        )
-        env_cxt = self.label_environment.get_style_context()
-        for cls in env_cxt.list_classes():
-            env_cxt.remove_class(cls)
-        env_cxt.add_class("tag")
-        env_cxt.add_class(
-            f"tag-{self.config.get('Environment').lower()}"
-        )
+        self.label_environment.set_text(_(self.config.get("Environment")))
 
         # set versioning
         self.grid_versioning.set_visible(self.config.get("Versioning"))
@@ -210,7 +178,7 @@ class BottleView(Gtk.ScrolledWindow):
     def __check_entry_name(self, widget, event_key):
         """
         This function check if the entry name is valid, looking
-        for special characters. It also toggle the widget icon
+        for special characters. It also toggles the widget icon
         and the save button sensitivity according to the result.
         """
         regex = re.compile('\\\[@!#$%^&*()<>?/|}{~:.;,]')
@@ -448,11 +416,9 @@ class BottleView(Gtk.ScrolledWindow):
         if self.config.get("Environment") == "Layered":
             for widget in widgets:
                 widget.set_visible(False)
-            self.btn_delete_top.set_visible(True)
         else:
             for widget in widgets:
                 widget.set_visible(True)
-            self.btn_delete_top.set_visible(False)
 
     def update_move_progress(self, progress):
         """
