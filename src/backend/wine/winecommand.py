@@ -407,7 +407,7 @@ class WineCommand:
                 command = f"{obs_vkc_available} {command}"
 
         if post_script is not None:
-            command = f"{command} && sh {post_script}"
+            command = f"{command} && sh '{post_script}'"
 
         return command
 
