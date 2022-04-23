@@ -180,20 +180,19 @@ class ProgramEntry(Handy.ActionRow):
                 config=self.config,
                 layer=self.program
             )
-        else:
-            def _run():
-                WineExecutor(
-                    self.config,
-                    exec_path=self.program["path"],
-                    args=self.program["arguments"],
-                    cwd=self.program["folder"],
-                    post_script=self.program.get("script", None),
-                    terminal=with_terminal
-                ).run()
-                return False
 
-            RunAsync(_run, callback=self.__reset_buttons)
+        def _run():
+            WineExecutor(
+                self.config,
+                exec_path=self.program["path"],
+                args=self.program["arguments"],
+                cwd=self.program["folder"],
+                post_script=self.program.get("script", None),
+                terminal=with_terminal
+            ).run()
+            return True
 
+        RunAsync(_run, callback=self.__reset_buttons)
         self.__reset_buttons()
 
     def run_steam(self, widget):
@@ -203,7 +202,7 @@ class ProgramEntry(Handy.ActionRow):
         winedbg = WineDbg(self.config)
         widget.set_sensitive(False)
         winedbg.kill_process(self.executable)
-        self.__reset_buttons()
+        self.__reset_buttons(True)
 
     def update_programs(self, result=False, error=False):
         GLib.idle_add(self.page_details.update_programs, config=self.config)
