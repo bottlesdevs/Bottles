@@ -20,43 +20,15 @@
                 <property name="margin-top">15</property>
                 <property name="margin-bottom">10</property>
                 <property name="orientation">vertical</property>
+                <property name="spacing">10</property>
                 <child>
-                  <object class="GtkBox">
+                  <object class="GtkSearchEntry" id="entry_search">
                     <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="margin-bottom">10</property>
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkSearchEntry" id="entry_search">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="primary-icon-name">edit-find-symbolic</property>
-                        <property name="primary-icon-activatable">False</property>
-                        <property name="primary-icon-sensitive">False</property>
-                        <property name="placeholder-text" translatable="yes">Epic Games Store ..</property>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="tooltip-text" translatable="yes">While the files on this page have been verified may be under proprietary license.</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="icon-name">dialog-warning-symbolic</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
+                    <property name="can-focus">True</property>
+                    <property name="primary-icon-name">edit-find-symbolic</property>
+                    <property name="primary-icon-activatable">False</property>
+                    <property name="primary-icon-sensitive">False</property>
+                    <property name="placeholder-text" translatable="yes">Epic Games Store ..</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -80,7 +52,19 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">While the files on this page have been verified may be under proprietary license.</property>
+                    <attributes>
+                      <attribute name="font-desc" value="Cantarell 8"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
                 </child>
               </object>
             </child>
