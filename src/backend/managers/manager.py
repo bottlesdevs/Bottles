@@ -120,7 +120,6 @@ class Manager:
 
     def checks(self, install_latest=False, first_run=False):
         logging.info("Performing Bottles checks...", )
-        start = time.time()
         self.check_app_dirs()
         self.check_dxvk(install_latest)
         self.check_vkd3d(install_latest)
@@ -135,11 +134,6 @@ class Manager:
         self.check_bottles()
         self.organize_dependencies()
         self.organize_installers()
-
-        JournalManager.write(
-            severity=JournalSeverity.INFO,
-            message="Startup took %s seconds" % (time.time() - start)
-        )
 
     def __clear_temp(self, force: bool = False):
         """Clears the temp directory if user setting allows it. Use the force
