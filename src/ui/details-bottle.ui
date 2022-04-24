@@ -17,7 +17,6 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="tooltip-text" translatable="yes">This is just the bottle configuration, it's perfect if you want to create a new one but without personal files.</property>
             <property name="text" translatable="yes">Open with explorer</property>
           </object>
           <packing>
@@ -140,6 +139,7 @@
         <property name="can-focus">True</property>
         <property name="focus-on-click">False</property>
         <property name="receives-default">True</property>
+        <property name="valign">center</property>
         <property name="popover">pop_context</property>
         <child>
           <object class="GtkImage">
@@ -178,7 +178,6 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="tooltip-text" translatable="yes">Simulate a Windows system shutdown.</property>
             <property name="text" translatable="yes">Kill all processes</property>
           </object>
           <packing>
