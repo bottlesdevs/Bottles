@@ -10,63 +10,87 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <child>
-          <object class="HdyClamp">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkBox">
+              <object class="HdySearchBar" id="search_bar">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-top">15</property>
-                <property name="margin-bottom">10</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">10</property>
                 <child>
-                  <object class="GtkSearchEntry" id="entry_search">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="primary-icon-name">edit-find-symbolic</property>
-                    <property name="primary-icon-activatable">False</property>
-                    <property name="primary-icon-sensitive">False</property>
-                    <property name="placeholder-text" translatable="yes">Epic Games Store ..</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkListBox" id="list_installers">
+                  <object class="HdyClamp">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="selection-mode">none</property>
-                    <style>
-                      <class name="content"/>
-                    </style>
+                    <child>
+                      <object class="GtkSearchEntry" id="entry_search">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="primary-icon-name">edit-find-symbolic</property>
+                        <property name="primary-icon-activatable">False</property>
+                        <property name="primary-icon-sensitive">False</property>
+                        <property name="placeholder-text" translatable="yes">Epic Games Store ..</property>
+                      </object>
+                    </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">While the files on this page have been verified may be under proprietary license.</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Cantarell 8"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
-                  </packing>
                 </child>
               </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="HdyClamp">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-top">15</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">10</property>
+                    <child>
+                      <object class="GtkListBox" id="list_installers">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="selection-mode">none</property>
+                        <style>
+                          <class name="content"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">While the files on this page have been verified may be under proprietary license.</property>
+                        <attributes>
+                          <attribute name="font-desc" value="Cantarell 8"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
         </child>
@@ -76,6 +100,28 @@
   <object class="GtkBox" id="actions">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
+    <child>
+      <object class="GtkToggleButton" id="btn_toggle_search">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+        <property name="tooltip-text" translatable="yes">Select dependencies</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="icon-name">system-search-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack-type">end</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
     <child>
       <object class="GtkButton" id="btn_help">
         <property name="visible">True</property>
@@ -99,7 +145,7 @@
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">0</property>
+        <property name="position">1</property>
       </packing>
     </child>
     <child>
@@ -125,7 +171,7 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="pack-type">end</property>
-        <property name="position">1</property>
+        <property name="position">2</property>
       </packing>
     </child>
     <style>

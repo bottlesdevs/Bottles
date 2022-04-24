@@ -73,6 +73,33 @@
               </packing>
             </child>
             <child>
+              <object class="HdySearchBar" id="search_bar">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="HdyClamp">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkSearchEntry" id="entry_search">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="primary-icon-name">edit-find-symbolic</property>
+                        <property name="primary-icon-activatable">False</property>
+                        <property name="primary-icon-sensitive">False</property>
+                        <property name="placeholder-text" translatable="yes">Microsoft .NET Framework 4 ..</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
               <object class="HdyClamp">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -101,19 +128,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkSearchEntry" id="entry_search_deps">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="primary-icon-name">edit-find-symbolic</property>
-                        <property name="primary-icon-activatable">False</property>
-                        <property name="primary-icon-sensitive">False</property>
-                        <property name="placeholder-text" translatable="yes">Microsoft .NET Framework 4 ..</property>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
+                      <placeholder/>
                     </child>
                     <child>
                       <object class="GtkListBox" id="list_dependencies">
@@ -136,7 +151,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -236,6 +251,27 @@
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="position">3</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleButton" id="btn_toggle_search">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+        <property name="tooltip-text" translatable="yes">Select dependencies</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="icon-name">system-search-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">4</property>
       </packing>
     </child>
     <style>

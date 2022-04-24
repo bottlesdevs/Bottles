@@ -34,9 +34,11 @@ class DependenciesView(Gtk.ScrolledWindow):
     btn_help = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_toggle_selection = Gtk.Template.Child()
-    entry_search_deps = Gtk.Template.Child()
+    btn_toggle_search = Gtk.Template.Child()
+    entry_search = Gtk.Template.Child()
     infobar_testing = Gtk.Template.Child()
     actions = Gtk.Template.Child()
+    search_bar = Gtk.Template.Child()
 
     # endregion
 
@@ -52,9 +54,10 @@ class DependenciesView(Gtk.ScrolledWindow):
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
         self.btn_toggle_selection.connect('toggled', self.__toggle_selection)
+        self.btn_toggle_search.connect('toggled', self.__toggle_search)
         self.btn_install.connect('clicked', self.__install_dependencies)
-        self.entry_search_deps.connect('key-release-event', self.__search_dependencies)
-        self.entry_search_deps.connect('changed', self.__search_dependencies)
+        self.entry_search.connect('key-release-event', self.__search_dependencies)
+        self.entry_search.connect('changed', self.__search_dependencies)
         self.list_dependencies.connect('row-selected', self.__select_dependency)
 
         if "TESTING_REPOS" in os.environ and os.environ["TESTING_REPOS"] == "1":
@@ -165,3 +168,12 @@ class DependenciesView(Gtk.ScrolledWindow):
                 )
 
         self.list_dependencies.set_sensitive(True)
+
+    def __toggle_search(self, widget):
+        """
+        This function toggle the search mode.
+        """
+        status = not self.search_bar.get_search_mode()
+        self.search_bar.set_search_mode(status)
+        if not status:
+            self.entry_search.set_text("")

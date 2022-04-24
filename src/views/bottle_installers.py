@@ -29,8 +29,10 @@ class InstallersView(Gtk.ScrolledWindow):
     # region Widgets
     list_installers = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
+    btn_toggle_search = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
     actions = Gtk.Template.Child()
+    search_bar = Gtk.Template.Child()
 
     # endregion
 
@@ -42,12 +44,9 @@ class InstallersView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
-        self.btn_help.connect(
-            "clicked", open_doc_url, "bottles/installers"
-        )
-        self.entry_search.connect(
-            'key-release-event', self.__search_installers
-        )
+        self.btn_help.connect("clicked", open_doc_url, "bottles/installers")
+        self.entry_search.connect('key-release-event', self.__search_installers)
+        self.btn_toggle_search.connect('clicked', self.__toggle_search)
         self.entry_search.connect('changed', self.__search_installers)
 
     def __search_installers(self, widget, event=None, data=None):
@@ -95,3 +94,12 @@ class InstallersView(Gtk.ScrolledWindow):
                         installer=installer
                     )
                 )
+
+    def __toggle_search(self, widget):
+        """
+        This function toggle the search mode.
+        """
+        status = not self.search_bar.get_search_mode()
+        self.search_bar.set_search_mode(status)
+        if not status:
+            self.entry_search.set_text("")
