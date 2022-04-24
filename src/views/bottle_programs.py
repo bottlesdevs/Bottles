@@ -57,7 +57,7 @@ class ProgramsView(Gtk.ScrolledWindow):
             "clicked", open_doc_url, "bottles/programs"
         )
         self.btn_toggle_removed.connect(
-            "toggled", self.__toggle_removed
+            "clicked", self.__toggle_removed
         )
 
     def add(self, widget=False):
