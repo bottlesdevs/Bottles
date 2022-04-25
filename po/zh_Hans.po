@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-25 09:53+0200\n"
-"PO-Revision-Date: 2022-04-13 11:19+0000\n"
+"PO-Revision-Date: 2022-04-25 09:58+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -344,7 +344,7 @@ msgstr "用资源管理器打开"
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "疑难解答"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
@@ -355,9 +355,8 @@ msgid "This is the complete archive of your bottle, including personal files."
 msgstr "这是您的 bottle 的完整归档，包含个人文件。"
 
 #: src/ui/details-bottle.ui:84
-#, fuzzy
 msgid "Full backup"
-msgstr "完全归档"
+msgstr "完全备份"
 
 #: src/ui/details-bottle.ui:97 src/ui/importer.ui:20
 msgid ""
@@ -366,19 +365,16 @@ msgid ""
 msgstr "这仅仅是 bottle 配置，是您想要新建不带个人文件的 bottle 的完美选择。"
 
 #: src/ui/details-bottle.ui:98
-#, fuzzy
 msgid "Export configuration"
-msgstr "配置"
+msgstr "导出配置"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Delete bottle"
-msgstr "创建 bottle"
+msgstr "删除 bottle"
 
 #: src/ui/details-bottle.ui:182
-#, fuzzy
 msgid "Kill all processes"
-msgstr "杀死所有 wine 进程"
+msgstr "杀死所有进程"
 
 #: src/ui/details-bottle.ui:195
 msgid "Simulate a Windows system shutdown."
@@ -418,7 +414,7 @@ msgstr "输入 bottle 名称"
 
 #: src/ui/details-bottle.ui:358
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: src/ui/details-bottle.ui:379 src/ui/new.ui:160
 msgid "Environment"
@@ -555,14 +551,12 @@ msgid "Report a problem or a missing dependency."
 msgstr "报告问题或丢失的依赖项。"
 
 #: src/ui/details-dependencies.ui:178
-#, fuzzy
 msgid "Report missing dependency"
-msgstr "报告问题或丢失的依赖项。"
+msgstr "报告丢失的依赖项"
 
 #: src/ui/details-dependencies.ui:191 src/ui/details-programs.ui:80
-#, fuzzy
 msgid "Read documentation about dependencies\t"
-msgstr "阅读文档"
+msgstr "阅读关于依赖项的文档\t"
 
 #: src/ui/details-dependencies.ui:192 src/ui/details-installers.ui:116
 #: src/ui/details-programs.ui:106 src/ui/details-versioning.ui:93
@@ -584,16 +578,15 @@ msgstr "选择依赖项"
 
 #: src/ui/details-dependencies.ui:289 src/ui/details-installers.ui:159
 msgid "Toggle search"
-msgstr ""
+msgstr "开/关搜索"
 
 #: src/ui/details-installers.ui:32
 msgid "Epic Games Store .."
 msgstr "Epic 游戏商店 .."
 
 #: src/ui/details-installers.ui:115
-#, fuzzy
 msgid "Read documentation about installers\t"
-msgstr "阅读文档"
+msgstr "阅读关于安装器的文档\t"
 
 #: src/ui/details-preferences.ui:20 src/ui/dialog-launch-options.ui:20
 #: src/ui/preferences.ui:20
@@ -684,13 +677,13 @@ msgstr "以增加功耗为代价提升性能。"
 
 #: src/ui/details-preferences.ui:336
 msgid "Use vkBasalt"
-msgstr ""
+msgstr "使用 vkBasalt"
 
 #: src/ui/details-preferences.ui:337
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
-msgstr ""
+msgstr "vkBasalt 是 Vulkan 后期处理层，用来增强游戏的视觉图形。"
 
 #: src/ui/details-preferences.ui:364
 msgid "Display settings"
@@ -778,24 +771,23 @@ msgstr "480"
 
 #: src/ui/details-preferences.ui:556
 msgid "Renderer"
-msgstr ""
+msgstr "解析器"
 
 #: src/ui/details-preferences.ui:557
 msgid "Select what backend to use for wined3d"
-msgstr ""
+msgstr "选择用于 wined3d 的后端"
 
 #: src/ui/details-preferences.ui:571
-#, fuzzy
 msgid "gl (default)"
-msgstr "重置为默认"
+msgstr "gl (默认)"
 
 #: src/ui/details-preferences.ui:572
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:573
 msgid "vulkan"
-msgstr ""
+msgstr "vulkan"
 
 #: src/ui/details-preferences.ui:607 src/ui/details-preferences.ui:1047
 msgid "System"
@@ -981,11 +973,11 @@ msgstr "监测 FPS，温度，CPU/GPU 负载等等的 Vulkan 和 OpenGL overlay�
 
 #: src/ui/details-preferences.ui:1630
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "OBS Vulkan 录制"
 
 #: src/ui/details-preferences.ui:1631
 msgid "Toggle OBS game capture for all next launches"
-msgstr ""
+msgstr "开/关所有接下来启动的 OBS 游戏录制"
 
 #: src/ui/details-preferences.ui:1657
 msgid "Enable wine fixme logs"
@@ -1004,14 +996,12 @@ msgid "New programs will be automatically found."
 msgstr "将自动找到新程序。"
 
 #: src/ui/details-programs.ui:81
-#, fuzzy
 msgid "Show/hide hidden programs"
-msgstr "显示/隐藏已移除程序"
+msgstr "显示/隐藏隐藏的程序"
 
 #: src/ui/details-programs.ui:105
-#, fuzzy
 msgid "Read documentation about programs\t"
-msgstr "阅读文档"
+msgstr "阅读关于程序的文档\t"
 
 #: src/ui/details-programs.ui:149
 msgid "Search for installed programs"
@@ -1038,9 +1028,8 @@ msgid "Create first state to start using versioning."
 msgstr "创建第一个状态以开始使用版本控制。"
 
 #: src/ui/details-versioning.ui:92
-#, fuzzy
 msgid "Read documentation about versioning\t"
-msgstr "阅读文档"
+msgstr "阅读关于版本控制的文档\t"
 
 #: src/ui/details-versioning.ui:120
 msgid "Type a really short comment:"
@@ -1522,13 +1511,12 @@ msgid "Choose a custom recipe for the environment if you have one."
 msgstr "如果你有一个自定义配方，请为环境选择一个。"
 
 #: src/ui/new.ui:441
-#, fuzzy
 msgid "Use custom path"
-msgstr "使用定制配方"
+msgstr "使用自定义路径"
 
 #: src/ui/new.ui:443
 msgid "Store this bottle in a different place."
-msgstr ""
+msgstr "将此 bootle 存储在一个不同地方。"
 
 #: src/ui/new.ui:533
 msgid "Creating bottle…"
@@ -1655,7 +1643,6 @@ msgid "General"
 msgstr "常规"
 
 #: src/ui/preferences.ui:58
-#, fuzzy
 msgid "Appearance"
 msgstr "外观"
 
@@ -1787,11 +1774,11 @@ msgstr "添加到我的库"
 
 #: src/ui/program-entry.ui:158
 msgid "Hide this program"
-msgstr ""
+msgstr "隐藏此程序"
 
 #: src/ui/program-entry.ui:170
 msgid "Unhide this program"
-msgstr ""
+msgstr "取消隐藏此程序"
 
 #: src/ui/program-entry.ui:207
 msgid "Launch with Steam"
@@ -1884,7 +1871,7 @@ msgstr "计算中…"
 
 #: src/window.py:136 src/window.py:189
 msgid "Loading..."
-msgstr ""
+msgstr "加载中…"
 
 #: src/window.py:181 src/window.py:248
 msgid "Bottle details"
@@ -1896,7 +1883,7 @@ msgstr "导入和导出"
 
 #: src/window.py:337
 msgid "Journal browser"
-msgstr ""
+msgstr "日志浏览器"
 
 #: src/utils/connection.py:60
 msgid "You are offline, unable to download."
@@ -1914,30 +1901,29 @@ msgstr "正在导入备份：{0}"
 
 #: src/backend/managers/installer.py:116
 msgid "Installer requires local resources"
-msgstr ""
+msgstr "安装程序需要本地资源"
 
 #: src/backend/managers/installer.py:118
 #, python-format
 msgid "This installer requires some local resources: %s"
-msgstr ""
+msgstr "此安装程序需要某些本地资源：%s"
 
 #: src/backend/managers/installer.py:118
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: src/backend/managers/installer.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "Pick executable for %s"
-msgstr "无法为 [{0}] 找到可执行文件。"
+msgstr "挑选 %s 的可执行文件"
 
 #: src/backend/managers/installer.py:133
 msgid "Proceed"
-msgstr ""
+msgstr "继续"
 
 #: src/backend/managers/installer.py:456
-#, fuzzy
 msgid "Local resources not found or invalid"
-msgstr "(!) 未找到配方或配方无效…"
+msgstr "未找到本地资源或本地资源无效"
 
 #: src/backend/managers/installer.py:465
 msgid "Dependencies installation failed."
@@ -1957,13 +1943,12 @@ msgid "Missing essential components. Installing…"
 msgstr "缺少必要的组件。 正在安装…"
 
 #: src/backend/managers/manager.py:1126
-#, fuzzy
 msgid "Failed to create bottle directory."
-msgstr "为 {0} 创建备份失败！"
+msgstr "创建 bottle 目录失败。"
 
 #: src/backend/managers/manager.py:1138
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "创建占位符目录/文件失败。"
 
 #: src/backend/managers/manager.py:1143
 msgid "Generating bottle configuration…"
@@ -2032,9 +2017,9 @@ msgid "Installing DXVK-NVAPI…"
 msgstr "正在安装 DXVK-NVAPI …"
 
 #: src/backend/managers/manager.py:1288
-#, fuzzy, python-format
+#, python-format
 msgid "Installing dependency: %s …"
-msgstr "正在安装依赖项：{0} …"
+msgstr "正在安装依赖项：%s…"
 
 #: src/backend/managers/manager.py:1304
 msgid "Creating versioning state 0…"
@@ -2045,9 +2030,8 @@ msgid "Finalizing…"
 msgstr "完成中…"
 
 #: src/backend/managers/manager.py:1323
-#, fuzzy
 msgid "Caching template…"
-msgstr "正在创建 bottle…"
+msgstr "正在缓存模板…"
 
 #: src/backend/managers/versioning.py:65
 msgid "Generating state files index …"
@@ -2149,11 +2133,12 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "您确定想要删除该 Bottle 和所有文件吗？"
 
 #: src/views/bottle_details.py:493
-#, fuzzy
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
-msgstr "您确定想要删除该 Bottle 和所有文件吗？"
+msgstr ""
+"你确定你想终止所有进程吗？\n"
+"这可以造成数据丢失。"
 
 #: src/views/bottle_preferences.py:172
 msgid "This feature is not available on your system."
@@ -2249,9 +2234,8 @@ msgid "Choose a recipe file"
 msgstr "选择一个配方文件"
 
 #: src/views/new.py:199
-#, fuzzy
 msgid "Choose where to store the bottle"
-msgstr "为您的 bottle 选择一个名称"
+msgstr "选择存储 bootle 的位置"
 
 #: src/views/new.py:283
 msgid "There was an error creating the bottle."
