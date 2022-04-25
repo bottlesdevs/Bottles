@@ -35,6 +35,7 @@ class EnvironmentRow(Handy.ActionRow):
         self.set_subtitle(self.environment.get('description'))
         self.set_icon_name(environment.get("icon"))
         self.set_visible(True)
+        self.get_style_context().add_class(environment.get("class"))
 
     def get_env_id(self):
         return self.environment.get("id")
@@ -73,19 +74,22 @@ class NewView(Handy.Window):
             "id": "Gaming",
             "name": _("Gaming"),
             "description": _("An environment improved for Windows games."),
-            "icon": "applications-games-symbolic"
+            "icon": "applications-games-symbolic",
+            "class": "gaming"
         },
         {
             "id": "Application",
             "name": _("Application"),
             "description": _("An environment improved for Windows applications."),
-            "icon": "applications-engineering-symbolic"
+            "icon": "applications-engineering-symbolic",
+            "class": "application"
         },
         {
             "id": "Custom",
             "name": _("Custom"),
             "description": _("A clear environment for your experiments."),
-            "icon": "applications-science-symbolic"
+            "icon": "applications-science-symbolic",
+            "class": "custom"
         }
     ]
 
