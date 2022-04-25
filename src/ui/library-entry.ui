@@ -2,7 +2,7 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="LibraryEntry" parent="GtkBox">
-    <property name="width-request">200</property>
+    <property name="width-request">280</property>
     <property name="height-request">280</property>
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -23,6 +23,30 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="spacing">5</property>
+        <child>
+          <object class="GtkMenuButton">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="focus-on-click">False</property>
+            <property name="receives-default">True</property>
+            <property name="valign">center</property>
+            <property name="relief">none</property>
+            <property name="popover">pop_context</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">view-more-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -35,8 +59,8 @@
                 <property name="halign">start</property>
                 <property name="label">Item name</property>
                 <attributes>
-                  <attribute name="weight" value="medium"/>
-                  <attribute name="scale" value="1.5"/>
+                  <attribute name="weight" value="semibold"/>
+                  <attribute name="scale" value="1.2"/>
                 </attributes>
               </object>
               <packing>
@@ -62,7 +86,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">0</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -119,6 +143,9 @@
               </packing>
             </child>
             <child>
+              <placeholder/>
+            </child>
+            <child>
               <object class="GtkButton" id="btn_stop">
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
@@ -146,7 +173,7 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="pack-type">end</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <style>
@@ -163,4 +190,31 @@
       <class name="library-entry"/>
     </style>
   </template>
+  <object class="GtkPopover" id="pop_context">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="width-request">160</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="border-width">9</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkModelButton" id="btn_remove">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="tooltip-text" translatable="yes">Read documentation about installers	</property>
+            <property name="text" translatable="yes">Remove from library</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>

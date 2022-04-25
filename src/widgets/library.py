@@ -35,15 +35,17 @@ class LibraryEntry(Gtk.Box):
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
     btn_launch_steam = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_bottle = Gtk.Template.Child()
     img_cover = Gtk.Template.Child()
 
     # endregion
 
-    def __init__(self, window, uuid, entry, *args, **kwargs):
+    def __init__(self, library, uuid, entry, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.manager = window.manager
+        self.library = library
+        self.manager = library.window.manager
         self.uuid = uuid
         self.entry = entry
         self.config = self.__get_config()
@@ -55,6 +57,7 @@ class LibraryEntry(Gtk.Box):
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)
         self.btn_stop.connect("clicked", self.stop_process)
+        self.btn_remove.connect("clicked", self.__remove_entry)
 
         '''
         if is_steam:
@@ -112,6 +115,9 @@ class LibraryEntry(Gtk.Box):
             callback=set_watcher,
             name=self.program["executable"]
         )
+
+    def __remove_entry(self, widget):
+        self.library.remove_entry(self.uuid)
 
     def run_executable(self, widget, with_terminal=False):
         executor = WineExecutor(

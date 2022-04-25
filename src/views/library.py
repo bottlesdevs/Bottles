@@ -53,5 +53,10 @@ class LibraryView(Gtk.ScrolledWindow):
         self.hdy_status.set_visible(len(entries) == 0)
 
         for u, e in entries.items():
-            entry = LibraryEntry(self.window, u, e)
+            entry = LibraryEntry(self, u, e)
             self.main_flow.add(entry)
+
+    def remove_entry(self, uuid):
+        library_manager = LibraryManager()
+        library_manager.remove_from_library(uuid)
+        self.update()
