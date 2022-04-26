@@ -164,7 +164,7 @@ class NewView(Handy.Window):
         checks if the name is not empty and if it contains special
         characters. Then it toggle the entry icon according to the result.
         """
-        regex = re.compile('[\\\@!#$%^&*()<>?/|}{~:.;,\'"]')
+        regex = re.compile("[@!#$%^&*()<>?/|}{~:.;,'\"]")
         name = widget.get_text()
 
         if (regex.search(name) is None) and name != "" and not name.isspace():

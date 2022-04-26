@@ -173,8 +173,9 @@ class BackupManager:
         """Duplicates the bottle with the specified new name."""
         logging.info(f"Duplicating bottle: {config.get('Name')} to {name}", )
 
+        path = name.replace(" ", "_")
         source = ManagerUtils.get_bottle_path(config)
-        dest = f"{Paths.bottles}/{name}"
+        dest = os.path.join(Paths.bottles, path)
 
         source_drive = os.path.join(source, "drive_c")
         dest_drive = os.path.join(dest, "drive_c")
