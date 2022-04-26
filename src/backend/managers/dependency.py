@@ -216,11 +216,8 @@ class DependencyManager:
             if not self.__step_download_archive(step):
                 return Result(status=False)
 
-        if step["action"] == "delete_sys32_dlls":
-            self.__step_delete_sys32_dlls(
-                config=config,
-                dlls=step["dlls"]
-            )
+        if step["action"] == "delete_dlls":
+            self.__step_delete_dlls(config, step)
 
         if step["action"] in ["install_exe", "install_msi"]:
             if not self.__step_install_exe_msi(config=config, step=step):
@@ -338,27 +335,6 @@ class DependencyManager:
 
         return download
 
-    @staticmethod
-    def __step_delete_sys32_dlls(config: dict, dlls: list):
-        """Deletes the given dlls from the system32 folder"""
-        path = ManagerUtils.get_bottle_path(config)
-
-        for dll in dlls:
-            try:
-                logging.info("Removing [%s] from system32 in bottle: [%s]" % (
-                    dll,
-                    config['Name']
-                ), )
-                os.remove(f"{path}/drive_c/windows/system32/{dll}")
-            except FileNotFoundError:
-                logging.error("DLL [%s] not found in bottle [%s]." % (
-                    dll,
-                    config['Name'],
-                ), )
-
-        # return True in both cases, has it is a non-critical error
-        return True
-
     def __step_install_exe_msi(self, config: dict, step: dict) -> bool:
         """
         Download and install the .exe or .msi file
@@ -458,6 +434,18 @@ class DependencyManager:
                     file_path
             ):
                 return False
+
+        return True
+
+    def __step_delete_dlls(self, config: dict, step: dict):
+        """Deletes the given dlls from the system32 or syswow64 paths"""
+        dest = self.__get_real_dest(config, step.get("dest"))
+
+        for d in step.get("dlls", []):
+            _d = os.path.join(dest, d)
+            print(_d)
+            if os.path.exists(_d):
+                os.remove(_d)
 
         return True
 
