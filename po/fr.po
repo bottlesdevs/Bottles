@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-25 09:53+0200\n"
-"PO-Revision-Date: 2022-04-23 10:46+0000\n"
+"PO-Revision-Date: 2022-04-27 14:07+0000\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/bottles/bottles/"
 "fr/>\n"
@@ -363,7 +363,7 @@ msgstr "Ouvrir avec l’explorateur"
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Dépannage"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
@@ -376,9 +376,8 @@ msgstr ""
 "personnels."
 
 #: src/ui/details-bottle.ui:84
-#, fuzzy
 msgid "Full backup"
-msgstr "Archive complète"
+msgstr "Sauvegarde complète"
 
 #: src/ui/details-bottle.ui:97 src/ui/importer.ui:20
 msgid ""
@@ -389,19 +388,16 @@ msgstr ""
 "voulez en créer une nouvelle, mais sans fichiers personnels."
 
 #: src/ui/details-bottle.ui:98
-#, fuzzy
 msgid "Export configuration"
-msgstr "Configuration"
+msgstr "Exporter la configuration"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Delete bottle"
-msgstr "Créer une nouvelle Bouteille"
+msgstr "Supprimer la bouteille"
 
 #: src/ui/details-bottle.ui:182
-#, fuzzy
 msgid "Kill all processes"
-msgstr "Tuer tous les processus WINE"
+msgstr "Tuer tous les processus"
 
 #: src/ui/details-bottle.ui:195
 msgid "Simulate a Windows system shutdown."
@@ -441,7 +437,7 @@ msgstr "Saisissez un nom pour votre bouteille"
 
 #: src/ui/details-bottle.ui:358
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: src/ui/details-bottle.ui:379 src/ui/new.ui:160
 msgid "Environment"
@@ -581,14 +577,12 @@ msgid "Report a problem or a missing dependency."
 msgstr "Signaler un problème ou une dépendance manquante."
 
 #: src/ui/details-dependencies.ui:178
-#, fuzzy
 msgid "Report missing dependency"
-msgstr "Signaler un problème ou une dépendance manquante."
+msgstr "Signaler une dépendance manquante"
 
 #: src/ui/details-dependencies.ui:191 src/ui/details-programs.ui:80
-#, fuzzy
 msgid "Read documentation about dependencies\t"
-msgstr "Lire la documentation"
+msgstr "Lire la documentation à propos des dépendances\t"
 
 #: src/ui/details-dependencies.ui:192 src/ui/details-installers.ui:116
 #: src/ui/details-programs.ui:106 src/ui/details-versioning.ui:93
@@ -612,16 +606,15 @@ msgstr "Sélectionner les dépendances"
 
 #: src/ui/details-dependencies.ui:289 src/ui/details-installers.ui:159
 msgid "Toggle search"
-msgstr ""
+msgstr "Activer/désactiver recherche"
 
 #: src/ui/details-installers.ui:32
 msgid "Epic Games Store .."
 msgstr "Epic Games Store…"
 
 #: src/ui/details-installers.ui:115
-#, fuzzy
 msgid "Read documentation about installers\t"
-msgstr "Lire la documentation"
+msgstr "Lire la documentation à propos des installateurs\t"
 
 #: src/ui/details-preferences.ui:20 src/ui/dialog-launch-options.ui:20
 #: src/ui/preferences.ui:20
@@ -717,13 +710,15 @@ msgstr "Améliore les performances au prix d’une consommation d’énergie acc
 
 #: src/ui/details-preferences.ui:336
 msgid "Use vkBasalt"
-msgstr ""
+msgstr "Utiliser vkBasalt"
 
 #: src/ui/details-preferences.ui:337
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"vkBasalt est une couche de post-traitement Vulkan destinée à améliorer les "
+"graphismes des jeux."
 
 #: src/ui/details-preferences.ui:364
 msgid "Display settings"
@@ -812,25 +807,23 @@ msgstr "480"
 
 #: src/ui/details-preferences.ui:556
 msgid "Renderer"
-msgstr ""
+msgstr "Moteur de rendu"
 
 #: src/ui/details-preferences.ui:557
 msgid "Select what backend to use for wined3d"
-msgstr ""
+msgstr "Sélectionnez le backend à utiliser pour wined3d"
 
 #: src/ui/details-preferences.ui:571
-#, fuzzy
 msgid "gl (default)"
-msgstr "Réinitialiser à la valeur par défaut"
+msgstr "gl (par défaut)"
 
 #: src/ui/details-preferences.ui:572
-#, fuzzy
 msgid "gdi"
-msgstr "Regedit"
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:573
 msgid "vulkan"
-msgstr ""
+msgstr "vulkan"
 
 #: src/ui/details-preferences.ui:607 src/ui/details-preferences.ui:1047
 msgid "System"
@@ -1024,11 +1017,13 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1630
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "Capture OBS Vulkan"
 
 #: src/ui/details-preferences.ui:1631
 msgid "Toggle OBS game capture for all next launches"
 msgstr ""
+"Activer/désactiver la capture de jeu via OBS pour toues les prochains "
+"lancements"
 
 #: src/ui/details-preferences.ui:1657
 msgid "Enable wine fixme logs"
@@ -1047,14 +1042,12 @@ msgid "New programs will be automatically found."
 msgstr "Les nouveaux programmes seront automatiquement trouvés."
 
 #: src/ui/details-programs.ui:81
-#, fuzzy
 msgid "Show/hide hidden programs"
-msgstr "Afficher/masquer les programmes supprimés"
+msgstr "Afficher/masquer les programmes masqués"
 
 #: src/ui/details-programs.ui:105
-#, fuzzy
 msgid "Read documentation about programs\t"
-msgstr "Lire la documentation"
+msgstr "Lire la documentation à propos des programmes\t"
 
 #: src/ui/details-programs.ui:149
 msgid "Search for installed programs"
@@ -1082,9 +1075,8 @@ msgstr ""
 "Créez un premier état pour commencer à utiliser la gestion de versions."
 
 #: src/ui/details-versioning.ui:92
-#, fuzzy
 msgid "Read documentation about versioning\t"
-msgstr "Lire la documentation"
+msgstr "Lire la documentation à propos du contrôle de version\t"
 
 #: src/ui/details-versioning.ui:120
 msgid "Type a really short comment:"
@@ -1587,13 +1579,12 @@ msgstr ""
 "Choisir une recette personnalisée pour l’environnement si vous en avez une."
 
 #: src/ui/new.ui:441
-#, fuzzy
 msgid "Use custom path"
-msgstr "Utiliser une recette personnalisée"
+msgstr "Utiliser un chemin personnalisé"
 
 #: src/ui/new.ui:443
 msgid "Store this bottle in a different place."
-msgstr ""
+msgstr "Conserver cette bouteille dans un endroit différent."
 
 #: src/ui/new.ui:533
 msgid "Creating bottle…"
@@ -1726,7 +1717,6 @@ msgid "General"
 msgstr "Général"
 
 #: src/ui/preferences.ui:58
-#, fuzzy
 msgid "Appearance"
 msgstr "Apparence"
 
@@ -1864,11 +1854,11 @@ msgstr "Ajouter à ma bibliothèque"
 
 #: src/ui/program-entry.ui:158
 msgid "Hide this program"
-msgstr ""
+msgstr "Masquer ce programme"
 
 #: src/ui/program-entry.ui:170
 msgid "Unhide this program"
-msgstr ""
+msgstr "Afficher ce programme"
 
 #: src/ui/program-entry.ui:207
 msgid "Launch with Steam"
@@ -1962,7 +1952,7 @@ msgstr "Calcul en cours…"
 
 #: src/window.py:136 src/window.py:189
 msgid "Loading..."
-msgstr ""
+msgstr "Chargement…"
 
 #: src/window.py:181 src/window.py:248
 msgid "Bottle details"
@@ -1974,7 +1964,7 @@ msgstr "Importer et exporter"
 
 #: src/window.py:337
 msgid "Journal browser"
-msgstr ""
+msgstr "Navigateur de journaux"
 
 #: src/utils/connection.py:60
 msgid "You are offline, unable to download."
@@ -1992,30 +1982,29 @@ msgstr "Importation de la sauvegarde : {0}"
 
 #: src/backend/managers/installer.py:116
 msgid "Installer requires local resources"
-msgstr ""
+msgstr "Le programme d’installation nécessite des ressources locales"
 
 #: src/backend/managers/installer.py:118
 #, python-format
 msgid "This installer requires some local resources: %s"
-msgstr ""
+msgstr "Le programme d’installation nécessite des ressources locales : %s"
 
 #: src/backend/managers/installer.py:118
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: src/backend/managers/installer.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "Pick executable for %s"
-msgstr "Impossible de trouver l’exécutable pour [{0}]."
+msgstr "Choisissez l’exécutable pour %s"
 
 #: src/backend/managers/installer.py:133
 msgid "Proceed"
-msgstr ""
+msgstr "Procéder"
 
 #: src/backend/managers/installer.py:456
-#, fuzzy
 msgid "Local resources not found or invalid"
-msgstr "(!) Recette non trouvée ou non valide…"
+msgstr "Ressources locales non trouvées ou non valides"
 
 #: src/backend/managers/installer.py:465
 msgid "Dependencies installation failed."
@@ -2035,13 +2024,12 @@ msgid "Missing essential components. Installing…"
 msgstr "Composants essentiels manquants. Installation en cours…"
 
 #: src/backend/managers/manager.py:1126
-#, fuzzy
 msgid "Failed to create bottle directory."
-msgstr "Échec de la création d’une sauvegarde pour {0} !"
+msgstr "Échec de la création d’un dossier bouteille."
 
 #: src/backend/managers/manager.py:1138
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Échec de la création du dossier/fichier de remplacement."
 
 #: src/backend/managers/manager.py:1143
 msgid "Generating bottle configuration…"
@@ -2111,9 +2099,9 @@ msgid "Installing DXVK-NVAPI…"
 msgstr "Installation de DXVK-NVAPI…"
 
 #: src/backend/managers/manager.py:1288
-#, fuzzy, python-format
+#, python-format
 msgid "Installing dependency: %s …"
-msgstr "Installation de la dépendance : {0}…"
+msgstr "Installation de la dépendance : %s…"
 
 #: src/backend/managers/manager.py:1304
 msgid "Creating versioning state 0…"
@@ -2124,9 +2112,8 @@ msgid "Finalizing…"
 msgstr "Finalisation…"
 
 #: src/backend/managers/manager.py:1323
-#, fuzzy
 msgid "Caching template…"
-msgstr "Création de la bouteille…"
+msgstr "Mise en cache du modèle…"
 
 #: src/backend/managers/versioning.py:65
 msgid "Generating state files index …"
@@ -2233,13 +2220,12 @@ msgstr ""
 "fichiers ?"
 
 #: src/views/bottle_details.py:493
-#, fuzzy
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr ""
-"Êtes-vous sûr de vouloir supprimer cette bouteille ainsi que tous ses "
-"fichiers ?"
+"Etes-vous sûr de vouloir terminer tous les processus ?\n"
+"Cela peut entrainer une perte de données."
 
 #: src/views/bottle_preferences.py:172
 msgid "This feature is not available on your system."
@@ -2335,9 +2321,8 @@ msgid "Choose a recipe file"
 msgstr "Choisir un fichier de recette"
 
 #: src/views/new.py:199
-#, fuzzy
 msgid "Choose where to store the bottle"
-msgstr "Choisissez un nom pour votre bouteille"
+msgstr "Choisir l’endroit où stocker la bouteille"
 
 #: src/views/new.py:283
 msgid "There was an error creating the bottle."
