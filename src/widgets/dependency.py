@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import webbrowser
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
@@ -24,7 +24,7 @@ from bottles.dialogs.generic import SourceDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dependency-entry.ui')
-class DependencyEntry(Handy.ActionRow):
+class DependencyEntry(Adw.ActionRow):
     __gtype_name__ = 'DependencyEntry'
 
     # region Widgets
@@ -75,9 +75,8 @@ class DependencyEntry(Handy.ActionRow):
 
         # hide action widgets on selection
         if selection:
-            for w in self.box_actions.get_children():
-                if w != self.label_category:
-                    w.set_visible(False)
+            while self.box_actions.get_first_child():
+                self.box_actions.get_first_child().set_visible(False)
 
         if dependency[0] in self.config.get("Installed_Dependencies"):
             '''
@@ -131,8 +130,8 @@ class DependencyEntry(Handy.ActionRow):
         """
         if widget != self.btn_reinstall:
             self.get_parent().set_sensitive(False)
-            for w in widget.get_children():
-                w.destroy()
+            while widget.get_first_child():
+                w.remove(widget.get_first_child())
 
         widget.set_sensitive(False)
         widget.add(self.spinner)

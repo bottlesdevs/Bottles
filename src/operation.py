@@ -18,12 +18,12 @@
 import gi
 from gettext import gettext as _
 
-gi.require_version('Handy', '1')
-from gi.repository import Gtk, Handy
+gi.require_version('Adw', '1')
+from gi.repository import Gtk, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/task-entry.ui')
-class TaskEntry(Handy.ActionRow):
+class TaskEntry(Adw.ActionRow):
     __gtype_name__ = 'TaskEntry'
 
     # region Widgets
@@ -70,11 +70,15 @@ class TaskEntry(Handy.ActionRow):
             self.remove()
 
     def remove(self):
-        tasks = self.list_tasks.get_children()
+        """
+        tasks = self.list_tasks.get_n_children()
+        while self.list_tasks.get_first_child() is not None:
+            self.main_flow.remove(self.main_flow.get_first_child())
         if len(tasks) <= 1:
             if not self.btn_operations.get_active():
                 self.btn_operations.set_visible(False)
-        self.destroy()
+        """
+        self.list_tasks.remove(self)
 
 
 class OperationManager:
@@ -89,7 +93,7 @@ class OperationManager:
 
     def __new_widget(self, title, cancellable=True):
         task_entry = TaskEntry(self.window, title, cancellable)
-        self.list_tasks.add(task_entry)
+        self.list_tasks.append(task_entry)
         return task_entry
 
     def new_task(self, task_id, title, cancellable=True):

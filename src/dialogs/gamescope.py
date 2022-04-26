@@ -16,11 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-gamescope.ui')
-class GamescopeDialog(Handy.Window):
+class GamescopeDialog(Adw.Window):
     __gtype_name__ = 'GamescopeDialog'
 
     # region Widgets

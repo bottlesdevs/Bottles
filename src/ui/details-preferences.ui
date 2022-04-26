@@ -3,27 +3,17 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.0"/>
   <object class="GtkPopover" id="pop_cwd_extra">
-    <property name="can-focus">False</property>
     <child>
       <object class="GtkBox">
-        <property name="width-request">160</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkModelButton" id="btn_cwd_reset">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            
             <property name="text" translatable="yes">Reset default</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <placeholder/>
@@ -38,22 +28,13 @@
     </child>
   </object>
   <template class="DetailsPreferences" parent="GtkScrolledWindow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
+    
     <child>
       <object class="GtkViewport">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <child>
-          <object class="HdyClamp">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwClamp">
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="margin-top">15</property>
-                <property name="margin-bottom">20</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">20</property>
                 <child>
@@ -127,156 +108,108 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="HdyPreferencesGroup">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                  <object class="AdwPreferencesGroup">
                     <property name="title" translatable="yes">Graphics</property>
                     <child>
-                      <object class="HdyActionRow" id="action_dxvk">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Use DXVK</property>
                         <property name="subtitle" translatable="yes">Improves performance of DirectX 11 games and 3D applications.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_dxvkbool">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
                                 <property name="margin-end">5</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkSwitch" id="switch_dxvk">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_vkd3d">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Use VKD3D</property>
                         <property name="subtitle" translatable="yes">Improves performance of DirectX 12 games and 3D applications.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_vkd3dbool">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
                                 <property name="margin-end">5</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkSwitch" id="switch_vkd3d">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_nvapi">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="title" translatable="yes">Use DLSS (DXVK-NVAPI)</property>
+                      <object class="AdwActionRow">
+                        
+                        <property name="title" translatable="yes">Enable DLSS (DXVK-NVAPI)</property>
                         <property name="subtitle" translatable="yes">Provide DLSS support if available and Nvidia's NVAPI.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_nvapibool">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
                                 <property name="margin-end">5</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkSwitch" id="switch_nvapi">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Enable FSR</property>
                         <property name="subtitle" translatable="yes">FSR uses cutting-edge upscaling technologies to help boost your framerates.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <property name="spacing">10</property>
                             <child>
                               <object class="GtkComboBoxText" id="combo_fsr">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                                 <property name="active-id">add</property>
@@ -291,163 +224,112 @@
                                   <class name="plain"/>
                                 </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkSwitch" id="switch_fsr">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
-                                <property name="margin-left">5</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkSeparator">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">2</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_latencyflex">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Enable LatencyFleX</property>
                         <property name="subtitle" translatable="yes">An alternative to NVIDIA Reflex. Can be detected by some Anticheats.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_latencyflexbool">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
                                 <property name="margin-end">5</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkSwitch" id="switch_latencyflex">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_discrete">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow" id="action_discrete">
+                        
                         <property name="title" translatable="yes">Discrete GPU</property>
                         <property name="subtitle" translatable="yes">Improves performance at the cost of increased power usage.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_discrete">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_vkbasalt">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow" id="action_vkbasalt">
+                        
                         <property name="title" translatable="yes">Use vkBasalt</property>
                         <property name="subtitle" translatable="yes">vkBasalt is a Vulkan post processing layer to enhance the visual graphics of games.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_vkbasalt">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyExpanderRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="activatable">False</property>
+                      <object class="AdwExpanderRow">
+                        
                         <property name="title" translatable="yes">Display settings</property>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">Use a virtual desktop</property>
                             <property name="subtitle" translatable="yes">Use the Wine virtual desktop.</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkComboBoxText" id="combo_virt_res">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="valign">center</property>
                                     <property name="active-id">add</property>
@@ -473,66 +355,43 @@
                                       <class name="plain"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkSeparator">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="margin-top">5</property>
-                                    <property name="margin-bottom">5</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkSwitch" id="switch_virt_desktop">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                    
                                     <property name="halign">start</property>
                                     <property name="valign">center</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">2</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                               </object>
                             </child>
                           </object>
                         </child>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">Mouse capture fullscreen</property>
                             <property name="subtitle" translatable="yes">Let the program capture mouse input when fullscreen.</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <child>
                                   <object class="GtkSwitch" id="switch_mouse_capture">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                    
                                     <property name="halign">start</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">5</property>
-                                    <property name="margin-start">5</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <style>
                                   <class name="linked"/>
@@ -542,29 +401,20 @@
                           </object>
                         </child>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">Take focus</property>
                             <property name="subtitle" translatable="yes">Activate it if the program does not retake focus on switch.</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <child>
                                   <object class="GtkSwitch" id="switch_take_focus">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
+                                    
                                     <property name="halign">start</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-left">5</property>
-                                    <property name="margin-start">5</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <style>
                                   <class name="linked"/>
@@ -574,53 +424,15 @@
                           </object>
                         </child>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="tooltip-text" translatable="yes">Enable synchronization to increase performance of multi-core processors.</property>
-                            <property name="title" translatable="yes">Mouse warp</property>
-                            <property name="subtitle" translatable="yes">Change this if you are running into mouse lag or out of sync</property>
-                            <child>
-                              <object class="GtkBox" id="box_sync1">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <child>
-                                  <object class="GtkSwitch" id="switch_mouse_warp">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">center</property>
-                                    <property name="margin-left">5</property>
-                                    <property name="margin-start">5</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                                <style>
-                                  <class name="linked"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">Screen scaling</property>
                             <property name="subtitle" translatable="yes">Set custom DPI.</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkComboBoxText" id="combo_dpi">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="valign">center</property>
                                     <property name="active-id">add</property>
@@ -643,31 +455,23 @@
                                       <class name="plain"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                               </object>
                             </child>
                           </object>
                         </child>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">Renderer</property>
                             <property name="subtitle" translatable="yes">Select what backend to use for wined3d.</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkComboBoxText" id="combo_renderer">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="valign">center</property>
                                     <property name="active-id">add</property>
@@ -681,11 +485,8 @@
                                       <class name="plain"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                               </object>
                             </child>
@@ -697,52 +498,34 @@
                       <placeholder/>
                     </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
+                  
+                  
                 </child>
                 <child>
-                  <object class="HdyPreferencesGroup">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                  <object class="AdwPreferencesGroup">
                     <property name="title" translatable="yes">System</property>
                     <child>
-                      <object class="HdyExpanderRow" id="exp_components">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="activatable">False</property>
+                      <object class="AdwExpanderRow">
+                        
                         <property name="title" translatable="yes">Components version</property>
                         <child>
-                          <object class="HdyActionRow" id="action_runner">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow" id="action_runner">
+                            
                             <property name="title" translatable="yes">Runner</property>
-                            <property name="activatable-widget">combo_runner</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkSpinner" id="spinner_runner">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="tooltip-text" translatable="yes">Updating Runner and components, please wait…</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkComboBoxText" id="combo_runner">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="valign">center</property>
                                     <style>
@@ -750,36 +533,23 @@
                                       <class name="plain"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkSeparator">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">2</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="btn_manage_runners">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="receives-default">True</property>
+                                    
                                     <property name="tooltip-text" translatable="yes">Manage runners</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
-                                    <property name="relief">none</property>
                                     <child>
                                       <object class="GtkImage">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
                                         <property name="icon-name">applications-system-symbolic</property>
                                       </object>
                                     </child>
@@ -787,47 +557,32 @@
                                       <class name="image-button"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">3</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                               </object>
                             </child>
                           </object>
                         </child>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">DXVK version</property>
-                            <property name="activatable-widget">combo_dxvk</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkSpinner" id="spinner_dxvk">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-right">5</property>
                                     <property name="margin-end">5</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkComboBoxText" id="combo_dxvk">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="valign">center</property>
                                     <property name="active">0</property>
                                     <style>
@@ -835,36 +590,23 @@
                                       <class name="plain"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkSeparator">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">2</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="btn_manage_dxvk">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="receives-default">True</property>
+                                    
                                     <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
-                                    <property name="relief">none</property>
                                     <child>
                                       <object class="GtkImage">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
                                         <property name="icon-name">applications-system-symbolic</property>
                                       </object>
                                     </child>
@@ -872,47 +614,32 @@
                                       <class name="image-button"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">3</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                               </object>
                             </child>
                           </object>
                         </child>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">VKD3D version</property>
-                            <property name="activatable-widget">combo_vkd3d</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkSpinner" id="spinner_vkd3d">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
-                                    <property name="margin-right">5</property>
                                     <property name="margin-end">5</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkComboBoxText" id="combo_vkd3d">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="valign">center</property>
                                     <property name="active">0</property>
                                     <style>
@@ -920,36 +647,23 @@
                                       <class name="plain"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkSeparator">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">2</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="btn_manage_vkd3d">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="receives-default">True</property>
+                                    
                                     <property name="tooltip-text" translatable="yes">Manage VKD3D versions</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
-                                    <property name="relief">none</property>
                                     <child>
                                       <object class="GtkImage">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
                                         <property name="icon-name">applications-system-symbolic</property>
                                       </object>
                                     </child>
@@ -957,45 +671,31 @@
                                       <class name="image-button"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">3</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                               </object>
                             </child>
                           </object>
                         </child>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">DXVK NVAPI version</property>
-                            <property name="activatable-widget">combo_nvapi</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkSpinner" id="spinner_nvapi">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkComboBoxText" id="combo_nvapi">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="valign">center</property>
                                     <property name="active">0</property>
                                     <style>
@@ -1003,36 +703,23 @@
                                       <class name="plain"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkSeparator">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">2</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="btn_manage_nvapi">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="receives-default">True</property>
+                                    
                                     <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
-                                    <property name="relief">none</property>
                                     <child>
                                       <object class="GtkImage">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
                                         <property name="icon-name">applications-system-symbolic</property>
                                       </object>
                                     </child>
@@ -1040,45 +727,31 @@
                                       <class name="image-button"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">3</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                               </object>
                             </child>
                           </object>
                         </child>
                         <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
+                          <object class="AdwActionRow">
+                            
                             <property name="title" translatable="yes">LatencyFleX version</property>
-                            <property name="activatable-widget">combo_latencyflex</property>
                             <child>
                               <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="spacing">10</property>
                                 <child>
                                   <object class="GtkSpinner" id="spinner_latencyflex">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkComboBoxText" id="combo_latencyflex">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="valign">center</property>
                                     <property name="active">0</property>
                                     <style>
@@ -1086,36 +759,23 @@
                                       <class name="plain"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkSeparator">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">2</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="btn_manage_latencyflex">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="receives-default">True</property>
+                                    
                                     <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
                                     <property name="halign">center</property>
                                     <property name="valign">center</property>
-                                    <property name="relief">none</property>
                                     <child>
                                       <object class="GtkImage">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
                                         <property name="icon-name">applications-system-symbolic</property>
                                       </object>
                                     </child>
@@ -1123,11 +783,8 @@
                                       <class name="image-button"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">3</property>
-                                  </packing>
+                                  
+                                  
                                 </child>
                               </object>
                             </child>
@@ -1136,74 +793,51 @@
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="tooltip-text" translatable="yes">Enable synchronization to increase performance of multi-core processors.</property>
                         <property name="title" translatable="yes">Synchronization</property>
                         <child>
-                          <object class="GtkBox" id="box_sync">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
+                          <object class="GtkBox">
                             <child>
                               <object class="GtkToggleButton" id="toggle_sync">
                                 <property name="label" translatable="yes">System</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
+                                
                                 <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="toggle_esync">
                                 <property name="label" translatable="yes">Esync</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
+                                
                                 <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="toggle_fsync">
                                 <property name="label" translatable="yes">Fsync</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
+                                
                                 <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">2</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkToggleButton" id="toggle_futex2">
                                 <property name="label" translatable="yes">Futex2</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
+                                
                                 <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">3</property>
-                              </packing>
+                              
+                              
                             </child>
                             <style>
                               <class name="linked"/>
@@ -1213,37 +847,24 @@
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Windows version</property>
-                        <property name="activatable-widget">combo_windows</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSpinner" id="spinner_win">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="tooltip-text" translatable="yes">Updating Windows version, please wait…</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
                                 <property name="margin-end">5</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkComboBoxText" id="combo_windows">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="valign">center</property>
-                                <property name="margin-right">5</property>
                                 <property name="margin-end">5</property>
                                 <property name="active">0</property>
                                 <items>
@@ -1254,144 +875,105 @@
                                   <class name="plain"/>
                                 </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_runtime">
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow" id="action_runtime">
+                        
                         <property name="title" translatable="yes">Use Bottles runtime</property>
                         <property name="subtitle" translatable="yes">Provides a bundle of extra libraries for more compatibility,
 disable if you run into issues.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_runtime">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_steam_runtime">
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow" id="action_steam_runtime">
+                        
                         <property name="title" translatable="yes">Use Steam runtime</property>
                         <property name="subtitle" translatable="yes">The same as the Bottles one but provided by Steam.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_steam_runtime">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Use GameMode</property>
                         <property name="subtitle" translatable="yes">Optimise gaming performance on demand.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_gamemode">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Use Gamescope</property>
                         <property name="subtitle" translatable="yes">Use the Gamescope micro-compositor.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <property name="spacing">10</property>
                             <child>
                               <object class="GtkSwitch" id="switch_gamescope">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkSeparator">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkButton" id="btn_manage_gamescope">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
+                                
                                 <property name="tooltip-text" translatable="yes">Manage Gamescope settings</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="icon-name">applications-system-symbolic</property>
                                   </object>
                                 </child>
@@ -1399,40 +981,29 @@ disable if you run into issues.</property>
                                   <class name="image-button"/>
                                 </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">2</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow" id="action_cwd">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow" id="action_cwd">
+                        
                         <property name="title" translatable="yes">Working directory</property>
                         <property name="subtitle" translatable="yes">Default to the bottle path.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="btn_cwd">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
+                                
                                 <property name="tooltip-text" translatable="yes">Choose a directory</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="icon-name">document-open-symbolic</property>
                                   </object>
                                 </child>
@@ -1440,26 +1011,18 @@ disable if you run into issues.</property>
                                   <class name="image-button"/>
                                 </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkMenuButton">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="focus-on-click">False</property>
-                                <property name="receives-default">True</property>
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="relief">none</property>
                                 <property name="popover">pop_cwd_extra</property>
                                 <child>
                                   <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="icon-name">view-more-symbolic</property>
                                   </object>
                                 </child>
@@ -1467,52 +1030,33 @@ disable if you run into issues.</property>
                                   <class name="image-button"/>
                                 </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">1</property>
-                              </packing>
+                              
+                              
                             </child>
                             <child>
                               <object class="GtkSeparator">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">2</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="selectable">False</property>
                         <property name="title" translatable="yes">DLL overrides</property>
-                        <property name="activatable-widget">btn_overrides</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkButton" id="btn_overrides">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
+                                
                                 <property name="halign">center</property>
                                 <property name="valign">center</property>
-                                <property name="relief">none</property>
                                 <child>
                                   <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="icon-name">go-next-symbolic</property>
                                   </object>
                                 </child>
@@ -1520,37 +1064,24 @@ disable if you run into issues.</property>
                                   <class name="btn_undecorated"/>
                                 </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Environment variables</property>
-                        <property name="activatable-widget">btn_environment_variables</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkButton" id="btn_environment_variables">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="relief">none</property>
+                                
                                 <child>
                                   <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="icon-name">go-next-symbolic</property>
                                   </object>
                                 </child>
@@ -1558,37 +1089,24 @@ disable if you run into issues.</property>
                                   <class name="btn_undecorated"/>
                                 </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Manage drives</property>
-                        <property name="activatable-widget">btn_drives</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkButton" id="btn_drives">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="relief">none</property>
+                                
                                 <child>
                                   <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
                                     <property name="icon-name">go-next-symbolic</property>
                                   </object>
                                 </child>
@@ -1596,12 +1114,8 @@ disable if you run into issues.</property>
                                   <class name="btn_undecorated"/>
                                 </style>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
@@ -1611,39 +1125,27 @@ disable if you run into issues.</property>
                       <placeholder/>
                     </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
-                  </packing>
+                  
+                  
                 </child>
                 <child>
-                  <object class="HdyPreferencesGroup">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
+                  <object class="AdwPreferencesGroup">
                     <property name="title" translatable="yes">Audio</property>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Reduce PulseAudio latency</property>
                         <property name="subtitle" translatable="yes">Set PulseAudio latency to 60 milliseconds to increase sound quality.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_pulse_latency">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
@@ -1653,120 +1155,87 @@ disable if you run into issues.</property>
                       <placeholder/>
                     </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">3</property>
-                  </packing>
+                  
+                  
                 </child>
                 <child>
-                  <object class="HdyPreferencesGroup">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="title" translatable="yes">Developers &amp; Debug</property>
+                  <object class="AdwPreferencesGroup">
+                    <property name="title" translatable="yes">Development and debugging</property>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">DXVK HUD</property>
                         <property name="subtitle" translatable="yes">Toggle DXVK overlay showing FPS and other details in D3D applications.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_dxvk_hud">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">MangoHud</property>
                         <property name="subtitle" translatable="yes">A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_mangohud">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">OBS Vulkan Capture</property>
                         <property name="subtitle" translatable="yes">Toggle OBS game capture for all next launches.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_obsvkc">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                      <object class="AdwActionRow">
+                        
                         <property name="title" translatable="yes">Enable wine fixme logs</property>
                         <property name="subtitle" translatable="yes">Log code paths that are unimplemented in Wine.</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <child>
                               <object class="GtkSwitch" id="switch_fixme">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
+                                
                                 <property name="halign">start</property>
                                 <property name="valign">center</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                              
+                              
                             </child>
                           </object>
                         </child>
@@ -1776,11 +1245,8 @@ disable if you run into issues.</property>
                       <placeholder/>
                     </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">4</property>
-                  </packing>
+                  
+                  
                 </child>
               </object>
             </child>

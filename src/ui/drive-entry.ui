@@ -2,28 +2,20 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
-  <template class="DriveEntry" parent="HdyActionRow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
+  <template class="DriveEntry" parent="AdwActionRow">
+    
     <property name="title">C:</property>
     <property name="subtitle" translatable="yes">/point/to/path</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="spacing">10</property>
         <child>
           <object class="GtkButton" id="btn_remove">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">user-trash-symbolic</property>
               </object>
             </child>
@@ -31,41 +23,26 @@
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <placeholder/>
         </child>
         <child>
           <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkButton" id="btn_path">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            
             <property name="tooltip-text" translatable="yes">Choose a directory</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">document-open-symbolic</property>
               </object>
             </child>
@@ -73,11 +50,8 @@
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>

@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-run-args.ui')
-class RunArgsDialog(Handy.Window):
+class RunArgsDialog(Adw.Window):
     __gtype_name__ = 'RunArgsDialog'
 
     # region Widgets
@@ -50,4 +50,4 @@ class RunArgsDialog(Handy.Window):
         self.__close_window()
 
     def __close_window(self, widget=None):
-        self.destroy()
+        self.window.remove(self)

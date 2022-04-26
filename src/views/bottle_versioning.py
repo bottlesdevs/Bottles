@@ -48,13 +48,12 @@ class VersioningView(Gtk.ScrolledWindow):
         self.versioning_manager = window.manager.versioning_manager
         self.config = config
 
+        entry_state_comment_ev = Gtk.EventControllerKey.new()
+        entry_state_comment_ev.connect("key-pressed", self.check_entry_state_comment)
+        self.entry_state_comment.add_controller(entry_state_comment_ev)
+
         self.btn_save.connect("clicked", self.add_state)
-        self.entry_state_comment.connect(
-            'key-release-event', self.check_entry_state_comment
-        )
-        self.btn_help.connect(
-            "clicked", open_doc_url, "bottles/versioning"
-        )
+        self.btn_help.connect("clicked", open_doc_url, "bottles/versioning")
         self.entry_state_comment.connect("activate", self.add_state)
 
     def update(self, widget=False, config=None, states=None):
@@ -69,8 +68,8 @@ class VersioningView(Gtk.ScrolledWindow):
         if len(config) > 0:
             self.config = config
 
-        for w in self.list_states.get_children():
-            w.destroy()
+        while self.list_states.get_first_child():
+            self.list_states.remove(self.list_states.get_first_child())
 
         if len(states) == 0:
             states = self.versioning_manager.list_states(self.config)
@@ -80,7 +79,7 @@ class VersioningView(Gtk.ScrolledWindow):
 
         if self.config.get("Versioning"):
             for state in states:
-                self.list_states.add(
+                self.list_states.append(
                     StateEntry(
                         window=self.window,
                         config=self.config,
@@ -95,11 +94,11 @@ class VersioningView(Gtk.ScrolledWindow):
         and the save button sensitivity according to the result.
         """
         regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,"]')
-        comment = widget.get_text()
+        comment = self.entry_state_comment.get_text()
         check = regex.search(comment) is None
 
         self.btn_save.set_sensitive(check)
-        widget.set_icon_from_icon_name(
+        self.entry_state_comment.set_icon_from_icon_name(
             1, '' if check else 'dialog-warning-symbolic"'
         )
 

@@ -15,13 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 
 from bottles.backend.wine.drives import Drives  # pyright: reportMissingImports=false
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/drive-entry.ui')
-class DriveEntry(Handy.ActionRow):
+class DriveEntry(Adw.ActionRow):
     __gtype_name__ = 'DriveEntry'
 
     # region Widgets
@@ -78,7 +78,7 @@ class DriveEntry(Handy.ActionRow):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-drives.ui')
-class DrivesDialog(Handy.Window):
+class DrivesDialog(Adw.Window):
     __gtype_name__ = 'DrivesDialog'
 
     # region Widgets
@@ -109,7 +109,7 @@ class DrivesDialog(Handy.Window):
         """
         drive_letter = self.combo_letter.get_active_id()
 
-        self.list_drives.add(
+        self.list_drives.append(
             DriveEntry(
                 window=self.window,
                 config=self.config,
@@ -130,7 +130,7 @@ class DrivesDialog(Handy.Window):
         """
         drives = Drives(self.config).get_all()
         for drive in drives:
-            self.list_drives.add(
+            self.list_drives.append(
                 DriveEntry(
                     window=self.window,
                     config=self.config,

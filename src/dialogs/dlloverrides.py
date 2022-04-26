@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
-class DLLEntry(Handy.ActionRow):
+class DLLEntry(Adw.ActionRow):
     __gtype_name__ = 'DLLEntry'
 
     # region Widgets
@@ -81,11 +81,11 @@ class DLLEntry(Handy.ActionRow):
         def no_action(widget, event):
             return True
 
-        self.combo_type.connect('scroll-event', no_action)
+        # self.combo_type.connect('scroll-event', no_action)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
-class DLLOverridesDialog(Handy.Window):
+class DLLOverridesDialog(Adw.Window):
     __gtype_name__ = 'DLLOverridesDialog'
 
     # region Widgets
@@ -125,7 +125,7 @@ class DLLOverridesDialog(Handy.Window):
                 scope="DLL_Overrides"
             )
 
-            self.list_overrides.add(
+            self.list_overrides.append(
                 DLLEntry(
                     window=self.window,
                     config=self.config,
@@ -144,7 +144,7 @@ class DLLOverridesDialog(Handy.Window):
         with the existing overrides from the bottle configuration
         """
         for override in self.config.get("DLL_Overrides").items():
-            self.list_overrides.add(
+            self.list_overrides.append(
                 DLLEntry(
                     window=self.window,
                     config=self.config,

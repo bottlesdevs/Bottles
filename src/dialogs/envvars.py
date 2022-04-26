@@ -16,11 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/env-var-entry.ui')
-class EnvVarEntry(Handy.ActionRow):
+class EnvVarEntry(Adw.ActionRow):
     __gtype_name__ = 'EnvVarEntry'
 
     # region Widgets
@@ -46,10 +46,13 @@ class EnvVarEntry(Handy.ActionRow):
         self.set_title(self.env[0])
         self.entry_value.set_text(self.env[1])
 
+        entry_value_ev = Gtk.EventControllerKey.new()
+        entry_value_ev.connect("key-pressed", self.on_change)
+        self.entry_value.add_controller(entry_value_ev)
+
         # connect signals
         self.btn_remove.connect("clicked", self.__remove)
         self.btn_save.connect("clicked", self.__save)
-        self.entry_value.connect('key-release-event', self.on_change)
 
     def on_change(self, widget, event):
         self.btn_save.set_visible(True)
@@ -83,7 +86,7 @@ class EnvVarEntry(Handy.ActionRow):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-env-vars.ui')
-class EnvVarsDialog(Handy.Window):
+class EnvVarsDialog(Adw.Window):
     __gtype_name__ = 'EnvVarsDialog'
 
     # region Widgets
@@ -104,20 +107,23 @@ class EnvVarsDialog(Handy.Window):
 
         self.__populate_vars_list()
 
+        entry_name_ev = Gtk.EventControllerKey.new()
+        entry_name_ev.connect("key-pressed", self.__validate)
+        self.entry_name.add_controller(entry_name_ev)
+
         # connect signals
         self.btn_save.connect("clicked", self.__save_var)
-        self.entry_name.connect('key-release-event', self.__validate)
 
     def __validate(self, widget, event_key):
         regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,\'"]')
-        name = widget.get_text()
+        name = self.entry_name.get_text()
 
         if (regex.search(name) is None) and name != "":
             self.btn_save.set_sensitive(True)
-            widget.set_icon_from_icon_name(1, "")
+            self.entry_name.set_icon_from_icon_name(1, "")
         else:
             self.btn_save.set_sensitive(False)
-            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+            self.entry_name.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     def __idle_save_var(self, widget=False):
         """
@@ -133,7 +139,7 @@ class EnvVarsDialog(Handy.Window):
             scope="Environment_Variables"
         )
 
-        self.list_vars.add(
+        self.list_vars.append(
             EnvVarEntry(
                 window=self.window,
                 config=self.config,
@@ -153,7 +159,7 @@ class EnvVarsDialog(Handy.Window):
         with the existing ones from the bottle configuration
         """
         for env in self.config.get("Environment_Variables").items():
-            self.list_vars.add(
+            self.list_vars.append(
                 EnvVarEntry(
                     window=self.window,
                     config=self.config,

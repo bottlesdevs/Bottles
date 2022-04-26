@@ -3,59 +3,38 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.0"/>
   <template class="DetailsVersioning" parent="GtkScrolledWindow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
+    
     <child>
       <object class="GtkViewport">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="HdyClamp">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
+              <object class="AdwClamp">
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="margin-top">15</property>
-                    <property name="margin-bottom">10</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <placeholder/>
                     </child>
                     <child>
                       <object class="GtkListBox" id="list_states">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
                         <property name="selection-mode">none</property>
                         <style>
                           <class name="content"/>
                         </style>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              
+              
             </child>
             <child>
-              <object class="HdyStatusPage" id="hdy_status">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
+              <object class="AdwStatusPage" id="hdy_status">
                 <property name="icon-name">preferences-system-time-symbolic</property>
                 <property name="title" translatable="yes">No states found</property>
                 <property name="description" translatable="yes">Create first state to start using versioning.</property>
@@ -63,11 +42,8 @@
                   <placeholder/>
                 </child>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
+              
+              
             </child>
           </object>
         </child>
@@ -75,131 +51,83 @@
     </child>
   </template>
   <object class="GtkPopover" id="pop_context">
-    <property name="can-focus">False</property>
     <child>
       <object class="GtkBox">
-        <property name="width-request">160</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkModelButton" id="btn_help">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            
             <property name="tooltip-text" translatable="yes">Read documentation about versioning	</property>
             <property name="text" translatable="yes">Documentation</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="pop_state">
-    <property name="can-focus">False</property>
     <child>
       <object class="GtkBox">
-        <property name="width-request">160</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="halign">start</property>
-            <property name="margin-bottom">5</property>
             <property name="label" translatable="yes">Type a really short comment:</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <child>
               <object class="GtkEntry" id="entry_state_comment">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
+                
                 <property name="hexpand">True</property>
                 <property name="placeholder-text" translatable="yes">A really short comment</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              
+              
             </child>
             <child>
               <object class="GtkButton" id="btn_save">
-                <property name="visible">True</property>
                 <property name="sensitive">False</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                
                 <property name="tooltip-text" translatable="yes">Save the bottle state.</property>
                 <property name="halign">end</property>
-                <property name="margin-left">5</property>
-                <property name="margin-start">5</property>
                 <property name="hexpand">True</property>
-                <property name="relief">none</property>
                 <child>
                   <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="icon-name">object-select-symbolic</property>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              
+              
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>
   </object>
   <object class="GtkBox" id="actions">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <property name="spacing">8</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <child>
           <object class="GtkMenuButton">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            
             <property name="focus-on-click">False</property>
-            <property name="receives-default">True</property>
             <property name="tooltip-text" translatable="yes">Create new state</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="popover">pop_state</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="valign">center</property>
                 <property name="icon-name">list-add-symbolic</property>
               </object>
@@ -208,45 +136,30 @@
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
         <style>
           <class name="linked"/>
         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
+      
+      
     </child>
     <child>
       <object class="GtkMenuButton">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
+        
         <property name="focus-on-click">False</property>
-        <property name="receives-default">True</property>
         <property name="valign">center</property>
         <property name="popover">pop_context</property>
         <child>
           <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="icon-name">view-more-symbolic</property>
           </object>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="pack-type">end</property>
-        <property name="position">1</property>
-      </packing>
+      
+      
     </child>
   </object>
 </interface>

@@ -19,7 +19,7 @@ import os
 import time
 import webbrowser
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Gio, Handy
+from gi.repository import Gtk, GLib, Gio, Adw
 from pathlib import Path
 
 from bottles.params import *  # pyright: reportMissingImports=false
@@ -50,20 +50,18 @@ logging = Logger()
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/window.ui')
-class MainWindow(Handy.ApplicationWindow):
+class MainWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'MainWindow'
 
     # region Widgets
     grid_main = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
-    box_more = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
     btn_operations = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
-    btn_more = Gtk.Template.Child()
     btn_support = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
     btn_forum = Gtk.Template.Child()
@@ -93,8 +91,8 @@ class MainWindow(Handy.ApplicationWindow):
 
         # Set night theme according to user settings
         if self.settings.get_boolean("dark-theme"):
-            manager = Handy.StyleManager.get_default()
-            manager.set_color_scheme(Handy.ColorScheme.FORCE_DARK)
+            manager = Adw.StyleManager.get_default()
+            manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
 
         # Set Library view according to user settings
         if self.settings.get_boolean("experiments-library"):
@@ -150,7 +148,7 @@ class MainWindow(Handy.ApplicationWindow):
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.btn_health.connect("clicked", self.show_health_view)
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
-        self.btn_operations.connect('toggled', self.on_operations_toggled)
+        self.btn_operations.connect('activate', self.on_operations_toggled)
 
         self.__on_start()
 
@@ -180,22 +178,22 @@ class MainWindow(Handy.ApplicationWindow):
         GLib.idle_add(self.page_library.update)
 
     def on_operations_toggled(self, widget):
-        if len(self.list_tasks.get_children()) == 0:
+        if not self.list_tasks.get_first_child():
             widget.set_visible(False)
 
     def set_title(self, title, subtitle: str = ""):
-        self.headerbar.set_title(title)
-        self.headerbar.set_subtitle(subtitle)
+        self.headerbar.set_title_widget(Gtk.Label.new(title))
+        # self.headerbar.set_subtitle(subtitle)  TODO: Implement subtitle
 
     def set_actions(self, widget: Gtk.Widget = None):
         """
         This function is used to set the actions buttons in the headerbar.
         """
-        for w in self.box_actions.get_children():
-            self.box_actions.remove(w)
+        while self.box_actions.get_first_child():
+            self.box_actions.remove(self.box_actions.get_first_child())
 
         if widget:
-            self.box_actions.add(widget)
+            self.box_actions.append(widget)
 
     def check_for_connection(self, status):
         """
@@ -306,9 +304,6 @@ class MainWindow(Handy.ApplicationWindow):
         for w in [self.btn_add, self.btn_menu]:
             w.set_visible(True)
 
-        for w in [self.btn_back, self.btn_more]:
-            w.set_visible(False)
-
         self.stack_main.set_visible_child_name(self.previous_page)
 
     def show_health_view(self, _widget):
@@ -333,9 +328,6 @@ class MainWindow(Handy.ApplicationWindow):
 
     def show_details_view(self, widget=False, config=dict):
         self.set_previous_page_status()
-
-        if True in [w.get_visible() for w in self.box_more.get_children()]:
-            self.btn_more.set_visible(True)
         self.page_details.set_config(config)
         self.stack_main.set_visible_child_name("page_details")
         self.page_details.set_visible_child_name("bottle")
@@ -391,6 +383,25 @@ class MainWindow(Handy.ApplicationWindow):
                 CrashReportDialog(self, crash_log)
         except FileNotFoundError:
             pass
+
+    def check_notifications(self):
+        if not self.utils_conn.check_connection():
+            return
+
+        messages = NotificationsManager().messages
+        if len(messages) > 0:
+            for message in messages:
+                entry = MessageEntry(
+                    nid=message["id"],
+                    title=message["title"],
+                    body=message["body"],
+                    url=message["url"],
+                    message_type=message["type"],
+                )
+                entry.set_visible(True)
+                self.list_notifications.append(entry)
+
+            self.btn_notifications.set_visible(True)
 
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()

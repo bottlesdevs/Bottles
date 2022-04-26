@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, GObject, Handy
+from gi.repository import Gtk, GLib, GObject, Adw
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils
@@ -25,7 +25,7 @@ logging = Logger()
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
-class ComponentEntry(Handy.ActionRow):
+class ComponentEntry(Adw.ActionRow):
     __gtype_name__ = 'ComponentEntry'
     __gsignals__ = {
         'component-installed': (GObject.SIGNAL_RUN_FIRST, None, ()),
@@ -68,10 +68,7 @@ class ComponentEntry(Handy.ActionRow):
             self.btn_browse.set_visible(False)
 
         if is_upgradable:
-            self.img_download.set_from_icon_name(
-                'software-update-available-symbolic',
-                Gtk.IconSize.BUTTON
-            )
+            self.img_download.set_from_icon_name('software-update-available-symbolic')
             self.btn_download.set_tooltip_text(_("Upgrade"))
 
         # connect signals
@@ -91,8 +88,8 @@ class ComponentEntry(Handy.ActionRow):
         self.btn_download.set_visible(False)
         self.box_download_status.set_visible(True)
 
-        for w in self.box_download_status.get_children():
-            w.set_visible(True)
+        while self.box_download_status.get_first_child():
+            self.box_download_status.remove(self.box_download_status.get_first_child())
 
         RunAsync(
             task_func=self.component_manager.install,
@@ -150,7 +147,12 @@ class ComponentEntry(Handy.ActionRow):
             percent = 100
 
         if percent == 100:
-            self.label_task_status.set_text(_("Installing..."))
+            while self.box_download_status.get_first_child():
+                self.box_download_status.remove(self.box_download_status.get_first_child())
+            self.btn_err.set_visible(False)
+            self.box_download_status.add(self.spinner)
+            self.spinner.set_visible(True)
+            self.spinner.start()
 
     def set_err(self, msg=None, retry=True):
         self.box_download_status.set_visible(False)
@@ -173,7 +175,7 @@ class ComponentEntry(Handy.ActionRow):
         self.btn_download.set_visible(True)
 
 
-class ComponentExpander(Handy.ExpanderRow):
+class ComponentExpander(Adw.ExpanderRow):
 
     def __init__(self, title, **kwargs):
         super().__init__(**kwargs)

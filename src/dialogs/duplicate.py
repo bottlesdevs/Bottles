@@ -17,14 +17,14 @@
 
 import re
 import time
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.managers.backup import BackupManager
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-duplicate.ui')
-class DuplicateDialog(Handy.Window):
+class DuplicateDialog(Adw.Window):
     __gtype_name__ = 'DuplicateDialog'
 
     # region Widgets
@@ -45,11 +45,14 @@ class DuplicateDialog(Handy.Window):
         self.parent = parent
         self.config = parent.config
 
+        entry_name_ev = Gtk.EventControllerKey.new()
+        entry_name_ev.connect("key-pressed", self.__check_entry_name)
+        self.entry_name.add_controller(entry_name_ev)
+
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
-        self.entry_name.connect('key-release-event', self.__check_entry_name)
 
     def __check_entry_name(self, widget, event_key):
         """
@@ -57,15 +60,15 @@ class DuplicateDialog(Handy.Window):
         special characters. The widget icon will be toggled
         according to the result.
         """
-        regex = re.compile("[@!#$%^&*()<>?/|}{~:.;,'\"]")
-        name = widget.get_text()
+        regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,"]')
+        name = self.entry_name.get_text()
 
         if (regex.search(name) is None) and name != "":
             self.btn_duplicate.set_sensitive(True)
-            widget.set_icon_from_icon_name(1, "")
+            self.entry_name.set_icon_from_icon_name(1, "")
         else:
             self.btn_duplicate.set_sensitive(False)
-            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+            self.entry_name.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     def __close_window(self, widget=None):
         self.destroy()

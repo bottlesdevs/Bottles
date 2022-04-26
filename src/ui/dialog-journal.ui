@@ -3,145 +3,92 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
   <object class="GtkPopover" id="pop_menu">
-    <property name="can-focus">False</property>
     <child>
       <object class="GtkBox">
-        <property name="width-request">160</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkModelButton" id="btn_all">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            
             <property name="text" translatable="yes">All messages</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkModelButton" id="btn_critical">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            
             <property name="text" translatable="yes">Critical</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkModelButton" id="btn_error">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            
             <property name="text" translatable="yes">Errors</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkModelButton" id="btn_warning">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            
             <property name="text" translatable="yes">Warnings</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkModelButton" id="btn_info">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            
             <property name="text" translatable="yes">Info</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">4</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>
   </object>
-  <template class="JournalDialog" parent="HdyWindow">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
+  <template class="JournalDialog" parent="AdwWindow">
     <property name="type">popup</property>
-    <property name="window-position">center</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
     <property name="destroy-with-parent">True</property>
-    <property name="gravity">center</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="HdyHeaderBar">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="title" translatable="yes">Journal browser</property>
-            <property name="show-close-button">True</property>
+          <object class="AdwHeaderBar">
+  <property name="title-widget">
+    <object class="AdwWindowTitle">
+      <property name="title" translatable="yes">Journal browser</property>
+    </object>
+  </property>
             <child type="title">
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <child>
                   <object class="GtkSearchEntry" id="search_entry">
-                    <property name="width-request">400</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="primary-icon-name">edit-find-symbolic</property>
-                    <property name="primary-icon-activatable">False</property>
-                    <property name="primary-icon-sensitive">False</property>
                     <property name="placeholder-text" translatable="yes">Journal Browser</property>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
+                  
+                  
                 </child>
                 <child>
                   <object class="GtkMenuButton">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
+                    
                     <property name="focus-on-click">False</property>
-                    <property name="receives-default">True</property>
                     <property name="tooltip-text" translatable="yes">Change logging level.</property>
-                    <property name="draw-indicator">True</property>
+                    
                     <property name="popover">pop_menu</property>
                     <child>
                       <object class="GtkLabel" id="label_filter">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">All</property>
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
+                  
+                  
                 </child>
                 <style>
                   <class name="linked"/>
@@ -149,20 +96,15 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkScrolledWindow">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            
             <child>
               <object class="GtkTreeView" id="tree_view">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
+                
                 <property name="reorderable">True</property>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection"/>
@@ -170,11 +112,8 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>

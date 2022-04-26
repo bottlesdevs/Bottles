@@ -2,60 +2,24 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
-  <object class="GtkPopover" id="pop_actions">
-    <property name="can-focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="width-request">160</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="btn_remove">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Uninstall</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">6</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <template class="ComponentEntry" parent="HdyActionRow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
+  <template class="ComponentEntry" parent="AdwActionRow">
+    
     <property name="title" translatable="yes">Component version</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="spacing">10</property>
         <child>
           <placeholder/>
         </child>
         <child>
           <object class="GtkMenuButton" id="btn_menu">
-            <property name="can-focus">True</property>
+            
             <property name="focus-on-click">False</property>
-            <property name="receives-default">True</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
             <property name="popover">pop_actions</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">view-more-symbolic</property>
               </object>
             </child>
@@ -63,36 +27,29 @@
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
+        </child>
+        <child>
+          <object class="GtkSpinner" id="spinner">
+          </object>
+          
+          
         </child>
         <child>
           <object class="GtkSeparator" id="sep">
-            <property name="can-focus">False</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">1</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkButton" id="btn_browse">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            
             <property name="tooltip-text" translatable="yes">Browse files</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">folder-open-symbolic</property>
               </object>
             </child>
@@ -100,17 +57,12 @@
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkButton" id="btn_err">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            
             <property name="tooltip-text" translatable="yes">The installation failed. This may be due to a repository error, partial download or checksum mismatch.
 
 Press to try again.</property>
@@ -118,8 +70,6 @@ Press to try again.</property>
             <property name="valign">center</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">emblem-important-symbolic</property>
               </object>
             </child>
@@ -127,24 +77,17 @@ Press to try again.</property>
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkButton" id="btn_download">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            
             <property name="tooltip-text" translatable="yes">Download &amp; Install</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <child>
               <object class="GtkImage" id="img_download">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">document-save-symbolic</property>
               </object>
             </child>
@@ -152,57 +95,36 @@ Press to try again.</property>
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">3</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkBox" id="box_download_status">
-            <property name="can-focus">False</property>
             <child>
               <object class="GtkLabel" id="label_task_status">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">0%</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              
+              
             </child>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">document-save-symbolic</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              
+              
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">4</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkButton" id="btn_cancel">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            
             <property name="halign">center</property>
             <property name="valign">center</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">edit-delete-symbolic</property>
               </object>
             </child>
@@ -210,14 +132,29 @@ Press to try again.</property>
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">5</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>
   </template>
+  <object class="GtkPopover" id="pop_actions">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="btn_remove">
+            
+            <property name="text" translatable="yes">Uninstall</property>
+          </object>
+          
+          
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>

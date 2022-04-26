@@ -17,7 +17,7 @@
 
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.common import open_doc_url
@@ -35,10 +35,11 @@ pages = {}
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details.ui')
-class DetailsView(Handy.Leaflet):
+class DetailsView(Adw.Bin):
     __gtype_name__ = 'Details'
 
     # region Widgets
+    leaflet = Gtk.Template.Child()
     list_pages = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
 
@@ -98,6 +99,9 @@ class DetailsView(Handy.Leaflet):
         else:
             self.window.set_actions(None)
 
+    def set_visible_child_name(self, name):
+        self.stack_bottle.set_visible_child_name(name)
+
     def build_pages(self):
         """
         This function build the pages list according to the
@@ -144,11 +148,11 @@ class DetailsView(Handy.Leaflet):
             del pages["programs"]
             del pages["versioning"]
 
-        for w in self.list_pages.get_children():
-            w.destroy()
+        while self.list_pages.get_first_child():
+            self.list_pages.remove(self.list_pages.get_first_child())
 
         for p in pages:
-            self.list_pages.add(PageRow(p, pages[p]))
+            self.list_pages.append(PageRow(p, pages[p]))
 
         self.stack_bottle.add_named(self.view_bottle, "bottle")
         self.stack_bottle.add_named(self.view_preferences, "preferences")

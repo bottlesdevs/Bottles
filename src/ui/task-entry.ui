@@ -2,33 +2,35 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
-  <template class="TaskEntry" parent="HdyActionRow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
-    <property name="subtitle" translatable="yes">Processing...</property>
+  <template class="TaskEntry" parent="AdwActionRow">
+    
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="spacing">10</property>
         <child>
-          <placeholder/>
+          <object class="GtkSpinner" id="spinner_task">
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+          </object>
+          
+          
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkLabel" id="label_task_status">
+            <property name="label">n/a</property>
+            <property name="width-chars">5</property>
+          </object>
+          
+          
         </child>
         <child>
           <object class="GtkButton" id="btn_cancel">
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            
             <property name="tooltip-text" translatable="yes">Delete message</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">edit-delete-symbolic</property>
               </object>
             </child>
@@ -37,12 +39,8 @@
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>

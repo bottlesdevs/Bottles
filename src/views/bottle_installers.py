@@ -44,8 +44,11 @@ class InstallersView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
+        entry_search_ev = Gtk.EventControllerKey.new()
+        entry_search_ev.connect("key-pressed", self.__search_installers)
+        self.entry_search.add_controller(entry_search_ev)
+
         self.btn_help.connect("clicked", open_doc_url, "bottles/installers")
-        self.entry_search.connect('key-release-event', self.__search_installers)
         self.btn_toggle_search.connect('clicked', self.__toggle_search)
         self.entry_search.connect('changed', self.__search_installers)
 
@@ -54,7 +57,7 @@ class InstallersView(Gtk.ScrolledWindow):
         This function search in the list of installers the
         text written in the search entry.
         """
-        terms = widget.get_text()
+        terms = self.entry_search.get_text()
         self.list_installers.set_filter_func(
             self.__filter_installers,
             terms
@@ -76,8 +79,8 @@ class InstallersView(Gtk.ScrolledWindow):
             config = {}
         self.config = config
 
-        for w in self.list_installers:
-            w.destroy()
+        while self.list_installers.get_first_child():
+            self.list_installers.remove(self.list_installers.get_first_child())
 
         supported_installers = self.manager.supported_installers.items()
 
@@ -87,7 +90,7 @@ class InstallersView(Gtk.ScrolledWindow):
                     continue
                 if installer[1].get("Arch", "win64") != self.config["Arch"]:
                     continue
-                self.list_installers.add(
+                self.list_installers.append(
                     InstallerEntry(
                         window=self.window,
                         config=self.config,

@@ -59,16 +59,10 @@ class ImporterView(Gtk.ScrolledWindow):
         def update(result, error=False):
             widget.set_sensitive(True)
             if result.status:
-                wineprefixes = result.data.get("wineprefixes")
-                if len(wineprefixes) == 0:
-                    return
-
-                self.hdy_status.set_visible(False)
-                for w in self.list_prefixes.get_children():
-                    w.destroy()
-
+                while self.list_prefixes.get_first_child() is not None:
+                    self.list_prefixes.remove(self.list_prefixes.get_first_child())
                 for prefix in result.data.get("wineprefixes"):
-                    self.list_prefixes.add(ImporterEntry(self.window, prefix))
+                    self.list_prefixes.append(ImporterEntry(self.window, prefix))
 
         widget.set_sensitive(False)
 

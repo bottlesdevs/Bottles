@@ -20,7 +20,7 @@ import json
 import webbrowser
 import urllib.request
 from urllib.parse import quote
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from bottles.params import VERSION  # pyright: reportMissingImports=false
 
@@ -52,7 +52,7 @@ class SimilarReportEntry(Gtk.Box):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-crash-report.ui')
-class CrashReportDialog(Handy.Window):
+class CrashReportDialog(Adw.Window):
     __gtype_name__ = 'CrashReportDialog'
 
     # region Widgets
@@ -100,7 +100,7 @@ class CrashReportDialog(Handy.Window):
             '''
             self.box_related.set_visible(True)
             for issue in __similar_reports:
-                self.list_reports.add(SimilarReportEntry(issue))
+                self.list_reports.append(SimilarReportEntry(issue))
                 if len(self.list_reports) == 5:
                     break
         else:

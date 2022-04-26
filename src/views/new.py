@@ -18,14 +18,14 @@
 import os
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from bottles.backend.runner import Runner  # pyright: reportMissingImports=false
 from bottles.backend.wine.executor import WineExecutor
 from bottles.utils.threading import RunAsync
 
 
-class EnvironmentRow(Handy.ActionRow):
+class EnvironmentRow(Adw.ActionRow):
     def __init__(self, environment, **kwargs):
         super().__init__(**kwargs)
 
@@ -41,7 +41,7 @@ class EnvironmentRow(Handy.ActionRow):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
-class NewView(Handy.Window):
+class NewView(Adw.Window):
     __gtype_name__ = 'NewView'
 
     # region Widgets
@@ -109,6 +109,10 @@ class NewView(Handy.Window):
         self.new_bottle_config = {}
         self.custom_path = ""
 
+        entry_name_ev = Gtk.EventControllerKey.new()
+        entry_name_ev.connect("key-pressed", self.check_entry_name)
+        self.entry_name.add_controller(entry_name_ev)
+
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_close.connect("clicked", self.__close_window)
@@ -116,16 +120,15 @@ class NewView(Handy.Window):
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
         self.list_envs.connect('row-selected', self.set_active_env)
-        self.entry_name.connect('key-release-event', self.check_entry_name)
         self.entry_name.connect('activate', self.create_bottle)
         self.btn_pref_runners.connect("clicked", self.window.show_prefs_view)
 
         for env in self.environments:
             env_row = EnvironmentRow(env)
-            self.list_envs.add(env_row)
+            self.list_envs.append(env_row)
 
         # set the first environment as active
-        self.list_envs.select_row(self.list_envs.get_children()[0])
+        self.list_envs.select_row(self.list_envs.get_first_child())
 
         # populate combo_runner with runner versions from the manager
         for runner in self.manager.runners_available:
@@ -166,15 +169,15 @@ class NewView(Handy.Window):
         checks if the name is not empty and if it contains special
         characters. Then it toggle the entry icon according to the result.
         """
-        regex = re.compile("[@!#$%^&*()<>?/|}{~:.;,'\"]")
-        name = widget.get_text()
+        regex = re.compile('[\\\@!#$%^&*()<>?/|}{~:.;,\'"]')
+        name = self.entry_name.get_text()
 
         if (regex.search(name) is None) and name != "" and not name.isspace():
-            self.btn_create.set_sensitive(True)
-            widget.set_icon_from_icon_name(1, "")
+            self.btn_create.set_visible(True)
+            self.entry_name.set_icon_from_icon_name(1, "")
         else:
-            self.btn_create.set_sensitive(False)
-            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+            self.btn_create.set_visible(False)
+            self.entry_name.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     def choose_env_recipe(self, widget):
         file_dialog = Gtk.FileChooserNative.new(

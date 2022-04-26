@@ -2,20 +2,14 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
-  <template class="DLLEntry" parent="HdyActionRow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
+  <template class="DLLEntry" parent="AdwActionRow">
+    
     <property name="title">alt100</property>
-    <property name="activatable-widget">combo_type</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="spacing">10</property>
         <child>
           <object class="GtkComboBoxText" id="combo_type">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="valign">center</property>
             <property name="active">0</property>
             <items>
@@ -29,35 +23,22 @@
               <class name="plain"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkButton" id="btn_remove">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">user-trash-symbolic</property>
               </object>
             </child>
@@ -66,11 +47,8 @@
               <class name="image-button"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>

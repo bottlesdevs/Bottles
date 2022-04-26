@@ -1,64 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <requires lib="libhandy" version="1.2"/>
   <template class="ListView" parent="GtkScrolledWindow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
     <child>
       <object class="GtkViewport">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="HdyClamp" id="clamp_list">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="margin-top">20</property>
+              <object class="AdwClamp" id="clamp_list">
                 <property name="maximum-size">500</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkSearchEntry" id="entry_search">
-                        <property name="can-focus">True</property>
-                        <property name="margin-bottom">10</property>
-                        <property name="primary-icon-name">edit-find-symbolic</property>
-                        <property name="primary-icon-activatable">False</property>
-                        <property name="primary-icon-sensitive">False</property>
                         <property name="placeholder-text" translatable="yes">Search your bottles ..</property>
+                        <property name="visible">false</property>
                       </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
                     </child>
                     <child>
-                      <object class="HdyPreferencesGroup" id="list_bottles">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-bottom">10</property>
-                        <property name="title" translatable="yes">Your Bottles</property>
-                        <child>
-                          <placeholder/>
-                        </child>
+                      <object class="GtkListBox" id="list_bottles">
+                        <property name="selection-mode">none</property>
+                        <style>
+                          <class name="content"/>
+                        </style>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="HdyPreferencesGroup" id="list_steam">
@@ -78,25 +49,15 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
-              <object class="HdyStatusPage" id="hdy_status">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
+              <object class="AdwStatusPage" id="hdy_status">
                 <property name="icon-name">com.usebottles.bottles-symbolic</property>
                 <property name="title" translatable="yes">Bottles</property>
                 <property name="description" translatable="yes">Start off by creating a Bottle.</property>
                 <child>
                   <object class="GtkButton" id="btn_create">
                     <property name="label" translatable="yes">Create a new Bottle</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
                     <style>
@@ -106,11 +67,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
             </child>
           </object>
         </child>

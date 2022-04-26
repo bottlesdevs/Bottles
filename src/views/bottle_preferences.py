@@ -1048,7 +1048,7 @@ class PreferencesView(Gtk.ScrolledWindow):
 
         def no_action(widget, event):
             return True
-
+        '''
         for c in [
             self.combo_fsr,
             self.combo_virt_res,
@@ -1061,6 +1061,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.combo_renderer
         ]:
             c.connect('scroll-event', no_action)
+        '''
 
     def __set_steam_rules(self):
         """Set the Steam Environment specific rules"""

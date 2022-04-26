@@ -15,13 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.journal import JournalManager, JournalSeverity  # pyright: reportMissingImports=false
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-journal.ui')
-class JournalDialog(Handy.Window):
+class JournalDialog(Adw.Window):
     __gtype_name__ = 'JournalDialog'
 
     # region Widgets
