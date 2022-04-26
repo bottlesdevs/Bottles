@@ -17,19 +17,17 @@
 
 import time
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
-class OnboardDialog(Handy.Window):
+class OnboardDialog(Adw.Window):
     __gtype_name__ = 'OnboardDialog'
 
     # region Widgets
     stack_onboard = Gtk.Template.Child()
-    btn_stack_next = Gtk.Template.Child()
-    btn_stack_back = Gtk.Template.Child()
     btn_quit = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_next = Gtk.Template.Child()
@@ -73,34 +71,39 @@ class OnboardDialog(Handy.Window):
         page = self.stack_onboard.get_visible_child_name()
 
         if page == "page_welcome":
-            self.btn_stack_next.set_visible(True)
-            self.btn_stack_next.set_visible_child(self.btn_next)
-            self.btn_stack_back.set_visible(True)
-            self.btn_stack_back.set_visible_child(self.btn_quit)
+            self.btn_next.set_visible(True)
+            self.btn_quit.set_visible(True)
+            self.btn_back.set_visible(False)
+            self.btn_install.set_visible(False)
+            self.btn_close.set_visible(False)
 
-        if page == "page_about":
-            self.btn_stack_next.set_visible(True)
-            self.btn_stack_next.set_visible_child(self.btn_next)
-            self.btn_stack_back.set_visible(True)
-            self.btn_stack_back.set_visible_child(self.btn_back)
+        if page == "page_wine":
+            self.btn_next.set_visible(True)
+            self.btn_quit.set_visible(False)
+            self.btn_back.set_visible(True)
+            self.btn_install.set_visible(False)
+            self.btn_close.set_visible(False)
 
         if page == "page_runners":
-            self.btn_stack_next.set_visible(True)
-            self.btn_stack_next.set_visible_child(self.btn_install)
-            self.btn_stack_back.set_visible(True)
-            self.btn_stack_back.set_visible_child(self.btn_back)
+            self.btn_next.set_visible(False)
+            self.btn_quit.set_visible(False)
+            self.btn_back.set_visible(True)
+            self.btn_install.set_visible(True)
+            self.btn_close.set_visible(False)
 
         if page == "page_download":
-            self.btn_stack_next.set_visible(False)
-            self.btn_stack_next.set_visible_child(self.btn_install)
-            self.btn_stack_back.set_visible(False)
-            self.btn_stack_back.set_visible_child(self.btn_quit)
+            self.btn_next.set_visible(False)
+            self.btn_quit.set_visible(False)
+            self.btn_back.set_visible(False)
+            self.btn_install.set_visible(False)
+            self.btn_close.set_visible(False)
 
         if page == "page_finish":
-            self.btn_stack_next.set_visible(True)
-            self.btn_stack_next.set_visible_child(self.btn_close)
-            self.btn_stack_back.set_visible(False)
-            self.btn_stack_back.set_visible_child(self.btn_quit)
+            self.btn_next.set_visible(False)
+            self.btn_quit.set_visible(False)
+            self.btn_back.set_visible(False)
+            self.btn_install.set_visible(False)
+            self.btn_close.set_visible(True)
 
     @staticmethod
     def __quit(widget=False):

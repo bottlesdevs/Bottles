@@ -6,64 +6,41 @@
     <property name="text" translatable="yes">Message goes here.</property>
   </object>
   <template class="Dialog" parent="GtkDialog">
-    <property name="can-focus">False</property>
-    <property name="window-position">center-on-parent</property>
-    <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can-focus">False</property>
-            <property name="layout-style">end</property>
+        <child>
+          <object class="GtkBox">
             <child>
               <object class="GtkButton" id="btn_cancel">
                 <property name="label" translatable="yes">Cancel</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              
+              
             </child>
             <child>
               <object class="GtkButton" id="btn_confirm">
                 <property name="label" translatable="yes">Confirm</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              
+              
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkTextView" id="entry_output">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            
             <property name="editable">False</property>
             <property name="buffer">buffer_output</property>
             <property name="monospace">True</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          
+          
         </child>
       </object>
     </child>

@@ -16,11 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
-class LaunchOptionsDialog(Handy.Window):
+class LaunchOptionsDialog(Adw.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
 
     # region Widgets
@@ -126,8 +126,8 @@ class LaunchOptionsDialog(Handy.Window):
             action.set_subtitle("")
 
     def __close_window(self, widget=None):
-        self.parent.page_details.set_config(self.config, no_page_change=True)
-        self.destroy()
+        self.parent.page_details.set_config(self.config)
+        self.window.remove(self)
 
     def __save_options(self, widget):
         """

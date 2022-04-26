@@ -3,27 +3,17 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
   <object class="GtkPopover" id="custom_bottle_path_extra">
-    <property name="can-focus">False</property>
     <child>
       <object class="GtkBox">
-        <property name="width-request">160</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
           <object class="GtkModelButton" id="btn_bottles_path_reset">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            
             <property name="text" translatable="yes">Reset default</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <placeholder/>
@@ -37,47 +27,33 @@
       </object>
     </child>
   </object>
-  <template class="PreferencesWindow" parent="HdyPreferencesWindow">
-    <property name="can-focus">False</property>
+  <template class="PreferencesWindow" parent="AdwPreferencesWindow">
     <property name="title" translatable="yes">Preferences</property>
     <property name="modal">True</property>
-    <property name="window-position">center</property>
     <property name="default-width">750</property>
     <property name="destroy-with-parent">True</property>
-    <property name="gravity">center</property>
     <child>
-      <object class="HdyPreferencesPage">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
+      <object class="AdwPreferencesPage">
         <property name="icon-name">applications-system-symbolic</property>
         <property name="title" translatable="yes">General</property>
         <child>
-          <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Appearance</property>
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Show Update Date</property>
+              <object class="AdwActionRow">
+                
+                <property name="title" translatable="yes">Show update date</property>
                 <property name="subtitle" translatable="yes">Whether to show the update date in the bottle list.</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkSwitch" id="switch_update_date">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                        
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>
@@ -89,86 +65,63 @@
           </object>
         </child>
         <child>
-          <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">General</property>
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
+              <object class="AdwActionRow">
+                
                 <property name="title" translatable="yes">Notifications</property>
                 <property name="subtitle" translatable="yes">Show notifications for downloads and installs.</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkSwitch" id="switch_notifications">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                        
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Temp Files</property>
+              <object class="AdwActionRow">
+                
+                <property name="title" translatable="yes">Temp files</property>
                 <property name="subtitle" translatable="yes">Clean temp files when Bottles launches?</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkSwitch" id="switch_temp">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                        
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Close Bottles After Starting Programs</property>
-                <property name="subtitle" translatable="yes">Close Bottles after starting a program from the file manager.</property>
+              <object class="AdwActionRow">
+                
+                <property name="title" translatable="yes">Close Bottles after starting a program</property>
+                <property name="subtitle" translatable="yes">Close Bottles after starting a program from the file manager</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkSwitch" id="switch_auto_close">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                        
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>
@@ -180,34 +133,24 @@
           </object>
         </child>
         <child>
-          <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Advanced</property>
             <child>
-              <object class="HdyActionRow" id="action_bottles_path">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Custom Bottles Path (Require Restart)</property>
-                <property name="subtitle" translatable="yes">Choose where to store the new bottles (this will not move the existing ones).</property>
+              <object class="AdwActionRow" id="action_bottles_path">
+                
+                <property name="title" translatable="yes">Custom bottles path (require restart)</property>
+                <property name="subtitle" translatable="yes">Choose where to store the new bottles (this will not move the existing ones)</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="spacing">10</property>
                     <child>
                       <object class="GtkButton" id="btn_bottles_path">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
+                        
                         <property name="tooltip-text" translatable="yes">Choose a directory</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
-                        <property name="relief">none</property>
                         <child>
                           <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <property name="icon-name">document-open-symbolic</property>
                           </object>
                         </child>
@@ -215,51 +158,33 @@
                           <class name="image-button"/>
                         </style>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      
+                      
                     </child>
                     <child>
                       <object class="GtkImage" id="flatpak_notice">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Warning: Be sure to give permission to the Flatpak to access the new path.
 This will break the sandbox!</property>
                         <property name="icon-name">dialog-warning-symbolic</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
+                      
+                      
                     </child>
                     <child>
                       <object class="GtkSeparator">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
+                      
+                      
                     </child>
                     <child>
                       <object class="GtkMenuButton">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                        
                         <property name="focus-on-click">False</property>
-                        <property name="receives-default">True</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
-                        <property name="relief">none</property>
                         <property name="popover">custom_bottle_path_extra</property>
                         <child>
                           <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <property name="icon-name">view-more-symbolic</property>
                           </object>
                         </child>
@@ -267,11 +192,8 @@ This will break the sandbox!</property>
                           <class name="image-button"/>
                         </style>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">3</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>
@@ -285,37 +207,26 @@ This will break the sandbox!</property>
       </object>
     </child>
     <child>
-      <object class="HdyPreferencesPage">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
+      <object class="AdwPreferencesPage">
         <property name="icon-name">system-run-symbolic</property>
         <property name="title" translatable="yes">Runners</property>
         <child>
-          <object class="HdyPreferencesGroup" id="list_runners">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup" id="list_runners">
             <child>
-              <object class="HdyActionRow" id="actionrow_prerelease">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Pre-Release</property>
-                <property name="subtitle" translatable="yes">Whether the list below should display unstable versions.</property>
+              <object class="AdwActionRow" id="actionrow_prerelease">
+                
+                <property name="title" translatable="yes">Pre-release</property>
+                <property name="subtitle" translatable="yes">Whether the above list should display unstable versions.</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkSwitch" id="switch_release_candidate">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                        
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>
@@ -329,15 +240,11 @@ This will break the sandbox!</property>
       </object>
     </child>
     <child>
-      <object class="HdyPreferencesPage">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
+      <object class="AdwPreferencesPage">
         <property name="icon-name">applications-games-symbolic</property>
         <property name="title" translatable="yes">DLL Components</property>
         <child>
-          <object class="HdyPreferencesGroup" id="list_dxvk">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup" id="list_dxvk">
             <property name="title" translatable="yes">DXVK</property>
             <child>
               <placeholder/>
@@ -345,9 +252,7 @@ This will break the sandbox!</property>
           </object>
         </child>
         <child>
-          <object class="HdyPreferencesGroup" id="list_vkd3d">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup" id="list_vkd3d">
             <property name="title" translatable="yes">VKD3D</property>
             <child>
               <placeholder/>
@@ -355,9 +260,7 @@ This will break the sandbox!</property>
           </object>
         </child>
         <child>
-          <object class="HdyPreferencesGroup" id="list_nvapi">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup" id="list_nvapi">
             <property name="title" translatable="yes">DXVK-NVAPI</property>
             <child>
               <placeholder/>
@@ -365,9 +268,7 @@ This will break the sandbox!</property>
           </object>
         </child>
         <child>
-          <object class="HdyPreferencesGroup" id="list_latencyflex">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup" id="list_latencyflex">
             <property name="title" translatable="yes">LatencyFleX</property>
             <child>
               <placeholder/>
@@ -377,15 +278,11 @@ This will break the sandbox!</property>
       </object>
     </child>
     <child>
-      <object class="HdyPreferencesPage" id="pref_core">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
+      <object class="AdwPreferencesPage" id="pref_core">
         <property name="icon-name">application-x-addon-symbolic</property>
         <property name="title" translatable="yes">Core</property>
         <child>
-          <object class="HdyPreferencesGroup" id="list_runtimes">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup" id="list_runtimes">
             <property name="title" translatable="yes">Runtime</property>
             <child>
               <placeholder/>
@@ -393,9 +290,7 @@ This will break the sandbox!</property>
           </object>
         </child>
         <child>
-          <object class="HdyPreferencesGroup" id="list_winebridge">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup" id="list_winebridge">
             <property name="title" translatable="yes">WineBridge</property>
             <child>
               <placeholder/>
@@ -405,64 +300,46 @@ This will break the sandbox!</property>
       </object>
     </child>
     <child>
-      <object class="HdyPreferencesPage">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
+      <object class="AdwPreferencesPage">
         <property name="icon-name">applications-science-symbolic</property>
         <property name="title" translatable="yes">Experiments</property>
         <child>
-          <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+          <object class="AdwPreferencesGroup">
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Steam Proton Prefixes</property>
-                <property name="subtitle" translatable="yes">In early development (requires restart).</property>
+              <object class="AdwActionRow">
+                
+                <property name="title" translatable="yes">Steam Proton prefixes</property>
+                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkSwitch" id="switch_steam">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                        
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="title" translatable="yes">Library Mode</property>
-                <property name="subtitle" translatable="yes">In early development (requires restart).</property>
+              <object class="AdwActionRow">
+                
+                <property name="title" translatable="yes">Library mode</property>
+                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkSwitch" id="switch_library">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
+                        
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      
+                      
                     </child>
                   </object>
                 </child>

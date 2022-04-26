@@ -15,11 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import gi
-
-gi.require_version('GtkSource', '4')
-
-from gi.repository import Gtk, GtkSource, Gdk, Handy, Pango, WebKit2
+from gi.repository import Gtk, GtkSource, Gdk, Adw
 from gettext import gettext as _
 
 
@@ -56,22 +52,21 @@ class MessageDialog(Gtk.MessageDialog):
             message_view = Gtk.TextView()
             message_buffer = message_view.get_buffer()
             message_buffer.set_text(log)
-            message_scroll.add(message_view)
+            message_scroll.append(message_view)
 
-            box.add(message_scroll)
+            box.append(message_scroll)
 
-        content.add(box)
+        content.append(box)
         self.show_all()
 
 
-class SourceDialog(Handy.Window):
+class SourceDialog(Adw.Window):
 
     def __init__(self, parent, title, message, buttons=None, **kwargs):
         super().__init__(**kwargs)
         if buttons is None:
             buttons = []
 
-        self.set_position(Gtk.WindowPosition.CENTER)
         self.set_default_size(700, 700)
 
         self.parent = parent
@@ -82,8 +77,8 @@ class SourceDialog(Handy.Window):
         self.__build_ui()
 
     def __build_ui(self):
-        headerbar = Handy.HeaderBar()
-        btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic", Gtk.IconSize.BUTTON)
+        headerbar = Adw.HeaderBar()
+        btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic")
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled = Gtk.ScrolledWindow(vexpand=True, hexpand=True)
         style_scheme_manager = GtkSource.StyleSchemeManager.get_default()
@@ -103,39 +98,36 @@ class SourceDialog(Handy.Window):
         )
         source_buffer = source_view.get_buffer()
 
-        headerbar.set_show_close_button(True)
-        headerbar.set_title(self.title)
+        headerbar.set_title_widget(Gtk.Label.new(self.title))
         headerbar.pack_end(btn_copy)
 
         btn_copy.connect("clicked", self.__copy_text)
         btn_copy.set_tooltip_text(_("Copy to clipboard"))
 
         for button in self.buttons:
-            _btn = Gtk.Button.new_from_icon_name(button["icon"], Gtk.IconSize.BUTTON)
+            _btn = Gtk.Button.new_from_icon_name(button["icon"])
             _btn.connect("clicked", button["callback"])
             _btn.set_tooltip_text(button["tooltip"])
             headerbar.pack_end(_btn)
 
         buffer_iter = source_buffer.get_end_iter()
         source_buffer.insert(buffer_iter, self.message)
-        scrolled.add(source_view)
+        scrolled.set_child(source_view)
 
-        box.add(headerbar)
-        box.add(scrolled)
+        box.append(headerbar)
+        box.append(scrolled)
 
-        self.add(box)
-        self.show_all()
+        self.set_child(box)
 
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_text(self.message, -1)
 
 
-class TextDialog(Handy.Window):
+class TextDialog(Adw.Window):
 
     def __init__(self, parent, title, message, **kwargs):
         super().__init__(**kwargs)
-        self.set_position(Gtk.WindowPosition.CENTER)
         self.set_default_size(700, 700)
 
         self.parent = parent
@@ -145,15 +137,14 @@ class TextDialog(Handy.Window):
         self.__build_ui()
 
     def __build_ui(self):
-        headerbar = Handy.HeaderBar()
-        btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic", Gtk.IconSize.BUTTON)
+        headerbar = Adw.HeaderBar()
+        btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic")
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled = Gtk.ScrolledWindow(vexpand=True, hexpand=True)
         textview = Gtk.TextView()
         textbuffer = textview.get_buffer()
 
-        headerbar.set_show_close_button(True)
-        headerbar.set_title(self.title)
+        headerbar.set_title_widget(Gtk.Label.new(self.title))
         headerbar.pack_end(btn_copy)
 
         btn_copy.connect("clicked", self.__copy_text)
@@ -161,24 +152,22 @@ class TextDialog(Handy.Window):
 
         buffer_iter = textbuffer.get_end_iter()
         textbuffer.insert(buffer_iter, self.message)
-        scrolled.add(textview)
+        scrolled.set_child(textview)
 
-        box.add(headerbar)
-        box.add(scrolled)
+        box.append(headerbar)
+        box.append(scrolled)
 
-        self.add(box)
-        self.show_all()
+        self.set_child(box)
 
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         clipboard.set_text(self.message, -1)
 
 
-class WebDialog(Handy.Window):
+class WebDialog(Adw.Window):
 
     def __init__(self, parent, title, message):
-        Handy.Window.__init__(self, title=title)
-        self.set_position(Gtk.WindowPosition.CENTER)
+        Adw.Window.__init__(self, title=title)
         self.set_default_size(700, 700)
         self.set_transient_for(parent)
         self.set_modal(True)
@@ -190,27 +179,25 @@ class WebDialog(Handy.Window):
         self.__build_ui()
 
     def __build_ui(self):
-        headerbar = Handy.HeaderBar()
-        btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic", Gtk.IconSize.BUTTON)
+        headerbar = Adw.HeaderBar()
+        btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic")
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled = Gtk.ScrolledWindow(vexpand=True, hexpand=True)
-        webview = WebKit2.WebView()
+        # webview = WebKit2.WebView()  TODO: fix webkit2
 
-        headerbar.set_show_close_button(True)
-        headerbar.set_title(self.title)
+        headerbar.set_title_widget(Gtk.Label.new(self.title))
         headerbar.pack_end(btn_copy)
 
         btn_copy.connect("clicked", self.__copy_text)
         btn_copy.set_tooltip_text(_("Copy to clipboard"))
 
         webview.load_html(self.message, "file://")
-        scrolled.add(webview)
+        # scrolled.append(webview)
 
-        box.add(headerbar)
-        box.add(scrolled)
+        box.append(headerbar)
+        box.append(scrolled)
 
-        self.add(box)
-        self.show_all()
+        self.set_child(box)
 
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -245,7 +232,7 @@ class Dialog(Gtk.Dialog):
             If log is defined, display it as output, also change the
             the foreground according to the user preferences.
             '''
-            is_dark = Handy.StyleManager.get_default().get_dark()
+            is_dark = Adw.StyleManager.get_default().get_dark()
 
             self.resize(600, 700)
             color = "#3e0622"
@@ -264,8 +251,8 @@ class Dialog(Gtk.Dialog):
                         f"<span foreground='{color}'>{l}</span>\n",
                         -1
                     )
-                message_scroll.add(message_view)
-                box.add(message_scroll)
+                message_scroll.append(message_view)
+                box.append(message_scroll)
 
             elif html:
                 ucntm = WebKit2.UserContentManager()
@@ -281,17 +268,15 @@ class Dialog(Gtk.Dialog):
                     user_content_manager=ucntm
                 )
                 webview.load_html(html, "file://")
-                message_scroll.add(webview)
-                box.add(message_scroll)
+                message_scroll.append(webview)
+                box.append(message_scroll)
 
         elif message:
             message_label = Gtk.Label(label=message)
             message_label.wrap_width = 500
-            message_label.wrap_mode = Pango.WrapMode.WORD_CHAR
-            box.add(message_label)
+            box.append(message_label)
 
-        content.add(box)
-        self.show_all()
+        content.set_child(box)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/about.ui')

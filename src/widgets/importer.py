@@ -15,14 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.utils.manager import ManagerUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer-entry.ui')
-class ImporterEntry(Handy.ActionRow):
+class ImporterEntry(Adw.ActionRow):
     __gtype_name__ = 'ImporterEntry'
 
     # region Widgets

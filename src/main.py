@@ -23,10 +23,11 @@ import webbrowser
 import subprocess
 from os import path
 
-gi.require_version('Gtk', '3.0')
-gi.require_version('Handy', '1')
-gi.require_version('WebKit2', '4.0')
-from gi.repository import Gtk, Gio, Gdk, GLib, GObject, Handy
+gi.require_version('Gtk', '4.0')
+gi.require_version('Adw', '1')
+gi.require_version('GtkSource', '5')
+
+from gi.repository import Gtk, Gio, Gdk, GLib, GObject, Adw
 
 from bottles.params import *
 from bottles.backend.logger import Logger
@@ -69,10 +70,10 @@ _ = gettext.gettext
 # endregion
 
 
-class Bottles(Gtk.Application):
-    arg_exe = None
-    arg_bottle = None
-    arg_passed = None
+class Bottles(Adw.Application):
+    arg_exe = False
+    arg_bottle = False
+    arg_passed = False
     dark_provider = None
 
     def __init__(self):
@@ -211,18 +212,12 @@ class Bottles(Gtk.Application):
         Gtk.Application.do_startup(self)
         self.__register_actions()
 
-        # Opt-in to follow dark mode user preference.
-        # TODO Remove after porting to libadwaita.
-        manager = Handy.StyleManager.get_default()
-        manager.set_color_scheme(Handy.ColorScheme.PREFER_LIGHT)
-
-        # TODO AdwApplication manages this automatically for us.
         self.dark_provider = Gtk.CssProvider()
         self.dark_provider.load_from_resource(
             "/com/usebottles/bottles/style-dark.css"
         )
-        self.__update_dark_style(manager)
-        manager.connect("notify::dark", self.__update_dark_style)
+        # self.__update_dark_style(manager)
+        # manager.connect("notify::dark", self.__update_dark_style)
 
     def do_activate(self):
         """
@@ -266,8 +261,8 @@ class Bottles(Gtk.Application):
             provider.load_from_data(css_def.get_data() + css_res.get_data())
         else:
             provider.load_from_data(css_def.get_data())
-        Gtk.StyleContext.add_provider_for_screen(
-            screen=Gdk.Screen.get_default(),
+        Gtk.StyleContext.add_provider_for_display(
+            display=Gdk.Display.get_default(),
             provider=provider,
             priority=Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
@@ -337,7 +332,7 @@ class Bottles(Gtk.Application):
         screen = Gdk.Screen.get_default()
 
         if is_dark:
-            Gtk.StyleContext.add_provider_for_screen(
+            Gtk.StyleContext.add_provider_for_display(
                 screen, self.dark_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION + 1
             )

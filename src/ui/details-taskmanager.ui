@@ -2,16 +2,12 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="TaskManagerView" parent="GtkScrolledWindow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
+    
     <child>
       <object class="GtkViewport">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <child>
           <object class="GtkTreeView" id="treeview_processes">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            
             <property name="enable-grid-lines">horizontal</property>
             <child internal-child="selection">
               <object class="GtkTreeSelection"/>
@@ -22,20 +18,14 @@
     </child>
   </template>
   <object class="GtkBox" id="actions">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <child>
       <object class="GtkButton" id="btn_update">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="receives-default">True</property>
+        
         <property name="tooltip-text" translatable="yes">Refresh</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="icon-name">view-refresh-symbolic</property>
           </object>
         </child>
@@ -43,26 +33,18 @@
           <class name="image-button"/>
         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="pack-type">end</property>
-        <property name="position">0</property>
-      </packing>
+      
+      
     </child>
     <child>
       <object class="GtkButton" id="btn_kill">
-        <property name="visible">True</property>
         <property name="sensitive">False</property>
-        <property name="can-focus">True</property>
-        <property name="receives-default">True</property>
+        
         <property name="tooltip-text" translatable="yes">Stop process</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="icon-name">process-stop-symbolic</property>
           </object>
         </child>
@@ -70,12 +52,8 @@
           <class name="image-button"/>
         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="pack-type">end</property>
-        <property name="position">1</property>
-      </packing>
+      
+      
     </child>
     <style>
       <class name="linked"/>

@@ -17,7 +17,7 @@
 
 import os
 import webbrowser
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 
@@ -36,7 +36,7 @@ from bottles.backend.wine.uninstaller import Uninstaller
 
 # noinspection PyUnusedLocal
 @Gtk.Template(resource_path='/com/usebottles/bottles/program-entry.ui')
-class ProgramEntry(Handy.ActionRow):
+class ProgramEntry(Adw.ActionRow):
     __gtype_name__ = 'ProgramEntry'
 
     # region Widgets

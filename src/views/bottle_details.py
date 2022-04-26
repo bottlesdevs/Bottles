@@ -104,6 +104,12 @@ class BottleView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
+        entry_name_ev = Gtk.EventControllerKey.new()
+        entry_name_ev.connect("key-pressed", self.__check_entry_name)
+        self.entry_name.add_controller(entry_name_ev)
+
+        self.entry_name.connect('activate', self.__toggle_rename)
+        self.btn_rename.connect('toggled', self.__toggle_rename)
         self.btn_winecfg.connect("clicked", self.run_winecfg)
         self.btn_debug.connect("clicked", self.run_debug)
         self.btn_execute.connect("clicked", self.run_executable)
@@ -111,7 +117,6 @@ class BottleView(Gtk.ScrolledWindow):
         self.btn_browse.connect("clicked", self.run_browse)
         self.btn_explorer.connect("clicked", self.run_explorer)
         self.btn_cmd.connect("clicked", self.run_cmd)
-        self.btn_cmd.connect("button-press-event", self.run_snake)
         self.btn_taskmanager.connect("clicked", self.run_taskmanager)
         self.btn_controlpanel.connect("clicked", self.run_controlpanel)
         self.btn_uninstaller.connect("clicked", self.run_uninstaller)
@@ -171,6 +176,48 @@ class BottleView(Gtk.ScrolledWindow):
 
         self.__set_steam_rules()
 
+    def __check_entry_name(self, widget, event_key):
+        """
+        This function check if the entry name is valid, looking
+        for special characters. It also toggles the widget icon
+        and the save button sensitivity according to the result.
+        """
+        regex = re.compile('\\\[@!#$%^&*()<>?/|}{~:.;,]')
+        name = self.entry_name.get_text()
+
+        if (regex.search(name) is None) and name != "" and not name.isspace():
+            self.btn_rename.set_sensitive(True)
+            self.entry_name.set_icon_from_icon_name(1, "")
+        else:
+            self.btn_rename.set_sensitive(False)
+            self.entry_name.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+
+    def __toggle_rename(self, widget):
+        """
+        This function toggle the entry_name editability. It will
+        also update the bottle configuration with the new bottle name
+        if the entry_name status is False (not editable).
+        """
+        if not self.btn_rename.get_sensitive():
+            return
+
+        status = self.btn_rename.get_active()
+        if widget == self.entry_name:
+            status = not status
+        self.entry_name.set_editable(status)
+
+        if status:
+            self.entry_name.grab_focus()
+        else:
+            self.manager.update_config(
+                config=self.config,
+                key="Name",
+                value=self.entry_name.get_text()
+            )
+            self.btn_rename.handler_block_by_func(self.__toggle_rename)
+            self.btn_rename.set_active(False)
+            self.btn_rename.handler_unblock_by_func(self.__toggle_rename)
+
     def update_programs(self, widget=False, config=None):
         """
         This function update the programs lists. The list in the
@@ -182,9 +229,6 @@ class BottleView(Gtk.ScrolledWindow):
         wineserver_status = WineServer(self.config).is_alive()
 
         for w in self.group_programs:
-            if w == self.row_no_programs:
-                w.set_visible(False)
-                continue
             self.group_programs.remove(w)
 
         if self.config.get("Environment") == "Steam":
@@ -283,14 +327,8 @@ class BottleView(Gtk.ScrolledWindow):
         """
         This function update the latest executables list.
         """
-        for w in self.box_run_extra.get_children():
-            if w not in [
-                self.btn_run_args,
-                self.check_move_file,
-                self.check_terminal,
-                self.extra_separator
-            ]:
-                self.box_run_extra.remove(w)
+        while self.box_run_extra.get_first_child() is not None:
+            self.box_run_extra.remove(self.box_run_extra.get_first_child())
 
         _execs = self.config.get("Latest_Executables", [])[-5:]
         for exe in _execs:

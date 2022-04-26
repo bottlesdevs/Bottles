@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-rename.ui')
-class RenameDialog(Handy.Window):
+class RenameDialog(Adw.Window):
     __gtype_name__ = 'RenameDialog'
 
     # region Widgets

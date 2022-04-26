@@ -17,11 +17,11 @@
 
 import re
 import shlex
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-environment-variables.ui')
-class EnvVarsDialog(Handy.Window):
+class EnvVarsDialog(Adw.Window):
     __gtype_name__ = 'EnvVarsDialog'
 
     # region Widgets
@@ -44,8 +44,11 @@ class EnvVarsDialog(Handy.Window):
         # set the default values
         self.entry_variables.set_text(variables)
 
+        entry_variables_ev = Gtk.EventControllerKey.new()
+        entry_variables_ev.connect("key-pressed", self.__check_entries)
+        self.entry_variables.add_controller(entry_variables_ev)
+
         # connect signals
-        self.entry_variables.connect('key-release-event', self.__check_entries)
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_save.connect("clicked", self.__save_variables)
 
@@ -56,7 +59,7 @@ class EnvVarsDialog(Handy.Window):
         the warning symbolic icon will be shown and the save button will be
         disabled preventing the user to save the invalid entries.
         """
-        entries = widget.get_text()
+        entries = self.entry_variables.get_text()
         try:
             entries = shlex.split(entries)
 
@@ -71,11 +74,11 @@ class EnvVarsDialog(Handy.Window):
                     raise Exception
         except:
             self.btn_save.set_sensitive(False)
-            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+            self.entry_variables.set_icon_from_icon_name(1, "dialog-warning-symbolic")
             return
 
         self.btn_save.set_sensitive(True)
-        widget.set_icon_from_icon_name(1, "")
+        self.entry_variables.set_icon_from_icon_name(1, "")
 
     def __close_window(self, widget):
         self.destroy()

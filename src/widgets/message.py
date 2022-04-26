@@ -16,14 +16,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import webbrowser
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 from gettext import gettext as _
 
 from bottles.backend.managers.notifications import NotificationsManager  # pyright: reportMissingImports=false
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/message-entry.ui')
-class MessageEntry(Handy.ActionRow):
+class MessageEntry(Adw.ActionRow):
     __gtype_name__ = 'MessageEntry'
 
     # region Widgets

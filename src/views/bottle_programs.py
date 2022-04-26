@@ -110,8 +110,8 @@ class ProgramsView(Gtk.ScrolledWindow):
         self.config = config
         wineserver_status = WineServer(self.config).is_alive()
 
-        for w in self.list_programs:
-            w.destroy()
+        while self.list_programs.get_first_child():
+            self.list_programs.remove(self.list_programs.get_first_child())
 
         if "Environment" in self.config and self.config["Environment"] == "Layered":
             for layer in self.config["Layers"]:
@@ -121,7 +121,7 @@ class ProgramsView(Gtk.ScrolledWindow):
                     program=self.config["Layers"][layer],
                     is_layer=True
                 )
-                self.list_programs.add(entry)
+                self.list_programs.append(entry)
 
         programs = self.manager.get_programs(self.config)
 
@@ -133,7 +133,7 @@ class ProgramsView(Gtk.ScrolledWindow):
         for program in programs:
             if program.get("removed") and not self.show_removed:
                 continue
-            self.list_programs.add(
+            self.list_programs.append(
                 ProgramEntry(
                     window=self.window,
                     config=self.config,

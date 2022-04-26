@@ -29,51 +29,31 @@
     </child>
   </object>
   <template class="LibraryEntry" parent="GtkBox">
-    <property name="height-request">280</property>
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">True</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkImage" id="img_cover">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="icon_size">6</property>
       </object>
-      <packing>
-        <property name="expand">True</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
+      
+      
     </child>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="spacing">8</property>
+        <property name="spacing">5</property>
         <child>
           <object class="GtkMenuButton">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            
             <property name="focus-on-click">False</property>
-            <property name="receives-default">True</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
             <property name="popover">pop_context</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="icon-name">view-more-symbolic</property>
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkImage" id="img_icon">
@@ -88,13 +68,9 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="label_name">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="label">Item name</property>
                 <attributes>
@@ -102,51 +78,35 @@
                   <attribute name="scale" value="1.1000000000000001"/>
                 </attributes>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              
+              
             </child>
             <child>
               <object class="GtkLabel" id="label_bottle">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="label">Bottle name</property>
                 <attributes>
                   <attribute name="scale" value="0.90000000000000002"/>
                 </attributes>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              
+              
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="spacing">8</property>
+            <property name="spacing">10</property>
             <child>
               <object class="GtkButton" id="btn_launch_steam">
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                
                 <property name="tooltip-text" translatable="yes">Launch with Steam</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="icon-name">bottles-steam-symbolic</property>
                   </object>
                 </child>
@@ -154,23 +114,16 @@
                   <class name="image-button"/>
                 </style>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              
+              
             </child>
             <child>
               <object class="GtkButton" id="btn_run">
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                
                 <property name="halign">center</property>
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="icon-name">media-playback-start-symbolic</property>
                   </object>
                 </child>
@@ -178,25 +131,19 @@
                   <class name="image-button"/>
                 </style>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              
+              
             </child>
             <child>
               <placeholder/>
             </child>
             <child>
               <object class="GtkButton" id="btn_stop">
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                
                 <property name="halign">center</property>
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="icon-name">media-playback-stop-symbolic</property>
                   </object>
                 </child>
@@ -204,32 +151,39 @@
                   <class name="image-button"/>
                 </style>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">3</property>
-              </packing>
+              
+              
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">3</property>
-          </packing>
+          
+          
         </child>
         <style>
           <class name="library-entry-details"/>
         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
+      
+      
     </child>
     <style>
       <class name="library-entry"/>
     </style>
   </template>
+  <object class="GtkPopover" id="pop_context">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkModelButton" id="btn_remove">
+            
+            <property name="tooltip-text" translatable="yes">Read documentation about installers	</property>
+            <property name="text" translatable="yes">Remove from library</property>
+          </object>
+          
+          
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>

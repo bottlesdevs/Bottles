@@ -3,8 +3,6 @@ moduledir = join_paths(pkgdatadir, 'bottles')
 
 python = import('python')
 
-dependency('libhandy-1', version: '>= 1.5')
-
 conf = configuration_data()
 conf.set('PYTHON', python.find_installation('python3').path())
 conf.set('VERSION', meson.project_version())

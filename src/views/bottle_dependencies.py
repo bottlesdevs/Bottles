@@ -36,7 +36,6 @@ class DependenciesView(Gtk.ScrolledWindow):
     btn_toggle_selection = Gtk.Template.Child()
     btn_toggle_search = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
-    infobar_testing = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
 
@@ -51,17 +50,16 @@ class DependenciesView(Gtk.ScrolledWindow):
         self.config = config
         self.selected_dependencies = []
 
+        entry_search_ev = Gtk.EventControllerKey.new()
+        entry_search_ev.connect("key-pressed", self.__search_dependencies)
+        self.entry_search.add_controller(entry_search_ev)
+
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
         self.btn_toggle_selection.connect('toggled', self.__toggle_selection)
         self.btn_toggle_search.connect('toggled', self.__toggle_search)
         self.btn_install.connect('clicked', self.__install_dependencies)
-        self.entry_search.connect('key-release-event', self.__search_dependencies)
-        self.entry_search.connect('changed', self.__search_dependencies)
         self.list_dependencies.connect('row-selected', self.__select_dependency)
-
-        if "TESTING_REPOS" in os.environ and os.environ["TESTING_REPOS"] == "1":
-            self.infobar_testing.set_visible(True)
 
     def __select_dependency(self, widget, row, data=None):
         if row is not None:
@@ -88,7 +86,7 @@ class DependenciesView(Gtk.ScrolledWindow):
         This function search in the list of dependencies the
         text written in the search entry.
         """
-        terms = widget.get_text()
+        terms = self.entry_search.get_text()
         self.list_dependencies.set_filter_func(
             self.__filter_dependencies,
             terms
@@ -130,8 +128,8 @@ class DependenciesView(Gtk.ScrolledWindow):
             config = {}
         self.config = config
 
-        for w in self.list_dependencies:
-            w.destroy()
+        while self.list_dependencies.get_first_child():
+            self.list_dependencies.remove(self.list_dependencies.get_first_child())
 
         supported_dependencies = self.manager.supported_dependencies
         if len(supported_dependencies.keys()) > 0:
@@ -139,7 +137,7 @@ class DependenciesView(Gtk.ScrolledWindow):
                 if dep[0] in self.config.get("Installed_Dependencies"):
                     '''Do not list already installed dependencies'''
                     continue
-                self.list_dependencies.add(
+                self.list_dependencies.append(
                     DependencyEntry(
                         window=self.window,
                         config=self.config,
@@ -158,7 +156,7 @@ class DependenciesView(Gtk.ScrolledWindow):
                     )
                     plain = False
 
-                self.list_dependencies.add(
+                self.list_dependencies.append(
                     DependencyEntry(
                         window=self.window,
                         config=self.config,

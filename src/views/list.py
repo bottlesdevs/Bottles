@@ -18,7 +18,7 @@
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.runner import Runner
@@ -26,10 +26,10 @@ from bottles.backend.wine.executor import WineExecutor
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
-class ListViewEntry(Handy.ActionRow):
+class ListViewEntry(Adw.ActionRow):
     __gtype_name__ = 'ListViewEntry'
 
-    Handy.init()
+    Adw.init()
 
     # region Widgets
     btn_run = Gtk.Template.Child()
@@ -161,8 +161,8 @@ class ListViewEntry(Handy.ActionRow):
     def disable(self):
         self.handler_block_by_func(self.show_details)
 
-        for w in self.get_children():
-            w.set_sensitive(False)
+        while self.get_first_child():
+            self.get_first_child().set_sensitive(False)
 
         self.spinner.start()
         self.spinner.set_visible(True)
@@ -219,8 +219,8 @@ class ListView(Gtk.ScrolledWindow):
     '''Find and append bottles to list_bottles'''
 
     def idle_update_bottles(self):
-        for bottle in self.list_bottles.get_children():
-            bottle.destroy()
+        while self.list_bottles.get_first_child():
+            self.list_bottles.remove(self.list_bottles.get_first_child())
 
         for bottle in self.list_steam.get_children():
             bottle.destroy()
@@ -239,36 +239,18 @@ class ListView(Gtk.ScrolledWindow):
             self.entry_search.set_visible(True)
 
         for bottle in bottles:
-            _entry = ListViewEntry(self.window, bottle, self.arg_exe)
-            if bottle[1].get("Environment") != "Steam":
-                self.list_bottles.add(_entry)
-            else:
-                self.list_steam.add(_entry)
-
-            if len(self.list_steam.get_children()) == 0:
-                self.list_steam.set_visible(False)
-                self.list_bottles.set_title("")
-            else:
-                self.list_steam.set_visible(True)
-                self.list_bottles.set_title(_("Your Bottles"))
-
-        self.arg_exe = None
-        if self.arg_bottle is not None and self.arg_bottle in local_bottles.keys():
-            _config = local_bottles[self.arg_bottle]
-            self.window.page_details.view_preferences.update_combo_components()
-            self.window.show_details_view(config=_config)
-            self.arg_bottle = None
+            self.list_bottles.append(
+                ListViewEntry(self.window, bottle, self.arg_exe)
+            )
+        self.arg_exe = False
 
     def update_bottles(self):
         GLib.idle_add(self.idle_update_bottles)
 
     def disable_bottle(self, config):
-        for bottle in self.list_bottles.get_children():
+        """
+        while self.list_bottles.get_n_children():
             if bottle.config["Path"] == config["Path"]:
                 bottle.disable()
-                break
-
-        for bottle in self.list_steam.get_children():
-            if bottle.config["Path"] == config["Path"]:
-                bottle.disable()
-                break
+        """
+        pass  # TODO

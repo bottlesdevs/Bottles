@@ -22,7 +22,7 @@ from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
 
 
-class ExecButton(Gtk.ModelButton):
+class ExecButton(Gtk.Button):
 
     def __init__(self, parent, data, config, **kwargs):
         super().__init__(**kwargs)

@@ -3,49 +3,32 @@
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="0.0"/>
   <template class="LibraryView" parent="GtkScrolledWindow">
-    <property name="visible">True</property>
-    <property name="can-focus">True</property>
+    
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
     <child>
       <object class="GtkViewport">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkFlowBox" id="main_flow">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="valign">start</property>
-                <property name="margin-left">10</property>
-                <property name="margin-right">10</property>
-                <property name="margin-start">10</property>
                 <property name="margin-end">10</property>
-                <property name="margin-top">10</property>
-                <property name="margin-bottom">10</property>
                 <property name="homogeneous">True</property>
                 <property name="column-spacing">5</property>
                 <property name="row-spacing">5</property>
                 <property name="selection-mode">none</property>
                 <property name="activate-on-single-click">False</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              
+              
             </child>
             <child>
-              <object class="HdyStatusPage" id="hdy_status">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
+              <object class="AdwStatusPage" id="hdy_status">
                 <property name="icon-name">emote-love-symbolic</property>
                 <property name="title" translatable="yes">Library</property>
                 <property name="description" translatable="yes">Add items here from your bottle's program list</property>
@@ -53,11 +36,8 @@
                   <placeholder/>
                 </child>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              
+              
             </child>
             <child>
               <placeholder/>
@@ -68,20 +48,14 @@
     </child>
   </template>
   <object class="GtkBox" id="actions">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <child>
       <object class="GtkButton" id="btn_update">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="receives-default">True</property>
+        
         <property name="tooltip-text" translatable="yes">Search for installed programs</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="icon-name">view-refresh-symbolic</property>
           </object>
         </child>
@@ -89,12 +63,8 @@
           <class name="image-button"/>
         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="pack-type">end</property>
-        <property name="position">1</property>
-      </packing>
+      
+      
     </child>
     <style>
       <class name="linked"/>

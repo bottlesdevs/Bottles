@@ -17,7 +17,7 @@
 
 import os
 from gettext import gettext as _
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from bottles.widgets.component import ComponentEntry, ComponentExpander  # pyright: reportMissingImports=false
 from bottles.backend.managers.steam import SteamManager
@@ -25,7 +25,7 @@ from bottles.backend.managers.data import DataManager
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
-class PreferencesWindow(Handy.PreferencesWindow):
+class PreferencesWindow(Adw.PreferencesWindow):
     __gtype_name__ = 'PreferencesWindow'
 
     # region Widgets
@@ -170,27 +170,27 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
     def populate_runtimes_list(self):
         for runtime in self.manager.supported_runtimes.items():
-            self.list_runtimes.add(ComponentEntry(self.window, runtime, "runtime", is_upgradable=True))
+            self.list_runtimes.append(ComponentEntry(self.window, runtime, "runtime", is_upgradable=True))
 
     def populate_winebridge_list(self):
         for bridge in self.manager.supported_winebridge.items():
-            self.list_winebridge.add(ComponentEntry(self.window, bridge, "winebridge", is_upgradable=True))
+            self.list_winebridge.append(ComponentEntry(self.window, bridge, "winebridge", is_upgradable=True))
 
     def populate_dxvk_list(self):
         for dxvk in self.manager.supported_dxvk.items():
-            self.list_dxvk.add(ComponentEntry(self.window, dxvk, "dxvk"))
+            self.list_dxvk.append(ComponentEntry(self.window, dxvk, "dxvk"))
 
     def populate_vkd3d_list(self):
         for vkd3d in self.manager.supported_vkd3d.items():
-            self.list_vkd3d.add(ComponentEntry(self.window, vkd3d, "vkd3d"))
+            self.list_vkd3d.append(ComponentEntry(self.window, vkd3d, "vkd3d"))
 
     def populate_nvapi_list(self):
         for nvapi in self.manager.supported_nvapi.items():
-            self.list_nvapi.add(ComponentEntry(self.window, nvapi, "nvapi"))
+            self.list_nvapi.append(ComponentEntry(self.window, nvapi, "nvapi"))
 
     def populate_latencyflex_list(self):
         for latencyflex in self.manager.supported_latencyflex.items():
-            self.list_latencyflex.add(ComponentEntry(self.window, latencyflex, "latencyflex"))
+            self.list_latencyflex.append(ComponentEntry(self.window, latencyflex, "latencyflex"))
 
     def populate_runners_list(self):
         for w in self.list_runners:
@@ -225,8 +225,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
             exp_proton.add(ComponentEntry(self.window, runner, "runner:proton"))
 
-        self.list_runners.add(exp_caffe)
-        self.list_runners.add(exp_wine_ge)
-        self.list_runners.add(exp_lutris)
-        self.list_runners.add(exp_proton)
-        self.list_runners.add(exp_other)
+        self.list_runners.append(exp_caffe)
+        self.list_runners.append(exp_lutris)
+        self.list_runners.append(exp_proton)
+        self.list_runners.append(exp_other)

@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from datetime import datetime
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
@@ -24,7 +24,7 @@ from bottles.dialogs.generic import SourceDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/state-entry.ui')
-class StateEntry(Handy.ActionRow):
+class StateEntry(Adw.ActionRow):
     __gtype_name__ = 'StateEntry'
 
     # region Widgets
@@ -67,8 +67,8 @@ class StateEntry(Handy.ActionRow):
         """
         Set the bottle state to this one.
         """
-        for w in widget.get_children():
-            w.destroy()
+        while widget.get_first_child():
+            widget.remove(widget.get_first_child())
 
         widget.set_sensitive(False)
         widget.add(self.spinner)

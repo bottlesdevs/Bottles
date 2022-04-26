@@ -18,7 +18,7 @@
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, GLib, Handy
+from gi.repository import Gtk, Gdk, GLib, Adw
 
 from bottles.backend.managers.library import LibraryManager  # pyright: reportMissingImports=false
 from bottles.widgets.library import LibraryEntry
@@ -47,8 +47,8 @@ class LibraryView(Gtk.ScrolledWindow):
         library_manager = LibraryManager()
         entries = library_manager.get_library()
 
-        for w in self.main_flow.get_children():
-            self.main_flow.remove(w)
+        while self.main_flow.get_first_child() is not None:
+            self.main_flow.remove(self.main_flow.get_first_child())
 
         self.hdy_status.set_visible(len(entries) == 0)
 

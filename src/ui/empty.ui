@@ -3,11 +3,9 @@
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <template class="Empty" parent="GtkGrid">
-    <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
       <object class="GtkImage" id="img_icon">
-        <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">end</property>
         <property name="vexpand">True</property>
@@ -15,14 +13,13 @@
         <property name="icon_name">object-select-symbolic</property>
         <property name="icon_size">3</property>
       </object>
-      <packing>
+      
         <property name="left_attach">0</property>
         <property name="top_attach">0</property>
-      </packing>
+      
     </child>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">start</property>
         <property name="hexpand">True</property>
@@ -30,11 +27,9 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel" id="label_text">
-            <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="valign">end</property>
             <property name="margin_top">5</property>
-            <property name="ypad">10</property>
             <property name="label">No bottles found!</property>
             <property name="justify">center</property>
             <attributes>
@@ -42,17 +37,13 @@
               <attribute name="scale" value="2"/>
             </attributes>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
+          
+          
         </child>
         <child>
           <object class="GtkLabel" id="label_tip">
             <property name="can_focus">False</property>
             <property name="valign">start</property>
-            <property name="ypad">10</property>
             <property name="label">This is an example of tip text.</property>
             <property name="justify">center</property>
             <attributes>
@@ -60,20 +51,17 @@
               <attribute name="scale" value="1"/>
             </attributes>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
+          
+          
         </child>
         <child>
           <placeholder/>
         </child>
       </object>
-      <packing>
+      
         <property name="left_attach">0</property>
         <property name="top_attach">1</property>
-      </packing>
+      
     </child>
   </template>
 </interface>

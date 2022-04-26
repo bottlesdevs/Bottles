@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, Handy
+from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 import webbrowser
 
@@ -24,7 +24,7 @@ from bottles.dialogs.generic import SourceDialog, WebDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
-class InstallerEntry(Handy.ActionRow):
+class InstallerEntry(Adw.ActionRow):
     __gtype_name__ = 'InstallerEntry'
 
     # region Widgets
@@ -106,8 +106,8 @@ class InstallerEntry(Handy.ActionRow):
         )
         self.get_parent().set_sensitive(False)
         self.label_step.set_visible(True)
-        for w in widget.get_children():
-            w.destroy()
+        while widget.get_first_child():
+            widget.remove(widget.get_first_child())
 
         widget.set_sensitive(False)
         widget.add(self.spinner)
