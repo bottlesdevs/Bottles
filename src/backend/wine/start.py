@@ -27,7 +27,10 @@ class Start(WineProgram):
             # current working directory
             args = f"/unix /wait {file} {args}"
         else:
-            args = f"/wait {file} {args}"
+            if cwd not in [None, ""] and winepath.is_windows(cwd):
+                args = f"/wait /dir {cwd} {file} {args}"
+            else:
+                args = f"/wait {file} {args}"
 
         self.launch(
             args=args,
