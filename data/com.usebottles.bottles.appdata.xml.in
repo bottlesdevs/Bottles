@@ -94,42 +94,58 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.4.28" date="2022-04-13">
+        <release version="2022.4.28" date="2022-04-27">
           <description>
             <p>News</p>
             <ul>
-                <li>The importer can find and import the default .wine prefix too</li>
-                <li>New experimental Library mode feature is now available</li>
-                <li>New Loading screen for startup</li>
-                <li>New option to restore hidden programs</li>
-                <li>The Versioning manager preserve symlinks</li>
-                <li>Working directory is now automatically set to the executable parent directory for manual launch</li>
-                <li>The experimental Steam Proton Prefixes now supports third-party libraries</li>
-                <li>The Direct3D renderer mode can now be changed from the bottle's preferences</li>
-                <li>The "Kill all" button now show a confirmation dialog</li>
-                <li>The DXVK version selection was removed when creating a custom bottle</li>
-                <li>DLL Components and Runners can be removed from Bottles' preferences</li>
-                <li>Support for obs-vkcapture</li>
-                <li>Support for VKBasalt</li>
+                <li>General UI improvements, make the interface more consistent and easier to use.</li>
+                <li>Support for bottles on different paths, the option is present in the custom env settings but is also respected by all the other envs</li>
+                <li>Notable general performance improvements of the WINE backend</li>
+                <li>Installers now supports the run_winecommand action, allowing you to run commands inside the prefix via WINE (refer to the maintainers documentation)</li>
+                <li>Dependencies now supports the delete_dlls action to remove a dll before updating (refers to the maintainers documentation)</li>
+                <li>Templates are now updated on bottle creation if newer components are detected, this will speed up the creation of new bottles</li>
+                <li>Desktop entries now uses the new CLI to launch the executable</li>
+                <li>The journal can now be browsed from Bottles, accessible from the Health check menu</li>
+                <li>The d3dx9 dependency (and more coming) now uses small archives, this speed up the installation</li>
+                <li>Windows paths are now launched via the Start WineProgram which set the current working directory to make sure it finds all files</li>
+                <li>Start WineProgram now tries to convert Unix paths to Windows if explicitly requested</li>
+                <li>The bottle's cwd preference has now a new button to reset to the default one</li>
+                <li>Desktop entries can now be updated, just press "Add Desktop Entry" again from the programs list (Thanks to @emiltang)</li>
+                <li>Updated samba to 4.15.6 (Thanks to @rmnscnce)</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fixed a bug with runner updates</li>
-                <li>Fixed a bug with initial components check</li>
-                <li>Fixed some missing translations</li>
-                <li>Fixed a bug with bottle creation during dependencies installation</li>
-                <li>Fixed a bug with gnome-terminal, spaces was not escaped</li>
-                <li>Fixed a bug with DLL components installation, was causing a crash on missing DLLs</li>
-                <li>Fixed a bug during Steam Proton prefixes update, was failing on missing launch options</li>
+                <li>Fixed flickering start/stop buttons in the programs list</li>
+                <li>Fixed a bug with Steam Launch options, which resulted in a crash when empty</li>
+                <li>Fixed a bug in the CLI, which could cause crashes due to the message handler</li>
+                <li>Fixed a bug with runners' libraries, some were not loaded in the environment</li>
+                <li>Fixed a bug with the Journal manager, was not creating the file on first launch</li>
+                <li>Fixed a bug with WineCmd WineProgram, spaces were not handled when launching batch scripts</li>
+                <li>Fixed a bug with DLL Components manager, in some conditions it could cause a crash when trying to handling a missing DLL</li>
+                <li>Fixed a bug with WinePath Wineprogam, paths were not escaped causing in wrong results</li>
+                <li>Fixed a bug in opening the file manager for a program, it did not support Windows paths</li>
+                <li>Fixed a bug in bottle naming, quotes were not always escaped</li>
+                <li>Fixed a bug with xterm, was disappearing after run (Thanks to @vickyorlo)</li>
+                <li>Fixed a bug with Steam Proton prefixes, those were not detected on some distributions (Thanks to @Thesola10)</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Kurdish (Central) translations thanks to @petrichor-494</li>
-                <li>Turkish translations thanks to jose.gonzalez. 2007, @ersen0</li>
-                <li>Chinese (Simplified) translations thanks to Eric</li>
-                <li>French translations thanks to @julroy67</li>
+                <li>Persian traslations thanks to @pikhosh, @iman-moodi</li>
+                <li>Italian translations thanks to @albanobattistella</li>
+                <li>German translations thanks to @t0mt3ch</li>
+                <li>Spanish translations thanks to @oscfdezdz</li>
+                <li>Portoguese (Brazil) translations thanks to @mblithium</li>
+                <li>Dutch translations thanks to @Sojiro84</li>
+                <li>Japanese translations thanks to @ryonakano</li>
+                <li>Polish translations thanks to Krzysztof Marcinek, Zszywek</li>
+                <li>Russian translations thanks to @Knebergish, @creepen123</li>
+                <li>French translations thanks to unatecepp-7789, @julroy67</li>
+                <li>Ukrainian translations thanks to @Lekrixsss</li>
+                <li>Hungarian translations thanks to @zoli111</li>
+                <li>Vietnamese translations thanks to @lebao3105</li>
+                <li>Chinese (simplified) translations thanks to Eric</li>
             </ul>
           </description>
         </release>

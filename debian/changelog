@@ -1,28 +1,45 @@
 com.usebottles.bottles (2022.4.28) precise; urgency=low
 
   * The importer can find and import the default .wine prefix too
-  * New experimental Library mode feature is now available
-  * New Loading screen for startup
-  * New option to restore hidden programs
-  * The Versioning manager preserve symlinks
-  * Working directory is now automatically set to the executable parent directory for manual launch
-  * The experimental Steam Proton Prefixes now supports third-party libraries
-  * The Direct3D renderer mode can now be changed from the bottle's preferences
-  * The "Kill all" button now show a confirmation dialog
-  * The DXVK version selection was removed when creating a custom bottle
-  * DLL Components and Runners can be removed from Bottles' preferences
-  * Support for obs-vkcapture
-  * Support for VKBasalt
-  * Fixed a bug with runner updates
-  * Fixed a bug with initial components check
-  * Fixed some missing translations
-  * Fixed a bug with bottle creation during dependencies installation
-  * Fixed a bug with gnome-terminal, spaces was not escaped
-  * Fixed a bug with DLL components installation, was causing a crash on missing DLLs
-  * Fixed a bug during Steam Proton prefixes update, was failing on missing launch options
-  * Kurdish (Central) translations thanks to @petrichor-494
-  * Turkish translations thanks to jose.gonzalez. 2007, @ersen0
-  * Chinese (Simplified) translations thanks to Eric
-  * French translations thanks to @julroy67
+  * General UI improvements, make the interface more consistent and easier to use.
+  * Support for bottles on different paths, the option is present in the custom env settings but is also respected by all the other envs
+  * Notable general performance improvements of the WINE backend
+  * Installers now supports the run_winecommand action, allowing you to run commands inside the prefix via WINE (refer to the maintainers documentation)
+  * Dependencies now supports the delete_dlls action to remove a dll before updating (refers to the maintainers documentation)
+  * Templates are now updated on bottle creation if newer components are detected, this will speed up the creation of new bottles
+  * Desktop entries now uses the new CLI to launch the executable
+  * The journal can now be browsed from Bottles, accessible from the Health check menu
+  * The d3dx9 dependency (and more coming) now uses small archives, this speed up the installation
+  * Windows paths are now launched via the Start WineProgram which set the current working directory to make sure it finds all files
+  * Start WineProgram now tries to convert Unix paths to Windows if explicitly requested
+  * The bottle's cwd preference has now a new button to reset to the default one
+  * Desktop entries can now be updated, just press "Add Desktop Entry" again from the programs list (Thanks to @emiltang)
+  * Updated samba to 4.15.6 (Thanks to @rmnscnce)
+  * Fixed flickering start/stop buttons in the programs list
+  * Fixed a bug with Steam Launch options, which resulted in a crash when empty
+  * Fixed a bug in the CLI, which could cause crashes due to the message handler
+  * Fixed a bug with runners' libraries, some were not loaded in the environment
+  * Fixed a bug with the Journal manager, was not creating the file on first launch
+  * Fixed a bug with WineCmd WineProgram, spaces were not handled when launching batch scripts
+  * Fixed a bug with DLL Components manager, in some conditions it could cause a crash when trying to handling a missing DLL
+  * Fixed a bug with WinePath Wineprogam, paths were not escaped causing in wrong results
+  * Fixed a bug in opening the file manager for a program, it did not support Windows paths
+  * Fixed a bug in bottle naming, quotes were not always escaped
+  * Fixed a bug with xterm, was disappearing after run (Thanks to @vickyorlo)
+  * Fixed a bug with Steam Proton prefixes, those were not detected on some distributions (Thanks to @Thesola10)
+  * Persian traslations thanks to @pikhosh, @iman-moodi
+  * Italian translations thanks to @albanobattistella
+  * German translations thanks to @t0mt3ch
+  * Spanish translations thanks to @oscfdezdz
+  * Portoguese (Brazil) translations thanks to @mblithium
+  * Dutch translations thanks to @Sojiro84
+  * Japanese translations thanks to @ryonakano
+  * Polish translations thanks to Krzysztof Marcinek, Zszywek
+  * Russian translations thanks to @Knebergish, @creepen123
+  * French translations thanks to unatecepp-7789, @julroy67
+  * Ukrainian translations thanks to @Lekrixsss
+  * Hungarian translations thanks to @zoli111
+  * Vietnamese translations thanks to @lebao3105
+  * Chinese (simplified) translations thanks to Eric
 
- -- Mirko Brombin <send@mirko.pm>  Wen, 13 Feb 2022 21:50:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Wen, 27 Apr 2022 11:00:00 +0000
