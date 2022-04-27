@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-25 09:53+0200\n"
-"PO-Revision-Date: 2022-04-25 07:53+0000\n"
-"Last-Translator: Mirko Brombin <send@mirko.pm>\n"
+"PO-Revision-Date: 2022-05-01 12:47+0000\n"
+"Last-Translator: Maxopoly <max@dermax.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -368,7 +368,7 @@ msgstr "Im Explorer öffnen"
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Fehlerbehandlung"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
@@ -393,14 +393,12 @@ msgstr ""
 "erstellen möchten, jedoch ohne persönliche Dateien."
 
 #: src/ui/details-bottle.ui:98
-#, fuzzy
 msgid "Export configuration"
-msgstr "Konfiguration"
+msgstr "Konfiguration exportieren"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Delete bottle"
-msgstr "Bottle anlegen"
+msgstr "Bottle löschen"
 
 #: src/ui/details-bottle.ui:182
 #, fuzzy
@@ -445,7 +443,7 @@ msgstr "Wähle einen Namen für deine Bottle"
 
 #: src/ui/details-bottle.ui:358
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: src/ui/details-bottle.ui:379 src/ui/new.ui:160
 msgid "Environment"
@@ -585,9 +583,8 @@ msgid "Report a problem or a missing dependency."
 msgstr "Ein Problem oder eine fehlende Abhängigkeit melden."
 
 #: src/ui/details-dependencies.ui:178
-#, fuzzy
 msgid "Report missing dependency"
-msgstr "Ein Problem oder eine fehlende Abhängigkeit melden."
+msgstr "Ein Problem oder eine fehlende Abhängigkeit melden"
 
 #: src/ui/details-dependencies.ui:191 src/ui/details-programs.ui:80
 #, fuzzy
@@ -616,7 +613,7 @@ msgstr "Abhängigkeiten auswählen"
 
 #: src/ui/details-dependencies.ui:289 src/ui/details-installers.ui:159
 msgid "Toggle search"
-msgstr ""
+msgstr "(De-)aktiviere Suche"
 
 #: src/ui/details-installers.ui:32
 msgid "Epic Games Store .."
@@ -719,13 +716,15 @@ msgstr "Verbessert die Performance auf Kosten des erhöhten Energieverbrauchs."
 
 #: src/ui/details-preferences.ui:336
 msgid "Use vkBasalt"
-msgstr ""
+msgstr "vkBasalt benutzen"
 
 #: src/ui/details-preferences.ui:337
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"vkBasalt ist ein Vulkan Post Processing Layer um die visuellen Effekte von "
+"Spielen zu verbessern."
 
 #: src/ui/details-preferences.ui:364
 msgid "Display settings"
@@ -815,24 +814,23 @@ msgstr "480"
 
 #: src/ui/details-preferences.ui:556
 msgid "Renderer"
-msgstr ""
+msgstr "Renderer"
 
 #: src/ui/details-preferences.ui:557
 msgid "Select what backend to use for wined3d"
-msgstr ""
+msgstr "Wählen Sie aus welches backend für wine3d genutzt werden soll"
 
 #: src/ui/details-preferences.ui:571
-#, fuzzy
 msgid "gl (default)"
-msgstr "Standard wiederherstellen"
+msgstr "gl (Standard)"
 
 #: src/ui/details-preferences.ui:572
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:573
 msgid "vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: src/ui/details-preferences.ui:607 src/ui/details-preferences.ui:1047
 msgid "System"
@@ -1026,11 +1024,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1630
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "OBS Vulkan Capture"
 
 #: src/ui/details-preferences.ui:1631
 msgid "Toggle OBS game capture for all next launches"
-msgstr ""
+msgstr "De(-aktiviere) OBS Game Capture für zukünftige Starts"
 
 #: src/ui/details-preferences.ui:1657
 msgid "Enable wine fixme logs"
@@ -2241,12 +2239,12 @@ msgstr ""
 "Sind Sie sicher, dass Sie diese Bottle und alle Dateien löschen wollen?"
 
 #: src/views/bottle_details.py:493
-#, fuzzy
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr ""
-"Sind Sie sicher, dass Sie diese Bottle und alle Dateien löschen wollen?"
+"Sind Sie sicher, dass Sie diese Bottle und alle Dateien löschen wollen?\n"
+"Dies kann zu Datenverlust führen."
 
 #: src/views/bottle_preferences.py:172
 #, fuzzy
