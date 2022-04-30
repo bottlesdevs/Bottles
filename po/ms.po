@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-25 09:53+0200\n"
-"PO-Revision-Date: 2022-03-23 02:54+0000\n"
+"PO-Revision-Date: 2022-05-01 12:47+0000\n"
 "Last-Translator: amirulpants <amirulpanda123456@gmail.com>\n"
 "Language-Team: Malay <https://hosted.weblate.org/projects/bottles/bottles/ms/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -32,7 +32,7 @@ msgstr "Mengurus wineprefix dengan senang"
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
-msgstr ""
+msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -91,7 +91,7 @@ msgstr "Aplikasi dikesanan secara automatik di dalam botol anda"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
-msgstr ""
+msgstr "Adakan pembolehubah persekitaran dengan cepat"
 
 #: data/com.usebottles.bottles.appdata.xml.in:22
 msgid "Override DLLs directly from per-bottle preferences"
@@ -160,11 +160,11 @@ msgstr "Togel dialog penghijrahan Flatpak."
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr ""
+msgstr "Tema Malam"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Paksakan pengunaan tema gelap."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -237,7 +237,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:steam"
-msgstr ""
+msgstr "Eksperiment:steam"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental Steam Proton prefixes support."
@@ -359,7 +359,7 @@ msgstr "Buka dengan explorer"
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Penyelesaian masalah"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
@@ -435,7 +435,7 @@ msgstr "Masukkan nama untuk botol kamu"
 
 #: src/ui/details-bottle.ui:358
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: src/ui/details-bottle.ui:379 src/ui/new.ui:160
 msgid "Environment"
@@ -443,7 +443,7 @@ msgstr "Persekitaran"
 
 #: src/ui/details-bottle.ui:396
 msgid "Vaniglia-6.21-x86_64"
-msgstr ""
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:415 src/ui/list-entry.ui:35
 msgid "Versioning enabled for this bottle"
@@ -479,7 +479,7 @@ msgstr "Program"
 
 #: src/ui/details-bottle.ui:680
 msgid "Other"
-msgstr ""
+msgstr "Lain-lain"
 
 #: src/ui/details-bottle.ui:686
 msgid "Utilities"
@@ -495,7 +495,7 @@ msgstr "Layari file dalaman."
 
 #: src/ui/details-bottle.ui:772
 msgid "Command line"
-msgstr ""
+msgstr "Baris Arahan"
 
 #: src/ui/details-bottle.ui:774
 msgid "Run commands inside the Bottle."
@@ -561,7 +561,7 @@ msgstr ""
 
 #: src/ui/details-dependencies.ui:90
 msgid "Microsoft .NET Framework 4 .."
-msgstr ""
+msgstr "Microsoft .NET Framework 4 ..."
 
 #: src/ui/details-dependencies.ui:118 src/ui/details-installers.ui:75
 msgid ""
@@ -607,11 +607,11 @@ msgstr "Pilih pengantung"
 
 #: src/ui/details-dependencies.ui:289 src/ui/details-installers.ui:159
 msgid "Toggle search"
-msgstr ""
+msgstr "Togol pencarian"
 
 #: src/ui/details-installers.ui:32
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games Store ..."
 
 #: src/ui/details-installers.ui:115
 #, fuzzy
@@ -625,7 +625,7 @@ msgstr "Set semula default"
 
 #: src/ui/details-preferences.ui:62
 msgid "Graphics"
-msgstr ""
+msgstr "Grafik"
 
 #: src/ui/details-preferences.ui:67
 msgid "Use DXVK"
@@ -701,11 +701,13 @@ msgstr "Prestasi"
 
 #: src/ui/details-preferences.ui:265
 msgid "Enable LatencyFleX"
-msgstr ""
+msgstr "Dayakan LatencyFleX"
 
 #: src/ui/details-preferences.ui:266
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
 msgstr ""
+"Sesebuah alternatif kepada NVIDIA Reflex. Boleh dikesan oleh beberapa "
+"Anticheat."
 
 #: src/ui/details-preferences.ui:309
 msgid "Discrete GPU"
@@ -717,13 +719,15 @@ msgstr "Menambahbaikan prestasi pada kos pengunaan elektrik yang meningkat."
 
 #: src/ui/details-preferences.ui:336
 msgid "Use vkBasalt"
-msgstr ""
+msgstr "Guna vkBasalt"
 
 #: src/ui/details-preferences.ui:337
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"vkBasalt adalah lapisan pemprosesan pasca Vulkan untuk mempertingkatkan "
+"grafik visual untuk games."
 
 #: src/ui/details-preferences.ui:364
 msgid "Display settings"
@@ -763,68 +767,67 @@ msgstr "Setkan DPI adat"
 
 #: src/ui/details-preferences.ui:524
 msgid "96"
-msgstr ""
+msgstr "96"
 
 #: src/ui/details-preferences.ui:525
 msgid "120"
-msgstr ""
+msgstr "120"
 
 #: src/ui/details-preferences.ui:526
 msgid "144"
-msgstr ""
+msgstr "144"
 
 #: src/ui/details-preferences.ui:527
 msgid "168"
-msgstr ""
+msgstr "168"
 
 #: src/ui/details-preferences.ui:528
 msgid "192"
-msgstr ""
+msgstr "192"
 
 #: src/ui/details-preferences.ui:529
 msgid "216"
-msgstr ""
+msgstr "216"
 
 #: src/ui/details-preferences.ui:530
 msgid "240"
-msgstr ""
+msgstr "240"
 
 #: src/ui/details-preferences.ui:531
 msgid "288"
-msgstr ""
+msgstr "288"
 
 #: src/ui/details-preferences.ui:532
 msgid "336"
-msgstr ""
+msgstr "336"
 
 #: src/ui/details-preferences.ui:533
 msgid "384"
-msgstr ""
+msgstr "384"
 
 #: src/ui/details-preferences.ui:534
 msgid "432"
-msgstr ""
+msgstr "432"
 
 #: src/ui/details-preferences.ui:535
 msgid "480"
-msgstr ""
+msgstr "480"
 
 #: src/ui/details-preferences.ui:556
 msgid "Renderer"
-msgstr ""
+msgstr "Penyembah"
 
 #: src/ui/details-preferences.ui:557
 msgid "Select what backend to use for wined3d"
-msgstr ""
+msgstr "Pilih hujung belakang yang mana untuk diguna wined3d"
 
 #: src/ui/details-preferences.ui:571
-#, fuzzy
 msgid "gl (default)"
-msgstr "Set semula default"
+msgstr "gl (lalai)"
 
 #: src/ui/details-preferences.ui:572
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:573
 msgid "vulkan"
@@ -872,9 +875,8 @@ msgid "DXVK NVAPI version"
 msgstr "Versi DXVK NVAPI"
 
 #: src/ui/details-preferences.ui:954
-#, fuzzy
 msgid "LatencyFleX version"
-msgstr "Urus versi DXVK"
+msgstr "Versi LatencyFleX"
 
 #: src/ui/details-preferences.ui:1039
 msgid ""
@@ -895,15 +897,15 @@ msgstr "Akan memulakan semula wineserver."
 
 #: src/ui/details-preferences.ui:1062
 msgid "Esync"
-msgstr ""
+msgstr "Esync"
 
 #: src/ui/details-preferences.ui:1077
 msgid "Fsync"
-msgstr ""
+msgstr "Fsync"
 
 #: src/ui/details-preferences.ui:1092
 msgid "Futex2"
-msgstr ""
+msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:1116
 msgid "Windows version"
@@ -926,13 +928,12 @@ msgstr ""
 "lumpuhkan jika anda lari kepada isu-isu."
 
 #: src/ui/details-preferences.ui:1200
-#, fuzzy
 msgid "Use Steam runtime"
-msgstr "Guna masa-jalan Botol"
+msgstr "Guna pelari Steam"
 
 #: src/ui/details-preferences.ui:1201
 msgid "The same as the Bottles one but provided by Steam."
-msgstr ""
+msgstr "Yang sama seperti Botol beri tetapi Steam provide."
 
 #: src/ui/details-preferences.ui:1227
 msgid "Use GameMode"
