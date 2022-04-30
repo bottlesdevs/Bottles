@@ -181,7 +181,7 @@ class ManagerUtils:
         with open(desktop_file, "w") as f:
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={program.get('name')}\n")
-            f.write(f"Exec={cmd} run -p '{program.get('name')}' -b '{config.get('Name')}'\n")
+            f.write(f"Exec={cmd} run -p '{program.get('name')}' -b '{config.get('Path')}'\n")
             f.write(f"Type=Application\n")
             f.write(f"Terminal=false\n")
             f.write(f"Categories=Application;\n")
