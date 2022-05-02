@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-25 09:53+0200\n"
-"PO-Revision-Date: 2022-04-13 11:19+0000\n"
+"PO-Revision-Date: 2022-05-02 21:19+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -357,7 +357,7 @@ msgstr "Gezgin ile aç"
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Sorun giderme"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
@@ -368,9 +368,8 @@ msgid "This is the complete archive of your bottle, including personal files."
 msgstr "Kişisel dosyalarınız da dahil, bu sizin şişenizin eksiksiz arşividir."
 
 #: src/ui/details-bottle.ui:84
-#, fuzzy
 msgid "Full backup"
-msgstr "Tam arşiv"
+msgstr "Tam yedekleme"
 
 #: src/ui/details-bottle.ui:97 src/ui/importer.ui:20
 msgid ""
@@ -381,19 +380,16 @@ msgstr ""
 "tane oluşturmak istiyorsanız mükemmeldir."
 
 #: src/ui/details-bottle.ui:98
-#, fuzzy
 msgid "Export configuration"
-msgstr "Yapılandırma"
+msgstr "Yapılandırmayı dışa aktar"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Delete bottle"
-msgstr "Şişe oluştur"
+msgstr "Şişeyi sil"
 
 #: src/ui/details-bottle.ui:182
-#, fuzzy
 msgid "Kill all processes"
-msgstr "Tüm WINE işlemlerini sonlandır"
+msgstr "Tüm işlemleri sonlandır"
 
 #: src/ui/details-bottle.ui:195
 msgid "Simulate a Windows system shutdown."
@@ -433,7 +429,7 @@ msgstr "Şişeniz için bir ad yazın"
 
 #: src/ui/details-bottle.ui:358
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: src/ui/details-bottle.ui:379 src/ui/new.ui:160
 msgid "Environment"
@@ -574,14 +570,12 @@ msgid "Report a problem or a missing dependency."
 msgstr "Sorun veya eksik bağımlılık bildir."
 
 #: src/ui/details-dependencies.ui:178
-#, fuzzy
 msgid "Report missing dependency"
-msgstr "Sorun veya eksik bağımlılık bildir."
+msgstr "Eksik bağımlılığı bildir"
 
 #: src/ui/details-dependencies.ui:191 src/ui/details-programs.ui:80
-#, fuzzy
 msgid "Read documentation about dependencies\t"
-msgstr "Belgelendirmeyi oku"
+msgstr "Bağımlılıklar hakkındaki belgeleri okuyun\t"
 
 #: src/ui/details-dependencies.ui:192 src/ui/details-installers.ui:116
 #: src/ui/details-programs.ui:106 src/ui/details-versioning.ui:93
@@ -603,16 +597,15 @@ msgstr "Bağımlılıkları seç"
 
 #: src/ui/details-dependencies.ui:289 src/ui/details-installers.ui:159
 msgid "Toggle search"
-msgstr ""
+msgstr "Aramayı aç/kapat"
 
 #: src/ui/details-installers.ui:32
 msgid "Epic Games Store .."
 msgstr "Epic Games Store .."
 
 #: src/ui/details-installers.ui:115
-#, fuzzy
 msgid "Read documentation about installers\t"
-msgstr "Belgelendirmeyi oku"
+msgstr "Kurucularla ilgili belgeleri okuyun\t"
 
 #: src/ui/details-preferences.ui:20 src/ui/dialog-launch-options.ui:20
 #: src/ui/preferences.ui:20
@@ -707,13 +700,15 @@ msgstr "Artan güç kullanımı pahasına performansı iyileştirir."
 
 #: src/ui/details-preferences.ui:336
 msgid "Use vkBasalt"
-msgstr ""
+msgstr "vkBasalt kullan"
 
 #: src/ui/details-preferences.ui:337
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"vkBasalt, oyunların görsel grafiklerini geliştirmek için bir Vulkan işlem "
+"sonrası katmanıdır."
 
 #: src/ui/details-preferences.ui:364
 msgid "Display settings"
@@ -801,25 +796,23 @@ msgstr "480"
 
 #: src/ui/details-preferences.ui:556
 msgid "Renderer"
-msgstr ""
+msgstr "Görselleştirici"
 
 #: src/ui/details-preferences.ui:557
 msgid "Select what backend to use for wined3d"
-msgstr ""
+msgstr "wined3d için hangi arka ucun kullanılacağını seç"
 
 #: src/ui/details-preferences.ui:571
-#, fuzzy
 msgid "gl (default)"
-msgstr "Varsayılana sıfırla"
+msgstr "gl (öntanımlı)"
 
 #: src/ui/details-preferences.ui:572
-#, fuzzy
 msgid "gdi"
-msgstr "Regedit"
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:573
 msgid "vulkan"
-msgstr ""
+msgstr "vulkan"
 
 #: src/ui/details-preferences.ui:607 src/ui/details-preferences.ui:1047
 msgid "System"
@@ -1013,11 +1006,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1630
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "OBS Vulkan Yakalama"
 
 #: src/ui/details-preferences.ui:1631
 msgid "Toggle OBS game capture for all next launches"
-msgstr ""
+msgstr "Sonraki tüm başlatmalar için OBS oyun yakalamayı aç/kapat"
 
 #: src/ui/details-preferences.ui:1657
 msgid "Enable wine fixme logs"
@@ -1036,14 +1029,12 @@ msgid "New programs will be automatically found."
 msgstr "Yeni programlar otomatik olarak bulunacak."
 
 #: src/ui/details-programs.ui:81
-#, fuzzy
 msgid "Show/hide hidden programs"
-msgstr "Kaldırılmış programları göster/gizle"
+msgstr "Gizli programları göster/gizle"
 
 #: src/ui/details-programs.ui:105
-#, fuzzy
 msgid "Read documentation about programs\t"
-msgstr "Belgelendirmeyi oku"
+msgstr "Programlarla ilgili belgeleri okuyun\t"
 
 #: src/ui/details-programs.ui:149
 msgid "Search for installed programs"
@@ -1070,9 +1061,8 @@ msgid "Create first state to start using versioning."
 msgstr "Sürüm oluşturmayı kullanmaya başlamak için ilk durumu oluşturun."
 
 #: src/ui/details-versioning.ui:92
-#, fuzzy
 msgid "Read documentation about versioning\t"
-msgstr "Belgelendirmeyi oku"
+msgstr "Sürümlerle ilgili belgeleri okuyun\t"
 
 #: src/ui/details-versioning.ui:120
 msgid "Type a really short comment:"
@@ -1569,13 +1559,12 @@ msgid "Choose a custom recipe for the environment if you have one."
 msgstr "Varsa, ortam için özel bir tanım seçin."
 
 #: src/ui/new.ui:441
-#, fuzzy
 msgid "Use custom path"
-msgstr "Özel tanım kullan"
+msgstr "Özel yol kullan"
 
 #: src/ui/new.ui:443
 msgid "Store this bottle in a different place."
-msgstr ""
+msgstr "Bu şişeyi farklı bir yere kaydedin."
 
 #: src/ui/new.ui:533
 msgid "Creating bottle…"
@@ -1708,7 +1697,6 @@ msgid "General"
 msgstr "Genel"
 
 #: src/ui/preferences.ui:58
-#, fuzzy
 msgid "Appearance"
 msgstr "Görünüm"
 
@@ -1841,11 +1829,11 @@ msgstr "Kütüphaneme ekle"
 
 #: src/ui/program-entry.ui:158
 msgid "Hide this program"
-msgstr ""
+msgstr "Bu programı gizle"
 
 #: src/ui/program-entry.ui:170
 msgid "Unhide this program"
-msgstr ""
+msgstr "Bu programı göster"
 
 #: src/ui/program-entry.ui:207
 msgid "Launch with Steam"
@@ -1938,7 +1926,7 @@ msgstr "Hesaplanıyor..."
 
 #: src/window.py:136 src/window.py:189
 msgid "Loading..."
-msgstr ""
+msgstr "Yükleniyor..."
 
 #: src/window.py:181 src/window.py:248
 msgid "Bottle details"
@@ -1950,7 +1938,7 @@ msgstr "İçe ve dışa aktar"
 
 #: src/window.py:337
 msgid "Journal browser"
-msgstr ""
+msgstr "Günlük gezgini"
 
 #: src/utils/connection.py:60
 msgid "You are offline, unable to download."
@@ -1968,30 +1956,29 @@ msgstr "Yedekleme içe aktarılıyor: {0}"
 
 #: src/backend/managers/installer.py:116
 msgid "Installer requires local resources"
-msgstr ""
+msgstr "Kurucu yerel kaynaklar gerektiriyor"
 
 #: src/backend/managers/installer.py:118
 #, python-format
 msgid "This installer requires some local resources: %s"
-msgstr ""
+msgstr "Bu kurucu bazı yerel kaynaklar gerektiriyor: %s"
 
 #: src/backend/managers/installer.py:118
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: src/backend/managers/installer.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "Pick executable for %s"
-msgstr "[{0}] için yürütülebilir dosya bulunamıyor."
+msgstr "%s için çalıştırılabilir dosya seç"
 
 #: src/backend/managers/installer.py:133
 msgid "Proceed"
-msgstr ""
+msgstr "Devam et"
 
 #: src/backend/managers/installer.py:456
-#, fuzzy
 msgid "Local resources not found or invalid"
-msgstr "(!) Tanım bulunamadı veya geçerli değil…"
+msgstr "Yerel kaynaklar bulunamadı veya geçersiz"
 
 #: src/backend/managers/installer.py:465
 msgid "Dependencies installation failed."
@@ -2011,13 +1998,12 @@ msgid "Missing essential components. Installing…"
 msgstr "Temel bileşenler eksik. Kuruluyor…"
 
 #: src/backend/managers/manager.py:1126
-#, fuzzy
 msgid "Failed to create bottle directory."
-msgstr "{0} için yedekleme oluşturulamadı!"
+msgstr "Şişe dizini oluşturulamadı."
 
 #: src/backend/managers/manager.py:1138
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Yer tutucu dizini/dosyası oluşturulamadı."
 
 #: src/backend/managers/manager.py:1143
 msgid "Generating bottle configuration…"
@@ -2086,9 +2072,9 @@ msgid "Installing DXVK-NVAPI…"
 msgstr "DXVK-NVAPI kuruluyor…"
 
 #: src/backend/managers/manager.py:1288
-#, fuzzy, python-format
+#, python-format
 msgid "Installing dependency: %s …"
-msgstr "Bağımlılık kuruluyor: {0}…"
+msgstr "Bağımlılık kuruluyor: %s …"
 
 #: src/backend/managers/manager.py:1304
 msgid "Creating versioning state 0…"
@@ -2099,9 +2085,8 @@ msgid "Finalizing…"
 msgstr "Sonuçlandırılıyor…"
 
 #: src/backend/managers/manager.py:1323
-#, fuzzy
 msgid "Caching template…"
-msgstr "Şişe oluşturuluyor…"
+msgstr "Şablon önbelleğe alınıyor…"
 
 #: src/backend/managers/versioning.py:65
 msgid "Generating state files index …"
@@ -2203,11 +2188,12 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
 
 #: src/views/bottle_details.py:493
-#, fuzzy
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
-msgstr "Bu Şişeyi ve tüm dosyaları silmek istediğinizden emin misiniz?"
+msgstr ""
+"Tüm işlemleri sonlandırmak istediğinizden emin misiniz?\n"
+"Bu veri kaybına neden olabilir."
 
 #: src/views/bottle_preferences.py:172
 msgid "This feature is not available on your system."
@@ -2264,7 +2250,7 @@ msgstr "Yok"
 #: src/views/list.py:101
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr "Yürütebilir dosya için bulunan bağımsız değişkenler: [{executable}]."
+msgstr "[{executable}] çalıştırılabilir dosyası için argümanlar bulundu."
 
 #: src/views/new.py:74
 msgid "Gaming"
@@ -2303,9 +2289,8 @@ msgid "Choose a recipe file"
 msgstr "Bir tanım dosyası seçin"
 
 #: src/views/new.py:199
-#, fuzzy
 msgid "Choose where to store the bottle"
-msgstr "Şişeniz için bir ad seçin"
+msgstr "Şişenin nereye kaydedileceğini seç"
 
 #: src/views/new.py:283
 msgid "There was an error creating the bottle."
