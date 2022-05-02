@@ -32,6 +32,8 @@ class ImporterView(Gtk.ScrolledWindow):
     btn_find_prefixes = Gtk.Template.Child()
     btn_import_config = Gtk.Template.Child()
     btn_import_full = Gtk.Template.Child()
+    hdy_status = Gtk.Template.Child()
+    actions = Gtk.Template.Child()
 
     # endregion
 
@@ -57,8 +59,14 @@ class ImporterView(Gtk.ScrolledWindow):
         def update(result, error=False):
             widget.set_sensitive(True)
             if result.status:
+                wineprefixes = result.data.get("wineprefixes")
+                if len(wineprefixes) == 0:
+                    return
+
+                self.hdy_status.set_visible(False)
                 for w in self.list_prefixes.get_children():
                     w.destroy()
+
                 for prefix in result.data.get("wineprefixes"):
                     self.list_prefixes.add(ImporterEntry(self.window, prefix))
 
