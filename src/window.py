@@ -35,7 +35,7 @@ from bottles.backend.wine.executor import WineExecutor
 
 from bottles.views.new import NewView
 from bottles.views.details import DetailsView
-from bottles.views.list import ListView
+from bottles.views.list import BottleView
 from bottles.views.library import LibraryView
 from bottles.views.preferences import PreferencesWindow
 from bottles.views.importer import ImporterView
@@ -73,6 +73,8 @@ class MainWindow(Adw.ApplicationWindow):
     list_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
+    list_notifications = Gtk.Template.Child()
+    window_title = Gtk.Template.Child()
     # endregion
 
     # Common variables
@@ -182,7 +184,7 @@ class MainWindow(Adw.ApplicationWindow):
             widget.set_visible(False)
 
     def set_title(self, title, subtitle: str = ""):
-        self.headerbar.set_title_widget(Gtk.Label.new(title))
+        self.window_title.set_title(title)
         # self.headerbar.set_subtitle(subtitle)  TODO: Implement subtitle
 
     def set_actions(self, widget: Gtk.Widget = None):
@@ -224,7 +226,7 @@ class MainWindow(Adw.ApplicationWindow):
 
             # Pages
             self.page_details = DetailsView(self)
-            self.page_list = ListView(self, arg_bottle=self.arg_bottle, arg_exe=self.arg_exe)
+            self.page_list = BottleView(self, self.arg_exe)
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 

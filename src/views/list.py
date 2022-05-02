@@ -26,8 +26,8 @@ from bottles.backend.wine.executor import WineExecutor
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list-entry.ui')
-class ListViewEntry(Adw.ActionRow):
-    __gtype_name__ = 'ListViewEntry'
+class BottleViewEntry(Adw.ActionRow):
+    __gtype_name__ = 'BottleViewEntry'
 
     Adw.init()
 
@@ -170,14 +170,14 @@ class ListViewEntry(Adw.ActionRow):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
-class ListView(Gtk.ScrolledWindow):
-    __gtype_name__ = 'ListView'
+class BottleView(Gtk.ScrolledWindow):
+    __gtype_name__ = 'BottleView'
 
     # region Widgets
     list_bottles = Gtk.Template.Child()
     list_steam = Gtk.Template.Child()
     clamp_list = Gtk.Template.Child()
-    hdy_status = Gtk.Template.Child()
+    bottle_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
 
@@ -230,17 +230,17 @@ class ListView(Gtk.ScrolledWindow):
 
         if len(bottles) == 0:
             self.clamp_list.set_visible(False)
-            self.hdy_status.set_visible(True)
+            self.bottle_status.set_visible(True)
         else:
             self.clamp_list.set_visible(True)
-            self.hdy_status.set_visible(False)
+            self.bottle_status.set_visible(False)
 
         if len(bottles) >= 10:
             self.entry_search.set_visible(True)
 
         for bottle in bottles:
             self.list_bottles.append(
-                ListViewEntry(self.window, bottle, self.arg_exe)
+                BottleViewEntry(self.window, bottle, self.arg_exe)
             )
         self.arg_exe = False
 
