@@ -138,6 +138,9 @@ class NewView(Handy.Window):
         if "FLATPAK_ID" in os.environ:
             self.row_sandbox.set_visible(False)
 
+        # focus on the entry_name
+        self.entry_name.grab_focus()
+
     def set_active_env(self, widget, row):
         """
         This function set the active environment on row selection.
