@@ -182,6 +182,9 @@ class BottleView(Gtk.ScrolledWindow):
         wineserver = WineServer(self.config)
 
         for w in self.group_programs:
+            if w == self.row_no_programs:
+                w.set_visible(False)
+                continue
             w.destroy()
 
         if self.config.get("Environment") == "Steam":
@@ -198,9 +201,8 @@ class BottleView(Gtk.ScrolledWindow):
         if (len(programs) == 0 or len(programs) == hidden) \
                 and self.config.get("Environment") != "Steam":
             self.group_programs.add(self.row_no_programs)
+            self.row_no_programs.set_visible(True)
             return
-
-        self.group_programs.set_visible(True)
 
         i = 0
         # append first 5 entries to group_programs
