@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24"/>
-  <template class="ListView" parent="GtkScrolledWindow">
+<requires lib="gtk" version="4.0"/>
+  <template class="BottleView" parent="GtkScrolledWindow">
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
     <child>
@@ -25,9 +25,10 @@
                     </child>
                     <child>
                       <object class="GtkListBox" id="list_bottles">
+                        <property name="margin-top">12</property>
                         <property name="selection-mode">none</property>
                         <style>
-                          <class name="content"/>
+                          <class name="boxed-list"/>
                         </style>
                       </object>
                     </child>
@@ -51,18 +52,20 @@
               </object>
             </child>
             <child>
-              <object class="AdwStatusPage" id="hdy_status">
+              <object class="AdwStatusPage" id="bottle_status">
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="icon-name">com.usebottles.bottles-symbolic</property>
                 <property name="title" translatable="yes">Bottles</property>
                 <property name="description" translatable="yes">Start off by creating a Bottle.</property>
                 <child>
                   <object class="GtkButton" id="btn_create">
                     <property name="label" translatable="yes">Create a new Bottle</property>
-                    <property name="halign">center</property>
-                    <property name="valign">center</property>
                     <style>
                       <class name="suggested-action"/>
-                      <class name="circular-button"/>
+                      <class name="pill"/>
                     </style>
                   </object>
                 </child>

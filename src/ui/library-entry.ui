@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24"/>
-  <object class="GtkPopover" id="pop_context">
-    <property name="can-focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="width-request">160</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
-        <child>
-          <object class="GtkModelButton" id="btn_remove">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
-            <property name="tooltip-text" translatable="yes">Read documentation about installers	</property>
-            <property name="text" translatable="yes">Remove from library</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
+<requires lib="gtk" version="4.0"/>
   <template class="LibraryEntry" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>

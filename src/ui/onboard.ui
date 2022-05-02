@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24"/>
-  <requires lib="libhandy" version="1.0"/>
+<requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
   <template class="OnboardDialog" parent="AdwWindow">
     <property name="resizable">False</property>
     <property name="modal">True</property>
@@ -11,14 +11,15 @@
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <child>
-          <object class="AdwHeaderBar">
+          <object class="GtkHeaderBar">
+          <property name="show-title-buttons">False</property>
             <property name="title-widget">
               <object class="AdwWindowTitle">
                 <property name="title" translatable="yes">Welcome</property>
               </object>
             </property>
 
-            <child>
+            <child type="end">
               <object class="GtkButton" id="btn_next">
                 <property name="label" translatable="yes">Next</property>
                 <style>
@@ -27,7 +28,7 @@
               </object>
             </child>
 
-            <child>
+            <child type="end">
               <object class="GtkButton" id="btn_install">
                 <property name="label" translatable="yes">Install</property>
                 <style>

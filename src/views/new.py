@@ -24,82 +24,36 @@ from bottles.backend.runner import Runner  # pyright: reportMissingImports=false
 from bottles.backend.wine.executor import WineExecutor
 from bottles.utils.threading import RunAsync
 
-
-class EnvironmentRow(Adw.ActionRow):
-    def __init__(self, environment, **kwargs):
-        super().__init__(**kwargs)
-
-        self.environment = environment
-        self.set_selectable(True)
-        self.set_title(environment.get("name"))
-        self.set_subtitle(self.environment.get('description'))
-        self.set_icon_name(environment.get("icon"))
-        self.set_visible(True)
-
-    def get_env_id(self):
-        return self.environment.get("id")
-
-
 @Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
 class NewView(Adw.Window):
     __gtype_name__ = 'NewView'
 
     # region Widgets
+    entry_name = Gtk.Template.Child()
     stack_create = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
-    btn_pref_runners = Gtk.Template.Child()
+    #btn_pref_runners = Gtk.Template.Child()
     list_envs = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
-    page_created = Gtk.Template.Child()
-    entry_name = Gtk.Template.Child()
+    created = Gtk.Template.Child()
     switch_versioning = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
-    box_advanced = Gtk.Template.Child()
-    combo_runner = Gtk.Template.Child()
+    #combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
-    revealer_advanced = Gtk.Template.Child()
-    row_sandbox = Gtk.Template.Child()
+    # row_sandbox = Gtk.Template.Child()
+    title = Gtk.Template.Child()
+    headerbar = Gtk.Template.Child()
     # endregion
-
-    environments = [
-        {
-            "id": "Gaming",
-            "name": _("Gaming"),
-            "description": _("An environment improved for Windows games."),
-            "icon": "applications-games-symbolic"
-        },
-        {
-            "id": "Application",
-            "name": _("Application"),
-            "description": _("An environment improved for Windows applications."),
-            "icon": "applications-engineering-symbolic"
-        },
-        {
-            "id": "Custom",
-            "name": _("Custom"),
-            "description": _("A clear environment for your experiments."),
-            "icon": "applications-science-symbolic"
-        }
-    ]
-
-    if "LAYERS" in os.environ:
-        environments.append({
-            "id": "Layered",
-            "name": _("Layered"),
-            "description": _("A layered environment, where every app is a layer."),
-            "icon": "emoji-symbols-symbolic"
-        })
 
     def __init__(self, window, arg_exe=None, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
-
         # common variables and references
         self.window = window
         self.manager = window.manager
@@ -121,25 +75,18 @@ class NewView(Adw.Window):
         self.btn_choose_path.connect("clicked", self.choose_path)
         self.list_envs.connect('row-selected', self.set_active_env)
         self.entry_name.connect('activate', self.create_bottle)
-        self.btn_pref_runners.connect("clicked", self.window.show_prefs_view)
-
-        for env in self.environments:
-            env_row = EnvironmentRow(env)
-            self.list_envs.append(env_row)
-
-        # set the first environment as active
-        self.list_envs.select_row(self.list_envs.get_first_child())
+        #self.btn_pref_runners.connect("clicked", self.window.show_prefs_view)
 
         # populate combo_runner with runner versions from the manager
-        for runner in self.manager.runners_available:
-            self.combo_runner.append(runner, runner)
+        # for runner in self.manager.runners_available:
+        #     self.combo_runner.append(runner, runner)
 
-        self.combo_runner.set_active(0)
-        self.combo_arch.set_active_id("win64")
+        # self.combo_runner.set_active(0)
+        self.combo_arch.set_selected(0)
 
         # if running under Flatpak, hide row_sandbox
         if "FLATPAK_ID" in os.environ:
-            self.row_sandbox.set_visible(False)
+             self.row_sandbox.set_visible(False)
 
         # focus on the entry_name
         self.entry_name.grab_focus()
@@ -147,21 +94,8 @@ class NewView(Adw.Window):
     def set_active_env(self, widget, row):
         """
         This function set the active environment on row selection.
-        If the environment is "Custom" it will display the advanced
-        options.
         """
-        self.selected_env = row.get_env_id()
-
-        status = row.get_env_id() == "Custom"
-        if status:
-            self.revealer_advanced.set_transition_type(
-                Gtk.RevealerTransitionType.SLIDE_DOWN
-            )
-        else:
-            self.revealer_advanced.set_transition_type(
-                Gtk.RevealerTransitionType.SLIDE_UP
-            )
-        self.revealer_advanced.set_reveal_child(status)
+        self.selected_env = row.get_buildable_id()
 
     def check_entry_name(self, widget, event_key):
         """
@@ -223,6 +157,8 @@ class NewView(Adw.Window):
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
         self.page_create.set_visible(False)
+        self.title.set_visible(False)
+        self.headerbar.get_style_context().add_class("flat")
         self.stack_create.set_visible_child_name("page_creating")
 
         '''
@@ -259,6 +195,11 @@ class NewView(Adw.Window):
             else:  # use any other runner available
                 runner = self.manager.runners_available[0]
 
+        if self.combo_arch == 0:
+            arch = "win64"
+        else:
+            arch = "win32"
+
         RunAsync(
             task_func=self.manager.create_bottle,
             callback=self.finish,
@@ -266,10 +207,10 @@ class NewView(Adw.Window):
             path=self.custom_path,
             environment=self.selected_env,
             runner=runner,
+            arch=arch,
             dxvk=self.manager.dxvk_available[0],
             versioning=versioning_state,
             sandbox=sandbox_state,
-            arch=self.combo_arch.get_active_id(),
             fn_logger=self.update_output,
             custom_environment=self.env_recipe_path
         )
@@ -291,14 +232,13 @@ class NewView(Adw.Window):
             return
 
         self.new_bottle_config = result.data.get("config")
-        self.page_created.set_description(
+        self.created.set_description(
             _("A bottle named “{0}” was created successfully").format(
                 self.entry_name.get_text()
             )
         )
 
         self.btn_cancel.set_visible(False)
-        self.btn_close.set_visible(True)
 
         self.stack_create.set_visible_child_name("page_created")
 

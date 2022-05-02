@@ -1,430 +1,274 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+<requires lib="gtk" version="4.0"/>
   <template class="NewView" parent="AdwWindow">
-    <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="default-width">450</property>
-    <property name="destroy-with-parent">True</property>
+    <property name="hide-on-close">True</property>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-
-        <child>
-          <object class="AdwHeaderBar">
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title" translatable="yes">New bottle</property>
-              </object>
-            </property>
-            <child>
-              <object class="GtkButton" id="btn_cancel">
-                <property name="label" translatable="yes">Cancel</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_create">
-                <property name="label" translatable="yes">Create</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_close">
-                <property name="label" translatable="yes">Close</property>
-                
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
+    <object class="GtkBox">
+    <property name="orientation">vertical</property>
+     <child>
+      <object class="GtkHeaderBar" id="headerbar">
+        <property name="show-title-buttons">False</property>
+        <property name="title-widget">
+          <object class="AdwWindowTitle" id="title">
+            <property name="title" translatable="yes">New bottle</property>
+          </object>
+        </property>
+        <child type="start">
+          <object class="GtkButton" id="btn_cancel">
+            <property name="label" translatable="yes">Cancel</property>
           </object>
         </child>
-
-        <child>
-          <object class="GtkStack" id="stack_create">
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">page_create</property>
-                <property name="child">
-                  <object class="AdwClamp" id="page_create">
-                    <property name="maximum-size">500</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="margin-end">10</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Bottle information</property>
-                            <attributes>
-                              <attribute name="font-desc" value="Cantarell 11"/>
-                            </attributes>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkListBox">
-                            <property name="selection-mode">none</property>
-                            <child>
-                              <object class="AdwActionRow">
-                                
-                                <property name="title" translatable="yes">Name</property>
-                                <property name="subtitle" translatable="yes">Choose a name for your bottle</property>
-                                <child>
-                                  <object class="GtkBox">
-                                    <child>
-                                      <object class="GtkEntry" id="entry_name">
-                                        
-                                        <property name="has-frame">False</property>
-                                        <property name="primary-icon-tooltip-text" translatable="yes">This field cannot contain special characters!</property>
-                                        <property name="placeholder-text" translatable="yes">My beautiful bottle</property>
-                                        <style>
-                                          <class name="borderless"/>
-                                        </style>
-                                      </object>
-                                      
-                                      
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="content"/>
-                            </style>
-                          </object>
-                          
-                          
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Environment</property>
-                            <attributes>
-                              <attribute name="font-desc" value="Cantarell 11"/>
-                            </attributes>
-                          </object>
-                          
-                          
-                        </child>
-                        <child>
-                          <object class="GtkListBox" id="list_envs">
-                            <style>
-                              <class name="content"/>
-                            </style>
-                          </object>
-                          
-                          
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <object class="GtkRevealer" id="revealer_advanced">
-                            <property name="transition-type">slide-up</property>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel" id="label_advanced">
-                                    <property name="label" translatable="yes">Advanced options</property>
-                                    <attributes>
-                                      <attribute name="font-desc" value="Cantarell 11"/>
-                                    </attributes>
-                                  </object>
-                                  
-                                  
-                                </child>
-                                <child>
-                                  <object class="GtkListBox" id="box_advanced">
-                                    <property name="selection-mode">none</property>
-                                    <child>
-                                      <object class="AdwActionRow">
-                                        
-                                        <property name="title" translatable="yes">Use versioning</property>
-                                        <property name="subtitle" translatable="yes">Enable versioning to save and restore the bottle to a state.</property>
-                                        <child>
-                                          <object class="GtkBox">
-                                            <child>
-                                              <object class="GtkSwitch" id="switch_versioning">
-                                                
-                                                <property name="halign">center</property>
-                                                <property name="valign">center</property>
-                                              </object>
-                                              
-                                              
-                                            </child>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="AdwActionRow" id="row_sandbox">
-                                        
-                                        <property name="title" translatable="yes">Unlinked homedir</property>
-                                        <property name="subtitle" translatable="yes">Do not link the userdir to the homedir</property>
-                                        <child>
-                                          <object class="GtkBox">
-                                            <child>
-                                              <object class="GtkSwitch" id="switch_sandbox">
-                                                
-                                                <property name="halign">center</property>
-                                                <property name="valign">center</property>
-                                                <property name="active">True</property>
-                                              </object>
-                                              
-                                              
-                                            </child>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="AdwActionRow">
-                                        
-                                        <property name="title" translatable="yes">Runner</property>
-                                        <child>
-                                          <object class="GtkBox">
-                                            <property name="spacing">10</property>
-                                            <child>
-                                              <object class="GtkComboBoxText" id="combo_runner">
-                                                <property name="valign">center</property>
-                                                <property name="active">0</property>
-                                                <style>
-                                                  <class name="borderless"/>
-                                                  <class name="plain"/>
-                                                </style>
-                                              </object>
-                                              
-                                              
-                                            </child>
-                                            <child>
-                                              <object class="GtkSeparator">
-                                              </object>
-                                              
-                                              
-                                            </child>
-                                            <child>
-                                              <object class="GtkButton" id="btn_pref_runners">
-                                                
-                                                <property name="tooltip-text" translatable="yes">Manage runners</property>
-                                                <property name="halign">center</property>
-                                                <property name="valign">center</property>
-                                                <child>
-                                                  <object class="GtkImage">
-                                                    <property name="icon-name">applications-system-symbolic</property>
-                                                  </object>
-                                                </child>
-                                                <style>
-                                                  <class name="image-button"/>
-                                                </style>
-                                              </object>
-                                              
-                                              
-                                            </child>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="AdwActionRow">
-                                        
-                                        <property name="title" translatable="yes">Architecture</property>
-                                        <property name="subtitle" translatable="yes">We recommend using 32bit only if strictly necessary</property>
-                                        <child>
-                                          <object class="GtkBox">
-                                            <child>
-                                              <object class="GtkComboBoxText" id="combo_arch">
-                                                <property name="valign">center</property>
-                                                <property name="margin-end">5</property>
-                                                <property name="active">0</property>
-                                                <items>
-                                                  <item id="win64" translatable="yes">64 bit</item>
-                                                  <item id="win32" translatable="yes">32 bit</item>
-                                                </items>
-                                                <style>
-                                                  <class name="borderless"/>
-                                                  <class name="plain"/>
-                                                </style>
-                                              </object>
-                                              
-                                              
-                                            </child>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="AdwActionRow">
-                                        
-                                        <property name="title" translatable="yes">Use custom recipe</property>
-                                        <property name="subtitle" translatable="yes">Choose a custom recipe for the environment if you have one.</property>
-                                        <child>
-                                          <object class="GtkBox">
-                                            <property name="spacing">10</property>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <object class="GtkButton" id="btn_choose_env">
-                                                
-                                                <property name="tooltip-text" translatable="yes">Choose a directory</property>
-                                                <property name="halign">center</property>
-                                                <property name="valign">center</property>
-                                                <child>
-                                                  <object class="GtkImage">
-                                                    <property name="icon-name">document-open-symbolic</property>
-                                                  </object>
-                                                </child>
-                                                <style>
-                                                  <class name="image-button"/>
-                                                </style>
-                                              </object>
-                                              
-                                              
-                                            </child>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="AdwActionRow">
-                                        
-                                        <property name="title" translatable="yes">Use custom path</property>
-                                        <property name="subtitle" translatable="yes">Store this bottle in a different place.</property>
-                                        <child>
-                                          <object class="GtkBox">
-                                            <property name="spacing">10</property>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <placeholder/>
-                                            </child>
-                                            <child>
-                                              <object class="GtkButton" id="btn_choose_path">
-                                                
-                                                <property name="tooltip-text" translatable="yes">Choose a directory</property>
-                                                <property name="halign">center</property>
-                                                <property name="valign">center</property>
-                                                <child>
-                                                  <object class="GtkImage">
-                                                    <property name="icon-name">document-open-symbolic</property>
-                                                  </object>
-                                                </child>
-                                                <style>
-                                                  <class name="image-button"/>
-                                                </style>
-                                              </object>
-                                              
-                                              
-                                            </child>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <style>
-                                      <class name="content"/>
-                                    </style>
-                                  </object>
-                                  
-                                  
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                          
-                          
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </property>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">page_creating</property>
-                <property name="child">
-                  <object class="GtkBox" id="page_creating">
-                    <property name="halign">center</property>
-                    <property name="valign">center</property>
-                    <property name="margin-end">10</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">center</property>
-                        <property name="label" translatable="yes">Creating bottle…</property>
-                        <property name="wrap">True</property>
-                        <property name="wrap-mode">word-char</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell Bold 20"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      
-                      
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">Take a break, it may take a while</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell 11"/>
-                        </attributes>
-                      </object>
-                      
-                      
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="label_output">
-                        <property name="hexpand">True</property>
-                        <property name="wrap">True</property>
-                        <property name="selectable">True</property>
-                        <property name="xalign">0</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Source Code Pro 9"/>
-                        </attributes>
-                        <style>
-                          <class name="terminal"/>
-                        </style>
-                      </object>
-                      
-                      
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </object>
-                </property>
-              </object>              
-            </child>
-
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">page_created</property>
-                <property name="child">
-                  <object class="AdwStatusPage" id="page_created">
-                    <property name="icon-name">object-select-symbolic</property>
-                    <property name="title" translatable="yes">Bottle created</property>
-                  </object>
-                </property>
-              </object>
-            </child>
+        <child type="end">
+          <object class="GtkButton" id="btn_create">
+            <property name="label" translatable="yes">Create</property>
+            <style>
+              <class name="suggested-action"/>
+            </style>
           </object>
-          
         </child>
       </object>
+      </child>
+      <child>
+        <object class="GtkStack" id="stack_create">
+        <property name="transition_type">crossfade</property>
+          <child>
+           <object class="GtkStackPage" id="page_create">
+           <property name="name">page_create</property>
+                <property name="child">
+                  <object class="AdwPreferencesPage">
+                    <property name="title" translatable="yes">New Bottle</property>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title" translatable="yes">Bottle Information</property>
+                        <child>
+                          <object class="AdwActionRow">
+                          <property name="title" translatable="yes">Name</property>
+                              <child>
+                              <object class="GtkEntry" id="entry_name">
+                                <property name="placeholder-text" translatable="yes">My beautiful bottle</property>
+                                <property name="valign">center</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title" translatable="yes">Environment</property>
+                        <child>
+                         <object class="GtkListBox" id="list_envs">
+                          <child>
+                            <object class="AdwActionRow" id="gaming">
+                            <property name="selectable">True</property>
+                            <property name="activatable">True</property>
+                            <property name="title" translatable="yes">Gaming</property>
+                            <property name="subtitle" translatable="yes">An environment improved for Windows games.</property>
+                            <property name="icon-name">input-gaming-symbolic</property>
+                            </object>
+                          </child>
+                          <child>
+                            <object class="AdwActionRow" id="application">
+                            <property name="selectable">True</property>
+                            <property name="activatable">True</property>
+                            <property name="title" translatable="yes">Application</property>
+                            <property name="subtitle" translatable="yes">An environment improved for Windows applications.</property>
+                            <property name="icon-name">applications-engineering-symbolic</property>
+                            </object>
+                          </child>
+                          <child>
+                            <object class="AdwActionRow" id="layered">
+                            <property name="selectable">True</property>
+                            <property name="activatable">True</property>
+                            <property name="visible">False</property>
+                            <property name="title" translatable="yes">Layered</property>
+                            <property name="subtitle" translatable="yes">A layered environment, where every app is a layer.</property>
+                            <property name="icon-name">emoji-symbols-symbolic</property>
+                            </object>
+                          </child>
+                          <child>
+                            <object class="AdwExpanderRow" id="custom">
+                            <property name="selectable">True</property>
+                            <property name="activatable">True</property>
+                            <property name="title" translatable="yes">Custom</property>
+                            <property name="subtitle" translatable="yes">A clear environment for your experiments</property>
+                            <property name="icon-name">applications-science-symbolic</property>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Versioning</property>
+                                <property name="subtitle" translatable="yes">Enable versioning to save and restore the bottle to a state.</property>
+                                <property name="activatable_widget">switch_versioning</property>
+                                <child>
+                                  <object class="GtkSwitch" id="switch_versioning">
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Unlinked homedir</property>
+                                <property name="subtitle" translatable="yes">Do not link the userdir to the homedir</property>
+                                <property name="activatable_widget">switch_sandbox</property>
+                                <child>
+                                  <object class="GtkSwitch" id="switch_sandbox">
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwComboRow">
+                                <property name="title" translatable="yes">Runner</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwComboRow" id="combo_arch">
+                                <property name="title" translatable="yes">Architecture</property>
+                                <property name="subtitle" translatable="yes">We recommend using 32bit only if strictly necessary</property>
+                                <property name="model">
+                                <object class="GtkStringList">
+                                  <items>
+                                    <item translatable="yes">64 bit</item>
+                                    <item translatable="yes">32 bit</item>
+                                  </items>
+                                </object>
+                              </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Custom Recipe</property>
+                                <property name="subtitle" translatable="yes">Choose a custom recipe for the environment if you have one.</property>
+                                <property name="activatable_widget">btn_choose_env</property>
+                                <child>
+                                  <object class="GtkButton" id="btn_choose_env">
+                                    <property name="valign">center</property>
+                                    <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                    <property name="icon-name">document-open-symbolic</property>
+                                    <style>
+                                      <class name="flat"/>
+                                    </style>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Custom Path</property>
+                                <property name="subtitle" translatable="yes">Store this bottle in another place.</property>
+                                <property name="activatable_widget">btn_choose_path</property>
+                                <child>
+                                  <object class="GtkButton" id="btn_choose_path">
+                                    <property name="valign">center</property>
+                                    <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                    <property name="icon-name">document-open-symbolic</property>
+                                    <style>
+                                      <class name="flat"/>
+                                    </style>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            </object>
+                          </child>
+                          <style>
+                            <class name="boxed-list"/>
+                          </style>
+                         </object>
+                        </child>
+
+                      </object>
+                    </child>
+                  </object>
+                </property>
+           </object>
+          </child>
+          <child>
+            <object class="GtkStackPage" id="page_creating">
+            <property name="name">page_creating</property>
+              <property name="child">
+              <object class="GtkWindowHandle">
+              <child>
+               <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="AdwStatusPage">
+                    <property name="valign">center</property>
+                    <property name="title">Creating a Bottle…</property>
+                    <property name="description">Take a break, it may take a while</property>
+                  </object>
+                </child>
+                <child>
+                <object class="GtkScrolledWindow">
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="min-content-height">200</property>
+                <property name="overflow">hidden</property>
+                  <child>
+                    <object class="GtkLabel" id="label_output">
+                      <property name="hexpand">True</property>
+                      <property name="valign">fill</property>
+                      <property name="wrap">True</property>
+                      <property name="selectable">True</property>
+                      <property name="xalign">0</property>
+                      <style>
+                        <class name="monospace"/>
+                        <class name="terminal"/>
+                      </style>
+                    </object>
+                  </child>
+                  <style>
+                    <class name="card"/>
+                  </style>
+                </object>
+                </child>
+               </object>
+              </child>
+              </object>
+              </property>
+            </object>
+          </child>
+          <child>
+            <object class="GtkStackPage" id="page_created">
+            <property name="name">page_created</property>
+              <property name="child">
+              <object class="GtkWindowHandle">
+                <child>
+                <object class="GtkBox">
+                  <property name="orientation">vertical</property>
+                  <property name="spacing">12</property>
+                    <child>
+                      <object class="AdwStatusPage" id="created">
+                        <property name="icon-name">selection-mode-symbolic</property>
+                        <property name="title" translatable="yes">Bottle created</property>
+                        <property name="valign">center</property>
+                      </object>
+                  </child>
+                    <child>
+                      <object class="GtkButton" id="btn_close">
+                        <property name="label" translatable="yes">Close</property>
+                        <property name="valign">center</property>
+                        <property name="halign">center</property>
+                        <style>
+                          <class name="suggested-action"/>
+                          <class name="pill"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              </property>
+            </object>
+          </child>
+        </object>
+      </child>
+    </object>
     </child>
   </template>
 </interface>

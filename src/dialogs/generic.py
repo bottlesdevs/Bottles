@@ -77,7 +77,7 @@ class SourceDialog(Adw.Window):
         self.__build_ui()
 
     def __build_ui(self):
-        headerbar = Adw.HeaderBar()
+        headerbar = Gtk.HeaderBar()
         btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic")
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled = Gtk.ScrolledWindow(vexpand=True, hexpand=True)
