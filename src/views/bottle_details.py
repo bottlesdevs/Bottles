@@ -92,6 +92,7 @@ class BottleView(Gtk.ScrolledWindow):
     reveal_progress = Gtk.Template.Child()
     progress_bar = Gtk.Template.Child()
     actions = Gtk.Template.Child()
+    row_no_programs = Gtk.Template.Child()
 
     # endregion
 
@@ -196,7 +197,7 @@ class BottleView(Gtk.ScrolledWindow):
 
         if (len(programs) == 0 or len(programs) == hidden) \
                 and self.config.get("Environment") != "Steam":
-            self.group_programs.set_visible(False)
+            self.group_programs.add(self.row_no_programs)
             return
 
         self.group_programs.set_visible(True)
