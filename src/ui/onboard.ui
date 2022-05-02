@@ -112,6 +112,7 @@
             <child>
               <object class="HdyStatusPage" id="page_welcome">
                 <property name="visible">True</property>
+                <property name="can-focus">False</property>
                 <property name="icon-name">com.usebottles.bottles</property>
                 <property name="title" translatable="yes">Welcome to Bottles</property>
                 <property name="description" translatable="yes">Bottles makes running Windows Software on Linux much easier.</property>
@@ -122,7 +123,7 @@
               </packing>
             </child>
             <child>
-              <object class="HdyClamp" id="page_wine">
+              <object class="HdyClamp" id="page_about">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="maximum-size">500</property>
@@ -148,7 +149,7 @@
                         <property name="halign">center</property>
                         <property name="margin-top">10</property>
                         <property name="margin-bottom">10</property>
-                        <property name="label" translatable="yes">What Are Runners?</property>
+                        <property name="label" translatable="yes">What Is Bottles?</property>
                         <property name="wrap">True</property>
                         <property name="wrap-mode">word-char</property>
                         <style>
@@ -344,6 +345,7 @@ When you are ready press the &lt;b&gt;Install&lt;/b&gt; button.</property>
             <child>
               <object class="HdyStatusPage" id="page_finish">
                 <property name="visible">True</property>
+                <property name="can-focus">False</property>
                 <property name="icon-name">object-select-symbolic</property>
                 <property name="title" translatable="yes">Everything Is Ready!</property>
                 <property name="description" translatable="yes">You are now ready to create your first bottles.</property>

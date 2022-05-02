@@ -59,7 +59,6 @@ class NewView(Handy.Window):
     entry_name = Gtk.Template.Child()
     switch_versioning = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
-    label_advanced = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     box_advanced = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
@@ -215,7 +214,7 @@ class NewView(Handy.Window):
 
     def create_bottle(self, widget):
         # set widgets states
-        self.btn_cancel.set_sensitive(False)
+        self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
         self.page_create.set_visible(False)
         self.stack_create.set_visible_child_name("page_creating")

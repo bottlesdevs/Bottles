@@ -54,6 +54,25 @@
                     <property name="orientation">vertical</property>
                     <property name="spacing">10</property>
                     <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Use this section to install programs curated and tested by our community, without having to proceed manually. You will find it in the programs list once installed.</property>
+                        <property name="wrap">True</property>
+                        <attributes>
+                          <attribute name="scale" value="0.90000000000000002"/>
+                        </attributes>
+                        <style>
+                          <class name="description"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkListBox" id="list_installers">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
@@ -89,7 +108,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>

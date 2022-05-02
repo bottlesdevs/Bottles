@@ -29,7 +29,7 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Import/export</property>
+            <property name="text" translatable="yes">Importer</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -366,27 +366,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkMenuButton" id="btn_notifications">
-                <property name="can-focus">True</property>
-                <property name="focus-on-click">False</property>
-                <property name="receives-default">True</property>
-                <property name="tooltip-text" translatable="yes">Notifications</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="popover">pop_notifications</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="icon-name">preferences-system-notifications-symbolic</property>
-                    <property name="icon_size">2</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-                <property name="position">6</property>
-              </packing>
+              <placeholder/>
             </child>
             <child>
               <object class="GtkBox" id="box_actions">

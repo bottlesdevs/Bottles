@@ -30,7 +30,6 @@ from bottles.utils.connection import ConnectionUtils
 
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
-from bottles.backend.managers.notifications import NotificationsManager
 from bottles.backend.wine.executor import WineExecutor
 
 from bottles.views.new import NewView
@@ -62,7 +61,6 @@ class MainWindow(Handy.ApplicationWindow):
     btn_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
     btn_operations = Gtk.Template.Child()
-    btn_notifications = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
     btn_more = Gtk.Template.Child()
     btn_support = Gtk.Template.Child()
@@ -75,9 +73,7 @@ class MainWindow(Handy.ApplicationWindow):
     box_actions = Gtk.Template.Child()
     list_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
-    pop_notifications = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    list_notifications = Gtk.Template.Child()
     # endregion
 
     # Common variables
@@ -174,17 +170,18 @@ class MainWindow(Handy.ApplicationWindow):
         """
         page = self.stack_main.get_visible_child_name()
 
-        if page != "page_details":
+        if page not in ["page_details", "page_importer"]:
             self.set_actions(None)
 
         if page == "page_details":
-            self.set_title(_("Bottle details"))
+            self.set_title(_("Bottle Details"))
         elif page == "page_list":
             self.set_title(_("Bottles"))
         elif page == "page_importer":
-            self.set_title(_("Import & export"))
+            self.set_title(_("Importer"))
+            self.set_actions(self.page_importer.actions)
         elif page == "page_library":
-            self.set_title(_("Your library"))
+            self.set_title(_("Your Library"))
         elif page == "page_loading":
             self.set_title(_("Loading..."))
 
@@ -273,23 +270,6 @@ class MainWindow(Handy.ApplicationWindow):
         RunAsync(get_manager, callback=set_manager, window=self)
 
         self.check_crash_log()
-        self.check_notifications()
-
-    def send_notification(self, title, text, image="", ignore_user=True):
-        """
-        This method is used to send a notification to the user using
-        Gio.Notification. The notification is sent only if the
-        user has enabled it in the settings. It is possibile to ignore the
-        user settings by passing the argument ignore_user=False.
-        """
-        if ignore_user or self.settings.get_boolean("notifications"):
-            notification = Gio.Notification.new(title)
-            notification.set_body(text)
-            if image:
-                icon = Gio.ThemedIcon.new(image)
-                notification.set_icon(icon)
-
-            self.props.application.send_notification(None, notification)
 
     def set_previous_page_status(self):
         """
@@ -399,25 +379,6 @@ class MainWindow(Handy.ApplicationWindow):
         except FileNotFoundError:
             pass
 
-    def check_notifications(self):
-        if not self.utils_conn.check_connection():
-            return
-
-        messages = NotificationsManager().messages
-        if len(messages) > 0:
-            for message in messages:
-                entry = MessageEntry(
-                    nid=message["id"],
-                    title=message["title"],
-                    body=message["body"],
-                    url=message["url"],
-                    message_type=message["type"],
-                )
-                entry.set_visible(True)
-                self.list_notifications.add(entry)
-
-            self.btn_notifications.set_visible(True)
-
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()
         if status:
@@ -429,8 +390,7 @@ class MainWindow(Handy.ApplicationWindow):
         for w in [
             self.btn_add,
             self.btn_menu,
-            self.btn_noconnection,
-            self.btn_notifications
+            self.btn_noconnection
         ]:
             w.set_sensitive(not status)
 
