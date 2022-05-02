@@ -198,7 +198,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         status = self.btn_rename.get_active()
         if widget == self.entry_name:
             status = not status
+
         self.entry_name.set_editable(status)
+        self.entry_name.set_has_frame(status)
+        self.entry_name.set_can_focus(status)
 
         if status:
             self.entry_name.grab_focus()
@@ -213,6 +216,7 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.btn_rename.set_active(False)
             self.btn_rename.handler_unblock_by_func(self.__toggle_rename)
             self.window.page_details.view_bottle.label_name.set_text(name)
+            self.entry_name.select_region(0, 0)
 
     def __check_entry_name(self, widget, event_key):
         """
