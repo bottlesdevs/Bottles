@@ -57,7 +57,6 @@ class MessageDialog(Gtk.MessageDialog):
             box.append(message_scroll)
 
         content.append(box)
-        self.show_all()
 
 
 class SourceDialog(Adw.Window):

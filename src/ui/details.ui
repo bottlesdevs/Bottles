@@ -3,6 +3,31 @@
 <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
   <template class="Details" parent="AdwBin">
+  <child>
+  <object class="GtkBox">
+  <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkHeaderBar" id="headerbar">
+        <property name="show-title-buttons">True</property>
+        <property name="title-widget">
+          <object class="AdwWindowTitle" id="window_title">
+            <property name="title" translatable="yes">Bottle</property>
+          </object>
+        </property>
+        <child type="start">
+          <object class="GtkButton" id="btn_back">
+            <property name="icon-name">go-previous-symbolic</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="box_actions">
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
     <child>
       <object class="AdwLeaflet" id="leaflet">
         <property name="hexpand">true</property>
@@ -35,6 +60,8 @@
         </child>
       </object>
     </child>
+  </object>
+  </child>
   </template>
   <object class="GtkTextBuffer" id="buffer_overrides"/>
 </interface>

@@ -56,7 +56,6 @@ class MainWindow(Adw.ApplicationWindow):
     # region Widgets
     grid_main = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
-    btn_back = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
@@ -75,6 +74,7 @@ class MainWindow(Adw.ApplicationWindow):
     headerbar = Gtk.Template.Child()
     list_notifications = Gtk.Template.Child()
     window_title = Gtk.Template.Child()
+    main_leaf = Gtk.Template.Child()
     # endregion
 
     # Common variables
@@ -138,7 +138,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
 
         # Signal connections
-        self.btn_back.connect("clicked", self.go_back)
         self.btn_add.connect("clicked", self.show_add_view, self.arg_exe)
         self.btn_about.connect("clicked", self.show_about_dialog)
         self.btn_support.connect("clicked", self.open_url, FUNDING_URL)
@@ -158,11 +157,14 @@ class MainWindow(Adw.ApplicationWindow):
         """
         When the user changes the page, update the window title
         according to the page.
+
+        probably not needed xd
         """
         page = self.stack_main.get_visible_child_name()
 
-        if page not in ["page_details", "page_importer"]:
-            self.set_actions(None)
+        if page != "page_details":
+            #self.set_actions(None)
+            print("a")
 
         if page == "page_details":
             self.set_title(_("Bottle Details"))
@@ -186,16 +188,6 @@ class MainWindow(Adw.ApplicationWindow):
     def set_title(self, title, subtitle: str = ""):
         self.window_title.set_title(title)
         # self.headerbar.set_subtitle(subtitle)  TODO: Implement subtitle
-
-    def set_actions(self, widget: Gtk.Widget = None):
-        """
-        This function is used to set the actions buttons in the headerbar.
-        """
-        while self.box_actions.get_first_child():
-            self.box_actions.remove(self.box_actions.get_first_child())
-
-        if widget:
-            self.box_actions.append(widget)
 
     def check_for_connection(self, status):
         """
@@ -231,11 +223,6 @@ class MainWindow(Adw.ApplicationWindow):
             self.page_library = LibraryView(self)
 
             self.stack_main.add_titled(
-                child=self.page_details,
-                name="page_details",
-                title=_("Bottle details")
-            )
-            self.stack_main.add_titled(
                 child=self.page_list,
                 name="page_list",
                 title=_("Bottles")
@@ -250,6 +237,8 @@ class MainWindow(Adw.ApplicationWindow):
                 name="page_library",
                 title=_("Your library")
             )
+
+            self.main_leaf.append(self.page_details)
             self.stack_main.set_visible_child_name("page_list")
             self.lock_ui(False)
             if Paths.custom_bottles_path_err:
@@ -291,9 +280,6 @@ class MainWindow(Adw.ApplicationWindow):
         selected when the user goes back to the previous page.
         """
         self.previous_page = self.stack_main.get_visible_child_name()
-        self.btn_add.set_visible(False)
-        self.btn_menu.set_visible(False)
-        self.btn_back.set_visible(True)
 
     def go_back(self, widget=False):
         """
@@ -331,7 +317,7 @@ class MainWindow(Adw.ApplicationWindow):
     def show_details_view(self, widget=False, config=dict):
         self.set_previous_page_status()
         self.page_details.set_config(config)
-        self.stack_main.set_visible_child_name("page_details")
+        self.main_leaf.navigate(Adw.NavigationDirection.FORWARD)
         self.page_details.set_visible_child_name("bottle")
 
     def show_loading_view(self, widget=False):

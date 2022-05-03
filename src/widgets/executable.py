@@ -33,8 +33,6 @@ class ExecButton(Gtk.Button):
         self.set_label(data.get('name'))
         self.connect('clicked', self.on_clicked)
 
-        self.show_all()
-
     def on_clicked(self, widget):
         executor = WineExecutor(
             self.config,

@@ -33,7 +33,7 @@ class ComponentEntry(Adw.ActionRow):
     }
 
     # region Widgets
-    img_download = Gtk.Template.Child()
+    #img_download = Gtk.Template.Child()
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
@@ -68,7 +68,7 @@ class ComponentEntry(Adw.ActionRow):
             self.btn_browse.set_visible(False)
 
         if is_upgradable:
-            self.img_download.set_from_icon_name('software-update-available-symbolic')
+            self.btn_download.set_icon_name('software-update-available-symbolic')
             self.btn_download.set_tooltip_text(_("Upgrade"))
 
         # connect signals
@@ -181,4 +181,3 @@ class ComponentExpander(Adw.ExpanderRow):
         super().__init__(**kwargs)
 
         self.set_title(title)
-        self.show_all()

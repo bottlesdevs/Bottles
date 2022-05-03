@@ -42,7 +42,10 @@ class DetailsView(Adw.Bin):
     leaflet = Gtk.Template.Child()
     list_pages = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
-
+    headerbar = Gtk.Template.Child()
+    box_actions = Gtk.Template.Child()
+    window_title = Gtk.Template.Child()
+    btn_back = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, config=None, **kwargs):
@@ -65,12 +68,17 @@ class DetailsView(Adw.Bin):
         self.view_versioning = VersioningView(window, config)
         self.view_taskmanager = TaskManagerView(window, config)
 
+        self.btn_back.connect("clicked", self.go_back)
+
         # region signals
         self.list_pages.connect('row-selected', self.__change_page)
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
         # endregion
 
         # self.build_pages()
+    def set_title(self, title, subtitle: str = ""):
+        self.window_title.set_title(title)
+        self.window_title.set_subtitle(subtitle)
 
     def __on_page_change(self, *args):
         """
@@ -83,21 +91,21 @@ class DetailsView(Adw.Bin):
         if page is None:
             page = "bottle"
 
-        self.window.set_title(pages[page]['title'], pages[page]['description'])
+        self.set_title(pages[page]['title'], pages[page]['description'])
         if page == "bottle":
-            self.window.set_actions(self.view_bottle.actions)
+            self.set_actions(self.view_bottle.actions)
         elif page == "programs":
-            self.window.set_actions(self.view_programs.actions)
+            self.set_actions(self.view_programs.actions)
         elif page == "dependencies":
-            self.window.set_actions(self.view_dependencies.actions)
+            self.set_actions(self.view_dependencies.actions)
         elif page == "versioning":
-            self.window.set_actions(self.view_versioning.actions)
+            self.set_actions(self.view_versioning.actions)
         elif page == "installers":
-            self.window.set_actions(self.view_installers.actions)
+            self.set_actions(self.view_installers.actions)
         elif page == "taskmanager":
-            self.window.set_actions(self.view_taskmanager.actions)
+            self.set_actions(self.view_taskmanager.actions)
         else:
-            self.window.set_actions(None)
+            self.set_actions(None)
 
     def set_visible_child_name(self, name):
         self.stack_bottle.set_visible_child_name(name)
@@ -162,7 +170,7 @@ class DetailsView(Adw.Bin):
         self.stack_bottle.add_named(self.view_installers, "installers")
         self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
-        self.window.set_actions(self.view_bottle.actions)
+        self.set_actions(self.view_bottle.actions)
 
     def __change_page(self, widget, row):
         """
@@ -174,7 +182,17 @@ class DetailsView(Adw.Bin):
         except AttributeError:
             self.stack_bottle.set_visible_child_name("bottle")
 
-    def set_config(self, config, no_page_change=False):
+    def set_actions(self, widget: Gtk.Widget = None):
+            """
+            This function is used to set the actions buttons in the headerbar.
+            """
+            while self.box_actions.get_first_child():
+                self.box_actions.remove(self.box_actions.get_first_child())
+
+            if widget:
+                self.box_actions.append(widget)
+
+    def set_config(self, config):
         """
         This function update widgets according to the bottle
         configuration. It also temporarily disable the functions
@@ -201,3 +219,6 @@ class DetailsView(Adw.Bin):
             self.config = config
         self.view_bottle.update_programs(config=self.config)
         self.view_programs.update(config=self.config)
+
+    def go_back(self, widget=False):
+        self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
