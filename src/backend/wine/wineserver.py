@@ -12,7 +12,7 @@ logging = Logger()
 
 
 class WineServer(WineProgram):
-    program = "WINE Server"
+    program = "Wine Server"
     command = "wineserver"
 
     def is_alive(self):
@@ -36,7 +36,7 @@ class WineServer(WineProgram):
             runner = config.get("RunnerPath")
 
         env = os.environ.copy()
-        env["WINEPREFIX"] = bottle
+        env["WinePREFIX"] = bottle
         env["PATH"] = f"{runner}/bin:{env['PATH']}"
         res = subprocess.Popen(
             "wineserver -w",
@@ -58,7 +58,7 @@ class WineServer(WineProgram):
         runner = ManagerUtils.get_runner_path(config.get("Runner"))
 
         env = os.environ.copy()
-        env["WINEPREFIX"] = bottle
+        env["WinePREFIX"] = bottle
         env["PATH"] = f"{runner}/bin:{env['PATH']}"
 
         subprocess.Popen(

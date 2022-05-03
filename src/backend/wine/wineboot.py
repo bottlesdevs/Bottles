@@ -9,7 +9,7 @@ logging = Logger()
 
 
 class WineBoot(WineProgram):
-    program = "WINE Runtime tool"
+    program = "Wine Runtime tool"
     command = "wineboot"
 
     def send_status(self, status: int):
@@ -21,7 +21,7 @@ class WineBoot(WineProgram):
             3: "-u",
             4: "-i"
         }
-        envs = {"WINEDEBUG": "-all", "DISPLAY": ":3.0"}
+        envs = {"WineDEBUG": "-all", "DISPLAY": ":3.0"}
 
         if status == 0 and not WineServer(self.config).is_alive():
             logging.info("There is no running wineserver.", )

@@ -812,7 +812,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.config = new_config
 
     def __toggle_fixme(self, widget, state):
-        """Set the WINE logging level to use for the bottle"""
+        """Set the Wine logging level to use for the bottle"""
         new_config = self.manager.update_config(
             config=self.config,
             key="fixme_logs",

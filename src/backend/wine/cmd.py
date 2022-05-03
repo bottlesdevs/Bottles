@@ -7,7 +7,7 @@ logging = Logger()
 
 
 class CMD(WineProgram):
-    program = "WINE Command Line"
+    program = "Wine Command Line"
     command = "cmd"
 
     def run_batch(

@@ -7,5 +7,5 @@ logging = Logger()
 
 
 class Explorer(WineProgram):
-    program = "WINE Explorer"
+    program = "Wine Explorer"
     command = "explorer"

@@ -7,5 +7,5 @@ logging = Logger()
 
 
 class Control(WineProgram):
-    program = "WINE Control Panel"
+    program = "Wine Control Panel"
     command = "control"

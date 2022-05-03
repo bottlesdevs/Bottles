@@ -8,7 +8,7 @@ logging = Logger()
 
 
 class Start(WineProgram):
-    program = "WINE Starter"
+    program = "Wine Starter"
     command = "start"
 
     def run(

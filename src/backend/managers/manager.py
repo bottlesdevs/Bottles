@@ -304,7 +304,7 @@ class Manager:
         # check system wine
         if shutil.which("wine") is not None:
             '''
-            If the WINE command is available, get the runner version
+            If the Wine command is available, get the runner version
             and add it to the runners_available list.
             '''
             version = subprocess.Popen(
@@ -1173,9 +1173,9 @@ class Manager:
         wineserver = WineServer(config)
 
         # execute wineboot on the bottle path
-        log_update(_("The WINE config is being updated…"))
+        log_update(_("The Wine config is being updated…"))
         wineboot.init()
-        log_update(_("WINE config updated!"))
+        log_update(_("Wine config updated!"))
 
         if "FLATPAK_ID" in os.environ or sandbox:
             '''
