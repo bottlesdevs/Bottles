@@ -3,7 +3,6 @@
 <requires lib="gtk" version="4.0"/>
   <requires lib="libhandy" version="0.0"/>
   <template class="ComponentEntry" parent="AdwActionRow">
-    
     <property name="title" translatable="yes">Component version</property>
     <child>
       <object class="GtkBox">
@@ -13,127 +12,72 @@
         </child>
         <child>
           <object class="GtkMenuButton" id="btn_menu">
-            
+            <property name="visible">False</property>
             <property name="focus-on-click">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="popover">pop_actions</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">view-more-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
+            <property name="icon-name">view-more-symbolic</property>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkSpinner" id="spinner">
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkSeparator" id="sep">
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkButton" id="btn_browse">
-            
+            <property name="visible">False</property>
             <property name="tooltip-text" translatable="yes">Browse files</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">folder-open-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
+            <property name="icon-name">folder-open-symbolic</property>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkButton" id="btn_err">
-            
+            <property name="visible">False</property>
             <property name="tooltip-text" translatable="yes">The installation failed. This may be due to a repository error, partial download or checksum mismatch.
-
 Press to try again.</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">emblem-important-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
+            <property name="icon-name">emblem-important-symbolic</property>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkButton" id="btn_download">
-            
+            <property name="visible">False</property>
             <property name="tooltip-text" translatable="yes">Download &amp; Install</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <child>
-              <object class="GtkImage" id="img_download">
-                <property name="icon-name">document-save-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
+            <property name="icon-name">document-save-symbolic</property>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkBox" id="box_download_status">
+            <property name="visible">False</property>
             <child>
               <object class="GtkLabel" id="label_task_status">
                 <property name="label" translatable="yes">0%</property>
               </object>
-              
-              
             </child>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">document-save-symbolic</property>
               </object>
-              
-              
             </child>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkButton" id="btn_cancel">
-            
+            <property name="visible">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">edit-delete-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
+            <property name="icon-name">edit-delete-symbolic</property>
           </object>
-          
-          
         </child>
       </object>
     </child>

@@ -40,7 +40,6 @@ class SimilarReportEntry(Gtk.Box):
 
         btn_report.connect("clicked", self.__on_btn_report_clicked, report)
 
-        self.show_all()
 
     @staticmethod
     def __on_btn_report_clicked(button: Gtk.Button, report):

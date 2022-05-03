@@ -40,7 +40,7 @@ class LibraryView(Gtk.ScrolledWindow):
         super().__init__(**kwargs)
         self.window = window
 
-        window.set_actions(self.actions)
+        #window.set_actions(self.actions)
         self.update()
 
     def update(self):
