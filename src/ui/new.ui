@@ -21,7 +21,7 @@
           <object class="HdyHeaderBar">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="title" translatable="yes">New bottle</property>
+            <property name="title" translatable="yes">New Bottle</property>
             <child>
               <object class="GtkButton" id="btn_cancel">
                 <property name="label" translatable="yes">Cancel</property>
@@ -33,6 +33,8 @@
             <child>
               <object class="GtkButton" id="btn_create">
                 <property name="label" translatable="yes">Create</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <style>
@@ -78,25 +80,361 @@
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="margin-left">10</property>
-                    <property name="margin-right">10</property>
-                    <property name="margin-start">10</property>
-                    <property name="margin-end">10</property>
-                    <property name="margin-top">20</property>
-                    <property name="margin-bottom">25</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
                     <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="HdyPreferencesPage">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">Bottle information</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell 11"/>
-                        </attributes>
+                        <child>
+                          <object class="HdyPreferencesGroup">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="title" translatable="yes">Bottle Information</property>
+                            <child>
+                              <object class="HdyActionRow">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="title" translatable="yes">Name</property>
+                                <property name="subtitle" translatable="yes">Choose a name for your bottle</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkEntry" id="entry_name">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="valign">center</property>
+                                        <property name="placeholder-text" translatable="yes">Name</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="HdyPreferencesGroup">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="title" translatable="yes">Environment</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <object class="GtkListBox" id="list_envs">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <style>
+                                  <class name="content"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRevealer" id="revealer_advanced">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="transition-type">slide-up</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                    <child>
+                                      <object class="GtkListBox" id="box_advanced">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-bottom">10</property>
+                                        <property name="selection-mode">none</property>
+                                        <child>
+                                          <object class="HdyActionRow">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="title" translatable="yes">Use versioning</property>
+                                            <property name="activatable-widget">switch_versioning</property>
+                                            <property name="subtitle" translatable="yes">Enable versioning to save and restore the bottle to a state.</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <child>
+                                                  <object class="GtkSwitch" id="switch_versioning">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">True</property>
+                                                    <property name="halign">center</property>
+                                                    <property name="valign">center</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="HdyActionRow" id="row_sandbox">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="title" translatable="yes">Unlinked homedir</property>
+                                            <property name="activatable-widget">switch_sandbox</property>
+                                            <property name="subtitle" translatable="yes">Do not link the userdir to the homedir</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <child>
+                                                  <object class="GtkSwitch" id="switch_sandbox">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">True</property>
+                                                    <property name="halign">center</property>
+                                                    <property name="valign">center</property>
+                                                    <property name="active">True</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="HdyActionRow">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="title" translatable="yes">Runner</property>
+                                            <property name="activatable-widget">combo_runner</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="spacing">10</property>
+                                                <child>
+                                                  <object class="GtkComboBoxText" id="combo_runner">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="valign">center</property>
+                                                    <property name="active">0</property>
+                                                    <style>
+                                                      <class name="borderless"/>
+                                                      <class name="plain"/>
+                                                    </style>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkSeparator">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">2</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkButton" id="btn_pref_runners">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">True</property>
+                                                    <property name="receives-default">True</property>
+                                                    <property name="tooltip-text" translatable="yes">Manage runners</property>
+                                                    <property name="halign">center</property>
+                                                    <property name="valign">center</property>
+                                                    <property name="relief">none</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="icon-name">applications-system-symbolic</property>
+                                                      </object>
+                                                    </child>
+                                                    <style>
+                                                      <class name="image-button"/>
+                                                    </style>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">3</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="HdyActionRow">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="title" translatable="yes">Architecture</property>
+                                            <property name="activatable-widget">combo_arch</property>
+                                            <property name="subtitle" translatable="yes">We recommend using 32bit only if strictly necessary</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <child>
+                                                  <object class="GtkComboBoxText" id="combo_arch">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">False</property>
+                                                    <property name="valign">center</property>
+                                                    <property name="margin-right">5</property>
+                                                    <property name="margin-end">5</property>
+                                                    <property name="active">0</property>
+                                                    <items>
+                                                      <item id="win64" translatable="yes">64 bit</item>
+                                                      <item id="win32" translatable="yes">32 bit</item>
+                                                    </items>
+                                                    <style>
+                                                      <class name="borderless"/>
+                                                      <class name="plain"/>
+                                                    </style>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">0</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="HdyActionRow">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="title" translatable="yes">Use custom recipe</property>
+                                            <property name="activatable-widget">btn_choose_env</property>
+                                            <property name="subtitle" translatable="yes">Choose a custom recipe for the environment if you have one.</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="spacing">10</property>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkButton" id="btn_choose_env">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">True</property>
+                                                    <property name="receives-default">True</property>
+                                                    <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                                    <property name="halign">center</property>
+                                                    <property name="valign">center</property>
+                                                    <property name="relief">none</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="icon-name">document-open-symbolic</property>
+                                                      </object>
+                                                    </child>
+                                                    <style>
+                                                      <class name="image-button"/>
+                                                    </style>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">3</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="HdyActionRow">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="title" translatable="yes">Use custom path</property>
+                                            <property name="activatable-widget">btn_choose_path</property>
+                                            <property name="subtitle" translatable="yes">Store this bottle in a different place.</property>
+                                            <child>
+                                              <object class="GtkBox">
+                                                <property name="visible">True</property>
+                                                <property name="can-focus">False</property>
+                                                <property name="spacing">10</property>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkButton" id="btn_choose_path">
+                                                    <property name="visible">True</property>
+                                                    <property name="can-focus">True</property>
+                                                    <property name="receives-default">True</property>
+                                                    <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                                    <property name="halign">center</property>
+                                                    <property name="valign">center</property>
+                                                    <property name="relief">none</property>
+                                                    <child>
+                                                      <object class="GtkImage">
+                                                        <property name="visible">True</property>
+                                                        <property name="can-focus">False</property>
+                                                        <property name="icon-name">document-open-symbolic</property>
+                                                      </object>
+                                                    </child>
+                                                    <style>
+                                                      <class name="image-button"/>
+                                                    </style>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="expand">False</property>
+                                                    <property name="fill">True</property>
+                                                    <property name="position">3</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                        <style>
+                                          <class name="content"/>
+                                        </style>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">False</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -105,403 +443,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkListBox">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-bottom">10</property>
-                        <property name="selection-mode">none</property>
-                        <child>
-                          <object class="HdyActionRow">
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="title" translatable="yes">Name</property>
-                            <property name="subtitle" translatable="yes">Choose a name for your bottle</property>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <child>
-                                  <object class="GtkEntry" id="entry_name">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="has-frame">False</property>
-                                    <property name="primary-icon-tooltip-text" translatable="yes">This field cannot contain special characters!</property>
-                                    <property name="placeholder-text" translatable="yes">My beautiful bottle</property>
-                                    <style>
-                                      <class name="borderless"/>
-                                    </style>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="content"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="padding">5</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">Environment</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell 11"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkListBox" id="list_envs">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-top">10</property>
-                        <property name="margin-bottom">10</property>
-                        <style>
-                          <class name="content"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">3</property>
-                      </packing>
-                    </child>
-                    <child>
                       <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <object class="GtkRevealer" id="revealer_advanced">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="transition-type">slide-up</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="label_advanced">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Advanced options</property>
-                                <attributes>
-                                  <attribute name="font-desc" value="Cantarell 11"/>
-                                </attributes>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkListBox" id="box_advanced">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-bottom">10</property>
-                                <property name="selection-mode">none</property>
-                                <child>
-                                  <object class="HdyActionRow">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="title" translatable="yes">Use versioning</property>
-                                    <property name="activatable-widget">switch_versioning</property>
-                                    <property name="subtitle" translatable="yes">Enable versioning to save and restore the bottle to a state.</property>
-                                    <child>
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <child>
-                                          <object class="GtkSwitch" id="switch_versioning">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">True</property>
-                                            <property name="halign">center</property>
-                                            <property name="valign">center</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="HdyActionRow" id="row_sandbox">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="title" translatable="yes">Unlinked homedir</property>
-                                    <property name="activatable-widget">switch_sandbox</property>
-                                    <property name="subtitle" translatable="yes">Do not link the userdir to the homedir</property>
-                                    <child>
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <child>
-                                          <object class="GtkSwitch" id="switch_sandbox">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">True</property>
-                                            <property name="halign">center</property>
-                                            <property name="valign">center</property>
-                                            <property name="active">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="HdyActionRow">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="title" translatable="yes">Runner</property>
-                                    <property name="activatable-widget">combo_runner</property>
-                                    <child>
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">10</property>
-                                        <child>
-                                          <object class="GtkComboBoxText" id="combo_runner">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="valign">center</property>
-                                            <property name="active">0</property>
-                                            <style>
-                                              <class name="borderless"/>
-                                              <class name="plain"/>
-                                            </style>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkSeparator">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">2</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkButton" id="btn_pref_runners">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">True</property>
-                                            <property name="receives-default">True</property>
-                                            <property name="tooltip-text" translatable="yes">Manage runners</property>
-                                            <property name="halign">center</property>
-                                            <property name="valign">center</property>
-                                            <property name="relief">none</property>
-                                            <child>
-                                              <object class="GtkImage">
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">False</property>
-                                                <property name="icon-name">applications-system-symbolic</property>
-                                              </object>
-                                            </child>
-                                            <style>
-                                              <class name="image-button"/>
-                                            </style>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">3</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="HdyActionRow">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="title" translatable="yes">Architecture</property>
-                                    <property name="activatable-widget">combo_arch</property>
-                                    <property name="subtitle" translatable="yes">We recommend using 32bit only if strictly necessary</property>
-                                    <child>
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <child>
-                                          <object class="GtkComboBoxText" id="combo_arch">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="valign">center</property>
-                                            <property name="margin-right">5</property>
-                                            <property name="margin-end">5</property>
-                                            <property name="active">0</property>
-                                            <items>
-                                              <item id="win64" translatable="yes">64 bit</item>
-                                              <item id="win32" translatable="yes">32 bit</item>
-                                            </items>
-                                            <style>
-                                              <class name="borderless"/>
-                                              <class name="plain"/>
-                                            </style>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="HdyActionRow">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="title" translatable="yes">Use custom recipe</property>
-                                    <property name="activatable-widget">btn_choose_env</property>
-                                    <property name="subtitle" translatable="yes">Choose a custom recipe for the environment if you have one.</property>
-                                    <child>
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">10</property>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                        <child>
-                                          <object class="GtkButton" id="btn_choose_env">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">True</property>
-                                            <property name="receives-default">True</property>
-                                            <property name="tooltip-text" translatable="yes">Choose a directory</property>
-                                            <property name="halign">center</property>
-                                            <property name="valign">center</property>
-                                            <property name="relief">none</property>
-                                            <child>
-                                              <object class="GtkImage">
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">False</property>
-                                                <property name="icon-name">document-open-symbolic</property>
-                                              </object>
-                                            </child>
-                                            <style>
-                                              <class name="image-button"/>
-                                            </style>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">3</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="HdyActionRow">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">True</property>
-                                    <property name="title" translatable="yes">Use custom path</property>
-                                    <property name="activatable-widget">btn_choose_path</property>
-                                    <property name="subtitle" translatable="yes">Store this bottle in a different place.</property>
-                                    <child>
-                                      <object class="GtkBox">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="spacing">10</property>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                        <child>
-                                          <placeholder/>
-                                        </child>
-                                        <child>
-                                          <object class="GtkButton" id="btn_choose_path">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">True</property>
-                                            <property name="receives-default">True</property>
-                                            <property name="tooltip-text" translatable="yes">Choose a directory</property>
-                                            <property name="halign">center</property>
-                                            <property name="valign">center</property>
-                                            <property name="relief">none</property>
-                                            <child>
-                                              <object class="GtkImage">
-                                                <property name="visible">True</property>
-                                                <property name="can-focus">False</property>
-                                                <property name="icon-name">document-open-symbolic</property>
-                                              </object>
-                                            </child>
-                                            <style>
-                                              <class name="image-button"/>
-                                            </style>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">3</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                                <style>
-                                  <class name="content"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">False</property>
-                                <property name="padding">5</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">6</property>
-                      </packing>
                     </child>
                   </object>
                 </child>
@@ -535,7 +477,7 @@
                     <property name="wrap-mode">word-char</property>
                     <attributes>
                       <attribute name="font-desc" value="Cantarell Bold 20"/>
-                      <attribute name="weight" value="bold"/>
+                      <attribute name="weight" value="normal"/>
                     </attributes>
                   </object>
                   <packing>

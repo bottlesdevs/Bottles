@@ -44,8 +44,13 @@ class DataManager:
         try:
             with open(self.__p_data, 'r') as s:
                 self.__data = yaml.safe_load(s)
+                if self.__data == None:
+                    raise AttributeError
         except FileNotFoundError:
             logging.error('Data file not found. Creating new one.', )
+            self.__create_data_file()
+        except AttributeError:
+            logging.error('Data file is empty. Creating new one.', )
             self.__create_data_file()
 
     def __create_data_file(self):

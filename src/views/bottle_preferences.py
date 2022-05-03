@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import re
 from gettext import gettext as _
 from gi.repository import Gtk
 
@@ -51,6 +52,8 @@ class PreferencesView(Gtk.ScrolledWindow):
     btn_drives = Gtk.Template.Child()
     btn_overrides = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
+    btn_rename = Gtk.Template.Child()
+    entry_name = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
@@ -109,6 +112,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.window = window
         self.manager = window.manager
         self.config = config
+
+        self.entry_name.connect('key-release-event', self.__check_entry_name)
+        self.entry_name.connect('activate', self.__toggle_rename)
+        self.btn_rename.connect('toggled', self.__toggle_rename)
 
         self.btn_overrides.connect("clicked", self.__show_dll_overrides_view)
         self.btn_manage_runners.connect("clicked", self.window.show_prefs_view)
@@ -178,6 +185,54 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.switch_mangohud.set_tooltip_text(_not_available)
         if not obs_vkc_available:
             self.switch_obsvkc.set_tooltip_text(_not_available)
+
+    def __toggle_rename(self, widget):
+        """
+        This function toggle the entry_name editability. It will
+        also update the bottle configuration with the new bottle name
+        if the entry_name status is False (not editable).
+        """
+        if not self.btn_rename.get_sensitive():
+            return
+
+        status = self.btn_rename.get_active()
+        if widget == self.entry_name:
+            status = not status
+
+        self.entry_name.set_editable(status)
+        self.entry_name.set_has_frame(status)
+        self.entry_name.set_can_focus(status)
+
+        if status:
+            self.entry_name.grab_focus()
+        else:
+            name = self.entry_name.get_text()
+            self.manager.update_config(
+                config=self.config,
+                key="Name",
+                value=name
+            )
+            self.btn_rename.handler_block_by_func(self.__toggle_rename)
+            self.btn_rename.set_active(False)
+            self.btn_rename.handler_unblock_by_func(self.__toggle_rename)
+            self.window.page_details.view_bottle.label_name.set_text(name)
+            self.entry_name.select_region(0, 0)
+
+    def __check_entry_name(self, widget, event_key):
+        """
+        This function check if the entry name is valid, looking
+        for special characters. It also toggles the widget icon
+        and the save button sensitivity according to the result.
+        """
+        regex = re.compile("[@!#$%^&*()<>?/|}{~:.;,'\"]")
+        name = widget.get_text()
+
+        if (regex.search(name) is None) and name != "" and not name.isspace():
+            self.btn_rename.set_sensitive(True)
+            widget.set_icon_from_icon_name(1, "")
+        else:
+            self.btn_rename.set_sensitive(False)
+            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     def choose_cwd(self, widget, reset=False):
         """Change the default current working directory for the bottle"""
@@ -277,6 +332,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.toggle_esync.handler_block_by_func(self.__set_esync)
         self.toggle_fsync.handler_block_by_func(self.__set_fsync)
         self.toggle_futex2.handler_block_by_func(self.__set_futex2)
+        self.entry_name.handler_block_by_func(self.__check_entry_name)
 
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
@@ -312,6 +368,8 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_renderer.set_active_id(parameters["renderer"])
         self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
 
+        self.entry_name.set_text(config["Name"])
+
         if self.config.get("WorkingDir") != "":
             self.action_cwd.set_subtitle(self.config.get("WorkingDir"))
         else:
@@ -339,6 +397,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
         self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
         self.toggle_futex2.handler_unblock_by_func(self.__set_futex2)
+        self.entry_name.handler_unblock_by_func(self.__check_entry_name)
 
         self.__set_steam_rules()
 

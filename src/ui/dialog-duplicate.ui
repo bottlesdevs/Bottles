@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.2"/>
   <template class="DuplicateDialog" parent="HdyWindow">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
-    <property name="window_position">center</property>
-    <property name="default_width">550</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="type_hint">dialog</property>
+    <property name="window-position">center</property>
+    <property name="default-width">550</property>
+    <property name="destroy-with-parent">True</property>
+    <property name="type-hint">dialog</property>
     <property name="gravity">center</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="HdyHeaderBar">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="title" translatable="yes">Duplicate a bottle</property>
+            <property name="can-focus">False</property>
+            <property name="title" translatable="yes">Duplicate</property>
             <child>
               <object class="GtkButton" id="btn_cancel">
                 <property name="label" translatable="yes">Cancel</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
               </object>
             </child>
             <child>
@@ -36,14 +35,14 @@
                 <property name="label" translatable="yes">Duplicate</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>
               </object>
               <packing>
-                <property name="pack_type">end</property>
+                <property name="pack-type">end</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -51,14 +50,14 @@
               <object class="GtkButton" id="btn_close">
                 <property name="label" translatable="yes">Close</property>
                 <property name="sensitive">False</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>
               </object>
               <packing>
-                <property name="pack_type">end</property>
+                <property name="pack-type">end</property>
                 <property name="position">2</property>
               </packing>
             </child>
@@ -72,17 +71,17 @@
         <child>
           <object class="GtkStack" id="stack_switcher">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkBox" id="page_name">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">10</property>
-                <property name="margin_right">10</property>
-                <property name="margin_start">10</property>
-                <property name="margin_end">10</property>
-                <property name="margin_top">20</property>
-                <property name="margin_bottom">25</property>
+                <property name="can-focus">False</property>
+                <property name="margin-left">10</property>
+                <property name="margin-right">10</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">25</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
@@ -90,9 +89,9 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Type a name for the new bottle</property>
+                    <property name="label" translatable="yes">Type a name for the new bottle:</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -103,11 +102,11 @@
                 <child>
                   <object class="GtkEntry" id="entry_name">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">e.g.: -example1 -example2 -example3=hello</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">e.g.: -example1 -example2 -example3=hello</property>
                     <property name="hexpand">True</property>
-                    <property name="placeholder_text" translatable="yes">e.g: MyDuplicatedBottle</property>
-                    <property name="input_purpose">terminal</property>
+                    <property name="placeholder-text" translatable="yes">e.g: MyDuplicatedBottle</property>
+                    <property name="input-purpose">terminal</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -133,20 +132,20 @@
             <child>
               <object class="GtkBox" id="page_duplicating">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">20</property>
-                <property name="margin_bottom">20</property>
+                <property name="can-focus">False</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">20</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">center</property>
-                    <property name="margin_top">10</property>
-                    <property name="margin_bottom">10</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
                     <property name="label" translatable="yes">Duplicating…</property>
                     <property name="wrap">True</property>
-                    <property name="wrap_mode">word-char</property>
+                    <property name="wrap-mode">word-char</property>
                     <attributes>
                       <attribute name="font-desc" value="Cantarell Bold 20"/>
                       <attribute name="weight" value="bold"/>
@@ -161,8 +160,8 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_bottom">5</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-bottom">5</property>
                     <property name="label" translatable="yes">Take a break, it may take a while</property>
                     <attributes>
                       <attribute name="font-desc" value="Cantarell 11"/>
@@ -176,12 +175,12 @@
                 </child>
                 <child>
                   <object class="GtkProgressBar" id="progressbar">
-                    <property name="width_request">300</property>
+                    <property name="width-request">300</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="halign">center</property>
-                    <property name="margin_top">25</property>
-                    <property name="margin_bottom">15</property>
+                    <property name="margin-top">25</property>
+                    <property name="margin-bottom">15</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -199,8 +198,8 @@
             <child>
               <object class="HdyStatusPage" id="page_duplicated">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">object-select-symbolic</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">object-select-symbolic</property>
                 <property name="title" translatable="yes">Bottle duplicated</property>
                 <child>
                   <placeholder/>

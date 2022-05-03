@@ -59,7 +59,7 @@ class BottleView(Gtk.ScrolledWindow):
     label_state = Gtk.Template.Child()
     label_environment = Gtk.Template.Child()
     label_arch = Gtk.Template.Child()
-    btn_rename = Gtk.Template.Child()
+    label_name = Gtk.Template.Child()
     btn_winecfg = Gtk.Template.Child()
     btn_debug = Gtk.Template.Child()
     btn_execute = Gtk.Template.Child()
@@ -81,10 +81,8 @@ class BottleView(Gtk.ScrolledWindow):
     btn_help_debug = Gtk.Template.Child()
     btn_explorer = Gtk.Template.Child()
     box_run_extra = Gtk.Template.Child()
-    box_actions = Gtk.Template.Child()
     check_terminal = Gtk.Template.Child()
     check_move_file = Gtk.Template.Child()
-    entry_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     row_uninstaller = Gtk.Template.Child()
@@ -94,6 +92,7 @@ class BottleView(Gtk.ScrolledWindow):
     reveal_progress = Gtk.Template.Child()
     progress_bar = Gtk.Template.Child()
     actions = Gtk.Template.Child()
+    row_no_programs = Gtk.Template.Child()
 
     # endregion
 
@@ -105,9 +104,6 @@ class BottleView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
-        self.entry_name.connect('key-release-event', self.__check_entry_name)
-        self.entry_name.connect('activate', self.__toggle_rename)
-        self.btn_rename.connect('toggled', self.__toggle_rename)
         self.btn_winecfg.connect("clicked", self.run_winecfg)
         self.btn_debug.connect("clicked", self.run_debug)
         self.btn_execute.connect("clicked", self.run_executable)
@@ -157,13 +153,13 @@ class BottleView(Gtk.ScrolledWindow):
             "%Y-%m-%d %H:%M:%S.%f"
         )
         update_date = update_date.strftime("%b %d %Y %H:%M:%S")
-        self.entry_name.set_tooltip_text(_("Updated: %s" % update_date))
+        self.label_name.set_tooltip_text(_("Updated: %s" % update_date))
 
         # set arch
         self.label_arch.set_text(self.config.get("Arch", "n/a").capitalize())
 
         # set name and runner
-        self.entry_name.set_text(self.config.get("Name"))
+        self.label_name.set_text(self.config.get("Name"))
         self.label_runner.set_text(self.config.get("Runner"))
 
         # set environment
@@ -174,48 +170,6 @@ class BottleView(Gtk.ScrolledWindow):
         self.label_state.set_text(str(self.config.get("State")))
 
         self.__set_steam_rules()
-
-    def __check_entry_name(self, widget, event_key):
-        """
-        This function check if the entry name is valid, looking
-        for special characters. It also toggles the widget icon
-        and the save button sensitivity according to the result.
-        """
-        regex = re.compile("[@!#$%^&*()<>?/|}{~:.;,'\"]")
-        name = widget.get_text()
-
-        if (regex.search(name) is None) and name != "" and not name.isspace():
-            self.btn_rename.set_sensitive(True)
-            widget.set_icon_from_icon_name(1, "")
-        else:
-            self.btn_rename.set_sensitive(False)
-            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
-
-    def __toggle_rename(self, widget):
-        """
-        This function toggle the entry_name editability. It will
-        also update the bottle configuration with the new bottle name
-        if the entry_name status is False (not editable).
-        """
-        if not self.btn_rename.get_sensitive():
-            return
-
-        status = self.btn_rename.get_active()
-        if widget == self.entry_name:
-            status = not status
-        self.entry_name.set_editable(status)
-
-        if status:
-            self.entry_name.grab_focus()
-        else:
-            self.manager.update_config(
-                config=self.config,
-                key="Name",
-                value=self.entry_name.get_text()
-            )
-            self.btn_rename.handler_block_by_func(self.__toggle_rename)
-            self.btn_rename.set_active(False)
-            self.btn_rename.handler_unblock_by_func(self.__toggle_rename)
 
     def update_programs(self, widget=False, config=None):
         """
@@ -228,6 +182,9 @@ class BottleView(Gtk.ScrolledWindow):
         wineserver = WineServer(self.config)
 
         for w in self.group_programs:
+            if w == self.row_no_programs:
+                w.set_visible(False)
+                continue
             w.destroy()
 
         if self.config.get("Environment") == "Steam":
@@ -243,10 +200,9 @@ class BottleView(Gtk.ScrolledWindow):
 
         if (len(programs) == 0 or len(programs) == hidden) \
                 and self.config.get("Environment") != "Steam":
-            self.group_programs.set_visible(False)
+            self.group_programs.add(self.row_no_programs)
+            self.row_no_programs.set_visible(True)
             return
-
-        self.group_programs.set_visible(True)
 
         i = 0
         # append first 5 entries to group_programs
@@ -410,8 +366,7 @@ class BottleView(Gtk.ScrolledWindow):
         widgets = [
             self.row_uninstaller,
             self.row_regedit,
-            self.row_browse,
-            self.box_actions
+            self.row_browse
         ]
         if self.config.get("Environment") == "Layered":
             for widget in widgets:
@@ -511,7 +466,6 @@ class BottleView(Gtk.ScrolledWindow):
         for w in [
             self.btn_delete,
             self.btn_backup_full,
-            self.btn_rename,
             self.btn_duplicate
         ]:
             w.set_visible(status)

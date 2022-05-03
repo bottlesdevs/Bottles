@@ -624,6 +624,9 @@ class Manager:
         Get the list of programs (both from the drive and the user defined
         in the bottle configuration file).
         """
+        if config is None:
+            return []
+
         bottle = ManagerUtils.get_bottle_path(config)
         winepath = WinePath(config)
         results = glob(

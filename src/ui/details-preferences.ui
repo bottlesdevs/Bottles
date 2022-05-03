@@ -55,6 +55,77 @@
                 <property name="margin-top">15</property>
                 <property name="margin-bottom">20</property>
                 <property name="orientation">vertical</property>
+                <property name="spacing">20</property>
+                <child>
+                  <object class="HdyPreferencesGroup">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="title" translatable="yes">Bottle details</property>
+                    <child>
+                      <object class="HdyActionRow">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="title" translatable="yes">Name</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="spacing">5</property>
+                            <child>
+                              <object class="GtkEntry" id="entry_name">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="valign">center</property>
+                                <property name="editable">False</property>
+                                <property name="has-frame">False</property>
+                                <property name="placeholder-text" translatable="yes">My beautiful bottle</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkToggleButton" id="btn_rename">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Rename bottle</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="relief">none</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="icon-name">document-edit-symbolic</property>
+                                  </object>
+                                </child>
+                                <style>
+                                  <class name="image-button"/>
+                                </style>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
                 <child>
                   <object class="HdyPreferencesGroup">
                     <property name="visible">True</property>
@@ -507,7 +578,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="title" translatable="yes">Screen scaling</property>
-                            <property name="subtitle" translatable="yes">Set custom DPI</property>
+                            <property name="subtitle" translatable="yes">Set custom DPI.</property>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
@@ -554,7 +625,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="title" translatable="yes">Renderer</property>
-                            <property name="subtitle" translatable="yes">Select what backend to use for wined3d</property>
+                            <property name="subtitle" translatable="yes">Select what backend to use for wined3d.</property>
                             <child>
                               <object class="GtkBox">
                                 <property name="visible">True</property>
@@ -596,14 +667,13 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">0</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="HdyPreferencesGroup">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-top">20</property>
                     <property name="title" translatable="yes">System</property>
                     <child>
                       <object class="HdyExpanderRow">
@@ -1517,21 +1587,20 @@ disable if you run into issues.</property>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="HdyPreferencesGroup">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-top">20</property>
                     <property name="title" translatable="yes">Audio</property>
                     <child>
                       <object class="HdyActionRow">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Reduce PulseAudio latency</property>
-                        <property name="subtitle" translatable="yes">Set PulseAudio latency to 60 milliseconds to increase sound quality</property>
+                        <property name="subtitle" translatable="yes">Set PulseAudio latency to 60 milliseconds to increase sound quality.</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
@@ -1560,14 +1629,13 @@ disable if you run into issues.</property>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
                 <child>
                   <object class="HdyPreferencesGroup">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-top">20</property>
                     <property name="title" translatable="yes">Developers &amp; Debug</property>
                     <child>
                       <object class="HdyActionRow">
@@ -1628,7 +1696,7 @@ disable if you run into issues.</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">OBS Vulkan Capture</property>
-                        <property name="subtitle" translatable="yes">Toggle OBS game capture for all next launches</property>
+                        <property name="subtitle" translatable="yes">Toggle OBS game capture for all next launches.</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
@@ -1684,7 +1752,7 @@ disable if you run into issues.</property>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">3</property>
+                    <property name="position">4</property>
                   </packing>
                 </child>
               </object>

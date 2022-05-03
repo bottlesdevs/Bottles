@@ -112,6 +112,7 @@
             <child>
               <object class="HdyStatusPage" id="page_welcome">
                 <property name="visible">True</property>
+                <property name="can-focus">False</property>
                 <property name="icon-name">com.usebottles.bottles</property>
                 <property name="title" translatable="yes">Welcome to Bottles</property>
                 <property name="description" translatable="yes">Bottles makes running Windows Software on Linux much easier.</property>
@@ -122,7 +123,7 @@
               </packing>
             </child>
             <child>
-              <object class="HdyClamp" id="page_wine">
+              <object class="HdyClamp" id="page_about">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="maximum-size">500</property>
@@ -148,7 +149,7 @@
                         <property name="halign">center</property>
                         <property name="margin-top">10</property>
                         <property name="margin-bottom">10</property>
-                        <property name="label" translatable="yes">What Are Runners?</property>
+                        <property name="label" translatable="yes">What Are Bottles?</property>
                         <property name="wrap">True</property>
                         <property name="wrap-mode">word-char</property>
                         <style>
@@ -167,11 +168,11 @@
                         <property name="can-focus">False</property>
                         <property name="margin-top">5</property>
                         <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">These are compatibility layers which allows Windows software to be installed and run on Linux systems.
+                        <property name="label" translatable="yes">A bottle is a Windows-like environment configured to run Windows software, you can have multiple apps in each bottle. 
 
-&lt;b&gt;Bottles&lt;/b&gt; are environments where the runner configures the system and where the Windows software runs and is installed.
+Those are isolated and the software that runs inside can't access your personal files if you don't allow it.
 
-&lt;a href="https://docs.usebottles.com/components/runners"&gt;Read more about runners&lt;/a&gt;</property>
+&lt;a href="https://docs.usebottles.com"&gt;Read more about&lt;/a&gt;</property>
                         <property name="use-markup">True</property>
                         <property name="wrap">True</property>
                         <property name="max-width-chars">60</property>
@@ -237,9 +238,7 @@
                         <property name="can-focus">False</property>
                         <property name="margin-top">5</property>
                         <property name="margin-bottom">5</property>
-                        <property name="label" translatable="yes">We need to download and install a runner to allow you to create your own bottles.
-The download size is &lt;b&gt;~70MB&lt;/b&gt;.
-&lt;a href="https://docs.usebottles.com/getting-started/first-run"&gt;Read more about what we're going to download&lt;/a&gt;
+                        <property name="label" translatable="yes">We need to download and install some &lt;a href="https://docs.usebottles.com/getting-started/first-run"&gt;components (~75MB)&lt;/a&gt; to get you ready.
 
 We cannot offer these files with Bottles as these have different release cycles.
 
@@ -344,6 +343,7 @@ When you are ready press the &lt;b&gt;Install&lt;/b&gt; button.</property>
             <child>
               <object class="HdyStatusPage" id="page_finish">
                 <property name="visible">True</property>
+                <property name="can-focus">False</property>
                 <property name="icon-name">object-select-symbolic</property>
                 <property name="title" translatable="yes">Everything Is Ready!</property>
                 <property name="description" translatable="yes">You are now ready to create your first bottles.</property>

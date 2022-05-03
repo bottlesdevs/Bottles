@@ -94,58 +94,45 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.4.28" date="2022-04-27">
+        <release version="2022.5.2" date="2022-04-27">
           <description>
             <p>News</p>
             <ul>
-                <li>General UI improvements, make the interface more consistent and easier to use.</li>
-                <li>Support for bottles on different paths, the option is present in the custom env settings but is also respected by all the other envs</li>
-                <li>Notable general performance improvements of the Wine backend</li>
-                <li>Installers now supports the run_winecommand action, allowing you to run commands inside the prefix via Wine (refer to the maintainers documentation)</li>
-                <li>Dependencies now supports the delete_dlls action to remove a dll before updating (refers to the maintainers documentation)</li>
-                <li>Templates are now updated on bottle creation if newer components are detected, this will speed up the creation of new bottles</li>
-                <li>Desktop entries now uses the new CLI to launch the executable</li>
-                <li>The journal can now be browsed from Bottles, accessible from the Health check menu</li>
-                <li>The d3dx9 dependency (and more coming) now uses small archives, this speed up the installation</li>
-                <li>Windows paths are now launched via the Start WineProgram which set the current working directory to make sure it finds all files</li>
-                <li>Start WineProgram now tries to convert Unix paths to Windows if explicitly requested</li>
-                <li>The bottle's cwd preference has now a new button to reset to the default one</li>
-                <li>Desktop entries can now be updated, just press "Add Desktop Entry" again from the programs list (Thanks to @emiltang)</li>
-                <li>Updated samba to 4.15.6 (Thanks to @rmnscnce)</li>
+                <li>General improvements to respect GNOME Circle requirements</li>
+                <li>More consistency of buttons/menus position</li>
+                <li>Improve Onboarding process</li>
+                <li>Auto-focus in bottle's name field when creating a new bottle</li>
+                <li>New bottle's name field now uses default style</li>
+                <li>New bottle create button is now always visible but disabled (not sensitive) if not usable</li>
+                <li>Improve end of bottle creation modal</li>
+                <li>Suggest how to install first program in new bottle</li>
+                <li>Explain what to do in each page</li>
+                <li>Explain what to do the first time you open a bottle</li>
+                <li>Bottle renaming is now in preferences view</li>
+                <li>Explain what compatibility grades are</li>
+                <li>Add missing dots to sentences</li>
+                <li>Fit title case</li>
+                <li>Align animations to most GNOME apps</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fixed flickering start/stop buttons in the programs list</li>
-                <li>Fixed a bug with Steam Launch options, which resulted in a crash when empty</li>
-                <li>Fixed a bug in the CLI, which could cause crashes due to the message handler</li>
-                <li>Fixed a bug with runners' libraries, some were not loaded in the environment</li>
-                <li>Fixed a bug with the Journal manager, was not creating the file on first launch</li>
-                <li>Fixed a bug with WineCmd WineProgram, spaces were not handled when launching batch scripts</li>
-                <li>Fixed a bug with DLL Components manager, in some conditions it could cause a crash when trying to handling a missing DLL</li>
-                <li>Fixed a bug with WinePath Wineprogam, paths were not escaped causing in wrong results</li>
-                <li>Fixed a bug in opening the file manager for a program, it did not support Windows paths</li>
-                <li>Fixed a bug in bottle naming, quotes were not always escaped</li>
-                <li>Fixed a bug with xterm, was disappearing after run (Thanks to @vickyorlo)</li>
-                <li>Fixed a bug with Steam Proton prefixes, those were not detected on some distributions (Thanks to @Thesola10)</li>
+                <li>Fixed desktop entries, bottles-cli was using Name instead of Path (Thanks to @emiltang)</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Persian traslations thanks to @pikhosh, @iman-moodi</li>
-                <li>Italian translations thanks to @albanobattistella</li>
-                <li>German translations thanks to @t0mt3ch</li>
-                <li>Spanish translations thanks to @oscfdezdz</li>
-                <li>Portuguese (Brazil) translations thanks to @mblithium</li>
-                <li>Dutch translations thanks to @Sojiro84</li>
-                <li>Japanese translations thanks to @ryonakano</li>
-                <li>Polish translations thanks to Krzysztof Marcinek, Zszywek</li>
-                <li>Russian translations thanks to @Knebergish, @creepen123</li>
-                <li>French translations thanks to unatecepp-7789, @julroy67</li>
-                <li>Ukrainian translations thanks to @Lekrixsss</li>
-                <li>Hungarian translations thanks to @zoli111</li>
-                <li>Vietnamese translations thanks to @lebao3105</li>
-                <li>Chinese (simplified) translations thanks to Eric</li>
+                <li>French translations thanks to @julroy67</li>
+                <li>Persian traslations thanks to @pikhosh, @Gnkalk</li>
+                <li>Portuguese (Brazil) translations thanks to @FHEK789, @vitorhcl</li>
+                <li>German translations thanks to @Maxopoly</li>
+                <li>Spanish translations thanks to @uanretamales</li>
+                <li>Swedish translations thanks to @bittin</li>
+                <li>Russian translations thanks to @Knebergish</li>
+                <li>Czech translations thanks to @vikdevelop</li>
+                <li>Chinese (traditional) translations thanks to @Adrian400811</li>
+                <li>Malay translations thanks to @amiruldevkun</li>
+                <li>Fix grammar issues thanks to @purpleidea</li>
             </ul>
           </description>
         </release>

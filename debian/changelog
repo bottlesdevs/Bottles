@@ -1,45 +1,31 @@
-com.usebottles.bottles (2022.4.28) precise; urgency=low
+com.usebottles.bottles (2022.5.2) precise; urgency=low
 
-  * The importer can find and import the default .wine prefix too
-  * General UI improvements, make the interface more consistent and easier to use.
-  * Support for bottles on different paths, the option is present in the custom env settings but is also respected by all the other envs
-  * Notable general performance improvements of the Wine backend
-  * Installers now supports the run_winecommand action, allowing you to run commands inside the prefix via Wine (refer to the maintainers documentation)
-  * Dependencies now supports the delete_dlls action to remove a dll before updating (refers to the maintainers documentation)
-  * Templates are now updated on bottle creation if newer components are detected, this will speed up the creation of new bottles
-  * Desktop entries now uses the new CLI to launch the executable
-  * The journal can now be browsed from Bottles, accessible from the Health check menu
-  * The d3dx9 dependency (and more coming) now uses small archives, this speed up the installation
-  * Windows paths are now launched via the Start WineProgram which set the current working directory to make sure it finds all files
-  * Start WineProgram now tries to convert Unix paths to Windows if explicitly requested
-  * The bottle's cwd preference has now a new button to reset to the default one
-  * Desktop entries can now be updated, just press "Add Desktop Entry" again from the programs list (Thanks to @emiltang)
-  * Updated samba to 4.15.6 (Thanks to @rmnscnce)
-  * Fixed flickering start/stop buttons in the programs list
-  * Fixed a bug with Steam Launch options, which resulted in a crash when empty
-  * Fixed a bug in the CLI, which could cause crashes due to the message handler
-  * Fixed a bug with runners' libraries, some were not loaded in the environment
-  * Fixed a bug with the Journal manager, was not creating the file on first launch
-  * Fixed a bug with WineCmd WineProgram, spaces were not handled when launching batch scripts
-  * Fixed a bug with DLL Components manager, in some conditions it could cause a crash when trying to handling a missing DLL
-  * Fixed a bug with WinePath Wineprogam, paths were not escaped causing in wrong results
-  * Fixed a bug in opening the file manager for a program, it did not support Windows paths
-  * Fixed a bug in bottle naming, quotes were not always escaped
-  * Fixed a bug with xterm, was disappearing after run (Thanks to @vickyorlo)
-  * Fixed a bug with Steam Proton prefixes, those were not detected on some distributions (Thanks to @Thesola10)
-  * Persian traslations thanks to @pikhosh, @iman-moodi
-  * Italian translations thanks to @albanobattistella
-  * German translations thanks to @t0mt3ch
-  * Spanish translations thanks to @oscfdezdz
-  * Portuguese (Brazil) translations thanks to @mblithium
-  * Dutch translations thanks to @Sojiro84
-  * Japanese translations thanks to @ryonakano
-  * Polish translations thanks to Krzysztof Marcinek, Zszywek
-  * Russian translations thanks to @Knebergish, @creepen123
-  * French translations thanks to unatecepp-7789, @julroy67
-  * Ukrainian translations thanks to @Lekrixsss
-  * Hungarian translations thanks to @zoli111
-  * Vietnamese translations thanks to @lebao3105
-  * Chinese (simplified) translations thanks to Eric
+  * General improvements to respect GNOME Circle requirements
+  * More consistency of buttons/menus position
+  * Improve Onboarding process
+  * Auto-focus in bottle's name field when creating a new bottle
+  * New bottle's name field now uses default style
+  * New bottle create button is now always visible but disabled (not sensitive) if not usable
+  * Improve end of bottle creation modal
+  * Suggest how to install first program in new bottle
+  * Explain what to do in each page
+  * Explain what to do the first time you open a bottle
+  * Bottle renaming is now in preferences view
+  * Explain what compatibility grades are
+  * Add missing dots to sentences
+  * Fit title case
+  * Align animations to most GNOME apps
+  * Fixed desktop entries, bottles-cli was using Name instead of Path (Thanks to @emiltang)
+  * French translations thanks to @julroy67
+  * Persian traslations thanks to @pikhosh, @Gnkalk
+  * Portuguese (Brazil) translations thanks to @FHEK789, @vitorhcl
+  * German translations thanks to @Maxopoly
+  * Spanish translations thanks to @uanretamales
+  * Swedish translations thanks to @bittin
+  * Russian translations thanks to @Knebergish
+  * Czech translations thanks to @vikdevelop
+  * Chinese (traditional) translations thanks to @Adrian400811
+  * Malay translations thanks to @amiruldevkun
+  * Fix grammar issues thanks to @purpleidea
 
- -- Mirko Brombin <send@mirko.pm>  Wen, 27 Apr 2022 11:00:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Mon, 05 May 2022 23:33:00 +0000

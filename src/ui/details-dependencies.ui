@@ -128,7 +128,20 @@
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Dependencies are software, libraries and codecs that improve the compatibility of Windows software. Install from here to meet your program requirements.</property>
+                        <property name="wrap">True</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                     <child>
                       <object class="GtkListBox" id="list_dependencies">
@@ -144,6 +157,9 @@
                         <property name="fill">True</property>
                         <property name="position">2</property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                 </child>

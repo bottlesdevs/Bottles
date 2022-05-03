@@ -59,7 +59,6 @@ class NewView(Handy.Window):
     entry_name = Gtk.Template.Child()
     switch_versioning = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
-    label_advanced = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
     box_advanced = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
@@ -139,6 +138,9 @@ class NewView(Handy.Window):
         if "FLATPAK_ID" in os.environ:
             self.row_sandbox.set_visible(False)
 
+        # focus on the entry_name
+        self.entry_name.grab_focus()
+
     def set_active_env(self, widget, row):
         """
         This function set the active environment on row selection.
@@ -168,10 +170,10 @@ class NewView(Handy.Window):
         name = widget.get_text()
 
         if (regex.search(name) is None) and name != "" and not name.isspace():
-            self.btn_create.set_visible(True)
+            self.btn_create.set_sensitive(True)
             widget.set_icon_from_icon_name(1, "")
         else:
-            self.btn_create.set_visible(False)
+            self.btn_create.set_sensitive(False)
             widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
 
     def choose_env_recipe(self, widget):
@@ -215,7 +217,7 @@ class NewView(Handy.Window):
 
     def create_bottle(self, widget):
         # set widgets states
-        self.btn_cancel.set_sensitive(False)
+        self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
         self.page_create.set_visible(False)
         self.stack_create.set_visible_child_name("page_creating")

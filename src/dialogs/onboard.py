@@ -40,7 +40,7 @@ class OnboardDialog(Handy.Window):
 
     stack_pages = [
         "page_welcome",
-        "page_wine",
+        "page_about",
         "page_runners",
         "page_download",
         "page_finish"
@@ -78,7 +78,7 @@ class OnboardDialog(Handy.Window):
             self.btn_stack_back.set_visible(True)
             self.btn_stack_back.set_visible_child(self.btn_quit)
 
-        if page == "page_wine":
+        if page == "page_about":
             self.btn_stack_next.set_visible(True)
             self.btn_stack_next.set_visible_child(self.btn_next)
             self.btn_stack_back.set_visible(True)
