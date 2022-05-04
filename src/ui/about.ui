@@ -3,7 +3,8 @@
 <requires lib="gtk" version="4.0"/>
   <template class="AboutDialog" parent="GtkAboutDialog">
     <property name="program-name">Bottles</property>
-    <property name="version">2022.5.28-trento-3</property>
+    <property name="modal">True</property>
+    <property name="version">2022.4.14-trento-2</property>
     <property name="copyright" translatable="yes">© 2017-2022 - Bottles Developers</property>
     <property name="comments" translatable="yes">Easily manage wineprefix using environments</property>
     <property name="website">https://usebottles.com</property>
@@ -99,60 +100,5 @@ Alvar Lagerlöf &lt;https://github.com/alvarlagerlof&gt;
 Ezekiel Smith &lt;https://github.com/ZekeSmith&gt;</property>
     <property name="logo-icon-name">com.usebottles.bottles</property>
     <property name="license-type">gpl-3-0-only</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child>
-          <object class="GtkBox">
-            <property name="homogeneous">True</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="label" translatable="yes">&lt;a href="https://hosted.weblate.org/engage/bottles/"&gt;Translate&lt;/a&gt;</property>
-                <property name="use-markup">True</property>
-              </object>
-              
-              
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label" translatable="yes">&lt;a href="https://usebottles.com/funding/"&gt;Funding&lt;/a&gt;</property>
-                <property name="use-markup">True</property>
-              </object>
-              
-              
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label" translatable="yes">&lt;a href="https://github.com/bottlesdevs/Bottles/issues"&gt;Bug report&lt;/a&gt;</property>
-                <property name="use-markup">True</property>
-              </object>
-              
-              
-            </child>
-            <child>
-              <object class="GtkLabel">
-                
-                <property name="label" translatable="yes">&lt;a href="https://usebottles.com/blog"&gt;Blog&lt;/a&gt;</property>
-                <property name="use-markup">True</property>
-              </object>
-              
-              
-            </child>
-            <child>
-              <object class="GtkLabel">
-                
-                <property name="label" translatable="yes">&lt;a href="https://twitter.com/usebottles"&gt;Twitter&lt;/a&gt;</property>
-                <property name="use-markup">True</property>
-              </object>
-              
-              
-            </child>
-          </object>
-          
-          
-        </child>
-      </object>
-    </child>
   </template>
 </interface>

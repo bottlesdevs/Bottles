@@ -133,6 +133,7 @@ class MainWindow(Adw.ApplicationWindow):
             name="page_loading",
             title=_("Loading...")
         )
+        self.headerbar.get_style_context().add_class("flat")
 
         # Add the main stack to the main grid
         self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
@@ -241,28 +242,7 @@ class MainWindow(Adw.ApplicationWindow):
             self.main_leaf.append(self.page_details)
             self.stack_main.set_visible_child_name("page_list")
             self.lock_ui(False)
-            if Paths.custom_bottles_path_err:
-                dialog = Gtk.MessageDialog(
-                    transient_for=self,
-                    flags=0,
-                    message_type=Gtk.MessageType.ERROR,
-                    buttons=Gtk.ButtonsType.OK,
-                    text=_("The custom bottles path was not found. "
-                      "Please, check the path in Preferences.\n"
-                      "Fallbacking to the default path; "
-                      "no bottles from that path will be listed!")
-                )
-                dialog.run()
-                dialog.destroy()
-
-            if self.arg_exe and not self.arg_bottle:
-                '''
-                If Bottles was started with an executable as argument, without
-                a bottle, the user will be prompted to select a bottle from the
-                bottles list.
-                '''
-                self.show_list_view()
-            self.arg_exe = None
+            self.headerbar.get_style_context().remove_class("flat")
 
         def get_manager(window):
             mng = Manager(window)
@@ -389,7 +369,6 @@ class MainWindow(Adw.ApplicationWindow):
                 entry.set_visible(True)
                 self.list_notifications.append(entry)
 
-            self.btn_notifications.set_visible(True)
 
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()
@@ -402,9 +381,10 @@ class MainWindow(Adw.ApplicationWindow):
         for w in [
             self.btn_add,
             self.btn_menu,
-            self.btn_noconnection
+            self.btn_notifications,
+            self.window_title,
         ]:
-            w.set_sensitive(not status)
+            w.set_visible(not status)
 
     @staticmethod
     def proper_close():
@@ -413,7 +393,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     @staticmethod
     def show_about_dialog(widget):
-        AboutDialog().run()
+        AboutDialog().present()
 
     @staticmethod
     def open_url(widget, url):

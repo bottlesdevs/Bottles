@@ -143,11 +143,11 @@
                   </child>
                   <child type="end">
                     <object class="GtkButton" id="btn_noconnection">
+                      <property name="visible">False</property>
                       <property name="tooltip-text" translatable="yes">You don't seem connected to the internet. Without it you will not be able to download essential components. Click this icon when you have reestablished the connection.</property>
                       <property name="icon-name">network-error-symbolic</property>
                     </object>
                   </child>
-
                   <child type="start">
                     <object class="GtkButton" id="btn_add">
                       <property name="tooltip-text" translatable="yes">New bottle</property>
