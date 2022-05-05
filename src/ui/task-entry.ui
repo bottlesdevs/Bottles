@@ -5,24 +5,14 @@
   <template class="TaskEntry" parent="HdyActionRow">
     <property name="visible">True</property>
     <property name="can-focus">True</property>
+    <property name="subtitle" translatable="yes">Processing...</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="spacing">10</property>
         <child>
-          <object class="GtkSpinner" id="spinner_task">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">0</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
           <placeholder/>

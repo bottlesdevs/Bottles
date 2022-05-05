@@ -28,7 +28,6 @@ class TaskEntry(Handy.ActionRow):
 
     # region Widgets
     btn_cancel = Gtk.Template.Child()
-    spinner_task = Gtk.Template.Child()
 
     # endregion
 
@@ -50,8 +49,6 @@ class TaskEntry(Handy.ActionRow):
         if not cancellable:
             self.btn_cancel.hide()
 
-        self.spinner_task.start()
-
     def update_status(
             self,
             count=False,
@@ -70,7 +67,6 @@ class TaskEntry(Handy.ActionRow):
             percent = 100
 
         if percent == 100:
-            self.spinner_task.stop()
             self.remove()
 
     def remove(self):
