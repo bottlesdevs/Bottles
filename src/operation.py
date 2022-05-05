@@ -29,7 +29,6 @@ class TaskEntry(Handy.ActionRow):
     # region Widgets
     btn_cancel = Gtk.Template.Child()
     spinner_task = Gtk.Template.Child()
-    label_task_status = Gtk.Template.Child()
 
     # endregion
 
@@ -60,16 +59,13 @@ class TaskEntry(Handy.ActionRow):
             total_size=False,
             completed=False
     ):
-        if not self.label_task_status.get_visible():
-            self.label_task_status.set_visible(True)
-
         if total_size == 0:
-            self.label_task_status.set_text(_("Calculating..."))
+            self.set_subtitle(_("Calculating..."))
             return
 
         if not completed:
             percent = int(count * block_size * 100 / total_size)
-            self.label_task_status.set_text(f'{str(percent)}%')
+            self.set_subtitle(f'{str(percent)}%')
         else:
             percent = 100
 
