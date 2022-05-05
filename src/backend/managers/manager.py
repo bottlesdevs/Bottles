@@ -682,7 +682,8 @@ class Manager:
                 "folder": program_folder,
                 "icon": icon,
                 "script": _program.get("script"),
-                "removed": _program.get("removed")
+                "removed": _program.get("removed"),
+                "id": program
             })
 
         for program in results:
@@ -722,7 +723,8 @@ class Manager:
                         "name": executable_name.split(".")[0],
                         "path": executable_path,
                         "folder": program_folder,
-                        "icon": icon
+                        "icon": icon,
+                        "id": executable_name
                     })
                     found.append(executable_name)
 

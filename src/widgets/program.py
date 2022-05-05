@@ -49,6 +49,7 @@ class ProgramEntry(Handy.ActionRow):
     btn_launch_options = Gtk.Template.Child()
     btn_launch_steam = Gtk.Template.Child()
     btn_uninstall = Gtk.Template.Child()
+    btn_remove = Gtk.Template.Child()
     btn_hide = Gtk.Template.Child()
     btn_unhide = Gtk.Template.Child()
     btn_rename = Gtk.Template.Child()
@@ -126,6 +127,7 @@ class ProgramEntry(Handy.ActionRow):
         self.btn_browse.connect("clicked", self.browse_program_folder)
         self.btn_add_entry.connect("clicked", self.add_entry)
         self.btn_add_library.connect("clicked", self.add_to_library)
+        self.btn_remove.connect("clicked", self.remove_program)
 
         if not program.get("removed") and not is_steam and check_boot:
             self.__is_alive()
@@ -220,7 +222,7 @@ class ProgramEntry(Handy.ActionRow):
         self.program["removed"] = status
         self.config = self.manager.update_config(
             config=self.config,
-            key=self.program["executable"],
+            key=self.program["id"],
             value=self.program,
             scope="External_Programs"
         )
@@ -229,12 +231,22 @@ class ProgramEntry(Handy.ActionRow):
         if update:
             self.update_programs()
 
+    def remove_program(self, widget=None):
+        self.config = self.manager.update_config(
+            config=self.config,
+            key=self.program["id"],
+            scope="External_Programs",
+            value=None,
+            remove=True
+        )
+        self.update_programs()
+
     def rename_program(self, widget):
         def func(new_name):
             self.program["name"] = new_name
             self.manager.update_config(
                 config=self.config,
-                key=self.program["executable"],
+                key=self.program["id"],
                 value=self.program,
                 scope="External_Programs"
             )
