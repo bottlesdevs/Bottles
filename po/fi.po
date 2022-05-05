@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
 #: src/ui/window.ui:222 src/ui/window.ui:237 src/window.py:179
-#: src/window.py:250
+#: src/window.py:250 src/window.py:183 src/window.py:253
 msgid "Bottles"
 msgstr "Pullot"
 
@@ -151,7 +151,7 @@ msgstr "... ja paljon muuta, mitä löydät asentamalla Pullot!"
 
 #: data/com.usebottles.bottles.gschema.xml:6
 msgid "Flatpak migration"
-msgstr ""
+msgstr "Flatpak-migraatio"
 
 #: data/com.usebottles.bottles.gschema.xml:7
 msgid "Toggle the Flatpak migration dialog."
@@ -163,7 +163,7 @@ msgstr "Tumma teema"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "Pakota tumman teeman käyttö."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -191,6 +191,7 @@ msgid "Change the window height."
 msgstr "Muuta ikkunan korkeutta."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:100
+#: src/ui/window.ui:373
 msgid "Notifications"
 msgstr "Ilmoitukset"
 
@@ -358,28 +359,27 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:20
 msgid "Open with explorer"
-msgstr ""
+msgstr "Avaa tiedostohallinnassa"
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Ongelmanratkaisu"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
 msgstr "Monista pullo"
 
-#: src/ui/details-bottle.ui:83 src/ui/importer.ui:148
+#: src/ui/details-bottle.ui:83 src/ui/importer.ui:148 src/ui/importer.ui:34
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr ""
 "Tämä on pullosi täydellinen arkisto, mukaan lukien henkilökohtaiset "
 "tiedostot."
 
 #: src/ui/details-bottle.ui:84
-#, fuzzy
 msgid "Full backup"
-msgstr "Täydellinen arkisto"
+msgstr "Täysi varmuuskopio"
 
-#: src/ui/details-bottle.ui:97 src/ui/importer.ui:134
+#: src/ui/details-bottle.ui:97 src/ui/importer.ui:134 src/ui/importer.ui:20
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
@@ -388,54 +388,51 @@ msgstr ""
 "uuden kokoonpanon ilman henkilökohtaisia tiedostoja."
 
 #: src/ui/details-bottle.ui:98
-#, fuzzy
 msgid "Export configuration"
-msgstr "Kokoonpano"
+msgstr "Vie kokoonpano"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Delete bottle"
-msgstr "Luo pullo"
+msgstr "Poista pullo"
 
-#: src/ui/details-bottle.ui:148
-#, fuzzy
+#: src/ui/details-bottle.ui:182
 msgid "Kill all processes"
-msgstr "Tapa kaikki wine-prosessit"
+msgstr "Tapa kaikki prosessit"
 
-#: src/ui/details-bottle.ui:161
+#: src/ui/details-bottle.ui:195
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Simuloi Windowsin järjestelmän sammutus."
 
-#: src/ui/details-bottle.ui:162
+#: src/ui/details-bottle.ui:162 src/ui/details-bottle.ui:196
 msgid "Shutdown"
 msgstr "Sammuta"
 
-#: src/ui/details-bottle.ui:175
+#: src/ui/details-bottle.ui:209
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Simuloi Windowsin järjestelmän uudelleenkäynnistys."
 
-#: src/ui/details-bottle.ui:176
+#: src/ui/details-bottle.ui:176 src/ui/details-bottle.ui:210
 msgid "Reboot"
 msgstr "Käynnistä uudelleen"
 
-#: src/ui/details-bottle.ui:281
+#: src/ui/details-bottle.ui:281 src/ui/details-bottle.ui:236
+#: src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
 msgstr "Suorita argumenteilla"
 
-#: src/ui/details-bottle.ui:291
+#: src/ui/details-bottle.ui:246
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "Siirry hiekkalaatikon sisään"
 
-#: src/ui/details-bottle.ui:305 src/ui/program-entry.ui:20
+#: src/ui/details-bottle.ui:260 src/ui/program-entry.ui:20
 msgid "Launch with terminal"
-msgstr ""
+msgstr "Käynnistä päätteellä"
 
-#: src/ui/details-bottle.ui:358
-#, fuzzy
+#: src/ui/details-bottle.ui:474
 msgid "Layers"
 msgstr "Tasot"
 
-#: src/ui/details-bottle.ui:402
+#: src/ui/details-bottle.ui:402 src/ui/details-bottle.ui:497
 msgid "Run executable"
 msgstr "Käynnistä suoritustiedosto"
 
@@ -444,111 +441,117 @@ msgstr "Käynnistä suoritustiedosto"
 msgid "My bottle"
 msgstr "Uusi pullo"
 
-#: src/ui/details-bottle.ui:461
+#: src/ui/details-bottle.ui:358
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
-#: src/ui/details-bottle.ui:482 src/ui/new.ui:129
+#: src/ui/details-bottle.ui:482 src/ui/new.ui:129 src/ui/details-bottle.ui:379
+#: src/ui/new.ui:160
 msgid "Environment"
 msgstr "Ympäristö"
 
-#: src/ui/details-bottle.ui:499
+#: src/ui/details-bottle.ui:499 src/ui/details-bottle.ui:396
 msgid "Vaniglia-6.21-x86_64"
 msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:518 src/ui/list-entry.ui:35
+#: src/ui/details-bottle.ui:415
 msgid "Versioning enabled for this bottle"
 msgstr "Versiointi on käytössä tälle pullolle"
 
 #: src/ui/details-bottle.ui:526 src/ui/list-entry.ui:42
+#: src/ui/details-bottle.ui:423
 msgid "Versioning is active in this bottle."
 msgstr "Versiointi on aktiivisena tässä pullossa."
 
 #: src/ui/details-bottle.ui:549 src/ui/list-entry.ui:61
+#: src/ui/details-bottle.ui:446
 msgid "0"
 msgstr "0"
 
-#: src/ui/details-bottle.ui:597
+#: src/ui/details-bottle.ui:647
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "Siirrytään hiekkalaatikon sisään…"
 
 #: src/ui/details-bottle.ui:614 src/views/details.py:122
+#: src/ui/details-bottle.ui:664
 msgid "Programs"
 msgstr "Ohjelmat"
 
-#: src/ui/details-bottle.ui:630
+#: src/ui/details-bottle.ui:680
 msgid "Other"
-msgstr ""
+msgstr "Muut"
 
-#: src/ui/details-bottle.ui:636
+#: src/ui/details-bottle.ui:636 src/ui/details-bottle.ui:686
 msgid "Utilities"
 msgstr "Apuohjelmat"
 
-#: src/ui/details-bottle.ui:641
+#: src/ui/details-bottle.ui:641 src/ui/details-bottle.ui:691
 msgid "Browse C:"
 msgstr "Selaa C:"
 
-#: src/ui/details-bottle.ui:643
+#: src/ui/details-bottle.ui:643 src/ui/details-bottle.ui:693
 msgid "Browse internal files."
 msgstr "Selaa sisäisiä tiedostoja."
 
-#: src/ui/details-bottle.ui:722
+#: src/ui/details-bottle.ui:722 src/ui/details-bottle.ui:772
 msgid "Command line"
 msgstr "Komentorivi"
 
-#: src/ui/details-bottle.ui:724
+#: src/ui/details-bottle.ui:724 src/ui/details-bottle.ui:774
 msgid "Run commands inside the Bottle."
 msgstr "Suorita komentoja pullon sisällä."
 
-#: src/ui/details-bottle.ui:764
+#: src/ui/details-bottle.ui:764 src/ui/details-bottle.ui:814
 msgid "Registry editor"
 msgstr "Rekisterimuokkain"
 
-#: src/ui/details-bottle.ui:766
+#: src/ui/details-bottle.ui:766 src/ui/details-bottle.ui:816
 msgid "Edit the internal registry."
 msgstr "Muokkaa sisäistä rekisteriä."
 
-#: src/ui/details-bottle.ui:806
+#: src/ui/details-bottle.ui:806 src/ui/details-bottle.ui:856
 msgid "Debug"
 msgstr "Virheenkorjaus"
 
-#: src/ui/details-bottle.ui:808
+#: src/ui/details-bottle.ui:808 src/ui/details-bottle.ui:858
 msgid "Debug wine processes."
 msgstr "wine-prosessien selvittäminen."
 
-#: src/ui/details-bottle.ui:845
+#: src/ui/details-bottle.ui:845 src/ui/details-bottle.ui:895
 msgid "Read documentation"
 msgstr "Lue dokumentaatio"
 
 #: src/ui/details-bottle.ui:873 src/views/details.py:134
+#: src/ui/details-bottle.ui:923
 msgid "Task manager"
 msgstr "Tehtävienhallinta"
 
-#: src/ui/details-bottle.ui:875
+#: src/ui/details-bottle.ui:875 src/ui/details-bottle.ui:925
 msgid "Manage processes with the Wine task manager."
 msgstr "Hallitse prosesseja Wine-tehtävänhallinnan avulla."
 
-#: src/ui/details-bottle.ui:915
+#: src/ui/details-bottle.ui:915 src/ui/details-bottle.ui:965
 msgid "Wine config"
 msgstr "Wine-kokoonpano"
 
-#: src/ui/details-bottle.ui:917
+#: src/ui/details-bottle.ui:917 src/ui/details-bottle.ui:967
 msgid "Adjust internal settings."
 msgstr "Säädä sisäisiä asetuksia."
 
-#: src/ui/details-bottle.ui:957
+#: src/ui/details-bottle.ui:957 src/ui/details-bottle.ui:1007
 msgid "Uninstaller"
 msgstr "Asennuksen poistaja"
 
-#: src/ui/details-bottle.ui:959
+#: src/ui/details-bottle.ui:959 src/ui/details-bottle.ui:1009
 msgid "Uninstall programs using wine uninstaller"
 msgstr "Poista ohjelmat Wine-asennuksen poistajalla"
 
-#: src/ui/details-bottle.ui:999
+#: src/ui/details-bottle.ui:999 src/ui/details-bottle.ui:1049
 msgid "Control panel"
 msgstr "Ohjauspaneeli"
 
-#: src/ui/details-bottle.ui:1001
+#: src/ui/details-bottle.ui:1001 src/ui/details-bottle.ui:1051
 msgid "Access the internal wine control panel."
 msgstr "Avaa sisäinen Winen hallintapaneeli."
 
@@ -565,7 +568,7 @@ msgstr ""
 msgid "Microsoft .NET Framework 4 .."
 msgstr ""
 
-#: src/ui/details-dependencies.ui:118
+#: src/ui/details-dependencies.ui:118 src/ui/details-installers.ui:75
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
@@ -578,40 +581,39 @@ msgid ""
 "requirements."
 msgstr ""
 
-#: src/ui/details-dependencies.ui:193
-#, fuzzy
+#: src/ui/details-dependencies.ui:177
 msgid "Report a problem or a missing dependency."
-msgstr "Ilmoita puuttuvasta riippuvuudesta"
+msgstr "Ilmoita ongelmasta tai puuttuvasta riippuvuudesta."
 
-#: src/ui/details-dependencies.ui:194
-#, fuzzy
+#: src/ui/details-dependencies.ui:178
 msgid "Report missing dependency"
 msgstr "Ilmoita puuttuvasta riippuvuudesta"
 
-#: src/ui/details-dependencies.ui:207 src/ui/details-programs.ui:80
-#, fuzzy
+#: src/ui/details-dependencies.ui:191 src/ui/details-programs.ui:80
 msgid "Read documentation about dependencies\t"
-msgstr "Lue dokumentaatio"
+msgstr "Lue dokumentaatio riippuvuuksista\t"
 
 #: src/ui/details-dependencies.ui:208 src/ui/details-installers.ui:133
 #: src/ui/details-programs.ui:106 src/ui/details-versioning.ui:93
-#: src/ui/window.ui:82
+#: src/ui/window.ui:82 src/ui/details-dependencies.ui:192
+#: src/ui/details-installers.ui:116
 msgid "Documentation"
 msgstr "Dokumentaatio"
 
-#: src/ui/details-dependencies.ui:229
+#: src/ui/details-dependencies.ui:229 src/ui/details-dependencies.ui:213
 msgid "Install selected"
 msgstr "Asenna valitut"
 
-#: src/ui/details-dependencies.ui:232
+#: src/ui/details-dependencies.ui:232 src/ui/details-dependencies.ui:216
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr ""
 
-#: src/ui/details-dependencies.ui:251
+#: src/ui/details-dependencies.ui:251 src/ui/details-dependencies.ui:235
 msgid "Select dependencies"
 msgstr "Valitse riippuvuudet"
 
 #: src/ui/details-dependencies.ui:305 src/ui/details-installers.ui:176
+#: src/ui/details-dependencies.ui:289 src/ui/details-installers.ui:159
 msgid "Toggle search"
 msgstr ""
 
@@ -633,7 +635,7 @@ msgid ""
 "proprietary license."
 msgstr ""
 
-#: src/ui/details-installers.ui:132
+#: src/ui/details-installers.ui:132 src/ui/details-installers.ui:115
 #, fuzzy
 msgid "Read documentation about installers\t"
 msgstr "Lue dokumentaatio"
@@ -643,31 +645,33 @@ msgstr "Lue dokumentaatio"
 msgid "Reset default"
 msgstr ""
 
-#: src/ui/details-preferences.ui:63 src/window.py:245
+#: src/ui/details-preferences.ui:63 src/window.py:245 src/window.py:181
+#: src/window.py:248
 msgid "Bottle details"
 msgstr "Pullon tiedot"
 
 #: src/ui/details-preferences.ui:68 src/ui/new.ui:97 src/ui/new.ui:108
+#: src/ui/new.ui:117
 msgid "Name"
 msgstr "Nimi"
 
-#: src/ui/details-preferences.ui:81
+#: src/ui/details-preferences.ui:81 src/ui/new.ui:129
 msgid "My beautiful bottle"
 msgstr "Kaunis pulloni"
 
-#: src/ui/details-preferences.ui:94
+#: src/ui/details-preferences.ui:94 src/ui/details-bottle.ui:597
 msgid "Rename bottle"
 msgstr "Nimeä pullo uudelleen"
 
-#: src/ui/details-preferences.ui:133
+#: src/ui/details-preferences.ui:133 src/ui/details-preferences.ui:62
 msgid "Graphics"
 msgstr "Grafiikka"
 
-#: src/ui/details-preferences.ui:138
+#: src/ui/details-preferences.ui:138 src/ui/details-preferences.ui:67
 msgid "Use DXVK"
 msgstr "Käytä DXVK:ta"
 
-#: src/ui/details-preferences.ui:139
+#: src/ui/details-preferences.ui:139 src/ui/details-preferences.ui:68
 #, fuzzy
 msgid "Improves performance of DirectX 11 games and 3D applications."
 msgstr ""
@@ -676,14 +680,15 @@ msgstr ""
 "Poista käytöstä jos havaitset graafisia ongelmia."
 
 #: src/ui/details-preferences.ui:148 src/ui/details-preferences.ui:782
+#: src/ui/details-preferences.ui:77 src/ui/details-preferences.ui:712
 msgid "Updating DXVK, please wait…"
 msgstr "Päivitetään DXVK:ta…"
 
-#: src/ui/details-preferences.ui:181
+#: src/ui/details-preferences.ui:181 src/ui/details-preferences.ui:110
 msgid "Use VKD3D"
 msgstr "Käytä VKD3D:tä"
 
-#: src/ui/details-preferences.ui:182
+#: src/ui/details-preferences.ui:182 src/ui/details-preferences.ui:111
 #, fuzzy
 msgid "Improves performance of DirectX 12 games and 3D applications."
 msgstr ""
@@ -692,103 +697,106 @@ msgstr ""
 "Poista käytöstä jos havaitset graafisia ongelmia."
 
 #: src/ui/details-preferences.ui:191 src/ui/details-preferences.ui:867
+#: src/ui/details-preferences.ui:120 src/ui/details-preferences.ui:797
 msgid "Updating VKD3D, please wait…"
 msgstr "Päivitetään VKD3D:tä…"
 
-#: src/ui/details-preferences.ui:224
+#: src/ui/details-preferences.ui:224 src/ui/details-preferences.ui:153
 msgid "Enable DLSS (DXVK-NVAPI)"
 msgstr "Käytä DLSS:ää (DXVK-NVAPI)"
 
-#: src/ui/details-preferences.ui:225
+#: src/ui/details-preferences.ui:225 src/ui/details-preferences.ui:154
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr ""
 
 #: src/ui/details-preferences.ui:234 src/ui/details-preferences.ui:346
 #: src/ui/details-preferences.ui:952 src/ui/details-preferences.ui:1035
+#: src/ui/details-preferences.ui:163 src/ui/details-preferences.ui:275
+#: src/ui/details-preferences.ui:882 src/ui/details-preferences.ui:965
 #, fuzzy
 msgid "Updating DXVK-NVAPI, please wait…"
 msgstr "Asennetaan DXVK-NVAPI…"
 
-#: src/ui/details-preferences.ui:269
+#: src/ui/details-preferences.ui:269 src/ui/details-preferences.ui:198
 msgid "Enable FSR"
 msgstr "Käytä FSR:ää"
 
-#: src/ui/details-preferences.ui:270
+#: src/ui/details-preferences.ui:270 src/ui/details-preferences.ui:199
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates."
 msgstr ""
 
-#: src/ui/details-preferences.ui:284
+#: src/ui/details-preferences.ui:213
 msgid "Ultra Quality"
-msgstr ""
+msgstr "Ultralaatu"
 
-#: src/ui/details-preferences.ui:285
+#: src/ui/details-preferences.ui:285 src/ui/details-preferences.ui:214
 msgid "Quality"
 msgstr "Laatu"
 
-#: src/ui/details-preferences.ui:286
+#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:215
 msgid "Balanced"
 msgstr "Tasapainotettu"
 
-#: src/ui/details-preferences.ui:287
+#: src/ui/details-preferences.ui:287 src/ui/details-preferences.ui:216
 msgid "Performance"
 msgstr "Suorituskyky"
 
-#: src/ui/details-preferences.ui:336
+#: src/ui/details-preferences.ui:265
 msgid "Enable LatencyFleX"
-msgstr ""
+msgstr "Käytä LatencyFleX:iä"
 
-#: src/ui/details-preferences.ui:337
+#: src/ui/details-preferences.ui:337 src/ui/details-preferences.ui:266
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
 msgstr ""
 
-#: src/ui/details-preferences.ui:380
+#: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:309
 msgid "Discrete GPU"
 msgstr "Erillinen GPU"
 
-#: src/ui/details-preferences.ui:381
+#: src/ui/details-preferences.ui:381 src/ui/details-preferences.ui:310
 msgid "Improves performance at the cost of increased power usage."
 msgstr "Parantaa suorituskykyä lisääntyneen virrankulutuksen kustannuksella."
 
-#: src/ui/details-preferences.ui:407
+#: src/ui/details-preferences.ui:336
 msgid "Use vkBasalt"
-msgstr ""
+msgstr "Käytä vkBasaltia"
 
-#: src/ui/details-preferences.ui:408
+#: src/ui/details-preferences.ui:408 src/ui/details-preferences.ui:337
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
 
-#: src/ui/details-preferences.ui:435
+#: src/ui/details-preferences.ui:435 src/ui/details-preferences.ui:364
 msgid "Display settings"
 msgstr "Näyttöasetukset"
 
-#: src/ui/details-preferences.ui:440
+#: src/ui/details-preferences.ui:440 src/ui/details-preferences.ui:369
 msgid "Use a virtual desktop"
 msgstr "Käytä virtuaalista työpöytää"
 
-#: src/ui/details-preferences.ui:441
+#: src/ui/details-preferences.ui:441 src/ui/details-preferences.ui:370
 msgid "Use the Wine virtual desktop."
 msgstr "Käytä Winen virtuaalista työpöytää."
 
-#: src/ui/details-preferences.ui:516
+#: src/ui/details-preferences.ui:516 src/ui/details-preferences.ui:445
 msgid "Mouse capture fullscreen"
 msgstr ""
 
-#: src/ui/details-preferences.ui:517
+#: src/ui/details-preferences.ui:517 src/ui/details-preferences.ui:446
 msgid "Let the program capture mouse input when fullscreen."
 msgstr ""
 
-#: src/ui/details-preferences.ui:548
+#: src/ui/details-preferences.ui:477
 msgid "Take focus"
-msgstr ""
+msgstr "Ota kohdistus"
 
-#: src/ui/details-preferences.ui:549
+#: src/ui/details-preferences.ui:549 src/ui/details-preferences.ui:478
 msgid "Activate it if the program does not retake focus on switch."
 msgstr ""
 
-#: src/ui/details-preferences.ui:580
+#: src/ui/details-preferences.ui:580 src/ui/details-preferences.ui:509
 msgid "Screen scaling"
 msgstr "Näytönskaalaus"
 
@@ -797,232 +805,240 @@ msgstr "Näytönskaalaus"
 msgid "Set custom DPI."
 msgstr "Aseta mukautettu DPI"
 
-#: src/ui/details-preferences.ui:595
+#: src/ui/details-preferences.ui:524
 msgid "96"
-msgstr ""
+msgstr "96"
 
-#: src/ui/details-preferences.ui:596
+#: src/ui/details-preferences.ui:525
 msgid "120"
-msgstr ""
+msgstr "120"
 
-#: src/ui/details-preferences.ui:597
+#: src/ui/details-preferences.ui:526
 msgid "144"
-msgstr ""
+msgstr "144"
 
-#: src/ui/details-preferences.ui:598
+#: src/ui/details-preferences.ui:527
 msgid "168"
-msgstr ""
+msgstr "168"
 
-#: src/ui/details-preferences.ui:599
+#: src/ui/details-preferences.ui:528
 msgid "192"
-msgstr ""
+msgstr "192"
 
-#: src/ui/details-preferences.ui:600
+#: src/ui/details-preferences.ui:529
 msgid "216"
-msgstr ""
+msgstr "216"
 
-#: src/ui/details-preferences.ui:601
+#: src/ui/details-preferences.ui:530
 msgid "240"
-msgstr ""
+msgstr "240"
 
-#: src/ui/details-preferences.ui:602
+#: src/ui/details-preferences.ui:531
 msgid "288"
-msgstr ""
+msgstr "288"
 
-#: src/ui/details-preferences.ui:603
+#: src/ui/details-preferences.ui:532
 msgid "336"
-msgstr ""
+msgstr "336"
 
-#: src/ui/details-preferences.ui:604
+#: src/ui/details-preferences.ui:533
 msgid "384"
-msgstr ""
+msgstr "384"
 
-#: src/ui/details-preferences.ui:605
+#: src/ui/details-preferences.ui:534
 msgid "432"
-msgstr ""
+msgstr "432"
 
-#: src/ui/details-preferences.ui:606
+#: src/ui/details-preferences.ui:535
 msgid "480"
-msgstr ""
+msgstr "480"
 
-#: src/ui/details-preferences.ui:627
+#: src/ui/details-preferences.ui:556
 msgid "Renderer"
-msgstr ""
+msgstr "Renderöijä"
 
 #: src/ui/details-preferences.ui:628
 msgid "Select what backend to use for wined3d."
 msgstr ""
 
-#: src/ui/details-preferences.ui:642
+#: src/ui/details-preferences.ui:571
 msgid "gl (default)"
-msgstr ""
+msgstr "gl (oletus)"
 
-#: src/ui/details-preferences.ui:643
+#: src/ui/details-preferences.ui:572
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
-#: src/ui/details-preferences.ui:644
+#: src/ui/details-preferences.ui:573
 msgid "vulkan"
-msgstr ""
+msgstr "vulkan"
 
 #: src/ui/details-preferences.ui:677 src/ui/details-preferences.ui:1117
+#: src/ui/details-preferences.ui:607 src/ui/details-preferences.ui:1047
 msgid "System"
 msgstr "Järjestelmä"
 
-#: src/ui/details-preferences.ui:683
+#: src/ui/details-preferences.ui:683 src/ui/details-preferences.ui:613
 msgid "Components version"
 msgstr "Komponentin versio"
 
 #: src/ui/details-preferences.ui:688 src/ui/new.ui:222
+#: src/ui/details-preferences.ui:618 src/ui/new.ui:286
 msgid "Runner"
 msgstr "Ajaja"
 
-#: src/ui/details-preferences.ui:699
+#: src/ui/details-preferences.ui:629
 msgid "Updating Runner and components, please wait…"
-msgstr ""
+msgstr "Päivitetään ajajaa sekä komponentteja, odota hetki…"
 
 #: src/ui/details-preferences.ui:742 src/ui/new.ui:262
+#: src/ui/details-preferences.ui:672 src/ui/new.ui:326
 msgid "Manage runners"
 msgstr "Hallitse ajajia"
 
-#: src/ui/details-preferences.ui:771
+#: src/ui/details-preferences.ui:771 src/ui/details-preferences.ui:701
 msgid "DXVK version"
 msgstr "DXVK-versio"
 
 #: src/ui/details-preferences.ui:827 src/ui/details-preferences.ui:995
-#: src/ui/details-preferences.ui:1078
+#: src/ui/details-preferences.ui:1078 src/ui/details-preferences.ui:757
+#: src/ui/details-preferences.ui:925 src/ui/details-preferences.ui:1008
 msgid "Manage DXVK versions"
 msgstr "Hallitse DXVK-versioita"
 
-#: src/ui/details-preferences.ui:856
+#: src/ui/details-preferences.ui:856 src/ui/details-preferences.ui:786
 msgid "VKD3D version"
 msgstr "VKD3D-versio"
 
-#: src/ui/details-preferences.ui:912
+#: src/ui/details-preferences.ui:912 src/ui/details-preferences.ui:842
 msgid "Manage VKD3D versions"
 msgstr "Hallitse VKD3D-versioita"
 
-#: src/ui/details-preferences.ui:941
+#: src/ui/details-preferences.ui:941 src/ui/details-preferences.ui:871
 msgid "DXVK NVAPI version"
 msgstr "DXVK NVAPI -versio"
 
-#: src/ui/details-preferences.ui:1024
-#, fuzzy
+#: src/ui/details-preferences.ui:954
 msgid "LatencyFleX version"
-msgstr "Hallitse DXVK-versioita"
+msgstr "LatencyFleX:n version"
 
-#: src/ui/details-preferences.ui:1109
+#: src/ui/details-preferences.ui:1109 src/ui/details-preferences.ui:1039
 #, fuzzy
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr ""
 "Ota synkronointi käyttöön moniydinsuorittimien suorituskyvyn parantamiseksi."
 
-#: src/ui/details-preferences.ui:1110
+#: src/ui/details-preferences.ui:1110 src/ui/details-preferences.ui:1040
 msgid "Synchronization"
 msgstr "Synkronointi"
 
 #: src/ui/details-preferences.ui:1121 src/ui/details-preferences.ui:1136
 #: src/ui/details-preferences.ui:1151 src/ui/details-preferences.ui:1166
 #: src/ui/dialog-gamescope.ui:345 src/ui/dialog-gamescope.ui:361
+#: src/ui/details-preferences.ui:1051 src/ui/details-preferences.ui:1066
+#: src/ui/details-preferences.ui:1081 src/ui/details-preferences.ui:1096
 msgid "Will restart the wineserver."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1132
+#: src/ui/details-preferences.ui:1132 src/ui/details-preferences.ui:1062
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details-preferences.ui:1147
+#: src/ui/details-preferences.ui:1147 src/ui/details-preferences.ui:1077
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details-preferences.ui:1162
+#: src/ui/details-preferences.ui:1162 src/ui/details-preferences.ui:1092
 msgid "Futex2"
 msgstr "Futex2"
 
-#: src/ui/details-preferences.ui:1186
+#: src/ui/details-preferences.ui:1186 src/ui/details-preferences.ui:1116
 msgid "Windows version"
 msgstr "Windows-versio"
 
-#: src/ui/details-preferences.ui:1196
+#: src/ui/details-preferences.ui:1196 src/ui/details-preferences.ui:1126
 msgid "Updating Windows version, please wait…"
 msgstr "Päivitetään Windows-versiota…"
 
-#: src/ui/details-preferences.ui:1243
+#: src/ui/details-preferences.ui:1243 src/ui/details-preferences.ui:1173
 #, fuzzy
 msgid "Use Bottles runtime"
 msgstr "Pullon nimi"
 
-#: src/ui/details-preferences.ui:1244
+#: src/ui/details-preferences.ui:1244 src/ui/details-preferences.ui:1174
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1270
+#: src/ui/details-preferences.ui:1270 src/ui/details-preferences.ui:1200
 #, fuzzy
 msgid "Use Steam runtime"
 msgstr "Pullon nimi"
 
-#: src/ui/details-preferences.ui:1271
+#: src/ui/details-preferences.ui:1271 src/ui/details-preferences.ui:1201
 msgid "The same as the Bottles one but provided by Steam."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1297
+#: src/ui/details-preferences.ui:1297 src/ui/details-preferences.ui:1227
 msgid "Use GameMode"
 msgstr "Käytä pelitilaa"
 
-#: src/ui/details-preferences.ui:1298
+#: src/ui/details-preferences.ui:1298 src/ui/details-preferences.ui:1228
 #, fuzzy
 msgid "Optimise gaming performance on demand."
 msgstr "Optimoi pelisuorituskykyä tarpeen vaatiessa"
 
-#: src/ui/details-preferences.ui:1324
+#: src/ui/details-preferences.ui:1324 src/ui/details-preferences.ui:1254
 msgid "Use Gamescope"
 msgstr "Käytä Gamescopea"
 
-#: src/ui/details-preferences.ui:1325
+#: src/ui/details-preferences.ui:1325 src/ui/details-preferences.ui:1255
 msgid "Use the Gamescope micro-compositor."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1360
+#: src/ui/details-preferences.ui:1360 src/ui/details-preferences.ui:1290
 msgid "Manage Gamescope settings"
 msgstr "Hallitse Gamescopen asetuksia"
 
-#: src/ui/details-preferences.ui:1389
+#: src/ui/details-preferences.ui:1389 src/ui/details-preferences.ui:1319
 msgid "Working directory"
 msgstr "Työskentelyhakemisto"
 
 #: src/ui/details-preferences.ui:1390 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:376
+#: src/views/bottle_preferences.py:376 src/ui/details-preferences.ui:1320
+#: src/views/bottle_preferences.py:212 src/views/bottle_preferences.py:318
 #, fuzzy
 msgid "Default to the bottle path."
 msgstr "Osoita pullon polkuun"
 
 #: src/ui/details-preferences.ui:1401 src/ui/dialog-launch-options.ui:211
 #: src/ui/drive-entry.ui:61 src/ui/new.ui:348 src/ui/new.ui:396
-#: src/ui/preferences.ui:203
+#: src/ui/preferences.ui:203 src/ui/details-preferences.ui:1331
+#: src/ui/new.ui:412 src/ui/new.ui:460
 msgid "Choose a directory"
 msgstr "Valitse kansio"
 
 #: src/ui/details-preferences.ui:1471 src/ui/dialog-dll-overrides.ui:51
+#: src/ui/details-preferences.ui:1401 src/ui/dialog-dll-overrides.ui:25
 msgid "DLL overrides"
 msgstr "DLL-ohitukset"
 
-#: src/ui/details-preferences.ui:1511
+#: src/ui/details-preferences.ui:1511 src/ui/details-preferences.ui:1441
+#: src/ui/dialog-env-vars.ui:24
 msgid "Environment variables"
 msgstr "Ympäristömuuttujat"
 
-#: src/ui/details-preferences.ui:1549
-#, fuzzy
+#: src/ui/details-preferences.ui:1479
 msgid "Manage drives"
-msgstr "Hallitse ajajia"
+msgstr "Hallitse asemia"
 
-#: src/ui/details-preferences.ui:1597
+#: src/ui/details-preferences.ui:1597 src/ui/details-preferences.ui:1528
 msgid "Audio"
 msgstr "Ääni"
 
-#: src/ui/details-preferences.ui:1602
+#: src/ui/details-preferences.ui:1602 src/ui/details-preferences.ui:1533
 msgid "Reduce PulseAudio latency"
 msgstr "Vähennä PulseAudion viivettä"
 
@@ -1032,43 +1048,43 @@ msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality."
 msgstr ""
 "Aseta PulseAudion viiveeksi 60 millisekuntia äänenlaadun parantamiseksi"
 
-#: src/ui/details-preferences.ui:1639
+#: src/ui/details-preferences.ui:1639 src/ui/details-preferences.ui:1571
 msgid "Developers & Debug"
 msgstr "Kehittäjät ja vianjäljitys"
 
-#: src/ui/details-preferences.ui:1644
+#: src/ui/details-preferences.ui:1644 src/ui/details-preferences.ui:1576
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details-preferences.ui:1645
+#: src/ui/details-preferences.ui:1645 src/ui/details-preferences.ui:1577
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Aseta päälle/pois DXVK-peite, joka näyttää kuvanpäivitysnopeuden ja muita "
 "tietoja D3D-sovelluksissa."
 
-#: src/ui/details-preferences.ui:1671
+#: src/ui/details-preferences.ui:1603
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
-#: src/ui/details-preferences.ui:1672
+#: src/ui/details-preferences.ui:1672 src/ui/details-preferences.ui:1604
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1698
+#: src/ui/details-preferences.ui:1630
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "OBS:n Vulkan-kaappaus"
 
 #: src/ui/details-preferences.ui:1699
 msgid "Toggle OBS game capture for all next launches."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1725
+#: src/ui/details-preferences.ui:1725 src/ui/details-preferences.ui:1657
 msgid "Enable wine fixme logs"
 msgstr "Ota Winen fixme-lokit käyttöön"
 
-#: src/ui/details-preferences.ui:1726
+#: src/ui/details-preferences.ui:1726 src/ui/details-preferences.ui:1658
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Lokita koodipolut, joita ei ole toteutettu Winessä."
 
@@ -1083,14 +1099,12 @@ msgid ""
 msgstr ""
 
 #: src/ui/details-programs.ui:81
-#, fuzzy
 msgid "Show/hide hidden programs"
-msgstr "Näytä/piilota poistetut ohjelmat"
+msgstr "Näytä/piilota piilotetut ohjelmat"
 
 #: src/ui/details-programs.ui:105
-#, fuzzy
 msgid "Read documentation about programs\t"
-msgstr "Lue dokumentaatio"
+msgstr "Lue dokumentaatio ohjelmista\t"
 
 #: src/ui/details-programs.ui:149
 msgid "Search for installed programs"
@@ -1100,7 +1114,7 @@ msgstr "Etsi asennettuja ohjelmia"
 msgid "Add a custom executable path"
 msgstr "Lisää omavalintainen suorituspolku"
 
-#: src/ui/details-taskmanager.ui:32
+#: src/ui/details-taskmanager.ui:32 src/ui/importer.ui:93
 msgid "Refresh"
 msgstr "Päivitä"
 
@@ -1117,9 +1131,8 @@ msgid "Create first state to start using versioning."
 msgstr "Luo ensimmäinen tila aloittaaksesi versioinnin käytön."
 
 #: src/ui/details-versioning.ui:92
-#, fuzzy
 msgid "Read documentation about versioning\t"
-msgstr "Lue dokumentaatio"
+msgstr "Lue dokumentaatio versioinnista\t"
 
 #: src/ui/details-versioning.ui:120
 msgid "Type a really short comment:"
@@ -1148,7 +1161,9 @@ msgstr "Pullojen kaatumisraportti"
 #: src/dialogs/drives.py:63 src/dialogs/launchoptions.py:92
 #: src/views/bottle_details.py:240 src/views/bottle_details.py:315
 #: src/views/bottle_preferences.py:246 src/views/bottle_programs.py:76
-#: src/views/list.py:131
+#: src/views/list.py:131 src/ui/dialog-duplicate.ui:28
+#: src/views/bottle_details.py:286 src/views/bottle_details.py:361
+#: src/views/bottle_preferences.py:191
 msgid "Cancel"
 msgstr "Peru"
 
@@ -1175,6 +1190,7 @@ msgid "I still want to report."
 msgstr ""
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/dialog-launch-options.ui:295
+#: src/ui/new.ui:208
 msgid "Advanced options"
 msgstr "Lisäasetukset"
 
@@ -1221,51 +1237,53 @@ msgstr "Kirjain"
 msgid "Existing drives"
 msgstr "Olemassa olevat asemat"
 
-#: src/ui/dialog-duplicate.ui:24 src/ui/dialog-duplicate.ui:35
-#, fuzzy
+#: src/ui/dialog-duplicate.ui:36
 msgid "Duplicate"
-msgstr "Monista pullo"
+msgstr "Monista"
 
 #: src/ui/dialog-duplicate.ui:51 src/ui/new.ui:51 src/ui/onboard.ui:55
+#: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:49
 msgid "Close"
 msgstr "Sulje"
 
-#: src/ui/dialog-duplicate.ui:94
+#: src/ui/dialog-duplicate.ui:94 src/ui/dialog-duplicate.ui:95
 msgid "Type a name for the new bottle"
 msgstr "Kirjoita uudelle pullolle nimi"
 
 #: src/ui/dialog-duplicate.ui:106 src/ui/dialog-run-args.ui:86
+#: src/ui/dialog-duplicate.ui:107
 #, fuzzy
 msgid "e.g.: -example1 -example2 -example3=hello"
 msgstr "esim .: -esimerkki1 -esimerkki2 -esimerkki3=hei"
 
-#: src/ui/dialog-duplicate.ui:108
+#: src/ui/dialog-duplicate.ui:108 src/ui/dialog-duplicate.ui:109
 #, fuzzy
 msgid "e.g: MyDuplicatedBottle"
 msgstr "Monista pullo"
 
-#: src/ui/dialog-duplicate.ui:129
+#: src/ui/dialog-duplicate.ui:129 src/ui/dialog-duplicate.ui:130
 #, fuzzy
 msgid "page_name"
 msgstr "Nimeä pullo uudelleen"
 
-#: src/ui/dialog-duplicate.ui:146
+#: src/ui/dialog-duplicate.ui:146 src/ui/dialog-duplicate.ui:147
 msgid "Duplicating…"
 msgstr "Monistetaan…"
 
 #: src/ui/dialog-duplicate.ui:165 src/ui/new.ui:494
+#: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:552
 msgid "Take a break, it may take a while"
 msgstr "Ota tauko, tämä saattaa kestää hetken"
 
-#: src/ui/dialog-duplicate.ui:194
+#: src/ui/dialog-duplicate.ui:194 src/ui/dialog-duplicate.ui:195
 msgid "page_duplicating"
 msgstr ""
 
-#: src/ui/dialog-duplicate.ui:203
+#: src/ui/dialog-duplicate.ui:203 src/ui/dialog-duplicate.ui:204
 msgid "Bottle duplicated"
 msgstr "Pullo monistettu"
 
-#: src/ui/dialog-duplicate.ui:210
+#: src/ui/dialog-duplicate.ui:210 src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
 msgstr ""
 
@@ -1405,7 +1423,7 @@ msgstr ""
 
 #: src/ui/dialog-launch-options.ui:199
 msgid "Post-run script"
-msgstr ""
+msgstr "Jälkikäteen ajettava skripti"
 
 #: src/ui/dialog-launch-options.ui:200 src/dialogs/launchoptions.py:104
 msgid "Choose a script which should be executed after run."
@@ -1430,6 +1448,7 @@ msgstr "Suorita argumenteilla"
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:91
 #: src/views/bottle_details.py:239 src/views/list.py:130
+#: src/views/bottle_details.py:285
 msgid "Run"
 msgstr "Suorita"
 
@@ -1446,6 +1465,7 @@ msgid "Message goes here."
 msgstr "Viesti menee tänne."
 
 #: src/ui/dialog.ui:36 src/views/bottle_details.py:444
+#: src/views/bottle_details.py:491
 msgid "Confirm"
 msgstr "Vahvista"
 
@@ -1488,7 +1508,7 @@ msgid ""
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
 
-#: src/ui/importer.ui:74
+#: src/ui/importer.ui:74 src/ui/importer.ui:120
 msgid "Import Bottles backup"
 msgstr "Tuo Pullo-varmuuskopio"
 
@@ -1496,11 +1516,11 @@ msgstr "Tuo Pullo-varmuuskopio"
 msgid "Search again for prefixes"
 msgstr ""
 
-#: src/ui/importer.ui:135
+#: src/ui/importer.ui:135 src/ui/importer.ui:21
 msgid "Configuration"
 msgstr "Kokoonpano"
 
-#: src/ui/importer.ui:149
+#: src/ui/importer.ui:149 src/ui/importer.ui:35
 msgid "Full archive"
 msgstr "Täydellinen arkisto"
 
@@ -1574,70 +1594,68 @@ msgstr "Luo"
 msgid "Bottle Information"
 msgstr "Pullon tiedot"
 
-#: src/ui/new.ui:98
+#: src/ui/new.ui:98 src/ui/new.ui:118
 msgid "Choose a name for your bottle"
 msgstr "Valitse pullolle nimi"
 
-#: src/ui/new.ui:165
+#: src/ui/new.ui:165 src/ui/new.ui:229
 msgid "Use versioning"
 msgstr "Käytä versiointia"
 
-#: src/ui/new.ui:167
+#: src/ui/new.ui:167 src/ui/new.ui:231
 msgid "Enable versioning to save and restore the bottle to a state."
 msgstr ""
 "Ota versiointi käyttöön, jotta pullo voidaan tallentaa ja palauttaa tilaan."
 
-#: src/ui/new.ui:193
+#: src/ui/new.ui:193 src/ui/new.ui:257
 msgid "Unlinked homedir"
 msgstr ""
 
-#: src/ui/new.ui:195
+#: src/ui/new.ui:195 src/ui/new.ui:259
 msgid "Do not link the userdir to the homedir"
 msgstr ""
 
-#: src/ui/new.ui:291
+#: src/ui/new.ui:291 src/ui/new.ui:355
 msgid "Architecture"
 msgstr "Arkkitehtuuri"
 
-#: src/ui/new.ui:293
+#: src/ui/new.ui:293 src/ui/new.ui:357
 msgid "We recommend using 32bit only if strictly necessary"
 msgstr "Käytä 32-bittistä vain jos se on tarpeellista"
 
-#: src/ui/new.ui:307
+#: src/ui/new.ui:307 src/ui/new.ui:371
 msgid "64 bit"
 msgstr "64-bit"
 
-#: src/ui/new.ui:308
+#: src/ui/new.ui:308 src/ui/new.ui:372
 msgid "32 bit"
 msgstr "32-bit"
 
-#: src/ui/new.ui:329
-#, fuzzy
+#: src/ui/new.ui:393
 msgid "Use custom recipe"
-msgstr "Käytä Gamescopea"
+msgstr "Käytä mukautettua reseptiä"
 
-#: src/ui/new.ui:331
+#: src/ui/new.ui:331 src/ui/new.ui:395
 msgid "Choose a custom recipe for the environment if you have one."
 msgstr ""
 
-#: src/ui/new.ui:377
-#, fuzzy
+#: src/ui/new.ui:441
 msgid "Use custom path"
-msgstr "Käytä Gamescopea"
+msgstr "Käytä mukautettua polkua"
 
-#: src/ui/new.ui:379
+#: src/ui/new.ui:443
 msgid "Store this bottle in a different place."
-msgstr ""
+msgstr "Talleta tämä pullo eri paikkaan."
 
-#: src/ui/new.ui:475
+#: src/ui/new.ui:475 src/ui/new.ui:533
 msgid "Creating bottle…"
 msgstr "Luodaan pulloa…"
 
-#: src/ui/new.ui:544
+#: src/ui/new.ui:544 src/ui/new.ui:602
 msgid "Bottle created"
 msgstr "Pullo luotu"
 
-#: src/ui/onboard.ui:23 src/ui/onboard.ui:122
+#: src/ui/onboard.ui:23 src/ui/onboard.ui:122 src/ui/onboard.ui:121
 msgid "Welcome"
 msgstr "Tervetuloa"
 
@@ -1657,11 +1675,11 @@ msgstr "Lopeta"
 msgid "Back"
 msgstr "Takaisin"
 
-#: src/ui/onboard.ui:117
+#: src/ui/onboard.ui:117 src/ui/onboard.ui:116
 msgid "Welcome to Bottles"
 msgstr "Tervetuloa, tämä on Pullot"
 
-#: src/ui/onboard.ui:118
+#: src/ui/onboard.ui:118 src/ui/onboard.ui:117
 msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr ""
 "Pullot tekee Windows-ohjelmistojen suorittamisesta Linuxissa paljon "
@@ -1683,11 +1701,11 @@ msgid ""
 "<a href=\"https://docs.usebottles.com\">Read more about</a>"
 msgstr ""
 
-#: src/ui/onboard.ui:191
+#: src/ui/onboard.ui:191 src/ui/onboard.ui:190
 msgid "Wine"
 msgstr "Wine"
 
-#: src/ui/onboard.ui:222
+#: src/ui/onboard.ui:222 src/ui/onboard.ui:221
 msgid "We Are Almost There"
 msgstr "Melkein valmista"
 
@@ -1712,19 +1730,19 @@ msgstr ""
 "\n"
 "Kun olet valmis, paina <b>Asenna</b>-painiketta."
 
-#: src/ui/onboard.ui:261 src/ui/preferences.ui:292
+#: src/ui/onboard.ui:261 src/ui/preferences.ui:292 src/ui/onboard.ui:262
 msgid "Runners"
 msgstr "Ajajat"
 
-#: src/ui/onboard.ui:292
+#: src/ui/onboard.ui:292 src/ui/onboard.ui:293
 msgid "Downloading…"
 msgstr "Ladataan…"
 
-#: src/ui/onboard.ui:311
+#: src/ui/onboard.ui:311 src/ui/onboard.ui:312
 msgid "Sit down and relax, it may take a few minutes."
 msgstr "Istu alas hetkeksi, lataus voi kestää jonkin aikaa."
 
-#: src/ui/onboard.ui:339
+#: src/ui/onboard.ui:339 src/ui/onboard.ui:340
 msgid "Download"
 msgstr "Lataa"
 
@@ -1749,7 +1767,6 @@ msgid "General"
 msgstr "Yleinen"
 
 #: src/ui/preferences.ui:58
-#, fuzzy
 msgid "Appearance"
 msgstr "Ulkoasu"
 
@@ -1814,9 +1831,8 @@ msgid "Whether the above list should display unstable versions."
 msgstr "Näytetäänkö yllä olevassa luettelossa epävakaat versiot."
 
 #: src/ui/preferences.ui:336
-#, fuzzy
 msgid "DLL Components"
-msgstr "Komponentin versio"
+msgstr "DLL-komponentit"
 
 #: src/ui/preferences.ui:341
 msgid "DXVK"
@@ -1859,7 +1875,7 @@ msgstr ""
 msgid "Library Mode"
 msgstr "Tumma tila"
 
-#: src/ui/program-entry.ui:33
+#: src/ui/program-entry.ui:33 src/ui/dialog-launch-options.ui:59
 msgid "Change launch options"
 msgstr "Muuta käynnistysvalintoja"
 
@@ -1886,19 +1902,19 @@ msgstr "Lisää työpöytätietue"
 
 #: src/ui/program-entry.ui:145
 msgid "Add to my library"
-msgstr ""
+msgstr "Lisää kirjastoon"
 
 #: src/ui/program-entry.ui:158
 msgid "Hide this program"
-msgstr ""
+msgstr "Piilota tämä ohjelma"
 
 #: src/ui/program-entry.ui:170
 msgid "Unhide this program"
-msgstr ""
+msgstr "Älä piilota tätä ohjelmaa"
 
 #: src/ui/program-entry.ui:207
 msgid "Launch with Steam"
-msgstr ""
+msgstr "Käynnistä Steamilla"
 
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
@@ -1908,23 +1924,24 @@ msgstr "Palauta tämä tila"
 msgid "Creation date"
 msgstr "Luomispäivä"
 
-#: src/ui/window.ui:19 src/window.py:260
+#: src/ui/window.ui:19 src/window.py:187 src/window.py:263
 msgid "Your library"
-msgstr ""
+msgstr "Kirjastosi"
 
 #: src/ui/window.ui:32 src/window.py:181 src/window.py:255
+#: src/ui/importer.ui:74 src/window.py:258
 msgid "Importer"
 msgstr "Tuoja"
 
 #: src/ui/window.ui:69
 msgid "Support us"
-msgstr ""
+msgstr "Tue meitä"
 
 #: src/ui/window.ui:95
 msgid "Forums"
 msgstr "Keskustelualueet"
 
-#: src/ui/window.ui:108 src/window.py:312
+#: src/ui/window.ui:108 src/window.py:312 src/window.py:332
 msgid "Health check"
 msgstr "Terveystarkastus"
 
@@ -1954,7 +1971,7 @@ msgstr ""
 msgid "Go back"
 msgstr "Siirry takaisin"
 
-#: src/ui/window.ui:353
+#: src/ui/window.ui:353 src/ui/new.ui:24
 msgid "New bottle"
 msgstr "Uusi pullo"
 
@@ -1970,7 +1987,7 @@ msgstr "Suoritustiedoston polku"
 msgid "lnk path"
 msgstr ""
 
-#: src/main.py:125
+#: src/main.py:125 src/ui/details-bottle.ui:322
 msgid "Bottle name"
 msgstr "Pullon nimi"
 
@@ -1995,9 +2012,9 @@ msgstr "[Refresh]-pyyntö vastaanotettu."
 msgid "Calculating..."
 msgstr "Lasketaan..."
 
-#: src/window.py:132 src/window.py:186
+#: src/window.py:136 src/window.py:189
 msgid "Loading..."
-msgstr ""
+msgstr "Ladataan..."
 
 #: src/window.py:177
 #, fuzzy
@@ -2008,7 +2025,7 @@ msgstr "Pullon tiedot"
 msgid "Your Library"
 msgstr ""
 
-#: src/window.py:317
+#: src/window.py:317 src/window.py:337
 msgid "Journal browser"
 msgstr ""
 
@@ -2028,12 +2045,12 @@ msgstr "Varmuuskopion tuominen: {0}"
 
 #: src/backend/managers/installer.py:116
 msgid "Installer requires local resources"
-msgstr ""
+msgstr "Asentaja vaatii paikallisia resursseja"
 
 #: src/backend/managers/installer.py:118
 #, python-format
 msgid "This installer requires some local resources: %s"
-msgstr ""
+msgstr "Tämä asentaja vaatii paikallisia resursseja: %s"
 
 #: src/backend/managers/installer.py:118
 msgid ", "
@@ -2046,7 +2063,7 @@ msgstr "Ei löydy suoritettavaa tiedostoa [{0}]."
 
 #: src/backend/managers/installer.py:133
 msgid "Proceed"
-msgstr ""
+msgstr "Jatka"
 
 #: src/backend/managers/installer.py:456
 msgid "Local resources not found or invalid"
@@ -2146,9 +2163,9 @@ msgid "Installing DXVK-NVAPI…"
 msgstr "Asennetaan DXVK-NVAPI…"
 
 #: src/backend/managers/manager.py:1288
-#, fuzzy, python-format
+#, python-format
 msgid "Installing dependency: %s …"
-msgstr "Asennetaan riippuvuus: {0}…"
+msgstr "Asennetaan riippuvuus: %s…"
 
 #: src/backend/managers/manager.py:1304
 msgid "Creating versioning state 0…"
@@ -2192,9 +2209,9 @@ msgid "Could not update the index file."
 msgstr ""
 
 #: src/backend/managers/versioning.py:268
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Väliaikainen polku puhdistettiin onnistuneesti!"
+msgstr "Uusi tila [{0}] luotu!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -2229,53 +2246,54 @@ msgstr "Kopioi leikepöydälle"
 
 #: src/dialogs/launchoptions.py:88
 msgid "Choose the script"
-msgstr ""
+msgstr "Valitse skripti"
 
-#: src/views/bottle_details.py:156
+#: src/views/bottle_details.py:156 src/views/bottle_details.py:160
 #, python-format
 msgid "Updated: %s"
 msgstr "Päivitetty: %s"
 
 #: src/views/bottle_details.py:236 src/views/list.py:127
+#: src/views/bottle_details.py:282
 msgid "Choose a Windows executable file"
 msgstr "Valitse Windowsin suoritettava tiedosto"
 
-#: src/views/bottle_details.py:304
+#: src/views/bottle_details.py:304 src/views/bottle_details.py:350
 msgid "Select the location where to save the backup config"
 msgstr "Valitse sijainti, mihin varmuuskopioitava kokoonpano tallennetaan"
 
-#: src/views/bottle_details.py:308
+#: src/views/bottle_details.py:308 src/views/bottle_details.py:354
 msgid "Select the location where to save the backup archive"
 msgstr "Valitse sijainti, johon varmuuskopioarkisto tallennetaan"
 
-#: src/views/bottle_details.py:315
+#: src/views/bottle_details.py:315 src/views/bottle_details.py:361
 msgid "Export"
 msgstr "Vie"
 
-#: src/views/bottle_details.py:346
+#: src/views/bottle_details.py:346 src/views/bottle_details.py:392
 msgid "Confirm deletion"
 msgstr "Vahvista poisto"
 
-#: src/views/bottle_details.py:348
+#: src/views/bottle_details.py:348 src/views/bottle_details.py:394
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Haluatko varmasti poistaa tämän pullon ja kaikki tiedostot?"
 
-#: src/views/bottle_details.py:446
+#: src/views/bottle_details.py:446 src/views/bottle_details.py:493
 #, fuzzy
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr "Haluatko varmasti poistaa tämän pullon ja kaikki tiedostot?"
 
-#: src/views/bottle_preferences.py:179
+#: src/views/bottle_preferences.py:179 src/views/bottle_preferences.py:172
 msgid "This feature is not available on your system."
 msgstr "Tämä ominaisuus ei ole käytettävissä järjestelmässäsi."
 
-#: src/views/bottle_preferences.py:242
+#: src/views/bottle_preferences.py:242 src/views/bottle_preferences.py:187
 msgid "Choose working directory for executables"
 msgstr "Valitse työskentelyhakemisto suoritettaville tiedostoille"
 
-#: src/views/bottle_preferences.py:245
+#: src/views/bottle_preferences.py:245 src/views/bottle_preferences.py:190
 msgid "Done"
 msgstr "Valmis"
 
@@ -2307,11 +2325,11 @@ msgstr "Versiointi"
 msgid "Installers"
 msgstr "Asentajat"
 
-#: src/views/importer.py:88
+#: src/views/importer.py:88 src/views/importer.py:80
 msgid "Choose a backup archive"
 msgstr "Valitse varmuuskopiointiarkisto"
 
-#: src/views/importer.py:119
+#: src/views/importer.py:119 src/views/importer.py:111
 msgid "Choose a configuration file"
 msgstr "Valitse kokoonpanotiedosto"
 
@@ -2324,55 +2342,53 @@ msgstr ""
 msgid "Arguments found for executable: [{executable}]."
 msgstr "Suoritettavalle ohjelmalle löytyi argumentteja: [{executable}]."
 
-#: src/views/new.py:73
+#: src/views/new.py:73 src/views/new.py:74
 msgid "Gaming"
 msgstr "Pelaaminen"
 
-#: src/views/new.py:74
+#: src/views/new.py:74 src/views/new.py:75
 msgid "An environment improved for Windows games."
 msgstr "Windows-pelejä varten parannettu ympäristö."
 
-#: src/views/new.py:79
+#: src/views/new.py:79 src/views/new.py:80
 msgid "Application"
 msgstr "Sovellus"
 
-#: src/views/new.py:80
+#: src/views/new.py:80 src/views/new.py:81
 #, fuzzy
 msgid "An environment improved for Windows applications."
 msgstr "Windows-pelejä varten parannettu ympäristö."
 
-#: src/views/new.py:85
+#: src/views/new.py:85 src/views/new.py:86
 msgid "Custom"
 msgstr "Mukautettu"
 
-#: src/views/new.py:86
+#: src/views/new.py:86 src/views/new.py:87
 msgid "A clear environment for your experiments."
 msgstr "Tyhjä ympäristö kokeiluillesi."
 
-#: src/views/new.py:94
+#: src/views/new.py:94 src/views/new.py:95
 #, fuzzy
 msgid "Layered"
 msgstr "Tasot"
 
-#: src/views/new.py:95
+#: src/views/new.py:95 src/views/new.py:96
 msgid "A layered environment, where every app is a layer."
 msgstr ""
 
-#: src/views/new.py:181
-#, fuzzy
+#: src/views/new.py:179
 msgid "Choose a recipe file"
-msgstr "Valitse kokoonpanotiedosto"
+msgstr "Valitse reseptitiedosto"
 
-#: src/views/new.py:201
-#, fuzzy
+#: src/views/new.py:199
 msgid "Choose where to store the bottle"
-msgstr "Valitse pullolle nimi"
+msgstr "Valitse mihin pullo talletetaan"
 
-#: src/views/new.py:285
+#: src/views/new.py:285 src/views/new.py:283
 msgid "There was an error creating the bottle."
 msgstr "Virhe pulloa luotaessa."
 
-#: src/views/new.py:292
+#: src/views/new.py:292 src/views/new.py:290
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "Pullo nimeltä “{0}” luotiin onnistuneesti"
@@ -2383,6 +2399,7 @@ msgid "Choose new bottles path"
 msgstr "Valitse suoritustiedoston polku"
 
 #: src/views/preferences.py:160 src/views/preferences.py:169
+#: src/ui/preferences.ui:192
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr ""
@@ -2405,7 +2422,7 @@ msgstr "Muut ajajat"
 
 #: src/widgets/component.py:73
 msgid "Upgrade"
-msgstr ""
+msgstr "Päivitä"
 
 #: src/widgets/dependency.py:107 src/widgets/installer.py:77
 #, python-brace-format
@@ -2427,45 +2444,141 @@ msgstr "Vaihe {self.__step}/{self.steps}"
 msgid "Index for state {0}"
 msgstr "Indeksi tilalle {0}"
 
-#~ msgid "Type a name for your bottle"
-#~ msgstr "Anna pullolle nimi"
+#: src/ui/details-bottle.ui:326
+msgid "Type a name for your bottle"
+msgstr "Anna pullolle nimi"
 
-#~ msgid "New programs will be automatically found."
-#~ msgstr "Uudet ohjelmat löytyvät automaattisesti."
+#: src/ui/details-programs.ui:29
+msgid "New programs will be automatically found."
+msgstr "Uudet ohjelmat löytyvät automaattisesti."
 
-#~ msgid "Duplicate a bottle"
-#~ msgstr "Monista pullo"
+#: src/ui/dialog-duplicate.ui:25
+msgid "Duplicate a bottle"
+msgstr "Monista pullo"
 
-#~ msgid "Change environment variables"
-#~ msgstr "Muuta ympäristömuuttujia"
+#: src/ui/dialog-environment-variables.ui:24
+msgid "Change environment variables"
+msgstr "Muuta ympäristömuuttujia"
 
-#~ msgid "This field cannot contain special characters!"
-#~ msgstr "Tämä kenttä ei voi sisältää erikoismerkkejä!"
+#: src/ui/new.ui:128
+msgid "This field cannot contain special characters!"
+msgstr "Tämä kenttä ei voi sisältää erikoismerkkejä!"
 
-#~ msgid ""
-#~ "These are compatibility layers which allows Windows software to be "
-#~ "installed and run on Linux systems.\n"
-#~ "\n"
-#~ "<b>Bottles</b> are environments where the runner configures the system "
-#~ "and where the Windows software runs and is installed.\n"
-#~ "\n"
-#~ "<a href=\"https://docs.usebottles.com/components/runners\">Read more "
-#~ "about runners</a>"
-#~ msgstr ""
-#~ "Ne ovat yhteensopivuustasoja, jotka mahdollistavat Windows-ohjelmistojen "
-#~ "asentamisen ja suorittamisen Linux-järjestelmissä.\n"
-#~ "\n"
-#~ "<b>Pullot</b> ovat ympäristöjä, missä ajaja määrittää järjestelmän "
-#~ "asetukset ja mihin Windows-ohjelmistot asennetaan suoritettavaksi.\n"
-#~ "\n"
-#~ "<a href=\"https://docs.usebottles.com/components/runners\">Lue lisää "
-#~ "ajajista</a>"
+#: src/ui/onboard.ui:170
+msgid ""
+"These are compatibility layers which allows Windows software to be installed "
+"and run on Linux systems.\n"
+"\n"
+"<b>Bottles</b> are environments where the runner configures the system and "
+"where the Windows software runs and is installed.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
+"runners</a>"
+msgstr ""
+"Ne ovat yhteensopivuustasoja, jotka mahdollistavat Windows-ohjelmistojen "
+"asentamisen ja suorittamisen Linux-järjestelmissä.\n"
+"\n"
+"<b>Pullot</b> ovat ympäristöjä, missä ajaja määrittää järjestelmän asetukset "
+"ja mihin Windows-ohjelmistot asennetaan suoritettavaksi.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com/components/runners\">Lue lisää "
+"ajajista</a>"
 
-#~ msgid "Import/export"
-#~ msgstr "Tuo/vie"
+#: src/ui/window.ui:32
+msgid "Import/export"
+msgstr "Tuo/vie"
 
-#~ msgid "Import & export"
-#~ msgstr "Tuonti ja vienti"
+#: src/window.py:185
+msgid "Import & export"
+msgstr "Tuonti ja vienti"
+
+#: src/ui/details-preferences.ui:510
+msgid "Set custom DPI"
+msgstr "Aseta mukautettu DPI"
+
+#: src/ui/details-preferences.ui:557
+msgid "Select what backend to use for wined3d"
+msgstr "Valitse mitä taustaosaa käytetään wined3d:lle"
+
+#: src/ui/details-preferences.ui:1534
+msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
+msgstr ""
+"Aseta PulseAudion viiveeksi 60 millisekuntia äänenlaadun parantamiseksi"
+
+#: src/ui/details-preferences.ui:1631
+msgid "Toggle OBS game capture for all next launches"
+msgstr ""
+
+#: src/ui/dialog-gamescope.ui:24
+msgid "Gamescope settings"
+msgstr "Gamescopen asetukset"
+
+#: src/ui/new.ui:96
+msgid "Bottle information"
+msgstr "Pullon tiedot"
+
+#: src/ui/onboard.ui:151
+msgid "What Are Runners?"
+msgstr "Mitä ajajat ovat?"
+
+#: src/ui/onboard.ui:240
+msgid ""
+"We need to download and install a runner to allow you to create your own "
+"bottles.\n"
+"The download size is <b>~70MB</b>.\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Read more "
+"about what we're going to download</a>\n"
+"\n"
+"We cannot offer these files with Bottles as these have different release "
+"cycles.\n"
+"\n"
+"When you are ready press the <b>Install</b> button."
+msgstr ""
+"Ajaja tulee ladata ja asentaa, jotta voit luoda omia pulloja.\n"
+"Latauksen koko on noin <b>70 Mt</b>.\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run"
+"\">Lisätietoja ladattavasta sisällöstä</a>\n"
+"\n"
+"Emme voi tarjota näitä tiedostoja Pullot-sovelluksen kanssa, koska niillä on "
+"eri julkaisuaikataulut.\n"
+"\n"
+"Kun olet valmis, paina <b>Asenna</b>-painiketta."
+
+#: src/ui/preferences.ui:63
+msgid "Show update date"
+msgstr "Näytä päivityspäivä"
+
+#: src/ui/preferences.ui:127
+msgid "Temp files"
+msgstr "Väliaikaiset tiedostot"
+
+#: src/ui/preferences.ui:154
+msgid "Close Bottles after starting a program"
+msgstr "Sulje Pullot ohjelman käynnistämisen jälkeen"
+
+#: src/ui/preferences.ui:155
+msgid "Close Bottles after starting a program from the file manager"
+msgstr "Sulje Pullot, kun ohjelma on käynnistetty tiedostonhallinnasta"
+
+#: src/ui/preferences.ui:191
+msgid "Custom bottles path (require restart)"
+msgstr ""
+
+#: src/ui/preferences.ui:301
+msgid "Pre-release"
+msgstr "Esijulkaisu"
+
+#: src/ui/preferences.ui:421
+msgid "Steam Proton prefixes"
+msgstr "Steam Proton -etuliitteet"
+
+#: src/ui/preferences.ui:422 src/ui/preferences.ui:449
+msgid "In early development (requires restart)"
+msgstr ""
+
+#: src/ui/preferences.ui:448
+msgid "Library mode"
+msgstr "Kirjastotila"
 
 #~ msgid "Flatpak help"
 #~ msgstr "Flatpak-ohje"
@@ -3041,3 +3154,12 @@ msgstr "Indeksi tilalle {0}"
 
 #~ msgid "Control Panel"
 #~ msgstr "Ohjauspaneeli"
+
+#~ msgid "Change Launch Options"
+#~ msgstr "Muuta käynnistysvalintoja"
+
+#~ msgid "Dark Mode"
+#~ msgstr "Tumma tila"
+
+#~ msgid "Installed programs"
+#~ msgstr "Asennetut ohjelmat"
