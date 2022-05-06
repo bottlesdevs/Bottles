@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-02 23:20+0200\n"
-"PO-Revision-Date: 2022-05-02 21:19+0000\n"
+"PO-Revision-Date: 2022-05-07 12:11+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -427,9 +427,8 @@ msgid "Run executable"
 msgstr "Dosyayı çalıştır"
 
 #: src/ui/details-bottle.ui:439
-#, fuzzy
 msgid "My bottle"
-msgstr "Yeni şişe"
+msgstr "Şişem"
 
 #: src/ui/details-bottle.ui:461
 msgid "Win64"
@@ -542,6 +541,7 @@ msgstr "Dahili wine kontrol paneline erişin."
 #: src/ui/details-bottle.ui:1071
 msgid "Use the Installers section or the \"Run executable\" button above."
 msgstr ""
+"Kurucular bölümünü veya yukarıdaki \"Dosyayı çalıştır\" düğmesini kullanın."
 
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
@@ -567,6 +567,9 @@ msgid ""
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
 msgstr ""
+"Bağımlılıklar, Windows yazılımının uyumluluğunu artıran yazılımlar, "
+"kütüphaneler ve kodeklerdir. Program gereksinimlerinizi karşılamak için "
+"buradan kurun."
 
 #: src/ui/details-dependencies.ui:193
 msgid "Report a problem or a missing dependency."
@@ -613,14 +616,17 @@ msgid ""
 "com/bottles/installers#compatibility-grades\">compatibility grade</a> when "
 "choosing."
 msgstr ""
+"Elle ilerlemek zorunda kalmadan topluluğumuz tarafından seçilen programları "
+"kurmak için bu bölümü kullanın. Seçim yaparken <a href=\"https://docs."
+"usebottles.com/bottles/installers#compatibility-grades\">uyumluluk "
+"derecesini</a> göz önünde bulundurun."
 
 #: src/ui/details-installers.ui:92
-#, fuzzy
 msgid ""
 "While the files on this page have been verified, they may be under a "
 "proprietary license."
 msgstr ""
-"Bu sayfadaki dosyalar doğrulanmış olsa da, sahipli lisans altında "
+"Bu sayfadaki dosyalar doğrulanmış olsa da, sahipli bir lisans altında "
 "olabilirler."
 
 #: src/ui/details-installers.ui:132
@@ -779,9 +785,8 @@ msgid "Screen scaling"
 msgstr "Ekran ölçekleme"
 
 #: src/ui/details-preferences.ui:581
-#, fuzzy
 msgid "Set custom DPI."
-msgstr "Özel DPI ayarla"
+msgstr "Özel DPI ayarla."
 
 #: src/ui/details-preferences.ui:595
 msgid "96"
@@ -836,9 +841,8 @@ msgid "Renderer"
 msgstr "Görselleştirici"
 
 #: src/ui/details-preferences.ui:628
-#, fuzzy
 msgid "Select what backend to use for wined3d."
-msgstr "wined3d için hangi arka ucun kullanılacağını seç"
+msgstr "wined3d için hangi arka ucun kullanılacağını seç."
 
 #: src/ui/details-preferences.ui:642
 msgid "gl (default)"
@@ -1010,11 +1014,10 @@ msgid "Reduce PulseAudio latency"
 msgstr "PulseAudio gecikmesini azalt"
 
 #: src/ui/details-preferences.ui:1603
-#, fuzzy
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality."
 msgstr ""
-"Ses kalitesini artırmak için PulseAudio ses gecikmesini 60 milisaniyeye "
-"ayarla"
+"Ses kalitesini artırmak için PulseAudio ses gecikmesini 60 milisaniye olarak "
+"ayarla."
 
 #: src/ui/details-preferences.ui:1639
 msgid "Developers & Debug"
@@ -1047,9 +1050,8 @@ msgid "OBS Vulkan Capture"
 msgstr "OBS Vulkan Yakalama"
 
 #: src/ui/details-preferences.ui:1699
-#, fuzzy
 msgid "Toggle OBS game capture for all next launches."
-msgstr "Sonraki tüm başlatmalar için OBS oyun yakalamayı aç/kapat"
+msgstr "Sonraki tüm başlatmalar için OBS oyun yakalamayı aç/kapat."
 
 #: src/ui/details-preferences.ui:1725
 msgid "Enable wine fixme logs"
@@ -1068,6 +1070,8 @@ msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button"
 msgstr ""
+"Kurucular bölümünden veya kurucu dosyasını çalıştırarak programları kurun, "
+"ayrıca \"+\" düğmesiyle çalıştırılabilir dosyaları elle ekleyebilirsiniz"
 
 #: src/ui/details-programs.ui:81
 msgid "Show/hide hidden programs"
@@ -1171,9 +1175,8 @@ msgid "Advanced options"
 msgstr "Gelişmiş seçenekler"
 
 #: src/ui/dialog-dll-overrides.ui:25
-#, fuzzy
 msgid "DLL Overrides"
-msgstr "DLL geçersiz kılmaları"
+msgstr "DLL Geçersiz Kılmaları"
 
 #: src/ui/dialog-dll-overrides.ui:50
 msgid ""
@@ -1260,9 +1263,8 @@ msgid "page_duplicated"
 msgstr "page_duplicated"
 
 #: src/ui/dialog-env-vars.ui:24 src/ui/dialog-environment-variables.ui:24
-#, fuzzy
 msgid "Environment Variables"
-msgstr "Ortam değişkenleri"
+msgstr "Ortam Değişkenleri"
 
 #: src/ui/dialog-env-vars.ui:49
 msgid ""
@@ -1305,9 +1307,8 @@ msgid "e.g: VAR1=value VAR2=value .."
 msgstr "örneğin: VAR1 = değer VAR2 = değer .."
 
 #: src/ui/dialog-gamescope.ui:24
-#, fuzzy
 msgid "Gamescope Settings"
-msgstr "Gamescope ayarları"
+msgstr "Gamescope Ayarları"
 
 #: src/ui/dialog-gamescope.ui:63
 msgid ""
@@ -1376,9 +1377,8 @@ msgid "Fullscreen"
 msgstr "Tam ekran"
 
 #: src/ui/dialog-launch-options.ui:59
-#, fuzzy
 msgid "Launch Options"
-msgstr "Başlatma seçeneklerini değiştir"
+msgstr "Başlatma Seçenekleri"
 
 #: src/ui/dialog-launch-options.ui:109
 msgid "These arguments are passed on program launch:"
@@ -1420,9 +1420,8 @@ msgid "Type here.."
 msgstr "Buraya yazın..."
 
 #: src/ui/dialog-run-args.ui:24
-#, fuzzy
 msgid "Run With Arguments"
-msgstr "Argümanlarla çalıştır"
+msgstr "Argümanlarla Çalıştır"
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:91
 #: src/views/bottle_details.py:239 src/views/list.py:130
@@ -1474,24 +1473,24 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Bu wineprefix zaten Şişeler'e aktarılmıştı."
 
 #: src/ui/importer.ui:27
-#, fuzzy
 msgid "No prefixes found"
-msgstr "Bağımlılık bulunamadı!"
+msgstr "Prefix bulunamadı"
 
 #: src/ui/importer.ui:28
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
+"Lutris, PlayOnLinux, vb.'den prefix bulunamadı.\n"
+"Bir şişeyi yedekten içe aktarmak için üstteki simgeyi kullanın"
 
 #: src/ui/importer.ui:74
 msgid "Import Bottles backup"
 msgstr "Şişeleri yedeklemeyi içe aktar"
 
 #: src/ui/importer.ui:97
-#, fuzzy
 msgid "Search again for prefixes"
-msgstr "Steam Proton prefix'leri"
+msgstr "Prefix için tekrar ara"
 
 #: src/ui/importer.ui:135
 msgid "Configuration"
@@ -1506,13 +1505,12 @@ msgid "Read review"
 msgstr "İncelemeyi oku"
 
 #: src/ui/installer-entry.ui:124
-#, fuzzy
 msgid "Install this program"
-msgstr "Yüklü programlar"
+msgstr "Bu programı kur"
 
 #: src/ui/installer-entry.ui:173
 msgid "Compatibility grade"
-msgstr ""
+msgstr "Uyumluluk derecesi"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1567,9 +1565,8 @@ msgid "Create"
 msgstr "Oluştur"
 
 #: src/ui/new.ui:92
-#, fuzzy
 msgid "Bottle Information"
-msgstr "Şişe bilgileri"
+msgstr "Şişe Bilgileri"
 
 #: src/ui/new.ui:98
 msgid "Choose a name for your bottle"
@@ -1664,9 +1661,8 @@ msgstr ""
 "getirir."
 
 #: src/ui/onboard.ui:152
-#, fuzzy
 msgid "What Are Bottles?"
-msgstr "Çalıştırıcılar Nedir?"
+msgstr "Şişe Nedir?"
 
 #: src/ui/onboard.ui:171
 msgid ""
@@ -1678,6 +1674,13 @@ msgid ""
 "\n"
 "<a href=\"https://docs.usebottles.com\">Read more about</a>"
 msgstr ""
+"Şişe, Windows yazılımını çalıştırmak üzere yapılandırılan Windows benzeri "
+"bir ortamdır, her şişede birden fazla uygulamanız olabilir.\n"
+"\n"
+"Bunlar yalıtılmıştır ve izin vermediğiniz takdirde içeride çalışan yazılım "
+"kişisel dosyalarınıza erişemez.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com\">Daha fazla bilgi edinin</a>"
 
 #: src/ui/onboard.ui:191
 msgid "Wine"
@@ -1688,7 +1691,6 @@ msgid "We Are Almost There"
 msgstr "Neredeyse Geldik"
 
 #: src/ui/onboard.ui:241
-#, fuzzy
 msgid ""
 "We need to download and install some <a href=\"https://docs.usebottles.com/"
 "getting-started/first-run\">components (~75MB)</a> to get you ready.\n"
@@ -1698,14 +1700,12 @@ msgid ""
 "\n"
 "When you are ready press the <b>Install</b> button."
 msgstr ""
-"Kendi şişelerinizi oluşturmanıza izin vermek için bir çalıştırıcı indirip "
-"kurmamız gerekiyor.\n"
-"İndirme boyutu <b> yaklaşık 70MB</b>.\n"
-"<a href=\"https://docs.usebottles.com/getting-started/first-run"
-"\">İndireceklerimiz hakkında daha fazla bilgi edinin</a>.\n"
+"Sizi hazır hale getirmek için bazı <a href=\"https://docs.usebottles.com/"
+"getting-started/first-run\">bileşenleri (~75MB)</a> indirip kurmamız "
+"gerekiyor.\n"
 "\n"
-"Farklı sürüm döngülerine sahip olduğu için bu dosyaları Şişeler ile "
-"sunamıyoruz.\n"
+"Bu dosyaları, farklı sürüm döngülerine sahip oldukları için Şişeler ile "
+"birlikte sunamıyoruz.\n"
 "\n"
 "Hazır olduğunuzda <b>Kur</b> düğmesine basın."
 
@@ -1750,9 +1750,8 @@ msgid "Appearance"
 msgstr "Görünüm"
 
 #: src/ui/preferences.ui:63
-#, fuzzy
 msgid "Show Update Date"
-msgstr "Güncelleme tarihini göster"
+msgstr "Güncelleme Tarihini Göster"
 
 #: src/ui/preferences.ui:64
 msgid "Whether to show the update date in the bottle list."
@@ -1763,39 +1762,35 @@ msgid "Show notifications for downloads and installs."
 msgstr "İndirmeler ve kurmalar için bildirimleri göster."
 
 #: src/ui/preferences.ui:127
-#, fuzzy
 msgid "Temp Files"
-msgstr "Geçici dosyalar"
+msgstr "Geçici Dosyalar"
 
 #: src/ui/preferences.ui:128
 msgid "Clean temp files when Bottles launches?"
 msgstr "Şişeler başlatıldığında geçici dosyalar temizlensin mi?"
 
 #: src/ui/preferences.ui:154
-#, fuzzy
 msgid "Close Bottles After Starting Programs"
-msgstr "Bir programı başlattıktan sonra Şişeler'i kapat"
+msgstr "Bir Programı Başlattıktan Sonra Şişeler'i Kapat"
 
 #: src/ui/preferences.ui:155
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "Dosya yöneticisinden bir program başlattıktan sonra Şişeler'i kapat"
+msgstr "Dosya yöneticisinden bir program başlattıktan sonra Şişeler'i kapat."
 
 #: src/ui/preferences.ui:186
 msgid "Advanced"
 msgstr "Gelişmiş"
 
 #: src/ui/preferences.ui:191
-#, fuzzy
 msgid "Custom Bottles Path (Require Restart)"
-msgstr "Özel Şişeler yolu (yeniden başlatma gerekli)"
+msgstr "Özel Şişeler Yolu (Yeniden Başlatma Gerekli)"
 
 #: src/ui/preferences.ui:192
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
 msgstr ""
-"Yeni Şişelerin nereye depolanacağını seç (zaten kurulu olanları taşımayacak)"
+"Yeni şişelerin nereye kaydedileceğini seç (zaten kurulu olanlar "
+"taşınmayacak)."
 
 #: src/ui/preferences.ui:228
 msgid ""
@@ -1806,9 +1801,8 @@ msgstr ""
 "Sandbox'ı bozacaktır!"
 
 #: src/ui/preferences.ui:301
-#, fuzzy
 msgid "Pre-Release"
-msgstr "Ön sürüm"
+msgstr "Ön Sürüm"
 
 #: src/ui/preferences.ui:302
 msgid "Whether the above list should display unstable versions."
@@ -1847,19 +1841,16 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:421
-#, fuzzy
 msgid "Steam Proton Prefixes"
-msgstr "Steam Proton prefix'leri"
+msgstr "Steam Proton Prefix'leri"
 
 #: src/ui/preferences.ui:422 src/ui/preferences.ui:449
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "Erken geliştirme aşamasında (yeniden başlatma gerekli)"
+msgstr "Erken geliştirme aşamasında (yeniden başlatma gerekli)."
 
 #: src/ui/preferences.ui:448
-#, fuzzy
 msgid "Library Mode"
-msgstr "Kütüphane modu"
+msgstr "Kütüphane Modu"
 
 #: src/ui/program-entry.ui:33
 msgid "Change launch options"
@@ -1999,12 +1990,10 @@ msgid "Loading..."
 msgstr "Yükleniyor..."
 
 #: src/window.py:177
-#, fuzzy
 msgid "Bottle Details"
-msgstr "Şişe ayrıntıları"
+msgstr "Şişe Ayrıntıları"
 
 #: src/window.py:184
-#, fuzzy
 msgid "Your Library"
 msgstr "Kütüphaneniz"
 
