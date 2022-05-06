@@ -21,7 +21,7 @@ class WineBoot(WineProgram):
             3: "-u",
             4: "-i"
         }
-        envs = {"WineDEBUG": "-all", "DISPLAY": ":3.0"}
+        envs = {"WINEDEBUG": "-all", "DISPLAY": ":3.0"}
 
         if status == 0 and not WineServer(self.config).is_alive():
             logging.info("There is no running wineserver.", )
