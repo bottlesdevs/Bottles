@@ -36,7 +36,8 @@ class BottleViewEntry(Adw.ActionRow):
     btn_repair = Gtk.Template.Child()
     btn_run_executable = Gtk.Template.Child()
     details_image = Gtk.Template.Child()
-    label_environment = Gtk.Template.Child()
+    label_env = Gtk.Template.Child()
+    icon_env = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
@@ -51,7 +52,7 @@ class BottleViewEntry(Adw.ActionRow):
         self.window = window
         self.manager = window.manager
         self.config = config[1]
-        self.label_environment_context = self.label_environment.get_style_context()
+        self.label_env_context = self.label_env.get_style_context()
         self.arg_exe = arg_exe
 
         '''Format update date'''
@@ -81,8 +82,8 @@ class BottleViewEntry(Adw.ActionRow):
         self.set_title(self.config.get("Name"))
         if self.window.settings.get_boolean("update-date"):
             self.set_subtitle(update_date)
-        self.label_environment.set_text(_(self.config.get("Environment")))
-        self.label_environment_context.add_class(
+        self.label_env.set_text(_(self.config.get("Environment")))
+        self.label_env_context.add_class(
             "tag-%s" % self.config.get("Environment").lower())
 
         '''If config is broken'''

@@ -23,7 +23,6 @@ from gi.repository import Gtk, GLib, Gio, Adw
 from pathlib import Path
 
 from bottles.params import *  # pyright: reportMissingImports=false
-from bottles.widgets.message import MessageEntry
 from bottles.backend.logger import Logger
 from bottles.utils.threading import RunAsync
 from bottles.utils.connection import ConnectionUtils
@@ -72,7 +71,6 @@ class MainWindow(Adw.ApplicationWindow):
     list_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
-    list_notifications = Gtk.Template.Child()
     window_title = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
     # endregion
@@ -253,6 +251,22 @@ class MainWindow(Adw.ApplicationWindow):
 
         self.check_crash_log()
 
+    def send_notification(self, title, text, image="", ignore_user=True):
+        """
+        This method is used to send a notification to the user using
+        Gio.Notification. The notification is sent only if the
+        user has enabled it in the settings. It is possibile to ignore the
+        user settings by passing the argument ignore_user=False.
+        """
+        if ignore_user or self.settings.get_boolean("notifications"):
+            notification = Gio.Notification.new(title)
+            notification.set_body(text)
+            if image:
+                icon = Gio.ThemedIcon.new(image)
+                notification.set_icon(icon)
+
+            self.props.application.send_notification(None, notification)
+
     def set_previous_page_status(self):
         """
         This method set the previous page status according to the
@@ -352,24 +366,6 @@ class MainWindow(Adw.ApplicationWindow):
         except FileNotFoundError:
             pass
 
-    def check_notifications(self):
-        if not self.utils_conn.check_connection():
-            return
-
-        messages = NotificationsManager().messages
-        if len(messages) > 0:
-            for message in messages:
-                entry = MessageEntry(
-                    nid=message["id"],
-                    title=message["title"],
-                    body=message["body"],
-                    url=message["url"],
-                    message_type=message["type"],
-                )
-                entry.set_visible(True)
-                self.list_notifications.append(entry)
-
-
     def toggle_selection_mode(self, status: bool = True):
         context = self.headerbar.get_style_context()
         if status:
@@ -381,7 +377,6 @@ class MainWindow(Adw.ApplicationWindow):
         for w in [
             self.btn_add,
             self.btn_menu,
-            self.btn_notifications,
             self.window_title,
         ]:
             w.set_visible(not status)

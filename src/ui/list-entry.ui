@@ -7,16 +7,32 @@
     <property name="title">Bottle name</property>
     <child>
       <object class="GtkBox" id="list_labels">
-        <property name="spacing">12</property>
+        <property name="spacing">1</property>
         <child>
-          <object class="GtkLabel" id="label_environment">
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="label">Environment</property>
-            <style>
-              <class name="tag"/>
-              <class name="caption"/>
-            </style>
+          <object class="AdwSqueezer">
+          <property name="switch-threshold-policy">natural</property>
+          <property name="transition-type">crossfade</property>
+          <child>
+            <object class="GtkLabel" id="label_env">
+              <property name="halign">center</property>
+              <property name="valign">center</property>
+              <property name="label">Environment</property>
+              <style>
+                <class name="tag"/>
+                <class name="caption"/>
+              </style>
+            </object>
+          </child>
+          <child>
+            <object class="GtkImage" id="icon_env">
+              <property name="halign">center</property>
+              <property name="valign">center</property>
+              <property name="icon-name">tablet-symbolic</property>
+              <style>
+                <class name="tag"/>
+              </style>
+            </object>
+          </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -78,8 +94,7 @@
         <property name="visible">false</property>
         <child>
           <object class="GtkBox">
-            <property name="margin-end">6</property>
-            <property name="spacing">5</property>
+            <property name="spacing">6</property>
             <child>
               <object class="GtkImage">
                 <property name="margin-end">6</property>
@@ -121,6 +136,9 @@
     <child>
       <object class="GtkImage" id="details_image">
         <property name="icon-name">go-next-symbolic</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
       </object>
     </child>
     <child>
