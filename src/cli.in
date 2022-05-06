@@ -453,6 +453,7 @@ class CLI:
         _args = "" if self.args.args is None else self.args.args
         _executable = self.args.executable
         _cwd = None
+        _script = None
         mng = Manager(self, is_cli=True)
         mng.checks()
 
@@ -476,12 +477,14 @@ class CLI:
             _executable = program.get("path", "")
             _args = program.get("arguments", "")
             _cwd = program.get("folder", "")
+            _script = program.get("script", None)
 
         WineExecutor(
             bottle,
             exec_path=_executable,
             args=_args,
             cwd=_cwd,
+            post_script=_script
         ).run_cli()
 
     # endregion
