@@ -448,6 +448,7 @@ class CLI:
 
     # region RUN
     def run_program(self):
+        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
         _bottle = self.args.bottle
         _program = self.args.program
         _args = "" if self.args.args is None else self.args.args

@@ -34,11 +34,19 @@ class ConnectionUtils:
     status = None
     last_check = None
 
-    def __init__(self, window=None, **kwargs):
+    def __init__(self, window=None, force_offline=False, **kwargs):
         super().__init__(**kwargs)
         self.window = window
+        self.force_offline = force_offline
 
     def check_connection(self, show_notification=False):
+        if self.force_offline:
+            logging.info("Forcing offline mode")
+            self.status = False
+            if self.window is not None:
+                self.window.toggle_btn_noconnection(True)
+            return False
+
         # check connection using gethostbyname, check if it hangs, then raise
         try:
             urllib.request.urlopen('https://usebottles.com/', timeout=5)
