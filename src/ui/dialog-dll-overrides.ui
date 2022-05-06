@@ -2,97 +2,53 @@
 <interface>
 <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="DLLOverridesDialog" parent="AdwWindow">
-    
-    <property name="type">popup</property>
+  <template class="DLLOverridesDialog" parent="AdwPreferencesWindow">
     <property name="modal">True</property>
     <property name="default-width">500</property>
+    <property name="default-height">500</property>
+    <property name="search-enabled">False</property>
     <property name="destroy-with-parent">True</property>
+    <property name="title" translatable="yes">DLL Overrides</property>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
+      <object class="AdwPreferencesPage">
         <child>
-          <object class="AdwHeaderBar">
-  <property name="title-widget">
-    <object class="AdwWindowTitle">
-      <property name="title" translatable="yes">DLL overrides</property>
-    </object>
-  </property>
-          </object>
-          
-          
-        </child>
-        <child>
-          <object class="AdwClamp">
-            <property name="maximum-size">450</property>
+          <object class="AdwPreferencesGroup">
+            <property name="description" translatable="yes">Dynamic Link Libraries can be specified to be builtin (provided by Wine) or native (provided by the program).</property>
+            <property name="title" translatable="yes">DLL Overrides</property>
             <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">New Override</property>
                 <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="description" translatable="yes">Dynamic Link Libraries can be specified to be builtin (provided by Wine) or native (provided by the program)</property>
-                    <property name="title" translatable="yes">DLL overrides</property>
+                  <object class="GtkBox">
+                    <property name="spacing">6</property>
                     <child>
-                      <object class="AdwActionRow">
-                        
-                        <property name="title" translatable="yes">New override</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="spacing">5</property>
-                            <child>
-                              <object class="GtkEntry" id="entry_name">
-                                
-                                <property name="has-frame">False</property>
-                                <property name="placeholder-text" translatable="yes">e.g. ucrtbase</property>
-                              </object>
-                              
-                              
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="btn_save">
-                                
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="icon-name">list-add-symbolic</property>
-                                  </object>
-                                </child>
-                                <style>
-                                  <class name="circular"/>
-                                  <class name="image-button"/>
-                                  <class name="suggested-action"/>
-                                </style>
-                              </object>
-                              
-                              
-                            </child>
-                          </object>
-                        </child>
+                      <object class="GtkEntry" id="entry_name">
+                        <property name="valign">center</property>
+                        <property name="placeholder-text" translatable="yes">e.g. ucrtbase</property>
+                        <style>
+                        </style>
                       </object>
                     </child>
                     <child>
-                      <placeholder/>
+                      <object class="GtkButton" id="btn_save">
+                        <property name="valign">center</property>
+                        <property name="icon-name">list-add-symbolic</property>
+                        <style>
+                          <class name="circular"/>
+                          <class name="suggested-action"/>
+                        </style>
+                      </object>
                     </child>
                   </object>
-                  
-                  
-                </child>
-                <child>
-                  <object class="AdwPreferencesGroup" id="list_overrides">
-                    <property name="title" translatable="yes">Existing overrides</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </object>
-                  
-                  
                 </child>
               </object>
             </child>
           </object>
-          
-          
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup" id="list_overrides">
+            <property name="title" translatable="yes">Overrides</property>
+          </object>
         </child>
       </object>
     </child>
