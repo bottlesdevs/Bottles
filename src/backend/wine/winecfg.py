@@ -7,5 +7,5 @@ logging = Logger()
 
 
 class WineCfg(WineProgram):
-    program = "WINE Configuration"
+    program = "Wine Configuration"
     command = "winecfg"

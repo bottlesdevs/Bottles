@@ -7,7 +7,7 @@ logging = Logger()
 
 
 class MsiExec(WineProgram):
-    program = "WINE MSI Installer"
+    program = "Wine MSI Installer"
     command = "msiexec"
 
     def install(

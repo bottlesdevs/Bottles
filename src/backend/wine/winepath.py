@@ -7,7 +7,7 @@ logging = Logger()
 
 
 class WinePath(WineProgram):
-    program = "WINE path converter"
+    program = "Wine path converter"
     command = "winepath"
 
     @staticmethod

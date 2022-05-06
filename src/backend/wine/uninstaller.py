@@ -7,7 +7,7 @@ logging = Logger()
 
 
 class Uninstaller(WineProgram):
-    program = "WINE Uninstaller"
+    program = "Wine Uninstaller"
     command = "uninstaller"
 
     def get_uuid(self, name: str = None):

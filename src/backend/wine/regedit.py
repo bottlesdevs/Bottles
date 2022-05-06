@@ -7,5 +7,5 @@ logging = Logger()
 
 
 class Regedit(WineProgram):
-    program = "WINE Registry Editor"
+    program = "Wine Registry Editor"
     command = "regedit"

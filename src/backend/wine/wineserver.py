@@ -12,7 +12,7 @@ logging = Logger()
 
 
 class WineServer(WineProgram):
-    program = "WINE Server"
+    program = "Wine Server"
     command = "wineserver"
 
     def is_alive(self):

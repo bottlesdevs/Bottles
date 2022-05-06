@@ -7,5 +7,5 @@ logging = Logger()
 
 
 class Taskmgr(WineProgram):
-    program = "WINE Task Manager"
+    program = "Wine Task Manager"
     command = "taskmgr"

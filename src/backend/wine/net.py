@@ -7,7 +7,7 @@ logging = Logger()
 
 
 class Net(WineProgram):
-    program = "WINE Services manager"
+    program = "Wine Services manager"
     command = "net"
 
     def start(self, name: str = None):
