@@ -135,7 +135,7 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Hide this program</property>
+            <property name="text" translatable="yes">Hide from list</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -147,7 +147,7 @@
           <object class="GtkModelButton" id="btn_unhide">
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Unhide this program</property>
+            <property name="text" translatable="yes">Unhide from list</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -160,12 +160,23 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Remove this program</property>
+            <property name="text" translatable="yes">Remove from list</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">12</property>
+            <property name="position">8</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">9</property>
           </packing>
         </child>
         <child>

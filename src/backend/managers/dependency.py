@@ -212,12 +212,12 @@ class DependencyManager:
         """
         uninstaller = True
 
+        if step["action"] == "delete_dlls":
+            self.__step_delete_dlls(config, step)
+
         if step["action"] == "download_archive":
             if not self.__step_download_archive(step):
                 return Result(status=False)
-
-        if step["action"] == "delete_dlls":
-            self.__step_delete_dlls(config, step)
 
         if step["action"] in ["install_exe", "install_msi"]:
             if not self.__step_install_exe_msi(config=config, step=step):
@@ -443,7 +443,6 @@ class DependencyManager:
 
         for d in step.get("dlls", []):
             _d = os.path.join(dest, d)
-            print(_d)
             if os.path.exists(_d):
                 os.remove(_d)
 
