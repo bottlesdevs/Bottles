@@ -18,6 +18,8 @@
 import os
 import shutil
 from pathlib import Path
+from functools import lru_cache
+
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.managers.data import DataManager
@@ -42,6 +44,7 @@ def get_apps_dir():
     return _dir
 
 
+@lru_cache
 class Paths:
     # Icon paths
     icons_user = f"{xdg_data_home}/icons"
