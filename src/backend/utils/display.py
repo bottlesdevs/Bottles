@@ -1,10 +1,12 @@
 import os
 import subprocess
+from functools import lru_cache
 
 
 class DisplayUtils:
 
     @staticmethod
+    @lru_cache
     def get_x_display():
         """Get the X display port."""
         env_var = "DISPLAY"
