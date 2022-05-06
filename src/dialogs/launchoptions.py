@@ -58,6 +58,10 @@ class LaunchOptionsDialog(Handy.Window):
         self.btn_script_reset.connect("clicked", self.__choose_script, True)
         self.entry_arguments.connect("activate", self.__save_options)
 
+        # set script path if available
+        if program.get("script"):
+            self.action_script.set_subtitle(program["script"])
+
     def __close_window(self, widget=None):
         self.parent.page_details.set_config(self.config)
         self.destroy()

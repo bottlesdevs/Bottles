@@ -49,16 +49,16 @@ AppDir:
     id: com.usebottles.bottles
     name: Bottles
     icon: com.usebottles.bottles
-    version: 2022.5.2
+    version: 2022.5.2-trento-1
     # Set the python executable as entry point
-    exec: usr/bin/python3.9
+    exec: usr/bin/python3.10
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
     exec_args: "$APPDIR/usr/bin/bottles $@"
 
   apt:
     arch: [amd64, i386]
     sources:
-      - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ impish main restricted universe multiverse'
+      - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse'
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
 
     include:
@@ -78,7 +78,7 @@ AppDir:
     - libgpg-error0
     - libpcre3
     - libprocps8
-    - libpython3.9-stdlib
+    - libpython3.10-stdlib
     - librsvg2-common
     - libselinux1
     - libgtk-3-0

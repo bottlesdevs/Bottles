@@ -40,7 +40,6 @@ def detect_encoding(text: bytes):
     can't be detected.
     """
     encodings = [
-        sys.stdout.encoding,
         "ascii",
         "utf-8",
         "utf-16",
@@ -73,6 +72,9 @@ def detect_encoding(text: bytes):
         "utf_32_be_sig",
         "utf_32_le_sig"
     ]
+
+    if sys.stdout is not None:
+        encodings.append(sys.stdout.encoding)
 
     for encoding in encodings:
         try:

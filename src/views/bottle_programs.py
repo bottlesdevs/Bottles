@@ -92,7 +92,8 @@ class ProgramsView(Gtk.ScrolledWindow):
                 config=self.config,
                 key=_file_name,
                 value=_program,
-                scope="External_Programs"
+                scope="External_Programs",
+                fallback=True
             )
             self.parent.update_programs(config=self.config)
 

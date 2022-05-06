@@ -215,7 +215,8 @@ class ComponentManager:
                 res = Downloader(
                     url=download_url,
                     file=temp_dest,
-                    func=update_func
+                    func=update_func,
+                    task_id=task_id
                 ).download()
 
                 if not res:

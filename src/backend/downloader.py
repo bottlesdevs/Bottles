@@ -30,10 +30,11 @@ class Downloader:
     bars using the func parameter.
     """
 
-    def __init__(self, url: str, file: str, func: callable = None):
+    def __init__(self, url: str, file: str, func: callable = None, task_id: int = None):
         self.url = url
         self.file = file
         self.func = func
+        self.task_id = task_id
 
     def download(self):
         """Start the download."""
@@ -50,12 +51,21 @@ class Downloader:
                         file.write(data)
                         count += 1
                         if self.func is not None:
-                            GLib.idle_add(
-                                self.func,
-                                count,
-                                block_size,
-                                total_size
-                            )
+                            if self.task_id:
+                                GLib.idle_add(
+                                    self.func,
+                                    self.task_id,
+                                    count,
+                                    block_size,
+                                    total_size
+                                )
+                            else:
+                                GLib.idle_add(
+                                    self.func,
+                                    count,
+                                    block_size,
+                                    total_size
+                                )
                             self.__progress(count, block_size, total_size)
                 else:
                     file.write(response.content)

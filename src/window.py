@@ -28,6 +28,7 @@ from bottles.backend.logger import Logger
 from bottles.utils.threading import RunAsync
 from bottles.utils.connection import ConnectionUtils
 
+from bottles.backend.globals import Paths
 from bottles.backend.health import HealthChecker
 from bottles.backend.managers.manager import Manager
 from bottles.backend.wine.executor import WineExecutor
@@ -261,6 +262,19 @@ class MainWindow(Handy.ApplicationWindow):
             )
             self.stack_main.set_visible_child_name("page_list")
             self.lock_ui(False)
+            if Paths.custom_bottles_path_err:
+                dialog = Gtk.MessageDialog(
+                    transient_for=self,
+                    flags=0,
+                    message_type=Gtk.MessageType.ERROR,
+                    buttons=Gtk.ButtonsType.OK,
+                    text=_("The custom bottles path was not found."
+                      "Please, check the it in Preferences.\n"
+                      "Fallbacking to the default path. You will "
+                      "no bottles from that path will be listed!")
+                )
+                dialog.run()
+                dialog.destroy()
 
         def get_manager(window):
             mng = Manager(window)

@@ -22,7 +22,7 @@ msgstr ""
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
 #: src/ui/window.ui:222 src/ui/window.ui:237 src/window.py:179
-#: src/window.py:250
+#: src/window.py:250 src/window.py:183 src/window.py:253
 msgid "Bottles"
 msgstr "Bottles"
 
@@ -190,6 +190,7 @@ msgid "Change the window height."
 msgstr "ウィンドウの高さを変更します。"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:100
+#: src/ui/window.ui:373
 msgid "Notifications"
 msgstr "通知"
 
@@ -354,13 +355,13 @@ msgstr "エクスプローラーで開く"
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "トラブルシューティング"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
 msgstr "ボトルを複製"
 
-#: src/ui/details-bottle.ui:83 src/ui/importer.ui:148
+#: src/ui/details-bottle.ui:83 src/ui/importer.ui:148 src/ui/importer.ui:34
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr "これはボトルの完全なアーカイブです。個人ファイルも含まれます。"
 
@@ -369,7 +370,7 @@ msgstr "これはボトルの完全なアーカイブです。個人ファイル
 msgid "Full backup"
 msgstr "完全なアーカイブ"
 
-#: src/ui/details-bottle.ui:97 src/ui/importer.ui:134
+#: src/ui/details-bottle.ui:97 src/ui/importer.ui:134 src/ui/importer.ui:20
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
@@ -387,44 +388,46 @@ msgstr "設定"
 msgid "Delete bottle"
 msgstr "ボトルを作成する"
 
-#: src/ui/details-bottle.ui:148
+#: src/ui/details-bottle.ui:148 src/ui/details-bottle.ui:182
 #, fuzzy
 msgid "Kill all processes"
 msgstr "すべてのWINEプロセスをkillします"
 
-#: src/ui/details-bottle.ui:161
+#: src/ui/details-bottle.ui:161 src/ui/details-bottle.ui:195
 msgid "Simulate a Windows system shutdown."
 msgstr "Windows システムのシャットダウンを擬似的に行います。"
 
-#: src/ui/details-bottle.ui:162
+#: src/ui/details-bottle.ui:162 src/ui/details-bottle.ui:196
 msgid "Shutdown"
 msgstr "シャットダウン"
 
-#: src/ui/details-bottle.ui:175
+#: src/ui/details-bottle.ui:175 src/ui/details-bottle.ui:209
 msgid "Simulate a Windows system reboot."
 msgstr "Windows システムの再起動を擬似的に行います。"
 
-#: src/ui/details-bottle.ui:176
+#: src/ui/details-bottle.ui:176 src/ui/details-bottle.ui:210
 msgid "Reboot"
 msgstr "再起動"
 
-#: src/ui/details-bottle.ui:281
+#: src/ui/details-bottle.ui:281 src/ui/details-bottle.ui:236
+#: src/ui/dialog-run-args.ui:24
 msgid "Run with arguments"
 msgstr "引数を指定して実行"
 
-#: src/ui/details-bottle.ui:291
+#: src/ui/details-bottle.ui:291 src/ui/details-bottle.ui:246
 msgid "Move inside the sandbox"
 msgstr "サンドボックス内に移動"
 
 #: src/ui/details-bottle.ui:305 src/ui/program-entry.ui:20
+#: src/ui/details-bottle.ui:260
 msgid "Launch with terminal"
 msgstr "ターミナルを使って起動"
 
-#: src/ui/details-bottle.ui:358
+#: src/ui/details-bottle.ui:358 src/ui/details-bottle.ui:474
 msgid "Layers"
 msgstr "レイヤー"
 
-#: src/ui/details-bottle.ui:402
+#: src/ui/details-bottle.ui:402 src/ui/details-bottle.ui:497
 msgid "Run executable"
 msgstr "実行可能ファイルを実行"
 
@@ -433,111 +436,117 @@ msgstr "実行可能ファイルを実行"
 msgid "My bottle"
 msgstr "新しいボトル"
 
-#: src/ui/details-bottle.ui:461
+#: src/ui/details-bottle.ui:358
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
-#: src/ui/details-bottle.ui:482 src/ui/new.ui:129
+#: src/ui/details-bottle.ui:482 src/ui/new.ui:129 src/ui/details-bottle.ui:379
+#: src/ui/new.ui:160
 msgid "Environment"
 msgstr "環境"
 
-#: src/ui/details-bottle.ui:499
+#: src/ui/details-bottle.ui:499 src/ui/details-bottle.ui:396
 msgid "Vaniglia-6.21-x86_64"
 msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:518 src/ui/list-entry.ui:35
+#: src/ui/details-bottle.ui:415
 msgid "Versioning enabled for this bottle"
 msgstr "このボトルのバージョン管理は有効です"
 
 #: src/ui/details-bottle.ui:526 src/ui/list-entry.ui:42
+#: src/ui/details-bottle.ui:423
 msgid "Versioning is active in this bottle."
 msgstr "このボトルのバージョン管理はアクティブです。"
 
 #: src/ui/details-bottle.ui:549 src/ui/list-entry.ui:61
+#: src/ui/details-bottle.ui:446
 msgid "0"
 msgstr "0"
 
-#: src/ui/details-bottle.ui:597
+#: src/ui/details-bottle.ui:597 src/ui/details-bottle.ui:647
 msgid "Moving inside the sandbox…"
 msgstr "サンドボックス内に移動しています…"
 
 #: src/ui/details-bottle.ui:614 src/views/details.py:122
+#: src/ui/details-bottle.ui:664
 msgid "Programs"
 msgstr "プログラム"
 
-#: src/ui/details-bottle.ui:630
+#: src/ui/details-bottle.ui:630 src/ui/details-bottle.ui:680
 msgid "Other"
 msgstr "そのほか"
 
-#: src/ui/details-bottle.ui:636
+#: src/ui/details-bottle.ui:636 src/ui/details-bottle.ui:686
 msgid "Utilities"
 msgstr "ユーティリティ"
 
-#: src/ui/details-bottle.ui:641
+#: src/ui/details-bottle.ui:641 src/ui/details-bottle.ui:691
 msgid "Browse C:"
 msgstr "C: を開く"
 
-#: src/ui/details-bottle.ui:643
+#: src/ui/details-bottle.ui:643 src/ui/details-bottle.ui:693
 msgid "Browse internal files."
 msgstr "内部ファイルを参照します。"
 
-#: src/ui/details-bottle.ui:722
+#: src/ui/details-bottle.ui:722 src/ui/details-bottle.ui:772
 msgid "Command line"
 msgstr "コマンドライン"
 
-#: src/ui/details-bottle.ui:724
+#: src/ui/details-bottle.ui:724 src/ui/details-bottle.ui:774
 msgid "Run commands inside the Bottle."
 msgstr "ボトル内でコマンドを実行します。"
 
-#: src/ui/details-bottle.ui:764
+#: src/ui/details-bottle.ui:764 src/ui/details-bottle.ui:814
 msgid "Registry editor"
 msgstr "レジストリ エディター"
 
-#: src/ui/details-bottle.ui:766
+#: src/ui/details-bottle.ui:766 src/ui/details-bottle.ui:816
 msgid "Edit the internal registry."
 msgstr "内部レジストリを編集します。"
 
-#: src/ui/details-bottle.ui:806
+#: src/ui/details-bottle.ui:806 src/ui/details-bottle.ui:856
 msgid "Debug"
 msgstr "デバッグ"
 
-#: src/ui/details-bottle.ui:808
+#: src/ui/details-bottle.ui:808 src/ui/details-bottle.ui:858
 msgid "Debug wine processes."
 msgstr "Wineプロセスをデバッグします。"
 
-#: src/ui/details-bottle.ui:845
+#: src/ui/details-bottle.ui:845 src/ui/details-bottle.ui:895
 msgid "Read documentation"
 msgstr "ドキュメンテーションを読む"
 
 #: src/ui/details-bottle.ui:873 src/views/details.py:134
+#: src/ui/details-bottle.ui:923
 msgid "Task manager"
 msgstr "タスクマネージャー"
 
-#: src/ui/details-bottle.ui:875
+#: src/ui/details-bottle.ui:875 src/ui/details-bottle.ui:925
 msgid "Manage processes with the Wine task manager."
 msgstr "Wineタスクマネージャーでプロセスを管理します。"
 
-#: src/ui/details-bottle.ui:915
+#: src/ui/details-bottle.ui:915 src/ui/details-bottle.ui:965
 msgid "Wine config"
 msgstr "Wine 設定"
 
-#: src/ui/details-bottle.ui:917
+#: src/ui/details-bottle.ui:917 src/ui/details-bottle.ui:967
 msgid "Adjust internal settings."
 msgstr "内部設定を調整します。"
 
-#: src/ui/details-bottle.ui:957
+#: src/ui/details-bottle.ui:957 src/ui/details-bottle.ui:1007
 msgid "Uninstaller"
 msgstr "アンインストーラー"
 
-#: src/ui/details-bottle.ui:959
+#: src/ui/details-bottle.ui:959 src/ui/details-bottle.ui:1009
 msgid "Uninstall programs using wine uninstaller"
 msgstr "Wineアンインストーラーを使用してプログラムをアンインストールします"
 
-#: src/ui/details-bottle.ui:999
+#: src/ui/details-bottle.ui:999 src/ui/details-bottle.ui:1049
 msgid "Control panel"
 msgstr "コントロール パネル"
 
-#: src/ui/details-bottle.ui:1001
+#: src/ui/details-bottle.ui:1001 src/ui/details-bottle.ui:1051
 msgid "Access the internal wine control panel."
 msgstr "内部のWineコントロール パネルにアクセスします。"
 
@@ -553,7 +562,7 @@ msgstr "テストモードが有効: テストリポジトリからの依存関�
 msgid "Microsoft .NET Framework 4 .."
 msgstr "例: Microsoft .NET Framework 4"
 
-#: src/ui/details-dependencies.ui:118
+#: src/ui/details-dependencies.ui:118 src/ui/details-installers.ui:75
 msgid ""
 "While the files on this page have been verified may be under proprietary "
 "license."
@@ -568,41 +577,43 @@ msgid ""
 "requirements."
 msgstr ""
 
-#: src/ui/details-dependencies.ui:193
+#: src/ui/details-dependencies.ui:193 src/ui/details-dependencies.ui:177
 msgid "Report a problem or a missing dependency."
 msgstr "不具合や不足している依存関係を報告します。"
 
-#: src/ui/details-dependencies.ui:194
+#: src/ui/details-dependencies.ui:194 src/ui/details-dependencies.ui:178
 #, fuzzy
 msgid "Report missing dependency"
 msgstr "不具合や不足している依存関係を報告します。"
 
 #: src/ui/details-dependencies.ui:207 src/ui/details-programs.ui:80
+#: src/ui/details-dependencies.ui:191
 #, fuzzy
 msgid "Read documentation about dependencies\t"
 msgstr "ドキュメンテーションを読む"
 
 #: src/ui/details-dependencies.ui:208 src/ui/details-installers.ui:133
 #: src/ui/details-programs.ui:106 src/ui/details-versioning.ui:93
-#: src/ui/window.ui:82
+#: src/ui/window.ui:82 src/ui/details-dependencies.ui:192
+#: src/ui/details-installers.ui:116
 msgid "Documentation"
 msgstr "ドキュメンテーション"
 
-#: src/ui/details-dependencies.ui:229
+#: src/ui/details-dependencies.ui:229 src/ui/details-dependencies.ui:213
 msgid "Install selected"
 msgstr "選択項目をインストール"
 
-#: src/ui/details-dependencies.ui:232
+#: src/ui/details-dependencies.ui:232 src/ui/details-dependencies.ui:216
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr "複数の依存関係を同時にインストールすることを強く推奨します。"
 
-#: src/ui/details-dependencies.ui:251
+#: src/ui/details-dependencies.ui:251 src/ui/details-dependencies.ui:235
 msgid "Select dependencies"
 msgstr "依存関係を選択"
 
-#: src/ui/details-dependencies.ui:305 src/ui/details-installers.ui:176
+#: src/ui/details-dependencies.ui:289 src/ui/details-installers.ui:159
 msgid "Toggle search"
-msgstr ""
+msgstr "検索を切り替え"
 
 #: src/ui/details-installers.ui:32
 msgid "Epic Games Store .."
@@ -625,7 +636,7 @@ msgstr ""
 "このページのファイルは検証済みですが、プロプライエタリライセンスの下にある可"
 "能性があります。"
 
-#: src/ui/details-installers.ui:132
+#: src/ui/details-installers.ui:132 src/ui/details-installers.ui:115
 #, fuzzy
 msgid "Read documentation about installers\t"
 msgstr "ドキュメンテーションを読む"
@@ -635,152 +646,158 @@ msgstr "ドキュメンテーションを読む"
 msgid "Reset default"
 msgstr "デフォルトにリセット"
 
-#: src/ui/details-preferences.ui:63 src/window.py:245
+#: src/ui/details-preferences.ui:63 src/window.py:245 src/window.py:181
+#: src/window.py:248
 msgid "Bottle details"
 msgstr "ボトルの詳細"
 
 #: src/ui/details-preferences.ui:68 src/ui/new.ui:97 src/ui/new.ui:108
+#: src/ui/new.ui:117
 msgid "Name"
 msgstr "名前"
 
-#: src/ui/details-preferences.ui:81
+#: src/ui/details-preferences.ui:81 src/ui/new.ui:129
 msgid "My beautiful bottle"
 msgstr "新しいボトル"
 
-#: src/ui/details-preferences.ui:94
+#: src/ui/details-preferences.ui:94 src/ui/details-bottle.ui:597
 msgid "Rename bottle"
 msgstr "ボトル名を変更"
 
-#: src/ui/details-preferences.ui:133
+#: src/ui/details-preferences.ui:133 src/ui/details-preferences.ui:62
 msgid "Graphics"
 msgstr "グラフィックス"
 
-#: src/ui/details-preferences.ui:138
+#: src/ui/details-preferences.ui:138 src/ui/details-preferences.ui:67
 msgid "Use DXVK"
 msgstr "DXVKを使う"
 
-#: src/ui/details-preferences.ui:139
+#: src/ui/details-preferences.ui:139 src/ui/details-preferences.ui:68
 msgid "Improves performance of DirectX 11 games and 3D applications."
 msgstr ""
 "DirectX 11を使用するゲームや、3Dアプリケーションのパフォーマンスを向上させま"
 "す。"
 
 #: src/ui/details-preferences.ui:148 src/ui/details-preferences.ui:782
+#: src/ui/details-preferences.ui:77 src/ui/details-preferences.ui:712
 msgid "Updating DXVK, please wait…"
 msgstr "DXVKを更新しています。お待ちください…"
 
-#: src/ui/details-preferences.ui:181
+#: src/ui/details-preferences.ui:181 src/ui/details-preferences.ui:110
 msgid "Use VKD3D"
 msgstr "VKD3Dを使う"
 
-#: src/ui/details-preferences.ui:182
+#: src/ui/details-preferences.ui:182 src/ui/details-preferences.ui:111
 msgid "Improves performance of DirectX 12 games and 3D applications."
 msgstr ""
 "DirectX 12を使用するゲームや、3Dアプリケーションのパフォーマンスを向上させま"
 "す。"
 
 #: src/ui/details-preferences.ui:191 src/ui/details-preferences.ui:867
+#: src/ui/details-preferences.ui:120 src/ui/details-preferences.ui:797
 msgid "Updating VKD3D, please wait…"
 msgstr "VKD3Dを更新しています。お待ちください…"
 
-#: src/ui/details-preferences.ui:224
+#: src/ui/details-preferences.ui:224 src/ui/details-preferences.ui:153
 msgid "Enable DLSS (DXVK-NVAPI)"
 msgstr "DLSSを有効にする (DXVK-NVAPI)"
 
-#: src/ui/details-preferences.ui:225
+#: src/ui/details-preferences.ui:225 src/ui/details-preferences.ui:154
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
 msgstr "DLSSサポート (利用できる場合のみ) とNvidiaのNVAPIを提供します。"
 
 #: src/ui/details-preferences.ui:234 src/ui/details-preferences.ui:346
 #: src/ui/details-preferences.ui:952 src/ui/details-preferences.ui:1035
+#: src/ui/details-preferences.ui:163 src/ui/details-preferences.ui:275
+#: src/ui/details-preferences.ui:882 src/ui/details-preferences.ui:965
 msgid "Updating DXVK-NVAPI, please wait…"
 msgstr "DXVK-NVAPIを更新しています。お待ちください…"
 
-#: src/ui/details-preferences.ui:269
+#: src/ui/details-preferences.ui:269 src/ui/details-preferences.ui:198
 msgid "Enable FSR"
 msgstr "FSRを有効にする"
 
-#: src/ui/details-preferences.ui:270
+#: src/ui/details-preferences.ui:270 src/ui/details-preferences.ui:199
 msgid ""
 "FSR uses cutting-edge upscaling technologies to help boost your framerates."
 msgstr ""
 "FSRは最先端のアップスケーリング技術を使用することで、高フレームレートを目指し"
 "ます。"
 
-#: src/ui/details-preferences.ui:284
+#: src/ui/details-preferences.ui:284 src/ui/details-preferences.ui:213
 msgid "Ultra Quality"
 msgstr "最高品質"
 
-#: src/ui/details-preferences.ui:285
+#: src/ui/details-preferences.ui:285 src/ui/details-preferences.ui:214
 msgid "Quality"
 msgstr "品質優先"
 
-#: src/ui/details-preferences.ui:286
+#: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:215
 msgid "Balanced"
 msgstr "バランス"
 
-#: src/ui/details-preferences.ui:287
+#: src/ui/details-preferences.ui:287 src/ui/details-preferences.ui:216
 msgid "Performance"
 msgstr "パフォーマンス優先"
 
-#: src/ui/details-preferences.ui:336
+#: src/ui/details-preferences.ui:336 src/ui/details-preferences.ui:265
 msgid "Enable LatencyFleX"
 msgstr "LatencyFleXを有効化"
 
-#: src/ui/details-preferences.ui:337
+#: src/ui/details-preferences.ui:337 src/ui/details-preferences.ui:266
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
 msgstr ""
 "NVIDIA Reflex の代替機能です。アンチチートソフトウェアによっては検出する可能"
 "性があります。"
 
-#: src/ui/details-preferences.ui:380
+#: src/ui/details-preferences.ui:380 src/ui/details-preferences.ui:309
 msgid "Discrete GPU"
 msgstr "ディスクリートGPU"
 
-#: src/ui/details-preferences.ui:381
+#: src/ui/details-preferences.ui:381 src/ui/details-preferences.ui:310
 msgid "Improves performance at the cost of increased power usage."
 msgstr "電力使用量の増加を犠牲にしてパフォーマンスを向上させます。"
 
-#: src/ui/details-preferences.ui:407
+#: src/ui/details-preferences.ui:336
 msgid "Use vkBasalt"
-msgstr ""
+msgstr "vkBasaltを使う"
 
-#: src/ui/details-preferences.ui:408
+#: src/ui/details-preferences.ui:337
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
-msgstr ""
+msgstr "vkBasaltはVulkanの後処理レイヤーで、ゲームの画質を向上させます。"
 
-#: src/ui/details-preferences.ui:435
+#: src/ui/details-preferences.ui:435 src/ui/details-preferences.ui:364
 msgid "Display settings"
 msgstr "ディスプレイの設定"
 
-#: src/ui/details-preferences.ui:440
+#: src/ui/details-preferences.ui:440 src/ui/details-preferences.ui:369
 msgid "Use a virtual desktop"
 msgstr "仮想デスクトップを使う"
 
-#: src/ui/details-preferences.ui:441
+#: src/ui/details-preferences.ui:441 src/ui/details-preferences.ui:370
 msgid "Use the Wine virtual desktop."
 msgstr "Wine仮想デスクトップを使用します。"
 
-#: src/ui/details-preferences.ui:516
+#: src/ui/details-preferences.ui:516 src/ui/details-preferences.ui:445
 msgid "Mouse capture fullscreen"
 msgstr "全画面表示時マウスを捕捉"
 
-#: src/ui/details-preferences.ui:517
+#: src/ui/details-preferences.ui:517 src/ui/details-preferences.ui:446
 msgid "Let the program capture mouse input when fullscreen."
 msgstr "全画面で表示中のプログラムにマウス操作が反映されます。"
 
-#: src/ui/details-preferences.ui:548
+#: src/ui/details-preferences.ui:548 src/ui/details-preferences.ui:477
 msgid "Take focus"
 msgstr "フォーカスを取得"
 
-#: src/ui/details-preferences.ui:549
+#: src/ui/details-preferences.ui:549 src/ui/details-preferences.ui:478
 msgid "Activate it if the program does not retake focus on switch."
 msgstr ""
 "プログラムを切り替えてもフォーカスが移行しない場合は有効にしてください。"
 
-#: src/ui/details-preferences.ui:580
+#: src/ui/details-preferences.ui:580 src/ui/details-preferences.ui:509
 msgid "Screen scaling"
 msgstr "画面のスケーリング"
 
@@ -789,160 +806,166 @@ msgstr "画面のスケーリング"
 msgid "Set custom DPI."
 msgstr "カスタムDPIを設定します"
 
-#: src/ui/details-preferences.ui:595
+#: src/ui/details-preferences.ui:595 src/ui/details-preferences.ui:524
 msgid "96"
 msgstr "96"
 
-#: src/ui/details-preferences.ui:596
+#: src/ui/details-preferences.ui:596 src/ui/details-preferences.ui:525
 msgid "120"
 msgstr "120"
 
-#: src/ui/details-preferences.ui:597
+#: src/ui/details-preferences.ui:597 src/ui/details-preferences.ui:526
 msgid "144"
 msgstr "144"
 
-#: src/ui/details-preferences.ui:598
+#: src/ui/details-preferences.ui:598 src/ui/details-preferences.ui:527
 msgid "168"
 msgstr "168"
 
-#: src/ui/details-preferences.ui:599
+#: src/ui/details-preferences.ui:599 src/ui/details-preferences.ui:528
 msgid "192"
 msgstr "192"
 
-#: src/ui/details-preferences.ui:600
+#: src/ui/details-preferences.ui:600 src/ui/details-preferences.ui:529
 msgid "216"
 msgstr "216"
 
-#: src/ui/details-preferences.ui:601
+#: src/ui/details-preferences.ui:601 src/ui/details-preferences.ui:530
 msgid "240"
 msgstr "240"
 
-#: src/ui/details-preferences.ui:602
+#: src/ui/details-preferences.ui:602 src/ui/details-preferences.ui:531
 msgid "288"
 msgstr "288"
 
-#: src/ui/details-preferences.ui:603
+#: src/ui/details-preferences.ui:603 src/ui/details-preferences.ui:532
 msgid "336"
 msgstr "336"
 
-#: src/ui/details-preferences.ui:604
+#: src/ui/details-preferences.ui:604 src/ui/details-preferences.ui:533
 msgid "384"
 msgstr "384"
 
-#: src/ui/details-preferences.ui:605
+#: src/ui/details-preferences.ui:605 src/ui/details-preferences.ui:534
 msgid "432"
 msgstr "432"
 
-#: src/ui/details-preferences.ui:606
+#: src/ui/details-preferences.ui:606 src/ui/details-preferences.ui:535
 msgid "480"
 msgstr "480"
 
-#: src/ui/details-preferences.ui:627
+#: src/ui/details-preferences.ui:556
 msgid "Renderer"
-msgstr ""
+msgstr "レンダラー"
 
 #: src/ui/details-preferences.ui:628
 msgid "Select what backend to use for wined3d."
 msgstr ""
 
-#: src/ui/details-preferences.ui:642
+#: src/ui/details-preferences.ui:642 src/ui/details-preferences.ui:571
 #, fuzzy
 msgid "gl (default)"
 msgstr "デフォルトにリセット"
 
-#: src/ui/details-preferences.ui:643
+#: src/ui/details-preferences.ui:572
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
-#: src/ui/details-preferences.ui:644
+#: src/ui/details-preferences.ui:573
 msgid "vulkan"
-msgstr ""
+msgstr "vulkan"
 
 #: src/ui/details-preferences.ui:677 src/ui/details-preferences.ui:1117
+#: src/ui/details-preferences.ui:607 src/ui/details-preferences.ui:1047
 msgid "System"
 msgstr "システム"
 
-#: src/ui/details-preferences.ui:683
+#: src/ui/details-preferences.ui:683 src/ui/details-preferences.ui:613
 msgid "Components version"
 msgstr "コンポーネントのバージョン"
 
 #: src/ui/details-preferences.ui:688 src/ui/new.ui:222
+#: src/ui/details-preferences.ui:618 src/ui/new.ui:286
 msgid "Runner"
 msgstr "ランナー"
 
-#: src/ui/details-preferences.ui:699
+#: src/ui/details-preferences.ui:699 src/ui/details-preferences.ui:629
 msgid "Updating Runner and components, please wait…"
 msgstr "ランナーとコンポーネントを更新しています。お待ちください…"
 
 #: src/ui/details-preferences.ui:742 src/ui/new.ui:262
+#: src/ui/details-preferences.ui:672 src/ui/new.ui:326
 msgid "Manage runners"
 msgstr "ランナーを管理"
 
-#: src/ui/details-preferences.ui:771
+#: src/ui/details-preferences.ui:771 src/ui/details-preferences.ui:701
 msgid "DXVK version"
 msgstr "DXVKバージョン"
 
 #: src/ui/details-preferences.ui:827 src/ui/details-preferences.ui:995
-#: src/ui/details-preferences.ui:1078
+#: src/ui/details-preferences.ui:1078 src/ui/details-preferences.ui:757
+#: src/ui/details-preferences.ui:925 src/ui/details-preferences.ui:1008
 msgid "Manage DXVK versions"
 msgstr "DXVKバージョンを管理"
 
-#: src/ui/details-preferences.ui:856
+#: src/ui/details-preferences.ui:856 src/ui/details-preferences.ui:786
 msgid "VKD3D version"
 msgstr "VKD3Dバージョン"
 
-#: src/ui/details-preferences.ui:912
+#: src/ui/details-preferences.ui:912 src/ui/details-preferences.ui:842
 msgid "Manage VKD3D versions"
 msgstr "VKD3Dバージョンを管理"
 
-#: src/ui/details-preferences.ui:941
+#: src/ui/details-preferences.ui:941 src/ui/details-preferences.ui:871
 msgid "DXVK NVAPI version"
 msgstr "DXVK NVAPIバージョン"
 
-#: src/ui/details-preferences.ui:1024
+#: src/ui/details-preferences.ui:1024 src/ui/details-preferences.ui:954
 msgid "LatencyFleX version"
 msgstr "LatencyFleXバージョン"
 
-#: src/ui/details-preferences.ui:1109
+#: src/ui/details-preferences.ui:1109 src/ui/details-preferences.ui:1039
 msgid ""
 "Enable synchronization to increase performance of multi-core processors."
 msgstr "同期を有効にして、マルチコアプロセッサのパフォーマンスを向上させます。"
 
-#: src/ui/details-preferences.ui:1110
+#: src/ui/details-preferences.ui:1110 src/ui/details-preferences.ui:1040
 msgid "Synchronization"
 msgstr "同期"
 
 #: src/ui/details-preferences.ui:1121 src/ui/details-preferences.ui:1136
 #: src/ui/details-preferences.ui:1151 src/ui/details-preferences.ui:1166
 #: src/ui/dialog-gamescope.ui:345 src/ui/dialog-gamescope.ui:361
+#: src/ui/details-preferences.ui:1051 src/ui/details-preferences.ui:1066
+#: src/ui/details-preferences.ui:1081 src/ui/details-preferences.ui:1096
 msgid "Will restart the wineserver."
 msgstr "wineserverが再起動します。"
 
-#: src/ui/details-preferences.ui:1132
+#: src/ui/details-preferences.ui:1132 src/ui/details-preferences.ui:1062
 msgid "Esync"
 msgstr "Esync"
 
-#: src/ui/details-preferences.ui:1147
+#: src/ui/details-preferences.ui:1147 src/ui/details-preferences.ui:1077
 msgid "Fsync"
 msgstr "Fsync"
 
-#: src/ui/details-preferences.ui:1162
+#: src/ui/details-preferences.ui:1162 src/ui/details-preferences.ui:1092
 msgid "Futex2"
 msgstr "Futex2"
 
-#: src/ui/details-preferences.ui:1186
+#: src/ui/details-preferences.ui:1186 src/ui/details-preferences.ui:1116
 msgid "Windows version"
 msgstr "Windowsのバージョン"
 
-#: src/ui/details-preferences.ui:1196
+#: src/ui/details-preferences.ui:1196 src/ui/details-preferences.ui:1126
 msgid "Updating Windows version, please wait…"
 msgstr "Windowsのバージョンを更新しています。お待ちください…"
 
-#: src/ui/details-preferences.ui:1243
+#: src/ui/details-preferences.ui:1243 src/ui/details-preferences.ui:1173
 msgid "Use Bottles runtime"
 msgstr "Bottlesのランタイムを使う"
 
-#: src/ui/details-preferences.ui:1244
+#: src/ui/details-preferences.ui:1244 src/ui/details-preferences.ui:1174
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
@@ -950,67 +973,71 @@ msgstr ""
 "互換性の向上のために、追加のライブラリ郡を提供します。\n"
 "不具合が発生する場合は無効にしてください。"
 
-#: src/ui/details-preferences.ui:1270
+#: src/ui/details-preferences.ui:1270 src/ui/details-preferences.ui:1200
 msgid "Use Steam runtime"
 msgstr "Steamのランタイムを使う"
 
-#: src/ui/details-preferences.ui:1271
+#: src/ui/details-preferences.ui:1271 src/ui/details-preferences.ui:1201
 msgid "The same as the Bottles one but provided by Steam."
 msgstr ""
 "Bottlesのランタイムと同一ですが、Steamが提供しているという点が異なります。"
 
-#: src/ui/details-preferences.ui:1297
+#: src/ui/details-preferences.ui:1297 src/ui/details-preferences.ui:1227
 msgid "Use GameMode"
 msgstr "ゲームモードを使う"
 
-#: src/ui/details-preferences.ui:1298
+#: src/ui/details-preferences.ui:1298 src/ui/details-preferences.ui:1228
 msgid "Optimise gaming performance on demand."
 msgstr "必要に応じてゲームパフォーマンスを最適化します。"
 
-#: src/ui/details-preferences.ui:1324
+#: src/ui/details-preferences.ui:1324 src/ui/details-preferences.ui:1254
 msgid "Use Gamescope"
 msgstr "Gamescopeを使う"
 
-#: src/ui/details-preferences.ui:1325
+#: src/ui/details-preferences.ui:1325 src/ui/details-preferences.ui:1255
 msgid "Use the Gamescope micro-compositor."
 msgstr "Gamescopeマイクロコンポジターを使用します。"
 
-#: src/ui/details-preferences.ui:1360
+#: src/ui/details-preferences.ui:1360 src/ui/details-preferences.ui:1290
 msgid "Manage Gamescope settings"
 msgstr "Gamescope設定を管理"
 
-#: src/ui/details-preferences.ui:1389
+#: src/ui/details-preferences.ui:1389 src/ui/details-preferences.ui:1319
 msgid "Working directory"
 msgstr "カレントディレクトリ"
 
 #: src/ui/details-preferences.ui:1390 src/views/bottle_preferences.py:267
-#: src/views/bottle_preferences.py:376
+#: src/views/bottle_preferences.py:376 src/ui/details-preferences.ui:1320
+#: src/views/bottle_preferences.py:212 src/views/bottle_preferences.py:318
 msgid "Default to the bottle path."
 msgstr "デフォルトで使用されるボトルのパスです。"
 
 #: src/ui/details-preferences.ui:1401 src/ui/dialog-launch-options.ui:211
 #: src/ui/drive-entry.ui:61 src/ui/new.ui:348 src/ui/new.ui:396
-#: src/ui/preferences.ui:203
+#: src/ui/preferences.ui:203 src/ui/details-preferences.ui:1331
+#: src/ui/new.ui:412 src/ui/new.ui:460
 msgid "Choose a directory"
 msgstr "ディレクトリを選択"
 
 #: src/ui/details-preferences.ui:1471 src/ui/dialog-dll-overrides.ui:51
+#: src/ui/details-preferences.ui:1401 src/ui/dialog-dll-overrides.ui:25
 msgid "DLL overrides"
 msgstr "DLLのオーバーライド"
 
-#: src/ui/details-preferences.ui:1511
+#: src/ui/details-preferences.ui:1511 src/ui/details-preferences.ui:1441
+#: src/ui/dialog-env-vars.ui:24
 msgid "Environment variables"
 msgstr "環境変数"
 
-#: src/ui/details-preferences.ui:1549
+#: src/ui/details-preferences.ui:1549 src/ui/details-preferences.ui:1479
 msgid "Manage drives"
 msgstr "ドライブを管理"
 
-#: src/ui/details-preferences.ui:1597
+#: src/ui/details-preferences.ui:1597 src/ui/details-preferences.ui:1528
 msgid "Audio"
 msgstr "オーディオ"
 
-#: src/ui/details-preferences.ui:1602
+#: src/ui/details-preferences.ui:1602 src/ui/details-preferences.ui:1533
 msgid "Reduce PulseAudio latency"
 msgstr "PulseAudioのレイテンシーを減らす"
 
@@ -1019,25 +1046,25 @@ msgstr "PulseAudioのレイテンシーを減らす"
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality."
 msgstr "PulseAudioのレイテンシーを60ミリ秒に設定して、音質を向上させます"
 
-#: src/ui/details-preferences.ui:1639
+#: src/ui/details-preferences.ui:1639 src/ui/details-preferences.ui:1571
 msgid "Developers & Debug"
 msgstr "開発者向け設定とデバッグ"
 
-#: src/ui/details-preferences.ui:1644
+#: src/ui/details-preferences.ui:1644 src/ui/details-preferences.ui:1576
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details-preferences.ui:1645
+#: src/ui/details-preferences.ui:1645 src/ui/details-preferences.ui:1577
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "D3DアプリケーションでFPSなどの詳細を表示するDXVKオーバーレイを表示／非表示に"
 "します。"
 
-#: src/ui/details-preferences.ui:1671
+#: src/ui/details-preferences.ui:1671 src/ui/details-preferences.ui:1603
 msgid "MangoHud"
 msgstr "MangoHud"
 
-#: src/ui/details-preferences.ui:1672
+#: src/ui/details-preferences.ui:1672 src/ui/details-preferences.ui:1604
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
@@ -1045,19 +1072,19 @@ msgstr ""
 "FPS、温度、CPU／GPUのロード時間などを監視できる、Vulkan／OpenGL 用オーバーレ"
 "イです。"
 
-#: src/ui/details-preferences.ui:1698
+#: src/ui/details-preferences.ui:1630
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "OBS Vulkanキャプチャ"
 
 #: src/ui/details-preferences.ui:1699
 msgid "Toggle OBS game capture for all next launches."
 msgstr ""
 
-#: src/ui/details-preferences.ui:1725
+#: src/ui/details-preferences.ui:1725 src/ui/details-preferences.ui:1657
 msgid "Enable wine fixme logs"
 msgstr "Wine自体のFIXMEコメントをログ出力"
 
-#: src/ui/details-preferences.ui:1726
+#: src/ui/details-preferences.ui:1726 src/ui/details-preferences.ui:1658
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wineに未実装のコードパスをログ出力します。"
 
@@ -1089,7 +1116,7 @@ msgstr "インストールされているプログラムを検索"
 msgid "Add a custom executable path"
 msgstr "カスタム実行可能パスを追加します"
 
-#: src/ui/details-taskmanager.ui:32
+#: src/ui/details-taskmanager.ui:32 src/ui/importer.ui:93
 msgid "Refresh"
 msgstr "更新"
 
@@ -1137,7 +1164,9 @@ msgstr "Bottlesクラッシュレポート"
 #: src/dialogs/drives.py:63 src/dialogs/launchoptions.py:92
 #: src/views/bottle_details.py:240 src/views/bottle_details.py:315
 #: src/views/bottle_preferences.py:246 src/views/bottle_programs.py:76
-#: src/views/list.py:131
+#: src/views/list.py:131 src/ui/dialog-duplicate.ui:28
+#: src/views/bottle_details.py:286 src/views/bottle_details.py:361
+#: src/views/bottle_preferences.py:191
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -1170,6 +1199,7 @@ msgid "I still want to report."
 msgstr "上記の内容を読んだ上で、報告します。"
 
 #: src/ui/dialog-crash-report.ui:195 src/ui/dialog-launch-options.ui:295
+#: src/ui/new.ui:208
 msgid "Advanced options"
 msgstr "高度なオプション"
 
@@ -1219,46 +1249,50 @@ msgid "Existing drives"
 msgstr "既存のドライブ"
 
 #: src/ui/dialog-duplicate.ui:24 src/ui/dialog-duplicate.ui:35
+#: src/ui/dialog-duplicate.ui:36
 msgid "Duplicate"
 msgstr "複製"
 
 #: src/ui/dialog-duplicate.ui:51 src/ui/new.ui:51 src/ui/onboard.ui:55
+#: src/ui/dialog-duplicate.ui:52 src/ui/new.ui:49
 msgid "Close"
 msgstr "閉じる"
 
-#: src/ui/dialog-duplicate.ui:94
+#: src/ui/dialog-duplicate.ui:94 src/ui/dialog-duplicate.ui:95
 msgid "Type a name for the new bottle"
 msgstr "新しいボトルの名前を入力してください"
 
 #: src/ui/dialog-duplicate.ui:106 src/ui/dialog-run-args.ui:86
+#: src/ui/dialog-duplicate.ui:107
 msgid "e.g.: -example1 -example2 -example3=hello"
 msgstr "例: -example1 -example2 -example3=hello"
 
-#: src/ui/dialog-duplicate.ui:108
+#: src/ui/dialog-duplicate.ui:108 src/ui/dialog-duplicate.ui:109
 msgid "e.g: MyDuplicatedBottle"
 msgstr "例: ボトルのコピー"
 
-#: src/ui/dialog-duplicate.ui:129
+#: src/ui/dialog-duplicate.ui:129 src/ui/dialog-duplicate.ui:130
 msgid "page_name"
 msgstr "page_name"
 
-#: src/ui/dialog-duplicate.ui:146
+#: src/ui/dialog-duplicate.ui:146 src/ui/dialog-duplicate.ui:147
 msgid "Duplicating…"
 msgstr "複製しています…"
 
 #: src/ui/dialog-duplicate.ui:165 src/ui/new.ui:494
+#: src/ui/dialog-duplicate.ui:166 src/ui/new.ui:552
 msgid "Take a break, it may take a while"
 msgstr "しばらくお待ちください。これには少し時間がかかります"
 
-#: src/ui/dialog-duplicate.ui:194
+#: src/ui/dialog-duplicate.ui:194 src/ui/dialog-duplicate.ui:195
 msgid "page_duplicating"
 msgstr "page_duplicating"
 
-#: src/ui/dialog-duplicate.ui:203
+#: src/ui/dialog-duplicate.ui:203 src/ui/dialog-duplicate.ui:204
 msgid "Bottle duplicated"
 msgstr "ボトルを複製しました"
 
-#: src/ui/dialog-duplicate.ui:210
+#: src/ui/dialog-duplicate.ui:210 src/ui/dialog-duplicate.ui:211
 msgid "page_duplicated"
 msgstr "page_duplicated"
 
@@ -1428,6 +1462,7 @@ msgstr "引数を指定して実行"
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:91
 #: src/views/bottle_details.py:239 src/views/list.py:130
+#: src/views/bottle_details.py:285
 msgid "Run"
 msgstr "実行"
 
@@ -1444,6 +1479,7 @@ msgid "Message goes here."
 msgstr "メッセージはこちらです。"
 
 #: src/ui/dialog.ui:36 src/views/bottle_details.py:444
+#: src/views/bottle_details.py:491
 msgid "Confirm"
 msgstr "確認"
 
@@ -1486,7 +1522,7 @@ msgid ""
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
 
-#: src/ui/importer.ui:74
+#: src/ui/importer.ui:74 src/ui/importer.ui:120
 msgid "Import Bottles backup"
 msgstr "Bottlesのバックアップをインポート"
 
@@ -1495,11 +1531,11 @@ msgstr "Bottlesのバックアップをインポート"
 msgid "Search again for prefixes"
 msgstr "Steam Proton環境"
 
-#: src/ui/importer.ui:135
+#: src/ui/importer.ui:135 src/ui/importer.ui:21
 msgid "Configuration"
 msgstr "設定"
 
-#: src/ui/importer.ui:149
+#: src/ui/importer.ui:149 src/ui/importer.ui:35
 msgid "Full archive"
 msgstr "完全なアーカイブ"
 
@@ -1573,69 +1609,69 @@ msgstr "作成"
 msgid "Bottle Information"
 msgstr "ボトルの情報"
 
-#: src/ui/new.ui:98
+#: src/ui/new.ui:98 src/ui/new.ui:118
 msgid "Choose a name for your bottle"
 msgstr "ボトルの名前を入力してください"
 
-#: src/ui/new.ui:165
+#: src/ui/new.ui:165 src/ui/new.ui:229
 msgid "Use versioning"
 msgstr "バージョン管理を使用する"
 
-#: src/ui/new.ui:167
+#: src/ui/new.ui:167 src/ui/new.ui:231
 msgid "Enable versioning to save and restore the bottle to a state."
 msgstr "バージョン管理を使うことで、ボトルの状態の保存と復元が可能です。"
 
-#: src/ui/new.ui:193
+#: src/ui/new.ui:193 src/ui/new.ui:257
 msgid "Unlinked homedir"
 msgstr "ホームディレクトリを独立させる"
 
-#: src/ui/new.ui:195
+#: src/ui/new.ui:195 src/ui/new.ui:259
 msgid "Do not link the userdir to the homedir"
 msgstr "ユーザーディレクトリとホームディレクトリを別々にします"
 
-#: src/ui/new.ui:291
+#: src/ui/new.ui:291 src/ui/new.ui:355
 msgid "Architecture"
 msgstr "アーキテクチャ"
 
-#: src/ui/new.ui:293
+#: src/ui/new.ui:293 src/ui/new.ui:357
 msgid "We recommend using 32bit only if strictly necessary"
 msgstr "特に理由がなければ、32bitの使用をお勧めします"
 
-#: src/ui/new.ui:307
+#: src/ui/new.ui:307 src/ui/new.ui:371
 msgid "64 bit"
 msgstr "64 bit"
 
-#: src/ui/new.ui:308
+#: src/ui/new.ui:308 src/ui/new.ui:372
 msgid "32 bit"
 msgstr "32 bit"
 
-#: src/ui/new.ui:329
+#: src/ui/new.ui:329 src/ui/new.ui:393
 msgid "Use custom recipe"
 msgstr "独自のレシピを使う"
 
-#: src/ui/new.ui:331
+#: src/ui/new.ui:331 src/ui/new.ui:395
 msgid "Choose a custom recipe for the environment if you have one."
 msgstr ""
 "この環境で使用する独自のレシピを用意してある場合は、ここで選択できます。"
 
-#: src/ui/new.ui:377
+#: src/ui/new.ui:377 src/ui/new.ui:441
 #, fuzzy
 msgid "Use custom path"
 msgstr "独自のレシピを使う"
 
-#: src/ui/new.ui:379
+#: src/ui/new.ui:379 src/ui/new.ui:443
 msgid "Store this bottle in a different place."
 msgstr ""
 
-#: src/ui/new.ui:475
+#: src/ui/new.ui:475 src/ui/new.ui:533
 msgid "Creating bottle…"
 msgstr "ボトルを作成しています…"
 
-#: src/ui/new.ui:544
+#: src/ui/new.ui:544 src/ui/new.ui:602
 msgid "Bottle created"
 msgstr "ボトルを作成しました"
 
-#: src/ui/onboard.ui:23 src/ui/onboard.ui:122
+#: src/ui/onboard.ui:23 src/ui/onboard.ui:122 src/ui/onboard.ui:121
 msgid "Welcome"
 msgstr "ようこそ"
 
@@ -1655,11 +1691,11 @@ msgstr "終了"
 msgid "Back"
 msgstr "戻る"
 
-#: src/ui/onboard.ui:117
+#: src/ui/onboard.ui:117 src/ui/onboard.ui:116
 msgid "Welcome to Bottles"
 msgstr "Bottlesへようこそ"
 
-#: src/ui/onboard.ui:118
+#: src/ui/onboard.ui:118 src/ui/onboard.ui:117
 msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr ""
 "Bottlesを使用すると、Linux上でより簡単にWindowsソフトウェアを実行できるように"
@@ -1681,11 +1717,11 @@ msgid ""
 "<a href=\"https://docs.usebottles.com\">Read more about</a>"
 msgstr ""
 
-#: src/ui/onboard.ui:191
+#: src/ui/onboard.ui:191 src/ui/onboard.ui:190
 msgid "Wine"
 msgstr "Wine"
 
-#: src/ui/onboard.ui:222
+#: src/ui/onboard.ui:222 src/ui/onboard.ui:221
 msgid "We Are Almost There"
 msgstr "最後に"
 
@@ -1711,19 +1747,19 @@ msgstr ""
 "\n"
 "準備ができたら、<b>インストール</b>ボタンを押してください。"
 
-#: src/ui/onboard.ui:261 src/ui/preferences.ui:292
+#: src/ui/onboard.ui:261 src/ui/preferences.ui:292 src/ui/onboard.ui:262
 msgid "Runners"
 msgstr "ランナー"
 
-#: src/ui/onboard.ui:292
+#: src/ui/onboard.ui:292 src/ui/onboard.ui:293
 msgid "Downloading…"
 msgstr "ダウンロードしています…"
 
-#: src/ui/onboard.ui:311
+#: src/ui/onboard.ui:311 src/ui/onboard.ui:312
 msgid "Sit down and relax, it may take a few minutes."
 msgstr "しばらくお待ちください。これには数分かかる場合があります。"
 
-#: src/ui/onboard.ui:339
+#: src/ui/onboard.ui:339 src/ui/onboard.ui:340
 msgid "Download"
 msgstr "ダウンロード"
 
@@ -1864,7 +1900,7 @@ msgstr "開発初期段階の機能 (再起動が必要)"
 msgid "Library Mode"
 msgstr "ライブラリモード"
 
-#: src/ui/program-entry.ui:33
+#: src/ui/program-entry.ui:33 src/ui/dialog-launch-options.ui:59
 msgid "Change launch options"
 msgstr "起動オプションを変更"
 
@@ -1912,11 +1948,12 @@ msgstr "この状態を復元します"
 msgid "Creation date"
 msgstr "作成日"
 
-#: src/ui/window.ui:19 src/window.py:260
+#: src/ui/window.ui:19 src/window.py:260 src/window.py:187 src/window.py:263
 msgid "Your library"
 msgstr "ライブラリ"
 
 #: src/ui/window.ui:32 src/window.py:181 src/window.py:255
+#: src/ui/importer.ui:74 src/window.py:258
 msgid "Importer"
 msgstr "インポータ"
 
@@ -1928,7 +1965,7 @@ msgstr "寄付"
 msgid "Forums"
 msgstr "フォーラム"
 
-#: src/ui/window.ui:108 src/window.py:312
+#: src/ui/window.ui:108 src/window.py:312 src/window.py:332
 msgid "Health check"
 msgstr "ヘルスチェック"
 
@@ -1958,7 +1995,7 @@ msgstr ""
 msgid "Go back"
 msgstr "戻る"
 
-#: src/ui/window.ui:353
+#: src/ui/window.ui:353 src/ui/new.ui:24
 msgid "New bottle"
 msgstr "新しいボトル"
 
@@ -1974,7 +2011,7 @@ msgstr "実行可能ファイルのパス"
 msgid "lnk path"
 msgstr "lnkパス"
 
-#: src/main.py:125
+#: src/main.py:125 src/ui/details-bottle.ui:322
 msgid "Bottle name"
 msgstr "ボトル名"
 
@@ -1998,7 +2035,7 @@ msgstr "[リフレシュ]リクエストを受信しました。"
 msgid "Calculating..."
 msgstr "計算しています…"
 
-#: src/window.py:132 src/window.py:186
+#: src/window.py:132 src/window.py:186 src/window.py:136 src/window.py:189
 msgid "Loading..."
 msgstr ""
 
@@ -2012,7 +2049,7 @@ msgstr "ボトルの詳細"
 msgid "Your Library"
 msgstr "ライブラリ"
 
-#: src/window.py:317
+#: src/window.py:317 src/window.py:337
 msgid "Journal browser"
 msgstr ""
 
@@ -2237,51 +2274,52 @@ msgstr "クリップボードにコピー"
 msgid "Choose the script"
 msgstr "スクリプトを選択"
 
-#: src/views/bottle_details.py:156
+#: src/views/bottle_details.py:156 src/views/bottle_details.py:160
 #, python-format
 msgid "Updated: %s"
 msgstr "更新済み: %s"
 
 #: src/views/bottle_details.py:236 src/views/list.py:127
+#: src/views/bottle_details.py:282
 msgid "Choose a Windows executable file"
 msgstr "Windows実行可能ファイルを選択してください"
 
-#: src/views/bottle_details.py:304
+#: src/views/bottle_details.py:304 src/views/bottle_details.py:350
 msgid "Select the location where to save the backup config"
 msgstr "バックアップ設定の保存先を選択してください"
 
-#: src/views/bottle_details.py:308
+#: src/views/bottle_details.py:308 src/views/bottle_details.py:354
 msgid "Select the location where to save the backup archive"
 msgstr "バックアップアーカイブの保存先を選択してください"
 
-#: src/views/bottle_details.py:315
+#: src/views/bottle_details.py:315 src/views/bottle_details.py:361
 msgid "Export"
 msgstr "エクスポート"
 
-#: src/views/bottle_details.py:346
+#: src/views/bottle_details.py:346 src/views/bottle_details.py:392
 msgid "Confirm deletion"
 msgstr "削除の確認"
 
-#: src/views/bottle_details.py:348
+#: src/views/bottle_details.py:348 src/views/bottle_details.py:394
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
 
-#: src/views/bottle_details.py:446
+#: src/views/bottle_details.py:446 src/views/bottle_details.py:493
 #, fuzzy
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr "このボトルとすべてのファイルを削除してもよろしいですか？"
 
-#: src/views/bottle_preferences.py:179
+#: src/views/bottle_preferences.py:179 src/views/bottle_preferences.py:172
 msgid "This feature is not available on your system."
 msgstr "この機能はお使いのシステムでは利用できません。"
 
-#: src/views/bottle_preferences.py:242
+#: src/views/bottle_preferences.py:242 src/views/bottle_preferences.py:187
 msgid "Choose working directory for executables"
 msgstr "実行可能ファイルの作業ディレクトリを選択"
 
-#: src/views/bottle_preferences.py:245
+#: src/views/bottle_preferences.py:245 src/views/bottle_preferences.py:190
 msgid "Done"
 msgstr "完了"
 
@@ -2313,11 +2351,11 @@ msgstr "バージョン管理"
 msgid "Installers"
 msgstr "インストーラー"
 
-#: src/views/importer.py:88
+#: src/views/importer.py:88 src/views/importer.py:80
 msgid "Choose a backup archive"
 msgstr "バックアップアーカイブを選択してください"
 
-#: src/views/importer.py:119
+#: src/views/importer.py:119 src/views/importer.py:111
 msgid "Choose a configuration file"
 msgstr "設定ファイルを選択します"
 
@@ -2330,52 +2368,52 @@ msgstr "なし"
 msgid "Arguments found for executable: [{executable}]."
 msgstr "実行可能ファイル: [{executable}]の引数が見つかりました。"
 
-#: src/views/new.py:73
+#: src/views/new.py:73 src/views/new.py:74
 msgid "Gaming"
 msgstr "ゲーミング"
 
-#: src/views/new.py:74
+#: src/views/new.py:74 src/views/new.py:75
 msgid "An environment improved for Windows games."
 msgstr "Windowsゲームに最適化された環境です。"
 
-#: src/views/new.py:79
+#: src/views/new.py:79 src/views/new.py:80
 msgid "Application"
 msgstr "アプリケーション"
 
-#: src/views/new.py:80
+#: src/views/new.py:80 src/views/new.py:81
 msgid "An environment improved for Windows applications."
 msgstr "Windowsアプリケーション用に最適化された環境です。"
 
-#: src/views/new.py:85
+#: src/views/new.py:85 src/views/new.py:86
 msgid "Custom"
 msgstr "カスタム"
 
-#: src/views/new.py:86
+#: src/views/new.py:86 src/views/new.py:87
 msgid "A clear environment for your experiments."
 msgstr "実験目的での使用に適した、まっさらな環境です。"
 
-#: src/views/new.py:94
+#: src/views/new.py:94 src/views/new.py:95
 msgid "Layered"
 msgstr "レイヤー"
 
-#: src/views/new.py:95
+#: src/views/new.py:95 src/views/new.py:96
 msgid "A layered environment, where every app is a layer."
 msgstr "レイヤー化された環境では、各アプリがレイヤーとなります。"
 
-#: src/views/new.py:181
+#: src/views/new.py:181 src/views/new.py:179
 msgid "Choose a recipe file"
 msgstr "レシピファイルを選択"
 
-#: src/views/new.py:201
+#: src/views/new.py:201 src/views/new.py:199
 #, fuzzy
 msgid "Choose where to store the bottle"
 msgstr "ボトルの名前を入力してください"
 
-#: src/views/new.py:285
+#: src/views/new.py:285 src/views/new.py:283
 msgid "There was an error creating the bottle."
 msgstr "ボトルの作成中にエラーが発生しました。"
 
-#: src/views/new.py:292
+#: src/views/new.py:292 src/views/new.py:290
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
 msgstr "ボトル“{0}”を正常に作成しました"
@@ -2385,6 +2423,7 @@ msgid "Choose new bottles path"
 msgstr "新しいボトルのパスを選択"
 
 #: src/views/preferences.py:160 src/views/preferences.py:169
+#: src/ui/preferences.ui:192
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr "新しいボトルの保存先を選択します (既存のボトルは移動しません)"
@@ -2429,45 +2468,141 @@ msgstr "ステップ {self.__step} / {self.steps}"
 msgid "Index for state {0}"
 msgstr "状態{0}のインデックス"
 
-#~ msgid "Type a name for your bottle"
-#~ msgstr "ボトルの名前を入力してください"
+#: src/ui/details-bottle.ui:326
+msgid "Type a name for your bottle"
+msgstr "ボトルの名前を入力してください"
 
-#~ msgid "New programs will be automatically found."
-#~ msgstr "新しいプログラムは自動的に検出されます。"
+#: src/ui/details-programs.ui:29
+msgid "New programs will be automatically found."
+msgstr "新しいプログラムは自動的に検出されます。"
 
-#~ msgid "Duplicate a bottle"
-#~ msgstr "ボトルを複製"
+#: src/ui/dialog-duplicate.ui:25
+msgid "Duplicate a bottle"
+msgstr "ボトルを複製"
 
-#~ msgid "Change environment variables"
-#~ msgstr "環境変数を変更"
+#: src/ui/dialog-environment-variables.ui:24
+msgid "Change environment variables"
+msgstr "環境変数を変更"
 
-#~ msgid "This field cannot contain special characters!"
-#~ msgstr "このフィールドに特殊文字を含めることはできません！"
+#: src/ui/new.ui:128
+msgid "This field cannot contain special characters!"
+msgstr "このフィールドに特殊文字を含めることはできません！"
 
-#~ msgid ""
-#~ "These are compatibility layers which allows Windows software to be "
-#~ "installed and run on Linux systems.\n"
-#~ "\n"
-#~ "<b>Bottles</b> are environments where the runner configures the system "
-#~ "and where the Windows software runs and is installed.\n"
-#~ "\n"
-#~ "<a href=\"https://docs.usebottles.com/components/runners\">Read more "
-#~ "about runners</a>"
-#~ msgstr ""
-#~ "ランナーとは互換レイヤーのことで、これがあることでWindowsソフトウェアを"
-#~ "Linuxシステムにインストールして実行できるようになります。\n"
-#~ "\n"
-#~ "<b>ボトル</b>は、ランナーがシステムを構成したり、Windowsソフトウェアが実"
-#~ "行・インストールされる環境です。\n"
-#~ "\n"
-#~ "<a href=\"https://docs.usebottles.com/components/runners\">ランナーについ"
-#~ "てもっと読む</a>"
+#: src/ui/onboard.ui:170
+msgid ""
+"These are compatibility layers which allows Windows software to be installed "
+"and run on Linux systems.\n"
+"\n"
+"<b>Bottles</b> are environments where the runner configures the system and "
+"where the Windows software runs and is installed.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com/components/runners\">Read more about "
+"runners</a>"
+msgstr ""
+"ランナーとは互換レイヤーのことで、これがあることでWindowsソフトウェアをLinux"
+"システムにインストールして実行できるようになります。\n"
+"\n"
+"<b>ボトル</b>は、ランナーがシステムを構成したり、Windowsソフトウェアが実行・"
+"インストールされる環境です。\n"
+"\n"
+"<a href=\"https://docs.usebottles.com/components/runners\">ランナーについて"
+"もっと読む</a>"
 
-#~ msgid "Import/export"
-#~ msgstr "インポートとエクスポート"
+#: src/ui/window.ui:32
+msgid "Import/export"
+msgstr "インポートとエクスポート"
 
-#~ msgid "Import & export"
-#~ msgstr "インポートとエクスポート"
+#: src/window.py:185
+msgid "Import & export"
+msgstr "インポートとエクスポート"
+
+#: src/ui/details-preferences.ui:510
+msgid "Set custom DPI"
+msgstr "カスタムDPIを設定します"
+
+#: src/ui/details-preferences.ui:557
+msgid "Select what backend to use for wined3d"
+msgstr "wined3dで使用するバックエンドを選択します"
+
+#: src/ui/details-preferences.ui:1534
+msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality"
+msgstr "PulseAudioのレイテンシーを60ミリ秒に設定して、音質を向上させます"
+
+#: src/ui/details-preferences.ui:1631
+msgid "Toggle OBS game capture for all next launches"
+msgstr "次の実行時以降にOBSゲームキャプチャを使用するかどうかを切り替えます"
+
+#: src/ui/dialog-gamescope.ui:24
+msgid "Gamescope settings"
+msgstr "Gamescopeの設定"
+
+#: src/ui/new.ui:96
+msgid "Bottle information"
+msgstr "ボトルの情報"
+
+#: src/ui/onboard.ui:151
+msgid "What Are Runners?"
+msgstr "ランナーとは"
+
+#: src/ui/onboard.ui:240
+msgid ""
+"We need to download and install a runner to allow you to create your own "
+"bottles.\n"
+"The download size is <b>~70MB</b>.\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Read more "
+"about what we're going to download</a>\n"
+"\n"
+"We cannot offer these files with Bottles as these have different release "
+"cycles.\n"
+"\n"
+"When you are ready press the <b>Install</b> button."
+msgstr ""
+"独自のボトルを作成するには、ランナーのダウンロードとインストールが必要で"
+"す。\n"
+"ダウンロードサイズは<b>70MB以下</b>です。\n"
+"<a href=\"https://docs.usebottles.com/getting-started/first-run\">ダウンロー"
+"ドの内容についてもっと読む</a>\n"
+"\n"
+"これらのファイルを最初からBottlesに同梱していないのは、リリースサイクルが異な"
+"るためです。\n"
+"\n"
+"準備ができたら、<b>インストール</b>ボタンを押してください。"
+
+#: src/ui/preferences.ui:63
+msgid "Show update date"
+msgstr "更新日を表示"
+
+#: src/ui/preferences.ui:127
+msgid "Temp files"
+msgstr "一時ファイル"
+
+#: src/ui/preferences.ui:154
+msgid "Close Bottles after starting a program"
+msgstr "プログラム起動後にBottlesを閉じる"
+
+#: src/ui/preferences.ui:155
+msgid "Close Bottles after starting a program from the file manager"
+msgstr "ファイルマネージャからプログラムを起動した後、Bottlesを終了します"
+
+#: src/ui/preferences.ui:191
+msgid "Custom bottles path (require restart)"
+msgstr "ボトルパスのカスタマイズ (再起動が必要)"
+
+#: src/ui/preferences.ui:301
+msgid "Pre-release"
+msgstr "プレリリース"
+
+#: src/ui/preferences.ui:421
+msgid "Steam Proton prefixes"
+msgstr "Steam Proton環境"
+
+#: src/ui/preferences.ui:422 src/ui/preferences.ui:449
+msgid "In early development (requires restart)"
+msgstr "開発初期段階の機能 (再起動が必要)"
+
+#: src/ui/preferences.ui:448
+msgid "Library mode"
+msgstr "ライブラリモード"
 
 #~ msgid "Flatpak help"
 #~ msgstr "Flatpak版に関するヘルプ"
@@ -3249,3 +3384,9 @@ msgstr "状態{0}のインデックス"
 
 #~ msgid "Control Panel"
 #~ msgstr "コントロールパネル"
+
+#~ msgid "Change Launch Options"
+#~ msgstr "プログラム起動オプションの変更"
+
+#~ msgid "Installed programs"
+#~ msgstr "インストールされているプログラム"

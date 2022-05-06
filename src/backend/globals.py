@@ -28,7 +28,6 @@ logging = Logger()
 class API:
     notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
 
-
 # xdg data path
 xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
 
@@ -53,6 +52,9 @@ class Paths:
     # User applications path
     applications = get_apps_dir()
 
+    # Set errors status
+    custom_bottles_path_err = False
+
     temp = f"{base}/temp"
     runtimes = f"{base}/runtimes"
     winebridge = f"{base}/winebridge"
@@ -72,8 +74,9 @@ class Paths:
         if os.path.exists(data.get("custom_bottles_path")):
             bottles = data.get("custom_bottles_path")
         else:
-            logging.warning(
-                f"Custom bottles path {data.get('custom_bottles_path')} does not exist, falling back to default", )
+            logging.error(
+                f"Custom bottles path {data.get('custom_bottles_path')} does not exist! Falling back to default path.")
+            custom_bottles_path_err = True
 
 
 class TrdyPaths:

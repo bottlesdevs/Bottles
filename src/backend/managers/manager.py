@@ -20,6 +20,7 @@ import hashlib
 import subprocess
 import random
 import time
+import uuid
 import yaml
 import shlex
 import shutil
@@ -681,7 +682,8 @@ class Manager:
                 "folder": program_folder,
                 "icon": icon,
                 "script": _program.get("script"),
-                "removed": _program.get("removed")
+                "removed": _program.get("removed"),
+                "id": program
             })
 
         for program in results:
@@ -721,7 +723,8 @@ class Manager:
                         "name": executable_name.split(".")[0],
                         "path": executable_path,
                         "folder": program_folder,
-                        "icon": icon
+                        "icon": icon,
+                        "id": executable_name
                     })
                     found.append(executable_name)
 
@@ -847,11 +850,14 @@ class Manager:
             key: str,
             value: str,
             scope: str = "",
-            remove: bool = False
+            remove: bool = False,
+            fallback: bool = False
     ) -> dict:
         """
         Update parameters in bottle config. Use the scope argument to
         update the parameters in the specified scope (e.g. Parameters).
+        A new key will be created if another already exists and fallback
+        is set to True.
         TODO: move to bottle.py (Bottle manager)
         """
         if config.get("IsLayer"):
@@ -864,13 +870,19 @@ class Manager:
         bottle_path = ManagerUtils.get_bottle_path(config)
 
         if scope != "":
-            config[scope][key] = value
             if remove:
                 del config[scope][key]
+            elif config[scope].get(key) and fallback:
+                config[scope][f"{key}-{uuid.uuid4()}"] = value
+            else:
+                config[scope][key] = value
         else:
-            config[key] = value
             if remove:
                 del config[key]
+            elif config.get(key) and fallback:
+                config[f"{key}-{uuid.uuid4()}"] = value
+            else:
+                config[key] = value
 
         if key == "sync":
             '''

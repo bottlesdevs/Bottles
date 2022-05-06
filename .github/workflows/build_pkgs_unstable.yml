@@ -15,7 +15,7 @@ jobs:
       - name: Install build dependencies
         run: | 
           apt update
-          DEBIAN_FRONTEND=noninteractive apt install -y debhelper python3 python3-pip python3-setuptools python3-yaml python3-requests gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind wget git libhandy-1-0 libhandy-1-dev appstream-util
+          DEBIAN_FRONTEND=noninteractive apt install -y zstd debhelper python3 python3-pip python3-setuptools python3-yaml python3-requests gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind wget git libhandy-1-0 libhandy-1-dev appstream-util
 
       # AppImage Build
       # --------------------------------------
