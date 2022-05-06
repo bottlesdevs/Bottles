@@ -39,6 +39,7 @@ class ComponentEntry(Adw.ActionRow):
     btn_remove = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
+    btn_cancel = Gtk.Template.Child()
     sep = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_task_status = Gtk.Template.Child()
@@ -84,12 +85,9 @@ class ComponentEntry(Adw.ActionRow):
 
             return self.update_status(failed=True)
 
-        self.btn_err.set_visible(False)
         self.btn_download.set_visible(False)
+        self.btn_cancel.set_visible(True)
         self.box_download_status.set_visible(True)
-
-        while self.box_download_status.get_first_child():
-            self.box_download_status.remove(self.box_download_status.get_first_child())
 
         RunAsync(
             task_func=self.component_manager.install,
@@ -138,8 +136,6 @@ class ComponentEntry(Adw.ActionRow):
             self.set_err()
             return False
 
-        self.box_download_status.set_visible(True)
-
         if not completed:
             percent = int(count * block_size * 100 / total_size)
             self.label_task_status.set_text(f'{str(percent)}%')
@@ -150,13 +146,15 @@ class ComponentEntry(Adw.ActionRow):
             while self.box_download_status.get_first_child():
                 self.box_download_status.remove(self.box_download_status.get_first_child())
             self.btn_err.set_visible(False)
-            self.box_download_status.add(self.spinner)
+            self.btn_cancel.set_visible(False)
             self.spinner.set_visible(True)
+            self.box_download_status.set_visible(False)
             self.spinner.start()
 
     def set_err(self, msg=None, retry=True):
-        self.box_download_status.set_visible(False)
+        self.spinner.stop()
         self.btn_remove.set_visible(False)
+        self.btn_cancel.set_visible(False)
         self.btn_browse.set_visible(False)
         self.btn_err.set_visible(True)
         if msg:
@@ -168,8 +166,11 @@ class ComponentEntry(Adw.ActionRow):
         self.btn_err.set_visible(False)
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
+        self.btn_cancel.set_visible(False)
 
     def set_uninstalled(self):
+        self.btn_cancel.set_visible(False)
+        self.spinner.stop()
         self.btn_browse.set_visible(False)
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(True)

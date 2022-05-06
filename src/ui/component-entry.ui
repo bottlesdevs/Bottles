@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 <requires lib="gtk" version="4.0"/>
-  <requires lib="libhandy" version="0.0"/>
+  <requires lib="libadwaita" version="1.0"/>
   <template class="ComponentEntry" parent="AdwActionRow">
     <property name="title" translatable="yes">Component version</property>
     <child>
       <object class="GtkBox">
-        <property name="spacing">10</property>
+        <property name="spacing">12</property>
         <child>
           <placeholder/>
         </child>
         <child>
           <object class="GtkMenuButton" id="btn_menu">
             <property name="visible">False</property>
-            <property name="focus-on-click">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
             <property name="popover">pop_actions</property>
+            <property name="valign">center</property>
             <property name="icon-name">view-more-symbolic</property>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
         <child>
           <object class="GtkSpinner" id="spinner">
+            <property name="visible">False</property>
           </object>
         </child>
         <child>
@@ -32,9 +34,11 @@
           <object class="GtkButton" id="btn_browse">
             <property name="visible">False</property>
             <property name="tooltip-text" translatable="yes">Browse files</property>
-            <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="icon-name">folder-open-symbolic</property>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
         <child>
@@ -42,18 +46,22 @@
             <property name="visible">False</property>
             <property name="tooltip-text" translatable="yes">The installation failed. This may be due to a repository error, partial download or checksum mismatch.
 Press to try again.</property>
-            <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="icon-name">emblem-important-symbolic</property>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
         <child>
           <object class="GtkButton" id="btn_download">
             <property name="visible">False</property>
             <property name="tooltip-text" translatable="yes">Download &amp; Install</property>
-            <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="icon-name">document-save-symbolic</property>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
         <child>
@@ -74,9 +82,11 @@ Press to try again.</property>
         <child>
           <object class="GtkButton" id="btn_cancel">
             <property name="visible">False</property>
-            <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="icon-name">edit-delete-symbolic</property>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
         </child>
       </object>
@@ -88,15 +98,9 @@ Press to try again.</property>
         <property name="orientation">vertical</property>
         <property name="spacing">3</property>
         <child>
-          <placeholder/>
-        </child>
-        <child>
           <object class="GtkModelButton" id="btn_remove">
-            
             <property name="text" translatable="yes">Uninstall</property>
           </object>
-          
-          
         </child>
       </object>
     </child>
