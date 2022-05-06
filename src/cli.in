@@ -101,7 +101,7 @@ class CLI:
         edit_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
         edit_parser.add_argument("--params", help="Set parameters (e.g. '-p dxvk:true')")
         edit_parser.add_argument("--env-var",
-                                 help="Add new environment variable (e.g. '-env-var WineDEBUG=-all')")
+                                 help="Add new environment variable (e.g. '-env-var WINEDEBUG=-all')")
         edit_parser.add_argument("--win", help="Change Windows version (e.g. '--win win7')")
         edit_parser.add_argument("--runner", help="Change Runner (e.g. '--runner caffe-7.2')")
         edit_parser.add_argument("--dxvk", help="Change DXVK (e.g. '--dxvk dxvk-1.9.0')")
