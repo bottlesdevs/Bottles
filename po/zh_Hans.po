@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-02 23:20+0200\n"
-"PO-Revision-Date: 2022-04-25 09:58+0000\n"
+"PO-Revision-Date: 2022-05-07 12:11+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -412,9 +412,8 @@ msgid "Run executable"
 msgstr "运行可执行文件"
 
 #: src/ui/details-bottle.ui:439
-#, fuzzy
 msgid "My bottle"
-msgstr "新建 bottle"
+msgstr "我的 bottle"
 
 #: src/ui/details-bottle.ui:461
 msgid "Win64"
@@ -526,7 +525,7 @@ msgstr "访问内部 wine 控制面板。"
 
 #: src/ui/details-bottle.ui:1071
 msgid "Use the Installers section or the \"Run executable\" button above."
-msgstr ""
+msgstr "使用安装程序部分或上面的“运行可执行文件”按钮。"
 
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
@@ -547,7 +546,8 @@ msgid ""
 "Dependencies are software, libraries and codecs that improve the "
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
-msgstr ""
+msgstr "依赖项是改进 Windows 软件兼容性的软件、库和编解码器。 "
+"从这里安装，以满足你的程序要求。"
 
 #: src/ui/details-dependencies.ui:193
 msgid "Report a problem or a missing dependency."
@@ -594,13 +594,15 @@ msgid ""
 "com/bottles/installers#compatibility-grades\">compatibility grade</a> when "
 "choosing."
 msgstr ""
+"使用本部分安装由我们社区策划的程序，而无需手动进行。选择安装什么程序时请考虑 "
+"<a href=\"https://docs.usebottles.com/bottles/installers#compatibility-"
+"grades\">兼容性等级</a> 。"
 
 #: src/ui/details-installers.ui:92
-#, fuzzy
 msgid ""
 "While the files on this page have been verified, they may be under a "
 "proprietary license."
-msgstr "虽然此页面上的文件已验证，但可能属于专有许可证。"
+msgstr "虽然此页面上的文件已经验证，但可能属于专有许可证。"
 
 #: src/ui/details-installers.ui:132
 msgid "Read documentation about installers\t"
@@ -752,9 +754,8 @@ msgid "Screen scaling"
 msgstr "屏幕缩放"
 
 #: src/ui/details-preferences.ui:581
-#, fuzzy
 msgid "Set custom DPI."
-msgstr "设置自定义 DPI"
+msgstr "设置自定义 DPI。"
 
 #: src/ui/details-preferences.ui:595
 msgid "96"
@@ -809,9 +810,8 @@ msgid "Renderer"
 msgstr "解析器"
 
 #: src/ui/details-preferences.ui:628
-#, fuzzy
 msgid "Select what backend to use for wined3d."
-msgstr "选择用于 wined3d 的后端"
+msgstr "选择 wined3d 使用的后端。"
 
 #: src/ui/details-preferences.ui:642
 msgid "gl (default)"
@@ -981,9 +981,8 @@ msgid "Reduce PulseAudio latency"
 msgstr "降低 PulseAudio 延迟"
 
 #: src/ui/details-preferences.ui:1603
-#, fuzzy
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality."
-msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音频质量"
+msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音频质量。"
 
 #: src/ui/details-preferences.ui:1639
 msgid "Developers & Debug"
@@ -1012,9 +1011,8 @@ msgid "OBS Vulkan Capture"
 msgstr "OBS Vulkan 录制"
 
 #: src/ui/details-preferences.ui:1699
-#, fuzzy
 msgid "Toggle OBS game capture for all next launches."
-msgstr "开/关所有接下来启动的 OBS 游戏录制"
+msgstr "开/关所有接下来启动的 OBS 游戏录制。"
 
 #: src/ui/details-preferences.ui:1725
 msgid "Enable wine fixme logs"
@@ -1032,7 +1030,8 @@ msgstr "未找到程序"
 msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button"
-msgstr ""
+msgstr "从安装程序部分或运行安装程序可执行文件来安装程序，你还可以使用“+”按钮手动添加"
+"可执行文件"
 
 #: src/ui/details-programs.ui:81
 msgid "Show/hide hidden programs"
@@ -1133,7 +1132,6 @@ msgid "Advanced options"
 msgstr "高级选项"
 
 #: src/ui/dialog-dll-overrides.ui:25
-#, fuzzy
 msgid "DLL Overrides"
 msgstr "DLL 覆盖"
 
@@ -1218,7 +1216,6 @@ msgid "page_duplicated"
 msgstr "page_duplicated"
 
 #: src/ui/dialog-env-vars.ui:24 src/ui/dialog-environment-variables.ui:24
-#, fuzzy
 msgid "Environment Variables"
 msgstr "环境变量"
 
@@ -1260,7 +1257,6 @@ msgid "e.g: VAR1=value VAR2=value .."
 msgstr "例如：VAR1=value VAR2=value .."
 
 #: src/ui/dialog-gamescope.ui:24
-#, fuzzy
 msgid "Gamescope Settings"
 msgstr "Gamescope 设置"
 
@@ -1330,9 +1326,8 @@ msgid "Fullscreen"
 msgstr "全屏"
 
 #: src/ui/dialog-launch-options.ui:59
-#, fuzzy
 msgid "Launch Options"
-msgstr "更改启动选项"
+msgstr "启动选项"
 
 #: src/ui/dialog-launch-options.ui:109
 msgid "These arguments are passed on program launch:"
@@ -1374,9 +1369,8 @@ msgid "Type here.."
 msgstr "在此输入.."
 
 #: src/ui/dialog-run-args.ui:24
-#, fuzzy
 msgid "Run With Arguments"
-msgstr "带有参数运行"
+msgstr "带参数运行"
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:91
 #: src/views/bottle_details.py:239 src/views/list.py:130
@@ -1428,24 +1422,24 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "该 wineprefix 已导入 Bottles 中。"
 
 #: src/ui/importer.ui:27
-#, fuzzy
 msgid "No prefixes found"
-msgstr "未找到程序"
+msgstr "未找到前缀"
 
 #: src/ui/importer.ui:28
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
+"未从 Lutris、PlayOnLinux 等找到前缀。\n"
+"使用顶部的图标从备份导入 Bottle"
 
 #: src/ui/importer.ui:74
 msgid "Import Bottles backup"
 msgstr "导入 Bottles 备份"
 
 #: src/ui/importer.ui:97
-#, fuzzy
 msgid "Search again for prefixes"
-msgstr "Steam Proton 前缀"
+msgstr "再次搜索前缀"
 
 #: src/ui/importer.ui:135
 msgid "Configuration"
@@ -1460,13 +1454,12 @@ msgid "Read review"
 msgstr "阅读评论"
 
 #: src/ui/installer-entry.ui:124
-#, fuzzy
 msgid "Install this program"
-msgstr "已安装程序"
+msgstr "安装此程序"
 
 #: src/ui/installer-entry.ui:173
 msgid "Compatibility grade"
-msgstr ""
+msgstr "兼容性等级"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1519,7 +1512,6 @@ msgid "Create"
 msgstr "创建"
 
 #: src/ui/new.ui:92
-#, fuzzy
 msgid "Bottle Information"
 msgstr "Bottle 信息"
 
@@ -1612,9 +1604,8 @@ msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr "Bottles 使在 Linux 上运行 Windows 软件更加容易。"
 
 #: src/ui/onboard.ui:152
-#, fuzzy
 msgid "What Are Bottles?"
-msgstr "什么是运行器？"
+msgstr "什么是 Bottle？"
 
 #: src/ui/onboard.ui:171
 msgid ""
@@ -1626,6 +1617,12 @@ msgid ""
 "\n"
 "<a href=\"https://docs.usebottles.com\">Read more about</a>"
 msgstr ""
+"Bottle 是配置为运行 Windows 软件的类 Windows 环境，每个 bottle "
+"里可以有多个应用程序。\n"
+"\n"
+"这些程序是隔离的，未经你的允许，bottle 内运行的软件无法访问你的个人文件。\n"
+"\n"
+"<a href=\"https://docs.usebottles.com\">阅读更多相关内容</a>"
 
 #: src/ui/onboard.ui:191
 msgid "Wine"
@@ -1636,7 +1633,6 @@ msgid "We Are Almost There"
 msgstr "即将完成"
 
 #: src/ui/onboard.ui:241
-#, fuzzy
 msgid ""
 "We need to download and install some <a href=\"https://docs.usebottles.com/"
 "getting-started/first-run\">components (~75MB)</a> to get you ready.\n"
@@ -1646,14 +1642,12 @@ msgid ""
 "\n"
 "When you are ready press the <b>Install</b> button."
 msgstr ""
-"我们需要下载并安装一个运行器让你能够创建自己的 bottles。\n"
-"下载文件的大小是<b>~70MB</b>。\n"
-"<a href=\"https://docs.usebottles.com/getting-started/first-run\">了解我们将"
-"要下载的内容</a>\n"
+"我们需要下载并安装一些 <a href=\"https://docs.usebottles.com/getting-started/"
+"first-run\">组件 (~75MB)</a> 。\n"
 "\n"
-"由于这些运行器具有不同的发布周期我们不能为 Bottles 提供这些文件。\n"
+"我们不能将这些文件与 Bottles 一起提供，因为它们的发布周期不同。\n"
 "\n"
-"您准备好时请点击<b>安装</b>按钮。"
+"当你准备就绪后，按下 <b>安装</b> 按钮。"
 
 #: src/ui/onboard.ui:261 src/ui/preferences.ui:292
 msgid "Runners"
@@ -1696,7 +1690,6 @@ msgid "Appearance"
 msgstr "外观"
 
 #: src/ui/preferences.ui:63
-#, fuzzy
 msgid "Show Update Date"
 msgstr "显示更新日期"
 
@@ -1709,7 +1702,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "为下载和安装显示通知。"
 
 #: src/ui/preferences.ui:127
-#, fuzzy
 msgid "Temp Files"
 msgstr "临时文件"
 
@@ -1718,29 +1710,25 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "在 Bottles 启动时清理临时文件吗？"
 
 #: src/ui/preferences.ui:154
-#, fuzzy
 msgid "Close Bottles After Starting Programs"
 msgstr "启动程序后关闭 Bottles"
 
 #: src/ui/preferences.ui:155
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "从文件管理器启动程序后关闭 Bottles"
+msgstr "从文件管理器启动程序后关闭 Bottles。"
 
 #: src/ui/preferences.ui:186
 msgid "Advanced"
 msgstr "高级"
 
 #: src/ui/preferences.ui:191
-#, fuzzy
 msgid "Custom Bottles Path (Require Restart)"
 msgstr "自定义 Bottles 路径（需要重启）"
 
 #: src/ui/preferences.ui:192
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
-msgstr "选择新 Bottles 的存储位置（不会移动现有 Bottles）"
+msgstr "选择新 Bottles 的存储位置（不会移动现有 Bottles）。"
 
 #: src/ui/preferences.ui:228
 msgid ""
@@ -1751,7 +1739,6 @@ msgstr ""
 "这将破坏沙盒环境！"
 
 #: src/ui/preferences.ui:301
-#, fuzzy
 msgid "Pre-Release"
 msgstr "预发布"
 
@@ -1792,17 +1779,14 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:421
-#, fuzzy
 msgid "Steam Proton Prefixes"
 msgstr "Steam Proton 前缀"
 
 #: src/ui/preferences.ui:422 src/ui/preferences.ui:449
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "早期开发中（需要重启）"
+msgstr "早期开发中（需要重启）。"
 
 #: src/ui/preferences.ui:448
-#, fuzzy
 msgid "Library Mode"
 msgstr "库模式"
 
@@ -1944,12 +1928,10 @@ msgid "Loading..."
 msgstr "加载中…"
 
 #: src/window.py:177
-#, fuzzy
 msgid "Bottle Details"
 msgstr "Bottle 详情"
 
 #: src/window.py:184
-#, fuzzy
 msgid "Your Library"
 msgstr "你的库"
 
