@@ -48,8 +48,6 @@ class DLLEntry(Adw.ActionRow):
         self.btn_remove.connect("clicked", self.__remove_override)
         self.combo_type.connect('changed', self.__set_override_type)
 
-        self.__prevent_scroll()
-
     def __set_override_type(self, widget):
         """
         Change the override type according to the selected
@@ -75,17 +73,11 @@ class DLLEntry(Adw.ActionRow):
             scope="DLL_Overrides",
             remove=True
         )
-        self.destroy()
-
-    def __prevent_scroll(self):
-        def no_action(widget, event):
-            return True
-
-        # self.combo_type.connect('scroll-event', no_action)
+        self.get_parent().remove(self)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-dll-overrides.ui')
-class DLLOverridesDialog(Adw.Window):
+class DLLOverridesDialog(Adw.PreferencesWindow):
     __gtype_name__ = 'DLLOverridesDialog'
 
     # region Widgets
@@ -125,7 +117,7 @@ class DLLOverridesDialog(Adw.Window):
                 scope="DLL_Overrides"
             )
 
-            self.list_overrides.append(
+            self.list_overrides.add(
                 DLLEntry(
                     window=self.window,
                     config=self.config,
@@ -144,7 +136,7 @@ class DLLOverridesDialog(Adw.Window):
         with the existing overrides from the bottle configuration
         """
         for override in self.config.get("DLL_Overrides").items():
-            self.list_overrides.append(
+            self.list_overrides.add(
                 DLLEntry(
                     window=self.window,
                     config=self.config,
