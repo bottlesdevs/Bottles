@@ -9,7 +9,7 @@ logging = Logger()
 
 
 class WineBoot(WineProgram):
-    program = "WINE Runtime tool"
+    program = "Wine Runtime tool"
     command = "wineboot"
 
     def send_status(self, status: int):

@@ -9,7 +9,7 @@ logging = Logger()
 
 
 class WineBridge(WineProgram):
-    program = "WINE Bridge"
+    program = "Wine Bridge"
     command = "WineBridge.exe"
     is_internal = True
     internal_path = "winebridge"

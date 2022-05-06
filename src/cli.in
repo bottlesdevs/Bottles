@@ -83,7 +83,7 @@ class CLI:
         programs_parser = subparsers.add_parser("programs", help="List programs")
         programs_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
 
-        tools_parser = subparsers.add_parser("tools", help="Launch WINE tools")
+        tools_parser = subparsers.add_parser("tools", help="Launch Wine tools")
         tools_parser.add_argument('tool', choices=['cmd', 'winecfg', 'uninstaller', 'regedit', 'taskmgr', 'control',
                                                    'explorer'], help="Tool to launch")
         tools_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)

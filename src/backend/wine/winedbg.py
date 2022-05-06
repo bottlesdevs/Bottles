@@ -12,7 +12,7 @@ logging = Logger()
 
 
 class WineDbg(WineProgram):
-    program = "WINE debug tool"
+    program = "Wine debug tool"
     command = "winedbg"
     colors = "debug"
 

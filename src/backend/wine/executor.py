@@ -106,7 +106,7 @@ class WineExecutor:
     def run_cli(self):
         """
         We need to launch the application and then exit,
-        so we use WINE Starter, which will exit as soon
+        so we use Wine Starter, which will exit as soon
         as the program is launched
         """
         winepath = WinePath(self.config)

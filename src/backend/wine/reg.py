@@ -11,7 +11,7 @@ logging = Logger()
 
 
 class Reg(WineProgram):
-    program = "WINE Registry CLI"
+    program = "Wine Registry CLI"
     command = "reg"
 
     def add(self, key: str, value: str, data: str, key_type: str = False):

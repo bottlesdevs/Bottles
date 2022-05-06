@@ -34,7 +34,7 @@ logging = Logger()
 
 class Runner:
     """
-    This class handle everything related to the runner (e.g. WINE, Proton).
+    This class handle everything related to the runner (e.g. Wine, Proton).
     It should not contain any manager logic (e.g. catalogs, checks, etc.) or
     any bottle related stuff (e.g. config handling, etc.), also DXVK, VKD3D,
     NVAPI handling should not performed from here. This class should be kept
