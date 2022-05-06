@@ -149,9 +149,9 @@ class WineCommand:
 
         # Environment variables from argument 
         if environment:
-            if environment.get("WineDLLOVERRIDES"):
-                dll_overrides.append(environment["WineDLLOVERRIDES"])
-                del environment["WineDLLOVERRIDES"]
+            if environment.get("WINEDLLOVERRIDES"):
+                dll_overrides.append(environment["WINEDLLOVERRIDES"])
+                del environment["WINEDLLOVERRIDES"]
 
             for e in environment:
                 env.add(e, environment[e], override=True)
@@ -197,7 +197,7 @@ class WineCommand:
 
         # DXVK environment variables
         if params["dxvk"]:
-            env.add("Wine_LARGE_ADDRESS_AWARE", "1")
+            env.add("WINE_LARGE_ADDRESS_AWARE", "1")
             env.add("DXVK_STATE_CACHE_PATH", bottle)
             env.add("STAGING_SHARED_MEMORY", "1")
             env.add("__GL_DXVK_OPTIMIZATIONS", "1")
@@ -233,7 +233,7 @@ class WineCommand:
 
             # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
             if DisplayUtils.check_nvidia_device():
-                env.add("Wine_HIDE_NVIDIA_GPU", "1")
+                env.add("WINE_HIDE_NVIDIA_GPU", "1")
 
         # DXVK HUD environment variable
         if params["dxvk_hud"]:
@@ -241,22 +241,22 @@ class WineCommand:
 
         # Esync environment variable
         if params["sync"] == "esync":
-            env.add("WineESYNC", "1")
+            env.add("WINEESYNC", "1")
 
         # Fsync environment variable
         if params["sync"] == "fsync":
-            env.add("WineFSYNC", "1")
+            env.add("WINEFSYNC", "1")
 
         # Futex2 environment variable
         if params["sync"] == "futex2":
-            env.add("WineFSYNC_FUTEX2", "1")
+            env.add("WINEFSYNC_FUTEX2", "1")
 
         # Wine debug level
         if not return_steam_env:
             debug_level = "fixme-all"
             if params["fixme_logs"]:
                 debug_level = "+fixme-all"
-            env.add("WineDEBUG", debug_level)
+            env.add("WINEDEBUG", debug_level)
 
         # LatencyFleX
         if not return_steam_env \
@@ -270,8 +270,8 @@ class WineCommand:
 
         # FSR
         if params["fsr"]:
-            env.add("Wine_FULLSCREEN_FSR", "1")
-            env.add("Wine_FULLSCREEN_FSR_STRENGHT", str(params["fsr_level"]))
+            env.add("WINE_FULLSCREEN_FSR", "1")
+            env.add("WINE_FULLSCREEN_FSR_STRENGHT", str(params["fsr_level"]))
 
         # PulseAudio latency
         if params["pulseaudio_latency"]:
@@ -311,17 +311,17 @@ class WineCommand:
                 env.concat("LD_LIBRARY_PATH", ld)
 
         # DLL Overrides
-        env.concat("WineDLLOVERRIDES", dll_overrides, sep=";")
-        if env.is_empty("WineDLLOVERRIDES"):
-            env.remove("WineDLLOVERRIDES")
+        env.concat("WINEDLLOVERRIDES", dll_overrides, sep=";")
+        if env.is_empty("WINEDLLOVERRIDES"):
+            env.remove("WINEDLLOVERRIDES")
 
         # Wine prefix
         if not return_steam_env:
-            env.add("WinePREFIX", bottle, override=True)
+            env.add("WINEPREFIX", bottle, override=True)
 
         # Wine arch
         if not return_steam_env:
-            env.add("WineARCH", arch)
+            env.add("WINEARCH", arch)
         return env.get()["envs"]
 
     def __get_runner(self) -> str:
