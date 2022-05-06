@@ -6,7 +6,7 @@ on:
 jobs:
   build-packages:
     runs-on: ubuntu-20.04
-    container: debian:unstable-slim
+    container: ubuntu:jammy
     steps:
       - uses: actions/checkout@v2
 
