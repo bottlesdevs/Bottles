@@ -10,7 +10,6 @@ bottles_sources = [
   'page.py',
   'program.py',
   'state.py',
-  'message.py',
   'component.py',
   'library.py',
 ]
