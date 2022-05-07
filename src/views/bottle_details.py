@@ -234,6 +234,9 @@ class BottleView(Gtk.ScrolledWindow):
         The file will be executed by the runner after the
         user confirmation.
         """
+        def do_update_programs(result, error=False):
+            self.window.page_details.update_programs()
+
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a Windows executable file"),
             self.window,
@@ -260,7 +263,7 @@ class BottleView(Gtk.ScrolledWindow):
                 move_file=self.check_move_file.get_active(),
                 move_upd_fn=self.update_move_progress
             )
-            RunAsync(executor.run)
+            RunAsync(executor.run, do_update_programs)
 
             self.manager.update_config(
                 config=self.config,
