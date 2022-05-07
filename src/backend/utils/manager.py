@@ -150,23 +150,22 @@ class ManagerUtils:
             return False
 
     @staticmethod
-    def create_desktop_entry(config, program: dict):
+    def create_desktop_entry(config, program: dict, skip_icon: bool = False):
         if not user_apps_dir:
             return None
 
-        file_name_template = "%s/%s--%s--%s.desktop"
+        from bottles.backend.wine.winepath import WinePath
+        winepath = WinePath(config)
 
+        icon = "com.usebottles.bottles-program"
+        bottle_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
+        file_name_template = "%s/%s--%s--%s.desktop"
         existing_files = glob(file_name_template % (
             Paths.applications,
             config.get('Name'),
             program.get("name"),
             "*"
         ))
-
-        if existing_files:
-            for file in existing_files:
-                os.remove(file)
-
         desktop_file = file_name_template % (
             Paths.applications,
             config.get('Name'),
@@ -178,6 +177,24 @@ class ManagerUtils:
         if "FLATPAK_ID" in os.environ:
             cmd = "flatpak run --command=bottles-cli com.usebottles.bottles"
 
+        if existing_files:
+            for file in existing_files:
+                os.remove(file)
+
+        if not skip_icon:
+            try:
+                import icoextract
+                unix_path = winepath.to_unix(program.get("path"), native=True)
+                ico_dest = os.path.join(bottle_icons_path, f"{program.get('name')}.png")
+                ico = icoextract.IconExtractor(unix_path)
+                os.makedirs(bottle_icons_path, exist_ok=True)
+                if os.path.exists(ico_dest):
+                    os.remove(ico_dest)
+                ico.export_icon(ico_dest)
+                icon = ico_dest
+            except (ImportError, ModuleNotFoundError, Exception):
+                logging.warning("Could not extract icon for the program. No icon will be added to the entry.")
+
         with open(desktop_file, "w") as f:
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={program.get('name')}\n")
@@ -185,7 +202,7 @@ class ManagerUtils:
             f.write(f"Type=Application\n")
             f.write(f"Terminal=false\n")
             f.write(f"Categories=Application;\n")
-            f.write(f"Icon=com.usebottles.bottles-program\n")
+            f.write(f"Icon={icon}\n")
             f.write(f"Comment=Launch {program.get('name')} using Bottles.\n")
             # Actions
             f.write("Actions=Configure;\n")
