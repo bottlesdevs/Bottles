@@ -61,7 +61,11 @@ class JournalManager:
         if journal is None:
             return {}
 
-        journal = {k: v for k, v in sorted(journal.items(), key=lambda item: item[1]["timestamp"], reverse=True)}
+        try:
+            journal = {k: v for k, v in sorted(journal.items(), key=lambda item: item[1]["timestamp"], reverse=True)}
+        except KeyError:
+            journal = {}
+
         return journal
 
     @staticmethod
