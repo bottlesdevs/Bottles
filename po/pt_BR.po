@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-02 23:20+0200\n"
-"PO-Revision-Date: 2022-05-02 21:18+0000\n"
-"Last-Translator: Vitor Henrique <vitorhcl00@gmail.com>\n"
+"PO-Revision-Date: 2022-05-07 17:52+0000\n"
+"Last-Translator: Davi Patricio <davipatricio@pm.me>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -429,9 +429,8 @@ msgid "Run executable"
 msgstr "Executar .exe/.msi/.bat"
 
 #: src/ui/details-bottle.ui:439
-#, fuzzy
 msgid "My bottle"
-msgstr "Crie uma nova garrafa"
+msgstr "Minha garrafa"
 
 #: src/ui/details-bottle.ui:461
 msgid "Win64"
@@ -543,7 +542,7 @@ msgstr "Acesse o painel de controle interno do Wine."
 
 #: src/ui/details-bottle.ui:1071
 msgid "Use the Installers section or the \"Run executable\" button above."
-msgstr ""
+msgstr "Use a seção Instaladores ou o botão \"Executar executável\" acima."
 
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
@@ -569,6 +568,9 @@ msgid ""
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
 msgstr ""
+"Dependências são programas, bibliotecas e codecs que melhoram a "
+"compatibilidade de aplicativos Windows. Instale-os a partir daqui para "
+"atender aos requisitos do seu programa."
 
 #: src/ui/details-dependencies.ui:193
 msgid "Report a problem or a missing dependency."
@@ -616,15 +618,18 @@ msgid ""
 "com/bottles/installers#compatibility-grades\">compatibility grade</a> when "
 "choosing."
 msgstr ""
+"Use esta seção para instalar programas selecionados por nossa comunidade, "
+"sem ter que proceder manualmente. Considere ver o <a href=\"https://docs."
+"usebottles.com/bottles/installers#compatibility-grades\">grau de "
+"compatibilidade</a> ao escolher."
 
 #: src/ui/details-installers.ui:92
-#, fuzzy
 msgid ""
 "While the files on this page have been verified, they may be under a "
 "proprietary license."
 msgstr ""
-"Embora os arquivos nessa página tenham sido verificados, podem estar sob "
-"licença proprietária."
+"Embora os arquivos nesta página tenham sido verificados, eles podem estar "
+"sob uma licença proprietária."
 
 #: src/ui/details-installers.ui:132
 msgid "Read documentation about installers\t"
@@ -782,9 +787,8 @@ msgid "Screen scaling"
 msgstr "Dimensionamento de tela"
 
 #: src/ui/details-preferences.ui:581
-#, fuzzy
 msgid "Set custom DPI."
-msgstr "Definir DPI personalizado"
+msgstr "Defina DPI personalizado."
 
 #: src/ui/details-preferences.ui:595
 msgid "96"
@@ -839,9 +843,8 @@ msgid "Renderer"
 msgstr "Renderizador"
 
 #: src/ui/details-preferences.ui:628
-#, fuzzy
 msgid "Select what backend to use for wined3d."
-msgstr "Selecione qual backend usar para wined3d"
+msgstr "Selecione qual back-end usar para o wined3d."
 
 #: src/ui/details-preferences.ui:642
 msgid "gl (default)"
@@ -1012,11 +1015,10 @@ msgid "Reduce PulseAudio latency"
 msgstr "Reduza a latência do PulseAudio"
 
 #: src/ui/details-preferences.ui:1603
-#, fuzzy
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality."
 msgstr ""
-"Defina a latência do PulseAudio para 60 milissegundos para aumentar a "
-"qualidade do som"
+"Definir a latência do PulseAudio para 60 milissegundos para aumentar a "
+"qualidade do som."
 
 #: src/ui/details-preferences.ui:1639
 msgid "Developers & Debug"
@@ -1049,9 +1051,8 @@ msgid "OBS Vulkan Capture"
 msgstr "Captura OBS Vulkan"
 
 #: src/ui/details-preferences.ui:1699
-#, fuzzy
 msgid "Toggle OBS game capture for all next launches."
-msgstr "Alternar captura de jogos OBS para todos as próximas vezes que rodar"
+msgstr "Alterne a captura de jogos OBS para todos os próximos lançamentos."
 
 #: src/ui/details-preferences.ui:1725
 msgid "Enable wine fixme logs"
@@ -1070,6 +1071,9 @@ msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button"
 msgstr ""
+"Instale programas da seção de instaladores ou executando o executável do "
+"instalador, você também pode adicionar executáveis manualmente com o botão \""
+"+\""
 
 #: src/ui/details-programs.ui:81
 msgid "Show/hide hidden programs"
@@ -1173,7 +1177,6 @@ msgid "Advanced options"
 msgstr "Opções avançadas"
 
 #: src/ui/dialog-dll-overrides.ui:25
-#, fuzzy
 msgid "DLL Overrides"
 msgstr "Substituições de DLL"
 
@@ -1262,7 +1265,6 @@ msgid "page_duplicated"
 msgstr "page_duplicated"
 
 #: src/ui/dialog-env-vars.ui:24 src/ui/dialog-environment-variables.ui:24
-#, fuzzy
 msgid "Environment Variables"
 msgstr "Variáveis de ambiente"
 
@@ -1308,7 +1310,6 @@ msgid "e.g: VAR1=value VAR2=value .."
 msgstr "ex.: VAR1=valor VAR2=valor .."
 
 #: src/ui/dialog-gamescope.ui:24
-#, fuzzy
 msgid "Gamescope Settings"
 msgstr "Configurações do Gamescope"
 
@@ -1380,9 +1381,8 @@ msgid "Fullscreen"
 msgstr "Tela cheia"
 
 #: src/ui/dialog-launch-options.ui:59
-#, fuzzy
 msgid "Launch Options"
-msgstr "Alterar opções de lançamento"
+msgstr "Opções de lançamento"
 
 #: src/ui/dialog-launch-options.ui:109
 msgid "These arguments are passed on program launch:"
@@ -1424,9 +1424,8 @@ msgid "Type here.."
 msgstr "Digite aqui.."
 
 #: src/ui/dialog-run-args.ui:24
-#, fuzzy
 msgid "Run With Arguments"
-msgstr "Adicionar parâmetros de inicialização"
+msgstr "Executar com argumentos"
 
 #: src/ui/dialog-run-args.ui:35 src/dialogs/launchoptions.py:91
 #: src/views/bottle_details.py:239 src/views/list.py:130
@@ -1478,24 +1477,24 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Esse wineprefix já foi importado no Bottles."
 
 #: src/ui/importer.ui:27
-#, fuzzy
 msgid "No prefixes found"
-msgstr "Nenhuma dependência encontrada!"
+msgstr "Nenhum prefixo encontrado"
 
 #: src/ui/importer.ui:28
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
+"Nenhum prefixo do Lutris, PlayOnLinux, etc foi encontrado.\n"
+"Use o ícone na parte superior para importar uma garrafa de um backup"
 
 #: src/ui/importer.ui:74
 msgid "Import Bottles backup"
 msgstr "Importar backup do Bottles"
 
 #: src/ui/importer.ui:97
-#, fuzzy
 msgid "Search again for prefixes"
-msgstr "Prefixos do Steam Proton"
+msgstr "Pesquisar novamente por prefixos"
 
 #: src/ui/importer.ui:135
 msgid "Configuration"
@@ -1510,13 +1509,12 @@ msgid "Read review"
 msgstr "Ler análise"
 
 #: src/ui/installer-entry.ui:124
-#, fuzzy
 msgid "Install this program"
-msgstr "Programas instalados"
+msgstr "Instale este programa"
 
 #: src/ui/installer-entry.ui:173
 msgid "Compatibility grade"
-msgstr ""
+msgstr "Grau de compatibilidade"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1571,7 +1569,6 @@ msgid "Create"
 msgstr "Criar"
 
 #: src/ui/new.ui:92
-#, fuzzy
 msgid "Bottle Information"
 msgstr "Informações da garrafa"
 
@@ -1666,9 +1663,8 @@ msgstr ""
 "Bottles torna a execução de software Windows no Linux muito mais fácil."
 
 #: src/ui/onboard.ui:152
-#, fuzzy
 msgid "What Are Bottles?"
-msgstr "O que são os Runners?"
+msgstr "O que são Garrafas?"
 
 #: src/ui/onboard.ui:171
 msgid ""
@@ -1680,6 +1676,13 @@ msgid ""
 "\n"
 "<a href=\"https://docs.usebottles.com\">Read more about</a>"
 msgstr ""
+"Uma garrafa é um ambiente semelhante ao Windows configurado para executar "
+"aplicativos Windows, você pode ter vários aplicativos em cada garrafa.\n"
+"\n"
+"Eles são isolados e os aplicativos que são executados dentro dele não pode "
+"acessar seus arquivos pessoais se você não permitir.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com\">Leia mais sobre</a>"
 
 #: src/ui/onboard.ui:191
 msgid "Wine"
@@ -1690,7 +1693,6 @@ msgid "We Are Almost There"
 msgstr "Estamos Quase Lá"
 
 #: src/ui/onboard.ui:241
-#, fuzzy
 msgid ""
 "We need to download and install some <a href=\"https://docs.usebottles.com/"
 "getting-started/first-run\">components (~75MB)</a> to get you ready.\n"
@@ -1700,16 +1702,13 @@ msgid ""
 "\n"
 "When you are ready press the <b>Install</b> button."
 msgstr ""
-"Precisamos baixar e instalar um executor para permitir que você crie suas "
-"próprias garrafas.\n"
-"O tamanho do download é <b>~70MB</b>.\n"
-"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Leia mais "
-"sobre o que vamos baixar</a>\n"
+"Precisamos baixar e instalar alguns <a href=\"https://docs.usebottles.com/"
+"getting-started/first-run\">componentes (~75 MB)</a> para prepará-lo.\n"
 "\n"
-"Não podemos oferecer esses arquivos com o Bottles, pois eles têm ciclos de "
-"lançamento diferentes.\n"
+"Não podemos oferecer esses arquivos com o Bottles, pois eles possuem "
+"diferentes ciclos de lançamento.\n"
 "\n"
-"Quando você estiver preparado, pressione o botão <b>Instalar</b>."
+"Quando você estiver pronto, pressione o botão <b>Instalar</b>."
 
 #: src/ui/onboard.ui:261 src/ui/preferences.ui:292
 msgid "Runners"
@@ -1752,9 +1751,8 @@ msgid "Appearance"
 msgstr "Aparência"
 
 #: src/ui/preferences.ui:63
-#, fuzzy
 msgid "Show Update Date"
-msgstr "Exibir data de atualização"
+msgstr "Mostrar data de atualização"
 
 #: src/ui/preferences.ui:64
 msgid "Whether to show the update date in the bottle list."
@@ -1765,7 +1763,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "Mostrar notificações para downloads e instalações."
 
 #: src/ui/preferences.ui:127
-#, fuzzy
 msgid "Temp Files"
 msgstr "Arquivos temporários"
 
@@ -1774,32 +1771,26 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Limpar arquivos temporários quando o Bottles for aberto?"
 
 #: src/ui/preferences.ui:154
-#, fuzzy
 msgid "Close Bottles After Starting Programs"
-msgstr "Fechar o Bottles automaticamente após iniciar um programa"
+msgstr "Fechar o Bottles após iniciar programas"
 
 #: src/ui/preferences.ui:155
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
 msgstr ""
-"Feche o Bottles automaticamente após iniciar um programa a partir do "
-"gerenciador de arquivos"
+"Fechar o Bottles depois de iniciar um programa no gerenciador de arquivos."
 
 #: src/ui/preferences.ui:186
 msgid "Advanced"
 msgstr "Avançado"
 
 #: src/ui/preferences.ui:191
-#, fuzzy
 msgid "Custom Bottles Path (Require Restart)"
 msgstr "Caminho personalizado de garrafas (requer reinicialização)"
 
 #: src/ui/preferences.ui:192
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
-msgstr ""
-"Escolha onde armazenar as novas garrafas (isso não moverá as existentes)"
+msgstr "Escolha onde armazenar novas garrafas (isso não moverá as existentes)."
 
 #: src/ui/preferences.ui:228
 msgid ""
@@ -1811,7 +1802,6 @@ msgstr ""
 "Isso vai quebrar a sandbox!"
 
 #: src/ui/preferences.ui:301
-#, fuzzy
 msgid "Pre-Release"
 msgstr "Pré-lançamento"
 
@@ -1852,17 +1842,14 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:421
-#, fuzzy
 msgid "Steam Proton Prefixes"
 msgstr "Prefixos do Steam Proton"
 
 #: src/ui/preferences.ui:422 src/ui/preferences.ui:449
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "Em desenvolvimento inicial (requer reinicialização)"
+msgstr "Em desenvolvimento inicial (requer reinicialização)."
 
 #: src/ui/preferences.ui:448
-#, fuzzy
 msgid "Library Mode"
 msgstr "Modo biblioteca"
 
@@ -2005,18 +1992,16 @@ msgid "Loading..."
 msgstr "Carregando..."
 
 #: src/window.py:177
-#, fuzzy
 msgid "Bottle Details"
 msgstr "Detalhes da garrafa"
 
 #: src/window.py:184
-#, fuzzy
 msgid "Your Library"
 msgstr "Sua biblioteca"
 
 #: src/window.py:317
 msgid "Journal browser"
-msgstr ""
+msgstr "Navegador do journal"
 
 #: src/utils/connection.py:60
 msgid "You are offline, unable to download."
@@ -2080,9 +2065,8 @@ msgid "Failed to create bottle directory."
 msgstr "Falha ao criar diretório para bottle."
 
 #: src/backend/managers/manager.py:1138
-#, fuzzy
 msgid "Failed to create placeholder directory/file."
-msgstr "Falha ao criar diretório/arquivo de marcação."
+msgstr "Falha ao criar diretório/arquivo de espaço reservado."
 
 #: src/backend/managers/manager.py:1143
 msgid "Generating bottle configuration…"
