@@ -32,6 +32,7 @@ from bottles.dialogs.drives import DrivesDialog
 from bottles.dialogs.dlloverrides import DLLOverridesDialog
 from bottles.dialogs.gamescope import GamescopeDialog
 
+from bottles.backend.wine.catalogs import win_versions
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regkeys import RegKeys
 
@@ -364,7 +365,6 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.combo_dxvk.set_active_id(self.config.get("DXVK"))
         self.combo_vkd3d.set_active_id(self.config.get("VKD3D"))
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
-        self.combo_windows.set_active_id(self.config.get("Windows"))
         self.combo_renderer.set_active_id(parameters["renderer"])
         self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
 
@@ -374,6 +374,22 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.action_cwd.set_subtitle(self.config.get("WorkingDir"))
         else:
             self.action_cwd.set_subtitle(_("Default to the bottle path."))
+
+        self.combo_windows.remove_all()
+        self.combo_windows.append("win10", "Windows 10")
+        self.combo_windows.append("win81", "Windows 8.1")
+        self.combo_windows.append("win8", "Windows 8")
+        self.combo_windows.append("win7", "Windows 7")
+        self.combo_windows.append("vista", "Windows Vista")
+        self.combo_windows.append("win2008r2", "Windows 2008 R2")
+        self.combo_windows.append("win2008", "Windows 2008")
+        self.combo_windows.append("winxp", "Windows XP")
+
+        if self.config.get("Arch") == "win32":
+            self.combo_windows.append("win98", "Windows 98")
+            self.combo_windows.append("win95", "Windows 95")
+
+        self.combo_windows.set_active_id(self.config.get("Windows"))
 
         # unlock functions connected to the widgets
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)

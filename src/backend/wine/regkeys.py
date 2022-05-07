@@ -58,47 +58,65 @@ class RegKeys:
             else:
                 self.reg.remove(d, _val)
 
-        bundle = {
-            "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": [
-                {
-                    "value": "CSDVersion",
-                    "data": win_versions.get(version)["CSDVersion"]
-                },
-                {
-                    "value": "CurrentBuild",
-                    "data": win_versions.get(version)["CurrentBuild"]
-                },
-                {
-                    "value": "CurrentBuildNumber",
-                    "data": win_versions.get(version)["CurrentBuildNumber"]
-                },
-                {
-                    "value": "CurrentVersion",
-                    "data": win_versions.get(version)["CurrentVersion"]
-                },
-                {
-                    "value": "ProductName",
-                    "data": win_versions.get(version)["ProductName"]
-                },
-                {
-                    "value": "CurrentMinorVersionNumber",
-                    "data": win_versions.get(version)["CurrentMinorVersionNumber"],
-                    "key_type": "dword"
-                },
-                {
-                    "value": "CurrentMajorVersionNumber",
-                    "data": win_versions.get(version)["CurrentMajorVersionNumber"],
-                    "key_type": "dword"
-                },
-            ],
-            "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": [
-                {
-                    "value": "CSDVersion",
-                    "data": win_versions.get(version)["CSDVersionHex"],
-                    "key_type": "dword"
-                }
-            ]
-        }
+        if version not in ["win98", "win95"]:
+            bundle = {
+                "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion": [
+                    {
+                        "value": "CSDVersion",
+                        "data": win_versions.get(version)["CSDVersion"]
+                    },
+                    {
+                        "value": "CurrentBuild",
+                        "data": win_versions.get(version)["CurrentBuild"]
+                    },
+                    {
+                        "value": "CurrentBuildNumber",
+                        "data": win_versions.get(version)["CurrentBuildNumber"]
+                    },
+                    {
+                        "value": "CurrentVersion",
+                        "data": win_versions.get(version)["CurrentVersion"]
+                    },
+                    {
+                        "value": "ProductName",
+                        "data": win_versions.get(version)["ProductName"]
+                    },
+                    {
+                        "value": "CurrentMinorVersionNumber",
+                        "data": win_versions.get(version)["CurrentMinorVersionNumber"],
+                        "key_type": "dword"
+                    },
+                    {
+                        "value": "CurrentMajorVersionNumber",
+                        "data": win_versions.get(version)["CurrentMajorVersionNumber"],
+                        "key_type": "dword"
+                    },
+                ],
+                "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Windows": [
+                    {
+                        "value": "CSDVersion",
+                        "data": win_versions.get(version)["CSDVersionHex"],
+                        "key_type": "dword"
+                    }
+                ]
+            }
+        else:
+            bundle = {
+                "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion": [
+                    {
+                        "value": "ProductName",
+                        "data": win_versions.get(version)["ProductName"]
+                    },
+                    {
+                        "value": "SubVersionNumber",
+                        "data": win_versions.get(version)["SubVersionNumber"]
+                    },
+                    {
+                        "value": "VersionNumber",
+                        "data": win_versions.get(version)["VersionNumber"]
+                    }
+                ]
+            }
 
         if self.config.get("Arch") == "win64":
             bundle["HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion"] = [

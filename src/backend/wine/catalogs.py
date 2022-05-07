@@ -51,7 +51,7 @@ win_versions = {
         "CurrentVersion": "6.1",
         "CurrentMinorVersionNumber": "1",
         "CurrentMajorVersionNumber": "6",
-        "ProductType": "WinNT",
+        "ProductType": "ServerNT",
         "ProductName": "Microsoft Windows 2008 R2"
     },
     "win2008": {
@@ -62,7 +62,7 @@ win_versions = {
         "CurrentVersion": "6.0",
         "CurrentMinorVersionNumber": "0",
         "CurrentMajorVersionNumber": "6",
-        "ProductType": "WinNT",
+        "ProductType": "ServerNT",
         "ProductName": "Microsoft Windows 2008"
     },
     "win2003": {
@@ -73,6 +73,7 @@ win_versions = {
         "CurrentVersion": "5.2",
         "CurrentMinorVersionNumber": "2",
         "CurrentMajorVersionNumber": "5",
+        "ProductType": "ServerNT",
         "ProductName": "Microsoft Windows 2003"
     },
     "winxp": {
@@ -95,5 +96,15 @@ win_versions = {
         "CurrentMajorVersionNumber": "5",
         "ProductType": "WinNT",
         "ProductName": "Microsoft Windows XP"
+    },
+    "win98": {
+        "VersionNumber": "4.10.2222",
+        "SubVersionNumber": " A ",
+        "ProductName": "Microsoft Windows 98"
+    },
+    "win95": {
+        "VersionNumber": "4.0.950",
+        "SubVersionNumber": "",
+        "ProductName": "Microsoft Windows 95"
     },
 }
