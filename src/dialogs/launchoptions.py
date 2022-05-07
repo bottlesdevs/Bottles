@@ -63,7 +63,7 @@ class LaunchOptionsDialog(Handy.Window):
             self.action_script.set_subtitle(program["script"])
 
     def __close_window(self, widget=None):
-        self.parent.page_details.set_config(self.config)
+        self.parent.page_details.set_config(self.config, no_page_change=True)
         self.destroy()
 
     def __save_options(self, widget):
@@ -75,7 +75,7 @@ class LaunchOptionsDialog(Handy.Window):
         self.program["arguments"] = self.entry_arguments.get_text()
         self.config = self.manager.update_config(
             config=self.config,
-            key=self.program["executable"],
+            key=self.program["id"],
             value=self.program,
             scope="External_Programs"
         )

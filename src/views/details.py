@@ -170,7 +170,7 @@ class DetailsView(Handy.Leaflet):
         except AttributeError:
             self.stack_bottle.set_visible_child_name("bottle")
 
-    def set_config(self, config):
+    def set_config(self, config, no_page_change=False):
         """
         This function update widgets according to the bottle
         configuration. It also temporarily disable the functions
@@ -189,7 +189,8 @@ class DetailsView(Handy.Leaflet):
         self.view_programs.update(config=config)
         self.view_bottle.update_programs()
 
-        self.build_pages()
+        if not no_page_change:
+            self.build_pages()
 
     def update_programs(self, widget=None, config=None):
         if config:
