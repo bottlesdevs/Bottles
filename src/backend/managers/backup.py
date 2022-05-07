@@ -80,7 +80,8 @@ class BackupManager:
                     os.chdir(parent)
                     tar.add(folder, filter=BackupManager.exclude_filter)
                 backup_created = True
-            except (FileNotFoundError, PermissionError, tarfile.TarError):
+            except (FileNotFoundError, PermissionError, tarfile.TarError, ValueError):
+                logging.error(f"Error creating backup for [{config['Name']}]")
                 backup_created = False
 
             GLib.idle_add(BackupManager.operation_manager.remove_task, task_id)
