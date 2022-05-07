@@ -215,7 +215,7 @@ class VersioningManager:
         else:
             new_state_file = {
                 "Update_Date": str(datetime.now()),
-                "States": {"0": new_state}
+                "States": {0: new_state}
             }
 
         try:
@@ -304,6 +304,7 @@ class VersioningManager:
 
             return files
         except (OSError, IOError, yaml.YAMLError):
+            logging.error(f"Could not read the state index file.")
             return {}
 
     @staticmethod
@@ -324,6 +325,7 @@ class VersioningManager:
             file.close()
             return files
         except (OSError, IOError, yaml.YAMLError):
+            logging.error(f"Could not read the state files file.")
             return {}
 
     @staticmethod
@@ -335,7 +337,7 @@ class VersioningManager:
             "Update_Date": str(datetime.now()),
             "Files": []
         }
-        for file in glob("%s/drive_c/**" % bottle_path):
+        for file in glob("%s/drive_c/**" % bottle_path, recursive=True):
             if not os.path.isfile(file):
                 continue
 
@@ -448,6 +450,6 @@ class VersioningManager:
 
             logging.info(f"Found [{len(states)}] states for bottle: [{config['Name']}]", )
         except (FileNotFoundError, yaml.YAMLError):
-            pass
+            logging.info(f"No states found for bottle: [{config['Name']}]", )
 
         return states
