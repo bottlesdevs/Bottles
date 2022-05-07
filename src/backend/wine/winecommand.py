@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 from typing import NewType
 
@@ -360,7 +361,7 @@ class WineCommand:
             If the runner type is system, set the runner binary
             path to the system command. Else set it to the full path.
             '''
-            runner = "wine"
+            runner = shutil.which("wine")
 
         else:
             runner = f"{Paths.runners}/{runner}/bin/wine"

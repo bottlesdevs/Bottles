@@ -62,14 +62,16 @@ class Runner:
         logging.info(f"Doing runner update for bottle: {config['Name']}", )
         wineboot = WineBoot(config)
         wineserver = WineServer(config)
-        runner_path = ManagerUtils.get_runner_path(runner)
+        
+        if not runner.startswith("sys-"):
+            runner_path = ManagerUtils.get_runner_path(runner)
 
-        if not os.path.exists(runner_path):
-            logging.error(f"Runner {runner} not found in {runner_path}")
-            return Result(
-                status=False,
-                data={"config": config}
-            )
+            if not os.path.exists(runner_path):
+                logging.error(f"Runner {runner} not found in {runner_path}")
+                return Result(
+                    status=False,
+                    data={"config": config}
+                )
 
         # kill wineserver after update
         wineboot.kill()
