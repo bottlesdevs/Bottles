@@ -24,6 +24,7 @@ import subprocess
 from bottles.backend.utils.display import DisplayUtils  # pyright: reportMissingImports=false
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.generic import is_glibc_min_available
+from bottles.backend.utils.file import FileUtils
 
 
 class HealthChecker:
@@ -43,6 +44,7 @@ class HealthChecker:
     bottles_envs: dict = {}
 
     def __init__(self):
+        self.file_utils = FileUtils()
         self.x11 = self.check_x11()
         self.wayland = self.check_wayland()
         self.xwayland = self.check_xwayland()
@@ -53,6 +55,12 @@ class HealthChecker:
         self.glibc_min = is_glibc_min_available()
         self.bottles_envs = self.get_bottles_envs()
         self.check_system_info()
+        self.disk = self.get_disk_data()
+        self.ram = {
+            "MemTotal": "n/a",
+            "MemAvailable": "n/a"
+        }
+        self.get_ram_data()
 
     @staticmethod
     def check_gpus():
@@ -161,6 +169,24 @@ class HealthChecker:
         self.distro = distro["name"]
         self.distro_version = distro["version"]
 
+    def get_disk_data(self):
+        disk_data = self.file_utils.get_disk_size(False)
+        return {
+            "Total": disk_data["total"],
+            "Free": disk_data["free"]
+        }
+
+    def get_ram_data(self):
+        try:
+            with open('/proc/meminfo') as file:
+                for line in file:
+                    if 'MemTotal' in line:
+                        self.ram["MemTotal"] = self.file_utils.get_human_size(float(line.split()[1])*1024.0)
+                    if 'MemAvailable' in line:
+                        self.ram["MemAvailable"] = self.file_utils.get_human_size(float(line.split()[1])*1024.0)
+        except(FileNotFoundError, PermissionError):
+            pass
+
     def get_results(self, plain: bool = False):
         results = {
             "Display": {
@@ -177,6 +203,8 @@ class HealthChecker:
                 "Name": self.distro,
                 "Version": self.distro_version
             },
+            "Disk": self.disk,
+            "RAM": self.ram,
             "Tools": {
                 "cabextract": self.cabextract,
                 "p7zip": self.p7zip,
