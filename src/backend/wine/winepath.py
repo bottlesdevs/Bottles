@@ -1,3 +1,4 @@
+import re
 from typing import NewType
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
@@ -36,7 +37,24 @@ class WinePath(WineProgram):
         res = self.launch(args=args, comunicate=True, action_name="--unix")
         return self.__clean_path(res)
 
-    def to_windows(self, path: str):
+    def to_windows(self, path: str, native: bool = False):
+        if native:
+            bottle_path = ManagerUtils.get_bottle_path(self.config)
+            if "/drive_" in path:
+                drive = re.search(r"drive_([a-z])/", path.lower()).group(1)
+                path = path.replace(
+                    f"{bottle_path}/drive_{drive.lower()}",
+                    f"{drive.upper()}:"
+                )
+            elif "/dosdevices" in path:
+                drive = re.search(r"dosdevices/([a-z]):", path.lower()).group(1)
+                path = path.replace(
+                    f"{bottle_path}/dosdevices/{drive.lower()}",
+                    f"{drive.upper()}:"
+                )
+            path = path.replace("/", "\\")
+            return self.__clean_path(path)
+
         args = f"--windows '{path}'"
         res = self.launch(args=args, comunicate=True, action_name="--windows")
         return self.__clean_path(res)
