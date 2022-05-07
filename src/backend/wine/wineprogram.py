@@ -1,5 +1,5 @@
 import os
-from typing import NewType
+from typing import NewType, Union
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths
@@ -33,7 +33,7 @@ class WineProgram:
 
     def launch(
             self,
-            args: str = None,
+            args: Union[tuple, str] = None,
             terminal: bool = False,
             minimal: bool = True,
             comunicate: bool = False,
@@ -47,7 +47,14 @@ class WineProgram:
         if not self.silent:
             logging.info(f"Using {self.program} -- {action_name}", )
 
-        command = self.get_command(args)
+        if isinstance(args, tuple):
+            wineprogram_args = args[0]
+            program_args = args[1]
+        else:
+            wineprogram_args = args
+            program_args = None
+
+        command = self.get_command(wineprogram_args)
         res = WineCommand(
             self.config,
             command=command,
@@ -56,7 +63,8 @@ class WineProgram:
             comunicate=comunicate,
             colors=self.colors,
             environment=environment,
-            cwd=cwd
+            cwd=cwd,
+            arguments=program_args
         ).run()
         return res
 

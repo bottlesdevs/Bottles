@@ -25,15 +25,15 @@ class Start(WineProgram):
             # running unix paths with start is not recommended
             # as it can miss important files due to the wrong
             # current working directory
-            args = f"/unix /wait {file} {args}"
+            _args = f"/unix /wait {file}"
         else:
             if cwd not in [None, ""] and winepath.is_windows(cwd):
-                args = f"/wait /dir {cwd} {file} {args}"
+                _args = f"/wait /dir {cwd} {file}"
             else:
-                args = f"/wait {file} {args}"
+                _args = f"/wait {file}"
 
         self.launch(
-            args=args,
+            args=(_args, args),
             comunicate=True,
             terminal=terminal,
             environment=environment,

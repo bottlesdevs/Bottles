@@ -380,14 +380,6 @@ class WineCommand:
         if not return_steam_cmd:
             command = f"{runner} {command}"
 
-        if self.arguments:
-            if "%command%" in self.arguments:
-                prefix = self.arguments.split("%command%")[0]
-                suffix = self.arguments.split("%command%")[1]
-                command = f"{prefix} {command} {suffix}"
-            else:
-                command = f"{command} {self.arguments}"
-
         if not self.minimal:
             if gamemode_available and params.get("gamemode"):
                 if not return_steam_cmd:
@@ -406,6 +398,14 @@ class WineCommand:
 
             if obs_vkc_available and params.get("obsvkc"):
                 command = f"{obs_vkc_available} {command}"
+
+        if self.arguments:
+            if "%command%" in self.arguments:
+                prefix = self.arguments.split("%command%")[0]
+                suffix = self.arguments.split("%command%")[1]
+                command = f"{prefix} {command} {suffix}"
+            else:
+                command = f"{command} {self.arguments}"
 
         if post_script is not None:
             command = f"{command} ; sh '{post_script}'"
