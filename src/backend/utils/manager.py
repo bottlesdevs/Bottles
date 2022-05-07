@@ -152,9 +152,9 @@ class ManagerUtils:
             return False
 
     @staticmethod
-    def create_desktop_entry(config, program: dict, skip_icon: bool = False):
+    def create_desktop_entry(config, program: dict, skip_icon: bool = False) -> bool:
         if not user_apps_dir:
-            return None
+            return False
 
         from bottles.backend.wine.winepath import WinePath
         winepath = WinePath(config)
@@ -211,6 +211,8 @@ class ManagerUtils:
             f.write("[Desktop Action Configure]\n")
             f.write("Name=Configure in Bottles\n")
             f.write(f"Exec={cmd} -b '{config.get('Name')}'\n")
+
+        return True
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict):
