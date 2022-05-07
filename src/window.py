@@ -153,17 +153,6 @@ class MainWindow(Handy.ApplicationWindow):
 
         self.__on_start()
 
-        if self.arg_exe:
-            '''
-            If Bottles was started with an executable as argument, without
-            a bottle, the user will be prompted to select a bottle from the
-            bottles list.
-            '''
-            self.show_list_view()
-
-        self.arg_exe = False
-        logging.info("Bottles Started!", )
-
     def on_page_changed(self, stack, param):
         """
         When the user changes the page, update the window title
@@ -275,6 +264,15 @@ class MainWindow(Handy.ApplicationWindow):
                 )
                 dialog.run()
                 dialog.destroy()
+
+            if self.arg_exe:
+                '''
+                If Bottles was started with an executable as argument, without
+                a bottle, the user will be prompted to select a bottle from the
+                bottles list.
+                '''
+                self.show_list_view()
+            self.arg_exe = False
 
         def get_manager(window):
             mng = Manager(window)
