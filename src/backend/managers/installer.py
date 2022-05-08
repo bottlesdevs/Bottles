@@ -149,7 +149,8 @@ class InstallerManager:
             self,
             config,
             dependencies: list,
-            widget: Gtk.Widget
+            widget: Gtk.Widget,
+            is_final: bool = False
     ):
         """Install a list of dependencies"""
         _config = config
@@ -157,7 +158,8 @@ class InstallerManager:
 
         for dep in dependencies:
             layer = None
-            widget.next_step()
+            if is_final:
+                widget.next_step()
 
             if dep in config.get("Installed_Dependencies"):
                 continue
@@ -305,57 +307,65 @@ class InstallerManager:
         _components_layers = []
         wineboot = WineBoot(_config)
 
-        if parameters.get("dxvk") and not config.get("Parameters")["dxvk"]:
-            if config["Environment"] == "Layered":
-                if LayersStore.get_layer_by_name("dxvk"):
-                    return
-                logging.info(f"Installing DXVK in a new layer.", )
-                layer = Layer().new("dxvk", self.__manager.get_latest_runner())
-                layer.mount_bottle(config)
-                _components_layers.append(layer)
-                _config = layer.runtime_conf
-                wineboot.init()
+        if "dxvk" in parameters:
+            if parameters["dxvk"] != config["Parameters"]["dxvk"]:
+                # region LAYER_COMP_INSTALL
+                if config["Environment"] == "Layered":
+                    if LayersStore.get_layer_by_name("dxvk"):
+                        return
+                    logging.info(f"Installing DXVK in a new layer.", )
+                    layer = Layer().new("dxvk", self.__manager.get_latest_runner())
+                    layer.mount_bottle(config)
+                    _components_layers.append(layer)
+                    _config = layer.runtime_conf
+                    wineboot.init()
+                # endregion
+                self.__manager.install_dll_component(_config, "dxvk", remove=not parameters["dxvk"])
 
-            self.__manager.install_dll_component(_config, "dxvk")
+        if "vkd3d" in parameters:
+            if parameters["vkd3d"] != config["Parameters"]["vkd3d"]:
+                # region LAYER_COMP_INSTALL
+                if config["Environment"] == "Layered":
+                    if LayersStore.get_layer_by_name("vkd3d"):
+                        return
+                    logging.info(f"Installing VKD3D in a new layer.", )
+                    layer = Layer().new("vkd3d", self.__manager.get_latest_runner())
+                    layer.mount_bottle(config)
+                    _components_layers.append(layer)
+                    _config = layer.runtime_conf
+                    wineboot.init()
+                # endregion
+                self.__manager.install_dll_component(_config, "vkd3d", remove=not parameters["vkd3d"])
 
-        if parameters.get("vkd3d") and not config.get("Parameters")["vkd3d"]:
-            if config["Environment"] == "Layered":
-                if LayersStore.get_layer_by_name("vkd3d"):
-                    return
-                logging.info(f"Installing VKD3D in a new layer.", )
-                layer = Layer().new("vkd3d", self.__manager.get_latest_runner())
-                layer.mount_bottle(config)
-                _components_layers.append(layer)
-                _config = layer.runtime_conf
-                wineboot.init()
+        if "dxvk_nvapi" in parameters:
+            if parameters["dxvk_nvapi"] != config["Parameters"]["dxvk_nvapi"]:
+                # region LAYER_COMP_INSTALL
+                if config["Environment"] == "Layered":
+                    if LayersStore.get_layer_by_name("dxvk_nvapi"):
+                        return
+                    logging.info(f"Installing DXVK NVAPI in a new layer.", )
+                    layer = Layer().new("dxvk_nvapi", self.__manager.get_latest_runner())
+                    layer.mount_bottle(config)
+                    _components_layers.append(layer)
+                    _config = layer.runtime_conf
+                    wineboot.init()
+                # endregion
+                self.__manager.install_dll_component(_config, "nvapi", remove=not parameters["dxvk_nvapi"])
 
-            self.__manager.install_dll_component(_config, "vkd3d")
-
-        if parameters.get("dxvk_nvapi") and not config.get("Parameters")["dxvk_nvapi"]:
-            if config["Environment"] == "Layered":
-                if LayersStore.get_layer_by_name("dxvk_nvapi"):
-                    return
-                logging.info(f"Installing DXVK NVAPI in a new layer.", )
-                layer = Layer().new("dxvk_nvapi", self.__manager.get_latest_runner())
-                layer.mount_bottle(config)
-                _components_layers.append(layer)
-                _config = layer.runtime_conf
-                wineboot.init()
-
-            self.__manager.install_dll_component(_config, "nvapi")
-
-        if parameters.get("latencyflex") and not config.get("Parameters")["latencyflex"]:
-            if config["Environment"] == "Layered":
-                if LayersStore.get_layer_by_name("latencyflex"):
-                    return
-                logging.info(f"Installing LatencyFlex in a new layer.", )
-                layer = Layer().new("latencyflex", self.__manager.get_latest_runner())
-                layer.mount_bottle(config)
-                _components_layers.append(layer)
-                _config = layer.runtime_conf
-                wineboot.init()
-
-            self.__manager.install_dll_component(_config, "latencyflex")
+        if "latencyflex" in parameters:
+            if parameters["latencyflex"] != config["Parameters"]["latencyflex"]:
+                # region LAYER_COMP_INSTALL
+                if config["Environment"] == "Layered":
+                    if LayersStore.get_layer_by_name("latencyflex"):
+                        return
+                    logging.info(f"Installing LatencyFlex in a new layer.", )
+                    layer = Layer().new("latencyflex", self.__manager.get_latest_runner())
+                    layer.mount_bottle(config)
+                    _components_layers.append(layer)
+                    _config = layer.runtime_conf
+                    wineboot.init()
+                # endregion
+                self.__manager.install_dll_component(_config, "latencyflex", remove=not parameters["latencyflex"])
 
         # sweep and save layers
         for c in _components_layers:
@@ -431,7 +441,7 @@ class InstallerManager:
 
         return steps
 
-    def install(self, config, installer, widget):
+    def install(self, config, installer, widget, is_final: bool = True):
         if config.get("Environment") == "Layered":
             self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
             self.__layer.mount_bottle(config)
@@ -456,12 +466,19 @@ class InstallerManager:
         if installers:
             logging.info("Installing dependent installers")
             for i in installers:
-                self.install(config, i, widget)
+                if not self.install(config, i, widget, False):
+                    logging.error("Failed to install dependent installer")
+                    # unlock widget
+                    if widget is not None:
+                        GLib.idle_add(widget.set_err, _("Failed to install dependent installer"))
+                    return False
 
         # ask for local resources
-        exe_msi_steps = [s for s in steps
-                         if s.get("action", "") in ["install_exe", "install_msi"]
-                         and s.get("url", "") == "local"]
+        exe_msi_steps = False
+        if is_final:
+            exe_msi_steps = [s for s in steps
+                             if s.get("action", "") in ["install_exe", "install_msi"]
+                             and s.get("url", "") == "local"]
         if exe_msi_steps:
             if not self.__ask_for_local_resources(exe_msi_steps, _config):
                 # unlock widget
@@ -472,7 +489,7 @@ class InstallerManager:
         # install dependencies
         if dependencies:
             logging.info("Installing dependencies")
-            if not self.__install_dependencies(_config, dependencies, widget):
+            if not self.__install_dependencies(_config, dependencies, widget, is_final):
                 # unlock widget
                 if widget is not None:
                     GLib.idle_add(widget.set_err, _("Dependencies installation failed."))
@@ -481,7 +498,8 @@ class InstallerManager:
         # set parameters
         if parameters:
             logging.info("Updating bottle parameters")
-            widget.next_step()
+            if is_final:
+                widget.next_step()
             if self.__layer is not None:
                 self.__set_parameters(self.__layer.runtime_conf, parameters)
             else:
@@ -490,7 +508,8 @@ class InstallerManager:
         # execute steps
         if steps:
             logging.info("Executing installer steps")
-            widget.next_step()
+            if is_final:
+                widget.next_step()
             if self.__layer is not None:
                 for d in dependencies:
                     self.__layer.mount(name=d)
@@ -528,7 +547,8 @@ class InstallerManager:
             )
 
         # create Desktop entry
-        widget.next_step()
+        if is_final:
+            widget.next_step()
         self.__create_desktop_entry(_config, manifest, executable)
 
         if self.__layer is not None:
@@ -558,7 +578,9 @@ class InstallerManager:
             )
 
         # unlock widget
-        if widget is not None:
+        if widget is not None and is_final:
             GLib.idle_add(widget.set_installed)
 
         logging.info(f"Program installed: {manifest['Name']} in {config['Name']}.", jn=True)
+
+        return True

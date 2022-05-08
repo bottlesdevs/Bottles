@@ -867,6 +867,7 @@ class Manager:
                      f"bottle: [{config['Name']}]…", )
 
         wineboot = WineBoot(config)
+        wineserver = WineServer(config)
         bottle_path = ManagerUtils.get_bottle_path(config)
 
         if scope != "":
@@ -891,6 +892,7 @@ class Manager:
             to execute any command.
             '''
             wineboot.kill()
+            wineserver.wait()
 
         with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
