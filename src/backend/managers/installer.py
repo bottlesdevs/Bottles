@@ -344,6 +344,19 @@ class InstallerManager:
 
             self.__manager.install_dll_component(_config, "nvapi")
 
+        if parameters.get("latencyflex") and not config.get("Parameters")["latencyflex"]:
+            if config["Environment"] == "Layered":
+                if LayersStore.get_layer_by_name("latencyflex"):
+                    return
+                logging.info(f"Installing LatencyFlex in a new layer.", )
+                layer = Layer().new("latencyflex", self.__manager.get_latest_runner())
+                layer.mount_bottle(config)
+                _components_layers.append(layer)
+                _config = layer.runtime_conf
+                wineboot.init()
+
+            self.__manager.install_dll_component(_config, "latencyflex")
+
         # sweep and save layers
         for c in _components_layers:
             c.sweep()
