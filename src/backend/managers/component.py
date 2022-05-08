@@ -453,18 +453,17 @@ class ComponentManager:
 
         if component_type in ["runner", "runner:proton"]:
             return component_name in [b["Runner"] for _, b in bottles.items()]
-        elif component_type == "dxvk":
+        if component_type == "dxvk":
             return component_name in [b["DXVK"] for _, b in bottles.items()]
-        elif component_type == "vkd3d":
+        if component_type == "vkd3d":
             return component_name in [b["VKD3D"] for _, b in bottles.items()]
-        elif component_type == "nvapi":
+        if component_type == "nvapi":
             return component_name in [b["NVAPI"] for _, b in bottles.items()]
-        elif component_type == "latencyflex":
+        if component_type == "latencyflex":
             return component_name in [b["LatencyFleX"] for _, b in bottles.items()]
-        elif component_type in ["runtime", "winebridge"]:
+        if component_type in ["runtime", "winebridge"]:
             return True
-        else:
-            return False
+        return False
 
     def uninstall(self, component_type: str, component_name: str):
         if self.is_in_use(component_type, component_name):
