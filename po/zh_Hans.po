@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-05-07 12:11+0000\n"
+"PO-Revision-Date: 2022-05-08 22:59+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -512,9 +512,8 @@ msgid "Uninstaller"
 msgstr "卸载器"
 
 #: src/ui/details-bottle.ui:959
-#, fuzzy
 msgid "Uninstall programs using wine uninstaller."
-msgstr "使用 wine 卸载器卸载程序"
+msgstr "使用 wine 卸载器卸载程序。"
 
 #: src/ui/details-bottle.ui:999
 msgid "Control panel"
@@ -1139,11 +1138,10 @@ msgid "DLL Overrides"
 msgstr "DLL 覆盖"
 
 #: src/ui/dialog-dll-overrides.ui:50
-#, fuzzy
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
-msgstr "可以指定动态链接库为内建的（由 Wine 提供）或原生的（由程序提供）"
+msgstr "可以指定动态链接库为内建的（由 Wine 提供）或原生的（由程序提供）。"
 
 #: src/ui/dialog-dll-overrides.ui:56
 msgid "New override"
@@ -1184,9 +1182,8 @@ msgid "Close"
 msgstr "关闭"
 
 #: src/ui/dialog-duplicate.ui:94
-#, fuzzy
 msgid "Type a name for the new bottle:"
-msgstr "输入新 bottle 的名称"
+msgstr "输入新 bottle 的名称："
 
 #: src/ui/dialog-duplicate.ui:106 src/ui/dialog-run-args.ui:86
 msgid "e.g.: -example1 -example2 -example3=hello"
@@ -1813,16 +1810,15 @@ msgstr "添加桌面条目"
 
 #: src/ui/program-entry.ui:138
 msgid "Hide from list"
-msgstr ""
+msgstr "不出现在列表中"
 
 #: src/ui/program-entry.ui:150
 msgid "Unhide from list"
-msgstr ""
+msgstr "出现在列表中"
 
 #: src/ui/program-entry.ui:163
-#, fuzzy
 msgid "Remove from list"
-msgstr "从程序中删除"
+msgstr "从列表中删除"
 
 #: src/ui/program-entry.ui:211
 msgid "Launch with Steam"
@@ -1837,9 +1833,8 @@ msgid "Creation date"
 msgstr "创建日期"
 
 #: src/ui/task-entry.ui:8
-#, fuzzy
 msgid "Processing..."
-msgstr "加载中…"
+msgstr "处理中…"
 
 #: src/ui/window.ui:19 src/window.py:250
 msgid "Your library"
@@ -1944,6 +1939,8 @@ msgid ""
 "Fallbacking to the default path. You will no bottles from that path will be "
 "listed!"
 msgstr ""
+"未找到自定义 bottles 路径。请在首选项中检查它。\n"
+"回退到默认路径。 将不会列出该路径中的任何 bottles！"
 
 #: src/window.py:329
 msgid "Journal browser"
@@ -2024,12 +2021,10 @@ msgstr "找到了模板，正在应用…"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1191
-#, fuzzy
 msgid "The Wine config is being updated…"
 msgstr "正在更新 WINE 配置…"
 
 #: src/backend/managers/manager.py:1193
-#, fuzzy
 msgid "Wine config updated!"
 msgstr "WINE 配置已更新！"
 
