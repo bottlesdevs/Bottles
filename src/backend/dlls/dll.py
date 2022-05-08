@@ -115,8 +115,7 @@ class DLLComponent:
                     try:
                         shutil.copyfile(source, target)
                     except FileNotFoundError:
-                        logging.warning(f"{source} not found")
-                        pass  # TODO: should not be ok but just ignore it for now
+                        logging.warning(f"{source} not found")  # TODO: should not be ok but just ignore it for now
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                     value=dll_name.split('.')[0],
