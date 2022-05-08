@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-05-07 12:11+0000\n"
+"PO-Revision-Date: 2022-05-08 22:59+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
@@ -527,9 +527,8 @@ msgid "Uninstaller"
 msgstr "Kaldırıcı"
 
 #: src/ui/details-bottle.ui:959
-#, fuzzy
 msgid "Uninstall programs using wine uninstaller."
-msgstr "Wine kaldırıcıyı kullanarak programları kaldırın"
+msgstr "Wine kaldırıcıyı kullanarak programları kaldırın."
 
 #: src/ui/details-bottle.ui:999
 msgid "Control panel"
@@ -1180,13 +1179,12 @@ msgid "DLL Overrides"
 msgstr "DLL Geçersiz Kılmaları"
 
 #: src/ui/dialog-dll-overrides.ui:50
-#, fuzzy
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
-"Dinamik Bağlantı Kitaplıkları yerleşik (Wine tarafından sağlanır) veya yerel "
-"(program tarafından sağlanır) olarak belirtilebilir"
+"Dinamik Bağlantı Kütüphaneleri yerleşik (Wine tarafından sağlanır) veya "
+"yerel (program tarafından sağlanır) olarak belirtilebilir."
 
 #: src/ui/dialog-dll-overrides.ui:56
 msgid "New override"
@@ -1229,9 +1227,8 @@ msgid "Close"
 msgstr "Kapat"
 
 #: src/ui/dialog-duplicate.ui:94
-#, fuzzy
 msgid "Type a name for the new bottle:"
-msgstr "Yeni şişe için bir ad yazın"
+msgstr "Yeni şişe için bir ad yazın:"
 
 #: src/ui/dialog-duplicate.ui:106 src/ui/dialog-run-args.ui:86
 msgid "e.g.: -example1 -example2 -example3=hello"
@@ -1873,16 +1870,15 @@ msgstr "Masaüstü girdisi ekle"
 
 #: src/ui/program-entry.ui:138
 msgid "Hide from list"
-msgstr ""
+msgstr "Listeden gizle"
 
 #: src/ui/program-entry.ui:150
 msgid "Unhide from list"
-msgstr ""
+msgstr "Listede göster"
 
 #: src/ui/program-entry.ui:163
-#, fuzzy
 msgid "Remove from list"
-msgstr "Programlardan kaldır"
+msgstr "Listeden kaldır"
 
 #: src/ui/program-entry.ui:211
 msgid "Launch with Steam"
@@ -1897,9 +1893,8 @@ msgid "Creation date"
 msgstr "Oluşturulma tarihi"
 
 #: src/ui/task-entry.ui:8
-#, fuzzy
 msgid "Processing..."
-msgstr "Yükleniyor..."
+msgstr "İşleniyor..."
 
 #: src/ui/window.ui:19 src/window.py:250
 msgid "Your library"
@@ -2004,6 +1999,8 @@ msgid ""
 "Fallbacking to the default path. You will no bottles from that path will be "
 "listed!"
 msgstr ""
+"Özel şişe yolu bulunamadı. Lütfen Tercihler'de gözden geçirin.\n"
+"Öntanımlı yol kullanılıyor. O yoldan hiçbir şişe listelenmeyecek!"
 
 #: src/window.py:329
 msgid "Journal browser"
@@ -2084,14 +2081,12 @@ msgstr "Şablon bulundu, uygulanıyor…"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1191
-#, fuzzy
 msgid "The Wine config is being updated…"
-msgstr "WINE yapılandırması güncelleniyor…"
+msgstr "Wine yapılandırması güncelleniyor…"
 
 #: src/backend/managers/manager.py:1193
-#, fuzzy
 msgid "Wine config updated!"
-msgstr "WINE yapılandırması güncellendi!"
+msgstr "Wine yapılandırması güncellendi!"
 
 #: src/backend/managers/manager.py:1201
 msgid "Running as Flatpak, sandboxing userdir…"
