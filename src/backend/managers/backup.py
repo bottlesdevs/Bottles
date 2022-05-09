@@ -51,6 +51,10 @@ class BackupManager:
         Config will only export the bottle configuration, full will export
         the full bottle in tar.gz format.
         """
+        if path in [None, ""]:
+            logging.error(_("No path specified"))
+            return Result(status=False)
+
         BackupManager.operation_manager = OperationManager(window)
         task_id = str(uuid.uuid4())
 
@@ -109,8 +113,9 @@ class BackupManager:
         Config will make a new bottle reproducing the configuration, full will
         import the full bottle from a tar.gz file.
         """
-        if path is None:
-            Result(status=False)
+        if path in [None, ""]:
+            logging.error(_("No path specified"))
+            return Result(status=False)
 
         BackupManager.operation_manager = OperationManager(window)
 
