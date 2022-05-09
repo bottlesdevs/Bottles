@@ -1182,6 +1182,8 @@ class Manager:
         if template:
             log_update(_("Template found, applying…"))
             TemplateManager.unpack_template(template, config)
+            config["Installed_Dependencies"] = template["config"]["Installed_Dependencies"]
+            config["Uninstallers"] = template["config"]["Uninstallers"]
 
         # initialize wineprefix
         reg = Reg(config)
