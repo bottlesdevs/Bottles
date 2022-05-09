@@ -55,10 +55,12 @@ class WineExecutor:
         if cwd in [None, ""]:
             path = self.exec_path
             if winepath.is_windows(self.exec_path):
-                if path.startswith(("'", '"')):
-                    path = path[1:-1]
                 path = "\\".join(path.split("\\")[:-1])
                 path = winepath.to_unix(path)
+            if path.startswith(("'", '"')):
+                path = path[1:]
+            if path.endswith(("'", '"')):
+                path = path[:-1]
             return os.path.dirname(path)
         return cwd  # will be set by WineCommand if None
 
