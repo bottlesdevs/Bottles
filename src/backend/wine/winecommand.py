@@ -449,55 +449,33 @@ class WineCommand:
         if self.terminal:
             return TerminalUtils().execute(self.command, self.env, self.colors)
 
-        if self.comunicate:
-            try:
-                res = subprocess.Popen(
-                    self.command,
-                    stdout=subprocess.PIPE,
-                    shell=True,
-                    env=self.env,
-                    cwd=self.cwd
-                ).communicate()[0]
-            except:
-                '''
-                If return an exception, try to execute the command
-                without the cwd argument
-                '''
-                res = subprocess.Popen(
-                    self.command,
-                    stdout=subprocess.PIPE,
-                    shell=True,
-                    env=self.env
-                ).communicate()[0]
+        proc = subprocess.Popen(
+            self.command,
+            stdout=subprocess.PIPE,
+            shell=True,
+            env=self.env,
+            cwd=self.cwd
+        )
+        res = proc.communicate()[0]
+        enc = detect_encoding(res)
 
-            enc = detect_encoding(res)
-            if enc is not None:
-                res = res.decode(enc)
+        if enc is not None:
+            res = res.decode(enc)
+
+        if self.comunicate:
             return res
 
         try:
             '''
-            If the comunicate flag is not set, still try to execute the
-            command in comunicate mode, then read the output to catch the
-            wine ShellExecuteEx exception, so we can raise it as a bottles
-            exception and handle it in other parts of the code.
+            Read the output to catch the wine ShellExecuteEx exception, so we can 
+            raise it as a python exception and handle it in other parts of the code.
             '''
-            res = subprocess.Popen(
-                self.command,
-                stdout=subprocess.PIPE,
-                cwd=self.cwd,
-                shell=True,
-                env=self.env
-            ).communicate()[0]
-
-            enc = detect_encoding(res)
-            if enc is not None:
-                res = res.decode(enc)
-
             if "ShellExecuteEx" in res:
-                raise Exception("ShellExecuteEx")
-        except:
-            # workaround for `No such file or directory` error
+                raise ValueError("ShellExecuteEx")
+        except ValueError:
+            '''
+            Try running the command without some args which can cause the exception.
+            '''
             res = subprocess.Popen(self.command, shell=True, env=self.env)
             if self.comunicate:
                 return res.communicate()
