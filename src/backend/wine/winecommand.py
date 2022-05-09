@@ -456,6 +456,7 @@ class WineCommand:
             env=self.env,
             cwd=self.cwd
         )
+        proc.wait()
         res = proc.communicate()[0]
         enc = detect_encoding(res)
 

@@ -241,7 +241,8 @@ class InstallerManager:
                         config,
                         exec_path=file_path,
                         args=st.get("arguments"),
-                        environment=st.get("environment")
+                        environment=st.get("environment"),
+                        monitoring=st.get("monitoring", []),
                     )
                     executor.run()
                 else:

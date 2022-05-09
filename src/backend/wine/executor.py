@@ -10,6 +10,7 @@ from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.msiexec import MsiExec
 from bottles.backend.wine.start import Start
 from bottles.backend.wine.winepath import WinePath
+from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.winebridge import WineBridge
 
 logging = Logger()
@@ -27,11 +28,15 @@ class WineExecutor:
             environment: dict = False,
             move_file: bool = False,
             move_upd_fn: callable = None,
-            post_script: str = None
+            post_script: str = None,
+            monitoring: list = None,
     ):
         logging.info("Launching an executable…", )
         self.config = config
         self.__validate_path(exec_path)
+
+        if monitoring is None:
+            monitoring = []
 
         if move_file:
             exec_path = self.__move_file(exec_path, move_upd_fn)
@@ -43,6 +48,7 @@ class WineExecutor:
         self.cwd = self.__get_cwd(cwd)
         self.environment = environment
         self.post_script = post_script
+        self.monitoring = monitoring
 
     def __get_cwd(self, cwd: str) -> Union[str, None]:
         winepath = WinePath(self.config)
@@ -176,6 +182,7 @@ class WineExecutor:
             post_script=self.post_script
         )
         res = winecmd.run()
+        self.__set_monitors()
         return Result(
             status=True,
             data={"output": res}
@@ -190,6 +197,7 @@ class WineExecutor:
             cwd=self.cwd,
             environment=self.environment
         )
+        self.__set_monitors()
         return Result(
             status=True,
             data={"output": res}
@@ -218,6 +226,7 @@ class WineExecutor:
             environment=self.environment,
             cwd=self.cwd
         )
+        self.__set_monitors()
         return Result(
             status=True,
             data={"output": res}
@@ -230,3 +239,13 @@ class WineExecutor:
             status=False,
             data={"error": "DLLs are not supported yet."}
         )
+
+    def __set_monitors(self):
+        if not self.monitoring:
+            return
+
+        logging.info("Starting {} monitors".format(len(self.monitoring)))
+
+        winedbg = WineDbg(self.config, silent=True)
+        for m in self.monitoring:
+            winedbg.wait_for_process(name=m)
