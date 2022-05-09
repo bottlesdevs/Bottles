@@ -3,41 +3,46 @@ script:
   # Remove any previous build
   - rm -rf AppDir | true
   - rm -rf build  | true
+  
   # Building with meson and ninja
-  - mkdir build
-  - meson build --prefix=/usr
-  - cd build
-  - ninja
-  - DESTDIR=$APPDIR ninja install
-  - ninja bottles-pot
-  - ninja bottles-update-po
-  - cd ..
+  - DESTDIR=$APPDIR
+  - mkdir build & meson build --prefix=/usr
+  - cd build & ninja ; ninja install ; ninja bottles-pot ; ninja bottles-update-po ; cd ..
+  
   # Preparing directories
   - mkdir -p AppDir/usr AppDir/usr/local/share/bottles AppDir/usr/bin AppDir/usr/share/glib-2.0/schemas AppDir/usr/share/applications AppDir/usr/share/metainfo AppDir/usr/share/icons
+  
   # Compiling and installing glib-resources
   - glib-compile-resources --sourcedir=src/ui/ src/ui/bottles.gresource.xml --target=AppDir/usr/local/share/bottles/bottles.gresource
+  
   # Copying Bottles binary
   - cp build/src/bottles AppDir/usr/bin/
-  # Copying Bottles python package and remove not useful files"
+  
+  # Copying Bottles python package and remove not useful files
   - cp -a src AppDir/usr/local/share/bottles/bottles
-  - rm AppDir/usr/local/share/bottles/bottles/bottles.in
-  - rm AppDir/usr/local/share/bottles/bottles/meson.build
+  - rm AppDir/usr/local/share/bottles/bottles/bottles.in AppDir/usr/local/share/bottles/bottles/meson.build
+  
   # Compiling and installing translations
   - cat po/LINGUAS | while read lang
   - do
   - mkdir -p AppDir/usr/share/locale/$lang/LC_MESSAGES
   - msgfmt -o AppDir/usr/share/locale/$lang/LC_MESSAGES/bottles.mo po/$lang.po
   - done
+  
   # Copying icons
   - cp -a data/icons AppDir/usr/share
   - mv AppDir/usr/share/icons/symbolic/scalable/apps/*.svg AppDir/usr/share/icons/hicolor/scalable/apps/
+  
   # Copying Desktop file
   - cp build/data/com.usebottles.bottles.desktop AppDir/usr/share/applications/
+  
   # Copying and compiling gschema
   - cp data/com.usebottles.bottles.gschema.xml AppDir/usr/share/glib-2.0/schemas/com.usebottles.bottles.gschema.xml
   - glib-compile-schemas AppDir/usr/share/glib-2.0/schemas/
+  
   # Copying appdata
   - cp -a data/com.usebottles.bottles.appdata.xml.in AppDir/usr/share/metainfo/com.usebottles.bottles.appdata.xml
+  
   # Set bash as default shell
   - mkdir -p $APPDIR/bin
   - ln -sf bash $APPDIR/bin/sh
@@ -50,8 +55,10 @@ AppDir:
     name: Bottles
     icon: com.usebottles.bottles
     version: 2022.5.2-trento-2
+    
     # Set the python executable as entry point
     exec: usr/bin/python3.10
+    
     # Set the application main script path as argument. Use '$@' to forward CLI parameters
     exec_args: "$APPDIR/usr/bin/bottles $@"
 
@@ -109,7 +116,6 @@ AppDir:
     - x11-utils
 
     exclude:
-    # - adwaita-icon-theme
     - humanity-icon-theme
 
   after_runtime: |
@@ -136,14 +142,10 @@ AppDir:
     arch: [ x86_64, i386 ]
     env:
       GDK_BACKEND: x11
-      # Set python home
       PYTHONPATH: '$APPDIR/usr/lib/python3/dist-packages'
-      # SSL CERTIFICATE_VERIFY_FAILED python3.8 -m pip install --ignore-installed --prefix=/usr --root=$APPDIR install --upgrade certifi
-      #SSL_CERT_DIR: "/etc/ssl/certs:/etc/pki/ca-trust/extracted/pem:/etc/pki/ca-trust/extracted/openssl:/etc/ssl:/etc/pki/tls:/etc/pki:/etc/pki/ca-trust:/usr/local/share/certs:/usr/share/pki/ca-trust-source:/etc/openssl/certs:/var/ssl/certs"
       SSL_CERT_FILE: "$APPDIR/usr/lib/python3/dist-packages/certifi/cacert.pem"
-      # if you want to use Adwaita just uncomment bellow
-      # GTK_THEME: Adwaita
       APPDIR_MODULE_DIR: $HOME/.local/share/bottles/
+      LD_LIBRARY_PATH: "${APPDIR}"/usr/lib/:"${APPDIR}"/usr/lib/i386-linux-gnu/:"${APPDIR}"/usr/lib/x86_64-linux-gnu/:"${APPDIR}"/usr/lib32/:"${APPDIR}"/usr/lib64/:"${APPDIR}"/lib/:"${APPDIR}"/lib/i386-linux-gnu/:"${APPDIR}"/lib/x86_64-linux-gnu/:"${APPDIR}"/lib32/:"${APPDIR}"/lib64/:"${LD_LIBRARY_PATH}"
     path_mappings:
       - /usr/share/bottles:$APPDIR/usr/local/share/bottles
 
