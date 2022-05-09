@@ -7,7 +7,9 @@ script:
   # Building with meson and ninja
   - DESTDIR=$APPDIR
   - mkdir build & meson build --prefix=/usr
-  - cd build & ninja ; ninja install ; ninja bottles-pot ; ninja bottles-update-po ; cd ..
+  - cd build
+  - ninja ; ninja install ; ninja bottles-pot ; ninja bottles-update-po
+  - cd ..
   
   # Preparing directories
   - mkdir -p AppDir/usr AppDir/usr/local/share/bottles AppDir/usr/bin AppDir/usr/share/glib-2.0/schemas AppDir/usr/share/applications AppDir/usr/share/metainfo AppDir/usr/share/icons
