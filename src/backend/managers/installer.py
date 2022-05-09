@@ -186,6 +186,20 @@ class InstallerManager:
 
         return True
 
+    @staticmethod
+    def __perform_checks(config, checks: dict):
+        """Perform a list of checks"""
+        bottle_path = ManagerUtils.get_bottle_path(config)
+
+        if checks.get("files"):
+            for f in checks.get("files"):
+                _f = os.path.join(bottle_path, f)
+                if not os.path.exists(_f):
+                    logging.error(f"During checks, file {_f} does not exist, assuming it is not installed. Aborting.")
+                    return False
+
+        return True
+
     def __perform_steps(self, config, steps: list):
         """Perform a list of actions"""
         for st in steps:
@@ -438,6 +452,8 @@ class InstallerManager:
             steps += int(len(manifest.get("Steps")))
         if manifest.get("Executable"):
             steps += 1
+        if manifest.get("Checks"):
+            steps += 1
 
         return steps
 
@@ -457,6 +473,7 @@ class InstallerManager:
         parameters = manifest.get("Parameters")
         executable = manifest.get("Executable")
         steps = manifest.get("Steps")
+        checks = manifest.get("Checks")
 
         # download icon
         if executable.get("icon"):
@@ -525,6 +542,16 @@ class InstallerManager:
                         GLib.idle_add(widget.set_err, _("Installation failed, please check the logs."))
                     return False
 
+        # execute checks
+        if checks:
+            logging.info("Executing installer checks")
+            if is_final:
+                widget.next_step()
+                if not self.__perform_checks(_config, checks):
+                    if widget is not None:  # unlock widget
+                        GLib.idle_add(widget.set_err, _("Installation failed, please check the logs."))
+                    return False
+
         # register executable
         if self.__layer is None:
             if executable['path'].startswith("userdir/"):
@@ -547,9 +574,10 @@ class InstallerManager:
             )
 
         # create Desktop entry
+        self.__create_desktop_entry(_config, manifest, executable)
+
         if is_final:
             widget.next_step()
-        self.__create_desktop_entry(_config, manifest, executable)
 
         if self.__layer is not None:
             # sweep and save
