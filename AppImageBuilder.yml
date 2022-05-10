@@ -53,6 +53,13 @@ script:
   - wget https://github.com/bottlesdevs/p7zip/releases/download/16.02/p7zip.tar.xz
   - tar -xf p7zip.tar.xz -C AppDir/usr/bin
 
+  # Install EasyTerm
+  - wget https://github.com/bottlesdevs/EasyTerm/archive/refs/tags/0.2.0.tar.gz
+  - mkdir -p $HOME/easyterm
+  - tar zxvf 0.2.0.tar.gz -C $HOME/easyterm
+  - cp $HOME/easyterm/EasyTerm-*/easyterm/easyterm.py AppDir/usr/bin/
+  - chmod +x AppDir/usr/bin/easyterm.py
+
 AppDir:
   path: ./AppDir
 
@@ -118,7 +125,7 @@ AppDir:
     - winbind
     - cabextract
     - patool
-    - p7zip
+    # - p7zip
     - x11-utils
 
     exclude:
