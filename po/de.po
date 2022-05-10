@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-05-08 22:58+0000\n"
+"PO-Revision-Date: 2022-05-11 02:18+0000\n"
 "Last-Translator: Sematre <Sematre@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
@@ -83,7 +83,7 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Führe Programme (.exe/.msi) in deinen Bottles aus, direkt aus dem "
+"Führe Programmdateien (.exe/.msi) in deinen Bottles aus, direkt aus dem "
 "Kontextmenü deines Dateimanagers"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
@@ -265,7 +265,8 @@ msgstr "Bottles automatisch schließen"
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
-"Bottles nach dem Starten eines Programms aus dem Dateimanager schließen."
+"Bottles schließen, wenn eine Programmdatei aus dem Dateimanager gestartet "
+"wird."
 
 #: src/ui/about.ui:10
 msgid "© 2017-2022 - Bottles Developers"
@@ -930,7 +931,7 @@ msgstr "Synchronisation"
 #: src/ui/details-preferences.ui:1151 src/ui/details-preferences.ui:1166
 #: src/ui/dialog-gamescope.ui:345 src/ui/dialog-gamescope.ui:361
 msgid "Will restart the wineserver."
-msgstr "Starten den Wine-Server neu."
+msgstr "Startet den Wine-Server neu."
 
 #: src/ui/details-preferences.ui:1132
 msgid "Esync"
@@ -1073,7 +1074,7 @@ msgstr "Wine fixme Logs aktivieren"
 
 #: src/ui/details-preferences.ui:1720
 msgid "Log code paths that are unimplemented in Wine."
-msgstr "Zeichne Code-Pfade auf, die nicht in Wine implementiert sind."
+msgstr "Code-Pfade aufzeichnen, die nicht in Wine implementiert sind."
 
 #: src/ui/details-programs.ui:28
 msgid "No programs found"
@@ -1130,7 +1131,7 @@ msgstr "Gib einen wirklich kurzen Kommentar ein:"
 
 #: src/ui/details-versioning.ui:137
 msgid "A really short comment"
-msgstr "Ein wirklich kurzen Kommentar"
+msgstr "Ein wirklich kurzer Kommentar"
 
 #: src/ui/details-versioning.ui:151
 msgid "Save the bottle state."
@@ -1694,6 +1695,14 @@ msgid ""
 "\n"
 "<a href=\"https://docs.usebottles.com\">Read more about</a>"
 msgstr ""
+"Eine Bottle ist eine Windows-ähnliche Umgebung, die für die Ausführung von "
+"Windows-Software konfiguriert ist; in jeder Bottle können mehrere "
+"Anwendungen laufen. \n"
+"\n"
+"Diese sind isoliert und die Software, die darin läuft, kann nicht auf deine "
+"persönlichen Dateien zugreifen, wenn du es nicht erlaubst.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com\">Mehr darüber erfahren</a>"
 
 #: src/ui/onboard.ui:191
 msgid "Wine"
@@ -1728,16 +1737,15 @@ msgstr "Runner"
 
 #: src/ui/onboard.ui:292
 msgid "Downloading…"
-msgstr "Lade…"
+msgstr "Wird heruntergeladen…"
 
 #: src/ui/onboard.ui:311
 msgid "Sit down and relax, it may take a few minutes."
-msgstr ""
-"Setzen Sie sich hin und entspannen Sie sich, es kann ein paar Minuten dauern."
+msgstr "Mach es dir bequem, es könnte ein paar Minuten dauern."
 
 #: src/ui/onboard.ui:339
 msgid "Download"
-msgstr "Download"
+msgstr "Herunterladen"
 
 #: src/ui/onboard.ui:348
 msgid "Everything Is Ready!"
@@ -1745,7 +1753,7 @@ msgstr "Alles ist bereit!"
 
 #: src/ui/onboard.ui:349
 msgid "You are now ready to create your first bottles."
-msgstr "Du bist nun bereit deine ersten Bottles anzulegen."
+msgstr "Du kannst jetzt deine ersten Bottles anlegen."
 
 #: src/ui/onboard.ui:353
 msgid "Finish"
@@ -1764,17 +1772,16 @@ msgid "Appearance"
 msgstr "Darstellung"
 
 #: src/ui/preferences.ui:63
-#, fuzzy
 msgid "Show Update Date"
-msgstr "Update-Datum anzeigen"
+msgstr "Aktualisierungsdatum anzeigen"
 
 #: src/ui/preferences.ui:64
 msgid "Whether to show the update date in the bottle list."
-msgstr "Ob das Update-Datum in der Bottle-Liste angezeigt werden soll."
+msgstr "Ob das Aktualisierungsdatum in der Bottle-Liste angezeigt werden soll."
 
 #: src/ui/preferences.ui:101
 msgid "Show notifications for downloads and installs."
-msgstr "Zeige Benachrichtigungen für Downloads und Installationen."
+msgstr "Benachrichtigungen für Downloads und Installationen anzeigen."
 
 #: src/ui/preferences.ui:127
 msgid "Temp Files"
@@ -1782,7 +1789,7 @@ msgstr "Temporäre Dateien"
 
 #: src/ui/preferences.ui:128
 msgid "Clean temp files when Bottles launches?"
-msgstr "Temporäre Dateien leeren, wenn Bottles gestartet wird?"
+msgstr "Temporäre Dateien löschen, wenn Bottles gestartet wird?"
 
 #: src/ui/preferences.ui:154
 msgid "Close Bottles After Starting Programs"
@@ -1813,9 +1820,9 @@ msgid ""
 "Warning: Be sure to give permission to the Flatpak to access the new path.\n"
 "This will break the sandbox!"
 msgstr ""
-"Achtung! Stellen Sie sicher, dass Sie dem Flatpak die Erlaubnis geben, auf "
-"den neuen Pfad zuzugreifen.\n"
-"Dies wird die Funktion der Sandbox einschränken!"
+"Warnung: Vergiss nicht, dem Flatpak die Berechtigung zu geben, auf den neuen "
+"Pfad zugreifen zu können.\n"
+"Dies würde sonst die Sandbox unbrauchbar machen!"
 
 #: src/ui/preferences.ui:301
 msgid "Pre-Release"
@@ -1823,11 +1830,11 @@ msgstr "Vorabversion"
 
 #: src/ui/preferences.ui:302
 msgid "Whether the above list should display unstable versions."
-msgstr "Ob die obere Liste instabile Versionen anzeigen soll."
+msgstr "Ob die obige Liste unausgereifte Versionen anzeigen soll."
 
 #: src/ui/preferences.ui:336
 msgid "DLL Components"
-msgstr "DLL Komponenten"
+msgstr "DLL-Komponenten"
 
 #: src/ui/preferences.ui:341
 msgid "DXVK"
@@ -1851,7 +1858,7 @@ msgstr "Kern"
 
 #: src/ui/preferences.ui:389
 msgid "Runtime"
-msgstr "Runtime"
+msgstr "Laufzeit"
 
 #: src/ui/preferences.ui:399
 msgid "WineBridge"
@@ -1863,7 +1870,7 @@ msgstr "Steam Proton Präfixe"
 
 #: src/ui/preferences.ui:422 src/ui/preferences.ui:449
 msgid "In early development (requires restart)."
-msgstr ""
+msgstr "Noch in der Entwicklungsphase (Neustart erforderlich)."
 
 #: src/ui/preferences.ui:448
 msgid "Library Mode"
@@ -1887,11 +1894,11 @@ msgstr "Desktop-Eintrag hinzufügen"
 
 #: src/ui/program-entry.ui:138
 msgid "Hide from list"
-msgstr ""
+msgstr "Aus der Liste ausblenden"
 
 #: src/ui/program-entry.ui:150
 msgid "Unhide from list"
-msgstr ""
+msgstr "In der Liste einblenden"
 
 #: src/ui/program-entry.ui:163
 msgid "Remove from list"
@@ -1903,7 +1910,7 @@ msgstr "Mit Steam starten"
 
 #: src/ui/state-entry.ui:86
 msgid "Restore this state"
-msgstr "Diesen Stand wiederherstellen"
+msgstr "Diesen Zustand wiederherstellen"
 
 #: src/ui/state-entry.ui:111
 msgid "Creation date"
@@ -1969,7 +1976,7 @@ msgstr "Version anzeigen"
 
 #: src/main.py:109
 msgid "Executable path"
-msgstr "Pfad der ausführbaren Datei"
+msgstr "Pfad der Programmdatei"
 
 #: src/main.py:117
 msgid "lnk path"
@@ -1977,7 +1984,7 @@ msgstr "lnk-Pfad"
 
 #: src/main.py:125
 msgid "Bottle name"
-msgstr "Name der Bottle"
+msgstr "Bottle-Name"
 
 #: src/main.py:133
 msgid "Pass arguments"
@@ -2009,7 +2016,7 @@ msgstr "Bottle-Details"
 
 #: src/window.py:174
 msgid "Your Library"
-msgstr ""
+msgstr "Deine Bibliothek"
 
 #: src/window.py:260
 msgid ""
@@ -2017,6 +2024,10 @@ msgid ""
 "Fallbacking to the default path. You will no bottles from that path will be "
 "listed!"
 msgstr ""
+"Der benutzerdefinierte Bottles-Pfad wurde nicht gefunden. Bitte überprüfe "
+"deine Einstellungen.\n"
+"Es wird auf den Standardpfad zurückgegriffen. Es werden keine Bottles aus "
+"diesem Pfad aufgelistet!"
 
 #: src/window.py:329
 msgid "Journal browser"
@@ -2024,7 +2035,7 @@ msgstr "Journal-Browser"
 
 #: src/utils/connection.py:68
 msgid "You are offline, unable to download."
-msgstr "Sie sind offline und können nicht herunterladen."
+msgstr "Sie sind offline, kein Download möglich."
 
 #: src/backend/managers/backup.py:72
 #, python-brace-format
