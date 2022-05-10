@@ -222,3 +222,4 @@ class DetailsView(Adw.Bin):
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
+

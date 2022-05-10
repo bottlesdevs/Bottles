@@ -12,17 +12,20 @@
             <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
+              <object class="GtkSearchBar" id="search_bar">
+                <child>
+                  <object class="GtkSearchEntry" id="entry_search">
+                    <property name="placeholder-text" translatable="yes">Search your bottles…</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="AdwClamp" id="clamp_list">
                 <property name="maximum-size">500</property>
                 <child>
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkSearchEntry" id="entry_search">
-                        <property name="placeholder-text" translatable="yes">Search your bottles ..</property>
-                        <property name="visible">false</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkListBox" id="list_bottles">
                         <property name="margin-top">12</property>

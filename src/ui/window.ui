@@ -115,6 +115,12 @@
                     </object>
                   </child>
                   <child type="end">
+                    <object class="GtkToggleButton" id="btn_search">
+                      <property name="tooltip-text" translatable="yes">Search</property>
+                      <property name="icon-name">system-search-symbolic</property>
+                    </object>
+                  </child>
+                  <child type="end">
                     <object class="GtkMenuButton" id="btn_operations">
                       <property name="visible">False</property>
                       <property name="tooltip-text" translatable="yes">Operations</property>
@@ -147,6 +153,10 @@
                   <style>
                     <class name="titlebar"/>
                   </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSearchBar" id="searchbar">
               </object>
             </child>
             <child>
