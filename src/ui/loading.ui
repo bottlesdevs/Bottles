@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="3.24" />
-  <requires lib="libhandy" version="0.0" />
+  <requires lib="gtk" version="4.0" />
+  <requires lib="libadwaita" version="1.0"/>
   <template class="LoadingView" parent="AdwBin">
   <child>
     <object class="GtkWindowHandle">
@@ -10,8 +10,7 @@
       <child>
         <object class="AdwStatusPage">
           <property name="icon-name">com.usebottles.bottles-symbolic</property>
-          <property name="title" translatable="yes">Loading…</property>
-          <property name="description" translatable="yes">Still loading, please wait.</property>
+          <property name="title" translatable="yes">Starting up…</property>
         </object>
       </child>
     </object>

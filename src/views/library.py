@@ -54,7 +54,7 @@ class LibraryView(Gtk.ScrolledWindow):
 
         for u, e in entries.items():
             entry = LibraryEntry(self, u, e)
-            self.main_flow.add(entry)
+            self.main_flow.append(entry)
 
     def remove_entry(self, uuid):
         library_manager = LibraryManager()

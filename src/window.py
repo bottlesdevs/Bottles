@@ -60,6 +60,7 @@ class MainWindow(Adw.ApplicationWindow):
     btn_about = Gtk.Template.Child()
     btn_operations = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
+    btn_search = Gtk.Template.Child()
     btn_support = Gtk.Template.Child()
     btn_docs = Gtk.Template.Child()
     btn_forum = Gtk.Template.Child()
@@ -149,6 +150,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_health.connect("clicked", self.show_health_view)
         self.stack_main.connect('notify::visible-child', self.on_page_changed)
         self.btn_operations.connect('activate', self.on_operations_toggled)
+        self.btn_search.connect('clicked', self.show_search)
 
         self.__on_start()
 
@@ -238,6 +240,7 @@ class MainWindow(Adw.ApplicationWindow):
             )
 
             self.main_leaf.append(self.page_details)
+            self.page_list.search_bar.set_key_capture_widget(self)
             self.stack_main.set_visible_child_name("page_list")
             self.lock_ui(False)
             self.headerbar.get_style_context().remove_class("flat")
@@ -275,6 +278,16 @@ class MainWindow(Adw.ApplicationWindow):
         """
         self.previous_page = self.stack_main.get_visible_child_name()
 
+    def show_search(self, widget):
+        """
+        This method is called when the user presses the search button.
+        It will toggle the search mode in the bottles list.
+        """
+        if self.page_list.search_bar.get_search_mode() == True:
+            self.page_list.search_bar.set_search_mode(False)
+        else:
+            self.page_list.search_bar.set_search_mode(True)
+
     def go_back(self, widget=False):
         """
         This method is called when the user presses the back button.
@@ -310,9 +323,8 @@ class MainWindow(Adw.ApplicationWindow):
 
     def show_details_view(self, widget=False, config=dict):
         self.set_previous_page_status()
-        self.page_details.set_config(config)
         self.main_leaf.navigate(Adw.NavigationDirection.FORWARD)
-        self.page_details.set_visible_child_name("bottle")
+        self.page_details.set_config(config)
 
     def show_loading_view(self, widget=False):
         self.lock_ui()
@@ -378,6 +390,7 @@ class MainWindow(Adw.ApplicationWindow):
             self.btn_add,
             self.btn_menu,
             self.window_title,
+            self.btn_search,
         ]:
             w.set_visible(not status)
 

@@ -8,7 +8,6 @@
   <property name="orientation">vertical</property>
     <child>
       <object class="GtkHeaderBar" id="headerbar">
-        <property name="show-title-buttons">True</property>
         <property name="title-widget">
           <object class="AdwWindowTitle" id="window_title">
             <property name="title" translatable="yes">Bottle</property>
@@ -21,9 +20,6 @@
         </child>
         <child>
           <object class="GtkBox" id="box_actions">
-            <child>
-              <placeholder/>
-            </child>
           </object>
         </child>
       </object>
@@ -33,6 +29,7 @@
         <property name="hexpand">true</property>
         <child>
           <object class="GtkBox" id="sidebar">
+            <property name="visible">false</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkListBox" id="list_pages">
@@ -43,17 +40,13 @@
         </child>
         <child>
           <object class="GtkBox" id="content">
-            <property name="hexpand">1</property>
-            <property name="vexpand">1</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkStack" id="stack_bottle">
-                <property name="hexpand">1</property>
-                <property name="vexpand">1</property>
-                <property name="transition-type">slide-left-right</property>
-                <child>
-                  <placeholder/>
-                </child>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
               </object>
             </child>
           </object>
@@ -63,5 +56,4 @@
   </object>
   </child>
   </template>
-  <object class="GtkTextBuffer" id="buffer_overrides"/>
 </interface>

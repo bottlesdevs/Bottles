@@ -19,7 +19,7 @@ from gi.repository import Gtk, GLib, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
-class DLLEntry(Adw.ActionRow):
+class DLLEntry(Adw.ComboRow):
     __gtype_name__ = 'DLLEntry'
 
     # region Widgets
