@@ -51,8 +51,7 @@ script:
 
   # Install p7zip
   - wget https://github.com/bottlesdevs/p7zip/releases/download/16.02/p7zip.tar.xz
-  - mkdir -p $APPDIR/bin
-  - tar -xf p7zip.tar.xz -C $APPDIR/bin
+  - tar -xf p7zip.tar.xz -C AppDir/bin
 
 AppDir:
   path: ./AppDir
