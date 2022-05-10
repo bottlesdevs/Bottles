@@ -236,9 +236,6 @@ class BottleView(Gtk.ScrolledWindow):
             self.clamp_list.set_visible(True)
             self.bottle_status.set_visible(False)
 
-        if len(bottles) >= 10:
-            self.entry_search.set_visible(True)
-
         for bottle in bottles:
             self.list_bottles.append(
                 BottleViewEntry(self.window, bottle, self.arg_exe)
