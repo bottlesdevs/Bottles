@@ -43,6 +43,7 @@ class CabExtract:
         if files is None:
             files = []
 
+        self.cabextract_bin = shutil.which("cabextract")
         self.path = path
         self.name = name
         self.files = files
@@ -58,7 +59,7 @@ class CabExtract:
             logging.error(f"Cab file {self.path} not found", )
             return False
 
-        if not shutil.which("cabextract"):
+        if not self.cabextract_bin:
             logging.critical("cabextract utility not found, please install to use "
                              "dependencies which need this feature", )
             logging.write_log(
@@ -86,7 +87,7 @@ class CabExtract:
                             os.unlink(os.path.join(self.destination, file))
 
                     command = [
-                        "cabextract",
+                        self.cabextract_bin,
                         f"-F '*{file}*'",
                         f"-d {self.destination}",
                         f"-q {self.path}"
@@ -104,7 +105,7 @@ class CabExtract:
                             shutil.move(f"{self.destination}/{_dir}/{_file}", f"{self.destination}/{_file}")
             else:
                 command = [
-                    "cabextract",
+                    self.cabextract_bin,
                     f"-d {self.destination}",
                     f"-q {self.path}"
                 ]

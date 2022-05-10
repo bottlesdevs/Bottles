@@ -166,7 +166,7 @@ class DependencyEntry(Handy.ActionRow):
         This function set the dependency as installed
         if the installation is successful
         """
-        if result.status:
+        if result is not None and result.status:
             if self.config.get("Versioning"):
                 self.window.page_details.view_versioning.update(
                     config=self.config
