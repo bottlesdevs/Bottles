@@ -222,4 +222,6 @@ class DetailsView(Adw.Bin):
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
+        while self.stack_bottle.get_first_child():
+            self.stack_bottle.remove(self.stack_bottle.get_first_child())
 

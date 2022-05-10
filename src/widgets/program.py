@@ -40,7 +40,6 @@ class ProgramEntry(Adw.ActionRow):
     __gtype_name__ = 'ProgramEntry'
 
     # region Widgets
-    sep = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
     btn_stop = Gtk.Template.Child()
@@ -75,17 +74,17 @@ class ProgramEntry(Adw.ActionRow):
         if is_layer:
             self.executable = program["exec_name"]
         elif is_steam:
-            self.set_subtitle(_("This is a Steam application"))
+            self.set_subtitle(_("Steam"))
             for w in [
                 self.btn_run,
                 self.btn_stop,
                 self.btn_menu,
-                self.sep
             ]:
                 w.set_visible(False)
                 w.set_sensitive(False)
             self.btn_launch_steam.set_visible(True)
             self.btn_launch_steam.set_sensitive(True)
+            self.set_activatable_widget(self.btn_launch_steam)
         else:
             self.executable = program.get("executable", "")
 

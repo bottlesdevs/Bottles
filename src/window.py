@@ -148,36 +148,21 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_library.connect('clicked', self.show_library_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.btn_health.connect("clicked", self.show_health_view)
-        self.stack_main.connect('notify::visible-child', self.on_page_changed)
         self.btn_operations.connect('activate', self.on_operations_toggled)
-        self.btn_search.connect('clicked', self.show_search)
+        self.btn_search.connect('toggled', self.show_search)
 
         self.__on_start()
 
-    def on_page_changed(self, stack, param):
-        """
-        When the user changes the page, update the window title
-        according to the page.
+        if self.arg_exe:
+            '''
+            If Bottles was started with an executable as argument, without
+            a bottle, the user will be prompted to select a bottle from the
+            bottles list.
+            '''
+            self.show_list_view()
 
-        probably not needed xd
-        """
-        page = self.stack_main.get_visible_child_name()
-
-        if page != "page_details":
-            #self.set_actions(None)
-            print("a")
-
-        if page == "page_details":
-            self.set_title(_("Bottle Details"))
-        elif page == "page_list":
-            self.set_title(_("Bottles"))
-        elif page == "page_importer":
-            self.set_title(_("Importer"))
-            self.set_actions(self.page_importer.actions)
-        elif page == "page_library":
-            self.set_title(_("Your Library"))
-        elif page == "page_loading":
-            self.set_title(_("Loading..."))
+        self.arg_exe = False
+        logging.info("Bottles Started!", )
 
     def update_library(self):
         GLib.idle_add(self.page_library.update)
