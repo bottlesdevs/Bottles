@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-05-11 02:18+0000\n"
+"PO-Revision-Date: 2022-05-12 20:38+0000\n"
 "Last-Translator: Sematre <Sematre@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -1425,7 +1425,7 @@ msgstr "Nachlaufskript"
 #: src/ui/dialog-launch-options.ui:200 src/dialogs/launchoptions.py:108
 msgid "Choose a script which should be executed after run."
 msgstr ""
-"Wähle ein Skript, das ausgeführt wird, nachdem das Programm beendet wurde."
+"Wähle ein Skript, das ausgeführt wird, nachdem das Programm gestartet wurde."
 
 #: src/ui/dialog-rename.ui:24 src/ui/program-entry.ui:114
 msgid "Rename"
@@ -2063,7 +2063,7 @@ msgstr ", "
 #: src/backend/managers/installer.py:130
 #, python-format
 msgid "Pick executable for %s"
-msgstr "Ausführbare Datei für %s auswählen"
+msgstr "Programmdatei für %s auswählen"
 
 #: src/backend/managers/installer.py:133
 msgid "Proceed"
@@ -2126,9 +2126,10 @@ msgstr ""
 
 #: src/backend/managers/manager.py:1221
 msgid "Setting Windows version…"
-msgstr "Windows Version anzeigen…"
+msgstr "Windows-Version wird eingestellt…"
 
 #: src/backend/managers/manager.py:1229
+#, fuzzy
 msgid "Apply CMD default settings…"
 msgstr "CMD-Standardeinstellungen übernehmen…"
 
@@ -2137,9 +2138,9 @@ msgid "Optimizing environment…"
 msgstr "Umgebungsoptimierung…"
 
 #: src/backend/managers/manager.py:1248
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Applying environment: {0}…"
-msgstr "Umgebung anwenden: {0} …"
+msgstr "Umgebung anwenden: {0}…"
 
 #: src/backend/managers/manager.py:1258
 msgid "(!) Using a custom environment recipe…"
@@ -2171,13 +2172,12 @@ msgid "Installing dependency: %s …"
 msgstr "Installiere Abhängigkeit: %s…"
 
 #: src/backend/managers/manager.py:1319
-#, fuzzy
 msgid "Creating versioning state 0…"
-msgstr "Erstellen des Versionierungsstatus 0 …"
+msgstr "Erstelle den Zustand 0…"
 
 #: src/backend/managers/manager.py:1327
 msgid "Finalizing…"
-msgstr "Abschließen…"
+msgstr "Fertigstellung…"
 
 #: src/backend/managers/manager.py:1338
 msgid "Caching template…"
@@ -2185,36 +2185,38 @@ msgstr "Vorlage zwischenspeichern…"
 
 #: src/backend/managers/versioning.py:65
 msgid "Generating state files index …"
-msgstr "Index für Status Dateien wird erzeugt …"
+msgstr "Verzeichne die Zustandsdateien…"
 
 #: src/backend/managers/versioning.py:144
 msgid "Creating a restore point …"
-msgstr "Wiederherstellungspunkt wird erzeugt …"
+msgstr "Wiederherstellungspunkt wird erstellt…"
 
 #: src/backend/managers/versioning.py:168
 msgid "Could not create the state folder."
-msgstr ""
+msgstr "Zustandsordner konnte nicht erstellt werden."
 
 #: src/backend/managers/versioning.py:175
+#, fuzzy
 msgid "Updating index …"
-msgstr "Index wird aktualsiert …"
+msgstr "Index wird aktualisiert…"
 
 #: src/backend/managers/versioning.py:199
 msgid "Updating states …"
-msgstr "Die Status, werden aktualisiert …"
+msgstr "Zustände aktualisieren…"
 
 #: src/backend/managers/versioning.py:228
 msgid "Could not update the states file."
-msgstr ""
+msgstr "Die Zustandsdatei konnte nicht aktualisiert werden."
 
 #: src/backend/managers/versioning.py:242
+#, fuzzy
 msgid "Could not update the index file."
 msgstr "Konnte die Indexdatei nicht aktualisieren."
 
 #: src/backend/managers/versioning.py:268
 #, python-brace-format
 msgid "New state [{0}] created successfully!"
-msgstr "Neuen Stand [{0}] erfolgreich erstellt!"
+msgstr "Neuen Zustand [{0}] erfolgreich erstellt!"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -2261,17 +2263,15 @@ msgstr "Aktualisiert: %s"
 
 #: src/views/bottle_details.py:238 src/views/list.py:127
 msgid "Choose a Windows executable file"
-msgstr "Ausführbare Windows-Datei auswählen"
+msgstr "Windows-Programmdatei auswählen"
 
 #: src/views/bottle_details.py:306
 msgid "Select the location where to save the backup config"
-msgstr ""
-"Wählen Sie den Ort, wo die Sicherungskonfiguration gespeichert werden soll"
+msgstr "Wähle den Speicherort für die Sicherungskonfiguration"
 
 #: src/views/bottle_details.py:310
 msgid "Select the location where to save the backup archive"
-msgstr ""
-"Wählen Sie den Ort, an dem das Sicherungsarchiv gespeichert werden soll"
+msgstr "Wähle den Speicherort für das Sicherungsarchiv"
 
 #: src/views/bottle_details.py:317
 msgid "Export"
@@ -2279,36 +2279,38 @@ msgstr "Exportieren"
 
 #: src/views/bottle_details.py:348
 msgid "Confirm deletion"
-msgstr "Bestätigung der Löschung"
+msgstr "Löschen bestätigen"
 
 #: src/views/bottle_details.py:350
 msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr ""
-"Sind Sie sicher, dass Sie diese Bottle und alle Dateien löschen wollen?"
+"Bist du dir sicher, dass du diese Bottle und alle Dateien darin löschen "
+"möchtest?"
 
 #: src/views/bottle_details.py:448
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
 msgstr ""
-"Sind Sie sicher, dass Sie diese Bottle und alle Dateien löschen wollen?\n"
+"Bist du dir sicher, dass du alle Prozesse beenden möchtest?\n"
 "Dies kann zu Datenverlust führen."
 
 #: src/views/bottle_preferences.py:180
 msgid "This feature is not available on your system."
-msgstr "Diese Funktion ist auf Ihrem System nicht verfügbar."
+msgstr "Diese Funktion ist auf deinem System nicht verfügbar."
 
 #: src/views/bottle_preferences.py:243
 msgid "Choose working directory for executables"
-msgstr "Wähle das Arbeitsverzeichnis für ausführbare Dateien"
+msgstr "Wähle das Arbeitsverzeichnis für Programmdateien"
 
 #: src/views/bottle_preferences.py:246
 msgid "Done"
 msgstr "Fertig"
 
 #: src/views/bottle_programs.py:72
+#, fuzzy
 msgid "Choose an executable path"
-msgstr "Pfad zur ausführbaren Datei auswählen"
+msgstr "Wähle eine Programmdatei aus"
 
 #: src/views/bottle_programs.py:75
 msgid "Add"
@@ -2316,7 +2318,7 @@ msgstr "Hinzufügen"
 
 #: src/views/details.py:110
 msgid "Details & Utilities"
-msgstr "Details & Dienstprogramme"
+msgstr "Details & Werkzeuge"
 
 #: src/views/details.py:118
 msgid "Dependencies"
@@ -2324,7 +2326,7 @@ msgstr "Abhängigkeiten"
 
 #: src/views/details.py:123
 msgid "Found in your bottle's Start menu."
-msgstr "Dies sind die Programme, die sich im Startmenü Ihrer Bottle befinden."
+msgstr "Im Startmenü deiner Bottle gefunden."
 
 #: src/views/details.py:126
 msgid "Versioning"
@@ -2336,7 +2338,7 @@ msgstr "Installer"
 
 #: src/views/importer.py:88
 msgid "Choose a backup archive"
-msgstr "Wählen Sie ein Sicherungsarchiv"
+msgstr "Wähle ein Sicherungsarchiv"
 
 #: src/views/importer.py:119
 msgid "Choose a configuration file"
@@ -2349,19 +2351,19 @@ msgstr "n. a."
 #: src/views/list.py:101
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr "Parameter für ausführbare Datei gefunden: [{executable}]."
+msgstr "Parameter für Programmdatei gefunden: [{executable}]."
 
 #: src/views/new.py:73
 msgid "Gaming"
-msgstr "Spielen"
+msgstr "Spiele"
 
 #: src/views/new.py:74
 msgid "An environment improved for Windows games."
-msgstr "Eine für Windows-Spiele verbesserte Umgebung."
+msgstr "Eine für Windows-Spiele optimierte Umgebung."
 
 #: src/views/new.py:79
 msgid "Application"
-msgstr "Anwendung"
+msgstr "Anwendungen"
 
 #: src/views/new.py:80
 msgid "An environment improved for Windows applications."
@@ -2373,7 +2375,7 @@ msgstr "Benutzerdefiniert"
 
 #: src/views/new.py:86
 msgid "A clear environment for your experiments."
-msgstr "Eine übersichtliche Umgebung für Ihre Experimente."
+msgstr "Eine leere Umgebung für Experimente."
 
 #: src/views/new.py:94
 msgid "Layered"
@@ -2408,8 +2410,8 @@ msgstr "Neuen Pfad für die Bottle wählen"
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr ""
-"Auswählen wo neue Bottles gespeichert werden sollen (Bestehende werden nicht "
-"verschoben)"
+"Auswählen, wo neue Bottles gespeichert werden sollen (Bestehende werden "
+"nicht verschoben)"
 
 #: src/views/preferences.py:200
 msgid "Caffe runners"
@@ -2449,7 +2451,7 @@ msgstr "Schritt {self.__step} von {self.steps}"
 #: src/widgets/state.py:97
 #, python-brace-format
 msgid "Index for state {0}"
-msgstr "Index für Stand {0}"
+msgstr "Index für Zustand {0}"
 
 #~ msgid "WineHQ"
 #~ msgstr "WineHQ"
