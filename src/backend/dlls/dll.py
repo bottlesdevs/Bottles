@@ -46,11 +46,13 @@ class DLLComponent:
         found = self.dlls.copy()
 
         for path in self.dlls:
-            if not os.path.exists(f"{self.base_path}/{path}"):
+            _path = os.path.join(self.base_path, path)
+            if not os.path.exists(_path):
                 del found[path]
                 continue
             for dll in self.dlls[path]:
-                if not os.path.exists(f"{self.base_path}/{path}/{dll}"):
+                _dll = os.path.join(_path, dll)
+                if not os.path.exists(_dll):
                     del found[path][dll]
 
         if len(found) == 0:
@@ -125,12 +127,12 @@ class DLLComponent:
     def __install_dll(self, config, path: str, dll: str, remove: bool = False):
         dll_name = dll.split('/')[-1]
         bottle = ManagerUtils.get_bottle_path(config)
-        bottle = f"{bottle}/drive_c/windows/"
-        source = f"{self.base_path}/{path}/{dll}"
+        bottle = os.path.join(bottle, "drive_c", "windows")
+        source = os.path.join(self.base_path, path, dll)
         path = self.__get_sys_path(config, path)
 
         if path is not None:
-            target = f"{bottle}/{path}/{dll_name}"
+            target = os.path.join(bottle, path, dll_name)
         else:
             target = None
 
