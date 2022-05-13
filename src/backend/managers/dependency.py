@@ -597,6 +597,11 @@ class DependencyManager:
                 )
             return True
 
+        if step.get("bundle"):
+            _bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": step.get("bundle")}
+            reg.import_bundle(_bundle)
+            return True
+
         reg.add(
             key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
             value=step.get("dll"),
