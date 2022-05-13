@@ -77,7 +77,6 @@ class CabExtract:
         try:
             if len(self.files) > 0:
                 for file in self.files:
-
                     '''
                     if file already exists as a symlink, remove it
                     preventing broken symlinks when using layers
@@ -115,6 +114,7 @@ class CabExtract:
                     shell=True
                 ).communicate()
 
+            logging.info(f"Cabinet {self.name} extracted successfully")
             return True
         except Exception as exception:
             logging.error(f"Error while extracting cab file {self.path}:\n{exception}", )

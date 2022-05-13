@@ -405,15 +405,8 @@ class DependencyManager:
                     file = step.get("file_name")
 
                 if not CabExtract().run(
-                        path=f"{Paths.temp}/{file}",
+                        path=os.path.join(Paths.temp, file),
                         name=file,
-                        destination=dest
-                ):
-                    return False
-
-                if not CabExtract().run(
-                        f"{Paths.temp}/{file}",
-                        os.path.splitext(f"{file}")[0],
                         destination=dest
                 ):
                     return False
@@ -459,7 +452,7 @@ class DependencyManager:
             return dest
 
         res = CabExtract().run(
-            path=f"{Paths.temp}/{source}",
+            path=os.path.join(Paths.temp, source),
             files=[file_name],
             destination=dest
         )
@@ -494,17 +487,16 @@ class DependencyManager:
             else:
                 file = step.get("file_name")
 
-            archive_name = os.path.splitext(file)[0]
+            archive_path = os.path.join(Paths.temp, os.path.splitext(file)[0])
 
-            if os.path.exists(f"{Paths.temp}/{archive_name}"):
-                shutil.rmtree(
-                    f"{Paths.temp}/{archive_name}")
+            if os.path.exists(archive_path):
+                shutil.rmtree(archive_path)
 
-            os.makedirs(f"{Paths.temp}/{archive_name}")
+            os.makedirs(archive_path)
             try:
                 patoolib.extract_archive(
-                    f"{Paths.temp}/{file}",
-                    outdir=f"{Paths.temp}/{archive_name}"
+                    os.path.join(Paths.temp, file),
+                    outdir=archive_path
                 )
             except:
                 return False
@@ -551,7 +543,7 @@ class DependencyManager:
                 files = glob(f"{path}/{step.get('file_name')}")
                 for fg in files:
                     _name = os.path.basename(fg)
-                    _dest = f"{dest}/{_name}"
+                    _dest = os.path.join(dest, _name)
                     print(f"Copying {_name} to {_dest}")
 
                     if os.path.exists(_dest):
@@ -561,7 +553,7 @@ class DependencyManager:
                     shutil.copyfile(fg, _dest)
             else:
                 _name = step.get('file_name')
-                _dest = f"{dest}/{_name}"
+                _dest = os.path.join(dest, _name)
                 print(f"Copying {_name} to {_dest}")
 
                 if os.path.exists(_dest):
@@ -586,7 +578,7 @@ class DependencyManager:
                 "temp/",
                 f"{Paths.temp}/"
             )
-            path = f"{path}/{step.get('dll')}"
+            path = os.path.join(path, step.get("dll"))
 
             for dll in glob(path):
                 dll_name = os.path.splitext(os.path.basename(dll))[0]
