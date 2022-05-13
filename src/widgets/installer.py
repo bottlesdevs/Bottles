@@ -39,7 +39,7 @@ class InstallerEntry(Handy.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, installer, plain=False, **kwargs):
+    def __init__(self, window, config, installer, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -96,6 +96,11 @@ class InstallerEntry(Handy.ActionRow):
 
     def __execute_installer(self, widget):
         """Execute installer"""
+        def set_status(result, error=False):
+            if result.status:
+                return self.set_installed()
+            _err = result.data.get("message", _("Installer failed with unknown error"))
+            self.set_err(_err)
         self.set_steps(
             self.manager.installer_manager.count_steps(self.installer)
         )
@@ -112,9 +117,10 @@ class InstallerEntry(Handy.ActionRow):
 
         RunAsync(
             task_func=self.manager.installer_manager.install,
+            callback=set_status,
             config=self.config,
             installer=self.installer,
-            widget=self
+            step_fn=self.next_step
         )
 
     def set_installed(self):

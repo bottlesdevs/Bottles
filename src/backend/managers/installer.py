@@ -31,7 +31,6 @@ except (RuntimeError, GLib.GError):
     from bottles.operation_cli import OperationManager
     from bottles.dialogs.generic_cli import MessageDialog
 
-
 from bottles.backend.managers.conf import ConfigManager
 from bottles.backend.managers.journal import JournalManager, JournalSeverity
 from bottles.backend.globals import Paths
@@ -44,6 +43,8 @@ from bottles.backend.utils.wine import WineUtils
 from bottles.backend.wine.wineboot import WineBoot
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import WineCommand
+
+from bottles.backend.models.result import Result
 
 logging = Logger()
 
@@ -149,7 +150,7 @@ class InstallerManager:
             self,
             config,
             dependencies: list,
-            widget: Gtk.Widget,
+            step_fn: callable,
             is_final: bool = False
     ):
         """Install a list of dependencies"""
@@ -159,7 +160,7 @@ class InstallerManager:
         for dep in dependencies:
             layer = None
             if is_final:
-                widget.next_step()
+                step_fn()
 
             if dep in config.get("Installed_Dependencies"):
                 continue
@@ -458,7 +459,7 @@ class InstallerManager:
 
         return steps
 
-    def install(self, config, installer, widget, is_final: bool = True):
+    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True):
         if config.get("Environment") == "Layered":
             self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
             self.__layer.mount_bottle(config)
@@ -484,12 +485,9 @@ class InstallerManager:
         if installers:
             logging.info("Installing dependent installers")
             for i in installers:
-                if not self.install(config, i, widget, False):
-                    logging.error("Failed to install dependent installer")
-                    # unlock widget
-                    if widget is not None:
-                        GLib.idle_add(widget.set_err, _("Failed to install dependent installer"))
-                    return False
+                if not self.install(config, i, step_fn, False):
+                    logging.error("Failed to install dependent installer(s)")
+                    return Result(False, data={"message": "Failed to install dependent installer(s)"})
 
         # ask for local resources
         exe_msi_steps = False
@@ -499,25 +497,19 @@ class InstallerManager:
                              and s.get("url", "") == "local"]
         if exe_msi_steps:
             if not self.__ask_for_local_resources(exe_msi_steps, _config):
-                # unlock widget
-                if widget is not None:
-                    GLib.idle_add(widget.set_err, _("Local resources not found or invalid"))
-                return False
+                return Result(False, data={"message": "Local resources not found or invalid"})
 
         # install dependencies
         if dependencies:
             logging.info("Installing dependencies")
-            if not self.__install_dependencies(_config, dependencies, widget, is_final):
-                # unlock widget
-                if widget is not None:
-                    GLib.idle_add(widget.set_err, _("Dependencies installation failed."))
-                return False
+            if not self.__install_dependencies(_config, dependencies, step_fn, is_final):
+                return Result(False, data={"message": "Dependencies installation failed."})
 
         # set parameters
         if parameters:
             logging.info("Updating bottle parameters")
             if is_final:
-                widget.next_step()
+                step_fn()
             if self.__layer is not None:
                 self.__set_parameters(self.__layer.runtime_conf, parameters)
             else:
@@ -527,31 +519,25 @@ class InstallerManager:
         if steps:
             logging.info("Executing installer steps")
             if is_final:
-                widget.next_step()
+                step_fn()
             if self.__layer is not None:
                 for d in dependencies:
                     self.__layer.mount(name=d)
                 wineboot = WineBoot(self.__layer.runtime_conf)
                 wineboot.update()
                 if not self.__perform_steps(self.__layer.runtime_conf, steps):
-                    if widget is not None:  # unlock widget
-                        GLib.idle_add(widget.set_err, _("Installation failed, please check the logs."))
-                    return False
+                    return Result(False, data={"message": "Installation failed, please check the logs."})
             else:
                 if not self.__perform_steps(_config, steps):
-                    if widget is not None:  # unlock widget
-                        GLib.idle_add(widget.set_err, _("Installation failed, please check the logs."))
-                    return False
+                    return Result(False, data={"message": "Installer is not well configured."})
 
         # execute checks
         if checks:
             logging.info("Executing installer checks")
             if is_final:
-                widget.next_step()
+                step_fn()
                 if not self.__perform_checks(_config, checks):
-                    if widget is not None:  # unlock widget
-                        GLib.idle_add(widget.set_err, _("Installation failed, please check the logs."))
-                    return False
+                    return Result(False, data={"message": "Checks failed, the program is not installed."})
 
         # register executable
         if self.__layer is None:
@@ -578,7 +564,7 @@ class InstallerManager:
         self.__create_desktop_entry(_config, manifest, executable)
 
         if is_final:
-            widget.next_step()
+            step_fn()
 
         if self.__layer is not None:
             # sweep and save
@@ -606,10 +592,5 @@ class InstallerManager:
                 scope="Layers"
             )
 
-        # unlock widget
-        if widget is not None and is_final:
-            GLib.idle_add(widget.set_installed)
-
         logging.info(f"Program installed: {manifest['Name']} in {config['Name']}.", jn=True)
-
-        return True
+        return Result(True)
