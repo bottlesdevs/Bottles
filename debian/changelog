@@ -1,31 +1,60 @@
 com.usebottles.bottles (2022.5.2-trento-3) precise; urgency=low
 
-  * General improvements to respect GNOME Circle requirements
-  * More consistency of buttons/menus position
-  * Improve Onboarding process
-  * Auto-focus in bottle's name field when creating a new bottle
-  * New bottle's name field now uses default style
-  * New bottle create button is now always visible but disabled (not sensitive) if not usable
-  * Improve end of bottle creation modal
-  * Suggest how to install first program in new bottle
-  * Explain what to do in each page
-  * Explain what to do the first time you open a bottle
-  * Bottle renaming is now in preferences view
-  * Explain what compatibility grades are
-  * Add missing dots to sentences
-  * Fit title case
-  * Align animations to most GNOME apps
-  * Fixed desktop entries, bottles-cli was using Name instead of Path (Thanks to @emiltang)
+  * Downloads now show progress
+  * Programs can now be added multiple times with different arguments/options
+  * Added the ability to permanently remove programs from the list
+  * Reworked program's menu
+  * Path is now shown for custom scripts in programs launch options
+  * Improve startup speed when launching programs from CLI
+  * Some initial checks are now cached to improve startup speed
+  * EasyTerm now allows you to copy and paste content
+  * Improved Windows paths conversion using native methods
+  * Desktop entries are now generated with the icon
+  * An alert is shown when the user custom bottles path is not reachable
+  * An alert is shown when the flatpak has no permissions to add desktop entries
+  * Windows 95, 98 now available for 32-bit bottles
+  * Programs list is now updated when an executable stops running
+  * Health check now shows disk and memory info
+  * LatencyFleX can now be installed from installers
+  * Installers can now declare checks to make sure the program is installed before adding a new entry to the program list
+  * Installers can now monitor the exit of executables before proceeding
+  * Improved installation speed of DLL components (DXVK, vkd3d ..)
+  * Dependencies can now import registry bundles
+  * Fixed data.yml file not being reinitialized if empty
+  * Fixed gnome-terminal support
+  * Fixed encoding not being properly set when launching commands
+  * Fixed launch options being ignored when launching from desktop entries
+  * Fixed wrong tooltips in programs list
+  * Fixed post scripts not being launched if the program fails to
+  * Fixed a regression in launching executables from the file manager
+  * Fixed a regression in versioning, was not checking for file recursively
+  * Fixed sys-wine not being detected
+  * Fixed program arguments not properly set when using gamemode or gamescope
+  * Fixed issue with batch files not starting with path containing spaces
+  * Fixed a bug with the backup manager, was causing with empty paths
+  * Fixed a bug in the journal manager, was causing a crash if missing a key
+  * Fixed a bug where parameters were not updated correctly when using installers that depend on other installers
+  * Fixed a bug that caused dependencies not to show as installed starting from the second bottle
+  * Fixed a bug with library not being reinitialized if empty
   * French translations thanks to @julroy67
-  * Persian traslations thanks to @pikhosh, @Gnkalk
-  * Portuguese (Brazil) translations thanks to @FHEK789, @vitorhcl
-  * German translations thanks to @Maxopoly
-  * Spanish translations thanks to @uanretamales
+  * Portuguese (Brazil) translations thanks to @FHEK789, @vitorhcl, @davipatricio
+  * German translations thanks to @Maxopoly, @Sematre, @SuNNjek, @ThatRedKite
+  * Spanish translations thanks to @uanretamales, @oscfdezdz, @Dansito
   * Swedish translations thanks to @bittin
   * Russian translations thanks to @Knebergish
   * Czech translations thanks to @vikdevelop
   * Chinese (traditional) translations thanks to @Adrian400811
   * Malay translations thanks to @amiruldevkun
-  * Fix grammar issues thanks to @purpleidea
+  * Persian traslations thanks to @pikhosh, @Gnkalk
+  * Indonesian translations thanks to Jovan Aditya Pangestu
+  * Finnish translations thanks to Jiri Grönroos
+  * Japanese translations thanks to @kakurasan
+  * Hungarian translations thanks to @zoli111
+  * Polish translations thanks to @imLinguin
+  * Greek translations thanks to IceDBorn
+  * Turkish translations thankg to @ersen0
+  * Chinese (simplified) translations thanks to Eric
+  * Thai translations thanks to @SashaPGT
+  * Improved translations thanks to @TheEvilSkeleton
 
  -- Mirko Brombin <send@mirko.pm>  Mon, 05 May 2022 23:33:00 +0000

@@ -98,41 +98,70 @@
           <description>
             <p>News</p>
             <ul>
-                <li>General improvements to respect GNOME Circle requirements</li>
-                <li>More consistency of buttons/menus position</li>
-                <li>Improve Onboarding process</li>
-                <li>Auto-focus in bottle's name field when creating a new bottle</li>
-                <li>New bottle's name field now uses default style</li>
-                <li>New bottle create button is now always visible but disabled (not sensitive) if not usable</li>
-                <li>Improve end of bottle creation modal</li>
-                <li>Suggest how to install first program in new bottle</li>
-                <li>Explain what to do in each page</li>
-                <li>Explain what to do the first time you open a bottle</li>
-                <li>Bottle renaming is now in preferences view</li>
-                <li>Explain what compatibility grades are</li>
-                <li>Add missing dots to sentences</li>
-                <li>Fit title case</li>
-                <li>Align animations to most GNOME apps</li>
+                <li>Downloads now show progress</li>
+                <li>Programs can now be added multiple times with different arguments/options</li>
+                <li>Added the ability to permanently remove programs from the list</li>
+                <li>Reworked program's menu</li>
+                <li>Path is now shown for custom scripts in programs launch options</li>
+                <li>Improve startup speed when launching programs from CLI</li>
+                <li>Some initial checks are now cached to improve startup speed</li>
+                <li>EasyTerm now allows you to copy and paste content</li>
+                <li>Improved Windows paths conversion using native methods</li>
+                <li>Desktop entries are now generated with the icon</li>
+                <li>An alert is shown when the user custom bottles path is not reachable</li>
+                <li>An alert is shown when the flatpak has no permissions to add desktop entries</li>
+                <li>Windows 95, 98 now available for 32-bit bottles</li>
+                <li>Programs list is now updated when an executable stops running</li>
+                <li>Health check now shows disk and memory info</li>
+                <li>LatencyFleX can now be installed from installers</li>
+                <li>Installers can now declare checks to make sure the program is installed before adding a new entry to the program list</li>
+                <li>Installers can now monitor the exit of executables before proceeding</li>
+                <li>Improved installation speed of DLL components (DXVK, vkd3d ..)</li>
+                <li>Dependencies can now import registry bundles</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fixed desktop entries, bottles-cli was using Name instead of Path (Thanks to @emiltang)</li>
+                <li>Fixed data.yml file not being reinitialized if empty</li>
+                <li>Fixed gnome-terminal support</li>
+                <li>Fixed encoding not being properly set when launching commands</li>
+                <li>Fixed launch options being ignored when launching from desktop entries</li>
+                <li>Fixed wrong tooltips in programs list</li>
+                <li>Fixed post scripts not being launched if the program fails to</li>
+                <li>Fixed a regression in launching executables from the file manager</li>
+                <li>Fixed a regression in versioning, was not checking for file recursively</li>
+                <li>Fixed sys-wine not being detected</li>
+                <li>Fixed program arguments not properly set when using gamemode or gamescope</li>
+                <li>Fixed issue with batch files not starting with path containing spaces</li>
+                <li>Fixed a bug with the backup manager, was causing with empty paths</li>
+                <li>Fixed a bug in the journal manager, was causing a crash if missing a key</li>
+                <li>Fixed a bug where parameters were not updated correctly when using installers that depend on other installers</li>
+                <li>Fixed a bug that caused dependencies not to show as installed starting from the second bottle</li>
+                <li>Fixed a bug with library not being reinitialized if empty</li>
             </ul>
 
             <p>Translations</p>
             <ul>
                 <li>French translations thanks to @julroy67</li>
-                <li>Persian traslations thanks to @pikhosh, @Gnkalk</li>
-                <li>Portuguese (Brazil) translations thanks to @FHEK789, @vitorhcl</li>
-                <li>German translations thanks to @Maxopoly</li>
-                <li>Spanish translations thanks to @uanretamales</li>
+                <li>Portuguese (Brazil) translations thanks to @FHEK789, @vitorhcl, @davipatricio</li>
+                <li>German translations thanks to @Maxopoly, @Sematre, @SuNNjek, @ThatRedKite</li>
+                <li>Spanish translations thanks to @uanretamales, @oscfdezdz, @Dansito</li>
                 <li>Swedish translations thanks to @bittin</li>
                 <li>Russian translations thanks to @Knebergish</li>
                 <li>Czech translations thanks to @vikdevelop</li>
                 <li>Chinese (traditional) translations thanks to @Adrian400811</li>
                 <li>Malay translations thanks to @amiruldevkun</li>
-                <li>Fix grammar issues thanks to @purpleidea</li>
+                <li>Persian traslations thanks to @pikhosh, @Gnkalk</li>
+                <li>Indonesian translations thanks to Jovan Aditya Pangestu</li>
+                <li>Finnish translations thanks to Jiri Grönroos</li>
+                <li>Japanese translations thanks to @kakurasan</li>
+                <li>Hungarian translations thanks to @zoli111</li>
+                <li>Polish translations thanks to @imLinguin</li>
+                <li>Greek translations thanks to IceDBorn</li>
+                <li>Turkish translations thankg to @ersen0</li>
+                <li>Chinese (simplified) translations thanks to Eric</li>
+                <li>Thai translations thanks to @SashaPGT</li>
+                <li>Improved translations thanks to @TheEvilSkeleton</li>
             </ul>
           </description>
         </release>
