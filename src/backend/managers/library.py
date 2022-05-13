@@ -50,6 +50,9 @@ class LibraryManager:
             with open(self.library_path, 'r') as library_file:
                 self.__library = yaml.safe_load(library_file)
 
+        if self.__library is None:
+            self.__library = {}
+
     def add_to_library(self, data: dict):
         """
         Adds a new entry to the library.yml file.
