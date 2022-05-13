@@ -194,7 +194,7 @@ class InstallerManager:
 
         if checks.get("files"):
             for f in checks.get("files"):
-                _f = os.path.join(bottle_path, f)
+                _f = os.path.join(bottle_path, "drive_c", f)
                 if not os.path.exists(_f):
                     logging.error(f"During checks, file {_f} does not exist, assuming it is not installed. Aborting.")
                     return False
