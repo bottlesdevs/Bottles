@@ -61,7 +61,9 @@ class Reg(WineProgram):
                 f.write(f"[{key}]\n")
 
                 for value in bundle[key]:
-                    if "key_type" in value:
+                    if value["data"] == "-":
+                        f.write(f'"{value["value"]}"=-\n')
+                    elif "key_type" in value:
                         f.write(f'"{value["value"]}"={value["key_type"]}:{value["data"]}\n')
                     else:
                         f.write(f'"{value["value"]}"="{value["data"]}"\n')

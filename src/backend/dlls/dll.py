@@ -60,24 +60,54 @@ class DLLComponent:
         return True
 
     def install(self, config: dict, overrides_only: bool = False, exclude=None):
+        dll_in = []
+        bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": []}
+        reg = Reg(config)
+
         if exclude is None:
             exclude = []
 
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
-                    self.__install_dll(config, path, dll, False, overrides_only)
+                    dll_name = dll.split('/')[-1].split('.')[0]
+                    if overrides_only:
+                        dll_in.append(dll_name)
+                    else:
+                        if self.__install_dll(config, path, dll, False):
+                            dll_in.append(dll_name)
 
+        for dll in dll_in:
+            bundle["HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides"].append({
+                "value": dll,
+                "data": "native,builtin"
+            })
+
+        reg.import_bundle(bundle)
         WineBoot(config).update()
 
     def uninstall(self, config: dict, exclude=None):
+        reg = Reg(config)
+        dll_in = []
+        bundle = {"HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides": []}
+
         if exclude is None:
             exclude = []
 
         for path in self.dlls:
             for dll in self.dlls[path]:
                 if dll not in exclude:
-                    self.__uninstall_dll(config, path, dll)
+                    dll_name = dll.split('/')[-1].split('.')[0]
+                    if self.__uninstall_dll(config, path, dll):
+                        dll_in.append(dll_name)
+
+        for dll in dll_in:
+            bundle["HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides"].append({
+                "value": dll,
+                "data": "-"
+            })
+
+        reg.import_bundle(bundle)
         WineBoot(config).update()
 
     @staticmethod
@@ -92,14 +122,13 @@ class DLLComponent:
                 return "syswow64"
         return None
 
-    def __install_dll(self, config, path: str, dll: str, remove: bool = False, overrides_only: bool = False):
-        reg = Reg(config)
+    def __install_dll(self, config, path: str, dll: str, remove: bool = False):
         dll_name = dll.split('/')[-1]
         bottle = ManagerUtils.get_bottle_path(config)
         bottle = f"{bottle}/drive_c/windows/"
         source = f"{self.base_path}/{path}/{dll}"
-
         path = self.__get_sys_path(config, path)
+
         if path is not None:
             target = f"{bottle}/{path}/{dll_name}"
         else:
@@ -109,27 +138,33 @@ class DLLComponent:
 
         if target is not None:
             if not remove:
-                if not overrides_only:
-                    if os.path.exists(target) and not os.path.exists(f"{target}.bck"):
-                        shutil.copy(target, f"{target}.bck")
-                    try:
-                        shutil.copyfile(source, target)
-                    except FileNotFoundError:
-                        logging.warning(f"{source} not found")  # TODO: should not be ok but just ignore it for now
+                if os.path.exists(target) and not os.path.exists(f"{target}.bck"):
+                    shutil.copy(target, f"{target}.bck")
+                try:
+                    shutil.copyfile(source, target)
+                except FileNotFoundError:
+                    logging.warning(f"{source} not found")  # TODO: should not be ok but just ignore it for now
+                    return False
+                '''
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
                     value=dll_name.split('.')[0],
                     data="native,builtin"
                 )
-            else:
-                reg.remove(
-                    key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                    value=dll_name.split('.')[0]
-                )
-                if os.path.exists(f"{target}.bck"):
-                    shutil.move(f"{target}.bck", target)
-                elif os.path.exists(target):
-                    os.remove(target)
+                '''
+                return True
+
+            if os.path.exists(f"{target}.bck"):
+                shutil.move(f"{target}.bck", target)
+            elif os.path.exists(target):
+                os.remove(target)
+            '''
+            reg.remove(
+                key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
+                value=dll_name.split('.')[0]
+            )
+            '''
+            return True
 
     def __uninstall_dll(self, config, path: str, dll: str):
-        self.__install_dll(config, path, dll, remove=True)
+        return self.__install_dll(config, path, dll, remove=True)
