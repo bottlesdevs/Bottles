@@ -161,7 +161,10 @@ class WineExecutor:
             return self.__launch_exe()
         if self.exec_type == "msi":
             return self.__launch_msi()
+        if self.exec_type == "batch":
+            return self.__launch_batch()
 
+        logging.error(f'exec_type {self.exec_type} is not valid')
         return False
 
     def __launch_exe(self):
