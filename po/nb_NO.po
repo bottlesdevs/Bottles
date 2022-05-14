@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-01-23 11:55+0000\n"
+"PO-Revision-Date: 2022-05-15 05:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/bottles/"
 "bottles/nb_NO/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -462,7 +462,7 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:358
 msgid "Layers"
-msgstr ""
+msgstr "Lag"
 
 #: src/ui/details-bottle.ui:402
 msgid "Run executable"
@@ -661,8 +661,9 @@ msgid "Toggle search"
 msgstr ""
 
 #: src/ui/details-installers.ui:32
+#, fuzzy
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games-butikken …"
 
 #: src/ui/details-installers.ui:60
 msgid ""
@@ -852,55 +853,55 @@ msgstr "Bruk spillmodus"
 
 #: src/ui/details-preferences.ui:595
 msgid "96"
-msgstr ""
+msgstr "96"
 
 #: src/ui/details-preferences.ui:596
 msgid "120"
-msgstr ""
+msgstr "120"
 
 #: src/ui/details-preferences.ui:597
 msgid "144"
-msgstr ""
+msgstr "144"
 
 #: src/ui/details-preferences.ui:598
 msgid "168"
-msgstr ""
+msgstr "168"
 
 #: src/ui/details-preferences.ui:599
 msgid "192"
-msgstr ""
+msgstr "192"
 
 #: src/ui/details-preferences.ui:600
 msgid "216"
-msgstr ""
+msgstr "216"
 
 #: src/ui/details-preferences.ui:601
 msgid "240"
-msgstr ""
+msgstr "240"
 
 #: src/ui/details-preferences.ui:602
 msgid "288"
-msgstr ""
+msgstr "288"
 
 #: src/ui/details-preferences.ui:603
 msgid "336"
-msgstr ""
+msgstr "336"
 
 #: src/ui/details-preferences.ui:604
 msgid "384"
-msgstr ""
+msgstr "384"
 
 #: src/ui/details-preferences.ui:605
 msgid "432"
-msgstr ""
+msgstr "432"
 
 #: src/ui/details-preferences.ui:606
 msgid "480"
-msgstr ""
+msgstr "480"
 
 #: src/ui/details-preferences.ui:627
 msgid "Renderer"
-msgstr ""
+msgstr "Opptegner"
 
 #: src/ui/details-preferences.ui:628
 msgid "Select what backend to use for wined3d."
@@ -1413,7 +1414,7 @@ msgstr "Oppløsning for virtelt skrivebord"
 
 #: src/ui/dialog-gamescope.ui:84 src/ui/dialog-gamescope.ui:162
 msgid "Width"
-msgstr ""
+msgstr "Bredde"
 
 #: src/ui/dialog-gamescope.ui:95 src/ui/dialog-gamescope.ui:173
 msgid "e.g. 1280"
@@ -1421,11 +1422,11 @@ msgstr ""
 
 #: src/ui/dialog-gamescope.ui:115 src/ui/dialog-gamescope.ui:193
 msgid "Height"
-msgstr ""
+msgstr "Høyde"
 
 #: src/ui/dialog-gamescope.ui:126 src/ui/dialog-gamescope.ui:204
 msgid "e.g. 720"
-msgstr ""
+msgstr "f.eks. 720"
 
 #: src/ui/dialog-gamescope.ui:157
 #, fuzzy
@@ -1468,8 +1469,9 @@ msgid "Borderless"
 msgstr ""
 
 #: src/ui/dialog-gamescope.ui:357
+#, fuzzy
 msgid "Fullscreen"
-msgstr ""
+msgstr "Fullskjermsvisning"
 
 #: src/ui/dialog-launch-options.ui:59
 #, fuzzy
@@ -1509,7 +1511,7 @@ msgstr "Springer"
 
 #: src/ui/dialog-rename.ui:74
 msgid "Type the new name:"
-msgstr ""
+msgstr "Skriv inn det nye navnet:"
 
 #: src/ui/dialog-rename.ui:88
 #, fuzzy
@@ -1569,7 +1571,7 @@ msgstr ""
 
 #: src/ui/env-var-entry.ui:84
 msgid "value"
-msgstr ""
+msgstr "verdi"
 
 #: src/ui/importer-entry.ui:130
 msgid "This wineprefix was already imported in Bottles."
@@ -1614,7 +1616,7 @@ msgstr "Installerte programmer"
 
 #: src/ui/installer-entry.ui:173
 msgid "Compatibility grade"
-msgstr ""
+msgstr "Kompabilitetsgrad"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1727,7 +1729,7 @@ msgstr "Bruk spillmodus"
 
 #: src/ui/new.ui:331
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Velg en egendefinert oppskrift for miljøet hvis du har en."
 
 #: src/ui/new.ui:377
 #, fuzzy
@@ -1735,8 +1737,9 @@ msgid "Use custom path"
 msgstr "Bruk spillmodus"
 
 #: src/ui/new.ui:379
+#, fuzzy
 msgid "Store this bottle in a different place."
-msgstr ""
+msgstr "Lagre denne flasken et annet sted."
 
 #: src/ui/new.ui:475
 msgid "Creating bottle…"
@@ -2378,7 +2381,7 @@ msgstr "Kopier til utklippstavle"
 
 #: src/dialogs/launchoptions.py:92
 msgid "Choose the script"
-msgstr ""
+msgstr "Velg skriptet"
 
 #: src/views/bottle_details.py:156
 #, python-format
@@ -2573,8 +2576,9 @@ msgid "Other runners"
 msgstr "Endre flaske"
 
 #: src/widgets/component.py:73
+#, fuzzy
 msgid "Upgrade"
-msgstr ""
+msgstr "Oppgrader"
 
 #: src/widgets/dependency.py:107 src/widgets/installer.py:77
 #, python-brace-format
