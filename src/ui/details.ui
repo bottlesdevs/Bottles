@@ -25,30 +25,15 @@
       </object>
     </child>
     <child>
-      <object class="AdwLeaflet" id="leaflet">
-        <property name="hexpand">true</property>
+      <object class="GtkBox" id="content_box">
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkBox" id="sidebar">
-            <property name="visible">false</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkListBox" id="list_pages">
-                <property name="vexpand">1</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="content">
+          <object class="GtkStack" id="stack_bottle">
+            <property name="visible">False</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkStack" id="stack_bottle">
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-              </object>
-            </child>
           </object>
         </child>
       </object>
