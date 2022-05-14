@@ -209,6 +209,8 @@
     </child>
   </object>
   <template class="DetailsBottle" parent="GtkScrolledWindow">
+  <property name="hexpand">True</property>
+  <property name="vexpand">True</property>
     <child>
       <object class="AdwClamp">
         <child>
@@ -295,6 +297,7 @@
                 <property name="title" translatable="yes">Layers</property>
               </object>
             </child>
+
             <child>
               <object class="GtkBox" id="box_actions">
                 <property name="halign">center</property>
@@ -369,9 +372,95 @@
                 </child>
               </object>
             </child>
+             <child>
+              <object class="AdwPreferencesGroup" id="group_options">
+                <property name="title" translatable="yes">Options</property>
+                <child>
+                      <object class="AdwActionRow" id="row_prefs">
+                        <property name="activatable">true</property>
+                        <property name="title" translatable="yes">Preferences</property>
+                        <property name="subtitle" translatable="yes">Placeholder</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">go-next-symbolic</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                </child>
+                 <child>
+                      <object class="AdwActionRow" id="row_deps">
+                        <property name="activatable">true</property>
+                        <property name="title" translatable="yes">Dependencies</property>
+                        <property name="subtitle" translatable="yes">Placeholder</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">go-next-symbolic</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                </child>
+                <child>
+                      <object class="AdwActionRow" id="row_snapshots">
+                        <property name="activatable">true</property>
+                        <property name="title" translatable="yes">Snapshots</property>
+                        <property name="subtitle" translatable="yes">Placeholder</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon-name">go-next-symbolic</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                </child>
+              </object>
+            </child>
             <child>
               <object class="AdwPreferencesGroup" id="group_utilities">
                 <property name="title" translatable="yes">Tools</property>
+              <child>
+                  <object class="AdwActionRow" id="row_cmd">
+                  <property name="activatable">true</property>
+                    <property name="title" translatable="yes">Command Line</property>
+                    <property name="subtitle" translatable="yes">Run commands inside the Bottle.</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="icon-name">external-link-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow" id="row_taskmanager">
+                    <property name="activatable">true</property>
+                    <property name="title" translatable="yes">Task Manager</property>
+                    <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="icon-name">external-link-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow" id="row_regedit">
+                    <property name="activatable">true</property>
+                    <property name="title" translatable="yes">Registry Editor</property>
+                    <property name="subtitle" translatable="yes">Edit the internal registry.</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="icon-name">external-link-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
                 <child>
                   <object class="AdwExpanderRow">
                     <property name="title" translatable="yes">Legacy Tools</property>
@@ -388,46 +477,10 @@
                       </object>
                     </child>
                     <child>
-                      <object class="AdwActionRow" id="row_cmd">
-                      <property name="activatable">true</property>
-                        <property name="title" translatable="yes">Command Line</property>
-                        <property name="subtitle" translatable="yes">Run commands inside the Bottle.</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">external-link-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow" id="row_regedit">
-                        <property name="activatable">true</property>
-                        <property name="title" translatable="yes">Registry Editor</property>
-                        <property name="subtitle" translatable="yes">Edit the internal registry.</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">external-link-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
                       <object class="AdwActionRow" id="row_debug">
                         <property name="activatable">true</property>
                         <property name="title" translatable="yes">Debug</property>
                         <property name="subtitle" translatable="yes">Debug wine processes.</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">external-link-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow" id="row_taskmanager">
-                        <property name="activatable">true</property> 
-                        <property name="title" translatable="yes">Task Manager</property>
-                        <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
                         <child>
                           <object class="GtkImage">
                             <property name="icon-name">external-link-symbolic</property>
