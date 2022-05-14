@@ -770,7 +770,8 @@ class Manager:
                 continue
 
             if conf_file_yaml is None:
-                raise AttributeError
+                logging.warning(f"Config file is empty: {_config}")
+                continue
 
             # Migrate old environment_variables to new format
             if "Parameters" in conf_file_yaml:
