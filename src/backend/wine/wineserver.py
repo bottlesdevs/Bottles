@@ -69,3 +69,14 @@ class WineServer(WineProgram):
             cwd=bottle,
             env=env
         ).wait()
+
+    def kill(self, signal: int = -1):
+        args = "-k"
+        if signal != -1:
+            args += str(signal)
+
+        self.launch(
+            args=args,
+            comunicate=True,
+            action_name="sending signal to the wine server"
+        )
