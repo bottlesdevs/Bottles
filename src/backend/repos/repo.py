@@ -37,6 +37,7 @@ class Repo:
         try:
             with urllib.request.urlopen(index) as url:
                 index = yaml.safe_load(url.read())
+                logging.info(f"Catalog {self.name} loaded")
         except (urllib.error.HTTPError, urllib.error.URLError, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} repository index.", )
             return {}
