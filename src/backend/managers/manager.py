@@ -1264,7 +1264,7 @@ class Manager:
             except (FileNotFoundError, PermissionError, yaml.YAMLError):
                 logging.error("Recipe not not found or not valid…", )
                 log_update(_("(!) Recipe not not found or not valid…"))
-                log_update(_("(!) Proceeding with default environment…"))
+                return Result(False)
 
             wineboot.kill()
 
