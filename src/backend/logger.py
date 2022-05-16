@@ -40,7 +40,7 @@ class Logger(logging.getLoggerClass()):
         "critical": 41
     }
     __format_log = {
-        'fmt': '\033[80m(%(asctime)s) \033[1m%(levelname)s\033[0m %(message)s \033[0m',
+        'fmt': '\033[80m%(asctime)s \033[1m(%(levelname)s)\033[0m %(message)s \033[0m',
         'datefmt': '%H:%M:%S',
     }
 
