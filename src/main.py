@@ -70,9 +70,9 @@ _ = gettext.gettext
 
 
 class Bottles(Gtk.Application):
-    arg_exe = False
-    arg_bottle = False
-    arg_passed = False
+    arg_exe = None
+    arg_bottle = None
+    arg_passed = None
     dark_provider = None
 
     def __init__(self):

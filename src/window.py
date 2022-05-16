@@ -88,6 +88,7 @@ class MainWindow(Handy.ApplicationWindow):
 
         self.utils_conn = ConnectionUtils(self)
         self.manager = None
+        self.arg_bottle = arg_bottle
         self.arg_exe = arg_exe
 
         # Set night theme according to user settings
@@ -101,11 +102,11 @@ class MainWindow(Handy.ApplicationWindow):
 
         # Validate arg_exe extension
         if not str(arg_exe).endswith(EXECUTABLE_EXTS):
-            self.arg_exe = False
+            self.arg_exe = None
 
         if arg_bottle:
             self.manager = Manager(self)
-            if arg_bottle in self.manager.local_bottles.keys():
+            if arg_bottle.lower() in self.manager.local_bottles.keys():
                 '''
                 If Bottles was started with a bottle and an executable as
                 arguments, then the executable will be run in the bottle.
@@ -225,7 +226,7 @@ class MainWindow(Handy.ApplicationWindow):
 
             # Pages
             self.page_details = DetailsView(self)
-            self.page_list = ListView(self, self.arg_exe)
+            self.page_list = ListView(self, arg_bottle=self.arg_bottle, arg_exe=self.arg_exe)
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 
@@ -265,14 +266,14 @@ class MainWindow(Handy.ApplicationWindow):
                 dialog.run()
                 dialog.destroy()
 
-            if self.arg_exe:
+            if self.arg_exe and not self.arg_bottle:
                 '''
                 If Bottles was started with an executable as argument, without
                 a bottle, the user will be prompted to select a bottle from the
                 bottles list.
                 '''
                 self.show_list_view()
-            self.arg_exe = False
+            self.arg_exe = None
 
         def get_manager(window):
             mng = Manager(window)

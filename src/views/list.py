@@ -44,7 +44,7 @@ class ListViewEntry(Handy.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, arg_exe, **kwargs):
+    def __init__(self, window, config, arg_exe=None, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
@@ -96,7 +96,7 @@ class ListViewEntry(Handy.ActionRow):
 
         else:
             '''Check for arguments from config'''
-            if self.arg_exe:
+            if self.arg_exe is not None:
                 logging.info(
                     _("Arguments found for executable: [{executable}].").format(
                         executable=self.arg_exe))
@@ -144,14 +144,16 @@ class ListViewEntry(Handy.ActionRow):
         if self.window.settings.get_boolean("auto-close-bottles"):
             self.window.proper_close()
 
-        self.arg_exe = False
+        self.arg_exe = None
         self.manager.update_bottles()
 
     '''Show details page'''
 
-    def show_details(self, widget):
+    def show_details(self, widget=None, config=None):
+        if config is None:
+            config = self.config
         self.window.page_details.view_preferences.update_combo_components()
-        self.window.show_details_view(config=self.config)
+        self.window.show_details_view(config=config)
 
     def disable(self):
         self.handler_block_by_func(self.show_details)
@@ -177,11 +179,12 @@ class ListView(Gtk.ScrolledWindow):
 
     # endregion
 
-    def __init__(self, window, arg_exe, **kwargs):
+    def __init__(self, window, arg_bottle=None, arg_exe=None, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
         self.window = window
+        self.arg_bottle = arg_bottle
         self.arg_exe = arg_exe
 
         '''Connect signals'''
@@ -215,7 +218,8 @@ class ListView(Gtk.ScrolledWindow):
         for bottle in self.list_bottles.get_children():
             bottle.destroy()
 
-        bottles = self.window.manager.local_bottles.items()
+        local_bottles = self.window.manager.local_bottles
+        bottles = local_bottles.items()
 
         if len(bottles) == 0:
             self.clamp_list.set_visible(False)
@@ -231,7 +235,12 @@ class ListView(Gtk.ScrolledWindow):
             self.list_bottles.add(
                 ListViewEntry(self.window, bottle, self.arg_exe)
             )
-        self.arg_exe = False
+        self.arg_exe = None
+        if self.arg_bottle is not None and self.arg_bottle in local_bottles.keys():
+            _config = local_bottles[self.arg_bottle]
+            self.window.page_details.view_preferences.update_combo_components()
+            self.window.show_details_view(config=_config)
+            self.arg_bottle = None
 
     def update_bottles(self):
         GLib.idle_add(self.idle_update_bottles)
