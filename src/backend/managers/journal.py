@@ -63,7 +63,7 @@ class JournalManager:
 
         try:
             journal = {k: v for k, v in sorted(journal.items(), key=lambda item: item[1]["timestamp"], reverse=True)}
-        except KeyError:
+        except (KeyError, TypeError):
             journal = {}
 
         return journal
