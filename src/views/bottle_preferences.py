@@ -108,6 +108,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     spinner_runner = Gtk.Template.Child()
     spinner_win = Gtk.Template.Child()
     box_sync = Gtk.Template.Child()
+    group_details = Gtk.Template.Child()
 
     # endregion
 
@@ -1027,7 +1028,8 @@ class PreferencesView(Gtk.ScrolledWindow):
             self.action_dxvk,
             self.action_vkd3d,
             self.action_nvapi,
-            self.action_latencyflex
+            self.action_latencyflex,
+            self.group_details
         ]:
             w.set_visible(status)
             w.set_sensitive(status)
