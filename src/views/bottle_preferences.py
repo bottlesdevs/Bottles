@@ -88,6 +88,10 @@ class PreferencesView(Gtk.ScrolledWindow):
     combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
     combo_renderer = Gtk.Template.Child()
+    action_dxvk = Gtk.Template.Child()
+    action_vkd3d = Gtk.Template.Child()
+    action_nvapi = Gtk.Template.Child()
+    action_latencyflex = Gtk.Template.Child()
     action_cwd = Gtk.Template.Child()
     action_discrete = Gtk.Template.Child()
     action_runner = Gtk.Template.Child()
@@ -1018,7 +1022,12 @@ class PreferencesView(Gtk.ScrolledWindow):
         for w in [
             self.action_discrete,
             self.action_runner,
-            self.action_runtime
+            self.action_runtime,
+            self.action_steam_runtime,
+            self.action_dxvk,
+            self.action_vkd3d,
+            self.action_nvapi,
+            self.action_latencyflex
         ]:
             w.set_visible(status)
             w.set_sensitive(status)

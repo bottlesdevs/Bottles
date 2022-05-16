@@ -132,7 +132,7 @@
                     <property name="can-focus">False</property>
                     <property name="title" translatable="yes">Graphics</property>
                     <child>
-                      <object class="HdyActionRow">
+                      <object class="HdyActionRow" id="action_dxvk">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Use DXVK</property>
@@ -175,7 +175,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
+                      <object class="HdyActionRow" id="action_vkd3d">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Use VKD3D</property>
@@ -218,7 +218,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
+                      <object class="HdyActionRow" id="action_nvapi">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Enable DLSS (DXVK-NVAPI)</property>
@@ -330,7 +330,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="HdyActionRow">
+                      <object class="HdyActionRow" id="action_latencyflex">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="title" translatable="yes">Enable LatencyFleX</property>
