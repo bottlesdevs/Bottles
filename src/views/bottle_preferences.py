@@ -103,6 +103,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     spinner_latencyflexbool = Gtk.Template.Child()
     spinner_runner = Gtk.Template.Child()
     spinner_win = Gtk.Template.Child()
+    box_sync = Gtk.Template.Child()
 
     # endregion
 
@@ -444,26 +445,32 @@ class PreferencesView(Gtk.ScrolledWindow):
         Set the sync type (wine, esync, fsync, futext2)
         Don't use this directly, use dedicated wrappers instead (e.g. __set_wine_sync)
         """
-        new_config = self.manager.update_config(
+        def update(result, error=False):
+            self.config = result.data["config"]
+            toggles = [
+                ("wine", self.toggle_sync, self.__set_wine_sync),
+                ("esync", self.toggle_esync, self.__set_esync),
+                ("fsync", self.toggle_fsync, self.__set_fsync),
+                ("futex2", self.toggle_futex2, self.__set_futex2)
+            ]
+            for sync_type, toggle, func in toggles:
+                toggle.handler_block_by_func(func)
+                if sync_type == sync:
+                    toggle.set_active(True)
+                else:
+                    toggle.set_active(False)
+                toggle.handler_unblock_by_func(func)
+            self.box_sync.set_sensitive(True)
+
+        self.box_sync.set_sensitive(False)
+        RunAsync(
+            self.manager.update_config,
+            callback=update,
             config=self.config,
             key="sync",
             value=sync,
             scope="Parameters"
         )
-        self.config = new_config
-        togglers = [
-            ("wine", self.toggle_sync, self.__set_wine_sync),
-            ("esync", self.toggle_esync, self.__set_esync),
-            ("fsync", self.toggle_fsync, self.__set_fsync),
-            ("futex2", self.toggle_futex2, self.__set_futex2)
-        ]
-        for sync_type, toggle, func in togglers:
-            toggle.handler_block_by_func(func)
-            if sync_type == sync:
-                toggle.set_active(True)
-            else:
-                toggle.set_active(False)
-            toggle.handler_unblock_by_func(func)
 
     def __set_wine_sync(self, widget):
         self.__set_sync_type("wine")
@@ -489,53 +496,48 @@ class PreferencesView(Gtk.ScrolledWindow):
             remove=not state
         )
 
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="dxvk",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_dxvk_hud(self, widget, state):
         """Toggle the DXVK HUD for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="dxvk_hud",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_mangohud(self, widget, state):
         """Toggle the Mangohud for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="mangohud",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_obsvkc(self, widget, state):
         """Toggle the OBS Vulkan capture for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="obsvkc",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_vkbasalt(self, widget, state):
         """Toggle the vkBasalt for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="vkbasalt",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_vkd3d(self, widget=False, state=False):
         """Install/Uninstall VKD3D from the bottle"""
@@ -549,13 +551,12 @@ class PreferencesView(Gtk.ScrolledWindow):
             remove=not state
         )
 
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="vkd3d",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_nvapi(self, widget=False, state=False):
         """Install/Uninstall NVAPI from the bottle"""
@@ -569,13 +570,12 @@ class PreferencesView(Gtk.ScrolledWindow):
             remove=not state
         )
 
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="dxvk_nvapi",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_latencyflex(self, widget=False, state=False):
         """Install/Uninstall LatencyFlex from the bottle"""
@@ -589,86 +589,78 @@ class PreferencesView(Gtk.ScrolledWindow):
             remove=not state
         )
 
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="latencyflex",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_gamemode(self, widget=False, state=False):
         """Toggle the gamemode for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="gamemode",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_gamescope(self, widget=False, state=False):
         """Toggle the gamescope for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="gamescope",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_fsr(self, widget, state):
         """Toggle the FSR for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="fsr",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_runtime(self, widget, state):
         """Toggle the Bottles runtime for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="use_runtime",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_steam_runtime(self, widget, state):
         """Toggle the Steam runtime for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="use_steam_runtime",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_discrete_gpu(self, widget, state):
         """Toggle the discrete GPU for current bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="discrete_gpu",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_virt_desktop(self, widget, state):
         """Toggle the virtual desktop option."""
         widget.set_sensitive(False)
 
         def update(result, error=False):
-            new_config = self.manager.update_config(
+            self.config = self.manager.update_config(
                 config=self.config,
                 key="virtual_desktop",
                 value=state,
                 scope="Parameters"
-            )
-            self.config = new_config
+            ).data["config"]
             widget.set_sensitive(True)
 
         rk = RegKeys(self.config)
@@ -685,13 +677,12 @@ class PreferencesView(Gtk.ScrolledWindow):
         widget.set_sensitive(False)
 
         def update(result, error=False):
-            new_config = self.manager.update_config(
+            self.config = self.manager.update_config(
                 config=self.config,
                 key="virtual_desktop_res",
                 value=resolution,
                 scope="Parameters"
-            )
-            self.config = new_config
+            ).data["config"]
             widget.set_sensitive(True)
 
         rk = RegKeys(self.config)
@@ -707,13 +698,12 @@ class PreferencesView(Gtk.ScrolledWindow):
     def __set_fsr_level(self, widget):
         """Set the FSR level of sharpness (from 0 to 5, where 5 is the default)"""
         level = int(widget.get_active_id())
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="fsr_level",
             value=level,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __set_runner(self, widget):
         """Set the runner to use for the bottle"""
@@ -761,12 +751,11 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.set_dxvk_status(pending=True)
 
         dxvk = widget.get_active_id()
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="DXVK",
             value=dxvk
-        )
-        self.config = new_config
+        ).data["config"]
 
         RunAsync(
             task_func=self.__dll_component_task_func,
@@ -780,12 +769,11 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.set_vkd3d_status(pending=True)
 
         vkd3d = widget.get_active_id()
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="VKD3D",
             value=vkd3d
-        )
-        self.config = new_config
+        ).data["config"]
 
         RunAsync(
             task_func=self.__dll_component_task_func,
@@ -799,12 +787,11 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.set_nvapi_status(pending=True)
 
         nvapi = widget.get_active_id()
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="NVAPI",
             value=nvapi
-        )
-        self.config = new_config
+        ).data["config"]
 
         RunAsync(
             task_func=self.__dll_component_task_func,
@@ -816,12 +803,11 @@ class PreferencesView(Gtk.ScrolledWindow):
     def __set_latencyflex(self, widget):
         """Set the latency flex value"""
         latencyflex = widget.get_active_id()
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="LatencyFleX",
             value=latencyflex
-        )
-        self.config = new_config
+        ).data["config"]
 
         RunAsync(
             task_func=self.__dll_component_task_func,
@@ -836,18 +822,18 @@ class PreferencesView(Gtk.ScrolledWindow):
         def update(result, error=False):
             self.spinner_win.stop()
             widget.set_sensitive(True)
-            self.config = new_config
 
         self.spinner_win.start()
         widget.set_sensitive(False)
         rk = RegKeys(self.config)
 
         win = widget.get_active_id()
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="Windows",
             value=win
-        )
+        ).data["config"]
+
         RunAsync(
             rk.set_windows,
             callback=update,
@@ -857,13 +843,12 @@ class PreferencesView(Gtk.ScrolledWindow):
     def __set_renderer(self, widget):
         """Set the renderer to use for the bottle"""
         def update(result, error=False):
-            new_config = self.manager.update_config(
+            self.config = self.manager.update_config(
                 config=self.config,
                 key="renderer",
                 value=renderer,
                 scope="Parameters"
-            )
-            self.config = new_config
+            ).data["config"]
             widget.set_sensitive(True)
 
         rk = RegKeys(self.config)
@@ -878,36 +863,33 @@ class PreferencesView(Gtk.ScrolledWindow):
 
     def __toggle_pulse_latency(self, widget, state):
         """Set the pulse latency to use for the bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="pulseaudio_latency",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_fixme(self, widget, state):
         """Set the Wine logging level to use for the bottle"""
-        new_config = self.manager.update_config(
+        self.config = self.manager.update_config(
             config=self.config,
             key="fixme_logs",
             value=state,
             scope="Parameters"
-        )
-        self.config = new_config
+        ).data["config"]
 
     def __toggle_x11_reg_key(self, widget, state, rkey, ckey):
         """Update x11 registry keys"""
 
         def update(result, error=False):
             nonlocal widget
-            new_config = self.manager.update_config(
+            self.config = self.manager.update_config(
                 config=self.config,
                 key=ckey,
                 value=state,
                 scope="Parameters"
-            )
-            self.config = new_config
+            ).data["config"]
             widget.set_sensitive(True)
 
         reg = Reg(self.config)
@@ -926,13 +908,12 @@ class PreferencesView(Gtk.ScrolledWindow):
         """Set the custom dpi value"""
 
         def update(result, error=False):
-            new_config = self.manager.update_config(
+            self.config = self.manager.update_config(
                 config=self.config,
                 key="custom_dpi",
                 value=dpi,
                 scope="Parameters"
-            )
-            self.config = new_config
+            ).data["config"]
             widget.set_sensitive(True)
 
         rk = RegKeys(self.config)

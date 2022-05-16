@@ -1109,7 +1109,7 @@
                         <property name="tooltip-text" translatable="yes">Enable synchronization to increase performance of multi-core processors.</property>
                         <property name="title" translatable="yes">Synchronization</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkBox" id="box_sync">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <child>

@@ -832,7 +832,6 @@ class Manager:
                 )
             self.local_bottles[bottle_name_path] = conf_file_yaml
 
-
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format(
                 "\n - ".join(self.local_bottles)
@@ -862,14 +861,24 @@ class Manager:
         TODO: move to bottle.py (Bottle manager)
         """
         if config.get("IsLayer"):
-            return {}
+            return Result(status=True, data={"config": {}})
 
         logging.info(f"Setting Key: [{key}] to [{value}] for "
                      f"bottle: [{config['Name']}]…", )
 
-        wineboot = WineBoot(config)
-        wineserver = WineServer(config)
+        _config = config
+        wineboot = WineBoot(_config)
+        wineserver = WineServer(_config)
         bottle_path = ManagerUtils.get_bottle_path(config)
+
+        if key == "sync":
+            '''
+            Workaround <https://github.com/bottlesdevs/Bottles/issues/916>
+            Sync type change requires wineserver restart or wine will fail
+            to execute any command.
+            '''
+            wineboot.kill()
+            wineserver.wait()
 
         if scope != "":
             if remove:
@@ -886,15 +895,6 @@ class Manager:
             else:
                 config[key] = value
 
-        if key == "sync":
-            '''
-            Workaround <https://github.com/bottlesdevs/Bottles/issues/916>
-            Sync type change requires wineserver restart or wine will fail
-            to execute any command.
-            '''
-            wineboot.kill()
-            wineserver.wait()
-
         with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
@@ -904,7 +904,7 @@ class Manager:
         if config.get("Environment") == "Steam":
             config = SteamManager.update_bottle(config)
 
-        return config
+        return Result(status=True, data={"config": config})
 
     def create_bottle_from_config(self, config: dict) -> bool:
         """Create a bottle from a config dict."""

@@ -218,7 +218,7 @@ class ProgramEntry(Handy.ActionRow):
             key=self.program["id"],
             value=self.program,
             scope="External_Programs"
-        )
+        ).data["config"]
         self.btn_hide.set_visible(not status)
         self.btn_unhide.set_visible(status)
         if update:
@@ -231,7 +231,7 @@ class ProgramEntry(Handy.ActionRow):
             scope="External_Programs",
             value=None,
             remove=True
-        )
+        ).data["config"]
         self.update_programs()
 
     def rename_program(self, widget):

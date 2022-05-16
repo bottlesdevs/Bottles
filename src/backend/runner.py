@@ -78,11 +78,11 @@ class Runner:
         # wait for wineserver to go away
         wineserver.wait()
         # update bottle config
-        new_config = manager.update_config(
+        up_config = manager.update_config(
             config=config,
             key="Runner",
             value=runner
-        )
+        ).data["config"]
         # perform a prefix update
         wineboot.update()
         # re-initialize DLLComponents
@@ -95,5 +95,5 @@ class Runner:
 
         return Result(
             status=True,
-            data={"config": new_config}
+            data={"config": up_config}
         )

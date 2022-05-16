@@ -78,7 +78,7 @@ class LaunchOptionsDialog(Handy.Window):
             key=self.program["id"],
             value=self.program,
             scope="External_Programs"
-        )
+        ).data["config"]
         GLib.idle_add(self.__close_window)
 
     def __choose_script(self, widget, reset=False):
