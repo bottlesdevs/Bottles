@@ -40,8 +40,8 @@ class DetailsView(Adw.Bin):
 
     # region Widgets
     leaflet = Gtk.Template.Child()
+    list_pages = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
-    content_box = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
     window_title = Gtk.Template.Child()
@@ -71,6 +71,7 @@ class DetailsView(Adw.Bin):
         self.btn_back.connect("clicked", self.go_back)
 
         # region signals
+        self.list_pages.connect('row-selected', self.__change_page)
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
         # endregion
 
@@ -155,6 +156,13 @@ class DetailsView(Adw.Bin):
             del pages["programs"]
             del pages["versioning"]
 
+        while self.list_pages.get_first_child():
+            self.list_pages.remove(self.list_pages.get_first_child())
+
+        for p in pages:
+            self.list_pages.append(PageRow(p, pages[p]))
+
+        self.stack_bottle.add_named(self.view_bottle, "bottle")
         self.stack_bottle.add_named(self.view_preferences, "preferences")
         self.stack_bottle.add_named(self.view_dependencies, "dependencies")
         self.stack_bottle.add_named(self.view_programs, "programs")
@@ -203,7 +211,6 @@ class DetailsView(Adw.Bin):
         self.view_programs.update(config=config)
         self.view_bottle.update_programs()
 
-        self.content_box.append(self.view_bottle)
         self.build_pages()
 
     def update_programs(self, widget=None, config=None):
@@ -216,4 +223,5 @@ class DetailsView(Adw.Bin):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
         while self.stack_bottle.get_first_child():
             self.stack_bottle.remove(self.stack_bottle.get_first_child())
+
 
