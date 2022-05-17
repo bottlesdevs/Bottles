@@ -173,7 +173,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     def set_title(self, title, subtitle: str = ""):
         self.window_title.set_title(title)
-        # self.headerbar.set_subtitle(subtitle)  TODO: Implement subtitle
+        self.window_title.set_subtitle(subtitle)
 
     def check_for_connection(self, status):
         """

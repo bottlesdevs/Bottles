@@ -10,7 +10,6 @@
       <object class="GtkHeaderBar" id="headerbar">
         <property name="title-widget">
           <object class="AdwWindowTitle" id="window_title">
-            <property name="title" translatable="yes">Bottle</property>
           </object>
         </property>
         <child type="start">
@@ -25,15 +24,30 @@
       </object>
     </child>
     <child>
-      <object class="GtkBox" id="content_box">
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
+      <object class="AdwLeaflet" id="leaflet">
+        <property name="hexpand">true</property>
         <child>
-          <object class="GtkStack" id="stack_bottle">
-            <property name="visible">False</property>
+          <object class="GtkBox" id="sidebar">
+            <property name="visible">true</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkListBox" id="list_pages">
+                <property name="vexpand">1</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="content">
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkStack" id="stack_bottle">
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
@@ -42,3 +56,4 @@
   </child>
   </template>
 </interface>
+
