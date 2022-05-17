@@ -198,6 +198,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
                 w.destroy()
 
         exp_caffe = ComponentExpander(_("Caffe runners"))
+        exp_wine_ge = ComponentExpander(_("Wine GE runners"))
         exp_lutris = ComponentExpander(_("Lutris runners"))
         exp_proton = ComponentExpander(_("Proton runners"))
         exp_other = ComponentExpander(_("Other runners"))
@@ -210,6 +211,8 @@ class PreferencesWindow(Handy.PreferencesWindow):
 
             if _runner_name.startswith("caffe"):
                 exp_caffe.add(ComponentEntry(self.window, runner, "runner"))
+            elif _runner_name.startswith("wine-ge"):
+                exp_wine_ge.add(ComponentEntry(self.window, runner, "runner"))
             elif _runner_name.startswith("lutris"):
                 exp_lutris.add(ComponentEntry(self.window, runner, "runner"))
             else:
@@ -223,6 +226,7 @@ class PreferencesWindow(Handy.PreferencesWindow):
             exp_proton.add(ComponentEntry(self.window, runner, "runner:proton"))
 
         self.list_runners.add(exp_caffe)
+        self.list_runners.add(exp_wine_ge)
         self.list_runners.add(exp_lutris)
         self.list_runners.add(exp_proton)
         self.list_runners.add(exp_other)
