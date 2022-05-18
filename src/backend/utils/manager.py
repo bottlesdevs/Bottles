@@ -186,9 +186,11 @@ class ManagerUtils:
         if not skip_icon:
             try:
                 import icoextract
-                unix_path = winepath.to_unix(program.get("path"), native=True)
+                _path = program.get("path")
+                if winepath.is_windows(_path):
+                    _path = winepath.to_unix(program.get("path"))
                 ico_dest = os.path.join(bottle_icons_path, f"{program.get('name')}.png")
-                ico = icoextract.IconExtractor(unix_path)
+                ico = icoextract.IconExtractor(_path)
                 os.makedirs(bottle_icons_path, exist_ok=True)
                 if os.path.exists(ico_dest):
                     os.remove(ico_dest)

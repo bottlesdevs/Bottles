@@ -255,7 +255,24 @@ class ProgramEntry(Handy.ActionRow):
         )
 
     def add_entry(self, widget):
-        created = ManagerUtils.create_desktop_entry(
+        def update(result, error=False):
+            if not result:
+                dialog = Gtk.MessageDialog(
+                    transient_for=self.window,
+                    flags=0,
+                    message_type=Gtk.MessageType.WARNING,
+                    buttons=Gtk.ButtonsType.OK,
+                    use_markup=True,
+                    text=_("Can't create Desktop Entry due to missing privileges.\n"
+                           "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</a> about how to "
+                           "fix that in Flatpak.")
+                )
+                dialog.run()
+                dialog.destroy()
+
+        RunAsync(
+            ManagerUtils.create_desktop_entry,
+            callback=update,
             config=self.config,
             program={
                 "name": self.program["name"],
@@ -263,20 +280,6 @@ class ProgramEntry(Handy.ActionRow):
                 "path": self.program["path"],
             }
         )
-
-        if not created:
-            dialog = Gtk.MessageDialog(
-                transient_for=self.window,
-                flags=0,
-                message_type=Gtk.MessageType.WARNING,
-                buttons=Gtk.ButtonsType.OK,
-                use_markup=True,
-                text=_("Can't create Desktop Entry due to missing privileges.\n"
-                       "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</a> about how to "
-                       "fix that in Flatpak.")
-            )
-            dialog.run()
-            dialog.destroy()
 
     def add_to_library(self, widget):
         LibraryManager().add_to_library({
