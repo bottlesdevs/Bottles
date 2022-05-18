@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-05-01 12:47+0000\n"
-"Last-Translator: Artem <github@knebergish.fastmail.com>\n"
+"PO-Revision-Date: 2022-05-19 14:41+0000\n"
+"Last-Translator: mrvladus <mrvladus@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -429,9 +429,8 @@ msgid "Run executable"
 msgstr "Запустить исполняемый файл"
 
 #: src/ui/details-bottle.ui:439
-#, fuzzy
 msgid "My bottle"
-msgstr "Новая «бутылка»"
+msgstr "Моя «бутылка»"
 
 #: src/ui/details-bottle.ui:461
 msgid "Win64"
@@ -530,9 +529,8 @@ msgid "Uninstaller"
 msgstr "Деинсталлятор"
 
 #: src/ui/details-bottle.ui:959
-#, fuzzy
 msgid "Uninstall programs using wine uninstaller."
-msgstr "Удаление программ с помощью деинсталлятора WINE"
+msgstr "Удаление программ с помощью деинсталлятора WINE."
 
 #: src/ui/details-bottle.ui:999
 msgid "Control panel"
@@ -545,6 +543,8 @@ msgstr "Доступ к внутренней панели управления w
 #: src/ui/details-bottle.ui:1071
 msgid "Use the Installers section or the \"Run executable\" button above."
 msgstr ""
+"Используйте секцию установщиков или кнопку \"Запустить исполняемый файл\" "
+"сверху."
 
 #: src/ui/details-dependencies.ui:50
 msgid "Test mode enabled: only dependencies from testing repository are shown."
@@ -569,6 +569,9 @@ msgid ""
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
 msgstr ""
+"Зависимости - это программы, библиотеки и кодеки, которые улучшают "
+"совместимость с Windows приложениями. Установите их отсюда, чтобы "
+"удовлетворить требования ваших программ."
 
 #: src/ui/details-dependencies.ui:193
 msgid "Report a problem or a missing dependency."
@@ -617,14 +620,17 @@ msgid ""
 "com/bottles/installers#compatibility-grades\">compatibility grade</a> when "
 "choosing."
 msgstr ""
+"Используйте этот раздел для установки программ, курируемых нашим "
+"сообществом, без надобности в ручной установке. Используйте <a href=\"https"
+"://docs.usebottles.com/bottles/installers#compatibility-grades\">рейтинг "
+"совместимости</a> при выборе."
 
 #: src/ui/details-installers.ui:92
-#, fuzzy
 msgid ""
 "While the files on this page have been verified, they may be under a "
 "proprietary license."
 msgstr ""
-"Файлы на этой странице удостоверены, но могут подпадать под проприетарную "
+"Файлы на этой странице были проверены, но могут подпадать под проприетарную "
 "лицензию."
 
 #: src/ui/details-installers.ui:132
@@ -780,7 +786,6 @@ msgid "Screen scaling"
 msgstr "Масштабирование экрана"
 
 #: src/ui/details-preferences.ui:581
-#, fuzzy
 msgid "Set custom DPI."
 msgstr "Устанавливает пользовательский DPI"
 
@@ -838,7 +843,7 @@ msgstr "Рендерер"
 
 #: src/ui/details-preferences.ui:628
 msgid "Select what backend to use for wined3d."
-msgstr ""
+msgstr "Выберите бэкэнд для wined3d."
 
 #: src/ui/details-preferences.ui:642
 msgid "gl (default)"
@@ -1010,7 +1015,6 @@ msgid "Reduce PulseAudio latency"
 msgstr "Снижение задержки PulseAudio"
 
 #: src/ui/details-preferences.ui:1597
-#, fuzzy
 msgid "Set PulseAudio latency to 60 milliseconds to increase sound quality."
 msgstr "Снизить задержку PulseAudio до 60 мс для повышения качества звука"
 
@@ -1045,7 +1049,7 @@ msgstr "OBS Vulkan Capture"
 
 #: src/ui/details-preferences.ui:1693
 msgid "Toggle OBS game capture for all next launches."
-msgstr ""
+msgstr "Включить захват игры OBS для всех следующих запусков."
 
 #: src/ui/details-preferences.ui:1719
 msgid "Enable wine fixme logs"
@@ -1065,6 +1069,9 @@ msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button"
 msgstr ""
+"Установите программы из раздела установщиков или запустите исполняемый файл "
+"установщика, вы так же можете в ручную добавить исполняемые файлы с помощью "
+"кнопки \"+\""
 
 #: src/ui/details-programs.ui:80
 msgid "Show/hide hidden programs"
@@ -1166,12 +1173,10 @@ msgid "Advanced options"
 msgstr "Расширенные настройки"
 
 #: src/ui/dialog-dll-overrides.ui:25
-#, fuzzy
 msgid "DLL Overrides"
 msgstr "Переопределения DLL"
 
 #: src/ui/dialog-dll-overrides.ui:50
-#, fuzzy
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
@@ -1220,7 +1225,6 @@ msgid "Close"
 msgstr "Закрыть"
 
 #: src/ui/dialog-duplicate.ui:94
-#, fuzzy
 msgid "Type a name for the new bottle:"
 msgstr "Введите название для новой «бутылки»"
 
@@ -1257,7 +1261,6 @@ msgid "page_duplicated"
 msgstr "page_duplicated"
 
 #: src/ui/dialog-env-vars.ui:24 src/ui/dialog-environment-variables.ui:24
-#, fuzzy
 msgid "Environment Variables"
 msgstr "Переменные среды"
 
@@ -1478,6 +1481,8 @@ msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
+"Не найдено префиксов для Lutris, PlayOnLinux, и т. д.\n"
+"Используйте иконку сверху для импорта бутылки из бэкапа"
 
 #: src/ui/importer.ui:74
 msgid "Import Bottles backup"
@@ -1507,7 +1512,7 @@ msgstr "Установленные программы"
 
 #: src/ui/installer-entry.ui:173
 msgid "Compatibility grade"
-msgstr ""
+msgstr "Рейтинг совместимости"
 
 #: src/ui/list-entry.ui:108
 msgid "This bottle looks damaged."
@@ -1671,6 +1676,13 @@ msgid ""
 "\n"
 "<a href=\"https://docs.usebottles.com\">Read more about</a>"
 msgstr ""
+"Бутылка - это среда выполнения имитирующая Windows, для запуска Windows "
+"приложений, в одной бутылке может быть установлено несколько приложений.\n"
+"\n"
+"Бутылки изолированы от ваших личный файлов и не имеют к ним доступа, если "
+"только вы не предоставите его.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com\">Узнать больше об этом</a>"
 
 #: src/ui/onboard.ui:191
 msgid "Wine"
@@ -1871,11 +1883,11 @@ msgstr "Добавить на рабочий стол"
 
 #: src/ui/program-entry.ui:138
 msgid "Hide from list"
-msgstr ""
+msgstr "Скрыть из списка"
 
 #: src/ui/program-entry.ui:150
 msgid "Unhide from list"
-msgstr ""
+msgstr "Показать в списке"
 
 #: src/ui/program-entry.ui:163
 #, fuzzy
@@ -2005,6 +2017,8 @@ msgid ""
 "Fallbacking to the default path. You will no bottles from that path will be "
 "listed!"
 msgstr ""
+"Путь к бутылке не найден. Пожалуйста, проверьте его в Настройках.\n"
+"Используется путь по умолчанию. Бутылок из этого пути не будет в списке!"
 
 #: src/window.py:329
 msgid "Journal browser"
