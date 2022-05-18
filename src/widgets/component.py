@@ -52,7 +52,6 @@ class ComponentEntry(Handy.ActionRow):
         self.name = component[0]
         self.component_type = component_type
         self.is_upgradable = is_upgradable
-        self.spinner = Gtk.Spinner()
 
         # populate widgets
         self.set_title(self.name)
@@ -102,7 +101,6 @@ class ComponentEntry(Handy.ActionRow):
 
     def uninstall(self, widget):
         def update(result, error=False):
-            self.spinner.stop()
             if result.status:
                 return self.set_uninstalled()
 
@@ -110,7 +108,6 @@ class ComponentEntry(Handy.ActionRow):
 
         self.btn_err.set_visible(False)
         self.btn_menu.set_visible(False)
-        self.spinner.start()
 
         RunAsync(
             task_func=self.component_manager.uninstall,
@@ -129,6 +126,7 @@ class ComponentEntry(Handy.ActionRow):
 
     def update_status(
             self,
+            task_id="",
             count=False,
             block_size=False,
             total_size=False,
@@ -136,10 +134,11 @@ class ComponentEntry(Handy.ActionRow):
             failed=False
     ):
         if failed:
+            logging.error(f"Task {task_id} failed")
             self.set_err()
             return False
 
-        self.label_task_status.set_visible(True)
+        self.box_download_status.set_visible(True)
 
         if not completed:
             percent = int(count * block_size * 100 / total_size)
@@ -148,15 +147,9 @@ class ComponentEntry(Handy.ActionRow):
             percent = 100
 
         if percent == 100:
-            for w in self.box_download_status.get_children():
-                w.set_visible(False)
-            self.btn_err.set_visible(False)
-            self.box_download_status.add(self.spinner)
-            self.spinner.set_visible(True)
-            self.spinner.start()
+            self.label_task_status.set_text(_("Installing..."))
 
     def set_err(self, msg=None, retry=True):
-        self.spinner.stop()
         self.box_download_status.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_browse.set_visible(False)
@@ -167,13 +160,11 @@ class ComponentEntry(Handy.ActionRow):
             self.btn_err.set_sensitive(False)
 
     def set_installed(self):
-        self.spinner.stop()
         self.btn_err.set_visible(False)
         self.box_download_status.set_visible(False)
         self.btn_browse.set_visible(True)
 
     def set_uninstalled(self):
-        self.spinner.stop()
         self.btn_browse.set_visible(False)
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(True)
