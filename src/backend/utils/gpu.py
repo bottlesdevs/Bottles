@@ -18,6 +18,9 @@
 import subprocess
 
 from bottles.backend.utils.vulkan import VulkanUtils  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger
+
+logging = Logger()
 
 
 class GPUUtils:
@@ -55,6 +58,20 @@ class GPUUtils:
         if "amd" in vendors and "intel" in vendors:
             return {"integrated": "intel", "discrete": "amd"}
         return {}
+
+    @staticmethod
+    def is_nouveau():
+        _proc = subprocess.Popen(
+            "lsmod | grep nouveau",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True
+        )
+        stdout, stderr = _proc.communicate()
+        if len(stdout) > 0:
+            logging.warning("Nouveau driver detected, this may cause issues")
+            return True
+        return False
 
     def get_gpu(self):
         checks = {
@@ -101,6 +118,10 @@ class GPUUtils:
                 "discrete": None
             }
         }
+
+        if self.is_nouveau():
+            gpus["nvidia"]["envs"] = {"DRI_PRIME": "1"}
+            gpus["nvidia"]["icd"] = []
 
         for _check in checks:
             _query = checks[_check]["query"]
