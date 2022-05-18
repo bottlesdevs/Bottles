@@ -121,7 +121,7 @@ class GPUUtils:
 
         if self.is_nouveau():
             gpus["nvidia"]["envs"] = {"DRI_PRIME": "1"}
-            gpus["nvidia"]["icd"] = []
+            gpus["nvidia"]["icd"] = ""
 
         for _check in checks:
             _query = checks[_check]["query"]
