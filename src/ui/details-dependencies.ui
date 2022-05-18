@@ -3,7 +3,7 @@
 <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
   <template class="DetailsDependencies" parent="GtkScrolledWindow">
-    
+    <property name="hscrollbar-policy">never</property>
     <child>
       <object class="GtkViewport">
         <child>

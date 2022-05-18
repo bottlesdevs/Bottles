@@ -19,7 +19,7 @@ import os
 import time
 import webbrowser
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Gio, Adw
+from gi.repository import Gtk, GLib, Gio, Adw, GObject
 from pathlib import Path
 
 from bottles.params import *  # pyright: reportMissingImports=false
@@ -149,8 +149,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.btn_health.connect("clicked", self.show_health_view)
         self.btn_operations.connect('activate', self.on_operations_toggled)
-        self.btn_search.connect('toggled', self.show_search)
-
         self.__on_start()
 
         if self.arg_exe:
@@ -226,6 +224,7 @@ class MainWindow(Adw.ApplicationWindow):
 
             self.main_leaf.append(self.page_details)
             self.page_list.search_bar.set_key_capture_widget(self)
+            self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled', GObject.BindingFlags.BIDIRECTIONAL)
             self.stack_main.set_visible_child_name("page_list")
             self.lock_ui(False)
             self.headerbar.get_style_context().remove_class("flat")
@@ -262,16 +261,6 @@ class MainWindow(Adw.ApplicationWindow):
         selected when the user goes back to the previous page.
         """
         self.previous_page = self.stack_main.get_visible_child_name()
-
-    def show_search(self, widget):
-        """
-        This method is called when the user presses the search button.
-        It will toggle the search mode in the bottles list.
-        """
-        if self.page_list.search_bar.get_search_mode() == True:
-            self.page_list.search_bar.set_search_mode(False)
-        else:
-            self.page_list.search_bar.set_search_mode(True)
 
     def go_back(self, widget=False):
         """
@@ -391,3 +380,4 @@ class MainWindow(Adw.ApplicationWindow):
     @staticmethod
     def open_url(widget, url):
         webbrowser.open_new_tab(url)
+

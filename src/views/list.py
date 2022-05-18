@@ -182,6 +182,7 @@ class BottleView(Gtk.ScrolledWindow):
     btn_create = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
+    no_bottles_found = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, arg_bottle=None, arg_exe=None, **kwargs):
@@ -209,6 +210,7 @@ class BottleView(Gtk.ScrolledWindow):
             self.__filter_bottles,
             terms
         )
+
 
     @staticmethod
     def __filter_bottles(row, terms=None):
