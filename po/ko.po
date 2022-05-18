@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2021-12-22 13:27+0000\n"
-"Last-Translator: BaeHyeonWoo <qogusdn1017@naver.com>\n"
+"PO-Revision-Date: 2022-05-19 14:42+0000\n"
+"Last-Translator: Taehun Yun <yooontehoon@naver.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bottles/bottles/"
 "ko/>\n"
 "Language: ko\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -43,9 +43,8 @@ msgid "Mirko Brombin"
 msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
-#, fuzzy
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Bottles🍷을 사용하여 Linux에서 Windows 소프트웨어를 실행하세요!"
+msgstr "Bottles를 사용하여 Linux에서 Windows 소프트웨어를 실행하세요!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
@@ -85,7 +84,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr "\"병\"에 설치된 응용 프로그램 자동 감지"
+msgstr "\"병\"에 설치된 애플리케이션 자동 감지"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -141,7 +140,7 @@ msgstr "다른 관리자에서 Wine prefix 가져오기"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning (experimental)"
-msgstr "병 버전 관리 (실험적)"
+msgstr "Bottles 버전 관리 (실험적)"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -157,11 +156,11 @@ msgstr "Flatpak 이전 대화창 토글"
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr ""
+msgstr "다크 테마"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "강제로 다크 테마를 사용합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -169,7 +168,7 @@ msgstr "목록에서 업데이트 날짜 토글"
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr "\"병\" 목록에서 업데이트 날자 토글"
+msgstr "\"병\" 목록에서 업데이트 날짜를 토글합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
@@ -177,7 +176,7 @@ msgstr "창 너비"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Change the window width."
-msgstr "창의 너비 변경"
+msgstr "창 너비를 변경합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
@@ -185,7 +184,7 @@ msgstr "창 높이"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Change the window height."
-msgstr "창 높이 변경"
+msgstr "창 높이를 변경합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:100
 msgid "Notifications"
@@ -193,7 +192,7 @@ msgstr "알림"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Show notifications."
-msgstr "알림 표시"
+msgstr "알림을 표시합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
@@ -201,15 +200,15 @@ msgstr "임시 디렉터리 청소"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Clean the temp path when booting the system."
-msgstr "시스템을 부팅할때 임시 디렉터리 경로를 청소"
+msgstr "시스템을 부팅할때 임시 디렉터리 경로를 청소합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
-msgstr "출시 후보"
+msgstr "릴리스 후보"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle release candidate for runners."
-msgstr "구동기들에 대해 시험판 토글"
+msgstr "구동기들에 대해 릴리스 후보를 토글합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
@@ -217,7 +216,7 @@ msgstr "시작 화면"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Choose which view the application should be started in."
-msgstr "애플리케이션을 시작할 화면을 선택"
+msgstr "애플리케이션을 시작할 때 표시할 화면을 선택합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:412
 msgid "Experiments"
@@ -227,27 +226,24 @@ msgstr "실험"
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
-msgstr "버전관리와 설치 프로그램. 그리고 설치 후보(시험판) 토글"
+msgstr "버전 관리 및 설치 프로그램, 구동기에 대한 릴리스 후보 같은 실험 기능을 "
+"토글합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:56
-#, fuzzy
 msgid "Experiments:steam"
-msgstr "실험"
+msgstr "실험:steam"
 
 #: data/com.usebottles.bottles.gschema.xml:57
-#, fuzzy
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "실험적인 설치 프로그램 기능 토글"
+msgstr "실험적인 Steam Proton 접두사 지원을 토글합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:61
-#, fuzzy
 msgid "Experiments:library"
-msgstr "실험"
+msgstr "실험:라이브러리"
 
 #: data/com.usebottles.bottles.gschema.xml:62
-#, fuzzy
 msgid "Toggle experimental Library mode."
-msgstr "실험적인 설치 프로그램 기능 토글"
+msgstr "실험적인 라이브러리 모드를 토글합니다."
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
@@ -255,12 +251,11 @@ msgstr "자동으로 Bottles 종료"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Close Bottles after starting an executable from the file manager."
-msgstr "파일 관리자에서 프로그램 실행 이후 Bottles 종료"
+msgstr "파일 관리자에서 실행 파일을 시작한 후 Bottles를 닫습니다."
 
 #: src/ui/about.ui:10
-#, fuzzy
 msgid "© 2017-2022 - Bottles Developers"
-msgstr "© 2017-2021 - Bottles Developers"
+msgstr "© 2017-2022 - Bottles 개발자"
 
 #: src/ui/about.ui:11
 msgid "Easily manage wineprefix using environments"
@@ -290,7 +285,7 @@ msgstr "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
 
 #: src/ui/component-entry.ui:8
 msgid "Component version"
-msgstr ""
+msgstr "컴포넌트 버전"
 
 #: src/ui/component-entry.ui:66 src/ui/importer-entry.ui:20
 msgid "Browse files"
@@ -303,18 +298,22 @@ msgid ""
 "\n"
 "Press to try again."
 msgstr ""
+"설치에 실패했습니다. 저장소 오류, 부분 다운로드 또는 체크섬 불일치 때문일 수 "
+"있습니다.\n"
+"\n"
+"다시 시도하십시오."
 
 #: src/ui/component-entry.ui:119
 msgid "Download & Install"
-msgstr ""
+msgstr "다운로드 및 설치"
 
 #: src/ui/component-entry.ui:147
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: src/ui/component-entry.ui:219 src/ui/program-entry.ui:187
 msgid "Uninstall"
-msgstr ""
+msgstr "제거"
 
 #: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
 #: src/ui/state-entry.ui:20
@@ -327,7 +326,7 @@ msgstr "라이선스"
 
 #: src/ui/dependency-entry.ui:45
 msgid "Reinstall"
-msgstr ""
+msgstr "재설치"
 
 #: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
 msgid "Bug report"
@@ -335,7 +334,7 @@ msgstr "버그 신고"
 
 #: src/ui/dependency-entry.ui:159
 msgid "Download & Install this dependency"
-msgstr "이 의존성을 다운로드 & 설치하기"
+msgstr "이 의존성을 다운로드 및 설치하기"
 
 #: src/ui/dependency-entry.ui:185
 msgid ""
@@ -351,110 +350,109 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "문제 해결"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
-msgstr ""
+msgstr "병 복제"
 
 #: src/ui/details-bottle.ui:83 src/ui/importer.ui:148
 msgid "This is the complete archive of your bottle, including personal files."
-msgstr ""
+msgstr "이것은 개인 파일을 포함한 병의 전체 아카이브입니다."
 
 #: src/ui/details-bottle.ui:84
 msgid "Full backup"
-msgstr ""
+msgstr "전체 백업"
 
 #: src/ui/details-bottle.ui:97 src/ui/importer.ui:134
 msgid ""
 "This is just the bottle configuration, it's perfect if you want to create a "
 "new one but without personal files."
-msgstr ""
+msgstr "이것은 병 설정 일 뿐이며, 개인 파일없이 새 병을 만들고 싶을 때 적합합니다."
 
 #: src/ui/details-bottle.ui:98
 msgid "Export configuration"
-msgstr ""
+msgstr "설정 내보내기"
 
 #: src/ui/details-bottle.ui:122
 msgid "Delete bottle"
-msgstr ""
+msgstr "병 삭제"
 
 #: src/ui/details-bottle.ui:148
 msgid "Kill all processes"
-msgstr ""
+msgstr "모든 프로세스 종료"
 
 #: src/ui/details-bottle.ui:161
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "Windows 시스템 종료를 시뮬레이션합니다."
 
 #: src/ui/details-bottle.ui:162
 msgid "Shutdown"
-msgstr ""
+msgstr "종료"
 
 #: src/ui/details-bottle.ui:175
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "Windows 시스템 재부팅을 시뮬레이션합니다."
 
 #: src/ui/details-bottle.ui:176
 msgid "Reboot"
-msgstr ""
+msgstr "재부팅"
 
 #: src/ui/details-bottle.ui:281
 msgid "Run with arguments"
-msgstr ""
+msgstr "인수와 함께 실행"
 
 #: src/ui/details-bottle.ui:291
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "샌드박스 안으로 이동"
 
 #: src/ui/details-bottle.ui:305 src/ui/program-entry.ui:24
 msgid "Launch with terminal"
-msgstr ""
+msgstr "터미널로 실행"
 
 #: src/ui/details-bottle.ui:358
 msgid "Layers"
-msgstr ""
+msgstr "레이어"
 
 #: src/ui/details-bottle.ui:402
 msgid "Run executable"
-msgstr ""
+msgstr "실행파일 실행"
 
 #: src/ui/details-bottle.ui:439
-#, fuzzy
 msgid "My bottle"
-msgstr "Bottles"
+msgstr "내 병"
 
 #: src/ui/details-bottle.ui:461
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: src/ui/details-bottle.ui:482 src/ui/new.ui:129
 msgid "Environment"
-msgstr ""
+msgstr "환경"
 
 #: src/ui/details-bottle.ui:499
 msgid "Vaniglia-6.21-x86_64"
-msgstr ""
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:518 src/ui/list-entry.ui:35
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "이 병에 대해 버전 관리 활성화"
 
 #: src/ui/details-bottle.ui:526 src/ui/list-entry.ui:42
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "이 병에서 버전 관리가 활성화되어 있습니다."
 
 #: src/ui/details-bottle.ui:549 src/ui/list-entry.ui:61
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: src/ui/details-bottle.ui:597
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "샌드박스 안으로 이동 중…"
 
 #: src/ui/details-bottle.ui:614 src/views/details.py:122
 msgid "Programs"
-msgstr ""
+msgstr "프로그램"
 
 #: src/ui/details-bottle.ui:630
 msgid "Other"
@@ -462,11 +460,11 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:636
 msgid "Utilities"
-msgstr ""
+msgstr "유틸리티"
 
 #: src/ui/details-bottle.ui:641
 msgid "Browse C:"
-msgstr ""
+msgstr "C: 열기"
 
 #: src/ui/details-bottle.ui:643
 msgid "Browse internal files."
@@ -474,27 +472,27 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:722
 msgid "Command line"
-msgstr ""
+msgstr "명령줄"
 
 #: src/ui/details-bottle.ui:724
 msgid "Run commands inside the Bottle."
-msgstr ""
+msgstr "병에서 명령을 실행합니다."
 
 #: src/ui/details-bottle.ui:764
 msgid "Registry editor"
-msgstr ""
+msgstr "레지스트리 편집기"
 
 #: src/ui/details-bottle.ui:766
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "내부 레지스트리를 편집합니다."
 
 #: src/ui/details-bottle.ui:806
 msgid "Debug"
-msgstr ""
+msgstr "디버그"
 
 #: src/ui/details-bottle.ui:808
 msgid "Debug wine processes."
-msgstr ""
+msgstr "와인 프로세스를 디버그합니다."
 
 #: src/ui/details-bottle.ui:845
 msgid "Read documentation"
@@ -502,36 +500,35 @@ msgstr "문서 읽기"
 
 #: src/ui/details-bottle.ui:873 src/views/details.py:134
 msgid "Task manager"
-msgstr ""
+msgstr "작업 관리자"
 
 #: src/ui/details-bottle.ui:875
 msgid "Manage processes with the Wine task manager."
-msgstr ""
+msgstr "Wine 작업 관리자로 프로세스를 관리합니다."
 
 #: src/ui/details-bottle.ui:915
 msgid "Wine config"
-msgstr ""
+msgstr "Wine 설정"
 
 #: src/ui/details-bottle.ui:917
 msgid "Adjust internal settings."
-msgstr ""
+msgstr "내부 설정을 조정합니다."
 
 #: src/ui/details-bottle.ui:957
-#, fuzzy
 msgid "Uninstaller"
-msgstr "실험:설치 프로그램"
+msgstr "제거 프로그램"
 
 #: src/ui/details-bottle.ui:959
 msgid "Uninstall programs using wine uninstaller."
-msgstr ""
+msgstr "Wine 제거 프로그램을 사용하여 프로그램을 제거합니다."
 
 #: src/ui/details-bottle.ui:999
 msgid "Control panel"
-msgstr ""
+msgstr "제어판"
 
 #: src/ui/details-bottle.ui:1001
 msgid "Access the internal wine control panel."
-msgstr ""
+msgstr "내부 Wine 제어판에 액세스합니다."
 
 #: src/ui/details-bottle.ui:1071
 msgid "Use the Installers section or the \"Run executable\" button above."
@@ -649,30 +646,24 @@ msgid "Use DXVK"
 msgstr "DXVK 사용하기"
 
 #: src/ui/details-preferences.ui:139
-#, fuzzy
 msgid "Improves performance of DirectX 11 games and 3D applications."
-msgstr ""
-"DirectX 11 게임들과 3D 어플리케이션의 성능을 향상시킵니다.\n"
-"그래픽적인 문제가 발생될시 비활성화하십시오."
+msgstr "DirectX 11 게임과 3D 애플리케이션의 성능을 향상시킵니다."
 
 #: src/ui/details-preferences.ui:148 src/ui/details-preferences.ui:782
 msgid "Updating DXVK, please wait…"
-msgstr ""
+msgstr "DXVK를 업데이트하는 중입니다. 잠시만 기다려 주십시오…"
 
 #: src/ui/details-preferences.ui:181
 msgid "Use VKD3D"
 msgstr "VKD3D 사용하기"
 
 #: src/ui/details-preferences.ui:182
-#, fuzzy
 msgid "Improves performance of DirectX 12 games and 3D applications."
-msgstr ""
-"DirectX 12 게임들과 3D 어플리케이션의 성능을 향상시킵니다.\n"
-"그래픽적인 문제가 발생될시 비활성화하십시오."
+msgstr "DirectX 12 게임과 3D 애플리케이션의 성능을 향상시킵니다."
 
 #: src/ui/details-preferences.ui:191 src/ui/details-preferences.ui:867
 msgid "Updating VKD3D, please wait…"
-msgstr ""
+msgstr "VKD3D를 업데이트하는 중입니다. 잠시만 기다려 주십시오…"
 
 #: src/ui/details-preferences.ui:224
 msgid "Enable DLSS (DXVK-NVAPI)"
@@ -685,7 +676,7 @@ msgstr "DLSS 지원을 제공하고 가능하면 NVIDIA의 NVAPI도 지원합니
 #: src/ui/details-preferences.ui:234 src/ui/details-preferences.ui:346
 #: src/ui/details-preferences.ui:952 src/ui/details-preferences.ui:1035
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr ""
+msgstr "DXVK-NVAPI를 업데이트하는 중입니다. 잠시만 기다려 주십시오…"
 
 #: src/ui/details-preferences.ui:269
 msgid "Enable FSR"
@@ -698,65 +689,67 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:284
 msgid "Ultra Quality"
-msgstr ""
+msgstr "초고품질"
 
 #: src/ui/details-preferences.ui:285
 msgid "Quality"
-msgstr ""
+msgstr "고품질"
 
 #: src/ui/details-preferences.ui:286
 msgid "Balanced"
-msgstr ""
+msgstr "균형"
 
 #: src/ui/details-preferences.ui:287
 msgid "Performance"
-msgstr ""
+msgstr "성능"
 
 #: src/ui/details-preferences.ui:336
 msgid "Enable LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX 활성화"
 
 #: src/ui/details-preferences.ui:337
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
-msgstr ""
+msgstr "NVIDIA Reflex의 대체 기능입니다. 몇몇 안티 치트 소프트웨어에서 감지될 수 "
+"있습니다."
 
 #: src/ui/details-preferences.ui:380
 msgid "Discrete GPU"
-msgstr ""
+msgstr "외장 GPU"
 
 #: src/ui/details-preferences.ui:381
 msgid "Improves performance at the cost of increased power usage."
-msgstr ""
+msgstr "전력 사용량 증가로 성능을 향상시킵니다."
 
 #: src/ui/details-preferences.ui:407
 msgid "Use vkBasalt"
-msgstr ""
+msgstr "vkBasalt 사용"
 
 #: src/ui/details-preferences.ui:408
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
-msgstr ""
+msgstr "vkBasalt는 게임의 시각적 그래픽을 향상시키는 Vulkan 포스트 프로세싱 "
+"레이어입니다."
 
 #: src/ui/details-preferences.ui:435
 msgid "Display settings"
-msgstr ""
+msgstr "디스플레이 설정"
 
 #: src/ui/details-preferences.ui:440
 msgid "Use a virtual desktop"
-msgstr ""
+msgstr "가상 데스크톱 사용"
 
 #: src/ui/details-preferences.ui:441
 msgid "Use the Wine virtual desktop."
-msgstr ""
+msgstr "Wine 가상 데스크톱을 사용합니다."
 
 #: src/ui/details-preferences.ui:516
 msgid "Mouse capture fullscreen"
-msgstr ""
+msgstr "전체화면에서 마우스 캡쳐"
 
 #: src/ui/details-preferences.ui:517
 msgid "Let the program capture mouse input when fullscreen."
-msgstr ""
+msgstr "전체 화면일 때 프로그램이 마우스 입력을 캡처하도록 합니다."
 
 #: src/ui/details-preferences.ui:548
 msgid "Take focus"
@@ -1081,12 +1074,11 @@ msgstr ""
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr ""
+msgstr "첫 번째 상태를 만들어 버전 관리를 시작합니다."
 
 #: src/ui/details-versioning.ui:92
-#, fuzzy
 msgid "Read documentation about versioning\t"
-msgstr "문서 읽기"
+msgstr "버전 관리에 대한 문서 읽기\t"
 
 #: src/ui/details-versioning.ui:120
 msgid "Type a really short comment:"
@@ -1459,7 +1451,7 @@ msgstr ""
 
 #: src/ui/importer.ui:149
 msgid "Full archive"
-msgstr ""
+msgstr "전체 아카이브"
 
 #: src/ui/installer-entry.ui:47
 msgid "Read review"
@@ -1501,11 +1493,11 @@ msgstr ""
 
 #: src/ui/list.ui:77
 msgid "Start off by creating a Bottle."
-msgstr ""
+msgstr "병을 만들어 시작합니다."
 
 #: src/ui/list.ui:80
 msgid "Create a new Bottle"
-msgstr ""
+msgstr "새로운 병 만들기"
 
 #: src/ui/message-entry.ui:18
 msgid "Utility & Preferences"
@@ -1516,29 +1508,28 @@ msgid "Delete message"
 msgstr ""
 
 #: src/ui/new.ui:24
-#, fuzzy
 msgid "New Bottle"
-msgstr "Bottles"
+msgstr "새 병"
 
 #: src/ui/new.ui:35
 msgid "Create"
-msgstr ""
+msgstr "만들기"
 
 #: src/ui/new.ui:92
 msgid "Bottle Information"
-msgstr ""
+msgstr "병 정보"
 
 #: src/ui/new.ui:98
 msgid "Choose a name for your bottle"
-msgstr ""
+msgstr "병의 이름을 입력하세요"
 
 #: src/ui/new.ui:165
 msgid "Use versioning"
-msgstr ""
+msgstr "버전 관리 사용"
 
 #: src/ui/new.ui:167
 msgid "Enable versioning to save and restore the bottle to a state."
-msgstr ""
+msgstr "버전 관리를 활성화하여 병의 상태를 저장하고 복원합니다."
 
 #: src/ui/new.ui:193
 msgid "Unlinked homedir"
@@ -1592,35 +1583,35 @@ msgstr ""
 
 #: src/ui/onboard.ui:23 src/ui/onboard.ui:122
 msgid "Welcome"
-msgstr ""
+msgstr "환영합니다"
 
 #: src/ui/onboard.ui:30
 msgid "Next"
-msgstr ""
+msgstr "다음"
 
 #: src/ui/onboard.ui:41
 msgid "Install"
-msgstr ""
+msgstr "설치"
 
 #: src/ui/onboard.ui:78
 msgid "Quit"
-msgstr ""
+msgstr "종료"
 
 #: src/ui/onboard.ui:86
 msgid "Back"
-msgstr ""
+msgstr "뒤로"
 
 #: src/ui/onboard.ui:117
 msgid "Welcome to Bottles"
-msgstr ""
+msgstr "Bottles에 오신 것을 환영합니다"
 
 #: src/ui/onboard.ui:118
 msgid "Bottles makes running Windows Software on Linux much easier."
-msgstr ""
+msgstr "Bottles를 사용하면 Linux에서 Windows 소프트웨어를 더 쉽게 실행할 수 있습니다."
 
 #: src/ui/onboard.ui:152
 msgid "What Are Bottles?"
-msgstr ""
+msgstr "Bottles가 뭔가요?"
 
 #: src/ui/onboard.ui:171
 msgid ""
@@ -1632,6 +1623,13 @@ msgid ""
 "\n"
 "<a href=\"https://docs.usebottles.com\">Read more about</a>"
 msgstr ""
+"병은 Windows 소프트웨어를 실행하도록 구성된 Windows와 유사한 환경이며, 각 "
+"병에 여러 앱을 가질 수 있습니다.\n"
+"\n"
+"그것들은 격리되어 있고 내부에서 실행되는 소프트웨어는 사용자가 허용하지 않는 "
+"한 개인 파일에 액세스할 수 없습니다.\n"
+"\n"
+"<a href=\"https://docs.usebottles.com\">자세히 알아보기</a>"
 
 #: src/ui/onboard.ui:191
 msgid "Wine"
@@ -1639,7 +1637,7 @@ msgstr ""
 
 #: src/ui/onboard.ui:222
 msgid "We Are Almost There"
-msgstr ""
+msgstr "거의 다 왔습니다"
 
 #: src/ui/onboard.ui:241
 msgid ""
@@ -1651,6 +1649,12 @@ msgid ""
 "\n"
 "When you are ready press the <b>Install</b> button."
 msgstr ""
+"일부 <a href=\"https://docs.usebottles.com/getting-started/first-run\""
+">구성요소(~75MB)</a>를 다운로드하여 설치해야 합니다.\n"
+"\n"
+"이 파일들은 릴리스 주기가 다르기 때문에 Bottles와 함께 제공할 수 없습니다.\n"
+"\n"
+"준비가 되면 <b>설치</b> 버튼을 누르십시오."
 
 #: src/ui/onboard.ui:261 src/ui/preferences.ui:292
 msgid "Runners"
@@ -1658,11 +1662,11 @@ msgstr ""
 
 #: src/ui/onboard.ui:292
 msgid "Downloading…"
-msgstr ""
+msgstr "다운로드 중…"
 
 #: src/ui/onboard.ui:311
 msgid "Sit down and relax, it may take a few minutes."
-msgstr ""
+msgstr "앉아서 휴식을 취하세요. 이 작업은 몇 분 정도 걸릴 수 있습니다."
 
 #: src/ui/onboard.ui:339
 msgid "Download"
@@ -1670,11 +1674,11 @@ msgstr ""
 
 #: src/ui/onboard.ui:348
 msgid "Everything Is Ready!"
-msgstr ""
+msgstr "모든 준비가 되었습니다!"
 
 #: src/ui/onboard.ui:349
 msgid "You are now ready to create your first bottles."
-msgstr ""
+msgstr "이제 첫 번째 병을 만들 준비가 되었습니다."
 
 #: src/ui/onboard.ui:353
 msgid "Finish"
@@ -2083,7 +2087,7 @@ msgstr "이 의존성을 다운로드 & 설치하기"
 
 #: src/backend/managers/manager.py:1319
 msgid "Creating versioning state 0…"
-msgstr ""
+msgstr "버전 관리의 초기 상태를 만드는 중…"
 
 #: src/backend/managers/manager.py:1327
 msgid "Finalizing…"
@@ -2176,7 +2180,7 @@ msgstr ""
 
 #: src/views/bottle_details.py:310
 msgid "Select the location where to save the backup archive"
-msgstr ""
+msgstr "백업 아카이브를 저장할 위치 선택"
 
 #: src/views/bottle_details.py:317
 msgid "Export"
@@ -2230,7 +2234,7 @@ msgstr ""
 
 #: src/views/details.py:126
 msgid "Versioning"
-msgstr ""
+msgstr "버전 관리"
 
 #: src/views/details.py:130
 msgid "Installers"
@@ -2238,7 +2242,7 @@ msgstr ""
 
 #: src/views/importer.py:88
 msgid "Choose a backup archive"
-msgstr ""
+msgstr "백업 아카이브 선택"
 
 #: src/views/importer.py:119
 msgid "Choose a configuration file"
@@ -2263,7 +2267,7 @@ msgstr ""
 
 #: src/views/new.py:79
 msgid "Application"
-msgstr ""
+msgstr "애플리케이션"
 
 #: src/views/new.py:80
 msgid "An environment improved for Windows applications."
