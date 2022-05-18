@@ -194,7 +194,7 @@ class ManagerUtils:
                     os.remove(ico_dest)
                 ico.export_icon(ico_dest)
                 icon = ico_dest
-            except (ImportError, ModuleNotFoundError, Exception):
+            except:
                 logging.warning("Could not extract icon for the program. No icon will be added to the entry.")
 
         with open(desktop_file, "w") as f:
