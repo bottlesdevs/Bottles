@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
 "PO-Revision-Date: 2022-05-19 14:41+0000\n"
-"Last-Translator: mrvladus <mrvladus@yandex.ru>\n"
+"Last-Translator: Artem <github@knebergish.fastmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
 "Language: ru\n"
@@ -1304,7 +1304,6 @@ msgid "e.g: VAR1=value VAR2=value .."
 msgstr "пример: VAR1=value VAR2=value ..."
 
 #: src/ui/dialog-gamescope.ui:24
-#, fuzzy
 msgid "Gamescope Settings"
 msgstr "Настройки Gamescope"
 
@@ -1374,9 +1373,8 @@ msgid "Fullscreen"
 msgstr "Полный экран"
 
 #: src/ui/dialog-launch-options.ui:59
-#, fuzzy
 msgid "Launch Options"
-msgstr "Изменить параметры запуска"
+msgstr "Параметры запуска"
 
 #: src/ui/dialog-launch-options.ui:109
 msgid "These arguments are passed on program launch:"
@@ -1418,7 +1416,6 @@ msgid "Type here.."
 msgstr "Введите здесь.."
 
 #: src/ui/dialog-run-args.ui:24
-#, fuzzy
 msgid "Run With Arguments"
 msgstr "Запуск с аргументами"
 
@@ -1472,9 +1469,8 @@ msgid "This wineprefix was already imported in Bottles."
 msgstr "Этот префикс wine уже импортирован в Bottles."
 
 #: src/ui/importer.ui:27
-#, fuzzy
 msgid "No prefixes found"
-msgstr "Программ не найдено"
+msgstr "Префиксы не обнаружены"
 
 #: src/ui/importer.ui:28
 msgid ""
@@ -1489,9 +1485,8 @@ msgid "Import Bottles backup"
 msgstr "Импортировать резервную копию «бутылки»"
 
 #: src/ui/importer.ui:97
-#, fuzzy
 msgid "Search again for prefixes"
-msgstr "Префиксы Steam Proton"
+msgstr "Повторный поиск префиксов"
 
 #: src/ui/importer.ui:135
 msgid "Configuration"
@@ -1506,9 +1501,8 @@ msgid "Read review"
 msgstr "Прочитать отзыв"
 
 #: src/ui/installer-entry.ui:124
-#, fuzzy
 msgid "Install this program"
-msgstr "Установленные программы"
+msgstr "Установить эту программу"
 
 #: src/ui/installer-entry.ui:173
 msgid "Compatibility grade"
@@ -1567,7 +1561,6 @@ msgid "Create"
 msgstr "Создать"
 
 #: src/ui/new.ui:92
-#, fuzzy
 msgid "Bottle Information"
 msgstr "Сведения о «бутылке»"
 
@@ -1662,9 +1655,8 @@ msgid "Bottles makes running Windows Software on Linux much easier."
 msgstr "Bottles существенно упрощают запуск ПО Windows на Linux."
 
 #: src/ui/onboard.ui:152
-#, fuzzy
 msgid "What Are Bottles?"
-msgstr "Что такое «раннеры»?"
+msgstr "Что такое «бутылка»?"
 
 #: src/ui/onboard.ui:171
 msgid ""
@@ -1693,7 +1685,6 @@ msgid "We Are Almost There"
 msgstr "Осталось немного"
 
 #: src/ui/onboard.ui:241
-#, fuzzy
 msgid ""
 "We need to download and install some <a href=\"https://docs.usebottles.com/"
 "getting-started/first-run\">components (~75MB)</a> to get you ready.\n"
@@ -1703,16 +1694,14 @@ msgid ""
 "\n"
 "When you are ready press the <b>Install</b> button."
 msgstr ""
-"Нужно скачать и установить раннер, который позволит вам создавать "
-"собственные «бутылки».\n"
-"Размер загрузки составит <b>~70 МБ</b>.\n"
-"<a href=\"https://docs.usebottles.com/getting-started/first-run\">Подробнее</"
-"a> о том, что будет скачиваться.\n"
+"Нам нужно скачать и установить некоторые <a href=\"https://docs.usebottles."
+"com/getting-started/first-run\">компоненты (~75MB)</a> для завершения "
+"настройки.\n"
 "\n"
-"Мы не можем предложить данные файлы вместе с Bottles ввиду разницы в циклах "
-"выпуска.\n"
+"Мы не можем предоставлять эти файлы сразу вместе с Bottles из-за разницы в "
+"циклах выпуска.\n"
 "\n"
-"По готовности нажмите кнопку <b>Установить</b>."
+"Когда вы будете готовы, нажмите кнопку <b>Установить</b>."
 
 #: src/ui/onboard.ui:261 src/ui/preferences.ui:292
 msgid "Runners"
@@ -1755,7 +1744,6 @@ msgid "Appearance"
 msgstr "Внешний вид"
 
 #: src/ui/preferences.ui:63
-#, fuzzy
 msgid "Show Update Date"
 msgstr "Показать дату обновления"
 
@@ -1768,7 +1756,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "Показывать уведомления о загрузках и установках."
 
 #: src/ui/preferences.ui:127
-#, fuzzy
 msgid "Temp Files"
 msgstr "Временные файлы"
 
@@ -1777,29 +1764,25 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Очищать временные файлы при запуске Bottles?"
 
 #: src/ui/preferences.ui:154
-#, fuzzy
 msgid "Close Bottles After Starting Programs"
-msgstr "Закрыть Bottles после запуска программы"
+msgstr "Закрывать Bottles после запуска программ"
 
 #: src/ui/preferences.ui:155
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager."
-msgstr "Закрывать Bottles после запуска программы из файл-менеджера"
+msgstr "Закрывать Bottles после запуска программы из файл-менеджера."
 
 #: src/ui/preferences.ui:186
 msgid "Advanced"
 msgstr "Расширенные настройки"
 
 #: src/ui/preferences.ui:191
-#, fuzzy
 msgid "Custom Bottles Path (Require Restart)"
 msgstr "Пользовательский путь к «бутылкам» (требуется перезапуск)"
 
 #: src/ui/preferences.ui:192
-#, fuzzy
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)."
-msgstr "Выберите место для хранения новых «бутылок» (не затронет существующие)"
+msgstr "Выберите место для хранения новых «бутылок» (не затронет существующие)."
 
 #: src/ui/preferences.ui:228
 msgid ""
@@ -1810,7 +1793,6 @@ msgstr ""
 "Это сломает песочницу!"
 
 #: src/ui/preferences.ui:301
-#, fuzzy
 msgid "Pre-Release"
 msgstr "Предварительный выпуск"
 
@@ -1851,17 +1833,14 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:421
-#, fuzzy
 msgid "Steam Proton Prefixes"
 msgstr "Префиксы Steam Proton"
 
 #: src/ui/preferences.ui:422 src/ui/preferences.ui:449
-#, fuzzy
 msgid "In early development (requires restart)."
-msgstr "На ранней стадии разработки (требуется перезапуск)"
+msgstr "На ранней стадии разработки (требуется перезапуск)."
 
 #: src/ui/preferences.ui:448
-#, fuzzy
 msgid "Library Mode"
 msgstr "Режим Библиотеки"
 
@@ -1890,9 +1869,8 @@ msgid "Unhide from list"
 msgstr "Показать в списке"
 
 #: src/ui/program-entry.ui:163
-#, fuzzy
 msgid "Remove from list"
-msgstr "Удалить из Программ"
+msgstr "Убрать из списка"
 
 #: src/ui/program-entry.ui:211
 msgid "Launch with Steam"
@@ -1907,9 +1885,8 @@ msgid "Creation date"
 msgstr "Дата создания"
 
 #: src/ui/task-entry.ui:8
-#, fuzzy
 msgid "Processing..."
-msgstr "Загрузка..."
+msgstr "Обработка..."
 
 #: src/ui/window.ui:19 src/window.py:250
 msgid "Your library"
@@ -2002,12 +1979,10 @@ msgid "Loading..."
 msgstr "Загрузка..."
 
 #: src/window.py:167
-#, fuzzy
 msgid "Bottle Details"
 msgstr "Сведения о «бутылке»"
 
 #: src/window.py:174
-#, fuzzy
 msgid "Your Library"
 msgstr "Библиотека"
 
@@ -2099,12 +2074,10 @@ msgstr "Шаблон найден, применение…"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1191
-#, fuzzy
 msgid "The Wine config is being updated…"
 msgstr "Конфигурация Wine обновляется…"
 
 #: src/backend/managers/manager.py:1193
-#, fuzzy
 msgid "Wine config updated!"
 msgstr "Конфигурация Wine обновлена!"
 
