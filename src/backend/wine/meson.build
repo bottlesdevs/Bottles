@@ -23,6 +23,7 @@ bottles_sources = [
   'executor.py',
   'start.py',
   'register.py',
+  'regsvr32.py',
   'winebridge.py',
   'explorer.py',
   'drives.py',
