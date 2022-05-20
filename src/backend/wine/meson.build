@@ -36,7 +36,8 @@ bottles_sources = [
   'progman.py',
   'rundll32.py',
   'winefile.py',
-  'winhelp.py'
+  'winhelp.py',
+  'xcopy.py',
 ]
 
 install_data(bottles_sources, install_dir: winedir)
