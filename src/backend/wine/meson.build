@@ -30,6 +30,7 @@ bottles_sources = [
   'eject.py',
   'expand.py',
   'hh.py',
+  'icinfo.py',
 ]
 
 install_data(bottles_sources, install_dir: winedir)
