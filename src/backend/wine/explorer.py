@@ -9,3 +9,13 @@ logging = Logger()
 class Explorer(WineProgram):
     program = "Wine Explorer"
     command = "explorer"
+
+    def launch_desktop(self, desktop: str = "shell", width: int = 0, height: int = 0, program: str = None):
+        args = f"/desktop={desktop}"
+
+        if width and height:
+            args += f",{width}x{height}"
+        if program:
+            args += f" {program}"
+
+        return self.launch(args=args, comunicate=True, action_name="launch_desktop")
