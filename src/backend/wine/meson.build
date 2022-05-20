@@ -29,6 +29,7 @@ bottles_sources = [
   'drives.py',
   'eject.py',
   'expand.py',
+  'hh.py',
 ]
 
 install_data(bottles_sources, install_dir: winedir)
