@@ -31,6 +31,7 @@ bottles_sources = [
   'expand.py',
   'hh.py',
   'icinfo.py',
+  'notepad.py',
 ]
 
 install_data(bottles_sources, install_dir: winedir)
