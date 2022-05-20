@@ -33,6 +33,7 @@ bottles_sources = [
   'icinfo.py',
   'notepad.py',
   'oleview.py',
+  'progman.py',
 ]
 
 install_data(bottles_sources, install_dir: winedir)
