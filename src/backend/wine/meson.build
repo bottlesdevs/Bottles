@@ -35,6 +35,7 @@ bottles_sources = [
   'oleview.py',
   'progman.py',
   'rundll32.py',
+  'winefile.py'
 ]
 
 install_data(bottles_sources, install_dir: winedir)
