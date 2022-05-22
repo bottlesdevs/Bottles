@@ -332,6 +332,8 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_block_by_func(self.__toggle_pulse_latency)
+        self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
+        self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
         self.combo_fsr.handler_block_by_func(self.__set_fsr_level)
         self.combo_virt_res.handler_block_by_func(self.__set_virtual_desktop_res)
         self.combo_runner.handler_block_by_func(self.__set_runner)
@@ -419,6 +421,8 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_unblock_by_func(self.__toggle_pulse_latency)
+        self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
+        self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
         self.combo_fsr.handler_unblock_by_func(self.__set_fsr_level)
         self.combo_virt_res.handler_unblock_by_func(self.__set_virtual_desktop_res)
         self.combo_runner.handler_unblock_by_func(self.__set_runner)
@@ -746,6 +750,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         def update(result, error=False):
             if result and "config" in result.data.keys():
                 self.config = result.data["config"]
+                if self.config["Parameters"].get("use_steam_runtime"):
+                    self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
+                    self.switch_steam_runtime.set_active(True)
+                    self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
             set_widgets_status(True)
 
         set_widgets_status(False)
