@@ -17,8 +17,11 @@
 
 from gi.repository import Gtk, GLib, GObject, Handy
 
-from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
+from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.utils.threading import RunAsync
+
+logging = Logger()
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/component-entry.ui')
