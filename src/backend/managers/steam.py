@@ -31,6 +31,8 @@ from bottles.backend.models.samples import Samples  # pyright: reportMissingImpo
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.globals import Paths
 from bottles.backend.utils.steam import SteamUtils
+from bottles.backend.utils.manager import ManagerUtils
+from bottles.backend.utils import vdf
 from bottles.backend.logger import Logger
 
 logging = Logger()
@@ -74,7 +76,7 @@ class SteamManager:
 
         confs = glob(os.path.join(steam_path, "*/config/localconfig.vdf"))
         if len(confs) == 0:
-            logging.warning("Could not find any localconfig.vdf files in Steam userdata")
+            logging.warning("Could not find any localconfig.vdf file in Steam userdata")
             return None
 
         return confs[0]
@@ -448,3 +450,56 @@ class SteamManager:
             }
 
         return runners
+
+    @staticmethod
+    def add_shortcut(config: dict, program_name: str, program_path: str):
+        steam_path = SteamManager.find_steam_path("userdata")
+        cmd = "bottles-cli"
+        args = "run -b {0} -p {1}"
+
+        if "FLATPAK_ID" in os.environ:
+            logging.warning("Currently not supported using Flatpak")
+            return
+            # cmd = "flatpak"
+            # args = "run --command='bottles-cli' com.usebottles.bottles run -b {0} -p {1}"
+
+        if steam_path is None:
+            return
+
+        confs = glob(os.path.join(steam_path, "*/config/"))
+        shortcut = {
+            "AppName": program_name,
+            "Exe": cmd,
+            "StartDir": ManagerUtils.get_bottle_path(config),
+            "icon": ManagerUtils.extract_icon(config, program_name, program_path),
+            "ShortcutPath": "",
+            "LaunchOptions": args.format(config["Path"], program_name),
+            "IsHidden": 0,
+            "AllowDesktopConfig": 1,
+            "AllowOverlay": 1,
+            "OpenVR": 0,
+            "Devkit": 0,
+            "DevkitGameID": "",
+            "DevkitOverrideAppID": "",
+            "LastPlayTime": 0,
+            "tags": {"0": "Bottles"}
+        }
+
+        for c in confs:
+            _shortcuts = {}
+            _existing = {}
+
+            if os.path.exists(os.path.join(c, "shortcuts.vdf")):
+                with open(os.path.join(c, "shortcuts.vdf"), "rb") as f:
+                    try:
+                        _existing = vdf.binary_loads(f.read()).get("shortcuts", {})
+                    except:
+                        continue
+
+            _all = list(_existing.values()) + [shortcut]
+            _shortcuts = {"shortcuts": {str(i): s for i, s in enumerate(_all)}}
+            from pprint import pprint
+            pprint(_shortcuts)
+
+            with open(os.path.join(c, "shortcuts.vdf"), "wb") as f:
+                f.write(vdf.binary_dumps(_shortcuts))

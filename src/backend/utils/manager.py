@@ -153,15 +153,33 @@ class ManagerUtils:
             return False
 
     @staticmethod
+    def extract_icon(config: dict, program_name: str, program_path: str) -> str:
+        from bottles.backend.wine.winepath import WinePath
+        winepath = WinePath(config)
+        icon = "com.usebottles.bottles-program"
+        bottle_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
+
+        try:
+            import icoextract
+            if winepath.is_windows(program_path):
+                program_path = winepath.to_unix(program_path)
+            ico_dest = os.path.join(bottle_icons_path, f"{program_name}.png")
+            ico = icoextract.IconExtractor(program_path)
+            os.makedirs(bottle_icons_path, exist_ok=True)
+            if os.path.exists(ico_dest):
+                os.remove(ico_dest)
+            ico.export_icon(ico_dest)
+            icon = ico_dest
+        except:
+            logging.warning("Could not extract icon for the program. No icon will be added to the entry.")
+        return icon
+
+    @staticmethod
     def create_desktop_entry(config, program: dict, skip_icon: bool = False) -> bool:
         if not user_apps_dir:
             return False
 
-        from bottles.backend.wine.winepath import WinePath
-        winepath = WinePath(config)
-
         icon = "com.usebottles.bottles-program"
-        bottle_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
         file_name_template = "%s/%s--%s--%s.desktop"
         existing_files = glob(file_name_template % (
             Paths.applications,
@@ -185,20 +203,7 @@ class ManagerUtils:
                 os.remove(file)
 
         if not skip_icon:
-            try:
-                import icoextract
-                _path = program.get("path")
-                if winepath.is_windows(_path):
-                    _path = winepath.to_unix(program.get("path"))
-                ico_dest = os.path.join(bottle_icons_path, f"{program.get('name')}.png")
-                ico = icoextract.IconExtractor(_path)
-                os.makedirs(bottle_icons_path, exist_ok=True)
-                if os.path.exists(ico_dest):
-                    os.remove(ico_dest)
-                ico.export_icon(ico_dest)
-                icon = ico_dest
-            except:
-                logging.warning("Could not extract icon for the program. No icon will be added to the entry.")
+            icon = ManagerUtils.extract_icon(config, program.get("name"), program.get("path"))
 
         with open(desktop_file, "w") as f:
             f.write(f"[Desktop Entry]\n")
