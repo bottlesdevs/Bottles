@@ -398,6 +398,10 @@ class WineCommand:
 
             if _rs:
                 if "soldier" in _rs.keys() and "proton" in self.runner.lower():
+                    '''
+                    Soldier doesn't works with Caffe and maybe other Wine runners, but it
+                    works with Proton. So, if the runner is Proton, use the soldier runtime.
+                    '''
                     _picked = _rs["soldier"]
                 elif "scout" in _rs.keys():
                     _picked = _rs["scout"]
