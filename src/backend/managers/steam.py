@@ -39,7 +39,7 @@ logging = Logger()
 class SteamManager:
 
     @staticmethod
-    def __find_steam_path(scope: str = "") -> Union[str, None]:
+    def find_steam_path(scope: str = "") -> Union[str, None]:
         """scopes: steamapps, userdata, empty for base path"""
         paths = [
             os.path.join(Path.home(), ".local/share/Steam", scope),
@@ -52,7 +52,7 @@ class SteamManager:
 
     @staticmethod
     def is_steam_supported() -> bool:
-        return SteamManager.__find_steam_path() is not None
+        return SteamManager.find_steam_path() is not None
 
     @staticmethod
     def get_acf_data(libraryfolder: str, app_id: str) -> Union[dict, None]:
@@ -67,7 +67,7 @@ class SteamManager:
 
     @staticmethod
     def get_local_config_path() -> Union[str, None]:
-        steam_path = SteamManager.__find_steam_path("userdata")
+        steam_path = SteamManager.find_steam_path("userdata")
 
         if steam_path is None:
             return None
@@ -81,7 +81,7 @@ class SteamManager:
 
     @staticmethod
     def get_library_folders() -> Union[list, None]:
-        steam_path = SteamManager.__find_steam_path("steamapps")
+        steam_path = SteamManager.find_steam_path("steamapps")
         libraryfolders_path = os.path.join(steam_path, "libraryfolders.vdf")
         libraryfolders = []
 
@@ -434,7 +434,7 @@ class SteamManager:
         TODO: not used, here for reference or later use
               Bottles get Proton runner from config_info file
         """
-        steam_path = SteamManager.__find_steam_path("steamapps")
+        steam_path = SteamManager.find_steam_path("steamapps")
         if steam_path is None:
             return {}
 

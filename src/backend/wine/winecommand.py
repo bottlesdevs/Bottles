@@ -175,13 +175,6 @@ class WineCommand:
                 ld += _rb
             else:
                 logging.warning("Bottles runtime was requested but not found")
-        if params.get("use_steam_runtime") and not self.terminal:
-            _rs = RuntimeManager.get_runtime_env("steam")
-            if _rs:
-                logging.info("Using Steam runtime")
-                ld += _rs
-            else:
-                logging.warning("Steam runtime was requested but not found")
 
         # Get Runner libraries
         runner_path = ManagerUtils.get_runner_path(config.get("Runner"))
@@ -398,6 +391,24 @@ class WineCommand:
 
             if obs_vkc_available and params.get("obsvkc"):
                 command = f"{obs_vkc_available} {command}"
+
+        if params.get("use_steam_runtime"):
+            _rs = RuntimeManager.get_runtimes("steam")
+            _picked = {}
+
+            if _rs:
+                if "soldier" in _rs.keys() and "proton" in self.runner.lower():
+                    _picked = _rs["soldier"]
+                elif "scout" in _rs.keys():
+                    _picked = _rs["scout"]
+            else:
+                logging.warning("Steam runtime was requested but not found")
+
+            if _picked:
+                logging.info(f"Using Steam runtime {_picked['name']}")
+                command = f"{_picked['entry_point']} {command}"
+            else:
+                logging.warning("Steam runtime was requested and found but there are no valid combinations")
 
         if self.arguments:
             if "%command%" in self.arguments:

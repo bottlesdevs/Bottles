@@ -32,6 +32,10 @@ class RuntimeManager:
             "steam": RuntimeManager.__get_steam_runtime()
         }
 
+        if _filter == "steam":
+            if len(runtimes.get("steam", {})) == 0:
+                return False
+
         return runtimes.get(_filter, False)
 
     @staticmethod
@@ -87,10 +91,28 @@ class RuntimeManager:
 
     @staticmethod
     def __get_steam_runtime():
-        paths = [
-            os.path.join(Path.home(), ".local/share/Steam/ubuntu12_32/steam-runtime/lib"),
-            os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam/ubuntu12_32/steam-runtime/lib"),
-        ]
-        structure = ["i386-linux-gnu", "x86_64-linux-gnu"]
+        from bottles.backend.managers.steam import SteamManager
+        available_runtimes = {}
+        steam_path = SteamManager.find_steam_path()
 
-        return RuntimeManager.__get_runtime(paths, structure)
+        if not steam_path:
+            return available_runtimes
+
+        lookup = {
+            "soldier": {
+                "name": "soldier",
+                "entry_point": os.path.join(steam_path, "steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point"),
+            },
+            "scout": {
+                "name": "scout",
+                "entry_point": os.path.join(steam_path, "ubuntu12_32/steam-runtime/run.sh"),
+            }
+        }
+
+        for name, data in lookup.items():
+            if not os.path.exists(data["entry_point"]):
+                continue
+
+            available_runtimes[name] = data
+
+        return available_runtimes
