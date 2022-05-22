@@ -97,7 +97,7 @@ class ProgramEntry(Handy.ActionRow):
         if window.settings.get_boolean("experiments-library"):
             self.btn_add_library.set_visible(True)
 
-        if SteamManager.is_steam_supported():
+        if SteamManager.is_steam_supported() and not "FLATPAK_ID" in os.environ:
             self.btn_add_steam.set_visible(True)
 
         external_programs = []
