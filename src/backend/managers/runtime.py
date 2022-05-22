@@ -17,6 +17,7 @@
 
 import os
 from pathlib import Path
+from functools import lru_cache
 
 from bottles.backend.globals import Paths  # pyright: reportMissingImports=false
 
@@ -24,6 +25,7 @@ from bottles.backend.globals import Paths  # pyright: reportMissingImports=false
 class RuntimeManager:
 
     @staticmethod
+    @lru_cache
     def get_runtimes(_filter: str = "bottles"):
         runtimes = {
             "bottles": RuntimeManager.__get_bottles_runtime(),

@@ -21,6 +21,7 @@ from typing import NewType
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.logger import Logger
 from bottles.backend.globals import gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
+from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.models.result import Result
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.catalogs import win_versions
@@ -75,16 +76,20 @@ class Runner:
 
         # kill wineserver after update
         wineboot.kill()
+
         # wait for wineserver to go away
         wineserver.wait()
+
         # update bottle config
         up_config = manager.update_config(
             config=config,
             key="Runner",
             value=runner
         ).data["config"]
+
         # perform a prefix update
         wineboot.update()
+
         # re-initialize DLLComponents
         if config["Parameters"]["dxvk"]:
             manager.install_dll_component(config, "dxvk", overrides_only=True)
@@ -92,6 +97,10 @@ class Runner:
             manager.install_dll_component(config, "nvapi", overrides_only=True)
         if config["Parameters"]["vkd3d"]:
             manager.install_dll_component(config, "vkd3d", overrides_only=True)
+
+        # enable Steam runtime if using Proton
+        if "proton" in runner.lower() and RuntimeManager.get_runtimes("steam"):
+            manager.update_config(config, "use_steam_runtime", True, "Parameters")
 
         return Result(
             status=True,
