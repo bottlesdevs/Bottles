@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-05-07 17:52+0000\n"
-"Last-Translator: Davi Patricio <davipatricio@pm.me>\n"
+"PO-Revision-Date: 2022-05-23 21:18+0000\n"
+"Last-Translator: Fábio Rodrigues Ribeiro <farribeiro@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "bottles/bottles/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -529,9 +529,8 @@ msgid "Uninstaller"
 msgstr "Desinstalador"
 
 #: src/ui/details-bottle.ui:959
-#, fuzzy
 msgid "Uninstall programs using wine uninstaller."
-msgstr "Desinstale programas usando o desinstalador do Wine"
+msgstr "Desinstale programas usando o desinstalador do Wine."
 
 #: src/ui/details-bottle.ui:999
 msgid "Control panel"
@@ -1182,13 +1181,12 @@ msgid "DLL Overrides"
 msgstr "Substituições de DLL"
 
 #: src/ui/dialog-dll-overrides.ui:50
-#, fuzzy
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
 "Bibliotecas de links dinâmicos podem ser especificadas para serem integradas "
-"(fornecidas pelo Wine) ou nativas (fornecidas pelo programa)"
+"(fornecidas pelo Wine) ou nativas (fornecidas pelo programa)."
 
 #: src/ui/dialog-dll-overrides.ui:56
 msgid "New override"
@@ -1231,9 +1229,8 @@ msgid "Close"
 msgstr "Fechar"
 
 #: src/ui/dialog-duplicate.ui:94
-#, fuzzy
 msgid "Type a name for the new bottle:"
-msgstr "Digite um nome para a sua garrafa"
+msgstr "Digite um nome para a sua garrafa:"
 
 #: src/ui/dialog-duplicate.ui:106 src/ui/dialog-run-args.ui:86
 msgid "e.g.: -example1 -example2 -example3=hello"
@@ -1874,16 +1871,15 @@ msgstr "Adicionar icone de ambiente de trabalho"
 
 #: src/ui/program-entry.ui:138
 msgid "Hide from list"
-msgstr ""
+msgstr "Ocultar da lista"
 
 #: src/ui/program-entry.ui:150
 msgid "Unhide from list"
-msgstr ""
+msgstr "Descartar da lista"
 
 #: src/ui/program-entry.ui:163
-#, fuzzy
 msgid "Remove from list"
-msgstr "Remover dos Programas"
+msgstr "Remover da lista"
 
 #: src/ui/program-entry.ui:211
 msgid "Launch with Steam"
@@ -1898,9 +1894,8 @@ msgid "Creation date"
 msgstr "Data de criação"
 
 #: src/ui/task-entry.ui:8
-#, fuzzy
 msgid "Processing..."
-msgstr "Carregando..."
+msgstr "Processando..."
 
 #: src/ui/window.ui:19 src/window.py:250
 msgid "Your library"
@@ -2001,11 +1996,15 @@ msgid "Your Library"
 msgstr "Sua biblioteca"
 
 #: src/window.py:260
+#, fuzzy
 msgid ""
 "The custom bottles path was not found.Please, check the it in Preferences.\n"
 "Fallbacking to the default path. You will no bottles from that path will be "
 "listed!"
 msgstr ""
+"O caminho das garrafas personalizadas não foi encontrado. Por favor, "
+"verifique o caminho em Preferências.\n"
+"Retorno ao caminho padrão. Nenhuma garrafa desse caminho será listada!"
 
 #: src/window.py:329
 msgid "Journal browser"
