@@ -69,6 +69,7 @@ class DetailsView(Adw.Bin):
         self.view_taskmanager = TaskManagerView(window, config)
 
         self.btn_back.connect("clicked", self.go_back)
+        self.window.main_leaf.connect('notify::visible-child', self.unload_view)
 
         # region signals
         self.list_pages.connect('row-selected', self.__change_page)
@@ -221,7 +222,7 @@ class DetailsView(Adw.Bin):
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
+
+    def unload_view(self, *args):
         while self.stack_bottle.get_first_child():
             self.stack_bottle.remove(self.stack_bottle.get_first_child())
-
-
