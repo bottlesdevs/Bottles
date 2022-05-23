@@ -381,3 +381,4 @@ class MainWindow(Adw.ApplicationWindow):
     def open_url(widget, url):
         webbrowser.open_new_tab(url)
 
+

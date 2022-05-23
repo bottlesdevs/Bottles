@@ -121,8 +121,17 @@
                               </object>
                             </child>
                             <child>
-                              <object class="AdwComboRow">
+                              <object class="AdwActionRow">
                                 <property name="title" translatable="yes">Runner</property>
+                                <property name="activatable-widget">combo_runner</property>
+                                <child>
+                                  <object class="GtkComboBoxText" id="combo_runner">
+                                  <property name="valign">center</property>
+                                    <style>
+                                      <class name="borderless"/>
+                                    </style>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                             <child>

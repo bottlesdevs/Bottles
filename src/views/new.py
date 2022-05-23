@@ -44,7 +44,7 @@ class NewView(Adw.Window):
     switch_versioning = Gtk.Template.Child()
     switch_sandbox = Gtk.Template.Child()
     label_output = Gtk.Template.Child()
-    #combo_runner = Gtk.Template.Child()
+    combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
     # row_sandbox = Gtk.Template.Child()
     title = Gtk.Template.Child()
@@ -78,10 +78,9 @@ class NewView(Adw.Window):
         #self.btn_pref_runners.connect("clicked", self.window.show_prefs_view)
 
         # populate combo_runner with runner versions from the manager
-        # for runner in self.manager.runners_available:
-        #     self.combo_runner.append(runner, runner)
+        for runner in self.manager.runners_available:
+            self.combo_runner.append(runner, runner)
 
-        # self.combo_runner.set_active(0)
         self.combo_arch.set_selected(0)
 
         # if running under Flatpak, hide row_sandbox
