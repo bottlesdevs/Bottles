@@ -227,9 +227,6 @@ class BottleView(Gtk.ScrolledWindow):
         user confirmation.
         """
 
-        def do_update_programs(result, error=False):
-            self.window.page_details.update_programs()
-
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a Windows executable file"),
             self.window,
@@ -238,10 +235,11 @@ class BottleView(Gtk.ScrolledWindow):
             _("Cancel")
         )
 
-        file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config) + '/drive_c/')
+        #file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config) + '/drive_c/')
+        file_dialog.connect('response', self.__execute)
+        file_dialog.show()
 
-        response = file_dialog.run()
-        _execs = self.config.get("Latest_Executables")
+    def __execute(self, response, args):
 
         if response == -3:
 
@@ -269,7 +267,6 @@ class BottleView(Gtk.ScrolledWindow):
             )
 
         self.__update_latest_executables()
-        file_dialog.destroy()
 
     def __update_latest_executables(self):
         """
