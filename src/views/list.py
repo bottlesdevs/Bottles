@@ -254,3 +254,4 @@ class BottleView(Gtk.ScrolledWindow):
                 bottle.disable()
         """
         pass  # TODO
+
