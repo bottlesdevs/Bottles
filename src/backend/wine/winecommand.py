@@ -115,7 +115,7 @@ class WineCommand:
             bottle configuration.
             '''
             cwd = config.get("WorkingDir")
-        if cwd == "":
+        if cwd == "" or not os.path.exists(cwd):
             '''
             If the WorkingDir is empty, use the bottle path as
             working directory.
@@ -398,7 +398,7 @@ class WineCommand:
 
             if _rs:
                 if "soldier" in _rs.keys() and "proton" in self.runner.lower():
-                    '''
+                    ''' 
                     Soldier doesn't works with Caffe and maybe other Wine runners, but it
                     works with Proton. So, if the runner is Proton, use the soldier runtime.
                     '''
