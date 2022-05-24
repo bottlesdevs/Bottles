@@ -454,12 +454,8 @@ class SteamManager:
     @staticmethod
     def add_shortcut(config: dict, program_name: str, program_path: str):
         steam_path = SteamManager.find_steam_path("userdata")
-        cmd = "bottles-cli"
-        args = "run -b {0} -p {1}"
-
-        if "FLATPAK_ID" in os.environ:
-            cmd = "flatpak-spawn"
-            args = "--host flatpak run --command='bottles-cli' com.usebottles.bottles run -b {0} -p {1}"
+        cmd = "xdg-open"
+        args = "bottles:run/{0}/{1}"
 
         if steam_path is None:
             return
