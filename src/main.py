@@ -78,7 +78,8 @@ class Bottles(Gtk.Application):
     def __init__(self):
         super().__init__(
             application_id='com.usebottles.bottles',
-            flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE
+            flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE,
+            register_session=True
         )
         self.win = None
         self.__register_arguments()
@@ -133,6 +134,14 @@ class Bottles(Gtk.Application):
             _("Pass arguments"),
             None
         )
+        self.add_main_option(
+            GLib.OPTION_REMAINING,
+            0,
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.STRING_ARRAY,
+            "URI",
+            None
+        )
 
     def do_command_line(self, command):
         """
@@ -168,9 +177,30 @@ class Bottles(Gtk.Application):
                 if a.endswith(('.exe', '.msi', '.bat', '.lnk')):
                     self.arg_exe = a
 
-        self.do_activate()
+        uri = commands.lookup_value(GLib.OPTION_REMAINING)
+        if uri:
+            return self.__process_uri(uri)
 
+        self.do_activate()
         return 0
+
+    @staticmethod
+    def __process_uri(uri):
+        """
+        This function processes the URI passed to the application.
+        e.g. xdg-open bottles:run/<bottle>/<program>
+        """
+        uri = uri[0]
+        _wrong_uri_error = _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
+        if not len(uri) > 0 or not uri.startswith('bottles:run/') or len(uri.split('/')) != 3:
+            print(_wrong_uri_error)
+            return False
+
+        uri = uri.replace('bottles:run/', '')
+        bottle, program = uri.split('/')
+
+        import subprocess
+        subprocess.Popen(['bottles-cli', 'run', '-b', bottle, '-p', program])
 
     def do_startup(self):
         """
