@@ -458,10 +458,8 @@ class SteamManager:
         args = "run -b {0} -p {1}"
 
         if "FLATPAK_ID" in os.environ:
-            logging.warning("Currently not supported using Flatpak")
-            return
-            # cmd = "flatpak"
-            # args = "run --command='bottles-cli' com.usebottles.bottles run -b {0} -p {1}"
+            cmd = "flatpak-spawn"
+            args = "--host flatpak run --command='bottles-cli' com.usebottles.bottles run -b {0} -p {1}"
 
         if steam_path is None:
             return
