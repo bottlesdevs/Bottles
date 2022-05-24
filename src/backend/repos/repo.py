@@ -17,6 +17,7 @@
 
 import yaml
 import urllib.request
+from http.client import RemoteDisconnected
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 
@@ -51,6 +52,6 @@ class Repo:
                 if plain:
                     return res.decode("utf-8")
                 return yaml.safe_load(res)
-        except (urllib.error.HTTPError, urllib.error.URLError, yaml.YAMLError):
+        except (urllib.error.HTTPError, urllib.error.URLError, RemoteDisconnected, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} manifest.", )
             return False
