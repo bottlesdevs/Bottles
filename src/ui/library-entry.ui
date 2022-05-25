@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="3.24"/>
+  <object class="GtkPopover" id="pop_context">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="width-request">160</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="border-width">9</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkModelButton" id="btn_remove">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="tooltip-text" translatable="yes">Read documentation about installers	</property>
+            <property name="text" translatable="yes">Remove from library</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <template class="LibraryEntry" parent="GtkBox">
     <property name="width-request">280</property>
     <property name="height-request">280</property>
@@ -48,6 +75,17 @@
           </packing>
         </child>
         <child>
+          <object class="GtkImage" id="img_icon">
+            <property name="can-focus">False</property>
+            <property name="icon-name">bottles-steam-symbolic</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -86,7 +124,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
@@ -173,7 +211,7 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="pack-type">end</property>
-            <property name="position">2</property>
+            <property name="position">3</property>
           </packing>
         </child>
         <style>
@@ -190,31 +228,4 @@
       <class name="library-entry"/>
     </style>
   </template>
-  <object class="GtkPopover" id="pop_context">
-    <property name="can-focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="width-request">160</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">9</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
-        <child>
-          <object class="GtkModelButton" id="btn_remove">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
-            <property name="tooltip-text" translatable="yes">Read documentation about installers	</property>
-            <property name="text" translatable="yes">Remove from library</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
 </interface>

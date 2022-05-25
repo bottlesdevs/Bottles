@@ -18,7 +18,7 @@
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, GLib, Handy
+from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Handy
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.managers.library import LibraryManager
@@ -39,6 +39,7 @@ class LibraryEntry(Gtk.Box):
     label_name = Gtk.Template.Child()
     label_bottle = Gtk.Template.Child()
     img_cover = Gtk.Template.Child()
+    img_icon = Gtk.Template.Child()
 
     # endregion
 
@@ -53,6 +54,13 @@ class LibraryEntry(Gtk.Box):
 
         self.label_name.set_text(entry['name'])
         self.label_bottle.set_text(entry['bottle']['name'])
+        if entry.get('icon'):
+            if entry['icon'] == "com.usebottles.bottles-program":
+                self.img_icon.set_from_icon_name(entry['icon'], Gtk.IconSize.DIALOG)
+            else:
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(entry['icon'], 32, 32, preserve_aspect_ratio=True)
+                self.img_icon.set_from_pixbuf(pixbuf)
+            self.img_icon.set_visible(True)
 
         self.btn_run.connect("clicked", self.run_executable)
         self.btn_launch_steam.connect("clicked", self.run_steam)

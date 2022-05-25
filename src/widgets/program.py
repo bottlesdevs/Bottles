@@ -284,6 +284,7 @@ class ProgramEntry(Handy.ActionRow):
         LibraryManager().add_to_library({
             "bottle": {"name": self.config["Name"], "path": self.config["Path"]},
             "name": self.program["name"],
+            "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
         })
         self.window.update_library()
 
