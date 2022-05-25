@@ -289,7 +289,13 @@ class ProgramEntry(Handy.ActionRow):
         self.window.update_library()
 
     def add_to_steam(self, widget):
-        SteamManager.add_shortcut(self.config, self.program["name"], self.program["path"])
+        RunAsync(
+            SteamManager.add_shortcut,
+            None,
+            self.config,
+            self.program["name"],
+            self.program["path"]
+        )
 
     def open_search_url(self, widget, site):
         query = self.program["name"].replace(" ", "+")

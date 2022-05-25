@@ -359,10 +359,11 @@ class Manager:
 
     def check_runtimes(self, install_latest: bool = True) -> bool:
         self.runtimes_available = []
-        runtimes = glob("%s/*/" % Paths.runtimes)
+        runtimes = os.listdir(Paths.runtimes)
+
         if len(runtimes) == 0:
             if install_latest and self.utils_conn.check_connection():
-                logging.warning("No runtime found.", )
+                logging.warning("No runtime found.")
                 try:
                     version = next(iter(self.supported_runtimes))
                     return self.component_manager.install(
@@ -374,7 +375,8 @@ class Manager:
             return False
 
         runtime = runtimes[0]  # runtimes cannot be more than one
-        manifest = f"{runtime}/manifest.yml"
+        manifest = os.path.join(Paths.runtimes, runtime, "manifest.yml")
+
         if os.path.exists(manifest):
             with open(manifest, "r") as f:
                 data = yaml.safe_load(f)
@@ -386,6 +388,7 @@ class Manager:
     def check_winebridge(self, install_latest: bool = True, update: bool = False) -> bool:
         self.winebridge_available = []
         winebridge = os.listdir(Paths.winebridge)
+
         if len(winebridge) == 0 or update:
             if install_latest and self.utils_conn.check_connection():
                 logging.warning("No WineBridge found.", )
@@ -429,11 +432,7 @@ class Manager:
         if res:
             self.latencyflex_available = res
 
-    def __check_component(
-            self,
-            component_type: str,
-            install_latest: bool = True
-    ) -> Union[bool, list]:
+    def __check_component(self, component_type: str, install_latest: bool = True) -> Union[bool, list]:
         components = {
             "dxvk": {
                 "available": self.dxvk_available,
@@ -467,16 +466,16 @@ class Manager:
             raise ValueError("Component type not supported.")
 
         component = components[component_type]
-        component_list = glob("%s/*/" % component["path"])
-        component["available"] = [c.split("/")[-2] for c in component_list]
+        component["available"] = os.listdir(component["path"])
 
         if len(component["available"]) > 0:
             logging.info("{0}s found:\n - {1}".format(
                 component_type.capitalize(),
                 "\n - ".join(component["available"])
-            ), )
+            ))
+
         if len(component["available"]) == 0 and install_latest:
-            logging.warning("No {0} found.".format(component_type), )
+            logging.warning(f"No {component_type} found.")
 
             if self.utils_conn.check_connection():
                 # if connected, install the latest component from repository
@@ -503,7 +502,7 @@ class Manager:
         Search for the icon of the program in the system, fallback to
         'application-x-executable' if not found.
         """
-        logging.debug(f"Searching [{program_name}] icon..", )
+        logging.debug(f"Searching icon for {program_name}..", )
         pattern = f"*{program_name}*"
 
         for root, dirs, files in os.walk(Paths.icons_user):
@@ -736,17 +735,17 @@ class Manager:
         Will also mark the broken ones if the configuration file is missing
         TODO: move to bottle.py (Bottle manager)
         """
-        bottles = glob(f"{Paths.bottles}/*/")
+        bottles = os.listdir(Paths.bottles)
 
         for bottle in bottles:
             '''
             For each bottle add the path name to the `local_bottles` variable
             and append the config.
             '''
-            bottle_name_path = bottle.split("/")[-2]
-
-            _placeholder = os.path.join(bottle, "placeholder.yml")
-            _config = os.path.join(bottle, "bottle.yml")
+            _name = bottle
+            _bottle = os.path.join(Paths.bottles, bottle)
+            _placeholder = os.path.join(_bottle, "placeholder.yml")
+            _config = os.path.join(_bottle, "bottle.yml")
 
             if os.path.exists(_placeholder):
                 with open(_placeholder, "r") as f:
@@ -806,7 +805,7 @@ class Manager:
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
                 logging.warning(f"Key: [{key}] not in bottle: "
-                                f"[{bottle.split('/')[-2]}] config, updating.", )
+                                f"[{_name}] config, updating.", )
                 self.update_config(
                     config=conf_file_yaml,
                     key=key,
@@ -822,7 +821,7 @@ class Manager:
                 it to the default value.
                 '''
                 logging.warning(f"Key: [{key}] not in bottle: "
-                                f"[{bottle.split('/')[-2]}] config Parameters, "
+                                f"[{_name}] config Parameters, "
                                 "updating.", )
                 self.update_config(
                     config=conf_file_yaml,
@@ -830,7 +829,7 @@ class Manager:
                     value=Samples.config["Parameters"][key],
                     scope="Parameters"
                 )
-            self.local_bottles[bottle_name_path] = conf_file_yaml
+            self.local_bottles[_name] = conf_file_yaml
 
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format(

@@ -525,6 +525,7 @@ class DependencyManager:
 
         return True
 
+    # noinspection PyTypeChecker
     def __step_copy_dll(self, config: dict, step: dict):
         """
         This function copy dlls from temp folder to a directory
@@ -540,30 +541,29 @@ class DependencyManager:
 
         try:
             if "*" in step.get('file_name'):
-                files = glob(f"{path}/{step.get('file_name')}")
+                files = os.listdir(os.path.join(path, step.get("file_name")))
                 for fg in files:
-                    _name = os.path.basename(fg)
+                    _name = fg
+                    _path = os.path.join(path, step.get("file_name"), _name)
                     _dest = os.path.join(dest, _name)
-                    print(f"Copying {_name} to {_dest}")
+                    logging.info(f"Copying {_name} to {_dest}")
 
-                    if os.path.exists(_dest):
-                        if os.path.islink(_dest):
-                            os.unlink(_dest)
+                    if os.path.exists(_dest) and os.path.islink(_dest):
+                        os.unlink(_dest)
 
-                    shutil.copyfile(fg, _dest)
+                    shutil.copyfile(_path, _dest)
             else:
                 _name = step.get('file_name')
                 _dest = os.path.join(dest, _name)
-                print(f"Copying {_name} to {_dest}")
+                logging.info(f"Copying {_name} to {_dest}")
 
-                if os.path.exists(_dest):
-                    if os.path.islink(_dest):
-                        os.unlink(_dest)
+                if os.path.exists(_dest) and os.path.islink(_dest):
+                    os.unlink(_dest)
 
-                shutil.copyfile(f"{path}/{_name}", _dest)
+                shutil.copyfile(os.path.join(path, _name), _dest)
 
         except Exception as e:
-            print(e)
+            logging.warning(e)
             return False
 
         return True
@@ -574,17 +574,14 @@ class DependencyManager:
         reg = Reg(config)
 
         if step.get("url") and step.get("url").startswith("temp/"):
-            path = step["url"].replace(
-                "temp/",
-                f"{Paths.temp}/"
-            )
+            path = step["url"].replace("temp/", f"{Paths.temp}/")
             path = os.path.join(path, step.get("dll"))
+            dlls = os.listdir(path)
 
-            for dll in glob(path):
-                dll_name = os.path.splitext(os.path.basename(dll))[0]
+            for dll in dlls:
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
-                    value=dll_name,
+                    value=dll,
                     data=step.get("type")
                 )
             return True

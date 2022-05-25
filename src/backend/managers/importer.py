@@ -36,11 +36,11 @@ class ImportManager:
 
     @staticmethod
     def search_wineprefixes() -> list:
-        """Look and return all 3rd party available wineprefixes"""
+        """Look and return all 3rd party available wine prefixes"""
         importer_wineprefixes = []
 
         # search wine prefixes in external managers paths
-        wine_standard = glob(f"{TrdyPaths.wine}")
+        wine_standard = glob(TrdyPaths.wine)
         lutris_results = glob(f"{TrdyPaths.lutris}/*/")
         playonlinux_results = glob(f"{TrdyPaths.playonlinux}/*/")
         bottlesv1_results = glob(f"{TrdyPaths.bottlesv1}/*/")
@@ -67,8 +67,8 @@ class ImportManager:
                 wineprefix_manager = "Bottles v1"
 
             # check the drive_c path exists
-            if os.path.isdir(f"{wineprefix}/drive_c"):
-                wineprefix_lock = os.path.isfile(f"{wineprefix}/bottle.lock")
+            if os.path.isdir(os.path.join(wineprefix, "drive_c")):
+                wineprefix_lock = os.path.isfile(os.path.join(wineprefix, "bottle.lock"))
                 importer_wineprefixes.append(
                     {
                         "Name": wineprefix_name,
@@ -78,7 +78,7 @@ class ImportManager:
                     })
             i += 1
 
-        logging.info(f"Found {len(importer_wineprefixes)} wineprefixes…", )
+        logging.info(f"Found {len(importer_wineprefixes)} wine prefixes…", )
 
         return Result(
             status=True,
@@ -89,21 +89,20 @@ class ImportManager:
 
     def import_wineprefix(self, wineprefix: dict) -> bool:
         """Import wineprefix from external manager and convert in a bottle"""
-        logging.info(f"Importing wineprefix [{wineprefix['Name']}] in a new bottle…", )
+        logging.info(f"Importing wineprefix {wineprefix['Name']} as bottle…")
 
         # prepare bottle path for the wine prefix
-        bottle_path = "Imported_%s" % wineprefix.get("Name")
-        bottle_complete_path = "%s/%s" % (Paths.bottles, bottle_path)
+        bottle_path = f"Imported_{wineprefix.get('Name')}"
+        bottle_complete_path = os.path.join(Paths.bottles, bottle_path)
 
         try:
             os.makedirs(bottle_complete_path, exist_ok=False)
         except (FileExistsError, OSError):
-            logging.error("Error creating bottle path for wineprefix "
-                          f"[{wineprefix['Name']}], aborting.", )
+            logging.error(f"Error creating bottle directory for {wineprefix['Name']}")
             return Result(False)
 
         # create lockfile in source path
-        logging.info("Creating lock file in source path…", )
+        logging.info(f"Creating lock file in {wineprefix['Path']}…")
         open(f'{wineprefix.get("Path")}/bottle.lock', 'a').close()
 
         # copy wineprefix files in the new bottle
@@ -120,12 +119,12 @@ class ImportManager:
         new_config["Update_Date"] = str(datetime.now())
 
         # save config
-        with open(f"{bottle_complete_path}/bottle.yml", "w") as conf_file:
+        with open(os.path.join(bottle_complete_path, "bottle.yml"), "w") as conf_file:
             yaml.dump(new_config, conf_file, indent=4)
             conf_file.close()
 
         # update bottles view
         self.manager.update_bottles(silent=True)
 
-        logging.info(f"Wineprefix imported: {wineprefix['Name']}", jn=True)
+        logging.info(f"Wine prefix {wineprefix['Name']} imported as bottle.", jn=True)
         return Result(True)

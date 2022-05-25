@@ -36,7 +36,9 @@ class LayersStore:
     @staticmethod
     def list() -> list:
         """List all layers."""
-        for f in glob(f"{Paths.layers}/*"):
+        layers = os.listdir(Paths.layers)
+        for f in layers:
+            f = os.path.join(Paths.layers, f)
             if os.path.isdir(f):
                 yield f
 

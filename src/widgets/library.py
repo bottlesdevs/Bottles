@@ -58,7 +58,7 @@ class LibraryEntry(Gtk.Box):
             if entry['icon'] == "com.usebottles.bottles-program":
                 self.img_icon.set_from_icon_name(entry['icon'], Gtk.IconSize.DIALOG)
             else:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(entry['icon'], 32, 32, preserve_aspect_ratio=True)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(entry['icon'], 32, 32)
                 self.img_icon.set_from_pixbuf(pixbuf)
             self.img_icon.set_visible(True)
 
