@@ -29,10 +29,11 @@
     </child>
   </object>
   <template class="LibraryEntry" parent="GtkBox">
-    <property name="width-request">280</property>
     <property name="height-request">280</property>
     <property name="visible">True</property>
     <property name="can-focus">False</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkImage" id="img_cover">
