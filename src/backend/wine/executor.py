@@ -33,7 +33,8 @@ class WineExecutor:
     ):
         logging.info("Launching an executable…", )
         self.config = config
-        self.__validate_path(exec_path)
+        if not self.__validate_path(exec_path):
+            return
 
         if monitoring is None:
             monitoring = []
