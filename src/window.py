@@ -207,7 +207,7 @@ class MainWindow(Handy.ApplicationWindow):
             self.manager.checks(install_latest=False, first_run=True)
 
     def toggle_btn_noconnection(self, status):
-        self.btn_noconnection.set_visible(status)
+        GLib.idle_add(self.btn_noconnection.set_visible, status)
 
     def __on_start(self):
         """
