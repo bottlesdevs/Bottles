@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="libhandy" version="1.0"/>
   <template class="ListViewEntry" parent="HdyActionRow">
+    <property name="activatable">True</property>
     <property name="visible">True</property>
     <property name="can-focus">True</property>
     <property name="title">Bottle name</property>
