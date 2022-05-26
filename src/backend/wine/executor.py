@@ -117,7 +117,7 @@ class WineExecutor:
         as the program is launched
         """
         if not self.__validate_path(exec_path):
-            return Result(False)
+            return Result(False, data={"message": "Invalid executable path."})
 
         winepath = WinePath(self.config)
         start = Start(self.config)
@@ -139,7 +139,7 @@ class WineExecutor:
 
     def run(self):
         if not self.__validate_path(exec_path):
-            return False
+            return Result(False, data={"message": "Invalid executable path."})
         if self.exec_type in ["exe", "msi"]:
             return self.__launch_with_bridge()
         if self.exec_type == "batch":
