@@ -33,8 +33,6 @@ class WineExecutor:
     ):
         logging.info("Launching an executable…", )
         self.config = config
-        if not self.__validate_path(exec_path):
-            return
 
         if monitoring is None:
             monitoring = []
@@ -118,6 +116,9 @@ class WineExecutor:
         so we use Wine Starter, which will exit as soon
         as the program is launched
         """
+        if not self.__validate_path(exec_path):
+            return Result(False)
+
         winepath = WinePath(self.config)
         start = Start(self.config)
 
@@ -137,6 +138,8 @@ class WineExecutor:
         )
 
     def run(self):
+        if not self.__validate_path(exec_path):
+            return False
         if self.exec_type in ["exe", "msi"]:
             return self.__launch_with_bridge()
         if self.exec_type == "batch":
@@ -145,7 +148,7 @@ class WineExecutor:
             return self.__launch_with_starter()
         if self.exec_type == "dll":
             return self.__launch_dll()
-        return False
+        return Result(False, data={"message": "Unknown executable type."})
 
     def __launch_with_bridge(self):
         # winebridge = WineBridge(self.config)
@@ -166,7 +169,7 @@ class WineExecutor:
             return self.__launch_batch()
 
         logging.error(f'exec_type {self.exec_type} is not valid')
-        return False
+        return Result(False, data={"message": "Unknown executable type."})
 
     def __launch_exe(self):
         # winebridge = WineBridge(self.config)
@@ -251,7 +254,7 @@ class WineExecutor:
             return
 
         logging.info("Starting {} monitors".format(len(self.monitoring)))
-
         winedbg = WineDbg(self.config, silent=True)
+
         for m in self.monitoring:
             winedbg.wait_for_process(name=m)
