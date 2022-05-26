@@ -18,7 +18,7 @@
 import os
 import re
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 
@@ -39,7 +39,7 @@ from bottles.backend.wine.regkeys import RegKeys
 
 # noinspection PyUnusedLocal
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-preferences.ui')
-class PreferencesView(Gtk.ScrolledWindow):
+class PreferencesView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsPreferences'
 
     # region Widgets
@@ -49,12 +49,10 @@ class PreferencesView(Gtk.ScrolledWindow):
     btn_manage_nvapi = Gtk.Template.Child()
     btn_manage_gamescope = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
-    btn_environment_variables = Gtk.Template.Child()
-    btn_drives = Gtk.Template.Child()
-    btn_overrides = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
-    btn_rename = Gtk.Template.Child()
-    entry_name = Gtk.Template.Child()
+    row_drives = Gtk.Template.Child()
+    row_env_variables = Gtk.Template.Child()
+    row_overrides = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
@@ -122,11 +120,9 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.manager = window.manager
         self.config = config
 
-        self.entry_name.connect('key-release-event', self.__check_entry_name)
-        self.entry_name.connect('activate', self.__toggle_rename)
-        self.btn_rename.connect('toggled', self.__toggle_rename)
-
-        self.btn_overrides.connect("clicked", self.__show_dll_overrides_view)
+        self.row_overrides.connect("activated", self.__show_dll_overrides_view)
+        self.row_env_variables.connect("activated", self.__show_environment_variables)
+        self.row_drives.connect("activated", self.__show_drives)
         self.btn_manage_runners.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_dxvk.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_vkd3d.connect("clicked", self.window.show_prefs_view)
@@ -134,13 +130,10 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
-        self.btn_drives.connect("clicked", self.__show_drives)
-        self.btn_environment_variables.connect("clicked", self.__show_environment_variables)
         self.toggle_sync.connect('toggled', self.__set_wine_sync)
         self.toggle_esync.connect('toggled', self.__set_esync)
         self.toggle_fsync.connect('toggled', self.__set_fsync)
         self.toggle_futex2.connect('toggled', self.__set_futex2)
-
         self.switch_dxvk.connect('state-set', self.__toggle_dxvk)
         self.switch_dxvk_hud.connect('state-set', self.__toggle_dxvk_hud)
         self.switch_mangohud.connect('state-set', self.__toggle_mangohud)
