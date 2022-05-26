@@ -135,6 +135,9 @@ class ListViewEntry(Handy.ActionRow):
                 exec_path = file_dialog.get_filename()
             file_dialog.destroy()
 
+        if exec_path in [None, ""]:
+            return
+
         executor = WineExecutor(
             self.config,
             exec_path=exec_path
