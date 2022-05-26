@@ -175,7 +175,6 @@ class ListView(Gtk.ScrolledWindow):
 
     # region Widgets
     list_bottles = Gtk.Template.Child()
-    list_steam = Gtk.Template.Child()
     clamp_list = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
@@ -222,9 +221,6 @@ class ListView(Gtk.ScrolledWindow):
         for bottle in self.list_bottles.get_children():
             bottle.destroy()
 
-        for bottle in self.list_steam.get_children():
-            bottle.destroy()
-
         local_bottles = self.window.manager.local_bottles
         bottles = local_bottles.items()
 
@@ -239,19 +235,9 @@ class ListView(Gtk.ScrolledWindow):
             self.entry_search.set_visible(True)
 
         for bottle in bottles:
-            _entry = ListViewEntry(self.window, bottle, self.arg_exe)
-            if bottle[1].get("Environment") != "Steam":
-                self.list_bottles.add(_entry)
-            else:
-                self.list_steam.add(_entry)
-
-            if len(self.list_steam.get_children()) == 0:
-                self.list_steam.set_visible(False)
-                self.list_bottles.set_title("")
-            else:
-                self.list_steam.set_visible(True)
-                self.list_bottles.set_title(_("Your Bottles"))
-
+            self.list_bottles.add(
+                ListViewEntry(self.window, bottle, self.arg_exe)
+            )
         self.arg_exe = None
         if self.arg_bottle is not None and self.arg_bottle in local_bottles.keys():
             _config = local_bottles[self.arg_bottle]
@@ -266,9 +252,3 @@ class ListView(Gtk.ScrolledWindow):
         for bottle in self.list_bottles.get_children():
             if bottle.config["Path"] == config["Path"]:
                 bottle.disable()
-                break
-
-        for bottle in self.list_steam.get_children():
-            if bottle.config["Path"] == config["Path"]:
-                bottle.disable()
-                break
