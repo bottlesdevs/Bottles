@@ -34,7 +34,7 @@
           <li>... and much more that you can find by installing Bottles!</li>
         </ul>
     </description>
-    ​<provides>
+    <provides>
         <mediatype>application/x-ms-dos-executable</mediatype>
         <mediatype>application/x-msi</mediatype>
         <mediatype>application/x-ms-shortcut</mediatype>
@@ -96,74 +96,57 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.5.14-trento-3" date="2022-05-13">
+        <release version="2022.5.28-trento" date="2022-05-27">
           <description>
             <p>News</p>
             <ul>
-                <li>Downloads now show progress</li>
-                <li>Programs can now be added multiple times with different arguments/options</li>
-                <li>Added the ability to permanently remove programs from the list</li>
-                <li>Reworked program's menu</li>
-                <li>Path is now shown for custom scripts in programs launch options</li>
-                <li>Improve startup speed when launching programs from CLI</li>
-                <li>Some initial checks are now cached to improve startup speed</li>
-                <li>EasyTerm now allows you to copy and paste content</li>
-                <li>Improved Windows paths conversion using native methods</li>
-                <li>Desktop entries are now generated with the icon</li>
-                <li>An alert is shown when the user custom bottles path is not reachable</li>
-                <li>An alert is shown when the flatpak has no permissions to add desktop entries</li>
-                <li>Windows 95, 98 now available for 32-bit bottles</li>
-                <li>Programs list is now updated when an executable stops running</li>
-                <li>Health check now shows disk and memory info</li>
-                <li>LatencyFleX can now be installed from installers</li>
-                <li>Installers can now declare checks to make sure the program is installed before adding a new entry to the program list</li>
-                <li>Installers can now monitor the exit of executables before proceeding</li>
-                <li>Improved installation speed of DLL components (DXVK, vkd3d ..)</li>
-                <li>Dependencies can now import registry bundles</li>
+                <li>Support for Steam runtimes (soldier, scout); if enabled, bottles with Proton use soldier while other runners use scout</li>
+                <li>Create Steam shortcuts directly from the program list; requires permission to the Steam path if Flatpak</li>
+                <li>Support for launching programs using xdg-open (e.g. xdg-open bottles:run/BottleName/ProgramName)</li>
+                <li>Library now show icons for all programs</li>
+                <li>Launch Bottles with a pre-selected bottle using the -b argument</li>
+                <li>Wine-GE runners are now grouped in the preferences</li>
+                <li>Improved logs readability</li>
+                <li>Disabled unsupported features for Steam Proton prefixes</li>
+                <li>Support for Nouveau drivers</li>
+                <li>Components installation now show a feedback during effective installation</li>
+                <li>Icon extraction now support external drives</li>
+                <li>Control WineProgram now support .cpl files</li>
+                <li>New WineProgram(s) Regsvr32, Eject, Expand, Explorer, Hh, Icinfo, Notepad, Oleview, Progman, Winhelp, Xcopy</li>
+                <li>Extended Msiexec WineProgram support with repair, uninstall, apply/uninstall patch, register/unregister module</li>
+                <li>The bottles list is now divided in categories (Bottles and Steam Proton prefixes)</li>
+                <li>General UI improvements</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fixed data.yml file not being reinitialized if empty</li>
-                <li>Fixed gnome-terminal support</li>
-                <li>Fixed encoding not being properly set when launching commands</li>
-                <li>Fixed launch options being ignored when launching from desktop entries</li>
-                <li>Fixed wrong tooltips in programs list</li>
-                <li>Fixed post scripts not being launched if the program fails to</li>
-                <li>Fixed a regression in launching executables from the file manager</li>
-                <li>Fixed a regression in versioning, was not checking for file recursively</li>
-                <li>Fixed sys-wine not being detected</li>
-                <li>Fixed program arguments not properly set when using gamemode or gamescope</li>
-                <li>Fixed issue with batch files not starting with path containing spaces</li>
-                <li>Fixed a bug with the backup manager, was causing with empty paths</li>
-                <li>Fixed a bug in the journal manager, was causing a crash if missing a key</li>
-                <li>Fixed a bug where parameters were not updated correctly when using installers that depend on other installers</li>
-                <li>Fixed a bug that caused dependencies not to show as installed starting from the second bottle</li>
-                <li>Fixed a bug with library not being reinitialized if empty</li>
+                <li>Fixed a bug which was preventing batch scripts from being executed via CLI</li>
+                <li>Fixed a bug during bottle creation which was raising an error when the recipe was empty</li>
+                <li>Fixed a bug in the journal which was causing a crash when the journal file was corrupted</li>
+                <li>Fixed a regression in sync change, the wine server was not being shut down properly</li>
+                <li>Fixed a bug in bottle preferences that caused a configuration update during widgets load</li>
+                <li>Fixed a bug which was preventing icoextract from working properly</li>
+                <li>Fixed a bug with desktop entries, were not being created if path contained apostrophes</li>
+                <li>Fixed a bug in setting the current working directory, it was being set even if it didn't exist</li>
+                <li>Fixed a bug in downloads, was causing a crash when the connection was closed by the server</li>
+                <li>Fixed a bug that sometimes caused a crash when offline</li>
+                <li>Fixed a bug with the Executor, it tried to execute even if the executable path was empty</li>
+                <li>Fixed a bug with Steam Proton prefixes support, was causing a crash if no prefixes were found</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>French translations thanks to @julroy67</li>
-                <li>Portuguese (Brazil) translations thanks to @FHEK789, @vitorhcl, @davipatricio</li>
-                <li>German translations thanks to @Maxopoly, @Sematre, @SuNNjek, @ThatRedKite</li>
-                <li>Spanish translations thanks to @uanretamales, @oscfdezdz, @Dansito</li>
-                <li>Swedish translations thanks to @bittin</li>
-                <li>Russian translations thanks to @Knebergish</li>
-                <li>Czech translations thanks to @vikdevelop</li>
-                <li>Chinese (traditional) translations thanks to @Adrian400811</li>
-                <li>Malay translations thanks to @amiruldevkun</li>
-                <li>Persian traslations thanks to @pikhosh, @Gnkalk</li>
-                <li>Indonesian translations thanks to Jovan Aditya Pangestu</li>
-                <li>Finnish translations thanks to Jiri Grönroos</li>
-                <li>Japanese translations thanks to @kakurasan</li>
+                <li>Arabic translations thanks to Light, @fawaz006</li>
+                <li>Norwegian Bokmål translations thanks to @comradekingu</li>
+                <li>Russian translations thanks to @mrvladus, @Knebergish</li>
+                <li>Spanish translations thanks to @Dansito</li>
+                <li>Dutch translations thanks to @Sojiro84</li>
+                <li>Czech translations thanks to @vikdevelop, @pervoj</li>
                 <li>Hungarian translations thanks to @zoli111</li>
-                <li>Polish translations thanks to @imLinguin</li>
-                <li>Greek translations thanks to IceDBorn</li>
-                <li>Turkish translations thankg to @ersen0</li>
-                <li>Chinese (simplified) translations thanks to Eric</li>
+                <li>Korean translations thanks to @yth1130</li>
+                <li>Slovak translations thanks to @prescott66</li>
+                <li>Portuguese (Brazil) translations thanks to @arribeiro</li>
                 <li>Thai translations thanks to @SashaPGT</li>
-                <li>Improved translations thanks to @TheEvilSkeleton</li>
             </ul>
           </description>
         </release>

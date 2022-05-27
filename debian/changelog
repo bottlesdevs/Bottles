@@ -1,60 +1,43 @@
-com.usebottles.bottles (2022.5.14-trento-3) precise; urgency=low
+com.usebottles.bottles (2022.5.28-trento) precise; urgency=low
 
-  * Downloads now show progress
-  * Programs can now be added multiple times with different arguments/options
-  * Added the ability to permanently remove programs from the list
-  * Reworked program's menu
-  * Path is now shown for custom scripts in programs launch options
-  * Improve startup speed when launching programs from CLI
-  * Some initial checks are now cached to improve startup speed
-  * EasyTerm now allows you to copy and paste content
-  * Improved Windows paths conversion using native methods
-  * Desktop entries are now generated with the icon
-  * An alert is shown when the user custom bottles path is not reachable
-  * An alert is shown when the flatpak has no permissions to add desktop entries
-  * Windows 95, 98 now available for 32-bit bottles
-  * Programs list is now updated when an executable stops running
-  * Health check now shows disk and memory info
-  * LatencyFleX can now be installed from installers
-  * Installers can now declare checks to make sure the program is installed before adding a new entry to the program list
-  * Installers can now monitor the exit of executables before proceeding
-  * Improved installation speed of DLL components (DXVK, vkd3d ..)
-  * Dependencies can now import registry bundles
-  * Fixed data.yml file not being reinitialized if empty
-  * Fixed gnome-terminal support
-  * Fixed encoding not being properly set when launching commands
-  * Fixed launch options being ignored when launching from desktop entries
-  * Fixed wrong tooltips in programs list
-  * Fixed post scripts not being launched if the program fails to
-  * Fixed a regression in launching executables from the file manager
-  * Fixed a regression in versioning, was not checking for file recursively
-  * Fixed sys-wine not being detected
-  * Fixed program arguments not properly set when using gamemode or gamescope
-  * Fixed issue with batch files not starting with path containing spaces
-  * Fixed a bug with the backup manager, was causing with empty paths
-  * Fixed a bug in the journal manager, was causing a crash if missing a key
-  * Fixed a bug where parameters were not updated correctly when using installers that depend on other installers
-  * Fixed a bug that caused dependencies not to show as installed starting from the second bottle
-  * Fixed a bug with library not being reinitialized if empty
-  * French translations thanks to @julroy67
-  * Portuguese (Brazil) translations thanks to @FHEK789, @vitorhcl, @davipatricio
-  * German translations thanks to @Maxopoly, @Sematre, @SuNNjek, @ThatRedKite
-  * Spanish translations thanks to @uanretamales, @oscfdezdz, @Dansito
-  * Swedish translations thanks to @bittin
-  * Russian translations thanks to @Knebergish
-  * Czech translations thanks to @vikdevelop
-  * Chinese (traditional) translations thanks to @Adrian400811
-  * Malay translations thanks to @amiruldevkun
-  * Persian traslations thanks to @pikhosh, @Gnkalk
-  * Indonesian translations thanks to Jovan Aditya Pangestu
-  * Finnish translations thanks to Jiri Grönroos
-  * Japanese translations thanks to @kakurasan
+  * Support for Steam runtimes (soldier, scout); if enabled, bottles with Proton use soldier while other runners use scout
+  * Create Steam shortcuts directly from the program list; requires permission to the Steam path if Flatpak
+  * Support for launching programs using xdg-open (e.g. xdg-open bottles:run/BottleName/ProgramName)
+  * Library now show icons for all programs
+  * Launch Bottles with a pre-selected bottle using the -b argument
+  * Wine-GE runners are now grouped in the preferences
+  * Improved logs readability
+  * Disabled unsupported features for Steam Proton prefixes
+  * Support for Nouveau drivers
+  * Components installation now show a feedback during effective installation
+  * Icon extraction now support external drives
+  * Control WineProgram now support .cpl files
+  * New WineProgram(s) Regsvr32, Eject, Expand, Explorer, Hh, Icinfo, Notepad, Oleview, Progman, Winhelp, Xcopy
+  * Extended Msiexec WineProgram support with repair, uninstall, apply/uninstall patch, register/unregister module
+  * The bottles list is now divided in categories (Bottles and Steam Proton prefixes)
+  * General UI improvements
+  * Fixed a bug which was preventing batch scripts from being executed via CLI
+  * Fixed a bug during bottle creation which was raising an error when the recipe was empty
+  * Fixed a bug in the journal which was causing a crash when the journal file was corrupted
+  * Fixed a regression in sync change, the wine server was not being shut down properly
+  * Fixed a bug in bottle preferences that caused a configuration update during widgets load
+  * Fixed a bug which was preventing icoextract from working properly
+  * Fixed a bug with desktop entries, were not being created if path contained apostrophes
+  * Fixed a bug in setting the current working directory, it was being set even if it didn't exist
+  * Fixed a bug in downloads, was causing a crash when the connection was closed by the server
+  * Fixed a bug that sometimes caused a crash when offline
+  * Fixed a bug with the Executor, it tried to execute even if the executable path was empty
+  * Fixed a bug with Steam Proton prefixes support, was causing a crash if no prefixes were found
+  * Arabic translations thanks to Light, @fawaz006
+  * Norwegian Bokmål translations thanks to @comradekingu
+  * Russian translations thanks to @mrvladus, @Knebergish
+  * Spanish translations thanks to @Dansito
+  * Dutch translations thanks to @Sojiro84
+  * Czech translations thanks to @vikdevelop, @pervoj
   * Hungarian translations thanks to @zoli111
-  * Polish translations thanks to @imLinguin
-  * Greek translations thanks to IceDBorn
-  * Turkish translations thankg to @ersen0
-  * Chinese (simplified) translations thanks to Eric
+  * Korean translations thanks to @yth1130
+  * Slovak translations thanks to @prescott66
+  * Portuguese (Brazil) translations thanks to @arribeiro
   * Thai translations thanks to @SashaPGT
-  * Improved translations thanks to @TheEvilSkeleton
 
- -- Mirko Brombin <send@mirko.pm>  Fri, 13 May 2022 23:33:00 +0000
+ -- Mirko Brombin <send@mirko.pm>  Fri, 27 May 2022 22:32:00 +0000
