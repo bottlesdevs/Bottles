@@ -46,7 +46,7 @@ class NewView(Adw.Window):
     label_output = Gtk.Template.Child()
     combo_runner = Gtk.Template.Child()
     combo_arch = Gtk.Template.Child()
-    # row_sandbox = Gtk.Template.Child()
+    row_sandbox = Gtk.Template.Child()
     title = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     # endregion
@@ -96,21 +96,21 @@ class NewView(Adw.Window):
         """
         self.selected_env = row.get_buildable_id()
 
-    def check_entry_name(self, widget, event_key):
+    def check_entry_name(self, widget, event_key, state=None, data=None):
         """
         This function checks if the name of the bottle is valid. So it
         checks if the name is not empty and if it contains special
-        characters. Then it toggle the entry icon according to the result.
+        characters. Then it toggles the error style according to the result.
         """
         regex = re.compile('[\\\@!#$%^&*()<>?/|}{~:.;,\'"]')
         name = self.entry_name.get_text()
 
         if (regex.search(name) is None) and name != "" and not name.isspace():
-            self.btn_create.set_visible(True)
-            self.entry_name.set_icon_from_icon_name(1, "")
+            self.btn_create.set_sensitive(True)
+            self.entry_name.get_style_context().remove_class("error")
         else:
-            self.btn_create.set_visible(False)
-            self.entry_name.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+            self.btn_create.set_sensitive(False)
+            self.entry_name.get_style_context().add_class("error")
 
     def choose_env_recipe(self, widget):
         file_dialog = Gtk.FileChooserNative.new(

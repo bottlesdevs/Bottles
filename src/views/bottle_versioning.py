@@ -17,7 +17,7 @@
 
 import re
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.common import open_doc_url
@@ -25,7 +25,7 @@ from bottles.widgets.state import StateEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-versioning.ui')
-class VersioningView(Gtk.ScrolledWindow):
+class VersioningView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsVersioning'
 
     # region Widgets
@@ -71,11 +71,12 @@ class VersioningView(Gtk.ScrolledWindow):
         while self.list_states.get_first_child():
             self.list_states.remove(self.list_states.get_first_child())
 
-        if len(states) == 0:
+        if len(states) == 0 :
             states = self.versioning_manager.list_states(self.config)
 
         states = states.items()
         self.hdy_status.set_visible(not len(states) > 0)
+        self.list_states.set_visible(len(states) > 0)
 
         if self.config.get("Versioning"):
             for state in states:
