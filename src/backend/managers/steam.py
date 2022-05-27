@@ -187,6 +187,9 @@ class SteamManager:
             .get("Steam", {})
         apps = apps.get("apps") if apps.get("apps") else apps.get("Apps")
 
+        if apps is None:
+            return {}
+
         for appid, appdata in apps.items():
             _library_path = SteamManager.get_appid_library_path(appid)
             if _library_path is None:

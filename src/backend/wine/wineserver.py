@@ -22,7 +22,7 @@ class WineServer(WineProgram):
         if not config.get("Runner"):
             return False
 
-        # Perform native chedck before wasting time using wine
+        # Perform native check before wasting time using wine
         res = subprocess.Popen(["pgrep", "wineserver"], stdout=subprocess.PIPE)
         if res.stdout.read() == b"":
             return False
