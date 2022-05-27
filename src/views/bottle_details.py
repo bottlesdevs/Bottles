@@ -236,20 +236,20 @@ class BottleView(Gtk.ScrolledWindow):
         )
 
         #file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config) + '/drive_c/')
-        file_dialog.connect('response', self.__execute)
+        file_dialog.connect('response', self.__execute, file_dialog)
         file_dialog.show()
 
-    def __execute(self, response, args):
+    def __execute(self, _dialog, response, file_dialog):
 
         if response == -3:
 
-            if not args:
-                args = ""
+            # if not args:
+            #     args = ""
 
             executor = WineExecutor(
                 self.config,
-                exec_path=file_dialog.get_filename(),
-                args=args,
+                exec_path=file_dialog.get_file().get_basename,
+                # args=args,
                 terminal=self.check_terminal.get_active(),
                 move_file=self.check_move_file.get_active(),
                 move_upd_fn=self.update_move_progress
@@ -260,9 +260,9 @@ class BottleView(Gtk.ScrolledWindow):
                 config=self.config,
                 key="Latest_Executables",
                 value=_execs + [{
-                    "name": file_dialog.get_filename().split("/")[-1],
-                    "file": file_dialog.get_filename(),
-                    "args": args
+                    "name": file_dialog.get_file().get_basename.split("/")[-1],
+                    "file": file_dialog.get_file().get_basename,
+                    "args": None
                 }]
             )
 

@@ -3,10 +3,16 @@
 <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
   <object class="GtkPopover" id="pop_actions">
+    <style>
+      <class name="menu"/>
+    </style>
     <child>
       <object class="GtkBox">
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
         <child>
           <object class="GtkModelButton" id="btn_manifest">
             <property name="text" translatable="yes">Show Manifest</property>
