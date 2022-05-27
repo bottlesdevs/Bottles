@@ -2,87 +2,33 @@
 <interface>
 <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <object class="GtkPopover" id="pop_actions">
-    <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
-        <child>
-          <object class="GtkModelButton" id="btn_manifest">
-            
-            <property name="text" translatable="yes">Show manifest</property>
-          </object>
-          
-          
-        </child>
-      </object>
-    </child>
-  </object>
   <template class="StateEntry" parent="AdwActionRow">
-    
+    <property name="activatable-widget">btn_restore</property>
     <property name="title">State id</property>
     <property name="subtitle">State comment</property>
     <child>
       <object class="GtkBox">
-        <property name="spacing">10</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="GtkMenuButton">
-            
-            <property name="focus-on-click">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="popover">pop_actions</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">view-more-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
-          </object>
-          
-          
-        </child>
-        <child>
-          <object class="GtkSeparator">
-          </object>
-          
-          
-        </child>
-        <child>
-          <object class="GtkButton" id="btn_restore">
-            
-            <property name="tooltip-text" translatable="yes">Restore this state</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">document-open-recent-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
-          </object>
-          
-          
-        </child>
-        <child>
-          <object class="GtkLabel" id="label_creation_date">
-            <property name="tooltip-text" translatable="yes">Creation date</property>
-            <property name="halign">start</property>
-            <property name="margin-end">10</property>
-            <property name="label">Creation date</property>
-            <attributes>
-              <attribute name="weight" value="normal"/>
-              <attribute name="scale" value="0.94999999999999996"/>
-            </attributes>
-          </object>
-          
-          
-        </child>
-      </object>
+          <object class="GtkButton" id="btn_manifest">
+          <property name="valign">center</property>
+          <property name="icon-name">emblem-documents-symbolic</property>
+          <style>
+            <class name="flat"/>
+          </style>
+        </object>
+      </child>
+      <child>
+        <object class="GtkButton" id="btn_restore">
+          <property name="tooltip-text" translatable="yes">Restore this state</property>
+          <property name="valign">center</property>
+              <property name="icon-name">document-open-recent-symbolic</property>
+          <style>
+            <class name="flat"/>
+          </style>
+        </object>
+      </child>
+    </object>
     </child>
   </template>
 </interface>
