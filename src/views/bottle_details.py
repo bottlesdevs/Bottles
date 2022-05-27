@@ -85,8 +85,8 @@ class BottleView(Adw.PreferencesPage):
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     extra_separator = Gtk.Template.Child()
-    reveal_progress = Gtk.Template.Child()
-    progress_bar = Gtk.Template.Child()
+    #reveal_progress = Gtk.Template.Child()
+    #progress_bar = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
 
@@ -368,12 +368,13 @@ class BottleView(Adw.PreferencesPage):
         This function update the progress bar when the user
         is moving a file.
         """
-        if progress == 1:
-            self.reveal_progress.set_reveal_child(False)
-            self.progress_bar.set_fraction(0)
-        else:
-            self.reveal_progress.set_reveal_child(True)
-            self.progress_bar.set_fraction(progress)
+        None
+        # if progress == 1:
+        #     self.reveal_progress.set_reveal_child(False)
+        #     self.progress_bar.set_fraction(0)
+        # else:
+        #     self.reveal_progress.set_reveal_child(True)
+        #     self.progress_bar.set_fraction(progress)
 
     '''
     The following functions are used like wrappers for the
