@@ -53,18 +53,29 @@
     <property name="spacing">6</property>
     <child>
       <object class="GtkMenuButton">
-        <property name="focus-on-click">0</property>
-        <property name="valign">center</property>
+        <property name="always-show-arrow">True</property>
+        <property name="popover">pop_power</property>
+        <property name="icon-name">system-shutdown-symbolic</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuButton">
         <property name="popover">pop_context</property>
          <property name="icon-name">view-more-symbolic</property>
       </object>
     </child>
   </object>
   <object class="GtkPopover" id="pop_power">
+    <style>
+      <class name="menu"/>
+    </style>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
         <child>
           <object class="GtkModelButton" id="btn_killall">
             <property name="text" translatable="yes">Kill All Processes</property>
@@ -198,228 +209,209 @@
     </child>
   </object>
   <template class="DetailsBottle" parent="AdwPreferencesPage">
-     <child>
-       <object class="GtkBox">
-         <property name="margin-start">12</property>
-         <property name="margin-end">12</property>
-         <property name="margin-top">12</property>
-         <property name="margin-bottom">12</property>
-         <property name="orientation">vertical</property>
-         <child>
-           <object class="GtkBox">
-             <property name="spacing">6</property>
-             <child>
-               <object class="GtkBox">
-                 <property name="margin-top">12</property>
-                 <property name="margin-bottom">12</property>
-                 <property name="orientation">vertical</property>
-                 <child>
-                   <object class="GtkLabel" id="label_name">
-                     <property name="halign">start</property>
-                     <property name="label" translatable="yes">My bottle</property>
-                     <style>
-                       <class name="title-2"/>
-                     </style>
-                   </object>
-                 </child>
-                 <child>
-                   <object class="GtkBox">
-                     <property name="spacing">6</property>
-                     <child>
-                       <object class="GtkLabel" id="label_arch">
-                         <property name="halign">start</property>
-                         <property name="label" translatable="yes">Win64</property>
-                         <style>
-                           <class name="heading"/>
-                         </style>
-                       </object>
-                     </child>
-                     <child>
-                       <object class="GtkLabel" id="label_environment">
-                         <property name="label" translatable="yes">Environment</property>
-                         <style>
-                           <class name="heading"/>
-                         </style>
-                       </object>
-                     </child>
-                     <child>
-                       <object class="GtkLabel" id="label_runner">
-                         <property name="label" translatable="yes">Runner</property>
-                         <style>
-                           <class name="heading"/>
-                         </style>
-                       </object>
-                     </child>
-                     <child>
-                       <object class="GtkGrid" id="grid_versioning">
-                         <property name="tooltip-text" translatable="yes">Versioning enabled for this bottle</property>
-                         <property name="halign">center</property>
-                         <property name="valign">center</property>
-                         <child>
-                           <object class="GtkImage" id="img_versioning">
-                             <property name="tooltip-text" translatable="yes">Versioning is active in this bottle.</property>
-                             <property name="halign">center</property>
-                             <property name="valign">center</property>
-                             <property name="icon-name">view-wrapped-symbolic</property>
-                           </object>
-                         </child>
-                         <child>
-                           <object class="GtkLabel" id="label_state">
-                             <property name="halign">center</property>
-                             <property name="valign">center</property>
-                             <property name="label" translatable="yes">0</property>
-                           </object>
-                         </child>
-                       </object>
-                     </child>
-                   </object>
-                 </child>
-               </object>
-             </child>
-             <child>
-               <object class="AdwSplitButton" id="btn_execute">
-                 <property name="label" translatable="yes">Run Executable…</property>
-                 <property name="hexpand">True</property>
-                 <property name="halign">end</property>
-                 <property name="valign">center</property>
-                 <property name="popover">pop_run</property>
-                 <style>
-                   <class name="suggested-action"/>
-                 </style>
-               </object>
-             </child>
-           </object>
-         </child>
-         <child>
-           <object class="AdwPreferencesGroup" id="group_layers">
-             <property name="title" translatable="yes">Layers</property>
-             <property name="visible">False</property>
-           </object>
-         </child>
-         <child>
-           <object class="GtkRevealer" id="reveal_progress">
-             <property name="transition-type">slide-up</property>
-             <child>
-               <object class="GtkProgressBar" id="progress_bar">
-                 <property name="text" translatable="yes">Moving inside the sandbox…</property>
-                 <property name="show-text">1</property>
-               </object>
-             </child>
-           </object>
-         </child>
-         <child>
-           <object class="AdwPreferencesGroup" id="group_programs">
-             <property name="title" translatable="yes">Programs</property>
-           </object>
-         </child>
-         <child>
-           <object class="AdwPreferencesGroup" id="group_utilities">
-             <property name="title" translatable="yes">Tools</property>
-           <child>
-               <object class="AdwActionRow" id="row_cmd">
-               <property name="activatable">true</property>
-                 <property name="title" translatable="yes">Command Line</property>
-                 <property name="subtitle" translatable="yes">Run commands inside the Bottle.</property>
-                 <child>
-                   <object class="GtkImage">
-                     <property name="icon-name">external-link-symbolic</property>
-                   </object>
-                 </child>
-               </object>
-             </child>
-             <child>
-               <object class="AdwActionRow" id="row_taskmanager">
-                 <property name="activatable">true</property>
-                 <property name="title" translatable="yes">Task Manager</property>
-                 <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
-                 <child>
-                   <object class="GtkImage">
-                     <property name="icon-name">external-link-symbolic</property>
-                   </object>
-                 </child>
-               </object>
-             </child>
-             <child>
-               <object class="AdwActionRow" id="row_regedit">
-                 <property name="activatable">true</property>
-                 <property name="title" translatable="yes">Registry Editor</property>
-                 <property name="subtitle" translatable="yes">Edit the internal registry.</property>
-                 <child>
-                   <object class="GtkImage">
-                     <property name="icon-name">external-link-symbolic</property>
-                   </object>
-                 </child>
-               </object>
-             </child>
-             <child>
-               <object class="AdwExpanderRow">
-                 <property name="title" translatable="yes">Legacy Tools</property>
-                 <child>
-                   <object class="AdwActionRow" id="row_browse">
-                     <property name="activatable">true</property>
-                     <property name="title" translatable="yes">Browse C:</property>
-                     <property name="subtitle" translatable="yes">Browse internal files.</property>
-                     <child>
-                       <object class="GtkImage">
-                         <property name="icon-name">external-link-symbolic</property>
-                       </object>
-                     </child>
-                   </object>
-                 </child>
-                 <child>
-                   <object class="AdwActionRow" id="row_debug">
-                     <property name="activatable">true</property>
-                     <property name="title" translatable="yes">Debug</property>
-                     <property name="subtitle" translatable="yes">Debug wine processes.</property>
-                     <child>
-                       <object class="GtkImage">
-                         <property name="icon-name">external-link-symbolic</property>
-                       </object>
-                     </child>
-                   </object>
-                 </child>
-                 <child>
-                   <object class="AdwActionRow" id="row_winecfg">
-                     <property name="activatable">true</property>
-                     <property name="title" translatable="yes">Wine Configuration</property>
-                     <property name="subtitle" translatable="yes">Adjust internal settings.</property>
-                     <child>
-                       <object class="GtkImage">
-                         <property name="icon-name">external-link-symbolic</property>
-                       </object>
-                     </child>
-                   </object>
-                 </child>
-                 <child>
-                   <object class="AdwActionRow" id="row_uninstaller">
-                     <property name="activatable">true</property>
-                     <property name="title" translatable="yes">Uninstaller</property>
-                     <property name="subtitle" translatable="yes">Uninstall programs using Wine uninstaller.</property>
-                     <child>
-                       <object class="GtkImage">
-                         <property name="icon-name">external-link-symbolic</property>
-                       </object>
-                     </child>
-                   </object>
-                 </child>
-                 <child>
-                   <object class="AdwActionRow" id="row_controlpanel">
-                   <property name="activatable">true</property>
-                     <property name="title" translatable="yes">Control Panel</property>
-                     <property name="subtitle" translatable="yes">Access the internal Wine Control Panel.</property>
-                     <child>
-                       <object class="GtkImage">
-                         <property name="icon-name">external-link-symbolic</property>
-                       </object>
-                     </child>
-                   </object>
-                 </child>
-               </object>
-             </child>
-           </object>
-         </child>
-       </object>
-     </child>
+    <child>
+      <object class="AdwPreferencesGroup">
+          <child>
+          <object class="GtkBox">
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label_name">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">My bottle</property>
+                    <style>
+                      <class name="title-2"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkLabel" id="label_arch">
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Win64</property>
+                        <style>
+                          <class name="heading"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_environment">
+                        <property name="label" translatable="yes">Environment</property>
+                        <style>
+                          <class name="heading"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_runner">
+                        <property name="label" translatable="yes">Runner</property>
+                        <style>
+                          <class name="heading"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkGrid" id="grid_versioning">
+                        <property name="tooltip-text" translatable="yes">Versioning enabled for this bottle</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <child>
+                          <object class="GtkImage" id="img_versioning">
+                            <property name="tooltip-text" translatable="yes">Versioning is active in this bottle.</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="icon-name">view-wrapped-symbolic</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label_state">
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="label" translatable="yes">0</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSplitButton" id="btn_execute">
+                <property name="label" translatable="yes">Run Executable…</property>
+                <property name="hexpand">True</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="popover">pop_run</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesGroup" id="group_layers">
+        <property name="title" translatable="yes">Layers</property>
+        <property name="visible">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesGroup" id="group_programs">
+        <property name="title" translatable="yes">Programs</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesGroup" id="group_utilities">
+        <property name="title" translatable="yes">Tools</property>
+      <child>
+          <object class="AdwActionRow" id="row_cmd">
+          <property name="activatable">true</property>
+            <property name="title" translatable="yes">Command Line</property>
+            <property name="subtitle" translatable="yes">Run commands inside the Bottle.</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">external-link-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow" id="row_taskmanager">
+            <property name="activatable">true</property>
+            <property name="title" translatable="yes">Task Manager</property>
+            <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">external-link-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow" id="row_regedit">
+            <property name="activatable">true</property>
+            <property name="title" translatable="yes">Registry Editor</property>
+            <property name="subtitle" translatable="yes">Edit the internal registry.</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">external-link-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwExpanderRow">
+            <property name="title" translatable="yes">Legacy Tools</property>
+            <child>
+              <object class="AdwActionRow" id="row_browse">
+                <property name="activatable">true</property>
+                <property name="title" translatable="yes">Browse C:</property>
+                <property name="subtitle" translatable="yes">Browse internal files.</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">external-link-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="row_debug">
+                <property name="activatable">true</property>
+                <property name="title" translatable="yes">Debug</property>
+                <property name="subtitle" translatable="yes">Debug wine processes.</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">external-link-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="row_winecfg">
+                <property name="activatable">true</property>
+                <property name="title" translatable="yes">Wine Configuration</property>
+                <property name="subtitle" translatable="yes">Adjust internal settings.</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">external-link-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="row_uninstaller">
+                <property name="activatable">true</property>
+                <property name="title" translatable="yes">Uninstaller</property>
+                <property name="subtitle" translatable="yes">Uninstall programs using Wine uninstaller.</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">external-link-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="row_controlpanel">
+              <property name="activatable">true</property>
+                <property name="title" translatable="yes">Control Panel</property>
+                <property name="subtitle" translatable="yes">Access the internal Wine Control Panel.</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">external-link-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
   </template>
   <object class="HdyActionRow" id="row_no_programs">
     <property name="visible">True</property>

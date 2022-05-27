@@ -83,17 +83,17 @@ By instaling them, you agree with their respective licensing terms.</property>
         </child>
       </object>
     </child>
-    <child>
-      <object class="GtkMenuButton">
-        <property name="popover">pop_context</property>
-        <property name="icon-name">view-more-symbolic</property>
-      </object>
-    </child>
-    <child>
+        <child>
       <object class="GtkToggleButton" id="btn_search">
         <property name="active" bind-source="search_bar" bind-property="search-mode-enabled" bind-flags="bidirectional"/>
         <property name="tooltip-text" translatable="yes">Search</property>
         <property name="icon-name">system-search-symbolic</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuButton">
+        <property name="popover">pop_context</property>
+        <property name="icon-name">view-more-symbolic</property>
       </object>
     </child>
   </object>
