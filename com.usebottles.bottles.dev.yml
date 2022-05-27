@@ -3,7 +3,7 @@ sdk: org.gnome.Sdk
 runtime: org.gnome.Platform
 base: org.winehq.Wine
 base-version: stable-21.08
-runtime-version: "42"
+runtime-version: "master"
 command: bottles
 
 finish-args:
@@ -32,11 +32,11 @@ inherit-extensions:
 add-extensions:
   org.gnome.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
-    version: "42"
+    version: "master"
 
   org.gnome.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
-    version: "42"
+    version: "master"
     no-autodownload: true
 
   com.valvesoftware.Steam.Utility:
@@ -268,29 +268,6 @@ modules:
         url: https://github.com/ishitatsuyuki/LatencyFleX/releases/download/v0.1.0/latencyflex-v0.1.0.tar.xz
         sha256: 9862c7608b85ac6bff018d5926c4692490ff84ca3e649119b7fc53680e64dd1a
   
-  - name: libadwaita
-    buildsystem: meson
-    config-opts:
-    - -Dexamples=false
-    - -Dtests=false
-    sources:
-    - type: git
-      url: https://gitlab.gnome.org/GNOME/libadwaita.git
-      commit: 39a9a4b5b5987737537d6a044da7c7fdb91f544f
-    modules:
-    - name: libsass
-      buildsystem: meson
-      sources:
-      - type: git
-        url: https://github.com/lazka/libsass.git
-        branch: meson
-
-    - name: sassc
-      buildsystem: meson
-      sources:
-      - type: git
-        url: https://github.com/lazka/sassc.git
-        branch: meson
 
   # Bottles components
   # ----------------------------------------------------------------------------
