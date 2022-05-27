@@ -74,7 +74,6 @@ class Bottles(Adw.Application):
     arg_exe = False
     arg_bottle = False
     arg_passed = False
-    dark_provider = None
 
     def __init__(self):
         super().__init__(
@@ -209,64 +208,13 @@ class Bottles(Adw.Application):
         Here we register the application actions (shortcuts).
         See: __register_actions()
         """
-        Gtk.Application.do_startup(self)
+        Adw.Application.do_startup(self)
         self.__register_actions()
-
-        self.dark_provider = Gtk.CssProvider()
-        self.dark_provider.load_from_resource(
-            "/com/usebottles/bottles/style-dark.css"
-        )
-        # self.__update_dark_style(manager)
-        # manager.connect("notify::dark", self.__update_dark_style)
 
     def do_activate(self):
         """
         This function is called when the application is activated.
-        We use this to load the custom css providers and spawn the
-        main window.
         """
-
-        # region css_provider
-        # check the user theme and load the corresponding css
-        user_theme = subprocess.check_output([
-            'gsettings',
-            'get',
-            'org.gnome.desktop.interface',
-            'gtk-theme'
-        ]).decode("utf-8")
-        css_res = False
-        if "Yaru" in user_theme:
-            css_res = Gio.resources_lookup_data(
-                path="/com/usebottles/bottles/yaru.css",
-                lookup_flags=0
-            )
-        # elif "Breeze" in user_theme:
-        #     css_res = Gio.resources_lookup_data(
-        #         path="/com/usebottles/bottles/breeze.css",
-        #         lookup_flags=0
-        #     )
-        elif "io.elementary.stylesheet" in user_theme:
-            css_res = Gio.resources_lookup_data(
-                path="/com/usebottles/bottles/elementary.css",
-                lookup_flags=0
-            )
-
-        css_def = Gio.resources_lookup_data(
-            path="/com/usebottles/bottles/style.css",
-            lookup_flags=0
-        )
-
-        provider = Gtk.CssProvider()
-        if css_res:
-            provider.load_from_data(css_def.get_data() + css_res.get_data())
-        else:
-            provider.load_from_data(css_def.get_data())
-        Gtk.StyleContext.add_provider_for_display(
-            display=Gdk.Display.get_default(),
-            provider=provider,
-            priority=Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
-        # endregion
 
         # create the main window
         win = self.props.active_window
@@ -323,24 +271,6 @@ class Bottles(Adw.Application):
             self.add_action(simple_action)
             if accel is not None:
                 self.set_accels_for_action(*accel)
-
-    def __update_dark_style(self, style_manager, pspec=None):
-        """
-        Loads style-dark.css when we enter dark mode.
-        """
-        is_dark = style_manager.get_dark()
-        screen = Gdk.Screen.get_default()
-
-        if is_dark:
-            Gtk.StyleContext.add_provider_for_display(
-                screen, self.dark_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION + 1
-            )
-        else:
-            Gtk.StyleContext.remove_provider_for_screen(
-                screen, self.dark_provider
-            )
-
 
 GObject.threads_init()
 
