@@ -44,14 +44,8 @@
                       <object class="AdwPreferencesGroup">
                         <property name="title" translatable="yes">Bottle Information</property>
                         <child>
-                          <object class="AdwActionRow">
+                          <object class="AdwEntryRow" id="entry_name">
                           <property name="title" translatable="yes">Name</property>
-                              <child>
-                              <object class="GtkEntry" id="entry_name">
-                                <property name="placeholder-text" translatable="yes">My beautiful bottle</property>
-                                <property name="valign">center</property>
-                              </object>
-                            </child>
                           </object>
                         </child>
                       </object>
@@ -109,7 +103,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="AdwActionRow">
+                              <object class="AdwActionRow" id="row_sandbox">
                                 <property name="title" translatable="yes">Unlinked homedir</property>
                                 <property name="subtitle" translatable="yes">Do not link the userdir to the homedir</property>
                                 <property name="activatable_widget">switch_sandbox</property>

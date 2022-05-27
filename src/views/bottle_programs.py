@@ -25,7 +25,7 @@ from bottles.backend.wine.wineserver import WineServer
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-programs.ui')
-class ProgramsView(Adw.Bin):
+class ProgramsView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsPrograms'
 
     # region Widgets
@@ -126,8 +126,10 @@ class ProgramsView(Adw.Bin):
         programs = self.manager.get_programs(self.config)
 
         if len(programs) > 0:
+            self.list_programs.set_visible(True)
             self.hdy_status.set_visible(False)
         else:
+            self.list_programs.set_visible(False)
             self.hdy_status.set_visible(True)
 
         for program in programs:

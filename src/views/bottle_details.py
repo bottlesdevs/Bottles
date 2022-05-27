@@ -20,7 +20,7 @@ import re
 import webbrowser
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.common import open_doc_url
@@ -51,7 +51,7 @@ from bottles.backend.wine.wineserver import WineServer
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
-class BottleView(Gtk.ScrolledWindow):
+class BottleView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsBottle'
 
     # region Widgets
@@ -78,7 +78,6 @@ class BottleView(Gtk.ScrolledWindow):
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
     # btn_help_debug = Gtk.Template.Child()
-    btn_explorer = Gtk.Template.Child()
     box_run_extra = Gtk.Template.Child()
     check_terminal = Gtk.Template.Child()
     check_move_file = Gtk.Template.Child()
@@ -176,8 +175,8 @@ class BottleView(Gtk.ScrolledWindow):
 
         wineserver_status = WineServer(self.config).is_alive()
 
-        for w in self.group_programs:
-            self.group_programs.remove(w)
+        for w in self.group_programs.get_last_child():
+            self.group_programs.get_last_child().remove(w)
 
         if self.config.get("Environment") == "Steam":
             self.group_programs.add(ProgramEntry(
@@ -236,6 +235,8 @@ class BottleView(Gtk.ScrolledWindow):
         )
 
         #file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config) + '/drive_c/')
+        file_dialog.set_modal(True)
+        file_dialog.set_transient_for(self.window)
         file_dialog.connect('response', self.__execute, file_dialog)
         file_dialog.show()
 
@@ -248,7 +249,7 @@ class BottleView(Gtk.ScrolledWindow):
 
             executor = WineExecutor(
                 self.config,
-                exec_path=file_dialog.get_file().get_basename,
+                exec_path=file_dialog.get_file().get_path(),
                 # args=args,
                 terminal=self.check_terminal.get_active(),
                 move_file=self.check_move_file.get_active(),
@@ -261,7 +262,7 @@ class BottleView(Gtk.ScrolledWindow):
                 key="Latest_Executables",
                 value=_execs + [{
                     "name": file_dialog.get_file().get_basename.split("/")[-1],
-                    "file": file_dialog.get_file().get_basename,
+                    "file": file_dialog.get_file().get_path,
                     "args": None
                 }]
             )
