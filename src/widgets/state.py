@@ -28,7 +28,7 @@ class StateEntry(Adw.ActionRow):
     __gtype_name__ = 'StateEntry'
 
     # region Widgets
-    label_creation_date = Gtk.Template.Child()
+    #label_creation_date = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
 
@@ -50,12 +50,12 @@ class StateEntry(Adw.ActionRow):
         creation_date = datetime.strptime(
             state[1].get("Creation_Date"), "%Y-%m-%d %H:%M:%S.%f"
         )
-        creation_date = creation_date.strftime("%d %B, %Y %H:%M:%S")
-
+        creation_date = creation_date.strftime("%d %B %Y, %H:%M")
+        
+        self.state_name = "#{0} - {1}".format(state[0], creation_date)
         # populate widgets
         self.set_title(self.state_name)
         self.set_subtitle(self.state[1].get("Comment"))
-        self.label_creation_date.set_text(creation_date)
         if state[0] == config.get("State"):
             self.get_style_context().add_class("current-state")
 
@@ -67,9 +67,6 @@ class StateEntry(Adw.ActionRow):
         """
         Set the bottle state to this one.
         """
-        while widget.get_first_child():
-            widget.remove(widget.get_first_child())
-
         widget.set_sensitive(False)
         widget.add(self.spinner)
 
