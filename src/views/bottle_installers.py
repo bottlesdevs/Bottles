@@ -16,14 +16,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 from bottles.utils.common import open_doc_url  # pyright: reportMissingImports=false
 from bottles.widgets.installer import InstallerEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-installers.ui')
-class InstallersView(Gtk.ScrolledWindow):
+class InstallersView(Adw.Bin):
     __gtype_name__ = 'DetailsInstallers'
 
     # region Widgets
@@ -48,8 +48,8 @@ class InstallersView(Gtk.ScrolledWindow):
         entry_search_ev.connect("key-pressed", self.__search_installers)
         self.entry_search.add_controller(entry_search_ev)
 
+        self.search_bar.set_key_capture_widget(window)
         self.btn_help.connect("clicked", open_doc_url, "bottles/installers")
-        self.btn_toggle_search.connect('clicked', self.__toggle_search)
         self.entry_search.connect('changed', self.__search_installers)
 
     def __search_installers(self, widget, event=None, data=None):
@@ -98,11 +98,3 @@ class InstallersView(Gtk.ScrolledWindow):
                     )
                 )
 
-    def __toggle_search(self, widget):
-        """
-        This function toggle the search mode.
-        """
-        status = not self.search_bar.get_search_mode()
-        self.search_bar.set_search_mode(status)
-        if not status:
-            self.entry_search.set_text("")

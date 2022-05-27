@@ -3,127 +3,88 @@
 <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
   <object class="GtkPopover" id="pop_actions">
+    <style>
+      <class name="menu"/>
+    </style>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
+         <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
         <child>
           <object class="GtkModelButton" id="btn_manifest">
-            
-            <property name="text" translatable="yes">Show manifest</property>
+            <property name="text" translatable="yes">Show Manifest…</property>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkModelButton" id="btn_report">
-            
-            <property name="text" translatable="yes">Bug report</property>
+            <property name="text" translatable="yes">Report a Bug…</property>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkModelButton" id="btn_review">
-            
-            <property name="text" translatable="yes">Read review</property>
+            <property name="text" translatable="yes">Read Review</property>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkSeparator">
           </object>
-          
-          
         </child>
       </object>
     </child>
   </object>
   <template class="InstallerEntry" parent="AdwActionRow">
-    
+    <property name="activatable-widget">btn_install</property>
     <property name="title">Installer name</property>
     <property name="subtitle">Installer description</property>
     <child>
       <object class="GtkBox">
-        <property name="spacing">10</property>
-        <child>
-          <object class="GtkMenuButton">
-            
-            <property name="focus-on-click">False</property>
-            <property name="halign">center</property>
+        <property name="spacing">6</property>
+         <child>
+          <object class="GtkLabel" id="label_grade">
             <property name="valign">center</property>
-            <property name="popover">pop_actions</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">view-more-symbolic</property>
-              </object>
-            </child>
+            <property name="label">Unknown</property>
             <style>
-              <class name="image-button"/>
+              <class name="tag"/>
+              <class name="caption"/>
             </style>
           </object>
-          
-          
         </child>
         <child>
-          <object class="GtkSeparator">
+          <object class="GtkMenuButton">
+            <property name="valign">center</property>
+            <property name="popover">pop_actions</property>
+            <property name="icon-name">view-more-symbolic</property>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkButton" id="btn_install">
-            
-            <property name="halign">center</property>
             <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">document-save-symbolic</property>
-              </object>
-            </child>
+            <property name="icon-name">document-save-symbolic</property>
             <style>
-              <class name="image-button"/>
+              <class name="flat"/>
             </style>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkImage" id="img_error">
             <property name="icon-name">dialog-warning-symbolic</property>
+            <property name="visible">False</property>
           </object>
-          
-          
         </child>
         <child>
           <object class="GtkImage" id="img_installed">
             <property name="icon-name">object-select-symbolic</property>
+            <property name="visible">False</property>
           </object>
-          
-          
         </child>
         <child>
-          <object class="GtkLabel" id="label_grade">
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="label">Unknown</property>
-            <attributes>
-              <attribute name="font-desc" value="Cantarell 10"/>
-              <attribute name="weight" value="normal"/>
-            </attributes>
-            <style>
-              <class name="tag"/>
-            </style>
-          </object>
-          
-          
-        </child>
-        <child>
-          <object class="GtkLabel" id="label_step">
-          </object>
-          
-          
+          <object class="GtkLabel" id="label_step"/>
         </child>
       </object>
     </child>
