@@ -2,34 +2,25 @@
 <interface>
 <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="DetailsInstallers" parent="GtkScrolledWindow">
-    
-    <child>
-      <object class="GtkViewport">
+  <template class="DetailsInstallers" parent="AdwBin">
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkSearchBar" id="search_bar">
-                <child>
-                  <object class="AdwClamp">
-                    <child>
-                      <object class="GtkSearchEntry" id="entry_search">
-                        <property name="placeholder-text" translatable="yes">Epic Games Store ..</property>
-                      </object>
-                    </child>
-                  </object>
+              <child>
+                <object class="GtkSearchEntry" id="entry_search">
+                  <property name="placeholder-text" translatable="yes">Search for Programs…</property>
+                </object>
                 </child>
               </object>
-              
-              
             </child>
             <child>
-              <object class="AdwClamp">
+              <object class="AdwPreferencesPage">
                 <child>
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">10</property>
+                  <object class="AdwPreferencesGroup">
+                    <property name="description">Files on this page are provided by third parties under a proprietary license.
+By instaling them, you agree with their respective licensing terms.</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
@@ -51,80 +42,51 @@
                       <object class="GtkListBox" id="list_installers">
                         <property name="selection-mode">none</property>
                         <style>
-                          <class name="content"/>
+                          <class name="boxed-list"/>
                         </style>
                       </object>
-                      
-                      
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">While the files on this page have been verified may be under proprietary license.</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell 8"/>
-                        </attributes>
-                      </object>
-                      
-                      
                     </child>
                   </object>
                 </child>
               </object>
-              
-              
             </child>
           </object>
         </child>
-      </object>
-    </child>
   </template>
   <object class="GtkPopover" id="pop_context">
+    <style>
+      <class name="menu"/>
+    </style>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
         <child>
           <object class="GtkModelButton" id="btn_help">
-            
-            <property name="tooltip-text" translatable="yes">Read documentation about installers	</property>
+            <property name="tooltip-text" translatable="yes">Read documentation about installers</property>
             <property name="text" translatable="yes">Documentation</property>
           </object>
-          
-          
         </child>
       </object>
     </child>
   </object>
   <object class="GtkBox" id="actions">
-    <property name="spacing">8</property>
+    <property name="spacing">6</property>
     <child>
       <object class="GtkMenuButton">
-        
-        <property name="focus-on-click">False</property>
-        <property name="valign">center</property>
         <property name="popover">pop_context</property>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">view-more-symbolic</property>
-          </object>
-        </child>
+        <property name="icon-name">view-more-symbolic</property>
       </object>
-      
-      
     </child>
     <child>
       <object class="GtkToggleButton" id="btn_toggle_search">
-        
-        <property name="tooltip-text" translatable="yes">Toggle search</property>
-        <property name="valign">center</property>
-        <child>
-          <object class="GtkImage">
-            <property name="icon-name">system-search-symbolic</property>
-          </object>
-        </child>
+        <property name="active" bind-source="search_bar" bind-property="search-mode-enabled" bind-flags="bidirectional"/>
+        <property name="tooltip-text" translatable="yes">Search</property>
+        <property name="icon-name">system-search-symbolic</property>
       </object>
-      
-      
     </child>
-  </object>
+   </object>
 </interface>
