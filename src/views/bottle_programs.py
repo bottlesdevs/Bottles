@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 from bottles.utils.common import open_doc_url  # pyright: reportMissingImports=false
 from bottles.widgets.program import ProgramEntry
@@ -25,7 +25,7 @@ from bottles.backend.wine.wineserver import WineServer
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-programs.ui')
-class ProgramsView(Gtk.ScrolledWindow):
+class ProgramsView(Adw.Bin):
     __gtype_name__ = 'DetailsPrograms'
 
     # region Widgets

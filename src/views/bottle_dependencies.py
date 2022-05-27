@@ -17,7 +17,7 @@
 
 import os
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.common import open_doc_url
@@ -25,7 +25,7 @@ from bottles.widgets.dependency import DependencyEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-dependencies.ui')
-class DependenciesView(Gtk.ScrolledWindow):
+class DependenciesView(Adw.Bin):
     __gtype_name__ = 'DetailsDependencies'
 
     # region Widgets
@@ -51,7 +51,9 @@ class DependenciesView(Gtk.ScrolledWindow):
 
         entry_search_ev = Gtk.EventControllerKey.new()
         entry_search_ev.connect("key-pressed", self.__search_dependencies)
+
         self.entry_search.add_controller(entry_search_ev)
+        self.search_bar.set_key_capture_widget(window)
 
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")
         self.btn_help.connect("clicked", open_doc_url, "bottles/dependencies")
@@ -79,7 +81,7 @@ class DependenciesView(Gtk.ScrolledWindow):
 
         RunAsync(process_queue, callback=callback)
 
-    def __search_dependencies(self, widget, event=None, data=None):
+    def __search_dependencies(self, widget, event=None, state=None, data=None):
         """
         This function search in the list of dependencies the
         text written in the search entry.

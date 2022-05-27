@@ -47,5 +47,4 @@ class PageRow(Gtk.ListBoxRow):
                 xalign=0.0
             )
         )
-        self.get_style_context().add_class("page-row")
         self.set_child(box)
