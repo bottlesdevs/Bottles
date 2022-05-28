@@ -541,7 +541,7 @@ class DependencyManager:
 
         try:
             if "*" in step.get('file_name'):
-                files = os.listdir(os.path.join(path, step.get("file_name")))
+                files = glob(f"{path}/{step.get('file_name')}")
                 for fg in files:
                     _name = fg
                     _path = os.path.join(path, step.get("file_name"), _name)
