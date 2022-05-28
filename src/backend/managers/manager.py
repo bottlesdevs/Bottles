@@ -208,6 +208,10 @@ class Manager:
             logging.info("Temp path doesn't exist, creating now.", )
             os.makedirs(Paths.temp, exist_ok=True)
 
+        if not os.path.isdir(Paths.latencyflex):
+            logging.info("LatencyFlex path doesn't exist, creating now.", )
+            os.makedirs(Paths.latencyflex, exist_ok=True)
+
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
         catalog = self.component_manager.fetch_catalog()
