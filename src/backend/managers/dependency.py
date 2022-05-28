@@ -39,6 +39,7 @@ from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.uninstaller import Uninstaller
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.regsvr32 import Regsvr32
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.executor import WineExecutor
 
@@ -251,8 +252,8 @@ class DependencyManager:
             if not self.__step_copy_dll(config=config, step=step):
                 return Result(status=False)
 
-        if step["action"] == "override_dll":
-            self.__step_override_dll(
+        if step["action"] == "register_dll":
+            self.__step_register_dll(
                 config=config,
                 step=step
             )
@@ -572,6 +573,16 @@ class DependencyManager:
             print(e)
             logging.warning("An error occurred while copying dlls.")
             return False
+
+        return True
+
+    @staticmethod
+    def __step_register_dll(config: dict, step: dict):
+        """Register one or more dll and ActiveX control"""
+        regsvr32 = Regsvr32(config)
+
+        for dll in step.get('dlls', []):
+            regsvr32.register(dll)
 
         return True
 
