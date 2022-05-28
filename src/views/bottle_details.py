@@ -34,7 +34,7 @@ from bottles.widgets.program import ProgramEntry
 from bottles.widgets.executable import ExecButton
 
 from bottles.dialogs.runargs import RunArgsDialog
-from bottles.dialogs.generic import MessageDialog
+from bottles.dialogs.generic import MessageWindow
 from bottles.dialogs.duplicate import DuplicateDialog
 
 from bottles.backend.wine.uninstaller import Uninstaller
@@ -84,6 +84,7 @@ class BottleView(Adw.PreferencesPage):
     label_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
+    list_programs = Gtk.Template.Child()
     extra_separator = Gtk.Template.Child()
     #reveal_progress = Gtk.Template.Child()
     #progress_bar = Gtk.Template.Child()
@@ -175,11 +176,11 @@ class BottleView(Adw.PreferencesPage):
 
         wineserver_status = WineServer(self.config).is_alive()
 
-        for w in self.group_programs.get_last_child():
-            self.group_programs.get_last_child().remove(w)
+        while self.list_programs.get_row_at_index(0) != None:
+            self.list_programs.remove(self.list_programs.get_row_at_index(0))
 
         if self.config.get("Environment") == "Steam":
-            self.group_programs.add(ProgramEntry(
+            self.list_programs.append(ProgramEntry(
                 self.window,
                 self.config,
                 {"name": self.config["Name"]},
@@ -199,12 +200,14 @@ class BottleView(Adw.PreferencesPage):
         for program in programs:
             if program.get("removed"):
                 continue
-            self.group_programs.add(
-                ProgramEntry(
-                    window=self.window,
-                    config=self.config,
-                    program=program,
-                    check_boot=wineserver_status
+            if i < 5:
+                self.list_programs.append(
+                    ProgramEntry(
+                        window=self.window,
+                        config=self.config,
+                        program=program,
+                        check_boot=wineserver.is_alive()
+                    )
                 )
             )
             i = + 1
@@ -331,14 +334,15 @@ class BottleView(Adw.PreferencesPage):
         it will ask the manager to delete the bottle and will return
         to the bottles list.
         """
-        dialog_delete = MessageDialog(
-            parent=self.window,
-            title=_("Confirm deletion"),
-            message=_(
+        dialog_delete = MessageWindow(
+            self.window,
+            Gtk.DialogFlags.USE_HEADER_BAR,
+            _("Confirm deletion"),
+            _(
                 "Are you sure you want to delete this Bottle and all files?"
             )
         )
-        response = dialog_delete.run()
+        dialog_delete.present
 
         if response == Gtk.ResponseType.OK:
             RunAsync(
@@ -430,7 +434,7 @@ class BottleView(Adw.PreferencesPage):
 
         if status == 0:
             # show confirmation dialog
-            dialog = MessageDialog(
+            dialog = MessageWindow(
                 parent=self.window,
                 title=_("Confirm"),
                 message=_(

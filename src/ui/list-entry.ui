@@ -9,30 +9,13 @@
       <object class="GtkBox" id="list_labels">
         <property name="spacing">1</property>
         <child>
-          <object class="AdwSqueezer">
-          <property name="switch-threshold-policy">natural</property>
-          <property name="transition-type">crossfade</property>
-          <child>
-            <object class="GtkLabel" id="label_env">
-              <property name="halign">center</property>
-              <property name="valign">center</property>
-              <property name="label">Environment</property>
-              <style>
-                <class name="tag"/>
-                <class name="caption"/>
-              </style>
-            </object>
-          </child>
-          <child>
-            <object class="GtkImage" id="icon_env">
-              <property name="halign">center</property>
-              <property name="valign">center</property>
-              <property name="icon-name">tablet-symbolic</property>
-              <style>
-                <class name="tag"/>
-              </style>
-            </object>
-          </child>
+          <object class="GtkLabel" id="label_env">
+            <property name="valign">center</property>
+            <property name="label">Environment</property>
+            <style>
+              <class name="tag"/>
+              <class name="caption"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -43,26 +26,17 @@
         <child>
           <object class="GtkGrid" id="grid_versioning">
             <property name="tooltip-text" translatable="yes">Versioning enabled for this bottle</property>
-            <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="visible">false</property>
+            <property name="visible">False</property>
             <child>
               <object class="GtkImage" id="img_versioning">
                 <property name="tooltip-text" translatable="yes">Versioning is active in this bottle.</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
                 <property name="icon-name">view-wrapped-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkLabel" id="label_state">
-                <property name="halign">center</property>
-                <property name="valign">center</property>
                 <property name="label" translatable="yes">0</property>
-                <style>
-                  <class name="tag"/>
-                  <class name="caption"/>
-                </style>
               </object>
             </child>
             <style>

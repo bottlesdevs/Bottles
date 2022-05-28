@@ -37,7 +37,6 @@ class BottleViewEntry(Adw.ActionRow):
     btn_run_executable = Gtk.Template.Child()
     details_image = Gtk.Template.Child()
     label_env = Gtk.Template.Child()
-    icon_env = Gtk.Template.Child()
     label_state = Gtk.Template.Child()
     icon_damaged = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
