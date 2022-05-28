@@ -560,9 +560,13 @@ class DependencyManager:
                 if os.path.exists(_dest) and os.path.islink(_dest):
                     os.unlink(_dest)
 
-                shutil.copyfile(os.path.join(path, _name), _dest)
+                try:
+                    shutil.copyfile(os.path.join(path, _name), _dest)
+                except shutil.SameFileError:
+                    logging.info(f"{_name} already exists at the same version, skipping.")
 
-        except Exception:
+        except Exception as e:
+            print(e)
             logging.warning("An error occurred while copying dlls.")
             return False
 
