@@ -551,7 +551,10 @@ class DependencyManager:
                     if os.path.exists(_dest) and os.path.islink(_dest):
                         os.unlink(_dest)
 
-                    shutil.copyfile(_path, _dest)
+                    try:
+                        shutil.copyfile(_path, _dest)
+                    except shutil.SameFileError:
+                        logging.info(f"{_name} already exists at the same version, skipping.")
             else:
                 _name = step.get('file_name')
                 _dest = os.path.join(dest, _name)
