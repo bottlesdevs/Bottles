@@ -562,8 +562,8 @@ class DependencyManager:
 
                 shutil.copyfile(os.path.join(path, _name), _dest)
 
-        except Exception as e:
-            logging.warning(e)
+        except Exception:
+            logging.warning("An error occurred while copying dlls.")
             return False
 
         return True
