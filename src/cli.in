@@ -47,6 +47,7 @@ from bottles.backend.models.samples import Samples
 from bottles.backend.wine.cmd import CMD
 from bottles.backend.wine.control import Control
 from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.reg import Reg
 from bottles.backend.wine.regedit import Regedit
 from bottles.backend.wine.taskmgr import Taskmgr
@@ -126,6 +127,10 @@ class CLI:
         run_parser.add_argument("-a", "--args", help="Arguments to pass to the executable")
         run_parser.add_argument("-p", "--program", help="Program to run")
 
+        shell_parser = subparsers.add_parser("shell", help="Launch commands in a Wine shell")
+        shell_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+        shell_parser.add_argument("-i", "--input", help="Command to execute", required=True)
+
         self.__process_args()
 
     @staticmethod
@@ -172,6 +177,11 @@ class CLI:
         # RUN parser
         elif self.args.command == "run":
             self.run_program()
+
+        # SHELL parser
+        elif self.args.command == "shell":
+            print("shell")
+            self.run_shell()
 
     # region INFO
     def show_info(self):
@@ -487,6 +497,24 @@ class CLI:
             cwd=_cwd,
             post_script=_script
         ).run_cli()
+
+    # endregion
+
+    # region SHELL
+    def run_shell(self):
+        self.utils_conn = ConnectionUtils(force_offline=True)  # avoid manager checks
+        _bottle = self.args.bottle
+        _input = self.args.input
+        mng = Manager(self, is_cli=True)
+        mng.checks()
+
+        if _bottle not in mng.local_bottles:
+            sys.stderr.write(f"Bottle {_bottle} not found\n")
+            exit(1)
+
+        bottle = mng.local_bottles[_bottle]
+        winecommand = WineCommand(config=bottle, command=_input)
+        winecommand.run()
 
     # endregion
 
