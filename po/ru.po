@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-05-21 09:16+0000\n"
+"PO-Revision-Date: 2022-05-30 22:19+0000\n"
 "Last-Translator: Artem <github@knebergish.fastmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/bottles/bottles/"
 "ru/>\n"
@@ -474,11 +474,11 @@ msgstr "Утилиты"
 
 #: src/ui/details-bottle.ui:641
 msgid "Browse C:"
-msgstr "Обзор C:"
+msgstr "Обзор диска C:"
 
 #: src/ui/details-bottle.ui:643
 msgid "Browse internal files."
-msgstr "Обзор внутренних файлов."
+msgstr "Обзор внутренних файлов «бутылки»."
 
 #: src/ui/details-bottle.ui:722
 msgid "Command line"
@@ -502,7 +502,7 @@ msgstr "Отладка"
 
 #: src/ui/details-bottle.ui:808
 msgid "Debug wine processes."
-msgstr "Отладка процессов wine."
+msgstr "Отладка процессов Wine."
 
 #: src/ui/details-bottle.ui:845
 msgid "Read documentation"
@@ -530,7 +530,7 @@ msgstr "Деинсталлятор"
 
 #: src/ui/details-bottle.ui:959
 msgid "Uninstall programs using wine uninstaller."
-msgstr "Удаление программ с помощью деинсталлятора WINE."
+msgstr "Удаление программ с помощью деинсталлятора Wine."
 
 #: src/ui/details-bottle.ui:999
 msgid "Control panel"
@@ -538,7 +538,7 @@ msgstr "Панель управления"
 
 #: src/ui/details-bottle.ui:1001
 msgid "Access the internal wine control panel."
-msgstr "Доступ к внутренней панели управления wine."
+msgstr "Доступ к внутренней панели управления Wine."
 
 #: src/ui/details-bottle.ui:1071
 msgid "Use the Installers section or the \"Run executable\" button above."
@@ -722,7 +722,7 @@ msgstr "Баланс"
 
 #: src/ui/details-preferences.ui:287
 msgid "Performance"
-msgstr "Производительность"
+msgstr "Скорость"
 
 #: src/ui/details-preferences.ui:336
 msgid "Enable LatencyFleX"
@@ -730,8 +730,7 @@ msgstr "Использовать LatencyFleX"
 
 #: src/ui/details-preferences.ui:337
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anticheats."
-msgstr ""
-"Альтернатива NVIDIA Reflex. Может быть обнаружен некоторыми античитами."
+msgstr "Альтернатива NVIDIA Reflex. Может быть обнаружен античитами."
 
 #: src/ui/details-preferences.ui:380
 msgid "Discrete GPU"
@@ -778,8 +777,7 @@ msgstr "Забирать фокус"
 
 #: src/ui/details-preferences.ui:549
 msgid "Activate it if the program does not retake focus on switch."
-msgstr ""
-"Активируйте, если программа не получает фокус при переключении между окнами."
+msgstr "Активируйте, если программа не получает фокус при переключении."
 
 #: src/ui/details-preferences.ui:580
 msgid "Screen scaling"
@@ -948,7 +946,7 @@ msgid ""
 "Provides a bundle of extra libraries for more compatibility,\n"
 "disable if you run into issues."
 msgstr ""
-"Предоставляет набор дополнительных библиотек для большей совместимости.\n"
+"Предоставляет дополнительные библиотеки для большей совместимости.\n"
 "Отключите, если у вас возникли проблемы."
 
 #: src/ui/details-preferences.ui:1264
@@ -961,7 +959,7 @@ msgstr "То же самое, что и Bottles, но предоставляет
 
 #: src/ui/details-preferences.ui:1291
 msgid "Use GameMode"
-msgstr "GameMode от Feral Interactive"
+msgstr "Использовать GameMode"
 
 #: src/ui/details-preferences.ui:1292
 msgid "Optimise gaming performance on demand."
@@ -969,7 +967,7 @@ msgstr "Оптимизирует производительность при з�
 
 #: src/ui/details-preferences.ui:1318
 msgid "Use Gamescope"
-msgstr "Режим Gamescope"
+msgstr "Использовать Gamescope"
 
 #: src/ui/details-preferences.ui:1319
 msgid "Use the Gamescope micro-compositor."
@@ -992,7 +990,7 @@ msgstr "Путь к «бутылке» по умолчанию."
 #: src/ui/drive-entry.ui:61 src/ui/new.ui:348 src/ui/new.ui:396
 #: src/ui/preferences.ui:203
 msgid "Choose a directory"
-msgstr "Выберите каталог"
+msgstr "Выбрать каталог"
 
 #: src/ui/details-preferences.ui:1465 src/ui/dialog-dll-overrides.ui:51
 msgid "DLL overrides"
@@ -1028,8 +1026,7 @@ msgstr "DXVK HUD"
 
 #: src/ui/details-preferences.ui:1639
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
-msgstr ""
-"Включить слой DXVK, показывающий FPS и другие детали в приложениях D3D."
+msgstr "Слой DXVK, показывающий FPS и другие детали в приложениях D3D."
 
 #: src/ui/details-preferences.ui:1665
 msgid "MangoHud"
@@ -1039,9 +1036,7 @@ msgstr "MangoHud"
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
-msgstr ""
-"Включить слой Vulkan и OpenGL для мониторинга FPS, температуры, загрузки CPU/"
-"GPU и многого другого."
+msgstr "Слой Vulkan и OpenGL, показывающий FPS, температуру, загрузку CPU/GPU…"
 
 #: src/ui/details-preferences.ui:1692
 msgid "OBS Vulkan Capture"
@@ -1053,12 +1048,11 @@ msgstr "Включить захват игры OBS для всех следую�
 
 #: src/ui/details-preferences.ui:1719
 msgid "Enable wine fixme logs"
-msgstr "Включить журнал wine fixme"
+msgstr "Журнал Wine fixme"
 
 #: src/ui/details-preferences.ui:1720
 msgid "Log code paths that are unimplemented in Wine."
-msgstr ""
-"Вносить в журнал случаи использования кода, ещё не реализованного в Wine."
+msgstr "Журналировать случаи использования кода, не реализованного в Wine."
 
 #: src/ui/details-programs.ui:28
 msgid "No programs found"
@@ -1087,7 +1081,7 @@ msgstr "Поиск установленных программ"
 
 #: src/ui/details-programs.ui:173
 msgid "Add a custom executable path"
-msgstr "Добавьте путь к исполняемому файлу"
+msgstr "Добавить путь к исполняемому файлу"
 
 #: src/ui/details-taskmanager.ui:32
 msgid "Refresh"
@@ -1103,7 +1097,9 @@ msgstr "Сохранённых состояний «бутылки» не най
 
 #: src/ui/details-versioning.ui:61
 msgid "Create first state to start using versioning."
-msgstr "Создайте первое состояние для начала использования версионирования."
+msgstr ""
+"Создайте первое состояние с помощью кнопки сверху для начала использования "
+"версионирования."
 
 #: src/ui/details-versioning.ui:92
 msgid "Read documentation about versioning\t"
@@ -1205,8 +1201,8 @@ msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..)."
 msgstr ""
-"Здесь указываются пути вашей хост-системы, которые будут распознаны раннером "
-"как отдельный диск (напр. C: D:...)."
+"Здесь указываются каталоги вашей хост-системы, которые будут распознаны "
+"раннером как отдельные диски (напр. C: D:...)."
 
 #: src/ui/dialog-drives.ui:54
 msgid "Letter"
@@ -1478,7 +1474,7 @@ msgid ""
 "Use the icon on the top to import a bottle from a backup"
 msgstr ""
 "Не найдено префиксов для Lutris, PlayOnLinux, и т. д.\n"
-"Используйте иконку сверху для импорта «бутылки» из резервной копии"
+"Используйте кнопку сверху для импорта «бутылки» из резервной копии"
 
 #: src/ui/importer.ui:74
 msgid "Import Bottles backup"
@@ -1778,7 +1774,7 @@ msgstr "Расширенные настройки"
 
 #: src/ui/preferences.ui:191
 msgid "Custom Bottles Path (Require Restart)"
-msgstr "Пользовательский путь к «бутылкам» (требуется перезапуск)"
+msgstr "Пользовательский путь к «бутылкам» (нужен перезапуск)"
 
 #: src/ui/preferences.ui:192
 msgid ""
@@ -1907,7 +1903,7 @@ msgstr "Форумы"
 
 #: src/ui/window.ui:108 src/window.py:324
 msgid "Health check"
-msgstr "О системе"
+msgstr "Проверка здоровья"
 
 #: src/ui/window.ui:121
 msgid "About Bottles"
@@ -2199,7 +2195,7 @@ msgstr ""
 
 #: src/dialogs/drives.py:59
 msgid "Choose path"
-msgstr "Выберите каталог"
+msgstr "Выбрать каталог"
 
 #: src/dialogs/drives.py:62
 msgid "Select"
