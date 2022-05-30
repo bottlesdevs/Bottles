@@ -101,7 +101,6 @@ class InstallerManager:
         icon_url = self.__repo.get_icon(manifest.get("Name"))
         bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
         icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
-
         if icon_url is not None:
             if not os.path.exists(bottle_icons_path):
                 os.makedirs(bottle_icons_path)
@@ -400,49 +399,6 @@ class InstallerManager:
                 scope="Parameters"
             )
 
-    @staticmethod
-    def __create_desktop_entry(config, manifest, executable: dict):
-        bottle_icons_path = f"{ManagerUtils.get_bottle_path(config)}/icons"
-
-        icon_path = f"{bottle_icons_path}/{executable.get('icon')}"
-        desktop_file = "%s/%s--%s--%s.desktop" % (
-            Paths.applications,
-            config.get('Name'),
-            manifest.get('Name'),
-            datetime.now().timestamp()
-        )
-
-        if "FLATPAK_ID" in os.environ:
-            return None
-
-        try:
-            # TODO: move to an util
-            with open(desktop_file, "w") as f:
-                ex_path = "%s/%s/drive_c/%s/%s" % (
-                    Paths.bottles,
-                    config.get('Path'),
-                    executable.get('path'),
-                    executable.get('file')
-                )
-                f.write(f"[Desktop Entry]\n")
-                f.write(f"Name={executable.get('name')}\n")
-                f.write(f"Exec=bottles -e '{ex_path}' -b '{config.get('Name')}'\n")
-                f.write(f"Type=Application\n")
-                f.write(f"Terminal=false\n")
-                f.write(f"Categories=Application;\n")
-                if executable.get("icon"):
-                    f.write(f"Icon={icon_path}\n")
-                else:
-                    f.write(f"Icon=com.usebottles.bottles")
-                f.write(f"Comment={manifest.get('Description')}\n")
-                # Actions
-                f.write("Actions=Configure;\n")
-                f.write("[Desktop Action Configure]\n")
-                f.write("Name=Configure in Bottles\n")
-                f.write(f"Exec=bottles -b '{config.get('Name')}'\n")
-        except (OSError, IOError) as e:
-            logging.error(f"Failed to create desktop file. {e}")
-
     def count_steps(self, installer):
         manifest = self.get_installer(installer[0])
         steps = 0
@@ -510,7 +466,7 @@ class InstallerManager:
             logging.info("Updating bottle parameters")
             if is_final:
                 step_fn()
-            if self.__layer is not None:
+            if self.__layer:
                 self.__set_parameters(self.__layer.runtime_conf, parameters)
             else:
                 self.__set_parameters(_config, parameters)
@@ -520,7 +476,7 @@ class InstallerManager:
             logging.info("Executing installer steps")
             if is_final:
                 step_fn()
-            if self.__layer is not None:
+            if self.__layer:
                 for d in dependencies:
                     self.__layer.mount(name=d)
                 wineboot = WineBoot(self.__layer.runtime_conf)
@@ -540,12 +496,10 @@ class InstallerManager:
                     return Result(False, data={"message": "Checks failed, the program is not installed."})
 
         # register executable
-        if self.__layer is None:
+        if not self.__layer:
             if executable['path'].startswith("userdir/"):
                 _userdir = WineUtils.get_user_dir(bottle)
-                executable['path'] = executable['path'].replace(
-                    "userdir/", f"/users/{_userdir}/"
-                )
+                executable['path'] = executable['path'].replace("userdir/", f"/users/{_userdir}/")
             _path = f'C:\\{executable["path"]}'.replace("/", "\\")
             _program = {
                 "executable": executable["file"],
@@ -560,13 +514,15 @@ class InstallerManager:
                 scope="External_Programs"
             )
 
-        # create Desktop entry
-        self.__create_desktop_entry(_config, manifest, executable)
+            # create Desktop entry
+            bottles_icons_path = os.path.join(ManagerUtils.get_bottle_path(config), "icons")
+            icon_path = os.path.join(bottles_icons_path, executable.get('icon'))
+            ManagerUtils.create_desktop_entry(_config, _program, False, icon_path)
 
         if is_final:
             step_fn()
 
-        if self.__layer is not None:
+        if self.__layer:
             # sweep and save
             self.__layer.sweep()
             self.__layer.save()
