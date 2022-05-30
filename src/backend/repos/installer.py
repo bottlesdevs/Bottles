@@ -37,8 +37,7 @@ class InstallerRepo(Repo):
     def get_icon(self, name: str) -> Union[str, bytes, None]:
         if name in self.catalog:
             entry = self.catalog[name]
-            executable = entry.get("Executable", {})
-            icon = executable.get("icon")
+            icon = entry.get("Icon")
             if icon:
                 return f"{self.url}/data/{name}/{icon}"
         return None
