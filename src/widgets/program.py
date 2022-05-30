@@ -71,7 +71,6 @@ class ProgramEntry(Handy.ActionRow):
         self.is_layer = is_layer
 
         self.set_title(self.program["name"])
-        self.set_icon_name(program.get("icon", ""))
 
         if is_layer:
             self.executable = program["exec_name"]
