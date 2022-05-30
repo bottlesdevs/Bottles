@@ -194,9 +194,11 @@ class ManagerUtils:
             datetime.now().timestamp()
         )
 
-        cmd = "bottles-cli"
+        cmd_legacy = "bottles"
+        cmd_cli = "bottles-cli"
         if "FLATPAK_ID" in os.environ:
-            cmd = "flatpak run --command=bottles-cli com.usebottles.bottles"
+            cmd_legacy = "flatpak run com.usebottles.bottles"
+            cmd_cli = "flatpak run --command=bottles-cli com.usebottles.bottles"
 
         if existing_files:
             for file in existing_files:
@@ -210,7 +212,7 @@ class ManagerUtils:
         with open(desktop_file, "w") as f:
             f.write(f"[Desktop Entry]\n")
             f.write(f"Name={program.get('name')}\n")
-            f.write(f"Exec={cmd} run -p {shlex.quote(program.get('name'))} -b '{config.get('Path')}'\n")
+            f.write(f"Exec={cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Path')}'\n")
             f.write(f"Type=Application\n")
             f.write(f"Terminal=false\n")
             f.write(f"Categories=Application;\n")
@@ -220,7 +222,7 @@ class ManagerUtils:
             f.write("Actions=Configure;\n")
             f.write("[Desktop Action Configure]\n")
             f.write("Name=Configure in Bottles\n")
-            f.write(f"Exec={cmd} -b '{config.get('Name')}'\n")
+            f.write(f"Exec={cmd_legacy} -b '{config.get('Name')}'\n")
 
         return True
 
