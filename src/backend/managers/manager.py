@@ -494,32 +494,6 @@ class Manager:
             return sorted(component["available"], reverse=True)
 
     @staticmethod
-    def __find_program_icon(program_name):
-        """
-        Search for the icon of the program in the system, fallback to
-        'application-x-executable' if not found.
-        """
-        logging.debug(f"Searching icon for {program_name}..", )
-        pattern = f"*{program_name}*"
-
-        for root, dirs, files in os.walk(Paths.icons_user):
-            for name in files:
-                if fnmatch.fnmatch(name.lower(), pattern.lower()):
-                    name = name.split("/")[-1][:-4]
-                    return name
-
-        if "FLATPAK_ID" in os.environ:
-            '''
-            Flatpak has no access to the user's home directory, so
-            no icons can be found. Returning an empty string to
-            hide the icon instead of returning the default one for
-            all the entries in the Programs list.
-            '''
-            return ""
-
-        return "com.usebottles.bottles-program"
-
-    @staticmethod
     def __get_exe_parent_dir(config, executable_path):
         """Get parent directory of the executable."""
         if "\\" in executable_path:
@@ -669,14 +643,13 @@ class Manager:
                 program_folder = self.__get_exe_parent_dir(config, _program["path"])
             else:
                 program_folder = os.path.dirname(_program["path"])
-            icon = self.__find_program_icon(program)
             installed_programs.append({
                 "executable": _program["executable"],
                 "arguments": _program.get("arguments", ""),
                 "name": _program["name"],
                 "path": _program["path"],
                 "folder": program_folder,
-                "icon": icon,
+                "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
                 "removed": _program.get("removed"),
                 "id": program
@@ -696,7 +669,6 @@ class Manager:
                 config,
                 executable_path
             )
-            icon = self.__find_program_icon(executable_name)
             stop = False
 
             for pattern in ignored_patterns:
@@ -719,7 +691,7 @@ class Manager:
                         "name": executable_name.split(".")[0],
                         "path": executable_path,
                         "folder": program_folder,
-                        "icon": icon,
+                        "icon": "com.usebottles.bottles-program",
                         "id": executable_name
                     })
                     found.append(executable_name)
