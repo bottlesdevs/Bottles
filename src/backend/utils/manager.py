@@ -175,7 +175,7 @@ class ManagerUtils:
         return icon
 
     @staticmethod
-    def create_desktop_entry(config, program: dict, skip_icon: bool = False) -> bool:
+    def create_desktop_entry(config, program: dict, skip_icon: bool = False, custom_icon: str = "") -> bool:
         if not user_apps_dir:
             return False
 
@@ -202,8 +202,10 @@ class ManagerUtils:
             for file in existing_files:
                 os.remove(file)
 
-        if not skip_icon:
+        if not skip_icon and not custom_icon:
             icon = ManagerUtils.extract_icon(config, program.get("name"), program.get("path"))
+        elif custom_icon:
+            icon = custom_icon
 
         with open(desktop_file, "w") as f:
             f.write(f"[Desktop Entry]\n")
