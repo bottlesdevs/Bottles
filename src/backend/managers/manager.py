@@ -866,7 +866,7 @@ class Manager:
         if config["Runner"] not in self.runners_available:
             '''
             If the runner is not in the list of available runners, set it
-            to latest Vaniglia. If there is no Vaniglia, set it to the
+            to latest Caffe. If there is no Caffe, set it to the
             first one.
             '''
             config["Runner"] = self.get_latest_runner("wine")
