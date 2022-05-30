@@ -31,6 +31,7 @@ from bottles.backend.managers.library import LibraryManager
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.wine.winedbg import WineDbg
 from bottles.backend.wine.executor import WineExecutor
+from bottles.backend.wine.uninstaller import Uninstaller
 
 
 # noinspection PyUnusedLocal
@@ -202,11 +203,11 @@ class ProgramEntry(Handy.ActionRow):
         GLib.idle_add(self.page_details.update_programs, config=self.config)
 
     def uninstall_program(self, widget):
+        uninstaller = Uninstaller(self.config)
         RunAsync(
-            task_func=self.manager.remove_program,
+            task_func=uninstaller.from_name,
             callback=self.update_programs,
-            config=self.config,
-            program_name=self.program["name"]
+            name=self.program["name"]
         )
 
     def hide_program(self, widget=None, update=True):

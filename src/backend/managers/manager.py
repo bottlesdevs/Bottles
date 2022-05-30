@@ -276,13 +276,6 @@ class Manager:
             data={"removed": True}
         )
 
-    @staticmethod
-    def remove_program(config: dict, program_name: str):
-        """Find a program uninstaller and run it."""
-        logging.info(f"Removing program: [{program_name}] from " +
-                     f"bottle: [{config['Name']}] config.", )
-        Uninstaller(config).from_name(program_name)
-
     def check_runners(self, install_latest: bool = True) -> bool:
         """
         Check for available runners (both system and Bottles) and install
