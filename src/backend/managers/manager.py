@@ -654,11 +654,13 @@ class Manager:
                         continue
 
             try:
+                if not os.path.exists(_config):
+                    raise AttributeError
                 with open(_config, "r") as f:
                     conf_file_yaml = yaml.safe_load(f)
-            except (FileNotFoundError, yaml.YAMLError):
+            except (FileNotFoundError, AttributeError, yaml.YAMLError):
                 if not silent:
-                    logging.warning(f"A placeholder found but can't reach the config file: {_config}")
+                    logging.warning(f"Bottle {_name} is missing a config file")
                 continue
 
             if conf_file_yaml is None:
