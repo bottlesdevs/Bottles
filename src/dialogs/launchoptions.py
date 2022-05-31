@@ -139,12 +139,9 @@ class LaunchOptionsDialog(Handy.Window):
         vkd3d = self.switch_vkd3d.get_state()
         nvapi = self.switch_nvapi.get_state()
 
-        if not dxvk and self.config["Parameters"].get("dxvk"):
-            self.program["dxvk"] = dxvk
-        if not vkd3d and self.config["Parameters"].get("vkd3d"):
-            self.program["vkd3d"] = vkd3d
-        if not nvapi and self.config["Parameters"].get("dxvk_nvapi"):
-            self.program["dxvk_nvapi"] = nvapi
+        self.program["dxvk"] = dxvk
+        self.program["vkd3d"] = vkd3d
+        self.program["dxvk_nvapi"] = nvapi
 
         self.program["arguments"] = self.entry_arguments.get_text()
         self.config = self.manager.update_config(
