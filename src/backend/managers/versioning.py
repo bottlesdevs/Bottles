@@ -56,7 +56,7 @@ class VersioningManager:
         compare them with the current index, looking for differences.
         """
         task_id = str(uuid.uuid4())
-        logging.info(f"Creating new state for bottle: [{config['Name']}] …", )
+        logging.info(f"Creating new state for bottle: [{config['Name']}] …")
 
         bottle_path = ManagerUtils.get_bottle_path(config)
         GLib.idle_add(
@@ -246,7 +246,7 @@ class VersioningManager:
         self.manager.update_config(config, "State", state_id)
         self.manager.update_config(config, "Versioning", True)
 
-        logging.info(f"New state [{state_id}] created successfully!", )
+        logging.info(f"New state [{state_id}] created successfully!")
 
         if update:
             '''
@@ -363,7 +363,7 @@ class VersioningManager:
 
         bottle_path = ManagerUtils.get_bottle_path(config)
 
-        logging.info(f"Restoring to state: [{state_id}]", )
+        logging.info(f"Restoring to state: [{state_id}]")
 
         # get bottle and state indexes
         bottle_index = self.get_index(config)
@@ -380,15 +380,15 @@ class VersioningManager:
                 remove_files.append(file)
             elif file["checksum"] not in [file["checksum"] for file in state_index.get("Files")]:
                 edit_files.append(file)
-        logging.info(f"[{len(remove_files)}] files to remove.", )
-        logging.info(f"[{len(edit_files)}] files to replace.", )
+        logging.info(f"[{len(remove_files)}] files to remove.")
+        logging.info(f"[{len(edit_files)}] files to replace.")
 
         # check for new files
         add_files = []
         for file in state_index.get("Files"):
             if file["file"] not in [file["file"] for file in bottle_index.get("Files")]:
                 add_files.append(file)
-        logging.info(f"[{len(add_files)}] files to add.", )
+        logging.info(f"[{len(add_files)}] files to add.")
 
         # perform file updates
         for file in remove_files:
@@ -448,8 +448,8 @@ class VersioningManager:
             states_file.close()
             states = states_file_yaml.get("States")
 
-            logging.info(f"Found [{len(states)}] states for bottle: [{config['Name']}]", )
+            logging.info(f"Found [{len(states)}] states for bottle: [{config['Name']}]")
         except (FileNotFoundError, yaml.YAMLError):
-            logging.info(f"No states found for bottle: [{config['Name']}]", )
+            logging.info(f"No states found for bottle: [{config['Name']}]")
 
         return states

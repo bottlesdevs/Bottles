@@ -315,7 +315,7 @@ class DependencyManager:
             else:
                 return True
         else:
-            logging.error("Destination path not supported!", )
+            logging.error("Destination path not supported!")
             return False
 
         return dest
@@ -388,7 +388,7 @@ class DependencyManager:
         if dest.startswith("temp/"):
             dest = dest.replace("temp/", f"{Paths.temp}/")
         else:
-            logging.error("Destination path not supported!", )
+            logging.error("Destination path not supported!")
             return False
 
         if validate_url(step["url"]):

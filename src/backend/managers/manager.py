@@ -22,10 +22,7 @@ import random
 import time
 import uuid
 import yaml
-import shlex
 import shutil
-import struct
-import locale
 import fnmatch
 from glob import glob
 from datetime import datetime
@@ -47,6 +44,7 @@ from bottles.backend.managers.installer import InstallerManager
 from bottles.backend.managers.dependency import DependencyManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.file import FileUtils
+from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.generic import sort_by_version
 from bottles.backend.managers.importer import ImportManager
@@ -63,8 +61,6 @@ from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.wine.winepath import WinePath
 
 logging = Logger()
-
-RunnerName = NewType('RunnerName', str)
 
 
 class Manager:
@@ -120,7 +116,7 @@ class Manager:
             logging.set_silent()
 
     def checks(self, install_latest=False, first_run=False):
-        logging.info("Performing Bottles checks...", )
+        logging.info("Performing Bottles checks...")
         self.check_app_dirs()
         self.check_dxvk(install_latest)
         self.check_vkd3d(install_latest)
@@ -144,7 +140,7 @@ class Manager:
             try:
                 shutil.rmtree(Paths.temp)
                 os.makedirs(Paths.temp, exist_ok=True)
-                logging.info("Temp path cleaned successfully!", )
+                logging.info("Temp directory cleaned successfully!")
             except FileNotFoundError:
                 self.check_app_dirs()
 
@@ -163,60 +159,59 @@ class Manager:
         if they don't exist.
         """
         if not os.path.isdir(Paths.runners):
-            logging.info("Runners path doesn't exist, creating now.", )
+            logging.info("Runners path doesn't exist, creating now.")
             os.makedirs(Paths.runners, exist_ok=True)
 
         if not os.path.isdir(Paths.runtimes):
-            logging.info("Runtimes path doesn't exist, creating now.", )
+            logging.info("Runtimes path doesn't exist, creating now.")
             os.makedirs(Paths.runtimes, exist_ok=True)
 
         if not os.path.isdir(Paths.winebridge):
-            logging.info("WineBridge path doesn't exist, creating now.", )
+            logging.info("WineBridge path doesn't exist, creating now.")
             os.makedirs(Paths.winebridge, exist_ok=True)
 
         if not os.path.isdir(Paths.bottles):
-            logging.info("Bottles path doesn't exist, creating now.", )
+            logging.info("Bottles path doesn't exist, creating now.")
             os.makedirs(Paths.bottles, exist_ok=True)
 
-        if self.settings.get_boolean("experiments-steam") \
-                and SteamManager.is_steam_supported():
+        if self.settings.get_boolean("experiments-steam") and SteamManager.is_steam_supported():
             if not os.path.isdir(Paths.steam):
-                logging.info("Steam path doesn't exist, creating now.", )
+                logging.info("Steam path doesn't exist, creating now.")
                 os.makedirs(Paths.steam, exist_ok=True)
 
         if not os.path.isdir(Paths.layers):
-            logging.info("Layers path doesn't exist, creating now.", )
+            logging.info("Layers path doesn't exist, creating now.")
             os.makedirs(Paths.layers, exist_ok=True)
 
         if not os.path.isdir(Paths.dxvk):
-            logging.info("Dxvk path doesn't exist, creating now.", )
+            logging.info("Dxvk path doesn't exist, creating now.")
             os.makedirs(Paths.dxvk, exist_ok=True)
 
         if not os.path.isdir(Paths.vkd3d):
-            logging.info("Vkd3d path doesn't exist, creating now.", )
+            logging.info("Vkd3d path doesn't exist, creating now.")
             os.makedirs(Paths.vkd3d, exist_ok=True)
 
         if not os.path.isdir(Paths.nvapi):
-            logging.info("Nvapi path doesn't exist, creating now.", )
+            logging.info("Nvapi path doesn't exist, creating now.")
             os.makedirs(Paths.nvapi, exist_ok=True)
 
         if not os.path.isdir(Paths.templates):
-            logging.info("Templates path doesn't exist, creating now.", )
+            logging.info("Templates path doesn't exist, creating now.")
             os.makedirs(Paths.templates, exist_ok=True)
 
         if not os.path.isdir(Paths.temp):
-            logging.info("Temp path doesn't exist, creating now.", )
+            logging.info("Temp path doesn't exist, creating now.")
             os.makedirs(Paths.temp, exist_ok=True)
 
         if not os.path.isdir(Paths.latencyflex):
-            logging.info("LatencyFlex path doesn't exist, creating now.", )
+            logging.info("LatencyFlex path doesn't exist, creating now.")
             os.makedirs(Paths.latencyflex, exist_ok=True)
 
     def organize_components(self):
         """Get components catalog and organizes into supported_ lists."""
         catalog = self.component_manager.fetch_catalog()
         if len(catalog) == 0:
-            logging.info("No components found!", )
+            logging.info("No components found.")
             return
 
         self.supported_wine_runners = catalog["wine"]
@@ -240,7 +235,7 @@ class Manager:
         """Organizes dependencies into supported_dependencies."""
         catalog = self.dependency_manager.fetch_catalog()
         if len(catalog) == 0:
-            logging.info("No dependencies found!", )
+            logging.info("No dependencies found!")
             return
 
         self.supported_dependencies = catalog
@@ -249,23 +244,24 @@ class Manager:
         """Organizes installers into supported_installers."""
         catalog = self.installer_manager.fetch_catalog()
         if len(catalog) == 0:
-            logging.info("No installers found!", )
+            logging.info("No installers found!")
             return
 
         self.supported_installers = catalog
 
     def remove_dependency(self, config: dict, dependency: list):
         """Uninstall a dependency and remove it from the bottle config."""
-        logging.info(f"Removing dependency: [{dependency[0]}] from " +
-                     f"bottle: [{config['Name']}] config.", )
+        dependency = dependency[0]
+        logging.info(f"Removing {dependency} dependency from {config['Name']}")
+        uninstallers = config.get("Uninstallers", [])
 
         # run dependency uninstaller if available
-        if dependency[0] in config["Uninstallers"]:
-            uninst = config["Uninstallers"][dependency[0]]
-            Uninstaller(config).from_name(uninst)
+        if dependency in uninstallers:
+            uninstaller = uninstallers[dependency]
+            Uninstaller(config).from_name(uninstaller)
 
         # remove dependency from bottle configuration
-        config["Installed_Dependencies"].remove(dependency[0])
+        config["Installed_Dependencies"].remove(dependency)
         self.update_config(
             config,
             key="Installed_Dependencies",
@@ -310,25 +306,21 @@ class Manager:
                 stdout=subprocess.PIPE,
                 shell=True
             ).communicate()[0].decode("utf-8")
-            version = version.split("\n")[0].split(" ")[0]
-            version = f'sys-{version}'
+            version = "sys-" + version.split("\n")[0].split(" ")[0]
             self.runners_available.append(version)
 
         # check bottles runners
         for runner in runners:
-            self.runners_available.append(runner.split("/")[-2])
+            _runner = os.path.basename(os.path.normpath(runner))
+            self.runners_available.append(_runner)
 
         if len(self.runners_available) > 0:
-            logging.info("Runners found:\n - {0}".format(
-                "\n - ".join(self.runners_available)
-            ), )
+            logging.info("Runners found:\n - {0}".format("\n - ".join(self.runners_available)))
 
-        tmp_runners = [
-            x for x in self.runners_available if not x.startswith('sys-')
-        ]
+        tmp_runners = [x for x in self.runners_available if not x.startswith('sys-')]
 
         if len(tmp_runners) == 0 and install_latest:
-            logging.warning("No runners found.", )
+            logging.warning("No runners found.")
 
             if self.utils_conn.check_connection():
                 # if connected, install the latest runner from repository
@@ -342,10 +334,7 @@ class Manager:
                     else:
                         tmp_runners = self.supported_wine_runners
                         runner_name = next(iter(tmp_runners))
-                    self.component_manager.install(
-                        component_type="runner",
-                        component_name=runner_name
-                    )
+                    self.component_manager.install("runner", runner_name)
                 except StopIteration:
                     return False
             else:
@@ -363,10 +352,7 @@ class Manager:
                 logging.warning("No runtime found.")
                 try:
                     version = next(iter(self.supported_runtimes))
-                    return self.component_manager.install(
-                        component_type="runtime",
-                        component_name=version
-                    )
+                    return self.component_manager.install("runtime", version)
                 except StopIteration:
                     return False
             return False
@@ -388,13 +374,10 @@ class Manager:
 
         if len(winebridge) == 0 or update:
             if install_latest and self.utils_conn.check_connection():
-                logging.warning("No WineBridge found.", )
+                logging.warning("No WineBridge found.")
                 try:
                     version = next(iter(self.supported_winebridge))
-                    self.component_manager.install(
-                        component_type="winebridge",
-                        component_name=version
-                    )
+                    self.component_manager.install("winebridge", version)
                     self.winebridge_available = [version]
                     return True
                 except StopIteration:
@@ -406,8 +389,7 @@ class Manager:
             with open(version_file, "r") as f:
                 version = f.read().strip()
                 if version:
-                    version = f"winebridge-{version}"
-                    self.winebridge_available = [version]
+                    self.winebridge_available = [f"winebridge-{version}"]
 
     def check_dxvk(self, install_latest: bool = True):
         res = self.__check_component("dxvk", install_latest)
@@ -478,10 +460,7 @@ class Manager:
                 # if connected, install the latest component from repository
                 try:
                     component_version = next(iter(component["supported"]))
-                    self.component_manager.install(
-                        component_type=component_type,
-                        component_name=component_version
-                    )
+                    self.component_manager.install(component_type, component_version)
                     component["available"] = [component_version]
                 except StopIteration:
                     return False
@@ -506,61 +485,9 @@ class Manager:
         return p.replace("\\", "/")
 
     @staticmethod
-    def __get_lnk_data(path):
-        """
-        Gets data from a .lnk file, and returns them in a dictionary.
-        Thanks to @Winand and @Jared for the code.
-        <https://gist.github.com/Winand/997ed38269e899eb561991a0c663fa49>
-        """
-        with open(path, 'rb') as stream:
-            content = stream.read()
-            '''
-            Skip first 20 bytes (HeaderSize and LinkCLSID)
-            read the LinkFlags structure (4 bytes)
-            '''
-            lflags = struct.unpack('I', content[0x14:0x18])[0]
-            position = 0x18
-
-            if (lflags & 0x01) == 1:
-                '''
-                If the HasLinkTargetIDList bit is set then skip the stored IDList 
-                structure and header
-                '''
-                position = struct.unpack('H', content[0x4C:0x4E])[0] + 0x4E
-
-            last_pos = position
-            position += 0x04
-
-            # get how long the file information is (LinkInfoSize)
-            length = struct.unpack('I', content[last_pos:position])[0]
-
-            '''
-            Skip 12 bytes (LinkInfoHeaderSize, LinkInfoFlags and 
-            VolumeIDOffset)
-            '''
-            position += 0x0C
-
-            # go to the LocalBasePath position
-            lbpos = struct.unpack('I', content[position:position + 0x04])[0]
-            position = last_pos + lbpos
-
-            # read the string at the given position of the determined length
-            size = (length + last_pos) - position - 0x02
-            content = content[position:position + size].split(b'\x00', 1)
-
-            decode = locale.getdefaultlocale()[1]
-            if len(content) > 1 or decode is None:
-                decode = 'utf-16'
-
-            try:
-                return content[-1].decode(decode)
-            except UnicodeDecodeError:
-                return None
-
-    @staticmethod
     def launch_layer_program(config, layer):
         """Mount a layer and launch the program on it."""
-        logging.info(f"Preparing {len(layer['mounts'])} layer(s)..", )
+        logging.info(f"Preparing {len(layer['mounts'])} layer(s)..")
         layer_conf = LayersStore.get_layer_by_uuid(layer['uuid'])
         if not layer_conf:
             logging.error("Layer not found.")
@@ -577,16 +504,16 @@ class Manager:
             mounts.append(_layer["UUID"])
 
         for mount in mounts:
-            logging.info("Mounting layers..", )
+            logging.info("Mounting layers..")
             program_layer.mount(_uuid=mount)
 
-        logging.info("Launching program..", )
+        logging.info("Launching program..")
         runtime_conf = program_layer.runtime_conf
         wineboot = WineBoot(runtime_conf)
         wineboot.update()
         Runner.run_layer_executable(runtime_conf, layer)
 
-        logging.info("Program exited, unmounting layers..", )
+        logging.info("Program exited, unmounting layers..")
         program_layer.sweep()
         program_layer.save()
 
@@ -661,14 +588,11 @@ class Manager:
             append it to the installed_programs list with its icon, 
             skip if the path contains the "Uninstall" word.
             '''
-            executable_path = self.__get_lnk_data(program)
+            executable_path = LnkUtils.get_data(program)
             if executable_path is None:
                 continue
             executable_name = executable_path.split("\\")[-1]
-            program_folder = self.__get_exe_parent_dir(
-                config,
-                executable_path
-            )
+            program_folder = self.__get_exe_parent_dir(config, executable_path)
             stop = False
 
             for pattern in ignored_patterns:
@@ -747,8 +671,7 @@ class Manager:
 
             miss_keys = Samples.config.keys() - conf_file_yaml.keys()
             for key in miss_keys:
-                logging.warning(f"Key: [{key}] not in bottle: "
-                                f"[{_name}] config, updating.", )
+                logging.warning(f"Key {key} is missing for bottle {_name}, updating…")
                 self.update_config(
                     config=conf_file_yaml,
                     key=key,
@@ -762,9 +685,7 @@ class Manager:
                 For each missing key in the bottle configuration, set
                 it to the default value.
                 '''
-                logging.warning(f"Key: [{key}] not in bottle: "
-                                f"[{_name}] config Parameters, "
-                                "updating.", )
+                logging.warning(f"Parameters key {key} is missing for bottle {_name}, updating…")
                 self.update_config(
                     config=conf_file_yaml,
                     key=key,
@@ -774,13 +695,9 @@ class Manager:
             self.local_bottles[_name] = conf_file_yaml
 
         if len(self.local_bottles) > 0 and not silent:
-            logging.info("Bottles found:\n - {0}".format(
-                "\n - ".join(self.local_bottles)
-            ), )
+            logging.info("Bottles found:\n - {0}".format("\n - ".join(self.local_bottles)))
 
-        if self.settings.get_boolean("experiments-steam") \
-                and SteamManager.is_steam_supported() \
-                and not self.is_cli:
+        if self.settings.get_boolean("experiments-steam") and SteamManager.is_steam_supported() and not self.is_cli:
             SteamManager.update_bottles()
             self.local_bottles.update(SteamManager.list_prefixes())
 
@@ -801,11 +718,11 @@ class Manager:
         is set to True.
         TODO: move to bottle.py (Bottle manager)
         """
+        _name = config.get('Name')
         if config.get("IsLayer"):
             return Result(status=True, data={"config": {}})
 
-        logging.info(f"Setting Key: [{key}] to [{value}] for "
-                     f"bottle: [{config['Name']}]…", )
+        logging.info(f"Setting Key {key}={value}] for bottle {_name}…")
 
         _config = config
         wineboot = WineBoot(_config)
@@ -836,7 +753,7 @@ class Manager:
             else:
                 config[key] = value
 
-        with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
+        with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file:
             yaml.dump(config, conf_file, indent=4)
             conf_file.close()
 
@@ -849,7 +766,7 @@ class Manager:
 
     def create_bottle_from_config(self, config: dict) -> bool:
         """Create a bottle from a config dict."""
-        logging.info(f"Creating new {config['Name']} bottle from config…", )
+        logging.info(f"Creating new {config['Name']} bottle from config…")
 
         for key in Samples.config.keys():
             '''
@@ -902,7 +819,7 @@ class Manager:
             )[-1]
 
         # create the bottle path
-        bottle_path = f"{Paths.bottles}/{config['Name']}"
+        bottle_path = os.path.join(Paths.bottles, config['Name'])
 
         if not os.path.exists(bottle_path):
             '''
@@ -919,7 +836,7 @@ class Manager:
 
         # write the bottle config file
         try:
-            with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
+            with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file:
                 yaml.dump(config, conf_file, indent=4)
                 conf_file.close()
         except (OSError, IOError, yaml.YAMLError) as e:
@@ -950,16 +867,11 @@ class Manager:
             Install each declared dependency in the new bottle.
             '''
             if dependency in self.supported_dependencies.keys():
-                dep = [
-                    dependency,
-                    self.supported_dependencies[dependency]
-                ]
+                dep = [dependency, self.supported_dependencies[dependency]]
                 self.dependency_manager.install(config, dep)
 
         logging.info(f"New bottle from config created: {config['Path']}")
-
         self.update_bottles(silent=True)
-
         return True
 
     def create_bottle(
@@ -979,7 +891,7 @@ class Manager:
             custom_environment: str = None
     ):
         """
-        Create a new bottle from the givven arguments.
+        Create a new bottle from the given arguments.
         TODO: move to bottle.py (Bottle manager)
         """
 
@@ -1005,7 +917,7 @@ class Manager:
                 len(self.nvapi_available),
                 len(self.latencyflex_available)
             ]:
-                logging.error("Missing essential components. Installing…", )
+                logging.error("Missing essential components. Installing…")
                 log_update(_("Missing essential components. Installing…"))
                 self.check_runners()
                 self.check_dxvk()
@@ -1098,7 +1010,7 @@ class Manager:
                 return Result(False)
 
         # generate bottle configuration
-        logging.info("Generating bottle configuration…", )
+        logging.info("Generating bottle configuration…")
         log_update(_("Generating bottle configuration…"))
         config = Samples.config
         config["Name"] = bottle_name
@@ -1163,7 +1075,7 @@ class Manager:
 
         # apply Windows version
         if not template and not custom_environment:
-            logging.info("Setting Windows version…", )
+            logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
             rk.set_windows(config["Windows"])
             wineboot.update()
@@ -1171,7 +1083,7 @@ class Manager:
             FileUtils.wait_for_files(reg_files)
 
             # apply CMD settings
-            logging.info("Setting CMD default settings…", )
+            logging.info("Setting CMD default settings…")
             log_update(_("Apply CMD default settings…"))
             rk.apply_cmd_settings()
             wineboot.update()
@@ -1179,7 +1091,7 @@ class Manager:
             FileUtils.wait_for_files(reg_files)
 
             # blacklisting processes
-            logging.info("Optimizing environment…", )
+            logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
             _blacklist_dll = ["winemenubuilder.exe"]
             for _dll in _blacklist_dll:
@@ -1190,7 +1102,7 @@ class Manager:
                 )
 
         # apply environment configuration
-        logging.info(f"Applying environment: [{environment}]…", )
+        logging.info(f"Applying environment: [{environment}]…")
         log_update(_("Applying environment: {0}…").format(environment))
         env = None
 
@@ -1200,10 +1112,10 @@ class Manager:
             try:
                 with open(custom_environment, "r") as f:
                     env = yaml.safe_load(f.read())
-                    logging.warning("Using a custom environment recipe…", )
+                    logging.warning("Using a custom environment recipe…")
                     log_update(_("(!) Using a custom environment recipe…"))
             except (FileNotFoundError, PermissionError, yaml.YAMLError):
-                logging.error("Recipe not not found or not valid…", )
+                logging.error("Recipe not not found or not valid…")
                 log_update(_("(!) Recipe not not found or not valid…"))
                 return Result(False)
 
@@ -1220,7 +1132,7 @@ class Manager:
             if (not template and config["Parameters"]["dxvk"]) \
                     or (template and template["config"]["DXVK"] != dxvk):
                 # perform dxvk installation if configured
-                logging.info("Installing DXVK…", )
+                logging.info("Installing DXVK…")
                 log_update(_("Installing DXVK…"))
                 self.install_dll_component(config, "dxvk", version=dxvk_name)
                 template_updated = True
@@ -1228,7 +1140,7 @@ class Manager:
             if not template and config["Parameters"]["vkd3d"] \
                     or (template and template["config"]["VKD3D"] != vkd3d):
                 # perform vkd3d installation if configured
-                logging.info("Installing VKD3D…", )
+                logging.info("Installing VKD3D…")
                 log_update(_("Installing VKD3D…"))
                 self.install_dll_component(config, "vkd3d", version=vkd3d_name)
                 template_updated = True
@@ -1236,7 +1148,7 @@ class Manager:
             if not template and config["Parameters"]["dxvk_nvapi"] \
                     or (template and template["config"]["NVAPI"] != nvapi):
                 # perform nvapi installation if configured
-                logging.info("Installing DXVK-NVAPI…", )
+                logging.info("Installing DXVK-NVAPI…")
                 log_update(_("Installing DXVK-NVAPI…"))
                 self.install_dll_component(config, "dxvk_nvapi", version=nvapi_name)
                 template_updated = True
@@ -1261,7 +1173,7 @@ class Manager:
 
         if versioning:
             # create first state if versioning enabled
-            logging.info("Creating versioning state 0…", )
+            logging.info("Creating versioning state 0…")
             log_update(_("Creating versioning state 0…"))
             self.versioning_manager.create_state(
                 config=config,
@@ -1280,7 +1192,7 @@ class Manager:
 
         # caching template
         if (not template and environment != "layered") or template_updated:
-            logging.info("Caching template…", )
+            logging.info("Caching template…")
             log_update(_("Caching template…"))
             TemplateManager.new(environment, config)
 
@@ -1323,12 +1235,12 @@ class Manager:
         Perform wineserver shutdown and delete the bottle.
         TODO: move to bottle.py (Bottle manager)
         """
-        logging.info("Stopping bottle…", )
+        logging.info("Stopping bottle…")
         wineboot = WineBoot(config)
         wineboot.force()
 
         if config.get("Path"):
-            logging.info(f"Removing applications installed with the bottle ..", )
+            logging.info(f"Removing applications installed with the bottle ..")
             for inst in glob(f"{Paths.applications}/{config.get('Name')}--*"):
                 os.remove(inst)
 
@@ -1343,7 +1255,7 @@ class Manager:
                 except FileNotFoundError:
                     pass
 
-            logging.info(f"Removing the bottle…", )
+            logging.info(f"Removing the bottle…")
             path = ManagerUtils.get_bottle_path(config)
             shutil.rmtree(path, ignore_errors=True)
 
@@ -1353,12 +1265,12 @@ class Manager:
                 # ref: #676
                 pass
 
-            logging.info(f"Deleted the bottle in the [{path}] path", )
+            logging.info(f"Deleted the bottle in the [{path}] path")
             GLib.idle_add(self.window.page_list.update_bottles)
 
             return True
 
-        logging.error("Empty path found. Disasters unavoidable.", )
+        logging.error("Empty path found. Disasters unavoidable.")
         return False
 
     def repair_bottle(self, config: dict) -> bool:
@@ -1368,7 +1280,7 @@ class Manager:
         bottle will use the Custom environment.
         TODO: move to bottle.py (Bottle manager)
         """
-        logging.info(f"Trying to repair the bottle: [{config['Name']}]…", )
+        logging.info(f"Trying to repair the bottle: [{config['Name']}]…")
 
         wineboot = WineBoot(config)
         bottle_path = f"{Paths.bottles}/{config['Name']}"
@@ -1383,7 +1295,7 @@ class Manager:
         new_config["Update_Date"] = str(datetime.now())
 
         try:
-            with open(f"{bottle_path}/bottle.yml", "w") as conf_file:
+            with open(os.path.join(bottle_path, "bottle.yml"), "w") as conf_file:
                 yaml.dump(new_config, conf_file, indent=4)
                 conf_file.close()
         except (OSError, IOError, yaml.YAMLError) as e:

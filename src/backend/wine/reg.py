@@ -17,7 +17,7 @@ class Reg(WineProgram):
     def add(self, key: str, value: str, data: str, key_type: str = False):
         config = self.config
         logging.info(f"Adding Key: [{key}] with Value: [{value}] and "
-                     f"Data: [{data}] in {config['Name']} registry", )
+                     f"Data: [{data}] in {config['Name']} registry")
         winedbg = WineDbg(config)
         args = "add '%s' /v '%s' /d '%s' /f" % (key, value, data)
 
@@ -36,7 +36,7 @@ class Reg(WineProgram):
         """Remove a key from the registry"""
         config = self.config
         logging.info(f"Removing Value: [{key}] from Key: [{value}] in "
-                     f"{config['Name']} registry", )
+                     f"{config['Name']} registry")
         winedbg = WineDbg(config)
         args = "delete '%s' /v %s /f" % (key, value)
 
@@ -49,7 +49,7 @@ class Reg(WineProgram):
     def import_bundle(self, bundle: dict):
         """Import a bundle of keys into the registry"""
         config = self.config
-        logging.info(f"Importing bundle to {config['Name']} registry", )
+        logging.info(f"Importing bundle to {config['Name']} registry")
         winedbg = WineDbg(config)
         reg_file = ManagerUtils.get_temp_path(f"{uuid.uuid4()}.reg")
 

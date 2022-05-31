@@ -298,7 +298,7 @@ class WineCommand:
                         _first = list(gpu["vendors"].keys())[0]
                         env.add("VK_ICD_FILENAMES", gpu["vendors"][_first]["icd"])
                     else:
-                        logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES..", )
+                        logging.warning("No GPU vendor found, keep going without setting VK_ICD_FILENAMES..")
 
             # Add ld to LD_LIBRARY_PATH
             if ld:

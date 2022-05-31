@@ -40,7 +40,7 @@ class Repo:
                 index = yaml.safe_load(url.read())
                 logging.info(f"Catalog {self.name} loaded")
         except (urllib.error.HTTPError, urllib.error.URLError, yaml.YAMLError):
-            logging.error(f"Cannot fetch {self.name} repository index.", )
+            logging.error(f"Cannot fetch {self.name} repository index.")
             return {}
 
         return index
@@ -53,5 +53,5 @@ class Repo:
                     return res.decode("utf-8")
                 return yaml.safe_load(res)
         except (urllib.error.HTTPError, urllib.error.URLError, RemoteDisconnected, yaml.YAMLError):
-            logging.error(f"Cannot fetch {self.name} manifest.", )
+            logging.error(f"Cannot fetch {self.name} manifest.")
             return False

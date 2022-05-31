@@ -58,7 +58,7 @@ class BackupManager:
         BackupManager.operation_manager = OperationManager(window)
         task_id = str(uuid.uuid4())
 
-        logging.info(f"New {scope} backup for [{config['Name']}] in [{path}]", )
+        logging.info(f"New {scope} backup for [{config['Name']}] in [{path}]")
 
         if scope == "config":
             try:
@@ -94,7 +94,7 @@ class BackupManager:
             logging.info(f"New backup saved in path: {path}.", jn=True)
             return Result(status=True)
 
-        logging.error(f"Failed to save backup in path: {path}.", )
+        logging.error(f"Failed to save backup in path: {path}.")
         return Result(status=False)
 
     @staticmethod
@@ -129,7 +129,7 @@ class BackupManager:
             _("Importing backup: {0}").format(backup_name),
             False
         )
-        logging.info(f"Importing backup: {backup_name}", )
+        logging.info(f"Importing backup: {backup_name}")
 
         if scope == "config":
             '''
@@ -171,13 +171,13 @@ class BackupManager:
             logging.info(f"Backup imported: {path}", jn=True)
             return Result(status=True)
 
-        logging.error(f"Failed importing backup: {backup_name}", )
+        logging.error(f"Failed importing backup: {backup_name}")
         return Result(status=False)
 
     @staticmethod
     def duplicate_bottle(config, name) -> bool:
         """Duplicates the bottle with the specified new name."""
-        logging.info(f"Duplicating bottle: {config.get('Name')} to {name}", )
+        logging.info(f"Duplicating bottle: {config.get('Name')} to {name}")
 
         path = name.replace(" ", "_")
         source = ManagerUtils.get_bottle_path(config)
@@ -222,7 +222,7 @@ class BackupManager:
                 symlinks=False
             )
         except (FileNotFoundError, PermissionError, OSError):
-            logging.error(f"Failed duplicate bottle: {name}", )
+            logging.error(f"Failed duplicate bottle: {name}")
             return Result(status=False)
 
         logging.info(f"Bottle {name} duplicated.", jn=True)

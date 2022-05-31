@@ -43,7 +43,7 @@ class TemplateManager:
                 TemplateManager.delete_template(template["uuid"])
 
         _uuid = str(uuid.uuid4())
-        logging.info(f"Creating new template: {_uuid}", )
+        logging.info(f"Creating new template: {_uuid}")
         bottle = ManagerUtils.get_bottle_path(config)
         del config["Name"]
         del config["Path"]
@@ -56,7 +56,7 @@ class TemplateManager:
             "*.yml"
         ]
         _path = f"{Paths.templates}/{_uuid}"
-        logging.info("Copying files …", )
+        logging.info("Copying files …")
         shutil.copytree(bottle, _path, symlinks=True, ignore=shutil.ignore_patterns(*ignored))
 
         template = {
@@ -71,7 +71,7 @@ class TemplateManager:
         logging.info(f" New template {env} created", jn=True)
 
         if not TemplateManager.__validate_template(_uuid):
-            logging.error("Template validation failed, will retry with next bottle.", )
+            logging.error("Template validation failed, will retry with next bottle.")
             shutil.rmtree(_path)
 
     @staticmethod
@@ -81,12 +81,12 @@ class TemplateManager:
         template_path = f"{Paths.templates}/{template_uuid}"
 
         if not os.path.exists(template_path):
-            logging.error(f"Template {template_uuid} not found!", )
+            logging.error(f"Template {template_uuid} not found!")
             result = False
 
         path_size = sum(file.stat().st_size for file in Path(template_path).rglob('*'))
         if path_size < 300000000:
-            logging.error(f"Template {template_uuid} is too small!", )
+            logging.error(f"Template {template_uuid} is too small!")
             result = False
 
         return result
@@ -111,16 +111,16 @@ class TemplateManager:
     @staticmethod
     def delete_template(template_uuid: str):
         if not template_uuid:
-            logging.error("Template uuid is not defined!", )
+            logging.error("Template uuid is not defined!")
             return
 
         if not os.path.exists(os.path.join(Paths.templates, template_uuid)):
-            logging.error(f"Template {template_uuid} not found!", )
+            logging.error(f"Template {template_uuid} not found!")
             return
 
-        logging.info(f"Deleting template: {template_uuid}", )
+        logging.info(f"Deleting template: {template_uuid}")
         shutil.rmtree(os.path.join(Paths.templates, template_uuid))
-        logging.info("Template deleted successfully!", )
+        logging.info("Template deleted successfully!")
 
     @staticmethod
     def check_outdated(template: dict):
@@ -150,16 +150,16 @@ class TemplateManager:
         for template in _templates:
             if template["env"] == env.lower():
                 if TemplateManager.check_outdated(template):
-                    logging.info(f"Deleting outdated template: {template['uuid']}", )
+                    logging.info(f"Deleting outdated template: {template['uuid']}")
                     return None
                 return template
         return None
 
     @staticmethod
     def unpack_template(template: dict, config: dict):
-        logging.info(f"Unpacking template: {template['uuid']}", )
+        logging.info(f"Unpacking template: {template['uuid']}")
         bottle = ManagerUtils.get_bottle_path(config)
         _path = f"{Paths.templates}/{template['uuid']}"
 
         shutil.copytree(_path, bottle, symlinks=False, dirs_exist_ok=True)
-        logging.info("Template unpacked successfully!", )
+        logging.info("Template unpacked successfully!")

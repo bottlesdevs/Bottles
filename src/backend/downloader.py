@@ -73,7 +73,7 @@ class Downloader:
                         GLib.idle_add(self.func, 1, 1, 1)
                         self.__progress(1, 1, 1)
         except (requests.exceptions.RequestException, OSError):
-            logging.error("Download failed! Check your internet connection.", )
+            logging.error("Download failed! Check your internet connection.")
             return False
 
         return True

@@ -71,7 +71,7 @@ class TerminalUtils:
             env = os.environ.copy()
 
         if not self.check_support():
-            logging.warning("Terminal not supported.", )
+            logging.warning("Terminal not supported.")
             return False
 
         if colors not in self.colors:

@@ -38,10 +38,10 @@ class Drives:
         if not os.path.exists(self.dosdevices_path):
             os.makedirs(self.dosdevices_path)
         os.symlink(path, f"{self.dosdevices_path}/{letter}")
-        logging.info(f"New drive {letter} added to the bottle", )
+        logging.info(f"New drive {letter} added to the bottle")
 
     def remove_drive(self, letter: str):
         """Remove a drive from the bottle"""
         if letter.upper() in self.get_all():
             os.remove(f"{self.dosdevices_path}/{letter.lower()}:")
-            logging.info(f"Drive {letter} removed from the bottle", )
+            logging.info(f"Drive {letter} removed from the bottle")

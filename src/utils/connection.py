@@ -58,7 +58,7 @@ class ConnectionUtils:
 
             return True
         except urllib.error.URLError:
-            logging.warning("Connection status: offline …", )
+            logging.warning("Connection status: offline …")
             if self.window is not None:
                 self.window.toggle_btn_noconnection(True)
 

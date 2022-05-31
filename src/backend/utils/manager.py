@@ -43,7 +43,7 @@ class ManagerUtils:
             component: str = "",
             custom_path: str = ""
     ):
-        logging.info("Opening the file manager in the path …", )
+        logging.info("Opening the file manager in the path …")
         path = ""
 
         if path_type == "bottle":
@@ -121,7 +121,7 @@ class ManagerUtils:
             config: dict,
             fn_update: callable = None
     ) -> Union[str, bool]:
-        logging.info(f"Adding file {file_path} to the bottle …", )
+        logging.info(f"Adding file {file_path} to the bottle …")
         bottle_path = ManagerUtils.get_bottle_path(config)
 
         if not os.path.exists(f"{bottle_path}/storage"):
@@ -135,7 +135,7 @@ class ManagerUtils:
         file_size = os.path.getsize(file_path)
         file_new_path = f"{bottle_path}/storage/{file_name}"
 
-        logging.info(f"Copying file {file_path} to the bottle …", )
+        logging.info(f"Copying file {file_path} to the bottle …")
         try:
             with open(file_path, "rb") as f_in:
                 with open(file_new_path, "wb") as f_out:
@@ -149,7 +149,7 @@ class ManagerUtils:
                     GLib.idle_add(fn_update, 1)
             return file_new_path
         except (OSError, IOError):
-            logging.error(f"Could not copy file {file_path} to the bottle.", )
+            logging.error(f"Could not copy file {file_path} to the bottle.")
             return False
 
     @staticmethod

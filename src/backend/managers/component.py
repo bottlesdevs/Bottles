@@ -106,7 +106,7 @@ class ComponentManager:
                                         "version. Use the Flatpak instead if you can't "
                                         "upgrade your system. This runner will be ignored, "
                                         "please keep in mind that Bottles and all our "
-                                        "installers are only tested with Caffe runners.", )
+                                        "installers are only tested with Caffe runners.")
                         continue
 
                 sub_category = component[1]["Sub-category"]
@@ -183,7 +183,7 @@ class ComponentManager:
             If so, then skip the download process and set the update_func
             to completed.
             '''
-            logging.warning(f"File [{existing_file}] already exists in temp, skipping.", )
+            logging.warning(f"File [{existing_file}] already exists in temp, skipping.")
             GLib.idle_add(update_func, task_id, False, False, False, True)
         else:
             '''
@@ -237,7 +237,7 @@ class ComponentManager:
         file_path = os.path.join(Paths.temp, existing_file)
         if rename and just_downloaded:
             """Renaming the downloaded file if requested."""
-            logging.info(f"Renaming [{file}] to [{rename}].", )
+            logging.info(f"Renaming [{file}] to [{rename}].")
             file_path = os.path.join(Paths.temp, rename)
             os.rename(temp_dest, file_path)
 
@@ -252,9 +252,9 @@ class ComponentManager:
             local_checksum = FileUtils().get_checksum(file_path)
 
             if local_checksum and local_checksum != checksum:
-                logging.error(f"Downloaded file [{file}] looks corrupted.", )
-                logging.error(f"Source cksum: [{checksum}] downloaded: [{local_checksum}]", )
-                logging.error(f"Removing corrupted file [{file}].", )
+                logging.error(f"Downloaded file [{file}] looks corrupted.")
+                logging.error(f"Source cksum: [{checksum}] downloaded: [{local_checksum}]")
+                logging.error(f"Removing corrupted file [{file}].")
                 os.remove(file_path)
                 GLib.idle_add(self.__operation_manager.remove_task, task_id)
                 return False
@@ -281,7 +281,7 @@ class ComponentManager:
         elif component == "winebridge":
             path = Paths.winebridge
         else:
-            logging.error(f"Unknown component [{component}].", )
+            logging.error(f"Unknown component [{component}].")
             return False
 
         try:
@@ -316,7 +316,7 @@ class ComponentManager:
                 except:
                     pass  # safely ignore the error, there is nothing to remove
 
-            logging.error("Extraction failed! Archive ends earlier than expected.", )
+            logging.error("Extraction failed! Archive ends earlier than expected.")
             return False
 
         if root_dir.endswith("x86_64"):
@@ -331,7 +331,7 @@ class ComponentManager:
                     dst=root_dir[:-7]
                 )
             except (FileExistsError, shutil.Error):
-                logging.error("Extraction failed! Component already exists.", )
+                logging.error("Extraction failed! Component already exists.")
                 return False
         return True
 
@@ -351,7 +351,7 @@ class ComponentManager:
         if not manifest:
             return Result(False)
 
-        logging.info(f"Installing component: [{component_name}].", )
+        logging.info(f"Installing component: [{component_name}].")
 
         # Download component
         download = self.download(
@@ -439,7 +439,7 @@ class ComponentManager:
         elif component_type == "nvapi":
             path = Paths.nvapi
         else:
-            logging.error(f"Unknown component type: {component_type}", )
+            logging.error(f"Unknown component type: {component_type}")
             return
 
         if not os.path.isdir(os.path.join(path, dest)):

@@ -19,7 +19,7 @@ class WineBridge(WineProgram):
 
     def is_available(self):
         if os.path.isfile(self.get_command()):
-            logging.info(f"{self.program} is available.", )
+            logging.info(f"{self.program} is available.")
             return True
         return False
 

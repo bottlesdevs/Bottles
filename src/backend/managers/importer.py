@@ -78,7 +78,7 @@ class ImportManager:
                     })
             i += 1
 
-        logging.info(f"Found {len(importer_wineprefixes)} wine prefixes…", )
+        logging.info(f"Found {len(importer_wineprefixes)} wine prefixes…")
 
         return Result(
             status=True,

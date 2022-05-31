@@ -31,7 +31,7 @@ class WineExecutor:
             post_script: str = None,
             monitoring: list = None,
     ):
-        logging.info("Launching an executable…", )
+        logging.info("Launching an executable…")
         self.config = config
         self.__validate_path(exec_path)
 
@@ -67,11 +67,11 @@ class WineExecutor:
     @staticmethod
     def __validate_path(exec_path):
         if exec_path in [None, ""]:
-            logging.error("No executable file path provided.", )
+            logging.error("No executable file path provided.")
             return False
 
         if ":\\" in exec_path:
-            logging.warning("Windows path detected. Avoiding validation.", )
+            logging.warning("Windows path detected. Avoiding validation.")
             return True
 
         if not os.path.isfile(exec_path):
@@ -245,7 +245,7 @@ class WineExecutor:
 
     @staticmethod
     def __launch_dll():
-        logging.warning("DLLs are not supported yet.", )
+        logging.warning("DLLs are not supported yet.")
         return Result(
             status=False,
             data={"error": "DLLs are not supported yet."}

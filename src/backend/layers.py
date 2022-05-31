@@ -142,7 +142,7 @@ class Layer:
         manager to treat the layer as a bottle, plus the
         layer config.
         """
-        logging.info(f"Creating a new layer for {name}…", )
+        logging.info(f"Creating a new layer for {name}…")
 
         self.__uuid = str(uuid.uuid4())
         folder = f"@__{name}__{self.__uuid}"
@@ -200,7 +200,7 @@ class Layer:
         append it to the __mounts list. This should be used to mount external
          directories, use mount_bottle for bottles instead.
         """
-        logging.info(f"Mounting path {path} to layer {self.__path}…", )
+        logging.info(f"Mounting path {path} to layer {self.__path}…")
         _name = name if name else os.path.basename(path)
         _uuid = str(uuid.uuid4())
         hashes = Diff.hashify(path)
@@ -221,17 +221,17 @@ class Layer:
         """
         layer = LayersStore.get(name, _uuid)
         if layer:
-            logging.info(f"Mounting layer {layer['Name']}…", )
+            logging.info(f"Mounting layer {layer['Name']}…")
             layer["Type"] = "layer"
             path = f"{Paths.layers}/@__{layer['Name']}__{layer['UUID']}"  # TODO: please don't hardcode this :S
             self.__mounts.append(layer)
             self.__link_files(path, duplicate)
         else:
-            logging.error(f"Layer {_uuid} not found…", )
+            logging.error(f"Layer {_uuid} not found…")
 
     def mount_bottle(self, config: dict, duplicate: bool = False):
         """Mount a bottle to the current layer."""
-        logging.info(f"Mounting bottle {config['Name']}…", )
+        logging.info(f"Mounting bottle {config['Name']}…")
         _path = ManagerUtils.get_bottle_path(config)
         self.mount_dir(_path, config["Name"], duplicate)
         self.runtime_conf["Runner"] = config["Runner"]
@@ -242,7 +242,7 @@ class Layer:
         Unlink all the files in the layer and update the layer tree
         with residues.
         """
-        logging.info(f"Sweeping layer {self.__config['Name']}…", )
+        logging.info(f"Sweeping layer {self.__config['Name']}…")
         for mount in self.__mounts:
             _tree = mount["Tree"]
 
@@ -266,6 +266,6 @@ class Layer:
 
     def save(self):
         """Save the layer configuration."""
-        logging.info(f"Saving layer {self.__config['Name']}…", )
+        logging.info(f"Saving layer {self.__config['Name']}…")
         with open(f"{self.__path}/layer.yml", "w") as f:
             yaml.dump(self.__config, f)

@@ -60,7 +60,7 @@ class Runner:
         for a bottle. It does a prefix update and re-initialize the
         active DLLComponents (dxvk, dxvk-nvapi, vkd3d…).
         """
-        logging.info(f"Doing runner update for bottle: {config['Name']}", )
+        logging.info(f"Doing runner update for bottle: {config['Name']}")
         wineboot = WineBoot(config)
         wineserver = WineServer(config)
         

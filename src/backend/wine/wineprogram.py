@@ -45,7 +45,7 @@ class WineProgram:
             environment = {}
 
         if not self.silent:
-            logging.info(f"Using {self.program} -- {action_name}", )
+            logging.info(f"Using {self.program} -- {action_name}")
 
         if isinstance(args, tuple):
             wineprogram_args = args[0]
