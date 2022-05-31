@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-05-23 21:18+0000\n"
+"PO-Revision-Date: 2022-06-01 20:14+0000\n"
 "Last-Translator: VRSasha <pongpeera054@protonmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/bottles/bottles/th/>"
 "\n"
@@ -32,7 +32,7 @@ msgstr "จัดการ wineprefix อย่างง่ายดาย"
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
-msgstr ""
+msgstr "wine;windows;"
 
 #: data/com.usebottles.bottles.appdata.xml.in:7
 msgid "Run Windows software"
@@ -40,7 +40,7 @@ msgstr "รันซอฟต์แวร์วินโดวส์"
 
 #: data/com.usebottles.bottles.appdata.xml.in:8
 msgid "Mirko Brombin"
-msgstr ""
+msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles!"
@@ -51,14 +51,14 @@ msgid "Bottle software and enjoy at your leisure!"
 msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
-#, fuzzy
 msgid ""
 "Our built-in dependency installation system grants automatic software "
 "compatibility access. Use the download manager to download the official "
 "components: the runner (Wine, Proton), DXVK, dependencies, etc."
 msgstr ""
-"ระบบติดตั้ง Dependency ภายในของเราจะทำให้แอปพลิเคชันสามารถเข้ากันได้โดยอัตโนมัติ ใช้ "
-"Download managerในการติดตั้ง Components ที่เป็นทางการต่าง ๆ: Runner (Wine, Proton), "
+"ระบบติดตั้ง Dependency "
+"ภายในของเราจะทำให้แอปพลิเคชันสามารถเข้ากันได้โดยอัตโนมัติ ใช้ Download "
+"managerในการติดตั้ง Components ที่เป็นทางการต่าง ๆ: รันเนอร์ (Wine, Proton), "
 "DXVK, dependencies, ฯลฯ"
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
@@ -75,7 +75,6 @@ msgid "Create bottles using preconfigured environments or create your own"
 msgstr "สร้างขวดด้วย Environments ที่ตั้งค่าไว้ล่วงหน้า หรือสร้างด้วยตนเอง"
 
 #: data/com.usebottles.bottles.appdata.xml.in:19
-#, fuzzy
 msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
@@ -157,11 +156,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:11
 msgid "Dark theme"
-msgstr ""
+msgstr "ธีมมืด"
 
 #: data/com.usebottles.bottles.gschema.xml:12
 msgid "Force the use of dark theme."
-msgstr ""
+msgstr "บังคับใช้ธีมมืด"
 
 #: data/com.usebottles.bottles.gschema.xml:16
 msgid "Toggle update date in list"
@@ -169,31 +168,31 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:17
 msgid "Toggle the update date in list of bottles."
-msgstr ""
+msgstr "เปิดใช้วันที่อัปเดตในรายชื่อขวด"
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
-msgstr ""
+msgstr "ความกว้างของหน้าต่าง"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Change the window width."
-msgstr ""
+msgstr "เปลี่ยนความกว้างของหน้าต่าง"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
-msgstr ""
+msgstr "ความสูงของหน้าต่าง"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Change the window height."
-msgstr ""
+msgstr "เปลี่ยนความสูงของหน้าต่าง"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:100
 msgid "Notifications"
-msgstr ""
+msgstr "การแจ้งเตือน"
 
 #: data/com.usebottles.bottles.gschema.xml:32
 msgid "Show notifications."
-msgstr ""
+msgstr "แสดงการแจ้งเตือน"
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
@@ -205,11 +204,11 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
-msgstr ""
+msgstr "Release Candidate"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle release candidate for runners."
-msgstr ""
+msgstr "เปิดใช้ Release candidate สำหรับรันเนอร์"
 
 #: data/com.usebottles.bottles.gschema.xml:46
 msgid "Startup view"
@@ -221,13 +220,15 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:412
 msgid "Experiments"
-msgstr ""
+msgstr "การทดลอง"
 
 #: data/com.usebottles.bottles.gschema.xml:52
 msgid ""
 "Toggle experimental features such as versioning and installers. Release "
 "candidate for runners."
 msgstr ""
+"เปิดใช้ฟีเจอร์ทดลองเช่นระบบเวอร์ชันและตัวติดตั้ง และ Release candidate "
+"สำหรับรันเนอร์"
 
 #: data/com.usebottles.bottles.gschema.xml:56
 msgid "Experiments:steam"
@@ -247,7 +248,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "ปิดขวดโดยอัตโนมัติ"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Close Bottles after starting an executable from the file manager."
@@ -255,32 +256,33 @@ msgstr ""
 
 #: src/ui/about.ui:10
 msgid "© 2017-2022 - Bottles Developers"
-msgstr ""
+msgstr "© 2017-2022 - ผู้พัฒนา Bottles"
 
 #: src/ui/about.ui:11
 msgid "Easily manage wineprefix using environments"
-msgstr ""
+msgstr "จัดการ wineprefix อย่างง่ายดายด้วย Environments"
 
 #: src/ui/about.ui:137
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
-msgstr ""
+msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">แปลภาษา</a>"
 
 #: src/ui/about.ui:150
 msgid "<a href=\"https://usebottles.com/funding/\">Funding</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/funding/\">การระดมทุน</a>"
 
 #: src/ui/about.ui:163
 msgid ""
 "<a href=\"https://github.com/bottlesdevs/Bottles/issues\">Bug report</a>"
 msgstr ""
+"<a href=\"https://github.com/bottlesdevs/Bottles/issues\">รายงานบั๊ก</a>"
 
 #: src/ui/about.ui:176
 msgid "<a href=\"https://usebottles.com/blog\">Blog</a>"
-msgstr ""
+msgstr "<a href=\"https://usebottles.com/blog\">บล็อก</a>"
 
 #: src/ui/about.ui:189
 msgid "<a href=\"https://twitter.com/usebottles\">Twitter</a>"
-msgstr ""
+msgstr "<a href=\"https://twitter.com/usebottles\">ทวิตเตอร์</a>"
 
 #: src/ui/component-entry.ui:8
 msgid "Component version"
@@ -300,20 +302,21 @@ msgstr ""
 
 #: src/ui/component-entry.ui:119
 msgid "Download & Install"
-msgstr ""
+msgstr "ดาวน์โหลดและติดตั้ง"
 
 #: src/ui/component-entry.ui:147
+#, fuzzy
 msgid "0%"
-msgstr ""
+msgstr "0%"
 
 #: src/ui/component-entry.ui:219 src/ui/program-entry.ui:187
 msgid "Uninstall"
-msgstr ""
+msgstr "ถอนการติดตั้ง"
 
 #: src/ui/dependency-entry.ui:20 src/ui/installer-entry.ui:20
 #: src/ui/state-entry.ui:20
 msgid "Show manifest"
-msgstr ""
+msgstr "แสดง Manifest"
 
 #: src/ui/dependency-entry.ui:33
 msgid "License"
@@ -321,11 +324,11 @@ msgstr "สัญญาอนุญาต"
 
 #: src/ui/dependency-entry.ui:45
 msgid "Reinstall"
-msgstr ""
+msgstr "ติดตั้งใหม่"
 
 #: src/ui/dependency-entry.ui:69 src/ui/installer-entry.ui:33
 msgid "Bug report"
-msgstr ""
+msgstr "รายงานบั๊ก"
 
 #: src/ui/dependency-entry.ui:159
 msgid "Download & Install this dependency"
@@ -339,11 +342,11 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:20
 msgid "Open with explorer"
-msgstr ""
+msgstr "เปิดด้วย Explorer"
 
 #: src/ui/details-bottle.ui:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "การแก้ปัญหา"
 
 #: src/ui/details-bottle.ui:70
 msgid "Duplicate bottle"
@@ -365,11 +368,11 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:98
 msgid "Export configuration"
-msgstr ""
+msgstr "ส่งออกการตั้งค่า"
 
 #: src/ui/details-bottle.ui:122
 msgid "Delete bottle"
-msgstr ""
+msgstr "ลบขวด"
 
 #: src/ui/details-bottle.ui:148
 msgid "Kill all processes"
@@ -377,19 +380,19 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:161
 msgid "Simulate a Windows system shutdown."
-msgstr ""
+msgstr "จำลองการปิดระบบวินโดวส์"
 
 #: src/ui/details-bottle.ui:162
 msgid "Shutdown"
-msgstr ""
+msgstr "ปิดระบบ"
 
 #: src/ui/details-bottle.ui:175
 msgid "Simulate a Windows system reboot."
-msgstr ""
+msgstr "จำลองการรีบูตระบบวินโดวส์"
 
 #: src/ui/details-bottle.ui:176
 msgid "Reboot"
-msgstr ""
+msgstr "รีบูต"
 
 #: src/ui/details-bottle.ui:281
 msgid "Run with arguments"
@@ -397,15 +400,15 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:291
 msgid "Move inside the sandbox"
-msgstr ""
+msgstr "ย้ายเข้าไปใน Sandbox"
 
 #: src/ui/details-bottle.ui:305 src/ui/program-entry.ui:24
 msgid "Launch with terminal"
-msgstr ""
+msgstr "เปิดด้วยเทอร์มินัล"
 
 #: src/ui/details-bottle.ui:358
 msgid "Layers"
-msgstr ""
+msgstr "เลเยอร์"
 
 #: src/ui/details-bottle.ui:402
 msgid "Run executable"
@@ -413,11 +416,11 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:439
 msgid "My bottle"
-msgstr ""
+msgstr "ขวดของฉัน"
 
 #: src/ui/details-bottle.ui:461
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: src/ui/details-bottle.ui:482 src/ui/new.ui:129
 msgid "Environment"
@@ -425,35 +428,35 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:499
 msgid "Vaniglia-6.21-x86_64"
-msgstr ""
+msgstr "Vaniglia-6.21-x86_64"
 
 #: src/ui/details-bottle.ui:518 src/ui/list-entry.ui:35
 msgid "Versioning enabled for this bottle"
-msgstr ""
+msgstr "เปิดใช้งานระบบเวอร์ชันสำหรับขวดนี้"
 
 #: src/ui/details-bottle.ui:526 src/ui/list-entry.ui:42
 msgid "Versioning is active in this bottle."
-msgstr ""
+msgstr "ระบบเวอร์ชันเปิดใช้งานแล้วในขวดนี้"
 
 #: src/ui/details-bottle.ui:549 src/ui/list-entry.ui:61
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: src/ui/details-bottle.ui:597
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "กำลังย้ายเข้าไปใน Sandbox…"
 
 #: src/ui/details-bottle.ui:614 src/views/details.py:122
 msgid "Programs"
-msgstr ""
+msgstr "โปรแกรม"
 
 #: src/ui/details-bottle.ui:630
 msgid "Other"
-msgstr ""
+msgstr "อื่น ๆ"
 
 #: src/ui/details-bottle.ui:636
 msgid "Utilities"
-msgstr ""
+msgstr "เครื่องมือ"
 
 #: src/ui/details-bottle.ui:641
 msgid "Browse C:"
@@ -465,23 +468,23 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:722
 msgid "Command line"
-msgstr ""
+msgstr "คอมมานด์ไลน์"
 
 #: src/ui/details-bottle.ui:724
 msgid "Run commands inside the Bottle."
-msgstr ""
+msgstr "รันคำสั่งในขวด"
 
 #: src/ui/details-bottle.ui:764
 msgid "Registry editor"
-msgstr ""
+msgstr "ตัวแก้ Registry"
 
 #: src/ui/details-bottle.ui:766
 msgid "Edit the internal registry."
-msgstr ""
+msgstr "แก้ไข Registry ภายใน"
 
 #: src/ui/details-bottle.ui:806
 msgid "Debug"
-msgstr ""
+msgstr "ดีบั๊ก"
 
 #: src/ui/details-bottle.ui:808
 msgid "Debug wine processes."
@@ -501,27 +504,27 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:915
 msgid "Wine config"
-msgstr ""
+msgstr "การตั้งค่า Wine"
 
 #: src/ui/details-bottle.ui:917
 msgid "Adjust internal settings."
-msgstr ""
+msgstr "แก้ไขการตั้งค่าภายใน"
 
 #: src/ui/details-bottle.ui:957
 msgid "Uninstaller"
-msgstr ""
+msgstr "ตัวถอนการติดตั้ง"
 
 #: src/ui/details-bottle.ui:959
 msgid "Uninstall programs using wine uninstaller."
-msgstr ""
+msgstr "ถอนการติดตั้งโปรแกรมด้วยตัวถอนการติดตั้งของ Wine"
 
 #: src/ui/details-bottle.ui:999
 msgid "Control panel"
-msgstr ""
+msgstr "แผงควบคุม"
 
 #: src/ui/details-bottle.ui:1001
 msgid "Access the internal wine control panel."
-msgstr ""
+msgstr "เข้าถึงแผงควบคุมภายในของ Wine"
 
 #: src/ui/details-bottle.ui:1071
 msgid "Use the Installers section or the \"Run executable\" button above."
@@ -533,7 +536,7 @@ msgstr ""
 
 #: src/ui/details-dependencies.ui:90
 msgid "Microsoft .NET Framework 4 .."
-msgstr ""
+msgstr "Microsoft .NET Framework 4 .."
 
 #: src/ui/details-dependencies.ui:118
 msgid ""
@@ -558,17 +561,17 @@ msgstr ""
 
 #: src/ui/details-dependencies.ui:207
 msgid "Read documentation about dependencies\t"
-msgstr ""
+msgstr "อ่านเอกสารเกี่ยวกับ dependencies\t"
 
 #: src/ui/details-dependencies.ui:208 src/ui/details-installers.ui:133
 #: src/ui/details-programs.ui:105 src/ui/details-versioning.ui:93
 #: src/ui/window.ui:82
 msgid "Documentation"
-msgstr ""
+msgstr "เอกสาร"
 
 #: src/ui/details-dependencies.ui:229
 msgid "Install selected"
-msgstr ""
+msgstr "ติดตั้งที่เลือกไว้"
 
 #: src/ui/details-dependencies.ui:232
 msgid "We strongly advise against installing multiple dependencies at once."
@@ -576,7 +579,7 @@ msgstr ""
 
 #: src/ui/details-dependencies.ui:251
 msgid "Select dependencies"
-msgstr ""
+msgstr "เลือก Dependencies"
 
 #: src/ui/details-dependencies.ui:305 src/ui/details-installers.ui:176
 msgid "Toggle search"
@@ -584,7 +587,7 @@ msgstr ""
 
 #: src/ui/details-installers.ui:32
 msgid "Epic Games Store .."
-msgstr ""
+msgstr "Epic Games Store .."
 
 #: src/ui/details-installers.ui:60
 msgid ""
@@ -992,7 +995,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:1665
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:1666
 msgid ""
@@ -2194,11 +2197,11 @@ msgstr ""
 
 #: src/views/details.py:126
 msgid "Versioning"
-msgstr ""
+msgstr "ระบบเวอร์ชัน"
 
 #: src/views/details.py:130
 msgid "Installers"
-msgstr ""
+msgstr "ตัวติดตั้ง"
 
 #: src/views/importer.py:88
 msgid "Choose a backup archive"
@@ -2219,7 +2222,7 @@ msgstr ""
 
 #: src/views/new.py:73
 msgid "Gaming"
-msgstr ""
+msgstr "เกมมิ่ง"
 
 #: src/views/new.py:74
 msgid "An environment improved for Windows games."
@@ -2227,7 +2230,7 @@ msgstr ""
 
 #: src/views/new.py:79
 msgid "Application"
-msgstr ""
+msgstr "แอปพลิเคชัน"
 
 #: src/views/new.py:80
 msgid "An environment improved for Windows applications."
@@ -2235,7 +2238,7 @@ msgstr ""
 
 #: src/views/new.py:85
 msgid "Custom"
-msgstr ""
+msgstr "กำหนดเอง"
 
 #: src/views/new.py:86
 msgid "A clear environment for your experiments."
@@ -2255,45 +2258,45 @@ msgstr ""
 
 #: src/views/new.py:201
 msgid "Choose where to store the bottle"
-msgstr ""
+msgstr "เลือกที่จัดเก็บขวด"
 
 #: src/views/new.py:285
 msgid "There was an error creating the bottle."
-msgstr ""
+msgstr "พบข้อผิดพลาดในการสร้างขวด"
 
 #: src/views/new.py:292
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr ""
+msgstr "ขวดชื่อ “{0}” ถูกสร้างสำเร็จแล้ว"
 
 #: src/views/preferences.py:146
 msgid "Choose new bottles path"
-msgstr ""
+msgstr "เลือก Path สำหรับขวดใหม่"
 
 #: src/views/preferences.py:160 src/views/preferences.py:169
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
-msgstr ""
+msgstr "เลือกที่จัดเก็บขวดใหม่ (จะไม่ย้ายขวดที่สร้างไว้ก่อนหน้านี้)"
 
 #: src/views/preferences.py:200
 msgid "Caffe runners"
-msgstr ""
+msgstr "รันเนอร์ Caffe"
 
 #: src/views/preferences.py:201
 msgid "Lutris runners"
-msgstr ""
+msgstr "รันเนอร์ Lutris"
 
 #: src/views/preferences.py:202
 msgid "Proton runners"
-msgstr ""
+msgstr "รันเนอร์ Proton"
 
 #: src/views/preferences.py:203
 msgid "Other runners"
-msgstr ""
+msgstr "รันเนอร์อื่น ๆ"
 
 #: src/widgets/component.py:73
 msgid "Upgrade"
-msgstr ""
+msgstr "อัปเกรด"
 
 #: src/widgets/dependency.py:107 src/widgets/installer.py:77
 #, python-brace-format
@@ -2308,7 +2311,7 @@ msgstr ""
 #: src/widgets/installer.py:142
 #, python-brace-format
 msgid "Step {self.__step} of {self.steps}"
-msgstr ""
+msgstr "ขั้นตอนที่ {self.__step} จาก {self.steps}"
 
 #: src/widgets/state.py:97
 #, python-brace-format
