@@ -179,13 +179,13 @@ class BottleView(Gtk.ScrolledWindow):
         if config:
             self.config = config
 
-        wineserver = WineServer(self.config)
+        wineserver_status = WineServer(self.config).is_alive()
 
         for w in self.group_programs:
             if w == self.row_no_programs:
                 w.set_visible(False)
                 continue
-            w.destroy()
+            self.group_programs.remove(w)
 
         if self.config.get("Environment") == "Steam":
             self.group_programs.add(ProgramEntry(
@@ -198,8 +198,7 @@ class BottleView(Gtk.ScrolledWindow):
         programs = self.manager.get_programs(self.config)
         hidden = len([x for x in programs if x.get("removed")])
 
-        if (len(programs) == 0 or len(programs) == hidden) \
-                and self.config.get("Environment") != "Steam":
+        if (len(programs) == 0 or len(programs) == hidden) and self.config.get("Environment") != "Steam":
             self.group_programs.add(self.row_no_programs)
             self.row_no_programs.set_visible(True)
             return
@@ -209,16 +208,17 @@ class BottleView(Gtk.ScrolledWindow):
         for program in programs:
             if program.get("removed"):
                 continue
-            if i < 5:
-                self.group_programs.add(
-                    ProgramEntry(
-                        window=self.window,
-                        config=self.config,
-                        program=program,
-                        check_boot=wineserver.is_alive()
-                    )
+            self.group_programs.add(
+                ProgramEntry(
+                    window=self.window,
+                    config=self.config,
+                    program=program,
+                    check_boot=wineserver_status
                 )
+            )
             i = + 1
+            if i == 5:
+                break
 
     def __run_executable_with_args(self, widget):
         """
@@ -234,6 +234,7 @@ class BottleView(Gtk.ScrolledWindow):
         The file will be executed by the runner after the
         user confirmation.
         """
+
         def do_update_programs(result, error=False):
             self.window.page_details.update_programs()
 
@@ -276,7 +277,6 @@ class BottleView(Gtk.ScrolledWindow):
             )
 
         self.__update_latest_executables()
-
         file_dialog.destroy()
 
     def __update_latest_executables(self):
@@ -288,8 +288,9 @@ class BottleView(Gtk.ScrolledWindow):
                 self.btn_run_args,
                 self.check_move_file,
                 self.check_terminal,
-                self.extra_separator]:
-                w.destroy()
+                self.extra_separator
+            ]:
+                self.box_run_extra.remove(w)
 
         _execs = self.config.get("Latest_Executables", [])[-5:]
         for exe in _execs:

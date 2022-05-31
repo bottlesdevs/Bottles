@@ -47,6 +47,7 @@ from bottles.backend.utils.file import FileUtils
 from bottles.backend.utils.lnk import LnkUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.generic import sort_by_version
+from bottles.backend.utils.decorators import cache
 from bottles.backend.managers.importer import ImportManager
 from bottles.backend.layers import Layer, LayersStore
 from bottles.backend.dlls.dxvk import DXVKComponent

@@ -5,6 +5,7 @@ import subprocess
 from typing import NewType
 
 from bottles.backend.utils.manager import ManagerUtils  # pyright: reportMissingImports=false
+from bottles.backend.utils.decorators import cache
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.logger import Logger
 
@@ -15,6 +16,7 @@ class WineServer(WineProgram):
     program = "Wine Server"
     command = "wineserver"
 
+    @cache(seconds=5)
     def is_alive(self):
         config = self.config
 

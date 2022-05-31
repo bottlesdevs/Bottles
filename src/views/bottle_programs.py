@@ -108,13 +108,12 @@ class ProgramsView(Gtk.ScrolledWindow):
             config = {}
 
         self.config = config
-        wineserver = WineServer(self.config)
+        wineserver_status = WineServer(self.config).is_alive()
 
         for w in self.list_programs:
             w.destroy()
 
-        if "Environment" in self.config \
-                and self.config["Environment"] == "Layered":
+        if "Environment" in self.config and self.config["Environment"] == "Layered":
             for layer in self.config["Layers"]:
                 entry = ProgramEntry(
                     window=self.window,
@@ -139,7 +138,7 @@ class ProgramsView(Gtk.ScrolledWindow):
                     window=self.window,
                     config=self.config,
                     program=program,
-                    check_boot=wineserver.is_alive()
+                    check_boot=wineserver_status
                 )
             )
 
