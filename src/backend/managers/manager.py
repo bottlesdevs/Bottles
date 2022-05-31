@@ -600,9 +600,12 @@ class Manager:
             stop = False
 
             for pattern in ignored_patterns:
-                if fnmatch.fnmatch(executable_name.lower(), pattern):
-                    stop = True
-                    break
+                try:
+                    if fnmatch.fnmatch(executable_name.lower(), pattern):
+                        stop = True
+                        break
+                except:  # safe to ignore
+                    pass
             if stop:
                 continue
 
