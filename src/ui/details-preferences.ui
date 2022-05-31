@@ -577,6 +577,39 @@
                           <object class="HdyActionRow">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="tooltip-text" translatable="yes">Enable synchronization to increase performance of multi-core processors.</property>
+                            <property name="title" translatable="yes">Mouse warp</property>
+                            <property name="subtitle" translatable="yes">Change this if you are running into mouse lag or out of sync</property>
+                            <child>
+                              <object class="GtkBox" id="box_sync1">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <child>
+                                  <object class="GtkSwitch" id="switch_mouse_warp">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="halign">start</property>
+                                    <property name="valign">center</property>
+                                    <property name="margin-left">5</property>
+                                    <property name="margin-start">5</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <style>
+                                  <class name="linked"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="HdyActionRow">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
                             <property name="title" translatable="yes">Screen scaling</property>
                             <property name="subtitle" translatable="yes">Set custom DPI.</property>
                             <child>

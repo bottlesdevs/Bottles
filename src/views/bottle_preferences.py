@@ -74,6 +74,7 @@ class PreferencesView(Gtk.ScrolledWindow):
     switch_steam_runtime = Gtk.Template.Child()
     switch_mouse_capture = Gtk.Template.Child()
     switch_take_focus = Gtk.Template.Child()
+    switch_mouse_warp = Gtk.Template.Child()
     toggle_sync = Gtk.Template.Child()
     toggle_esync = Gtk.Template.Child()
     toggle_fsync = Gtk.Template.Child()
@@ -158,6 +159,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_mouse_capture.connect('state-set', self.__toggle_x11_reg_key, "GrabFullscreen",
                                           "fullscreen_capture")
         self.switch_take_focus.connect('state-set', self.__toggle_x11_reg_key, "UseTakeFocus", "take_focus")
+        self.switch_mouse_warp.connect('state-set', self.__toggle_mouse_warp)
         self.combo_fsr.connect('changed', self.__set_fsr_level)
         self.combo_virt_res.connect('changed', self.__set_virtual_desktop_res)
         self.combo_dpi.connect('changed', self.__set_custom_dpi)
@@ -326,6 +328,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_virt_desktop.handler_block_by_func(self.__toggle_virt_desktop)
         self.switch_mouse_capture.handler_block_by_func(self.__toggle_x11_reg_key)
         self.switch_take_focus.handler_block_by_func(self.__toggle_x11_reg_key)
+        self.switch_mouse_warp.handler_block_by_func(self.__toggle_mouse_warp)
         self.switch_vkbasalt.handler_block_by_func(self.__toggle_vkbasalt)
         self.switch_obsvkc.handler_block_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_block_by_func(self.__toggle_gamemode)
@@ -377,6 +380,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_virt_desktop.set_active(parameters["virtual_desktop"])
         self.switch_mouse_capture.set_active(parameters["fullscreen_capture"])
         self.switch_take_focus.set_active(parameters["take_focus"])
+        self.switch_mouse_warp.set_active(parameters["mouse_warp"])
         self.switch_pulse_latency.set_active(parameters["pulseaudio_latency"])
         self.combo_virt_res.set_active_id(parameters["virtual_desktop_res"])
         self.combo_fsr.set_active_id(str(parameters["fsr_level"]))
@@ -418,6 +422,7 @@ class PreferencesView(Gtk.ScrolledWindow):
         self.switch_virt_desktop.handler_unblock_by_func(self.__toggle_virt_desktop)
         self.switch_mouse_capture.handler_unblock_by_func(self.__toggle_x11_reg_key)
         self.switch_take_focus.handler_unblock_by_func(self.__toggle_x11_reg_key)
+        self.switch_mouse_warp.handler_unblock_by_func(self.__toggle_mouse_warp)
         self.switch_vkbasalt.handler_unblock_by_func(self.__toggle_vkbasalt)
         self.switch_obsvkc.handler_unblock_by_func(self.__toggle_obsvkc)
         self.switch_gamemode.handler_unblock_by_func(self.__toggle_gamemode)
@@ -936,6 +941,28 @@ class PreferencesView(Gtk.ScrolledWindow):
             key="HKEY_CURRENT_USER\\Software\\Wine\\X11 Driver",
             value=rkey,
             data=_rule
+        )
+
+    def __toggle_mouse_warp(self, widget, state):
+        """Set the mouse warp to use for the bottle"""
+
+        def update(result, error=False):
+            self.config = self.manager.update_config(
+                config=self.config,
+                key="mouse_warp",
+                value=state,
+                scope="Parameters"
+            ).data["config"]
+            widget.set_sensitive(True)
+
+        rk = RegKeys(self.config)
+        widget.set_sensitive(False)
+        value = 1 if state else 0
+
+        RunAsync(
+            rk.set_mouse_warp,
+            callback=update,
+            state=value
         )
 
     def __set_custom_dpi(self, widget):

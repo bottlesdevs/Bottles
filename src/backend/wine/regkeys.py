@@ -286,3 +286,29 @@ class RegKeys:
             value="UseTakeFocus",
             data=value
         )
+
+    def set_mouse_warp(self, state: int, executable: str = ""):
+        """
+        Set the mouse warp setting for a bottle or a specific executable.
+        Values:
+            0: Disabled
+            1: Enabled
+            2: Forced
+        """
+        values = {
+            0: "disable",
+            1: "enable",
+            2: "force"
+        }
+        if state not in values.keys():
+            raise ValueError(f"{state} is not a valid mouse warp setting (0, 1, 2)")
+
+        key = "HKEY_CURRENT_USER\\Software\\Wine\\DirectInput"
+        if executable:
+            key = f"HKEY_CURRENT_USER\\Software\\Wine\\AppDefaults\\{executable}\\DirectInput"
+
+        self.reg.add(
+            key=key,
+            value="MouseWarpOverride",
+            data=values[state]
+        )

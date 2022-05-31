@@ -724,7 +724,7 @@ class Manager:
         if config.get("IsLayer"):
             return Result(status=True, data={"config": {}})
 
-        logging.info(f"Setting Key {key}={value}] for bottle {_name}…")
+        logging.info(f"Setting Key {key}={value} for bottle {_name}…")
 
         _config = config
         wineboot = WineBoot(_config)

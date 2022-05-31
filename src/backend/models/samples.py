@@ -51,6 +51,7 @@ class Samples:
             "pulseaudio_latency": False,
             "fullscreen_capture": False,
             "take_focus": False,
+            "mouse_warp": True,
             "fixme_logs": False,
             "use_runtime": False,
             "use_steam_runtime": False,
