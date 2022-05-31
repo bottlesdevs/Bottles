@@ -578,6 +578,9 @@ class Manager:
                 "folder": program_folder,
                 "icon": "com.usebottles.bottles-program",
                 "script": _program.get("script"),
+                "dxvk": _program.get("dxvk", config["Parameters"]["dxvk"]),
+                "vkd3d": _program.get("vkd3d", config["Parameters"]["vkd3d"]),
+                "dxvk_nvapi": _program.get("dxvk_nvapi", config["Parameters"]["dxvk_nvapi"]),
                 "removed": _program.get("removed"),
                 "id": program
             })
@@ -616,7 +619,11 @@ class Manager:
                         "path": executable_path,
                         "folder": program_folder,
                         "icon": "com.usebottles.bottles-program",
-                        "id": executable_name
+                        "id": executable_name,
+                        "script": "",
+                        "dxvk": config["Parameters"]["dxvk"],
+                        "vkd3d": config["Parameters"]["vkd3d"],
+                        "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"]
                     })
                     found.append(executable_name)
 

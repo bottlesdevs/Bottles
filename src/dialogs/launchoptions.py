@@ -29,10 +29,18 @@ class LaunchOptionsDialog(Handy.Window):
     btn_save = Gtk.Template.Child()
     btn_script = Gtk.Template.Child()
     btn_script_reset = Gtk.Template.Child()
-    flatpak_warn = Gtk.Template.Child()
     action_script = Gtk.Template.Child()
+    switch_dxvk = Gtk.Template.Child()
+    switch_vkd3d = Gtk.Template.Child()
+    switch_nvapi = Gtk.Template.Child()
+    action_dxvk = Gtk.Template.Child()
+    action_vkd3d = Gtk.Template.Child()
+    action_nvapi = Gtk.Template.Child()
 
     # endregion
+
+    msg_disabled = _("{0} is already disabled for this bottle.")
+    msg_override = _("This setting is different from the bottle's default.")
 
     def __init__(self, parent, config, program, **kwargs):
         super().__init__(**kwargs)
@@ -48,8 +56,6 @@ class LaunchOptionsDialog(Handy.Window):
 
         # set widget defaults
         self.entry_arguments.set_text(program.get("arguments", ""))
-        if "FLATPAK_ID" in os.environ:
-            self.flatpak_warn.set_visible(True)
 
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
@@ -57,10 +63,67 @@ class LaunchOptionsDialog(Handy.Window):
         self.btn_script.connect("clicked", self.__choose_script)
         self.btn_script_reset.connect("clicked", self.__choose_script, True)
         self.entry_arguments.connect("activate", self.__save_options)
+        self.switch_dxvk.connect(
+            "state-set",
+            self.__check_override,
+            config["Parameters"].get("dxvk"),
+            self.action_dxvk
+        )
+        self.switch_vkd3d.connect(
+            "state-set",
+            self.__check_override,
+            config["Parameters"].get("vkd3d"),
+            self.action_vkd3d
+        )
+        self.switch_nvapi.connect(
+            "state-set",
+            self.__check_override,
+            config["Parameters"].get("dxvk_nvapi"),
+            self.action_nvapi
+        )
 
         # set script path if available
         if program.get("script"):
             self.action_script.set_subtitle(program["script"])
+
+        # set overrides status
+        dxvk = config["Parameters"].get("dxvk")
+        vkd3d = config["Parameters"].get("vkd3d")
+        nvapi = config["Parameters"].get("dxvk_nvapi")
+
+        if not dxvk:
+            self.action_dxvk.set_subtitle(self.msg_disabled.format("DXVK"))
+            self.switch_dxvk.set_sensitive(False)
+        if not vkd3d:
+            self.action_vkd3d.set_subtitle(self.msg_disabled.format("VKD3D"))
+            self.switch_vkd3d.set_sensitive(False)
+        if not nvapi:
+            self.action_nvapi.set_subtitle(self.msg_disabled.format("DXVK-Nvapi"))
+            self.switch_nvapi.set_sensitive(False)
+
+        if dxvk != self.program["dxvk"]:
+            self.action_dxvk.set_subtitle(self.msg_override)
+        if vkd3d != self.program["vkd3d"]:
+            self.action_vkd3d.set_subtitle(self.msg_override)
+        if nvapi != self.program["dxvk_nvapi"]:
+            self.action_nvapi.set_subtitle(self.msg_override)
+
+        if "dxvk" in self.program:
+            dxvk = self.program["dxvk"]
+        if "vkd3d" in self.program:
+            vkd3d = self.program["vkd3d"]
+        if "dxvk_nvapi" in self.program:
+            nvapi = self.program["dxvk_nvapi"]
+
+        self.switch_dxvk.set_active(dxvk)
+        self.switch_vkd3d.set_active(vkd3d)
+        self.switch_nvapi.set_active(nvapi)
+
+    def __check_override(self, widget, state, value, action):
+        if state != value:
+            action.set_subtitle(self.msg_override)
+        else:
+            action.set_subtitle("")
 
     def __close_window(self, widget=None):
         self.parent.page_details.set_config(self.config, no_page_change=True)
@@ -69,9 +132,20 @@ class LaunchOptionsDialog(Handy.Window):
     def __save_options(self, widget):
         """
         This function save the launch options in the bottle
-        configuration. It also close the window and update the
+        configuration. It also closes the window and update the
         programs list.
         """
+        dxvk = self.switch_dxvk.get_state()
+        vkd3d = self.switch_vkd3d.get_state()
+        nvapi = self.switch_nvapi.get_state()
+
+        if not dxvk and self.config["Parameters"].get("dxvk"):
+            self.program["dxvk"] = dxvk
+        if not vkd3d and self.config["Parameters"].get("vkd3d"):
+            self.program["vkd3d"] = vkd3d
+        if not nvapi and self.config["Parameters"].get("dxvk_nvapi"):
+            self.program["dxvk_nvapi"] = nvapi
+
         self.program["arguments"] = self.entry_arguments.get_text()
         self.config = self.manager.update_config(
             config=self.config,

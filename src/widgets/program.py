@@ -176,13 +176,27 @@ class ProgramEntry(Handy.ActionRow):
             )
 
         def _run():
+            dxvk = self.config["Parameters"]["dxvk"]
+            vkd3d = self.config["Parameters"]["vkd3d"]
+            nvapi = self.config["Parameters"]["dxvk_nvapi"]
+
+            if self.program.get("dxvk") != dxvk:
+                dxvk = self.program.get("dxvk")
+            if self.program.get("vkd3d") != vkd3d:
+                vkd3d = self.program.get("vkd3d")
+            if self.program.get("dxvk_nvapi") != nvapi:
+                nvapi = self.program.get("dxvk_nvapi")
+
             WineExecutor(
                 self.config,
                 exec_path=self.program["path"],
                 args=self.program["arguments"],
                 cwd=self.program["folder"],
                 post_script=self.program.get("script", None),
-                terminal=with_terminal
+                terminal=with_terminal,
+                override_dxvk=dxvk,
+                override_vkd3d=vkd3d,
+                override_nvapi=nvapi
             ).run()
             return True
 

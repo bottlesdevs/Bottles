@@ -25,11 +25,14 @@ class WineExecutor:
             args: str = "",
             terminal: bool = False,
             cwd: str = None,
-            environment: dict = False,
+            environment: dict = None,
             move_file: bool = False,
             move_upd_fn: callable = None,
             post_script: str = None,
             monitoring: list = None,
+            override_dxvk: bool = False,
+            override_vkd3d: bool = False,
+            override_nvapi: bool = False
     ):
         logging.info("Launching an executable…")
         self.config = config
@@ -37,6 +40,9 @@ class WineExecutor:
 
         if monitoring is None:
             monitoring = []
+
+        if environment is None:
+            environment = {}
 
         if move_file:
             exec_path = self.__move_file(exec_path, move_upd_fn)
@@ -49,6 +55,19 @@ class WineExecutor:
         self.environment = environment
         self.post_script = post_script
         self.monitoring = monitoring
+
+        env_overrides = []
+        if not override_dxvk and self.config["Parameters"]["dxvk"]:
+            env_overrides.append("d3d9,d3d11,d3d10core,dxgi=b")
+        if not override_vkd3d and self.config["Parameters"]["vkd3d"]:
+            env_overrides.append("d3d12=b")
+        if not override_nvapi and self.config["Parameters"]["dxvk_nvapi"]:
+            env_overrides.append("nvapi,nvapi64=b")
+
+        if "WINEDLLOVERRIDES" in self.environment:
+            self.environment["WINEDLLOVERRIDES"] += "," + ",".join(env_overrides)
+        else:
+            self.environment["WINEDLLOVERRIDES"] = ",".join(env_overrides)
 
     def __get_cwd(self, cwd: str) -> Union[str, None]:
         winepath = WinePath(self.config)
