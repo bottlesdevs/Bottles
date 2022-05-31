@@ -507,6 +507,14 @@ class InstallerManager:
                 "name": executable["name"],
                 "path": _path
             }
+
+            if "dxvk" in executable:
+                _program["dxvk"] = executable["dxvk"]
+            if "vkd3d" in executable:
+                _program["vkd3d"] = executable["vkd3d"]
+            if "dxvk_nvapi" in executable:
+                _program["dxvk_nvapi"] = executable["dxvk_nvapi"]
+
             self.__manager.update_config(
                 config=config,
                 key=executable["file"],
