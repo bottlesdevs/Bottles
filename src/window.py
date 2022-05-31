@@ -258,9 +258,9 @@ class MainWindow(Handy.ApplicationWindow):
                     flags=0,
                     message_type=Gtk.MessageType.ERROR,
                     buttons=Gtk.ButtonsType.OK,
-                    text=_("The custom bottles path was not found."
-                      "Please, check the it in Preferences.\n"
-                      "Fallbacking to the default path. You will "
+                    text=_("The custom bottles path was not found. "
+                      "Please, check the path in Preferences.\n"
+                      "Fallbacking to the default path; "
                       "no bottles from that path will be listed!")
                 )
                 dialog.run()
