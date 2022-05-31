@@ -322,6 +322,8 @@ class PreferencesView(Gtk.ScrolledWindow):
 
         # temporary lock functions connected to the widgets
         self.switch_dxvk.handler_block_by_func(self.__toggle_dxvk)
+        self.switch_dxvk_hud.handler_block_by_func(self.__toggle_dxvk_hud)
+        self.switch_mangohud.handler_block_by_func(self.__toggle_mangohud)
         self.switch_vkd3d.handler_block_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_block_by_func(self.__toggle_nvapi)
         self.switch_latencyflex.handler_block_by_func(self.__toggle_latencyflex)
@@ -416,6 +418,8 @@ class PreferencesView(Gtk.ScrolledWindow):
 
         # unlock functions connected to the widgets
         self.switch_dxvk.handler_unblock_by_func(self.__toggle_dxvk)
+        self.switch_dxvk_hud.handler_unblock_by_func(self.__toggle_dxvk_hud)
+        self.switch_mangohud.handler_unblock_by_func(self.__toggle_mangohud)
         self.switch_vkd3d.handler_unblock_by_func(self.__toggle_vkd3d)
         self.switch_nvapi.handler_unblock_by_func(self.__toggle_nvapi)
         self.switch_latencyflex.handler_unblock_by_func(self.__toggle_latencyflex)
