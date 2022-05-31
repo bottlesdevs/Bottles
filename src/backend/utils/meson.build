@@ -13,6 +13,7 @@ bottles_sources = [
   'wine.py',
   'steam.py',
   'lnk.py',
+  'decorators.py',
   'snake.py',
   'vdf.py',
 ]

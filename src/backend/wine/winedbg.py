@@ -7,6 +7,7 @@ from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.wine.wineprogram import WineProgram
 from bottles.backend.wine.wineserver import WineServer
 from bottles.backend.wine.wineboot import WineBoot
+from bottles.backend.utils.decorators import cache
 
 logging = Logger()
 
@@ -19,6 +20,7 @@ class WineDbg(WineProgram):
     def __wineserver_status(self):
         return WineServer(self.config).is_alive()
 
+    @cache(seconds=5)
     def get_processes(self):
         """Get all processes running on the wineprefix."""
         processes = []
