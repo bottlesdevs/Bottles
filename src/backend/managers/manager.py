@@ -1247,7 +1247,10 @@ class Manager:
         """
         logging.info("Stopping bottle…")
         wineboot = WineBoot(config)
-        wineboot.force()
+        wineserver = WineServer(config)
+
+        wineboot.kill()
+        wineserver.wait()
 
         if config.get("Path"):
             logging.info(f"Removing applications installed with the bottle ..")
@@ -1275,7 +1278,7 @@ class Manager:
                 # ref: #676
                 pass
 
-            logging.info(f"Deleted the bottle in the [{path}] path")
+            logging.info(f"Deleted the bottle in: {path}")
             GLib.idle_add(self.window.page_list.update_bottles)
 
             return True
