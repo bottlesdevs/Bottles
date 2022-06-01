@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-<requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.0"/>
+  <object class="GtkPopover" id="pop_context">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">3</property>
+        <child>
+          <object class="GtkModelButton" id="btn_remove">
+            <property name="text" translatable="yes">Remove from Library</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
   <template class="LibraryEntry" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
@@ -30,7 +43,6 @@
         </child>
         <child>
           <object class="GtkImage" id="img_icon">
-            <property name="can-focus">False</property>
             <property name="icon-name">bottles-steam-symbolic</property>
           </object>
           <packing>
@@ -46,10 +58,9 @@
               <object class="GtkLabel" id="label_name">
                 <property name="halign">start</property>
                 <property name="label">Item name</property>
-                <attributes>
-                  <attribute name="weight" value="semibold"/>
-                  <attribute name="scale" value="1.1000000000000001"/>
-                </attributes>
+                <style>
+                  <class name="title"/>
+                </style>
               </object>
               
               

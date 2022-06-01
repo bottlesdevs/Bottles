@@ -193,6 +193,7 @@ class BottleView(Adw.PreferencesPage):
         if (len(programs) == 0 or len(programs) == hidden) and self.config.get("Environment") != "Steam":
             self.group_programs.add(self.row_no_programs)
             self.row_no_programs.set_visible(True)
+            self.list_programs.set_visible(False)
             return
 
         i = 0
@@ -209,7 +210,6 @@ class BottleView(Adw.PreferencesPage):
                         check_boot=wineserver_status
                     )
                 )
-            )
             i = + 1
             if i == 5:
                 break

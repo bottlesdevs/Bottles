@@ -7,7 +7,7 @@
      <object class="AdwPreferencesGroup">
        <property name="title" translatable="yes">Graphics</property>
        <child>
-         <object class="AdwActionRow">
+         <object class="AdwActionRow" id="row_dxvk">
            <property name="activatable-widget">switch_dxvk</property>
            <property name="title" translatable="yes">DXVK</property>
            <property name="subtitle" translatable="yes">Improves performance of DirectX 11 games and 3D applications.</property>
@@ -30,7 +30,7 @@
          </object>
        </child>
        <child>
-         <object class="AdwActionRow">
+         <object class="AdwActionRow" id="row_vkd3d">
            <property name="activatable-widget">switch_vkd3d</property>
            <property name="title" translatable="yes">VKD3D</property>
            <property name="subtitle" translatable="yes">Improves performance of DirectX 12 games and 3D applications.</property>
@@ -53,7 +53,7 @@
          </object>
        </child>
        <child>
-         <object class="AdwActionRow">
+         <object class="AdwActionRow" id="row_nvapi">
            <property name="activatable-widget">switch_nvapi</property>
            <property name="title" translatable="yes">DLSS (DXVK-NVAPI)</property>
            <property name="subtitle" translatable="yes">Provide DLSS support if available and Nvidia's NVAPI.</property>
@@ -109,7 +109,7 @@
          </object>
        </child>
        <child>
-         <object class="AdwActionRow">
+         <object class="AdwActionRow" id="row_latencyflex">
            <property name="activatable-widget">switch_latencyflex</property>
            <property name="title" translatable="yes">LatencyFleX</property>
            <property name="subtitle" translatable="yes">An alternative to NVIDIA Reflex. Can be detected by some Anticheats.</property>
@@ -133,7 +133,7 @@
          </object>
        </child>
        <child>
-         <object class="AdwActionRow" id="action_discrete">
+         <object class="AdwActionRow" id="row_discrete">
            <property name="activatable-widget">switch_discrete</property>
            <property name="title" translatable="yes">Discrete GPU</property>
            <property name="subtitle" translatable="yes">Improves performance at the cost of increased power usage.</property>
@@ -149,7 +149,7 @@
          </object>
        </child>
        <child>
-         <object class="AdwActionRow" id="action_vkbasalt">
+         <object class="AdwActionRow" id="row_vkbasalt">
            <property name="activatable-widget">switch_vkbasalt</property>
            <property name="title" translatable="yes">vkBasalt</property>
            <property name="subtitle" translatable="yes">vkBasalt is a Vulkan post processing layer to enhance the visual graphics of games.</property>
@@ -226,7 +226,18 @@
                <property name="subtitle" translatable="yes">Activate it if the program does not retake focus on switch.</property>
                <child>
                  <object class="GtkSwitch" id="switch_take_focus">
-                   <property name="halign">start</property>
+                   <property name="valign">center</property>
+                 </object>
+               </child>
+             </object>
+           </child>
+           <child>
+             <object class="AdwActionRow">
+               <property name="activatable-widget">switch_take_focus</property>
+               <property name="title" translatable="yes">Mouse Warp</property>
+               <property name="subtitle" translatable="yes">Change this if you are running into mouse lag or desync.</property>
+               <child>
+                 <object class="GtkSwitch" id="switch_mouse_warp">
                    <property name="valign">center</property>
                  </object>
                </child>
@@ -293,10 +304,10 @@
      <object class="AdwPreferencesGroup">
        <property name="title" translatable="yes">System</property>
        <child>
-         <object class="AdwExpanderRow">
+         <object class="AdwExpanderRow" id="exp_components">
            <property name="title" translatable="yes">Components</property>
            <child>
-             <object class="AdwActionRow" id="action_runner">
+             <object class="AdwActionRow" id="row_runner">
                <!-- TODO: replace with ComboRow -->
                <property name="activatable-widget">combo_runner</property>
                <property name="title" translatable="yes">Runner</property>
@@ -475,11 +486,10 @@
        </child>
        <child>
          <object class="AdwActionRow">
-
            <property name="tooltip-text" translatable="yes">Enable synchronization to increase performance of multi-core processors.</property>
            <property name="title" translatable="yes">Synchronization</property>
            <child>
-             <object class="GtkBox">
+             <object class="GtkBox" id="box_sync">
                <child>
                  <object class="GtkToggleButton" id="toggle_sync">
                    <property name="label" translatable="yes">System</property>
@@ -549,7 +559,7 @@
          </object>
        </child>
        <child>
-         <object class="AdwActionRow" id="action_runtime">
+         <object class="AdwActionRow" id="row_runtime">
            <property name="activatable-widget">switch_runtime</property>
            <property name="title" translatable="yes">Bottles Runtime</property>
            <property name="subtitle" translatable="yes">Provides a bundle of extra libraries for more compatibility,disable if you run into issues.</property>
@@ -561,7 +571,7 @@
          </object>
        </child>
        <child>
-         <object class="AdwActionRow" id="action_steam_runtime">
+         <object class="AdwActionRow" id="row_steam_runtime">
            <property name="activatable-widget">switch_steam_runtime</property>
            <property name="title" translatable="yes">Steam Runtime</property>
            <property name="subtitle" translatable="yes">The same as the Bottles one but provided by Steam.</property>
@@ -609,7 +619,7 @@
          </object>
        </child>
        <child>
-         <object class="AdwActionRow" id="action_cwd">
+         <object class="AdwActionRow" id="row_cwd">
            <property name="activatable-widget">btn_cwd</property>
            <property name="title" translatable="yes">Working Directory</property>
            <property name="subtitle" translatable="yes">Defaults to the bottle path.</property>

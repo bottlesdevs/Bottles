@@ -23,18 +23,43 @@
             <child>
               <object class="AdwClamp" id="clamp_list">
                 <property name="maximum-size">500</property>
+                <child>
+                <object class="GtkBox">
+                <property name="orientation">vertical</property>
                   <child>
-                    <object class="GtkListBox" id="list_bottles">
-                      <property name="margin-top">12</property>
-                      <property name="margin-bottom">12</property>
-                      <property name="margin-start">12</property>
-                      <property name="margin-end">12</property>
-                      <property name="selection-mode">none</property>
-                      <style>
-                        <class name="boxed-list"/>
-                      </style>
+                    <object class="AdwPreferencesGroup" id="group_bottles">
+                      <child>
+                        <object class="GtkListBox" id="list_bottles">
+                          <property name="margin-top">12</property>
+                          <property name="margin-bottom">12</property>
+                          <property name="margin-start">12</property>
+                          <property name="margin-end">12</property>
+                          <property name="selection-mode">none</property>
+                          <style>
+                            <class name="boxed-list"/>
+                          </style>
+                        </object>
+                      </child>
                     </object>
                   </child>
+                  <child>
+                    <object class="AdwPreferencesGroup" id="group_steam">
+                    <property name="title" translatable="yes">Steam Proton</property>
+                      <child>
+                        <object class="GtkListBox" id="list_steam">
+                          <property name="margin-top">12</property>
+                          <property name="margin-bottom">12</property>
+                          <property name="margin-start">12</property>
+                          <property name="margin-end">12</property>
+                          <style>
+                            <class name="boxed-list"/>
+                          </style>
+                        </object>
+                      </child>
+                    </object>
+                  </child>
+                </object>
+                </child>
               </object>
             </child>
             <child>

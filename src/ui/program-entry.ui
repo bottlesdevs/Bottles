@@ -24,8 +24,8 @@
           </object>
         </child>
         <child>
-          <object class="GtkModelButton" id="btn_browse">
-            <property name="text" translatable="yes">Browse Path…</property>
+          <object class="GtkModelButton" id="btn_add_library">
+            <property name="text" translatable="yes">Add to my library</property>
           </object>
         </child>
         <child>
@@ -62,8 +62,8 @@
           </object>
         </child>
         <child>
-          <object class="GtkModelButton" id="btn_add_library">
-            <property name="text" translatable="yes">Add to Library</property>
+          <object class="GtkModelButton" id="btn_add_steam">
+            <property name="text" translatable="yes">Add to Steam</property>
           </object>
         </child>
         <child>
@@ -74,6 +74,11 @@
         <child>
           <object class="GtkModelButton" id="btn_unhide">
             <property name="text" translatable="yes">Unhide Program</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="btn_remove">
+            <property name="text" translatable="yes">Remove from List</property>
           </object>
         </child>
         <child>

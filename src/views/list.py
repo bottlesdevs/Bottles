@@ -224,8 +224,8 @@ class BottleView(Gtk.ScrolledWindow):
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
 
-        for bottle in self.list_steam.get_children():
-            bottle.destroy()
+        while self.list_steam.get_first_child():
+            self.list_steam.remove(self.list_steam.get_first_child())
 
         local_bottles = self.window.manager.local_bottles
         bottles = local_bottles.items()
@@ -238,19 +238,32 @@ class BottleView(Gtk.ScrolledWindow):
             self.bottle_status.set_visible(False)
 
         for bottle in bottles:
-            self.list_bottles.append(
-                BottleViewEntry(self.window, bottle, self.arg_exe)
-            )
-        self.arg_exe = False
+            _entry = BottleViewEntry(self.window, bottle, self.arg_exe)
+            if bottle[1].get("Environment") != "Steam":
+                self.list_bottles.append(_entry)
+            else:
+                self.list_steam.append(_entry)
+
+            if self.list_steam.get_first_child != None:
+                self.group_steam.set_visible(False)
+                self.group_bottles.set_title("")
+            else:
+                self.group_steam.set_visible(True)
+                self.group_bottles.set_title(_("Your Bottles"))
+
+        self.arg_exe = None
+        if self.arg_bottle is not None and self.arg_bottle in local_bottles.keys():
+            _config = local_bottles[self.arg_bottle]
+            self.window.page_details.view_preferences.update_combo_components()
+            self.window.show_details_view(config=_config)
+            self.arg_bottle = None
 
     def update_bottles(self):
         GLib.idle_add(self.idle_update_bottles)
 
     def disable_bottle(self, config):
-        """
-        while self.list_bottles.get_n_children():
-            if bottle.config["Path"] == config["Path"]:
-                bottle.disable()
-        """
-        pass  # TODO
-
+        None
+        # for bottle in self.list_steam.get_children():
+        #     if bottle.config["Path"] == config["Path"]:
+        #         bottle.disable()
+        #         break
