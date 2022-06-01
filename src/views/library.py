@@ -25,21 +25,21 @@ from bottles.widgets.library import LibraryEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/library.ui')
-class LibraryView(Gtk.ScrolledWindow):
+class LibraryView(Adw.Bin):
     __gtype_name__ = 'LibraryView'
 
     # region Widgets
     main_flow = Gtk.Template.Child()
-    hdy_status = Gtk.Template.Child()
-    actions = Gtk.Template.Child()
+    adw_status = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
-
+    btn_back = Gtk.Template.Child()
     # endregion
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.window = window
 
+        self.btn_back.connect("clicked", self.go_back)
         #window.set_actions(self.actions)
         self.update()
 
@@ -50,7 +50,8 @@ class LibraryView(Gtk.ScrolledWindow):
         while self.main_flow.get_first_child() is not None:
             self.main_flow.remove(self.main_flow.get_first_child())
 
-        self.hdy_status.set_visible(len(entries) == 0)
+        self.adw_status.set_visible(len(entries) == 0)
+        self.main_flow.set_visible(len(entries) == 0)
 
         for u, e in entries.items():
             entry = LibraryEntry(self, u, e)
@@ -60,3 +61,6 @@ class LibraryView(Gtk.ScrolledWindow):
         library_manager = LibraryManager()
         library_manager.remove_from_library(uuid)
         self.update()
+
+    def go_back(self, widget=False):
+        self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

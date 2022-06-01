@@ -206,23 +206,20 @@ class MainWindow(Adw.ApplicationWindow):
             self.page_importer = ImporterView(self)
             self.page_library = LibraryView(self)
 
+            self.main_leaf.append(self.page_details)
+            self.main_leaf.append(self.page_importer)
+            self.main_leaf.append(self.page_library)
+
+            self.main_leaf.get_page(self.page_details).set_navigatable(False)
+            self.main_leaf.get_page(self.page_importer).set_navigatable(False)
+            self.main_leaf.get_page(self.page_library).set_navigatable(False)
+            
             self.stack_main.add_titled(
                 child=self.page_list,
                 name="page_list",
                 title=_("Bottles")
             )
-            self.stack_main.add_titled(
-                child=self.page_importer,
-                name="page_importer",
-                title=_("Importer")
-            )
-            self.stack_main.add_titled(
-                child=self.page_library,
-                name="page_library",
-                title=_("Your library")
-            )
 
-            self.main_leaf.append(self.page_details)
             self.page_list.search_bar.set_key_capture_widget(self)
             self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled', GObject.BindingFlags.BIDIRECTIONAL)
             self.stack_main.set_visible_child_name("page_list")
@@ -296,8 +293,7 @@ class MainWindow(Adw.ApplicationWindow):
         )
 
     def show_details_view(self, widget=False, config=dict):
-        self.set_previous_page_status()
-        self.main_leaf.navigate(Adw.NavigationDirection.FORWARD)
+        self.main_leaf.set_visible_child(self.page_details)
         self.page_details.set_config(config)
 
     def show_loading_view(self, widget=False):
@@ -320,12 +316,10 @@ class MainWindow(Adw.ApplicationWindow):
         self.stack_main.set_visible_child_name("page_list")
 
     def show_importer_view(self, widget=False):
-        self.set_previous_page_status()
-        self.stack_main.set_visible_child_name("page_importer")
+        self.main_leaf.set_visible_child(self.page_importer)
 
     def show_library_view(self, widget=False):
-        self.set_previous_page_status()
-        self.stack_main.set_visible_child_name("page_library")
+        self.main_leaf.set_visible_child(self.page_library)
 
     def show_prefs_view(self, widget=False, view=0):
         preferences_window = PreferencesWindow(self)
