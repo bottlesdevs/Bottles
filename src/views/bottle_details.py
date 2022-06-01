@@ -206,7 +206,7 @@ class BottleView(Adw.PreferencesPage):
                         window=self.window,
                         config=self.config,
                         program=program,
-                        check_boot=wineserver.is_alive()
+                        check_boot=wineserver_status
                     )
                 )
             )

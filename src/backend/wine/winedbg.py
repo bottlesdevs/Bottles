@@ -75,7 +75,7 @@ class WineDbg(WineProgram):
     def wait_for_process(self, name: str, timeout: int = .5):
         """Wait for a process to exit."""
         wineserver = WineServer(self.config)
-        if not wineserver.is_alive():
+        if not wineserver_status:
             return True
 
         while True:
@@ -93,7 +93,7 @@ class WineDbg(WineProgram):
         """
         wineserver = WineServer(self.config)
         wineboot = WineBoot(self.config)
-        if not wineserver.is_alive():
+        if not wineserver_status:
             return
 
         if pid:
