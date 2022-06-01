@@ -51,7 +51,7 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="spacing">5</property>
+        <property name="spacing">8</property>
         <child>
           <object class="GtkMenuButton">
             <property name="visible">True</property>
@@ -99,7 +99,7 @@
                 <property name="label">Item name</property>
                 <attributes>
                   <attribute name="weight" value="semibold"/>
-                  <attribute name="scale" value="1.2"/>
+                  <attribute name="scale" value="1.1000000000000001"/>
                 </attributes>
               </object>
               <packing>
@@ -114,6 +114,9 @@
                 <property name="can-focus">False</property>
                 <property name="halign">start</property>
                 <property name="label">Bottle name</property>
+                <attributes>
+                  <attribute name="scale" value="0.90000000000000002"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -132,7 +135,7 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="spacing">10</property>
+            <property name="spacing">8</property>
             <child>
               <object class="GtkButton" id="btn_launch_steam">
                 <property name="can-focus">True</property>
