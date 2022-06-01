@@ -17,14 +17,13 @@
 
 from gi.repository import Gtk, GLib, Adw
 
-
+# TODO: this doesn't work
 @Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
 class DLLEntry(Adw.ComboRow):
     __gtype_name__ = 'DLLEntry'
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
-    combo_type = Gtk.Template.Child()
 
     # endregion
 
@@ -42,11 +41,11 @@ class DLLEntry(Adw.ComboRow):
         combo_type to the type of override
         '''
         self.set_title(self.override[0])
-        self.combo_type.set_active_id(self.override[1])
+        self.set_selected(0)
 
         # connect signals
         self.btn_remove.connect("clicked", self.__remove_override)
-        self.combo_type.connect('changed', self.__set_override_type)
+        #self.combo_type.connect('changed', self.__set_override_type)
 
     def __set_override_type(self, widget):
         """
@@ -81,8 +80,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
     __gtype_name__ = 'DLLOverridesDialog'
 
     # region Widgets
-    entry_name = Gtk.Template.Child()
-    btn_save = Gtk.Template.Child()
+    entry_row = Gtk.Template.Child()
     list_overrides = Gtk.Template.Child()
 
     # endregion
@@ -99,7 +97,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
         self.__populate_overrides_list()
 
         # connect signals
-        self.btn_save.connect("clicked", self.__save_override)
+        self.entry_row.connect("apply", self.__save_override)
 
     def __idle_save_override(self, widget=False):
         """
@@ -107,7 +105,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
         store it in the bottle configuration and add a new entry to
         the list. It also clear the entry field
         """
-        dll_name = self.entry_name.get_text()
+        dll_name = self.entry_row.get_text()
 
         if dll_name != "":
             self.manager.update_config(
@@ -125,7 +123,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
                 )
             )
 
-            self.entry_name.set_text("")
+            self.entry_row.set_text("")
 
     def __save_override(self, widget=False):
         GLib.idle_add(self.__idle_save_override)

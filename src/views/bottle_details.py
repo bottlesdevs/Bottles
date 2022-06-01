@@ -34,7 +34,7 @@ from bottles.widgets.program import ProgramEntry
 from bottles.widgets.executable import ExecButton
 
 from bottles.dialogs.runargs import RunArgsDialog
-from bottles.dialogs.generic import MessageWindow
+from bottles.dialogs.generic import MessageDialog
 from bottles.dialogs.duplicate import DuplicateDialog
 
 from bottles.backend.wine.uninstaller import Uninstaller

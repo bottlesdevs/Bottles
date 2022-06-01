@@ -9,27 +9,18 @@
           <items>
             <item translatable="yes">Builtin (Wine)</item>
             <item translatable="yes">Native (Windows)</item>
-            <item translatable="yes">Builtin then Native</item>
-            <item translatable="yes">Native then Builtin</item>
+            <item translatable="yes">Builtin, then Native</item>
+            <item translatable="yes">Native, then Builtin</item>
           </items>
       </object>
     </property>
     <child>
-      <object class="GtkBox">
-        <property name="spacing">12</property>
-        <child>
-          <object class="GtkSeparator">
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="btn_remove">
-            <property name="valign">center</property>
-            <property name="icon-name">user-trash-symbolic</property>
-            <style>
-              <class name="flat"/>
-            </style>
-          </object>
-        </child>
+      <object class="GtkButton" id="btn_remove">
+        <property name="valign">center</property>
+        <property name="icon-name">user-trash-symbolic</property>
+        <style>
+          <class name="flat"/>
+        </style>
       </object>
     </child>
   </template>
