@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gettext import gettext as _
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 from bottles.backend.managers.backup import BackupManager  # pyright: reportMissingImports=false
 from bottles.utils.threading import RunAsync
@@ -24,7 +24,7 @@ from bottles.widgets.importer import ImporterEntry
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/importer.ui')
-class ImporterView(Gtk.ScrolledWindow):
+class ImporterView(Adw.Bin):
     __gtype_name__ = 'ImporterView'
 
     # region Widgets
@@ -32,8 +32,9 @@ class ImporterView(Gtk.ScrolledWindow):
     btn_find_prefixes = Gtk.Template.Child()
     btn_import_config = Gtk.Template.Child()
     btn_import_full = Gtk.Template.Child()
-    hdy_status = Gtk.Template.Child()
-    actions = Gtk.Template.Child()
+    btn_back = Gtk.Template.Child()
+    group_prefixes = Gtk.Template.Child()
+    adw_status = Gtk.Template.Child()
 
     # endregion
 
@@ -46,10 +47,10 @@ class ImporterView(Gtk.ScrolledWindow):
         self.import_manager = window.manager.import_manager
 
         # connect signals
+        self.btn_back.connect("clicked", self.go_back)
         self.btn_find_prefixes.connect("clicked", self.__find_prefixes)
         self.btn_import_full.connect("clicked", self.__import_full_bck)
         self.btn_import_config.connect("clicked", self.__import_config_bck)
-
     def __find_prefixes(self, widget):
         """
         This function remove all entries from the list_prefixes, ask the
@@ -59,10 +60,18 @@ class ImporterView(Gtk.ScrolledWindow):
         def update(result, error=False):
             widget.set_sensitive(True)
             if result.status:
-                while self.list_prefixes.get_first_child() is not None:
+                wineprefixes = result.data.get("wineprefixes")
+                if len(wineprefixes) == 0:
+                    return
+
+                self.adw_status.set_visible(False)
+                self.group_prefixes.set_visible(True)
+
+                while(self.list_prefixes.get_first_child()):
                     self.list_prefixes.remove(self.list_prefixes.get_first_child())
+
                 for prefix in result.data.get("wineprefixes"):
-                    self.list_prefixes.append(ImporterEntry(self.window, prefix))
+                    self.list_prefixes.add(ImporterEntry(self.window, prefix))
 
         widget.set_sensitive(False)
 
@@ -77,6 +86,7 @@ class ImporterView(Gtk.ScrolledWindow):
         archive backup to import into Bottles. It support only .tar.gz files
         as Bottles export bottles in this format. Once selected, it will
         be imported.
+        TODO: remove .run
         """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a backup archive"),
@@ -108,6 +118,7 @@ class ImporterView(Gtk.ScrolledWindow):
         archive backup to import into Bottles. It support only .yml files
         which are the Bottles configuration file. Once selected, it will
         be imported.
+        TODO: remove .run
         """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose a configuration file"),
@@ -132,3 +143,7 @@ class ImporterView(Gtk.ScrolledWindow):
             )
 
         file_dialog.destroy()
+
+
+    def go_back(self, widget=False):
+        self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
