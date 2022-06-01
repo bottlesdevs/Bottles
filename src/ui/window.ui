@@ -25,11 +25,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="btn_importer">
+          <object class="GtkModelButton" id="btn_health">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Importer</property>
+            <property name="text" translatable="yes">Health check</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -38,11 +38,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="btn_preferences">
+          <object class="GtkModelButton" id="btn_importer">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Preferences</property>
+            <property name="text" translatable="yes">Importer</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -62,11 +62,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="btn_support">
+          <object class="GtkModelButton" id="btn_preferences">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Support us</property>
+            <property name="text" translatable="yes">Preferences</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -75,42 +75,16 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="btn_docs">
+          <object class="GtkModelButton" id="btn_help">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Documentation</property>
+            <property name="text" translatable="yes">Help</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="btn_forum">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Forums</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">6</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="btn_health">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
-            <property name="text" translatable="yes">Health check</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">8</property>
           </packing>
         </child>
         <child>
@@ -123,7 +97,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">10</property>
+            <property name="position">6</property>
           </packing>
         </child>
       </object>
