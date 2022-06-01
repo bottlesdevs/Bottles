@@ -50,9 +50,20 @@ class PreferencesView(Adw.PreferencesPage):
     btn_manage_gamescope = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
-    row_drives = Gtk.Template.Child()
+    row_dxvk = Gtk.Template.Child()
+    row_vkd3d = Gtk.Template.Child()
+    row_nvapi = Gtk.Template.Child()
+    row_latencyflex = Gtk.Template.Child()
+    row_discrete = Gtk.Template.Child()
+    row_vkbasalt = Gtk.Template.Child()
+    row_runner = Gtk.Template.Child()
+    row_runtime = Gtk.Template.Child()
+    row_steam_runtime = Gtk.Template.Child()
+    row_cwd = Gtk.Template.Child()
     row_env_variables = Gtk.Template.Child()
     row_overrides = Gtk.Template.Child()
+    row_drives = Gtk.Template.Child()
+    entry_name = Gtk.Template.Child()
     switch_dxvk = Gtk.Template.Child()
     switch_dxvk_hud = Gtk.Template.Child()
     switch_mangohud = Gtk.Template.Child()
@@ -87,15 +98,6 @@ class PreferencesView(Adw.PreferencesPage):
     combo_latencyflex = Gtk.Template.Child()
     combo_windows = Gtk.Template.Child()
     combo_renderer = Gtk.Template.Child()
-    action_dxvk = Gtk.Template.Child()
-    action_vkd3d = Gtk.Template.Child()
-    action_nvapi = Gtk.Template.Child()
-    action_latencyflex = Gtk.Template.Child()
-    action_cwd = Gtk.Template.Child()
-    action_discrete = Gtk.Template.Child()
-    action_runner = Gtk.Template.Child()
-    action_runtime = Gtk.Template.Child()
-    action_steam_runtime = Gtk.Template.Child()
     spinner_dxvk = Gtk.Template.Child()
     spinner_dxvkbool = Gtk.Template.Child()
     spinner_vkd3d = Gtk.Template.Child()
@@ -119,10 +121,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.window = window
         self.manager = window.manager
         self.config = config
-
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
-        self.row_env_variables.connect("activated", self.__show_environment_variables)
-        self.row_drives.connect("activated", self.__show_drives)
         self.btn_manage_runners.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_dxvk.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_vkd3d.connect("clicked", self.window.show_prefs_view)
@@ -164,14 +163,18 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.connect('changed', self.__set_windows)
         self.combo_renderer.connect('changed', self.__set_renderer)
 
+        self.entry_name_ev = Gtk.EventControllerKey.new()
+        self.entry_name_ev.connect("key-pressed", self.__check_entry_name)
+        self.entry_name.add_controller(self.entry_name_ev)
+
         self.__prevent_scroll()
 
         if RuntimeManager.get_runtimes("bottles"):
-            self.action_runtime.set_visible(True)
+            self.row_runtime.set_visible(True)
             self.switch_runtime.connect('state-set', self.__toggle_runtime)
 
         if RuntimeManager.get_runtimes("steam"):
-            self.action_steam_runtime.set_visible(True)
+            self.row_steam_runtime.set_visible(True)
             self.switch_steam_runtime.connect('state-set', self.__toggle_steam_runtime)
 
         '''Toggle some utilites according to its availability'''
@@ -265,9 +268,9 @@ class PreferencesView(Adw.PreferencesPage):
         )
 
         if path != "":
-            self.action_cwd.set_subtitle(path)
+            self.row_cwd.set_subtitle(path)
         else:
-            self.action_cwd.set_subtitle(_("Default to the bottle path."))
+            self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
     def update_combo_components(self):
         """
@@ -350,7 +353,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.toggle_esync.handler_block_by_func(self.__set_esync)
         self.toggle_fsync.handler_block_by_func(self.__set_fsync)
         self.toggle_futex2.handler_block_by_func(self.__set_futex2)
-        self.entry_name.handler_block_by_func(self.__check_entry_name)
+        self.entry_name_ev.handler_block_by_func(self.__check_entry_name)
 
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
@@ -389,9 +392,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.entry_name.set_text(config["Name"])
 
         if self.config.get("WorkingDir") != "":
-            self.action_cwd.set_subtitle(self.config.get("WorkingDir"))
+            self.row_cwd.set_subtitle(self.config.get("WorkingDir"))
         else:
-            self.action_cwd.set_subtitle(_("Default to the bottle path."))
+            self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
         self.combo_windows.remove_all()
         self.combo_windows.append("win10", "Windows 10")
@@ -446,7 +449,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
         self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
         self.toggle_futex2.handler_unblock_by_func(self.__set_futex2)
-        self.entry_name.handler_unblock_by_func(self.__check_entry_name)
+        self.entry_name_ev.handler_unblock_by_func(self.__check_entry_name)
 
         self.__set_steam_rules()
 
@@ -1061,14 +1064,14 @@ class PreferencesView(Adw.PreferencesPage):
         status = False if self.config.get("Environment") == "Steam" else True
 
         for w in [
-            self.action_discrete,
-            self.action_runner,
-            self.action_runtime,
-            self.action_steam_runtime,
-            self.action_dxvk,
-            self.action_vkd3d,
-            self.action_nvapi,
-            self.action_latencyflex,
+            self.row_discrete,
+            self.row_runner,
+            self.row_runtime,
+            self.row_steam_runtime,
+            self.row_dxvk,
+            self.row_vkd3d,
+            self.row_nvapi,
+            self.row_latencyflex,
             self.group_details,
             self.exp_components
         ]:

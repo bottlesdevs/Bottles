@@ -39,57 +39,11 @@
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkBox">
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">Importer</property>
-                        <property name="wrap">True</property>
-                        <property name="wrap-mode">word-char</property>
-                        <attributes>
-                          <attribute name="font-desc" value="Cantarell Bold 16"/>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      
-                      
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="btn_find_prefixes">
-                        
-                        <property name="tooltip-text" translatable="yes">Refresh</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">view-refresh-symbolic</property>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="btn_undecorated"/>
-                        </style>
-                      </object>
-                      
-                      
-                    </child>
-                    <child>
-                      <object class="GtkMenuButton" id="btn_import_backup">
-                        
-                        <property name="focus-on-click">False</property>
-                        <property name="tooltip-text" translatable="yes">Import Bottles backup</property>
-                        <property name="popover">pop_backup</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">document-send-symbolic</property>
-                          </object>
-                        </child>
-                        <style>
-                          <class name="btn_undecorated"/>
-                        </style>
-                      </object>
-                      
-                      
-                    </child>
+                  <object class="AdwStatusPage" id="adw_status">
+                    <property name="icon-name">document-save-symbolic</property>
+                    <property name="title" translatable="yes">No prefixes found</property>
+                    <property name="description" translatable="yes">No prefixes were found from Lutris, PlayOnLinux, etc.
+Use the icon on the top to import a bottle from a backup</property>
                   </object>
                   
                   
@@ -102,9 +56,6 @@
                   </object>
                   
                   
-                </child>
-                <child>
-                  <placeholder/>
                 </child>
               </object>
             </child>
