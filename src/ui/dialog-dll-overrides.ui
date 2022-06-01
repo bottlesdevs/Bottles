@@ -16,31 +16,9 @@
             <property name="description" translatable="yes">Dynamic Link Libraries can be specified to be builtin (provided by Wine) or native (provided by the program).</property>
             <property name="title" translatable="yes">DLL Overrides</property>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwEntryRow" id="entry_row">
                 <property name="title" translatable="yes">New Override</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkEntry" id="entry_name">
-                        <property name="valign">center</property>
-                        <property name="placeholder-text" translatable="yes">e.g. ucrtbase</property>
-                        <style>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="btn_save">
-                        <property name="valign">center</property>
-                        <property name="icon-name">list-add-symbolic</property>
-                        <style>
-                          <class name="circular"/>
-                          <class name="suggested-action"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+                <property name="show_apply_button">True</property>
               </object>
             </child>
           </object>
