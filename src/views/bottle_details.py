@@ -86,8 +86,8 @@ class BottleView(Adw.PreferencesPage):
     group_programs = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     extra_separator = Gtk.Template.Child()
-    #reveal_progress = Gtk.Template.Child()
-    #progress_bar = Gtk.Template.Child()
+    # reveal_progress = Gtk.Template.Child()
+    # progress_bar = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
 
@@ -237,7 +237,7 @@ class BottleView(Adw.PreferencesPage):
             _("Cancel")
         )
 
-        #file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config) + '/drive_c/')
+        # file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config) + '/drive_c/')
         file_dialog.set_modal(True)
         file_dialog.set_transient_for(self.window)
         file_dialog.connect('response', self.__execute, file_dialog)
@@ -246,7 +246,6 @@ class BottleView(Adw.PreferencesPage):
     def __execute(self, _dialog, response, file_dialog):
 
         if response == -3:
-
             # if not args:
             #     args = ""
 
@@ -330,34 +329,28 @@ class BottleView(Adw.PreferencesPage):
 
     def __confirm_delete(self, widget):
         """
-        This function pop up the delete confirm dialog. If user confirm
+        This function pop up to delete confirm dialog. If user confirm
         it will ask the manager to delete the bottle and will return
         to the bottles list.
         """
-        dialog_delete = MessageDialog(
-            self.window,
-            Gtk.DialogFlags.USE_HEADER_BAR,
-            _("Confirm deletion"),
-            _("Are you sure you want to delete this Bottle and all files?")
+        def handle_response(_widget, response_id):
+            if response_id == Gtk.ResponseType.OK:
+                RunAsync(self.manager.delete_bottle, config=self.config)
+                self.window.page_list.disable_bottle(self.config)
+                self.window.go_back()
+            _widget.destroy()
+
+        widget.set_sensitive(False)
+
+        dialog = MessageDialog(
+            window=self.window,
+            message=_("Are you sure you want to delete this Bottle and all files?")
         )
-        dialog_delete.present()
-
-        if response == Gtk.ResponseType.OK:
-            RunAsync(
-                task_func=self.manager.delete_bottle,
-                config=self.config
-            )
-            self.window.page_list.disable_bottle(self.config)
-            self.window.go_back()
-
-        dialog_delete.destroy()
+        dialog.connect("response", handle_response)
+        dialog.show()
 
     def __update_by_env(self):
-        widgets = [
-            self.row_uninstaller,
-            self.row_regedit,
-            self.row_browse,
-        ]
+        widgets = [self.row_uninstaller, self.row_regedit, self.row_browse]
         if self.config.get("Environment") == "Layered":
             for widget in widgets:
                 widget.set_visible(False)
@@ -370,7 +363,7 @@ class BottleView(Adw.PreferencesPage):
         This function update the progress bar when the user
         is moving a file.
         """
-        None
+        return
         # if progress == 1:
         #     self.reveal_progress.set_reveal_child(False)
         #     self.progress_bar.set_fraction(0)
@@ -427,12 +420,12 @@ class BottleView(Adw.PreferencesPage):
         def reset(result=None, error=False):
             widget.set_sensitive(True)
 
-        def handle_response(widget, response_id):
+        def handle_response(_widget, response_id):
             if response_id == Gtk.ResponseType.OK:
                 RunAsync(wineboot.send_status, reset, status)
             else:
                 reset()
-            widget.destroy()
+            _widget.destroy()
 
         wineboot = WineBoot(self.config)
         widget.set_sensitive(False)
@@ -448,11 +441,7 @@ class BottleView(Adw.PreferencesPage):
     def __set_steam_rules(self):
         status = False if self.config.get("Environment") == "Steam" else True
 
-        for w in [
-            self.btn_delete,
-            self.btn_backup_full,
-            self.btn_duplicate
-        ]:
+        for w in [self.btn_delete, self.btn_backup_full, self.btn_duplicate]:
             w.set_visible(status)
             w.set_sensitive(status)
 
@@ -463,7 +452,4 @@ class BottleView(Adw.PreferencesPage):
 
     @staticmethod
     def open_report_url(widget):
-        webbrowser.open_new_tab(
-            "https://github.com/bottlesdevs/dependencies/issues/new/choose")
-
-
+        webbrowser.open_new_tab("https://github.com/bottlesdevs/dependencies/issues/new/choose")
