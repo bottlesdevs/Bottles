@@ -176,7 +176,9 @@ class BottleView(Gtk.ScrolledWindow):
     # region Widgets
     list_bottles = Gtk.Template.Child()
     list_steam = Gtk.Template.Child()
-    clamp_list = Gtk.Template.Child()
+    group_bottles = Gtk.Template.Child()
+    group_steam = Gtk.Template.Child()
+    pref_page = Gtk.Template.Child()
     bottle_status = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     entry_search = Gtk.Template.Child()
@@ -231,10 +233,10 @@ class BottleView(Gtk.ScrolledWindow):
         bottles = local_bottles.items()
 
         if len(bottles) == 0:
-            self.clamp_list.set_visible(False)
+            self.pref_page.set_visible(False)
             self.bottle_status.set_visible(True)
         else:
-            self.clamp_list.set_visible(True)
+            self.pref_page.set_visible(True)
             self.bottle_status.set_visible(False)
 
         for bottle in bottles:
