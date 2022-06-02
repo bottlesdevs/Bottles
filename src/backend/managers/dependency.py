@@ -593,8 +593,7 @@ class DependencyManager:
 
         if step.get("url") and step.get("url").startswith("temp/"):
             path = step["url"].replace("temp/", f"{Paths.temp}/")
-            path = os.path.join(path, step.get("dll"))
-            dlls = os.listdir(path)
+            dlls = glob(os.path.join(path, step.get("dll")))
 
             for dll in dlls:
                 reg.add(
