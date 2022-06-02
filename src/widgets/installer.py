@@ -76,7 +76,7 @@ class InstallerEntry(Adw.ActionRow):
             parent=self.window,
             title=_("Manifest for {0}").format(self.installer[0]),
             message=plain_manifest
-        )
+        ).present()
 
     def __open_review(self, widget):
         """Open review"""
@@ -87,7 +87,7 @@ class InstallerEntry(Adw.ActionRow):
             parent=self.window,
             title=_("Review for {0}").format(self.installer[0]),
             message=html_review,
-        )
+        ).present()
 
     @staticmethod
     def __open_bug_report(widget):

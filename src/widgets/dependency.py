@@ -108,7 +108,7 @@ class DependencyEntry(Adw.ActionRow):
                 name=self.dependency[0],
                 plain=True
             )
-        )
+        ).present()
 
     def open_license(self, widget):
         """
