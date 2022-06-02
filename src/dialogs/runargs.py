@@ -24,7 +24,6 @@ class RunArgsDialog(Adw.Window):
 
     # region Widgets
     entry_args = Gtk.Template.Child()
-    btn_cancel = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
 
     # endregion
@@ -37,7 +36,6 @@ class RunArgsDialog(Adw.Window):
         self.parent = parent
 
         # connect signals
-        self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_run.connect("clicked", self.__run_executable)
 
     def __run_executable(self, widget):
@@ -50,4 +48,4 @@ class RunArgsDialog(Adw.Window):
         self.__close_window()
 
     def __close_window(self, widget=None):
-        self.window.remove(self)
+        self.destroy()
