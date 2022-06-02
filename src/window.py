@@ -303,7 +303,7 @@ class MainWindow(Adw.ApplicationWindow):
         """
 
         def show_journal_view(_widget):
-            JournalDialog()
+            JournalDialog().present()
 
         ht = HealthChecker().get_results(plain=True)
         SourceDialog(
