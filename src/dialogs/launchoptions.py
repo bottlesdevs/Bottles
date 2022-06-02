@@ -58,7 +58,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.entry_arguments.set_text(program.get("arguments", ""))
 
         # connect signals
-        self.btn_cancel.connect("clicked", self.__close_window)
+        self.btn_cancel.connect("clicked", self.__close_window, False)
         self.btn_save.connect("clicked", self.__save_options)
         self.btn_script.connect("clicked", self.__choose_script)
         self.btn_script_reset.connect("clicked", self.__choose_script, True)
@@ -125,9 +125,10 @@ class LaunchOptionsDialog(Adw.Window):
         else:
             action.set_subtitle("")
 
-    def __close_window(self, widget=None):
-        self.parent.page_details.set_config(self.config)
-        self.window.remove(self)
+    def __close_window(self, widget=None, save=True):
+        if save:
+            self.parent.page_details.set_config(self.config)
+        self.destroy()
 
     def __save_options(self, widget):
         """
