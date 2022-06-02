@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-04-23 10:46+0000\n"
-"Last-Translator: Kontik <atix.atix6@gmail.com>\n"
+"PO-Revision-Date: 2022-06-03 11:14+0000\n"
+"Last-Translator: some one <onefromtheearth@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/bottles/"
 "bottles/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/ui/list.ui:76
@@ -180,19 +180,19 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:21
 msgid "Window width"
-msgstr ""
+msgstr "Ширина вікна"
 
 #: data/com.usebottles.bottles.gschema.xml:22
 msgid "Change the window width."
-msgstr ""
+msgstr "Зміна ширини вікна"
 
 #: data/com.usebottles.bottles.gschema.xml:26
 msgid "Window height"
-msgstr ""
+msgstr "Висота вікна"
 
 #: data/com.usebottles.bottles.gschema.xml:27
 msgid "Change the window height."
-msgstr ""
+msgstr "Зміна висоти вікна"
 
 #: data/com.usebottles.bottles.gschema.xml:31 src/ui/preferences.ui:100
 msgid "Notifications"
@@ -260,7 +260,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.gschema.xml:66
 msgid "Automatically close Bottles"
-msgstr ""
+msgstr "Автоматично закривати Пляшки"
 
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Close Bottles after starting an executable from the file manager."
@@ -272,7 +272,7 @@ msgstr ""
 
 #: src/ui/about.ui:11
 msgid "Easily manage wineprefix using environments"
-msgstr ""
+msgstr "Легке керування префіксами WINE за допомогою середовищ"
 
 #: src/ui/about.ui:137
 msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
@@ -301,7 +301,7 @@ msgstr ""
 
 #: src/ui/component-entry.ui:66 src/ui/importer-entry.ui:20
 msgid "Browse files"
-msgstr ""
+msgstr "Перегляд файлів"
 
 #: src/ui/component-entry.ui:92
 msgid ""
@@ -310,6 +310,10 @@ msgid ""
 "\n"
 "Press to try again."
 msgstr ""
+"Не вдалося встановити. Це могло бути спричинене помилкою в репозиторії, "
+"частковим завантаженням або невідповідністю контрольної суми\n"
+"\n"
+"Нажміть, щоб повторити"
 
 #: src/ui/component-entry.ui:119
 msgid "Download & Install"
@@ -404,7 +408,7 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:176
 msgid "Reboot"
-msgstr ""
+msgstr "Перезавантаження"
 
 #: src/ui/details-bottle.ui:281
 msgid "Run with arguments"
@@ -457,7 +461,7 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:597
 msgid "Moving inside the sandbox…"
-msgstr ""
+msgstr "Переміщення всередину пісочниці…"
 
 #: src/ui/details-bottle.ui:614 src/views/details.py:122
 msgid "Programs"
@@ -2212,7 +2216,7 @@ msgstr ""
 
 #: src/views/details.py:118
 msgid "Dependencies"
-msgstr ""
+msgstr "Залежності"
 
 #: src/views/details.py:123
 msgid "Found in your bottle's Start menu."
@@ -2266,15 +2270,15 @@ msgstr ""
 
 #: src/views/new.py:86
 msgid "A clear environment for your experiments."
-msgstr ""
+msgstr "Чисте середовище для ваших експериментів."
 
 #: src/views/new.py:94
 msgid "Layered"
-msgstr ""
+msgstr "Багатошарове"
 
 #: src/views/new.py:95
 msgid "A layered environment, where every app is a layer."
-msgstr ""
+msgstr "Багатошарове середовище, в якому кожна програма є шаром."
 
 #: src/views/new.py:181
 msgid "Choose a recipe file"
@@ -2291,16 +2295,16 @@ msgstr ""
 #: src/views/new.py:292
 #, python-brace-format
 msgid "A bottle named “{0}” was created successfully"
-msgstr ""
+msgstr "Пляшка з назвою “{0}” була успішно створена"
 
 #: src/views/preferences.py:146
 msgid "Choose new bottles path"
-msgstr ""
+msgstr "Виберіть новий шлях для пляшок"
 
 #: src/views/preferences.py:160 src/views/preferences.py:169
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
-msgstr ""
+msgstr "Виберіть де зберігати нові пляшки (це не перемістить вже існуючі)"
 
 #: src/views/preferences.py:200
 msgid "Caffe runners"
@@ -2320,7 +2324,7 @@ msgstr ""
 
 #: src/widgets/component.py:73
 msgid "Upgrade"
-msgstr ""
+msgstr "Оновлення"
 
 #: src/widgets/dependency.py:107 src/widgets/installer.py:77
 #, python-brace-format
