@@ -30,6 +30,7 @@ class MessageDialog(Gtk.MessageDialog):
             buttons=Gtk.ButtonsType.OK_CANCEL,
             text=message
         )
+        self.set_transient_for(window)
         if log:
             # display log as output if defined
             message_scroll = Gtk.ScrolledWindow()
