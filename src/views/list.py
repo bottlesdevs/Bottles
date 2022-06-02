@@ -244,7 +244,7 @@ class BottleView(Gtk.ScrolledWindow):
             else:
                 self.list_steam.append(_entry)
 
-            if self.list_steam.get_first_child != None:
+            if self.list_steam.get_first_child is None:
                 self.group_steam.set_visible(False)
                 self.group_bottles.set_title("")
             else:
