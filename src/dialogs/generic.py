@@ -24,13 +24,14 @@ class MessageDialog(Gtk.MessageDialog):
     def __init__(self, window, message=_("An error has occurred."), log=False):
         Gtk.MessageDialog.__init__(
             self,
-            parent=window,
             destroy_with_parent=True,
             message_type=Gtk.MessageType.WARNING,
             buttons=Gtk.ButtonsType.OK_CANCEL,
             text=message
         )
         self.set_transient_for(window)
+        self.set_modal(True)
+
         if log:
             # display log as output if defined
             message_scroll = Gtk.ScrolledWindow()
