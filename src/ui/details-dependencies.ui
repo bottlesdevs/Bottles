@@ -19,13 +19,25 @@
         <object class="AdwPreferencesPage">
         <child>
           <object class="AdwPreferencesGroup">
-          <property name="description" translatable="yes">Files on this page are provided by third parties under a proprietary license.
-By instaling them, you agree with their respective licensing terms.</property>
+          <property name="description" translatable="yes">Dependencies are software, libraries and codecs that improve the compatibility of Windows software. Install from here to meet your program requirements.</property>
             <child>
               <object class="GtkListBox" id="list_dependencies">
                 <property name="selection-mode">none</property>
                 <style>
                   <class name="boxed-list"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Files on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.</property>
+                <property name="use-markup">True</property>
+                <property name="wrap">True</property>
+                <property name="margin-top">10</property>
+                <style>
+                  <class name="dim-label"/>
                 </style>
               </object>
             </child>
