@@ -60,12 +60,14 @@ class InstallerManager:
         self.__local_resources = {}
 
     @lru_cache
-    def get_review(self, installer_name) -> str:
+    def get_review(self, installer_name, parse: bool = True) -> str:
         """Return an installer review from the repository (as HTML)"""
         review = self.__repo.get_review(installer_name)
-        if review:
+        if not review:
+            return "No review found for this installer."
+        if parse:
             return markdown.markdown(review)
-        return "No review found for this installer."
+        return review
 
     @lru_cache
     def get_installer(
