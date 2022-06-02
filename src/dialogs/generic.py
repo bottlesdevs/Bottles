@@ -21,28 +21,15 @@ from gettext import gettext as _
 
 class MessageDialog(Gtk.MessageDialog):
 
-    def __init__(
-            self,
-            parent,
-            title=_("Warning"),
-            message=_("An error has occurred."),
-            log=False
-    ):
-
+    def __init__(self, window, message=_("An error has occurred."), log=False):
         Gtk.MessageDialog.__init__(
             self,
-            parent=parent,
-            flags=Gtk.DialogFlags.USE_HEADER_BAR,
-            type=Gtk.MessageType.WARNING,
+            parent=window,
+            destroy_with_parent=True,
+            message_type=Gtk.MessageType.WARNING,
             buttons=Gtk.ButtonsType.OK_CANCEL,
-            message_format=message
+            text=message
         )
-
-        content = self.get_content_area()
-
-        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        box.set_border_width(20)
-
         if log:
             # display log as output if defined
             message_scroll = Gtk.ScrolledWindow()
@@ -50,13 +37,10 @@ class MessageDialog(Gtk.MessageDialog):
             message_scroll.set_vexpand(True)
 
             message_view = Gtk.TextView()
-            message_buffer = message_view.get_buffer()
-            message_buffer.set_text(log)
+            message_view.get_buffer().set_text(log)
             message_scroll.append(message_view)
 
-            box.append(message_scroll)
-
-        content.append(box)
+            self.message_area.append(message_scroll)
 
 
 class SourceDialog(Adw.Window):

@@ -334,15 +334,13 @@ class BottleView(Adw.PreferencesPage):
         it will ask the manager to delete the bottle and will return
         to the bottles list.
         """
-        dialog_delete = MessageWindow(
+        dialog_delete = MessageDialog(
             self.window,
             Gtk.DialogFlags.USE_HEADER_BAR,
             _("Confirm deletion"),
-            _(
-                "Are you sure you want to delete this Bottle and all files?"
-            )
+            _("Are you sure you want to delete this Bottle and all files?")
         )
-        dialog_delete.present
+        dialog_delete.present()
 
         if response == Gtk.ResponseType.OK:
             RunAsync(
@@ -426,32 +424,26 @@ class BottleView(Adw.PreferencesPage):
         RunAsync(program.launch)
 
     def wineboot(self, widget, status):
-        def reset(result, error=False):
+        def reset(result=None, error=False):
             widget.set_sensitive(True)
+
+        def handle_response(widget, response_id):
+            if response_id == Gtk.ResponseType.OK:
+                RunAsync(wineboot.send_status, reset, status)
+            else:
+                reset()
+            widget.destroy()
 
         wineboot = WineBoot(self.config)
         widget.set_sensitive(False)
 
         if status == 0:
-            # show confirmation dialog
-            dialog = MessageWindow(
-                parent=self.window,
-                title=_("Confirm"),
-                message=_(
-                    "Are you sure you want to terminate all processes?\nThis can cause data loss."
-                )
+            dialog = MessageDialog(
+                window=self.window,
+                message=_("Are you sure you want to terminate all processes?\nThis can cause data loss.")
             )
-            response = dialog.run()
-            dialog.destroy()
-            if response != -5:
-                reset(None)
-                return
-
-        RunAsync(
-            wineboot.send_status,
-            callback=reset,
-            status=status
-        )
+            dialog.connect("response", handle_response)
+            dialog.show()
 
     def __set_steam_rules(self):
         status = False if self.config.get("Environment") == "Steam" else True
