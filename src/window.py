@@ -354,12 +354,15 @@ class MainWindow(Adw.ApplicationWindow):
             context.remove_class("selection-mode")
 
     def lock_ui(self, status: bool = True):
-        for w in [
+        widgets = [
             self.btn_add,
             self.btn_menu,
             self.window_title,
-            self.btn_search,
-        ]:
+            self.btn_search
+        ]
+        if self.btn_noconnection.get_visible():
+            widgets.append(self.btn_noconnection)
+        for w in widgets:
             w.set_visible(not status)
 
     @staticmethod
