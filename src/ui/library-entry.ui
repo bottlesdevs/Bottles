@@ -18,7 +18,7 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkImage" id="img_cover">
-        <property name="icon_size">6</property>
+        <placeholder />
       </object>
       
       
@@ -32,18 +32,17 @@
             <property name="focus-on-click">False</property>
             <property name="valign">center</property>
             <property name="popover">pop_context</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">view-more-symbolic</property>
-              </object>
-            </child>
+            <property name="icon-name">view-more-symbolic</property>
+            <style>
+              <class name="flat"/>
+            </style>
           </object>
           
           
         </child>
         <child>
           <object class="GtkImage" id="img_icon">
-            <property name="icon-name">bottles-steam-symbolic</property>
+            <property name="icon-name">applications-games-symbolic</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -54,6 +53,7 @@
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>
+            <property name="hexpand">True</property>
             <child>
               <object class="GtkLabel" id="label_name">
                 <property name="halign">start</property>
@@ -80,7 +80,7 @@
           
           
         </child>
-        <child>
+        <child type="end">
           <object class="GtkBox">
             <property name="spacing">10</property>
             <child>
@@ -89,14 +89,8 @@
                 <property name="tooltip-text" translatable="yes">Launch with Steam</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">bottles-steam-symbolic</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="image-button"/>
-                </style>
+                <property name="icon-name">bottles-steam-symbolic</property>
+                <property name="visible">false</property>
               </object>
               
               
