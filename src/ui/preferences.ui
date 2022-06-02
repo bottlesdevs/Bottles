@@ -190,6 +190,7 @@ This will break the sandbox!</property>
       <object class="AdwPreferencesPage" id="pref_core">
         <property name="icon-name">application-x-addon-symbolic</property>
         <property name="title" translatable="yes">Core</property>
+        <property name="visible">False</property>
         <child>
           <object class="AdwPreferencesGroup" id="list_runtimes">
             <property name="title" translatable="yes">Runtime</property>
