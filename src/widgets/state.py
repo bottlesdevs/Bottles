@@ -89,11 +89,12 @@ class StateEntry(Adw.ActionRow):
             self.state[0],
             True
         ).get("Plain")
+
         SourceDialog(
             parent=self.window,
             title=_("Index for state {0}").format(self.state[0]),
             message=plain_state
-        )
+        ).present()
 
     def set_completed(self):
         """

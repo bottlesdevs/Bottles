@@ -116,7 +116,7 @@ class SourceDialog(Adw.Window):
         box.append(headerbar)
         box.append(scrolled)
 
-        self.set_child(box)
+        self.set_content(box)
 
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -156,7 +156,7 @@ class TextDialog(Adw.Window):
         box.append(headerbar)
         box.append(scrolled)
 
-        self.set_child(box)
+        self.set_content(box)
 
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -196,7 +196,7 @@ class WebDialog(Adw.Window):
         box.append(headerbar)
         box.append(scrolled)
 
-        self.set_child(box)
+        self.set_content(box)
 
     def __copy_text(self, widget):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)

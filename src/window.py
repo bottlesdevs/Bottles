@@ -290,7 +290,7 @@ class MainWindow(Adw.ApplicationWindow):
                 "icon": "document-open-recent-symbolic",
                 "tooltip": _("Journal browser")
             }]
-        )
+        ).present()
 
     def show_details_view(self, widget=False, config=dict):
         self.main_leaf.set_visible_child(self.page_details)
