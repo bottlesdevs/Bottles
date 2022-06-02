@@ -61,7 +61,7 @@ class MessageDialog(Gtk.MessageDialog):
 
 class SourceDialog(Adw.Window):
 
-    def __init__(self, parent, title, message, buttons=None, **kwargs):
+    def __init__(self, parent, title, message, buttons=None, lang="yaml", **kwargs):
         super().__init__(**kwargs)
         if buttons is None:
             buttons = []
@@ -72,6 +72,7 @@ class SourceDialog(Adw.Window):
         self.title = title
         self.message = message
         self.buttons = buttons
+        self.lang = lang
 
         self.__build_ui()
 
@@ -86,7 +87,7 @@ class SourceDialog(Adw.Window):
             highlight_syntax=True,
             highlight_matching_brackets=True,
             style_scheme=style_scheme_manager.get_scheme("oblivion"),
-            language=lang_manager.get_language("yaml")
+            language=lang_manager.get_language(self.lang)
         )
         source_view = GtkSource.View(
             buffer=source_buffer,
@@ -164,7 +165,10 @@ class TextDialog(Adw.Window):
 
 
 class WebDialog(Adw.Window):
-
+    """
+    TODO: currently unused, waiting for webkit2gtk-5 to be released with the GNOME Runtime
+          use SourceDialog or TextDialog in the meantime
+    """
     def __init__(self, parent, title, message):
         Adw.Window.__init__(self, title=title)
         self.set_default_size(700, 700)
@@ -182,7 +186,7 @@ class WebDialog(Adw.Window):
         btn_copy = Gtk.Button.new_from_icon_name("edit-copy-symbolic")
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled = Gtk.ScrolledWindow(vexpand=True, hexpand=True)
-        # webview = WebKit2.WebView()  TODO: fix webkit2
+        # webview = WebKit2.WebView()
 
         headerbar.set_title_widget(Gtk.Label.new(self.title))
         headerbar.pack_end(btn_copy)
