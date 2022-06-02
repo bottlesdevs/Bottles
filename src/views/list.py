@@ -170,7 +170,7 @@ class BottleViewEntry(Adw.ActionRow):
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
-class BottleView(Gtk.ScrolledWindow):
+class BottleView(Adw.Bin):
     __gtype_name__ = 'BottleView'
 
     # region Widgets
@@ -246,7 +246,7 @@ class BottleView(Gtk.ScrolledWindow):
             else:
                 self.list_steam.append(_entry)
 
-            if self.list_steam.get_first_child is None:
+            if self.list_steam.get_first_child() is None:
                 self.group_steam.set_visible(False)
                 self.group_bottles.set_title("")
             else:

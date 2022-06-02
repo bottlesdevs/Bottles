@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
     <requires lib="gtk" version="4.0"/>
-    <template class="BottleView" parent="GtkScrolledWindow">
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="BottleView" parent="AdwBin">
         <child>
-            <object class="GtkViewport">
+            <object class="GtkScrolledWindow">
                 <child>
                     <object class="GtkBox">
                         <property name="hexpand">True</property>
@@ -15,8 +14,7 @@
                             <object class="GtkSearchBar" id="search_bar">
                                 <child>
                                     <object class="GtkSearchEntry" id="entry_search">
-                                        <property name="placeholder-text" translatable="yes">Search your bottles…
-                                        </property>
+                                        <property name="placeholder-text" translatable="yes">Search your bottles…</property>
                                     </object>
                                 </child>
                             </object>
@@ -27,6 +25,7 @@
                                     <object class="AdwPreferencesGroup" id="group_bottles">
                                         <child>
                                             <object class="GtkListBox" id="list_bottles">
+                                            <property name="selection-mode">none</property>
                                                 <style>
                                                     <class name="boxed-list"/>
                                                 </style>
@@ -39,6 +38,7 @@
                                         <property name="title" translatable="yes">Steam Proton</property>
                                         <child>
                                             <object class="GtkListBox" id="list_steam">
+                                            <property name="selection-mode">none</property>
                                                 <style>
                                                     <class name="boxed-list"/>
                                                 </style>
