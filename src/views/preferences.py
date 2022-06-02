@@ -63,10 +63,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.manager = window.manager
         self.data = DataManager()
 
-        if "FLATPAK_ID" not in os.environ:
+        if "FLATPAK_ID" in os.environ:
             self.flatpak_notice.set_visible(False)
-        else:
-            self.pref_core.set_visible(False)
+            self.remove(self.pref_core)
 
         if self.data.get("custom_bottles_path"):
             self.action_bottles_path.set_subtitle(
