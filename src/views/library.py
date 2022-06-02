@@ -40,7 +40,6 @@ class LibraryView(Adw.Bin):
         self.window = window
 
         self.btn_back.connect("clicked", self.go_back)
-        #window.set_actions(self.actions)
         self.update()
 
     def update(self):
@@ -51,7 +50,7 @@ class LibraryView(Adw.Bin):
             self.main_flow.remove(self.main_flow.get_first_child())
 
         self.adw_status.set_visible(len(entries) == 0)
-        self.main_flow.set_visible(len(entries) == 0)
+        self.main_flow.set_visible(not len(entries) == 0)
 
         for u, e in entries.items():
             entry = LibraryEntry(self, u, e)

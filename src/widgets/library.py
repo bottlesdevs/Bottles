@@ -54,9 +54,11 @@ class LibraryEntry(Gtk.Box):
 
         self.label_name.set_text(entry['name'])
         self.label_bottle.set_text(entry['bottle']['name'])
+
         if entry.get('icon'):
             if entry['icon'] == "com.usebottles.bottles-program":
-                self.img_icon.set_from_icon_name(entry['icon'], Gtk.IconSize.DIALOG)
+                self.img_icon.set_from_icon_name(entry['icon'])
+                self.img_icon.set_pixel_size(32)
             else:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(entry['icon'], 24, 24)
                 self.img_icon.set_from_pixbuf(pixbuf)
