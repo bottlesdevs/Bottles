@@ -20,7 +20,7 @@ from gettext import gettext as _
 import webbrowser
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
-from bottles.dialogs.generic import SourceDialog, WebDialog
+from bottles.dialogs.generic import SourceDialog
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/installer-entry.ui')
@@ -80,13 +80,12 @@ class InstallerEntry(Adw.ActionRow):
 
     def __open_review(self, widget):
         """Open review"""
-        html_review = self.manager.installer_manager.get_review(
-            installer_name=self.installer[0],
-        )
-        WebDialog(
+        plain_text = self.manager.installer_manager.get_review(self.installer[0], parse=False)
+        SourceDialog(
             parent=self.window,
             title=_("Review for {0}").format(self.installer[0]),
-            message=html_review,
+            message=plain_text,
+            lang="markdown"
         ).present()
 
     @staticmethod

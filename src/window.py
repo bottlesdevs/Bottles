@@ -191,6 +191,7 @@ class MainWindow(Adw.ApplicationWindow):
         is at least one local runner installed. If not, the user will be
         prompted with the onboard dialog.
         """
+
         def set_manager(result, error=None):
             self.manager = result
 
@@ -213,7 +214,7 @@ class MainWindow(Adw.ApplicationWindow):
             self.main_leaf.get_page(self.page_details).set_navigatable(False)
             self.main_leaf.get_page(self.page_importer).set_navigatable(False)
             self.main_leaf.get_page(self.page_library).set_navigatable(False)
-            
+
             self.stack_main.add_titled(
                 child=self.page_list,
                 name="page_list",
@@ -221,10 +222,33 @@ class MainWindow(Adw.ApplicationWindow):
             )
 
             self.page_list.search_bar.set_key_capture_widget(self)
-            self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled', GObject.BindingFlags.BIDIRECTIONAL)
+            self.btn_search.bind_property('active', self.page_list.search_bar, 'search-mode-enabled',
+                                          GObject.BindingFlags.BIDIRECTIONAL)
             self.stack_main.set_visible_child_name("page_list")
             self.lock_ui(False)
             self.headerbar.get_style_context().remove_class("flat")
+
+            if Paths.custom_bottles_path_err:
+                dialog = Gtk.MessageDialog(
+                    transient_for=self,
+                    flags=0,
+                    message_type=Gtk.MessageType.ERROR,
+                    buttons=Gtk.ButtonsType.OK,
+                    text=_("The custom bottles path was not found. "
+                           "Please, check the path in Preferences.\n"
+                           "Fallbacking to the default path; "
+                           "no bottles from that path will be listed!")
+                )
+                dialog.present()
+
+            if self.arg_exe and not self.arg_bottle:
+                '''
+                If Bottles was started with an executable as argument, without
+                a bottle, the user will be prompted to select a bottle from the
+                bottles list.
+                '''
+                self.show_list_view()
+            self.arg_exe = None
 
         def get_manager(window):
             mng = Manager(window)
@@ -239,7 +263,7 @@ class MainWindow(Adw.ApplicationWindow):
         """
         This method is used to send a notification to the user using
         Gio.Notification. The notification is sent only if the
-        user has enabled it in the settings. It is possibile to ignore the
+        user has enabled it in the settings. It is possible to ignore the
         user settings by passing the argument ignore_user=False.
         """
         if ignore_user or self.settings.get_boolean("notifications"):
@@ -277,6 +301,7 @@ class MainWindow(Adw.ApplicationWindow):
         This method is called when the user presses the health button.
         It will show the health view.
         """
+
         def show_journal_view(_widget):
             JournalDialog()
 
@@ -377,5 +402,3 @@ class MainWindow(Adw.ApplicationWindow):
     @staticmethod
     def open_url(widget, url):
         webbrowser.open_new_tab(url)
-
-
