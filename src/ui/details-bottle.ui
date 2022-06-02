@@ -180,7 +180,7 @@
       <class name="menu"/>
     </style>
     <child>
-      <object class="GtkBox" id="box_run_extra">
+      <object class="GtkBox">
         <property name="orientation">vertical</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
@@ -204,6 +204,11 @@
         </child>
         <child>
           <object class="GtkSeparator" id="extra_separator"/>
+        </child>
+        <child>
+          <object class="GtkBox" id="box_history">
+            <property name="orientation">vertical</property>
+          </object>
         </child>
       </object>
     </child>

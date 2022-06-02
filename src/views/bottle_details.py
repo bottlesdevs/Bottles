@@ -78,7 +78,7 @@ class BottleView(Adw.PreferencesPage):
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
     # btn_help_debug = Gtk.Template.Child()
-    box_run_extra = Gtk.Template.Child()
+    box_history = Gtk.Template.Child()
     check_terminal = Gtk.Template.Child()
     check_move_file = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
@@ -243,29 +243,29 @@ class BottleView(Adw.PreferencesPage):
         file_dialog.connect('response', self.__execute, file_dialog)
         file_dialog.show()
 
-    def __execute(self, _dialog, response, file_dialog):
+    def __execute(self, _dialog, response, file_dialog, args=""):
+        def do_update_programs(result, error=False):
+            self.window.page_details.update_programs()
 
         if response == -3:
-            # if not args:
-            #     args = ""
-
+            _execs = self.config.get("Latest_Executables", [])
+            _file = file_dialog.get_file()
             executor = WineExecutor(
                 self.config,
                 exec_path=file_dialog.get_file().get_path(),
-                # args=args,
+                args=args,
                 terminal=self.check_terminal.get_active(),
                 move_file=self.check_move_file.get_active(),
                 move_upd_fn=self.update_move_progress
             )
             RunAsync(executor.run, do_update_programs)
-
             self.manager.update_config(
                 config=self.config,
                 key="Latest_Executables",
                 value=_execs + [{
-                    "name": file_dialog.get_file().get_basename.split("/")[-1],
-                    "file": file_dialog.get_file().get_path,
-                    "args": None
+                    "name": _file.get_basename().split("/")[-1],
+                    "file": _file.get_path(),
+                    "args": args
                 }]
             )
 
@@ -275,17 +275,16 @@ class BottleView(Adw.PreferencesPage):
         """
         This function update the latest executables list.
         """
-        while self.box_run_extra.get_first_child() is not None:
-            self.box_run_extra.remove(self.box_run_extra.get_first_child())
+        while self.box_history.get_first_child() is not None:
+            self.box_history.remove(self.box_history.get_first_child())
 
         _execs = self.config.get("Latest_Executables", [])[-5:]
         for exe in _execs:
-            _btn = ExecButton(
+            self.box_history.append(ExecButton(
                 parent=self,
                 data=exe,
                 config=self.config
-            )
-            self.box_run_extra.add(_btn)
+            ))
 
     def __backup(self, widget, backup_type):
         """
