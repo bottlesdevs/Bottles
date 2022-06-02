@@ -194,8 +194,8 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
     def populate_runners_list(self):
         for w in self.list_runners:
-             if w != self.actionrow_prerelease:
-                 self.list_runners.remove(w)
+            if w != self.actionrow_prerelease:
+                self.list_runners.remove(w)
 
         exp_caffe = ComponentExpander(_("Caffe runners"))
         exp_wine_ge = ComponentExpander(_("Wine GE runners"))
