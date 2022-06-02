@@ -1,83 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-<requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="RunArgsDialog" parent="AdwWindow">
-    <property name="resizable">False</property>
-    <property name="modal">True</property>
-    <property name="default-width">550</property>
-    <property name="destroy-with-parent">True</property>
-    <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="RunArgsDialog" parent="AdwWindow">
+        <property name="resizable">False</property>
+        <property name="modal">True</property>
+        <property name="default-width">550</property>
+        <property name="destroy-with-parent">True</property>
         <child>
-          <object class="AdwHeaderBar">
-  <property name="title-widget">
-    <object class="AdwWindowTitle">
-      <property name="title" translatable="yes">Run with arguments</property>
-    </object>
-  </property>
-            <child>
-              <object class="GtkButton" id="btn_cancel">
-                <property name="label" translatable="yes">Cancel</property>
-                
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_run">
-                <property name="label" translatable="yes">Run</property>
-                
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-              
-              
-            </child>
-          </object>
-          
-          
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="AdwHeaderBar">
+                        <property name="title-widget">
+                            <object class="AdwWindowTitle">
+                                <property name="title" translatable="yes">Run With Arguments</property>
+                            </object>
+                        </property>
+                        <child type="end">
+                            <object class="GtkButton" id="btn_run">
+                                <property name="label" translatable="yes">Run</property>
+                                <style>
+                                    <class name="suggested-action"/>
+                                </style>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwPreferencesPage">
+                        <child>
+                            <object class="AdwPreferencesGroup">
+                                <property name="description" translatable="yes">Write below the arguments to be passed to the executable.</property>
+                                <child>
+                                    <object class="AdwEntryRow" id="entry_args">
+                                        <property name="title" translatable="yes">e.g.: -opengl -SkipBuildPatchPrereq</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+            </object>
         </child>
-        <child>
-          <object class="GtkBox">
-            <property name="margin-end">10</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">5</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="halign">start</property>
-                <property name="label" translatable="yes">Write below the arguments to be passed to the executable.</property>
-              </object>
-              
-              
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry_args">
-                
-                <property name="tooltip-text" translatable="yes">e.g.: -example1 -example2 -example3=hello</property>
-                <property name="hexpand">True</property>
-GtkSearchBar                <property name="placeholder-text" translatable="yes">e.g: -opengl -SkipBuildPatchPrereq</property>
-                <property name="input-purpose">terminal</property>
-              </object>
-              
-              
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          
-          
-        </child>
-      </object>
-    </child>
-  </template>
+    </template>
 </interface>
