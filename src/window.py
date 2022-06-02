@@ -236,7 +236,7 @@ class MainWindow(Adw.ApplicationWindow):
                     buttons=Gtk.ButtonsType.OK,
                     text=_("The custom bottles path was not found. "
                            "Please, check the path in Preferences.\n"
-                           "Fallbacking to the default path; "
+                           "Fall-backing to the default path; "
                            "no bottles from that path will be listed!")
                 )
                 dialog.present()
