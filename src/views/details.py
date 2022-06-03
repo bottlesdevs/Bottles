@@ -195,7 +195,7 @@ class DetailsView(Adw.Bin):
         if widget:
             self.box_actions.append(widget)
 
-    def set_config(self, config):
+    def set_config(self, config, rebuild_pages=True):
         """
         This function update widgets according to the bottle
         configuration. It also temporarily disable the functions
@@ -214,7 +214,8 @@ class DetailsView(Adw.Bin):
         self.view_programs.update(config=config)
         self.view_bottle.update_programs()
 
-        self.build_pages()
+        if rebuild_pages:
+            self.build_pages()
 
     def update_programs(self, widget=None, config=None):
         if config:
