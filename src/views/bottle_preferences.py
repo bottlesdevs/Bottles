@@ -122,6 +122,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.manager = window.manager
         self.config = config
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
+        self.row_env_variables.connect("activated", self.__show_environment_variables)
+        self.row_drives.connect("activated", self.__show_drives)
         self.btn_manage_runners.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_dxvk.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_vkd3d.connect("clicked", self.window.show_prefs_view)
