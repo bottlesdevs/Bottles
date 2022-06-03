@@ -256,7 +256,7 @@ class PreferencesView(Adw.PreferencesPage):
             file_dialog.set_current_folder(
                 ManagerUtils.get_bottle_path(self.config)
             )
-            response = file_dialog.run()
+            response = file_dialog.run() # TODO: to be fixed
 
             if response == -3:
                 path = file_dialog.get_filename()
