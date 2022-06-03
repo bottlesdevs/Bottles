@@ -335,18 +335,6 @@
           </object>
         </child>
         <child>
-          <object class="AdwActionRow" id="row_taskmanager">
-            <property name="activatable">true</property>
-            <property name="title" translatable="yes">Task Manager</property>
-            <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">external-link-symbolic</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
           <object class="AdwActionRow" id="row_regedit">
             <property name="activatable">true</property>
             <property name="title" translatable="yes">Registry Editor</property>
@@ -366,6 +354,18 @@
                 <property name="activatable">true</property>
                 <property name="title" translatable="yes">Browse C:</property>
                 <property name="subtitle" translatable="yes">Browse internal files.</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">external-link-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="row_taskmanager">
+                <property name="activatable">true</property>
+                <property name="title" translatable="yes">Task Manager</property>
+                <property name="subtitle" translatable="yes">Manage processes with the Wine task manager.</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">external-link-symbolic</property>
