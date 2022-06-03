@@ -122,6 +122,11 @@ class BottleViewEntry(Adw.ActionRow):
     def run_executable(self, widget):
         exec_path = self.arg_exe
 
+        def set_path(_dialog, response, _file_dialog):
+            nonlocal exec_path
+            if response == -3:
+                exec_path = _file.get_path()
+
         if not exec_path:
             file_dialog = Gtk.FileChooserNative.new(
                 _("Choose a Windows executable file"),
@@ -130,18 +135,15 @@ class BottleViewEntry(Adw.ActionRow):
                 _("Run"),
                 _("Cancel")
             )
-            response = file_dialog.run()
-            if response == -3:
-                exec_path = file_dialog.get_filename()
-            file_dialog.destroy()
+            file_dialog.set_modal(True)
+            file_dialog.set_transient_for(self.window)
+            file_dialog.connect('response', set_path, file_dialog)
+            file_dialog.show()
 
         if exec_path in [None, ""]:
             return
 
-        executor = WineExecutor(
-            self.config,
-            exec_path=exec_path
-        )
+        executor = WineExecutor(self.config, exec_path=exec_path)
         RunAsync(executor.run)
 
         if self.window.settings.get_boolean("auto-close-bottles"):
@@ -150,8 +152,6 @@ class BottleViewEntry(Adw.ActionRow):
         self.arg_exe = None
         self.manager.update_bottles()
 
-    '''Show details page'''
-
     def show_details(self, widget=None, config=None):
         if config is None:
             config = self.config
@@ -159,11 +159,8 @@ class BottleViewEntry(Adw.ActionRow):
         self.window.show_details_view(config=config)
 
     def disable(self):
+        self.window.go_back()
         self.handler_block_by_func(self.show_details)
-
-        while self.get_first_child():
-            self.get_first_child().set_sensitive(False)
-
         self.spinner.start()
         self.spinner.set_visible(True)
         self.set_sensitive(False)
@@ -172,6 +169,7 @@ class BottleViewEntry(Adw.ActionRow):
 @Gtk.Template(resource_path='/com/usebottles/bottles/list.ui')
 class BottleView(Adw.Bin):
     __gtype_name__ = 'BottleView'
+    __bottles = {}
 
     # region Widgets
     list_bottles = Gtk.Template.Child()
@@ -184,6 +182,7 @@ class BottleView(Adw.Bin):
     entry_search = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     no_bottles_found = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, arg_bottle=None, arg_exe=None, **kwargs):
@@ -194,11 +193,10 @@ class BottleView(Adw.Bin):
         self.arg_bottle = arg_bottle
         self.arg_exe = arg_exe
 
-        '''Connect signals'''
+        # connect signals
         self.btn_create.connect("clicked", self.window.show_add_view)
         self.entry_search.connect('changed', self.__search_bottles)
 
-        '''Populate list_bottles'''
         self.update_bottles()
 
     def __search_bottles(self, widget, event=None, data=None):
@@ -212,7 +210,6 @@ class BottleView(Adw.Bin):
             terms
         )
 
-
     @staticmethod
     def __filter_bottles(row, terms=None):
         text = row.get_title().lower()
@@ -220,9 +217,8 @@ class BottleView(Adw.Bin):
             return True
         return False
 
-    '''Find and append bottles to list_bottles'''
-
     def idle_update_bottles(self):
+        self.__bottles = {}
         while self.list_bottles.get_first_child():
             self.list_bottles.remove(self.list_bottles.get_first_child())
 
@@ -241,6 +237,8 @@ class BottleView(Adw.Bin):
 
         for bottle in bottles:
             _entry = BottleViewEntry(self.window, bottle, self.arg_exe)
+            self.__bottles[bottle[1]["Path"]] = _entry
+
             if bottle[1].get("Environment") != "Steam":
                 self.list_bottles.append(_entry)
             else:
@@ -264,8 +262,4 @@ class BottleView(Adw.Bin):
         GLib.idle_add(self.idle_update_bottles)
 
     def disable_bottle(self, config):
-        None
-        # for bottle in self.list_steam.get_children():
-        #     if bottle.config["Path"] == config["Path"]:
-        #         bottle.disable()
-        #         break
+        self.__bottles[config["Path"]].disable()

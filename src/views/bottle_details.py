@@ -322,7 +322,6 @@ class BottleView(Adw.PreferencesPage):
             if response_id == Gtk.ResponseType.OK:
                 RunAsync(self.manager.delete_bottle, config=self.config)
                 self.window.page_list.disable_bottle(self.config)
-                self.window.go_back()
             _widget.destroy()
 
         widget.set_sensitive(False)
