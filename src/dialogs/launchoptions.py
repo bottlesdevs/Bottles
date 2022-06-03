@@ -22,6 +22,7 @@ from gi.repository import Gtk, GLib, Adw
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class LaunchOptionsDialog(Adw.Window):
     __gtype_name__ = 'LaunchOptionsDialog'
+    __default_msg = _("Choose a script which should be executed after run.")
 
     # region Widgets
     entry_arguments = Gtk.Template.Child()
@@ -61,7 +62,7 @@ class LaunchOptionsDialog(Adw.Window):
         self.btn_cancel.connect("clicked", self.__close_window, False)
         self.btn_save.connect("clicked", self.__save_options)
         self.btn_script.connect("clicked", self.__choose_script)
-        self.btn_script_reset.connect("clicked", self.__choose_script, True)
+        self.btn_script_reset.connect("clicked", self.__reset_script)
         self.entry_arguments.connect("activate", self.__save_options)
         self.switch_dxvk.connect(
             "state-set",
@@ -153,28 +154,36 @@ class LaunchOptionsDialog(Adw.Window):
         ).data["config"]
         GLib.idle_add(self.__close_window)
 
-    def __choose_script(self, widget, reset=False):
+    def __choose_script(self, _widget):
         """
         This function open a file chooser dialog to choose the
         script which will be executed before the program.
         """
-        path = ""
-        if not reset:
-            file_dialog = Gtk.FileChooserNative.new(
-                _("Choose the script"),
-                self.window,
-                Gtk.FileChooserAction.OPEN,
-                _("Run"),
-                _("Cancel")
-            )
-            response = file_dialog.run()
+
+        def set_path(_dialog, response, _file_dialog):
             if response == -3:
-                path = file_dialog.get_filename()
-                self.program["script"] = path
+                _file = _file_dialog.get_file()
+                self.program["script"] = _file.get_path()
+                self.action_script.set_subtitle(_file.get_path())
+                return
 
-            file_dialog.destroy()
+            self.action_script.set_subtitle(self.__default_msg)
 
-        if path != "":
-            self.action_script.set_subtitle(path)
-        else:
-            self.action_script.set_subtitle(_("Choose a script which should be executed after run."))
+        file_dialog = Gtk.FileChooserNative.new(
+            _("Choose the script"),
+            self.window,
+            Gtk.FileChooserAction.OPEN,
+            _("Run"),
+            _("Cancel")
+        )
+        file_dialog.set_modal(True)
+        file_dialog.set_transient_for(self.window)
+        file_dialog.connect('response', set_path, file_dialog)
+        file_dialog.show()
+
+    def __reset_script(self, _widget):
+        """
+        This function reset the script path.
+        """
+        self.program["script"] = ""
+        self.action_script.set_subtitle(self.__default_msg)
