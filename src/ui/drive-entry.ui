@@ -1,59 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-<requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="DriveEntry" parent="AdwActionRow">
-    
-    <property name="title">C:</property>
-    <property name="subtitle" translatable="yes">/point/to/path</property>
-    <child>
-      <object class="GtkBox">
-        <property name="spacing">10</property>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="DriveEntry" parent="AdwActionRow">
+        <property name="title">C:</property>
+        <property name="subtitle" translatable="yes">/point/to/path</property>
         <child>
-          <object class="GtkButton" id="btn_remove">
-            
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">user-trash-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
-          </object>
-          
-          
+            <object class="GtkBox">
+                <property name="spacing">6</property>
+                <child>
+                    <object class="GtkButton" id="btn_remove">
+                        <property name="valign">center</property>
+                        <property name="tooltip-text" translatable="yes">Remove</property>
+                        <property name="icon-name">user-trash-symbolic</property>
+                        <style>
+                            <class name="flat"/>
+                        </style>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkButton" id="btn_path">
+                        <property name="valign">center</property>
+                        <property name="tooltip-text" translatable="yes">Choose a Directory</property>
+                        <property name="icon-name">document-open-symbolic</property>
+                        <style>
+                            <class name="flat"/>
+                        </style>
+                    </object>
+                </child>
+            </object>
         </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-          </object>
-          
-          
-        </child>
-        <child>
-          <object class="GtkButton" id="btn_path">
-            
-            <property name="tooltip-text" translatable="yes">Choose a directory</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">document-open-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
-          </object>
-          
-          
-        </child>
-      </object>
-    </child>
-  </template>
+    </template>
 </interface>

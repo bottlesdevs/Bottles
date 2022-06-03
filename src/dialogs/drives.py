@@ -30,13 +30,13 @@ class DriveEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, config, drive, **kwargs):
+    def __init__(self, parent, drive, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.config = config
+        self.parent = parent
+        self.manager = parent.window.manager
+        self.config = parent.config
         self.drive = drive
 
         '''
@@ -50,14 +50,14 @@ class DriveEntry(Adw.ActionRow):
         self.btn_path.connect("clicked", self.__choose_path)
         self.btn_remove.connect("clicked", self.__remove)
 
-    def __choose_path(self, widget):
+    def __choose_path(self, *args):
         """
         Open the file chooser dialog and set the path to the
         selected file
         """
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose path"),
-            self.window,
+            self.parent.window,
             Gtk.FileChooserAction.SELECT_FOLDER,
             _("Select"),
             _("Cancel")
@@ -68,13 +68,13 @@ class DriveEntry(Adw.ActionRow):
             Drives(self.config).new_drive(self.drive[0], path)
             self.set_subtitle(path)
 
-    def __remove(self, widget):
+    def __remove(self, *args):
         """
         Remove the drive from the bottle configuration and
         destroy the widget
         """
         Drives(self.config).remove_drive(self.drive[0])
-        self.destroy()
+        self.parent.list_drives.remove(self)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-drives.ui')
@@ -103,43 +103,28 @@ class DrivesDialog(Adw.Window):
         # connect signals
         self.btn_save.connect("clicked", self.__save)
 
-    def __idle_save(self, widget=False):
+    def __save(self, *args):
         """
-        This function save the driveto the bottle configuration
+        This function add a new drive to the bottle configuration
         """
         drive_letter = self.combo_letter.get_active_id()
-
-        self.list_drives.append(
-            DriveEntry(
-                window=self.window,
-                config=self.config,
-                drive=[drive_letter, ""]
-            )
-        )
+        _entry = DriveEntry(parent=self, drive=[drive_letter, ""])
         index = self.combo_letter.get_active()
+
+        GLib.idle_add(self.list_drives.add, _entry)
+
         self.combo_letter.remove(index)
         self.combo_letter.set_active(0)
 
-    def __save(self, widget=False):
-        GLib.idle_add(self.__idle_save)
-
-    def __idle_populate_vars_list(self):
+    def __populate_drives_list(self):
         """
-        This function populate the list of env vars
+        This function populate the list of drives
         with the existing ones from the bottle configuration
         """
         drives = Drives(self.config).get_all()
         for drive in drives:
-            self.list_drives.append(
-                DriveEntry(
-                    window=self.window,
-                    config=self.config,
-                    drive=[drive, drives[drive]]
-                )
-            )
-
-    def __populate_drives_list(self):
-        GLib.idle_add(self.__idle_populate_vars_list)
+            _entry = DriveEntry(parent=self, drive=[drive, drives[drive]])
+            GLib.idle_add(self.list_drives.add, _entry)
 
     def __populate_combo_letter(self):
         drives = Drives(self.config).get_all()
