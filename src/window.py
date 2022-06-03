@@ -275,26 +275,8 @@ class MainWindow(Adw.ApplicationWindow):
 
             self.props.application.send_notification(None, notification)
 
-    def set_previous_page_status(self):
-        """
-        This method set the previous page status according to the
-        current page, so that the previous page is correctly
-        selected when the user goes back to the previous page.
-        """
-        self.previous_page = self.stack_main.get_visible_child_name()
-
-    def go_back(self, widget=False):
-        """
-        This method is called when the user presses the back button.
-        It will toggle some widget visibility and show the previous
-        page (previous_page).
-        """
-        self.toggle_selection_mode(False)
-
-        for w in [self.btn_add, self.btn_menu]:
-            w.set_visible(True)
-
-        self.stack_main.set_visible_child_name(self.previous_page)
+    def go_back(self, *args):
+        self.main_leaf.navigate(direction=Adw.NavigationDirection.BACK)
 
     def show_health_view(self, _widget):
         """
