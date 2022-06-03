@@ -4,7 +4,8 @@
     <requires lib="libadwaita" version="1.0"/>
     <template class="LaunchOptionsDialog" parent="AdwWindow">
         <property name="modal">True</property>
-        <property name="default-width">600</property>
+        <property name="deletable">False</property>
+        <property name="default-width">500</property>
         <property name="title" translatable="yes">Launch Options</property>
         <child>
             <object class="GtkBox">
