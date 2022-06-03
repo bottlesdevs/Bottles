@@ -1,63 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-<requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="EnvVarEntry" parent="AdwActionRow">
-    
-    <property name="title">VAR</property>
-    <child>
-      <object class="GtkBox">
-        <property name="spacing">10</property>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="EnvVarEntry" parent="AdwEntryRow">
+        <property name="title" translatable="yes">Value</property>
+        <property name="show_apply_button">True</property>
         <child>
-          <object class="GtkButton" id="btn_remove">
-            
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
+            <object class="GtkButton" id="btn_remove">
+                <property name="valign">center</property>
                 <property name="icon-name">user-trash-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
-          </object>
-          
-          
+                <style>
+                    <class name="flat"/>
+                </style>
+            </object>
         </child>
-        <child>
-          <object class="GtkButton" id="btn_save">
-            
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">object-select-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="image-button"/>
-            </style>
-          </object>
-          
-          
-        </child>
-        <child>
-          <object class="GtkSeparator">
-          </object>
-          
-          
-        </child>
-        <child>
-          <object class="GtkEntry" id="entry_value">
-            
-            <property name="has-frame">False</property>
-            <property name="placeholder-text" translatable="yes">value</property>
-          </object>
-          
-          
-        </child>
-      </object>
-    </child>
-  </template>
+    </template>
 </interface>

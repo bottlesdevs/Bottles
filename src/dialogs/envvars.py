@@ -20,57 +20,49 @@ from gi.repository import Gtk, GLib, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/env-var-entry.ui')
-class EnvVarEntry(Adw.ActionRow):
+class EnvVarEntry(Adw.EntryRow):
     __gtype_name__ = 'EnvVarEntry'
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
-    btn_save = Gtk.Template.Child()
-    entry_value = Gtk.Template.Child()
-
+    ev_controller = Gtk.EventControllerKey.new()
     # endregion
 
-    def __init__(self, window, config, env, **kwargs):
+    def __init__(self, parent, env, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.config = config
+        self.parent = parent
+        self.manager = parent.window.manager
+        self.config = parent.config
         self.env = env
 
-        '''
-        Set the env var name as ActionRow title and set the
-        entry_value to its value
-        '''
         self.set_title(self.env[0])
-        self.entry_value.set_text(self.env[1])
+        self.set_text(self.env[1])
 
-        entry_value_ev = Gtk.EventControllerKey.new()
-        entry_value_ev.connect("key-pressed", self.on_change)
-        self.entry_value.add_controller(entry_value_ev)
+        self.add_controller(self.ev_controller)
 
         # connect signals
+        self.ev_controller.connect("key-pressed", self.on_change)
+        self.connect("apply", self.__save)
         self.btn_remove.connect("clicked", self.__remove)
-        self.btn_save.connect("clicked", self.__save)
 
-    def on_change(self, widget, event):
-        self.btn_save.set_visible(True)
+    def on_change(self, *args):
+        self.set_show_apply_button(self.get_text() != "")
 
-    def __save(self, widget):
+    def __save(self, *args):
         """
         Change the env var value according to the
         user input and update the bottle configuration
         """
-        env_value = self.entry_value.get_text()
         self.manager.update_config(
             config=self.config,
             key=self.env[0],
-            value=env_value,
+            value=self.get_text(),
             scope="Environment_Variables"
         )
 
-    def __remove(self, widget):
+    def __remove(self, *args):
         """
         Remove the env var from the bottle configuration and
         destroy the widget
@@ -82,7 +74,7 @@ class EnvVarEntry(Adw.ActionRow):
             remove=True,
             scope="Environment_Variables"
         )
-        self.destroy()
+        self.parent.list_vars.remove(self)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-env-vars.ui')
@@ -91,9 +83,8 @@ class EnvVarsDialog(Adw.Window):
 
     # region Widgets
     entry_name = Gtk.Template.Child()
-    btn_save = Gtk.Template.Child()
     list_vars = Gtk.Template.Child()
-
+    ev_controller = Gtk.EventControllerKey.new()
     # endregion
 
     def __init__(self, window, config, **kwargs):
@@ -106,66 +97,46 @@ class EnvVarsDialog(Adw.Window):
         self.config = config
 
         self.__populate_vars_list()
-
-        entry_name_ev = Gtk.EventControllerKey.new()
-        entry_name_ev.connect("key-pressed", self.__validate)
-        self.entry_name.add_controller(entry_name_ev)
+        self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
-        self.btn_save.connect("clicked", self.__save_var)
+        self.ev_controller.connect("key-pressed", self.__validate)
+        self.entry_name.connect("apply", self.__save_var)
 
-    def __validate(self, widget, event_key):
+    def __validate(self, *args):
         regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,\'"]')
         name = self.entry_name.get_text()
+        res = (regex.search(name) is None) and name != ""
+        self.entry_name.set_show_apply_button(res)
 
-        if (regex.search(name) is None) and name != "":
-            self.btn_save.set_sensitive(True)
-            self.entry_name.set_icon_from_icon_name(1, "")
-        else:
-            self.btn_save.set_sensitive(False)
-            self.entry_name.set_icon_from_icon_name(1, "dialog-warning-symbolic")
-
-    def __idle_save_var(self, widget=False):
+    def __save_var(self, *args):
         """
         This function save the new env var to the
         bottle configuration
         """
         env_name = self.entry_name.get_text()
-
         self.manager.update_config(
             config=self.config,
             key=env_name,
             value="",
             scope="Environment_Variables"
         )
-
-        self.list_vars.append(
-            EnvVarEntry(
-                window=self.window,
-                config=self.config,
-                env=[env_name, ""]
-            )
-        )
-
+        _entry = EnvVarEntry(parent=self, env=[env_name, ""])
+        GLib.idle_add(self.list_vars.add, _entry)
         self.entry_name.set_text("")
-        self.btn_save.set_sensitive(False)
+        self.entry_name.set_show_apply_button(False)
 
-    def __save_var(self, widget=False):
-        GLib.idle_add(self.__idle_save_var)
-
-    def __idle_populate_vars_list(self):
+    def __populate_vars_list(self):
         """
         This function populate the list of env vars
         with the existing ones from the bottle configuration
         """
-        for env in self.config.get("Environment_Variables").items():
-            self.list_vars.append(
-                EnvVarEntry(
-                    window=self.window,
-                    config=self.config,
-                    env=env
-                )
-            )
+        envs = self.config.get("Environment_Variables").items()
+        if len(envs) == 0:
+            self.list_vars.set_description(_("No environment variables defined"))
+            return
 
-    def __populate_vars_list(self):
-        GLib.idle_add(self.__idle_populate_vars_list)
+        self.list_vars.set_description("")
+        for env in envs:
+            _entry = EnvVarEntry(parent=self, env=env)
+            GLib.idle_add(self.list_vars.add, _entry)
