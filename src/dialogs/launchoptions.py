@@ -127,7 +127,7 @@ class LaunchOptionsDialog(Adw.Window):
 
     def __close_window(self, widget=None, save=True):
         if save:
-            self.parent.page_details.set_config(self.config)
+            self.parent.page_details.set_config(self.config, rebuild_pages=False)
         self.destroy()
 
     def __save_options(self, widget):
