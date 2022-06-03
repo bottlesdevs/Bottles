@@ -240,7 +240,7 @@ class BottleView(Adw.PreferencesPage):
             _file = file_dialog.get_file()
             executor = WineExecutor(
                 self.config,
-                exec_path=file_dialog.get_file().get_path(),
+                exec_path=_file.get_path(),
                 args=args,
                 terminal=self.check_terminal.get_active(),
             )
