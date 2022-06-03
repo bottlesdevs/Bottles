@@ -134,10 +134,7 @@ class BottleView(Adw.PreferencesPage):
         self.__update_by_env()
 
         # set update_date
-        update_date = datetime.strptime(
-            self.config.get("Update_Date"),
-            "%Y-%m-%d %H:%M:%S.%f"
-        )
+        update_date = datetime.strptime(self.config.get("Update_Date"), "%Y-%m-%d %H:%M:%S.%f")
         update_date = update_date.strftime("%b %d %Y %H:%M:%S")
         self.label_name.set_tooltip_text(_("Updated: %s" % update_date))
 
@@ -419,12 +416,3 @@ class BottleView(Adw.PreferencesPage):
         for w in [self.btn_delete, self.btn_backup_full, self.btn_duplicate]:
             w.set_visible(status)
             w.set_sensitive(status)
-
-    '''
-    The following methods open resources (URLs) in the
-    system browser.
-    '''
-
-    @staticmethod
-    def open_report_url(widget):
-        webbrowser.open_new_tab("https://github.com/bottlesdevs/dependencies/issues/new/choose")

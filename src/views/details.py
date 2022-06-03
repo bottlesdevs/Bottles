@@ -46,6 +46,7 @@ class DetailsView(Adw.Bin):
     box_actions = Gtk.Template.Child()
     window_title = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
+
     # endregion
 
     def __init__(self, window, config=None, **kwargs):
@@ -77,6 +78,7 @@ class DetailsView(Adw.Bin):
         # endregion
 
         # self.build_pages()
+
     def set_title(self, title, subtitle: str = ""):
         self.window_title.set_title(title)
         self.window_title.set_subtitle(subtitle)
@@ -87,13 +89,13 @@ class DetailsView(Adw.Bin):
         """
         global pages
         self.window.toggle_selection_mode(False)
-
         page = self.stack_bottle.get_visible_child_name()
+
         if page is None:
             page = "bottle"
 
         self.set_title(pages[page]['title'], pages[page]['description'])
-        if page == "bottle":
+        if page in ["bottle", None]:
             self.set_actions(self.view_bottle.actions)
         elif page == "programs":
             self.set_actions(self.view_programs.actions)
@@ -184,14 +186,14 @@ class DetailsView(Adw.Bin):
             self.stack_bottle.set_visible_child_name("bottle")
 
     def set_actions(self, widget: Gtk.Widget = None):
-            """
+        """
             This function is used to set the actions buttons in the headerbar.
             """
-            while self.box_actions.get_first_child():
-                self.box_actions.remove(self.box_actions.get_first_child())
+        while self.box_actions.get_first_child():
+            self.box_actions.remove(self.box_actions.get_first_child())
 
-            if widget:
-                self.box_actions.append(widget)
+        if widget:
+            self.box_actions.append(widget)
 
     def set_config(self, config):
         """
