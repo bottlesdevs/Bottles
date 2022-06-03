@@ -17,7 +17,7 @@
 
 from gi.repository import Gtk, GLib, Adw
 
-# TODO: this doesn't work
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/dll-override-entry.ui')
 class DLLEntry(Adw.ComboRow):
     __gtype_name__ = 'DLLEntry'
@@ -45,22 +45,23 @@ class DLLEntry(Adw.ComboRow):
 
         # connect signals
         self.btn_remove.connect("clicked", self.__remove_override)
-        #self.combo_type.connect('changed', self.__set_override_type)
+        self.connect('notify::selected', self.__set_override_type)
 
-    def __set_override_type(self, widget):
+    def __set_override_type(self, *args):
         """
         Change the override type according to the selected
         and update the bottle configuration
         """
-        override_type = widget.get_active_id()
+        selected = self.get_selected()
+        types = ("b", "n", "b,n", "n,b")
         self.manager.update_config(
             config=self.config,
             key=self.override[0],
-            value=override_type,
+            value=types[selected],
             scope="DLL_Overrides"
         )
 
-    def __remove_override(self, widget):
+    def __remove_override(self, *args):
         """
         Remove the override from the bottle configuration and
         destroy the widget
@@ -99,11 +100,11 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
         # connect signals
         self.entry_row.connect("apply", self.__save_override)
 
-    def __idle_save_override(self, widget=False):
+    def __idle_save_override(self, *args):
         """
         This function check if the override name is not empty, then
         store it in the bottle configuration and add a new entry to
-        the list. It also clear the entry field
+        the list. It also clears the entry field
         """
         dll_name = self.entry_row.get_text()
 
@@ -125,7 +126,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
 
             self.entry_row.set_text("")
 
-    def __save_override(self, widget=False):
+    def __save_override(self, *args):
         GLib.idle_add(self.__idle_save_override)
 
     def __idle_populate_overrides_list(self):
