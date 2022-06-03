@@ -77,17 +77,13 @@ class BottleView(Adw.PreferencesPage):
     btn_duplicate = Gtk.Template.Child()
     btn_delete = Gtk.Template.Child()
     btn_flatpak_doc = Gtk.Template.Child()
-    # btn_help_debug = Gtk.Template.Child()
     box_history = Gtk.Template.Child()
     check_terminal = Gtk.Template.Child()
-    check_move_file = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
     list_programs = Gtk.Template.Child()
     extra_separator = Gtk.Template.Child()
-    # reveal_progress = Gtk.Template.Child()
-    # progress_bar = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
 
@@ -118,11 +114,6 @@ class BottleView(Adw.PreferencesPage):
         self.btn_backup_config.connect("clicked", self.__backup, "config")
         self.btn_backup_full.connect("clicked", self.__backup, "full")
         self.btn_duplicate.connect("clicked", self.__duplicate)
-        # self.btn_help_debug.connect(
-        #     "clicked",
-        #     open_doc_url,
-        #     "utilities/logs-and-debugger#wine-debugger"
-        # )
         self.btn_flatpak_doc.connect(
             "clicked",
             open_doc_url,
@@ -176,7 +167,7 @@ class BottleView(Adw.PreferencesPage):
 
         wineserver_status = WineServer(self.config).is_alive()
 
-        while self.list_programs.get_row_at_index(0) != None:
+        while self.list_programs.get_row_at_index(0) is not None:
             self.list_programs.remove(self.list_programs.get_row_at_index(0))
 
         if self.config.get("Environment") == "Steam":
@@ -255,8 +246,6 @@ class BottleView(Adw.PreferencesPage):
                 exec_path=file_dialog.get_file().get_path(),
                 args=args,
                 terminal=self.check_terminal.get_active(),
-                move_file=self.check_move_file.get_active(),
-                move_upd_fn=self.update_move_progress
             )
             RunAsync(executor.run, do_update_programs)
             self.manager.update_config(
@@ -356,19 +345,6 @@ class BottleView(Adw.PreferencesPage):
         else:
             for widget in widgets:
                 widget.set_visible(True)
-
-    def update_move_progress(self, progress):
-        """
-        This function update the progress bar when the user
-        is moving a file.
-        """
-        return
-        # if progress == 1:
-        #     self.reveal_progress.set_reveal_child(False)
-        #     self.progress_bar.set_fraction(0)
-        # else:
-        #     self.reveal_progress.set_reveal_child(True)
-        #     self.progress_bar.set_fraction(progress)
 
     '''
     The following functions are used like wrappers for the
