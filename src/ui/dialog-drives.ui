@@ -5,16 +5,13 @@
     <template class="DrivesDialog" parent="AdwWindow">
         <property name="modal">True</property>
         <property name="default-width">500</property>
+        <property name="default-height">500</property>
+        <property name="title" translatable="yes">Drives</property>
         <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
                     <object class="AdwHeaderBar">
-                        <property name="title-widget">
-                            <object class="AdwWindowTitle">
-                                <property name="title" translatable="yes">Drives</property>
-                            </object>
-                        </property>
                     </object>
                 </child>
                 <child>
@@ -24,33 +21,23 @@
                                 <property name="description" translatable="yes">These are paths from your host system that are mapped and recognized as devices by the runner (e.g. C: D:..).
                                 </property>
                                 <child>
-                                    <object class="AdwActionRow">
+                                    <object class="AdwComboRow" id="combo_letter">
                                         <property name="title" translatable="yes">Letter</property>
+                                        <property name="model">
+                                            <object class="GtkStringList" id="str_list_letters">
+                                            </object>
+                                        </property>
                                         <child>
-                                            <object class="GtkBox">
-                                                <property name="spacing">6</property>
+                                            <object class="GtkButton" id="btn_save">
+                                                <property name="valign">center</property>
                                                 <child>
-                                                    <object class="GtkComboBoxText" id="combo_letter">
-                                                        <property name="valign">center</property>
-                                                        <property name="active">0</property>
-                                                        <style>
-                                                            <class name="flat"/>
-                                                        </style>
+                                                    <object class="GtkImage">
+                                                        <property name="icon-name">object-select-symbolic</property>
                                                     </object>
                                                 </child>
-                                                <child>
-                                                    <object class="GtkButton" id="btn_save">
-                                                        <property name="valign">center</property>
-                                                        <child>
-                                                            <object class="GtkImage">
-                                                                <property name="icon-name">object-select-symbolic</property>
-                                                            </object>
-                                                        </child>
-                                                        <style>
-                                                            <class name="flat"/>
-                                                        </style>
-                                                    </object>
-                                                </child>
+                                                <style>
+                                                    <class name="flat"/>
+                                                </style>
                                             </object>
                                         </child>
                                     </object>

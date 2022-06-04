@@ -74,17 +74,22 @@ class DriveEntry(Adw.ActionRow):
         destroy the widget
         """
         Drives(self.config).remove_drive(self.drive[0])
+        self.parent.str_list_letters.append(self.drive[0])
         self.parent.list_drives.remove(self)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-drives.ui')
 class DrivesDialog(Adw.Window):
     __gtype_name__ = 'DrivesDialog'
+    __alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
+                  "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+                  "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
     list_drives = Gtk.Template.Child()
+    str_list_letters = Gtk.Template.Child()
 
     # endregion
 
@@ -107,14 +112,13 @@ class DrivesDialog(Adw.Window):
         """
         This function add a new drive to the bottle configuration
         """
-        drive_letter = self.combo_letter.get_active_id()
+        index = self.combo_letter.get_selected()
+        drive_letter = self.__alphabet[index]
         _entry = DriveEntry(parent=self, drive=[drive_letter, ""])
-        index = self.combo_letter.get_active()
 
         GLib.idle_add(self.list_drives.add, _entry)
 
-        self.combo_letter.remove(index)
-        self.combo_letter.set_active(0)
+        self.str_list_letters.remove(index)
 
     def __populate_drives_list(self):
         """
@@ -128,11 +132,11 @@ class DrivesDialog(Adw.Window):
 
     def __populate_combo_letter(self):
         drives = Drives(self.config).get_all()
-        self.combo_letter.remove_all()
+        self.str_list_letters.splice(0, self.str_list_letters.get_n_items())
 
-        for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        for letter in self.__alphabet:
             if letter not in drives:
-                self.combo_letter.append(letter, letter)
+                self.str_list_letters.append(letter)
                 self.btn_save.set_sensitive(True)
 
-        self.combo_letter.set_active(0)
+        self.combo_letter.set_selected(0)
