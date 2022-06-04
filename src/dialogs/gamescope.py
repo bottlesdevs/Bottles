@@ -34,6 +34,7 @@ class GamescopeDialog(Adw.Window):
     toggle_borderless = Gtk.Template.Child()
     toggle_fullscreen = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
+    btn_cancel = Gtk.Template.Child()
 
     # endregion
 
@@ -48,6 +49,7 @@ class GamescopeDialog(Adw.Window):
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
+        self.btn_cancel.connect("clicked", self.__close_window)
         self.toggle_borderless.connect("toggled", self.__change_wtype, "b")
         self.toggle_fullscreen.connect("toggled", self.__change_wtype, "f")
 
@@ -84,7 +86,7 @@ class GamescopeDialog(Adw.Window):
         self.toggle_borderless.handler_unblock_by_func(self.__change_wtype)
         self.toggle_fullscreen.handler_unblock_by_func(self.__change_wtype)
 
-    def __idle_save(self, widget=False):
+    def __idle_save(self, *args):
         settings = {"gamescope_game_width": int(self.arg_w.get_text()),
                     "gamescope_game_height": int(self.arg_h.get_text()),
                     "gamescope_window_width": int(self.arg_W.get_text()),
@@ -105,5 +107,8 @@ class GamescopeDialog(Adw.Window):
 
         self.destroy()
 
-    def __save(self, widget=False):
+    def __save(self, *args):
         GLib.idle_add(self.__idle_save)
+
+    def __close_window(self, *args):
+        self.destroy()
