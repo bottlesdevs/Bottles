@@ -174,6 +174,7 @@ class DetailsView(Adw.Bin):
         self.stack_bottle.add_named(self.view_taskmanager, "taskmanager")
 
         self.set_actions(self.view_bottle.actions)
+        self.list_pages.select_row(self.list_pages.get_first_child())
 
     def __change_page(self, widget, row):
         """
