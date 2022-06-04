@@ -37,6 +37,7 @@ class DependenciesView(Adw.Bin):
     entry_search = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
+    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -49,10 +50,9 @@ class DependenciesView(Adw.Bin):
         self.config = config
         self.selected_dependencies = []
 
-        entry_search_ev = Gtk.EventControllerKey.new()
-        entry_search_ev.connect("key-pressed", self.__search_dependencies)
+        self.ev_controller.connect("key-pressed", self.__search_dependencies)
 
-        self.entry_search.add_controller(entry_search_ev)
+        self.entry_search.add_controller(self.ev_controller)
         self.search_bar.set_key_capture_widget(window)
 
         self.btn_report.connect("clicked", open_doc_url, "contribute/missing-dependencies")

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk" version="4.0" />
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="LoadingView" parent="AdwBin">
-  <child>
-    <object class="GtkWindowHandle">
-      <property name="hexpand">True</property>
-      <property name="vexpand">True</property>
-      <child>
-        <object class="AdwStatusPage">
-          <property name="icon-name">com.usebottles.bottles-symbolic</property>
-          <property name="title" translatable="yes">Starting up…</property>
-        </object>
-      </child>
-    </object>
-  </child>
-  </template>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="LoadingView" parent="AdwBin">
+        <child>
+            <object class="GtkWindowHandle">
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <child>
+                    <object class="AdwStatusPage">
+                        <property name="icon-name">com.usebottles.bottles-symbolic</property>
+                        <property name="title" translatable="yes">Starting up…</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </template>
 </interface>

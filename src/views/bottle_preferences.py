@@ -111,6 +111,7 @@ class PreferencesView(Adw.PreferencesPage):
     box_sync = Gtk.Template.Child()
     group_details = Gtk.Template.Child()
     exp_components = Gtk.Template.Child()
+    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -165,9 +166,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_windows.connect('changed', self.__set_windows)
         self.combo_renderer.connect('changed', self.__set_renderer)
 
-        self.entry_name_ev = Gtk.EventControllerKey.new()
-        self.entry_name_ev.connect("key-pressed", self.__check_entry_name)
-        self.entry_name.add_controller(self.entry_name_ev)
+        self.ev_controller.connect("key-pressed", self.__check_entry_name)
+        self.entry_name.add_controller(self.ev_controller)
 
         if RuntimeManager.get_runtimes("bottles"):
             self.row_runtime.set_visible(True)
@@ -353,7 +353,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.toggle_esync.handler_block_by_func(self.__set_esync)
         self.toggle_fsync.handler_block_by_func(self.__set_fsync)
         self.toggle_futex2.handler_block_by_func(self.__set_futex2)
-        self.entry_name_ev.handler_block_by_func(self.__check_entry_name)
+        self.ev_controller.handler_block_by_func(self.__check_entry_name)
 
         self.switch_dxvk.set_active(parameters["dxvk"])
         self.switch_dxvk_hud.set_active(parameters["dxvk_hud"])
@@ -449,7 +449,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.toggle_esync.handler_unblock_by_func(self.__set_esync)
         self.toggle_fsync.handler_unblock_by_func(self.__set_fsync)
         self.toggle_futex2.handler_unblock_by_func(self.__set_futex2)
-        self.entry_name_ev.handler_unblock_by_func(self.__check_entry_name)
+        self.ev_controller.handler_unblock_by_func(self.__check_entry_name)
 
         self.__set_steam_rules()
 

@@ -31,9 +31,7 @@
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Files on this page are provided by third parties under a proprietary license. By installing them, you agree with their respective licensing terms.</property>
-                <property name="use-markup">True</property>
                 <property name="wrap">True</property>
                 <property name="margin-top">12</property>
                 <style>
@@ -55,10 +53,6 @@
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
-        <property name="margin-top">6</property>
-        <property name="margin-bottom">6</property>
-        <property name="margin-start">6</property>
-        <property name="margin-end">6</property>
         <child>
           <object class="GtkModelButton" id="btn_report">
             <property name="tooltip-text" translatable="yes">Report a problem or a missing dependency.</property>

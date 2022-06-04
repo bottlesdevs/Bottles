@@ -36,6 +36,7 @@ class VersioningView(Adw.PreferencesPage):
     btn_help = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     hdy_status = Gtk.Template.Child()
+    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -48,9 +49,8 @@ class VersioningView(Adw.PreferencesPage):
         self.versioning_manager = window.manager.versioning_manager
         self.config = config
 
-        entry_state_comment_ev = Gtk.EventControllerKey.new()
-        entry_state_comment_ev.connect("key-pressed", self.check_entry_state_comment)
-        self.entry_state_comment.add_controller(entry_state_comment_ev)
+        self.ev_controller.connect("key-pressed", self.check_entry_state_comment)
+        self.entry_state_comment.add_controller(self.ev_controller)
 
         self.btn_save.connect("clicked", self.add_state)
         self.btn_help.connect("clicked", open_doc_url, "bottles/versioning")

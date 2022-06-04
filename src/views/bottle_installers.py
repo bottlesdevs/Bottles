@@ -33,6 +33,7 @@ class InstallersView(Adw.Bin):
     entry_search = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
+    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -44,9 +45,8 @@ class InstallersView(Adw.Bin):
         self.manager = window.manager
         self.config = config
 
-        entry_search_ev = Gtk.EventControllerKey.new()
-        entry_search_ev.connect("key-pressed", self.__search_installers)
-        self.entry_search.add_controller(entry_search_ev)
+        self.ev_controller.connect("key-pressed", self.__search_installers)
+        self.entry_search.add_controller(self.ev_controller)
 
         self.search_bar.set_key_capture_widget(window)
         self.btn_help.connect("clicked", open_doc_url, "bottles/installers")
