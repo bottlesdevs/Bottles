@@ -205,15 +205,14 @@ class DetailsView(Adw.Bin):
         """
         self.config = config
 
-        # update widgets data with bottle configuration        
+        # update widgets data with bottle configuration
         self.view_bottle.set_config(config=config)
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
         self.view_dependencies.update(config=config)
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
-        self.view_programs.update(config=config)
-        self.view_bottle.update_programs()
+        self.update_programs()
 
         if rebuild_pages:
             self.build_pages()
