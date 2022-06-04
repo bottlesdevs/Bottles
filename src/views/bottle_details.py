@@ -63,7 +63,7 @@ class BottleView(Adw.PreferencesPage):
     btn_run_args = Gtk.Template.Child()
     row_winecfg = Gtk.Template.Child()
     row_debug = Gtk.Template.Child()
-    row_browse = Gtk.Template.Child()
+    row_explorer = Gtk.Template.Child()
     row_cmd = Gtk.Template.Child()
     row_taskmanager = Gtk.Template.Child()
     row_controlpanel = Gtk.Template.Child()
@@ -71,6 +71,7 @@ class BottleView(Adw.PreferencesPage):
     row_regedit = Gtk.Template.Child()
     btn_shutdown = Gtk.Template.Child()
     btn_reboot = Gtk.Template.Child()
+    btn_browse = Gtk.Template.Child()
     btn_killall = Gtk.Template.Child()
     btn_backup_config = Gtk.Template.Child()
     btn_backup_full = Gtk.Template.Child()
@@ -101,12 +102,13 @@ class BottleView(Adw.PreferencesPage):
         self.btn_run_args.connect("clicked", self.__run_executable_with_args)
         self.row_winecfg.connect("activated", self.run_winecfg)
         self.row_debug.connect("activated", self.run_debug)
-        self.row_browse.connect("activated", self.run_browse)
+        self.row_explorer.connect("activated", self.run_explorer)
         self.row_cmd.connect("activated", self.run_cmd)
         self.row_taskmanager.connect("activated", self.run_taskmanager)
         self.row_controlpanel.connect("activated", self.run_controlpanel)
         self.row_uninstaller.connect("activated", self.run_uninstaller)
         self.row_regedit.connect("activated", self.run_regedit)
+        self.btn_browse.connect("clicked", self.run_browse)
         self.btn_delete.connect("clicked", self.__confirm_delete)
         self.btn_shutdown.connect("clicked", self.wineboot, 2)
         self.btn_reboot.connect("clicked", self.wineboot, 1)
@@ -334,7 +336,7 @@ class BottleView(Adw.PreferencesPage):
         dialog.show()
 
     def __update_by_env(self):
-        widgets = [self.row_uninstaller, self.row_regedit, self.row_browse]
+        widgets = [self.row_uninstaller, self.row_regedit]
         if self.config.get("Environment") == "Layered":
             for widget in widgets:
                 widget.set_visible(False)
