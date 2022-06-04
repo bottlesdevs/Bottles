@@ -38,7 +38,6 @@ class ExecButton(Gtk.Button):
             self.config,
             exec_path=self.data.get("file"),
             args=self.data.get("args"),
-            move_file=self.parent.check_move_file.get_active(),
             move_upd_fn=self.parent.update_move_progress
         )
         RunAsync(executor.run)
