@@ -2,113 +2,118 @@
 <interface>
     <requires lib="gtk+" version="4.0"/>
     <requires lib="libadwaita" version="1.0"/>
-    <template class="LaunchOptionsDialog" parent="GtkWindow">
+    <template class="LaunchOptionsDialog" parent="AdwWindow">
         <property name="modal">True</property>
         <property name="deletable">False</property>
         <property name="default-width">500</property>
         <property name="title" translatable="yes">Launch Options</property>
-        <child type="titlebar">
-          <object class="GtkHeaderBar">
-          <property name="show-title-buttons">False</property>
-            <child type="start">
-              <object class="GtkButton" id="btn_cancel">
-                <property name="label" translatable="yes">Cancel</property>
-                <child>
-                  <object class='GtkShortcutController'>
-                    <property name='scope'>managed</property>
-                    <child>
-                      <object class='GtkShortcut'>
-                        <property name='trigger'>Escape</property>
-                        <property name='action'>activate</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child type="end">
-              <object class="GtkButton" id="btn_save">
-                <property name="label" translatable="yes">Save</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
         <child>
-            <object class="AdwPreferencesPage">
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
                 <child>
-                    <object class="AdwPreferencesGroup">
-                        <property name="description" translatable="yes">Those arguments will be passed at launch.</property>
-                        <property name="title" translatable="yes">Custom Arguments</property>
-                        <child>
-                            <object class="AdwEntryRow" id="entry_arguments">
-                                <property name="title" translatable="yes">Command Arguments</property>
-                                <property name="tooltip-text" translatable="yes">e.g.: VAR=value %command% -example1 -example2 -example3=hello</property>
+                    <object class="GtkHeaderBar">
+                        <property name="show-title-buttons">False</property>
+                        <child type="start">
+                            <object class="GtkButton" id="btn_cancel">
+                                <property name="label" translatable="yes">Cancel</property>
+                                <child>
+                                    <object class='GtkShortcutController'>
+                                        <property name='scope'>managed</property>
+                                        <child>
+                                            <object class='GtkShortcut'>
+                                                <property name='trigger'>Escape</property>
+                                                <property name='action'>activate</property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
                             </object>
                         </child>
-                        <child>
-                          <object class="AdwActionRow" id="action_script">
-                            <property name="activatable-widget">btn_script</property>
-                            <property name="title" translatable="yes">Post-run Script</property>
-                            <property name="subtitle" translatable="yes">Choose a script which should be executed after run.</property>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="spacing">6</property>
-                                <child>
-                                  <object class="GtkButton" id="btn_script_reset">
-                                    <property name="tooltip-text" translatable="yes">Reset to default</property>
-                                    <property name="valign">center</property>
-                                    <property name="icon-name">edit-undo-symbolic</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkButton" id="btn_script">
-                                    <property name="tooltip-text" translatable="yes">Choose a directory</property>
-                                    <property name="valign">center</property>
-                                    <property name="icon-name">document-open-symbolic</property>
-                                    <style>
-                                      <class name="flat"/>
-                                    </style>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
+                        <child type="end">
+                            <object class="GtkButton" id="btn_save">
+                                <property name="label" translatable="yes">Save</property>
+                                <style>
+                                    <class name="suggested-action"/>
+                                </style>
+                            </object>
                         </child>
                     </object>
                 </child>
                 <child>
-                    <object class="AdwPreferencesGroup">
-                        <property name="description" translatable="yes">These settings will override the default settings for this executable.</property>
-                        <property name="title" translatable="yes">Preferences Overrides</property>
+                    <object class="AdwPreferencesPage">
                         <child>
-                            <object class="AdwActionRow" id="action_dxvk">
-                                <property name="title">DXVK</property>
+                            <object class="AdwPreferencesGroup">
+                                <property name="description" translatable="yes">Those arguments will be passed at launch.</property>
+                                <property name="title" translatable="yes">Custom Arguments</property>
                                 <child>
-                                    <object class="GtkSwitch" id="switch_dxvk">
-                                        <property name="valign">center</property>
+                                    <object class="AdwEntryRow" id="entry_arguments">
+                                        <property name="title" translatable="yes">Command Arguments</property>
+                                        <property name="tooltip-text" translatable="yes">e.g.: VAR=value %command% -example1 -example2 -example3=hello</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwActionRow" id="action_script">
+                                        <property name="activatable-widget">btn_script</property>
+                                        <property name="title" translatable="yes">Post-run Script</property>
+                                        <property name="subtitle" translatable="yes">Choose a script which should be executed after run.</property>
+                                        <child>
+                                            <object class="GtkBox">
+                                                <property name="spacing">6</property>
+                                                <child>
+                                                    <object class="GtkButton" id="btn_script_reset">
+                                                        <property name="tooltip-text" translatable="yes">Reset to default</property>
+                                                        <property name="valign">center</property>
+                                                        <property name="icon-name">edit-undo-symbolic</property>
+                                                    </object>
+                                                </child>
+                                                <child>
+                                                    <object class="GtkButton" id="btn_script">
+                                                        <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                                        <property name="valign">center</property>
+                                                        <property name="icon-name">document-open-symbolic</property>
+                                                        <style>
+                                                            <class name="flat"/>
+                                                        </style>
+                                                    </object>
+                                                </child>
+                                            </object>
+                                        </child>
                                     </object>
                                 </child>
                             </object>
                         </child>
                         <child>
-                            <object class="AdwActionRow" id="action_vkd3d">
-                                <property name="title">VKD3D</property>
+                            <object class="AdwPreferencesGroup">
+                                <property name="description" translatable="yes">These settings will override the default settings for this executable.</property>
+                                <property name="title" translatable="yes">Preferences Overrides</property>
                                 <child>
-                                    <object class="GtkSwitch" id="switch_vkd3d">
-                                        <property name="valign">center</property>
+                                    <object class="AdwActionRow" id="action_dxvk">
+                                        <property name="title">DXVK</property>
+                                        <child>
+                                            <object class="GtkSwitch" id="switch_dxvk">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
                                     </object>
                                 </child>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="AdwActionRow" id="action_nvapi">
-                                <property name="title">DLSS (DXVK-NVAPI)</property>
                                 <child>
-                                    <object class="GtkSwitch" id="switch_nvapi">
-                                        <property name="valign">center</property>
+                                    <object class="AdwActionRow" id="action_vkd3d">
+                                        <property name="title">VKD3D</property>
+                                        <child>
+                                            <object class="GtkSwitch" id="switch_vkd3d">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwActionRow" id="action_nvapi">
+                                        <property name="title">DLSS (DXVK-NVAPI)</property>
+                                        <child>
+                                            <object class="GtkSwitch" id="switch_nvapi">
+                                                <property name="valign">center</property>
+                                            </object>
+                                        </child>
                                     </object>
                                 </child>
                             </object>
