@@ -15,17 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-rename.ui')
-class RenameDialog(Gtk.Window):
+class RenameDialog(Adw.Window):
     __gtype_name__ = 'RenameDialog'
 
     # region Widgets
-    entry = Gtk.Template.Child()
+    entry_name = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_save = Gtk.Template.Child()
+    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -40,16 +41,21 @@ class RenameDialog(Gtk.Window):
         self.on_save = on_save
 
         # set widget defaults
-        self.entry.set_text(name)
+        self.entry_name.set_text(name)
+        self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
+        self.ev_controller.connect("key-released", self.on_change)
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_save.connect("clicked", self.__on_save)
 
-    def __on_save(self, widget):
-        text = self.entry.get_text()
+    def __on_save(self, *args):
+        text = self.entry_name.get_text()
         self.on_save(new_name=text)
         self.destroy()
 
-    def __close_window(self, widget):
+    def __close_window(self, *args):
         self.destroy()
+
+    def on_change(self, *args):
+        self.btn_save.set_sensitive(len(self.entry_name.get_text()) > 0)
