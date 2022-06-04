@@ -33,14 +33,11 @@ class ComponentEntry(Adw.ActionRow):
     }
 
     # region Widgets
-    #img_download = Gtk.Template.Child()
     btn_download = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
     btn_remove = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
-    btn_menu = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
-    sep = Gtk.Template.Child()
     box_download_status = Gtk.Template.Child()
     label_task_status = Gtk.Template.Child()
 
@@ -63,7 +60,7 @@ class ComponentEntry(Adw.ActionRow):
         if component[1].get("Installed"):
             self.btn_browse.set_visible(True)
             if not self.manager.component_manager.is_in_use(self.component_type, self.name):
-                self.btn_menu.set_visible(True)
+                self.btn_remove.set_visible(True)
         else:
             self.btn_download.set_visible(True)
             self.btn_browse.set_visible(False)
@@ -105,7 +102,7 @@ class ComponentEntry(Adw.ActionRow):
             return self.set_err(result.data.get("message"), retry=False)
 
         self.btn_err.set_visible(False)
-        self.btn_menu.set_visible(False)
+        self.btn_remove.set_visible(False)
 
         RunAsync(
             task_func=self.component_manager.uninstall,
