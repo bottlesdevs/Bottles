@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-07 22:25+0200\n"
-"PO-Revision-Date: 2022-06-04 10:49+0000\n"
+"PO-Revision-Date: 2022-06-04 17:40+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -82,7 +82,7 @@ msgid ""
 "Run executables (.exe/.msi) in your bottles, directly from the context menu "
 "of your file-manager"
 msgstr ""
-"Futtatható fájl (.exe /.msi) futtatása a palackokban, közvetlenül a "
+"Végrehajtható fájl (.exe /.msi) futtatása a palackokban, közvetlenül a "
 "fájlkezelő helyi menüjéből"
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
@@ -430,7 +430,7 @@ msgstr "Rétegek"
 
 #: src/ui/details-bottle.ui:402
 msgid "Run executable"
-msgstr "Futtatható fájl futtatása"
+msgstr "Végrehajtható fájl futtatása"
 
 #: src/ui/details-bottle.ui:439
 msgid "My bottle"
@@ -474,7 +474,7 @@ msgstr "Egyéb"
 
 #: src/ui/details-bottle.ui:636
 msgid "Utilities"
-msgstr "Segédeszközök"
+msgstr "Segédprogramok"
 
 #: src/ui/details-bottle.ui:641
 msgid "Browse C:"
@@ -547,7 +547,7 @@ msgstr "Hozzáférés a Wine belső vezérlőpultjához."
 #: src/ui/details-bottle.ui:1071
 msgid "Use the Installers section or the \"Run executable\" button above."
 msgstr ""
-"Használja a telepítők részt vagy a fenti \"Futtatható fájl futtatása\" "
+"Használja a telepítők részt vagy a fenti \"Végrehajtható fájl futtatása\" "
 "gombot."
 
 #: src/ui/details-dependencies.ui:50
@@ -877,7 +877,7 @@ msgstr "Futtató"
 
 #: src/ui/details-preferences.ui:699
 msgid "Updating Runner and components, please wait…"
-msgstr "Futtató és összetevők frissítése, várjon…"
+msgstr "Futtató és összetevők frissítése, kérem várjon…"
 
 #: src/ui/details-preferences.ui:742 src/ui/new.ui:262
 msgid "Manage runners"
@@ -1078,7 +1078,7 @@ msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button"
 msgstr ""
-"Telepítse a programokat a telepítők részből vagy a telepítő futtatható "
+"Telepítse a programokat a telepítők részből vagy a telepítő végrehajható "
 "fájljának futtatásával, manuálisan is hozzáadhat végrehajtható fájlokat a \"+"
 "\" gombbal"
 
@@ -2249,7 +2249,7 @@ msgstr "Frissítve: %s"
 
 #: src/views/bottle_details.py:238 src/views/list.py:127
 msgid "Choose a Windows executable file"
-msgstr "A Windows futtatható fájl kiválasztása"
+msgstr "A Windows végrehajtható fájl kiválasztása"
 
 #: src/views/bottle_details.py:306
 msgid "Select the location where to save the backup config"
@@ -2292,6 +2292,7 @@ msgid "Done"
 msgstr "Befejezve"
 
 #: src/views/bottle_programs.py:72
+#, fuzzy
 msgid "Choose an executable path"
 msgstr "Válasszon egy végrehajtható fájl elérési útja"
 
@@ -2334,7 +2335,7 @@ msgstr "Nem alkalmazható"
 #: src/views/list.py:101
 #, python-brace-format
 msgid "Arguments found for executable: [{executable}]."
-msgstr "A futtatható fájlhoz talált argumentumok: [{executable}]."
+msgstr "A végrehajtható fájlhoz talált argumentumok: [{executable}]."
 
 #: src/views/new.py:73
 msgid "Gaming"
