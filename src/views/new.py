@@ -24,6 +24,7 @@ from bottles.backend.runner import Runner  # pyright: reportMissingImports=false
 from bottles.backend.wine.executor import WineExecutor
 from bottles.utils.threading import RunAsync
 
+
 @Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
 class NewView(Adw.Window):
     __gtype_name__ = 'NewView'
@@ -36,7 +37,7 @@ class NewView(Adw.Window):
     btn_close = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
-    #btn_pref_runners = Gtk.Template.Child()
+    # btn_pref_runners = Gtk.Template.Child()
     list_envs = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
@@ -49,6 +50,8 @@ class NewView(Adw.Window):
     row_sandbox = Gtk.Template.Child()
     title = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
+    ev_controller = Gtk.EventControllerKey.new()
+
     # endregion
 
     def __init__(self, window, arg_exe=None, **kwargs):
@@ -63,9 +66,8 @@ class NewView(Adw.Window):
         self.new_bottle_config = {}
         self.custom_path = ""
 
-        entry_name_ev = Gtk.EventControllerKey.new()
-        entry_name_ev.connect("key-pressed", self.check_entry_name)
-        self.entry_name.add_controller(entry_name_ev)
+        self.ev_controller.connect("key-pressed", self.check_entry_name)
+        self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
@@ -74,8 +76,6 @@ class NewView(Adw.Window):
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
         self.list_envs.connect('row-selected', self.set_active_env)
-        self.entry_name.connect('activate', self.create_bottle)
-        #self.btn_pref_runners.connect("clicked", self.window.show_prefs_view)
 
         # populate combo_runner with runner versions from the manager
         for runner in self.manager.runners_available:
@@ -85,7 +85,7 @@ class NewView(Adw.Window):
 
         # if running under Flatpak, hide row_sandbox
         if "FLATPAK_ID" in os.environ:
-             self.row_sandbox.set_visible(False)
+            self.row_sandbox.set_visible(False)
 
         # focus on the entry_name
         self.entry_name.grab_focus()

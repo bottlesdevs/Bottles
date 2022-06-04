@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-<requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="DetailsVersioning" parent="AdwPreferencesPage">
-    <child>
-      <object class="AdwPreferencesGroup">
-       <child>
-        <object class="GtkListBox" id="list_states">
-          <property name="selection-mode">none</property>
-          <style>
-            <class name="boxed-list"/>
-          </style>
-        </object>
-      </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwStatusPage" id="hdy_status">
-        <property name="icon-name">preferences-system-time-symbolic</property>
-        <property name="title" translatable="yes">No states found</property>
-        <property name="description" translatable="yes">Create first state to start using versioning.</property>
-      </object>
-    </child>
-  </template>
-  <object class="GtkPopover" id="pop_state">
-    <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="DetailsVersioning" parent="AdwPreferencesPage">
         <child>
-          <object class="GtkLabel">
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Type a short comment:</property>
-          </object>
+            <object class="AdwPreferencesGroup">
+                <child>
+                    <object class="GtkListBox" id="list_states">
+                        <property name="selection-mode">none</property>
+                        <style>
+                            <class name="boxed-list"/>
+                        </style>
+                    </object>
+                </child>
+            </object>
         </child>
         <child>
-          <object class="GtkBox">
-            <child>
-              <object class="GtkEntry" id="entry_state_comment">
-                <property name="hexpand">True</property>
-                <property name="placeholder-text" translatable="yes">A short comment</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_save">
-                <property name="tooltip-text" translatable="yes">Save the bottle state.</property>
-                <property name="halign">end</property>
-                <property name="icon-name">object-select-symbolic</property>
-                  <style>
-                     <class name="suggested-action"/>
-                  </style>
-              </object>
-            </child>
-            <style>
-               <class name="linked"/>
-            </style>
-          </object>
+            <object class="AdwStatusPage" id="hdy_status">
+                <property name="icon-name">preferences-system-time-symbolic</property>
+                <property name="title" translatable="yes">No states found</property>
+                <property name="description" translatable="yes">Create first state to start using versioning.</property>
+            </object>
         </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkBox" id="actions">
-    <property name="spacing">6</property>
-    <child>
-       <object class="GtkMenuButton">
-         <property name="tooltip-text" translatable="yes">Create new state</property>
-         <property name="popover">pop_state</property>
-         <property name="icon-name">list-add-symbolic</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkButton" id="btn_help">
-        <property name="tooltip-text" translatable="yes">Documentation</property>
-        <property name="icon-name">system-help-symbolic</property>
-      </object>
-    </child>
-  </object>
+    </template>
+    <object class="GtkPopover" id="pop_state">
+        <child>
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">3</property>
+                <child>
+                    <object class="GtkLabel">
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Type a short comment:</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkBox">
+                        <child>
+                            <object class="GtkEntry" id="entry_state_comment">
+                                <property name="hexpand">True</property>
+                                <property name="placeholder-text" translatable="yes">A short comment</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkButton" id="btn_save">
+                                <property name="tooltip-text" translatable="yes">Save the bottle state.</property>
+                                <property name="halign">end</property>
+                                <property name="icon-name">object-select-symbolic</property>
+                                <style>
+                                    <class name="suggested-action"/>
+                                </style>
+                            </object>
+                        </child>
+                        <style>
+                            <class name="linked"/>
+                        </style>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </object>
+    <object class="GtkBox" id="actions">
+        <property name="spacing">6</property>
+        <child>
+            <object class="GtkMenuButton">
+                <property name="tooltip-text" translatable="yes">Create new state</property>
+                <property name="popover">pop_state</property>
+                <property name="icon-name">list-add-symbolic</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkButton" id="btn_help">
+                <property name="tooltip-text" translatable="yes">Documentation</property>
+                <property name="icon-name">system-help-symbolic</property>
+            </object>
+        </child>
+    </object>
 </interface>

@@ -33,6 +33,7 @@ class DuplicateDialog(Adw.Window):
     btn_duplicate = Gtk.Template.Child()
     stack_switcher = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
+    ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
 
@@ -44,9 +45,8 @@ class DuplicateDialog(Adw.Window):
         self.parent = parent
         self.config = parent.config
 
-        entry_name_ev = Gtk.EventControllerKey.new()
-        entry_name_ev.connect("key-pressed", self.__check_entry_name)
-        self.entry_name.add_controller(entry_name_ev)
+        self.ev_controller.connect("key-pressed", self.__check_entry_name)
+        self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
