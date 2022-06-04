@@ -26,7 +26,7 @@ class WineDbg(WineProgram):
         processes = []
         parent = None
 
-        if not self.__wineserver_status:
+        if not self.__wineserver_status():
             return processes
 
         res = self.launch(
@@ -74,7 +74,7 @@ class WineDbg(WineProgram):
 
     def wait_for_process(self, name: str, timeout: int = .5):
         """Wait for a process to exit."""
-        if not self.__wineserver_status:
+        if not self.__wineserver_status():
             return True
 
         while True:
@@ -91,7 +91,7 @@ class WineDbg(WineProgram):
         Kill a process by its PID or name.
         """
         wineboot = WineBoot(self.config)
-        if not wineserver_status:
+        if not self.__wineserver_status():
             return
 
         if pid:

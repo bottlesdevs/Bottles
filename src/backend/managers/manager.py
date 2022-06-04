@@ -1135,7 +1135,7 @@ class Manager:
             wineboot.kill()
 
         if env:
-            while wineserver_status:
+            while wineserver.is_alive():
                 time.sleep(1)
 
             for prm in config["Parameters"]:
