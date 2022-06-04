@@ -17,7 +17,7 @@
 
 import os
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, GLib, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.common import open_doc_url
@@ -81,7 +81,7 @@ class DependenciesView(Adw.Bin):
 
         RunAsync(process_queue, callback=callback)
 
-    def __search_dependencies(self, widget, event=None, state=None, data=None):
+    def __search_dependencies(self, *args):
         """
         This function search in the list of dependencies the
         text written in the search entry.
@@ -127,43 +127,38 @@ class DependenciesView(Adw.Bin):
         if config is None:
             config = {}
         self.config = config
+        dependencies = self.manager.supported_dependencies
 
         while self.list_dependencies.get_first_child():
             self.list_dependencies.remove(self.list_dependencies.get_first_child())
 
-        supported_dependencies = self.manager.supported_dependencies
-        if len(supported_dependencies.keys()) > 0:
-            for dep in supported_dependencies.items():
-                if dep[0] in self.config.get("Installed_Dependencies"):
-                    '''Do not list already installed dependencies'''
-                    continue
-                self.list_dependencies.append(
-                    DependencyEntry(
-                        window=self.window,
-                        config=self.config,
-                        dependency=dep,
-                        selection=selection
-                    )
-                )
+        def new_dependency(dependency, plain=False):
+            entry = DependencyEntry(
+                    window=self.window,
+                    config=self.config,
+                    dependency=dependency,
+                    selection=selection,
+                    plain=plain
+            )
+            self.list_dependencies.append(entry)
 
-        if not selection and len(self.config.get("Installed_Dependencies")) > 0:
-            for dep in self.config.get("Installed_Dependencies"):
-                plain = True
-                if dep in supported_dependencies:
-                    dep = (
-                        dep,
-                        supported_dependencies[dep]
-                    )
-                    plain = False
+        def callback(result, error=False):
+            nonlocal self
+            self.list_dependencies.set_sensitive(True)
 
-                self.list_dependencies.append(
-                    DependencyEntry(
-                        window=self.window,
-                        config=self.config,
-                        dependency=dep,
-                        plain=plain
-                    )
-                )
+        def process_dependencies():
+            nonlocal self
 
-        self.list_dependencies.set_sensitive(True)
+            if len(dependencies.keys()) > 0:
+                for dep in dependencies.items():
+                    if dep[0] in self.config.get("Installed_Dependencies"):
+                        continue  # Do not list already installed dependencies'
+                    GLib.idle_add(new_dependency, dep)
 
+            if not selection and len(self.config.get("Installed_Dependencies")) > 0:
+                for dep in self.config.get("Installed_Dependencies"):
+                    if dep in dependencies:
+                        dep = (dep, dependencies[dep])
+                        GLib.idle_add(new_dependency, dep, plain=True)
+
+        RunAsync(process_dependencies, callback=callback)
