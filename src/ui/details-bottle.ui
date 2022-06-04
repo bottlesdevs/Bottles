@@ -22,6 +22,11 @@
           <object class="GtkSeparator"/>
         </child>
         <child>
+          <object class="GtkModelButton" id="btn_browse">
+            <property name="text" translatable="yes">Browse Files…</property>
+          </object>
+        </child>
+        <child>
           <object class="GtkModelButton" id="btn_duplicate">
             <property name="text" translatable="yes">Duplicate Bottle…</property>
           </object>
@@ -345,10 +350,10 @@
           <object class="AdwExpanderRow">
             <property name="title" translatable="yes">Legacy Tools</property>
             <child>
-              <object class="AdwActionRow" id="row_browse">
+              <object class="AdwActionRow" id="row_explorer">
                 <property name="activatable">true</property>
-                <property name="title" translatable="yes">Browse C:</property>
-                <property name="subtitle" translatable="yes">Browse internal files.</property>
+                <property name="title" translatable="yes">Explorer</property>
+                <property name="subtitle" translatable="yes">Browse internal files with the Wine explorer.</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">external-link-symbolic</property>
