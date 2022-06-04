@@ -30,7 +30,6 @@ class DuplicateDialog(Adw.Window):
     # region Widgets
     entry_name = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
-    btn_close = Gtk.Template.Child()
     btn_duplicate = Gtk.Template.Child()
     stack_switcher = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
@@ -51,7 +50,6 @@ class DuplicateDialog(Adw.Window):
 
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
-        self.btn_close.connect("clicked", self.__close_window)
         self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
 
     def __check_entry_name(self, widget, event_key):
@@ -65,13 +63,13 @@ class DuplicateDialog(Adw.Window):
 
         if (regex.search(name) is None) and name != "":
             self.btn_duplicate.set_sensitive(True)
-            self.entry_name.set_icon_from_icon_name(1, "")
+            self.entry_name.remove_css_class("error")
         else:
             self.btn_duplicate.set_sensitive(False)
-            self.entry_name.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+            self.entry_name.add_css_class("error")
 
     def __close_window(self, widget=None):
-        self.destroy()
+        self.close()
 
     def __duplicate_bottle(self, widget):
         """
@@ -80,8 +78,9 @@ class DuplicateDialog(Adw.Window):
         stack_switcher page when the process is finished.
         """
         self.stack_switcher.set_visible_child_name("page_duplicating")
+        self.btn_duplicate.set_visible(False)
+        self.btn_cancel.set_label("Close")
 
-        widget.set_visible(False)
         RunAsync(self.pulse)
         name = self.entry_name.get_text()
 
@@ -96,9 +95,6 @@ class DuplicateDialog(Adw.Window):
         # TODO: handle result.status == False
         self.parent.manager.update_bottles()
         self.stack_switcher.set_visible_child_name("page_duplicated")
-        self.btn_close.set_sensitive(True)
-        self.btn_close.set_visible(True)
-        self.btn_cancel.set_visible(False)
 
     def pulse(self):
         # This function update the progress bar every half second.

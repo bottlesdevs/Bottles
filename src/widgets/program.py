@@ -89,7 +89,7 @@ class ProgramEntry(Adw.ActionRow):
             self.executable = program.get("executable", "")
 
         if program.get("removed"):
-            self.get_style_context().add_class("removed")
+            self.add_css_class("removed")
         self.btn_hide.set_visible(not program.get("removed"))
         self.btn_unhide.set_visible(program.get("removed"))
 

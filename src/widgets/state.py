@@ -57,7 +57,7 @@ class StateEntry(Adw.ActionRow):
         self.set_title(self.state_name)
         self.set_subtitle(self.state[1].get("Comment"))
         if state[0] == config.get("State"):
-            self.get_style_context().add_class("current-state")
+            self.add_css_class("current-state")
 
         # connect signals
         self.btn_restore.connect("clicked", self.set_state)
