@@ -36,6 +36,7 @@ class InstallerEntry(Adw.ActionRow):
     img_error = Gtk.Template.Child()
     label_step = Gtk.Template.Child()
     label_grade = Gtk.Template.Child()
+    spinner = Gtk.Template.Child()
 
     # endregion
 
@@ -47,7 +48,6 @@ class InstallerEntry(Adw.ActionRow):
         self.manager = window.manager
         self.config = config
         self.installer = installer
-        self.spinner = Gtk.Spinner()
         self.__step = 0
         self.steps = 0
         name = installer[1].get("Name")
@@ -105,13 +105,10 @@ class InstallerEntry(Adw.ActionRow):
         )
         self.get_parent().set_sensitive(False)
         self.label_step.set_visible(True)
-        while widget.get_first_child():
-            widget.remove(widget.get_first_child())
 
+        widget.set_visible(False)
         widget.set_sensitive(False)
-        widget.add(self.spinner)
-
-        self.spinner.show()
+        self.spinner.set_visible(True)
         GLib.idle_add(self.spinner.start)
 
         RunAsync(
