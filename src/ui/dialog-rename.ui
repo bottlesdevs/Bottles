@@ -2,79 +2,52 @@
 <interface>
 <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
-  <template class="RenameDialog" parent="AdwWindow">
-    <property name="resizable">False</property>
+  <template class="RenameDialog" parent="GtkWindow">
     <property name="modal">True</property>
     <property name="default-width">550</property>
     <property name="destroy-with-parent">True</property>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+      <property name="show-title-buttons">False</property>
+      <property name="title-widget">
+        <object class="AdwWindowTitle">
+          <property name="title" translatable="yes">Rename</property>
+        </object>
+      </property>
+        <child type="start">
+          <object class="GtkButton" id="btn_cancel">
+            <property name="label" translatable="yes">Cancel</property>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkButton" id="btn_save">
+            <property name="label" translatable="yes">Save</property>
+            <style>
+              <class name="suggested-action"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
     <child>
       <object class="GtkBox">
+        <property name="margin-end">12</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="AdwHeaderBar">
-  <property name="title-widget">
-    <object class="AdwWindowTitle">
-      <property name="title" translatable="yes">Rename</property>
-    </object>
-  </property>
-            <child>
-              <object class="GtkButton" id="btn_cancel">
-                <property name="label" translatable="yes">Cancel</property>
-                
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="btn_save">
-                <property name="label" translatable="yes">Save</property>
-                
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-              
-              
-            </child>
+          <object class="GtkLabel">
+            <property name="halign">start</property>
+            <property name="label" translatable="yes">Type the new name:</property>
           </object>
-          
-          
         </child>
         <child>
-          <object class="GtkBox">
-            <property name="margin-end">10</property>
+          <object class="GtkEntry" id="entry">
+            <property name="tooltip-text" translatable="yes">e.g.: VAR=value %command% -example1 -example2 -example3=hello</property>
             <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">5</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="halign">start</property>
-                <property name="label" translatable="yes">Type the new name:</property>
-              </object>
-              
-              
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry">
-                
-                <property name="tooltip-text" translatable="yes">e.g.: VAR=value %command% -example1 -example2 -example3=hello</property>
-                <property name="hexpand">True</property>
-                <property name="placeholder-text" translatable="yes">Type here..</property>
-              </object>
-              
-              
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
+            <property name="placeholder-text" translatable="yes">Type here..</property>
           </object>
-          
-          
         </child>
       </object>
     </child>

@@ -144,11 +144,7 @@
                     </object>
                   </child>
                   <child>
-                    <object class="GtkBox" id="box_actions">
-                      <child>
-                        <placeholder/>
-                      </child>
-                    </object>
+                    <object class="GtkBox" id="box_actions"/>
                   </child>
                   <style>
                     <class name="titlebar"/>
@@ -209,8 +205,5 @@
   </template>
   <object class="GtkStack" id="stack_main">
     <property name="transition-type">crossfade</property>
-    <child>
-      <placeholder/>
-    </child>
   </object>
 </interface>

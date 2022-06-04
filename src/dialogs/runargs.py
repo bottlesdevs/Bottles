@@ -15,17 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-run-args.ui')
-class RunArgsDialog(Adw.Window):
+class RunArgsDialog(Gtk.Window):
     __gtype_name__ = 'RunArgsDialog'
 
     # region Widgets
     entry_args = Gtk.Template.Child()
     btn_run = Gtk.Template.Child()
-
+    btn_cancel = Gtk.Template.Child()
     # endregion
 
     def __init__(self, parent, **kwargs):
@@ -37,6 +37,7 @@ class RunArgsDialog(Adw.Window):
 
         # connect signals
         self.btn_run.connect("clicked", self.__run_executable)
+        self.btn_cancel.connect("clicked", self.__close_window)
 
     def __run_executable(self, widget):
         """
