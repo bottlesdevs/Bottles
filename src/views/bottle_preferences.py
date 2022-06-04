@@ -169,8 +169,6 @@ class PreferencesView(Adw.PreferencesPage):
         self.entry_name_ev.connect("key-pressed", self.__check_entry_name)
         self.entry_name.add_controller(self.entry_name_ev)
 
-        self.__prevent_scroll()
-
         if RuntimeManager.get_runtimes("bottles"):
             self.row_runtime.set_visible(True)
             self.switch_runtime.connect('state-set', self.__toggle_runtime)
@@ -1040,26 +1038,6 @@ class PreferencesView(Adw.PreferencesPage):
         else:
             self.spinner_latencyflex.stop()
             self.spinner_latencyflexbool.stop()
-
-    def __prevent_scroll(self):
-        """Prevent the scroll event when the mouse enter a combobox"""
-
-        def no_action(widget, event):
-            return True
-        '''
-        for c in [
-            self.combo_fsr,
-            self.combo_virt_res,
-            self.combo_runner,
-            self.combo_dxvk,
-            self.combo_vkd3d,
-            self.combo_nvapi,
-            self.combo_latencyflex,
-            self.combo_windows,
-            self.combo_renderer
-        ]:
-            c.connect('scroll-event', no_action)
-        '''
 
     def __set_steam_rules(self):
         """Set the Steam Environment specific rules"""
