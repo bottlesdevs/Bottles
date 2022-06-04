@@ -32,17 +32,16 @@ class SimilarReportEntry(Gtk.Box):
             spacing=6
         )
 
-        label_report = Gtk.Label(report["title"])
+        label_report = Gtk.Label.new(report["title"])
         btn_report = Gtk.Button(label=_("Show report"))
 
-        self.pack_start(label_report, True, True, 0)
-        self.pack_end(btn_report, False, False, 0)
+        self.append(label_report)
+        self.append(btn_report)
 
         btn_report.connect("clicked", self.__on_btn_report_clicked, report)
 
-
     @staticmethod
-    def __on_btn_report_clicked(button: Gtk.Button, report):
+    def __on_btn_report_clicked(button, report):
         """
         This function opens the report in the default browser, it will
         use the active instance if there is one.
@@ -79,6 +78,7 @@ class CrashReportDialog(Adw.Window):
 
         self.label_output.set_text(log)
         __similar_reports = self.__get_similar_issues(log)
+
         if len(__similar_reports) >= 5:
             '''
             This issue was reported 5 times, preventing the user from
@@ -91,17 +91,19 @@ class CrashReportDialog(Adw.Window):
             self.btn_send.set_tooltip_text(prevent_text)
             self.label_notice.set_text(prevent_text)
 
-        if len(__similar_reports) > 0:
+        elif len(__similar_reports) > 0:
             '''
             If there are similar reports, show the box_related and
             append them to list_reports. Otherwise, make the btn_send
             sensitive, so the user can send the report.
             '''
-            self.box_related.set_visible(True)
+            i = 0
             for issue in __similar_reports:
                 self.list_reports.append(SimilarReportEntry(issue))
-                if len(self.list_reports) == 5:
+                i += 1
+                if i == 5:
                     break
+            self.box_related.set_visible(True)
         else:
             self.btn_send.set_sensitive(True)
 
