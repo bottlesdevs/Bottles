@@ -107,10 +107,10 @@ class NewView(Adw.Window):
 
         if (regex.search(name) is None) and name != "" and not name.isspace():
             self.btn_create.set_sensitive(True)
-            self.entry_name.get_style_context().remove_class("error")
+            self.entry_name.remove_css_class("error")
         else:
             self.btn_create.set_sensitive(False)
-            self.entry_name.get_style_context().add_class("error")
+            self.entry_name.add_css_class("error")
 
     def choose_env_recipe(self, widget):
         file_dialog = Gtk.FileChooserNative.new(

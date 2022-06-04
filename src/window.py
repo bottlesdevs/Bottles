@@ -132,7 +132,7 @@ class MainWindow(Adw.ApplicationWindow):
             name="page_loading",
             title=_("Loading...")
         )
-        self.headerbar.get_style_context().add_class("flat")
+        self.headerbar.add_css_class("flat")
 
         # Add the main stack to the main grid
         self.grid_main.attach(self.stack_main, 0, 1, 1, 1)
