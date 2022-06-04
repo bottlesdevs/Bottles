@@ -5,21 +5,17 @@
     <template class="GamescopeDialog" parent="AdwWindow">
         <property name="modal">True</property>
         <property name="deletable">False</property>
-        <property name="default-width">500</property>
+        <property name="default-width">550</property>
+        <property name="title" translatable="yes">Gamescope Settings</property>
         <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
                     <object class="AdwHeaderBar">
-                        <property name="title-widget">
-                            <object class="AdwWindowTitle">
-                                <property name="title" translatable="yes">Gamescope Settings</property>
-                            </object>
-                        </property>
                         <child type="start">
-                          <object class="GtkButton" id="btn_cancel">
-                            <property name="label" translatable="yes">Cancel</property>
-                          </object>
+                            <object class="GtkButton" id="btn_cancel">
+                                <property name="label" translatable="yes">Cancel</property>
+                            </object>
                         </child>
                         <child type="end">
                             <object class="GtkButton" id="btn_save">
@@ -32,178 +28,86 @@
                     </object>
                 </child>
                 <child>
-                    <object class="AdwClamp">
-                        <property name="maximum-size">450</property>
+                    <object class="AdwPreferencesPage">
                         <child>
-                            <object class="GtkBox">
-                                <property name="orientation">vertical</property>
+                            <object class="AdwPreferencesGroup">
+                                <property name="description" translatable="yes">Configure how Gamescope should manage the window for the games you will run.</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwPreferencesGroup">
+                                <property name="title" translatable="yes">Game resolution</property>
                                 <child>
-                                    <object class="AdwPreferencesGroup">
-                                        <property name="description" translatable="yes">Configure how Gamescope shouldmanage the window for the games you will run.</property>
+                                    <object class="AdwEntryRow" id="arg_w">
+                                      <property name="title" translatable="yes">Width (e.g. 1280)</property>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="AdwPreferencesGroup">
-                                        <property name="title" translatable="yes">Game resolution</property>
-                                        <child>
-                                            <object class="AdwActionRow">
-                                                <property name="title" translatable="yes">Width</property>
-                                                <child>
-                                                    <object class="GtkBox">
-                                                        <property name="spacing">5</property>
-                                                        <child>
-                                                            <object class="GtkEntry" id="arg_w">
-                                                                <property name="has-frame">False</property>
-                                                                <property name="placeholder-text" translatable="yes">e.g. 1280</property>
-                                                                <property name="input-purpose">digits</property>
-                                                            </object>
-                                                        </child>
-                                                    </object>
-                                                </child>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="AdwActionRow">
-                                                <property name="title" translatable="yes">Height</property>
-                                                <child>
-                                                    <object class="GtkBox">
-                                                        <property name="spacing">5</property>
-                                                        <child>
-                                                            <object class="GtkEntry" id="arg_h">
-                                                                <property name="has-frame">False</property>
-                                                                <property name="placeholder-text" translatable="yes">e.g. 720</property>
-                                                                <property name="input-purpose">digits</property>
-                                                            </object>
-                                                        </child>
-                                                    </object>
-                                                </child>
-                                            </object>
-                                        </child>
+                                    <object class="AdwEntryRow" id="arg_h">
+                                      <property name="title" translatable="yes">Height (e.g. 720)</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwPreferencesGroup">
+                                <property name="title" translatable="yes">Gamescope resolution</property>
+                                <child>
+                                    <object class="AdwEntryRow" id="arg_W">
+                                      <property name="title" translatable="yes">Width (e.g. 1280)</property>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="AdwPreferencesGroup">
-                                        <property name="title" translatable="yes">Gamescope resolution</property>
+                                    <object class="AdwEntryRow" id="arg_H">
+                                      <property name="title" translatable="yes">Height (e.g. 720)</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwPreferencesGroup">
+                                <property name="title" translatable="yes">Extra settings</property>
+                                <child>
+                                    <object class="AdwEntryRow" id="arg_fps">
+                                      <property name="title" translatable="yes">Frame rate limit (e.g. 60)</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwEntryRow" id="arg_fps_no_focus">
+                                      <property name="title" translatable="yes">Frame rate limit (when unfocused)</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Use integer scaling</property>
                                         <child>
-                                            <object class="AdwActionRow">
-                                                <property name="title" translatable="yes">Width</property>
-                                                <child>
-                                                    <object class="GtkBox">
-                                                        <property name="spacing">5</property>
-                                                        <child>
-                                                            <object class="GtkEntry" id="arg_W">
-                                                                <property name="has-frame">False</property>
-                                                                <property name="placeholder-text" translatable="yes">e.g. 1280</property>
-                                                                <property name="input-purpose">digits</property>
-                                                            </object>
-                                                        </child>
-                                                    </object>
-                                                </child>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="AdwActionRow">
-                                                <property name="title" translatable="yes">Height</property>
-                                                <child>
-                                                    <object class="GtkBox">
-                                                        <property name="spacing">5</property>
-                                                        <child>
-                                                            <object class="GtkEntry" id="arg_H">
-                                                                <property name="has-frame">False</property>
-                                                                <property name="placeholder-text" translatable="yes">e.g. 720</property>
-                                                                <property name="input-purpose">digits</property>
-                                                            </object>
-                                                        </child>
-                                                    </object>
-                                                </child>
+                                            <object class="GtkSwitch" id="switch_scaling">
+                                                <property name="valign">center</property>
                                             </object>
                                         </child>
                                     </object>
                                 </child>
                                 <child>
-                                    <object class="AdwPreferencesGroup">
-                                        <property name="title" translatable="yes">Extra settings</property>
+                                    <object class="AdwActionRow">
+                                        <property name="title" translatable="yes">Window type</property>
                                         <child>
-                                            <object class="AdwActionRow">
-                                                <property name="title" translatable="yes">Frame rate limit</property>
+                                            <object class="GtkBox">
                                                 <child>
-                                                    <object class="GtkBox">
-                                                        <property name="spacing">5</property>
-                                                        <child>
-                                                            <object class="GtkEntry" id="arg_fps">
-                                                                <property name="has-frame">False</property>
-                                                                <property name="placeholder-text" translatable="yes">e.g. 60</property>
-                                                                <property name="input-purpose">digits</property>
-                                                            </object>
-                                                        </child>
+                                                    <object class="GtkToggleButton" id="toggle_borderless">
+                                                        <property name="label" translatable="yes">Borderless</property>
+                                                        <property name="active">True</property>
+                                                        <property name="valign">center</property>
                                                     </object>
                                                 </child>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="AdwActionRow">
-                                                <property name="title" translatable="yes">Frame rate limit (when no focus)
-                                                </property>
                                                 <child>
-                                                    <object class="GtkBox">
-                                                        <property name="spacing">5</property>
-                                                        <child>
-                                                            <object class="GtkEntry" id="arg_fps_no_focus">
-                                                                <property name="has-frame">False</property>
-                                                                <property name="placeholder-text" translatable="yes">e.g. 30</property>
-                                                                <property name="input-purpose">digits</property>
-                                                            </object>
-                                                        </child>
+                                                    <object class="GtkToggleButton" id="toggle_fullscreen">
+                                                        <property name="label" translatable="yes">Fullscreen</property>
+                                                        <property name="valign">center</property>
                                                     </object>
                                                 </child>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="AdwActionRow">
-                                                <property name="title" translatable="yes">Use integer scaling</property>
-                                                <child>
-                                                    <object class="GtkBox">
-                                                        <property name="spacing">5</property>
-                                                        <child>
-                                                            <object class="GtkSwitch" id="switch_scaling">
-                                                                <property name="halign">start</property>
-                                                                <property name="valign">center</property>
-                                                            </object>
-                                                        </child>
-                                                    </object>
-                                                </child>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="AdwActionRow">
-                                                <property name="title" translatable="yes">Window type</property>
-                                                <child>
-                                                    <object class="GtkBox">
-                                                        <property name="spacing">5</property>
-                                                        <child>
-                                                            <object class="GtkBox">
-                                                                <child>
-                                                                    <object class="GtkToggleButton" id="toggle_borderless">
-                                                                        <property name="label" translatable="yes">Borderless</property>
-                                                                        <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
-                                                                        <property name="valign">center</property>
-                                                                        <property name="active">True</property>
-                                                                    </object>
-                                                                </child>
-                                                                <child>
-                                                                    <object class="GtkToggleButton" id="toggle_fullscreen">
-                                                                        <property name="label" translatable="yes">Fullscreen</property>
-                                                                        <property name="tooltip-text" translatable="yes">Will restart the wineserver.</property>
-                                                                        <property name="valign">center</property>
-                                                                    </object>
-                                                                </child>
-                                                                <style>
-                                                                    <class name="linked"/>
-                                                                </style>
-                                                            </object>
-                                                        </child>
-                                                    </object>
-                                                </child>
+                                                <style>
+                                                    <class name="linked"/>
+                                                </style>
                                             </object>
                                         </child>
                                     </object>
