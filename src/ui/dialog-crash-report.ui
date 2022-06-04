@@ -4,21 +4,21 @@
     <requires lib="libadwaita" version="1.0"/>
     <template class="CrashReportDialog" parent="AdwWindow">
         <property name="resizable">False</property>
+        <property name="deletable">False</property>
         <property name="modal">True</property>
         <property name="default-width">550</property>
-        <property name="destroy-with-parent">True</property>
         <property name="title" translatable="yes">Bottles crash report</property>
         <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <child>
                     <object class="AdwHeaderBar">
-                        <child>
+                        <child type="start">
                             <object class="GtkButton" id="btn_cancel">
                                 <property name="label" translatable="yes">Cancel</property>
                             </object>
                         </child>
-                        <child>
+                        <child type="end">
                             <object class="GtkButton" id="btn_send">
                                 <property name="label" translatable="yes">Send report</property>
                                 <property name="sensitive">False</property>
@@ -31,15 +31,17 @@
                 </child>
                 <child>
                     <object class="GtkBox">
+                        <property name="spacing">10</property>
+                        <property name="margin-top">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="margin-bottom">10</property>
                         <property name="margin-end">10</property>
                         <property name="orientation">vertical</property>
-                        <property name="spacing">5</property>
                         <child>
                             <object class="GtkLabel">
                                 <property name="halign">start</property>
                                 <property name="label" translatable="yes">Bottles crashed last time. Please fill out a report attaching the following traceback to help us identify the problem preventing it from happening again.</property>
                                 <property name="wrap">True</property>
-                                <property name="max-width-chars">78</property>
                             </object>
                         </child>
                         <child>
@@ -49,16 +51,16 @@
                                 <property name="selectable">True</property>
                                 <property name="max-width-chars">78</property>
                                 <property name="xalign">0</property>
-                                <attributes>
-                                    <attribute name="font-desc" value="Source Code Pro 9"/>
-                                </attributes>
                                 <style>
+                                    <class name="monospace"/>
                                     <class name="terminal"/>
+                                    <class name="card"/>
                                 </style>
                             </object>
                         </child>
                         <child>
                             <object class="GtkBox" id="box_related">
+                                <property name="spacing">10</property>
                                 <property name="orientation">vertical</property>
                                 <child>
                                     <object class="GtkBox">

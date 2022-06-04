@@ -349,7 +349,7 @@ class MainWindow(Adw.ApplicationWindow):
                 os.remove(log_path)
 
             if crash_log:
-                CrashReportDialog(self, crash_log)
+                CrashReportDialog(self, crash_log).present()
         except FileNotFoundError:
             pass
 
