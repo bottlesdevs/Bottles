@@ -37,7 +37,7 @@ class VersioningView(Adw.PreferencesPage):
     btn_save = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
-    hdy_status = Gtk.Template.Child()
+    status_page = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -86,7 +86,8 @@ class VersioningView(Adw.PreferencesPage):
 
         def callback(result, error=False):
             nonlocal self
-            self.hdy_status.set_visible(not result.status)
+            
+            self.status_page.set_visible(not result.status)
             self.list_states.set_visible(result.status)
             self.list_states.set_sensitive(result.status)
 
