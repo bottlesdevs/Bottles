@@ -4,6 +4,7 @@ utilsdir = join_paths(pkgdatadir, 'bottles/utils')
 bottles_sources = [
   '__init__.py',
   'connection.py',
+  'gtk.py',
   'threading.py',
   'common.py',
 ]
