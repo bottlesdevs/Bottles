@@ -12,7 +12,7 @@ class Drives:
     def __init__(self, config: dict):
         self.config = config
         bottle = ManagerUtils.get_bottle_path(self.config)
-        self.dosdevices_path = f"{bottle}/dosdevices"
+        self.dosdevices_path = os.path.join(bottle, "dosdevices")
 
     def get_all(self):
         """Get all the drives from the bottle"""
@@ -37,8 +37,11 @@ class Drives:
         letter = f"{letter}:".lower()
         if not os.path.exists(self.dosdevices_path):
             os.makedirs(self.dosdevices_path)
-        os.symlink(path, f"{self.dosdevices_path}/{letter}")
-        logging.info(f"New drive {letter} added to the bottle")
+        try:
+            os.symlink(path, os.path.join(self.dosdevices_path, letter))
+            logging.info(f"New drive {letter} added to the bottle")
+        except FileExistsError:
+            logging.warning(f"Drive {letter} already exists in the bottle, no drive added")
 
     def remove_drive(self, letter: str):
         """Remove a drive from the bottle"""

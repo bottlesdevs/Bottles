@@ -55,6 +55,13 @@ class DriveEntry(Adw.ActionRow):
         Open the file chooser dialog and set the path to the
         selected file
         """
+        def set_path(_dialog, response, _file_dialog):
+            _file = _file_dialog.get_file()
+            if _file is None or response != -3:
+                return
+            Drives(self.config).new_drive(self.drive[0], _file.get_path())
+            self.set_subtitle(path)
+
         file_dialog = Gtk.FileChooserNative.new(
             _("Choose path"),
             self.parent.window,
@@ -62,11 +69,10 @@ class DriveEntry(Adw.ActionRow):
             _("Select"),
             _("Cancel")
         )
-        response = file_dialog.run()
-        if response == -3:
-            path = file_dialog.get_filename()
-            Drives(self.config).new_drive(self.drive[0], path)
-            self.set_subtitle(path)
+        file_dialog.set_modal(True)
+        file_dialog.set_transient_for(self.parent.window)
+        file_dialog.connect('response', set_path, file_dialog)
+        file_dialog.show()
 
     def __remove(self, *args):
         """
