@@ -22,7 +22,9 @@ from gi.repository import Gtk, Adw
 
 from bottles.backend.runner import Runner  # pyright: reportMissingImports=false
 from bottles.backend.wine.executor import WineExecutor
+
 from bottles.utils.threading import RunAsync
+from bottles.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
@@ -66,7 +68,7 @@ class NewView(Adw.Window):
         self.new_bottle_config = {}
         self.custom_path = ""
 
-        self.ev_controller.connect("key-pressed", self.check_entry_name)
+        self.ev_controller.connect("key-released", self.__check_entry_name)
         self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
@@ -96,21 +98,8 @@ class NewView(Adw.Window):
         """
         self.selected_env = row.get_buildable_id()
 
-    def check_entry_name(self, widget, event_key, state=None, data=None):
-        """
-        This function checks if the name of the bottle is valid. So it
-        checks if the name is not empty and if it contains special
-        characters. Then it toggles the error style according to the result.
-        """
-        regex = re.compile('[\\\@!#$%^&*()<>?/|}{~:.;,\'"]')
-        name = self.entry_name.get_text()
-
-        if (regex.search(name) is None) and name != "" and not name.isspace():
-            self.btn_create.set_sensitive(True)
-            self.entry_name.remove_css_class("error")
-        else:
-            self.btn_create.set_sensitive(False)
-            self.entry_name.add_css_class("error")
+    def __check_entry_name(self, *args):
+        GtkUtils.validate_entry(self.entry_name, has_apply_button=False)
 
     def choose_env_recipe(self, widget):
         file_dialog = Gtk.FileChooserNative.new(

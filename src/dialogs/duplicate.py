@@ -20,6 +20,7 @@ import time
 from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.gtk import GtkUtils
 from bottles.backend.managers.backup import BackupManager
 
 
@@ -45,28 +46,15 @@ class DuplicateDialog(Adw.Window):
         self.parent = parent
         self.config = parent.config
 
-        self.ev_controller.connect("key-pressed", self.__check_entry_name)
+        self.ev_controller.connect("key-released", self.__check_entry_name)
         self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
 
-    def __check_entry_name(self, widget, event_key):
-        """
-        This function check if the entry name contains no
-        special characters. The widget icon will be toggled
-        according to the result.
-        """
-        regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,"]')
-        name = self.entry_name.get_text()
-
-        if (regex.search(name) is None) and name != "":
-            self.btn_duplicate.set_sensitive(True)
-            self.entry_name.remove_css_class("error")
-        else:
-            self.btn_duplicate.set_sensitive(False)
-            self.entry_name.add_css_class("error")
+    def __check_entry_name(self, *args):
+        GtkUtils.validate_entry(self.entry_name)
 
     def __close_window(self, widget=None):
         self.close()
