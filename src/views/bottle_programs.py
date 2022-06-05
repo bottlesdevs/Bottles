@@ -25,9 +25,10 @@ from bottles.backend.utils.manager import ManagerUtils
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-programs.ui')
 class ProgramsView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsPrograms'
+    __registry = []
 
     # region Widgets
-    list_programs = Gtk.Template.Child()
+    group_programs = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     btn_help = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
@@ -107,9 +108,13 @@ class ProgramsView(Adw.PreferencesPage):
         self.show_removed = not self.show_removed
         self.update(config=self.config)
 
+    def add_program(self, widget):
+        self.__registry.append(widget)
+        self.group_programs.add(widget)
+
     def empty_list(self):
         """
         This function empty the programs list.
         """
-        while self.list_programs.get_first_child():
-            self.list_programs.remove(self.list_programs.get_first_child())
+        for r in self.__registry:
+            self.group_programs.remove(r)

@@ -232,7 +232,7 @@ class DetailsView(Adw.Bin):
 
         wineserver_status = WineServer(self.config).is_alive()
         self.view_bottle.group_programs.set_sensitive(False)
-        self.view_programs.list_programs.set_sensitive(False)
+        self.view_programs.group_programs.set_sensitive(False)
 
         self.view_bottle.empty_list()
         self.view_programs.empty_list()
@@ -251,7 +251,7 @@ class DetailsView(Adw.Bin):
                     is_steam=is_steam,
                     check_boot=check_boot,
                 ))
-            self.view_programs.list_programs.append(ProgramEntry(
+            self.view_programs.add_program(ProgramEntry(
                 self.window,
                 self.config,
                 _program,
@@ -273,8 +273,8 @@ class DetailsView(Adw.Bin):
             self.view_bottle.row_no_programs.set_visible(not result.status)
             self.view_bottle.group_programs.set_sensitive(result.status)
             self.view_programs.status_page.set_visible(not result.status)
-            self.view_programs.list_programs.set_visible(result.status)
-            self.view_programs.list_programs.set_sensitive(result.status)
+            self.view_programs.group_programs.set_visible(result.status)
+            self.view_programs.group_programs.set_sensitive(result.status)
 
         def process_programs():
             nonlocal self

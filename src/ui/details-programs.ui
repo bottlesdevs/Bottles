@@ -11,15 +11,7 @@
             </object>
         </child>
         <child>
-            <object class="AdwPreferencesGroup">
-                <child>
-                    <object class="GtkListBox" id="list_programs">
-                        <property name="selection-mode">none</property>
-                        <style>
-                            <class name="boxed-list"/>
-                        </style>
-                    </object>
-                </child>
+            <object class="AdwPreferencesGroup" id="group_programs">
             </object>
         </child>
     </template>
