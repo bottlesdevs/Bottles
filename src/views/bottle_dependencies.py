@@ -129,6 +129,7 @@ class DependenciesView(Adw.Bin):
         self.config = config
         dependencies = self.manager.supported_dependencies
 
+        self.list_dependencies.set_sensitive(False)
         while self.list_dependencies.get_first_child():
             self.list_dependencies.remove(self.list_dependencies.get_first_child())
 
