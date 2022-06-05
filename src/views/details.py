@@ -234,9 +234,6 @@ class DetailsView(Adw.Bin):
         self.view_bottle.group_programs.set_sensitive(False)
         self.view_programs.group_programs.set_sensitive(False)
 
-        self.view_bottle.empty_list()
-        self.view_programs.empty_list()
-
         def new_program(_program, check_boot=None, is_steam=False, to_home=False):
             nonlocal self, wineserver_status
 
@@ -278,6 +275,9 @@ class DetailsView(Adw.Bin):
 
         def process_programs():
             nonlocal self
+
+            GLib.idle_add(self.view_bottle.empty_list)
+            GLib.idle_add(self.view_programs.empty_list)
 
             if self.config.get("Environment") == "Steam":
                 GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True, True)
