@@ -34,7 +34,7 @@ class ImporterView(Adw.Bin):
     btn_import_full = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     group_prefixes = Gtk.Template.Child()
-    adw_status = Gtk.Template.Child()
+    status_page = Gtk.Template.Child()
 
     # endregion
 
@@ -64,7 +64,7 @@ class ImporterView(Adw.Bin):
                 if len(wineprefixes) == 0:
                     return
 
-                self.adw_status.set_visible(False)
+                self.status_page.set_visible(False)
                 self.group_prefixes.set_visible(True)
 
                 while(self.list_prefixes.get_first_child()):

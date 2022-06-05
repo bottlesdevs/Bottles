@@ -270,7 +270,7 @@ class DetailsView(Adw.Bin):
             self.view_bottle.row_no_programs.set_visible(not result.status)
             self.view_bottle.list_programs.set_visible(result.status)
             self.view_bottle.list_programs.set_sensitive(result.status)
-            self.view_programs.hdy_status.set_visible(not result.status)
+            self.view_programs.status_page.set_visible(not result.status)
             self.view_programs.list_programs.set_visible(result.status)
             self.view_programs.list_programs.set_sensitive(result.status)
 
