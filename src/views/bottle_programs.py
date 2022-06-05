@@ -48,15 +48,9 @@ class ProgramsView(Adw.PreferencesPage):
         self.show_removed = False
 
         self.btn_add.connect("clicked", self.add)
-        self.btn_update.connect(
-            "clicked", self.parent.update_programs
-        )
-        self.btn_help.connect(
-            "clicked", open_doc_url, "bottles/programs"
-        )
-        self.btn_toggle_removed.connect(
-            "clicked", self.__toggle_removed
-        )
+        self.btn_update.connect("clicked", self.parent.update_programs, self.config)
+        self.btn_help.connect("clicked", open_doc_url, "bottles/programs")
+        self.btn_toggle_removed.connect("clicked", self.__toggle_removed)
 
     def add(self, widget=False):
         """
@@ -112,3 +106,10 @@ class ProgramsView(Adw.PreferencesPage):
         """
         self.show_removed = not self.show_removed
         self.update(config=self.config)
+
+    def empty_list(self):
+        """
+        This function empty the programs list.
+        """
+        while self.list_programs.get_first_child():
+            self.list_programs.remove(self.list_programs.get_first_child())

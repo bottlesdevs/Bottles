@@ -160,6 +160,13 @@ class BottleView(Adw.PreferencesPage):
 
         self.window.page_details.update_programs(config)
 
+    def empty_list(self):
+        """
+        This function empty the programs list.
+        """
+        while self.list_programs.get_first_child():
+            self.list_programs.remove(self.list_programs.get_first_child())
+
     def __run_executable_with_args(self, widget):
         """
         This function pop up the dialog to run an executable with

@@ -214,7 +214,7 @@ class DetailsView(Adw.Bin):
         self.view_bottle.set_config(config=config)
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
-        self.view_dependencies.update(config=config)
+        self.view_dependencies.update(config=config)  # TODO: cause slow down
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
         self.update_programs()
@@ -234,13 +234,8 @@ class DetailsView(Adw.Bin):
         self.view_bottle.list_programs.set_sensitive(False)
         self.view_programs.list_programs.set_sensitive(False)
 
-        while self.view_bottle.list_programs.get_row_at_index(0) is not None:
-            _i = self.view_bottle.list_programs.get_row_at_index(0)
-            self.view_bottle.list_programs.remove(_i)
-
-        while self.view_programs.list_programs.get_row_at_index(0) is not None:
-            _i = self.view_programs.list_programs.get_row_at_index(0)
-            self.view_programs.list_programs.remove(_i)
+        self.view_bottle.empty_list()
+        self.view_programs.empty_list()
 
         def new_program(_program, check_boot=None, is_steam=False, to_home=False):
             nonlocal self, wineserver_status
@@ -248,18 +243,21 @@ class DetailsView(Adw.Bin):
             if check_boot is None:
                 check_boot = wineserver_status
 
-            entry = ProgramEntry(
+            if to_home:
+                self.view_bottle.list_programs.append(ProgramEntry(
+                    self.window,
+                    self.config,
+                    _program,
+                    is_steam=is_steam,
+                    check_boot=check_boot,
+                ))
+            self.view_programs.list_programs.append(ProgramEntry(
                 self.window,
                 self.config,
                 _program,
                 is_steam=is_steam,
                 check_boot=check_boot,
-            )
-            if to_home:
-                self.view_bottle.list_programs.append(entry)
-                return
-
-            self.view_programs.list_programs.append(entry)
+            ))
 
         def callback(result, error=False):
             nonlocal self
@@ -274,6 +272,7 @@ class DetailsView(Adw.Bin):
             self.view_bottle.list_programs.set_sensitive(result.status)
             self.view_programs.hdy_status.set_visible(not result.status)
             self.view_programs.list_programs.set_visible(result.status)
+            self.view_programs.list_programs.set_sensitive(result.status)
 
         def process_programs():
             nonlocal self
