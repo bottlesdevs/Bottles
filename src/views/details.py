@@ -231,7 +231,7 @@ class DetailsView(Adw.Bin):
             self.config = config
 
         wineserver_status = WineServer(self.config).is_alive()
-        self.view_bottle.list_programs.set_sensitive(False)
+        self.view_bottle.group_programs.set_sensitive(False)
         self.view_programs.list_programs.set_sensitive(False)
 
         self.view_bottle.empty_list()
@@ -244,7 +244,7 @@ class DetailsView(Adw.Bin):
                 check_boot = wineserver_status
 
             if to_home:
-                self.view_bottle.list_programs.append(ProgramEntry(
+                self.view_bottle.add_program(ProgramEntry(
                     self.window,
                     self.config,
                     _program,
@@ -268,8 +268,7 @@ class DetailsView(Adw.Bin):
                 self.view_bottle.group_programs.remove(self.view_bottle.row_no_programs)
 
             self.view_bottle.row_no_programs.set_visible(not result.status)
-            self.view_bottle.list_programs.set_visible(result.status)
-            self.view_bottle.list_programs.set_sensitive(result.status)
+            self.view_bottle.group_programs.set_sensitive(result.status)
             self.view_programs.status_page.set_visible(not result.status)
             self.view_programs.list_programs.set_visible(result.status)
             self.view_programs.list_programs.set_sensitive(result.status)
