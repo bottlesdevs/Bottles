@@ -259,13 +259,12 @@ class DetailsView(Adw.Bin):
         def callback(result, error=False):
             nonlocal self
 
+            row_no_programs = self.view_bottle.row_no_programs
+
             if not result.status:
-                self.view_bottle.group_programs.add(self.view_bottle.row_no_programs)
-            else:
-                try:
-                    self.view_bottle.group_programs.remove(self.view_bottle.row_no_programs)
-                except:
-                    pass
+                self.view_bottle.group_programs.add(row_no_programs)
+            elif row_no_programs.get_parent() is not None:
+                row_no_programs.get_parent().remove(row_no_programs)
 
             self.view_bottle.row_no_programs.set_visible(not result.status)
             self.view_bottle.group_programs.set_sensitive(result.status)
