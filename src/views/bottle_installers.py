@@ -113,12 +113,18 @@ class InstallersView(Adw.Bin):
             if len(installers) == 0:
                 return Result(False)
 
+            i = 0
+
             for installer in installers:
                 if len(installer) != 2:
                     continue
                 if installer[1].get("Arch", "win64") != self.config["Arch"]:
                     continue
                 GLib.idle_add(new_installer, installer)
+                i += 1
+
+            if i == 0:
+                return Result(False)  # there are no arch-compatible installers
 
             return Result(True)
 
