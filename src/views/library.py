@@ -30,7 +30,7 @@ class LibraryView(Adw.Bin):
 
     # region Widgets
     main_flow = Gtk.Template.Child()
-    adw_status = Gtk.Template.Child()
+    status_page = Gtk.Template.Child()
     btn_update = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     # endregion
@@ -49,7 +49,7 @@ class LibraryView(Adw.Bin):
         while self.main_flow.get_first_child() is not None:
             self.main_flow.remove(self.main_flow.get_first_child())
 
-        self.adw_status.set_visible(len(entries) == 0)
+        self.status_page.set_visible(len(entries) == 0)
         self.main_flow.set_visible(not len(entries) == 0)
 
         for u, e in entries.items():

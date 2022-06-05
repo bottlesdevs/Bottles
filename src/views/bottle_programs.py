@@ -33,7 +33,7 @@ class ProgramsView(Adw.PreferencesPage):
     btn_update = Gtk.Template.Child()
     btn_toggle_removed = Gtk.Template.Child()
     btn_add = Gtk.Template.Child()
-    hdy_status = Gtk.Template.Child()
+    status_page = Gtk.Template.Child()
 
     # endregion
 
