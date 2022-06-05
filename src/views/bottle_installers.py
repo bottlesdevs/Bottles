@@ -16,9 +16,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, GLib, Adw
 
-from bottles.utils.common import open_doc_url  # pyright: reportMissingImports=false
+from bottles.backend.models.result import Result
+
+from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.common import open_doc_url
 from bottles.widgets.installer import InstallerEntry
 
 
@@ -33,6 +36,8 @@ class InstallersView(Adw.Bin):
     entry_search = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
+    pref_page = Gtk.Template.Child()
+    status_page = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -52,7 +57,7 @@ class InstallersView(Adw.Bin):
         self.btn_help.connect("clicked", open_doc_url, "bottles/installers")
         self.entry_search.connect('changed', self.__search_installers)
 
-    def __search_installers(self, widget, event=None, data=None):
+    def __search_installers(self, *args):
         """
         This function search in the list of installers the
         text written in the search entry.
@@ -78,23 +83,43 @@ class InstallersView(Adw.Bin):
         if config is None:
             config = {}
         self.config = config
+        installers = self.manager.supported_installers.items()
 
+        self.list_installers.set_sensitive(False)
         while self.list_installers.get_first_child():
             self.list_installers.remove(self.list_installers.get_first_child())
 
-        supported_installers = self.manager.supported_installers.items()
+        def new_installer(_installer):
+            nonlocal self
 
-        if len(supported_installers) > 0:
-            for installer in supported_installers:
+            entry = InstallerEntry(
+                window=self.window,
+                config=self.config,
+                installer=_installer
+            )
+            self.list_installers.append(entry)
+
+        def callback(result, error=False):
+            nonlocal self
+
+            self.status_page.set_visible(not result.status)
+            self.pref_page.set_visible(result.status)
+            self.list_installers.set_visible(result.status)
+            self.list_installers.set_sensitive(result.status)
+
+        def process_installers():
+            nonlocal self, installers
+
+            if len(installers) == 0:
+                return Result(False)
+
+            for installer in installers:
                 if len(installer) != 2:
                     continue
                 if installer[1].get("Arch", "win64") != self.config["Arch"]:
                     continue
-                self.list_installers.append(
-                    InstallerEntry(
-                        window=self.window,
-                        config=self.config,
-                        installer=installer
-                    )
-                )
+                GLib.idle_add(new_installer, installer)
 
+            return Result(True)
+
+        RunAsync(process_installers, callback)
