@@ -907,7 +907,6 @@ class Manager:
         Create a new bottle from the given arguments.
         TODO: move to bottle.py (Bottle manager)
         """
-
         def log_update(message):
             if fn_logger:
                 GLib.idle_add(fn_logger, message)

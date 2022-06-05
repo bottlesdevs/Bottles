@@ -194,7 +194,7 @@ class NewView(Adw.Window):
             else:  # use any other runner available
                 runner = self.manager.runners_available[0]
 
-        if self.combo_arch == 0:
+        if self.combo_arch.get_selected() == 0:
             arch = "win64"
         else:
             arch = "win32"
