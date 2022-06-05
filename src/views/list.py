@@ -119,13 +119,14 @@ class BottleViewEntry(Adw.ActionRow):
 
     '''Display file dialog for executable'''
 
-    def run_executable(self, widget):
+    def run_executable(self, *args):
         exec_path = self.arg_exe
 
         def set_path(_dialog, response, _file_dialog):
-            nonlocal exec_path
             if response == -3:
-                exec_path = _file.get_path()
+                _file = _file_dialog.get_file()
+                _executor = WineExecutor(self.config, exec_path=_file.get_path())
+                RunAsync(_executor.run)
 
         if not exec_path:
             file_dialog = Gtk.FileChooserNative.new(
@@ -139,9 +140,6 @@ class BottleViewEntry(Adw.ActionRow):
             file_dialog.set_transient_for(self.window)
             file_dialog.connect('response', set_path, file_dialog)
             file_dialog.show()
-
-        if exec_path in [None, ""]:
-            return
 
         executor = WineExecutor(self.config, exec_path=exec_path)
         RunAsync(executor.run)
