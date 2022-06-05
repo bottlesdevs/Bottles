@@ -51,6 +51,7 @@ from bottles.backend.wine.executor import WineExecutor
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
 class BottleView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsBottle'
+    __registry = []
 
     # region Widgets
     label_runner = Gtk.Template.Child()
@@ -81,7 +82,6 @@ class BottleView(Adw.PreferencesPage):
     label_name = Gtk.Template.Child()
     grid_versioning = Gtk.Template.Child()
     group_programs = Gtk.Template.Child()
-    list_programs = Gtk.Template.Child()
     extra_separator = Gtk.Template.Child()
     actions = Gtk.Template.Child()
     row_no_programs = Gtk.Template.Child()
@@ -160,12 +160,16 @@ class BottleView(Adw.PreferencesPage):
 
         self.window.page_details.update_programs(config)
 
+    def add_program(self, widget):
+        self.__registry.append(widget)
+        self.group_programs.add(widget)
+
     def empty_list(self):
         """
         This function empty the programs list.
         """
-        while self.list_programs.get_first_child():
-            self.list_programs.remove(self.list_programs.get_first_child())
+        for r in self.__registry:
+            self.group_programs.remove(r)
 
     def __run_executable_with_args(self, widget):
         """
