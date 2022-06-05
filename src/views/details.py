@@ -264,8 +264,11 @@ class DetailsView(Adw.Bin):
 
             if not result.status:
                 self.view_bottle.group_programs.add(self.view_bottle.row_no_programs)
-            elif self.view_bottle.row_no_programs.get_parent() == self.view_bottle.group_programs:
-                self.view_bottle.group_programs.remove(self.view_bottle.row_no_programs)
+            else:
+                try:
+                    self.view_bottle.group_programs.remove(self.view_bottle.row_no_programs)
+                except:
+                    pass
 
             self.view_bottle.row_no_programs.set_visible(not result.status)
             self.view_bottle.group_programs.set_sensitive(result.status)
