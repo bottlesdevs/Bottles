@@ -17,7 +17,9 @@
 
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, GLib, Adw
+
+from bottles.backend.models.result import Result
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.common import open_doc_url
@@ -68,30 +70,47 @@ class VersioningView(Adw.PreferencesPage):
         if len(config) > 0:
             self.config = config
 
+        self.list_states.set_sensitive(False)
         while self.list_states.get_first_child():
             self.list_states.remove(self.list_states.get_first_child())
 
-        if len(states) == 0 :
-            states = self.versioning_manager.list_states(self.config)
+        def new_state(_state):
+            nonlocal self
 
-        states = states.items()
-        self.hdy_status.set_visible(not len(states) > 0)
-        self.list_states.set_visible(len(states) > 0)
+            entry = StateEntry(
+                window=self.window,
+                config=self.config,
+                state=_state
+            )
+            self.list_states.append(entry)
 
-        if self.config.get("Versioning"):
-            for state in states:
-                self.list_states.append(
-                    StateEntry(
-                        window=self.window,
-                        config=self.config,
-                        state=state
-                    )
-                )
+        def callback(result, error=False):
+            nonlocal self
+            self.hdy_status.set_visible(not result.status)
+            self.list_states.set_visible(result.status)
+            self.list_states.set_sensitive(result.status)
+
+        def process_states():
+            nonlocal self, states
+
+            if len(states) == 0:
+                states = self.versioning_manager.list_states(self.config)
+
+            if len(states) == 0:
+                return Result(False)
+
+            if self.config.get("Versioning"):
+                for state in states.items():
+                    GLib.idle_add(new_state, state)
+
+            return Result(True)
+
+        RunAsync(process_states, callback)
 
     def check_entry_state_comment(self, widget, event_key):
         """
         This function check if the entry state comment is valid,
-        looking for special characters. It also toggle the widget icon
+        looking for special characters. It also toggles the widget icon
         and the save button sensitivity according to the result.
         """
         regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,"]')
