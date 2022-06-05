@@ -99,7 +99,8 @@ class NewView(Adw.Window):
         self.selected_env = row.get_buildable_id()
 
     def __check_entry_name(self, *args):
-        GtkUtils.validate_entry(self.entry_name, has_apply_button=False)
+        result = GtkUtils.validate_entry(self.entry_name)
+        self.btn_create.set_sensitive(result)
 
     def choose_env_recipe(self, widget):
         file_dialog = Gtk.FileChooserNative.new(

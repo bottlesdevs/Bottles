@@ -106,13 +106,19 @@ class EnvVarsDialog(Adw.Window):
         self.entry_name.connect("apply", self.__save_var)
 
     def __validate(self, *args):
-        GtkUtils.validate_entry(self.entry_name)
+        self.__valid_name = GtkUtils.validate_entry(self.entry_name)
 
     def __save_var(self, *args):
         """
         This function save the new env var to the
         bottle configuration
         """
+        if not self.__valid_name:
+            self.entry_name.set_text("")
+            self.entry_name.remove_css_class("error")
+            self.__valid_name = True
+            return
+
         env_name = self.entry_name.get_text()
         self.manager.update_config(
             config=self.config,
