@@ -59,7 +59,8 @@ class DriveEntry(Adw.ActionRow):
             _file = _file_dialog.get_file()
             if _file is None or response != -3:
                 return
-            Drives(self.config).new_drive(self.drive[0], _file.get_path())
+            path = _file.get_path()
+            Drives(self.config).new_drive(self.drive[0], path)
             self.set_subtitle(path)
 
         file_dialog = Gtk.FileChooserNative.new(
@@ -87,9 +88,10 @@ class DriveEntry(Adw.ActionRow):
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-drives.ui')
 class DrivesDialog(Adw.Window):
     __gtype_name__ = 'DrivesDialog'
-    __alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
-                  "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-                  "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    __alphabet = ["A", "B", "D", "E", "F", "G", "H",
+                  "I", "J", "K", "L", "M", "N", "O",
+                  "P", "Q", "R", "S", "T", "U", "V",
+                  "W", "X", "Y", "Z"]
 
     # region Widgets
     combo_letter = Gtk.Template.Child()
@@ -108,8 +110,8 @@ class DrivesDialog(Adw.Window):
         self.manager = window.manager
         self.config = config
 
-        self.__populate_combo_letter()
         self.__populate_drives_list()
+        self.__populate_combo_letter()
 
         # connect signals
         self.btn_save.connect("clicked", self.__save)
@@ -119,11 +121,10 @@ class DrivesDialog(Adw.Window):
         This function add a new drive to the bottle configuration
         """
         index = self.combo_letter.get_selected()
-        drive_letter = self.__alphabet[index]
+        drive_letter = self.str_list_letters.get_string(index)
         _entry = DriveEntry(parent=self, drive=[drive_letter, ""])
 
         GLib.idle_add(self.list_drives.add, _entry)
-
         self.str_list_letters.remove(index)
 
     def __populate_drives_list(self):
@@ -135,6 +136,8 @@ class DrivesDialog(Adw.Window):
         for drive in drives:
             _entry = DriveEntry(parent=self, drive=[drive, drives[drive]])
             GLib.idle_add(self.list_drives.add, _entry)
+            if drive in self.__alphabet:
+                self.__alphabet.pop(self.__alphabet.index(drive))
 
     def __populate_combo_letter(self):
         drives = Drives(self.config).get_all()
