@@ -14,8 +14,25 @@
         <property name="margin-start">6</property>
         <property name="margin-end">6</property>
         <child>
-          <object class="GtkModelButton" id="btn_launch_terminal">
-            <property name="text" translatable="yes">Launch with Terminal</property>
+          <object class="GtkBox">
+            <property name="homogeneous">True</property>
+            <child>
+              <object class="GtkButton" id="btn_launch_terminal">
+                <property name="tooltip-text" translatable="yes">Launch with terminal</property>
+                <property name="icon-name">utilities-terminal-symbolic</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_browse">
+                <property name="tooltip-text" translatable="yes">Browse path</property>
+                <property name="icon-name">document-open-symbolic</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+            <style>
+                <class name="linked"/>
+            </style>
           </object>
         </child>
         <child>
