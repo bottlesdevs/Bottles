@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-<requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="StateEntry" parent="AdwActionRow">
-    <property name="activatable-widget">btn_restore</property>
-    <property name="title">State id</property>
-    <property name="subtitle">State comment</property>
-    <child>
-      <object class="GtkBox">
-        <property name="spacing">6</property>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="StateEntry" parent="AdwActionRow">
+        <property name="activatable-widget">btn_restore</property>
+        <property name="title">State id</property>
+        <property name="subtitle">State comment</property>
         <child>
-          <object class="GtkButton" id="btn_manifest">
-          <property name="valign">center</property>
-          <property name="icon-name">emblem-documents-symbolic</property>
-          <style>
-            <class name="flat"/>
-          </style>
-        </object>
-      </child>
-      <child>
-        <object class="GtkButton" id="btn_restore">
-          <property name="tooltip-text" translatable="yes">Restore this state</property>
-          <property name="valign">center</property>
-              <property name="icon-name">document-open-recent-symbolic</property>
-          <style>
-            <class name="flat"/>
-          </style>
-        </object>
-      </child>
-    </object>
-    </child>
-  </template>
+            <object class="GtkBox">
+                <property name="spacing">6</property>
+                <child>
+                    <object class="GtkButton" id="btn_manifest">
+                        <property name="valign">center</property>
+                        <property name="icon-name">emblem-documents-symbolic</property>
+                        <style>
+                            <class name="flat"/>
+                        </style>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkButton" id="btn_restore">
+                        <property name="tooltip-text" translatable="yes">Restore this state</property>
+                        <property name="valign">center</property>
+                        <property name="icon-name">document-open-recent-symbolic</property>
+                        <style>
+                            <class name="flat"/>
+                        </style>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </template>
 </interface>
