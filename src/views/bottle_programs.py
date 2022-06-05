@@ -117,5 +117,6 @@ class ProgramsView(Adw.PreferencesPage):
         This function empty the programs list.
         """
         for r in self.__registry:
-            self.group_programs.remove(r)
+            if r.get_parent() is not None:
+                r.get_parent().remove(r)
         self.__registry = []
