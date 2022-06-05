@@ -83,7 +83,7 @@ class ComponentEntry(Adw.ActionRow):
             return self.update_status(failed=True)
 
         self.btn_download.set_visible(False)
-        self.btn_cancel.set_visible(True)
+        self.btn_cancel.set_visible(False)  # TODO: unimplemented
         self.box_download_status.set_visible(True)
 
         RunAsync(
