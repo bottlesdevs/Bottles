@@ -21,15 +21,13 @@ import re
 class GtkUtils:
 
     @staticmethod
-    def validate_entry(entry, has_apply_button: bool = True):
+    def validate_entry(entry) -> bool:
         regex = re.compile("[@!#$%^&*()<>?/|}{~:.;,'\"]")
         text = entry.get_text()
-        condition = (regex.search(text) is None) and text != "" and not text.isspace()
 
-        if has_apply_button:
-            entry.set_show_apply_button(condition)
-
-        if condition:
+        if (regex.search(text) is None) and text != "" and not text.isspace():
             entry.remove_css_class("error")
-        else:
-            entry.add_css_class("error")
+            return True
+
+        entry.add_css_class("error")
+        return False

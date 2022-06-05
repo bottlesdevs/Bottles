@@ -54,7 +54,8 @@ class DuplicateDialog(Adw.Window):
         self.btn_duplicate.connect("clicked", self.__duplicate_bottle)
 
     def __check_entry_name(self, *args):
-        GtkUtils.validate_entry(self.entry_name)
+        result = GtkUtils.validate_entry(self.entry_name)
+        self.btn_duplicate.set_sensitive(result)
 
     def __close_window(self, widget=None):
         self.close()

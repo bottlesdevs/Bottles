@@ -198,9 +198,14 @@ class PreferencesView(Adw.PreferencesPage):
             self.switch_obsvkc.set_tooltip_text(_not_available)
 
     def __check_entry_name(self, *args):
-        GtkUtils.validate_entry(self.entry_name)
+        self.__valid_name = GtkUtils.validate_entry(self.entry_name)
 
     def __save_name(self, *args):
+        if not self.__valid_name:
+            self.entry_name.set_text(self.config.get("Name"))
+            self.__valid_name = True
+            return
+
         name = self.entry_name.get_text()
         self.manager.update_config(
             config=self.config,
