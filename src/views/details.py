@@ -17,11 +17,14 @@
 
 import re
 from gettext import gettext as _
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, GLib, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.utils.common import open_doc_url
 from bottles.widgets.page import PageRow
+
+from bottles.backend.models.result import Result
+from bottles.backend.wine.wineserver import WineServer
 
 from bottles.views.bottle_details import BottleView
 from bottles.views.bottle_installers import InstallersView
@@ -30,6 +33,8 @@ from bottles.views.bottle_preferences import PreferencesView
 from bottles.views.bottle_programs import ProgramsView
 from bottles.views.bottle_versioning import VersioningView
 from bottles.views.bottle_taskmanager import TaskManagerView
+
+from bottles.widgets.program import ProgramEntry
 
 pages = {}
 
@@ -217,11 +222,86 @@ class DetailsView(Adw.Bin):
         if rebuild_pages:
             self.build_pages()
 
-    def update_programs(self, widget=None, config=None):
+    def update_programs(self, config=None):
+        """
+        This function update the programs lists. The list in the
+        details' page is limited to 5 items.
+        """
         if config:
             self.config = config
-        self.view_bottle.update_programs(config=self.config)
-        self.view_programs.update(config=self.config)
+
+        wineserver_status = WineServer(self.config).is_alive()
+        self.view_bottle.list_programs.set_sensitive(False)
+        self.view_programs.list_programs.set_sensitive(False)
+
+        while self.view_bottle.list_programs.get_row_at_index(0) is not None:
+            _i = self.view_bottle.list_programs.get_row_at_index(0)
+            self.view_bottle.list_programs.remove(_i)
+
+        while self.view_programs.list_programs.get_row_at_index(0) is not None:
+            _i = self.view_programs.list_programs.get_row_at_index(0)
+            self.view_programs.list_programs.remove(_i)
+
+        def new_program(_program, check_boot=None, is_steam=False, to_home=False):
+            nonlocal self, wineserver_status
+
+            if check_boot is None:
+                check_boot = wineserver_status
+
+            entry = ProgramEntry(
+                self.window,
+                self.config,
+                _program,
+                is_steam=is_steam,
+                check_boot=check_boot,
+            )
+            if to_home:
+                self.view_bottle.list_programs.append(entry)
+                return
+
+            self.view_programs.list_programs.append(entry)
+
+        def callback(result, error=False):
+            nonlocal self
+
+            if not result:
+                self.view_bottle.group_programs.add(self.view_bottle.row_no_programs)
+                self.rview_bottle.ow_no_programs.set_visible(True)
+                self.view_bottle.list_programs.set_visible(False)
+                self.view_programs.hdy_status.set_visible(True)
+                self.view_programs.list_programs.set_visible(False)
+                return
+
+            if self.view_bottle.row_no_programs.get_parent() == self.view_bottle.group_programs:
+                self.view_bottle.group_programs.remove(self.view_bottle.row_no_programs)
+            self.view_bottle.row_no_programs.set_visible(False)
+            self.view_bottle.list_programs.set_visible(True)
+            self.view_bottle.list_programs.set_sensitive(True)
+            self.view_programs.hdy_status.set_visible(False)
+            self.view_programs.list_programs.set_visible(True)
+
+        def process_programs():
+            nonlocal self
+
+            if self.config.get("Environment") == "Steam":
+                GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True)
+
+            programs = self.manager.get_programs(self.config)
+            hidden = len([x for x in programs if x.get("removed")])
+
+            if (len(programs) == 0 or len(programs) == hidden) and self.config.get("Environment") != "Steam":
+                return Result(False)
+
+            i = 0  # append first 5 entries to group_programs
+            for program in programs:
+                if program.get("removed"):
+                    continue
+                GLib.idle_add(new_program, program, None, False, i < 5)
+                i = + 1
+
+            return Result(True)
+
+        RunAsync(process_programs, callback)
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
