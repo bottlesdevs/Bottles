@@ -50,7 +50,7 @@ class InstallersView(Adw.Bin):
         self.manager = window.manager
         self.config = config
 
-        self.ev_controller.connect("key-pressed", self.__search_installers)
+        self.ev_controller.connect("key-released", self.__search_installers)
         self.entry_search.add_controller(self.ev_controller)
 
         self.search_bar.set_key_capture_widget(window)

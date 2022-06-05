@@ -51,7 +51,7 @@ class VersioningView(Adw.PreferencesPage):
         self.versioning_manager = window.manager.versioning_manager
         self.config = config
 
-        self.ev_controller.connect("key-pressed", self.check_entry_state_comment)
+        self.ev_controller.connect("key-released", self.check_entry_state_comment)
         self.entry_state_comment.add_controller(self.ev_controller)
 
         self.btn_save.connect("clicked", self.add_state)

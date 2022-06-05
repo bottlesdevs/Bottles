@@ -18,6 +18,8 @@
 import re
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.utils.gtk import GtkUtils  # pyright: reportMissingImports=false
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/env-var-entry.ui')
 class EnvVarEntry(Adw.EntryRow):
@@ -43,7 +45,7 @@ class EnvVarEntry(Adw.EntryRow):
         self.add_controller(self.ev_controller)
 
         # connect signals
-        self.ev_controller.connect("key-pressed", self.on_change)
+        self.ev_controller.connect("key-released", self.on_change)
         self.connect("apply", self.__save)
         self.btn_remove.connect("clicked", self.__remove)
 
@@ -100,14 +102,11 @@ class EnvVarsDialog(Adw.Window):
         self.entry_name.add_controller(self.ev_controller)
 
         # connect signals
-        self.ev_controller.connect("key-pressed", self.__validate)
+        self.ev_controller.connect("key-released", self.__validate)
         self.entry_name.connect("apply", self.__save_var)
 
     def __validate(self, *args):
-        regex = re.compile('[@!#$%^&*()<>?/|}{~:.;,\'"]')
-        name = self.entry_name.get_text()
-        res = (regex.search(name) is None) and name != ""
-        self.entry_name.set_show_apply_button(res)
+        GtkUtils.validate_entry(self.entry_name)
 
     def __save_var(self, *args):
         """

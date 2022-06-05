@@ -21,6 +21,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.utils.gtk import GtkUtils
 
 from bottles.backend.runner import Runner, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
 from bottles.backend.managers.runtime import RuntimeManager
@@ -122,6 +123,10 @@ class PreferencesView(Adw.PreferencesPage):
         self.window = window
         self.manager = window.manager
         self.config = config
+
+        self.entry_name.add_controller(self.ev_controller)
+
+        # region signals
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
         self.row_env_variables.connect("activated", self.__show_environment_variables)
         self.row_drives.connect("activated", self.__show_drives)
@@ -165,9 +170,9 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_latencyflex.connect('changed', self.__set_latencyflex)
         self.combo_windows.connect('changed', self.__set_windows)
         self.combo_renderer.connect('changed', self.__set_renderer)
-
-        self.ev_controller.connect("key-pressed", self.__check_entry_name)
-        self.entry_name.add_controller(self.ev_controller)
+        self.ev_controller.connect("key-released", self.__check_entry_name)
+        self.entry_name.connect("apply", self.__save_name)
+        # endregion
 
         if RuntimeManager.get_runtimes("bottles"):
             self.row_runtime.set_visible(True)
@@ -177,7 +182,7 @@ class PreferencesView(Adw.PreferencesPage):
             self.row_steam_runtime.set_visible(True)
             self.switch_steam_runtime.connect('state-set', self.__toggle_steam_runtime)
 
-        '''Toggle some utilites according to its availability'''
+        '''Toggle some utilities according to its availability'''
         self.switch_gamemode.set_sensitive(gamemode_available)
         self.switch_gamescope.set_sensitive(gamescope_available)
         self.switch_mangohud.set_sensitive(mangohud_available)
@@ -192,53 +197,16 @@ class PreferencesView(Adw.PreferencesPage):
         if not obs_vkc_available:
             self.switch_obsvkc.set_tooltip_text(_not_available)
 
-    def __toggle_rename(self, widget):
-        """
-        This function toggle the entry_name editability. It will
-        also update the bottle configuration with the new bottle name
-        if the entry_name status is False (not editable).
-        """
-        if not self.btn_rename.get_sensitive():
-            return
+    def __check_entry_name(self, *args):
+        GtkUtils.validate_entry(self.entry_name)
 
-        status = self.btn_rename.get_active()
-        if widget == self.entry_name:
-            status = not status
-
-        self.entry_name.set_editable(status)
-        self.entry_name.set_has_frame(status)
-        self.entry_name.set_can_focus(status)
-
-        if status:
-            self.entry_name.grab_focus()
-        else:
-            name = self.entry_name.get_text()
-            self.manager.update_config(
-                config=self.config,
-                key="Name",
-                value=name
-            )
-            self.btn_rename.handler_block_by_func(self.__toggle_rename)
-            self.btn_rename.set_active(False)
-            self.btn_rename.handler_unblock_by_func(self.__toggle_rename)
-            self.window.page_details.view_bottle.label_name.set_text(name)
-            self.entry_name.select_region(0, 0)
-
-    def __check_entry_name(self, widget, event_key):
-        """
-        This function check if the entry name is valid, looking
-        for special characters. It also toggles the widget icon
-        and the save button sensitivity according to the result.
-        """
-        regex = re.compile("[@!#$%^&*()<>?/|}{~:.;,'\"]")
-        name = widget.get_text()
-
-        if (regex.search(name) is None) and name != "" and not name.isspace():
-            self.btn_rename.set_sensitive(True)
-            widget.set_icon_from_icon_name(1, "")
-        else:
-            self.btn_rename.set_sensitive(False)
-            widget.set_icon_from_icon_name(1, "dialog-warning-symbolic")
+    def __save_name(self, *args):
+        name = self.entry_name.get_text()
+        self.manager.update_config(
+            config=self.config,
+            key="Name",
+            value=name
+        )
 
     def choose_cwd(self, widget, reset=False):
         """Change the default current working directory for the bottle"""

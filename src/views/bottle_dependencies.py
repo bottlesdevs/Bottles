@@ -50,7 +50,7 @@ class DependenciesView(Adw.Bin):
         self.config = config
         self.selected_dependencies = []
 
-        self.ev_controller.connect("key-pressed", self.__search_dependencies)
+        self.ev_controller.connect("key-released", self.__search_dependencies)
 
         self.entry_search.add_controller(self.ev_controller)
         self.search_bar.set_key_capture_widget(window)
