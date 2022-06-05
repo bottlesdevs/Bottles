@@ -19,9 +19,7 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.utils.common import open_doc_url  # pyright: reportMissingImports=false
-from bottles.widgets.program import ProgramEntry
 from bottles.backend.utils.manager import ManagerUtils
-from bottles.backend.wine.wineserver import WineServer
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-programs.ui')
@@ -75,9 +73,7 @@ class ProgramsView(Adw.PreferencesPage):
             _("Add"),
             _("Cancel")
         )
-        file_dialog.set_current_folder(
-            ManagerUtils.get_bottle_path(self.config)
-        )
+        file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config))
         response = file_dialog.run()
 
         if response == -3:
@@ -108,41 +104,7 @@ class ProgramsView(Adw.PreferencesPage):
             config = {}
 
         self.config = config
-        wineserver_status = WineServer(self.config).is_alive()
-
-        while self.list_programs.get_first_child():
-            self.list_programs.remove(self.list_programs.get_first_child())
-
-        if "Environment" in self.config and self.config["Environment"] == "Layered":
-            for layer in self.config["Layers"]:
-                entry = ProgramEntry(
-                    window=self.window,
-                    config=self.config,
-                    program=self.config["Layers"][layer],
-                    is_layer=True
-                )
-                self.list_programs.append(entry)
-
-        programs = self.manager.get_programs(self.config)
-
-        if len(programs) > 0:
-            self.list_programs.set_visible(True)
-            self.hdy_status.set_visible(False)
-        else:
-            self.list_programs.set_visible(False)
-            self.hdy_status.set_visible(True)
-
-        for program in programs:
-            if program.get("removed") and not self.show_removed:
-                continue
-            self.list_programs.append(
-                ProgramEntry(
-                    window=self.window,
-                    config=self.config,
-                    program=program,
-                    check_boot=wineserver_status
-                )
-            )
+        self.window.page_details.update_programs(config)
 
     def __toggle_removed(self, widget=False):
         """

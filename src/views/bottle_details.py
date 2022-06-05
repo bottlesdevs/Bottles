@@ -30,7 +30,6 @@ from bottles.backend.managers.backup import BackupManager
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 
-from bottles.widgets.program import ProgramEntry
 from bottles.widgets.executable import ExecButton
 
 from bottles.dialogs.runargs import RunArgsDialog
@@ -47,7 +46,6 @@ from bottles.backend.wine.control import Control
 from bottles.backend.wine.regedit import Regedit
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.executor import WineExecutor
-from bottles.backend.wine.wineserver import WineServer
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-bottle.ui')
@@ -157,52 +155,10 @@ class BottleView(Adw.PreferencesPage):
         self.__set_steam_rules()
 
     def update_programs(self, widget=False, config=None):
-        """
-        This function update the programs lists. The list in the
-        details' page is limited to 5 items.
-        """
-        if config:
-            self.config = config
+        if config is None:
+            config = self.config
 
-        wineserver_status = WineServer(self.config).is_alive()
-
-        while self.list_programs.get_row_at_index(0) is not None:
-            self.list_programs.remove(self.list_programs.get_row_at_index(0))
-
-        if self.config.get("Environment") == "Steam":
-            self.list_programs.append(ProgramEntry(
-                self.window,
-                self.config,
-                {"name": self.config["Name"]},
-                is_steam=True
-            ))
-
-        programs = self.manager.get_programs(self.config)
-        hidden = len([x for x in programs if x.get("removed")])
-
-        if (len(programs) == 0 or len(programs) == hidden) and self.config.get("Environment") != "Steam":
-            self.group_programs.add(self.row_no_programs)
-            self.row_no_programs.set_visible(True)
-            self.list_programs.set_visible(False)
-            return
-
-        i = 0
-        # append first 5 entries to group_programs
-        for program in programs:
-            if program.get("removed"):
-                continue
-            if i < 5:
-                self.list_programs.append(
-                    ProgramEntry(
-                        window=self.window,
-                        config=self.config,
-                        program=program,
-                        check_boot=wineserver_status
-                    )
-                )
-            i = + 1
-            if i == 5:
-                break
+        self.window.page_details.update_programs(config)
 
     def __run_executable_with_args(self, widget):
         """
@@ -276,7 +232,7 @@ class BottleView(Adw.PreferencesPage):
 
     def __backup(self, widget, backup_type):
         """
-        This function pop up the a file chooser where the user
+        This function pop up the file chooser where the user
         can select the path where to export the bottle backup.
         Use the backup_type param to export config or full.
         """
@@ -320,6 +276,7 @@ class BottleView(Adw.PreferencesPage):
         it will ask the manager to delete the bottle and will return
         to the bottles list.
         """
+
         def handle_response(_widget, response_id):
             if response_id == Gtk.ResponseType.OK:
                 RunAsync(self.manager.delete_bottle, config=self.config)
