@@ -16,7 +16,7 @@
               </object>
             </child>
             <child>
-              <object class="AdwPreferencesPage">
+              <object class="AdwPreferencesPage" id="pref_page">
                 <child>
                   <object class="AdwPreferencesGroup">
                     <property name="description">Use this section to install programs curated by our community, without having to proceed manually.</property>
@@ -41,6 +41,15 @@
                   </object>
                 </child>
               </object>
+            </child>
+            <child>
+                <object class="AdwStatusPage" id="status_page">
+                    <property name="icon-name">system-software-install-symbolic</property>
+                    <property name="title" translatable="yes">No installers found</property>
+                    <property name="vexpand">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="description" translatable="yes">Bottles was unable to reach the repository, please try again later..</property>
+                </object>
             </child>
           </object>
         </child>
