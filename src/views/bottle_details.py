@@ -170,6 +170,7 @@ class BottleView(Adw.PreferencesPage):
         """
         for r in self.__registry:
             self.group_programs.remove(r)
+        self.__registry = []
 
     def __run_executable_with_args(self, widget):
         """

@@ -118,3 +118,4 @@ class ProgramsView(Adw.PreferencesPage):
         """
         for r in self.__registry:
             self.group_programs.remove(r)
+        self.__registry = []
