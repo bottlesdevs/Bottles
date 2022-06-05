@@ -27,7 +27,6 @@ class EnvVarEntry(Adw.EntryRow):
 
     # region Widgets
     btn_remove = Gtk.Template.Child()
-    ev_controller = Gtk.EventControllerKey.new()
     # endregion
 
     def __init__(self, parent, env, **kwargs):
@@ -42,15 +41,9 @@ class EnvVarEntry(Adw.EntryRow):
         self.set_title(self.env[0])
         self.set_text(self.env[1])
 
-        self.add_controller(self.ev_controller)
-
         # connect signals
-        self.ev_controller.connect("key-released", self.on_change)
         self.connect("apply", self.__save)
         self.btn_remove.connect("clicked", self.__remove)
-
-    def on_change(self, *args):
-        self.set_show_apply_button(self.get_text() != "")
 
     def __save(self, *args):
         """
@@ -63,6 +56,7 @@ class EnvVarEntry(Adw.EntryRow):
             value=self.get_text(),
             scope="Environment_Variables"
         )
+        self.set_text("")
 
     def __remove(self, *args):
         """
@@ -76,7 +70,7 @@ class EnvVarEntry(Adw.EntryRow):
             remove=True,
             scope="Environment_Variables"
         )
-        self.parent.list_vars.remove(self)
+        self.parent.group_vars.remove(self)
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-env-vars.ui')
@@ -85,7 +79,7 @@ class EnvVarsDialog(Adw.Window):
 
     # region Widgets
     entry_name = Gtk.Template.Child()
-    list_vars = Gtk.Template.Child()
+    group_vars = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
     # endregion
 
@@ -127,7 +121,7 @@ class EnvVarsDialog(Adw.Window):
             scope="Environment_Variables"
         )
         _entry = EnvVarEntry(parent=self, env=[env_name, ""])
-        GLib.idle_add(self.list_vars.add, _entry)
+        GLib.idle_add(self.group_vars.add, _entry)
         self.entry_name.set_text("")
         self.entry_name.set_show_apply_button(False)
 
@@ -138,10 +132,10 @@ class EnvVarsDialog(Adw.Window):
         """
         envs = self.config.get("Environment_Variables").items()
         if len(envs) == 0:
-            self.list_vars.set_description(_("No environment variables defined"))
+            self.group_vars.set_description(_("No environment variables defined"))
             return
 
-        self.list_vars.set_description("")
+        self.group_vars.set_description("")
         for env in envs:
             _entry = EnvVarEntry(parent=self, env=env)
-            GLib.idle_add(self.list_vars.add, _entry)
+            GLib.idle_add(self.group_vars.add, _entry)
