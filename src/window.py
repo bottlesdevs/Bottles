@@ -125,8 +125,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.page_loading = LoadingView()
 
         # Populate stack
-        self.stack_main.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
-        self.stack_main.set_transition_duration(ANIM_DURATION)
         self.stack_main.add_titled(
             child=self.page_loading,
             name="page_loading",
