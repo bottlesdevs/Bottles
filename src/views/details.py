@@ -264,27 +264,22 @@ class DetailsView(Adw.Bin):
         def callback(result, error=False):
             nonlocal self
 
-            if not result:
+            if not result.status:
                 self.view_bottle.group_programs.add(self.view_bottle.row_no_programs)
-                self.rview_bottle.ow_no_programs.set_visible(True)
-                self.view_bottle.list_programs.set_visible(False)
-                self.view_programs.hdy_status.set_visible(True)
-                self.view_programs.list_programs.set_visible(False)
-                return
-
-            if self.view_bottle.row_no_programs.get_parent() == self.view_bottle.group_programs:
+            elif self.view_bottle.row_no_programs.get_parent() == self.view_bottle.group_programs:
                 self.view_bottle.group_programs.remove(self.view_bottle.row_no_programs)
-            self.view_bottle.row_no_programs.set_visible(False)
-            self.view_bottle.list_programs.set_visible(True)
-            self.view_bottle.list_programs.set_sensitive(True)
-            self.view_programs.hdy_status.set_visible(False)
-            self.view_programs.list_programs.set_visible(True)
+
+            self.view_bottle.row_no_programs.set_visible(not result.status)
+            self.view_bottle.list_programs.set_visible(result.status)
+            self.view_bottle.list_programs.set_sensitive(result.status)
+            self.view_programs.hdy_status.set_visible(not result.status)
+            self.view_programs.list_programs.set_visible(result.status)
 
         def process_programs():
             nonlocal self
 
             if self.config.get("Environment") == "Steam":
-                GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True)
+                GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True, True)
 
             programs = self.manager.get_programs(self.config)
             hidden = len([x for x in programs if x.get("removed")])
