@@ -1,233 +1,233 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-<requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <object class="GtkPopover" id="custom_bottle_path_extra">
-    <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">3</property>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <object class="GtkPopover" id="custom_bottle_path_extra">
         <child>
-          <object class="GtkModelButton" id="btn_bottles_path_reset">
-            <property name="text" translatable="yes">Reset default</property>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <template class="PreferencesWindow" parent="AdwPreferencesWindow">
-    <property name="title" translatable="yes">Preferences</property>
-    <property name="modal">True</property>
-    <property name="default-width">750</property>
-    <property name="hide-on-close">True</property>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="icon-name">applications-system-symbolic</property>
-        <property name="title" translatable="yes">General</property>
-        <child>
-          <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Appearance</property>
-            <child>
-              <object class="AdwActionRow">
-                <property name="title" translatable="yes">Show Update Date</property>
-                <property name="subtitle" translatable="yes">Whether to show the update date in the bottle list.</property>
-                <property name="activatable-widget">switch_update_date</property>
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">3</property>
                 <child>
-                  <object class="GtkSwitch" id="switch_update_date">
-                    <property name="valign">center</property>
-                  </object>
+                    <object class="GtkModelButton" id="btn_bottles_path_reset">
+                        <property name="text" translatable="yes">Reset default</property>
+                    </object>
                 </child>
-              </object>
-            </child>
-          </object>
+            </object>
         </child>
+    </object>
+    <template class="PreferencesWindow" parent="AdwPreferencesWindow">
+        <property name="title" translatable="yes">Preferences</property>
+        <property name="modal">True</property>
+        <property name="default-width">750</property>
+        <property name="hide-on-close">True</property>
         <child>
-          <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">General</property>
-            <child>
-              <object class="AdwActionRow">
-                <property name="title" translatable="yes">Notifications</property>
-                <property name="subtitle" translatable="yes">Show notifications for downloads and installs.</property>
-                <property name="activatable-widget">switch_notifications</property>
+            <object class="AdwPreferencesPage">
+                <property name="icon-name">applications-system-symbolic</property>
+                <property name="title" translatable="yes">General</property>
                 <child>
-                  <object class="GtkSwitch" id="switch_notifications">
-                    <property name="valign">center</property>
-                  </object>
+                    <object class="AdwPreferencesGroup">
+                        <property name="title" translatable="yes">Appearance</property>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Show Update Date</property>
+                                <property name="subtitle" translatable="yes">Whether to show the update date in the bottle list.</property>
+                                <property name="activatable-widget">switch_update_date</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_update_date">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow">
-                <property name="title" translatable="yes">Temp files</property>
-                <property name="subtitle" translatable="yes">Clean temp files when Bottles launches?</property>
-                <property name="activatable-widget">switch_temp</property>
                 <child>
-                  <object class="GtkSwitch" id="switch_temp">
-                    <property name="valign">center</property>
-                  </object>
+                    <object class="AdwPreferencesGroup">
+                        <property name="title" translatable="yes">General</property>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Notifications</property>
+                                <property name="subtitle" translatable="yes">Show notifications for downloads and installs.</property>
+                                <property name="activatable-widget">switch_notifications</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_notifications">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Temp files</property>
+                                <property name="subtitle" translatable="yes">Clean temp files when Bottles launches?</property>
+                                <property name="activatable-widget">switch_temp</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_temp">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Close Bottles after starting a program</property>
+                                <property name="subtitle" translatable="yes">Close Bottles after starting a program from the file manager</property>
+                                <property name="activatable-widget">switch_auto_close</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_auto_close">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow">
-                <property name="title" translatable="yes">Close Bottles after starting a program</property>
-                <property name="subtitle" translatable="yes">Close Bottles after starting a program from the file manager</property>
-                <property name="activatable-widget">switch_auto_close</property>
                 <child>
-                  <object class="GtkSwitch" id="switch_auto_close">
-                    <property name="valign">center</property>
-                  </object>
+                    <object class="AdwPreferencesGroup">
+                        <property name="title" translatable="yes">Advanced</property>
+                        <child>
+                            <object class="AdwActionRow" id="action_bottles_path">
+                                <property name="title" translatable="yes">Custom bottles path (requires restart)</property>
+                                <property name="subtitle" translatable="yes">Choose where to store the new bottles (this will not move the existing ones)</property>
+                                <property name="activatable-widget">btn_bottles_path</property>
+                                <child>
+                                    <object class="GtkBox">
+                                        <property name="spacing">10</property>
+                                        <child>
+                                            <object class="GtkButton" id="btn_bottles_path">
+                                                <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                                <property name="halign">center</property>
+                                                <property name="valign">center</property>
+                                                <property name="icon-name">document-open-symbolic</property>
+                                            </object>
+                                        </child>
+                                        <child>
+                                            <object class="GtkImage" id="flatpak_notice">
+                                                <property name="tooltip-text" translatable="yes">Warning: Be sure to give permission to the Flatpak to access the new path.
+                                                    This will break the sandbox!</property>
+                                                <property name="icon-name">dialog-warning-symbolic</property>
+                                                <property name="visible">False</property>
+                                            </object>
+                                        </child>
+                                        <child>
+                                            <object class="GtkSeparator">
+                                            </object>
+                                        </child>
+                                        <child>
+                                            <object class="GtkMenuButton">
+                                                <property name="focus-on-click">False</property>
+                                                <property name="halign">center</property>
+                                                <property name="valign">center</property>
+                                                <property name="popover">custom_bottle_path_extra</property>
+                                                <property name="icon-name">view-more-symbolic</property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
                 </child>
-              </object>
-            </child>
-          </object>
+            </object>
         </child>
         <child>
-          <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Advanced</property>
-            <child>
-              <object class="AdwActionRow" id="action_bottles_path">
-                <property name="title" translatable="yes">Custom bottles path (requires restart)</property>
-                <property name="subtitle" translatable="yes">Choose where to store the new bottles (this will not move the existing ones)</property>
-                <property name="activatable-widget">btn_bottles_path</property>
+            <object class="AdwPreferencesPage">
+                <property name="icon-name">system-run-symbolic</property>
+                <property name="title" translatable="yes">Runners</property>
                 <child>
-                  <object class="GtkBox">
-                    <property name="spacing">10</property>
-                    <child>
-                      <object class="GtkButton" id="btn_bottles_path">
-                        <property name="tooltip-text" translatable="yes">Choose a directory</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="icon-name">document-open-symbolic</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImage" id="flatpak_notice">
-                        <property name="tooltip-text" translatable="yes">Warning: Be sure to give permission to the Flatpak to access the new path.
-This will break the sandbox!</property>
-                        <property name="icon-name">dialog-warning-symbolic</property>
-                        <property name="visible">False</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparator">
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuButton">
-                        <property name="focus-on-click">False</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="popover">custom_bottle_path_extra</property>
-                        <property name="icon-name">view-more-symbolic</property>
-                      </object>
-                    </child>
-                  </object>
+                    <object class="AdwPreferencesGroup" id="list_runners">
+                        <child>
+                            <object class="AdwActionRow" id="actionrow_prerelease">
+                                <property name="title" translatable="yes">Pre-release</property>
+                                <property name="subtitle" translatable="yes">Display unstable versions of runners.</property>
+                                <property name="activatable-widget">switch_release_candidate</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_release_candidate">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
                 </child>
-              </object>
-            </child>
-          </object>
+            </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="icon-name">system-run-symbolic</property>
-        <property name="title" translatable="yes">Runners</property>
         <child>
-          <object class="AdwPreferencesGroup" id="list_runners">
-            <child>
-              <object class="AdwActionRow" id="actionrow_prerelease">
-                <property name="title" translatable="yes">Pre-release</property>
-                <property name="subtitle" translatable="yes">Whether the above list should display unstable versions.</property>
-                <property name="activatable-widget">switch_release_candidate</property>
+            <object class="AdwPreferencesPage">
+                <property name="icon-name">applications-games-symbolic</property>
+                <property name="title" translatable="yes">DLL Components</property>
                 <child>
-                  <object class="GtkSwitch" id="switch_release_candidate">
-                    <property name="valign">center</property>
-                  </object>
+                    <object class="AdwPreferencesGroup" id="list_dxvk">
+                        <property name="title" translatable="yes">DXVK</property>
+                    </object>
                 </child>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="icon-name">applications-games-symbolic</property>
-        <property name="title" translatable="yes">DLL Components</property>
-        <child>
-          <object class="AdwPreferencesGroup" id="list_dxvk">
-            <property name="title" translatable="yes">DXVK</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="list_vkd3d">
-            <property name="title" translatable="yes">VKD3D</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="list_nvapi">
-            <property name="title" translatable="yes">DXVK-NVAPI</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="list_latencyflex">
-            <property name="title" translatable="yes">LatencyFleX</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage" id="pref_core">
-        <property name="icon-name">application-x-addon-symbolic</property>
-        <property name="title" translatable="yes">Core</property>
-        <property name="visible">False</property>
-        <child>
-          <object class="AdwPreferencesGroup" id="list_runtimes">
-            <property name="title" translatable="yes">Runtime</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="list_winebridge">
-            <property name="title" translatable="yes">WineBridge</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="icon-name">applications-science-symbolic</property>
-        <property name="title" translatable="yes">Experiments</property>
-        <child>
-          <object class="AdwPreferencesGroup">
-            <child>
-              <object class="AdwActionRow">
-                <property name="title" translatable="yes">Steam Proton Prefixes</property>
-                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
-                <property name="activatable-widget">switch_steam</property>
                 <child>
-                  <object class="GtkSwitch" id="switch_steam">
-                    <property name="valign">center</property>
-                  </object>
+                    <object class="AdwPreferencesGroup" id="list_vkd3d">
+                        <property name="title" translatable="yes">VKD3D</property>
+                    </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow">
-                <property name="title" translatable="yes">Library</property>
-                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
-                <property name="activatable-widget">switch_library</property>
                 <child>
-                  <object class="GtkSwitch" id="switch_library">
-                    <property name="valign">center</property>
-                  </object>
+                    <object class="AdwPreferencesGroup" id="list_nvapi">
+                        <property name="title" translatable="yes">DXVK-NVAPI</property>
+                    </object>
                 </child>
-              </object>
-            </child>
-          </object>
+                <child>
+                    <object class="AdwPreferencesGroup" id="list_latencyflex">
+                        <property name="title" translatable="yes">LatencyFleX</property>
+                    </object>
+                </child>
+            </object>
         </child>
-      </object>
-    </child>
-  </template>
+        <child>
+            <object class="AdwPreferencesPage" id="pref_core">
+                <property name="icon-name">application-x-addon-symbolic</property>
+                <property name="title" translatable="yes">Core</property>
+                <property name="visible">False</property>
+                <child>
+                    <object class="AdwPreferencesGroup" id="list_runtimes">
+                        <property name="title" translatable="yes">Runtime</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwPreferencesGroup" id="list_winebridge">
+                        <property name="title" translatable="yes">WineBridge</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <child>
+            <object class="AdwPreferencesPage">
+                <property name="icon-name">applications-science-symbolic</property>
+                <property name="title" translatable="yes">Experiments</property>
+                <child>
+                    <object class="AdwPreferencesGroup">
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Steam Proton Prefixes</property>
+                                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
+                                <property name="activatable-widget">switch_steam</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_steam">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Library</property>
+                                <property name="subtitle" translatable="yes">In early development (requires restart)</property>
+                                <property name="activatable-widget">switch_library</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_library">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </template>
 </interface>
