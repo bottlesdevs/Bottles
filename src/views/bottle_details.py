@@ -32,6 +32,7 @@ from bottles.backend.utils.manager import ManagerUtils
 
 from bottles.widgets.executable import ExecButton
 
+from bottles.dialogs.filechooser import FileChooser
 from bottles.dialogs.runargs import RunArgsDialog
 from bottles.dialogs.generic import MessageDialog
 from bottles.dialogs.duplicate import DuplicateDialog
@@ -186,20 +187,13 @@ class BottleView(Adw.PreferencesPage):
         The file will be executed by the runner after the
         user confirmation.
         """
-
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose a Windows executable file"),
-            self.window,
-            Gtk.FileChooserAction.OPEN,
-            _("Run"),
-            _("Cancel")
+        FileChooser(
+            parent=self.window,
+            title=_("Choose a Windows executable file"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Run")),
+            callback=self.__execute
         )
-
-        # file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config) + '/drive_c/')
-        file_dialog.set_modal(True)
-        file_dialog.set_transient_for(self.window)
-        file_dialog.connect('response', self.__execute, file_dialog)
-        file_dialog.show()
 
     def __execute(self, _dialog, response, file_dialog, args=""):
         def do_update_programs(result, error=False):
@@ -255,24 +249,25 @@ class BottleView(Adw.PreferencesPage):
             title = _("Select the location where to save the backup archive")
             hint = f"backup_{self.config.get('Path')}.tar.gz"
 
-        file_dialog = Gtk.FileChooserNative.new(
-            title,
-            self.window,
-            Gtk.FileChooserAction.SAVE,
-            _("Export"), _("Cancel")
-        )
-        file_dialog.set_current_name(hint)
-        response = file_dialog.run()
-        if response == -3:
-            RunAsync(
-                task_func=BackupManager.export_backup,
-                window=self.window,
-                config=self.config,
-                scope=backup_type,
-                path=file_dialog.get_filename()
-            )
+        def set_path(_dialog, response, _file_dialog):
+            if response == -3:
+                _file = _file_dialog.get_file()
+                RunAsync(
+                    task_func=BackupManager.export_backup,
+                    window=self.window,
+                    config=self.config,
+                    scope=backup_type,
+                    path=_file.get_path()
+                )
 
-        file_dialog.destroy()
+        FileChooser(
+            parent=self.window,
+            title=title,
+            action=Gtk.FileChooserAction.SAVE,
+            buttons=(_("Cancel"), _("Export")),
+            hint=hint,
+            callback=set_path
+        )
 
     def __duplicate(self, widget):
         """

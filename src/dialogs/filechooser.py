@@ -20,11 +20,12 @@ from gi.repository import Gtk, Adw
 
 class FileChooser:
 
-    def __init__(self, parent, title, action, buttons, path=None, filters=None, native=True, callback=None):
+    def __init__(self, parent, title, action, buttons, hint=None, path=None, filters=None, native=True, callback=None):
         self.parent = parent
         self.title = title
         self.action = action
         self.path = path
+        self.hint = hint
         self.native = native
         self.callback = callback
         self.buttons = self.__get_buttons(buttons)
@@ -47,6 +48,9 @@ class FileChooser:
         if self.filters:
             for f in self.filters:
                 dialog.add_filter(f)
+
+        if self.hint:
+            dialog.set_current_name(self.hint)
 
         if self.callback:
             dialog.connect('response', self.callback, dialog)

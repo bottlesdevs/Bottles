@@ -28,6 +28,7 @@ from bottles.backend.managers.runtime import RuntimeManager
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.utils.manager import ManagerUtils
 
+from bottles.dialogs.filechooser import FileChooser
 from bottles.dialogs.envvars import EnvVarsDialog
 from bottles.dialogs.drives import DrivesDialog
 from bottles.dialogs.dlloverrides import DLLOverridesDialog
@@ -209,35 +210,39 @@ class PreferencesView(Adw.PreferencesPage):
 
     def choose_cwd(self, widget, reset=False):
         """Change the default current working directory for the bottle"""
-        path = ""
+        def set_path(_dialog, response, _file_dialog):
+            if response == Gtk.ResponseType.OK:
+                _file = _file_dialog.get_file()
+                _path = _file.get_path()
+                if _path and _path != "":
+                    self.row_cwd.set_subtitle(_path)
+                    self.manager.update_config(
+                        config=self.config,
+                        key="WorkingDir",
+                        value=_path
+                    )
+                else:
+                    self.row_cwd.set_subtitle(_("Default to the bottle path."))
+
+                _dialog.destroy()
+
+        path = ManagerUtils.get_bottle_path(self.config)
         if not reset:
-            file_dialog = Gtk.FileChooserNative.new(
-                _("Choose working directory for executables"),
-                self.window,
-                Gtk.FileChooserAction.SELECT_FOLDER,
-                _("Done"),
-                _("Cancel")
+            FileChooser(
+                parent=self.window,
+                title=_("Choose working directory for executables"),
+                action=Gtk.FileChooserAction.SELECT_FOLDER,
+                buttons=(_("Cancel"), _("Select")),
+                path=ManagerUtils.get_bottle_path(self.config),
+                native=False,
+                callback=set_path
             )
-            file_dialog.set_current_folder(
-                ManagerUtils.get_bottle_path(self.config)
-            )
-            response = file_dialog.run() # TODO: to be fixed
-
-            if response == -3:
-                path = file_dialog.get_filename()
-
-            file_dialog.destroy()
 
         self.manager.update_config(
             config=self.config,
             key="WorkingDir",
             value=path
         )
-
-        if path != "":
-            self.row_cwd.set_subtitle(path)
-        else:
-            self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
     def update_combo_components(self):
         """
