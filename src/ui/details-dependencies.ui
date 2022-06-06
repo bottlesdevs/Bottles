@@ -53,6 +53,10 @@
         <child>
             <object class="GtkBox">
                 <property name="orientation">vertical</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
                 <child>
                     <object class="GtkModelButton" id="btn_report">
                         <property name="tooltip-text" translatable="yes">Report a problem or a missing dependency.</property>
