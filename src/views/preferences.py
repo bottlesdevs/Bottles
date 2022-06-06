@@ -27,6 +27,7 @@ from bottles.backend.managers.data import DataManager
 @Gtk.Template(resource_path='/com/usebottles/bottles/preferences.ui')
 class PreferencesWindow(Adw.PreferencesWindow):
     __gtype_name__ = 'PreferencesWindow'
+    __registry = []
 
     # region Widgets
     switch_notifications = Gtk.Template.Child()
@@ -192,15 +193,16 @@ class PreferencesWindow(Adw.PreferencesWindow):
             self.list_latencyflex.add(ComponentEntry(self.window, latencyflex, "latencyflex"))
 
     def populate_runners_list(self):
-        for w in self.list_runners:
-            if w != self.actionrow_prerelease:
-                self.list_runners.remove(w)
+        for w in self.__registry:
+            parent = w.get_parent()
+            if parent:
+                parent.remove(w)
 
-        exp_caffe = ComponentExpander(_("Caffe runners"))
-        exp_wine_ge = ComponentExpander(_("Wine GE runners"))
-        exp_lutris = ComponentExpander(_("Lutris runners"))
-        exp_proton = ComponentExpander(_("Proton runners"))
-        exp_other = ComponentExpander(_("Other runners"))
+        exp_caffe = ComponentExpander(_("Caffe"))
+        exp_wine_ge = ComponentExpander(_("GE Wine"))
+        exp_lutris = ComponentExpander(_("Lutris"))
+        exp_proton = ComponentExpander(_("GE Proton"))
+        exp_other = ComponentExpander(_("Other"))
 
         for runner in self.manager.supported_wine_runners.items():
             _runner_name = runner[0].lower()
@@ -208,21 +210,31 @@ class PreferencesWindow(Adw.PreferencesWindow):
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
 
+            _entry = ComponentEntry(self.window, runner, "runner")
             if _runner_name.startswith("caffe"):
-                exp_caffe.add_row(ComponentEntry(self.window, runner, "runner"))
+                exp_caffe.add_row(_entry)
+            elif _runner_name.startswith("wine-ge"):
+                exp_wine_ge.add_row(_entry)
             elif _runner_name.startswith("lutris"):
-                exp_lutris.add_row(ComponentEntry(self.window, runner, "runner"))
+                exp_lutris.add_row(_entry)
             else:
-                exp_other.add_row(ComponentEntry(self.window, runner, "runner"))
+                exp_other.add_row(_entry)
 
         for runner in self.manager.supported_proton_runners.items():
             if (not self.window.settings.get_boolean("release-candidate")
                     and runner[1]["Channel"] in ["rc", "unstable"]):
                 continue
 
-            exp_proton.add_row(ComponentEntry(self.window, runner, "runner:proton"))
+            _entry = ComponentEntry(self.window, runner, "runner:proton")
+            exp_proton.add_row(_entry)
 
         self.list_runners.add(exp_caffe)
         self.list_runners.add(exp_lutris)
         self.list_runners.add(exp_proton)
         self.list_runners.add(exp_other)
+
+        self.__registry.append(exp_caffe)
+        self.__registry.append(exp_wine_ge)
+        self.__registry.append(exp_lutris)
+        self.__registry.append(exp_proton)
+        self.__registry.append(exp_other)
