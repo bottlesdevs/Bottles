@@ -18,7 +18,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
-from bottles.utils.common import open_doc_url  # pyright: reportMissingImports=false
+from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+from bottles.utils.common import open_doc_url
+
 from bottles.backend.utils.manager import ManagerUtils
 
 
@@ -61,34 +63,35 @@ class ProgramsView(Adw.PreferencesPage):
         the programs list.
         The file chooser path is set to the bottle path by default.
         """
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose an executable path"),
-            self.window,
-            Gtk.FileChooserAction.OPEN,
-            _("Add"),
-            _("Cancel")
+        def set_path(_dialog, response, _file_dialog):
+            if response == -3:
+                _file = _file_dialog.get_file()
+                _file_name = _file.get_path().split("/")[-1]
+                _program = {
+                    "executable": _file_name,
+                    "name": _file_name[:-4],
+                    "path": _file.get_path()
+                }
+                self.manager.update_config(
+                    config=self.config,
+                    key=_file_name,
+                    value=_program,
+                    scope="External_Programs",
+                    fallback=True
+                )
+                self.parent.update_programs(config=self.config)
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose an executable path"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Add")),
+            filters=["tar.gz"],
+            callback=set_path
         )
-        file_dialog.set_current_folder(ManagerUtils.get_bottle_path(self.config))
-        response = file_dialog.run()
 
-        if response == -3:
-            _file = file_dialog.get_filename()
-            _file_name = _file.split("/")[-1]
-            _program = {
-                "executable": _file_name,
-                "name": _file.split("/")[-1][:-4],
-                "path": _file
-            }
-            self.manager.update_config(
-                config=self.config,
-                key=_file_name,
-                value=_program,
-                scope="External_Programs",
-                fallback=True
-            )
-            self.parent.update_programs(config=self.config)
-
-        file_dialog.destroy()
+    def set_config(self, config):
+        self.config = config
 
     def update(self, widget=False, config=None):
         """

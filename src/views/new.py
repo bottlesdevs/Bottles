@@ -20,11 +20,12 @@ import re
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
-from bottles.backend.runner import Runner  # pyright: reportMissingImports=false
-from bottles.backend.wine.executor import WineExecutor
-
+from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
 from bottles.utils.threading import RunAsync
 from bottles.utils.gtk import GtkUtils
+
+from bottles.backend.runner import Runner
+from bottles.backend.wine.executor import WineExecutor
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/new.ui')
@@ -105,41 +106,35 @@ class NewView(Adw.Window):
         self.btn_create.set_sensitive(result)
 
     def choose_env_recipe(self, widget):
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose a recipe file"),
-            self.window,
-            Gtk.FileChooserAction.OPEN
+        def set_path(_dialog, response, _file_dialog):
+            if response == -3:
+                _file = _file_dialog.get_file()
+                self.env_recipe_path = _file.get_path()
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose a recipe file"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Select")),
+            filters=["yml"],
+            callback=set_path
         )
-
-        filter_yaml = Gtk.FileFilter()
-        filter_yaml.set_name(".yml")
-        filter_yaml.add_pattern("*yml")
-        filter_yaml.add_pattern("*yaml")
-        file_dialog.add_filter(filter_yaml)
-
-        response = file_dialog.run()
-
-        if response == -3:
-            self.env_recipe_path = file_dialog.get_filename()
-
-        file_dialog.destroy()
 
     def choose_path(self, widget):
-        file_dialog = Gtk.FileChooserDialog(
-            _("Choose where to store the bottle"),
-            self.window,
-            Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+        def set_path(_dialog, response, _file_dialog):
+            if response == Gtk.ResponseType.OK:
+                _file = _file_dialog.get_file()
+                self.custom_path = _file.get_path()
+            _file_dialog.destroy()
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose where to store the bottle"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(_("Cancel"), _("Select")),
+            native=False,
+            callback=set_path
         )
-
-        response = file_dialog.run()
-
-        if response == Gtk.ResponseType.OK:
-            self.custom_path = file_dialog.get_filename()
-            print(self.custom_path)
-
-        file_dialog.destroy()
 
     '''Create the bottle'''
 

@@ -18,7 +18,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
-from bottles.backend.managers.backup import BackupManager  # pyright: reportMissingImports=false
+from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+
+from bottles.backend.managers.backup import BackupManager
 from bottles.utils.threading import RunAsync
 from bottles.widgets.importer import ImporterEntry
 
@@ -82,69 +84,59 @@ class ImporterView(Adw.Bin):
             callback=update
         )
 
-    def __import_full_bck(self, widget):
+    def __import_full_bck(self, *args):
         """
         This function show a dialog to the user, from which it can choose an
-        archive backup to import into Bottles. It support only .tar.gz files
+        archive backup to import into Bottles. It supports only .tar.gz files
         as Bottles export bottles in this format. Once selected, it will
         be imported.
-        TODO: remove .run
         """
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose a backup archive"),
-            self.window,
-            Gtk.FileChooserAction.OPEN
+        def set_path(_dialog, response, _file_dialog):
+            if response == -3:
+                _file = _file_dialog.get_file()
+                RunAsync(
+                    task_func=BackupManager.import_backup,
+                    window=self.window,
+                    scope="full",
+                    path=_file.get_path(),
+                    manager=self.manager
+                )
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose a backup archive"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Import")),
+            filters=["tar.gz"],
+            callback=set_path
         )
 
-        filter_tar = Gtk.FileFilter()
-        filter_tar.set_name(".tar.gz")
-        filter_tar.add_pattern("*.tar.gz")
-        file_dialog.add_filter(filter_tar)
-
-        response = file_dialog.run()
-
-        if response == -3:
-            RunAsync(
-                task_func=BackupManager.import_backup,
-                window=self.window,
-                scope="full",
-                path=file_dialog.get_filename(),
-                manager=self.manager
-            )
-
-        file_dialog.destroy()
-
-    def __import_config_bck(self, widget):
+    def __import_config_bck(self, *args):
         """
         This function show a dialog to the user, from which it can choose an
-        archive backup to import into Bottles. It support only .yml files
-        which are the Bottles configuration file. Once selected, it will
+        archive backup to import into Bottles. It supports only .yml files
+        which are the Bottles' configuration file. Once selected, it will
         be imported.
-        TODO: remove .run
         """
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose a configuration file"),
-            self.window,
-            Gtk.FileChooserAction.OPEN
+        def set_path(_dialog, response, _file_dialog):
+            if response == -3:
+                _file = _file_dialog.get_file()
+                RunAsync(
+                    task_func=BackupManager.import_backup,
+                    window=self.window,
+                    scope="config",
+                    path=_file.get_path(),
+                    manager=self.manager
+                )
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose a configuration file"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Import")),
+            filters=["yml"],
+            callback=set_path
         )
 
-        filter_yml = Gtk.FileFilter()
-        filter_yml.set_name(".yml")
-        filter_yml.add_pattern("*.yml")
-        file_dialog.add_filter(filter_yml)
-
-        response = file_dialog.run()
-
-        if response == -3:
-            RunAsync(
-                task_func=BackupManager.import_backup,
-                window=self.window,
-                scope="config",
-                path=file_dialog.get_filename(),
-                manager=self.manager
-            )
-
-        file_dialog.destroy()
-
-    def go_back(self, widget=False):
+    def go_back(self, *args):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
