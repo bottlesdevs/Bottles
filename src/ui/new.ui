@@ -13,7 +13,18 @@
                         <property name="show-title-buttons">False</property>
                         <property name="title-widget">
                             <object class="AdwWindowTitle" id="title">
-                                <property name="title" translatable="yes">New bottle</property>
+                                <property name="title" translatable="yes">New Bottle</property>
+                                <child>
+                                    <object class='GtkShortcutController'>
+                                        <property name='scope'>managed</property>
+                                        <child>
+                                            <object class='GtkShortcut'>
+                                                <property name='trigger'>Escape</property>
+                                                <property name='action'>activate</property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
                             </object>
                         </property>
                         <child type="start">
