@@ -29,6 +29,7 @@ from bottles.widgets.state import StateEntry
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-versioning.ui')
 class VersioningView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsVersioning'
+    __registry = []
 
     # region Widgets
     list_states = Gtk.Template.Child()
@@ -58,6 +59,16 @@ class VersioningView(Adw.PreferencesPage):
         self.btn_help.connect("clicked", open_doc_url, "bottles/versioning")
         self.entry_state_comment.connect("activate", self.add_state)
 
+    def add_state(self, widget):
+        self.__registry.append(widget)
+        self.list_states.append(widget)
+
+    def empty_list(self):
+        for r in self.__registry:
+            if r.get_parent() is not None:
+                r.get_parent().remove(r)
+        self.__registry = []
+
     def update(self, widget=False, config=None, states=None):
         """
         This function update the states list with the
@@ -71,8 +82,6 @@ class VersioningView(Adw.PreferencesPage):
             self.config = config
 
         self.list_states.set_sensitive(False)
-        while self.list_states.get_first_child():
-            self.list_states.remove(self.list_states.get_first_child())
 
         def new_state(_state):
             nonlocal self
@@ -82,7 +91,7 @@ class VersioningView(Adw.PreferencesPage):
                 config=self.config,
                 state=_state
             )
-            self.list_states.append(entry)
+            self.add_state(entry)
 
         def callback(result, error=False):
             nonlocal self
@@ -93,6 +102,8 @@ class VersioningView(Adw.PreferencesPage):
 
         def process_states():
             nonlocal self, states
+
+            GLib.idle_add(self.empty_list)
 
             if len(states) == 0:
                 states = self.versioning_manager.list_states(self.config)

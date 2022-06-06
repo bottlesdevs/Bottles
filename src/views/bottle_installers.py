@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import time
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
@@ -28,6 +29,7 @@ from bottles.widgets.installer import InstallerEntry
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-installers.ui')
 class InstallersView(Adw.Bin):
     __gtype_name__ = 'DetailsInstallers'
+    __registry = []
 
     # region Widgets
     list_installers = Gtk.Template.Child()
@@ -75,6 +77,16 @@ class InstallersView(Adw.Bin):
             return True
         return False
 
+    def add_installer(self, widget):
+        self.__registry.append(widget)
+        self.add_installer(widget)
+
+    def empty_list(self):
+        for r in self.__registry:
+            if r.get_parent() is not None:
+                r.get_parent().remove(r)
+        self.__registry = []
+
     def update(self, widget=False, config=None):
         """
         This function update the installers list with the
@@ -86,8 +98,6 @@ class InstallersView(Adw.Bin):
         installers = self.manager.supported_installers.items()
 
         self.list_installers.set_sensitive(False)
-        while self.list_installers.get_first_child():
-            self.list_installers.remove(self.list_installers.get_first_child())
 
         def new_installer(_installer):
             nonlocal self
@@ -109,6 +119,9 @@ class InstallersView(Adw.Bin):
 
         def process_installers():
             nonlocal self, installers
+
+            time.sleep(.5)  # workaround for freezing bug on bottle load
+            GLib.idle_add(self.empty_list)
 
             if len(installers) == 0:
                 return Result(False)
