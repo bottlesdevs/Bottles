@@ -109,16 +109,6 @@
                     </object>
                 </child>
                 <child>
-                    <object class="GtkMenuButton" id="btn_menu">
-                        <property name="valign">center</property>
-                        <property name="popover">pop_actions</property>
-                        <property name="icon-name">view-more-symbolic</property>
-                        <style>
-                            <class name="flat"/>
-                        </style>
-                    </object>
-                </child>
-                <child>
                     <object class="GtkButton" id="btn_run">
                         <property name="valign">center</property>
                         <property name="icon-name">media-playback-start-symbolic</property>
@@ -129,6 +119,22 @@
                         <property name="valign">center</property>
                         <property name="visible">False</property>
                         <property name="icon-name">media-playback-stop-symbolic</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkSeparator">
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkMenuButton" id="btn_menu">
+                        <property name="valign">center</property>
+                        <property name="popover">pop_actions</property>
+                        <property name="icon-name">view-more-symbolic</property>
+                        <style>
+                            <class name="flat"/>
+                        </style>
                     </object>
                 </child>
             </object>
