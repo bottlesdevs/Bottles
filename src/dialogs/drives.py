@@ -63,17 +63,13 @@ class DriveEntry(Adw.ActionRow):
             Drives(self.config).new_drive(self.drive[0], path)
             self.set_subtitle(path)
 
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose path"),
-            self.parent.window,
-            Gtk.FileChooserAction.SELECT_FOLDER,
-            _("Select"),
-            _("Cancel")
+        FileChooser(
+            parent=self.window,
+            title=_("Choose path"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(_("Cancel"), _("Select")),
+            callback=set_path
         )
-        file_dialog.set_modal(True)
-        file_dialog.set_transient_for(self.parent.window)
-        file_dialog.connect('response', set_path, file_dialog)
-        file_dialog.show()
 
     def __remove(self, *args):
         """

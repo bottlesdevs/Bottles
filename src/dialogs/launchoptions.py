@@ -169,17 +169,13 @@ class LaunchOptionsDialog(Adw.Window):
 
             self.action_script.set_subtitle(self.__default_msg)
 
-        file_dialog = Gtk.FileChooserNative.new(
-            _("Choose the script"),
-            self.window,
-            Gtk.FileChooserAction.OPEN,
-            _("Run"),
-            _("Cancel")
+        FileChooser(
+            parent=self.window,
+            title=_("Choose the script"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_("Cancel"), _("Select")),
+            callback=set_path
         )
-        file_dialog.set_modal(True)
-        file_dialog.set_transient_for(self.window)
-        file_dialog.connect('response', set_path, file_dialog)
-        file_dialog.show()
 
     def __reset_script(self, _widget):
         """
