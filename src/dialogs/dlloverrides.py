@@ -82,7 +82,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
 
     # region Widgets
     entry_row = Gtk.Template.Child()
-    list_overrides = Gtk.Template.Child()
+    group_overrides = Gtk.Template.Child()
 
     # endregion
 
@@ -100,7 +100,7 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
         # connect signals
         self.entry_row.connect("apply", self.__save_override)
 
-    def __idle_save_override(self, *args):
+    def __save_override(self, *args):
         """
         This function check if the override name is not empty, then
         store it in the bottle configuration and add a new entry to
@@ -115,33 +115,31 @@ class DLLOverridesDialog(Adw.PreferencesWindow):
                 value="n,b",
                 scope="DLL_Overrides"
             )
-
-            self.list_overrides.add(
-                DLLEntry(
-                    window=self.window,
-                    config=self.config,
-                    override=[dll_name, "n,b"]
-                )
+            _entry = DLLEntry(
+                window=self.window,
+                config=self.config,
+                override=[dll_name, "n,b"]
             )
-
+            GLib.idle_add(self.group_overrides.add, _entry)
+            self.group_overrides.set_description("")
             self.entry_row.set_text("")
 
-    def __save_override(self, *args):
-        GLib.idle_add(self.__idle_save_override)
-
-    def __idle_populate_overrides_list(self):
+    def __populate_overrides_list(self):
         """
         This function populate the list of overrides
         with the existing overrides from the bottle configuration
         """
-        for override in self.config.get("DLL_Overrides").items():
-            self.list_overrides.add(
-                DLLEntry(
-                    window=self.window,
-                    config=self.config,
-                    override=override
-                )
-            )
+        overrides = self.config.get("DLL_Overrides").items()
 
-    def __populate_overrides_list(self):
-        GLib.idle_add(self.__idle_populate_overrides_list)
+        if len(overrides) == 0:
+            self.group_overrides.set_description(_("No overrides found."))
+            return
+
+        self.group_overrides.set_description("")
+        for override in overrides:
+            _entry = DLLEntry(
+                window=self.window,
+                config=self.config,
+                override=override
+            )
+            GLib.idle_add(self.group_overrides.add, _entry)
