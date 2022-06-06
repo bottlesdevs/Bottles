@@ -67,11 +67,12 @@ class ImporterView(Adw.Bin):
                 self.status_page.set_visible(False)
                 self.group_prefixes.set_visible(True)
 
-                while(self.list_prefixes.get_first_child()):
-                    self.list_prefixes.remove(self.list_prefixes.get_first_child())
+                while self.list_prefixes.get_first_child():
+                    _w = self.list_prefixes.get_first_child()
+                    self.list_prefixes.remove(_w)
 
                 for prefix in result.data.get("wineprefixes"):
-                    self.list_prefixes.add(ImporterEntry(self.window, prefix))
+                    self.list_prefixes.append(ImporterEntry(self.window, prefix))
 
         widget.set_sensitive(False)
 
