@@ -361,6 +361,11 @@ class MainWindow(Adw.ApplicationWindow):
         for w in widgets:
             w.set_visible(not status)
 
+    def show_toast(self, message, timeout=3):
+        toast = Adw.Toast.new(message)
+        toast.props.timeout = timeout
+        self.toasts.add_toast(toast)
+
     @staticmethod
     def proper_close():
         """Properly close Bottles"""

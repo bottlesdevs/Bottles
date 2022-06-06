@@ -28,6 +28,7 @@ from typing import Union, NewType
 from datetime import datetime
 
 from bottles.backend.models.samples import Samples  # pyright: reportMissingImports=false
+from bottles.backend.models.result import Result
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.globals import Paths
 from bottles.backend.utils.steam import SteamUtils
@@ -461,7 +462,7 @@ class SteamManager:
         args = "bottles:run/{0}/{1}"
 
         if steam_path is None:
-            return
+            return Result(False)
 
         confs = glob(os.path.join(steam_path, "*/config/"))
         shortcut = {
@@ -495,8 +496,8 @@ class SteamManager:
 
             _all = list(_existing.values()) + [shortcut]
             _shortcuts = {"shortcuts": {str(i): s for i, s in enumerate(_all)}}
-            from pprint import pprint
-            pprint(_shortcuts)
 
             with open(os.path.join(c, "shortcuts.vdf"), "wb") as f:
                 f.write(vdf.binary_dumps(_shortcuts))
+
+        return Result(True)

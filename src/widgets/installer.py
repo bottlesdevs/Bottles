@@ -122,6 +122,7 @@ class InstallerEntry(Adw.ActionRow):
     def set_installed(self):
         """Set installed status"""
         self.spinner.stop()
+        self.window.show_toast(_("{0} installed.").format(self.installer[1].get("Name")))
         self.btn_install.set_visible(False)
         self.label_step.set_visible(False)
         self.img_installed.set_visible(True)
