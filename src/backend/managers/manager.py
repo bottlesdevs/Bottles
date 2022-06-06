@@ -944,7 +944,7 @@ class Manager:
             return True
 
         if not components_check():
-            return False
+            return Result(False)
 
         # default components versions if not specified
         if not runner:
@@ -1118,7 +1118,7 @@ class Manager:
         log_update(_("Applying environment: {0}…").format(environment))
         env = None
 
-        if environment not in ["Custom", "Layered"]:
+        if environment.lower() not in ["custom", "layered"]:
             env = Samples.environments[environment.lower()]
         elif custom_environment:
             try:
