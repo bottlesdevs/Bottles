@@ -23,19 +23,15 @@
                         <property name="title" translatable="yes">DXVK</property>
                         <property name="subtitle" translatable="yes">Improves performance of DirectX 11 games and 3D applications.</property>
                         <child>
-                            <object class="GtkBox">
-                                <child>
-                                    <object class="GtkSpinner" id="spinner_dxvkbool">
-                                        <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
-                                        <property name="valign">center</property>
-                                        <property name="margin-end">6</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="GtkSwitch" id="switch_dxvk">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
+                            <object class="GtkSpinner" id="spinner_dxvkbool">
+                                <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
+                                <property name="valign">center</property>
+                                <property name="margin-end">6</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkSwitch" id="switch_dxvk">
+                                <property name="valign">center</property>
                             </object>
                         </child>
                     </object>
@@ -46,19 +42,15 @@
                         <property name="title" translatable="yes">VKD3D</property>
                         <property name="subtitle" translatable="yes">Improves performance of DirectX 12 games and 3D applications.</property>
                         <child>
-                            <object class="GtkBox">
-                                <child>
-                                    <object class="GtkSpinner" id="spinner_vkd3dbool">
-                                        <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
-                                        <property name="valign">center</property>
-                                        <property name="margin-end">6</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="GtkSwitch" id="switch_vkd3d">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
+                            <object class="GtkSpinner" id="spinner_vkd3dbool">
+                                <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
+                                <property name="valign">center</property>
+                                <property name="margin-end">6</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkSwitch" id="switch_vkd3d">
+                                <property name="valign">center</property>
                             </object>
                         </child>
                     </object>
@@ -69,19 +61,15 @@
                         <property name="title" translatable="yes">DLSS (DXVK-NVAPI)</property>
                         <property name="subtitle" translatable="yes">Provide DLSS support if available and Nvidia's NVAPI.</property>
                         <child>
-                            <object class="GtkBox">
-                                <child>
-                                    <object class="GtkSpinner" id="spinner_nvapibool">
-                                        <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
-                                        <property name="valign">center</property>
-                                        <property name="margin-end">6</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="GtkSwitch" id="switch_nvapi">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
+                            <object class="GtkSpinner" id="spinner_nvapibool">
+                                <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
+                                <property name="valign">center</property>
+                                <property name="margin-end">6</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkSwitch" id="switch_nvapi">
+                                <property name="valign">center</property>
                             </object>
                         </child>
                     </object>
@@ -90,31 +78,26 @@
                     <object class="AdwActionRow">
                         <property name="activatable-widget">switch_fsr</property>
                         <property name="title" translatable="yes">FSR</property>
-                        <property name="subtitle" translatable="yes">FSR uses cutting-edge upscaling technologies to help boost your framerates.</property>
+                        <property name="subtitle" translatable="yes">FSR uses cutting-edge up-scaling technologies to help boost your framerate.</property>
                         <child>
-                            <object class="GtkBox">
-                                <property name="spacing">12</property>
-                                <child>
-                                    <object class="GtkComboBoxText" id="combo_fsr">
-                                        <!-- TODO: replace with ComboRow -->
-                                        <property name="valign">center</property>
-                                        <property name="active-id">add</property>
-                                        <items>
-                                            <item id="5" translatable="yes">Ultra Quality</item>
-                                            <item id="4" translatable="yes">Quality</item>
-                                            <item id="3" translatable="yes">Balanced</item>
-                                            <item id="2" translatable="yes">Performance</item>
-                                        </items>
-                                        <style>
-                                            <class name="borderless"/>
-                                        </style>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="GtkSwitch" id="switch_fsr">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
+                            <object class="GtkComboBoxText" id="combo_fsr">
+                                <!-- TODO: replace with ComboRow -->
+                                <property name="valign">center</property>
+                                <property name="active-id">add</property>
+                                <items>
+                                    <item id="5" translatable="yes">Ultra Quality</item>
+                                    <item id="4" translatable="yes">Quality</item>
+                                    <item id="3" translatable="yes">Balanced</item>
+                                    <item id="2" translatable="yes">Performance</item>
+                                </items>
+                                <style>
+                                    <class name="borderless"/>
+                                </style>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkSwitch" id="switch_fsr">
+                                <property name="valign">center</property>
                             </object>
                         </child>
                     </object>
@@ -123,22 +106,18 @@
                     <object class="AdwActionRow" id="row_latencyflex">
                         <property name="activatable-widget">switch_latencyflex</property>
                         <property name="title" translatable="yes">LatencyFleX</property>
-                        <property name="subtitle" translatable="yes">An alternative to NVIDIA Reflex. Can be detected by some Anticheats.</property>
+                        <property name="subtitle" translatable="yes">An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats.</property>
                         <child>
-                            <object class="GtkBox">
-                                <child>
-                                    <object class="GtkSpinner" id="spinner_latencyflexbool">
-                                        <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
-                                        <property name="halign">center</property>
-                                        <property name="valign">center</property>
-                                        <property name="margin-end">6</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="GtkSwitch" id="switch_latencyflex">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
+                            <object class="GtkSpinner" id="spinner_latencyflexbool">
+                                <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
+                                <property name="halign">center</property>
+                                <property name="valign">center</property>
+                                <property name="margin-end">6</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkSwitch" id="switch_latencyflex">
+                                <property name="valign">center</property>
                             </object>
                         </child>
                     </object>
@@ -149,12 +128,8 @@
                         <property name="title" translatable="yes">Discrete GPU</property>
                         <property name="subtitle" translatable="yes">Improves performance at the cost of increased power usage.</property>
                         <child>
-                            <object class="GtkBox">
-                                <child>
-                                    <object class="GtkSwitch" id="switch_discrete">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
+                            <object class="GtkSwitch" id="switch_discrete">
+                                <property name="valign">center</property>
                             </object>
                         </child>
                     </object>
@@ -180,40 +155,35 @@
                                 <property name="title" translatable="yes">Virtual Desktop</property>
                                 <property name="subtitle" translatable="yes">Use the Wine virtual desktop.</property>
                                 <child>
-                                    <object class="GtkBox">
-                                        <property name="spacing">12</property>
-                                        <child>
-                                            <!-- TODO: replace with ComboRow -->
-                                            <object class="GtkComboBoxText" id="combo_virt_res">
-                                                <property name="valign">center</property>
-                                                <property name="active-id">add</property>
-                                                <items>
-                                                    <item id="640x480">640x480</item>
-                                                    <item id="800x600">800x600</item>
-                                                    <item id="1024x768">1024x768</item>
-                                                    <item id="1280x720">1280x720</item>
-                                                    <item id="1280x800">1280x800</item>
-                                                    <item id="1280x1024">1280x1024</item>
-                                                    <item id="1440x900">1440x900</item>
-                                                    <item id="1600x900">1600x900</item>
-                                                    <item id="1680x1050">1680x1050</item>
-                                                    <item id="1920x1200">1920x1200</item>
-                                                    <item id="1920x1080">1920x1080</item>
-                                                    <item id="2560x1440">2560x1440</item>
-                                                    <item id="2560x1600">2560x1600</item>
-                                                    <item id="3840x2160">3840x2160</item>
-                                                    <item id="4096x2400">4096x2400</item>
-                                                </items>
-                                                <style>
-                                                    <class name="borderless"/>
-                                                </style>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkSwitch" id="switch_virt_desktop">
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
+                                    <!-- TODO: replace with ComboRow -->
+                                    <object class="GtkComboBoxText" id="combo_virt_res">
+                                        <property name="valign">center</property>
+                                        <property name="active-id">add</property>
+                                        <items>
+                                            <item id="640x480">640x480</item>
+                                            <item id="800x600">800x600</item>
+                                            <item id="1024x768">1024x768</item>
+                                            <item id="1280x720">1280x720</item>
+                                            <item id="1280x800">1280x800</item>
+                                            <item id="1280x1024">1280x1024</item>
+                                            <item id="1440x900">1440x900</item>
+                                            <item id="1600x900">1600x900</item>
+                                            <item id="1680x1050">1680x1050</item>
+                                            <item id="1920x1200">1920x1200</item>
+                                            <item id="1920x1080">1920x1080</item>
+                                            <item id="2560x1440">2560x1440</item>
+                                            <item id="2560x1600">2560x1600</item>
+                                            <item id="3840x2160">3840x2160</item>
+                                            <item id="4096x2400">4096x2400</item>
+                                        </items>
+                                        <style>
+                                            <class name="borderless"/>
+                                        </style>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_virt_desktop">
+                                        <property name="valign">center</property>
                                     </object>
                                 </child>
                             </object>
@@ -314,6 +284,16 @@
         <child>
             <object class="AdwPreferencesGroup">
                 <property name="title" translatable="yes">System</property>
+                <child type="header-suffix">
+                    <object class="GtkButton" id="btn_manage_components">
+                        <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
+                        <property name="valign">center</property>
+                        <property name="icon-name">applications-system-symbolic</property>
+                        <style>
+                            <class name="flat"/>
+                        </style>
+                    </object>
+                </child>
                 <child>
                     <object class="AdwExpanderRow" id="exp_components">
                         <property name="title" translatable="yes">Components</property>
@@ -323,29 +303,17 @@
                                 <property name="activatable-widget">combo_runner</property>
                                 <property name="title" translatable="yes">Runner</property>
                                 <child>
-                                    <object class="GtkBox">
-                                        <property name="spacing">12</property>
-                                        <child>
-                                            <object class="GtkSpinner" id="spinner_runner">
-                                                <property name="tooltip-text" translatable="yes">Updating Runner and components, please wait…</property>
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkComboBoxText" id="combo_runner">
-                                                <property name="valign">center</property>
-                                                <style>
-                                                    <class name="borderless"/>
-                                                </style>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkButton" id="btn_manage_runners">
-                                                <property name="tooltip-text" translatable="yes">Manage Runners…</property>
-                                                <property name="valign">center</property>
-                                                <property name="icon-name">applications-system-symbolic</property>
-                                            </object>
-                                        </child>
+                                    <object class="GtkSpinner" id="spinner_runner">
+                                        <property name="tooltip-text" translatable="yes">Updating Runner and components, please wait…</property>
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkComboBoxText" id="combo_runner">
+                                        <property name="valign">center</property>
+                                        <style>
+                                            <class name="borderless"/>
+                                        </style>
                                     </object>
                                 </child>
                             </object>
@@ -356,31 +324,19 @@
                                 <property name="title" translatable="yes">DXVK Version</property>
                                 <property name="activatable-widget">combo_dxvk</property>
                                 <child>
-                                    <object class="GtkBox">
-                                        <property name="spacing">12</property>
-                                        <child>
-                                            <object class="GtkSpinner" id="spinner_dxvk">
-                                                <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
-                                                <property name="valign">center</property>
-                                                <property name="margin-end">6</property>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkComboBoxText" id="combo_dxvk">
-                                                <property name="valign">center</property>
-                                                <property name="active">0</property>
-                                                <style>
-                                                    <class name="borderless"/>
-                                                </style>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkButton" id="btn_manage_dxvk">
-                                                <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
-                                                <property name="valign">center</property>
-                                                <property name="icon-name">applications-system-symbolic</property>
-                                            </object>
-                                        </child>
+                                    <object class="GtkSpinner" id="spinner_dxvk">
+                                        <property name="tooltip-text" translatable="yes">Updating DXVK, please wait…</property>
+                                        <property name="valign">center</property>
+                                        <property name="margin-end">6</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkComboBoxText" id="combo_dxvk">
+                                        <property name="valign">center</property>
+                                        <property name="active">0</property>
+                                        <style>
+                                            <class name="borderless"/>
+                                        </style>
                                     </object>
                                 </child>
                             </object>
@@ -391,32 +347,20 @@
                                 <property name="activatable-widget">combo_vkd3d</property>
                                 <property name="title" translatable="yes">VKD3D Version</property>
                                 <child>
-                                    <object class="GtkBox">
-                                        <property name="spacing">10</property>
-                                        <child>
-                                            <object class="GtkSpinner" id="spinner_vkd3d">
-                                                <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
-                                                <property name="halign">center</property>
-                                                <property name="valign">center</property>
-                                                <property name="margin-end">5</property>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkComboBoxText" id="combo_vkd3d">
-                                                <property name="valign">center</property>
-                                                <property name="active">0</property>
-                                                <style>
-                                                    <class name="borderless"/>
-                                                </style>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkButton" id="btn_manage_vkd3d">
-                                                <property name="tooltip-text" translatable="yes">Manage VKD3D versions</property>
-                                                <property name="valign">center</property>
-                                                <property name="icon-name">applications-system-symbolic</property>
-                                            </object>
-                                        </child>
+                                    <object class="GtkSpinner" id="spinner_vkd3d">
+                                        <property name="tooltip-text" translatable="yes">Updating VKD3D, please wait…</property>
+                                        <property name="halign">center</property>
+                                        <property name="valign">center</property>
+                                        <property name="margin-end">5</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkComboBoxText" id="combo_vkd3d">
+                                        <property name="valign">center</property>
+                                        <property name="active">0</property>
+                                        <style>
+                                            <class name="borderless"/>
+                                        </style>
                                     </object>
                                 </child>
                             </object>
@@ -427,30 +371,18 @@
                                 <property name="activatable-widget">combo_nvapi</property>
                                 <property name="title" translatable="yes">DXVK NVAPI Version</property>
                                 <child>
-                                    <object class="GtkBox">
-                                        <property name="spacing">12</property>
-                                        <child>
-                                            <object class="GtkSpinner" id="spinner_nvapi">
-                                                <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkComboBoxText" id="combo_nvapi">
-                                                <property name="valign">center</property>
-                                                <property name="active">0</property>
-                                                <style>
-                                                    <class name="borderless"/>
-                                                </style>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkButton" id="btn_manage_nvapi">
-                                                <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
-                                                <property name="valign">center</property>
-                                                <property name="icon-name">applications-system-symbolic</property>
-                                            </object>
-                                        </child>
+                                    <object class="GtkSpinner" id="spinner_nvapi">
+                                        <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkComboBoxText" id="combo_nvapi">
+                                        <property name="valign">center</property>
+                                        <property name="active">0</property>
+                                        <style>
+                                            <class name="borderless"/>
+                                        </style>
                                     </object>
                                 </child>
                             </object>
@@ -461,34 +393,18 @@
                                 <property name="activatable-widget">combo_latencyflex</property>
                                 <property name="title" translatable="yes">LatencyFleX Version</property>
                                 <child>
-                                    <object class="GtkBox">
-                                        <property name="spacing">12</property>
-                                        <child>
-                                            <object class="GtkSpinner" id="spinner_latencyflex">
-                                                <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
-                                                <property name="valign">center</property>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkComboBoxText" id="combo_latencyflex">
-                                                <property name="valign">center</property>
-                                                <property name="active">0</property>
-                                                <style>
-                                                    <class name="borderless"/>
-                                                </style>
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkSeparator">
-                                            </object>
-                                        </child>
-                                        <child>
-                                            <object class="GtkButton" id="btn_manage_latencyflex">
-                                                <property name="tooltip-text" translatable="yes">Manage DXVK versions</property>
-                                                <property name="valign">center</property>
-                                                <property name="icon-name">applications-system-symbolic</property>
-                                            </object>
-                                        </child>
+                                    <object class="GtkSpinner" id="spinner_latencyflex">
+                                        <property name="tooltip-text" translatable="yes">Updating DXVK-NVAPI, please wait…</property>
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkComboBoxText" id="combo_latencyflex">
+                                        <property name="valign">center</property>
+                                        <property name="active">0</property>
+                                        <style>
+                                            <class name="borderless"/>
+                                        </style>
                                     </object>
                                 </child>
                             </object>
@@ -538,33 +454,29 @@
                         <property name="activatable-widget">combo_windows</property>
                         <property name="title" translatable="yes">Windows version</property>
                         <child>
-                            <object class="GtkBox">
-                                <child>
-                                    <object class="GtkSpinner" id="spinner_win">
-                                        <property name="tooltip-text" translatable="yes">Updating Windows version, please wait…</property>
-                                        <property name="valign">center</property>
-                                        <property name="margin-end">6</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="GtkComboBoxText" id="combo_windows">
-                                        <property name="valign">center</property>
-                                        <property name="margin-end">6</property>
-                                        <property name="active">0</property>
-                                        <items>
-                                            <item id="win10">Windows 10</item>
-                                            <item id="win81">Windows 8.1</item>
-                                            <item id="win8">Windows 8</item>
-                                            <item id="win7">Windows 7</item>
-                                            <item id="win2008r2">Windows 2008 R2</item>
-                                            <item id="win2008">Windows 2008</item>
-                                            <item id="winxp">Windows XP</item>
-                                        </items>
-                                        <style>
-                                            <class name="borderless"/>
-                                        </style>
-                                    </object>
-                                </child>
+                            <object class="GtkSpinner" id="spinner_win">
+                                <property name="tooltip-text" translatable="yes">Updating Windows version, please wait…</property>
+                                <property name="valign">center</property>
+                                <property name="margin-end">6</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkComboBoxText" id="combo_windows">
+                                <property name="valign">center</property>
+                                <property name="margin-end">6</property>
+                                <property name="active">0</property>
+                                <items>
+                                    <item id="win10">Windows 10</item>
+                                    <item id="win81">Windows 8.1</item>
+                                    <item id="win8">Windows 8</item>
+                                    <item id="win7">Windows 7</item>
+                                    <item id="win2008r2">Windows 2008 R2</item>
+                                    <item id="win2008">Windows 2008</item>
+                                    <item id="winxp">Windows XP</item>
+                                </items>
+                                <style>
+                                    <class name="borderless"/>
+                                </style>
                             </object>
                         </child>
                     </object>
@@ -611,20 +523,15 @@
                         <property name="title" translatable="yes">Gamescope</property>
                         <property name="subtitle" translatable="yes">Use the Gamescope micro-compositor.</property>
                         <child>
-                            <object class="GtkBox">
-                                <property name="spacing">12</property>
-                                <child>
-                                    <object class="GtkButton" id="btn_manage_gamescope">
-                                        <property name="tooltip-text" translatable="yes">Manage Gamescope settings</property>
-                                        <property name="valign">center</property>
-                                        <property name="icon-name">applications-system-symbolic</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="GtkSwitch" id="switch_gamescope">
-                                        <property name="valign">center</property>
-                                    </object>
-                                </child>
+                            <object class="GtkSwitch" id="switch_gamescope">
+                                <property name="valign">center</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkButton" id="btn_manage_gamescope">
+                                <property name="tooltip-text" translatable="yes">Manage Gamescope settings</property>
+                                <property name="valign">center</property>
+                                <property name="icon-name">applications-system-symbolic</property>
                             </object>
                         </child>
                     </object>
@@ -635,25 +542,20 @@
                         <property name="title" translatable="yes">Working Directory</property>
                         <property name="subtitle" translatable="yes">Defaults to the bottle path.</property>
                         <child>
-                            <object class="GtkBox">
-                                <property name="spacing">6</property>
-                                <child>
-                                    <object class="GtkButton" id="btn_cwd_reset">
-                                        <property name="tooltip-text" translatable="yes">Reset to default</property>
-                                        <property name="valign">center</property>
-                                        <property name="icon-name">edit-undo-symbolic</property>
-                                    </object>
-                                </child>
-                                <child>
-                                    <object class="GtkButton" id="btn_cwd">
-                                        <property name="tooltip-text" translatable="yes">Choose a directory</property>
-                                        <property name="valign">center</property>
-                                        <property name="icon-name">document-open-symbolic</property>
-                                        <style>
-                                            <class name="flat"/>
-                                        </style>
-                                    </object>
-                                </child>
+                            <object class="GtkButton" id="btn_cwd_reset">
+                                <property name="tooltip-text" translatable="yes">Reset to default</property>
+                                <property name="valign">center</property>
+                                <property name="icon-name">edit-undo-symbolic</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkButton" id="btn_cwd">
+                                <property name="tooltip-text" translatable="yes">Choose a directory</property>
+                                <property name="valign">center</property>
+                                <property name="icon-name">document-open-symbolic</property>
+                                <style>
+                                    <class name="flat"/>
+                                </style>
                             </object>
                         </child>
                     </object>

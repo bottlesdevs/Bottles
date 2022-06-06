@@ -44,10 +44,7 @@ class PreferencesView(Adw.PreferencesPage):
     __gtype_name__ = 'DetailsPreferences'
 
     # region Widgets
-    btn_manage_runners = Gtk.Template.Child()
-    btn_manage_dxvk = Gtk.Template.Child()
-    btn_manage_vkd3d = Gtk.Template.Child()
-    btn_manage_nvapi = Gtk.Template.Child()
+    btn_manage_components = Gtk.Template.Child()
     btn_manage_gamescope = Gtk.Template.Child()
     btn_cwd = Gtk.Template.Child()
     btn_cwd_reset = Gtk.Template.Child()
@@ -130,10 +127,7 @@ class PreferencesView(Adw.PreferencesPage):
         self.row_overrides.connect("activated", self.__show_dll_overrides_view)
         self.row_env_variables.connect("activated", self.__show_environment_variables)
         self.row_drives.connect("activated", self.__show_drives)
-        self.btn_manage_runners.connect("clicked", self.window.show_prefs_view)
-        self.btn_manage_dxvk.connect("clicked", self.window.show_prefs_view)
-        self.btn_manage_vkd3d.connect("clicked", self.window.show_prefs_view)
-        self.btn_manage_nvapi.connect("clicked", self.window.show_prefs_view)
+        self.btn_manage_components.connect("clicked", self.window.show_prefs_view)
         self.btn_manage_gamescope.connect("clicked", self.__show_gamescope_settings)
         self.btn_cwd.connect("clicked", self.choose_cwd)
         self.btn_cwd_reset.connect("clicked", self.choose_cwd, True)
