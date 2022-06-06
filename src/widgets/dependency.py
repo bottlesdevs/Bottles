@@ -36,6 +36,7 @@ class DependencyEntry(Adw.ActionRow):
     btn_license = Gtk.Template.Child()
     btn_err = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
+    spinner = Gtk.Template.Child()
 
     # endregion
 
@@ -47,7 +48,6 @@ class DependencyEntry(Adw.ActionRow):
         self.manager = window.manager
         self.config = config
         self.dependency = dependency
-        self.spinner = Gtk.Spinner()
 
         if plain:
             '''
@@ -75,8 +75,7 @@ class DependencyEntry(Adw.ActionRow):
 
         # hide action widgets on selection
         if selection:
-            while self.box_actions.get_first_child():
-                self.box_actions.get_first_child().set_visible(False)
+            self.box_actions.set_visible(False)
 
         if dependency[0] in self.config.get("Installed_Dependencies"):
             '''
@@ -128,16 +127,10 @@ class DependencyEntry(Adw.ActionRow):
         and set the dependency as installed in the bottle
         configuration
         """
-        if widget != self.btn_reinstall:
-            self.get_parent().set_sensitive(False)
-            while widget.get_first_child():
-                w.remove(widget.get_first_child())
-
-        widget.set_sensitive(False)
-        widget.add(self.spinner)
-
+        self.get_parent().set_sensitive(False)
+        self.btn_install.set_visible(False)
         self.spinner.show()
-        GLib.idle_add(self.spinner.start)
+        self.spinner.start()
 
         RunAsync(
             task_func=self.manager.dependency_manager.install,
