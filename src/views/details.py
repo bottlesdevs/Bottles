@@ -51,6 +51,10 @@ class DetailsView(Adw.Bin):
     box_actions = Gtk.Template.Child()
     window_title = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
+    btn_operations = Gtk.Template.Child()
+    list_tasks = Gtk.Template.Child()
+    pop_tasks = Gtk.Template.Child()
+    spinner_tasks = Gtk.Template.Child()
 
     # endregion
 
@@ -80,6 +84,8 @@ class DetailsView(Adw.Bin):
         # region signals
         self.list_pages.connect('row-selected', self.__change_page)
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
+        self.btn_operations.connect('activate', self.__on_operations_toggled)
+        self.btn_operations.connect('notify::visible', self.__spin_tasks_toggle)
         # endregion
 
         # self.build_pages()
@@ -297,6 +303,18 @@ class DetailsView(Adw.Bin):
             return Result(True)
 
         RunAsync(process_programs, callback)
+
+    def __on_operations_toggled(self, widget):
+        if not self.list_tasks.get_first_child():
+            widget.set_visible(False)
+            
+    def __spin_tasks_toggle(self, widget, *args):
+        if widget.get_visible():
+            self.spinner_tasks.start()
+            self.spinner_tasks.set_visible(True)
+        else:
+            self.spinner_tasks.stop()
+            self.spinner_tasks.set_visible(False)
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)

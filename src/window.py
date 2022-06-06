@@ -58,7 +58,6 @@ class MainWindow(Adw.ApplicationWindow):
     btn_add = Gtk.Template.Child()
     btn_preferences = Gtk.Template.Child()
     btn_about = Gtk.Template.Child()
-    btn_operations = Gtk.Template.Child()
     btn_menu = Gtk.Template.Child()
     btn_search = Gtk.Template.Child()
     btn_support = Gtk.Template.Child()
@@ -69,8 +68,6 @@ class MainWindow(Adw.ApplicationWindow):
     btn_health = Gtk.Template.Child()
     btn_library = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
-    list_tasks = Gtk.Template.Child()
-    pop_tasks = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     window_title = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
@@ -146,7 +143,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_library.connect('clicked', self.show_library_view)
         self.btn_noconnection.connect("clicked", self.check_for_connection)
         self.btn_health.connect("clicked", self.show_health_view)
-        self.btn_operations.connect('activate', self.on_operations_toggled)
         self.__on_start()
 
         if self.arg_exe:
@@ -162,10 +158,6 @@ class MainWindow(Adw.ApplicationWindow):
 
     def update_library(self):
         GLib.idle_add(self.page_library.update)
-
-    def on_operations_toggled(self, widget):
-        if not self.list_tasks.get_first_child():
-            widget.set_visible(False)
 
     def set_title(self, title, subtitle: str = ""):
         self.window_title.set_title(title)
@@ -193,9 +185,7 @@ class MainWindow(Adw.ApplicationWindow):
         def set_manager(result, error=None):
             self.manager = result
 
-            tmp_runners = [
-                x for x in self.manager.runners_available if not x.startswith('sys-')
-            ]
+            tmp_runners = [x for x in self.manager.runners_available if not x.startswith('sys-')]
             if len(tmp_runners) == 0:
                 self.show_onboard_view()
 
