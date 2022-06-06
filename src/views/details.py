@@ -239,12 +239,11 @@ class DetailsView(Adw.Bin):
         GLib.idle_add(self.view_bottle.empty_list)
         GLib.idle_add(self.view_programs.empty_list)
 
-        wineserver_status = WineServer(self.config).is_alive()
         self.view_bottle.group_programs.set_sensitive(False)
         self.view_programs.group_programs.set_sensitive(False)
 
-        def new_program(_program, check_boot=None, is_steam=False, to_home=False):
-            nonlocal self, wineserver_status
+        def new_program(_program, check_boot=None, is_steam=False, to_home=False, wineserver_status=False):
+            nonlocal self
 
             if check_boot is None:
                 check_boot = wineserver_status
@@ -284,6 +283,8 @@ class DetailsView(Adw.Bin):
         def process_programs():
             nonlocal self
 
+            wineserver_status = WineServer(self.config).is_alive()
+
             if self.config.get("Environment") == "Steam":
                 GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True, True)
 
@@ -297,7 +298,7 @@ class DetailsView(Adw.Bin):
             for program in programs:
                 if program.get("removed"):
                     continue
-                GLib.idle_add(new_program, program, None, False, i < 5)
+                GLib.idle_add(new_program, program, None, False, i < 5, wineserver_status)
                 i = + 1
 
             return Result(True)
