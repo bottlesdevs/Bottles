@@ -88,7 +88,9 @@ class LibraryEntry(Gtk.Box):
         bottles = self.manager.local_bottles
         if self.entry['bottle']['name'] in bottles:
             return bottles[self.entry['bottle']['name']]
-        self.destroy()  # TODO: Remove from list
+        parent = self.get_parent()
+        if parent:
+            parent.remove(self)  # TODO: Remove from list
 
     def __get_program(self):
         programs = self.manager.get_programs(self.config)
