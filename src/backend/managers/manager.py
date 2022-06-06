@@ -1036,7 +1036,7 @@ class Manager:
         if path != "":
             config["Path"] = bottle_complete_path
         config["Custom_Path"] = bottle_custom_path
-        config["Environment"] = environment
+        config["Environment"] = environment.capitalize()
         config["Creation_Date"] = str(datetime.now())
         config["Update_Date"] = str(datetime.now())
         if versioning:
