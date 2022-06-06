@@ -282,6 +282,9 @@ class ProgramEntry(Adw.ActionRow):
                 )
                 dialog.run()
                 dialog.destroy()
+                return
+
+            self.window.show_toast(_("Desktop Entry created for '{0}'").format(self.program["name"]))
 
         RunAsync(
             ManagerUtils.create_desktop_entry,
@@ -301,22 +304,17 @@ class ProgramEntry(Adw.ActionRow):
             "icon": ManagerUtils.extract_icon(self.config, self.program["name"], self.program["path"]),
         })
         self.window.update_library()
+        self.window.show_toast(_("'{0}' added to your library").format(self.program["name"]))
 
     def add_to_steam(self, widget):
+        def update(result, error=False):
+            if result.status:
+                self.window.show_toast(_("'{0}' added to your Steam library").format(self.program["name"]))
+
         RunAsync(
             SteamManager.add_shortcut,
-            None,
+            update,
             self.config,
             self.program["name"],
             self.program["path"]
         )
-
-    def open_search_url(self, widget, site):
-        query = self.program["name"].replace(" ", "+")
-        sites = {
-            "winehq": f"https://www.winehq.org/search?q={query}",
-            "protondb": f"https://www.protondb.com/search?q={query}",
-            "forum": f"https://forums.usebottles.com/?q={query}",
-            "issues": f"https://github.com/bottlesdevs/Bottles/issues?q=is:issue{query}"
-        }
-        webbrowser.open_new_tab(sites[site])

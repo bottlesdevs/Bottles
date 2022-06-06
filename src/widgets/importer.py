@@ -61,11 +61,9 @@ class ImporterEntry(Adw.ActionRow):
         def set_imported(result, error=False):
             self.btn_import.set_visible(result.status)
             self.img_lock.set_visible(result.status)
-            
+
             if result.status:
-                toast = Adw.Toast.new(f"{self.prefix.get('Name')} imported successfully")
-                toast.props.timeout = 3
-                self.window.toasts.add_toast(toast)
+                self.window.show_toast(_("'{0}' imported.").format(self.prefix.get("Name")))
 
             self.set_sensitive(True)
         self.set_sensitive(False)

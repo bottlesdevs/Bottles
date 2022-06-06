@@ -160,11 +160,10 @@ class DependencyEntry(Adw.ActionRow):
         """
         if result is not None and result.status:
             if self.config.get("Versioning"):
-                self.window.page_details.view_versioning.update(
-                    config=self.config
-                )
+                self.window.page_details.view_versioning.update(config=self.config)
             uninstaller = result.data.get("uninstaller")
             removed = result.data.get("removed")
+            self.window.show_toast(_("'{0}' installed.").format(self.dependency[0]))
             return self.set_installed(uninstaller, removed)
         self.set_err()
 
