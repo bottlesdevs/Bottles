@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import time
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
@@ -27,6 +28,7 @@ from bottles.widgets.dependency import DependencyEntry
 @Gtk.Template(resource_path='/com/usebottles/bottles/details-dependencies.ui')
 class DependenciesView(Adw.Bin):
     __gtype_name__ = 'DetailsDependencies'
+    __registry = []
 
     # region Widgets
     list_dependencies = Gtk.Template.Child()
@@ -87,10 +89,7 @@ class DependenciesView(Adw.Bin):
         text written in the search entry.
         """
         terms = self.entry_search.get_text()
-        self.list_dependencies.set_filter_func(
-            self.__filter_dependencies,
-            terms
-        )
+        self.list_dependencies.set_filter_func(self.__filter_dependencies,  terms)
 
     def __toggle_selection(self, widget):
         """
@@ -119,6 +118,16 @@ class DependenciesView(Adw.Bin):
             return True
         return False
 
+    def add_dependency(self, widget):
+        self.__registry.append(widget)
+        self.list_dependencies.append(widget)
+
+    def empty_list(self):
+        for r in self.__registry:
+            if r.get_parent() is not None:
+                r.get_parent().remove(r)
+        self.__registry = []
+
     def update(self, widget=False, config=None, selection=False):
         """
         This function update the dependencies list with the
@@ -130,8 +139,6 @@ class DependenciesView(Adw.Bin):
         dependencies = self.manager.supported_dependencies
 
         self.list_dependencies.set_sensitive(False)
-        while self.list_dependencies.get_first_child():
-            self.list_dependencies.remove(self.list_dependencies.get_first_child())
 
         def new_dependency(dependency, plain=False):
             entry = DependencyEntry(
@@ -141,7 +148,7 @@ class DependenciesView(Adw.Bin):
                     selection=selection,
                     plain=plain
             )
-            self.list_dependencies.append(entry)
+            self.add_dependency(entry)
 
         def callback(result, error=False):
             nonlocal self
@@ -149,6 +156,9 @@ class DependenciesView(Adw.Bin):
 
         def process_dependencies():
             nonlocal self
+
+            time.sleep(.5)  # workaround for freezing bug on bottle load
+            GLib.idle_add(self.empty_list)
 
             if len(dependencies.keys()) > 0:
                 for dep in dependencies.items():
