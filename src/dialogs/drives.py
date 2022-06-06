@@ -68,7 +68,8 @@ class DriveEntry(Adw.ActionRow):
             title=_("Choose path"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
             buttons=(_("Cancel"), _("Select")),
-            callback=set_path
+            callback=set_path,
+            native=False
         )
 
     def __remove(self, *args):
