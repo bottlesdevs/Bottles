@@ -33,13 +33,11 @@ class ImporterEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, prefix, **kwargs):
+    def __init__(self, im_manager, prefix, **kwargs):
         super().__init__(**kwargs)
 
         # common variables and references
-        self.window = window
-        self.manager = window.manager
-        self.import_manager = window.manager.import_manager
+        self.import_manager = im_manager.import_manager
         self.prefix = prefix
 
         # populate widgets
@@ -49,28 +47,22 @@ class ImporterEntry(Adw.ActionRow):
         if prefix.get("Lock"):
             self.img_lock.set_visible(True)
 
-        self.label_manager.add_css_class(
-            "tag-%s" % prefix.get("Manager").lower()
-        )
+        self.label_manager.add_css_class("tag-%s" % prefix.get("Manager").lower())
 
         # connect signals
         self.btn_browse.connect("clicked", self.browse_wineprefix)
         self.btn_import.connect("clicked", self.import_wineprefix)
 
-    '''Browse wineprefix files'''
-
     def browse_wineprefix(self, widget):
         ManagerUtils.browse_wineprefix(self.prefix)
-
-    '''Import wineprefix'''
 
     def import_wineprefix(self, widget):
         def set_imported(result, error=False):
             if result.status:
-                self.destroy()
+                self.btn_import.set_visible(False)
+                self.img_lock.set_visible(True)
 
             self.set_sensitive(True)
-
         self.set_sensitive(False)
 
         RunAsync(

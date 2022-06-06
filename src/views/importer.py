@@ -51,6 +51,7 @@ class ImporterView(Adw.Bin):
         self.btn_find_prefixes.connect("clicked", self.__find_prefixes)
         self.btn_import_full.connect("clicked", self.__import_full_bck)
         self.btn_import_config.connect("clicked", self.__import_config_bck)
+
     def __find_prefixes(self, widget):
         """
         This function remove all entries from the list_prefixes, ask the
@@ -72,7 +73,7 @@ class ImporterView(Adw.Bin):
                     self.list_prefixes.remove(_w)
 
                 for prefix in result.data.get("wineprefixes"):
-                    self.list_prefixes.append(ImporterEntry(self.window, prefix))
+                    self.list_prefixes.append(ImporterEntry(self, prefix))
 
         widget.set_sensitive(False)
 
@@ -144,7 +145,6 @@ class ImporterView(Adw.Bin):
             )
 
         file_dialog.destroy()
-
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
