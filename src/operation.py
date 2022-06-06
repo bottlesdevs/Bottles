@@ -31,31 +31,21 @@ class TaskEntry(Adw.ActionRow):
 
     # endregion
 
-    def __init__(self, window, title, cancellable=True, **kwargs):
+    def __init__(self, op_manager, title, cancellable=True, **kwargs):
         super().__init__(**kwargs)
 
-        self.window = window
-        self.list_tasks = window.list_tasks
-        self.btn_operations = window.btn_operations
+        self.op_manager = op_manager
+        self.window = op_manager.window
 
         if len(title) > 30:
             title = f"{title[:20]}..."
-
-        # Set btn_operations visible
-        self.window.btn_operations.set_visible(True)
 
         # Populate widgets data
         self.set_title(title)
         if not cancellable:
             self.btn_cancel.hide()
 
-    def update_status(
-            self,
-            count=False,
-            block_size=False,
-            total_size=False,
-            completed=False
-    ):
+    def update_status(self, count=False, block_size=False, total_size=False, completed=False):
         if total_size == 0:
             self.set_subtitle(_("Calculating..."))
             return
@@ -67,18 +57,10 @@ class TaskEntry(Adw.ActionRow):
             percent = 100
 
         if percent == 100:
-            self.remove()
+            self.op_manager.remove_task(self)
 
     def remove(self):
-        """
-        tasks = self.list_tasks.get_n_children()
-        while self.list_tasks.get_first_child() is not None:
-            self.main_flow.remove(self.main_flow.get_first_child())
-        if len(tasks) <= 1:
-            if not self.btn_operations.get_active():
-                self.btn_operations.set_visible(False)
-        """
-        self.list_tasks.remove(self)
+        self.window.page_details.list_tasks.remove(self)
 
 
 class OperationManager:
@@ -89,23 +71,17 @@ class OperationManager:
 
         # Common variables
         self.window = window
-        self.list_tasks = window.list_tasks
 
     def __new_widget(self, title, cancellable=True):
-        task_entry = TaskEntry(self.window, title, cancellable)
-        self.list_tasks.append(task_entry)
+        task_entry = TaskEntry(self, title, cancellable)
+        self.window.page_details.list_tasks.append(task_entry)
         return task_entry
 
     def new_task(self, task_id, title, cancellable=True):
         self.__tasks[task_id] = self.__new_widget(title, cancellable)
+        self.window.page_details.btn_operations.set_visible(True)
 
-    def update_task(self,
-                    task_id,
-                    count=False,
-                    block_size=False,
-                    total_size=False,
-                    completed=False
-                    ):
+    def update_task(self, task_id, count=False, block_size=False, total_size=False, completed=False):
         if self.get_task(task_id):
             self.__tasks[task_id].update_status(
                 count, block_size, total_size, completed
@@ -116,10 +92,15 @@ class OperationManager:
             self.__tasks[task_id].remove()
             del self.__tasks[task_id]
 
+        if self.get_task_count() == 0:
+            print("No tasks")
+            self.window.page_details.btn_operations.set_visible(False)
+
     def remove_all_tasks(self):
         for task in self.__tasks:
             self.__tasks[task].remove()
         self.__tasks = {}
+        self.window.page_details.btn_operations.set_visible(False)
 
     def get_tasks(self):
         return self.__tasks

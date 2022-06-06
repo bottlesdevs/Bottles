@@ -61,31 +61,6 @@
             </object>
         </child>
     </object>
-    <object class="GtkPopover" id="pop_tasks">
-        <child>
-            <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">3</property>
-                <child>
-                    <object class="GtkBox">
-                        <property name="orientation">vertical</property>
-                        <child>
-                            <object class="GtkListBox" id="list_tasks">
-                                <property name="selection-mode">none</property>
-                                <style>
-                                    <class name="content"/>
-                                </style>
-                            </object>
-
-
-                        </child>
-                    </object>
-
-
-                </child>
-            </object>
-        </child>
-    </object>
 
     <template class="MainWindow" parent="AdwApplicationWindow">
         <property name="title" translatable="yes">Bottles</property>
@@ -117,16 +92,6 @@
                                     <object class="GtkToggleButton" id="btn_search">
                                         <property name="tooltip-text" translatable="yes">Search</property>
                                         <property name="icon-name">system-search-symbolic</property>
-                                    </object>
-                                </child>
-                                <child type="end">
-                                    <object class="GtkMenuButton" id="btn_operations">
-                                        <property name="visible">False</property>
-                                        <property name="tooltip-text" translatable="yes">Operations</property>
-                                        <property name="popover">pop_tasks</property>
-                                        <child>
-                                            <object class="GtkSpinner"/>
-                                        </child>
                                     </object>
                                 </child>
                                 <child type="end">
