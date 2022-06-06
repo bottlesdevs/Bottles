@@ -37,6 +37,7 @@ class ImporterEntry(Adw.ActionRow):
         super().__init__(**kwargs)
 
         # common variables and references
+        self.window = im_manager.window
         self.import_manager = im_manager.import_manager
         self.prefix = prefix
 
@@ -58,9 +59,13 @@ class ImporterEntry(Adw.ActionRow):
 
     def import_wineprefix(self, widget):
         def set_imported(result, error=False):
+            self.btn_import.set_visible(result.status)
+            self.img_lock.set_visible(result.status)
+            
             if result.status:
-                self.btn_import.set_visible(False)
-                self.img_lock.set_visible(True)
+                toast = Adw.Toast.new(f"{self.prefix.get('Name')} imported successfully")
+                toast.props.timeout = 3
+                self.window.toasts.add_toast(toast)
 
             self.set_sensitive(True)
         self.set_sensitive(False)
