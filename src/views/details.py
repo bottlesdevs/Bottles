@@ -220,6 +220,7 @@ class DetailsView(Adw.Bin):
         self.view_bottle.set_config(config=config)
         self.view_preferences.set_config(config=config)
         self.view_taskmanager.set_config(config=config)
+        self.view_programs.set_config(config=config)
         self.view_dependencies.update(config=config)  # TODO: cause slow down
         self.view_installers.update(config=config)
         self.view_versioning.update(config=config)
