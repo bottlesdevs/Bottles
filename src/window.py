@@ -71,6 +71,7 @@ class MainWindow(Adw.ApplicationWindow):
     headerbar = Gtk.Template.Child()
     window_title = Gtk.Template.Child()
     main_leaf = Gtk.Template.Child()
+    toasts = Gtk.Template.Child()
     # endregion
 
     # Common variables
