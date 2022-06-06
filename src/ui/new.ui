@@ -29,6 +29,15 @@
                                 </style>
                             </object>
                         </child>
+                        <child type="end">
+                            <object class="GtkButton" id="btn_close">
+                                <property name="label" translatable="yes">Close</property>
+                                <property name="visible">False</property>
+                                <style>
+                                    <class name="suggested-action"/>
+                                </style>
+                            </object>
+                        </child>
                     </object>
                 </child>
                 <child>
@@ -253,7 +262,7 @@
                                                     </object>
                                                 </child>
                                                 <child>
-                                                    <object class="GtkButton" id="btn_close">
+                                                    <object class="GtkButton" id="btn_close_pill">
                                                         <property name="label" translatable="yes">Close</property>
                                                         <property name="valign">center</property>
                                                         <property name="halign">center</property>

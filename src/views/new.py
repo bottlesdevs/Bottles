@@ -37,6 +37,7 @@ class NewView(Adw.Window):
     btn_create = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
+    btn_close_pill = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
     # btn_pref_runners = Gtk.Template.Child()
@@ -74,6 +75,7 @@ class NewView(Adw.Window):
         # connect signals
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_close.connect("clicked", self.__close_window)
+        self.btn_close_pill.connect("clicked", self.__close_window)
         self.btn_create.connect("clicked", self.create_bottle)
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
@@ -147,7 +149,7 @@ class NewView(Adw.Window):
         self.btn_create.set_visible(False)
         self.page_create.set_visible(False)
         self.title.set_visible(False)
-        self.headerbar.get_style_context().add_class("flat")
+        self.headerbar.add_css_class("flat")
         self.stack_create.set_visible_child_name("page_creating")
 
         '''
@@ -214,10 +216,11 @@ class NewView(Adw.Window):
         self.label_output.set_text(text)
 
     def finish(self, result, error=None):
-        if result is None or error is not None:
+        if not result or not result.status or error:
             self.update_output(_("There was an error creating the bottle."))
             self.btn_cancel.set_visible(False)
             self.btn_close.set_visible(True)
+            self.headerbar.remove_css_class("flat")
             return
 
         self.new_bottle_config = result.data.get("config")
@@ -226,9 +229,7 @@ class NewView(Adw.Window):
                 self.entry_name.get_text()
             )
         )
-
         self.btn_cancel.set_visible(False)
-
         self.stack_create.set_visible_child_name("page_created")
 
         '''
