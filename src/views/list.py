@@ -20,7 +20,9 @@ from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
+from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+
+from bottles.utils.threading import RunAsync
 from bottles.backend.runner import Runner
 from bottles.backend.wine.executor import WineExecutor
 
@@ -129,17 +131,14 @@ class BottleViewEntry(Adw.ActionRow):
                 RunAsync(_executor.run)
 
         if not exec_path:
-            file_dialog = Gtk.FileChooserNative.new(
-                _("Choose a Windows executable file"),
-                self.window,
-                Gtk.FileChooserAction.OPEN,
-                _("Run"),
-                _("Cancel")
+            FileChooser(
+                parent=self.window,
+                title=_("Choose a Windows executable file"),
+                action=Gtk.FileChooserAction.OPEN,
+                buttons=(_("Cancel"), _("Run")),
+                callback=set_path
             )
-            file_dialog.set_modal(True)
-            file_dialog.set_transient_for(self.window)
-            file_dialog.connect('response', set_path, file_dialog)
-            file_dialog.show()
+            return
 
         executor = WineExecutor(self.config, exec_path=exec_path)
         RunAsync(executor.run)

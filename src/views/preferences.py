@@ -20,6 +20,8 @@ from gettext import gettext as _
 from gi.repository import Gtk, Adw
 
 from bottles.widgets.component import ComponentEntry, ComponentExpander  # pyright: reportMissingImports=false
+from bottles.dialogs.filechooser import FileChooser
+
 from bottles.backend.managers.steam import SteamManager
 from bottles.backend.managers.data import DataManager
 
@@ -48,7 +50,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
     action_bottles_path = Gtk.Template.Child()
     btn_bottles_path = Gtk.Template.Child()
     btn_bottles_path_reset = Gtk.Template.Child()
-    flatpak_notice = Gtk.Template.Child()
     pref_core = Gtk.Template.Child()
 
     # endregion
@@ -65,7 +66,6 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.data = DataManager()
 
         if "FLATPAK_ID" in os.environ:
-            self.flatpak_notice.set_visible(False)
             self.remove(self.pref_core)
 
         if self.data.get("custom_bottles_path"):
@@ -142,25 +142,25 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.settings.set_boolean("auto-close-bottles", state)
 
     def __choose_bottles_path(self, widget):
-        file_dialog = Gtk.FileChooserDialog(
-            _("Choose new bottles path"),
-            self.window,
-            Gtk.FileChooserAction.SELECT_FOLDER,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_OPEN, Gtk.ResponseType.OK)
+        def set_path(_dialog, response, _file_dialog):
+            self.btn_bottles_path_reset.set_visible(True)
+            if response == Gtk.ResponseType.OK:
+                _file = _file_dialog.get_file()
+                self.data.set("custom_bottles_path", _file.get_path())
+                self.action_bottles_path.set_subtitle(_file.get_path())
+            else:
+                self.action_bottles_path.set_subtitle(
+                    _("Choose where to store the new bottles (this will not move the existing ones)"))
+            _file_dialog.destroy()
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose new bottles path"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(_("Cancel"), _("Select")),
+            native=False,
+            callback=set_path
         )
-        response = file_dialog.run()
-
-        if response == Gtk.ResponseType.OK:
-            path = file_dialog.get_filename()
-            self.data.set("custom_bottles_path", path)
-            self.action_bottles_path.set_subtitle(path)
-        else:
-            self.action_bottles_path.set_subtitle(
-                _("Choose where to store the new bottles (this will not move the existing ones)"))
-
-        file_dialog.destroy()
-        self.btn_bottles_path_reset.set_visible(True)
 
     def __reset_bottles_path(self, widget):
         self.data.remove("custom_bottles_path")
