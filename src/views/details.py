@@ -189,7 +189,7 @@ class DetailsView(Adw.Bin):
         try:
             self.stack_bottle.set_visible_child_name(row.page_name)
         except AttributeError:
-            self.stack_bottle.set_visible_child_name("bottle")
+            pass
 
     def set_actions(self, widget: Gtk.Widget = None):
         """
