@@ -30,8 +30,9 @@ logging = Logger()
 class API:
     notifications = "https://raw.githubusercontent.com/bottlesdevs/data/main/notifications.yml"
 
+
 # xdg data path
-xdg_data_home = os.environ.get("XDG_DATA_HOME", f"{Path.home()}/.local/share")
+xdg_data_home = os.environ.get("XDG_DATA_HOME", os.path.join(Path.home(), "local/share"))
 
 # check if bottles exists in xdg data path
 os.makedirs(f"{xdg_data_home}/bottles", exist_ok=True)
@@ -84,10 +85,10 @@ class Paths:
 
 class TrdyPaths:
     # External managers paths
-    wine = f"{xdg_data_home}/.wine"
-    lutris = f"{xdg_data_home}*/Games"
-    playonlinux = f"{xdg_data_home}/.PlayOnLinux/wineprefix"
-    bottlesv1 = f"{xdg_data_home}/.Bottles"
+    wine = f"{Path.home()}/.wine"
+    lutris = f"{Path.home()}/Games"
+    playonlinux = f"{Path.home()}/.PlayOnLinux/wineprefix"
+    bottlesv1 = f"{Path.home()}/.Bottles"
 
 
 # Check if some tools are available
