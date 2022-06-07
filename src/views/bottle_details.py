@@ -249,11 +249,18 @@ class BottleView(Adw.PreferencesPage):
             title = _("Select the location where to save the backup archive")
             hint = f"backup_{self.config.get('Path')}.tar.gz"
 
+        def finish(result, error=False):
+            if result.status:
+                self.window.show_toast(_("Backup created for '{0}'.").format(self.config["Name"]))
+            else:
+                self.window.show_toast(_("Backup failed for '{0}'.").format(self.config["Name"]))
+
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
                 RunAsync(
                     task_func=BackupManager.export_backup,
+                    callback=finish,
                     window=self.window,
                     config=self.config,
                     scope=backup_type,

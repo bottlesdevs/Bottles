@@ -84,6 +84,12 @@ class ImporterView(Adw.Bin):
             callback=update
         )
 
+    def __finish(self, result, error=False):
+        if result.status:
+            self.window.show_toast(_("Backup imported successfully."))
+        else:
+            self.window.show_toast(_("Import failed."))
+
     def __import_full_bck(self, *args):
         """
         This function show a dialog to the user, from which it can choose an
@@ -94,8 +100,10 @@ class ImporterView(Adw.Bin):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
+                self.window.show_toast(_("Importing backup.."))
                 RunAsync(
                     task_func=BackupManager.import_backup,
+                    callback=self.__finish,
                     window=self.window,
                     scope="full",
                     path=_file.get_path(),
@@ -121,8 +129,10 @@ class ImporterView(Adw.Bin):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
+                self.window.show_toast(_("Importing backup.."))
                 RunAsync(
                     task_func=BackupManager.import_backup,
+                    callback=self.__finish,
                     window=self.window,
                     scope="config",
                     path=_file.get_path(),
