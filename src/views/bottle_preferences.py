@@ -224,7 +224,7 @@ class PreferencesView(Adw.PreferencesPage):
                 else:
                     self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
-                _dialog.destroy()
+            _dialog.destroy()
 
         path = ManagerUtils.get_bottle_path(self.config)
         if not reset:
