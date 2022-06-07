@@ -289,7 +289,6 @@ class SteamManager:
             app_conf = SteamManager.get_app_config(prefix)
 
         launch_options = app_conf.get("LaunchOptions", "")
-        _fail_msg = f"Fail to get launch options from Steam for: {prefix}"
         prefix, args = "", ""
         env_vars = {}
         res = {
@@ -299,7 +298,7 @@ class SteamManager:
         }
 
         if len(launch_options) == 0:
-            logging.warning(_fail_msg)
+            logging.debug(_fail_msg)
             return res
 
         if "%command%" in launch_options:
