@@ -289,6 +289,7 @@ class SteamManager:
             app_conf = SteamManager.get_app_config(prefix)
 
         launch_options = app_conf.get("LaunchOptions", "")
+        _fail_msg = f"Fail to get launch options from Steam for: {prefix}"
         prefix, args = "", ""
         env_vars = {}
         res = {

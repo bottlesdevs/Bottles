@@ -39,12 +39,7 @@ RunnerName = NewType('RunnerName', str)
 class BackupManager:
 
     @staticmethod
-    def export_backup(
-            window,
-            config: dict,
-            scope: str,
-            path: str
-    ) -> bool:
+    def export_backup(window, config: dict, scope: str, path: str) -> Result:
         """
         Exports a bottle backup to the specified path.
         Use the scope parameter to specify the backup type: config, full.
@@ -106,7 +101,7 @@ class BackupManager:
         return tarinfo
 
     @staticmethod
-    def import_backup(window, scope: str, path: str, manager: Manager) -> bool:
+    def import_backup(window, scope: str, path: str, manager: Manager) -> Result:
         """
         Imports a backup from the specified path.
         Use the scope parameter to specify the backup type: config, full.
@@ -175,7 +170,7 @@ class BackupManager:
         return Result(status=False)
 
     @staticmethod
-    def duplicate_bottle(config, name) -> bool:
+    def duplicate_bottle(config, name) -> Result:
         """Duplicates the bottle with the specified new name."""
         logging.info(f"Duplicating bottle: {config.get('Name')} to {name}")
 

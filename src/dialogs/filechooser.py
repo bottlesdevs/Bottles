@@ -35,7 +35,7 @@ class FileChooser:
 
     def __build_dialog(self):
         if self.native:
-            dialog = Gtk.FileChooserNative.new(self.title, self.parent, self.action, self.buttons[0], self.buttons[1])
+            dialog = Gtk.FileChooserNative.new(self.title, self.parent, self.action, self.buttons[1], self.buttons[0])
         else:
             dialog = Gtk.FileChooserDialog(title=self.title, action=self.action)
             dialog.add_buttons(*self.buttons)
