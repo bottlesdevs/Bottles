@@ -269,49 +269,50 @@ class DetailsView(Adw.Bin):
             nonlocal self
 
             row_no_programs = self.view_bottle.row_no_programs
+            handled = result.data.get("handled")
 
-            if not result.status:
+            handled_h = handled[0] == 0
+            handled_p = handled[1] == 0
+
+            if handled_h:
                 self.view_bottle.group_programs.add(row_no_programs)
-            elif row_no_programs.get_parent() is not None:
-                row_no_programs.get_parent().remove(row_no_programs)
+            else:
+                if row_no_programs.get_parent():
+                    row_no_programs.get_parent().remove(row_no_programs)
 
-            self.view_bottle.row_no_programs.set_visible(not result.status)
-            self.view_bottle.group_programs.set_sensitive(result.status)
-            self.view_programs.status_page.set_visible(not result.status)
-            self.view_programs.group_programs.set_visible(result.status)
-            self.view_programs.group_programs.set_sensitive(result.status)
+            self.view_bottle.row_no_programs.set_visible(handled_h)
+            self.view_bottle.group_programs.set_sensitive(not handled_h)
+            self.view_programs.status_page.set_visible(handled_p)
+            self.view_programs.group_programs.set_visible(not handled_p)
+            self.view_programs.group_programs.set_sensitive(not handled_p)
 
         def process_programs():
             nonlocal self
 
             wineserver_status = WineServer(self.config).is_alive()
+            programs = self.manager.get_programs(self.config)
 
             if self.config.get("Environment") == "Steam":
                 GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True, True)
 
-            programs = self.manager.get_programs(self.config)
-            hidden = len([x for x in programs if x.get("removed")])
-
-            if (len(programs) == 0 or len(programs) == hidden) and self.config.get("Environment") != "Steam":
-                return Result(False)
-
-            i = 0  # append first 5 entries to group_programs
+            handled = [0, 0]  # home, programs
             for program in programs:
                 if program.get("removed"):
                     if self.view_programs.show_removed:
                         GLib.idle_add(new_program, program, None, False, False, wineserver_status)
+                        handled[1] += 1
                     continue
-                GLib.idle_add(new_program, program, None, False, i < 5, wineserver_status)
-                i = + 1
+                GLib.idle_add(new_program, program, None, False, handled[0] < 5, wineserver_status)
+                handled[0] += 1
 
-            return Result(True)
+            return Result(True, data={"handled": handled})
 
-        RunAsync(process_programs, callback)
+        RunAsync(process_programs, callback, )
 
     def __on_operations_toggled(self, widget):
         if not self.list_tasks.get_first_child():
             widget.set_visible(False)
-            
+
     def __spin_tasks_toggle(self, widget, *args):
         if widget.get_visible():
             self.spinner_tasks.start()
