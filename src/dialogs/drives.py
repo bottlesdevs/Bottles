@@ -62,6 +62,7 @@ class DriveEntry(Adw.ActionRow):
             path = _file.get_path()
             Drives(self.config).new_drive(self.drive[0], path)
             self.set_subtitle(path)
+            _dialog.destroy()
 
         FileChooser(
             parent=self.window,

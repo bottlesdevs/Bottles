@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Gio, Adw
 
 
 class FileChooser:
@@ -40,7 +40,8 @@ class FileChooser:
             dialog = Gtk.FileChooserDialog(title=self.title, action=self.action)
             dialog.add_buttons(*self.buttons)
             if self.path:
-                dialog.set_current_folder(self.path)
+                _path = Gio.File.new_for_path(self.path)
+                dialog.set_current_folder(_path)
 
         dialog.set_modal(True)
         dialog.set_transient_for(self.parent)
