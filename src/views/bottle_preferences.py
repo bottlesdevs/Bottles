@@ -221,12 +221,13 @@ class PreferencesView(Adw.PreferencesPage):
                         key="WorkingDir",
                         value=_path
                     )
+                    self.btn_cwd_reset.set_visible(True)
                 else:
                     self.row_cwd.set_subtitle(_("Default to the bottle path."))
+                    self.btn_cwd_reset.set_visible(False)
 
             _dialog.destroy()
 
-        path = ManagerUtils.get_bottle_path(self.config)
         if not reset:
             FileChooser(
                 parent=self.window,
@@ -238,12 +239,9 @@ class PreferencesView(Adw.PreferencesPage):
                 callback=set_path
             )
 
-        self.manager.update_config(
-            config=self.config,
-            key="WorkingDir",
-            value=path
-        )
+        self.manager.update_config(config=self.config, key="WorkingDir", value="")
         self.row_cwd.set_subtitle(_("Default to the bottle path."))
+        self.btn_cwd_reset.set_visible(False)
 
     def update_combo_components(self):
         """
@@ -361,6 +359,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.combo_nvapi.set_active_id(self.config.get("NVAPI"))
         self.combo_renderer.set_active_id(parameters["renderer"])
         self.combo_dpi.set_active_id(str(parameters["custom_dpi"]))
+
+        self.btn_cwd_reset.set_visible(self.config.get("WorkingDir"))
 
         self.entry_name.set_text(config["Name"])
 
