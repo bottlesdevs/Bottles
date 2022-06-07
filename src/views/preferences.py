@@ -68,16 +68,13 @@ class PreferencesWindow(Adw.PreferencesWindow):
         if "FLATPAK_ID" in os.environ:
             self.remove(self.pref_core)
 
-        if self.data.get("custom_bottles_path"):
-            self.action_bottles_path.set_subtitle(
-                self.data.get("custom_bottles_path")
-            )
+        bottles_path = self.data.get("custom_bottles_path")
+        if bottles_path:
+            self.action_bottles_path.set_subtitle(bottles_path)
             self.btn_bottles_path_reset.set_visible(True)
 
         # set widget defaults
-        self.switch_notifications.set_active(
-            self.settings.get_boolean("notifications")
-        )
+        self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
         self.switch_temp.set_active(
             self.settings.get_boolean("temp")
         )
