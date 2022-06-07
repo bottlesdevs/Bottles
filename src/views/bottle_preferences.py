@@ -243,6 +243,7 @@ class PreferencesView(Adw.PreferencesPage):
             key="WorkingDir",
             value=path
         )
+        self.row_cwd.set_subtitle(_("Default to the bottle path."))
 
     def update_combo_components(self):
         """
