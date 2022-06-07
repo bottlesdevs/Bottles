@@ -51,7 +51,7 @@ class ProgramsView(Adw.PreferencesPage):
         self.show_removed = False
 
         self.btn_add.connect("clicked", self.add)
-        self.btn_update.connect("clicked", self.parent.update_programs, self.config)
+        self.btn_update.connect("clicked", self.update, self.config)
         self.btn_help.connect("clicked", open_doc_url, "bottles/programs")
         self.btn_toggle_removed.connect("clicked", self.__toggle_removed)
 
@@ -103,7 +103,7 @@ class ProgramsView(Adw.PreferencesPage):
             config = {}
 
         self.config = config
-        self.window.page_details.update_programs(config)
+        self.window.page_details.update_programs()
 
     def __toggle_removed(self, widget=False):
         """
