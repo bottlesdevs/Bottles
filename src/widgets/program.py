@@ -55,6 +55,7 @@ class ProgramEntry(Adw.ActionRow):
     btn_add_entry = Gtk.Template.Child()
     btn_add_library = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
+    sep = Gtk.Template.Child()
 
     # endregion
 
@@ -79,6 +80,7 @@ class ProgramEntry(Adw.ActionRow):
                 self.btn_run,
                 self.btn_stop,
                 self.btn_menu,
+                self.sep
             ]:
                 w.set_visible(False)
                 w.set_sensitive(False)
