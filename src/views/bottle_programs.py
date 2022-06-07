@@ -80,6 +80,7 @@ class ProgramsView(Adw.PreferencesPage):
                     fallback=True
                 )
                 self.parent.update_programs(config=self.config)
+                self.window.show_toast(_("'{0}' added.").format(_file_name[:-4]))
 
         FileChooser(
             parent=self.window,
