@@ -298,6 +298,8 @@ class DetailsView(Adw.Bin):
             i = 0  # append first 5 entries to group_programs
             for program in programs:
                 if program.get("removed"):
+                    if self.view_programs.show_removed:
+                        GLib.idle_add(new_program, program, None, False, False, wineserver_status)
                     continue
                 GLib.idle_add(new_program, program, None, False, i < 5, wineserver_status)
                 i = + 1

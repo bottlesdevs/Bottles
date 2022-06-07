@@ -201,11 +201,13 @@ class ProgramEntry(Adw.ActionRow):
             ).run()
             return True
 
+        self.window.show_toast(_("'{0}' launched.").format(self.program["name"]))
         RunAsync(_run, callback=self.__reset_buttons)
         self.__reset_buttons()
 
     def run_steam(self, widget):
         SteamManager.launch_app(self.config["CompatData"])
+        self.window.show_toast(_("'{0}' launched with Steam.").format(self.program["name"]))
 
     def stop_process(self, widget):
         winedbg = WineDbg(self.config)
@@ -226,6 +228,10 @@ class ProgramEntry(Adw.ActionRow):
 
     def hide_program(self, widget=None, update=True):
         status = not self.program.get("removed")
+        msg = _("'{0}' hidden.").format(self.program["name"])
+        if not status:
+            msg = _("'{0}' showed.").format(self.program["name"])
+
         self.program["removed"] = status
         self.config = self.manager.update_config(
             config=self.config,
@@ -235,6 +241,7 @@ class ProgramEntry(Adw.ActionRow):
         ).data["config"]
         self.btn_hide.set_visible(not status)
         self.btn_unhide.set_visible(status)
+        self.window.show_toast(msg)
         if update:
             self.update_programs()
 
@@ -246,10 +253,13 @@ class ProgramEntry(Adw.ActionRow):
             value=None,
             remove=True
         ).data["config"]
+        self.window.show_toast(_("'{0}' removed.").format(self.program["name"]))
         self.update_programs()
 
     def rename_program(self, widget):
         def func(new_name):
+            if new_name == self.program["name"]:
+                return
             self.program["name"] = new_name
             self.manager.update_config(
                 config=self.config,
@@ -257,6 +267,7 @@ class ProgramEntry(Adw.ActionRow):
                 value=self.program,
                 scope="External_Programs"
             )
+            self.window.show_toast(_("'{0}' renamed to '{1}'.").format(self.program["name"], new_name))
             self.update_programs()
 
         dialog = RenameDialog(self.window, on_save=func, name=self.program["name"])
