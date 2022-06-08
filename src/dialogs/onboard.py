@@ -25,23 +25,27 @@ from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=fa
 @Gtk.Template(resource_path='/com/usebottles/bottles/onboard.ui')
 class OnboardDialog(Adw.Window):
     __gtype_name__ = 'OnboardDialog'
+    __installing = False
 
     # region Widgets
-    stack_onboard = Gtk.Template.Child()
+    carousel = Gtk.Template.Child()
     btn_quit = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_next = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
     btn_close = Gtk.Template.Child()
-    progressbar_downloading = Gtk.Template.Child()
+    progressbar = Gtk.Template.Child()
+    page_welcome = Gtk.Template.Child()
+    page_bottles = Gtk.Template.Child()
+    page_download = Gtk.Template.Child()
+    page_finish = Gtk.Template.Child()
     # endregion
 
-    stack_pages = [
-        "page_welcome",
-        "page_about",
-        "page_runners",
-        "page_download",
-        "page_finish"
+    carousel_pages = [
+        "welcome",
+        "bottles",
+        "download",
+        "finish"
     ]
 
     def __init__(self, window, **kwargs):
@@ -53,7 +57,7 @@ class OnboardDialog(Adw.Window):
         self.manager = window.manager
 
         # connect signals
-        self.stack_onboard.connect('notify::visible-child', self.__page_changed)
+        self.carousel.connect('page-changed', self.__page_changed)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_quit.connect("clicked", self.__quit)
         self.btn_back.connect("clicked", self.__previous_page)
@@ -62,48 +66,32 @@ class OnboardDialog(Adw.Window):
 
         self.__page_changed()
 
-    def __page_changed(self, widget=False, event=False):
+    def __get_page(self, index):
+        return self.carousel_pages[index]
+
+    def __page_changed(self, widget=False, index=0, *args):
         """
         This function is called on first load and when the user require
-        to change the page. It sets the widgets status according to
+        to change the page. It sets the widgets' status according to
         the step of the onboard progress.
         """
-        page = self.stack_onboard.get_visible_child_name()
+        page = self.__get_page(index)
 
-        if page == "page_welcome":
-            self.btn_next.set_visible(True)
+        if page == "finish":
+            self.btn_back.set_visible(False)
+            self.btn_next.set_visible(False)
+            self.btn_quit.set_visible(False)
+        elif page == "download":
+            self.btn_back.set_visible(True)
+            self.btn_next.set_visible(False)
             self.btn_quit.set_visible(True)
-            self.btn_back.set_visible(False)
-            self.btn_install.set_visible(False)
-            self.btn_close.set_visible(False)
-
-        if page == "page_wine":
-            self.btn_next.set_visible(True)
-            self.btn_quit.set_visible(False)
-            self.btn_back.set_visible(True)
-            self.btn_install.set_visible(False)
-            self.btn_close.set_visible(False)
-
-        if page == "page_runners":
-            self.btn_next.set_visible(False)
-            self.btn_quit.set_visible(False)
-            self.btn_back.set_visible(True)
             self.btn_install.set_visible(True)
-            self.btn_close.set_visible(False)
-
-        if page == "page_download":
-            self.btn_next.set_visible(False)
-            self.btn_quit.set_visible(False)
+        elif page == "welcome":
             self.btn_back.set_visible(False)
-            self.btn_install.set_visible(False)
-            self.btn_close.set_visible(False)
-
-        if page == "page_finish":
-            self.btn_next.set_visible(False)
-            self.btn_quit.set_visible(False)
-            self.btn_back.set_visible(False)
-            self.btn_install.set_visible(False)
-            self.btn_close.set_visible(True)
+            self.btn_next.set_visible(True)
+        else:
+            self.btn_back.set_visible(True)
+            self.btn_next.set_visible(True)
 
     @staticmethod
     def __quit(widget=False):
@@ -113,11 +101,16 @@ class OnboardDialog(Adw.Window):
         def set_completed(result, error=False):
             self.__next_page()
 
-        '''
-        This method ask the manager to performs its checks, then
-        it will install the latest runner if there is no one installed.
-        '''
-        self.__next_page()
+        self.__installing = True
+        self.btn_back.set_visible(False)
+        self.btn_next.set_visible(False)
+        self.btn_quit.set_visible(False)
+        self.btn_install.set_visible(False)
+        self.progressbar.set_visible(True)
+        self.carousel.set_allow_long_swipes(False)
+        self.carousel.set_allow_mouse_drag(False)
+        self.carousel.set_allow_scroll_wheel(False)
+
         RunAsync(self.pulse)
         RunAsync(
             task_func=self.manager.checks,
@@ -127,20 +120,20 @@ class OnboardDialog(Adw.Window):
         )
 
     def __previous_page(self, widget=False):
-        visible_child = self.stack_onboard.get_visible_child_name()
-        previous_page = self.stack_pages[self.stack_pages.index(visible_child) - 1]
-        self.stack_onboard.set_visible_child_name(previous_page)
+        index = int(self.carousel.get_position())
+        previous_page = self.carousel.get_nth_page(index - 1)
+        self.carousel.scroll_to(previous_page, True)
 
     def __next_page(self, widget=False):
-        visible_child = self.stack_onboard.get_visible_child_name()
-        next_page = self.stack_pages[self.stack_pages.index(visible_child) + 1]
-        self.stack_onboard.set_visible_child_name(next_page)
+        index = int(self.carousel.get_position())
+        next_page = self.carousel.get_nth_page(index + 1)
+        self.carousel.scroll_to(next_page, True)
 
     def pulse(self):
         # This function update the progress bar every 1s.
         while True:
             time.sleep(.5)
-            self.progressbar_downloading.pulse()
+            self.progressbar.pulse()
 
     def __close_window(self, widget):
         self.destroy()
