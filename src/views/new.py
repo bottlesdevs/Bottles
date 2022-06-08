@@ -95,6 +95,9 @@ class NewView(Adw.Window):
         # focus on the entry_name
         self.entry_name.grab_focus()
 
+        # select first row
+        self.list_envs.select_row(self.list_envs.get_first_child())
+
     def set_active_env(self, widget, row):
         """
         This function set the active environment on row selection.
@@ -105,7 +108,7 @@ class NewView(Adw.Window):
         result = GtkUtils.validate_entry(self.entry_name)
         self.btn_create.set_sensitive(result)
 
-    def choose_env_recipe(self, widget):
+    def choose_env_recipe(self, *args):
         def set_path(_dialog, response, _file_dialog):
             if response == -3:
                 _file = _file_dialog.get_file()
@@ -120,7 +123,7 @@ class NewView(Adw.Window):
             callback=set_path
         )
 
-    def choose_path(self, widget):
+    def choose_path(self, *args):
         def set_path(_dialog, response, _file_dialog):
             if response == Gtk.ResponseType.OK:
                 _file = _file_dialog.get_file()
@@ -136,9 +139,7 @@ class NewView(Adw.Window):
             callback=set_path
         )
 
-    '''Create the bottle'''
-
-    def create_bottle(self, widget):
+    def create_bottle(self, *args):
         # set widgets states
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
@@ -234,7 +235,7 @@ class NewView(Adw.Window):
         self.manager.check_bottles()
         self.window.page_list.update_bottles()
 
-    def __close_window(self, widget):
+    def __close_window(self, *args):
         """
         This function check if an executable was passed to Bottles as
         a command line argument. If so, it will be launched in the new
