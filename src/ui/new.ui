@@ -3,6 +3,7 @@
     <requires lib="gtk" version="4.0"/>
     <template class="NewView" parent="AdwWindow">
         <property name="modal">True</property>
+        <property name="resizable">False</property>
         <property name="default-width">450</property>
         <property name="hide-on-close">True</property>
         <child>
