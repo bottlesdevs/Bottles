@@ -1,239 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-<requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="OnboardDialog" parent="AdwWindow">
-    <property name="resizable">False</property>
-    <property name="modal">True</property>
-    <property name="default-width">500</property>
-    <property name="destroy-with-parent">True</property>
-    <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="OnboardDialog" parent="AdwWindow">
+        <property name="resizable">False</property>
+        <property name="deletable">False</property>
+        <property name="modal">True</property>
+        <property name="default_width">550</property>
+        <property name="default_height">500</property>
         <child>
-          <object class="GtkHeaderBar">
-          <property name="show-title-buttons">False</property>
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title" translatable="yes">Welcome</property>
-              </object>
-            </property>
-
-            <child type="end">
-              <object class="GtkButton" id="btn_next">
-                <property name="label" translatable="yes">Next</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
-
-            <child type="end">
-              <object class="GtkButton" id="btn_install">
-                <property name="label" translatable="yes">Install</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkButton" id="btn_close">
-                <property name="label" translatable="yes">Close</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkButton" id="btn_quit">
-                <property name="label" translatable="yes">Quit</property>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkButton" id="btn_back">
-                <property name="label" translatable="yes">Back</property>
-              </object>
-            </child>
-
-          </object>
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="AdwHeaderBar">
+                        <property name="title_widget">
+                            <object class="AdwCarouselIndicatorDots">
+                                <property name="carousel">carousel</property>
+                                <property name="orientation">horizontal</property>
+                            </object>
+                        </property>
+                        <child type="start">
+                            <object class="GtkButton" id="btn_quit">
+                                <property name="label" translatable="yes">Quit</property>
+                            </object>
+                        </child>
+                        <style>
+                            <class name="flat"/>
+                        </style>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkOverlay">
+                        <child type="overlay">
+                            <object class="GtkButton" id="btn_back">
+                                <property name="margin-start">12</property>
+                                <property name="icon-name">go-previous-symbolic</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="visible">False</property>
+                                <property name="tooltip-text" translatable="yes">Previous</property>
+                                <style>
+                                    <class name="circular"/>
+                                </style>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwCarousel" id="carousel">
+                                <property name="vexpand">True</property>
+                                <property name="hexpand">True</property>
+                                <property name="allow_scroll_wheel">True</property>
+                                <property name="allow_mouse_drag">True</property>
+                                <property name="allow_long_swipes">True</property>
+                                <child>
+                                    <object class="GtkBox">
+                                        <property name="orientation">vertical</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="hexpand">True</property>
+                                        <child>
+                                            <object class="GtkImage">
+                                                <property name="resource">/com/usebottles/bottles/images/images/bottles-welcome.png</property>
+                                                <property name="pixel-size">280</property>
+                                            </object>
+                                        </child>
+                                        <child>
+                                            <object class="AdwStatusPage" id="page_welcome">
+                                                <property name="title" translatable="yes">Welcome to Bottles</property>
+                                                <property name="description" translatable="yes">Run Windows Software on Linux.
+                                                </property>
+                                            </object>
+                                        </child>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwStatusPage" id="page_bottles">
+                                        <property name="title" translatable="yes">Windows in Bottles</property>
+                                        <property name="description" translatable="yes">Bottles uses compatibility runners to provide isolated containerized Windows-like environments where programs run.</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="hexpand">True</property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwStatusPage" id="page_download">
+                                        <property name="title" translatable="yes">Almost Done</property>
+                                        <property name="description" translatable="yes">We need a few more minutes to set everything up..</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="child">
+                                            <object class="GtkBox">
+                                                <property name="orientation">vertical</property>
+                                                <child>
+                                                    <object class="GtkButton" id="btn_install">
+                                                        <property name="label" translatable="yes">Continue</property>
+                                                        <property name="use-underline">True</property>
+                                                        <property name="halign">center</property>
+                                                        <style>
+                                                            <class name="suggested-action"/>
+                                                            <class name="pill"/>
+                                                        </style>
+                                                    </object>
+                                                </child>
+                                                <child>
+                                                    <object class="GtkProgressBar" id="progressbar">
+                                                        <property name="width_request">300</property>
+                                                        <property name="halign">center</property>
+                                                        <property name="visible">False</property>
+                                                        <property name="margin-top">24</property>
+                                                        <property name="margin-bottom">12</property>
+                                                    </object>
+                                                </child>
+                                            </object>
+                                        </property>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="AdwStatusPage" id="page_finish">
+                                        <property name="icon-name">selection-mode-symbolic</property>
+                                        <property name="title" translatable="yes">All ready!</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="valign">center</property>
+                                        <property name="child">
+                                            <object class="GtkButton" id="btn_close">
+                                                <property name="label" translatable="yes">Start using Bottles</property>
+                                                <property name="use-underline">True</property>
+                                                <property name="halign">center</property>
+                                                <style>
+                                                    <class name="suggested-action"/>
+                                                    <class name="pill"/>
+                                                </style>
+                                            </object>
+                                        </property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child type="overlay">
+                            <object class="GtkButton" id="btn_next">
+                                <property name="margin-end">12</property>
+                                <property name="icon-name">go-next-symbolic</property>
+                                <property name="halign">end</property>
+                                <property name="valign">center</property>
+                                <property name="tooltip-text" translatable="yes">Next</property>
+                                <style>
+                                    <class name="circular"/>
+                                    <class name="suggested-action"/>
+                                </style>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+            </object>
         </child>
-
-        <child>
-          <object class="GtkStack" id="stack_onboard">
-            <property name="transition-type">slide-left-right</property>
-
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">page_welcome</property>
-                <property name="title" translatable="yes">Welcome</property>
-                <property name="child">
-                  <object class="AdwStatusPage" id="page_welcome">
-                    <property name="icon-name">com.usebottles.bottles</property>
-                    <property name="title" translatable="yes">Welcome to Bottles</property>
-                    <property name="description" translatable="yes">Bottles makes running Windows Software on Linux much easier.</property>
-                  </object>
-                </property>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">page_wine</property>
-                <property name="title" translatable="yes">Wine</property>
-                <property name="child">
-                  <object class="AdwClamp" id="page_wine">
-                    <property name="maximum-size">500</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="margin-end">10</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="halign">center</property>
-                            <property name="label" translatable="yes">What Are Runners?</property>
-                            <property name="wrap">True</property>
-                            <property name="wrap-mode">word-char</property>
-                            <style>
-                              <class name="large-title"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">These are compatibility layers which allows Windows software to be installed and run on Linux systems.
-
-    &lt;b&gt;Bottles&lt;/b&gt; are environments where the runner configures the system and where the Windows software runs and is installed.
-
-    &lt;a href="https://docs.usebottles.com/components/runners"&gt;Read more about runners&lt;/a&gt;</property>
-                            <property name="use-markup">True</property>
-                            <property name="wrap">True</property>
-                            <property name="max-width-chars">60</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </property>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">page_runners</property>
-                <property name="title" translatable="yes">Runners</property>
-                <property name="child">
-                  <object class="AdwClamp" id="page_runners">
-                    <property name="maximum-size">500</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="margin-end">10</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="halign">center</property>
-                            <property name="label" translatable="yes">We Are Almost There</property>
-                            <property name="wrap">True</property>
-                            <property name="wrap-mode">word-char</property>
-                            <style>
-                              <class name="large-title"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">We need to download and install a runner to allow you to create your own bottles.
-The download size is &lt;b&gt;~70MB&lt;/b&gt;.
-&lt;a href="https://docs.usebottles.com/getting-started/first-run"&gt;Read more about what we're going to download&lt;/a&gt;
-
-We cannot offer these files with Bottles as these have different release cycles.
-
-When you are ready press the &lt;b&gt;Install&lt;/b&gt; button.</property>
-                            <property name="use-markup">True</property>
-                            <property name="wrap">True</property>
-                            <property name="max-width-chars">60</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </property>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">page_download</property>
-                <property name="title" translatable="yes">Download</property>
-                <property name="child">
-                  <object class="AdwClamp" id="page_download">
-                    <property name="maximum-size">500</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="margin-end">10</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="halign">center</property>
-                            <property name="label" translatable="yes">Downloading…</property>
-                            <property name="wrap">True</property>
-                            <property name="wrap-mode">word-char</property>
-                            <style>
-                              <class name="large-title"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">Sit down and relax, it may take a few minutes.</property>
-                            <property name="use-markup">True</property>
-                            <property name="wrap">True</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkProgressBar" id="progressbar_downloading">
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </property>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">page_finish</property>
-                <property name="title" translatable="yes">Finish</property>
-                <property name="child">
-                  <object class="AdwStatusPage" id="page_finish">
-                    <property name="icon-name">object-select-symbolic</property>
-                    <property name="title" translatable="yes">Everything Is Ready!</property>
-                    <property name="description" translatable="yes">You are now ready to create your first bottles.</property>
-                  </object>
-                </property>
-              </object>
-            </child>
-
-          </object>
-        </child>
-
-      </object>
-    </child>
-  </template>
-
+    </template>
 </interface>
