@@ -148,6 +148,9 @@ class NewView(Adw.Window):
         self.headerbar.add_css_class("flat")
         self.stack_create.set_visible_child_name("page_creating")
 
+        # avoid giant/empty window
+        self.set_default_size(450, 430)
+
         '''
         Check if versioning and sandbox are enabled and get the selected runner. 
         If the selected env. is not "Custom", the runner is taken from the
