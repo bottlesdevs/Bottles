@@ -93,7 +93,6 @@ class OperationManager:
             del self.__tasks[task_id]
 
         if self.get_task_count() == 0:
-            print("No tasks")
             self.window.page_details.btn_operations.set_visible(False)
 
     def remove_all_tasks(self):

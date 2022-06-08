@@ -75,22 +75,18 @@
     <object class="GtkBox" id="actions">
         <property name="spacing">6</property>
         <child>
-            <object class="GtkBox">
-                <child>
-                    <object class="GtkButton" id="btn_install">
-                        <property name="visible">False</property>
-                        <property name="label" translatable="yes">Install Selected</property>
-                        <property name="tooltip-text" translatable="yes">We strongly advise against installing multiple dependencies at once.</property>
-                        <property name="hexpand">True</property>
-                    </object>
-                </child>
-                <child>
-                    <object class="GtkToggleButton" id="btn_toggle_selection">
-                        <property name="visible">False</property>
-                        <property name="tooltip-text" translatable="yes">Select Dependencies</property>
-                        <property name="icon-name">selection-mode-symbolic</property>
-                    </object>
-                </child>
+            <object class="GtkButton" id="btn_install">
+                <property name="visible">False</property>
+                <property name="label" translatable="yes">Install Selected</property>
+                <property name="tooltip-text" translatable="yes">We strongly advise against installing multiple dependencies at once.</property>
+                <property name="hexpand">True</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkToggleButton" id="btn_toggle_selection">
+                <property name="visible">True</property>
+                <property name="tooltip-text" translatable="yes">Select Dependencies</property>
+                <property name="icon-name">selection-mode-symbolic</property>
             </object>
         </child>
         <child>
