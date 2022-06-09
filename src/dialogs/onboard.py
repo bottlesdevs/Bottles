@@ -26,19 +26,20 @@ from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=fa
 class OnboardDialog(Adw.Window):
     __gtype_name__ = 'OnboardDialog'
     __installing = False
+    __settings = Gtk.Settings.get_default()
 
     # region Widgets
     carousel = Gtk.Template.Child()
-    btn_quit = Gtk.Template.Child()
+    btn_close = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
     btn_next = Gtk.Template.Child()
     btn_install = Gtk.Template.Child()
-    btn_close = Gtk.Template.Child()
     progressbar = Gtk.Template.Child()
     page_welcome = Gtk.Template.Child()
     page_bottles = Gtk.Template.Child()
     page_download = Gtk.Template.Child()
     page_finish = Gtk.Template.Child()
+    img_welcome = Gtk.Template.Child()
     # endregion
 
     carousel_pages = [
@@ -46,6 +47,10 @@ class OnboardDialog(Adw.Window):
         "bottles",
         "download",
         "finish"
+    ]
+    images = [
+        "/com/usebottles/bottles/images/images/bottles-welcome.svg",
+        "/com/usebottles/bottles/images/images/bottles-welcome-night.svg",
     ]
 
     def __init__(self, window, **kwargs):
@@ -57,14 +62,21 @@ class OnboardDialog(Adw.Window):
         self.manager = window.manager
 
         # connect signals
+        self.connect("destroy", self.__quit)
         self.carousel.connect('page-changed', self.__page_changed)
         self.btn_close.connect("clicked", self.__close_window)
-        self.btn_quit.connect("clicked", self.__quit)
         self.btn_back.connect("clicked", self.__previous_page)
         self.btn_next.connect("clicked", self.__next_page)
         self.btn_install.connect("clicked", self.__install_runner)
+        self.__settings.connect("notify::gtk-application-prefer-dark-theme", self.__theme_changed)
+
+        if self.__settings.get_property("gtk-application-prefer-dark-theme"):
+            self.img_welcome.set_from_resource(self.images[1])
 
         self.__page_changed()
+
+    def __theme_changed(self, settings, key):
+        self.img_welcome.set_from_resource(self.images[settings.get_property("gtk-application-prefer-dark-theme")])
 
     def __get_page(self, index):
         return self.carousel_pages[index]
@@ -80,11 +92,9 @@ class OnboardDialog(Adw.Window):
         if page == "finish":
             self.btn_back.set_visible(False)
             self.btn_next.set_visible(False)
-            self.btn_quit.set_visible(False)
         elif page == "download":
             self.btn_back.set_visible(True)
             self.btn_next.set_visible(False)
-            self.btn_quit.set_visible(True)
             self.btn_install.set_visible(True)
         elif page == "welcome":
             self.btn_back.set_visible(False)
@@ -104,12 +114,12 @@ class OnboardDialog(Adw.Window):
         self.__installing = True
         self.btn_back.set_visible(False)
         self.btn_next.set_visible(False)
-        self.btn_quit.set_visible(False)
         self.btn_install.set_visible(False)
         self.progressbar.set_visible(True)
         self.carousel.set_allow_long_swipes(False)
         self.carousel.set_allow_mouse_drag(False)
         self.carousel.set_allow_scroll_wheel(False)
+        self.set_closalable(False)
 
         RunAsync(self.pulse)
         RunAsync(

@@ -4,7 +4,7 @@
     <requires lib="libadwaita" version="1.0"/>
     <template class="OnboardDialog" parent="AdwWindow">
         <property name="resizable">False</property>
-        <property name="deletable">False</property>
+        <property name="deletable">True</property>
         <property name="modal">True</property>
         <property name="default_width">550</property>
         <property name="default_height">550</property>
@@ -19,11 +19,6 @@
                                 <property name="orientation">horizontal</property>
                             </object>
                         </property>
-                        <child type="start">
-                            <object class="GtkButton" id="btn_quit">
-                                <property name="label" translatable="yes">Quit</property>
-                            </object>
-                        </child>
                         <style>
                             <class name="flat"/>
                         </style>
@@ -57,8 +52,8 @@
                                         <property name="vexpand">True</property>
                                         <property name="hexpand">True</property>
                                         <child>
-                                            <object class="GtkImage">
-                                                <property name="resource">/com/usebottles/bottles/images/images/bottles-welcome.png</property>
+                                            <object class="GtkImage" id="img_welcome">
+                                                <property name="resource">/com/usebottles/bottles/images/images/bottles-welcome.svg</property>
                                                 <property name="pixel-size">320</property>
                                             </object>
                                         </child>
