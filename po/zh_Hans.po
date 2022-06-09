@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 12:28+0200\n"
-"PO-Revision-Date: 2022-05-08 22:59+0000\n"
+"PO-Revision-Date: 2022-06-09 11:42+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -135,9 +135,8 @@ msgid "Import Wine prefixes from other managers"
 msgstr "从其他管理器导入 Wine prefixes"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "使用版本控制"
+msgstr "Bottles 版本控制"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -294,7 +293,6 @@ msgid "Loading..."
 msgstr "加载中…"
 
 #: src/window.py:226
-#, fuzzy
 msgid ""
 "The custom bottles path was not found. Please, check the path in "
 "Preferences.\n"
@@ -466,9 +464,8 @@ msgstr ""
 "            在以下现有的报告中报告反馈。"
 
 #: src/dialogs/dlloverrides.py:135
-#, fuzzy
 msgid "No overrides found."
-msgstr "未找到前缀"
+msgstr "未找到覆盖。"
 
 #: src/dialogs/drives.py:69
 msgid "Choose path"
@@ -494,9 +491,8 @@ msgid "Select"
 msgstr "选择"
 
 #: src/dialogs/envvars.py:135
-#, fuzzy
 msgid "No environment variables defined"
-msgstr "环境变量"
+msgstr "未定义环境变量"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -519,9 +515,9 @@ msgstr "选择应该在运行后执行的脚本。"
 
 #. endregion
 #: src/dialogs/launchoptions.py:43
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "该 bottle 已启用版本控制"
+msgstr "该 bottle 已禁用 {0}."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
@@ -558,14 +554,14 @@ msgid "Select the location where to save the backup archive"
 msgstr "选择要保存备份归档的位置"
 
 #: src/views/bottle_details.py:254
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr "备份保存在路径：{0}。"
+msgstr "已创建 '{0}' 的备份。"
 
 #: src/views/bottle_details.py:256
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr "备份保存在路径：{0}。"
+msgstr "备份 '{0}' 失败。"
 
 #: src/views/bottle_details.py:274
 msgid "Export"
@@ -642,28 +638,24 @@ msgid "Task manager"
 msgstr "任务管理器"
 
 #: src/views/importer.py:89
-#, fuzzy
 msgid "Backup imported successfully."
-msgstr "备份：[{0}] 导入成功。"
+msgstr "备份导入成功。"
 
 #: src/views/importer.py:91
-#, fuzzy
 msgid "Import failed."
-msgstr "导入器"
+msgstr "导入失败。"
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup.."
-msgstr "正在导入备份：{0}"
+msgstr "正在导入备份.."
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
 msgstr "选择一个备份归档"
 
 #: src/views/importer.py:117 src/views/importer.py:146
-#, fuzzy
 msgid "Import"
-msgstr "导入器"
+msgstr "导入"
 
 #: src/views/importer.py:144
 msgid "Choose a configuration file"
@@ -679,9 +671,8 @@ msgid "Arguments found for executable: [{executable}]."
 msgstr "发现可执行文件：[{executable}] 的变量。"
 
 #: src/views/list.py:249
-#, fuzzy
 msgid "Your Bottles"
-msgstr "关于 Bottles"
+msgstr "你的 Bottles"
 
 #: src/views/new.py:119
 msgid "Choose a recipe file"
@@ -715,19 +706,16 @@ msgid "Caffe"
 msgstr ""
 
 #: src/views/preferences.py:199
-#, fuzzy
 msgid "GE Wine"
-msgstr "Wine"
+msgstr "GE Wine"
 
 #: src/views/preferences.py:200
-#, fuzzy
 msgid "Lutris"
 msgstr "Lutris 运行器"
 
 #: src/views/preferences.py:201
-#, fuzzy
 msgid "GE Proton"
-msgstr "ProtonDB"
+msgstr "GE Proton"
 
 #: src/views/preferences.py:202
 msgid "Other"
@@ -738,9 +726,8 @@ msgid "Upgrade"
 msgstr "升级"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing..."
-msgstr "安装"
+msgstr "安装中…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -767,9 +754,9 @@ msgid "Installer failed with unknown error"
 msgstr ""
 
 #: src/widgets/installer.py:133
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} installed."
-msgstr "卸载器"
+msgstr "{0} 已安装。"
 
 #: src/widgets/installer.py:153
 #, python-brace-format
@@ -786,9 +773,9 @@ msgid "'{0}' launched."
 msgstr ""
 
 #: src/widgets/program.py:210
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr "随 Steam 启动"
+msgstr "'{0}' 随 Steam 启动。"
 
 #: src/widgets/program.py:231
 #, python-brace-format
@@ -801,9 +788,9 @@ msgid "'{0}' showed."
 msgstr ""
 
 #: src/widgets/program.py:256
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' removed."
-msgstr "要移除 [{0}] 文件。"
+msgstr "'{0}' 已移除。"
 
 #: src/widgets/program.py:270
 #, python-brace-format
@@ -823,14 +810,14 @@ msgid "Desktop Entry created for '{0}'"
 msgstr ""
 
 #: src/widgets/program.py:320
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your library"
-msgstr "添加到我的库"
+msgstr "'{0}' 已添加到我的库"
 
 #: src/widgets/program.py:325
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr "添加到我的库"
+msgstr "'{0}' 已添加至你的 Steam 库"
 
 #: src/widgets/state.py:95
 #, python-brace-format
@@ -863,14 +850,10 @@ msgid "Browse files"
 msgstr "浏览文件"
 
 #: src/ui/component-entry.ui:34
-#, fuzzy
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
-msgstr ""
-"安装失败。 这可能是存储库错误、部分下载或校验和不匹配引起的。\n"
-"\n"
-"按下再试一次。"
+msgstr "安装失败。 这可能是存储库错误、部分下载或校验和不匹配引起的。按下再试一次。"
 
 #: src/ui/component-entry.ui:45
 msgid "Download & Install"
@@ -881,7 +864,6 @@ msgid "0%"
 msgstr "0%"
 
 #: src/ui/dependency-entry.ui:18
-#, fuzzy
 msgid "Show Manifest"
 msgstr "显示清单"
 
@@ -913,23 +895,20 @@ msgid "Troubleshooting"
 msgstr "疑难解答"
 
 #: src/ui/details-bottle.ui:26
-#, fuzzy
 msgid "Browse Files…"
-msgstr "浏览文件"
+msgstr "浏览文件…"
 
 #: src/ui/details-bottle.ui:31
-#, fuzzy
 msgid "Duplicate Bottle…"
-msgstr "复制 bottle"
+msgstr "复制 Bottle…"
 
 #: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr "这是您的 bottle 的完整归档，包含个人文件。"
 
 #: src/ui/details-bottle.ui:37
-#, fuzzy
 msgid "Full Backup…"
-msgstr "完全备份"
+msgstr "完全备份…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
@@ -938,17 +917,14 @@ msgid ""
 msgstr "这仅仅是 bottle 配置，是您想要新建不带个人文件的 bottle 的完美选择。"
 
 #: src/ui/details-bottle.ui:43
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "导出配置"
+msgstr "导出配置…"
 
 #: src/ui/details-bottle.ui:51
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "删除 bottle"
+msgstr "删除 Bottle…"
 
 #: src/ui/details-bottle.ui:86
-#, fuzzy
 msgid "Kill all Processes"
 msgstr "杀死所有进程"
 
@@ -969,14 +945,12 @@ msgid "Reboot"
 msgstr "重启"
 
 #: src/ui/details-bottle.ui:117
-#, fuzzy
 msgid "Run with Arguments…"
-msgstr "带有参数运行"
+msgstr "带参数运行…"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Launch in Terminal…"
-msgstr "用终端启动"
+msgstr "在终端启动…"
 
 #: src/ui/details-bottle.ui:148
 msgid "My bottle"
@@ -1008,9 +982,8 @@ msgid "0"
 msgstr "0"
 
 #: src/ui/details-bottle.ui:210
-#, fuzzy
 msgid "Run Executable…"
-msgstr "运行可执行文件"
+msgstr "运行可执行文件…"
 
 #: src/ui/details-bottle.ui:226
 msgid "Layers"
@@ -1045,9 +1018,8 @@ msgid "Explorer"
 msgstr ""
 
 #: src/ui/details-bottle.ui:269
-#, fuzzy
 msgid "Browse internal files with the Wine explorer."
-msgstr "浏览内部文件。"
+msgstr "用 Wine 资源管理器浏览内部文件。"
 
 #: src/ui/details-bottle.ui:280
 msgid "Task Manager"
@@ -1066,9 +1038,8 @@ msgid "Debug wine processes."
 msgstr "调试 wine 进程。"
 
 #: src/ui/details-bottle.ui:304
-#, fuzzy
 msgid "Wine Configuration"
-msgstr "配置"
+msgstr "Wine 配置"
 
 #: src/ui/details-bottle.ui:305
 msgid "Adjust internal settings."
@@ -1079,28 +1050,24 @@ msgid "Uninstaller"
 msgstr "卸载器"
 
 #: src/ui/details-bottle.ui:317
-#, fuzzy
 msgid "Uninstall programs using Wine uninstaller."
-msgstr "使用 wine 卸载器卸载程序。"
+msgstr "使用 Wine 卸载器卸载程序。"
 
 #: src/ui/details-bottle.ui:328
 msgid "Control Panel"
 msgstr "控制面板"
 
 #: src/ui/details-bottle.ui:329
-#, fuzzy
 msgid "Access the internal Wine Control Panel."
-msgstr "访问内部 wine 控制面板。"
+msgstr "访问内部 Wine 控制面板。"
 
 #: src/ui/details-bottle.ui:348
-#, fuzzy
 msgid "Use the Installers section or the \"Run executable\" button."
 msgstr "使用安装程序部分或上面的“运行可执行文件”按钮。"
 
 #: src/ui/details-dependencies.ui:13
-#, fuzzy
 msgid "Search for dependencies…"
-msgstr "选择依赖项"
+msgstr "选择依赖项…"
 
 #: src/ui/details-dependencies.ui:22
 msgid ""
@@ -1126,9 +1093,8 @@ msgid "Report missing dependency"
 msgstr "报告丢失的依赖项"
 
 #: src/ui/details-dependencies.ui:68
-#, fuzzy
 msgid "Read documentation about dependencies."
-msgstr "阅读关于依赖项的文档\t"
+msgstr "阅读关于依赖项的文档。"
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
 #: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:77
@@ -1137,7 +1103,6 @@ msgid "Documentation"
 msgstr "文档"
 
 #: src/ui/details-dependencies.ui:80
-#, fuzzy
 msgid "Install Selected"
 msgstr "安装所选"
 
@@ -1146,7 +1111,6 @@ msgid "We strongly advise against installing multiple dependencies at once."
 msgstr "我们强烈不建议一次安装多个依赖项。"
 
 #: src/ui/details-dependencies.ui:88
-#, fuzzy
 msgid "Select Dependencies"
 msgstr "选择依赖项"
 
@@ -1156,14 +1120,12 @@ msgid "Search"
 msgstr ""
 
 #: src/ui/details-installers.ui:13
-#, fuzzy
 msgid "Search for Programs…"
-msgstr "搜索已安装的程序"
+msgstr "搜索程序…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No installers found"
-msgstr "未找到状态"
+msgstr "未找到安装包"
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -1208,9 +1170,8 @@ msgid "Updating VKD3D, please wait…"
 msgstr "正在更新 VKD3D，请稍等…"
 
 #: src/ui/details-preferences.ui:61
-#, fuzzy
 msgid "DLSS (DXVK-NVAPI)"
-msgstr "启用 DLSS (DXVK-NVAPI)"
+msgstr "DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
@@ -1226,10 +1187,9 @@ msgid "FSR"
 msgstr ""
 
 #: src/ui/details-preferences.ui:81
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr "FSR 使用尖端的分辨率提升技术来帮助提高您的帧率。"
+msgstr "FSR 使用尖端的分辨率提升技术来帮助提高你的帧率。"
 
 #: src/ui/details-preferences.ui:88
 msgid "Ultra Quality"
@@ -1252,7 +1212,6 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
-#, fuzzy
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr "NVIDIA Reflex 的替代。某些反作弊程序可以检测到它。"
 
@@ -1265,9 +1224,8 @@ msgid "Improves performance at the cost of increased power usage."
 msgstr "以增加功耗为代价提升性能。"
 
 #: src/ui/details-preferences.ui:140
-#, fuzzy
 msgid "vkBasalt"
-msgstr "使用 vkBasalt"
+msgstr "vkBasalt"
 
 #: src/ui/details-preferences.ui:141
 msgid ""
@@ -1276,14 +1234,12 @@ msgid ""
 msgstr "vkBasalt 是 Vulkan 后期处理层，用来增强游戏的视觉图形。"
 
 #: src/ui/details-preferences.ui:151
-#, fuzzy
 msgid "Display Settings"
 msgstr "显示设置"
 
 #: src/ui/details-preferences.ui:155
-#, fuzzy
 msgid "Virtual Desktop"
-msgstr "使用虚拟桌面"
+msgstr "虚拟桌面"
 
 #: src/ui/details-preferences.ui:156
 msgid "Use the Wine virtual desktop."
@@ -1298,7 +1254,6 @@ msgid "Let the program capture mouse input when fullscreen."
 msgstr "让程序在全屏时捕获鼠标输入。"
 
 #: src/ui/details-preferences.ui:206
-#, fuzzy
 msgid "Take Focus"
 msgstr "聚焦"
 
@@ -1315,7 +1270,6 @@ msgid "Change this if you are running into mouse lag or desync."
 msgstr ""
 
 #: src/ui/details-preferences.ui:231
-#, fuzzy
 msgid "Screen Scaling"
 msgstr "屏幕缩放"
 
@@ -1400,9 +1354,8 @@ msgid "Manage DXVK versions"
 msgstr "管理 DXVK 版本"
 
 #: src/ui/details-preferences.ui:299
-#, fuzzy
 msgid "Components"
-msgstr "DLL 组件"
+msgstr "组件"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
@@ -1414,22 +1367,18 @@ msgid "DXVK Version"
 msgstr "DXVK 版本"
 
 #: src/ui/details-preferences.ui:348
-#, fuzzy
 msgid "VKD3D Version"
 msgstr "VKD3D 版本"
 
 #: src/ui/details-preferences.ui:372
-#, fuzzy
 msgid "DXVK NVAPI Version"
 msgstr "DXVK NVAPI 版本"
 
 #: src/ui/details-preferences.ui:394
-#, fuzzy
 msgid "LatencyFleX Version"
 msgstr "LatencyFleX 版本"
 
 #: src/ui/details-preferences.ui:416
-#, fuzzy
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr "启用同步以提高多核处理器的性能。"
 
@@ -1458,41 +1407,34 @@ msgid "Updating Windows version, please wait…"
 msgstr "正在更新 Windows 版本，请稍等…"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "使用 Bottles runtime"
+msgstr "Bottles 运行时"
 
 #: src/ui/details-preferences.ui:488
-#, fuzzy
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
-msgstr ""
-"提供额外库包以提高兼容性，\n"
-"如遇到问题则禁用。"
+msgstr "提供额外库以提高兼容性，如遇到问题则禁用。"
 
 #: src/ui/details-preferences.ui:499
-#, fuzzy
 msgid "Steam Runtime"
-msgstr "使用 Stream runtime"
+msgstr "Stream 运行时"
 
 #: src/ui/details-preferences.ui:500
 msgid "The same as the Bottles one but provided by Steam."
 msgstr "和 Bottles 的一样，但由 Steam 提供。"
 
 #: src/ui/details-preferences.ui:511
-#, fuzzy
 msgid "GameMode"
-msgstr "使用游戏模式"
+msgstr "游戏模式"
 
 #: src/ui/details-preferences.ui:512
 msgid "Optimise gaming performance on demand."
 msgstr "根据需要优化游戏性能。"
 
 #: src/ui/details-preferences.ui:523
-#, fuzzy
 msgid "Gamescope"
-msgstr "使用 Gamescope"
+msgstr "Gamescope"
 
 #: src/ui/details-preferences.ui:524
 msgid "Use the Gamescope micro-compositor."
@@ -1503,18 +1445,15 @@ msgid "Manage Gamescope settings"
 msgstr "管理 Gamescope 设置"
 
 #: src/ui/details-preferences.ui:542
-#, fuzzy
 msgid "Working Directory"
 msgstr "工作目录"
 
 #: src/ui/details-preferences.ui:543
-#, fuzzy
 msgid "Defaults to the bottle path."
-msgstr "默认 bottle 路径。"
+msgstr "默认为 bottle 路径。"
 
 #: src/ui/details-preferences.ui:546 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
-#, fuzzy
 msgid "Reset to default"
 msgstr "重置为默认"
 
@@ -1533,7 +1472,6 @@ msgid "Environment Variables"
 msgstr "环境变量"
 
 #: src/ui/details-preferences.ui:588
-#, fuzzy
 msgid "Manage Drives"
 msgstr "管理驱动"
 
@@ -1542,19 +1480,16 @@ msgid "Audio"
 msgstr "音频"
 
 #: src/ui/details-preferences.ui:604
-#, fuzzy
 msgid "Reduce Latency"
-msgstr "降低 PulseAudio 延迟"
+msgstr "降低延迟"
 
 #: src/ui/details-preferences.ui:605
-#, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
-msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音频质量。"
+msgstr "将 PulseAudio 的延迟设置在 60 毫秒以提升音质"
 
 #: src/ui/details-preferences.ui:617
-#, fuzzy
 msgid "Development and Debugging"
-msgstr "开发者与调试"
+msgstr "开发与调试"
 
 #: src/ui/details-preferences.ui:621
 msgid "DXVK HUD"
@@ -1579,42 +1514,35 @@ msgid "OBS Vulkan Capture"
 msgstr "OBS Vulkan 录制"
 
 #: src/ui/details-preferences.ui:646
-#, fuzzy
 msgid "Toggle OBS game capture for all programs."
-msgstr "开/关所有接下来启动的 OBS 游戏录制。"
+msgstr "开/关所有程序的 OBS 游戏录制。"
 
 #: src/ui/details-preferences.ui:657
-#, fuzzy
 msgid "Wine 'fixme' Logs"
-msgstr "启用 wine fixme 日志"
+msgstr "Wine 'fixme' 日志"
 
 #: src/ui/details-preferences.ui:658
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "记录未在 Wine 中实现的代码路径。"
 
 #: src/ui/details-programs.ui:9
-#, fuzzy
 msgid "No Programs found"
 msgstr "未找到程序"
 
 #: src/ui/details-programs.ui:10
-#, fuzzy
 msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
-msgstr ""
-"从安装程序部分或运行安装程序可执行文件来安装程序，你还可以使用“+”按钮手动添加"
-"可执行文件"
+msgstr "从安装程序部分或运行安装程序可执行文件来安装程序，你还可以使用“+”按钮手动添加"
+"可执行文件。"
 
 #: src/ui/details-programs.ui:31
-#, fuzzy
 msgid "Toggle Hidden"
-msgstr "开/关搜索"
+msgstr "隐藏/取消隐藏"
 
 #: src/ui/details-programs.ui:39
-#, fuzzy
 msgid "Read documentation about programs"
-msgstr "阅读关于程序的文档\t"
+msgstr "阅读关于程序的文档"
 
 #: src/ui/details-programs.ui:50
 msgid "Add a custom executable path"
@@ -1641,12 +1569,10 @@ msgid "Create first state to start using versioning."
 msgstr "创建第一个状态以开始使用版本控制。"
 
 #: src/ui/details-versioning.ui:37
-#, fuzzy
 msgid "Type a short comment:"
-msgstr "键入一条简短注释："
+msgstr "输入简短注释："
 
 #: src/ui/details-versioning.ui:45
-#, fuzzy
 msgid "A short comment"
 msgstr "简短注释"
 
@@ -1663,7 +1589,6 @@ msgid "Operations"
 msgstr "操作"
 
 #: src/ui/dialog-crash-report.ui:10
-#, fuzzy
 msgid "Bottles crash report"
 msgstr "Bottles 崩溃报告"
 
@@ -1705,26 +1630,25 @@ msgid ""
 msgstr "可以指定动态链接库为内建的（由 Wine 提供）或原生的（由程序提供）。"
 
 #: src/ui/dialog-dll-overrides.ui:18
-#, fuzzy
 msgid "New Override"
-msgstr "新的覆盖"
+msgstr "新建覆盖"
 
 #: src/ui/dialog-dll-overrides.ui:26
-#, fuzzy
 msgid "Overrides"
-msgstr "DLL 覆盖"
+msgstr "覆盖"
 
 #: src/ui/dialog-drives.ui:9
 msgid "Drives"
 msgstr "驱动器"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..).\n"
 "                                "
-msgstr "这些是来自你主机系统的路径，由运行器映射并识别为设备（如 C: D:..)。"
+msgstr ""
+"这些是来自你主机系统的路径，由运行器映射并识别为设备（如 C: D:..)。\n"
+"                                "
 
 #: src/ui/dialog-drives.ui:25
 msgid "Letter"
@@ -1735,18 +1659,16 @@ msgid "Existing drives"
 msgstr "现存驱动器"
 
 #: src/ui/dialog-duplicate.ui:17
-#, fuzzy
 msgid "Duplicate Bottle"
-msgstr "复制 bottle"
+msgstr "复制 Bottle"
 
 #: src/ui/dialog-duplicate.ui:38
 msgid "Duplicate"
 msgstr "复制"
 
 #: src/ui/dialog-duplicate.ui:52
-#, fuzzy
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr "输入新 bottle 的名称："
+msgstr "输入 Bottle 副本的名称。"
 
 #: src/ui/dialog-duplicate.ui:75
 msgid "Duplicating…"
@@ -1757,7 +1679,6 @@ msgid "Take a break, it may take a while"
 msgstr "喝杯茶，它可能会花一点时间"
 
 #: src/ui/dialog-duplicate.ui:105
-#, fuzzy
 msgid "Bottle Duplicated"
 msgstr "Bottle 已复制"
 
@@ -1789,14 +1710,12 @@ msgid "Game resolution"
 msgstr "游戏分辨率"
 
 #: src/ui/dialog-gamescope.ui:42 src/ui/dialog-gamescope.ui:57
-#, fuzzy
 msgid "Width (e.g. 1280)"
-msgstr "比如 1280"
+msgstr "宽度 (如， 1280)"
 
 #: src/ui/dialog-gamescope.ui:47 src/ui/dialog-gamescope.ui:62
-#, fuzzy
 msgid "Height (e.g. 720)"
-msgstr "比如 720"
+msgstr "高度 (如， 720)"
 
 #: src/ui/dialog-gamescope.ui:54
 msgid "Gamescope resolution"
@@ -1807,12 +1726,10 @@ msgid "Extra settings"
 msgstr "额外设置"
 
 #: src/ui/dialog-gamescope.ui:72
-#, fuzzy
 msgid "Frame rate limit (e.g. 60)"
-msgstr "帧率限制"
+msgstr "帧率限制(如，60)"
 
 #: src/ui/dialog-gamescope.ui:77
-#, fuzzy
 msgid "Frame rate limit (when unfocused)"
 msgstr "帧率限制（失去焦点时）"
 
@@ -1833,9 +1750,8 @@ msgid "Fullscreen"
 msgstr "全屏"
 
 #: src/ui/dialog-journal.ui:12
-#, fuzzy
 msgid "All messages"
-msgstr "删除消息"
+msgstr "所有消息"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
@@ -1846,7 +1762,6 @@ msgid "Errors"
 msgstr ""
 
 #: src/ui/dialog-journal.ui:27
-#, fuzzy
 msgid "Warnings"
 msgstr "警告"
 
@@ -1855,7 +1770,6 @@ msgid "Info"
 msgstr ""
 
 #: src/ui/dialog-journal.ui:56
-#, fuzzy
 msgid "Journal Browser"
 msgstr "日志浏览器"
 
@@ -1874,19 +1788,16 @@ msgid "Launch Options"
 msgstr "启动选项"
 
 #: src/ui/dialog-launch-options.ui:46
-#, fuzzy
 msgid "Those arguments will be passed at launch."
-msgstr "启动参数："
+msgstr "启动时将传递这些参数。"
 
 #: src/ui/dialog-launch-options.ui:47
-#, fuzzy
 msgid "Custom Arguments"
-msgstr "带参数运行"
+msgstr "自定义参数"
 
 #: src/ui/dialog-launch-options.ui:50
-#, fuzzy
 msgid "Command Arguments"
-msgstr "传递参数"
+msgstr "命令参数"
 
 #: src/ui/dialog-launch-options.ui:51
 #, python-format
@@ -1894,7 +1805,6 @@ msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "例如： VAR=value %command% -example1 -example2 -example3=hello"
 
 #: src/ui/dialog-launch-options.ui:57
-#, fuzzy
 msgid "Post-run Script"
 msgstr "运行后脚本"
 
@@ -1903,9 +1813,8 @@ msgid "These settings will override the default settings for this executable."
 msgstr ""
 
 #: src/ui/dialog-launch-options.ui:88
-#, fuzzy
 msgid "Preferences Overrides"
-msgstr "首选项"
+msgstr "首选项覆盖"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
