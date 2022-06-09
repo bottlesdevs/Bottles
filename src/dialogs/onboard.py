@@ -119,7 +119,7 @@ class OnboardDialog(Adw.Window):
         self.carousel.set_allow_long_swipes(False)
         self.carousel.set_allow_mouse_drag(False)
         self.carousel.set_allow_scroll_wheel(False)
-        self.set_closalable(False)
+        self.set_deletable(False)
 
         RunAsync(self.pulse)
         RunAsync(

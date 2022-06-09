@@ -52,17 +52,20 @@
                             <object class="AdwStatusPage" id="bottle_status">
                                 <property name="icon-name">com.usebottles.bottles-symbolic</property>
                                 <property name="title" translatable="yes">Bottles</property>
-                                <property name="description" translatable="yes">Start off by creating a Bottle.
-                                </property>
-                                <child>
+                                <property name="description" translatable="yes">Start off by creating a Bottle.</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="child">
                                     <object class="GtkButton" id="btn_create">
+                                        <property name="valign">center</property>
+                                        <property name="halign">center</property>
                                         <property name="label" translatable="yes">Create a new Bottle</property>
                                         <style>
                                             <class name="suggested-action"/>
                                             <class name="pill"/>
                                         </style>
                                     </object>
-                                </child>
+                                </property>
                             </object>
                         </child>
                         <child>
@@ -71,6 +74,8 @@
                                 <property name="icon-name">system-search-symbolic</property>
                                 <property name="title" translatable="yes">No Results Found</property>
                                 <property name="description" translatable="yes">Try a different search.</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
                             </object>
                         </child>
                     </object>
