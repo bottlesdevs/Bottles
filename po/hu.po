@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 12:28+0200\n"
-"PO-Revision-Date: 2022-06-04 17:40+0000\n"
+"PO-Revision-Date: 2022-06-09 17:24+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -485,9 +485,8 @@ msgstr ""
 "Jelentse visszajelzését az alábbi meglévő jelentések egyikében."
 
 #: src/dialogs/dlloverrides.py:135
-#, fuzzy
 msgid "No overrides found."
-msgstr "Nem találhatók prefixek"
+msgstr "Nem találhatók felülbírálások."
 
 #: src/dialogs/drives.py:69
 msgid "Choose path"
@@ -513,9 +512,8 @@ msgid "Select"
 msgstr "Kiválasztás"
 
 #: src/dialogs/envvars.py:135
-#, fuzzy
 msgid "No environment variables defined"
-msgstr "Környezeti változók"
+msgstr "Nincs környezeti változó megadva"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -538,9 +536,9 @@ msgstr "Válasszon egy szkriptet, amelyet a futás után végre kell hajtani."
 
 #. endregion
 #: src/dialogs/launchoptions.py:43
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "A verziókezelés engedélyezve van ehhez a palackhoz"
+msgstr "{0} már le van tiltva ebben a palackban."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
@@ -621,9 +619,8 @@ msgid "'{0}' added."
 msgstr ""
 
 #: src/views/bottle_programs.py:87
-#, fuzzy
 msgid "Choose an executable path"
-msgstr "Válasszon egy végrehajtható fájl elérési útja"
+msgstr "Válassza ki egy végrehajtható fájl útvonalát"
 
 #: src/views/bottle_programs.py:89
 msgid "Add"
@@ -666,21 +663,18 @@ msgid "Backup imported successfully."
 msgstr ""
 
 #: src/views/importer.py:91
-#, fuzzy
 msgid "Import failed."
-msgstr "Importálás"
+msgstr "Az importálás sikertelen."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup.."
-msgstr "Biztonsági mentés importálása: {0}"
+msgstr "Biztonsági mentés importálása…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
 msgstr "Válasszon egy biztonsági mentés archívumot"
 
 #: src/views/importer.py:117 src/views/importer.py:146
-#, fuzzy
 msgid "Import"
 msgstr "Importálás"
 
@@ -698,9 +692,8 @@ msgid "Arguments found for executable: [{executable}]."
 msgstr "A végrehajtható fájlhoz talált argumentumok: [{executable}]."
 
 #: src/views/list.py:249
-#, fuzzy
 msgid "Your Bottles"
-msgstr "A Palackok névjegye"
+msgstr "A Palackjai"
 
 #: src/views/new.py:119
 msgid "Choose a recipe file"
@@ -736,19 +729,16 @@ msgid "Caffe"
 msgstr ""
 
 #: src/views/preferences.py:199
-#, fuzzy
 msgid "GE Wine"
-msgstr "Wine"
+msgstr "GE Wine"
 
 #: src/views/preferences.py:200
-#, fuzzy
 msgid "Lutris"
-msgstr "Lutris futtatók"
+msgstr "Lutris"
 
 #: src/views/preferences.py:201
-#, fuzzy
 msgid "GE Proton"
-msgstr "ProtonDB"
+msgstr "GE Proton"
 
 #: src/views/preferences.py:202
 msgid "Other"
@@ -759,9 +749,8 @@ msgid "Upgrade"
 msgstr "Frissítés"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing..."
-msgstr "Telepítés"
+msgstr "Telepítés…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -788,9 +777,9 @@ msgid "Installer failed with unknown error"
 msgstr ""
 
 #: src/widgets/installer.py:133
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} installed."
-msgstr "Eltávolító"
+msgstr "{0} telepítve."
 
 #: src/widgets/installer.py:153
 #, python-brace-format
@@ -807,9 +796,9 @@ msgid "'{0}' launched."
 msgstr ""
 
 #: src/widgets/program.py:210
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr "Indítás Steammel"
+msgstr "{0} elindítva Steammel."
 
 #: src/widgets/program.py:231
 #, python-brace-format
@@ -844,14 +833,14 @@ msgid "Desktop Entry created for '{0}'"
 msgstr ""
 
 #: src/widgets/program.py:320
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your library"
-msgstr "Hozzáadás a könyvtáramhoz"
+msgstr "{0} hozzá lett adva a könyvtárához"
 
 #: src/widgets/program.py:325
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr "Hozzáadás a könyvtáramhoz"
+msgstr "{0} hozzá lett adva a Steam könyvtárához"
 
 #: src/widgets/state.py:95
 #, python-brace-format
@@ -884,15 +873,12 @@ msgid "Browse files"
 msgstr "Fájlok tallózása"
 
 #: src/ui/component-entry.ui:34
-#, fuzzy
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
 "A telepítés nem sikerült. Ennek oka lehet a tároló hibája, befejezetlen "
-"letöltés vagy az ellenőrző összeg eltérése.\n"
-"\n"
-"Nyomja le az újrapróbáláshoz."
+"letöltés vagy az ellenőrző összeg eltérése. Nyomja meg az újrapróbáláshoz."
 
 #: src/ui/component-entry.ui:45
 msgid "Download & Install"
@@ -936,23 +922,20 @@ msgid "Troubleshooting"
 msgstr "Hibakeresés"
 
 #: src/ui/details-bottle.ui:26
-#, fuzzy
 msgid "Browse Files…"
-msgstr "Fájlok tallózása"
+msgstr "Fájlok tallózása…"
 
 #: src/ui/details-bottle.ui:31
-#, fuzzy
 msgid "Duplicate Bottle…"
-msgstr "Palack duplikálása"
+msgstr "Palack duplikálása…"
 
 #: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr "Ez a palack teljes archívuma, beleértve a személyes fájlokat is."
 
 #: src/ui/details-bottle.ui:37
-#, fuzzy
 msgid "Full Backup…"
-msgstr "Teljes biztonsági mentés"
+msgstr "Teljes biztonsági mentés…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
@@ -963,17 +946,14 @@ msgstr ""
 "személyes fájlok nélkül."
 
 #: src/ui/details-bottle.ui:43
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "Konfiguráció exportálása"
+msgstr "Konfiguráció exportálása…"
 
 #: src/ui/details-bottle.ui:51
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "Palack törlése"
+msgstr "Palack törlése…"
 
 #: src/ui/details-bottle.ui:86
-#, fuzzy
 msgid "Kill all Processes"
 msgstr "Minden folyamat megszakítása"
 
@@ -994,14 +974,12 @@ msgid "Reboot"
 msgstr "Újraindítás"
 
 #: src/ui/details-bottle.ui:117
-#, fuzzy
 msgid "Run with Arguments…"
-msgstr "Futtatás argumentumokkal"
+msgstr "Futtatás argumentumokkal…"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Launch in Terminal…"
-msgstr "Indítás terminálban"
+msgstr "Indítás terminálban…"
 
 #: src/ui/details-bottle.ui:148
 msgid "My bottle"
@@ -1033,9 +1011,8 @@ msgid "0"
 msgstr "0"
 
 #: src/ui/details-bottle.ui:210
-#, fuzzy
 msgid "Run Executable…"
-msgstr "Végrehajtható fájl futtatása"
+msgstr "Végrehajtható fájl futtatása…"
 
 #: src/ui/details-bottle.ui:226
 msgid "Layers"
@@ -1070,9 +1047,8 @@ msgid "Explorer"
 msgstr ""
 
 #: src/ui/details-bottle.ui:269
-#, fuzzy
 msgid "Browse internal files with the Wine explorer."
-msgstr "Belső fájlok tallózása."
+msgstr "Belső fájlok tallózása a Wine intézővel."
 
 #: src/ui/details-bottle.ui:280
 msgid "Task Manager"
@@ -1091,9 +1067,8 @@ msgid "Debug wine processes."
 msgstr "Wine folyamatok hibakeresése."
 
 #: src/ui/details-bottle.ui:304
-#, fuzzy
 msgid "Wine Configuration"
-msgstr "Konfiguráció"
+msgstr "Wine konfiguráció"
 
 #: src/ui/details-bottle.ui:305
 msgid "Adjust internal settings."
@@ -1104,30 +1079,25 @@ msgid "Uninstaller"
 msgstr "Eltávolító"
 
 #: src/ui/details-bottle.ui:317
-#, fuzzy
 msgid "Uninstall programs using Wine uninstaller."
-msgstr "Programok eltávolítása a Wine eltávolítójával."
+msgstr "Programok eltávolítása a Wine eltávolítójának haszálatával."
 
 #: src/ui/details-bottle.ui:328
 msgid "Control Panel"
 msgstr "Vezérlőpult"
 
 #: src/ui/details-bottle.ui:329
-#, fuzzy
 msgid "Access the internal Wine Control Panel."
-msgstr "Hozzáférés a Wine belső vezérlőpultjához."
+msgstr "Hozzáférés a belső Wine vezérlőpulthoz."
 
 #: src/ui/details-bottle.ui:348
-#, fuzzy
 msgid "Use the Installers section or the \"Run executable\" button."
 msgstr ""
-"Használja a telepítők részt vagy a fenti \"Végrehajtható fájl futtatása\" "
-"gombot."
+"Használja a telepítők részt vagy a \"Végrehajtható fájl futtatása\" gombot."
 
 #: src/ui/details-dependencies.ui:13
-#, fuzzy
 msgid "Search for dependencies…"
-msgstr "Függőségek kiválasztása"
+msgstr "Függőségek keresése…"
 
 #: src/ui/details-dependencies.ui:22
 msgid ""
@@ -1165,7 +1135,6 @@ msgid "Documentation"
 msgstr "Dokumentáció"
 
 #: src/ui/details-dependencies.ui:80
-#, fuzzy
 msgid "Install Selected"
 msgstr "Kijelöltek telepítése"
 
@@ -1174,7 +1143,6 @@ msgid "We strongly advise against installing multiple dependencies at once."
 msgstr "Nyomatékosan ajánljuk hogy ne telepítsen több függőséget egyszerre."
 
 #: src/ui/details-dependencies.ui:88
-#, fuzzy
 msgid "Select Dependencies"
 msgstr "Függőségek kiválasztása"
 
@@ -1184,14 +1152,12 @@ msgid "Search"
 msgstr ""
 
 #: src/ui/details-installers.ui:13
-#, fuzzy
 msgid "Search for Programs…"
-msgstr "Telepített programok keresése"
+msgstr "Programok keresése…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No installers found"
-msgstr "Nem található állapot"
+msgstr "Nem található telepítő"
 
 #: src/ui/details-installers.ui:51
 msgid ""
@@ -1236,9 +1202,8 @@ msgid "Updating VKD3D, please wait…"
 msgstr "VKD3D frissítése, kérem várjon…"
 
 #: src/ui/details-preferences.ui:61
-#, fuzzy
 msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS (DXVK-NVAPI) engedélyezése"
+msgstr "DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
@@ -1254,12 +1219,11 @@ msgid "FSR"
 msgstr ""
 
 #: src/ui/details-preferences.ui:81
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
 msgstr ""
-"Az FSR a legmodernebb felskálázási technológiákat alkalmazza a "
-"képkockafrekvenciák növelésére."
+"Az FSR élvonalbeli felskálázó technológiákat használ a képkockasebesség "
+"növelésére."
 
 #: src/ui/details-preferences.ui:88
 msgid "Ultra Quality"
@@ -1282,7 +1246,6 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
-#, fuzzy
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
 "Az NVIDIA Reflex egy alternatívája. Egyes csalásgátló rendszerek észlelhetik."
@@ -1296,9 +1259,8 @@ msgid "Improves performance at the cost of increased power usage."
 msgstr "Javítja a teljesítményt a megnövekedett energiafelhasználás árán."
 
 #: src/ui/details-preferences.ui:140
-#, fuzzy
 msgid "vkBasalt"
-msgstr "vkBasalt használata"
+msgstr "vkBasalt"
 
 #: src/ui/details-preferences.ui:141
 msgid ""
@@ -1309,14 +1271,12 @@ msgstr ""
 "vizuális grafikáját."
 
 #: src/ui/details-preferences.ui:151
-#, fuzzy
 msgid "Display Settings"
 msgstr "Megjelenítő beállítások"
 
 #: src/ui/details-preferences.ui:155
-#, fuzzy
 msgid "Virtual Desktop"
-msgstr "Virtuális asztal használata"
+msgstr "Virtuális asztal"
 
 #: src/ui/details-preferences.ui:156
 msgid "Use the Wine virtual desktop."
@@ -1333,7 +1293,6 @@ msgstr ""
 "ablak esetén."
 
 #: src/ui/details-preferences.ui:206
-#, fuzzy
 msgid "Take Focus"
 msgstr "Fókusz elvétele"
 
@@ -1350,7 +1309,6 @@ msgid "Change this if you are running into mouse lag or desync."
 msgstr ""
 
 #: src/ui/details-preferences.ui:231
-#, fuzzy
 msgid "Screen Scaling"
 msgstr "Képernyő méretezése"
 
@@ -1435,9 +1393,8 @@ msgid "Manage DXVK versions"
 msgstr "DXVK verziók kezelése"
 
 #: src/ui/details-preferences.ui:299
-#, fuzzy
 msgid "Components"
-msgstr "DLL összetevők"
+msgstr "Összetevők"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
@@ -1449,22 +1406,18 @@ msgid "DXVK Version"
 msgstr "DXVK-verzió"
 
 #: src/ui/details-preferences.ui:348
-#, fuzzy
 msgid "VKD3D Version"
 msgstr "VKD3D verzió"
 
 #: src/ui/details-preferences.ui:372
-#, fuzzy
 msgid "DXVK NVAPI Version"
 msgstr "DXVK NVAPI verzió"
 
 #: src/ui/details-preferences.ui:394
-#, fuzzy
 msgid "LatencyFleX Version"
 msgstr "LatencyFleX verzió"
 
 #: src/ui/details-preferences.ui:416
-#, fuzzy
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
 "Szinkronizáció engedélyezése a többmagos processzorok teljesítményének "
@@ -1495,9 +1448,8 @@ msgid "Updating Windows version, please wait…"
 msgstr "Windows verzió frissítése…"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "Palackok futtatókörnyezetének használata"
+msgstr "Palackok futtatókörnyezet"
 
 #: src/ui/details-preferences.ui:488
 #, fuzzy
@@ -1509,9 +1461,8 @@ msgstr ""
 "tiltsa le, ha problémákba ütközik."
 
 #: src/ui/details-preferences.ui:499
-#, fuzzy
 msgid "Steam Runtime"
-msgstr "Steam futtatókörnyezet használata"
+msgstr "Steam futtatókörnyezet"
 
 #: src/ui/details-preferences.ui:500
 #, fuzzy
@@ -1519,18 +1470,16 @@ msgid "The same as the Bottles one but provided by Steam."
 msgstr "Ugyanaz, mint a Palackoké, de a Steam szolgáltatja."
 
 #: src/ui/details-preferences.ui:511
-#, fuzzy
 msgid "GameMode"
-msgstr "GameMode használata"
+msgstr "GameMode"
 
 #: src/ui/details-preferences.ui:512
 msgid "Optimise gaming performance on demand."
 msgstr "Játékteljesítmény optimalizálása igény szerint."
 
 #: src/ui/details-preferences.ui:523
-#, fuzzy
 msgid "Gamescope"
-msgstr "Gamescope használata"
+msgstr "Gamescope"
 
 #: src/ui/details-preferences.ui:524
 msgid "Use the Gamescope micro-compositor."
@@ -1541,7 +1490,6 @@ msgid "Manage Gamescope settings"
 msgstr "Gamescope beállítások kezelése"
 
 #: src/ui/details-preferences.ui:542
-#, fuzzy
 msgid "Working Directory"
 msgstr "Munkakönyvtár"
 
@@ -1552,7 +1500,6 @@ msgstr "Alapértelmezetten a palack útvonala"
 
 #: src/ui/details-preferences.ui:546 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
-#, fuzzy
 msgid "Reset to default"
 msgstr "Visszaállítás alapértelmezettre"
 
@@ -1571,7 +1518,6 @@ msgid "Environment Variables"
 msgstr "Környezeti változók"
 
 #: src/ui/details-preferences.ui:588
-#, fuzzy
 msgid "Manage Drives"
 msgstr "Meghajtók kezelése"
 
@@ -1580,21 +1526,16 @@ msgid "Audio"
 msgstr "Hang"
 
 #: src/ui/details-preferences.ui:604
-#, fuzzy
 msgid "Reduce Latency"
-msgstr "PulseAudio késleltetés csökkentése"
+msgstr "Késleltetés csökkentése"
 
 #: src/ui/details-preferences.ui:605
-#, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
-msgstr ""
-"A hangminőség növelése érdekében állítsa a PulseAudio késleltetést 60 "
-"milliszekundumra"
+msgstr "A PulseAudio késleltetés 60 ms-ra állítása, javítva a hangminőséget"
 
 #: src/ui/details-preferences.ui:617
-#, fuzzy
 msgid "Development and Debugging"
-msgstr "Fejlesztők és hibakeresés"
+msgstr "Fejlesztés és hibakeresés"
 
 #: src/ui/details-preferences.ui:621
 msgid "DXVK HUD"
@@ -1623,21 +1564,18 @@ msgid "OBS Vulkan Capture"
 msgstr "OBS Vulkan képernyőfelvétel"
 
 #: src/ui/details-preferences.ui:646
-#, fuzzy
 msgid "Toggle OBS game capture for all programs."
-msgstr "OBS játékrögzítés be-/kikapcsolása az összes következő indításhoz."
+msgstr "OBS játékrögzítés be-/kikapcsolása az összes program számára."
 
 #: src/ui/details-preferences.ui:657
-#, fuzzy
 msgid "Wine 'fixme' Logs"
-msgstr "Wine fixme naplók engedélyezése"
+msgstr "Wine 'fixme' naplók"
 
 #: src/ui/details-preferences.ui:658
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "A hosszú kódútvonalak, amelyek nincsenek a Wine-ban implementálva."
 
 #: src/ui/details-programs.ui:9
-#, fuzzy
 msgid "No Programs found"
 msgstr "Nem találhatók programok"
 
@@ -1652,14 +1590,12 @@ msgstr ""
 "\" gombbal"
 
 #: src/ui/details-programs.ui:31
-#, fuzzy
 msgid "Toggle Hidden"
-msgstr "Keresés be-/kikapcsolása"
+msgstr "Elrejtett be-/kikapcsolása"
 
 #: src/ui/details-programs.ui:39
-#, fuzzy
 msgid "Read documentation about programs"
-msgstr "Dokumentáció elolvasása a programokról\t"
+msgstr "Dokumentáció elolvasása a programokról"
 
 #: src/ui/details-programs.ui:50
 msgid "Add a custom executable path"
@@ -1687,14 +1623,12 @@ msgstr ""
 "Hozza létre az első állapotot, hogy elkezdhesse használni a verziókezelést."
 
 #: src/ui/details-versioning.ui:37
-#, fuzzy
 msgid "Type a short comment:"
-msgstr "Írjon egy igazán rövid megjegyzést:"
+msgstr "Írjon egy rövid megjegyzést:"
 
 #: src/ui/details-versioning.ui:45
-#, fuzzy
 msgid "A short comment"
-msgstr "Igazán rövid megjegyzés"
+msgstr "Egy rövid megjegyzés"
 
 #: src/ui/details-versioning.ui:50
 msgid "Save the bottle state."
@@ -1709,7 +1643,6 @@ msgid "Operations"
 msgstr "Műveletek"
 
 #: src/ui/dialog-crash-report.ui:10
-#, fuzzy
 msgid "Bottles crash report"
 msgstr "Palackok összeomlásának jelentése"
 
@@ -1756,14 +1689,12 @@ msgstr ""
 "szolgáltatja) vagy natívnak (a program biztosítja)."
 
 #: src/ui/dialog-dll-overrides.ui:18
-#, fuzzy
 msgid "New Override"
 msgstr "Új felülbírálás"
 
 #: src/ui/dialog-dll-overrides.ui:26
-#, fuzzy
 msgid "Overrides"
-msgstr "DLL felülbírálások"
+msgstr "Felülbírálások"
 
 #: src/ui/dialog-drives.ui:9
 msgid "Drives"
@@ -1846,14 +1777,12 @@ msgid "Game resolution"
 msgstr "Játék felbontás"
 
 #: src/ui/dialog-gamescope.ui:42 src/ui/dialog-gamescope.ui:57
-#, fuzzy
 msgid "Width (e.g. 1280)"
-msgstr "pl. 1280"
+msgstr "Szélesség (pl. 1280)"
 
 #: src/ui/dialog-gamescope.ui:47 src/ui/dialog-gamescope.ui:62
-#, fuzzy
 msgid "Height (e.g. 720)"
-msgstr "pl. 750"
+msgstr "Magasság (pl. 750)"
 
 #: src/ui/dialog-gamescope.ui:54
 msgid "Gamescope resolution"
@@ -1864,12 +1793,10 @@ msgid "Extra settings"
 msgstr "További beállítások"
 
 #: src/ui/dialog-gamescope.ui:72
-#, fuzzy
 msgid "Frame rate limit (e.g. 60)"
-msgstr "Képkockasebesség-korlát"
+msgstr "Képkockasebesség-korlát (ls. 60)"
 
 #: src/ui/dialog-gamescope.ui:77
-#, fuzzy
 msgid "Frame rate limit (when unfocused)"
 msgstr "Képkockasebesség-korlát (amikor nincs fókuszban)"
 
@@ -1890,9 +1817,8 @@ msgid "Fullscreen"
 msgstr "Teljes képernyős"
 
 #: src/ui/dialog-journal.ui:12
-#, fuzzy
 msgid "All messages"
-msgstr "Üzenet törlése"
+msgstr "Összes üzenet"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
@@ -1903,16 +1829,14 @@ msgid "Errors"
 msgstr ""
 
 #: src/ui/dialog-journal.ui:27
-#, fuzzy
 msgid "Warnings"
-msgstr "Figyelmeztetés"
+msgstr "Figyelmeztetések"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
 msgstr ""
 
 #: src/ui/dialog-journal.ui:56
-#, fuzzy
 msgid "Journal Browser"
 msgstr "Naplóböngésző"
 
@@ -1931,38 +1855,33 @@ msgid "Launch Options"
 msgstr "Indítási opciók"
 
 #: src/ui/dialog-launch-options.ui:46
-#, fuzzy
 msgid "Those arguments will be passed at launch."
-msgstr "Ezek az argumentumok vannak átadva a program indításakor:"
+msgstr "Ezek az argumentumok lesznek átadva indításkor."
 
 #: src/ui/dialog-launch-options.ui:47
-#, fuzzy
 msgid "Custom Arguments"
-msgstr "Futtatás argumentumokkal"
+msgstr "Egyéni argumentumo"
 
 #: src/ui/dialog-launch-options.ui:50
-#, fuzzy
 msgid "Command Arguments"
-msgstr "Argumentumok átadása"
+msgstr "Parancs argumentumai"
 
 #: src/ui/dialog-launch-options.ui:51
-#, fuzzy, python-format
+#, python-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr "pl. VÁLTOZÓ=érték %command% -példa1 -példa2 -példa3=hello"
+msgstr "pl.: VÁLTOZÓ=érték %command% -példa1 -példa2 -példa3=hello"
 
 #: src/ui/dialog-launch-options.ui:57
-#, fuzzy
 msgid "Post-run Script"
-msgstr "Szkript futtatása utána"
+msgstr "Futtatás utáni szkript"
 
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
 msgstr ""
 
 #: src/ui/dialog-launch-options.ui:88
-#, fuzzy
 msgid "Preferences Overrides"
-msgstr "Beállítások"
+msgstr "Beállítások felülbírálása"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1984,9 +1903,8 @@ msgid "Choose a new name for the selected program."
 msgstr ""
 
 #: src/ui/dialog-rename.ui:37
-#, fuzzy
 msgid "New Name"
-msgstr "Név"
+msgstr "Új név"
 
 #: src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
@@ -1997,7 +1915,6 @@ msgid "Write below the arguments to be passed to the executable."
 msgstr "Írja le lentebb a végrehajtható fájlnak átadandó argumentumokat."
 
 #: src/ui/dialog-run-args.ui:50
-#, fuzzy
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
 msgstr "pl.: -opengl -SkipBuildPatchPrereq"
 
@@ -2010,12 +1927,10 @@ msgid "Native (Windows)"
 msgstr "Natív (Windows)"
 
 #: src/ui/dll-override-entry.ui:12
-#, fuzzy
 msgid "Builtin, then Native"
 msgstr "Beépített majd natív"
 
 #: src/ui/dll-override-entry.ui:13
-#, fuzzy
 msgid "Native, then Builtin"
 msgstr "Natív majd beépített"
 
@@ -2028,14 +1943,12 @@ msgid "/point/to/path"
 msgstr "/mutasson/az/útvonalára"
 
 #: src/ui/drive-entry.ui:24
-#, fuzzy
 msgid "Choose a Directory"
 msgstr "Könyvtár kiválasztása"
 
 #: src/ui/env-var-entry.ui:6
-#, fuzzy
 msgid "Value"
-msgstr "érték"
+msgstr "Érték"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -2070,7 +1983,6 @@ msgid "Configuration"
 msgstr "Konfiguráció"
 
 #: src/ui/importer.ui:87
-#, fuzzy
 msgid "Full Archive"
 msgstr "Teljes archívum"
 
@@ -2080,32 +1992,28 @@ msgid "Show Manifest…"
 msgstr "Jegyzékfájl megjelenítése"
 
 #: src/ui/installer-entry.ui:23
-#, fuzzy
 msgid "Read Review…"
-msgstr "Vélemény olvasása"
+msgstr "Vélemény olvasása…"
 
 #: src/ui/installer-entry.ui:62
 msgid "Install this program"
 msgstr "Program telepítése"
 
 #: src/ui/library-entry.ui:14
-#, fuzzy
 msgid "Remove from Library"
-msgstr "Eltávolítás a listáról"
+msgstr "Eltávolítás a könyvtárból"
 
 #: src/ui/library-entry.ui:70 src/ui/program-entry.ui:102
 msgid "Launch with Steam"
 msgstr "Indítás Steammel"
 
 #: src/ui/library.ui:22
-#, fuzzy
 msgid "Search for Prefixes"
-msgstr "Steam Proton prefixek"
+msgstr "Prefixek keresése"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:190
-#, fuzzy
 msgid "Library"
-msgstr "Könyvtár mód"
+msgstr "Könyvtár"
 
 #: src/ui/library.ui:43
 #, fuzzy
@@ -2142,9 +2050,8 @@ msgid "Search your bottles…"
 msgstr "Palackok keresése..."
 
 #: src/ui/list.ui:38
-#, fuzzy
 msgid "Steam Proton"
-msgstr "Steam Proton prefixek"
+msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
 #, fuzzy
@@ -2158,9 +2065,8 @@ msgid "Create a new Bottle"
 msgstr "Új palack létrehozása"
 
 #: src/ui/list.ui:72
-#, fuzzy
 msgid "No Results Found"
-msgstr "Nem található állapot"
+msgstr "Nincs találat"
 
 #: src/ui/list.ui:73
 msgid "Try a different search."
@@ -2175,9 +2081,8 @@ msgid "This resource is missing."
 msgstr ""
 
 #: src/ui/local-resource-entry.ui:10
-#, fuzzy
 msgid "Browse"
-msgstr "C: tallózása"
+msgstr "Tallózás"
 
 #: src/ui/new.ui:17 src/ui/new.ui:63
 msgid "New Bottle"
@@ -2224,9 +2129,8 @@ msgid "Custom"
 msgstr "Egyéni"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments"
-msgstr "Egy tiszta környezet a kísérletezéshez."
+msgstr "Egy tiszta környezet a kísérleteihez"
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2260,21 +2164,18 @@ msgid "32 bit"
 msgstr "32 bites"
 
 #: src/ui/new.ui:168
-#, fuzzy
 msgid "Custom Recipe"
-msgstr "Egyéni recept használata"
+msgstr "Egyéni recept"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
 msgstr "Válasszon egy egyéni receptet a környezet számára, ha van."
 
 #: src/ui/new.ui:185
-#, fuzzy
 msgid "Custom Path"
-msgstr "Egyéni"
+msgstr "Egyéni útvonal"
 
 #: src/ui/new.ui:186
-#, fuzzy
 msgid "Store this bottle in another place."
 msgstr "Palack tárolása egy másik helyen."
 
@@ -2301,9 +2202,8 @@ msgid ""
 msgstr ""
 
 #: src/ui/onboard.ui:76
-#, fuzzy
 msgid "Windows in Bottles"
-msgstr "Ablaktípus"
+msgstr "Windows bepalackozva"
 
 #: src/ui/onboard.ui:77
 msgid ""
@@ -2328,9 +2228,8 @@ msgid "All ready!"
 msgstr ""
 
 #: src/ui/onboard.ui:124
-#, fuzzy
 msgid "Start using Bottles"
-msgstr "Kezdje el egy palack létrehozásával."
+msgstr "Kezdje el használni a Palackokat"
 
 #: src/ui/onboard.ui:143
 msgid "Next"
@@ -2430,41 +2329,34 @@ msgid "Browse path"
 msgstr "Útvonal tallózása"
 
 #: src/ui/program-entry.ui:40
-#, fuzzy
 msgid "Change Launch Options…"
-msgstr "Indítási opciók módosítása"
+msgstr "Indítási opciók módosítása…"
 
 #: src/ui/program-entry.ui:45
-#, fuzzy
 msgid "Add to My Library"
 msgstr "Hozzáadás a könyvtáramhoz"
 
 #: src/ui/program-entry.ui:50
-#, fuzzy
 msgid "Add Desktop Entry"
-msgstr "Asztalbejegyzés létrehozása"
+msgstr "Asztalbejegyzés hozzáadása"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
 msgstr ""
 
 #: src/ui/program-entry.ui:60
-#, fuzzy
 msgid "Rename…"
-msgstr "Átnevezés"
+msgstr "Átnevezés…"
 
 #: src/ui/program-entry.ui:69
-#, fuzzy
 msgid "Hide Program"
 msgstr "Program elrejtése"
 
 #: src/ui/program-entry.ui:74
-#, fuzzy
 msgid "Show Program"
-msgstr "Programok"
+msgstr "Program megjelenítése"
 
 #: src/ui/program-entry.ui:79
-#, fuzzy
 msgid "Remove from List"
 msgstr "Eltávolítás a listáról"
 
@@ -2481,12 +2373,10 @@ msgid "Your Library"
 msgstr "A könyvtára"
 
 #: src/ui/window.ui:25
-#, fuzzy
 msgid "Import/Export…"
-msgstr "Importálás/exportálás"
+msgstr "Importálás/exportálás…"
 
 #: src/ui/window.ui:39
-#, fuzzy
 msgid "Support"
 msgstr "Támogatás"
 
@@ -2495,7 +2385,6 @@ msgid "Forums"
 msgstr "Fórumok"
 
 #: src/ui/window.ui:54
-#, fuzzy
 msgid "Health Check"
 msgstr "Állapotfelmérés"
 
