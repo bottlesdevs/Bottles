@@ -244,8 +244,6 @@ class DetailsView(Adw.Bin):
         self.view_programs.group_programs.set_sensitive(False)
 
         def new_program(_program, check_boot=None, is_steam=False, to_home=False, wineserver_status=False):
-            nonlocal self
-
             if check_boot is None:
                 check_boot = wineserver_status
 
@@ -266,8 +264,6 @@ class DetailsView(Adw.Bin):
             ))
 
         def callback(result, error=False):
-            nonlocal self
-
             row_no_programs = self.view_bottle.row_no_programs
             handled = result.data.get("handled")
 
@@ -287,8 +283,6 @@ class DetailsView(Adw.Bin):
             self.view_programs.group_programs.set_sensitive(not handled_p)
 
         def process_programs():
-            nonlocal self
-
             wineserver_status = WineServer(self.config).is_alive()
             programs = self.manager.get_programs(self.config)
 

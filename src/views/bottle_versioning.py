@@ -39,6 +39,7 @@ class VersioningView(Adw.PreferencesPage):
     btn_help = Gtk.Template.Child()
     entry_state_comment = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
+    pref_page = Gtk.Template.Child()
     ev_controller = Gtk.EventControllerKey.new()
 
     # endregion
@@ -59,54 +60,41 @@ class VersioningView(Adw.PreferencesPage):
         self.btn_help.connect("clicked", open_doc_url, "bottles/versioning")
         self.entry_state_comment.connect("activate", self.add_state)
 
-    def add_state(self, widget):
-        self.__registry.append(widget)
-        self.list_states.append(widget)
-
     def empty_list(self):
         for r in self.__registry:
             if r.get_parent() is not None:
                 r.get_parent().remove(r)
         self.__registry = []
 
-    def update(self, widget=False, config=None, states=None):
+    def update(self, widget=False, config=None):
         """
         This function update the states list with the
         ones from the bottle configuration.
         """
         if config is None:
             config = {}
-        if states is None:
-            states = {}
-        if len(config) > 0:
-            self.config = config
+        self.config = config
+        states = self.versioning_manager.list_states(self.config)
 
         self.list_states.set_sensitive(False)
 
         def new_state(_state):
-            nonlocal self
-
             entry = StateEntry(
                 window=self.window,
                 config=self.config,
                 state=_state
             )
-            self.add_state(entry)
+            self.__registry.append(entry)
+            self.list_states.append(entry)
 
         def callback(result, error=False):
-            nonlocal self
-            
             self.status_page.set_visible(not result.status)
+            self.pref_page.set_visible(result.status)
             self.list_states.set_visible(result.status)
             self.list_states.set_sensitive(result.status)
 
         def process_states():
-            nonlocal self, states
-
             GLib.idle_add(self.empty_list)
-
-            if len(states) == 0:
-                states = self.versioning_manager.list_states(self.config)
 
             if len(states) == 0:
                 return Result(False)

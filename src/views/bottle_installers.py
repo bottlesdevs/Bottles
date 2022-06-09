@@ -77,10 +77,6 @@ class InstallersView(Adw.Bin):
             return True
         return False
 
-    def add_installer(self, widget):
-        self.__registry.append(widget)
-        self.add_installer(widget)
-
     def empty_list(self):
         for r in self.__registry:
             if r.get_parent() is not None:
@@ -100,8 +96,6 @@ class InstallersView(Adw.Bin):
         self.list_installers.set_sensitive(False)
 
         def new_installer(_installer):
-            nonlocal self
-
             entry = InstallerEntry(
                 window=self.window,
                 config=self.config,
@@ -110,16 +104,12 @@ class InstallersView(Adw.Bin):
             self.list_installers.append(entry)
 
         def callback(result, error=False):
-            nonlocal self
-
             self.status_page.set_visible(not result.status)
             self.pref_page.set_visible(result.status)
             self.list_installers.set_visible(result.status)
             self.list_installers.set_sensitive(result.status)
 
         def process_installers():
-            nonlocal self, installers
-
             time.sleep(.5)  # workaround for freezing bug on bottle load
             GLib.idle_add(self.empty_list)
 

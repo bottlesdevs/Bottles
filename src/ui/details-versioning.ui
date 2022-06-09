@@ -4,13 +4,17 @@
     <requires lib="libadwaita" version="1.0"/>
     <template class="DetailsVersioning" parent="AdwPreferencesPage">
         <child>
-            <object class="AdwPreferencesGroup">
+            <object class="AdwPreferencesPage" id="pref_page">
                 <child>
-                    <object class="GtkListBox" id="list_states">
-                        <property name="selection-mode">none</property>
-                        <style>
-                            <class name="boxed-list"/>
-                        </style>
+                    <object class="AdwPreferencesGroup">
+                        <child>
+                            <object class="GtkListBox" id="list_states">
+                                <property name="selection-mode">none</property>
+                                <style>
+                                    <class name="boxed-list"/>
+                                </style>
+                            </object>
+                        </child>
                     </object>
                 </child>
             </object>

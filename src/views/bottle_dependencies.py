@@ -118,10 +118,6 @@ class DependenciesView(Adw.Bin):
             return True
         return False
 
-    def add_dependency(self, widget):
-        self.__registry.append(widget)
-        self.list_dependencies.append(widget)
-
     def empty_list(self):
         for r in self.__registry:
             if r.get_parent() is not None:
@@ -148,16 +144,14 @@ class DependenciesView(Adw.Bin):
                     selection=selection,
                     plain=plain
             )
-            self.add_dependency(entry)
+            self.__registry.append(entry)
+            self.list_dependencies.append(entry)
 
         def callback(result, error=False):
-            nonlocal self
             self.list_dependencies.set_sensitive(True)
 
         def process_dependencies():
-            nonlocal self
-
-            time.sleep(.5)  # workaround for freezing bug on bottle load
+            time.sleep(.6)  # workaround for freezing bug on bottle load
             GLib.idle_add(self.empty_list)
 
             if len(dependencies.keys()) > 0:
