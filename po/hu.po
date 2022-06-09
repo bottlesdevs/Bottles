@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 12:28+0200\n"
-"PO-Revision-Date: 2022-06-09 17:24+0000\n"
+"PO-Revision-Date: 2022-06-10 01:15+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -145,9 +145,8 @@ msgid "Import Wine prefixes from other managers"
 msgstr "Wine prefixek importálása más kezelőkből"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "Verziókezelés használata"
+msgstr "Palackok verziókezelése"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -285,8 +284,9 @@ msgid "Pass arguments"
 msgstr "Argumentumok átadása"
 
 #: src/main.py:195
+#, fuzzy
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Érvénytelen URI (szintaxis: bottles:run/<bottle>/<program>)"
 
 #: src/main.py:238
 msgid "[Quit] request received."
@@ -363,7 +363,7 @@ msgstr "Az új [{0}] állapot sikeresen létrehozva!"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "Nincs útvonal megadva"
 
 #: src/backend/managers/backup.py:71
 #, python-brace-format
@@ -542,7 +542,7 @@ msgstr "{0} már le van tiltva ebben a palackban."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "Ez a beállítás különbözik a palack alapértelmezett beállításától."
 
 #: src/dialogs/launchoptions.py:174
 msgid "Choose the script"
@@ -550,7 +550,7 @@ msgstr "Szkript kiválasztása"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "Erőforrásfájl kiválasztása"
 
 #: src/views/bottle_details.py:140
 #, python-format
@@ -577,12 +577,12 @@ msgstr "Válassza ki a biztonsági mentés archívumának helyét"
 #: src/views/bottle_details.py:254
 #, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr ""
+msgstr "Biztonsági mentés létrehozva {0} számára."
 
 #: src/views/bottle_details.py:256
 #, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr ""
+msgstr "{0} biztonsági mentése sikertelen."
 
 #: src/views/bottle_details.py:274
 msgid "Export"
@@ -616,7 +616,7 @@ msgstr "Végrehajtható fájlok munkakönyvtár kiválasztása"
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "{0} hozzáadva."
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
@@ -660,7 +660,7 @@ msgstr "Feladatkezelő"
 
 #: src/views/importer.py:89
 msgid "Backup imported successfully."
-msgstr ""
+msgstr "A biztonsági mentés sikeresen importálva."
 
 #: src/views/importer.py:91
 msgid "Import failed."
@@ -726,7 +726,7 @@ msgstr "Válasszon egy új palack útvonalat"
 
 #: src/views/preferences.py:198
 msgid "Caffe"
-msgstr ""
+msgstr "Caffe"
 
 #: src/views/preferences.py:199
 msgid "GE Wine"
@@ -760,12 +760,12 @@ msgstr "Jegyzékfájl a következőhöz: {0}"
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr ""
+msgstr "{0} telepítve."
 
 #: src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr ""
+msgstr "{0} importálva."
 
 #: src/widgets/installer.py:87
 #, python-brace-format
@@ -774,7 +774,7 @@ msgstr "Vélemény ehhez: {0}"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "A telepítő ismeretlen hibával meghiúsult"
 
 #: src/widgets/installer.py:133
 #, python-brace-format
@@ -788,12 +788,12 @@ msgstr "{self.__step}. lépés ennyiből: {self.steps}"
 
 #: src/widgets/program.py:78
 msgid "Steam"
-msgstr ""
+msgstr "Steam"
 
 #: src/widgets/program.py:204
 #, python-brace-format
 msgid "'{0}' launched."
-msgstr ""
+msgstr "{0} elindítva."
 
 #: src/widgets/program.py:210
 #, python-brace-format
@@ -803,22 +803,22 @@ msgstr "{0} elindítva Steammel."
 #: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr ""
+msgstr "{0} elrejtve."
 
 #: src/widgets/program.py:233
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr ""
+msgstr "{0} megjelenítve."
 
 #: src/widgets/program.py:256
 #, python-brace-format
 msgid "'{0}' removed."
-msgstr ""
+msgstr "{0} eltávolítva."
 
 #: src/widgets/program.py:270
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr ""
+msgstr "{0} átnevezve erre: {1}."
 
 #: src/widgets/program.py:292
 msgid ""
@@ -830,7 +830,7 @@ msgstr ""
 #: src/widgets/program.py:300
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "Asztalbejegyzés létrehozva {0} számára"
 
 #: src/widgets/program.py:320
 #, python-brace-format
@@ -903,7 +903,7 @@ msgstr "Újratelepítés"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Hiba bejelentése…"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -1020,7 +1020,7 @@ msgstr "Rétegek"
 
 #: src/ui/details-bottle.ui:237
 msgid "Tools"
-msgstr ""
+msgstr "Eszközök"
 
 #: src/ui/details-bottle.ui:241
 msgid "Command Line"
@@ -1040,11 +1040,11 @@ msgstr "Belső rendszerleíró szerkesztése."
 
 #: src/ui/details-bottle.ui:264
 msgid "Legacy Tools"
-msgstr ""
+msgstr "Örökölt eszközök"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
-msgstr ""
+msgstr "Intéző"
 
 #: src/ui/details-bottle.ui:269
 msgid "Browse internal files with the Wine explorer."
@@ -1149,7 +1149,7 @@ msgstr "Függőségek kiválasztása"
 #: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:62
 #: src/ui/window.ui:96
 msgid "Search"
-msgstr ""
+msgstr "Keresés"
 
 #: src/ui/details-installers.ui:13
 msgid "Search for Programs…"
@@ -1162,7 +1162,7 @@ msgstr "Nem található telepítő"
 #: src/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
+msgstr "A tároló nem elérhető vagy a telepítő nem kompatibilis a palackkal."
 
 #: src/ui/details-preferences.ui:8
 msgid "Bottle Details"
@@ -1216,7 +1216,7 @@ msgstr "DXVK-NVAPI frissítése, kérem várjon…"
 
 #: src/ui/details-preferences.ui:80
 msgid "FSR"
-msgstr ""
+msgstr "FSR"
 
 #: src/ui/details-preferences.ui:81
 msgid ""
@@ -1284,7 +1284,7 @@ msgstr "A Wine virtuális asztal használata."
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr ""
+msgstr "Teljes képernyős egérrögzítés"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
@@ -1452,12 +1452,11 @@ msgid "Bottles Runtime"
 msgstr "Palackok futtatókörnyezet"
 
 #: src/ui/details-preferences.ui:488
-#, fuzzy
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
 msgstr ""
-"Egy csomó extra könyvtárat biztosít a nagyobb kompatibilitás érdekében,\n"
+"Egy csomag extra könyvtárat biztosít a nagyobb kompatibilitás érdekében,\n"
 "tiltsa le, ha problémákba ütközik."
 
 #: src/ui/details-preferences.ui:499
@@ -1465,7 +1464,6 @@ msgid "Steam Runtime"
 msgstr "Steam futtatókörnyezet"
 
 #: src/ui/details-preferences.ui:500
-#, fuzzy
 msgid "The same as the Bottles one but provided by Steam."
 msgstr "Ugyanaz, mint a Palackoké, de a Steam szolgáltatja."
 
@@ -1494,9 +1492,8 @@ msgid "Working Directory"
 msgstr "Munkakönyvtár"
 
 #: src/ui/details-preferences.ui:543
-#, fuzzy
 msgid "Defaults to the bottle path."
-msgstr "Alapértelmezetten a palack útvonala"
+msgstr "Alapértelmezetten a palack útvonala."
 
 #: src/ui/details-preferences.ui:546 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
@@ -1580,14 +1577,13 @@ msgid "No Programs found"
 msgstr "Nem találhatók programok"
 
 #: src/ui/details-programs.ui:10
-#, fuzzy
 msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
 msgstr ""
 "Telepítse a programokat a telepítők részből vagy a telepítő végrehajható "
-"fájljának futtatásával, manuálisan is hozzáadhat végrehajtható fájlokat a \"+"
-"\" gombbal"
+"fájljának futtatásával, de manuálisan is hozzáadhat végrehajtható fájlokat a "
+"\"+\" gombbal."
 
 #: src/ui/details-programs.ui:31
 msgid "Toggle Hidden"
@@ -1719,7 +1715,6 @@ msgid "Existing drives"
 msgstr "Létező meghajtók"
 
 #: src/ui/dialog-duplicate.ui:17
-#, fuzzy
 msgid "Duplicate Bottle"
 msgstr "Palack duplikálása"
 
@@ -1728,9 +1723,8 @@ msgid "Duplicate"
 msgstr "Duplikálás"
 
 #: src/ui/dialog-duplicate.ui:52
-#, fuzzy
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Adjon nevet az új palacknak:"
+msgstr "Adjon nevet a palack másolatának."
 
 #: src/ui/dialog-duplicate.ui:75
 msgid "Duplicating…"
@@ -1741,7 +1735,6 @@ msgid "Take a break, it may take a while"
 msgstr "Tartson egy kis szünetet, ez eltarthat egy ideig"
 
 #: src/ui/dialog-duplicate.ui:105
-#, fuzzy
 msgid "Bottle Duplicated"
 msgstr "Palack duplikálva"
 
@@ -1755,7 +1748,7 @@ msgstr ""
 
 #: src/ui/dialog-env-vars.ui:28
 msgid "Variable name"
-msgstr ""
+msgstr "Változónév"
 
 #: src/ui/dialog-env-vars.ui:36
 msgid "Existing variables"
@@ -1822,11 +1815,11 @@ msgstr "Összes üzenet"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "Kritikus"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "Hibák"
 
 #: src/ui/dialog-journal.ui:27
 msgid "Warnings"
@@ -1834,7 +1827,7 @@ msgstr "Figyelmeztetések"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "Információ"
 
 #: src/ui/dialog-journal.ui:56
 msgid "Journal Browser"
@@ -1848,7 +1841,7 @@ msgstr ""
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Összes"
 
 #: src/ui/dialog-launch-options.ui:9
 msgid "Launch Options"
@@ -1885,14 +1878,15 @@ msgstr "Beállítások felülbírálása"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
-msgstr ""
+msgstr "Helyi erőforrások"
 
 #: src/ui/dialog-local-resources.ui:38
-#, fuzzy
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
-msgstr "Ez a telepítő néhány helyi erőforrást igényel: %s"
+msgstr ""
+"Ez a telepítő olyan helyi erőforrásokat igényel, amelyeket másként nem lehet "
+"biztosítani."
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1900,7 +1894,7 @@ msgstr "Átnevezés"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Válasszon új nevet a kiválasztott program számára."
 
 #: src/ui/dialog-rename.ui:37
 msgid "New Name"
@@ -1936,7 +1930,7 @@ msgstr "Natív majd beépített"
 
 #: src/ui/dll-override-entry.ui:21 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "Eltávolítás"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
@@ -1959,9 +1953,8 @@ msgid "Import Bottles backup"
 msgstr "Palackok biztonsági mentésének importálása"
 
 #: src/ui/importer.ui:31
-#, fuzzy
 msgid "Search again for prefixes"
-msgstr "Steam Proton prefixek"
+msgstr "Prefixek újbóli keresése"
 
 #: src/ui/importer.ui:45
 msgid "No prefixes found"
@@ -1989,7 +1982,7 @@ msgstr "Teljes archívum"
 #: src/ui/installer-entry.ui:18
 #, fuzzy
 msgid "Show Manifest…"
-msgstr "Jegyzékfájl megjelenítése"
+msgstr "Jegyzékfájl megjelenítése…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
@@ -2045,9 +2038,8 @@ msgid "Run .exe/.msi in this bottle"
 msgstr ".exe/.msi futtatása ebben a palackban"
 
 #: src/ui/list.ui:17
-#, fuzzy
 msgid "Search your bottles…"
-msgstr "Palackok keresése..."
+msgstr "Palackok keresése…"
 
 #: src/ui/list.ui:38
 msgid "Steam Proton"
@@ -2070,15 +2062,15 @@ msgstr "Nincs találat"
 
 #: src/ui/list.ui:73
 msgid "Try a different search."
-msgstr ""
+msgstr "Próbáljon különböző keresést."
 
 #: src/ui/loading.ui:13
 msgid "Starting up…"
-msgstr ""
+msgstr "Indulás…"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
-msgstr ""
+msgstr "Ez az erőforrás hiányzik."
 
 #: src/ui/local-resource-entry.ui:10
 msgid "Browse"
@@ -2139,7 +2131,6 @@ msgstr ""
 "visszaállításához."
 
 #: src/ui/new.ui:128
-#, fuzzy
 msgid "Unlinked Home Directory"
 msgstr "Leválasztott kezdőkönyvtár"
 
@@ -2189,7 +2180,7 @@ msgstr "Kilépés"
 
 #: src/ui/onboard.ui:41
 msgid "Previous"
-msgstr ""
+msgstr "Előző"
 
 #: src/ui/onboard.ui:67
 msgid "Welcome to Bottles"
@@ -2213,19 +2204,19 @@ msgstr ""
 
 #: src/ui/onboard.ui:84
 msgid "Almost Done"
-msgstr ""
+msgstr "Majdnem kész"
 
 #: src/ui/onboard.ui:85
 msgid "We need a few more minutes to set everything up.."
-msgstr ""
+msgstr "Kell még pár perc, hogy mindent beállítsunk…"
 
 #: src/ui/onboard.ui:93
 msgid "Continue"
-msgstr ""
+msgstr "Folytatás"
 
 #: src/ui/onboard.ui:118
 msgid "All ready!"
-msgstr ""
+msgstr "Minden kész!"
 
 #: src/ui/onboard.ui:124
 msgid "Start using Bottles"
@@ -2278,7 +2269,7 @@ msgstr "Haladó"
 #: src/ui/preferences.ui:77
 #, fuzzy
 msgid "Custom bottles path (requires restart)"
-msgstr "Egyéni palack útvonal (újraindítás szükséges)"
+msgstr "Egyéni palackok útvonala (újraindítás szükséges)"
 
 #: src/ui/preferences.ui:108
 msgid "Runners"
@@ -2290,7 +2281,7 @@ msgstr "Előzetes kiadás"
 
 #: src/ui/preferences.ui:114
 msgid "Display unstable versions of runners."
-msgstr ""
+msgstr "Futtatók instabil verzióinak megjelenítése."
 
 #: src/ui/preferences.ui:130
 msgid "DLL Components"
@@ -2342,7 +2333,7 @@ msgstr "Asztalbejegyzés hozzáadása"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
-msgstr ""
+msgstr "Hozzáadás Steamhez"
 
 #: src/ui/program-entry.ui:60
 msgid "Rename…"
