@@ -62,7 +62,7 @@ class OnboardDialog(Adw.Window):
         self.manager = window.manager
 
         # connect signals
-        self.connect("destroy", self.__quit)
+        self.connect("close-request", self.__quit)
         self.carousel.connect('page-changed', self.__page_changed)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_back.connect("clicked", self.__previous_page)
