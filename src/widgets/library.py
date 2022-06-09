@@ -18,7 +18,7 @@
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk, GLib, Adw
+from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
 
 from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=false
 from bottles.backend.managers.library import LibraryManager
