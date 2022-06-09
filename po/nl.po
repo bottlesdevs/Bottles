@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 12:28+0200\n"
-"PO-Revision-Date: 2022-06-09 17:24+0000\n"
+"PO-Revision-Date: 2022-06-10 01:15+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -241,7 +241,7 @@ msgstr "Experimenten:steam"
 
 #: data/com.usebottles.bottles.gschema.xml:57
 msgid "Toggle experimental Steam Proton prefixes support."
-msgstr "Schakel experimentele Steam Proton voorvoegsels ondersteuning."
+msgstr "Ondersteuning voor experimentele Steam-Proton-prefixes omschakelen."
 
 #: data/com.usebottles.bottles.gschema.xml:61
 msgid "Experiments:library"
@@ -283,7 +283,7 @@ msgstr "Argumenten doorgeven"
 
 #: src/main.py:195
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Ongeldige URI (syntax: bottles:run/<bottle>/<program>)"
 
 #: src/main.py:238
 msgid "[Quit] request received."
@@ -322,7 +322,7 @@ msgstr "Gezondheidscontrole"
 
 #: src/window.py:287 src/ui/dialog-journal.ui:49
 msgid "Journal browser"
-msgstr "Journaal browser"
+msgstr "Logboekbrowser"
 
 #: src/backend/managers/versioning.py:65
 msgid "Generating state files index …"
@@ -359,7 +359,7 @@ msgstr "Nieuwe staat [{0}] succesvol aangemaakt!"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "Geen pad opgegeven"
 
 #: src/backend/managers/backup.py:71
 #, python-brace-format
@@ -480,9 +480,8 @@ msgstr ""
 "            Meld uw feedback in een van de onderstaande bestaande rapporten."
 
 #: src/dialogs/dlloverrides.py:135
-#, fuzzy
 msgid "No overrides found."
-msgstr "Geen prefixes gevonden"
+msgstr "Geen overschrijvingen gevonden."
 
 #: src/dialogs/drives.py:69
 msgid "Choose path"
@@ -508,9 +507,8 @@ msgid "Select"
 msgstr "Selecteer"
 
 #: src/dialogs/envvars.py:135
-#, fuzzy
 msgid "No environment variables defined"
-msgstr "Omgevingsvariabelen"
+msgstr "Geen omgevingsvariabelen gedefinieerd"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -533,13 +531,13 @@ msgstr "Kies een script dat na het uitvoeren moet worden uitgevoerd."
 
 #. endregion
 #: src/dialogs/launchoptions.py:43
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "Versiebeheer is ingeschakeld voor deze bottle"
+msgstr "{0} is al uitgeschakeld voor deze bottle."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "Deze instelling is anders dan de standaard van de bottle."
 
 #: src/dialogs/launchoptions.py:174
 msgid "Choose the script"
@@ -547,7 +545,7 @@ msgstr "Kies het script"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "Bronbestand selecteren"
 
 #: src/views/bottle_details.py:140
 #, python-format
@@ -575,12 +573,12 @@ msgstr "Selecteer de locatie waar het back-uparchief opgeslagen zal worden"
 #: src/views/bottle_details.py:254
 #, python-brace-format
 msgid "Backup created for '{0}'."
-msgstr ""
+msgstr "Backup gemaakt voor '{0}'."
 
 #: src/views/bottle_details.py:256
 #, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr ""
+msgstr "Backup mislukt voor '{0}'."
 
 #: src/views/bottle_details.py:274
 msgid "Export"
@@ -614,7 +612,7 @@ msgstr "Kies werkmap voor uitvoerbare bestanden"
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "'{0}' toegevoegd."
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
@@ -658,16 +656,15 @@ msgstr "Taakbeheerder"
 
 #: src/views/importer.py:89
 msgid "Backup imported successfully."
-msgstr ""
+msgstr "Backup succesvol geïmporteerd."
 
 #: src/views/importer.py:91
 msgid "Import failed."
 msgstr "Importeren mislukt."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup.."
-msgstr "Importeer vanuit een back-up: {0}"
+msgstr "Backup importeren…"
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -748,9 +745,8 @@ msgid "Upgrade"
 msgstr "Opwaarderen"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing..."
-msgstr "Installeer"
+msgstr "Installeren…"
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -760,12 +756,12 @@ msgstr "Manifest voor {0}"
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr ""
+msgstr "'{0}' geïnstalleerd."
 
 #: src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr ""
+msgstr "'{0}' geïmporteerd."
 
 #: src/widgets/installer.py:87
 #, python-brace-format
@@ -774,12 +770,12 @@ msgstr "Review voor {0}"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "Installer mislukt met onbekende fout"
 
 #: src/widgets/installer.py:133
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} installed."
-msgstr "Deïnstallateur"
+msgstr "{0} geïnstalleerd."
 
 #: src/widgets/installer.py:153
 #, python-brace-format
@@ -793,32 +789,32 @@ msgstr "Steam"
 #: src/widgets/program.py:204
 #, python-brace-format
 msgid "'{0}' launched."
-msgstr ""
+msgstr "'{0}' uitgevoerd."
 
 #: src/widgets/program.py:210
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr "Starten met Steam"
+msgstr "'{0}' uitgevoerd met Steam."
 
 #: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr ""
+msgstr "'{0}' verborgen."
 
 #: src/widgets/program.py:233
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr ""
+msgstr "'{0}' getoond."
 
 #: src/widgets/program.py:256
 #, python-brace-format
 msgid "'{0}' removed."
-msgstr ""
+msgstr "'{0}' verwijderd."
 
 #: src/widgets/program.py:270
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr ""
+msgstr "'{0}' hernoemd naar '{1}'."
 
 #: src/widgets/program.py:292
 msgid ""
@@ -830,17 +826,17 @@ msgstr ""
 #: src/widgets/program.py:300
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "App-icoon gemaakt voor '{0}'"
 
 #: src/widgets/program.py:320
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your library"
-msgstr "Toevoegen aan mijn bibliotheek"
+msgstr "'{0}' toegevoegd aan uw bibliotheek"
 
 #: src/widgets/program.py:325
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr "Toevoegen aan mijn bibliotheek"
+msgstr "'{0}' toegevoegd aan uw Steam-bibliotheek"
 
 #: src/widgets/state.py:95
 #, python-brace-format
@@ -892,13 +888,12 @@ msgid "0%"
 msgstr "0%"
 
 #: src/ui/dependency-entry.ui:18
-#, fuzzy
 msgid "Show Manifest"
-msgstr "Toon manifest"
+msgstr "Manifest tonen"
 
 #: src/ui/dependency-entry.ui:23
 msgid "License"
-msgstr "Vergunning"
+msgstr "Licentie"
 
 #: src/ui/dependency-entry.ui:28
 msgid "Reinstall"
@@ -906,7 +901,7 @@ msgstr "Opnieuw installeren"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Een fout melden…"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -925,14 +920,12 @@ msgid "Troubleshooting"
 msgstr "Probleemoplossing"
 
 #: src/ui/details-bottle.ui:26
-#, fuzzy
 msgid "Browse Files…"
-msgstr "Blader door bestanden"
+msgstr "Door bestanden bladeren…"
 
 #: src/ui/details-bottle.ui:31
-#, fuzzy
 msgid "Duplicate Bottle…"
-msgstr "Dupliceer bottle"
+msgstr "Kopie van Bottle maken…"
 
 #: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
@@ -940,9 +933,8 @@ msgstr ""
 "Dit is het complete archief van je bottle, inclusief persoonlijke bestanden."
 
 #: src/ui/details-bottle.ui:37
-#, fuzzy
 msgid "Full Backup…"
-msgstr "Volledige back-up"
+msgstr "Volledige backup…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
@@ -953,14 +945,12 @@ msgstr ""
 "een nieuwe wilt creëren zonder persoonlijke bestanden."
 
 #: src/ui/details-bottle.ui:43
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "Exporteer configuratie"
+msgstr "Configuratie exporteren…"
 
 #: src/ui/details-bottle.ui:51
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "Verwijder bottle"
+msgstr "Bottle verwijderen…"
 
 #: src/ui/details-bottle.ui:86
 #, fuzzy
@@ -1102,9 +1092,8 @@ msgid "Uninstall programs using Wine uninstaller."
 msgstr "Verwijder programma's met de wine uninstaller."
 
 #: src/ui/details-bottle.ui:328
-#, fuzzy
 msgid "Control Panel"
-msgstr "Controlepaneel"
+msgstr "Configuratiescherm"
 
 #: src/ui/details-bottle.ui:329
 #, fuzzy
@@ -1430,9 +1419,8 @@ msgid "Manage DXVK versions"
 msgstr "DXVK-versies beheren"
 
 #: src/ui/details-preferences.ui:299
-#, fuzzy
 msgid "Components"
-msgstr "DLL Componenten"
+msgstr "Componenten"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
@@ -1883,41 +1871,40 @@ msgid "Fullscreen"
 msgstr "Volledig scherm"
 
 #: src/ui/dialog-journal.ui:12
-#, fuzzy
 msgid "All messages"
-msgstr "Verwijder bericht"
+msgstr "Alle berichten"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "Krietiek"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "Fouten"
 
 #: src/ui/dialog-journal.ui:27
-#, fuzzy
 msgid "Warnings"
-msgstr "Waarschuwing"
+msgstr "Waarschuwingen"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: src/ui/dialog-journal.ui:56
-#, fuzzy
 msgid "Journal Browser"
-msgstr "Journaal browser"
+msgstr "Logboekbrowser"
 
 #: src/ui/dialog-journal.ui:62
 msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
+"Loggingsniveau veranderen.\n"
+"                                        "
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Alles"
 
 #: src/ui/dialog-launch-options.ui:9
 msgid "Launch Options"
@@ -2135,9 +2122,8 @@ msgid "Search your bottles…"
 msgstr "Zoek je bottles..."
 
 #: src/ui/list.ui:38
-#, fuzzy
 msgid "Steam Proton"
-msgstr "Steam Proton Prefixes"
+msgstr "Steam-Proton"
 
 #: src/ui/list.ui:55
 #, fuzzy
@@ -2227,9 +2213,8 @@ msgstr ""
 "herstellen."
 
 #: src/ui/new.ui:128
-#, fuzzy
 msgid "Unlinked Home Directory"
-msgstr "Ongelinkte homedir"
+msgstr "Niet-gelinkte thuismap"
 
 #: src/ui/new.ui:129
 msgid "Do not link the userdir to the homedir"
@@ -2253,21 +2238,18 @@ msgid "32 bit"
 msgstr "32 bit"
 
 #: src/ui/new.ui:168
-#, fuzzy
 msgid "Custom Recipe"
-msgstr "Gebruik aangepast recept"
+msgstr "Aangepast recept"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
 msgstr "Kies een aangepast recept voor de omgeving als u er een hebt."
 
 #: src/ui/new.ui:185
-#, fuzzy
 msgid "Custom Path"
-msgstr "Aangepast"
+msgstr "Aangepast pad"
 
 #: src/ui/new.ui:186
-#, fuzzy
 msgid "Store this bottle in another place."
 msgstr "Bewaar deze bottle op een andere plaats."
 
@@ -2292,11 +2274,12 @@ msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"Voer Windows-software uit op Linux.\n"
+"                                                "
 
 #: src/ui/onboard.ui:76
-#, fuzzy
 msgid "Windows in Bottles"
-msgstr "Venster type"
+msgstr "Windows in Bottles"
 
 #: src/ui/onboard.ui:77
 msgid ""
@@ -2310,7 +2293,7 @@ msgstr "Bijna klaar"
 
 #: src/ui/onboard.ui:85
 msgid "We need a few more minutes to set everything up.."
-msgstr ""
+msgstr "We hebben een paar extra minuten nodig om alles op te zetten…"
 
 #: src/ui/onboard.ui:93
 msgid "Continue"
@@ -2330,7 +2313,7 @@ msgstr "Volgende"
 
 #: src/ui/preferences.ui:13 src/ui/preferences.ui:33
 msgid "General"
-msgstr "Generaal"
+msgstr "Algemeen"
 
 #: src/ui/preferences.ui:16
 msgid "Appearance"
@@ -2358,9 +2341,8 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Tijdelijke bestanden opschonen als Bottles opstart?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles after starting a program"
-msgstr "Sluit Bottles na het starten van een programma"
+msgstr "Bottles sluiten na het starten van een programma"
 
 #: src/ui/preferences.ui:61
 #, fuzzy
@@ -2382,9 +2364,8 @@ msgid "Runners"
 msgstr "Runners"
 
 #: src/ui/preferences.ui:113
-#, fuzzy
 msgid "Pre-release"
-msgstr "Pre-Release"
+msgstr "Pre-release"
 
 #: src/ui/preferences.ui:114
 msgid "Display unstable versions of runners."
@@ -2412,7 +2393,7 @@ msgstr "WineBridge"
 
 #: src/ui/preferences.ui:178
 msgid "Steam Proton Prefixes"
-msgstr "Steam Proton Prefixes"
+msgstr "Steam-Proton-Prefixes"
 
 #: src/ui/preferences.ui:179 src/ui/preferences.ui:191
 #, fuzzy
