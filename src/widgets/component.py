@@ -133,6 +133,8 @@ class ComponentEntry(Adw.ActionRow):
             self.set_err()
             return False
 
+        self.box_download_status.set_visible(True)
+
         if not completed:
             percent = int(count * block_size * 100 / total_size)
             self.label_task_status.set_text(f'{str(percent)}%')
@@ -140,16 +142,10 @@ class ComponentEntry(Adw.ActionRow):
             percent = 100
 
         if percent == 100:
-            while self.box_download_status.get_first_child():
-                self.box_download_status.remove(self.box_download_status.get_first_child())
-            self.btn_err.set_visible(False)
-            self.btn_cancel.set_visible(False)
-            self.spinner.set_visible(True)
-            self.box_download_status.set_visible(False)
-            self.spinner.start()
+            self.label_task_status.set_text(_("Installing..."))
 
     def set_err(self, msg=None, retry=True):
-        self.spinner.stop()
+        self.box_download_status.set_visible(False)
         self.btn_remove.set_visible(False)
         self.btn_cancel.set_visible(False)
         self.btn_browse.set_visible(False)
@@ -166,8 +162,6 @@ class ComponentEntry(Adw.ActionRow):
         self.btn_cancel.set_visible(False)
 
     def set_uninstalled(self):
-        self.btn_cancel.set_visible(False)
-        self.spinner.stop()
         self.btn_browse.set_visible(False)
         self.btn_err.set_visible(False)
         self.btn_download.set_visible(True)

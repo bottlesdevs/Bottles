@@ -226,6 +226,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
             exp_proton.add_row(_entry)
 
         self.list_runners.add(exp_caffe)
+        self.list_runners.add(exp_wine_ge)
         self.list_runners.add(exp_lutris)
         self.list_runners.add(exp_proton)
         self.list_runners.add(exp_other)
