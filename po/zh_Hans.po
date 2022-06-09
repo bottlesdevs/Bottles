@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 12:28+0200\n"
-"PO-Revision-Date: 2022-06-09 11:42+0000\n"
+"PO-Revision-Date: 2022-06-09 17:24+0000\n"
 "Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "bottles/bottles/zh_Hans/>\n"
@@ -270,7 +270,7 @@ msgstr "传递参数"
 
 #: src/main.py:195
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "无效 URI (语法: bottles:run/<bottle>/<program>)"
 
 #: src/main.py:238
 msgid "[Quit] request received."
@@ -344,7 +344,7 @@ msgstr "成功创建了新状态 [{0}]！"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "未指定路径"
 
 #: src/backend/managers/backup.py:71
 #, python-brace-format
@@ -521,7 +521,7 @@ msgstr "该 bottle 已禁用 {0}."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "此设置不同于 bottles 的默认值。"
 
 #: src/dialogs/launchoptions.py:174
 msgid "Choose the script"
@@ -529,7 +529,7 @@ msgstr "选择脚本"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "选择资源文件"
 
 #: src/views/bottle_details.py:140
 #, python-format
@@ -595,7 +595,7 @@ msgstr "选择可执行文件的工作目录"
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "'{0}' 已添加。"
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
@@ -703,7 +703,7 @@ msgstr "选择新的 Bottles 路径"
 
 #: src/views/preferences.py:198
 msgid "Caffe"
-msgstr ""
+msgstr "Caffe"
 
 #: src/views/preferences.py:199
 msgid "GE Wine"
@@ -737,12 +737,12 @@ msgstr "{0} 的清单"
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr ""
+msgstr "'{0}' 已安装。"
 
 #: src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr ""
+msgstr "'{0}' 已导入。"
 
 #: src/widgets/installer.py:87
 #, python-brace-format
@@ -751,7 +751,7 @@ msgstr "{0} 的评论"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "安装程序失败，出现未知错误"
 
 #: src/widgets/installer.py:133
 #, python-brace-format
@@ -765,12 +765,12 @@ msgstr "{self.steps} 的步骤 {self.__step}"
 
 #: src/widgets/program.py:78
 msgid "Steam"
-msgstr ""
+msgstr "Steam"
 
 #: src/widgets/program.py:204
 #, python-brace-format
 msgid "'{0}' launched."
-msgstr ""
+msgstr "'{0}' 已启动。"
 
 #: src/widgets/program.py:210
 #, python-brace-format
@@ -780,12 +780,12 @@ msgstr "'{0}' 随 Steam 启动。"
 #: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr ""
+msgstr "'{0}' 已隐藏。"
 
 #: src/widgets/program.py:233
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr ""
+msgstr "'{0}' 已显示。"
 
 #: src/widgets/program.py:256
 #, python-brace-format
@@ -795,7 +795,7 @@ msgstr "'{0}' 已移除。"
 #: src/widgets/program.py:270
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr ""
+msgstr "'{0}' 已重命名为 '{1}'。"
 
 #: src/widgets/program.py:292
 msgid ""
@@ -803,11 +803,14 @@ msgid ""
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
+"缺少权限而无法创建桌面条目。\n"
+"查看 <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">我们的视频</a>，"
+"内容是有关如何在 Flatapk 中修复此问题。"
 
 #: src/widgets/program.py:300
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "已为 '{0}' 创建桌面条目"
 
 #: src/widgets/program.py:320
 #, python-brace-format
@@ -877,7 +880,7 @@ msgstr "重新安装"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "报告缺陷…"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -991,7 +994,7 @@ msgstr "层"
 
 #: src/ui/details-bottle.ui:237
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 #: src/ui/details-bottle.ui:241
 msgid "Command Line"
@@ -1011,11 +1014,11 @@ msgstr "编辑内部注册表。"
 
 #: src/ui/details-bottle.ui:264
 msgid "Legacy Tools"
-msgstr ""
+msgstr "老式工具"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
-msgstr ""
+msgstr "资源管理器"
 
 #: src/ui/details-bottle.ui:269
 msgid "Browse internal files with the Wine explorer."
@@ -1082,7 +1085,8 @@ msgstr ""
 msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
-msgstr ""
+msgstr "此页面上的文件由第三方在专有许可证下提供。安装它们即表示您同意它们各自的许可"
+"条款。"
 
 #: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -1117,7 +1121,7 @@ msgstr "选择依赖项"
 #: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:62
 #: src/ui/window.ui:96
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: src/ui/details-installers.ui:13
 msgid "Search for Programs…"
@@ -1130,7 +1134,7 @@ msgstr "未找到安装包"
 #: src/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
-msgstr ""
+msgstr "存储库不可访问或没有安装程序兼容此 bottle。"
 
 #: src/ui/details-preferences.ui:8
 msgid "Bottle Details"
@@ -1184,7 +1188,7 @@ msgstr "正在更新 DXVK-NVAPI，请稍等…"
 
 #: src/ui/details-preferences.ui:80
 msgid "FSR"
-msgstr ""
+msgstr "FSR"
 
 #: src/ui/details-preferences.ui:81
 msgid ""
@@ -1247,7 +1251,7 @@ msgstr "使用 Wine 虚拟桌面。"
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr ""
+msgstr "全屏鼠标截图"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
@@ -1263,11 +1267,11 @@ msgstr "如果程序切换时没有重新聚焦，就激活选项。"
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr ""
+msgstr "鼠标弯曲"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
-msgstr ""
+msgstr "如你遇到鼠标延迟或不同步，则更改此选项。"
 
 #: src/ui/details-preferences.ui:231
 msgid "Screen Scaling"
@@ -1690,7 +1694,7 @@ msgstr "环境变量是动态命名的值，可以影响运行中进程在 Bottl
 
 #: src/ui/dialog-env-vars.ui:28
 msgid "Variable name"
-msgstr ""
+msgstr "变量名"
 
 #: src/ui/dialog-env-vars.ui:36
 msgid "Existing variables"
@@ -1755,11 +1759,11 @@ msgstr "所有消息"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "关键"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "错误"
 
 #: src/ui/dialog-journal.ui:27
 msgid "Warnings"
@@ -1767,7 +1771,7 @@ msgstr "警告"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "信息"
 
 #: src/ui/dialog-journal.ui:56
 msgid "Journal Browser"
@@ -1778,10 +1782,12 @@ msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
+"更改日志级别。.\n"
+"                                        "
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "所有"
 
 #: src/ui/dialog-launch-options.ui:9
 msgid "Launch Options"
@@ -1810,7 +1816,7 @@ msgstr "运行后脚本"
 
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
-msgstr ""
+msgstr "这些设置将覆盖此可执行文件的默认设置。"
 
 #: src/ui/dialog-launch-options.ui:88
 msgid "Preferences Overrides"
@@ -1818,14 +1824,13 @@ msgstr "首选项覆盖"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
-msgstr ""
+msgstr "本地资源"
 
 #: src/ui/dialog-local-resources.ui:38
-#, fuzzy
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
-msgstr "此安装程序需要某些本地资源：%s"
+msgstr "此安装程序需要某些不能以其他方式提供的本地资源。"
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1833,12 +1838,11 @@ msgstr "重命名"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "为所选程序挑选新名称。"
 
 #: src/ui/dialog-rename.ui:37
-#, fuzzy
 msgid "New Name"
-msgstr "名称"
+msgstr "新名称"
 
 #: src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
@@ -1849,9 +1853,8 @@ msgid "Write below the arguments to be passed to the executable."
 msgstr "将要传递给可执行文件的参数写在下面。"
 
 #: src/ui/dialog-run-args.ui:50
-#, fuzzy
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "例如：-opengl -SkipBuildPatchPrereq"
+msgstr "如：-opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
@@ -1862,30 +1865,26 @@ msgid "Native (Windows)"
 msgstr "原生（Windows）"
 
 #: src/ui/dll-override-entry.ui:12
-#, fuzzy
 msgid "Builtin, then Native"
 msgstr "内置先于原生"
 
 #: src/ui/dll-override-entry.ui:13
-#, fuzzy
 msgid "Native, then Builtin"
 msgstr "原生先于内置"
 
 #: src/ui/dll-override-entry.ui:21 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "删除"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
 msgstr "/point/to/path"
 
 #: src/ui/drive-entry.ui:24
-#, fuzzy
 msgid "Choose a Directory"
 msgstr "选择一个目录"
 
 #: src/ui/env-var-entry.ui:6
-#, fuzzy
 msgid "Value"
 msgstr "值"
 
@@ -1906,61 +1905,53 @@ msgid "No prefixes found"
 msgstr "未找到前缀"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "                                    Use the icon on the top to import a "
 "bottle from a backup"
 msgstr ""
 "未从 Lutris、PlayOnLinux 等找到前缀。\n"
-"使用顶部的图标从备份导入 Bottle"
+"                                            使用顶部的图标从备份导入 Bottle"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
 msgstr "配置"
 
 #: src/ui/importer.ui:87
-#, fuzzy
 msgid "Full Archive"
 msgstr "完全归档"
 
 #: src/ui/installer-entry.ui:18
-#, fuzzy
 msgid "Show Manifest…"
-msgstr "显示清单"
+msgstr "显示清单…"
 
 #: src/ui/installer-entry.ui:23
-#, fuzzy
 msgid "Read Review…"
-msgstr "阅读评论"
+msgstr "阅读评论…"
 
 #: src/ui/installer-entry.ui:62
 msgid "Install this program"
 msgstr "安装此程序"
 
 #: src/ui/library-entry.ui:14
-#, fuzzy
 msgid "Remove from Library"
-msgstr "从列表中删除"
+msgstr "从库中删除"
 
 #: src/ui/library-entry.ui:70 src/ui/program-entry.ui:102
 msgid "Launch with Steam"
 msgstr "随 Steam 启动"
 
 #: src/ui/library.ui:22
-#, fuzzy
 msgid "Search for Prefixes"
-msgstr "再次搜索前缀"
+msgstr "搜索前缀"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:190
-#, fuzzy
 msgid "Library"
-msgstr "库模式"
+msgstr "库"
 
 #: src/ui/library.ui:43
-#, fuzzy
 msgid "Add items here from your bottle's program list"
-msgstr "将外部可执行文件添加到程序列表中"
+msgstr "从你 bottle 的程序列表将项目添加至此"
 
 #: src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
@@ -1985,47 +1976,44 @@ msgid "Run .exe/.msi in this bottle"
 msgstr "在该 bottle 中运行 .exe/.msi"
 
 #: src/ui/list.ui:17
-#, fuzzy
 msgid "Search your bottles…"
-msgstr "搜索您的 Bottles .."
+msgstr "搜索你的 bottles…"
 
 #: src/ui/list.ui:38
-#, fuzzy
 msgid "Steam Proton"
-msgstr "Steam Proton 前缀"
+msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
-#, fuzzy
 msgid ""
 "Start off by creating a Bottle.\n"
 "                                "
-msgstr "新建一个 Bottle 以开始。"
+msgstr ""
+"新建一个 Bottle 以开始。\n"
+"                                "
 
 #: src/ui/list.ui:59
 msgid "Create a new Bottle"
 msgstr "新建一个 Bottle"
 
 #: src/ui/list.ui:72
-#, fuzzy
 msgid "No Results Found"
-msgstr "未找到状态"
+msgstr "未找到结果"
 
 #: src/ui/list.ui:73
 msgid "Try a different search."
-msgstr ""
+msgstr "尝试不同的搜索。"
 
 #: src/ui/loading.ui:13
 msgid "Starting up…"
-msgstr ""
+msgstr "启动中…"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
-msgstr ""
+msgstr "此资源缺失。"
 
 #: src/ui/local-resource-entry.ui:10
-#, fuzzy
 msgid "Browse"
-msgstr "浏览 C:"
+msgstr "浏览"
 
 #: src/ui/new.ui:17 src/ui/new.ui:63
 msgid "New Bottle"
@@ -2072,16 +2060,14 @@ msgid "Custom"
 msgstr "自定义"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments"
-msgstr "为您的实验提供的清洁环境。"
+msgstr "为您的实验提供的清洁环境"
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
 msgstr "启用版本控制以保存和恢复 bottle 为某个状态。"
 
 #: src/ui/new.ui:128
-#, fuzzy
 msgid "Unlinked Home Directory"
 msgstr "未链接的主目录"
 
@@ -2106,23 +2092,20 @@ msgid "32 bit"
 msgstr "32 位"
 
 #: src/ui/new.ui:168
-#, fuzzy
 msgid "Custom Recipe"
-msgstr "使用定制配方"
+msgstr "定制配方"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
 msgstr "如果你有一个自定义配方，请为环境选择一个。"
 
 #: src/ui/new.ui:185
-#, fuzzy
 msgid "Custom Path"
-msgstr "自定义"
+msgstr "自定义路径"
 
 #: src/ui/new.ui:186
-#, fuzzy
 msgid "Store this bottle in another place."
-msgstr "将此 bootle 存储在一个不同地方。"
+msgstr "将此 bootle 存储在另一个地方。"
 
 #: src/ui/new.ui:273
 msgid "Bottle created"
@@ -2134,7 +2117,7 @@ msgstr "退出"
 
 #: src/ui/onboard.ui:41
 msgid "Previous"
-msgstr ""
+msgstr "上一个"
 
 #: src/ui/onboard.ui:67
 msgid "Welcome to Bottles"
@@ -2145,38 +2128,38 @@ msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"在 Linux 上运行 Windows 软件。.\n"
+"                                                "
 
 #: src/ui/onboard.ui:76
-#, fuzzy
 msgid "Windows in Bottles"
-msgstr "窗口类型"
+msgstr "Bottles 中的窗口"
 
 #: src/ui/onboard.ui:77
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
-msgstr ""
+msgstr "Bottles 使用兼容性运行器提供隔离的容器式类 Windows 环境供程序运行。"
 
 #: src/ui/onboard.ui:84
 msgid "Almost Done"
-msgstr ""
+msgstr "即将完成"
 
 #: src/ui/onboard.ui:85
 msgid "We need a few more minutes to set everything up.."
-msgstr ""
+msgstr "我们还需要几分钟来设置一切.."
 
 #: src/ui/onboard.ui:93
 msgid "Continue"
-msgstr ""
+msgstr "继续"
 
 #: src/ui/onboard.ui:118
 msgid "All ready!"
-msgstr ""
+msgstr "大功告成！"
 
 #: src/ui/onboard.ui:124
-#, fuzzy
 msgid "Start using Bottles"
-msgstr "新建一个 Bottle 以开始。"
+msgstr "开始使用 Bottles"
 
 #: src/ui/onboard.ui:143
 msgid "Next"
@@ -2203,7 +2186,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "为下载和安装显示通知。"
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp files"
 msgstr "临时文件"
 
@@ -2212,36 +2194,32 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "在 Bottles 启动时清理临时文件吗？"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles after starting a program"
 msgstr "启动程序后关闭 Bottles"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager"
-msgstr "从文件管理器启动程序后关闭 Bottles。"
+msgstr "从文件管理器启动程序后关闭 Bottles"
 
 #: src/ui/preferences.ui:74
 msgid "Advanced"
 msgstr "高级"
 
 #: src/ui/preferences.ui:77
-#, fuzzy
 msgid "Custom bottles path (requires restart)"
-msgstr "自定义 Bottles 路径（需要重启）"
+msgstr "自定义 bottles 路径（需要重启）"
 
 #: src/ui/preferences.ui:108
 msgid "Runners"
 msgstr "运行器"
 
 #: src/ui/preferences.ui:113
-#, fuzzy
 msgid "Pre-release"
 msgstr "预发布"
 
 #: src/ui/preferences.ui:114
 msgid "Display unstable versions of runners."
-msgstr ""
+msgstr "显示不稳定版本的运行器。"
 
 #: src/ui/preferences.ui:130
 msgid "DLL Components"
@@ -2268,9 +2246,8 @@ msgid "Steam Proton Prefixes"
 msgstr "Steam Proton 前缀"
 
 #: src/ui/preferences.ui:179 src/ui/preferences.ui:191
-#, fuzzy
 msgid "In early development (requires restart)"
-msgstr "早期开发中（需要重启）。"
+msgstr "早期开发中（需要重启）"
 
 #: src/ui/program-entry.ui:21
 msgid "Launch with terminal"
@@ -2281,41 +2258,34 @@ msgid "Browse path"
 msgstr "浏览路径"
 
 #: src/ui/program-entry.ui:40
-#, fuzzy
 msgid "Change Launch Options…"
-msgstr "更改启动选项"
+msgstr "更改启动选项…"
 
 #: src/ui/program-entry.ui:45
-#, fuzzy
 msgid "Add to My Library"
 msgstr "添加到我的库"
 
 #: src/ui/program-entry.ui:50
-#, fuzzy
 msgid "Add Desktop Entry"
 msgstr "添加桌面条目"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
-msgstr ""
+msgstr "加到 Steam"
 
 #: src/ui/program-entry.ui:60
-#, fuzzy
 msgid "Rename…"
-msgstr "重命名"
+msgstr "重命名…"
 
 #: src/ui/program-entry.ui:69
-#, fuzzy
 msgid "Hide Program"
-msgstr "隐藏此程序"
+msgstr "隐藏程序"
 
 #: src/ui/program-entry.ui:74
-#, fuzzy
 msgid "Show Program"
-msgstr "程序"
+msgstr "显示程序"
 
 #: src/ui/program-entry.ui:79
-#, fuzzy
 msgid "Remove from List"
 msgstr "从列表中删除"
 
@@ -2332,21 +2302,18 @@ msgid "Your Library"
 msgstr "你的库"
 
 #: src/ui/window.ui:25
-#, fuzzy
 msgid "Import/Export…"
-msgstr "导入和导出"
+msgstr "导入/导出…"
 
 #: src/ui/window.ui:39
-#, fuzzy
 msgid "Support"
-msgstr "支持我们"
+msgstr "支持"
 
 #: src/ui/window.ui:49
 msgid "Forums"
 msgstr "论坛"
 
 #: src/ui/window.ui:54
-#, fuzzy
 msgid "Health Check"
 msgstr "健康检查"
 
