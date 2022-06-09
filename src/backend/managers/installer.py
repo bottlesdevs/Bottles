@@ -109,42 +109,14 @@ class InstallerManager:
             if not os.path.isfile(icon_path):
                 urllib.request.urlretrieve(icon_url, icon_path)
 
-    def __ask_for_local_resources(self, exe_msi_steps, _config):
-        files = [s.get("file_name", "") for s in exe_msi_steps]
-
-        # show confirmation dialog
-        dialog = MessageDialog(
-            parent=None,
-            title=_("Installer requires local resources"),
-            message=_(
-                _("This installer requires some local resources: %s") % ", ".join(files)
-            )
-        )
-        res = dialog.run()
-        GLib.idle_add(dialog.destroy)
-        if res != -5:
-            return False
-
-        for s in exe_msi_steps:
-            _file_name = s.get("file_name")
-            _ext = _file_name.split(".")[-1]
-            _fd = Gtk.FileChooserNative.new(
-                _("Pick executable for %s") % _file_name,
-                None,
-                Gtk.FileChooserAction.OPEN,
-                _("Proceed"),
-                _("Cancel")
-            )
-            _flt = Gtk.FileFilter()
-            _flt.set_name(f".{_ext}")
-            _flt.add_pattern(f"*.{_ext}")
-            _fd.add_filter(_flt)
-            _res = _fd.run()
-
-            if _res == -3:
-                self.__local_resources[_file_name] = _fd.get_filename()
-            else:
+    def __process_local_resources(self, exe_msi_steps, installer):
+        files = self.has_local_resources(installer)
+        if not files:
+            return True
+        for file in files:
+            if file not in exe_msi_steps.keys():
                 return False
+            self.__local_resources[file] = exe_msi_steps[file]
         return True
 
     def __install_dependencies(
@@ -417,7 +389,18 @@ class InstallerManager:
 
         return steps
 
-    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True):
+    def has_local_resources(self, installer):
+        manifest = self.get_installer(installer[0])
+        steps = manifest.get("Steps", [])
+        exe_msi_steps = [s for s in steps
+                         if s.get("action", "") in ["install_exe", "install_msi"]
+                         and s.get("url", "") == "local"]
+        if len(exe_msi_steps) == 0:
+            return []
+        files = [s.get("file_name", "") for s in exe_msi_steps]
+        return files
+
+    def install(self, config: dict, installer: dict, step_fn: callable, is_final: bool = True, local_resources: list = None):
         if config.get("Environment") == "Layered":
             self.__layer = Layer().new(installer[0], self.__manager.get_latest_runner())
             self.__layer.mount_bottle(config)
@@ -448,13 +431,8 @@ class InstallerManager:
                     return Result(False, data={"message": "Failed to install dependent installer(s)"})
 
         # ask for local resources
-        exe_msi_steps = False
-        if is_final:
-            exe_msi_steps = [s for s in steps
-                             if s.get("action", "") in ["install_exe", "install_msi"]
-                             and s.get("url", "") == "local"]
-        if exe_msi_steps:
-            if not self.__ask_for_local_resources(exe_msi_steps, _config):
+        if local_resources:
+            if not self.__process_local_resources(local_resources, installer):
                 return Result(False, data={"message": "Local resources not found or invalid"})
 
         # install dependencies
