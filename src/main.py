@@ -17,6 +17,7 @@
 
 import sys
 import gi
+import os
 import gettext
 import locale
 import webbrowser
@@ -192,6 +193,11 @@ class Bottles(Adw.Application):
         e.g. xdg-open bottles:run/<bottle>/<program>
         """
         uri = uri[0]
+        if os.path.exists(uri):
+            import subprocess
+            subprocess.Popen(['bottles', '-e', uri])
+            return 0
+
         _wrong_uri_error = _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
         if not len(uri) > 0 or not uri.startswith('bottles:run/') or len(uri.split('/')) != 3:
             print(_wrong_uri_error)
