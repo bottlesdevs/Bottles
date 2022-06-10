@@ -381,7 +381,7 @@ class WineCommand:
                     command = f"gamemode {command}"
 
             if gamescope_available and params.get("gamescope"):
-                command = f"{self.__get_gamescope_cmd(return_steam_cmd)} {command}"
+                command = f"{self.__get_gamescope_cmd(return_steam_cmd)}  -- {command}"
 
             if mangohud_available and params.get("mangohud"):
                 if not return_steam_cmd:
