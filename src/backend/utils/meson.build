@@ -16,6 +16,7 @@ bottles_sources = [
   'decorators.py',
   'snake.py',
   'vdf.py',
+  'imagemagick.py',
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)
