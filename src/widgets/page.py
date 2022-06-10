@@ -34,17 +34,22 @@ class PageRow(Gtk.ListBoxRow):
             "taskmanager": "computer-symbolic-symbolic"
         }
 
-        box = Gtk.Box(
-            orientation=Gtk.Orientation.HORIZONTAL,
-            spacing=6
-        )
+        grid = Gtk.Grid()
+        grid.set_hexpand(True)
+        grid.set_margin_top(12)
+        grid.set_margin_bottom(12)
+        grid.set_margin_start(6)
+        grid.set_margin_end(6)
+        grid.set_column_spacing(12)
+
         icon = Gtk.Image()
         icon.set_from_icon_name(icons[page_name])
-        box.append(icon)
-        box.append(
+        grid.attach(icon, 0, 0, 1, 1)
+        grid.attach(
             Gtk.Label(
                 label=page["title"],
                 xalign=0.0
-            )
+            ),
+            1, 0, 1, 1
         )
-        self.set_child(box)
+        self.set_child(grid)
