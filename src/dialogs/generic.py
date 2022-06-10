@@ -198,8 +198,10 @@ class WebDialog(Adw.Window):
 class AboutDialog(Gtk.AboutDialog):
     __gtype_name__ = 'AboutDialog'
 
-    def __init__(self, **kwargs):
+    def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
+        self.set_transient_for(window)
+        self.set_modal(True)
 
     def do_response(self, response_id):
         if response_id == Gtk.ResponseType.DELETE_EVENT:

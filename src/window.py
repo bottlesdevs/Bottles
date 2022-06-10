@@ -371,9 +371,8 @@ class MainWindow(Adw.ApplicationWindow):
         """Properly close Bottles"""
         quit()
 
-    @staticmethod
-    def show_about_dialog(widget):
-        AboutDialog().present()
+    def show_about_dialog(self, *args):
+        AboutDialog(self).present()
 
     @staticmethod
     def open_url(widget, url):
