@@ -25,6 +25,7 @@ from bottles.backend.utils.display import DisplayUtils  # pyright: reportMissing
 from bottles.backend.utils.gpu import GPUUtils
 from bottles.backend.utils.generic import is_glibc_min_available
 from bottles.backend.utils.file import FileUtils
+from bottles.params import VERSION
 
 
 class HealthChecker:
@@ -189,6 +190,7 @@ class HealthChecker:
 
     def get_results(self, plain: bool = False):
         results = {
+            "Version": VERSION,
             "Display": {
                 "X.org": self.x11,
                 "X.org (port)": self.x11_port,
