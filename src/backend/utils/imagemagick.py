@@ -50,7 +50,7 @@ class ImageMagick:
                 continue
         return assets
 
-    def convert(self, dest: str, asset_size: int = 256, resize: int = 256, flatten: bool = True, fallback: bool = True):
+    def convert(self, dest: str, asset_size: int = 256, resize: int = 256, flatten: bool = True, alpha: bool = True, fallback: bool = True):
         if not self.__validate_path(dest):
             raise FileExistsError("Destination path already exists")
 
@@ -69,10 +69,12 @@ class ImageMagick:
 
         if asset_index != -1:
             cmd = f"convert '{self.path}[{asset_index}]'"
-        if flatten:
-            cmd += " -flatten"
         if resize > 0:
             cmd += f" -thumbnail {resize}x{resize}"
+        if alpha:
+            cmd += " -alpha on -background none"
+        if flatten:
+            cmd += " -flatten"
 
-        cmd += f" -alpha on -background none '{dest}'"
+        cmd += f" '{dest}'"
         subprocess.Popen(["bash", "-c", cmd])
