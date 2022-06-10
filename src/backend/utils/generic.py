@@ -17,6 +17,7 @@
 
 import re
 import sys
+import subprocess
 
 
 def validate_url(url: str):
@@ -109,3 +110,14 @@ def sort_by_version(_list: list, extra_check: str = "async"):
 
     _list.sort(key=natural_keys, reverse=True)
     return _list
+
+
+def get_mime(path: str):
+    """Get the mime type of file."""
+    try:
+        res = subprocess.check_output(["file", "--mime-type", path])
+        if res:
+            return res.decode('utf-8').split(':')[1].strip()
+    except:
+        pass
+    return None
