@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 12:28+0200\n"
-"PO-Revision-Date: 2022-06-10 01:15+0000\n"
+"PO-Revision-Date: 2022-06-11 15:37+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -27,7 +27,7 @@ msgstr "Palackok"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
-msgstr "A Wine prefixek könnyed kezelése"
+msgstr "Wine prefixek könnyed kezelése"
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
@@ -43,11 +43,11 @@ msgstr "Mirko Brombin"
 
 #: data/com.usebottles.bottles.appdata.xml.in:10
 msgid "Run Windows software on Linux with Bottles!"
-msgstr "Windows szoftverek futtatása Linuxon a Palackok segítségével!"
+msgstr "Futtasson Windows szoftvereket Linuxon a Palackok segítségével!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:11
 msgid "Bottle software and enjoy at your leisure!"
-msgstr "Palackozza be a szoftvert és élvezze a szabadidejében!"
+msgstr "Palackozza be a szoftvereket és élvezze a szabadidejében!"
 
 #: data/com.usebottles.bottles.appdata.xml.in:12
 msgid ""
@@ -57,7 +57,7 @@ msgid ""
 msgstr ""
 "Beépített függőségi telepítési rendszerünk önműködő hozzáférést biztosít a "
 "szoftverek kompatibilitásához. A letöltéskezelővel töltse le a hivatalos "
-"összetevőket: a futtatót (Wine, Proton), a DXVK-t, a függőségeket stb."
+"összetevőket: a futtatót (Wine, Proton), a DXVK-t, a függőségeket, stb."
 
 #: data/com.usebottles.bottles.appdata.xml.in:15
 msgid ""
@@ -86,7 +86,7 @@ msgstr ""
 
 #: data/com.usebottles.bottles.appdata.xml.in:20
 msgid "Automated detection of applications installed in your bottles"
-msgstr "A palackjaiba telepített alkalmazások automatikus észlelése"
+msgstr "A palackokba telepített alkalmazások automatikus észlelése"
 
 #: data/com.usebottles.bottles.appdata.xml.in:21
 msgid "Add environment variables quickly"
@@ -202,15 +202,15 @@ msgstr "Értesítések megjelenítése."
 
 #: data/com.usebottles.bottles.gschema.xml:36
 msgid "Temp cleaning"
-msgstr "Ideiglenes tisztítás"
+msgstr "Gyorsítótár tisztítása"
 
 #: data/com.usebottles.bottles.gschema.xml:37
 msgid "Clean the temp path when booting the system."
-msgstr "Ideiglenes elérési útvonal tisztítása a rendszerindításkor."
+msgstr "Gyorsítótár útvonalának tisztítása rendszerindításkor."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
-msgstr "Kiadási jelölt"
+msgstr "Kiadásra jelölt"
 
 #: data/com.usebottles.bottles.gschema.xml:42
 msgid "Toggle release candidate for runners."
@@ -260,8 +260,7 @@ msgstr "Palackok automatikus bezárása"
 #: data/com.usebottles.bottles.gschema.xml:67
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
-"Zárja be a Palackokat, miután elindította a végrehajtható fájlt a "
-"fájlkezelőből."
+"Palackok bezárása, miután elindította a végrehajtható fájlt a fájlkezelőből."
 
 #: src/main.py:103
 msgid "Show version"
@@ -273,7 +272,7 @@ msgstr "Végrehajtható fájl elérési útja"
 
 #: src/main.py:119
 msgid "lnk path"
-msgstr "hivatkozásútvonal"
+msgstr "lnk útvonal"
 
 #: src/main.py:127
 msgid "Bottle name"
@@ -309,7 +308,6 @@ msgid "Loading..."
 msgstr "Betöltés..."
 
 #: src/window.py:226
-#, fuzzy
 msgid ""
 "The custom bottles path was not found. Please, check the path in "
 "Preferences.\n"
@@ -317,7 +315,7 @@ msgid ""
 msgstr ""
 "Az egyéni palackok útvonala nem található. Kérjük, ellenőrizze a "
 "beállításokban.\n"
-"Visszatérés az alapértelmezett elérési útra. Arról az útvonalról nem lesznek "
+"Visszatérés az alapértelmezett útvonalra. Arról az útvonalról nem lesznek "
 "palackok felsorolva!"
 
 #: src/window.py:282
@@ -394,7 +392,7 @@ msgstr "Nem sikerült létrehozni helykitöltő könyvtárat/fájlt."
 
 #: src/backend/managers/manager.py:1026
 msgid "Generating bottle configuration…"
-msgstr "Palack beállításfájljának generálása…"
+msgstr "Palack konfigurációs fájljának generálása…"
 
 #: src/backend/managers/manager.py:1049
 msgid "Template found, applying…"
@@ -403,11 +401,11 @@ msgstr "Sablon megtalálva, alkalmazás…"
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1061
 msgid "The Wine config is being updated…"
-msgstr "A Wine beállításainak frissítése…"
+msgstr "A Wine konfigurációjának frissítése…"
 
 #: src/backend/managers/manager.py:1063
 msgid "Wine config updated!"
-msgstr "Wine beállításai frissítve!"
+msgstr "Wine konfiguráció frissítve!"
 
 #: src/backend/managers/manager.py:1071
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -444,15 +442,15 @@ msgstr "(!) A recept nem található, vagy érvénytelen…"
 
 #: src/backend/managers/manager.py:1148
 msgid "Installing DXVK…"
-msgstr "A DXVK telepítése folyamatban van…"
+msgstr "DXVK telepítése…"
 
 #: src/backend/managers/manager.py:1156
 msgid "Installing VKD3D…"
-msgstr "A VKD3D telepítése folyamatban van…"
+msgstr "VKD3D telepítése…"
 
 #: src/backend/managers/manager.py:1164
 msgid "Installing DXVK-NVAPI…"
-msgstr "A DXVK-NVAPI telepítése folyamatban van…"
+msgstr "DXVK-NVAPI telepítése…"
 
 #: src/backend/managers/manager.py:1173
 #, python-format
@@ -465,11 +463,11 @@ msgstr "A(z) 0 verziószámozási állapot létrehozása…"
 
 #: src/backend/managers/manager.py:1197
 msgid "Finalizing…"
-msgstr "Véglegesítés folyamatban van…"
+msgstr "Véglegesítés…"
 
 #: src/backend/managers/manager.py:1208
 msgid "Caching template…"
-msgstr "Sablon gyorsítótárazása …"
+msgstr "Sablon gyorsítótárazása…"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -568,7 +566,7 @@ msgstr "Futtatás"
 
 #: src/views/bottle_details.py:245
 msgid "Select the location where to save the backup config"
-msgstr "Válassza ki a beállítások biztonsági mentésének helyét"
+msgstr "Válassza ki a konfiguráció biztonsági mentésének helyét"
 
 #: src/views/bottle_details.py:249
 msgid "Select the location where to save the backup archive"
@@ -606,12 +604,13 @@ msgstr "Ez a funkció nem elérhető a rendszerén."
 
 #: src/views/bottle_preferences.py:226 src/views/bottle_preferences.py:243
 #: src/views/bottle_preferences.py:370
+#, fuzzy
 msgid "Default to the bottle path."
-msgstr "Alapértelmezetten a palack útvonala"
+msgstr "Alapértelmezetten a palack útvonala."
 
 #: src/views/bottle_preferences.py:234
 msgid "Choose working directory for executables"
-msgstr "Végrehajtható fájlok munkakönyvtár kiválasztása"
+msgstr "Munkakönyvtár kiválasztása a végrehajtható fájlok számára"
 
 #: src/views/bottle_programs.py:83
 #, python-brace-format
@@ -680,7 +679,7 @@ msgstr "Importálás"
 
 #: src/views/importer.py:144
 msgid "Choose a configuration file"
-msgstr "Beállítási fájl kijelölése"
+msgstr "Konfigurációs fájl kiválasztása"
 
 #: src/views/list.py:60 src/views/list.py:66
 msgid "N/A"
@@ -697,7 +696,7 @@ msgstr "A Palackjai"
 
 #: src/views/new.py:119
 msgid "Choose a recipe file"
-msgstr "Receptfájl kijelölése"
+msgstr "Receptfájl kivélasztása"
 
 #: src/views/new.py:135
 msgid "Choose where to store the bottle"
@@ -755,7 +754,7 @@ msgstr "Telepítés…"
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
 msgid "Manifest for {0}"
-msgstr "Jegyzékfájl a következőhöz: {0}"
+msgstr "Jegyzékfájl ehhez: {0}"
 
 #: src/widgets/dependency.py:166
 #, python-brace-format
@@ -826,6 +825,9 @@ msgid ""
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
+"Nem lehet létrehozni az asztalbejegyzést a hiányzó jogosultságok miatt.\n"
+"Tekintse meg <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\""
+">videónkat</a> arról, hogyan javíthatja ki ezt a Flatpak alkalmazásban."
 
 #: src/widgets/program.py:300
 #, python-brace-format
@@ -889,7 +891,6 @@ msgid "0%"
 msgstr "0%"
 
 #: src/ui/dependency-entry.ui:18
-#, fuzzy
 msgid "Show Manifest"
 msgstr "Jegyzékfájl megjelenítése"
 
@@ -959,7 +960,7 @@ msgstr "Minden folyamat megszakítása"
 
 #: src/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
-msgstr "Windows rendszer leállítás szimulálása."
+msgstr "Windows rendszerleállítás szimulálása."
 
 #: src/ui/details-bottle.ui:92
 msgid "Shutdown"
@@ -967,7 +968,7 @@ msgstr "Leállítás"
 
 #: src/ui/details-bottle.ui:97
 msgid "Simulate a Windows system reboot."
-msgstr "Windows rendszer újraindítás szimulálása."
+msgstr "Windows rendszerújraindítás szimulálása."
 
 #: src/ui/details-bottle.ui:98
 msgid "Reboot"
@@ -1107,13 +1108,15 @@ msgid ""
 msgstr ""
 "A függőségek olyan szoftverek, könyvtárak és kodekek, amelyek javítják a "
 "Windows-szoftverek kompatibilitását. Telepítse innen, hogy megfeleljen a "
-"programkövetelményeknek."
+"program követelményeinek."
 
 #: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
 msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Az ezen az oldalon található fájlokat harmadik felek biztosítják saját "
+"licenc alapján. Telepítésükkel elfogadja a vonatkozó licencfeltételeiket."
 
 #: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -1121,12 +1124,11 @@ msgstr "Hiba vagy hiányzó függőség bejelentése."
 
 #: src/ui/details-dependencies.ui:63
 msgid "Report missing dependency"
-msgstr "Hiányzó függőség bejelentése."
+msgstr "Hiányzó függőség bejelentése"
 
 #: src/ui/details-dependencies.ui:68
-#, fuzzy
 msgid "Read documentation about dependencies."
-msgstr "Dokumentáció elolvasása a függőségekről\t"
+msgstr "Dokumentáció elolvasása a függőségekről."
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
 #: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:77
@@ -1187,7 +1189,7 @@ msgstr "Javítja a DirectX 11 játékok és 3D alkalmazások teljesítményét."
 
 #: src/ui/details-preferences.ui:27 src/ui/details-preferences.ui:328
 msgid "Updating DXVK, please wait…"
-msgstr "DXVK frissítése, kérem várjon…"
+msgstr "DXVK frissítése…"
 
 #: src/ui/details-preferences.ui:42 src/ui/preferences.ui:138
 msgid "VKD3D"
@@ -1199,7 +1201,7 @@ msgstr "Javítja a DirectX 12 játékok és 3D alkalmazások teljesítményét."
 
 #: src/ui/details-preferences.ui:46 src/ui/details-preferences.ui:351
 msgid "Updating VKD3D, please wait…"
-msgstr "VKD3D frissítése, kérem várjon…"
+msgstr "VKD3D frissítése…"
 
 #: src/ui/details-preferences.ui:61
 msgid "DLSS (DXVK-NVAPI)"
@@ -1212,7 +1214,7 @@ msgstr "Lehetővé teszi a DLSS támogatást és az Nvidia NVAPI-ját, ha elérh
 #: src/ui/details-preferences.ui:65 src/ui/details-preferences.ui:112
 #: src/ui/details-preferences.ui:375 src/ui/details-preferences.ui:397
 msgid "Updating DXVK-NVAPI, please wait…"
-msgstr "DXVK-NVAPI frissítése, kérem várjon…"
+msgstr "DXVK-NVAPI frissítése…"
 
 #: src/ui/details-preferences.ui:80
 msgid "FSR"
@@ -1284,7 +1286,7 @@ msgstr "A Wine virtuális asztal használata."
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr "Teljes képernyős egérrögzítés"
+msgstr "Teljes képernyős egérelkapás"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
@@ -1302,11 +1304,12 @@ msgstr "Aktiválás, ha a program nem veszi vissza a fókuszt váltáskor."
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Egérrögzítés"
 
 #: src/ui/details-preferences.ui:219
+#, fuzzy
 msgid "Change this if you are running into mouse lag or desync."
-msgstr ""
+msgstr "Változtassa meg, ha az egér szakadozását, vagy a leválását tapasztalja."
 
 #: src/ui/details-preferences.ui:231
 msgid "Screen Scaling"
@@ -1398,12 +1401,12 @@ msgstr "Összetevők"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
-msgstr "Futtató és összetevők frissítése, kérem várjon…"
+msgstr "Futtató és összetevők frissítése…"
 
 #. TODO: replace with ComboRow
 #: src/ui/details-preferences.ui:324
 msgid "DXVK Version"
-msgstr "DXVK-verzió"
+msgstr "DXVK verzió"
 
 #: src/ui/details-preferences.ui:348
 msgid "VKD3D Version"
@@ -1425,7 +1428,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:417
 msgid "Synchronization"
-msgstr "Szinkronizálás"
+msgstr "Szinkronizáció"
 
 #: src/ui/details-preferences.ui:428
 msgid "Esync"
@@ -1697,18 +1700,18 @@ msgid "Drives"
 msgstr "Meghajtók"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..).\n"
 "                                "
 msgstr ""
 "Ezek a gazdarendszerből származó útvonalak, amelyeket a futtató eszközként "
-"leképez és felismer (pl. C: D:...)."
+"leképez és felismer (pl. C: D:...).\n"
+"                                "
 
 #: src/ui/dialog-drives.ui:25
 msgid "Letter"
-msgstr "Betűk"
+msgstr "Betű"
 
 #: src/ui/dialog-drives.ui:49
 msgid "Existing drives"
@@ -1838,6 +1841,8 @@ msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
+"Naplózási szint változtatása.\n"
+"                                        "
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
@@ -1853,7 +1858,7 @@ msgstr "Ezek az argumentumok lesznek átadva indításkor."
 
 #: src/ui/dialog-launch-options.ui:47
 msgid "Custom Arguments"
-msgstr "Egyéni argumentumo"
+msgstr "Egyéni argumentumok"
 
 #: src/ui/dialog-launch-options.ui:50
 msgid "Command Arguments"
@@ -1871,6 +1876,8 @@ msgstr "Futtatás utáni szkript"
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
 msgstr ""
+"Ezek a beállítások felülbírálják az alapértelmezett beállításokat ennél a "
+"végrehajtható fájlnál."
 
 #: src/ui/dialog-launch-options.ui:88
 msgid "Preferences Overrides"
@@ -1961,7 +1968,6 @@ msgid "No prefixes found"
 msgstr "Nem találhatók prefixek"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "                                    Use the icon on the top to import a "
@@ -1980,7 +1986,6 @@ msgid "Full Archive"
 msgstr "Teljes archívum"
 
 #: src/ui/installer-entry.ui:18
-#, fuzzy
 msgid "Show Manifest…"
 msgstr "Jegyzékfájl megjelenítése…"
 
@@ -2009,9 +2014,8 @@ msgid "Library"
 msgstr "Könyvtár"
 
 #: src/ui/library.ui:43
-#, fuzzy
 msgid "Add items here from your bottle's program list"
-msgstr "Külső végrehajtható fájl hozzáadása a programlistához"
+msgstr "Adjon hozzá elemeket a palack programlistájából"
 
 #: src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
@@ -2019,11 +2023,11 @@ msgstr "Ez a palack sérültnek tűnik."
 
 #: src/ui/list-entry.ui:60
 msgid "Execute in this bottle"
-msgstr "Ennek a palacknak a végrehajtása"
+msgstr "Végrehajtás ebben a palackban"
 
 #: src/ui/list-entry.ui:75
 msgid "Run Here"
-msgstr "Futtatás ide"
+msgstr "Futtatás itt"
 
 #: src/ui/list-entry.ui:84
 msgid ""
@@ -2046,11 +2050,12 @@ msgid "Steam Proton"
 msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
-#, fuzzy
 msgid ""
 "Start off by creating a Bottle.\n"
 "                                "
-msgstr "Kezdje el egy palack létrehozásával."
+msgstr ""
+"Kezdje el egy palack létrehozásával.\n"
+"                                "
 
 #: src/ui/list.ui:59
 msgid "Create a new Bottle"
@@ -2098,7 +2103,7 @@ msgstr "Játékok"
 
 #: src/ui/new.ui:84
 msgid "An environment improved for Windows games."
-msgstr "Egy javított környezet a Windows-játékok számára."
+msgstr "Egy Windowsos játékok számára javított környezet ."
 
 #: src/ui/new.ui:92
 msgid "Application"
@@ -2106,7 +2111,7 @@ msgstr "Alkalmazás"
 
 #: src/ui/new.ui:93
 msgid "An environment improved for Windows applications."
-msgstr "Egy Windows-alkalmazások számára javított környezet."
+msgstr "Egy Windowsos alkalmazások számára javított környezet."
 
 #: src/ui/new.ui:102
 msgid "Layered"
@@ -2136,7 +2141,7 @@ msgstr "Leválasztott kezdőkönyvtár"
 
 #: src/ui/new.ui:129
 msgid "Do not link the userdir to the homedir"
-msgstr "Ne összekapcsolja a felhasználói könyvtárat a kezdőkönyvtárhoz"
+msgstr "Ne kapcsolja össze a felhasználói könyvtárat a kezdőkönyvtárhoz"
 
 #: src/ui/new.ui:154
 msgid "Architecture"
@@ -2191,6 +2196,8 @@ msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"Windows szoftverek futtatása Linuxon.\n"
+"                                                "
 
 #: src/ui/onboard.ui:76
 msgid "Windows in Bottles"
@@ -2201,6 +2208,8 @@ msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
+"A Palackok kompatibilitási futtatókat használ, hogy elkülönített konténeres "
+"Windows-szerű környezeteket biztosítson, ahol a programok futnak."
 
 #: src/ui/onboard.ui:84
 msgid "Almost Done"
