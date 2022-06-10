@@ -459,7 +459,7 @@ class SteamManager:
     def add_shortcut(config: dict, program_name: str, program_path: str):
         steam_path = SteamManager.find_steam_path("userdata")
         cmd = "xdg-open"
-        args = "bottles:run/{0}/{1}"
+        args = "bottles:run/{0}/'{1}'"
 
         if steam_path is None:
             return Result(False)
