@@ -106,8 +106,8 @@ class SourceDialog(Adw.Window):
         self.set_content(box)
 
     def __copy_text(self, widget):
-        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        clipboard.set_text(self.message, -1)
+        clipboard = Gdk.Display.get_clipboard(Gdk.Display.get_default())
+        clipboard.set_content(Gdk.ContentProvider.new_for_value(self.message))
 
 
 class TextDialog(Adw.Window):
@@ -146,8 +146,8 @@ class TextDialog(Adw.Window):
         self.set_content(box)
 
     def __copy_text(self, widget):
-        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        clipboard.set_text(self.message, -1)
+        clipboard = Gdk.Display.get_clipboard(Gdk.Display.get_default())
+        clipboard.set_content(Gdk.ContentProvider.new_for_value(self.message))
 
 
 class WebDialog(Adw.Window):
@@ -155,6 +155,7 @@ class WebDialog(Adw.Window):
     TODO: currently unused, waiting for webkit2gtk-5 to be released with the GNOME Runtime
           use SourceDialog or TextDialog in the meantime
     """
+
     def __init__(self, parent, title, message):
         Adw.Window.__init__(self, title=title)
         self.set_default_size(700, 700)
@@ -189,8 +190,9 @@ class WebDialog(Adw.Window):
         self.set_content(box)
 
     def __copy_text(self, widget):
-        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        clipboard.set_text(self.message, -1)
+        clipboard = Gdk.Display.get_clipboard(Gdk.Display.get_default())
+        clipboard.set_content(Gdk.ContentProvider.new_for_value(self.message))
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/about.ui')
 class AboutDialog(Gtk.AboutDialog):
