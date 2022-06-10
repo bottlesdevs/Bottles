@@ -291,6 +291,17 @@ modules:
         url: https://github.com/lazka/sassc.git
         branch: meson
 
+  - name: ImageMagick
+    config-opts:
+      - --disable-static
+      - --disable-docs
+      - --with-hdri
+      - --with-pic
+    sources:
+      - type: archive
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.0-37.tar.gz
+        sha256: a54888a1a46dbb808705a3e6c6b5ecb93ee30189a8ae6ea0f02300a0ab0d0996
+
   # Bottles components
   # ----------------------------------------------------------------------------
   - name: EasyTerm

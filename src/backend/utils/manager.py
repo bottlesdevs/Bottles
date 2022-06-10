@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import shlex
-
+import shutil
 import gi
 import os
 import subprocess
@@ -26,6 +26,8 @@ from gi.repository import GLib
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths, user_apps_dir
+from bottles.backend.utils.imagemagick import ImageMagick
+from bottles.backend.utils.generic import get_mime
 
 logging = Logger()
 
@@ -163,15 +165,32 @@ class ManagerUtils:
             import icoextract
             if winepath.is_windows(program_path):
                 program_path = winepath.to_unix(program_path)
+
+            ico_dest_temp = os.path.join(bottle_icons_path, f"_{program_name}.png")
             ico_dest = os.path.join(bottle_icons_path, f"{program_name}.png")
             ico = icoextract.IconExtractor(program_path)
             os.makedirs(bottle_icons_path, exist_ok=True)
+
+            if os.path.exists(ico_dest_temp):
+                os.remove(ico_dest_temp)
+
             if os.path.exists(ico_dest):
                 os.remove(ico_dest)
-            ico.export_icon(ico_dest)
-            icon = ico_dest
+
+            ico.export_icon(ico_dest_temp)
+            if get_mime(ico_dest_temp) == "image/vnd.microsoft.icon":
+                if not ico_dest_temp.endswith(".ico"):
+                    shutil.move(ico_dest_temp, f"{ico_dest_temp}.ico")
+                    ico_dest_temp = f"{ico_dest_temp}.ico"
+                im = ImageMagick(ico_dest_temp)
+                im.convert(ico_dest)
+                icon = ico_dest
+            else:
+                shutil.move(ico_dest_temp, ico_dest)
+                icon = ico_dest
         except:
-            logging.warning("Could not extract icon for the program. No icon will be added to the entry.")
+            pass
+
         return icon
 
     @staticmethod
