@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import os
 from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gtk, Gdk, GLib, GdkPixbuf, Adw
@@ -59,7 +60,7 @@ class LibraryEntry(Gtk.Box):
             if entry['icon'] == "com.usebottles.bottles-program":
                 self.img_icon.set_from_icon_name(entry['icon'])
                 self.img_icon.set_pixel_size(32)
-            else:
+            elif os.path.exists(entry['icon']):
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(entry['icon'], 24, 24)
                 self.img_icon.set_from_pixbuf(pixbuf)
             self.img_icon.set_visible(True)
