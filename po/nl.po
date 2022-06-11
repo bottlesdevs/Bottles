@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 12:28+0200\n"
+"POT-Creation-Date: 2022-06-11 18:08+0200\n"
 "PO-Revision-Date: 2022-06-11 15:37+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
@@ -223,7 +223,7 @@ msgstr "Opstartscherm"
 msgid "Choose which view the application should be started in."
 msgstr "Kies in welke weergave de applicatie moet worden gestart."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:173
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:176
 msgid "Experiments"
 msgstr "Experimenten"
 
@@ -260,39 +260,39 @@ msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
 "Sluit Bottles na het starten van een programmabestand vanuit bestandsbeheer."
 
-#: src/main.py:103
+#: src/main.py:104
 msgid "Show version"
 msgstr "Toon versie"
 
-#: src/main.py:111
+#: src/main.py:112
 msgid "Executable path"
 msgstr "Uitvoerbaar pad"
 
-#: src/main.py:119
+#: src/main.py:120
 msgid "lnk path"
 msgstr "lnk-pad"
 
-#: src/main.py:127
+#: src/main.py:128
 msgid "Bottle name"
 msgstr "Naam van de bottle"
 
-#: src/main.py:135
+#: src/main.py:136
 msgid "Pass arguments"
 msgstr "Argumenten doorgeven"
 
-#: src/main.py:195
+#: src/main.py:201
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
 msgstr "Ongeldige URI (syntax: bottles:run/<bottle>/<program>)"
 
-#: src/main.py:238
+#: src/main.py:244
 msgid "[Quit] request received."
 msgstr "[Stoppen] verzoek ontvangen."
 
-#: src/main.py:247
+#: src/main.py:253
 msgid "[Help] request received."
 msgstr "[Hulp] verzoek ontvangen."
 
-#: src/main.py:255
+#: src/main.py:261
 msgid "[Refresh] request received."
 msgstr "[Verversen] verzoek ontvangen."
 
@@ -520,7 +520,7 @@ msgid "An error has occurred."
 msgstr "Er is een fout opgetreden."
 
 #: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:181
+#: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr "Kopieer naar klembord"
 
@@ -621,35 +621,35 @@ msgstr "Kies een uitvoerbaar pad"
 msgid "Add"
 msgstr "Toevoegen"
 
-#: src/views/details.py:136
+#: src/views/details.py:145
 msgid "Details & Utilities"
 msgstr "Details & Hulpprogramma's"
 
-#: src/views/details.py:140 src/ui/preferences.ui:6 src/ui/window.ui:30
+#: src/views/details.py:149 src/ui/preferences.ui:6 src/ui/window.ui:30
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: src/views/details.py:144
+#: src/views/details.py:153
 msgid "Dependencies"
 msgstr "Afhankelijkheden"
 
-#: src/views/details.py:148 src/ui/details-bottle.ui:232
+#: src/views/details.py:157 src/ui/details-bottle.ui:232
 msgid "Programs"
 msgstr "Programma's"
 
-#: src/views/details.py:149
+#: src/views/details.py:158
 msgid "Found in your bottle's Start menu."
 msgstr "Gevonden in het beginmenu van je bottle."
 
-#: src/views/details.py:152 src/ui/new.ui:116
+#: src/views/details.py:161 src/ui/new.ui:116
 msgid "Versioning"
 msgstr "Versiebeheer"
 
-#: src/views/details.py:156
+#: src/views/details.py:165
 msgid "Installers"
 msgstr "Installers"
 
-#: src/views/details.py:160
+#: src/views/details.py:169
 msgid "Task manager"
 msgstr "Taakbeheerder"
 
@@ -719,22 +719,6 @@ msgstr ""
 msgid "Choose new bottles path"
 msgstr "Kies nieuw bottles pad"
 
-#: src/views/preferences.py:198
-msgid "Caffe"
-msgstr "Caffe"
-
-#: src/views/preferences.py:199
-msgid "GE Wine"
-msgstr "GE-Wine"
-
-#: src/views/preferences.py:200
-msgid "Lutris"
-msgstr "Lutris"
-
-#: src/views/preferences.py:201
-msgid "GE Proton"
-msgstr "GE-Proton"
-
 #: src/views/preferences.py:202
 msgid "Other"
 msgstr "Ander"
@@ -781,41 +765,37 @@ msgstr "{0} geïnstalleerd."
 msgid "Step {self.__step} of {self.steps}"
 msgstr "Stap {self.__step} van {self.steps}"
 
-#: src/widgets/program.py:78
-msgid "Steam"
-msgstr "Steam"
-
-#: src/widgets/program.py:204
+#: src/widgets/program.py:202
 #, python-brace-format
 msgid "'{0}' launched."
 msgstr "'{0}' uitgevoerd."
 
-#: src/widgets/program.py:210
+#: src/widgets/program.py:208
 #, python-brace-format
 msgid "'{0}' launched with Steam."
 msgstr "'{0}' uitgevoerd met Steam."
 
-#: src/widgets/program.py:231
+#: src/widgets/program.py:229
 #, python-brace-format
 msgid "'{0}' hidden."
 msgstr "'{0}' verborgen."
 
-#: src/widgets/program.py:233
+#: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' showed."
 msgstr "'{0}' getoond."
 
-#: src/widgets/program.py:256
+#: src/widgets/program.py:254
 #, python-brace-format
 msgid "'{0}' removed."
 msgstr "'{0}' verwijderd."
 
-#: src/widgets/program.py:270
+#: src/widgets/program.py:268
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
 msgstr "'{0}' hernoemd naar '{1}'."
 
-#: src/widgets/program.py:292
+#: src/widgets/program.py:290
 msgid ""
 "Can't create Desktop Entry due to missing privileges.\n"
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
@@ -825,17 +805,17 @@ msgstr ""
 "Bekijk <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">onze video</"
 "a> over het oplossen van dit probleem in Flatpak."
 
-#: src/widgets/program.py:300
+#: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
 msgstr "App-icoon gemaakt voor '{0}'"
 
-#: src/widgets/program.py:320
+#: src/widgets/program.py:318
 #, python-brace-format
 msgid "'{0}' added to your library"
 msgstr "'{0}' toegevoegd aan uw bibliotheek"
 
-#: src/widgets/program.py:325
+#: src/widgets/program.py:323
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
 msgstr "'{0}' toegevoegd aan uw Steam-bibliotheek"
@@ -1130,7 +1110,7 @@ msgid "Read documentation about dependencies."
 msgstr "Lees documentatie over afhankelijkheden."
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
-#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:77
+#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
 #: src/ui/window.ui:44
 msgid "Documentation"
 msgstr "Documentatie"
@@ -1181,7 +1161,7 @@ msgstr "Naam"
 msgid "Graphics"
 msgstr "Grafisch"
 
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:133
+#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:136
 msgid "DXVK"
 msgstr "DXVK"
 
@@ -1193,7 +1173,7 @@ msgstr "Verbetert de prestaties van DirectX 11-games en 3D-toepassingen."
 msgid "Updating DXVK, please wait…"
 msgstr "DXVK bijwerken, even geduld a.u.b…"
 
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:138
+#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:141
 msgid "VKD3D"
 msgstr "VKD3D"
 
@@ -1245,7 +1225,7 @@ msgstr "Gebalanceerd"
 msgid "Performance"
 msgstr "Prestaties"
 
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:148
+#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
 msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
@@ -1491,70 +1471,70 @@ msgstr "Gebruik de Gamescope micro-compositor."
 msgid "Manage Gamescope settings"
 msgstr "Gamescope-instellingen beheren"
 
-#: src/ui/details-preferences.ui:542
+#: src/ui/details-preferences.ui:545
 msgid "Working Directory"
 msgstr "Werkmap"
 
-#: src/ui/details-preferences.ui:543
+#: src/ui/details-preferences.ui:546
 msgid "Defaults to the bottle path."
 msgstr "Standaardwaarde is het bottles-pad."
 
-#: src/ui/details-preferences.ui:546 src/ui/dialog-launch-options.ui:64
+#: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
 msgid "Reset to default"
 msgstr "Standaardwaarden herstellen"
 
-#: src/ui/details-preferences.ui:553 src/ui/dialog-launch-options.ui:71
-#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:90
+#: src/ui/details-preferences.ui:559 src/ui/dialog-launch-options.ui:71
+#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:93
 msgid "Choose a directory"
 msgstr "Kies een map"
 
-#: src/ui/details-preferences.ui:566 src/ui/dialog-dll-overrides.ui:9
+#: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
 msgid "DLL Overrides"
 msgstr "DLL-overschrijvingen"
 
-#: src/ui/details-preferences.ui:577 src/ui/dialog-env-vars.ui:16
+#: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
 msgid "Environment Variables"
 msgstr "Omgevingsvariabelen"
 
-#: src/ui/details-preferences.ui:588
+#: src/ui/details-preferences.ui:594
 msgid "Manage Drives"
 msgstr "Schijven beheren"
 
-#: src/ui/details-preferences.ui:600
+#: src/ui/details-preferences.ui:606
 msgid "Audio"
 msgstr "Audio"
 
-#: src/ui/details-preferences.ui:604
+#: src/ui/details-preferences.ui:610
 msgid "Reduce Latency"
 msgstr "Audiovertraging verminderen"
 
-#: src/ui/details-preferences.ui:605
+#: src/ui/details-preferences.ui:611
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr ""
 "Stel de vertraging van PulseAudio in op 60 ms om de audiokwaliteit te "
 "verbeteren"
 
-#: src/ui/details-preferences.ui:617
+#: src/ui/details-preferences.ui:623
 msgid "Development and Debugging"
 msgstr "Ontwikkeling en foutopsporing"
 
-#: src/ui/details-preferences.ui:621
+#: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
 msgstr "DXVK-HUD"
 
-#: src/ui/details-preferences.ui:622
+#: src/ui/details-preferences.ui:628
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "Schakel DXVK-overlay om welke FPS en andere details toont in D3D-"
 "toepassingen."
 
-#: src/ui/details-preferences.ui:633
+#: src/ui/details-preferences.ui:639
 msgid "MangoHud"
 msgstr "MangoHud"
 
-#: src/ui/details-preferences.ui:634
+#: src/ui/details-preferences.ui:640
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
@@ -1562,19 +1542,19 @@ msgstr ""
 "Een Vulkan en OpenGL overlay voor het monitoren van FPS, temperaturen, CPU/"
 "GPU belasting en meer."
 
-#: src/ui/details-preferences.ui:645
+#: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
 msgstr "OBS Vulkan Capture"
 
-#: src/ui/details-preferences.ui:646
+#: src/ui/details-preferences.ui:652
 msgid "Toggle OBS game capture for all programs."
 msgstr "Schakel OBS-gameopname in voor alle programma's."
 
-#: src/ui/details-preferences.ui:657
+#: src/ui/details-preferences.ui:663
 msgid "Wine 'fixme' Logs"
 msgstr "'fixme'-logboeken van Wine"
 
-#: src/ui/details-preferences.ui:658
+#: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Log code paden die niet geïmplementeerd zijn in Wine."
 
@@ -1615,31 +1595,31 @@ msgstr "Vernieuwen"
 msgid "Stop process"
 msgstr "Proces stoppen"
 
-#: src/ui/details-versioning.ui:21
+#: src/ui/details-versioning.ui:25
 msgid "No states found"
 msgstr "Geen staten gevonden"
 
-#: src/ui/details-versioning.ui:22
+#: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr "Creëer eerste staat om versiebeheer te gaan gebruiken."
 
-#: src/ui/details-versioning.ui:37
+#: src/ui/details-versioning.ui:41
 msgid "Type a short comment:"
 msgstr "Typ een korte opmerking:"
 
-#: src/ui/details-versioning.ui:45
+#: src/ui/details-versioning.ui:49
 msgid "A short comment"
 msgstr "Een korte opmerking"
 
-#: src/ui/details-versioning.ui:50
+#: src/ui/details-versioning.ui:54
 msgid "Save the bottle state."
 msgstr "Sla de bottle-status op."
 
-#: src/ui/details-versioning.ui:70
+#: src/ui/details-versioning.ui:74
 msgid "Create new state"
 msgstr "Creëer nieuwe staat"
 
-#: src/ui/details.ui:27
+#: src/ui/details.ui:76
 msgid "Operations"
 msgstr "Activiteiten"
 
@@ -2014,7 +1994,7 @@ msgstr "Starten met Steam"
 msgid "Search for Prefixes"
 msgstr "Naar prefixes zoeken"
 
-#: src/ui/library.ui:42 src/ui/preferences.ui:190
+#: src/ui/library.ui:42 src/ui/preferences.ui:193
 msgid "Library"
 msgstr "Bibliotheek"
 
@@ -2055,22 +2035,21 @@ msgid "Steam Proton"
 msgstr "Steam-Proton"
 
 #: src/ui/list.ui:55
-msgid ""
-"Start off by creating a Bottle.\n"
-"                                "
+#, fuzzy
+msgid "Start off by creating a Bottle."
 msgstr ""
 "Begin met het maken van een Bottle.\n"
 "                                "
 
-#: src/ui/list.ui:59
+#: src/ui/list.ui:62
 msgid "Create a new Bottle"
 msgstr "Een nieuwe Bottle maken"
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:75
 msgid "No Results Found"
 msgstr "Geen resultaten gevonden"
 
-#: src/ui/list.ui:73
+#: src/ui/list.ui:76
 msgid "Try a different search."
 msgstr "Probeer een andere zoekterm."
 
@@ -2185,19 +2164,15 @@ msgstr "Bewaar deze bottle op een andere plaats."
 msgid "Bottle created"
 msgstr "Bottle gemaakt"
 
-#: src/ui/onboard.ui:24
-msgid "Quit"
-msgstr "Verlaten"
-
-#: src/ui/onboard.ui:41
+#: src/ui/onboard.ui:36
 msgid "Previous"
 msgstr "Vorige"
 
-#: src/ui/onboard.ui:67
+#: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
 msgstr "Welkom bij Bottles"
 
-#: src/ui/onboard.ui:68
+#: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
@@ -2205,11 +2180,11 @@ msgstr ""
 "Voer Windows-software uit op Linux.\n"
 "                                                "
 
-#: src/ui/onboard.ui:76
+#: src/ui/onboard.ui:71
 msgid "Windows in Bottles"
 msgstr "Windows in Bottles"
 
-#: src/ui/onboard.ui:77
+#: src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
@@ -2217,27 +2192,27 @@ msgstr ""
 "Bottles gebruikt compatibiliteits-runners om programma's van geïsoleerde, "
 "gecontaineriseerde, Windows-achtige omgevingen te voorzien."
 
-#: src/ui/onboard.ui:84
+#: src/ui/onboard.ui:79
 msgid "Almost Done"
 msgstr "Bijna klaar"
 
-#: src/ui/onboard.ui:85
+#: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up.."
 msgstr "We hebben een paar extra minuten nodig om alles op te zetten…"
 
-#: src/ui/onboard.ui:93
+#: src/ui/onboard.ui:88
 msgid "Continue"
 msgstr "Doorgaan"
 
-#: src/ui/onboard.ui:118
+#: src/ui/onboard.ui:113
 msgid "All ready!"
 msgstr "Alles gereed!"
 
-#: src/ui/onboard.ui:124
+#: src/ui/onboard.ui:119
 msgid "Start using Bottles"
 msgstr "Begin met Bottles gebruiken"
 
-#: src/ui/onboard.ui:143
+#: src/ui/onboard.ui:138
 msgid "Next"
 msgstr "Volgende"
 
@@ -2286,43 +2261,43 @@ msgstr "Geavanceerd"
 msgid "Custom bottles path (requires restart)"
 msgstr "Aangepast bottles-pad (opnieuw opstarten vereist)"
 
-#: src/ui/preferences.ui:108
+#: src/ui/preferences.ui:111
 msgid "Runners"
 msgstr "Runners"
 
-#: src/ui/preferences.ui:113
+#: src/ui/preferences.ui:116
 msgid "Pre-release"
 msgstr "Pre-release"
 
-#: src/ui/preferences.ui:114
+#: src/ui/preferences.ui:117
 msgid "Display unstable versions of runners."
 msgstr "Toon instabiele versies van runners."
 
-#: src/ui/preferences.ui:130
+#: src/ui/preferences.ui:133
 msgid "DLL Components"
 msgstr "DLL Componenten"
 
-#: src/ui/preferences.ui:143
+#: src/ui/preferences.ui:146
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:156
+#: src/ui/preferences.ui:159
 msgid "Core"
 msgstr "Kern"
 
-#: src/ui/preferences.ui:160
+#: src/ui/preferences.ui:163
 msgid "Runtime"
 msgstr "Looptijd"
 
-#: src/ui/preferences.ui:165
+#: src/ui/preferences.ui:168
 msgid "WineBridge"
 msgstr "WineBridge"
 
-#: src/ui/preferences.ui:178
+#: src/ui/preferences.ui:181
 msgid "Steam Proton Prefixes"
 msgstr "Steam-Proton-Prefixes"
 
-#: src/ui/preferences.ui:179 src/ui/preferences.ui:191
+#: src/ui/preferences.ui:182 src/ui/preferences.ui:194
 msgid "In early development (requires restart)"
 msgstr "In vroege ontwikkeling (vereist opnieuw opstarten)"
 
@@ -2415,6 +2390,24 @@ msgstr ""
 #: src/ui/window.ui:109
 msgid "New bottle"
 msgstr "Nieuwe bottle"
+
+#~ msgid "Caffe"
+#~ msgstr "Caffe"
+
+#~ msgid "GE Wine"
+#~ msgstr "GE-Wine"
+
+#~ msgid "Lutris"
+#~ msgstr "Lutris"
+
+#~ msgid "GE Proton"
+#~ msgstr "GE-Proton"
+
+#~ msgid "Steam"
+#~ msgstr "Steam"
+
+#~ msgid "Quit"
+#~ msgstr "Verlaten"
 
 #~ msgid "Bottles versioning (experimental)"
 #~ msgstr "Bottles-versiebeheer (experimenteel)"

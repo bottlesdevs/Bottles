@@ -74,7 +74,7 @@ class ProgramEntry(Adw.ActionRow):
         if is_layer:
             self.executable = program["exec_name"]
         elif is_steam:
-            self.set_subtitle(_("Steam"))
+            self.set_subtitle("Steam")
             for w in [
                 self.btn_run,
                 self.btn_stop,

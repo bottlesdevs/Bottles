@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 12:28+0200\n"
+"POT-Creation-Date: 2022-06-11 18:08+0200\n"
 "PO-Revision-Date: 2022-05-29 05:16+0000\n"
 "Last-Translator: OliverTzeng <olivertzengolivertzeng@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -212,7 +212,7 @@ msgstr "啟動畫面"
 msgid "Choose which view the application should be started in."
 msgstr "選擇該程式應在何種檢視下啟動。"
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:173
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:176
 msgid "Experiments"
 msgstr "實驗性功能"
 
@@ -246,39 +246,39 @@ msgstr "自動關閉 Bottles"
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr "從檔案管理員啟動執行檔後關閉 Bottles。"
 
-#: src/main.py:103
+#: src/main.py:104
 msgid "Show version"
 msgstr "顯示版本"
 
-#: src/main.py:111
+#: src/main.py:112
 msgid "Executable path"
 msgstr "執行檔路徑"
 
-#: src/main.py:119
+#: src/main.py:120
 msgid "lnk path"
 msgstr "捷徑路徑"
 
-#: src/main.py:127
+#: src/main.py:128
 msgid "Bottle name"
 msgstr "酒瓶名稱"
 
-#: src/main.py:135
+#: src/main.py:136
 msgid "Pass arguments"
 msgstr "傳入引數"
 
-#: src/main.py:195
+#: src/main.py:201
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
 msgstr ""
 
-#: src/main.py:238
+#: src/main.py:244
 msgid "[Quit] request received."
 msgstr "［結束］請求已收到。"
 
-#: src/main.py:247
+#: src/main.py:253
 msgid "[Help] request received."
 msgstr "［幫助］請求已收到。"
 
-#: src/main.py:255
+#: src/main.py:261
 msgid "[Refresh] request received."
 msgstr "［重新整理］請求已收到。"
 
@@ -507,7 +507,7 @@ msgid "An error has occurred."
 msgstr "發生錯誤。"
 
 #: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:181
+#: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr ""
 
@@ -608,35 +608,35 @@ msgstr "選擇執行檔的路徑"
 msgid "Add"
 msgstr "新增"
 
-#: src/views/details.py:136
+#: src/views/details.py:145
 msgid "Details & Utilities"
 msgstr "細節與實用工具"
 
-#: src/views/details.py:140 src/ui/preferences.ui:6 src/ui/window.ui:30
+#: src/views/details.py:149 src/ui/preferences.ui:6 src/ui/window.ui:30
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: src/views/details.py:144
+#: src/views/details.py:153
 msgid "Dependencies"
 msgstr "依賴項目"
 
-#: src/views/details.py:148 src/ui/details-bottle.ui:232
+#: src/views/details.py:157 src/ui/details-bottle.ui:232
 msgid "Programs"
 msgstr "程式"
 
-#: src/views/details.py:149
+#: src/views/details.py:158
 msgid "Found in your bottle's Start menu."
 msgstr "在您的酒瓶開始功能表中找到。"
 
-#: src/views/details.py:152 src/ui/new.ui:116
+#: src/views/details.py:161 src/ui/new.ui:116
 msgid "Versioning"
 msgstr "版本控制"
 
-#: src/views/details.py:156
+#: src/views/details.py:165
 msgid "Installers"
 msgstr "安裝程序"
 
-#: src/views/details.py:160
+#: src/views/details.py:169
 msgid "Task manager"
 msgstr "工作管理員"
 
@@ -711,22 +711,6 @@ msgstr ""
 msgid "Choose new bottles path"
 msgstr "選擇執行檔的路徑"
 
-#: src/views/preferences.py:198
-msgid "Caffe"
-msgstr ""
-
-#: src/views/preferences.py:199
-msgid "GE Wine"
-msgstr ""
-
-#: src/views/preferences.py:200
-msgid "Lutris"
-msgstr ""
-
-#: src/views/preferences.py:201
-msgid "GE Proton"
-msgstr ""
-
 #: src/views/preferences.py:202
 msgid "Other"
 msgstr "其他"
@@ -774,58 +758,54 @@ msgstr "解除安裝"
 msgid "Step {self.__step} of {self.steps}"
 msgstr ""
 
-#: src/widgets/program.py:78
-msgid "Steam"
-msgstr ""
-
-#: src/widgets/program.py:204
+#: src/widgets/program.py:202
 #, python-brace-format
 msgid "'{0}' launched."
 msgstr ""
 
-#: src/widgets/program.py:210
+#: src/widgets/program.py:208
 #, fuzzy, python-brace-format
 msgid "'{0}' launched with Steam."
 msgstr "使用終端機開啟"
 
-#: src/widgets/program.py:231
+#: src/widgets/program.py:229
 #, python-brace-format
 msgid "'{0}' hidden."
 msgstr ""
 
-#: src/widgets/program.py:233
+#: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' showed."
 msgstr ""
 
-#: src/widgets/program.py:256
+#: src/widgets/program.py:254
 #, python-brace-format
 msgid "'{0}' removed."
 msgstr ""
 
-#: src/widgets/program.py:270
+#: src/widgets/program.py:268
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
 msgstr ""
 
-#: src/widgets/program.py:292
+#: src/widgets/program.py:290
 msgid ""
 "Can't create Desktop Entry due to missing privileges.\n"
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
 
-#: src/widgets/program.py:300
+#: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
 msgstr ""
 
-#: src/widgets/program.py:320
+#: src/widgets/program.py:318
 #, python-brace-format
 msgid "'{0}' added to your library"
 msgstr ""
 
-#: src/widgets/program.py:325
+#: src/widgets/program.py:323
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
 msgstr ""
@@ -1136,7 +1116,7 @@ msgid "Read documentation about dependencies."
 msgstr "閱讀文檔"
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
-#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:77
+#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
 #: src/ui/window.ui:44
 msgid "Documentation"
 msgstr "文檔"
@@ -1190,7 +1170,7 @@ msgstr "名稱"
 msgid "Graphics"
 msgstr "圖形"
 
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:133
+#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:136
 msgid "DXVK"
 msgstr ""
 
@@ -1206,7 +1186,7 @@ msgstr ""
 msgid "Updating DXVK, please wait…"
 msgstr "正在更新狀態版本……"
 
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:138
+#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:141
 msgid "VKD3D"
 msgstr ""
 
@@ -1266,7 +1246,7 @@ msgstr "已平衡"
 msgid "Performance"
 msgstr "效能"
 
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:148
+#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
 msgid "LatencyFleX"
 msgstr ""
 
@@ -1520,96 +1500,96 @@ msgstr ""
 msgid "Manage Gamescope settings"
 msgstr ""
 
-#: src/ui/details-preferences.ui:542
+#: src/ui/details-preferences.ui:545
 #, fuzzy
 msgid "Working Directory"
 msgstr "工作資料夾"
 
-#: src/ui/details-preferences.ui:543
+#: src/ui/details-preferences.ui:546
 #, fuzzy
 msgid "Defaults to the bottle path."
 msgstr "指向酒瓶路徑"
 
-#: src/ui/details-preferences.ui:546 src/ui/dialog-launch-options.ui:64
+#: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
 #, fuzzy
 msgid "Reset to default"
 msgstr "恢復預設"
 
-#: src/ui/details-preferences.ui:553 src/ui/dialog-launch-options.ui:71
-#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:90
+#: src/ui/details-preferences.ui:559 src/ui/dialog-launch-options.ui:71
+#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:93
 msgid "Choose a directory"
 msgstr "選擇一個資料夾"
 
-#: src/ui/details-preferences.ui:566 src/ui/dialog-dll-overrides.ui:9
+#: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
 #, fuzzy
 msgid "DLL Overrides"
 msgstr "DLL 覆寫"
 
-#: src/ui/details-preferences.ui:577 src/ui/dialog-env-vars.ui:16
+#: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
 #, fuzzy
 msgid "Environment Variables"
 msgstr "環境變數"
 
-#: src/ui/details-preferences.ui:588
+#: src/ui/details-preferences.ui:594
 #, fuzzy
 msgid "Manage Drives"
 msgstr "管理執行器"
 
-#: src/ui/details-preferences.ui:600
+#: src/ui/details-preferences.ui:606
 msgid "Audio"
 msgstr "音訊"
 
-#: src/ui/details-preferences.ui:604
+#: src/ui/details-preferences.ui:610
 #, fuzzy
 msgid "Reduce Latency"
 msgstr "減少 PulseAudio 延遲"
 
-#: src/ui/details-preferences.ui:605
+#: src/ui/details-preferences.ui:611
 #, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr "設定 PulseAudio 延遲為 60 毫秒，以提高聲音品質"
 
-#: src/ui/details-preferences.ui:617
+#: src/ui/details-preferences.ui:623
 #, fuzzy
 msgid "Development and Debugging"
 msgstr "開發者與除錯"
 
-#: src/ui/details-preferences.ui:621
+#: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
 msgstr ""
 
-#: src/ui/details-preferences.ui:622
+#: src/ui/details-preferences.ui:628
 #, fuzzy
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr "切換 D3D 應用程序中，包含 FPS 與其餘細節的 DXVK 螢幕上資訊框。"
 
-#: src/ui/details-preferences.ui:633
+#: src/ui/details-preferences.ui:639
 msgid "MangoHud"
 msgstr ""
 
-#: src/ui/details-preferences.ui:634
+#: src/ui/details-preferences.ui:640
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
 
-#: src/ui/details-preferences.ui:645
+#: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
 msgstr ""
 
-#: src/ui/details-preferences.ui:646
+#: src/ui/details-preferences.ui:652
 #, fuzzy
 msgid "Toggle OBS game capture for all programs."
 msgstr "查詢已安裝程式"
 
-#: src/ui/details-preferences.ui:657
+#: src/ui/details-preferences.ui:663
 #, fuzzy
 msgid "Wine 'fixme' Logs"
 msgstr "啟用 wine 的 fixme 記錄"
 
-#: src/ui/details-preferences.ui:658
+#: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "記錄 Wine 中未實作代碼的路徑。"
 
@@ -1650,33 +1630,33 @@ msgstr "重新整理"
 msgid "Stop process"
 msgstr ""
 
-#: src/ui/details-versioning.ui:21
+#: src/ui/details-versioning.ui:25
 msgid "No states found"
 msgstr "未找到任何狀態版本"
 
-#: src/ui/details-versioning.ui:22
+#: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr "新增第一個狀態版本，以開始使用版本控制。"
 
-#: src/ui/details-versioning.ui:37
+#: src/ui/details-versioning.ui:41
 #, fuzzy
 msgid "Type a short comment:"
 msgstr "留下一個極短的註解："
 
-#: src/ui/details-versioning.ui:45
+#: src/ui/details-versioning.ui:49
 #, fuzzy
 msgid "A short comment"
 msgstr "一個極短的註解"
 
-#: src/ui/details-versioning.ui:50
+#: src/ui/details-versioning.ui:54
 msgid "Save the bottle state."
 msgstr "儲存酒瓶狀態。"
 
-#: src/ui/details-versioning.ui:70
+#: src/ui/details-versioning.ui:74
 msgid "Create new state"
 msgstr "新增狀態版本"
 
-#: src/ui/details.ui:27
+#: src/ui/details.ui:76
 msgid "Operations"
 msgstr "操作"
 
@@ -2053,7 +2033,7 @@ msgstr ""
 msgid "Search for Prefixes"
 msgstr ""
 
-#: src/ui/library.ui:42 src/ui/preferences.ui:190
+#: src/ui/library.ui:42 src/ui/preferences.ui:193
 msgid "Library"
 msgstr ""
 
@@ -2094,21 +2074,19 @@ msgstr ""
 
 #: src/ui/list.ui:55
 #, fuzzy
-msgid ""
-"Start off by creating a Bottle.\n"
-"                                "
+msgid "Start off by creating a Bottle."
 msgstr "從創立一個酒瓶開始。"
 
-#: src/ui/list.ui:59
+#: src/ui/list.ui:62
 msgid "Create a new Bottle"
 msgstr "創立新酒瓶"
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:75
 #, fuzzy
 msgid "No Results Found"
 msgstr "未找到任何狀態版本"
 
-#: src/ui/list.ui:73
+#: src/ui/list.ui:76
 msgid "Try a different search."
 msgstr ""
 
@@ -2230,57 +2208,53 @@ msgstr ""
 msgid "Bottle created"
 msgstr "已鑄好了酒瓶"
 
-#: src/ui/onboard.ui:24
-msgid "Quit"
-msgstr "結束"
-
-#: src/ui/onboard.ui:41
+#: src/ui/onboard.ui:36
 msgid "Previous"
 msgstr ""
 
-#: src/ui/onboard.ui:67
+#: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
 msgstr "歡迎來到 Bottles"
 
-#: src/ui/onboard.ui:68
+#: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
 
-#: src/ui/onboard.ui:76
+#: src/ui/onboard.ui:71
 #, fuzzy
 msgid "Windows in Bottles"
 msgstr "視窗寬度"
 
-#: src/ui/onboard.ui:77
+#: src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
 
-#: src/ui/onboard.ui:84
+#: src/ui/onboard.ui:79
 msgid "Almost Done"
 msgstr ""
 
-#: src/ui/onboard.ui:85
+#: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up.."
 msgstr ""
 
-#: src/ui/onboard.ui:93
+#: src/ui/onboard.ui:88
 msgid "Continue"
 msgstr ""
 
-#: src/ui/onboard.ui:118
+#: src/ui/onboard.ui:113
 msgid "All ready!"
 msgstr ""
 
-#: src/ui/onboard.ui:124
+#: src/ui/onboard.ui:119
 #, fuzzy
 msgid "Start using Bottles"
 msgstr "從創立一個酒瓶開始。"
 
-#: src/ui/onboard.ui:143
+#: src/ui/onboard.ui:138
 msgid "Next"
 msgstr "下一步"
 
@@ -2334,45 +2308,45 @@ msgstr "進階選項"
 msgid "Custom bottles path (requires restart)"
 msgstr ""
 
-#: src/ui/preferences.ui:108
+#: src/ui/preferences.ui:111
 msgid "Runners"
 msgstr "執行器"
 
-#: src/ui/preferences.ui:113
+#: src/ui/preferences.ui:116
 #, fuzzy
 msgid "Pre-release"
 msgstr "預先發佈"
 
-#: src/ui/preferences.ui:114
+#: src/ui/preferences.ui:117
 msgid "Display unstable versions of runners."
 msgstr ""
 
-#: src/ui/preferences.ui:130
+#: src/ui/preferences.ui:133
 #, fuzzy
 msgid "DLL Components"
 msgstr "組件版本"
 
-#: src/ui/preferences.ui:143
+#: src/ui/preferences.ui:146
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:156
+#: src/ui/preferences.ui:159
 msgid "Core"
 msgstr ""
 
-#: src/ui/preferences.ui:160
+#: src/ui/preferences.ui:163
 msgid "Runtime"
 msgstr ""
 
-#: src/ui/preferences.ui:165
+#: src/ui/preferences.ui:168
 msgid "WineBridge"
 msgstr ""
 
-#: src/ui/preferences.ui:178
+#: src/ui/preferences.ui:181
 msgid "Steam Proton Prefixes"
 msgstr ""
 
-#: src/ui/preferences.ui:179 src/ui/preferences.ui:191
+#: src/ui/preferences.ui:182 src/ui/preferences.ui:194
 msgid "In early development (requires restart)"
 msgstr ""
 
@@ -2471,6 +2445,9 @@ msgstr ""
 #: src/ui/window.ui:109
 msgid "New bottle"
 msgstr "新瓶子"
+
+#~ msgid "Quit"
+#~ msgstr "結束"
 
 #~ msgid "Bottles versioning (experimental)"
 #~ msgstr "Bottles 版本管理（實驗性）"

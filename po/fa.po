@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 12:28+0200\n"
+"POT-Creation-Date: 2022-06-11 18:08+0200\n"
 "PO-Revision-Date: 2022-05-01 12:47+0000\n"
 "Last-Translator: Gnkalk <github.fngyb@slmail.me>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -211,7 +211,7 @@ msgstr "نمای راه‌اندازی"
 msgid "Choose which view the application should be started in."
 msgstr ""
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:173
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:176
 msgid "Experiments"
 msgstr "آزمایش"
 
@@ -245,39 +245,39 @@ msgstr "بستن خودکار Bottles"
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
 
-#: src/main.py:103
+#: src/main.py:104
 msgid "Show version"
 msgstr "نمایش نسخه"
 
-#: src/main.py:111
+#: src/main.py:112
 msgid "Executable path"
 msgstr ""
 
-#: src/main.py:119
+#: src/main.py:120
 msgid "lnk path"
 msgstr ""
 
-#: src/main.py:127
+#: src/main.py:128
 msgid "Bottle name"
 msgstr ""
 
-#: src/main.py:135
+#: src/main.py:136
 msgid "Pass arguments"
 msgstr ""
 
-#: src/main.py:195
+#: src/main.py:201
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
 msgstr ""
 
-#: src/main.py:238
+#: src/main.py:244
 msgid "[Quit] request received."
 msgstr ""
 
-#: src/main.py:247
+#: src/main.py:253
 msgid "[Help] request received."
 msgstr ""
 
-#: src/main.py:255
+#: src/main.py:261
 msgid "[Refresh] request received."
 msgstr ""
 
@@ -499,7 +499,7 @@ msgid "An error has occurred."
 msgstr ""
 
 #: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:181
+#: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr ""
 
@@ -597,35 +597,35 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: src/views/details.py:136
+#: src/views/details.py:145
 msgid "Details & Utilities"
 msgstr ""
 
-#: src/views/details.py:140 src/ui/preferences.ui:6 src/ui/window.ui:30
+#: src/views/details.py:149 src/ui/preferences.ui:6 src/ui/window.ui:30
 msgid "Preferences"
 msgstr ""
 
-#: src/views/details.py:144
+#: src/views/details.py:153
 msgid "Dependencies"
 msgstr ""
 
-#: src/views/details.py:148 src/ui/details-bottle.ui:232
+#: src/views/details.py:157 src/ui/details-bottle.ui:232
 msgid "Programs"
 msgstr "برنامه ها"
 
-#: src/views/details.py:149
+#: src/views/details.py:158
 msgid "Found in your bottle's Start menu."
 msgstr ""
 
-#: src/views/details.py:152 src/ui/new.ui:116
+#: src/views/details.py:161 src/ui/new.ui:116
 msgid "Versioning"
 msgstr ""
 
-#: src/views/details.py:156
+#: src/views/details.py:165
 msgid "Installers"
 msgstr ""
 
-#: src/views/details.py:160
+#: src/views/details.py:169
 msgid "Task manager"
 msgstr ""
 
@@ -694,22 +694,6 @@ msgstr ""
 msgid "Choose new bottles path"
 msgstr ""
 
-#: src/views/preferences.py:198
-msgid "Caffe"
-msgstr ""
-
-#: src/views/preferences.py:199
-msgid "GE Wine"
-msgstr ""
-
-#: src/views/preferences.py:200
-msgid "Lutris"
-msgstr ""
-
-#: src/views/preferences.py:201
-msgid "GE Proton"
-msgstr ""
-
 #: src/views/preferences.py:202
 msgid "Other"
 msgstr "دیگر"
@@ -757,58 +741,54 @@ msgstr "حذف کننده"
 msgid "Step {self.__step} of {self.steps}"
 msgstr ""
 
-#: src/widgets/program.py:78
-msgid "Steam"
-msgstr ""
-
-#: src/widgets/program.py:204
+#: src/widgets/program.py:202
 #, python-brace-format
 msgid "'{0}' launched."
 msgstr ""
 
-#: src/widgets/program.py:210
+#: src/widgets/program.py:208
 #, fuzzy, python-brace-format
 msgid "'{0}' launched with Steam."
 msgstr "اجرا با استیم"
 
-#: src/widgets/program.py:231
+#: src/widgets/program.py:229
 #, python-brace-format
 msgid "'{0}' hidden."
 msgstr ""
 
-#: src/widgets/program.py:233
+#: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' showed."
 msgstr ""
 
-#: src/widgets/program.py:256
+#: src/widgets/program.py:254
 #, python-brace-format
 msgid "'{0}' removed."
 msgstr ""
 
-#: src/widgets/program.py:270
+#: src/widgets/program.py:268
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
 msgstr ""
 
-#: src/widgets/program.py:292
+#: src/widgets/program.py:290
 msgid ""
 "Can't create Desktop Entry due to missing privileges.\n"
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
 
-#: src/widgets/program.py:300
+#: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
 msgstr ""
 
-#: src/widgets/program.py:320
+#: src/widgets/program.py:318
 #, fuzzy, python-brace-format
 msgid "'{0}' added to your library"
 msgstr "افزودن به کتابخانه من"
 
-#: src/widgets/program.py:325
+#: src/widgets/program.py:323
 #, fuzzy, python-brace-format
 msgid "'{0}' added to your Steam library"
 msgstr "افزودن به کتابخانه من"
@@ -1096,7 +1076,7 @@ msgid "Read documentation about dependencies."
 msgstr "مطالعه مستندات درباره نصاب ها\t"
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
-#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:77
+#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
 #: src/ui/window.ui:44
 msgid "Documentation"
 msgstr "مستندات"
@@ -1148,7 +1128,7 @@ msgstr "نام"
 msgid "Graphics"
 msgstr "گرافیک"
 
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:133
+#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:136
 msgid "DXVK"
 msgstr ""
 
@@ -1160,7 +1140,7 @@ msgstr ""
 msgid "Updating DXVK, please wait…"
 msgstr ""
 
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:138
+#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:141
 msgid "VKD3D"
 msgstr ""
 
@@ -1210,7 +1190,7 @@ msgstr "متعادل"
 msgid "Performance"
 msgstr "عملکرد"
 
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:148
+#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
 msgid "LatencyFleX"
 msgstr ""
 
@@ -1451,87 +1431,87 @@ msgstr ""
 msgid "Manage Gamescope settings"
 msgstr ""
 
-#: src/ui/details-preferences.ui:542
+#: src/ui/details-preferences.ui:545
 msgid "Working Directory"
 msgstr ""
 
-#: src/ui/details-preferences.ui:543
+#: src/ui/details-preferences.ui:546
 msgid "Defaults to the bottle path."
 msgstr ""
 
-#: src/ui/details-preferences.ui:546 src/ui/dialog-launch-options.ui:64
+#: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
 msgid "Reset to default"
 msgstr ""
 
-#: src/ui/details-preferences.ui:553 src/ui/dialog-launch-options.ui:71
-#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:90
+#: src/ui/details-preferences.ui:559 src/ui/dialog-launch-options.ui:71
+#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:93
 msgid "Choose a directory"
 msgstr ""
 
-#: src/ui/details-preferences.ui:566 src/ui/dialog-dll-overrides.ui:9
+#: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
 msgid "DLL Overrides"
 msgstr ""
 
-#: src/ui/details-preferences.ui:577 src/ui/dialog-env-vars.ui:16
+#: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
 #, fuzzy
 msgid "Environment Variables"
 msgstr "افزودن سریع متغییر های محیطی"
 
-#: src/ui/details-preferences.ui:588
+#: src/ui/details-preferences.ui:594
 #, fuzzy
 msgid "Manage Drives"
 msgstr "مدیریت درایو ها"
 
-#: src/ui/details-preferences.ui:600
+#: src/ui/details-preferences.ui:606
 msgid "Audio"
 msgstr ""
 
-#: src/ui/details-preferences.ui:604
+#: src/ui/details-preferences.ui:610
 msgid "Reduce Latency"
 msgstr ""
 
-#: src/ui/details-preferences.ui:605
+#: src/ui/details-preferences.ui:611
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr ""
 
-#: src/ui/details-preferences.ui:617
+#: src/ui/details-preferences.ui:623
 msgid "Development and Debugging"
 msgstr ""
 
-#: src/ui/details-preferences.ui:621
+#: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
 msgstr ""
 
-#: src/ui/details-preferences.ui:622
+#: src/ui/details-preferences.ui:628
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 
-#: src/ui/details-preferences.ui:633
+#: src/ui/details-preferences.ui:639
 msgid "MangoHud"
 msgstr ""
 
-#: src/ui/details-preferences.ui:634
+#: src/ui/details-preferences.ui:640
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
 
-#: src/ui/details-preferences.ui:645
+#: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
 msgstr ""
 
-#: src/ui/details-preferences.ui:646
+#: src/ui/details-preferences.ui:652
 #, fuzzy
 msgid "Toggle OBS game capture for all programs."
 msgstr "جست و جو برای برنامه های نصب شده"
 
-#: src/ui/details-preferences.ui:657
+#: src/ui/details-preferences.ui:663
 msgid "Wine 'fixme' Logs"
 msgstr ""
 
-#: src/ui/details-preferences.ui:658
+#: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
@@ -1571,31 +1551,31 @@ msgstr ""
 msgid "Stop process"
 msgstr ""
 
-#: src/ui/details-versioning.ui:21
+#: src/ui/details-versioning.ui:25
 msgid "No states found"
 msgstr ""
 
-#: src/ui/details-versioning.ui:22
+#: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr ""
 
-#: src/ui/details-versioning.ui:37
+#: src/ui/details-versioning.ui:41
 msgid "Type a short comment:"
 msgstr ""
 
-#: src/ui/details-versioning.ui:45
+#: src/ui/details-versioning.ui:49
 msgid "A short comment"
 msgstr ""
 
-#: src/ui/details-versioning.ui:50
+#: src/ui/details-versioning.ui:54
 msgid "Save the bottle state."
 msgstr ""
 
-#: src/ui/details-versioning.ui:70
+#: src/ui/details-versioning.ui:74
 msgid "Create new state"
 msgstr ""
 
-#: src/ui/details.ui:27
+#: src/ui/details.ui:76
 msgid "Operations"
 msgstr ""
 
@@ -1951,7 +1931,7 @@ msgstr "اجرا با استیم"
 msgid "Search for Prefixes"
 msgstr ""
 
-#: src/ui/library.ui:42 src/ui/preferences.ui:190
+#: src/ui/library.ui:42 src/ui/preferences.ui:193
 #, fuzzy
 msgid "Library"
 msgstr "کتابخانه شما"
@@ -1991,20 +1971,18 @@ msgid "Steam Proton"
 msgstr ""
 
 #: src/ui/list.ui:55
-msgid ""
-"Start off by creating a Bottle.\n"
-"                                "
+msgid "Start off by creating a Bottle."
 msgstr ""
 
-#: src/ui/list.ui:59
+#: src/ui/list.ui:62
 msgid "Create a new Bottle"
 msgstr ""
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:75
 msgid "No Results Found"
 msgstr ""
 
-#: src/ui/list.ui:73
+#: src/ui/list.ui:76
 msgid "Try a different search."
 msgstr ""
 
@@ -2118,56 +2096,52 @@ msgstr ""
 msgid "Bottle created"
 msgstr ""
 
-#: src/ui/onboard.ui:24
-msgid "Quit"
-msgstr "ترک"
-
-#: src/ui/onboard.ui:41
+#: src/ui/onboard.ui:36
 msgid "Previous"
 msgstr ""
 
-#: src/ui/onboard.ui:67
+#: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
 msgstr ""
 
-#: src/ui/onboard.ui:68
+#: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
 
-#: src/ui/onboard.ui:76
+#: src/ui/onboard.ui:71
 #, fuzzy
 msgid "Windows in Bottles"
 msgstr "نوع پنجره"
 
-#: src/ui/onboard.ui:77
+#: src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
 
-#: src/ui/onboard.ui:84
+#: src/ui/onboard.ui:79
 msgid "Almost Done"
 msgstr ""
 
-#: src/ui/onboard.ui:85
+#: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up.."
 msgstr ""
 
-#: src/ui/onboard.ui:93
+#: src/ui/onboard.ui:88
 msgid "Continue"
 msgstr ""
 
-#: src/ui/onboard.ui:118
+#: src/ui/onboard.ui:113
 msgid "All ready!"
 msgstr ""
 
-#: src/ui/onboard.ui:124
+#: src/ui/onboard.ui:119
 msgid "Start using Bottles"
 msgstr ""
 
-#: src/ui/onboard.ui:143
+#: src/ui/onboard.ui:138
 msgid "Next"
 msgstr "بعدی"
 
@@ -2217,44 +2191,44 @@ msgstr "پیشرفته"
 msgid "Custom bottles path (requires restart)"
 msgstr ""
 
-#: src/ui/preferences.ui:108
+#: src/ui/preferences.ui:111
 msgid "Runners"
 msgstr ""
 
-#: src/ui/preferences.ui:113
+#: src/ui/preferences.ui:116
 #, fuzzy
 msgid "Pre-release"
 msgstr "پیش-انتشار"
 
-#: src/ui/preferences.ui:114
+#: src/ui/preferences.ui:117
 msgid "Display unstable versions of runners."
 msgstr ""
 
-#: src/ui/preferences.ui:130
+#: src/ui/preferences.ui:133
 msgid "DLL Components"
 msgstr ""
 
-#: src/ui/preferences.ui:143
+#: src/ui/preferences.ui:146
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:156
+#: src/ui/preferences.ui:159
 msgid "Core"
 msgstr ""
 
-#: src/ui/preferences.ui:160
+#: src/ui/preferences.ui:163
 msgid "Runtime"
 msgstr ""
 
-#: src/ui/preferences.ui:165
+#: src/ui/preferences.ui:168
 msgid "WineBridge"
 msgstr ""
 
-#: src/ui/preferences.ui:178
+#: src/ui/preferences.ui:181
 msgid "Steam Proton Prefixes"
 msgstr ""
 
-#: src/ui/preferences.ui:179 src/ui/preferences.ui:191
+#: src/ui/preferences.ui:182 src/ui/preferences.ui:194
 msgid "In early development (requires restart)"
 msgstr ""
 
@@ -2352,6 +2326,9 @@ msgstr ""
 #: src/ui/window.ui:109
 msgid "New bottle"
 msgstr ""
+
+#~ msgid "Quit"
+#~ msgstr "ترک"
 
 #~ msgid "<a href=\"https://hosted.weblate.org/engage/bottles/\">Translate</a>"
 #~ msgstr "<a href=\"https://hosted.weblate.org/engage/bottles/\">ترجمه</a>"

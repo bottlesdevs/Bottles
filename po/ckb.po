@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 12:28+0200\n"
+"POT-Creation-Date: 2022-06-11 18:08+0200\n"
 "PO-Revision-Date: 2022-04-03 20:25+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://hosted.weblate.org/projects/"
@@ -223,7 +223,7 @@ msgstr "دیمەنی سەرەتا"
 msgid "Choose which view the application should be started in."
 msgstr "هەڵیبژێرە کە دەبێت لە کام دیمەنەدا ئەپەکە ببێتەوە."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:173
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:176
 msgid "Experiments"
 msgstr "ئەزموونەکان"
 
@@ -262,39 +262,39 @@ msgid "Close Bottles after starting an executable from the file manager."
 msgstr ""
 "داخستنی بۆتڵز دوای کردنەوەی بەرنامەیەکی ویندۆز لە بەڕێوەبری پەڕگەکانەوە."
 
-#: src/main.py:103
+#: src/main.py:104
 msgid "Show version"
 msgstr "پشاندانی وەشان"
 
-#: src/main.py:111
+#: src/main.py:112
 msgid "Executable path"
 msgstr "شوێنی ئێکسکیوتەبڵ"
 
-#: src/main.py:119
+#: src/main.py:120
 msgid "lnk path"
 msgstr "شوێنی مرەکەب"
 
-#: src/main.py:127
+#: src/main.py:128
 msgid "Bottle name"
 msgstr "ناوی بۆتڵ"
 
-#: src/main.py:135
+#: src/main.py:136
 msgid "Pass arguments"
 msgstr "ناردنی ئارگیومێنتەکان"
 
-#: src/main.py:195
+#: src/main.py:201
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
 msgstr ""
 
-#: src/main.py:238
+#: src/main.py:244
 msgid "[Quit] request received."
 msgstr "[داخستک] داواکاری وەرگیرا."
 
-#: src/main.py:247
+#: src/main.py:253
 msgid "[Help] request received."
 msgstr "[یارمەتی] داواکاری وەرگیرا."
 
-#: src/main.py:255
+#: src/main.py:261
 msgid "[Refresh] request received."
 msgstr "[تازەکردنەوە] داواکاری وەرگیرا."
 
@@ -522,7 +522,7 @@ msgid "An error has occurred."
 msgstr "هەڵەیەک ڕوویدا."
 
 #: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:181
+#: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr "لەبەرگرتنەوە بۆ کلیپبۆرد"
 
@@ -621,35 +621,35 @@ msgstr "شوێنێکی exe هەڵبژێرە"
 msgid "Add"
 msgstr "زیادکردن"
 
-#: src/views/details.py:136
+#: src/views/details.py:145
 msgid "Details & Utilities"
 msgstr "وردەکاری & ئامرازەکان"
 
-#: src/views/details.py:140 src/ui/preferences.ui:6 src/ui/window.ui:30
+#: src/views/details.py:149 src/ui/preferences.ui:6 src/ui/window.ui:30
 msgid "Preferences"
 msgstr "ڕێکخستنەکان"
 
-#: src/views/details.py:144
+#: src/views/details.py:153
 msgid "Dependencies"
 msgstr "پێبەندییەکان"
 
-#: src/views/details.py:148 src/ui/details-bottle.ui:232
+#: src/views/details.py:157 src/ui/details-bottle.ui:232
 msgid "Programs"
 msgstr "پڕۆگرامەکان"
 
-#: src/views/details.py:149
+#: src/views/details.py:158
 msgid "Found in your bottle's Start menu."
 msgstr "لە لیستی ستارتی بتڵەکەتدا دۆزرایەوە."
 
-#: src/views/details.py:152 src/ui/new.ui:116
+#: src/views/details.py:161 src/ui/new.ui:116
 msgid "Versioning"
 msgstr "وەشانکردن"
 
-#: src/views/details.py:156
+#: src/views/details.py:165
 msgid "Installers"
 msgstr "دامەزرێنەرەکان"
 
-#: src/views/details.py:160
+#: src/views/details.py:169
 msgid "Task manager"
 msgstr "تاسک مانیجەر"
 
@@ -725,25 +725,6 @@ msgstr ""
 msgid "Choose new bottles path"
 msgstr "شوێنی بتڵە تازەکان هەڵبژێرە"
 
-#: src/views/preferences.py:198
-msgid "Caffe"
-msgstr ""
-
-#: src/views/preferences.py:199
-#, fuzzy
-msgid "GE Wine"
-msgstr "واین"
-
-#: src/views/preferences.py:200
-#, fuzzy
-msgid "Lutris"
-msgstr "کارپێکەرەکانی Lutris"
-
-#: src/views/preferences.py:201
-#, fuzzy
-msgid "GE Proton"
-msgstr "ProtonDB"
-
 #: src/views/preferences.py:202
 msgid "Other"
 msgstr ""
@@ -791,58 +772,54 @@ msgstr "ڕەشکەرەوە"
 msgid "Step {self.__step} of {self.steps}"
 msgstr "هەنگاوی {self.__step} لە {self.steps}"
 
-#: src/widgets/program.py:78
-msgid "Steam"
-msgstr ""
-
-#: src/widgets/program.py:204
+#: src/widgets/program.py:202
 #, python-brace-format
 msgid "'{0}' launched."
 msgstr ""
 
-#: src/widgets/program.py:210
+#: src/widgets/program.py:208
 #, fuzzy, python-brace-format
 msgid "'{0}' launched with Steam."
 msgstr "کردنەوەی بە تێرمیناڵ"
 
-#: src/widgets/program.py:231
+#: src/widgets/program.py:229
 #, python-brace-format
 msgid "'{0}' hidden."
 msgstr ""
 
-#: src/widgets/program.py:233
+#: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' showed."
 msgstr ""
 
-#: src/widgets/program.py:256
+#: src/widgets/program.py:254
 #, python-brace-format
 msgid "'{0}' removed."
 msgstr ""
 
-#: src/widgets/program.py:270
+#: src/widgets/program.py:268
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
 msgstr ""
 
-#: src/widgets/program.py:292
+#: src/widgets/program.py:290
 msgid ""
 "Can't create Desktop Entry due to missing privileges.\n"
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
 
-#: src/widgets/program.py:300
+#: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
 msgstr ""
 
-#: src/widgets/program.py:320
+#: src/widgets/program.py:318
 #, python-brace-format
 msgid "'{0}' added to your library"
 msgstr ""
 
-#: src/widgets/program.py:325
+#: src/widgets/program.py:323
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
 msgstr ""
@@ -1153,7 +1130,7 @@ msgid "Read documentation about dependencies."
 msgstr "خوێندنەوەی ڕێبەر"
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
-#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:77
+#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
 #: src/ui/window.ui:44
 msgid "Documentation"
 msgstr "ڕێبەر"
@@ -1208,7 +1185,7 @@ msgstr "ناو"
 msgid "Graphics"
 msgstr "گرافیکەکان"
 
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:133
+#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:136
 msgid "DXVK"
 msgstr "DXVK"
 
@@ -1223,7 +1200,7 @@ msgstr ""
 msgid "Updating DXVK, please wait…"
 msgstr "نوێکردنەوەی DXVK، تکایە چاوەڕوان بە…"
 
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:138
+#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:141
 msgid "VKD3D"
 msgstr "VKD3D"
 
@@ -1281,7 +1258,7 @@ msgstr "باڵانسکراو"
 msgid "Performance"
 msgstr "ئەدا"
 
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:148
+#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
 msgid "LatencyFleX"
 msgstr ""
 
@@ -1537,97 +1514,97 @@ msgstr "بەکارهێنانی Gamescope micro-compositor."
 msgid "Manage Gamescope settings"
 msgstr "بەڕێوەبردنی ڕێکخستنەکانی Gamescope"
 
-#: src/ui/details-preferences.ui:542
+#: src/ui/details-preferences.ui:545
 #, fuzzy
 msgid "Working Directory"
 msgstr "بوخچەی کارلێکردن"
 
-#: src/ui/details-preferences.ui:543
+#: src/ui/details-preferences.ui:546
 #, fuzzy
 msgid "Defaults to the bottle path."
 msgstr "دیفۆڵت بۆ شوێنی سەرەکی."
 
-#: src/ui/details-preferences.ui:546 src/ui/dialog-launch-options.ui:64
+#: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
 #, fuzzy
 msgid "Reset to default"
 msgstr "دووبارە ڕێکخستنەوەی بۆ بنەڕەت"
 
-#: src/ui/details-preferences.ui:553 src/ui/dialog-launch-options.ui:71
-#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:90
+#: src/ui/details-preferences.ui:559 src/ui/dialog-launch-options.ui:71
+#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:93
 msgid "Choose a directory"
 msgstr "بوخچەیەک هەڵبژێرە"
 
-#: src/ui/details-preferences.ui:566 src/ui/dialog-dll-overrides.ui:9
+#: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
 #, fuzzy
 msgid "DLL Overrides"
 msgstr "زاڵبوونەکانی DLL"
 
-#: src/ui/details-preferences.ui:577 src/ui/dialog-env-vars.ui:16
+#: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
 #, fuzzy
 msgid "Environment Variables"
 msgstr "گۆڕاوەکانی ژینگە"
 
-#: src/ui/details-preferences.ui:588
+#: src/ui/details-preferences.ui:594
 #, fuzzy
 msgid "Manage Drives"
 msgstr "بەڕێوەبردنی دراڤەکان"
 
-#: src/ui/details-preferences.ui:600
+#: src/ui/details-preferences.ui:606
 msgid "Audio"
 msgstr "دەنگ"
 
-#: src/ui/details-preferences.ui:604
+#: src/ui/details-preferences.ui:610
 #, fuzzy
 msgid "Reduce Latency"
 msgstr "کەمکردنەوەی دواکەوتنی PulseAudio"
 
-#: src/ui/details-preferences.ui:605
+#: src/ui/details-preferences.ui:611
 #, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr "دانانی دواکەوتنی PulseAudio بۆ ٦٠ میلی چرکە بۆ بەرزکردنی کوالێتی"
 
-#: src/ui/details-preferences.ui:617
+#: src/ui/details-preferences.ui:623
 #, fuzzy
 msgid "Development and Debugging"
 msgstr "گەشەپێدەران و دیبەگ"
 
-#: src/ui/details-preferences.ui:621
+#: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
 msgstr "DXVK HUD"
 
-#: src/ui/details-preferences.ui:622
+#: src/ui/details-preferences.ui:628
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 "کاراکردنی پشاندانی FPSی ئۆڤەرلەی DXVK و وردەکارییەکانی تر لە ئەپڵیکەیشنەکانی "
 "D3D."
 
-#: src/ui/details-preferences.ui:633
+#: src/ui/details-preferences.ui:639
 msgid "MangoHud"
 msgstr ""
 
-#: src/ui/details-preferences.ui:634
+#: src/ui/details-preferences.ui:640
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
 
-#: src/ui/details-preferences.ui:645
+#: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
 msgstr ""
 
-#: src/ui/details-preferences.ui:646
+#: src/ui/details-preferences.ui:652
 #, fuzzy
 msgid "Toggle OBS game capture for all programs."
 msgstr "گەڕان بە دوای پڕۆگرامە دامەزراوەکان"
 
-#: src/ui/details-preferences.ui:657
+#: src/ui/details-preferences.ui:663
 #, fuzzy
 msgid "Wine 'fixme' Logs"
 msgstr "کاراکردنی تۆمارەکانی واین فیکسمی"
 
-#: src/ui/details-preferences.ui:658
+#: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "تۆمارکردنی شوێنی کۆدەکان کە لە وایندا نەچێندراون."
 
@@ -1667,33 +1644,33 @@ msgstr "تازەکردنەوە"
 msgid "Stop process"
 msgstr "پڕۆسە بوەستێنە"
 
-#: src/ui/details-versioning.ui:21
+#: src/ui/details-versioning.ui:25
 msgid "No states found"
 msgstr "هیچ دۆخێک نەدۆزرایەوە"
 
-#: src/ui/details-versioning.ui:22
+#: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr "یەکەم دۆخ دروست بکە بۆ دەستکردن بە بەکارهێنانی وەشانکردن."
 
-#: src/ui/details-versioning.ui:37
+#: src/ui/details-versioning.ui:41
 #, fuzzy
 msgid "Type a short comment:"
 msgstr "کۆمێنتێکی زۆر کورت بنووسە:"
 
-#: src/ui/details-versioning.ui:45
+#: src/ui/details-versioning.ui:49
 #, fuzzy
 msgid "A short comment"
 msgstr "کۆمێنتێکی زۆر کورت"
 
-#: src/ui/details-versioning.ui:50
+#: src/ui/details-versioning.ui:54
 msgid "Save the bottle state."
 msgstr "پاشەکەوتکردنی دۆخی بۆتڵ."
 
-#: src/ui/details-versioning.ui:70
+#: src/ui/details-versioning.ui:74
 msgid "Create new state"
 msgstr "دۆخی نوێ دروست بکە"
 
-#: src/ui/details.ui:27
+#: src/ui/details.ui:76
 msgid "Operations"
 msgstr "کردارەکان"
 
@@ -2089,7 +2066,7 @@ msgstr "کردنەوەی بە تێرمیناڵ"
 msgid "Search for Prefixes"
 msgstr "پریفیکسەکانی ستیم پرۆتۆن"
 
-#: src/ui/library.ui:42 src/ui/preferences.ui:190
+#: src/ui/library.ui:42 src/ui/preferences.ui:193
 msgid "Library"
 msgstr ""
 
@@ -2133,21 +2110,19 @@ msgstr "پریفیکسەکانی ستیم پرۆتۆن"
 
 #: src/ui/list.ui:55
 #, fuzzy
-msgid ""
-"Start off by creating a Bottle.\n"
-"                                "
+msgid "Start off by creating a Bottle."
 msgstr "بە دروستکردنی بۆتڵ دەست پێ بکە."
 
-#: src/ui/list.ui:59
+#: src/ui/list.ui:62
 msgid "Create a new Bottle"
 msgstr "دروستکردنی بۆتڵێکی تازە"
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:75
 #, fuzzy
 msgid "No Results Found"
 msgstr "هیچ دۆخێک نەدۆزرایەوە"
 
-#: src/ui/list.ui:73
+#: src/ui/list.ui:76
 msgid "Try a different search."
 msgstr ""
 
@@ -2267,57 +2242,53 @@ msgstr ""
 msgid "Bottle created"
 msgstr "بتڵ دروستکرا"
 
-#: src/ui/onboard.ui:24
-msgid "Quit"
-msgstr "داخستن"
-
-#: src/ui/onboard.ui:41
+#: src/ui/onboard.ui:36
 msgid "Previous"
 msgstr ""
 
-#: src/ui/onboard.ui:67
+#: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
 msgstr "بەخێربێیت بۆ بۆتڵز"
 
-#: src/ui/onboard.ui:68
+#: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
 
-#: src/ui/onboard.ui:76
+#: src/ui/onboard.ui:71
 #, fuzzy
 msgid "Windows in Bottles"
 msgstr "جۆری پەنجەرە"
 
-#: src/ui/onboard.ui:77
+#: src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
 
-#: src/ui/onboard.ui:84
+#: src/ui/onboard.ui:79
 msgid "Almost Done"
 msgstr ""
 
-#: src/ui/onboard.ui:85
+#: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up.."
 msgstr ""
 
-#: src/ui/onboard.ui:93
+#: src/ui/onboard.ui:88
 msgid "Continue"
 msgstr ""
 
-#: src/ui/onboard.ui:118
+#: src/ui/onboard.ui:113
 msgid "All ready!"
 msgstr ""
 
-#: src/ui/onboard.ui:124
+#: src/ui/onboard.ui:119
 #, fuzzy
 msgid "Start using Bottles"
 msgstr "بە دروستکردنی بۆتڵ دەست پێ بکە."
 
-#: src/ui/onboard.ui:143
+#: src/ui/onboard.ui:138
 msgid "Next"
 msgstr "دواتر"
 
@@ -2371,46 +2342,46 @@ msgstr "پێشکەوتوو"
 msgid "Custom bottles path (requires restart)"
 msgstr "شوێنی تایبەتی بۆتڵز (پێویستی بە دوبارە دەستپێکردنەوە هەیە)"
 
-#: src/ui/preferences.ui:108
+#: src/ui/preferences.ui:111
 msgid "Runners"
 msgstr "کارپێکەرەکان"
 
-#: src/ui/preferences.ui:113
+#: src/ui/preferences.ui:116
 #, fuzzy
 msgid "Pre-release"
 msgstr "پێشوەخت-بڵاوبوونەوە"
 
-#: src/ui/preferences.ui:114
+#: src/ui/preferences.ui:117
 msgid "Display unstable versions of runners."
 msgstr ""
 
-#: src/ui/preferences.ui:130
+#: src/ui/preferences.ui:133
 #, fuzzy
 msgid "DLL Components"
 msgstr "وەشانی پێکهێنەر"
 
-#: src/ui/preferences.ui:143
+#: src/ui/preferences.ui:146
 msgid "DXVK-NVAPI"
 msgstr "DXVK-NVAPI"
 
-#: src/ui/preferences.ui:156
+#: src/ui/preferences.ui:159
 msgid "Core"
 msgstr "ناوک"
 
-#: src/ui/preferences.ui:160
+#: src/ui/preferences.ui:163
 msgid "Runtime"
 msgstr "ڕەنتایم"
 
-#: src/ui/preferences.ui:165
+#: src/ui/preferences.ui:168
 msgid "WineBridge"
 msgstr "واین بریج (WineBridge)"
 
-#: src/ui/preferences.ui:178
+#: src/ui/preferences.ui:181
 #, fuzzy
 msgid "Steam Proton Prefixes"
 msgstr "پریفیکسەکانی ستیم پرۆتۆن"
 
-#: src/ui/preferences.ui:179 src/ui/preferences.ui:191
+#: src/ui/preferences.ui:182 src/ui/preferences.ui:194
 #, fuzzy
 msgid "In early development (requires restart)"
 msgstr "لە سەرەتای گەشەپێدان (پێویستی بە دوبارە دەستپێکردنەوە هەیە)"
@@ -2513,6 +2484,21 @@ msgstr ""
 #: src/ui/window.ui:109
 msgid "New bottle"
 msgstr "بۆتڵی نوێ"
+
+#, fuzzy
+#~ msgid "GE Wine"
+#~ msgstr "واین"
+
+#, fuzzy
+#~ msgid "Lutris"
+#~ msgstr "کارپێکەرەکانی Lutris"
+
+#, fuzzy
+#~ msgid "GE Proton"
+#~ msgstr "ProtonDB"
+
+#~ msgid "Quit"
+#~ msgstr "داخستن"
 
 #~ msgid "Bottles versioning (experimental)"
 #~ msgstr "وەشانکردنی بۆتڵز (ئەزمونی)"

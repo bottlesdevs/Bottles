@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 12:28+0200\n"
+"POT-Creation-Date: 2022-06-11 18:08+0200\n"
 "PO-Revision-Date: 2022-06-08 22:17+0000\n"
 "Last-Translator: Taehun Yun <yooontehoon@naver.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/bottles/bottles/"
@@ -218,7 +218,7 @@ msgstr "시작 화면"
 msgid "Choose which view the application should be started in."
 msgstr "애플리케이션을 시작할 때 표시할 화면을 선택합니다."
 
-#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:173
+#: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:176
 msgid "Experiments"
 msgstr "실험"
 
@@ -253,39 +253,39 @@ msgstr "자동으로 Bottles 종료"
 msgid "Close Bottles after starting an executable from the file manager."
 msgstr "파일 관리자에서 실행 파일을 시작한 후 Bottles를 닫습니다."
 
-#: src/main.py:103
+#: src/main.py:104
 msgid "Show version"
 msgstr ""
 
-#: src/main.py:111
+#: src/main.py:112
 msgid "Executable path"
 msgstr ""
 
-#: src/main.py:119
+#: src/main.py:120
 msgid "lnk path"
 msgstr ""
 
-#: src/main.py:127
+#: src/main.py:128
 msgid "Bottle name"
 msgstr ""
 
-#: src/main.py:135
+#: src/main.py:136
 msgid "Pass arguments"
 msgstr ""
 
-#: src/main.py:195
+#: src/main.py:201
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
 msgstr ""
 
-#: src/main.py:238
+#: src/main.py:244
 msgid "[Quit] request received."
 msgstr ""
 
-#: src/main.py:247
+#: src/main.py:253
 msgid "[Help] request received."
 msgstr ""
 
-#: src/main.py:255
+#: src/main.py:261
 msgid "[Refresh] request received."
 msgstr ""
 
@@ -507,7 +507,7 @@ msgid "An error has occurred."
 msgstr ""
 
 #: src/dialogs/generic.py:91 src/dialogs/generic.py:137
-#: src/dialogs/generic.py:181
+#: src/dialogs/generic.py:182
 msgid "Copy to clipboard"
 msgstr ""
 
@@ -605,35 +605,35 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: src/views/details.py:136
+#: src/views/details.py:145
 msgid "Details & Utilities"
 msgstr ""
 
-#: src/views/details.py:140 src/ui/preferences.ui:6 src/ui/window.ui:30
+#: src/views/details.py:149 src/ui/preferences.ui:6 src/ui/window.ui:30
 msgid "Preferences"
 msgstr ""
 
-#: src/views/details.py:144
+#: src/views/details.py:153
 msgid "Dependencies"
 msgstr ""
 
-#: src/views/details.py:148 src/ui/details-bottle.ui:232
+#: src/views/details.py:157 src/ui/details-bottle.ui:232
 msgid "Programs"
 msgstr "프로그램"
 
-#: src/views/details.py:149
+#: src/views/details.py:158
 msgid "Found in your bottle's Start menu."
 msgstr ""
 
-#: src/views/details.py:152 src/ui/new.ui:116
+#: src/views/details.py:161 src/ui/new.ui:116
 msgid "Versioning"
 msgstr "버전 관리"
 
-#: src/views/details.py:156
+#: src/views/details.py:165
 msgid "Installers"
 msgstr ""
 
-#: src/views/details.py:160
+#: src/views/details.py:169
 msgid "Task manager"
 msgstr "작업 관리자"
 
@@ -702,23 +702,6 @@ msgstr ""
 msgid "Choose new bottles path"
 msgstr ""
 
-#: src/views/preferences.py:198
-msgid "Caffe"
-msgstr ""
-
-#: src/views/preferences.py:199
-msgid "GE Wine"
-msgstr ""
-
-#: src/views/preferences.py:200
-#, fuzzy
-msgid "Lutris"
-msgstr "Lutris 실행기"
-
-#: src/views/preferences.py:201
-msgid "GE Proton"
-msgstr ""
-
 #: src/views/preferences.py:202
 msgid "Other"
 msgstr "기타"
@@ -766,58 +749,54 @@ msgstr "제거 프로그램"
 msgid "Step {self.__step} of {self.steps}"
 msgstr ""
 
-#: src/widgets/program.py:78
-msgid "Steam"
-msgstr ""
-
-#: src/widgets/program.py:204
+#: src/widgets/program.py:202
 #, python-brace-format
 msgid "'{0}' launched."
 msgstr ""
 
-#: src/widgets/program.py:210
+#: src/widgets/program.py:208
 #, fuzzy, python-brace-format
 msgid "'{0}' launched with Steam."
 msgstr "터미널로 실행"
 
-#: src/widgets/program.py:231
+#: src/widgets/program.py:229
 #, python-brace-format
 msgid "'{0}' hidden."
 msgstr ""
 
-#: src/widgets/program.py:233
+#: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' showed."
 msgstr ""
 
-#: src/widgets/program.py:256
+#: src/widgets/program.py:254
 #, python-brace-format
 msgid "'{0}' removed."
 msgstr ""
 
-#: src/widgets/program.py:270
+#: src/widgets/program.py:268
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
 msgstr ""
 
-#: src/widgets/program.py:292
+#: src/widgets/program.py:290
 msgid ""
 "Can't create Desktop Entry due to missing privileges.\n"
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
 
-#: src/widgets/program.py:300
+#: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
 msgstr ""
 
-#: src/widgets/program.py:320
+#: src/widgets/program.py:318
 #, python-brace-format
 msgid "'{0}' added to your library"
 msgstr ""
 
-#: src/widgets/program.py:325
+#: src/widgets/program.py:323
 #, python-brace-format
 msgid "'{0}' added to your Steam library"
 msgstr ""
@@ -1128,7 +1107,7 @@ msgid "Read documentation about dependencies."
 msgstr "종속성에 대한 문서 읽기\t"
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
-#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:77
+#: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
 #: src/ui/window.ui:44
 msgid "Documentation"
 msgstr "문서"
@@ -1180,7 +1159,7 @@ msgstr "이름"
 msgid "Graphics"
 msgstr "그래픽"
 
-#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:133
+#: src/ui/details-preferences.ui:23 src/ui/preferences.ui:136
 msgid "DXVK"
 msgstr ""
 
@@ -1192,7 +1171,7 @@ msgstr "DirectX 11 게임과 3D 애플리케이션의 성능을 향상시킵니�
 msgid "Updating DXVK, please wait…"
 msgstr "DXVK를 업데이트하는 중입니다. 잠시만 기다려 주십시오…"
 
-#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:138
+#: src/ui/details-preferences.ui:42 src/ui/preferences.ui:141
 msgid "VKD3D"
 msgstr ""
 
@@ -1244,7 +1223,7 @@ msgstr "균형"
 msgid "Performance"
 msgstr "성능"
 
-#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:148
+#: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
 msgid "LatencyFleX"
 msgstr ""
 
@@ -1504,87 +1483,87 @@ msgstr ""
 msgid "Manage Gamescope settings"
 msgstr ""
 
-#: src/ui/details-preferences.ui:542
+#: src/ui/details-preferences.ui:545
 msgid "Working Directory"
 msgstr ""
 
-#: src/ui/details-preferences.ui:543
+#: src/ui/details-preferences.ui:546
 msgid "Defaults to the bottle path."
 msgstr ""
 
-#: src/ui/details-preferences.ui:546 src/ui/dialog-launch-options.ui:64
+#: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
 #, fuzzy
 msgid "Reset to default"
 msgstr "기본값으로 재설정"
 
-#: src/ui/details-preferences.ui:553 src/ui/dialog-launch-options.ui:71
-#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:90
+#: src/ui/details-preferences.ui:559 src/ui/dialog-launch-options.ui:71
+#: src/ui/new.ui:174 src/ui/new.ui:191 src/ui/preferences.ui:93
 msgid "Choose a directory"
 msgstr ""
 
-#: src/ui/details-preferences.ui:566 src/ui/dialog-dll-overrides.ui:9
+#: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
 msgid "DLL Overrides"
 msgstr ""
 
-#: src/ui/details-preferences.ui:577 src/ui/dialog-env-vars.ui:16
+#: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
 #, fuzzy
 msgid "Environment Variables"
 msgstr "환경 변수를 빠르게 추가"
 
-#: src/ui/details-preferences.ui:588
+#: src/ui/details-preferences.ui:594
 #, fuzzy
 msgid "Manage Drives"
 msgstr "실행기 관리"
 
-#: src/ui/details-preferences.ui:600
+#: src/ui/details-preferences.ui:606
 msgid "Audio"
 msgstr ""
 
-#: src/ui/details-preferences.ui:604
+#: src/ui/details-preferences.ui:610
 msgid "Reduce Latency"
 msgstr ""
 
-#: src/ui/details-preferences.ui:605
+#: src/ui/details-preferences.ui:611
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr ""
 
-#: src/ui/details-preferences.ui:617
+#: src/ui/details-preferences.ui:623
 msgid "Development and Debugging"
 msgstr ""
 
-#: src/ui/details-preferences.ui:621
+#: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
 msgstr ""
 
-#: src/ui/details-preferences.ui:622
+#: src/ui/details-preferences.ui:628
 msgid "Toggle DXVK overlay showing FPS and other details in D3D applications."
 msgstr ""
 
-#: src/ui/details-preferences.ui:633
+#: src/ui/details-preferences.ui:639
 msgid "MangoHud"
 msgstr ""
 
-#: src/ui/details-preferences.ui:634
+#: src/ui/details-preferences.ui:640
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
 
-#: src/ui/details-preferences.ui:645
+#: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
 msgstr ""
 
-#: src/ui/details-preferences.ui:646
+#: src/ui/details-preferences.ui:652
 msgid "Toggle OBS game capture for all programs."
 msgstr ""
 
-#: src/ui/details-preferences.ui:657
+#: src/ui/details-preferences.ui:663
 msgid "Wine 'fixme' Logs"
 msgstr ""
 
-#: src/ui/details-preferences.ui:658
+#: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
 msgstr ""
 
@@ -1625,31 +1604,31 @@ msgstr "새로 고침"
 msgid "Stop process"
 msgstr ""
 
-#: src/ui/details-versioning.ui:21
+#: src/ui/details-versioning.ui:25
 msgid "No states found"
 msgstr ""
 
-#: src/ui/details-versioning.ui:22
+#: src/ui/details-versioning.ui:26
 msgid "Create first state to start using versioning."
 msgstr "첫 번째 상태를 만들어 버전 관리를 시작합니다."
 
-#: src/ui/details-versioning.ui:37
+#: src/ui/details-versioning.ui:41
 msgid "Type a short comment:"
 msgstr ""
 
-#: src/ui/details-versioning.ui:45
+#: src/ui/details-versioning.ui:49
 msgid "A short comment"
 msgstr ""
 
-#: src/ui/details-versioning.ui:50
+#: src/ui/details-versioning.ui:54
 msgid "Save the bottle state."
 msgstr ""
 
-#: src/ui/details-versioning.ui:70
+#: src/ui/details-versioning.ui:74
 msgid "Create new state"
 msgstr ""
 
-#: src/ui/details.ui:27
+#: src/ui/details.ui:76
 msgid "Operations"
 msgstr ""
 
@@ -2006,7 +1985,7 @@ msgstr ""
 msgid "Search for Prefixes"
 msgstr ""
 
-#: src/ui/library.ui:42 src/ui/preferences.ui:190
+#: src/ui/library.ui:42 src/ui/preferences.ui:193
 msgid "Library"
 msgstr ""
 
@@ -2046,20 +2025,18 @@ msgstr ""
 
 #: src/ui/list.ui:55
 #, fuzzy
-msgid ""
-"Start off by creating a Bottle.\n"
-"                                "
+msgid "Start off by creating a Bottle."
 msgstr "병을 만들어 시작합니다."
 
-#: src/ui/list.ui:59
+#: src/ui/list.ui:62
 msgid "Create a new Bottle"
 msgstr "새로운 병 만들기"
 
-#: src/ui/list.ui:72
+#: src/ui/list.ui:75
 msgid "No Results Found"
 msgstr ""
 
-#: src/ui/list.ui:73
+#: src/ui/list.ui:76
 msgid "Try a different search."
 msgstr ""
 
@@ -2174,57 +2151,53 @@ msgstr ""
 msgid "Bottle created"
 msgstr ""
 
-#: src/ui/onboard.ui:24
-msgid "Quit"
-msgstr "종료"
-
-#: src/ui/onboard.ui:41
+#: src/ui/onboard.ui:36
 msgid "Previous"
 msgstr ""
 
-#: src/ui/onboard.ui:67
+#: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
 msgstr "Bottles에 오신 것을 환영합니다"
 
-#: src/ui/onboard.ui:68
+#: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
 
-#: src/ui/onboard.ui:76
+#: src/ui/onboard.ui:71
 #, fuzzy
 msgid "Windows in Bottles"
 msgstr "창 너비"
 
-#: src/ui/onboard.ui:77
+#: src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
 
-#: src/ui/onboard.ui:84
+#: src/ui/onboard.ui:79
 msgid "Almost Done"
 msgstr ""
 
-#: src/ui/onboard.ui:85
+#: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up.."
 msgstr ""
 
-#: src/ui/onboard.ui:93
+#: src/ui/onboard.ui:88
 msgid "Continue"
 msgstr ""
 
-#: src/ui/onboard.ui:118
+#: src/ui/onboard.ui:113
 msgid "All ready!"
 msgstr ""
 
-#: src/ui/onboard.ui:124
+#: src/ui/onboard.ui:119
 #, fuzzy
 msgid "Start using Bottles"
 msgstr "병을 만들어 시작합니다."
 
-#: src/ui/onboard.ui:143
+#: src/ui/onboard.ui:138
 msgid "Next"
 msgstr "다음"
 
@@ -2275,43 +2248,43 @@ msgstr ""
 msgid "Custom bottles path (requires restart)"
 msgstr ""
 
-#: src/ui/preferences.ui:108
+#: src/ui/preferences.ui:111
 msgid "Runners"
 msgstr "실행기"
 
-#: src/ui/preferences.ui:113
+#: src/ui/preferences.ui:116
 msgid "Pre-release"
 msgstr ""
 
-#: src/ui/preferences.ui:114
+#: src/ui/preferences.ui:117
 msgid "Display unstable versions of runners."
 msgstr ""
 
-#: src/ui/preferences.ui:130
+#: src/ui/preferences.ui:133
 msgid "DLL Components"
 msgstr "DLL 구성 요소"
 
-#: src/ui/preferences.ui:143
+#: src/ui/preferences.ui:146
 msgid "DXVK-NVAPI"
 msgstr ""
 
-#: src/ui/preferences.ui:156
+#: src/ui/preferences.ui:159
 msgid "Core"
 msgstr ""
 
-#: src/ui/preferences.ui:160
+#: src/ui/preferences.ui:163
 msgid "Runtime"
 msgstr ""
 
-#: src/ui/preferences.ui:165
+#: src/ui/preferences.ui:168
 msgid "WineBridge"
 msgstr ""
 
-#: src/ui/preferences.ui:178
+#: src/ui/preferences.ui:181
 msgid "Steam Proton Prefixes"
 msgstr ""
 
-#: src/ui/preferences.ui:179 src/ui/preferences.ui:191
+#: src/ui/preferences.ui:182 src/ui/preferences.ui:194
 msgid "In early development (requires restart)"
 msgstr ""
 
@@ -2405,6 +2378,13 @@ msgstr ""
 #: src/ui/window.ui:109
 msgid "New bottle"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Lutris"
+#~ msgstr "Lutris 실행기"
+
+#~ msgid "Quit"
+#~ msgstr "종료"
 
 #~ msgid "Bottles versioning (experimental)"
 #~ msgstr "병 버전 관리 (실험적)"
