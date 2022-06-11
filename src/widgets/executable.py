@@ -37,7 +37,6 @@ class ExecButton(Gtk.Button):
         executor = WineExecutor(
             self.config,
             exec_path=self.data.get("file"),
-            args=self.data.get("args"),
-            move_upd_fn=self.parent.update_move_progress
+            args=self.data.get("args")
         )
         RunAsync(executor.run)
