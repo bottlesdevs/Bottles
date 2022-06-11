@@ -87,7 +87,6 @@ class ProgramsView(Adw.PreferencesPage):
             title=_("Choose an executable path"),
             action=Gtk.FileChooserAction.OPEN,
             buttons=(_("Cancel"), _("Add")),
-            filters=["tar.gz"],
             callback=set_path
         )
 
