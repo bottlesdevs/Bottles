@@ -556,7 +556,8 @@ class Manager:
             "_*",
             "start",
             "*website*",
-            "*web site*"
+            "*web site*",
+            "*user_manual*"
         ]
         found = []
         ext_programs = config.get("External_Programs")
