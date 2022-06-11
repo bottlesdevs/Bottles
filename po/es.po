@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 12:28+0200\n"
-"PO-Revision-Date: 2022-06-10 01:15+0000\n"
-"Last-Translator: Missael Gatelum <missajga@gmail.com>\n"
+"PO-Revision-Date: 2022-06-11 15:37+0000\n"
+"Last-Translator: Aria <totallyrandomvee@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -142,7 +142,6 @@ msgid "Import Wine prefixes from other managers"
 msgstr "Importa prefijos de Wine de otros gestores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
 msgstr "Usar versiones"
 
@@ -305,15 +304,15 @@ msgid "Loading..."
 msgstr "Cargando..."
 
 #: src/window.py:226
-#, fuzzy
 msgid ""
 "The custom bottles path was not found. Please, check the path in "
 "Preferences.\n"
 "Fall-backing to the default path; no bottles from that path will be listed!"
 msgstr ""
-"No se ha encontrado la ruta de las botellas personalizadas. Por favor, "
-"compruébelo en Preferencias.\n"
-"Vuelve a la ruta por defecto. No aparecerá ninguna botella de esa ruta!"
+"La ruta personalizada para tus botellas no se encontró. Por favor, revisar "
+"la ruta en las Preferencias.\n"
+"Volviendo a la ruta predeterminada; Ninguna botella de esa ruta aparecerá en "
+"la lista!"
 
 #: src/window.py:282
 msgid "Health check"
@@ -482,7 +481,7 @@ msgstr ""
 #: src/dialogs/dlloverrides.py:135
 #, fuzzy
 msgid "No overrides found."
-msgstr "No se han encontrado prefijos"
+msgstr "No se encontraron overrides."
 
 #: src/dialogs/drives.py:69
 msgid "Choose path"
@@ -935,7 +934,6 @@ msgstr ""
 "Este es el archivo completo de su botella, incluidos los archivos personales."
 
 #: src/ui/details-bottle.ui:37
-#, fuzzy
 msgid "Full Backup…"
 msgstr "Respaldo completo…"
 
@@ -1095,12 +1093,9 @@ msgstr "Accede al panel de control interno de Wine."
 #: src/ui/details-bottle.ui:348
 #, fuzzy
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
-"Utilice la sección de instaladores o \"Ejecutar ejecutable \" en el botón de "
-"arriba."
+msgstr "Utilice la sección de instaladores o el botón de \"Ejecutar programa\"."
 
 #: src/ui/details-dependencies.ui:13
-#, fuzzy
 msgid "Search for dependencies…"
 msgstr "Buscar dependencias…"
 
@@ -1306,15 +1301,16 @@ msgstr ""
 #: src/ui/details-preferences.ui:206
 #, fuzzy
 msgid "Take Focus"
-msgstr "Tomar el foco"
+msgstr "Tomar enfoque"
 
 #: src/ui/details-preferences.ui:207
 msgid "Activate it if the program does not retake focus on switch."
 msgstr "Actívelo si el programa no retoma el foco al cambiar."
 
 #: src/ui/details-preferences.ui:218
+#, fuzzy
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Centrar el cursor del mouse."
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
@@ -1466,9 +1462,8 @@ msgid "Updating Windows version, please wait…"
 msgstr "Actualizando la versión de Windows, por favor espere…"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "Usar el tiempo de ejecución de Bottles"
+msgstr "Runtime de Bottles"
 
 #: src/ui/details-preferences.ui:488
 msgid ""
@@ -1479,9 +1474,8 @@ msgstr ""
 "compatibilidad, desactívelo si tienes problemas."
 
 #: src/ui/details-preferences.ui:499
-#, fuzzy
 msgid "Steam Runtime"
-msgstr "Usar el tiempo de ejecución de Steam"
+msgstr "Runtime de Steam"
 
 #: src/ui/details-preferences.ui:500
 msgid "The same as the Bottles one but provided by Steam."
@@ -1512,7 +1506,7 @@ msgstr "Gestionar la configuración de Gamescope"
 #: src/ui/details-preferences.ui:542
 #, fuzzy
 msgid "Working Directory"
-msgstr "Directorio de trabajo"
+msgstr "Directorio de ejecución"
 
 #: src/ui/details-preferences.ui:543
 #, fuzzy
@@ -1600,7 +1594,7 @@ msgstr ""
 #: src/ui/details-preferences.ui:657
 #, fuzzy
 msgid "Wine 'fixme' Logs"
-msgstr "Activar registros «fixme» de Wine"
+msgstr "Activar registros \"fixme\" de Wine"
 
 #: src/ui/details-preferences.ui:658
 msgid "Log code paths that are unimplemented in Wine."
@@ -1623,7 +1617,7 @@ msgstr ""
 #: src/ui/details-programs.ui:31
 #, fuzzy
 msgid "Toggle Hidden"
-msgstr "Alternar búsqueda"
+msgstr "Mostrar/Esconder archivos ocultos"
 
 #: src/ui/details-programs.ui:39
 #, fuzzy
@@ -1727,12 +1721,12 @@ msgstr ""
 #: src/ui/dialog-dll-overrides.ui:18
 #, fuzzy
 msgid "New Override"
-msgstr "Anulación nueva"
+msgstr "Override Nuevo"
 
 #: src/ui/dialog-dll-overrides.ui:26
 #, fuzzy
 msgid "Overrides"
-msgstr "Anulaciones de DLL"
+msgstr "Overrides de DLL"
 
 #: src/ui/dialog-drives.ui:9
 msgid "Drives"
@@ -1837,9 +1831,8 @@ msgid "Frame rate limit (e.g. 60)"
 msgstr "Límite de velocidad de fotogramas"
 
 #: src/ui/dialog-gamescope.ui:77
-#, fuzzy
 msgid "Frame rate limit (when unfocused)"
-msgstr "Límite de velocidad de fotogramas (cuando no hay enfoque)"
+msgstr "Límite de fotogramas por segundo (cuando la ventana esta desenfocada)"
 
 #: src/ui/dialog-gamescope.ui:82
 msgid "Use integer scaling"
@@ -1858,9 +1851,8 @@ msgid "Fullscreen"
 msgstr "Pantalla completa"
 
 #: src/ui/dialog-journal.ui:12
-#, fuzzy
 msgid "All messages"
-msgstr "Eliminar mensaje"
+msgstr "Todos los mensajes"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
@@ -1882,7 +1874,7 @@ msgstr "Información"
 #: src/ui/dialog-journal.ui:56
 #, fuzzy
 msgid "Journal Browser"
-msgstr "Navegador de noticias"
+msgstr "Navegador de Diario"
 
 #: src/ui/dialog-journal.ui:62
 msgid ""
@@ -1932,7 +1924,7 @@ msgstr ""
 #: src/ui/dialog-launch-options.ui:88
 #, fuzzy
 msgid "Preferences Overrides"
-msgstr "Preferencias"
+msgstr "Overrides de Preferencias"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -2031,9 +2023,9 @@ msgid ""
 "                                    Use the icon on the top to import a "
 "bottle from a backup"
 msgstr ""
-"No se encontraron prefijos de Lutris, PlayOnLinux, etc.\n"
-"Utilice el icono de la parte superior para importar una botella desde una "
-"copia de seguridad"
+"No se encontraron Wine Prefixes de Lutris, PlayOnLinux, etc.\n"
+"Utilice el icono de la parte superior para importar una botella desde un "
+"respaldo."
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
