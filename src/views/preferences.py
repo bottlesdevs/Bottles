@@ -195,10 +195,10 @@ class PreferencesWindow(Adw.PreferencesWindow):
             if parent:
                 parent.remove(w)
 
-        exp_caffe = ComponentExpander(_("Caffe"))
-        exp_wine_ge = ComponentExpander(_("GE Wine"))
-        exp_lutris = ComponentExpander(_("Lutris"))
-        exp_proton = ComponentExpander(_("GE Proton"))
+        exp_caffe = ComponentExpander("Caffe")
+        exp_wine_ge = ComponentExpander("GE Wine")
+        exp_lutris = ComponentExpander("Lutris")
+        exp_proton = ComponentExpander("GE Proton")
         exp_other = ComponentExpander(_("Other"))
 
         for runner in self.manager.supported_wine_runners.items():
