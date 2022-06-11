@@ -4,41 +4,27 @@
     <requires lib="libadwaita" version="1.0"/>
     <template class="Details" parent="AdwBin">
         <child>
-            <object class="GtkBox">
-                <property name="orientation">vertical</property>
+            <object class="AdwLeaflet" id="leaflet">
+                <property name="can-navigate-back">True</property>
+                <property name="hexpand">true</property>
                 <child>
-                    <object class="GtkHeaderBar" id="headerbar">
-                        <property name="title-widget">
-                            <object class="AdwWindowTitle" id="window_title">
-                            </object>
-                        </property>
-                        <child type="start">
-                            <object class="GtkButton" id="btn_back">
-                                <property name="icon-name">go-previous-symbolic</property>
-                            </object>
-                        </child>
-                        <child type="end">
-                            <object class="GtkBox" id="box_actions">
-                            </object>
-                        </child>
-                        <child type="end">
-                            <object class="GtkMenuButton" id="btn_operations">
-                                <property name="visible">False</property>
-                                <property name="tooltip-text" translatable="yes">Operations</property>
-                                <property name="popover">pop_tasks</property>
-                                <child>
-                                    <object class="GtkSpinner" id="spinner_tasks" />
+                    <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <child>
+                            <object class="AdwHeaderBar" id="sidebar_headerbar">
+                                <property name="show-start-title-buttons">False</property>
+                                <property name="show-end-title-buttons">False</property>
+                                <property name="title-widget">
+                                    <object class="AdwWindowTitle" id="sidebar_title">
+                                    </object>
+                                </property>
+                                <child type="start">
+                                    <object class="GtkButton" id="btn_back">
+                                        <property name="icon-name">go-previous-symbolic</property>
+                                    </object>
                                 </child>
-                                <style>
-                                    <class name="flat"/>
-                                </style>
                             </object>
                         </child>
-                    </object>
-                </child>
-                <child>
-                    <object class="AdwLeaflet" id="leaflet">
-                        <property name="hexpand">true</property>
                         <child>
                             <object class="GtkListBox" id="list_pages">
                                 <property name="vexpand">true</property>
@@ -48,17 +34,62 @@
                                 </style>
                             </object>
                         </child>
-                        <child>
-                            <object class="GtkSeparator"/>
-                        </child>
-                        <child>
-                            <object class="GtkBox" id="content">
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwLeafletPage">
+                        <property name="navigatable">False</property>
+                        <property name="child">
+                            <object class="GtkSeparator" id="panel_separator">
                                 <property name="orientation">vertical</property>
-                                <child>
-                                    <object class="GtkStack" id="stack_bottle">
-                                        <property name="transition-type">crossfade</property>
+                                <style>
+                                    <class name="sidebar"/>
+                                </style>
+                            </object>
+                        </property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkBox" id="content">
+                        <property name="orientation">vertical</property>
+                        <child>
+                            <object class="AdwHeaderBar" id="content_headerbar">
+                                <property name="show-start-title-buttons">True</property>
+                                <property name="show-end-title-buttons">True</property>
+                                <property name="title-widget">
+                                    <object class="AdwWindowTitle" id="content_title">
+                                    </object>
+                                </property>
+                                <child type="start">
+                                    <object class="GtkButton" id="btn_back_sidebar">
+                                        <property name="icon-name">go-previous-symbolic</property>
+                                        <property name="visible">False</property>
                                     </object>
                                 </child>
+                                <child type="end">
+                                    <object class="GtkBox" id="box_actions">
+                                    </object>
+                                </child>
+                                <child type="end">
+                                    <object class="GtkMenuButton" id="btn_operations">
+                                        <property name="visible">False</property>
+                                        <property name="tooltip-text" translatable="yes">Operations</property>
+                                        <property name="popover">pop_tasks</property>
+                                        <child>
+                                            <object class="GtkSpinner" id="spinner_tasks" />
+                                        </child>
+                                        <style>
+                                            <class name="flat"/>
+                                        </style>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkStack" id="stack_bottle">
+                                <property name="transition-type">crossfade</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
                             </object>
                         </child>
                     </object>

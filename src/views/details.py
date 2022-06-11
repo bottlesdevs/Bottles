@@ -47,10 +47,12 @@ class DetailsView(Adw.Bin):
     leaflet = Gtk.Template.Child()
     list_pages = Gtk.Template.Child()
     stack_bottle = Gtk.Template.Child()
-    headerbar = Gtk.Template.Child()
+    sidebar_headerbar = Gtk.Template.Child()
+    content_headerbar = Gtk.Template.Child()
     box_actions = Gtk.Template.Child()
-    window_title = Gtk.Template.Child()
+    content_title = Gtk.Template.Child()
     btn_back = Gtk.Template.Child()
+    btn_back_sidebar = Gtk.Template.Child()
     btn_operations = Gtk.Template.Child()
     list_tasks = Gtk.Template.Child()
     pop_tasks = Gtk.Template.Child()
@@ -79,6 +81,7 @@ class DetailsView(Adw.Bin):
         self.view_taskmanager = TaskManagerView(window, config)
 
         self.btn_back.connect("clicked", self.go_back)
+        self.btn_back_sidebar.connect("clicked", self.go_back_sidebar)
         self.window.main_leaf.connect('notify::visible-child', self.unload_view)
 
         # region signals
@@ -86,13 +89,19 @@ class DetailsView(Adw.Bin):
         self.stack_bottle.connect('notify::visible-child', self.__on_page_change)
         self.btn_operations.connect('activate', self.__on_operations_toggled)
         self.btn_operations.connect('notify::visible', self.__spin_tasks_toggle)
+        self.leaflet.connect('notify::folded', self.__on_leaflet_folded)
         # endregion
 
         # self.build_pages()
 
     def set_title(self, title, subtitle: str = ""):
-        self.window_title.set_title(title)
-        self.window_title.set_subtitle(subtitle)
+        self.content_title.set_title(title)
+        self.content_title.set_subtitle(subtitle)
+
+    def __on_leaflet_folded(self, widget, *args):
+        folded = widget.get_folded()
+        self.sidebar_headerbar.set_show_end_title_buttons(folded)
+        self.btn_back_sidebar.set_visible(folded)
 
     def __on_page_change(self, *args):
         """
@@ -194,7 +203,8 @@ class DetailsView(Adw.Bin):
         """
         try:
             self.stack_bottle.set_visible_child_name(row.page_name)
-        except AttributeError:
+            self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
+        except:
             pass
 
     def set_actions(self, widget: Gtk.Widget = None):
@@ -317,6 +327,9 @@ class DetailsView(Adw.Bin):
 
     def go_back(self, widget=False):
         self.window.main_leaf.navigate(Adw.NavigationDirection.BACK)
+
+    def go_back_sidebar(self, *args):
+        self.leaflet.navigate(Adw.NavigationDirection.BACK)
 
     def unload_view(self, *args):
         while self.stack_bottle.get_first_child():
