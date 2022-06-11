@@ -296,10 +296,13 @@ class DetailsView(Adw.Bin):
             wineserver_status = WineServer(self.config).is_alive()
             programs = self.manager.get_programs(self.config)
 
+            handled = [0, 0]  # home, programs
+
             if self.config.get("Environment") == "Steam":
                 GLib.idle_add(new_program, {"name": self.config["Name"]}, None, True, True)
+                handled[0] += 1
+                handled[1] += 1
 
-            handled = [0, 0]  # home, programs
             for program in programs:
                 if program.get("removed"):
                     if self.view_programs.show_removed:
@@ -308,6 +311,7 @@ class DetailsView(Adw.Bin):
                     continue
                 GLib.idle_add(new_program, program, None, False, handled[0] < 5, wineserver_status)
                 handled[0] += 1
+                handled[1] += 1
 
             return Result(True, data={"handled": handled})
 
