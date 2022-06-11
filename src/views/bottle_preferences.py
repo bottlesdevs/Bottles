@@ -305,8 +305,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_discrete.handler_block_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_block_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_block_by_func(self.__toggle_pulse_latency)
-        self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
         try:
+            self.switch_runtime.handler_block_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_block_by_func(self.__toggle_steam_runtime)
         except TypeError:
             pass  # already disconnected
@@ -403,8 +403,8 @@ class PreferencesView(Adw.PreferencesPage):
         self.switch_discrete.handler_unblock_by_func(self.__toggle_discrete_gpu)
         self.switch_fsr.handler_unblock_by_func(self.__toggle_fsr)
         self.switch_pulse_latency.handler_unblock_by_func(self.__toggle_pulse_latency)
-        self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
         try:
+            self.switch_runtime.handler_unblock_by_func(self.__toggle_runtime)
             self.switch_steam_runtime.handler_unblock_by_func(self.__toggle_steam_runtime)
         except TypeError:
             pass  # already connected
