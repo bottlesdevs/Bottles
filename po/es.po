@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-09 12:28+0200\n"
-"PO-Revision-Date: 2022-06-11 15:37+0000\n"
+"PO-Revision-Date: 2022-06-11 16:05+0000\n"
 "Last-Translator: Aria <totallyrandomvee@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
@@ -143,7 +143,7 @@ msgstr "Importa prefijos de Wine de otros gestores"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning"
-msgstr "Usar versiones"
+msgstr "Estados de botellas"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -479,7 +479,6 @@ msgstr ""
 "existentes."
 
 #: src/dialogs/dlloverrides.py:135
-#, fuzzy
 msgid "No overrides found."
 msgstr "No se encontraron overrides."
 
@@ -1091,7 +1090,6 @@ msgid "Access the internal Wine Control Panel."
 msgstr "Accede al panel de control interno de Wine."
 
 #: src/ui/details-bottle.ui:348
-#, fuzzy
 msgid "Use the Installers section or the \"Run executable\" button."
 msgstr "Utilice la sección de instaladores o el botón de \"Ejecutar programa\"."
 
@@ -1299,7 +1297,6 @@ msgstr ""
 "completa."
 
 #: src/ui/details-preferences.ui:206
-#, fuzzy
 msgid "Take Focus"
 msgstr "Tomar enfoque"
 
@@ -1308,9 +1305,8 @@ msgid "Activate it if the program does not retake focus on switch."
 msgstr "Actívelo si el programa no retoma el foco al cambiar."
 
 #: src/ui/details-preferences.ui:218
-#, fuzzy
 msgid "Mouse Warp"
-msgstr "Centrar el cursor del mouse."
+msgstr "Centrar el cursor del mouse"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
@@ -1496,12 +1492,10 @@ msgid "Manage Gamescope settings"
 msgstr "Gestionar la configuración de Gamescope"
 
 #: src/ui/details-preferences.ui:542
-#, fuzzy
 msgid "Working Directory"
 msgstr "Directorio de ejecución"
 
 #: src/ui/details-preferences.ui:543
-#, fuzzy
 msgid "Defaults to the bottle path."
 msgstr "Ruta predeterminada de la botella."
 
@@ -1525,9 +1519,8 @@ msgid "Environment Variables"
 msgstr "Variables de entorno"
 
 #: src/ui/details-preferences.ui:588
-#, fuzzy
 msgid "Manage Drives"
-msgstr "Gestionar los controladores"
+msgstr "Gestionar los Discos Virtuales"
 
 #: src/ui/details-preferences.ui:600
 msgid "Audio"
@@ -1544,9 +1537,8 @@ msgstr ""
 "sonido"
 
 #: src/ui/details-preferences.ui:617
-#, fuzzy
 msgid "Development and Debugging"
-msgstr "Desarrollar y depurar"
+msgstr "Desarrollo y Depuración"
 
 #: src/ui/details-preferences.ui:621
 msgid "DXVK HUD"
@@ -1575,15 +1567,12 @@ msgid "OBS Vulkan Capture"
 msgstr "Capturadora Vulkan OBS"
 
 #: src/ui/details-preferences.ui:646
-#, fuzzy
 msgid "Toggle OBS game capture for all programs."
-msgstr ""
-"Alternar la captura OBS del juego para todos los próximos lanzamientos."
+msgstr "Desactivar/Activar captura de juego de OBS para todos los programas."
 
 #: src/ui/details-preferences.ui:657
-#, fuzzy
 msgid "Wine 'fixme' Logs"
-msgstr "Activar registros \"fixme\" de Wine"
+msgstr "Registros \"fixme\" de Wine"
 
 #: src/ui/details-preferences.ui:658
 msgid "Log code paths that are unimplemented in Wine."
@@ -1603,7 +1592,6 @@ msgstr ""
 "con el botón \"+\"."
 
 #: src/ui/details-programs.ui:31
-#, fuzzy
 msgid "Toggle Hidden"
 msgstr "Mostrar/Esconder archivos ocultos"
 
@@ -1656,7 +1644,6 @@ msgid "Operations"
 msgstr "Operaciones"
 
 #: src/ui/dialog-crash-report.ui:10
-#, fuzzy
 msgid "Bottles crash report"
 msgstr "Informe de fallo de Bottles"
 
@@ -1704,12 +1691,10 @@ msgstr ""
 "programa)."
 
 #: src/ui/dialog-dll-overrides.ui:18
-#, fuzzy
 msgid "New Override"
 msgstr "Override Nuevo"
 
 #: src/ui/dialog-dll-overrides.ui:26
-#, fuzzy
 msgid "Overrides"
 msgstr "Overrides de DLL"
 
@@ -1880,7 +1865,6 @@ msgid "Custom Arguments"
 msgstr "Argumentos personalizados"
 
 #: src/ui/dialog-launch-options.ui:50
-#, fuzzy
 msgid "Command Arguments"
 msgstr "Argumentos del comando"
 
@@ -1890,7 +1874,6 @@ msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "ej.: VAR=valor %comando% -ejemplo1 -ejemplo2 -ejemplo3=hola"
 
 #: src/ui/dialog-launch-options.ui:57
-#, fuzzy
 msgid "Post-run Script"
 msgstr "Script de post-ejecución"
 
@@ -1900,7 +1883,6 @@ msgstr ""
 "Estos ajustes anularán la configuración predeterminada de este ejecutable."
 
 #: src/ui/dialog-launch-options.ui:88
-#, fuzzy
 msgid "Preferences Overrides"
 msgstr "Overrides de Preferencias"
 
@@ -1949,14 +1931,12 @@ msgid "Native (Windows)"
 msgstr "Nativo (Windows)"
 
 #: src/ui/dll-override-entry.ui:12
-#, fuzzy
 msgid "Builtin, then Native"
-msgstr "Incorporado, después nativo"
+msgstr "Incorporado, después Nativo"
 
 #: src/ui/dll-override-entry.ui:13
-#, fuzzy
 msgid "Native, then Builtin"
-msgstr "Nativo, después incorporado"
+msgstr "Nativo, después Incorporado"
 
 #: src/ui/dll-override-entry.ui:21 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -1991,7 +1971,6 @@ msgid "No prefixes found"
 msgstr "No se han encontrado prefijos"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "                                    Use the icon on the top to import a "
@@ -1999,21 +1978,19 @@ msgid ""
 msgstr ""
 "No se encontraron Wine Prefixes de Lutris, PlayOnLinux, etc.\n"
 "Utilice el icono de la parte superior para importar una botella desde un "
-"respaldo."
+"respaldo"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
 msgstr "Configuración"
 
 #: src/ui/importer.ui:87
-#, fuzzy
 msgid "Full Archive"
-msgstr "Archivo completo"
+msgstr "Archivado Completo"
 
 #: src/ui/installer-entry.ui:18
-#, fuzzy
 msgid "Show Manifest…"
-msgstr "Mostrar manifiesto…"
+msgstr "Mostrar Manifiest…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
@@ -2032,7 +2009,6 @@ msgid "Launch with Steam"
 msgstr "Iniciar con Steam"
 
 #: src/ui/library.ui:22
-#, fuzzy
 msgid "Search for Prefixes"
 msgstr "Buscar Wine Prefixes"
 
@@ -2227,9 +2203,8 @@ msgstr ""
 "                                                "
 
 #: src/ui/onboard.ui:76
-#, fuzzy
 msgid "Windows in Bottles"
-msgstr "Tipo de ventana"
+msgstr "Windows en Bottles"
 
 #: src/ui/onboard.ui:77
 msgid ""
@@ -2304,7 +2279,6 @@ msgid "Advanced"
 msgstr "Avanzado"
 
 #: src/ui/preferences.ui:77
-#, fuzzy
 msgid "Custom bottles path (requires restart)"
 msgstr "Ruta de botellas personalizada (requiere reinicio)"
 
@@ -2365,9 +2339,8 @@ msgid "Add to My Library"
 msgstr "Añadir a mi biblioteca"
 
 #: src/ui/program-entry.ui:50
-#, fuzzy
 msgid "Add Desktop Entry"
-msgstr "Añadir acceso directo"
+msgstr "Añadir Acceso Directo"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
@@ -2378,14 +2351,12 @@ msgid "Rename…"
 msgstr "Renombrar…"
 
 #: src/ui/program-entry.ui:69
-#, fuzzy
 msgid "Hide Program"
-msgstr "Ocultar este programa"
+msgstr "Ocultar programa"
 
 #: src/ui/program-entry.ui:74
-#, fuzzy
 msgid "Show Program"
-msgstr "Mostrar este programa"
+msgstr "Mostrar programa"
 
 #: src/ui/program-entry.ui:79
 msgid "Remove from List"
@@ -2416,7 +2387,6 @@ msgid "Forums"
 msgstr "Foros"
 
 #: src/ui/window.ui:54
-#, fuzzy
 msgid "Health Check"
 msgstr "Control de salud"
 
