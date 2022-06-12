@@ -28,7 +28,7 @@ logging = Logger()
 class ConnectionUtils:
     """
     This class is used to check the connection, pinging the official
-    Bottles's website. If the connection is offline, the user will be
+    Bottle's website. If the connection is offline, the user will be
     notified and False will be returned, otherwise True.
     """
     status = None
@@ -47,7 +47,6 @@ class ConnectionUtils:
                 self.window.toggle_btn_noconnection(True)
             return False
 
-        # check connection using gethostbyname, check if it hangs, then raise
         try:
             urllib.request.urlopen('https://usebottles.com/', timeout=5)
             if self.window is not None:

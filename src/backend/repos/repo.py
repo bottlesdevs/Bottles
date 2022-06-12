@@ -27,25 +27,24 @@ logging = Logger()
 class Repo:
     name: str = ""
 
-    def __init__(self, url: str, index: str):
+    def __init__(self, url: str, index: str, offline: bool = False):
         self.url = url
-        self.catalog = self.__get_catalog(index)
+        self.catalog = self.__get_catalog(index, offline)
 
-    def __get_catalog(self, index: str):
-        if index in ["", None]:
+    def __get_catalog(self, index: str, offline: bool = False):
+        if index in ["", None] or offline:
             return {}
 
         try:
             with urllib.request.urlopen(index) as url:
                 index = yaml.safe_load(url.read())
                 logging.info(f"Catalog {self.name} loaded")
+                return index
         except (urllib.error.HTTPError, urllib.error.URLError, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} repository index.")
             return {}
 
-        return index
-
-    def get_manifest(self, url: str, plain: bool = False) -> dict:
+    def get_manifest(self, url: str, plain: bool = False):
         try:
             with urllib.request.urlopen(url) as u:
                 res = u.read()
@@ -54,4 +53,4 @@ class Repo:
                 return yaml.safe_load(res)
         except (urllib.error.HTTPError, urllib.error.URLError, RemoteDisconnected, yaml.YAMLError):
             logging.error(f"Cannot fetch {self.name} manifest.")
-            return False
+            return

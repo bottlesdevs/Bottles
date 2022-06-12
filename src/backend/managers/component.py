@@ -42,9 +42,9 @@ logging = Logger()
 
 class ComponentManager:
 
-    def __init__(self, manager):
+    def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("components")
+        self.__repo = manager.repository_manager.get_repo("components", offline)
         self.__utils_conn = manager.utils_conn
         self.__window = manager.window
         self.__operation_manager = OperationManager(self.__window)

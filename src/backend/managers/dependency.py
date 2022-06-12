@@ -48,9 +48,9 @@ logging = Logger()
 
 class DependencyManager:
 
-    def __init__(self, manager):
+    def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("dependencies")
+        self.__repo = manager.repository_manager.get_repo("dependencies", offline)
         self.__window = manager.window
         self.__utils_conn = manager.utils_conn
         self.__operation_manager = OperationManager(self.__window)

@@ -104,11 +104,13 @@ class Manager:
         self.settings = window.settings
         self.utils_conn = window.utils_conn
         self.is_cli = is_cli
+        _offline = not window.utils_conn.check_connection()
+
         self.repository_manager = RepositoryManager()
         self.versioning_manager = VersioningManager(window, self)
-        self.component_manager = ComponentManager(self)
-        self.installer_manager = InstallerManager(self)
-        self.dependency_manager = DependencyManager(self)
+        self.component_manager = ComponentManager(self, _offline)
+        self.installer_manager = InstallerManager(self, _offline)
+        self.dependency_manager = DependencyManager(self, _offline)
         self.import_manager = ImportManager(self)
 
         if not is_cli:
