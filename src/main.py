@@ -186,16 +186,16 @@ class Bottles(Adw.Application):
         self.do_activate()
         return 0
 
-    @staticmethod
-    def __process_uri(uri):
+    def __process_uri(self, uri):
         """
         This function processes the URI passed to the application.
         e.g. xdg-open bottles:run/<bottle>/<program>
         """
         uri = uri[0]
         if os.path.exists(uri):
-            import subprocess
-            subprocess.Popen(['bottles', '-e', uri])
+            from bottles.dialogs.bottlepicker import BottlePickerDialog
+            dialog = BottlePickerDialog(application=self, arg_exe=uri)
+            dialog.present()
             return 0
 
         _wrong_uri_error = _("Invalid URI (syntax: bottles:run/<bottle>/<program>)")
@@ -278,6 +278,7 @@ class Bottles(Adw.Application):
             self.add_action(simple_action)
             if accel is not None:
                 self.set_accels_for_action(*accel)
+
 
 GObject.threads_init()
 

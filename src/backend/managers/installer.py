@@ -51,9 +51,9 @@ logging = Logger()
 
 class InstallerManager:
 
-    def __init__(self, manager):
+    def __init__(self, manager, offline: bool = False):
         self.__manager = manager
-        self.__repo = manager.repository_manager.get_repo("installers")
+        self.__repo = manager.repository_manager.get_repo("installers", offline)
         self.__utils_conn = manager.utils_conn
         self.__component_manager = manager.component_manager
         self.__layer = None

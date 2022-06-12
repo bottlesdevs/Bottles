@@ -17,7 +17,8 @@ bottles_sources = [
   'generic_cli.py',
   'journal.py',
   'filechooser.py',
-  'localresources.py'
+  'localresources.py',
+  'bottlepicker.py'
 ]
 
 install_data(bottles_sources, install_dir: dialogsdir)

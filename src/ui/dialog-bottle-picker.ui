@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="BottlePickerDialog" parent="AdwApplicationWindow">
+        <property name="title">Choose the bottle</property>
+        <property name="default-width">450</property>
+        <property name="default-height">450</property>
+        <child>
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="AdwHeaderBar">
+                        <property name="show-end-title-buttons">False</property>
+                        <child type="start">
+                            <object class="GtkButton" id="btn_cancel">
+                                <property name="label" translatable="yes">Cancel</property>
+                            </object>
+                        </child>
+                        <child type="end">
+                            <object class="GtkButton" id="btn_select">
+                                <property name="label" translatable="yes">Select</property>
+                                <style>
+                                    <class name="suggested-action"/>
+                                </style>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkListBox" id="list_bottles">
+                    </object>
+                </child>
+            </object>
+        </child>
+    </template>
+</interface>
