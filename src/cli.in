@@ -474,6 +474,9 @@ class CLI:
 
         bottle = mng.local_bottles[_bottle]
         programs = mng.get_programs(bottle)
+        _dxvk = bottle["Parameters"]["dxvk"]
+        _vkd3d = bottle["Parameters"]["vkd3d"]
+        _nvapi = bottle["Parameters"]["dxvk_nvapi"]
 
         if _program is not None:
             if _executable is not None:
@@ -490,12 +493,22 @@ class CLI:
             _cwd = program.get("folder", "")
             _script = program.get("script", None)
 
+            if program.get("dxvk") != _dxvk:
+                _dxvk = program.get("dxvk")
+            if program.get("vkd3d") != _vkd3d:
+                _vkd3d = program.get("vkd3d")
+            if program.get("dxvk_nvapi") != _nvapi:
+                _nvapi = program.get("dxvk_nvapi")
+
         WineExecutor(
             bottle,
             exec_path=_executable,
             args=_args,
             cwd=_cwd,
-            post_script=_script
+            post_script=_script,
+            override_dxvk=_dxvk,
+            override_vkd3d=_vkd3d,
+            override_nvapi=_nvapi
         ).run_cli()
 
     # endregion
