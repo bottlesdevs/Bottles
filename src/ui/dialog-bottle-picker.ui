@@ -28,7 +28,13 @@
                     </object>
                 </child>
                 <child>
-                    <object class="GtkListBox" id="list_bottles">
+                    <object class="GtkScrolledWindow">
+                      <property name="hexpand">True</property>
+                      <property name="vexpand">True</property>
+                      <child>
+                        <object class="GtkListBox" id="list_bottles">
+                        </object>
+                      </child>
                     </object>
                 </child>
             </object>
