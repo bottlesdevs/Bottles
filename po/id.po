@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-11 15:37+0000\n"
+"PO-Revision-Date: 2022-06-13 07:03+0000\n"
 "Last-Translator: Muhammad Ariq Nizar Daffa Kusmana <ariqnizar67@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/bottles/"
 "bottles/id/>\n"
@@ -142,9 +142,8 @@ msgid "Import Wine prefixes from other managers"
 msgstr "Impor Wine prefix dari manajer lain"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "Gunakan pembuatan versi"
+msgstr "Versi pembuatan Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -303,7 +302,6 @@ msgid "Loading..."
 msgstr "Memuat..."
 
 #: src/window.py:226
-#, fuzzy
 msgid ""
 "The custom bottles path was not found. Please, check the path in "
 "Preferences.\n"
@@ -320,7 +318,7 @@ msgstr "Cek kesehatan"
 
 #: src/window.py:287 src/ui/dialog-journal.ui:49
 msgid "Journal browser"
-msgstr "Jurnal peramban"
+msgstr "Peramban Jurnal"
 
 #: src/backend/managers/versioning.py:65
 msgid "Generating state files index …"
@@ -395,14 +393,12 @@ msgstr "Templat ditemukan, menerapkan…"
 
 #. execute wineboot on the bottle path
 #: src/backend/managers/manager.py:1061
-#, fuzzy
 msgid "The Wine config is being updated…"
-msgstr "Konfigurasi WINE sedang diperbarui…"
+msgstr "Konfigurasi WINE sedang diperbaharui…"
 
 #: src/backend/managers/manager.py:1063
-#, fuzzy
 msgid "Wine config updated!"
-msgstr "Konfigurasi WINE diperbarui!"
+msgstr "Konfigurasi WINE diperbaharui!"
 
 #: src/backend/managers/manager.py:1071
 msgid "Running as Flatpak, sandboxing userdir…"
@@ -593,7 +589,7 @@ msgid ""
 "This can cause data loss."
 msgstr ""
 "Anda yakin untuk menghentikan paksa semua proses?\n"
-"Ini akan membuat data hilang."
+"Ini akan membuat data anda hilang."
 
 #: src/views/bottle_preferences.py:185
 msgid "This feature is not available on your system."
@@ -867,9 +863,8 @@ msgid "0%"
 msgstr "0%"
 
 #: src/ui/dependency-entry.ui:18
-#, fuzzy
 msgid "Show Manifest"
-msgstr "Tampilkan manifest"
+msgstr "Tampilkan Manifest"
 
 #: src/ui/dependency-entry.ui:23
 msgid "License"
@@ -925,11 +920,11 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:43
 msgid "Export Configuration…"
-msgstr "Ekspor konfigurasi…"
+msgstr "Ekspor Konfigurasi…"
 
 #: src/ui/details-bottle.ui:51
 msgid "Delete Bottle…"
-msgstr "Hapus bottle…"
+msgstr "Hapus Bottle…"
 
 #: src/ui/details-bottle.ui:86
 msgid "Kill all Processes"
@@ -1022,7 +1017,7 @@ msgstr "Peralatan Lampau"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
-msgstr ""
+msgstr "Penjelajah Berkas"
 
 #: src/ui/details-bottle.ui:269
 msgid "Browse internal files with the Wine explorer."
@@ -1091,7 +1086,7 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Berkas di laman ini disediakan dengan lisensi propietary. Dengan "
+"Berkas di laman ini disediakan dengan jenis lisensi proprietari. Dengan "
 "menginstallnya, kamu telah menyetujui persyaratan lisensi yang digunakan."
 
 #: src/ui/details-dependencies.ui:62
@@ -1241,9 +1236,8 @@ msgid "Improves performance at the cost of increased power usage."
 msgstr "Meningkatkan performa tetapi juga meningkatkan penggunaan daya."
 
 #: src/ui/details-preferences.ui:140
-#, fuzzy
 msgid "vkBasalt"
-msgstr "Gunakan vkBasalt"
+msgstr "vkBasalt"
 
 #: src/ui/details-preferences.ui:141
 msgid ""
@@ -1254,14 +1248,12 @@ msgstr ""
 "visual pada banyak permainan."
 
 #: src/ui/details-preferences.ui:151
-#, fuzzy
 msgid "Display Settings"
-msgstr "Pengaturan tampilan"
+msgstr "Pengaturan Layar"
 
 #: src/ui/details-preferences.ui:155
-#, fuzzy
 msgid "Virtual Desktop"
-msgstr "Resolusi Desktop Virtual"
+msgstr "Desktop Virtual"
 
 #: src/ui/details-preferences.ui:156
 msgid "Use the Wine virtual desktop."
@@ -1269,38 +1261,37 @@ msgstr "Gunakan desktop virtual Wine."
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr ""
+msgstr "Penangkap Tetikus Saat Layar Penuh"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
-msgstr "Buat program menangkap tetikus saat layar penuh."
+msgstr "Izinkan program menangkap tetikus saat layar penuh."
 
 #: src/ui/details-preferences.ui:206
-#, fuzzy
 msgid "Take Focus"
-msgstr "Fokus"
+msgstr "Mengambil Fokus"
 
 #: src/ui/details-preferences.ui:207
 msgid "Activate it if the program does not retake focus on switch."
-msgstr "Aktifkan jika program tidak mengambil kembali fokus pada sakelar."
+msgstr "Aktifkan jika program tidak mengambil kembali fokus saat berpindah."
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Pemindahan Tetikus"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
 msgstr ""
+"Ubah ini apabila kamu menghadapi masalah tetikus yang terjeda atau tidak "
+"tersinkronisasi."
 
 #: src/ui/details-preferences.ui:231
-#, fuzzy
 msgid "Screen Scaling"
-msgstr "Penskalaan layar"
+msgstr "Penskalaan Layar"
 
 #: src/ui/details-preferences.ui:232
-#, fuzzy
 msgid "Set custom DPI."
-msgstr "Gunakan Gamescope"
+msgstr "Atur DPI tersuai."
 
 #: src/ui/details-preferences.ui:238
 msgid "96"
@@ -1356,7 +1347,7 @@ msgstr "Mengubah"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
-msgstr ""
+msgstr "Pilih backend yang digunakan untuk wined3d."
 
 #: src/ui/details-preferences.ui:269
 msgid "gl (default)"
@@ -1379,9 +1370,8 @@ msgid "Manage DXVK versions"
 msgstr "Kelola versi DXVK"
 
 #: src/ui/details-preferences.ui:299
-#, fuzzy
 msgid "Components"
-msgstr "Komponen DLL"
+msgstr "Komponen-Komponen"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
@@ -1403,9 +1393,8 @@ msgid "DXVK NVAPI Version"
 msgstr "Versi DXVK NVAPI"
 
 #: src/ui/details-preferences.ui:394
-#, fuzzy
 msgid "LatencyFleX Version"
-msgstr "Versi LatencyFlex"
+msgstr "Versi LatencyFleX"
 
 #: src/ui/details-preferences.ui:416
 #, fuzzy
@@ -1785,14 +1774,12 @@ msgid "Game resolution"
 msgstr "Resolusi permainan"
 
 #: src/ui/dialog-gamescope.ui:42 src/ui/dialog-gamescope.ui:57
-#, fuzzy
 msgid "Width (e.g. 1280)"
-msgstr "mis: 1280"
+msgstr "Lebar (mis. 1280)"
 
 #: src/ui/dialog-gamescope.ui:47 src/ui/dialog-gamescope.ui:62
-#, fuzzy
 msgid "Height (e.g. 720)"
-msgstr "mis: 720"
+msgstr "Panjang (mis. 720)"
 
 #: src/ui/dialog-gamescope.ui:54
 msgid "Gamescope resolution"
@@ -1803,12 +1790,10 @@ msgid "Extra settings"
 msgstr "Pengaturan tambahan"
 
 #: src/ui/dialog-gamescope.ui:72
-#, fuzzy
 msgid "Frame rate limit (e.g. 60)"
-msgstr "Batasan frame rate"
+msgstr "Batasan frame rate (mis. 60)"
 
 #: src/ui/dialog-gamescope.ui:77
-#, fuzzy
 msgid "Frame rate limit (when unfocused)"
 msgstr "Batasan frame rate (saat tidak fokus)"
 
@@ -1829,31 +1814,28 @@ msgid "Fullscreen"
 msgstr "Layar penuh"
 
 #: src/ui/dialog-journal.ui:12
-#, fuzzy
 msgid "All messages"
-msgstr "Hapus pesan"
+msgstr "Semua pesan"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "Kritis"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "Galat"
 
 #: src/ui/dialog-journal.ui:27
-#, fuzzy
 msgid "Warnings"
 msgstr "Peringatan"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: src/ui/dialog-journal.ui:56
-#, fuzzy
 msgid "Journal Browser"
-msgstr "Jurnal peramban"
+msgstr "Peramban Jurnal"
 
 #: src/ui/dialog-journal.ui:62
 msgid ""
