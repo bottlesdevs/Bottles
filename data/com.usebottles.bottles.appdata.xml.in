@@ -96,57 +96,59 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="2022.6.14-brescia" date="2022-05-27">
+        <release version="2022.6.14-brescia" date="2022-06-14">
           <description>
             <p>News</p>
             <ul>
-                <li>Support for Steam runtimes (soldier, scout); if enabled, bottles with Proton use soldier while other runners use scout</li>
-                <li>Create Steam shortcuts directly from the program list; requires permission to the Steam path if Flatpak</li>
-                <li>Support for launching programs using xdg-open (e.g. xdg-open bottles:run/BottleName/ProgramName)</li>
-                <li>Library now show icons for all programs</li>
-                <li>Launch Bottles with a pre-selected bottle using the -b argument</li>
-                <li>Wine-GE runners are now grouped in the preferences</li>
-                <li>Improved logs readability</li>
-                <li>Disabled unsupported features for Steam Proton prefixes</li>
-                <li>Support for Nouveau drivers</li>
-                <li>Components installation now show a feedback during effective installation</li>
-                <li>Icon extraction now support external drives</li>
-                <li>Control WineProgram now support .cpl files</li>
-                <li>New WineProgram(s) Regsvr32, Eject, Expand, Explorer, Hh, Icinfo, Notepad, Oleview, Progman, Winhelp, Xcopy</li>
-                <li>Extended Msiexec WineProgram support with repair, uninstall, apply/uninstall patch, register/unregister module</li>
-                <li>The bottles list is now divided in categories (Bottles and Steam Proton prefixes)</li>
-                <li>General UI improvements</li>
+                <li>Porting to GTK4 and libadwaita</li>
+                <li>Support for override preferences per program</li>
+                <li>New Onboard dialog</li>
+                <li>New Bottle picker dialog when opening an executable with Bottles</li>
+                <li>Shell support for bottles-cli</li>
+                <li>Hi-res icons extraction</li>
+                <li>List games from Steam for Windows when installed in a bottle</li>
+                <li>Toast notifications</li>
+                <li>Added 14 new Windows dependencies</li>
+                <li>Installers uses fsync as default instead of esync</li>
+                <li>Ability to disable Mouse Acceleration</li>
+                <li>New regsvr32 action for dependencies (check the maintainers documentation)</li>
+                <li>Improved performance and loading times</li>
+                <li>Responsive UI</li>
+                <li>Added version to Health Check</li>
             </ul>
 
             <p>Fixes</p>
             <ul>
-                <li>Fixed a bug which was preventing batch scripts from being executed via CLI</li>
-                <li>Fixed a bug during bottle creation which was raising an error when the recipe was empty</li>
-                <li>Fixed a bug in the journal which was causing a crash when the journal file was corrupted</li>
-                <li>Fixed a regression in sync change, the wine server was not being shut down properly</li>
-                <li>Fixed a bug in bottle preferences that caused a configuration update during widgets load</li>
-                <li>Fixed a bug which was preventing icoextract from working properly</li>
-                <li>Fixed a bug with desktop entries, were not being created if path contained apostrophes</li>
-                <li>Fixed a bug in setting the current working directory, it was being set even if it didn't exist</li>
-                <li>Fixed a bug in downloads, was causing a crash when the connection was closed by the server</li>
-                <li>Fixed a bug that sometimes caused a crash when offline</li>
-                <li>Fixed a bug with the Executor, it tried to execute even if the executable path was empty</li>
-                <li>Fixed a bug with Steam Proton prefixes support, was causing a crash if no prefixes were found</li>
+                <li>Fix for paths with spaces in Steam shortcuts</li>
+                <li>Fix importer not showing prefixes</li>
+                <li>Fix for ignored patterns when looking for installed programs</li>
+                <li>Fix for residues on bottle deletion</li>
+                <li>Fix crash when listing a empty bottle</li>
+                <li>Fix gamescope not working with launch options</li>
+                <li>Fix for glitched icons</li>
+                <li>Fix crash when opening a bottle if the runtime is not installed</li>
             </ul>
 
             <p>Translations</p>
             <ul>
-                <li>Arabic translations thanks to Light, @fawaz006</li>
-                <li>Norwegian Bokmål translations thanks to @comradekingu</li>
-                <li>Russian translations thanks to @mrvladus, @Knebergish</li>
-                <li>Spanish translations thanks to @Dansito</li>
-                <li>Dutch translations thanks to @Sojiro84</li>
-                <li>Czech translations thanks to @vikdevelop, @pervoj</li>
-                <li>Hungarian translations thanks to @zoli111</li>
-                <li>Korean translations thanks to @yth1130</li>
-                <li>Slovak translations thanks to @prescott66</li>
-                <li>Portuguese (Brazil) translations thanks to @arribeiro</li>
+                <li>Russian translations thanks to @Knebergish</li>
+                <li>Bulgarian translations thanks to @RacerBG</li>
+                <li>Finnish translations thanks to Jiri Grönroos</li>
                 <li>Thai translations thanks to @SashaPGT</li>
+                <li>Ukrainian translations thanks to @Socially-disabled</li>
+                <li>Hungarian translations thanks to @zoli111</li>
+                <li>Japanese translations thanks to @ryonakano</li>
+                <li>Portuguese translations thanks to @frohlich</li>
+                <li>Danish translations thanks to Ronja Parbst Sørensen</li>
+                <li>Korean translations thanks to @yth1130</li>
+                <li>Bengali translations thanks to @nazdridoy</li>
+                <li>Chinese (Simplified) translations thanks to Eric</li>
+                <li>Spanish translations thanks to @DeadKper, @goddrinksjava, @RandomVee, @Dansito</li>
+                <li>Dutch translations thanks to @flipflop97</li>
+                <li>Czech translations thanks to @vikdevelop</li>
+                <li>Indonesian translations thanks to @Khayasen</li>
+                <li>Portuguese (Brazil) translations thanks to @davipatricio</li>
+                <li>French translations thanks to @julroy67</li>
             </ul>
           </description>
         </release>
