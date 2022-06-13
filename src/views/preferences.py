@@ -39,6 +39,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
     switch_library = Gtk.Template.Child()
     switch_auto_close = Gtk.Template.Child()
     switch_update_date = Gtk.Template.Child()
+    switch_steam_programs = Gtk.Template.Child()
     list_winebridge = Gtk.Template.Child()
     list_runtimes = Gtk.Template.Child()
     list_runners = Gtk.Template.Child()
@@ -75,24 +76,13 @@ class PreferencesWindow(Adw.PreferencesWindow):
 
         # set widget defaults
         self.switch_notifications.set_active(self.settings.get_boolean("notifications"))
-        self.switch_temp.set_active(
-            self.settings.get_boolean("temp")
-        )
-        self.switch_release_candidate.set_active(
-            self.settings.get_boolean("release-candidate")
-        )
-        self.switch_steam.set_active(
-            self.settings.get_boolean("experiments-steam")
-        )
-        self.switch_library.set_active(
-            self.settings.get_boolean("experiments-library")
-        )
-        self.switch_auto_close.set_active(
-            self.settings.get_boolean("auto-close-bottles")
-        )
-        self.switch_update_date.set_active(
-            self.settings.get_boolean("update-date")
-        )
+        self.switch_temp.set_active(self.settings.get_boolean("temp"))
+        self.switch_release_candidate.set_active(self.settings.get_boolean("release-candidate"))
+        self.switch_steam.set_active(self.settings.get_boolean("experiments-steam"))
+        self.switch_library.set_active(self.settings.get_boolean("experiments-library"))
+        self.switch_auto_close.set_active(self.settings.get_boolean("auto-close-bottles"))
+        self.switch_update_date.set_active(self.settings.get_boolean("update-date"))
+        self.switch_steam_programs.set_active(self.settings.get_boolean("steam-programs"))
         self.populate_runtimes_list()
         self.populate_winebridge_list()
         self.populate_runners_list()
@@ -109,6 +99,7 @@ class PreferencesWindow(Adw.PreferencesWindow):
         self.switch_library.connect('state-set', self.__toggle_library)
         self.switch_auto_close.connect('state-set', self.__toggle_autoclose)
         self.switch_update_date.connect('state-set', self.__toggle_update_date)
+        self.switch_steam_programs.connect('state-set', self.__toggle_steam_programs)
         self.btn_bottles_path.connect('clicked', self.__choose_bottles_path)
         self.btn_bottles_path_reset.connect('clicked', self.__reset_bottles_path)
 
@@ -118,6 +109,9 @@ class PreferencesWindow(Adw.PreferencesWindow):
     def __toggle_update_date(self, widget, state):
         self.settings.set_boolean("update-date", state)
         self.window.page_list.update_bottles()
+
+    def __toggle_steam_programs(self, widget, state):
+        self.settings.set_boolean("steam-programs", state)
 
     def __toggle_notify(self, widget, state):
         self.settings.set_boolean("notifications", state)

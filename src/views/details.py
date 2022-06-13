@@ -298,7 +298,8 @@ class DetailsView(Adw.Bin):
             wineserver_status = WineServer(self.config).is_alive()
             programs = self.manager.get_programs(self.config)
 
-            if SteamManager.is_steam_supported(is_windows=True, config=self.config):
+            if self.window.settings.get_boolean("steam-programs") \
+                    and SteamManager.is_steam_supported(is_windows=True, config=self.config):
                 programs_names = [p.get("name", "") for p in programs]
                 for app in SteamManager.get_installed_apps_as_programs(True, self.config):
                     if app["name"] not in programs_names:
