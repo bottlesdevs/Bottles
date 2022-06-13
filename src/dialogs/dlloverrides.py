@@ -53,7 +53,7 @@ class DLLEntry(Adw.ComboRow):
         and update the bottle configuration
         """
         selected = self.get_selected()
-        types = ("b", "n", "b,n", "n,b")
+        types = ("b", "n", "b,n", "n,b", "d")
         self.manager.update_config(
             config=self.config,
             key=self.override[0],
