@@ -42,20 +42,24 @@ logging = Logger()
 class SteamManager:
 
     @staticmethod
-    def find_steam_path(scope: str = "") -> Union[str, None]:
+    def find_steam_path(scope: str = "", is_windows: bool = False, config: dict = None) -> Union[str, None]:
         """scopes: steamapps, userdata, empty for base path"""
-        paths = [
-            os.path.join(Path.home(), ".local/share/Steam", scope),
-            os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam", scope),
-        ]
+        if is_windows and config:
+            paths = [os.path.join(ManagerUtils.get_bottle_path(config), "drive_c/Program Files (x86)/Steam", scope)]
+        else:
+            paths = [
+                os.path.join(Path.home(), ".local/share/Steam", scope),
+                os.path.join(Path.home(), ".var/app/com.valvesoftware.Steam/data/Steam", scope),
+            ]
+
         for path in paths:
             if os.path.isdir(path):
                 return path
         return None
 
     @staticmethod
-    def is_steam_supported() -> bool:
-        return SteamManager.find_steam_path() is not None
+    def is_steam_supported(is_windows: bool = False, config: dict = None) -> bool:
+        return SteamManager.find_steam_path("", is_windows, config) is not None
 
     @staticmethod
     def get_acf_data(libraryfolder: str, app_id: str) -> Union[dict, None]:
@@ -69,8 +73,8 @@ class SteamManager:
         return data
 
     @staticmethod
-    def get_local_config_path() -> Union[str, None]:
-        steam_path = SteamManager.find_steam_path("userdata")
+    def get_local_config_path(is_windows: bool = False, config: dict = None) -> Union[str, None]:
+        steam_path = SteamManager.find_steam_path("userdata", is_windows, config)
 
         if steam_path is None:
             return None
@@ -126,11 +130,10 @@ class SteamManager:
         return None
 
     @staticmethod
-    def get_local_config() -> dict:
-        conf_path = SteamManager.get_local_config_path()
+    def get_local_config(is_windows: bool = False, config: dict = None) -> dict:
+        conf_path = SteamManager.get_local_config_path(is_windows, config)
         if conf_path is None:
             return {}
-
         with open(conf_path, "r") as f:
             local_config = SteamUtils.parse_acf(f.read())
 
@@ -179,9 +182,9 @@ class SteamManager:
             return proton_name, proton_path
 
     @staticmethod
-    def list_prefixes() -> dict:
-        local_config = SteamManager.get_local_config()
-        prefixes = {}
+    def list_apps_ids(is_windows: bool = False, config: dict = None) -> list:
+        """List all apps in Steam"""
+        local_config = SteamManager.get_local_config(is_windows, config)
         apps = local_config.get("UserLocalConfigStore", {}) \
             .get("Software", {}) \
             .get("Valve", {}) \
@@ -189,6 +192,47 @@ class SteamManager:
         apps = apps.get("apps") if apps.get("apps") else apps.get("Apps")
 
         if apps is None:
+            return []
+        return apps
+
+    @staticmethod
+    def get_installed_apps_as_programs(is_windows: bool = False, config: dict = None) -> list:
+        """This is a Steam for Windows only function"""
+        apps_ids = SteamManager.list_apps_ids(is_windows, config)
+        apps = []
+
+        if len(apps_ids) == 0:
+            return []
+
+        for app_id in apps_ids:
+            _acf = SteamManager.get_acf_data(SteamManager.find_steam_path("", is_windows, config), app_id)
+            if _acf is None:
+                continue
+
+            _path = _acf["AppState"]["LauncherPath"]
+            _executable = _path.split("\\")[-1]
+            _folder = ManagerUtils.get_exe_parent_dir(config, _path)
+            apps.append({
+                "executable": _executable,
+                "arguments": f"steam://run/{app_id}",
+                "name": _acf["AppState"]["name"],
+                "path": _path,
+                "folder": _folder,
+                "icon": "com.usebottles.bottles-program",
+                "dxvk": config["Parameters"]["dxvk"],
+                "vkd3d": config["Parameters"]["vkd3d"],
+                "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
+                "id": uuid.uuid4(),
+            })
+
+        return apps
+
+    @staticmethod
+    def list_prefixes() -> dict:
+        apps = SteamManager.list_apps_ids()
+        prefixes = {}
+
+        if len(apps) == 0:
             return {}
 
         for appid, appdata in apps.items():

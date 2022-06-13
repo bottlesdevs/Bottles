@@ -155,6 +155,18 @@ class ManagerUtils:
             return False
 
     @staticmethod
+    def get_exe_parent_dir(config, executable_path):
+        """Get parent directory of the executable."""
+        if "\\" in executable_path:
+            p = "\\".join(executable_path.split("\\")[:-1])
+            p = p.replace("C:\\", "\\drive_c\\").replace("\\", "/")
+            return ManagerUtils.get_bottle_path(config) + p
+
+        p = "\\".join(executable_path.split("/")[:-1])
+        p = f"/drive_c/{p}"
+        return p.replace("\\", "/")
+
+    @staticmethod
     def extract_icon(config: dict, program_name: str, program_path: str) -> str:
         from bottles.backend.wine.winepath import WinePath
         winepath = WinePath(config)

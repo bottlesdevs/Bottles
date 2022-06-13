@@ -476,18 +476,6 @@ class Manager:
             return sorted(component["available"], reverse=True)
 
     @staticmethod
-    def __get_exe_parent_dir(config, executable_path):
-        """Get parent directory of the executable."""
-        if "\\" in executable_path:
-            p = "\\".join(executable_path.split("\\")[:-1])
-            p = p.replace("C:\\", "\\drive_c\\").replace("\\", "/")
-            return ManagerUtils.get_bottle_path(config) + p
-
-        p = "\\".join(executable_path.split("/")[:-1])
-        p = f"/drive_c/{p}"
-        return p.replace("\\", "/")
-
-    @staticmethod
     def launch_layer_program(config, layer):
         """Mount a layer and launch the program on it."""
         logging.info(f"Preparing {len(layer['mounts'])} layer(s)..")
@@ -571,7 +559,7 @@ class Manager:
             found.append(program)
             _program = ext_programs[program]
             if winepath.is_windows(_program["path"]):
-                program_folder = self.__get_exe_parent_dir(config, _program["path"])
+                program_folder = ManagerUtils.get_exe_parent_dir(config, _program["path"])
             else:
                 program_folder = os.path.dirname(_program["path"])
             installed_programs.append({
@@ -599,7 +587,7 @@ class Manager:
             if executable_path is None:
                 continue
             executable_name = executable_path.split("\\")[-1]
-            program_folder = self.__get_exe_parent_dir(config, executable_path)
+            program_folder = ManagerUtils.get_exe_parent_dir(config, executable_path)
             stop = False
 
             for pattern in ignored_patterns:
