@@ -43,6 +43,7 @@ class BottlePickerDialog(Adw.ApplicationWindow):
     btn_cancel = Gtk.Template.Child()
     btn_select = Gtk.Template.Child()
     list_bottles = Gtk.Template.Child()
+    btn_open = Gtk.Template.Child()
     # endregion
 
     def __init__(self, arg_exe, **kwargs):
@@ -58,6 +59,7 @@ class BottlePickerDialog(Adw.ApplicationWindow):
         self.list_bottles.select_row(self.list_bottles.get_first_child())
         self.btn_cancel.connect('clicked', self.__close)
         self.btn_select.connect('clicked', self.__select)
+        self.btn_open.connect('clicked', self.__open)
 
     @staticmethod
     def __close(*args):
@@ -68,3 +70,7 @@ class BottlePickerDialog(Adw.ApplicationWindow):
         if row:
             self.destroy()
             subprocess.Popen(["bottles-cli", "run", "-b", row.bottle, "-e", self.arg_exe])
+
+    def __open(self, *args):
+        self.destroy()
+        subprocess.Popen(["bottles"])
