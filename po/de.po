@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-05-12 20:38+0000\n"
-"Last-Translator: Sematre <Sematre@gmx.de>\n"
+"PO-Revision-Date: 2022-06-15 00:12+0000\n"
+"Last-Translator: arctize <patrick.wicki96@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/bottles/bottles/"
 "de/>\n"
 "Language: de\n"
@@ -150,9 +150,8 @@ msgid "Import Wine prefixes from other managers"
 msgstr "Importiere Wine-Präfixe von anderen Managern"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "Versionierung verwenden"
+msgstr "Versionierung von Bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -290,7 +289,7 @@ msgstr "Parameter übergeben"
 
 #: src/main.py:201
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Ungültiger URI (Syntax: bottles:run/<bottle>/<Programm>)"
 
 #: src/main.py:244
 msgid "[Quit] request received."
@@ -313,7 +312,6 @@ msgid "Loading..."
 msgstr "Lade..."
 
 #: src/window.py:226
-#, fuzzy
 msgid ""
 "The custom bottles path was not found. Please, check the path in "
 "Preferences.\n"
@@ -345,7 +343,6 @@ msgid "Could not create the state folder."
 msgstr "Zustandsordner konnte nicht erstellt werden."
 
 #: src/backend/managers/versioning.py:175
-#, fuzzy
 msgid "Updating index …"
 msgstr "Index wird aktualisiert…"
 
@@ -358,9 +355,8 @@ msgid "Could not update the states file."
 msgstr "Die Zustandsdatei konnte nicht aktualisiert werden."
 
 #: src/backend/managers/versioning.py:242
-#, fuzzy
 msgid "Could not update the index file."
-msgstr "Konnte die Indexdatei nicht aktualisieren."
+msgstr "Konnte die Index-Datei nicht aktualisieren."
 
 #: src/backend/managers/versioning.py:268
 #, python-brace-format
@@ -369,7 +365,7 @@ msgstr "Neuen Zustand [{0}] erfolgreich erstellt!"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "Kein Pfad angegeben"
 
 #: src/backend/managers/backup.py:71
 #, python-brace-format
@@ -415,22 +411,20 @@ msgid "Wine config updated!"
 msgstr "Wine-Konfiguration aktualisiert!"
 
 #: src/backend/managers/manager.py:1071
-#, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Ausführung als Flatpak, isolierte Ordner werden erstellt…"
+msgstr "Ausführung als Flatpak, isoliere Benutzer-Ordner…"
 
 #: src/backend/managers/manager.py:1073
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Isoliere Benutzer-Ordner…"
 
 #: src/backend/managers/manager.py:1091
 msgid "Setting Windows version…"
 msgstr "Windows-Version wird eingestellt…"
 
 #: src/backend/managers/manager.py:1099
-#, fuzzy
 msgid "Apply CMD default settings…"
-msgstr "CMD-Standardeinstellungen übernehmen…"
+msgstr "CMD-Standardeinstellungen anwenden…"
 
 #: src/backend/managers/manager.py:1107
 msgid "Optimizing environment…"
@@ -492,9 +486,8 @@ msgstr ""
 "            Schreibe dein Feedback in einen der bereits vorhandenen Berichte."
 
 #: src/dialogs/dlloverrides.py:135
-#, fuzzy
 msgid "No overrides found."
-msgstr "Keine Präfixe gefunden"
+msgstr "Keinen Override gefunden."
 
 #: src/dialogs/drives.py:69
 msgid "Choose path"
@@ -520,9 +513,8 @@ msgid "Select"
 msgstr "Auswählen"
 
 #: src/dialogs/envvars.py:135
-#, fuzzy
 msgid "No environment variables defined"
-msgstr "Umgebungsvariablen"
+msgstr "Keine Umgebungsvariablen definiert"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -546,13 +538,13 @@ msgstr ""
 
 #. endregion
 #: src/dialogs/launchoptions.py:43
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "Versionierung für diese Bottle aktiviert"
+msgstr "{0} ist für diese Flasche bereits deaktiviert."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "Diese Einstellung entspricht nicht Bottle's Standardeinstellung."
 
 #: src/dialogs/launchoptions.py:174
 msgid "Choose the script"
@@ -560,7 +552,7 @@ msgstr "Wähle das Skript aus"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "Wähle die Ressourcen Datei aus"
 
 #: src/views/bottle_details.py:140
 #, python-format
@@ -585,14 +577,14 @@ msgid "Select the location where to save the backup archive"
 msgstr "Wähle den Speicherort für das Sicherungsarchiv"
 
 #: src/views/bottle_details.py:254
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup created for '{0}'."
 msgstr "Sicherung im Pfad gespeichert: {0}."
 
 #: src/views/bottle_details.py:256
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr "Sicherung im Pfad gespeichert: {0}."
+msgstr "Sicherung fehlgeschlagen für Pfad: {0}."
 
 #: src/views/bottle_details.py:274
 msgid "Export"
@@ -628,12 +620,11 @@ msgstr "Wähle das Arbeitsverzeichnis für Programmdateien"
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "'{0}' hinzugefügt."
 
 #: src/views/bottle_programs.py:87
-#, fuzzy
 msgid "Choose an executable path"
-msgstr "Wähle eine Programmdatei aus"
+msgstr "Wähle einen Programm-Pfad aus"
 
 #: src/views/bottle_programs.py:89
 msgid "Add"
@@ -672,28 +663,24 @@ msgid "Task manager"
 msgstr "Task-Manager"
 
 #: src/views/importer.py:89
-#, fuzzy
 msgid "Backup imported successfully."
-msgstr "Sicherung: [{0}] erfolgreich importiert."
+msgstr "Sicherung erfolgreich importiert."
 
 #: src/views/importer.py:91
-#, fuzzy
 msgid "Import failed."
-msgstr "Importierungsassistent"
+msgstr "Import fehlgeschlagen."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup.."
-msgstr "Sicherung importieren: {0}"
+msgstr "Sicherung importieren.."
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
 msgstr "Wähle ein Sicherungsarchiv"
 
 #: src/views/importer.py:117 src/views/importer.py:146
-#, fuzzy
 msgid "Import"
-msgstr "Importierungsassistent"
+msgstr "Importieren"
 
 #: src/views/importer.py:144
 msgid "Choose a configuration file"
@@ -709,7 +696,6 @@ msgid "Arguments found for executable: [{executable}]."
 msgstr "Parameter für Programmdatei gefunden: [{executable}]."
 
 #: src/views/list.py:249
-#, fuzzy
 msgid "Your Bottles"
 msgstr "Über Bottles"
 
@@ -751,9 +737,8 @@ msgid "Upgrade"
 msgstr "Aktualisieren"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing..."
-msgstr "Installieren"
+msgstr "Installieren..."
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -763,12 +748,12 @@ msgstr "Manifest für {0}"
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr ""
+msgstr "'{0}' installiert."
 
 #: src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr ""
+msgstr "'{0}' importiert."
 
 #: src/widgets/installer.py:87
 #, python-brace-format
@@ -777,12 +762,12 @@ msgstr "Review für {0}"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "Installationsprogramm fehlgeschlagen mit einem unbekannten Fehler"
 
 #: src/widgets/installer.py:133
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} installed."
-msgstr "Deinstallationsprogramm"
+msgstr "{0} installiert."
 
 #: src/widgets/installer.py:153
 #, python-brace-format
@@ -792,32 +777,32 @@ msgstr "Schritt {self.__step} von {self.steps}"
 #: src/widgets/program.py:202
 #, python-brace-format
 msgid "'{0}' launched."
-msgstr ""
+msgstr "'{0}' gestarted."
 
 #: src/widgets/program.py:208
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr "Mit Steam starten"
+msgstr "'{0}' mit Steam gestartet."
 
 #: src/widgets/program.py:229
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr ""
+msgstr "'{0}' versteckt."
 
 #: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr ""
+msgstr "'{0}' angezeigt."
 
 #: src/widgets/program.py:254
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' removed."
-msgstr "[{0}] Dateien zu entfernen."
+msgstr "'{0}' entfernt."
 
 #: src/widgets/program.py:268
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr ""
+msgstr "'{0}' umbenannt zu '{1}'."
 
 #: src/widgets/program.py:290
 msgid ""
@@ -825,21 +810,25 @@ msgid ""
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
+"Konnte den Desktop Eintrag nicht erstellen aufgrund von fehlenden "
+"Berechtigungen.\n"
+"Schau <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">unser Video</"
+"a> um zu sehen, wie man die Berechtigung für Flatpak erteilt."
 
 #: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "Desktop Eintrag für '{0}' erstellt"
 
 #: src/widgets/program.py:318
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your library"
-msgstr "Zu meiner Bibliothek hinzufügen"
+msgstr "'{0}' zu Ihrer Bibliothek hinzugefügt"
 
 #: src/widgets/program.py:323
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr "Zu meiner Bibliothek hinzufügen"
+msgstr "'{0}' zur Steam-Bibliothek hinzugefügt"
 
 #: src/widgets/state.py:95
 #, python-brace-format
@@ -872,16 +861,13 @@ msgid "Browse files"
 msgstr "Dateien durchsuchen"
 
 #: src/ui/component-entry.ui:34
-#, fuzzy
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"Die Installation ist fehlgeschlagen. Dies kann mit einem Fehler im "
-"Repository, einem unvollständigen Download oder einer fehlerhaften Prüfsumme "
-"zusammen hängen.\n"
-"\n"
-"Klick hier, um es nochmal zu versuchen."
+"Die Installation ist fehlgeschlagen. Dies kann wegen einem Repository-"
+"Fehler, einem teilweisen Download oder einer nicht übereinstimmenden "
+"Prüfsumme sein. Drücke, um es erneut zu versuchen."
 
 #: src/ui/component-entry.ui:45
 msgid "Download & Install"
@@ -892,7 +878,6 @@ msgid "0%"
 msgstr "0%"
 
 #: src/ui/dependency-entry.ui:18
-#, fuzzy
 msgid "Show Manifest"
 msgstr "Manifest anzeigen"
 
@@ -906,7 +891,7 @@ msgstr "Neu installieren"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Einen Fehler melden…"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -926,14 +911,12 @@ msgid "Troubleshooting"
 msgstr "Fehlerbehandlung"
 
 #: src/ui/details-bottle.ui:26
-#, fuzzy
 msgid "Browse Files…"
-msgstr "Dateien durchsuchen"
+msgstr "Dateien durchsuchen…"
 
 #: src/ui/details-bottle.ui:31
-#, fuzzy
 msgid "Duplicate Bottle…"
-msgstr "Bottle duplizieren"
+msgstr "Dupliziere die Bottle…"
 
 #: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
@@ -941,9 +924,8 @@ msgstr ""
 "Das ist das komplette Archiv deiner Bottle, persönliche Dateien eingenommen."
 
 #: src/ui/details-bottle.ui:37
-#, fuzzy
 msgid "Full Backup…"
-msgstr "Komplettsicherung"
+msgstr "Vollständige Sicherung…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
@@ -954,19 +936,16 @@ msgstr ""
 "erstellen möchtest, jedoch ohne persönliche Dateien."
 
 #: src/ui/details-bottle.ui:43
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "Konfiguration exportieren"
+msgstr "Konfiguration exportieren…"
 
 #: src/ui/details-bottle.ui:51
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "Bottle löschen"
+msgstr "Bottle löschen…"
 
 #: src/ui/details-bottle.ui:86
-#, fuzzy
 msgid "Kill all Processes"
-msgstr "Alle Wine-Prozesse beenden"
+msgstr "Alle Prozesse beenden"
 
 #: src/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
@@ -985,14 +964,12 @@ msgid "Reboot"
 msgstr "Neustarten"
 
 #: src/ui/details-bottle.ui:117
-#, fuzzy
 msgid "Run with Arguments…"
-msgstr "Mit Parametern ausführen"
+msgstr "Mit Parametern ausführen…"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Launch in Terminal…"
-msgstr "In der Konsole ausführen"
+msgstr "Im Terminal starten…"
 
 #: src/ui/details-bottle.ui:148
 msgid "My bottle"
@@ -1024,9 +1001,8 @@ msgid "0"
 msgstr "0"
 
 #: src/ui/details-bottle.ui:210
-#, fuzzy
 msgid "Run Executable…"
-msgstr "Programmdatei ausführen"
+msgstr "Programmdatei ausführen…"
 
 #: src/ui/details-bottle.ui:226
 msgid "Layers"
@@ -1034,7 +1010,7 @@ msgstr "Ebenen"
 
 #: src/ui/details-bottle.ui:237
 msgid "Tools"
-msgstr ""
+msgstr "Werkzeuge"
 
 #: src/ui/details-bottle.ui:241
 msgid "Command Line"
@@ -1054,16 +1030,15 @@ msgstr "Interne Registrierungsdatenbank bearbeiten."
 
 #: src/ui/details-bottle.ui:264
 msgid "Legacy Tools"
-msgstr ""
+msgstr "Legacy-Werkzeuge"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
-msgstr ""
+msgstr "Explorer"
 
 #: src/ui/details-bottle.ui:269
-#, fuzzy
 msgid "Browse internal files with the Wine explorer."
-msgstr "Interne Dateien durchsuchen."
+msgstr "Durchsuche interne Dateien mit dem Wine-Explorer."
 
 #: src/ui/details-bottle.ui:280
 msgid "Task Manager"
@@ -1082,9 +1057,8 @@ msgid "Debug wine processes."
 msgstr "Wine Prozesse debuggen."
 
 #: src/ui/details-bottle.ui:304
-#, fuzzy
 msgid "Wine Configuration"
-msgstr "Konfiguration"
+msgstr "Wine-Konfiguration"
 
 #: src/ui/details-bottle.ui:305
 msgid "Adjust internal settings."
@@ -1095,30 +1069,26 @@ msgid "Uninstaller"
 msgstr "Deinstallationsprogramm"
 
 #: src/ui/details-bottle.ui:317
-#, fuzzy
 msgid "Uninstall programs using Wine uninstaller."
-msgstr "Programme mit dem Wine Deinstallationsprogramm löschen."
+msgstr "Deinstalliere Programme mit dem Wine-Deinstallationsprogramm."
 
 #: src/ui/details-bottle.ui:328
 msgid "Control Panel"
 msgstr "Systemsteuerung"
 
 #: src/ui/details-bottle.ui:329
-#, fuzzy
 msgid "Access the internal Wine Control Panel."
-msgstr "Interne Wine Systemsteuerung öffnen."
+msgstr "Greife auf das interne Wine Control Panel zu."
 
 #: src/ui/details-bottle.ui:348
-#, fuzzy
 msgid "Use the Installers section or the \"Run executable\" button."
 msgstr ""
 "Verwenden Sie den Installer-Tab oder die Schaltfläche \"Programmdatei "
 "ausführen\" oben."
 
 #: src/ui/details-dependencies.ui:13
-#, fuzzy
 msgid "Search for dependencies…"
-msgstr "Abhängigkeiten auswählen"
+msgstr "Abhängigkeiten suchen…"
 
 #: src/ui/details-dependencies.ui:22
 msgid ""
@@ -1135,6 +1105,9 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Dateien auf dieser Seite werden von Dritten unter einer proprietären Lizenz "
+"bereitgestellt. Indem Sie sie installieren, stimmen Sie den jeweiligen "
+"Lizenzbedingungen zu."
 
 #: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -1145,9 +1118,8 @@ msgid "Report missing dependency"
 msgstr "Fehlende Abhängigkeit melden"
 
 #: src/ui/details-dependencies.ui:68
-#, fuzzy
 msgid "Read documentation about dependencies."
-msgstr "Dokumentation über Abhängigkeiten lesen\t"
+msgstr "Dokumentation über Abhängigkeiten lesen."
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
 #: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
@@ -1156,9 +1128,8 @@ msgid "Documentation"
 msgstr "Dokumentation"
 
 #: src/ui/details-dependencies.ui:80
-#, fuzzy
 msgid "Install Selected"
-msgstr "Ausgewählte installieren"
+msgstr "Selektion installieren"
 
 #: src/ui/details-dependencies.ui:81
 msgid "We strongly advise against installing multiple dependencies at once."
@@ -1167,29 +1138,28 @@ msgstr ""
 "installieren."
 
 #: src/ui/details-dependencies.ui:88
-#, fuzzy
 msgid "Select Dependencies"
 msgstr "Abhängigkeiten auswählen"
 
 #: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:62
 #: src/ui/window.ui:96
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 #: src/ui/details-installers.ui:13
-#, fuzzy
 msgid "Search for Programs…"
-msgstr "Nach installierten Programmen suchen"
+msgstr "Nach Programmen suchen…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No installers found"
-msgstr "Keine Zustände gefunden"
+msgstr "Keine Installationsprogramme gefunden"
 
 #: src/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"Das Repository ist nicht erreichbar oder kein Installationsprogramm ist mit "
+"dieser Bottle kompatibel."
 
 #: src/ui/details-preferences.ui:8
 msgid "Bottle Details"
@@ -1229,9 +1199,8 @@ msgid "Updating VKD3D, please wait…"
 msgstr "Aktualisiere VKD3D, bitte warten…"
 
 #: src/ui/details-preferences.ui:61
-#, fuzzy
 msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS aktivieren (DXVK-NVAPI)"
+msgstr "DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
@@ -1244,13 +1213,14 @@ msgstr "Aktualisiere DXVK-NAVAPI, bitte warten…"
 
 #: src/ui/details-preferences.ui:80
 msgid "FSR"
-msgstr ""
+msgstr "FSR"
 
 #: src/ui/details-preferences.ui:81
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
-msgstr "FSR nutzt neuste Upscaling-Technologien um die Framerate zu boosten."
+msgstr ""
+"FSR verwendet modernste Up-Scaling-Technologien, um Ihre Framerate zu "
+"steigern."
 
 #: src/ui/details-preferences.ui:88
 msgid "Ultra Quality"
@@ -1273,7 +1243,6 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
-#, fuzzy
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
 "Eine Alternative zu NVIDIA Reflex. Kann von einigen Anticheatprogrammen "
@@ -1288,9 +1257,8 @@ msgid "Improves performance at the cost of increased power usage."
 msgstr "Verbessert die Performance zu Lasten des Stromverbrauchs."
 
 #: src/ui/details-preferences.ui:140
-#, fuzzy
 msgid "vkBasalt"
-msgstr "vkBasalt verwenden"
+msgstr "vkBasalt"
 
 #: src/ui/details-preferences.ui:141
 msgid ""
@@ -1301,14 +1269,12 @@ msgstr ""
 "von Spielen zu verbessern."
 
 #: src/ui/details-preferences.ui:151
-#, fuzzy
 msgid "Display Settings"
 msgstr "Anzeigeeinstellungen"
 
 #: src/ui/details-preferences.ui:155
-#, fuzzy
 msgid "Virtual Desktop"
-msgstr "Virtuellen Desktop verwenden"
+msgstr "Virtueller Desktop"
 
 #: src/ui/details-preferences.ui:156
 msgid "Use the Wine virtual desktop."
@@ -1316,14 +1282,13 @@ msgstr "Den Wine Virtual-Desktop verwenden."
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr ""
+msgstr "Mauserfassung im Vollbildmodus"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
 msgstr "Die Maus wird im Vollbildmodus eingefangen."
 
 #: src/ui/details-preferences.ui:206
-#, fuzzy
 msgid "Take Focus"
 msgstr "Fokus erzwingen"
 
@@ -1335,14 +1300,14 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Maus Warp"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
 msgstr ""
+"Ändern Sie dies, wenn Sie auf Mausverzögerung oder Desynchronisierung stoßen."
 
 #: src/ui/details-preferences.ui:231
-#, fuzzy
 msgid "Screen Scaling"
 msgstr "Bildschirmskalierung"
 
@@ -1427,9 +1392,8 @@ msgid "Manage DXVK versions"
 msgstr "DXVK Versionen verwalten"
 
 #: src/ui/details-preferences.ui:299
-#, fuzzy
 msgid "Components"
-msgstr "DLL-Komponenten"
+msgstr "Komponenten"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
@@ -1441,22 +1405,18 @@ msgid "DXVK Version"
 msgstr "DXVK Version"
 
 #: src/ui/details-preferences.ui:348
-#, fuzzy
 msgid "VKD3D Version"
 msgstr "VKD3D Version"
 
 #: src/ui/details-preferences.ui:372
-#, fuzzy
 msgid "DXVK NVAPI Version"
 msgstr "DXVK NVAPI Version"
 
 #: src/ui/details-preferences.ui:394
-#, fuzzy
 msgid "LatencyFleX Version"
 msgstr "LatencyFleX Version"
 
 #: src/ui/details-preferences.ui:416
-#, fuzzy
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
 "Synchronisation aktivieren, um die Leistung auf Mehrkern-Prozessoren zu "
@@ -1487,41 +1447,36 @@ msgid "Updating Windows version, please wait…"
 msgstr "Windows Version wird geändert, bitte warten…"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "Bottles Laufzeit verwenden"
+msgstr "Bottles Runtime"
 
 #: src/ui/details-preferences.ui:488
-#, fuzzy
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
 msgstr ""
-"Bietet zusätzliche Bibliotheken für mehr Kompatibilität,\n"
-"deaktivieren falls Probleme auftreten."
+"Bietet zusätzliche Bibliotheken für mehr Kompatibilität. Deaktivieren falls "
+"Probleme auftreten."
 
 #: src/ui/details-preferences.ui:499
-#, fuzzy
 msgid "Steam Runtime"
-msgstr "Steam Runtime verwenden"
+msgstr "Steam Runtime"
 
 #: src/ui/details-preferences.ui:500
 msgid "The same as the Bottles one but provided by Steam."
 msgstr "Genau wie die von Bottles, aber von Steam bereitgestellt."
 
 #: src/ui/details-preferences.ui:511
-#, fuzzy
 msgid "GameMode"
-msgstr "Gamemode verwenden"
+msgstr "GameMode"
 
 #: src/ui/details-preferences.ui:512
 msgid "Optimise gaming performance on demand."
 msgstr "Optimiert Spielleistung bei Bedarf."
 
 #: src/ui/details-preferences.ui:523
-#, fuzzy
 msgid "Gamescope"
-msgstr "Gamescope verwenden"
+msgstr "Gamescope"
 
 #: src/ui/details-preferences.ui:524
 msgid "Use the Gamescope micro-compositor."
@@ -1532,18 +1487,15 @@ msgid "Manage Gamescope settings"
 msgstr "Gamescope Einstellungen verwalten"
 
 #: src/ui/details-preferences.ui:545
-#, fuzzy
 msgid "Working Directory"
 msgstr "Arbeitsverzeichnis"
 
 #: src/ui/details-preferences.ui:546
-#, fuzzy
 msgid "Defaults to the bottle path."
 msgstr "Standardmäßig wird das Bottels-Verzeichnis verwendet."
 
 #: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
-#, fuzzy
 msgid "Reset to default"
 msgstr "Standard wiederherstellen"
 
@@ -1562,7 +1514,6 @@ msgid "Environment Variables"
 msgstr "Umgebungsvariablen"
 
 #: src/ui/details-preferences.ui:594
-#, fuzzy
 msgid "Manage Drives"
 msgstr "Laufwerke verwalten"
 
@@ -1571,21 +1522,18 @@ msgid "Audio"
 msgstr "Ton"
 
 #: src/ui/details-preferences.ui:610
-#, fuzzy
 msgid "Reduce Latency"
-msgstr "PulseAudio Latenz reduzieren"
+msgstr "Latenz reduzieren"
 
 #: src/ui/details-preferences.ui:611
-#, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr ""
 "Setze die PulseAudio Latenz auf 60 Millisekunden, um die Tonqualität zu "
-"verbessern."
+"verbessern"
 
 #: src/ui/details-preferences.ui:623
-#, fuzzy
 msgid "Development and Debugging"
-msgstr "Entwickler & Debuggen"
+msgstr "Entwicklung & Debugging"
 
 #: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
@@ -1614,26 +1562,22 @@ msgid "OBS Vulkan Capture"
 msgstr "OBS Vulkan Capture"
 
 #: src/ui/details-preferences.ui:652
-#, fuzzy
 msgid "Toggle OBS game capture for all programs."
-msgstr "De(-aktiviere) OBS Game Capture für zukünftige Starts."
+msgstr "De(-aktiviere) OBS Game Capture für alle Programme."
 
 #: src/ui/details-preferences.ui:663
-#, fuzzy
 msgid "Wine 'fixme' Logs"
-msgstr "Wine fixme Logs aktivieren"
+msgstr "Wine 'fixme' Logs"
 
 #: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Code-Pfade aufzeichnen, die nicht in Wine implementiert sind."
 
 #: src/ui/details-programs.ui:9
-#, fuzzy
 msgid "No Programs found"
 msgstr "Keine Programme gefunden"
 
 #: src/ui/details-programs.ui:10
-#, fuzzy
 msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
@@ -1643,14 +1587,12 @@ msgstr ""
 "\"-Button hinzufügen."
 
 #: src/ui/details-programs.ui:31
-#, fuzzy
 msgid "Toggle Hidden"
-msgstr "Suche (de-)aktiviere"
+msgstr "Versteckte ein-/ausblenden"
 
 #: src/ui/details-programs.ui:39
-#, fuzzy
 msgid "Read documentation about programs"
-msgstr "Dokumentation über Programme lesen\t"
+msgstr "Dokumentation über Programme lesen"
 
 #: src/ui/details-programs.ui:50
 msgid "Add a custom executable path"
@@ -1677,14 +1619,12 @@ msgid "Create first state to start using versioning."
 msgstr "Erstelle den ersten Zustand, um mit der Versionierung zu beginnen."
 
 #: src/ui/details-versioning.ui:41
-#, fuzzy
 msgid "Type a short comment:"
-msgstr "Gib einen wirklich kurzen Kommentar ein:"
+msgstr "Gib einen kurzen Kommentar ein:"
 
 #: src/ui/details-versioning.ui:49
-#, fuzzy
 msgid "A short comment"
-msgstr "Ein wirklich kurzer Kommentar"
+msgstr "Ein kurzer Kommentar"
 
 #: src/ui/details-versioning.ui:54
 msgid "Save the bottle state."
@@ -1699,7 +1639,6 @@ msgid "Operations"
 msgstr "Operationen"
 
 #: src/ui/dialog-crash-report.ui:10
-#, fuzzy
 msgid "Bottles crash report"
 msgstr "Bottles Absturzbericht"
 
@@ -1746,28 +1685,26 @@ msgstr ""
 "auf native (bereitgestellt durch das Programm) festgelegt werden."
 
 #: src/ui/dialog-dll-overrides.ui:18
-#, fuzzy
 msgid "New Override"
-msgstr "Neue Überschreibung"
+msgstr "Neuer Override"
 
 #: src/ui/dialog-dll-overrides.ui:26
-#, fuzzy
 msgid "Overrides"
-msgstr "DLL-Überschreibungen"
+msgstr "Overrides"
 
 #: src/ui/dialog-drives.ui:9
 msgid "Drives"
 msgstr "Laufwerke"
 
 #: src/ui/dialog-drives.ui:21
-#, fuzzy
 msgid ""
 "These are paths from your host system that are mapped and recognized as "
 "devices by the runner (e.g. C: D:..).\n"
 "                                "
 msgstr ""
-"Dies sind Dateipfade auf dem Hostsystem, die vom Runner als Geräte erkannt "
-"werden (z. B. C: D: ...)."
+"Dies sind Dateipfade auf deinem Hostsystem, die vom Runner als Geräte "
+"erkannt werden  (e.g. C: D:..).\n"
+"                                "
 
 #: src/ui/dialog-drives.ui:25
 msgid "Letter"
@@ -1778,7 +1715,6 @@ msgid "Existing drives"
 msgstr "Vorhandene Laufwerke"
 
 #: src/ui/dialog-duplicate.ui:17
-#, fuzzy
 msgid "Duplicate Bottle"
 msgstr "Bottle duplizieren"
 
@@ -1787,9 +1723,8 @@ msgid "Duplicate"
 msgstr "Duplizieren"
 
 #: src/ui/dialog-duplicate.ui:52
-#, fuzzy
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr "Gebe einen Namen für die neue Bottle ein:"
+msgstr "Gebe einen Namen für die neue Bottle ein."
 
 #: src/ui/dialog-duplicate.ui:75
 msgid "Duplicating…"
@@ -1800,7 +1735,6 @@ msgid "Take a break, it may take a while"
 msgstr "Mach eine Pause, es könnte eine Weile dauern"
 
 #: src/ui/dialog-duplicate.ui:105
-#, fuzzy
 msgid "Bottle Duplicated"
 msgstr "Bottle dupliziert"
 
@@ -1814,7 +1748,7 @@ msgstr ""
 
 #: src/ui/dialog-env-vars.ui:28
 msgid "Variable name"
-msgstr ""
+msgstr "Variablenname"
 
 #: src/ui/dialog-env-vars.ui:36
 msgid "Existing variables"
@@ -1836,14 +1770,12 @@ msgid "Game resolution"
 msgstr "Spielauflösung"
 
 #: src/ui/dialog-gamescope.ui:42 src/ui/dialog-gamescope.ui:57
-#, fuzzy
 msgid "Width (e.g. 1280)"
-msgstr "z. B. 1280"
+msgstr "Breite (z. B. 1280)"
 
 #: src/ui/dialog-gamescope.ui:47 src/ui/dialog-gamescope.ui:62
-#, fuzzy
 msgid "Height (e.g. 720)"
-msgstr "z. B. 720"
+msgstr "Höhe (z. B. 720)"
 
 #: src/ui/dialog-gamescope.ui:54
 msgid "Gamescope resolution"
@@ -1854,14 +1786,12 @@ msgid "Extra settings"
 msgstr "Zusätzliche Einstellungen"
 
 #: src/ui/dialog-gamescope.ui:72
-#, fuzzy
 msgid "Frame rate limit (e.g. 60)"
-msgstr "Bildratenlimit"
+msgstr "Framerate-Limit (z. B. 60)"
 
 #: src/ui/dialog-gamescope.ui:77
-#, fuzzy
 msgid "Frame rate limit (when unfocused)"
-msgstr "Bildratenlimit (wenn nicht im Fokus)"
+msgstr "Framerate-Limit (wenn nicht fokussiert)"
 
 #: src/ui/dialog-gamescope.ui:82
 msgid "Use integer scaling"
@@ -1880,29 +1810,26 @@ msgid "Fullscreen"
 msgstr "Vollbild"
 
 #: src/ui/dialog-journal.ui:12
-#, fuzzy
 msgid "All messages"
-msgstr "Nachricht löschen"
+msgstr "Alle Meldungen"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "Kritisch"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "Fehler"
 
 #: src/ui/dialog-journal.ui:27
-#, fuzzy
 msgid "Warnings"
-msgstr "Warnung"
+msgstr "Warnungen"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: src/ui/dialog-journal.ui:56
-#, fuzzy
 msgid "Journal Browser"
 msgstr "Journal-Browser"
 
@@ -1911,58 +1838,59 @@ msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
+"Ändere Log-Level.\n"
+"                                        "
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: src/ui/dialog-launch-options.ui:9
 msgid "Launch Options"
 msgstr "Startoptionen"
 
 #: src/ui/dialog-launch-options.ui:46
-#, fuzzy
 msgid "Those arguments will be passed at launch."
-msgstr "Diese Parameter werden beim Programmstart übergeben:"
+msgstr "Diese Parameter werden beim Programmstart übergeben."
 
 #: src/ui/dialog-launch-options.ui:47
-#, fuzzy
 msgid "Custom Arguments"
-msgstr "Mit Parametern ausführen"
+msgstr "Benutzerdefinierte Argumente"
 
 #: src/ui/dialog-launch-options.ui:50
-#, fuzzy
 msgid "Command Arguments"
-msgstr "Parameter übergeben"
+msgstr "Befehlsargumente"
 
 #: src/ui/dialog-launch-options.ui:51
-#, fuzzy, python-format
+#, python-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "z. B.: VAR=wert %command% -beispiel1 -beispiel2 -beispiel3=hallo"
 
 #: src/ui/dialog-launch-options.ui:57
-#, fuzzy
 msgid "Post-run Script"
-msgstr "Nachlaufskript"
+msgstr "Skript nach der Ausführung"
 
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
 msgstr ""
+"Diese Einstellungen überschreiben die Standardeinstellungen für diese "
+"ausführbare Datei."
 
 #: src/ui/dialog-launch-options.ui:88
-#, fuzzy
 msgid "Preferences Overrides"
-msgstr "Einstellungen"
+msgstr "Overrides für Einstellungen"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
-msgstr ""
+msgstr "Lokale Ressourcen"
 
 #: src/ui/dialog-local-resources.ui:38
 msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
 msgstr ""
+"Dieses Installationsprogramm erfordert einige lokale Ressourcen, die "
+"anderweitig nicht bereitgestellt werden können."
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1970,12 +1898,11 @@ msgstr "Umbenennen"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Wähle einen neuen Namen für das ausgewählte Programm."
 
 #: src/ui/dialog-rename.ui:37
-#, fuzzy
 msgid "New Name"
-msgstr "Name"
+msgstr "Neuer Name"
 
 #: src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
@@ -1987,7 +1914,6 @@ msgstr ""
 "Gib hier die Parameter ein, die an das Programm übergeben werden sollen."
 
 #: src/ui/dialog-run-args.ui:50
-#, fuzzy
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
 msgstr "z. B. -opengl -SkipBuildPatchPrereq"
 
@@ -2000,30 +1926,26 @@ msgid "Native (Windows)"
 msgstr "Nativ (Windows)"
 
 #: src/ui/dll-override-entry.ui:12
-#, fuzzy
 msgid "Builtin, then Native"
-msgstr "Integrierte dann Native"
+msgstr "Integrierte, dann Nativ"
 
 #: src/ui/dll-override-entry.ui:13
-#, fuzzy
 msgid "Native, then Builtin"
-msgstr "Native dann Integrierte"
+msgstr "Nativ, dann Integrierte"
 
 #: src/ui/dll-override-entry.ui:21 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "Entfernen"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
 msgstr "/pfad/hier/eingeben"
 
 #: src/ui/drive-entry.ui:24
-#, fuzzy
 msgid "Choose a Directory"
 msgstr "Wähle ein Verzeichnis"
 
 #: src/ui/env-var-entry.ui:6
-#, fuzzy
 msgid "Value"
 msgstr "Wert"
 
@@ -2044,60 +1966,53 @@ msgid "No prefixes found"
 msgstr "Keine Präfixe gefunden"
 
 #: src/ui/importer.ui:46
-#, fuzzy
 msgid ""
 "No prefixes were found from Lutris, PlayOnLinux, etc.\n"
 "                                    Use the icon on the top to import a "
 "bottle from a backup"
 msgstr ""
 "Es wurden keine Präfixe von Lutris, PlayOnLinux, etc. gefunden.\n"
-"Verwende das Symbol oben, um eine Bottle von einer Sicherung zu importieren."
+"Verwende das Symbol oben, um eine Bottle von einer Sicherung zu importieren"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
 msgstr "Konfiguration"
 
 #: src/ui/importer.ui:87
-#, fuzzy
 msgid "Full Archive"
-msgstr "Komplettsicherung"
+msgstr "Vollständiges Archiv"
 
 #: src/ui/installer-entry.ui:18
-#, fuzzy
 msgid "Show Manifest…"
-msgstr "Manifest anzeigen"
+msgstr "Manifest anzeigen…"
 
 #: src/ui/installer-entry.ui:23
-#, fuzzy
 msgid "Read Review…"
-msgstr "Review lesen"
+msgstr "Rezension lesen…"
 
 #: src/ui/installer-entry.ui:62
 msgid "Install this program"
 msgstr "Dieses Programm installieren"
 
 #: src/ui/library-entry.ui:14
-#, fuzzy
 msgid "Remove from Library"
-msgstr "Aus Liste entfernen"
+msgstr "Aus Bibliothek entfernen"
 
 #: src/ui/library-entry.ui:70 src/ui/program-entry.ui:102
 msgid "Launch with Steam"
 msgstr "Mit Steam starten"
 
 #: src/ui/library.ui:22
-#, fuzzy
 msgid "Search for Prefixes"
-msgstr "Erneut nach Präfixen suchen"
+msgstr "Nach Präfixen suchen"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:193
-#, fuzzy
 msgid "Library"
-msgstr "Bibliotheksmodus"
+msgstr "Bibliothek"
 
 #: src/ui/library.ui:43
 msgid "Add items here from your bottle's program list"
-msgstr ""
+msgstr "Füge hier Items aus der Programmliste zur Bottle hinzu"
 
 #: src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
@@ -2124,17 +2039,14 @@ msgid "Run .exe/.msi in this bottle"
 msgstr ".exe/.msi in dieser Bottle ausführen"
 
 #: src/ui/list.ui:17
-#, fuzzy
 msgid "Search your bottles…"
-msgstr "Durchsuche deine Bottles .."
+msgstr "Durchsuche deine Bottles…"
 
 #: src/ui/list.ui:38
-#, fuzzy
 msgid "Steam Proton"
-msgstr "Steam Proton Präfixe"
+msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
-#, fuzzy
 msgid "Start off by creating a Bottle."
 msgstr "Beginne, indem du eine Bottle erstellst."
 
@@ -2143,26 +2055,24 @@ msgid "Create a new Bottle"
 msgstr "Neue Bottle erstellen"
 
 #: src/ui/list.ui:75
-#, fuzzy
 msgid "No Results Found"
-msgstr "Keine Zustände gefunden"
+msgstr "Keine Ergebnisse gefunden"
 
 #: src/ui/list.ui:76
 msgid "Try a different search."
-msgstr ""
+msgstr "Versuche eine andere Suche."
 
 #: src/ui/loading.ui:13
 msgid "Starting up…"
-msgstr ""
+msgstr "Starte…"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
-msgstr ""
+msgstr "Diese Ressource fehlt."
 
 #: src/ui/local-resource-entry.ui:10
-#, fuzzy
 msgid "Browse"
-msgstr "C: durchsuchen"
+msgstr "Durchsuchen"
 
 #: src/ui/new.ui:17 src/ui/new.ui:63
 msgid "New Bottle"
@@ -2209,9 +2119,8 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 #: src/ui/new.ui:112
-#, fuzzy
 msgid "A clear environment for your experiments"
-msgstr "Eine leere Umgebung für Experimente."
+msgstr "Eine leere Umgebung für Experimente"
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2219,7 +2128,6 @@ msgstr ""
 "Aktiviere Versionierung, um Zustände zu speichern und wiederherzustellen."
 
 #: src/ui/new.ui:128
-#, fuzzy
 msgid "Unlinked Home Directory"
 msgstr "Persönlichen Ordner nicht verknüpfen"
 
@@ -2245,9 +2153,8 @@ msgid "32 bit"
 msgstr "32 Bit"
 
 #: src/ui/new.ui:168
-#, fuzzy
 msgid "Custom Recipe"
-msgstr "Benutzerdefiniertes Rezept verwenden"
+msgstr "Benutzerdefiniertes Rezept"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
@@ -2255,12 +2162,10 @@ msgstr ""
 "Wähle ein benutzerdefiniertes Rezept für die Umgebung, falls vorhanden."
 
 #: src/ui/new.ui:185
-#, fuzzy
 msgid "Custom Path"
-msgstr "Benutzerdefiniert"
+msgstr "Benutzerdefinierter Pfad"
 
 #: src/ui/new.ui:186
-#, fuzzy
 msgid "Store this bottle in another place."
 msgstr "Diese Bottle an einem anderen Ort speichern."
 
@@ -2270,7 +2175,7 @@ msgstr "Bottle erstellt"
 
 #: src/ui/onboard.ui:36
 msgid "Previous"
-msgstr ""
+msgstr "Zurück"
 
 #: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
@@ -2281,38 +2186,41 @@ msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"Führe Windows Software auf Linux aus.\n"
+"                                                "
 
 #: src/ui/onboard.ui:71
-#, fuzzy
 msgid "Windows in Bottles"
-msgstr "Fenstertyp"
+msgstr "Windows in Bottles"
 
 #: src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
+"Bottles verwendet Kompatibilitäts-Runner, um isolierte containerisierte "
+"Windows-ähnliche Umgebungen bereitzustellen, in denen Programme ausgeführt "
+"werden."
 
 #: src/ui/onboard.ui:79
 msgid "Almost Done"
-msgstr ""
+msgstr "Fast fertig"
 
 #: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up.."
-msgstr ""
+msgstr "Wir brauchen noch ein paar Minuten, um alles einzurichten."
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
-msgstr ""
+msgstr "Fortsetzen"
 
 #: src/ui/onboard.ui:113
 msgid "All ready!"
-msgstr ""
+msgstr "Alles bereit!"
 
 #: src/ui/onboard.ui:119
-#, fuzzy
 msgid "Start using Bottles"
-msgstr "Beginne, indem du eine Bottle erstellst."
+msgstr "Starte mit Bottles"
 
 #: src/ui/onboard.ui:138
 msgid "Next"
@@ -2360,9 +2268,8 @@ msgid "Advanced"
 msgstr "Erweitert"
 
 #: src/ui/preferences.ui:77
-#, fuzzy
 msgid "Custom bottles path (requires restart)"
-msgstr "Benutzerdefinierter Bottles Pfad (benötigt Neustart)"
+msgstr "Benutzerdefinierter Bottles Pfad (Neustart erfordert)"
 
 #: src/ui/preferences.ui:111
 msgid "Runners"
@@ -2374,7 +2281,7 @@ msgstr "Vorabversion"
 
 #: src/ui/preferences.ui:117
 msgid "Display unstable versions of runners."
-msgstr ""
+msgstr "Zeige instabile Versionen von Runnern an."
 
 #: src/ui/preferences.ui:133
 msgid "DLL Components"
@@ -2413,41 +2320,34 @@ msgid "Browse path"
 msgstr "Pfad durchsuchen"
 
 #: src/ui/program-entry.ui:40
-#, fuzzy
 msgid "Change Launch Options…"
-msgstr "Startoptionen ändern"
+msgstr "Startoptionen ändern…"
 
 #: src/ui/program-entry.ui:45
-#, fuzzy
 msgid "Add to My Library"
 msgstr "Zu meiner Bibliothek hinzufügen"
 
 #: src/ui/program-entry.ui:50
-#, fuzzy
 msgid "Add Desktop Entry"
 msgstr "Desktop-Eintrag hinzufügen"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
-msgstr ""
+msgstr "Zu Steam hinzufügen"
 
 #: src/ui/program-entry.ui:60
-#, fuzzy
 msgid "Rename…"
-msgstr "Umbenennen"
+msgstr "Umbenennen…"
 
 #: src/ui/program-entry.ui:69
-#, fuzzy
 msgid "Hide Program"
-msgstr "Dieses Programm verstecken"
+msgstr "Programm ausblenden"
 
 #: src/ui/program-entry.ui:74
-#, fuzzy
 msgid "Show Program"
-msgstr "Programme"
+msgstr "Programm einblenden"
 
 #: src/ui/program-entry.ui:79
-#, fuzzy
 msgid "Remove from List"
 msgstr "Aus Liste entfernen"
 
@@ -2464,23 +2364,20 @@ msgid "Your Library"
 msgstr "Deine Bibliothek"
 
 #: src/ui/window.ui:25
-#, fuzzy
 msgid "Import/Export…"
-msgstr "Import/Export"
+msgstr "Import/Export…"
 
 #: src/ui/window.ui:39
-#, fuzzy
 msgid "Support"
-msgstr "Unterstütze uns"
+msgstr "Support"
 
 #: src/ui/window.ui:49
 msgid "Forums"
 msgstr "Foren"
 
 #: src/ui/window.ui:54
-#, fuzzy
 msgid "Health Check"
-msgstr "Gesundheit überprüfen"
+msgstr "Health Check"
 
 #: src/ui/window.ui:59
 msgid "About Bottles"
