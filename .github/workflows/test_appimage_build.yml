@@ -13,7 +13,7 @@ jobs:
 
       - name: Install Packages
         run: |
-          sudo apt install python3-pip python-dev build-essential gettext git
+          sudo apt-get install python3-pip python-dev build-essential gettext git libgtk-4-dev -y
           sudo pip3 install --upgrade pip
           sudo pip3 install meson
           sudo pip3 install ninja
