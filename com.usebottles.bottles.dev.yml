@@ -94,8 +94,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/psf/requests/archive/refs/tags/v2.26.0.tar.gz
-        sha256: e88b61425a0b4f1316e7ab8f6c11d7abbc99b464e418786681d59fef9f9d6421
+        url: https://github.com/psf/requests/archive/refs/tags/v2.28.0.tar.gz
+        sha256: 6b757ca284d8dc192794010c960b0cf405fcc7aed9ed2e04a8269dc41b1231ad
 
   - name: python-urllib3
     buildsystem: simple
@@ -103,8 +103,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/urllib3/urllib3/archive/refs/tags/1.26.7.tar.gz
-        sha256: 87f1b873ec9f7e0dc6e5bc2f9aa69279c73295a007fbd1ac421954a4679d7923
+        url: https://github.com/urllib3/urllib3/archive/refs/tags/1.26.9.tar.gz
+        sha256: 5860049db8811e7a26e5f228359522814dc8159e6ec4f352b1b596e0dee80503
 
   - name: python-chardet
     buildsystem: simple
@@ -139,8 +139,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://github.com/Python-Markdown/markdown/archive/refs/tags/3.3.6.tar.gz
-        sha256: 506543bf4fcd81ea939eae4b43c031ae65b0e210b58ab1db9e3d9dae9298a601
+        url: https://github.com/Python-Markdown/markdown/archive/refs/tags/3.3.7.tar.gz
+        sha256: a1b7a818ca2dc6b34b9ec0bb73e3f4325e4ee949a8390a91a4df48c311069f65
 
   - name: python-icoextract
     buildsystem: simple
