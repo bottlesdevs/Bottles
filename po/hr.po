@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-14 18:15+0000\n"
+"PO-Revision-Date: 2022-06-15 00:12+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -314,7 +314,7 @@ msgstr ""
 
 #: src/window.py:282
 msgid "Health check"
-msgstr "Provjera zdravlja"
+msgstr "Provjera stanja"
 
 #: src/window.py:287 src/ui/dialog-journal.ui:49
 msgid "Journal browser"
@@ -461,9 +461,8 @@ msgid "Finalizing…"
 msgstr "Završavanje …"
 
 #: src/backend/managers/manager.py:1208
-#, fuzzy
 msgid "Caching template…"
-msgstr "Stvaranje butelje …"
+msgstr "Spremanje predloška u predmemoriju …"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -479,9 +478,8 @@ msgstr ""
 "izvještaja."
 
 #: src/dialogs/dlloverrides.py:135
-#, fuzzy
 msgid "No overrides found."
-msgstr "Nije pronađen nijedan program"
+msgstr "Nije pronađena nijedan zamjena."
 
 #: src/dialogs/drives.py:69
 msgid "Choose path"
@@ -1459,9 +1457,8 @@ msgid "Working Directory"
 msgstr "Radna mapa"
 
 #: src/ui/details-preferences.ui:546
-#, fuzzy
 msgid "Defaults to the bottle path."
-msgstr "Standard za stazu butelje."
+msgstr "Postavlja standardnu stazu butelje."
 
 #: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
@@ -1475,17 +1472,14 @@ msgstr "Odaberi mapu"
 
 #: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
-#, fuzzy
 msgid "DLL Overrides"
-msgstr "DLL nadjačavanja"
+msgstr "DLL zamjene"
 
 #: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
-#, fuzzy
 msgid "Environment Variables"
 msgstr "Varijable okruženja"
 
 #: src/ui/details-preferences.ui:594
-#, fuzzy
 msgid "Manage Drives"
 msgstr "Upravljaj pogonima"
 
@@ -1494,21 +1488,17 @@ msgid "Audio"
 msgstr "Zvuk"
 
 #: src/ui/details-preferences.ui:610
-#, fuzzy
 msgid "Reduce Latency"
-msgstr "Smanji PulseAudio kašnjenje"
+msgstr "Smanji kašnjenje"
 
 #: src/ui/details-preferences.ui:611
-#, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr ""
-"Za povećanje kvalitete zvuka, u programu PulseAudio postavi kašnjenje na 60 "
-"milisekundi"
+"Postavi PulseAudio kašnjenje na 60 milisekundi. Povećava kvalitetu zvuka"
 
 #: src/ui/details-preferences.ui:623
-#, fuzzy
 msgid "Development and Debugging"
-msgstr "Programeri i otklanjanje grešaka"
+msgstr "Razvoj i otklanjanje grešaka"
 
 #: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
@@ -1547,7 +1537,6 @@ msgid "Log code paths that are unimplemented in Wine."
 msgstr "Zapiši staze kodova koji u Wineu nisu implementirani."
 
 #: src/ui/details-programs.ui:9
-#, fuzzy
 msgid "No Programs found"
 msgstr "Nije pronađen nijedan program"
 
@@ -1562,9 +1551,8 @@ msgid "Toggle Hidden"
 msgstr ""
 
 #: src/ui/details-programs.ui:39
-#, fuzzy
 msgid "Read documentation about programs"
-msgstr "Pročitaj dokumentaciju"
+msgstr "Pročitaj dokumentaciju o programima"
 
 #: src/ui/details-programs.ui:50
 msgid "Add a custom executable path"
@@ -1591,12 +1579,10 @@ msgid "Create first state to start using versioning."
 msgstr "Stvori prvo stanje za početak korištenja verzioniranja."
 
 #: src/ui/details-versioning.ui:41
-#, fuzzy
 msgid "Type a short comment:"
 msgstr "Upiši kratki komentar:"
 
 #: src/ui/details-versioning.ui:49
-#, fuzzy
 msgid "A short comment"
 msgstr "Kratki komentar"
 
@@ -1613,9 +1599,8 @@ msgid "Operations"
 msgstr "Operacije"
 
 #: src/ui/dialog-crash-report.ui:10
-#, fuzzy
 msgid "Bottles crash report"
-msgstr "Butelje – izvještaj o prekidu programa"
+msgstr "Izvještaj o prekidu programa Butelje"
 
 #: src/ui/dialog-crash-report.ui:23
 msgid "Send report"
@@ -1659,14 +1644,12 @@ msgstr ""
 "Wine) ili izvorne (koje pruža program)."
 
 #: src/ui/dialog-dll-overrides.ui:18
-#, fuzzy
 msgid "New Override"
 msgstr "Nova zamjena"
 
 #: src/ui/dialog-dll-overrides.ui:26
-#, fuzzy
 msgid "Overrides"
-msgstr "DLL nadjačavanja"
+msgstr "Zamjene"
 
 #: src/ui/dialog-drives.ui:9
 msgid "Drives"
@@ -1691,7 +1674,6 @@ msgid "Existing drives"
 msgstr "Postojeći pogoni"
 
 #: src/ui/dialog-duplicate.ui:17
-#, fuzzy
 msgid "Duplicate Bottle"
 msgstr "Dupliciraj butelju"
 
@@ -1712,7 +1694,6 @@ msgid "Take a break, it may take a while"
 msgstr "Odmori malo. Ovo može potrajati"
 
 #: src/ui/dialog-duplicate.ui:105
-#, fuzzy
 msgid "Bottle Duplicated"
 msgstr "Butelja je duplicirana"
 
@@ -1733,7 +1714,6 @@ msgid "Existing variables"
 msgstr "Postojeće varijable"
 
 #: src/ui/dialog-gamescope.ui:9
-#, fuzzy
 msgid "Gamescope Settings"
 msgstr "Gamescope postavke"
 
@@ -1749,14 +1729,12 @@ msgid "Game resolution"
 msgstr "Razlučivost igre"
 
 #: src/ui/dialog-gamescope.ui:42 src/ui/dialog-gamescope.ui:57
-#, fuzzy
 msgid "Width (e.g. 1280)"
-msgstr "npr. 1280"
+msgstr "Širina (npr. 1280)"
 
 #: src/ui/dialog-gamescope.ui:47 src/ui/dialog-gamescope.ui:62
-#, fuzzy
 msgid "Height (e.g. 720)"
-msgstr "npr. 720"
+msgstr "Visina (npr. 720)"
 
 #: src/ui/dialog-gamescope.ui:54
 msgid "Gamescope resolution"
@@ -1793,26 +1771,24 @@ msgid "Fullscreen"
 msgstr "Cjeloekranski prikaz"
 
 #: src/ui/dialog-journal.ui:12
-#, fuzzy
 msgid "All messages"
-msgstr "Izbriši poruku"
+msgstr "Sve poruke"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "Kritično"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "Greške"
 
 #: src/ui/dialog-journal.ui:27
-#, fuzzy
 msgid "Warnings"
-msgstr "Upozorenje"
+msgstr "Upozorenja"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "Informacije"
 
 #: src/ui/dialog-journal.ui:56
 msgid "Journal Browser"
@@ -1828,26 +1804,23 @@ msgstr ""
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Sve"
 
 #: src/ui/dialog-launch-options.ui:9
-#, fuzzy
 msgid "Launch Options"
-msgstr "Promijeni opcije pokretanja"
+msgstr "Opcije pokretanja"
 
 #: src/ui/dialog-launch-options.ui:46
 msgid "Those arguments will be passed at launch."
 msgstr "Ti se argumenti proslijeđuju tijekom pokretanja programa."
 
 #: src/ui/dialog-launch-options.ui:47
-#, fuzzy
 msgid "Custom Arguments"
-msgstr "Pokreni s agrumentima"
+msgstr "Prilagođeni agrumenti"
 
 #: src/ui/dialog-launch-options.ui:50
-#, fuzzy
 msgid "Command Arguments"
-msgstr "Proslijedi argumente"
+msgstr "Naredbeni argumenti"
 
 #: src/ui/dialog-launch-options.ui:51
 #, python-format
@@ -1855,22 +1828,20 @@ msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
 msgstr "npr: VAR=value %command% -example1 -example2 -example3=hello"
 
 #: src/ui/dialog-launch-options.ui:57
-#, fuzzy
 msgid "Post-run Script"
 msgstr "Skripta nakon pokretanja"
 
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
-msgstr ""
+msgstr "Ove postavke će zamijeniti standardne postavke za ovu izvršnu datoteku."
 
 #: src/ui/dialog-launch-options.ui:88
-#, fuzzy
 msgid "Preferences Overrides"
-msgstr "Postavke"
+msgstr "Zamjene postavki"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
-msgstr ""
+msgstr "Lokalni resursi"
 
 #: src/ui/dialog-local-resources.ui:38
 msgid ""
@@ -1884,15 +1855,13 @@ msgstr "Preimenuj"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
-msgstr ""
+msgstr "Odaberi novo ime za odabrani program."
 
 #: src/ui/dialog-rename.ui:37
-#, fuzzy
 msgid "New Name"
-msgstr "Ime"
+msgstr "Novo ime"
 
 #: src/ui/dialog-run-args.ui:14
-#, fuzzy
 msgid "Run With Arguments"
 msgstr "Pokreni s agrumentima"
 
@@ -1901,45 +1870,40 @@ msgid "Write below the arguments to be passed to the executable."
 msgstr "Dolje upiši argumente koji će se proslijediti izvršnom programu."
 
 #: src/ui/dialog-run-args.ui:50
-#, fuzzy
 msgid "e.g.: -opengl -SkipBuildPatchPrereq"
-msgstr "npr: -opengl -SkipBuildPatchPrereq"
+msgstr "npr.: -opengl -SkipBuildPatchPrereq"
 
 #: src/ui/dll-override-entry.ui:10
 msgid "Builtin (Wine)"
-msgstr "Ugrađeno (Wine)"
+msgstr "Ugrađeni (Wine)"
 
 #: src/ui/dll-override-entry.ui:11
 msgid "Native (Windows)"
-msgstr "Izvorno (Windows)"
+msgstr "Izvorni (Windows)"
 
 #: src/ui/dll-override-entry.ui:12
-#, fuzzy
 msgid "Builtin, then Native"
-msgstr "Ugrađeno zatim izvorno"
+msgstr "Ugrađeni, zatim izvorni"
 
 #: src/ui/dll-override-entry.ui:13
-#, fuzzy
 msgid "Native, then Builtin"
-msgstr "Izvorno zatim ugrađeno"
+msgstr "Izvorni, zatim ugrađeni"
 
 #: src/ui/dll-override-entry.ui:21 src/ui/drive-entry.ui:14
 msgid "Remove"
-msgstr ""
+msgstr "Ukloni"
 
 #: src/ui/drive-entry.ui:7
 msgid "/point/to/path"
 msgstr "/uputi/na/stazu"
 
 #: src/ui/drive-entry.ui:24
-#, fuzzy
 msgid "Choose a Directory"
-msgstr "Odaberi mapu"
+msgstr "Odaberi jednu mapu"
 
 #: src/ui/env-var-entry.ui:6
-#, fuzzy
 msgid "Value"
-msgstr "vrijednost"
+msgstr "Vrijednost"
 
 #: src/ui/importer-entry.ui:39
 msgid "This wineprefix was already imported in Bottles."
@@ -1971,9 +1935,8 @@ msgid "Configuration"
 msgstr "Konfiguracija"
 
 #: src/ui/importer.ui:87
-#, fuzzy
 msgid "Full Archive"
-msgstr "Kompletna arhiva"
+msgstr "Cijela arhiva"
 
 #: src/ui/installer-entry.ui:18
 msgid "Show Manifest…"
@@ -1984,19 +1947,16 @@ msgid "Read Review…"
 msgstr "Pročitaj recenziju …"
 
 #: src/ui/installer-entry.ui:62
-#, fuzzy
 msgid "Install this program"
-msgstr "Instalirani programi"
+msgstr "Instaliraj ovaj program"
 
 #: src/ui/library-entry.ui:14
-#, fuzzy
 msgid "Remove from Library"
-msgstr "Ukloni iz programa"
+msgstr "Ukloni iz biblioteke"
 
 #: src/ui/library-entry.ui:70 src/ui/program-entry.ui:102
-#, fuzzy
 msgid "Launch with Steam"
-msgstr "Pokreni s terminalom"
+msgstr "Pokreni sa Steamom"
 
 #: src/ui/library.ui:22
 #, fuzzy
@@ -2004,13 +1964,12 @@ msgid "Search for Prefixes"
 msgstr "Steam Proton mape"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:193
-#, fuzzy
 msgid "Library"
-msgstr "Tamni modus"
+msgstr "Biblioteka"
 
 #: src/ui/library.ui:43
 msgid "Add items here from your bottle's program list"
-msgstr ""
+msgstr "Ovdje dodaj stavke iz popisa programa tvoje butelje"
 
 #: src/ui/list-entry.ui:46
 msgid "This bottle looks damaged."
@@ -2037,17 +1996,14 @@ msgid "Run .exe/.msi in this bottle"
 msgstr "Pokreni .exe/.msi u ovoj butelji"
 
 #: src/ui/list.ui:17
-#, fuzzy
 msgid "Search your bottles…"
 msgstr "Pretraži svoje butelje …"
 
 #: src/ui/list.ui:38
-#, fuzzy
 msgid "Steam Proton"
-msgstr "Steam Proton mape"
+msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
-#, fuzzy
 msgid "Start off by creating a Bottle."
 msgstr "Započni stvaranjem butelje."
 
@@ -2056,21 +2012,20 @@ msgid "Create a new Bottle"
 msgstr "Stvori novu butelju"
 
 #: src/ui/list.ui:75
-#, fuzzy
 msgid "No Results Found"
-msgstr "Nema stanja"
+msgstr "Nema rezultata"
 
 #: src/ui/list.ui:76
 msgid "Try a different search."
-msgstr ""
+msgstr "Pokušaj s jednom drugom pretragom."
 
 #: src/ui/loading.ui:13
 msgid "Starting up…"
-msgstr ""
+msgstr "Pokretanje …"
 
 #: src/ui/local-resource-entry.ui:6
 msgid "This resource is missing."
-msgstr ""
+msgstr "Ovaj resurs nedostaje."
 
 #: src/ui/local-resource-entry.ui:10
 msgid "Browse"
@@ -2089,7 +2044,6 @@ msgid "Close"
 msgstr "Zatvori"
 
 #: src/ui/new.ui:66
-#, fuzzy
 msgid "Bottle Information"
 msgstr "Podaci butelje"
 
@@ -2106,7 +2060,6 @@ msgid "Application"
 msgstr "Program"
 
 #: src/ui/new.ui:93
-#, fuzzy
 msgid "An environment improved for Windows applications."
 msgstr "Poboljšano okruženje za Windows programe."
 
@@ -2131,7 +2084,6 @@ msgid "Enable versioning to save and restore the bottle to a state."
 msgstr "Aktiviraj verzioniranje za spremanje i obnavljanje stanja butelje."
 
 #: src/ui/new.ui:128
-#, fuzzy
 msgid "Unlinked Home Directory"
 msgstr "Nepovezana početna mapa"
 
@@ -2165,13 +2117,12 @@ msgid "Choose a custom recipe for the environment if you have one."
 msgstr ""
 
 #: src/ui/new.ui:185
-#, fuzzy
 msgid "Custom Path"
-msgstr "Prilagođeno"
+msgstr "Prilagođena staza"
 
 #: src/ui/new.ui:186
 msgid "Store this bottle in another place."
-msgstr ""
+msgstr "Spremi ovu butelju na jedno drugo mjesto."
 
 #: src/ui/new.ui:273
 msgid "Bottle created"
@@ -2179,44 +2130,47 @@ msgstr "Butelja je stvorena"
 
 #: src/ui/onboard.ui:36
 msgid "Previous"
-msgstr ""
+msgstr "Prethodno"
 
 #: src/ui/onboard.ui:62
 msgid "Welcome to Bottles"
-msgstr "Butelje"
+msgstr "Dobro došao, dobro došla u Butelje"
 
 #: src/ui/onboard.ui:63
 msgid ""
 "Run Windows Software on Linux.\n"
 "                                                "
 msgstr ""
+"Pokreni Windows softver na Linuxu.\n"
+"                                                "
 
 #: src/ui/onboard.ui:71
-#, fuzzy
 msgid "Windows in Bottles"
-msgstr "Vrsta prozora"
+msgstr "Windows u Butelje"
 
 #: src/ui/onboard.ui:72
 msgid ""
 "Bottles uses compatibility runners to provide isolated containerized Windows-"
 "like environments where programs run."
 msgstr ""
+"Bottles koristi pokretače za kompatibilnost kako bi osigurao izolirana "
+"okruženja nalik Windowsu u kontejnerima u kojima se pokreću programi."
 
 #: src/ui/onboard.ui:79
 msgid "Almost Done"
-msgstr ""
+msgstr "Skoro gotovo"
 
 #: src/ui/onboard.ui:80
 msgid "We need a few more minutes to set everything up.."
-msgstr ""
+msgstr "Trebamo još par minuta kako bismo sve postavili …"
 
 #: src/ui/onboard.ui:88
 msgid "Continue"
-msgstr ""
+msgstr "Nastavi"
 
 #: src/ui/onboard.ui:113
 msgid "All ready!"
-msgstr ""
+msgstr "Sve je spremno!"
 
 #: src/ui/onboard.ui:119
 msgid "Start using Bottles"
@@ -2231,12 +2185,10 @@ msgid "General"
 msgstr "Opće"
 
 #: src/ui/preferences.ui:16
-#, fuzzy
 msgid "Appearance"
 msgstr "Izgled"
 
 #: src/ui/preferences.ui:19
-#, fuzzy
 msgid "Show Update Date"
 msgstr "Pokaži datum aktualiziranja"
 
@@ -2249,7 +2201,6 @@ msgid "Show notifications for downloads and installs."
 msgstr "Pokaži obavijesti za preuzimanja i instalacije."
 
 #: src/ui/preferences.ui:48
-#, fuzzy
 msgid "Temp files"
 msgstr "Privremene datoteke"
 
@@ -2258,22 +2209,18 @@ msgid "Clean temp files when Bottles launches?"
 msgstr "Izbrisati privremene datoteke kad se pokrene program Butelje?"
 
 #: src/ui/preferences.ui:60
-#, fuzzy
 msgid "Close Bottles after starting a program"
 msgstr "Zatvori Butelje nakon pokretanja jednog programa"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager"
-msgstr ""
-"Zatvori Butelje nakon pokretanja jednog programa iz upravljača datoteka"
+msgstr "Zatvori Butelje nakon pokretanja jednog programa iz upravljača datoteka"
 
 #: src/ui/preferences.ui:74
 msgid "Advanced"
 msgstr "Napredno"
 
 #: src/ui/preferences.ui:77
-#, fuzzy
 msgid "Custom bottles path (requires restart)"
 msgstr "Prilagođena staza butelja (zahtijeva ponovno pokretanje)"
 
@@ -2282,18 +2229,16 @@ msgid "Runners"
 msgstr "Pokretači"
 
 #: src/ui/preferences.ui:116
-#, fuzzy
 msgid "Pre-release"
 msgstr "Predizdanje"
 
 #: src/ui/preferences.ui:117
 msgid "Display unstable versions of runners."
-msgstr ""
+msgstr "Prikaži nestabilne verzije pokretača."
 
 #: src/ui/preferences.ui:133
-#, fuzzy
 msgid "DLL Components"
-msgstr "Verzija komponente"
+msgstr "DLL komponente"
 
 #: src/ui/preferences.ui:146
 msgid "DXVK-NVAPI"
@@ -2317,7 +2262,6 @@ msgid "Steam Proton Prefixes"
 msgstr "Steam Proton mape"
 
 #: src/ui/preferences.ui:182 src/ui/preferences.ui:194
-#, fuzzy
 msgid "In early development (requires restart)"
 msgstr "U ranoj fazi razvoja (zahtijeva ponovno pokretanje)"
 
@@ -2335,7 +2279,7 @@ msgstr "Promijeni opcije pokretanja …"
 
 #: src/ui/program-entry.ui:45
 msgid "Add to My Library"
-msgstr ""
+msgstr "Dodaj u moju biblioteku"
 
 #: src/ui/program-entry.ui:50
 #, fuzzy
@@ -2344,26 +2288,23 @@ msgstr "Dodaj unos na radnoj površini"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
-msgstr ""
+msgstr "Dodaj Steamu"
 
 #: src/ui/program-entry.ui:60
 msgid "Rename…"
 msgstr "Preimenuj …"
 
 #: src/ui/program-entry.ui:69
-#, fuzzy
 msgid "Hide Program"
-msgstr "Programi"
+msgstr "Sakrij program"
 
 #: src/ui/program-entry.ui:74
-#, fuzzy
 msgid "Show Program"
-msgstr "Programi"
+msgstr "Pokaži program"
 
 #: src/ui/program-entry.ui:79
-#, fuzzy
 msgid "Remove from List"
-msgstr "Ukloni iz programa"
+msgstr "Ukloni iz popisa"
 
 #: src/ui/state-entry.ui:23
 msgid "Restore this state"
@@ -2375,25 +2316,23 @@ msgstr "Izbriši poruku"
 
 #: src/ui/window.ui:20
 msgid "Your Library"
-msgstr ""
+msgstr "Tvoja biblioteka"
 
 #: src/ui/window.ui:25
 msgid "Import/Export…"
 msgstr "Uvezi/Izvezi …"
 
 #: src/ui/window.ui:39
-#, fuzzy
 msgid "Support"
-msgstr "Izvoz"
+msgstr "Podrška"
 
 #: src/ui/window.ui:49
 msgid "Forums"
 msgstr "Forumi"
 
 #: src/ui/window.ui:54
-#, fuzzy
 msgid "Health Check"
-msgstr "Provjera zdravlja"
+msgstr "Provjera stanja"
 
 #: src/ui/window.ui:59
 msgid "About Bottles"
