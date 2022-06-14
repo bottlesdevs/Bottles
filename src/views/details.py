@@ -25,6 +25,7 @@ from bottles.utils.common import open_doc_url
 from bottles.widgets.page import PageRow
 
 from bottles.backend.managers.steam import SteamManager
+from bottles.backend.managers.epicgamesstore import EpicGamesStoreManager
 from bottles.backend.models.result import Result
 from bottles.backend.wine.wineserver import WineServer
 
@@ -302,6 +303,13 @@ class DetailsView(Adw.Bin):
                     and SteamManager.is_steam_supported(is_windows=True, config=self.config):
                 programs_names = [p.get("name", "") for p in programs]
                 for app in SteamManager.get_installed_apps_as_programs(True, self.config):
+                    if app["name"] not in programs_names:
+                        programs.append(app)
+
+            if self.window.settings.get_boolean("epic-games") \
+                    and EpicGamesStoreManager.is_epic_supported(self.config):
+                programs_names = [p.get("name", "") for p in programs]
+                for app in EpicGamesStoreManager.get_installed_games(self.config):
                     if app["name"] not in programs_names:
                         programs.append(app)
 

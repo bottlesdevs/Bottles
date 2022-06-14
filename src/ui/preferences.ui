@@ -35,9 +35,21 @@
                             <object class="AdwActionRow">
                                 <property name="title" translatable="yes">List Steam Apps in Programs List</property>
                                 <property name="subtitle" translatable="yes">Requires Steam for Windows installed in the bottle.</property>
-                                <property name="activatable-widget">switch_notifications</property>
+                                <property name="activatable-widget">switch_steam_programs</property>
                                 <child>
                                     <object class="GtkSwitch" id="switch_steam_programs">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title" translatable="yes">List Epic Games in Programs List</property>
+                                <property name="subtitle" translatable="yes">Requires Epic Games Store installed in the bottle.</property>
+                                <property name="activatable-widget">switch_epic_games</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_epic_games">
                                         <property name="valign">center</property>
                                     </object>
                                 </child>

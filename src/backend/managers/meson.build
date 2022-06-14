@@ -19,6 +19,7 @@ bottles_sources = [
   'repository.py',
   'template.py',
   'steam.py',
+  'epicgamesstore.py',
 ]
 
 install_data(bottles_sources, install_dir: managersdir)
