@@ -117,4 +117,5 @@ title "Executing linuxdeploy-plugin-gtk on appdir"
 print_execution "./linuxdeploy-plugin-gtk.sh --appdir appdir"
 
 title "Building Bottles Appimage"
+export DEPLOY_GTK_VERSION=4
 print_execution "./linuxdeploy-x86_64.AppImage --appdir appdir  --output appimage"
