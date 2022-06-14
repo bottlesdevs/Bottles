@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest # Ubuntu Bionic Beaver
+    runs-on: ubuntu-22.04 # Ubuntu Jammy
     steps:
       - name: Update Packages
         run: |
