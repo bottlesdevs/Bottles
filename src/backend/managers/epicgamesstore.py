@@ -77,5 +77,21 @@ class EpicGamesStoreManager:
                             "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
                             "id": uuid.uuid4(),
                         })
+                        # TODO: epic games should be launched trough the Epic Games Launcher
+                        # data = json.load(f)
+                        # _uri = f"-com.epicgames.launcher://apps/{data['AppName']}?action=launch"
+                        # games.append({
+                        #     "executable": "EpicGamesLauncher.exe",
+                        #     "arguments": f"-opengl -SkipBuildPatchPrereq {_uri}",
+                        #     "name": data["DisplayName"],
+                        #     "path": "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\"
+                        #             "EpicGamesLauncher.exe",
+                        #     "folder": "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32",
+                        #     "icon": "com.usebottles.bottles-program",
+                        #     "dxvk": config["Parameters"]["dxvk"],
+                        #     "vkd3d": config["Parameters"]["vkd3d"],
+                        #     "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
+                        #     "id": uuid.uuid4(),
+                        # })
         return games
 
