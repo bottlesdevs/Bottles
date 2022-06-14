@@ -111,11 +111,11 @@ print_execution "chmod a+x linuxdeploy-x86_64.AppImage"
 
 title "Downloading linuxdeploy-plugin-gtk"
 print_execution "curl -L https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh --output linuxdeploy-plugin-gtk.sh"
+print_execution "sed -i 's/ldd/true/g' ./linuxdeploy-plugin-gtk.sh" #uses static, not dynamic libraries
 print_execution "chmod a+x linuxdeploy-plugin-gtk.sh"
 
 title "Executing linuxdeploy-plugin-gtk on appdir"
 export DEPLOY_GTK_VERSION=4
-sed -i 's/ldd/true/g' ./linuxdeploy-plugin-gtk.sh #uses static, not dynamic libraries
 print_execution "./linuxdeploy-plugin-gtk.sh --appdir appdir"
 
 title "Building Bottles Appimage"
