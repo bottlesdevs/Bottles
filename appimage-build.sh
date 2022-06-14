@@ -115,6 +115,7 @@ print_execution "chmod a+x linuxdeploy-plugin-gtk.sh"
 
 title "Executing linuxdeploy-plugin-gtk on appdir"
 export DEPLOY_GTK_VERSION=4
+sed -i 's/DEPLOY_GTK_VERSION="${DEPLOY_GTK_VERSION:-0}" //g' ./linuxdeploy-plugin-gtk.sh
 print_execution "./linuxdeploy-plugin-gtk.sh --appdir appdir"
 
 title "Building Bottles Appimage"
