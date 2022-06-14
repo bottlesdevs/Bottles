@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-18.04 # Ubuntu Bionic Beaver
+    runs-on: ubuntu-latest # Ubuntu Bionic Beaver
     steps:
       - name: Update Packages
         run: |
