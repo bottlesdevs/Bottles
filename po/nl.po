@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-15 00:12+0000\n"
+"PO-Revision-Date: 2022-06-15 15:02+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/bottles/bottles/nl/"
 ">\n"
@@ -27,7 +27,7 @@ msgstr "Bottles"
 
 #: data/com.usebottles.bottles.desktop.in:4
 msgid "Easily manage wineprefix"
-msgstr "Beheer wineprefixes op een makkelijke manier"
+msgstr "Beheer Wine-prefixes op een makkelijke manier"
 
 #: data/com.usebottles.bottles.desktop.in:13
 msgid "wine;windows;"
@@ -120,8 +120,8 @@ msgstr "Automatische reparatie van bottles wanneer ze kapot zijn"
 #: data/com.usebottles.bottles.appdata.xml.in:27
 msgid "Integrated dependency-installer based on a community-driven repository"
 msgstr ""
-"Geïntegreerd afhankelijkheidsinstallatieprogramma op basis van een "
-"communitybestuurde opslagplaats"
+"Geïntegreerde afhankelijkheids-installer op basis van een communitybestuurde "
+"repository"
 
 #: data/com.usebottles.bottles.appdata.xml.in:28
 msgid "Integrated Task manager for Wine processes"
@@ -141,7 +141,7 @@ msgstr "Back-up en importeer bottles"
 
 #: data/com.usebottles.bottles.appdata.xml.in:32
 msgid "Import Wine prefixes from other managers"
-msgstr "Importeer Wine prefixes van andere managers"
+msgstr "Importeer Wine-prefixes van andere managers"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
 msgid "Bottles versioning"
@@ -325,7 +325,7 @@ msgstr "Logboekbrowser"
 
 #: src/backend/managers/versioning.py:65
 msgid "Generating state files index …"
-msgstr "Index van statusbestanden genereren …"
+msgstr "Index van staatbestanden genereren…"
 
 #: src/backend/managers/versioning.py:144
 msgid "Creating a restore point …"
@@ -337,11 +337,11 @@ msgstr "Kon de statusmap niet aanmaken."
 
 #: src/backend/managers/versioning.py:175
 msgid "Updating index …"
-msgstr "Index bijwerken …"
+msgstr "Index bijwerken…"
 
 #: src/backend/managers/versioning.py:199
 msgid "Updating states …"
-msgstr "Staten bijwerken …"
+msgstr "Staten bijwerken…"
 
 #: src/backend/managers/versioning.py:228
 msgid "Could not update the states file."
@@ -651,7 +651,7 @@ msgstr "Installers"
 
 #: src/views/details.py:169
 msgid "Task manager"
-msgstr "Taakbeheerder"
+msgstr "Taakbeheer"
 
 #: src/views/importer.py:89
 msgid "Backup imported successfully."
@@ -914,7 +914,7 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:37
 msgid "Full Backup…"
-msgstr "Volledige backup…"
+msgstr "Volledige backup maken…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
@@ -938,7 +938,7 @@ msgstr "Alle processen geforceerd stoppen"
 
 #: src/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
-msgstr "Simuleer het afsluiten van een Windows systeem."
+msgstr "Simuleer het afsluiten van Windows."
 
 #: src/ui/details-bottle.ui:92
 msgid "Shutdown"
@@ -946,11 +946,11 @@ msgstr "Afsluiten"
 
 #: src/ui/details-bottle.ui:97
 msgid "Simulate a Windows system reboot."
-msgstr "Simuleer een herstart van het Windows systeem."
+msgstr "Simuleer het opnieuw opstarten van Windows."
 
 #: src/ui/details-bottle.ui:98
 msgid "Reboot"
-msgstr "Herstart"
+msgstr "Opnieuw opstarten"
 
 #: src/ui/details-bottle.ui:117
 msgid "Run with Arguments…"
@@ -1035,15 +1035,15 @@ msgstr "Taakbeheer"
 
 #: src/ui/details-bottle.ui:281
 msgid "Manage processes with the Wine task manager."
-msgstr "Beheer processen met de Wine taakmanager."
+msgstr "Beheer processen met het Wine-taakbeheer."
 
 #: src/ui/details-bottle.ui:292
 msgid "Debug"
-msgstr "Debug"
+msgstr "Foutopsporing"
 
 #: src/ui/details-bottle.ui:293
 msgid "Debug wine processes."
-msgstr "Debug wine processen."
+msgstr "Toon uitvoer van Wine-processen."
 
 #: src/ui/details-bottle.ui:304
 msgid "Wine Configuration"
@@ -1051,11 +1051,11 @@ msgstr "Wine-configuratie"
 
 #: src/ui/details-bottle.ui:305
 msgid "Adjust internal settings."
-msgstr "Interne instellingen aanpassen."
+msgstr "Pas interne instellingen aan."
 
 #: src/ui/details-bottle.ui:316
 msgid "Uninstaller"
-msgstr "Deïnstallateur"
+msgstr "Uninstaller"
 
 #: src/ui/details-bottle.ui:317
 msgid "Uninstall programs using Wine uninstaller."
@@ -1103,7 +1103,7 @@ msgstr "Meld een probleem of een ontbrekende afhankelijkheid."
 
 #: src/ui/details-dependencies.ui:63
 msgid "Report missing dependency"
-msgstr "Meld ontbrekende afhankelijkheid"
+msgstr "Ontbrekende afhankelijkheid melden"
 
 #: src/ui/details-dependencies.ui:68
 msgid "Read documentation about dependencies."
@@ -1211,11 +1211,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:88
 msgid "Ultra Quality"
-msgstr "Ultra Kwaliteit"
+msgstr "Beste kwaliteit"
 
 #: src/ui/details-preferences.ui:89
 msgid "Quality"
-msgstr "Kwaliteit"
+msgstr "Hogere kwaliteit"
 
 #: src/ui/details-preferences.ui:90
 msgid "Balanced"
@@ -1223,7 +1223,7 @@ msgstr "Gebalanceerd"
 
 #: src/ui/details-preferences.ui:91
 msgid "Performance"
-msgstr "Prestaties"
+msgstr "Hogere prestaties"
 
 #: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
 msgid "LatencyFleX"
@@ -1425,7 +1425,7 @@ msgstr "Futex2"
 
 #: src/ui/details-preferences.ui:455
 msgid "Windows version"
-msgstr "Windows versie"
+msgstr "Windows-versie"
 
 #: src/ui/details-preferences.ui:458
 msgid "Updating Windows version, please wait…"
@@ -1453,7 +1453,7 @@ msgstr "Hetzelfde als de Bottles-versie, maar geleverd door Steam."
 
 #: src/ui/details-preferences.ui:511
 msgid "GameMode"
-msgstr "GameMode"
+msgstr "Gamemodus"
 
 #: src/ui/details-preferences.ui:512
 msgid "Optimise gaming performance on demand."
@@ -1514,7 +1514,7 @@ msgstr "Audiovertraging verminderen"
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
 msgstr ""
 "Stel de vertraging van PulseAudio in op 60 ms om de audiokwaliteit te "
-"verbeteren"
+"verbeteren."
 
 #: src/ui/details-preferences.ui:623
 msgid "Development and Debugging"
@@ -1539,12 +1539,12 @@ msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
-"Een Vulkan en OpenGL overlay voor het monitoren van FPS, temperaturen, CPU/"
-"GPU belasting en meer."
+"Een Vulkan- en OpenGL-overlay voor het bijhouden van FPS, temperaturen, CPU-/"
+"GPU-belasting en meer."
 
 #: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
-msgstr "OBS Vulkan Capture"
+msgstr "OBS-Vulkan-opname"
 
 #: src/ui/details-preferences.ui:652
 msgid "Toggle OBS game capture for all programs."
@@ -1556,7 +1556,7 @@ msgstr "'fixme'-logboeken van Wine"
 
 #: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
-msgstr "Log code paden die niet geïmplementeerd zijn in Wine."
+msgstr "Log codepaden die niet in Wine zijn geïmplementeerd."
 
 #: src/ui/details-programs.ui:9
 msgid "No Programs found"
@@ -1585,7 +1585,7 @@ msgstr "Een aangepast uitvoerbaar pad toevoegen"
 
 #: src/ui/details-programs.ui:56
 msgid "Search for installed programs"
-msgstr "Zoek naar geïnstalleerde programma's"
+msgstr "Zoeken naar geïnstalleerde programma's"
 
 #: src/ui/details-taskmanager.ui:18
 msgid "Refresh"
@@ -1617,7 +1617,7 @@ msgstr "Sla de bottle-status op."
 
 #: src/ui/details-versioning.ui:74
 msgid "Create new state"
-msgstr "Creëer nieuwe staat"
+msgstr "Nieuwe staat aanmaken"
 
 #: src/ui/details.ui:76
 msgid "Operations"
@@ -2272,7 +2272,7 @@ msgstr "Toon instabiele versies van runners."
 
 #: src/ui/preferences.ui:133
 msgid "DLL Components"
-msgstr "DLL-Componenten"
+msgstr "DLL-componenten"
 
 #: src/ui/preferences.ui:146
 msgid "DXVK-NVAPI"
