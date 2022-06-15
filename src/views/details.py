@@ -103,6 +103,7 @@ class DetailsView(Adw.Bin):
     def __on_leaflet_folded(self, widget, *args):
         folded = widget.get_folded()
         self.sidebar_headerbar.set_show_end_title_buttons(folded)
+        self.content_headerbar.set_show_start_title_buttons(folded)
         self.btn_back_sidebar.set_visible(folded)
 
     def __on_page_change(self, *args):
