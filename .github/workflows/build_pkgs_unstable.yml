@@ -26,7 +26,7 @@ jobs:
            cd /opt && mv squashfs-root appimagetool-x86_64.AppDir && ls && ln -s /opt/appimagetool-x86_64.AppDir/AppRun /usr/bin/appimagetool 
 
       - name: Install appimage-builder tool
-        run: yes | pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git#6678a4829b1b7304dbe2ea98c7e9c88ba0526e1b
+        run: yes | pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git#a08ae8d300d9632d78865003c974175dcb90ce21
 
       - name: Build AppImage
         run: appimage-builder --recipe AppImageBuilder.yml --skip-test
