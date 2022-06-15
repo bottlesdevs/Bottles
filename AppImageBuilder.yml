@@ -82,7 +82,7 @@ AppDir:
   apt:
     arch: [amd64, i386]
     sources:
-      - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse'
+      - sourceline: 'deb http://archive.ubuntu.com/ubuntu/ kinetic main restricted universe multiverse'
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
 
     include:
@@ -146,7 +146,7 @@ AppDir:
   files:
     include:
       - AppDir/usr/lib/x86_64-linux-gnu/libffi.so.8
-      - AppDir/usr/lib/x86_64-linux-gnu/libhandy-1.so.0
+      - AppDir/usr/lib/x86_64-linux-gnu/libadwaita-1.so.0
 
     exclude:
       - AppDir/usr/lib/x86_64-linux-gnu/gconv
