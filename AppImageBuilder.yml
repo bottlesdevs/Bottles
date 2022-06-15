@@ -66,9 +66,9 @@ script:
   
   # Install LibAdwaita
   - git clone https://gitlab.gnome.org/GNOME/libadwaita.git && cd ./libadwaita
-  - git reset --hard 5cb00a274318b870f4b3ff09ed8f24d52f11f7de
-  - mkdir build && DESTDIR=../../AppDir meson build -Dtests=false -Dexamples=false --prefix=/usr
-  - cd ./build && ninja install && cd ../../ && rm -rf ./libadwaita
+  - git reset --hard 5cb00a274318b870f4b3ff09ed8f24d52f11f7de && export DESTDIR=../../AppDir
+  - mkdir build && meson build -Dtests=false -Dexamples=false --prefix=/usr
+  - cd ./build && ninja install && cd ../../ && rm -rf ./libadwaita && unset DESTDIR
 
 AppDir:
   path: ./AppDir
