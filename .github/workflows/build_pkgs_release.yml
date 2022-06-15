@@ -40,10 +40,6 @@ jobs:
           sudo mv appimage-builder-x86_64.AppImage /usr/bin/appimage-builder
       - name: Build AppImage
         run: sudo appimage-builder --recipe AppImageBuilder.yml --skip-test
-      - name: Rename packages
-        run: |
-          sudo mv Bottles-*-x86_64.AppImage Bottles-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage
-          sudo mv Bottles-*-x86_64.AppImage.zsync Bottles-${{ steps.get_version.outputs.VERSION }}-x86_64.AppImage.zsync
 
       # Deb Build
       # --------------------------------------
