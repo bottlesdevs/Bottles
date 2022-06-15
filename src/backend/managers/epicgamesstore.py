@@ -78,20 +78,25 @@ class EpicGamesStoreManager:
                             "id": uuid.uuid4(),
                         })
                         # TODO: epic games should be launched trough the Epic Games Launcher
+                        #       btw seems like the com.epicgames.launcher protocol is not
+                        #       working also tried in other wineprefix manager and it doesn't
+                        #       work, we will keep this disabled and launching the game
+                        #       executable directly until it got fixed.
                         # data = json.load(f)
-                        # _uri = f"-com.epicgames.launcher://apps/{data['AppName']}?action=launch"
+                        # _uri = f"-com.epicgames.launcher://apps/{data['AppName']}?action=launch&silent=true"
+                        # _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
+                        #         "EpicGamesLauncher.exe"
+                        # _folder = ManagerUtils.get_exe_parent_dir(config, _path)
                         # games.append({
                         #     "executable": "EpicGamesLauncher.exe",
                         #     "arguments": f"-opengl -SkipBuildPatchPrereq {_uri}",
                         #     "name": data["DisplayName"],
-                        #     "path": "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\"
-                        #             "EpicGamesLauncher.exe",
-                        #     "folder": "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32",
+                        #     "path": _path,
+                        #     "folder": _folder,
                         #     "icon": "com.usebottles.bottles-program",
                         #     "dxvk": config["Parameters"]["dxvk"],
                         #     "vkd3d": config["Parameters"]["vkd3d"],
                         #     "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                        #     "id": uuid.uuid4(),
+                        #     "id": str(uuid.uuid4()),
                         # })
         return games
-
