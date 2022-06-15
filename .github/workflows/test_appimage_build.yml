@@ -19,7 +19,7 @@ jobs:
           sudo pip3 install ninja
 
       - name: Repo cloning
-        run: git clone https://github.com/bottlesdevs/Bottles
+        run: git clone -b $GITHUB_REF_NAME https://github.com/bottlesdevs/Bottles
 
       - name: g++ version check
         run: |
