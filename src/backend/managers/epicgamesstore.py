@@ -57,46 +57,50 @@ class EpicGamesStoreManager:
         games = []
         path = EpicGamesStoreManager.find_games_path(config)
 
-        if path is not None:
-            for file in os.listdir(path):
-                if file.endswith(".item"):
-                    with open(os.path.join(path, file), "r") as f:
-                        data = json.load(f)
-                        _path = f"{data['InstallLocation']}/{data['LaunchExecutable']}"
-                        _executable = _path.split("\\")[-1]
-                        _folder = ManagerUtils.get_exe_parent_dir(config, _path)
-                        games.append({
-                            "executable": _executable,
-                            "arguments": "",
-                            "name": data["DisplayName"],
-                            "path": _path,
-                            "folder": _folder,
-                            "icon": "com.usebottles.bottles-program",
-                            "dxvk": config["Parameters"]["dxvk"],
-                            "vkd3d": config["Parameters"]["vkd3d"],
-                            "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                            "id": uuid.uuid4(),
-                        })
-                        # TODO: epic games should be launched trough the Epic Games Launcher
-                        #       btw seems like the com.epicgames.launcher protocol is not
-                        #       working also tried in other wineprefix manager and it doesn't
-                        #       work, we will keep this disabled and launching the game
-                        #       executable directly until it got fixed.
-                        # data = json.load(f)
-                        # _uri = f"-com.epicgames.launcher://apps/{data['AppName']}?action=launch&silent=true"
-                        # _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
-                        #         "EpicGamesLauncher.exe"
-                        # _folder = ManagerUtils.get_exe_parent_dir(config, _path)
-                        # games.append({
-                        #     "executable": "EpicGamesLauncher.exe",
-                        #     "arguments": f"-opengl -SkipBuildPatchPrereq {_uri}",
-                        #     "name": data["DisplayName"],
-                        #     "path": _path,
-                        #     "folder": _folder,
-                        #     "icon": "com.usebottles.bottles-program",
-                        #     "dxvk": config["Parameters"]["dxvk"],
-                        #     "vkd3d": config["Parameters"]["vkd3d"],
-                        #     "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                        #     "id": str(uuid.uuid4()),
-                        # })
+        if path is None:
+            return []
+
+        for file in os.listdir(path):
+            if not file.endswith(".item"):
+                continue
+
+            with open(os.path.join(path, file), "r") as f:
+                data = json.load(f)
+                _path = f"{data['InstallLocation']}/{data['LaunchExecutable']}"
+                _executable = _path.split("\\")[-1]
+                _folder = ManagerUtils.get_exe_parent_dir(config, _path)
+                games.append({
+                    "executable": _executable,
+                    "arguments": "",
+                    "name": data["DisplayName"],
+                    "path": _path,
+                    "folder": _folder,
+                    "icon": "com.usebottles.bottles-program",
+                    "dxvk": config["Parameters"]["dxvk"],
+                    "vkd3d": config["Parameters"]["vkd3d"],
+                    "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
+                    "id": uuid.uuid4(),
+                })
+                # TODO: epic games should be launched trough the Epic Games Launcher
+                #       btw seems like the com.epicgames.launcher protocol is not
+                #       working also tried in other wineprefix manager and it doesn't
+                #       work, we will keep this disabled and launching the game
+                #       executable directly until it gets fixed.
+                # data = json.load(f)
+                # _uri = f"-com.epicgames.launcher://apps/{data['AppName']}?action=launch&silent=true"
+                # _path = "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\" \
+                #         "EpicGamesLauncher.exe"
+                # _folder = ManagerUtils.get_exe_parent_dir(config, _path)
+                # games.append({
+                #     "executable": "EpicGamesLauncher.exe",
+                #     "arguments": f"-opengl -SkipBuildPatchPrereq {_uri}",
+                #     "name": data["DisplayName"],
+                #     "path": _path,
+                #     "folder": _folder,
+                #     "icon": "com.usebottles.bottles-program",
+                #     "dxvk": config["Parameters"]["dxvk"],
+                #     "vkd3d": config["Parameters"]["vkd3d"],
+                #     "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
+                #     "id": str(uuid.uuid4()),
+                # })
         return games
