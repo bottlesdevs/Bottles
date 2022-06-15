@@ -136,11 +136,12 @@ AppDir:
     - humanity-icon-theme
 
   after_runtime: |
-     rm -f $APPDIR/.bundle.yml
-     rm -rf $APPDIR/usr/share/doc
-     rm -rf $APPDIR/usr/share/man
-     mkdir -p $APPDIR/usr/local/lib/p7zip/ 
-     ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/
+    # rm -f $APPDIR/.bundle.yml
+    # rm -rf $APPDIR/usr/share/doc
+    # rm -rf $APPDIR/usr/share/man
+    # mkdir -p $APPDIR/usr/local/lib/p7zip/ 
+    # ln -s $APPDIR/usr/lib/p7zip/ $APPDIR/usr/local/lib/p7zip/
+    true
 
   files:
     include:
@@ -150,6 +151,8 @@ AppDir:
     exclude:
       - AppDir/usr/lib/x86_64-linux-gnu/gconv
       - AppDir/usr/share/man
+      - AppDir/.bundle.yml
+      - AppDir/usr/share/doc
       - AppDir/usr/share/doc/*/README.*
       - AppDir/usr/share/doc/*/changelog.*
       - AppDir/usr/share/doc/*/NEWS.*
