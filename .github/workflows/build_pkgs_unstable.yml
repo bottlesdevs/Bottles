@@ -31,14 +31,14 @@ jobs:
           sudo mv appimage-builder-x86_64.AppImage /usr/bin/appimage-builder
 
       - name: Build AppImage
-        run: appimage-builder --recipe AppImageBuilder.yml --skip-test
+        run: sudo appimage-builder --recipe AppImageBuilder.yml --skip-test
 
       # Rename and release packages
       # --------------------------------------
       - name: Rename packages
         run: |
-          mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
-          mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
+          sudo mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
+          sudo mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
 
       - name: Upload AppImage to Artifacts
         uses: actions/upload-artifact@v2
