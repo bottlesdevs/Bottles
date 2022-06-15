@@ -56,4 +56,5 @@ jobs:
           automatic_release_tag: ${{ steps.get_version.outputs.VERSION }}
           title: ${{ steps.get_version.outputs.VERSION }}
           files: |
-            ../com.usebottles.bottles*.deb
+            #../com.usebottles.bottles*.deb
+            /home/runner/work/Bottles/Bottles/Bottles-*-x86_64.AppImage
