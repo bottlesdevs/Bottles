@@ -2,5 +2,13 @@
     "python.analysis.extraPaths": [
         "./build/files/lib/python3.9/site-packages",
         "./build/var/run/host/lib/python3.10/site-packages"
-    ]
+    ],
+    "files.watcherExclude": {
+        "**/.dart_tool": true,
+        ".flatpak/**": true,
+        "_build/**": true
+    },
+    "mesonbuild.configureOnOpen": false,
+    "mesonbuild.buildFolder": "_build",
+    "mesonbuild.mesonPath": "/var/home/nahuelwexd/Proyectos/Bottles/.flatpak/meson.sh"
 }
