@@ -222,7 +222,7 @@ class SteamManager:
                 "dxvk": config["Parameters"]["dxvk"],
                 "vkd3d": config["Parameters"]["vkd3d"],
                 "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
-                "id": uuid.uuid4(),
+                "id": str(uuid.uuid4()),
             })
 
         return apps
