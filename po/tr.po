@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-05-08 22:59+0000\n"
-"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
+"PO-Revision-Date: 2022-06-15 06:55+0000\n"
+"Last-Translator: Mücahit <mucahit@tutanota.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/bottles/bottles/"
 "tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -141,9 +141,8 @@ msgid "Import Wine prefixes from other managers"
 msgstr "Wineprefix'leri diğer yöneticilerden içe aktarın"
 
 #: data/com.usebottles.bottles.appdata.xml.in:33
-#, fuzzy
 msgid "Bottles versioning"
-msgstr "Sürüm oluşturmayı kullan"
+msgstr "Bottles sürüm oluşturma"
 
 #: data/com.usebottles.bottles.appdata.xml.in:34
 msgid "... and much more that you can find by installing Bottles!"
@@ -281,7 +280,7 @@ msgstr "Argümanları ilet"
 
 #: src/main.py:201
 msgid "Invalid URI (syntax: bottles:run/<bottle>/<program>)"
-msgstr ""
+msgstr "Geçersiz URI (sözdizimi: bottles:run/<bottle>/<program>)"
 
 #: src/main.py:244
 msgid "[Quit] request received."
@@ -304,14 +303,13 @@ msgid "Loading..."
 msgstr "Yükleniyor..."
 
 #: src/window.py:226
-#, fuzzy
 msgid ""
 "The custom bottles path was not found. Please, check the path in "
 "Preferences.\n"
 "Fall-backing to the default path; no bottles from that path will be listed!"
 msgstr ""
-"Özel şişe yolu bulunamadı. Lütfen Tercihler'de gözden geçirin.\n"
-"Öntanımlı yol kullanılıyor. O yoldan hiçbir şişe listelenmeyecek!"
+"Özel bottles dizini bulunamadı. Lütfen Tercihler'de gözden geçirin.\n"
+"Öntanımlı dizin kullanılıyor. O dizinden hiçbir bottles listelenmeyecek!"
 
 #: src/window.py:282
 msgid "Health check"
@@ -356,7 +354,7 @@ msgstr "Yeni durum [{0}] başarıyla oluşturuldu!"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "Herhangi bir dizin belirtilmedi"
 
 #: src/backend/managers/backup.py:71
 #, python-brace-format
@@ -476,9 +474,8 @@ msgstr ""
 "            Geri bildiriminizi aşağıdaki mevcut raporlardan birinde bildirin."
 
 #: src/dialogs/dlloverrides.py:135
-#, fuzzy
 msgid "No overrides found."
-msgstr "Prefix bulunamadı"
+msgstr "Üstüne yazma bulunamadı."
 
 #: src/dialogs/drives.py:69
 msgid "Choose path"
@@ -504,9 +501,8 @@ msgid "Select"
 msgstr "Seç"
 
 #: src/dialogs/envvars.py:135
-#, fuzzy
 msgid "No environment variables defined"
-msgstr "Ortam değişkenleri"
+msgstr "Ortam değişkenleri tanımlanmadı"
 
 #: src/dialogs/filechooser.py:63 src/ui/dialog-gamescope.ui:22
 #: src/ui/dialog-launch-options.ui:34 src/ui/dialog-local-resources.ui:24
@@ -529,13 +525,13 @@ msgstr "Çalışmadan sonra aktif edilecek komutu seç."
 
 #. endregion
 #: src/dialogs/launchoptions.py:43
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} is already disabled for this bottle."
-msgstr "Sürüm oluşturma bu şişe için etkinleştirildi"
+msgstr "{0} zaten bu bottle için devre dışı bırakıldı."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "Bu ayar bottle'ın varsayılan ayarından farklı."
 
 #: src/dialogs/launchoptions.py:174
 msgid "Choose the script"
@@ -543,7 +539,7 @@ msgstr "Komutu seç"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "Kaynak Dosyasını Seçin"
 
 #: src/views/bottle_details.py:140
 #, python-format
@@ -573,9 +569,9 @@ msgid "Backup created for '{0}'."
 msgstr "Yedekleme şu yola kaydedildi: {0}."
 
 #: src/views/bottle_details.py:256
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Backup failed for '{0}'."
-msgstr "Yedekleme şu yola kaydedildi: {0}."
+msgstr "Yedekleme şu yola kaydedilemedi: {0}."
 
 #: src/views/bottle_details.py:274
 msgid "Export"
@@ -609,7 +605,7 @@ msgstr "Çalıştırılabilir dosyalar için çalışma dizini seç"
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "'{0}' eklendi."
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
@@ -652,28 +648,24 @@ msgid "Task manager"
 msgstr "Görev yöneticisi"
 
 #: src/views/importer.py:89
-#, fuzzy
 msgid "Backup imported successfully."
-msgstr "Yedekleme: [{0}] başarıyla içe aktarıldı."
+msgstr "Yedekleme başarıyla içe aktarıldı."
 
 #: src/views/importer.py:91
-#, fuzzy
 msgid "Import failed."
-msgstr "İçe aktarıcı"
+msgstr "İçe aktarılamadı."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup.."
-msgstr "Yedekleme içe aktarılıyor: {0}"
+msgstr "Yedek içe aktarılıyor..."
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
 msgstr "Bir yedekleme arşivi seçin"
 
 #: src/views/importer.py:117 src/views/importer.py:146
-#, fuzzy
 msgid "Import"
-msgstr "İçe aktarıcı"
+msgstr "İçe aktar"
 
 #: src/views/importer.py:144
 msgid "Choose a configuration file"
@@ -729,9 +721,8 @@ msgid "Upgrade"
 msgstr "Yükselt"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing..."
-msgstr "Kur"
+msgstr "Kuruluyor..."
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -741,12 +732,12 @@ msgstr "{0} için manifesto"
 #: src/widgets/dependency.py:166
 #, python-brace-format
 msgid "'{0}' installed."
-msgstr ""
+msgstr "'{0}' kuruldu."
 
 #: src/widgets/importer.py:66
 #, python-brace-format
 msgid "'{0}' imported."
-msgstr ""
+msgstr "'{0}' içe aktarıldı."
 
 #: src/widgets/installer.py:87
 #, python-brace-format
@@ -755,12 +746,12 @@ msgstr "{0} için inceleme"
 
 #: src/widgets/installer.py:102
 msgid "Installer failed with unknown error"
-msgstr ""
+msgstr "Kurucu bilinmeyen bir hata nedeniyle başarısız oldu"
 
 #: src/widgets/installer.py:133
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} installed."
-msgstr "Kaldırıcı"
+msgstr "{0} kuruldu."
 
 #: src/widgets/installer.py:153
 #, python-brace-format
@@ -770,32 +761,32 @@ msgstr "Adım {self.__step} / {self.steps}"
 #: src/widgets/program.py:202
 #, python-brace-format
 msgid "'{0}' launched."
-msgstr ""
+msgstr "'{0}' başlatıldı."
 
 #: src/widgets/program.py:208
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr "Steam ile başlat"
+msgstr "'{0}' Steam ile başlatıldı."
 
 #: src/widgets/program.py:229
 #, python-brace-format
 msgid "'{0}' hidden."
-msgstr ""
+msgstr "'{0}' gizli."
 
 #: src/widgets/program.py:231
 #, python-brace-format
 msgid "'{0}' showed."
-msgstr ""
+msgstr "'{0}' gösterildi."
 
 #: src/widgets/program.py:254
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' removed."
-msgstr "[{0}] dosya kaldırılacak."
+msgstr "'{0}' kaldırıldı."
 
 #: src/widgets/program.py:268
 #, python-brace-format
 msgid "'{0}' renamed to '{1}'."
-msgstr ""
+msgstr "'{0}', '{1}' olarak yeniden adlandırıldı."
 
 #: src/widgets/program.py:290
 msgid ""
@@ -803,21 +794,24 @@ msgid ""
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
+"Karşılanamayan izinler nedeniyle Masaüstü Girdisi oluşturulamadı.\n"
+"Bu sorunu Flatpak'te düzeltmek için <a href=\"https://www.youtube.com/"
+"watch?v=tPFNg9AU5k4\">videomuza</a> göz atın."
 
 #: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "'{0}' için Masaüstü Girdisi oluşturuldu"
 
 #: src/widgets/program.py:318
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your library"
-msgstr "Kütüphaneme ekle"
+msgstr "'{0}' kütüphanenize eklendi"
 
 #: src/widgets/program.py:323
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' added to your Steam library"
-msgstr "Kütüphaneme ekle"
+msgstr "'{0}' Steam kütüphanenize eklendi"
 
 #: src/widgets/state.py:95
 #, python-brace-format
@@ -850,15 +844,12 @@ msgid "Browse files"
 msgstr "Dosyalara göz atın"
 
 #: src/ui/component-entry.ui:34
-#, fuzzy
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
-"Kurulum başarısız oldu. Bunun nedeni bir depo hatası, kısmi indirme veya "
-"sağlama toplamı uyuşmazlığı olabilir.\n"
-"\n"
-"Tekrar denemek için basın."
+"Kurulum başarısız oldu. Buna repository hatası, kısmi indirme ya da checksum "
+"uyuşmaması neden olabilir. Lütfen tekrar deneyin."
 
 #: src/ui/component-entry.ui:45
 msgid "Download & Install"
@@ -869,9 +860,8 @@ msgid "0%"
 msgstr "% 0"
 
 #: src/ui/dependency-entry.ui:18
-#, fuzzy
 msgid "Show Manifest"
-msgstr "Belirgin göster"
+msgstr "Manifestoyu Göster"
 
 #: src/ui/dependency-entry.ui:23
 msgid "License"
@@ -883,7 +873,7 @@ msgstr "Yeniden yükle"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Hata bildir…"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -902,23 +892,20 @@ msgid "Troubleshooting"
 msgstr "Sorun giderme"
 
 #: src/ui/details-bottle.ui:26
-#, fuzzy
 msgid "Browse Files…"
-msgstr "Dosyalara göz atın"
+msgstr "Dosyalara Göz At…"
 
 #: src/ui/details-bottle.ui:31
-#, fuzzy
 msgid "Duplicate Bottle…"
-msgstr "Şişeyi kopyala"
+msgstr "Bottle'ı Klonla…"
 
 #: src/ui/details-bottle.ui:36 src/ui/importer.ui:86
 msgid "This is the complete archive of your bottle, including personal files."
 msgstr "Kişisel dosyalarınız da dahil, bu sizin şişenizin eksiksiz arşividir."
 
 #: src/ui/details-bottle.ui:37
-#, fuzzy
 msgid "Full Backup…"
-msgstr "Tam yedekleme"
+msgstr "Tam Yedekleme…"
 
 #: src/ui/details-bottle.ui:42 src/ui/importer.ui:80
 msgid ""
@@ -929,19 +916,16 @@ msgstr ""
 "tane oluşturmak istiyorsanız mükemmeldir."
 
 #: src/ui/details-bottle.ui:43
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "Yapılandırmayı dışa aktar"
+msgstr "Yapılandırmayı Dışa Aktar…"
 
 #: src/ui/details-bottle.ui:51
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "Şişeyi sil"
+msgstr "Bottle'ı Sil…"
 
 #: src/ui/details-bottle.ui:86
-#, fuzzy
 msgid "Kill all Processes"
-msgstr "Tüm işlemleri sonlandır"
+msgstr "Tüm İşlemleri Sonlandır"
 
 #: src/ui/details-bottle.ui:91
 msgid "Simulate a Windows system shutdown."
@@ -960,14 +944,12 @@ msgid "Reboot"
 msgstr "Yeniden başlat"
 
 #: src/ui/details-bottle.ui:117
-#, fuzzy
 msgid "Run with Arguments…"
-msgstr "Argümanlarla çalıştır"
+msgstr "Argümanlarla Çalıştır…"
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Launch in Terminal…"
-msgstr "Terminal ile başlat"
+msgstr "Terminalde Başlat…"
 
 #: src/ui/details-bottle.ui:148
 msgid "My bottle"
@@ -999,9 +981,8 @@ msgid "0"
 msgstr "0"
 
 #: src/ui/details-bottle.ui:210
-#, fuzzy
 msgid "Run Executable…"
-msgstr "Dosyayı çalıştır"
+msgstr "Dosyayı Çalıştır…"
 
 #: src/ui/details-bottle.ui:226
 msgid "Layers"
@@ -1009,7 +990,7 @@ msgstr "Katmanlar"
 
 #: src/ui/details-bottle.ui:237
 msgid "Tools"
-msgstr ""
+msgstr "Araçlar"
 
 #: src/ui/details-bottle.ui:241
 msgid "Command Line"
@@ -1029,16 +1010,15 @@ msgstr "Dahili kayıt defterini düzenleyin."
 
 #: src/ui/details-bottle.ui:264
 msgid "Legacy Tools"
-msgstr ""
+msgstr "Eski Araçlar"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
-msgstr ""
+msgstr "Gezgin"
 
 #: src/ui/details-bottle.ui:269
-#, fuzzy
 msgid "Browse internal files with the Wine explorer."
-msgstr "Dahili dosyalara göz atın."
+msgstr "Dahili dosyalara Wine gezgini ile göz atın."
 
 #: src/ui/details-bottle.ui:280
 msgid "Task Manager"
@@ -1057,9 +1037,8 @@ msgid "Debug wine processes."
 msgstr "Wine işlemlerinde hata ayıklayın."
 
 #: src/ui/details-bottle.ui:304
-#, fuzzy
 msgid "Wine Configuration"
-msgstr "Yapılandırma"
+msgstr "Wine Yapılandırması"
 
 #: src/ui/details-bottle.ui:305
 msgid "Adjust internal settings."
@@ -1070,7 +1049,6 @@ msgid "Uninstaller"
 msgstr "Kaldırıcı"
 
 #: src/ui/details-bottle.ui:317
-#, fuzzy
 msgid "Uninstall programs using Wine uninstaller."
 msgstr "Wine kaldırıcıyı kullanarak programları kaldırın."
 
@@ -1079,20 +1057,16 @@ msgid "Control Panel"
 msgstr "Denetim masası"
 
 #: src/ui/details-bottle.ui:329
-#, fuzzy
 msgid "Access the internal Wine Control Panel."
-msgstr "Dahili wine kontrol paneline erişin."
+msgstr "Dahili Wine Kontrol Paneli'ne erişin."
 
 #: src/ui/details-bottle.ui:348
-#, fuzzy
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
-"Kurucular bölümünü veya yukarıdaki \"Dosyayı çalıştır\" düğmesini kullanın."
+msgstr "Kurucular bölümünü veya \"Dosyayı çalıştır\" düğmesini kullanın."
 
 #: src/ui/details-dependencies.ui:13
-#, fuzzy
 msgid "Search for dependencies…"
-msgstr "Bağımlılıkları seç"
+msgstr "Bağımlılıkları ara…"
 
 #: src/ui/details-dependencies.ui:22
 msgid ""
@@ -1109,6 +1083,8 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Bu sayfadaki dosyalar üçüncü parti bir sağlayıcıdan tescilli lisanla "
+"sağlanmaktadır. İndirerek sözleşmeleri kabul etmiş olursunuz."
 
 #: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -1119,9 +1095,8 @@ msgid "Report missing dependency"
 msgstr "Eksik bağımlılığı bildir"
 
 #: src/ui/details-dependencies.ui:68
-#, fuzzy
 msgid "Read documentation about dependencies."
-msgstr "Bağımlılıklar hakkındaki belgeleri okuyun\t"
+msgstr "Bağımlılıklar hakkında bilgi almak için dokümantasyonu okuyun."
 
 #: src/ui/details-dependencies.ui:69 src/ui/details-installers.ui:68
 #: src/ui/details-programs.ui:40 src/ui/details-versioning.ui:81
@@ -1130,38 +1105,35 @@ msgid "Documentation"
 msgstr "Belgelendirme"
 
 #: src/ui/details-dependencies.ui:80
-#, fuzzy
 msgid "Install Selected"
-msgstr "Seçilenleri kur"
+msgstr "Seçilenleri Kur"
 
 #: src/ui/details-dependencies.ui:81
 msgid "We strongly advise against installing multiple dependencies at once."
 msgstr "Aynı anda birden çok bağımlılık kurmamanızı şiddetle tavsiye ederiz."
 
 #: src/ui/details-dependencies.ui:88
-#, fuzzy
 msgid "Select Dependencies"
-msgstr "Bağımlılıkları seç"
+msgstr "Bağımlılıkları Seç"
 
 #: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:62
 #: src/ui/window.ui:96
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #: src/ui/details-installers.ui:13
-#, fuzzy
 msgid "Search for Programs…"
-msgstr "Kurulu programları arayın"
+msgstr "Programları Arayın…"
 
 #: src/ui/details-installers.ui:48
-#, fuzzy
 msgid "No installers found"
-msgstr "Yükleyici bulunamadı!"
+msgstr "Kurucu bulunamadı"
 
 #: src/ui/details-installers.ui:51
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"Repository erişilebilir değil veya hiçbir kurucu bu bottle ile uyumlu değil."
 
 #: src/ui/details-preferences.ui:8
 msgid "Bottle Details"
@@ -1201,9 +1173,8 @@ msgid "Updating VKD3D, please wait…"
 msgstr "VKD3D güncelleniyor, lütfen bekleyin…"
 
 #: src/ui/details-preferences.ui:61
-#, fuzzy
 msgid "DLSS (DXVK-NVAPI)"
-msgstr "DLSS'yi (DXVK-NVAPI) etkinleştir"
+msgstr "DLSS (DXVK-NVAPI)"
 
 #: src/ui/details-preferences.ui:62
 msgid "Provide DLSS support if available and Nvidia's NVAPI."
@@ -1216,14 +1187,13 @@ msgstr "DXVK-NVAPI güncelleniyor, lütfen bekleyin…"
 
 #: src/ui/details-preferences.ui:80
 msgid "FSR"
-msgstr ""
+msgstr "FSR"
 
 #: src/ui/details-preferences.ui:81
-#, fuzzy
 msgid ""
 "FSR uses cutting-edge up-scaling technologies to help boost your framerate."
 msgstr ""
-"FSR, kare hızlarınızı artırmanıza yardımcı olmak için en son yükseltme "
+"FSR, kare hızınızı artırmanıza yardımcı olmak için cutting-up ve up-scaling "
 "teknolojilerini kullanır."
 
 #: src/ui/details-preferences.ui:88
@@ -1247,7 +1217,6 @@ msgid "LatencyFleX"
 msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
-#, fuzzy
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
 "NVIDIA Reflex için bir alternatif. Bazı hile önleme programları tarafından "
@@ -1262,9 +1231,8 @@ msgid "Improves performance at the cost of increased power usage."
 msgstr "Artan güç kullanımı pahasına performansı iyileştirir."
 
 #: src/ui/details-preferences.ui:140
-#, fuzzy
 msgid "vkBasalt"
-msgstr "vkBasalt kullan"
+msgstr "vkBasalt"
 
 #: src/ui/details-preferences.ui:141
 msgid ""
@@ -1275,14 +1243,12 @@ msgstr ""
 "sonrası katmanıdır."
 
 #: src/ui/details-preferences.ui:151
-#, fuzzy
 msgid "Display Settings"
-msgstr "Görüntü ayarları"
+msgstr "Görüntü Ayarları"
 
 #: src/ui/details-preferences.ui:155
-#, fuzzy
 msgid "Virtual Desktop"
-msgstr "Sanal Masaüstü çözünürlüğü"
+msgstr "Sanal Masaüstü"
 
 #: src/ui/details-preferences.ui:156
 msgid "Use the Wine virtual desktop."
@@ -1290,16 +1256,15 @@ msgstr "Wine sanal masaüstünü kullanın."
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr ""
+msgstr "Tam Ekran Mouse Girdisi Algılama"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
 msgstr "Tam ekran olduğunda programın fare girdisini yakalamasına izin verin."
 
 #: src/ui/details-preferences.ui:206
-#, fuzzy
 msgid "Take Focus"
-msgstr "Odaklan"
+msgstr "Odakla"
 
 #: src/ui/details-preferences.ui:207
 msgid "Activate it if the program does not retake focus on switch."
@@ -1307,16 +1272,16 @@ msgstr "Geçiş yapıldığında program yeniden odaklanmazsa etkinleştirin."
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Mouse Çevirme"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
 msgstr ""
+"Mouse gecikmesi veya senkronizasyon bozukluğu yaşıyorsanız bunu değiştirin."
 
 #: src/ui/details-preferences.ui:231
-#, fuzzy
 msgid "Screen Scaling"
-msgstr "Ekran ölçekleme"
+msgstr "Ekran Ölçekleme"
 
 #: src/ui/details-preferences.ui:232
 msgid "Set custom DPI."
@@ -1399,9 +1364,8 @@ msgid "Manage DXVK versions"
 msgstr "DXVK sürümlerini yönetin"
 
 #: src/ui/details-preferences.ui:299
-#, fuzzy
 msgid "Components"
-msgstr "DLL Bileşenleri"
+msgstr "Bileşenler"
 
 #: src/ui/details-preferences.ui:307
 msgid "Updating Runner and components, please wait…"
@@ -1413,26 +1377,22 @@ msgid "DXVK Version"
 msgstr "DXVK Sürümü"
 
 #: src/ui/details-preferences.ui:348
-#, fuzzy
 msgid "VKD3D Version"
-msgstr "VKD3D sürümü"
+msgstr "VKD3D Sürümü"
 
 #: src/ui/details-preferences.ui:372
-#, fuzzy
 msgid "DXVK NVAPI Version"
-msgstr "DXVK NVAPI sürümü"
+msgstr "DXVK NVAPI Sürümü"
 
 #: src/ui/details-preferences.ui:394
-#, fuzzy
 msgid "LatencyFleX Version"
-msgstr "LatencyFleX sürümü"
+msgstr "LatencyFleX Sürümü"
 
 #: src/ui/details-preferences.ui:416
-#, fuzzy
 msgid "Enable synchronization to increase performance of multicore processors."
 msgstr ""
-"Çok çekirdekli işlemcilerin performansını artırmak için eşzamanlamayı "
-"etkinleştir."
+"Çok çekirdekli işlemcilerin performansını artırmak için senkronizasyonu "
+"etkinleştirin."
 
 #: src/ui/details-preferences.ui:417
 msgid "Synchronization"
@@ -1459,41 +1419,36 @@ msgid "Updating Windows version, please wait…"
 msgstr "Windows sürümü güncelleniyor, lütfen bekleyin…"
 
 #: src/ui/details-preferences.ui:487
-#, fuzzy
 msgid "Bottles Runtime"
-msgstr "Şişeler çalışma zamanını kullan"
+msgstr "Bottles Çalışma Zamanı"
 
 #: src/ui/details-preferences.ui:488
-#, fuzzy
 msgid ""
 "Provides a bundle of extra libraries for more compatibility,disable if you "
 "run into issues."
 msgstr ""
-"Daha fazla uyumluluk için bir dizi ek kütüphane sağlar,\n"
-"sorunlarla karşılaşırsanız devre dışı bırakın."
+"Uyumluluğu artırmak için fazladan kütüphane sağlar, sorunla karşılaşırsanız "
+"devre dışı bırakın."
 
 #: src/ui/details-preferences.ui:499
-#, fuzzy
 msgid "Steam Runtime"
-msgstr "Steam çalışma zamanını kullan"
+msgstr "Steam Çalışma Zamanı"
 
 #: src/ui/details-preferences.ui:500
 msgid "The same as the Bottles one but provided by Steam."
 msgstr "Şişeler ile aynı, ancak Steam tarafından sağlanır."
 
 #: src/ui/details-preferences.ui:511
-#, fuzzy
 msgid "GameMode"
-msgstr "Oyun modunu kullan"
+msgstr "Oyun Modu"
 
 #: src/ui/details-preferences.ui:512
 msgid "Optimise gaming performance on demand."
 msgstr "İstendiğinde oyun performansını iyileştir."
 
 #: src/ui/details-preferences.ui:523
-#, fuzzy
 msgid "Gamescope"
-msgstr "Gamescope kullanın"
+msgstr "Gamescope"
 
 #: src/ui/details-preferences.ui:524
 msgid "Use the Gamescope micro-compositor."
@@ -1504,18 +1459,15 @@ msgid "Manage Gamescope settings"
 msgstr "Gamescope ayarlarını yönet"
 
 #: src/ui/details-preferences.ui:545
-#, fuzzy
 msgid "Working Directory"
-msgstr "Çalışma dizini"
+msgstr "Çalışma Dizini"
 
 #: src/ui/details-preferences.ui:546
-#, fuzzy
 msgid "Defaults to the bottle path."
-msgstr "Şişe yolu için öntanımlı."
+msgstr "Bottle dizini için varsayılanlar."
 
 #: src/ui/details-preferences.ui:549 src/ui/dialog-launch-options.ui:64
 #: src/ui/preferences.ui:82
-#, fuzzy
 msgid "Reset to default"
 msgstr "Varsayılana sıfırla"
 
@@ -1534,30 +1486,24 @@ msgid "Environment Variables"
 msgstr "Ortam Değişkenleri"
 
 #: src/ui/details-preferences.ui:594
-#, fuzzy
 msgid "Manage Drives"
-msgstr "Sürücüleri yönet"
+msgstr "Sürücüleri Yönet"
 
 #: src/ui/details-preferences.ui:606
 msgid "Audio"
 msgstr "Ses"
 
 #: src/ui/details-preferences.ui:610
-#, fuzzy
 msgid "Reduce Latency"
-msgstr "PulseAudio gecikmesini azalt"
+msgstr "Gecikmeyi Azalt"
 
 #: src/ui/details-preferences.ui:611
-#, fuzzy
 msgid "Set PulseAudio latency to 60 ms, increasing sound quality"
-msgstr ""
-"Ses kalitesini artırmak için PulseAudio ses gecikmesini 60 milisaniye olarak "
-"ayarla."
+msgstr "PulseAudio gecikmesini 60 ms'ye ayarlarak ses kalitesini artırın"
 
 #: src/ui/details-preferences.ui:623
-#, fuzzy
 msgid "Development and Debugging"
-msgstr "Geliştiriciler ve Hata Ayıklama"
+msgstr "Geliştirme ve Hata Ayıklama"
 
 #: src/ui/details-preferences.ui:627
 msgid "DXVK HUD"
@@ -1586,23 +1532,20 @@ msgid "OBS Vulkan Capture"
 msgstr "OBS Vulkan Yakalama"
 
 #: src/ui/details-preferences.ui:652
-#, fuzzy
 msgid "Toggle OBS game capture for all programs."
-msgstr "Sonraki tüm başlatmalar için OBS oyun yakalamayı aç/kapat."
+msgstr "Tüm programlar için OBS oyun kaydetmeyi aç/kapa."
 
 #: src/ui/details-preferences.ui:663
-#, fuzzy
 msgid "Wine 'fixme' Logs"
-msgstr "Wine fixme günlüklerini etkinleştir"
+msgstr "Wine 'fixme' Günlükleri"
 
 #: src/ui/details-preferences.ui:664
 msgid "Log code paths that are unimplemented in Wine."
 msgstr "Wine'da uygulanmayan günlük kodu yolları."
 
 #: src/ui/details-programs.ui:9
-#, fuzzy
 msgid "No Programs found"
-msgstr "Program bulunamadı"
+msgstr "Hiçbir program bulunamadı"
 
 #: src/ui/details-programs.ui:10
 #, fuzzy
