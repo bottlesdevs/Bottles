@@ -12,23 +12,23 @@ jobs:
       # Dependencies
       # --------------------------------------
       - name: Install build dependencies
-        run: | 
-          apt update
-          DEBIAN_FRONTEND=noninteractive apt install -y libfuse2 gstreamer1.0-tools zstd debhelper python3 python3-pip python3-setuptools python3-yaml python3-requests gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind wget git libhandy-1-0 libhandy-1-dev appstream-util
+        run: |
+          sudo apt update
+          DEBIAN_FRONTEND=noninteractive sudo apt install -y libfuse2 gstreamer1.0-tools zstd debhelper python3 python3-pip python3-setuptools python3-yaml python3-requests gettext build-essential patchelf librsvg2-dev desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace ninja-build meson winbind wget git libhandy-1-0 libhandy-1-dev appstream-util
 
       # AppImage Build
       # --------------------------------------
       - name: Install appimagetool
         run: |
-           wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /opt/appimagetool-x86_64.AppImage
-           cd /opt && chmod +x appimagetool-x86_64.AppImage && ./appimagetool-x86_64.AppImage --appimage-extract 
-           cd /opt && mv squashfs-root appimagetool-x86_64.AppDir && ls && ln -s /opt/appimagetool-x86_64.AppDir/AppRun /usr/bin/appimagetool 
+           sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /opt/appimagetool-x86_64.AppImage
+           cd /opt && sudo chmod +x appimagetool-x86_64.AppImage && sudo ./appimagetool-x86_64.AppImage --appimage-extract 
+           cd /opt && sudo mv squashfs-root appimagetool-x86_64.AppDir && ls && sudo ln -s /opt/appimagetool-x86_64.AppDir/AppRun /usr/bin/appimagetool 
 
       - name: Install appimage-builder tool
         run: |
-          wget -O appimage-builder-x86_64.AppImage https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.0.3/appimage-builder-1.0.3-x86_64.AppImage
-          chmod +x appimage-builder-x86_64.AppImage
-          mv appimage-builder-x86_64.AppImage /usr/bin/appimage-builder
+          sudo wget -O appimage-builder-x86_64.AppImage https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.0.3/appimage-builder-1.0.3-x86_64.AppImage
+          sudo chmod +x appimage-builder-x86_64.AppImage
+          sudo mv appimage-builder-x86_64.AppImage /usr/bin/appimage-builder
 
       - name: Build AppImage
         run: appimage-builder --recipe AppImageBuilder.yml --skip-test
