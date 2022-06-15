@@ -30,3 +30,9 @@ jobs:
           cd Bottles
           chmod +x appimage-build.sh
           sudo ./appimage-build.sh
+      - uses: actions/upload-artifact@v3.0.0
+        with:
+          name: "Bottles-test-appimage"
+          path: /home/runner/work/Bottles/Bottles/Bottles/build/appdir/
+          retention-days: 14
+          if-no-files-found: error
