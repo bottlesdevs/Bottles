@@ -7,7 +7,7 @@ jobs:
   build-packages:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2.4.2
 
       # Dependencies
       # --------------------------------------
@@ -31,23 +31,16 @@ jobs:
           sudo mv appimage-builder-x86_64.AppImage /usr/bin/appimage-builder
 
       - name: Build AppImage
-        run: sudo appimage-builder --recipe AppImageBuilder.yml --skip-test
-
-      # Rename and release packages
-      # --------------------------------------
-      - name: Rename packages
-        run: |
-          sudo mv Bottles-*-x86_64.AppImage Bottles-devel-x86_64.AppImage
-          sudo mv Bottles-*-x86_64.AppImage.zsync Bottles-devel-x86_64.AppImage.zsync
+        run: sed -i 's/^    version: .*$/    version: devel/' AppImageBuilder.yml && sudo appimage-builder --recipe AppImageBuilder.yml --skip-test
 
       - name: Upload AppImage to Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: Unstable Build - Appimage
           path: Bottles-devel-x86_64.AppImage
           
       - name: Upload zsync to Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: Unstable Build - Zsync
           path: Bottles-devel-x86_64.AppImage.zsync
