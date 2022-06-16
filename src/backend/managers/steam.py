@@ -209,7 +209,7 @@ class SteamManager:
             if _acf is None:
                 continue
 
-            _path = _acf["AppState"]["LauncherPath"]
+            _path = _acf["AppState"].get("LauncherPath", "C:\\Program Files (x86)\\Steam\\steam.exe")
             _executable = _path.split("\\")[-1]
             _folder = ManagerUtils.get_exe_parent_dir(config, _path)
             apps.append({

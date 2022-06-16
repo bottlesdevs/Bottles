@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-15 00:12+0000\n"
+"PO-Revision-Date: 2022-06-15 15:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/bottles/bottles/"
 "hr/>\n"
@@ -311,6 +311,9 @@ msgid ""
 "Preferences.\n"
 "Fall-backing to the default path; no bottles from that path will be listed!"
 msgstr ""
+"Staza prilagođenih butelja nije pronađena. Provjeri stazu u Postavkama.\n"
+"Inače će se koristiti standardna staza; nijedna butelja te staze se neće "
+"navesti u popisu!"
 
 #: src/window.py:282
 msgid "Health check"
@@ -355,7 +358,7 @@ msgstr "Uspješno je stvoreno novo stanje [{0}]!"
 
 #: src/backend/managers/backup.py:50 src/backend/managers/backup.py:112
 msgid "No path specified"
-msgstr ""
+msgstr "Staza nije određena"
 
 #: src/backend/managers/backup.py:71
 #, python-brace-format
@@ -381,7 +384,7 @@ msgstr "Neuspjela izrada mape za butelje."
 
 #: src/backend/managers/manager.py:1021
 msgid "Failed to create placeholder directory/file."
-msgstr ""
+msgstr "Neuspjela izrada rezervirane mape/datoteke."
 
 #: src/backend/managers/manager.py:1026
 msgid "Generating bottle configuration…"
@@ -429,11 +432,11 @@ msgstr "Primjenjivanje okruženja: {0} …"
 
 #: src/backend/managers/manager.py:1128
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Koristi se prilagođena konfiguracija okruženja …"
 
 #: src/backend/managers/manager.py:1131
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Konfiguracija nije pronađena ili nije ispravna …"
 
 #: src/backend/managers/manager.py:1148
 msgid "Installing DXVK…"
@@ -535,7 +538,7 @@ msgstr "{0} je već deaktivirano za ovu butelju."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "Ova se postavka razlikuje od standardne postavke butelje."
 
 #: src/dialogs/launchoptions.py:174
 msgid "Choose the script"
@@ -543,7 +546,7 @@ msgstr "Odaberi skripta"
 
 #: src/dialogs/localresources.py:61
 msgid "Select Resource FIle"
-msgstr ""
+msgstr "Odaberi datoteku resursa"
 
 #: src/views/bottle_details.py:140
 #, python-format
@@ -609,7 +612,7 @@ msgstr "Odaberi radnu mapu za izvršne datoteke"
 #: src/views/bottle_programs.py:83
 #, python-brace-format
 msgid "'{0}' added."
-msgstr ""
+msgstr "„{0}” dodan."
 
 #: src/views/bottle_programs.py:87
 msgid "Choose an executable path"
@@ -689,7 +692,6 @@ msgid "Your Bottles"
 msgstr "Tvoje butelje"
 
 #: src/views/new.py:119
-#, fuzzy
 msgid "Choose a recipe file"
 msgstr "Odaberi konfiguracijsku datoteku"
 
@@ -800,11 +802,15 @@ msgid ""
 "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</"
 "a> about how to fix that in Flatpak."
 msgstr ""
+"Nije moguće stvoriti ikonu programa na radnoj površini jer nedostaju "
+"korisnička prava.\n"
+"Pogledaj <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">naš video</"
+"a> o tome kako to popraviti u Flatpaku."
 
 #: src/widgets/program.py:298
 #, python-brace-format
 msgid "Desktop Entry created for '{0}'"
-msgstr ""
+msgstr "Ikona programa na radnoj površini stvorena za „{0}”"
 
 #: src/widgets/program.py:318
 #, python-brace-format
@@ -877,7 +883,7 @@ msgstr "Ponovo instaliraj"
 
 #: src/ui/dependency-entry.ui:43 src/ui/installer-entry.ui:32
 msgid "Report a Bug…"
-msgstr ""
+msgstr "Prijavi grešku …"
 
 #: src/ui/dependency-entry.ui:73
 msgid "Download & Install this dependency"
@@ -893,7 +899,7 @@ msgstr ""
 
 #: src/ui/details-bottle.ui:18
 msgid "Troubleshooting"
-msgstr ""
+msgstr "Ispravljanje grešaka"
 
 #: src/ui/details-bottle.ui:26
 msgid "Browse Files…"
@@ -961,7 +967,7 @@ msgstr "Moja butelja"
 
 #: src/ui/details-bottle.ui:160
 msgid "Win64"
-msgstr ""
+msgstr "Win64"
 
 #: src/ui/details-bottle.ui:168 src/ui/new.ui:76
 msgid "Environment"
@@ -994,7 +1000,7 @@ msgstr "Slojevi"
 
 #: src/ui/details-bottle.ui:237
 msgid "Tools"
-msgstr ""
+msgstr "Alati"
 
 #: src/ui/details-bottle.ui:241
 msgid "Command Line"
@@ -1014,11 +1020,11 @@ msgstr "Uredi unutarnji registar."
 
 #: src/ui/details-bottle.ui:264
 msgid "Legacy Tools"
-msgstr ""
+msgstr "Stari alati"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
-msgstr ""
+msgstr "Preglednik"
 
 #: src/ui/details-bottle.ui:269
 msgid "Browse internal files with the Wine explorer."
@@ -1067,6 +1073,8 @@ msgstr "Pristupi internoj Wine upravljačkoj ploči."
 #: src/ui/details-bottle.ui:348
 msgid "Use the Installers section or the \"Run executable\" button."
 msgstr ""
+"Koristi odjeljak s instalacijskim programima ili gumb „Pokreni izvršnu "
+"datoteku”."
 
 #: src/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
@@ -1078,12 +1086,17 @@ msgid ""
 "compatibility of Windows software. Install from here to meet your program "
 "requirements."
 msgstr ""
+"Ovisnosti su softver, biblioteke i kodeci koji poboljšavaju kompatibilnost "
+"softvera Windows sustava. Instaliraj odavdje kako bi se zadovoljili "
+"programski zahtjevi."
 
 #: src/ui/details-dependencies.ui:34 src/ui/details-installers.ui:33
 msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
+"Datoteke na ovoj stranici pružaju treće strane pod vlasničkom licencom. "
+"Instalacijom tih datoteka slažeš se s njihovim uvjetima licenciranja."
 
 #: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -1118,7 +1131,7 @@ msgstr "Odberi ovisnosti"
 #: src/ui/details-dependencies.ui:95 src/ui/details-installers.ui:62
 #: src/ui/window.ui:96
 msgid "Search"
-msgstr ""
+msgstr "Traži"
 
 #: src/ui/details-installers.ui:13
 msgid "Search for Programs…"
@@ -1132,6 +1145,8 @@ msgstr "Nema instalacijskih programa"
 msgid ""
 "The repository is unreachable or no installer is compatible with this bottle."
 msgstr ""
+"Repozitorij je nedostupan ili nijedan instalacijski program nije "
+"kompatibilan s ovom buteljom."
 
 #: src/ui/details-preferences.ui:8
 msgid "Bottle Details"
@@ -1185,7 +1200,7 @@ msgstr "Aktualiziranje DXVK-NVAPI-a, pričekaj …"
 
 #: src/ui/details-preferences.ui:80
 msgid "FSR"
-msgstr ""
+msgstr "FSR"
 
 #: src/ui/details-preferences.ui:81
 msgid ""
@@ -1212,11 +1227,12 @@ msgstr "Izvođenje"
 
 #: src/ui/details-preferences.ui:108 src/ui/preferences.ui:151
 msgid "LatencyFleX"
-msgstr ""
+msgstr "LatencyFleX"
 
 #: src/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
+"Alternativa za NVIDIA Refleks. Mogu ga otkriti neki „Anti-cheat” programi."
 
 #: src/ui/details-preferences.ui:128
 msgid "Discrete GPU"
@@ -1228,13 +1244,15 @@ msgstr "Poboljšava izvođenje, ali troši više energije."
 
 #: src/ui/details-preferences.ui:140
 msgid "vkBasalt"
-msgstr ""
+msgstr "vkBasalt"
 
 #: src/ui/details-preferences.ui:141
 msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"vkBasalt je Vulkan sloj postprocesiranja za poboljšanje grafičkog prikaza "
+"igara."
 
 #: src/ui/details-preferences.ui:151
 msgid "Display Settings"
@@ -1250,7 +1268,7 @@ msgstr "Koristi Wineovu virtualnu radnu površinu."
 
 #: src/ui/details-preferences.ui:194
 msgid "Fullscreen Mouse Capture"
-msgstr ""
+msgstr "Snimanje unosa mišem u cjeloekranskom prikazu"
 
 #: src/ui/details-preferences.ui:195
 msgid "Let the program capture mouse input when fullscreen."
@@ -1268,11 +1286,11 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:218
 msgid "Mouse Warp"
-msgstr ""
+msgstr "Warp funkcija miša"
 
 #: src/ui/details-preferences.ui:219
 msgid "Change this if you are running into mouse lag or desync."
-msgstr ""
+msgstr "Promijeni ovo ako naiđeš na kašnjenje ili nesinkrono kretanje miša."
 
 #: src/ui/details-preferences.ui:231
 msgid "Screen Scaling"
@@ -1332,11 +1350,11 @@ msgstr "480"
 
 #: src/ui/details-preferences.ui:262
 msgid "Renderer"
-msgstr ""
+msgstr "Iscrtavač"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
-msgstr ""
+msgstr "Odaberi pozadinski sustav koji želiš koristiti za wined3d."
 
 #: src/ui/details-preferences.ui:269
 msgid "gl (default)"
@@ -1344,11 +1362,11 @@ msgstr "gl (standardno)"
 
 #: src/ui/details-preferences.ui:270
 msgid "gdi"
-msgstr ""
+msgstr "gdi"
 
 #: src/ui/details-preferences.ui:271
 msgid "vulkan"
-msgstr ""
+msgstr "vulkan"
 
 #: src/ui/details-preferences.ui:286 src/ui/details-preferences.ui:422
 msgid "System"
@@ -1430,7 +1448,7 @@ msgstr "Vrijeme izvođenja Steama"
 
 #: src/ui/details-preferences.ui:500
 msgid "The same as the Bottles one but provided by Steam."
-msgstr ""
+msgstr "Isto kao za Butelje, ali određuje ga Steam."
 
 #: src/ui/details-preferences.ui:511
 msgid "GameMode"
@@ -1512,17 +1530,19 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:639
 msgid "MangoHud"
-msgstr ""
+msgstr "MangoHud"
 
 #: src/ui/details-preferences.ui:640
 msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"Vulkan i OpenGL sloj za praćenje FPS-a, temperature, opterećenja CPU-a/GPU-a "
+"i još mnogo toga."
 
 #: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
-msgstr ""
+msgstr "OBS Vulkan snimanje"
 
 #: src/ui/details-preferences.ui:652
 msgid "Toggle OBS game capture for all programs."
@@ -1545,10 +1565,13 @@ msgid ""
 "Install programs from the installers section or by running the installer "
 "executable, you can also manually add executables with the \"+\" button."
 msgstr ""
+"Instaliraj programe iz odjeljka za instalacijske programe ili pokretanjem "
+"izvršne datoteke instalacijskog programa. Izvršne datoteke možeš dodati i "
+"pomoću gumba „+”."
 
 #: src/ui/details-programs.ui:31
 msgid "Toggle Hidden"
-msgstr ""
+msgstr "Uključi/Isključi skrivene"
 
 #: src/ui/details-programs.ui:39
 msgid "Read documentation about programs"
@@ -1707,7 +1730,7 @@ msgstr ""
 
 #: src/ui/dialog-env-vars.ui:28
 msgid "Variable name"
-msgstr ""
+msgstr "Ime varijable"
 
 #: src/ui/dialog-env-vars.ui:36
 msgid "Existing variables"
@@ -1745,14 +1768,12 @@ msgid "Extra settings"
 msgstr "Dodatne postavke"
 
 #: src/ui/dialog-gamescope.ui:72
-#, fuzzy
 msgid "Frame rate limit (e.g. 60)"
-msgstr "Ograničenje brzine"
+msgstr "Ograničenje frekvencije (npr. 60)"
 
 #: src/ui/dialog-gamescope.ui:77
-#, fuzzy
 msgid "Frame rate limit (when unfocused)"
-msgstr "Ograničenje brzine (kad nije aktivan prozor)"
+msgstr "Ograničenje frekvencije (kad prozor nije aktivan)"
 
 #: src/ui/dialog-gamescope.ui:82
 msgid "Use integer scaling"
@@ -1848,6 +1869,8 @@ msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
 msgstr ""
+"Ovaj instalacijski program zahtijeva neke lokalne resurse koji se ne mogu "
+"dobiti na jedan drugi način."
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
@@ -1914,14 +1937,12 @@ msgid "Import Bottles backup"
 msgstr "Uvezi sigurnosnu kopiju programa Butelje"
 
 #: src/ui/importer.ui:31
-#, fuzzy
 msgid "Search again for prefixes"
-msgstr "Steam Proton mape"
+msgstr "Ponovo traži mape"
 
 #: src/ui/importer.ui:45
-#, fuzzy
 msgid "No prefixes found"
-msgstr "Nije pronađen nijedan program"
+msgstr "Nije pronađena nijedna mapa"
 
 #: src/ui/importer.ui:46
 msgid ""
@@ -1929,6 +1950,9 @@ msgid ""
 "                                    Use the icon on the top to import a "
 "bottle from a backup"
 msgstr ""
+"Nije pronađena nijedna mapa od Lutrisa, PlayOnLinuxa, itd.\n"
+"                                    Koristi gornju ikonu za uvoz butelje iz "
+"sigurnosne kopije"
 
 #: src/ui/importer.ui:81
 msgid "Configuration"
@@ -1959,9 +1983,8 @@ msgid "Launch with Steam"
 msgstr "Pokreni sa Steamom"
 
 #: src/ui/library.ui:22
-#, fuzzy
 msgid "Search for Prefixes"
-msgstr "Steam Proton mape"
+msgstr "Traži mape"
 
 #: src/ui/library.ui:42 src/ui/preferences.ui:193
 msgid "Library"
@@ -2108,13 +2131,12 @@ msgid "32 bit"
 msgstr "32 bit"
 
 #: src/ui/new.ui:168
-#, fuzzy
 msgid "Custom Recipe"
-msgstr "Koristi Gamescope"
+msgstr "Prilagođena konfiguracija"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Odaberi prilagođenu konfiguraciju za okruženje ako je imaš."
 
 #: src/ui/new.ui:185
 msgid "Custom Path"
@@ -2257,7 +2279,6 @@ msgid "WineBridge"
 msgstr "WineBridge"
 
 #: src/ui/preferences.ui:181
-#, fuzzy
 msgid "Steam Proton Prefixes"
 msgstr "Steam Proton mape"
 
@@ -2282,13 +2303,12 @@ msgid "Add to My Library"
 msgstr "Dodaj u moju biblioteku"
 
 #: src/ui/program-entry.ui:50
-#, fuzzy
 msgid "Add Desktop Entry"
-msgstr "Dodaj unos na radnoj površini"
+msgstr "Dodaj ikonu programa na radnoj površini"
 
 #: src/ui/program-entry.ui:55
 msgid "Add to Steam"
-msgstr "Dodaj Steamu"
+msgstr "Dodaj u Steam"
 
 #: src/ui/program-entry.ui:60
 msgid "Rename…"

@@ -9,7 +9,8 @@ from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
-from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
+from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
+    obs_vkc_available
 from bottles.backend.logger import Logger
 
 logging = Logger()
@@ -168,11 +169,25 @@ class WineCommand:
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
-        if params.get("use_runtime") and not self.terminal:
+        if (params.get("use_runtime") or params.get("use_eac_runtime") or params.get("use_be_runtime")) \
+                and not self.terminal:
             _rb = RuntimeManager.get_runtime_env("bottles")
             if _rb:
-                logging.info("Using Bottles runtime")
+                if params.get("use_runtime"):
+                    logging.info("Using Bottles runtime")
+                if params.get("use_eac_runtime"):
+                    logging.info("Using EasyAntiCheat runtime")
+                if params.get("use_be_runtime"):
+                    logging.info("Using BattlEye runtime")
                 ld += _rb
+                _eac = RuntimeManager.get_eac()
+                _be = RuntimeManager.get_be()
+                if _eac:  # NOTE: should check for runner compatibility with eac (?)
+                    env.add("PROTON_EAC_RUNTIME", _eac)
+                    dll_overrides.append("easyanticheat_x86,easyanticheat_x64=b,n")
+                if _be:  # NOTE: should check for runner compatibility with be (?)
+                    env.add("PROTON_BATTLEYE_RUNTIME", _be)
+                    dll_overrides.append("beclient,beclient_x64=b,n")
             else:
                 logging.warning("Bottles runtime was requested but not found")
 
@@ -192,18 +207,22 @@ class WineCommand:
         # DXVK environment variables
         if params["dxvk"]:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
-            env.add("DXVK_STATE_CACHE_PATH", bottle)
+            env.add("DXVK_STATE_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_state"))
             env.add("STAGING_SHARED_MEMORY", "1")
             env.add("__GL_DXVK_OPTIMIZATIONS", "1")
             env.add("__GL_SHADER_DISK_CACHE", "1")
-            env.add("__GL_SHADER_DISK_CACHE_PATH", bottle)
+            env.add("__GL_SHADER_DISK_CACHE_SKIP_CLEANUP", "1")  # should not be needed anymore
+            env.add("__GL_SHADER_DISK_CACHE_PATH", os.path.join(bottle, "cache", "gl_shader"))
+            env.add("MESA_SHADER_CACHE", os.path.join(bottle, "cache", "mesa_shader"))
+
+        # VKD£D environment variables
+        if params["vkd3d"]:
+            env.add("VKD3D_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "vkd3d_shader"))
 
         # LatencyFleX environment variables
         if params["latencyflex"]:
             _lf_path = ManagerUtils.get_latencyflex_path(config.get("LatencyFleX"))
-            _lf_icd = os.path.join(
-                _lf_path,
-                "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
+            _lf_icd = os.path.join(_lf_path, "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
             env.concat("VK_ICD_FILENAMES", _lf_icd)
 
         # Mangohud environment variables
@@ -224,6 +243,10 @@ class WineCommand:
         if not return_steam_env and params["dxvk_nvapi"]:
             conf = self.__set_dxvk_nvapi_conf(bottle)
             env.add("DXVK_CONFIG_FILE", conf)
+            # NOTE: users reported that DXVK_ENABLE_NVAPI and DXVK_NVAPIHACK must be set to make
+            #       DLSS works. I don't have a GPU compatible with this tech, so I'll trust them
+            env.add("DXVK_NVAPIHACK", "0")
+            env.add("DXVK_ENABLE_NVAPI", "1")
 
             # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
             if DisplayUtils.check_nvidia_device():
@@ -253,8 +276,7 @@ class WineCommand:
             env.add("WINEDEBUG", debug_level)
 
         # LatencyFleX
-        if not return_steam_env \
-                and params["latencyflex"] and params["dxvk_nvapi"]:
+        if not return_steam_env and params["latencyflex"] and params["dxvk_nvapi"]:
             _lf_path = ManagerUtils.get_latencyflex_path(config["LatencyFleX"])
             ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
 

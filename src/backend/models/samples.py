@@ -54,6 +54,8 @@ class Samples:
             "mouse_warp": True,
             "fixme_logs": False,
             "use_runtime": False,
+            "use_eac_runtime": True,
+            "use_be_runtime": True,
             "use_steam_runtime": False,
         },
         "Environment_Variables": {},

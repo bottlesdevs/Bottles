@@ -698,6 +698,23 @@ class Manager:
                 )
             self.local_bottles[_name] = conf_file_yaml
 
+            for p in [
+                os.path.join(_bottle, "cache", "dxvk_state"),
+                os.path.join(_bottle, "cache", "gl_shader"),
+                os.path.join(_bottle, "cache", "mesa_shader"),
+                os.path.join(_bottle, "cache", "vkd3d_shader"),
+            ]:
+                if not os.path.exists(p):
+                    os.makedirs(p)
+
+            for c in os.listdir(_bottle):
+                if c.endswith(".dxvk-cache"):
+                    shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "dxvk_state"))
+                elif "vkd3d-proton.cache" in c:
+                    shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "vkd3d_shader"))
+                elif c == "GLCache":
+                    shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "gl_shader"))
+
         if len(self.local_bottles) > 0 and not silent:
             logging.info("Bottles found:\n - {0}".format("\n - ".join(self.local_bottles)))
 
