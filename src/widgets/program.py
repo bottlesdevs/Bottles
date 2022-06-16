@@ -55,6 +55,7 @@ class ProgramEntry(Adw.ActionRow):
     btn_add_entry = Gtk.Template.Child()
     btn_add_library = Gtk.Template.Child()
     btn_launch_terminal = Gtk.Template.Child()
+    pop_actions = Gtk.Template.Child()
 
     # endregion
 
@@ -90,6 +91,10 @@ class ProgramEntry(Adw.ActionRow):
 
         if program.get("removed"):
             self.add_css_class("removed")
+
+        if program.get("auto_discovered"):
+            self.btn_remove.set_visible(False)
+
         self.btn_hide.set_visible(not program.get("removed"))
         self.btn_unhide.set_visible(program.get("removed"))
 
@@ -197,6 +202,7 @@ class ProgramEntry(Adw.ActionRow):
                 override_vkd3d=vkd3d,
                 override_nvapi=nvapi
             ).run()
+            self.pop_actions.popdown()  # workaround #1640
             return True
 
         self.window.show_toast(_("'{0}' launched.").format(self.program["name"]))
@@ -277,6 +283,7 @@ class ProgramEntry(Adw.ActionRow):
             path_type="custom",
             custom_path=self.program["folder"]
         )
+        self.pop_actions.popdown()  # workaround #1640
 
     def add_entry(self, widget):
         def update(result, error=False):

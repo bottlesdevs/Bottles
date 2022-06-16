@@ -618,7 +618,8 @@ class Manager:
                         "script": "",
                         "dxvk": config["Parameters"]["dxvk"],
                         "vkd3d": config["Parameters"]["vkd3d"],
-                        "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"]
+                        "dxvk_nvapi": config["Parameters"]["dxvk_nvapi"],
+                        "auto_discovered": True
                     })
                     found.append(executable_name)
 
