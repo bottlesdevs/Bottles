@@ -45,7 +45,7 @@ class RuntimeManager:
 
         if runtime:
             for p in runtime:
-                if "EasyAntiCheatRuntime" in p:
+                if "EasyAntiCheatRuntime" in p or "BattlEyeRuntime" in p:
                     continue
                 env += f":{p}"
                 
@@ -65,6 +65,17 @@ class RuntimeManager:
         if runtime:
             for p in runtime:
                 if "EasyAntiCheatRuntime" in p:
+                    return p
+
+        return False
+
+    @staticmethod
+    def get_be():
+        runtime = RuntimeManager.get_runtimes("bottles")
+
+        if runtime:
+            for p in runtime:
+                if "BattlEyeRuntime" in p:
                     return p
 
         return False
@@ -91,9 +102,13 @@ class RuntimeManager:
 
             res = [f"{runtime_path}/{s}" for s in structure]
             eac_path = os.path.join(runtime_path, "EasyAntiCheatRuntime")
+            be_path = os.path.join(runtime_path, "BattlEyeRuntime")
 
             if os.path.isdir(eac_path):
                 res.append(eac_path)
+
+            if os.path.isdir(be_path):
+                res.append(be_path)
 
             return res
 
