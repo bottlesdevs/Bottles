@@ -180,6 +180,7 @@ class WineCommand:
                 _eac = RuntimeManager.get_eac()
                 if _eac:
                     env.add("PROTON_EAC_RUNTIME", _eac)  # NOTE: should check for runner compatibility (?)
+                    dll_overrides.append("easyanticheat_x86,easyanticheat_x64=b,n")
             else:
                 logging.warning("Bottles runtime was requested but not found")
 
