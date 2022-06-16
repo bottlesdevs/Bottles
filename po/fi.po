@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-15 15:02+0000\n"
+"PO-Revision-Date: 2022-06-16 08:19+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/bottles/bottles/"
 "fi/>\n"
@@ -201,9 +201,8 @@ msgid "Temp cleaning"
 msgstr "Väliaikaisten siivous"
 
 #: data/com.usebottles.bottles.gschema.xml:37
-#, fuzzy
 msgid "Clean the temp path when booting the system."
-msgstr "Puhdista väliaikaisten polku käynnistettäessä."
+msgstr "Puhdista väliaikaisten polku järjestelmää käynnistettäessä."
 
 #: data/com.usebottles.bottles.gschema.xml:41
 msgid "Release Candidate"
@@ -219,7 +218,6 @@ msgid "Startup view"
 msgstr "Käynnistysnäkymä"
 
 #: data/com.usebottles.bottles.gschema.xml:47
-#, fuzzy
 msgid "Choose which view the application should be started in."
 msgstr "Valitse, mikä näkymä ladataan sovelluksen käynnistyksen yhteydessä."
 
@@ -350,7 +348,7 @@ msgstr ""
 
 #: src/backend/managers/versioning.py:242
 msgid "Could not update the index file."
-msgstr ""
+msgstr "Indeksitiedostoa ei voitu päivittää."
 
 #: src/backend/managers/versioning.py:268
 #, python-brace-format
@@ -373,16 +371,15 @@ msgstr "Varmuuskopion tuominen: {0}"
 
 #: src/backend/managers/manager.py:922
 msgid "Fail to install components, tried 3 times."
-msgstr ""
+msgstr "Komponenttien asentaminen epäonnistui, yritettiin kolme kertaa."
 
 #: src/backend/managers/manager.py:933
 msgid "Missing essential components. Installing…"
 msgstr "Välttömättömiä komponentteja puuttuu. Asennetaan…"
 
 #: src/backend/managers/manager.py:1009
-#, fuzzy
 msgid "Failed to create bottle directory."
-msgstr "Epäonnistui varmuuskopion luomisessa tiedostolle {0}!"
+msgstr "Pullokansion luominen epäonnistui."
 
 #: src/backend/managers/manager.py:1021
 msgid "Failed to create placeholder directory/file."
@@ -406,13 +403,12 @@ msgid "Wine config updated!"
 msgstr "Winen kokoonpano päivitetty!"
 
 #: src/backend/managers/manager.py:1071
-#, fuzzy
 msgid "Running as Flatpak, sandboxing userdir…"
-msgstr "Suoritetaan flatpakina, luodaan eristettyjä kansioita…"
+msgstr "Suoritetaan flatpakina, eristetään käyttäjähakemisto…"
 
 #: src/backend/managers/manager.py:1073
 msgid "Sandboxing userdir…"
-msgstr ""
+msgstr "Eristetään käyttäjähakemisto…"
 
 #: src/backend/managers/manager.py:1091
 msgid "Setting Windows version…"
@@ -420,7 +416,7 @@ msgstr "Asetetaan Windows-versiota…"
 
 #: src/backend/managers/manager.py:1099
 msgid "Apply CMD default settings…"
-msgstr ""
+msgstr "Toteuta CMD-oletusasetukset…"
 
 #: src/backend/managers/manager.py:1107
 msgid "Optimizing environment…"
@@ -433,11 +429,11 @@ msgstr "Toteutetaan ympäristö: {0}…"
 
 #: src/backend/managers/manager.py:1128
 msgid "(!) Using a custom environment recipe…"
-msgstr ""
+msgstr "(!) Käytetään mukautetun ympäristön reseptiä…"
 
 #: src/backend/managers/manager.py:1131
 msgid "(!) Recipe not not found or not valid…"
-msgstr ""
+msgstr "(!) Reseptiä ei löydy tai se ei ole kelvollinen…"
 
 #: src/backend/managers/manager.py:1148
 msgid "Installing DXVK…"
@@ -465,9 +461,8 @@ msgid "Finalizing…"
 msgstr "Viimeistellään…"
 
 #: src/backend/managers/manager.py:1208
-#, fuzzy
 msgid "Caching template…"
-msgstr "Luodaan pulloa…"
+msgstr "Asetetaan mallipohja välimuistiin…"
 
 #: src/dialogs/crash.py:36
 msgid "Show report"
@@ -478,11 +473,13 @@ msgid ""
 "            This issue was reported 5 times and cannot be sent again.\n"
 "            Report your feedback in one of the below existing reports."
 msgstr ""
+"            Tämä ongelma raportoitiin viisi kertaa eikä sitä voi lähettää "
+"uudelleen.\n"
+"            Lähetä palautteesi johonkin alla olevista raporteista."
 
 #: src/dialogs/dlloverrides.py:135
-#, fuzzy
 msgid "No overrides found."
-msgstr "Ohjelmia ei löytynyt"
+msgstr "Ohituksia ei löytynyt."
 
 #: src/dialogs/drives.py:69
 msgid "Choose path"
@@ -528,7 +525,7 @@ msgstr "Kopioi leikepöydälle"
 
 #: src/dialogs/launchoptions.py:25 src/ui/dialog-launch-options.ui:58
 msgid "Choose a script which should be executed after run."
-msgstr ""
+msgstr "Valitse mikä komentosarja suoritetaan käynnistyksen jälkeen."
 
 #. endregion
 #: src/dialogs/launchoptions.py:43
@@ -538,7 +535,7 @@ msgstr "{0} on jo pois käytöstä tämän pullon kohdalla."
 
 #: src/dialogs/launchoptions.py:44
 msgid "This setting is different from the bottle's default."
-msgstr ""
+msgstr "Tämä asetus eroaa pullon oletusasetuksesta."
 
 #: src/dialogs/launchoptions.py:174
 msgid "Choose the script"
@@ -589,11 +586,12 @@ msgid "Are you sure you want to delete this Bottle and all files?"
 msgstr "Haluatko varmasti poistaa tämän pullon ja kaikki tiedostot?"
 
 #: src/views/bottle_details.py:380
-#, fuzzy
 msgid ""
 "Are you sure you want to terminate all processes?\n"
 "This can cause data loss."
-msgstr "Haluatko varmasti poistaa tämän pullon ja kaikki tiedostot?"
+msgstr ""
+"Haluatko varmasti lopettaa kaikki prosessit?\n"
+"Se voi aiheuttaa tietojen katoamisen."
 
 #: src/views/bottle_preferences.py:185
 msgid "This feature is not available on your system."
@@ -663,9 +661,8 @@ msgid "Import failed."
 msgstr "Tuonti epäonnistui."
 
 #: src/views/importer.py:103 src/views/importer.py:132
-#, fuzzy
 msgid "Importing backup.."
-msgstr "Varmuuskopion tuominen: {0}"
+msgstr "Tuodaan varmuuskopio..."
 
 #: src/views/importer.py:115
 msgid "Choose a backup archive"
@@ -714,6 +711,8 @@ msgstr "Pullo nimeltä “{0}” luotiin onnistuneesti"
 msgid ""
 "Choose where to store the new bottles (this will not move the existing ones)"
 msgstr ""
+"Valitse mihin uudet pullot talletetaan (tämä ei siirrä olemassa olevia "
+"pulloja)"
 
 #: src/views/preferences.py:155
 msgid "Choose new bottles path"
@@ -848,14 +847,12 @@ msgid "Browse files"
 msgstr "Selaa tiedostoja"
 
 #: src/ui/component-entry.ui:34
-#, fuzzy
 msgid ""
 "The installation failed. This may be due to a repository error, partial "
 "download or checksum mismatch. Press to try again."
 msgstr ""
 "Asennus epäonnistui. Tämä saattaa johtua tietovaraston virheestä, "
-"osittaisesta latauksesta tai ettei tarkistussumma vastaa odotettua arvoa.\n"
-"\n"
+"osittaisesta latauksesta tai ettei tarkistussumma vastaa odotettua arvoa. "
 "Yritä uudelleen."
 
 #: src/ui/component-entry.ui:45
@@ -1017,7 +1014,7 @@ msgstr "Muokkaa sisäistä rekisteriä."
 
 #: src/ui/details-bottle.ui:264
 msgid "Legacy Tools"
-msgstr ""
+msgstr "Vanhennetut työkalut"
 
 #: src/ui/details-bottle.ui:268
 msgid "Explorer"
@@ -1226,6 +1223,8 @@ msgstr "LatencyFleX"
 #: src/ui/details-preferences.ui:109
 msgid "An alternative to NVIDIA Reflex. Can be detected by some Anti-cheats."
 msgstr ""
+"Vaihtoehto NVIDIA Reflexille. On mahdollisesti joidenkin huijausesto-"
+"ohjelmien havaittavissa."
 
 #: src/ui/details-preferences.ui:128
 msgid "Discrete GPU"
@@ -1244,6 +1243,8 @@ msgid ""
 "vkBasalt is a Vulkan post processing layer to enhance the visual graphics of "
 "games."
 msgstr ""
+"vkBasalt on Vulkanin jälkikäsittelykerros, jonka avulla parannetaan pelien "
+"graafista ulkoasua."
 
 #: src/ui/details-preferences.ui:151
 msgid "Display Settings"
@@ -1343,7 +1344,7 @@ msgstr "Renderöijä"
 
 #: src/ui/details-preferences.ui:263
 msgid "Select what backend to use for wined3d."
-msgstr ""
+msgstr "Valitse mitä taustaosaa käytetään wined3d:lle."
 
 #: src/ui/details-preferences.ui:269
 msgid "gl (default)"
@@ -1450,9 +1451,8 @@ msgid "Optimise gaming performance on demand."
 msgstr "Optimoi pelisuorituskykyä tarpeen vaatiessa."
 
 #: src/ui/details-preferences.ui:523
-#, fuzzy
 msgid "Gamescope"
-msgstr "Käytä Gamescopea"
+msgstr "Gamescope"
 
 #: src/ui/details-preferences.ui:524
 msgid "Use the Gamescope micro-compositor."
@@ -1528,6 +1528,8 @@ msgid ""
 "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load "
 "and more."
 msgstr ""
+"Vulkanin ja OpenGL:n päällystaso, jonka avulla voi tarkastella "
+"ruudunpäivitysnopeutta, lämpötiloja, CPU:n/GPU:n kuormitusta jne."
 
 #: src/ui/details-preferences.ui:651
 msgid "OBS Vulkan Capture"
@@ -1643,13 +1645,12 @@ msgid "Advanced options"
 msgstr "Lisäasetukset"
 
 #: src/ui/dialog-dll-overrides.ui:14
-#, fuzzy
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
-"Dynaaminen linkki -kirjastot voidaan määritellä joko sisäänrakennetuiksi "
-"(toimittaa Wine) tai alkuperäisiksi (ohjelman tarjoamat)"
+"Dynaamisesti linkitetyt kirjastot voidaan määritellä joko "
+"sisäänrakennetuiksi (toimittaa Wine) tai natiiveiksi (ohjelman tarjoamat)."
 
 #: src/ui/dialog-dll-overrides.ui:18
 msgid "New Override"
@@ -1707,6 +1708,8 @@ msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Ympäristömuuttujat ovat dynaamisesti nimettyjä arvoja, jotka voivat "
+"vaikuttaa millä tavalla prosessit käyttäytyvät pullossa."
 
 #: src/ui/dialog-env-vars.ui:28
 msgid "Variable name"
@@ -1833,7 +1836,7 @@ msgstr "Jälkikäteen ajettava skripti"
 
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
-msgstr ""
+msgstr "Tämä asetus ohittaa tämän suoritustiedoston oletusasetukset."
 
 #: src/ui/dialog-launch-options.ui:88
 #, fuzzy
@@ -1917,7 +1920,7 @@ msgstr "Tuo Pullo-varmuuskopio"
 
 #: src/ui/importer.ui:31
 msgid "Search again for prefixes"
-msgstr ""
+msgstr "Etsi uudelleen etuliitteitä"
 
 #: src/ui/importer.ui:45
 msgid "No prefixes found"
@@ -2117,7 +2120,7 @@ msgstr "Mukautettu resepti"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr ""
+msgstr "Valitse mukautettu resepti ympäristölle, jos sinulla on sellainen."
 
 #: src/ui/new.ui:185
 msgid "Custom Path"
