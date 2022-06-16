@@ -213,7 +213,7 @@ class WineCommand:
             env.add("__GL_SHADER_DISK_CACHE", "1")
             env.add("__GL_SHADER_DISK_CACHE_SKIP_CLEANUP", "1")  # should not be needed anymore
             env.add("__GL_SHADER_DISK_CACHE_PATH", os.path.join(bottle, "cache", "gl_shader"))
-            env.add("MESA_SHADER_CACHE", os.path.join(bottle, "cache", "mesa_shader"))
+            env.add("MESA_SHADER_CACHE_DIR", os.path.join(bottle, "cache", "mesa_shader"))
 
         # VKD£D environment variables
         if params["vkd3d"]:
