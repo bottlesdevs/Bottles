@@ -172,7 +172,10 @@ class WineCommand:
         if (params.get("use_runtime") or params.get("use_eac_runtime")) and not self.terminal:
             _rb = RuntimeManager.get_runtime_env("bottles")
             if _rb:
-                logging.info("Using Bottles runtime")
+                if params.get("use_runtime"):
+                    logging.info("Using Bottles runtime")
+                if params.get("use_eac_runtime"):
+                    logging.info("Using EasyAntiCheat runtime")
                 ld += _rb
                 _eac = RuntimeManager.get_eac()
                 if _eac:
