@@ -208,9 +208,7 @@ class WineCommand:
         # LatencyFleX environment variables
         if params["latencyflex"]:
             _lf_path = ManagerUtils.get_latencyflex_path(config.get("LatencyFleX"))
-            _lf_icd = os.path.join(
-                _lf_path,
-                "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
+            _lf_icd = os.path.join(_lf_path, "layer/usr/share/vulkan/implicit_layer.d/latencyflex.json")
             env.concat("VK_ICD_FILENAMES", _lf_icd)
 
         # Mangohud environment variables
@@ -231,6 +229,10 @@ class WineCommand:
         if not return_steam_env and params["dxvk_nvapi"]:
             conf = self.__set_dxvk_nvapi_conf(bottle)
             env.add("DXVK_CONFIG_FILE", conf)
+            # NOTE: users reported that DXVK_ENABLE_NVAPI and DXVK_NVAPIHACK must be set to make
+            #       DLSS works. I don't have a GPU compatible with this tech, so I'll trust them
+            env.add("DXVK_NVAPIHACK", "0")
+            env.add("DXVK_ENABLE_NVAPI", "1")
 
             # Prevent wine from hiding the Nvidia GPU with DXVK-Nvapi enabled
             if DisplayUtils.check_nvidia_device():
@@ -260,8 +262,7 @@ class WineCommand:
             env.add("WINEDEBUG", debug_level)
 
         # LatencyFleX
-        if not return_steam_env \
-                and params["latencyflex"] and params["dxvk_nvapi"]:
+        if not return_steam_env and params["latencyflex"] and params["dxvk_nvapi"]:
             _lf_path = ManagerUtils.get_latencyflex_path(config["LatencyFleX"])
             ld.append(os.path.join(_lf_path, "wine/usr/lib/wine/x86_64-unix"))
 
