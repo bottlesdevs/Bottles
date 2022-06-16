@@ -31,7 +31,7 @@ jobs:
           sudo mv appimage-builder-x86_64.AppImage /usr/bin/appimage-builder
 
       - name: Build AppImage
-        run: sed -i 's/^    version: .*$/    version: devel/' AppImageBuilder.yml && sudo appimage-builder --recipe AppImageBuilder.yml --skip-test
+        run: "sed -i 's/^    version: .*$/    version: devel/' AppImageBuilder.yml && sudo appimage-builder --recipe AppImageBuilder.yml --skip-test"
 
       - name: Upload AppImage to Artifacts
         uses: actions/upload-artifact@v3.1.0
