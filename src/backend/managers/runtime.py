@@ -41,9 +41,14 @@ class RuntimeManager:
     @staticmethod
     def get_runtime_env(_filter: str = "bottles"):
         runtime = RuntimeManager.get_runtimes(_filter)
+        env = ""
 
         if runtime:
-            env = ':'.join(runtime)
+            for p in runtime:
+                if "EasyAntiCheatRuntime" in p:
+                    continue
+                env += f":{p}"
+                
         else:
             return False
 
@@ -52,6 +57,17 @@ class RuntimeManager:
             env += f":{ld}"
 
         return env
+
+    @staticmethod
+    def get_eac():
+        runtime = RuntimeManager.get_runtimes("bottles")
+
+        if runtime:
+            for p in runtime:
+                if "EasyAntiCheatRuntime" in p:
+                    return p
+
+        return False
 
     @staticmethod
     def __get_runtime(paths: list, structure: list):
@@ -71,9 +87,13 @@ class RuntimeManager:
                     structure_found.append(d)
 
             if not check_structure(structure_found, structure):
-                continue
+                return []
 
             res = [f"{runtime_path}/{s}" for s in structure]
+            eac_path = os.path.join(runtime_path, "EasyAntiCheatRuntime")
+
+            if os.path.isdir(eac_path):
+                res.append(eac_path)
 
             return res
 

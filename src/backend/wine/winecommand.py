@@ -169,11 +169,14 @@ class WineCommand:
             dll_overrides.append("winemenubuilder=''")
 
         # Get Runtime libraries
-        if params.get("use_runtime") and not self.terminal:
+        if (params.get("use_runtime") or params.get("use_eac_runtime")) and not self.terminal:
             _rb = RuntimeManager.get_runtime_env("bottles")
             if _rb:
                 logging.info("Using Bottles runtime")
                 ld += _rb
+                _eac = RuntimeManager.get_eac()
+                if _eac:
+                    env.add("PROTON_EAC_RUNTIME", _eac)  # NOTE: should check for runner compatibility (?)
             else:
                 logging.warning("Bottles runtime was requested but not found")
 
