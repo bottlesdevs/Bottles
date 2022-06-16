@@ -701,7 +701,8 @@ class Manager:
             for p in [
                 os.path.join(_bottle, "cache", "dxvk_state"),
                 os.path.join(_bottle, "cache", "gl_shader"),
-                os.path.join(_bottle, "cache", "mesa_shader")
+                os.path.join(_bottle, "cache", "mesa_shader"),
+                os.path.join(_bottle, "cache", "vkd3d_shader"),
             ]:
                 if not os.path.exists(p):
                     os.makedirs(p)
@@ -709,6 +710,8 @@ class Manager:
             for c in os.listdir(_bottle):
                 if c.endswith(".dxvk-cache"):
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "dxvk_state"))
+                elif "vkd3d-proton.cache" in c:
+                    shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "vkd3d_shader"))
                 elif c == "GLCache":
                     shutil.move(os.path.join(_bottle, c), os.path.join(_bottle, "cache", "gl_shader"))
 

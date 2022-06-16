@@ -201,6 +201,10 @@ class WineCommand:
             env.add("__GL_SHADER_DISK_CACHE_PATH", os.path.join(bottle, "cache", "gl_shader"))
             env.add("MESA_SHADER_CACHE", os.path.join(bottle, "cache", "mesa_shader"))
 
+        # VKD£D environment variables
+        if params["vkd3d"]:
+            env.add("VKD3D_SHADER_CACHE_PATH", os.path.join(bottle, "cache", "vkd3d_shader"))
+
         # LatencyFleX environment variables
         if params["latencyflex"]:
             _lf_path = ManagerUtils.get_latencyflex_path(config.get("LatencyFleX"))
