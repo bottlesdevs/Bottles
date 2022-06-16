@@ -9,7 +9,8 @@ from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
 from bottles.backend.utils.gpu import GPUUtils
-from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, obs_vkc_available
+from bottles.backend.globals import Paths, gamemode_available, gamescope_available, mangohud_available, \
+    obs_vkc_available
 from bottles.backend.logger import Logger
 
 logging = Logger()
@@ -192,11 +193,13 @@ class WineCommand:
         # DXVK environment variables
         if params["dxvk"]:
             env.add("WINE_LARGE_ADDRESS_AWARE", "1")
-            env.add("DXVK_STATE_CACHE_PATH", bottle)
+            env.add("DXVK_STATE_CACHE_PATH", os.path.join(bottle, "cache", "dxvk_state"))
             env.add("STAGING_SHARED_MEMORY", "1")
             env.add("__GL_DXVK_OPTIMIZATIONS", "1")
             env.add("__GL_SHADER_DISK_CACHE", "1")
-            env.add("__GL_SHADER_DISK_CACHE_PATH", bottle)
+            env.add("__GL_SHADER_DISK_CACHE_SKIP_CLEANUP", "1")  # should not be needed anymore
+            env.add("__GL_SHADER_DISK_CACHE_PATH", os.path.join(bottle, "cache", "gl_shader"))
+            env.add("MESA_SHADER_CACHE", os.path.join(bottle, "cache", "mesa_shader"))
 
         # LatencyFleX environment variables
         if params["latencyflex"]:
