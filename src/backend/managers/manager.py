@@ -348,6 +348,10 @@ class Manager:
 
     def check_runtimes(self, install_latest: bool = True) -> bool:
         self.runtimes_available = []
+        if "FLATPAK_ID" in os.environ:
+            self.runtimes_available = ["flatpak-managed"]
+            return True
+
         runtimes = os.listdir(Paths.runtimes)
 
         if len(runtimes) == 0:
