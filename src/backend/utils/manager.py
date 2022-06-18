@@ -206,56 +206,94 @@ class ManagerUtils:
         return icon
 
     @staticmethod
-    def create_desktop_entry(config, program: dict, skip_icon: bool = False, custom_icon: str = "") -> bool:
-        if not user_apps_dir:
+    def create_desktop_entry(config, program: dict, skip_icon: bool = False, custom_icon: str = "",
+                             use_xdp: bool = False) -> bool:
+        if not user_apps_dir and not use_xdp:
             return False
-
-        icon = "com.usebottles.bottles-program"
-        file_name_template = "%s/%s--%s--%s.desktop"
-        existing_files = glob(file_name_template % (
-            Paths.applications,
-            config.get('Name'),
-            program.get("name"),
-            "*"
-        ))
-        desktop_file = file_name_template % (
-            Paths.applications,
-            config.get('Name'),
-            program.get("name"),
-            datetime.now().timestamp()
-        )
 
         cmd_legacy = "bottles"
         cmd_cli = "bottles-cli"
+        icon = "com.usebottles.bottles-program"
+
         if "FLATPAK_ID" in os.environ:
             cmd_legacy = "flatpak run com.usebottles.bottles"
             cmd_cli = "flatpak run --command=bottles-cli com.usebottles.bottles"
-
-        if existing_files:
-            for file in existing_files:
-                os.remove(file)
 
         if not skip_icon and not custom_icon:
             icon = ManagerUtils.extract_icon(config, program.get("name"), program.get("path"))
         elif custom_icon:
             icon = custom_icon
 
-        with open(desktop_file, "w") as f:
-            f.write(f"[Desktop Entry]\n")
-            f.write(f"Name={program.get('name')}\n")
-            f.write(f"Exec={cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Path')}'\n")
-            f.write(f"Type=Application\n")
-            f.write(f"Terminal=false\n")
-            f.write(f"Categories=Application;\n")
-            f.write(f"Icon={icon}\n")
-            f.write(f"Comment=Launch {program.get('name')} using Bottles.\n")
-            # Actions
-            f.write("Actions=Configure;\n")
-            f.write("[Desktop Action Configure]\n")
-            f.write("Name=Configure in Bottles\n")
-            f.write(f"Exec={cmd_legacy} -b '{config.get('Name')}'\n")
+        if not use_xdp:
+            file_name_template = "%s/%s--%s--%s.desktop"
+            existing_files = glob(file_name_template % (
+                Paths.applications,
+                config.get('Name'),
+                program.get("name"),
+                "*"
+            ))
+            desktop_file = file_name_template % (
+                Paths.applications,
+                config.get('Name'),
+                program.get("name"),
+                datetime.now().timestamp()
+            )
 
-        return True
+            if existing_files:
+                for file in existing_files:
+                    os.remove(file)
+
+            with open(desktop_file, "w") as f:
+                f.write(f"[Desktop Entry]\n")
+                f.write(f"Name={program.get('name')}\n")
+                f.write(f"Exec={cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Path')}'\n")
+                f.write(f"Type=Application\n")
+                f.write(f"Terminal=false\n")
+                f.write(f"Categories=Application;\n")
+                f.write(f"Icon={icon}\n")
+                f.write(f"Comment=Launch {program.get('name')} using Bottles.\n")
+                # Actions
+                f.write("Actions=Configure;\n")
+                f.write("[Desktop Action Configure]\n")
+                f.write("Name=Configure in Bottles\n")
+                f.write(f"Exec={cmd_legacy} -b '{config.get('Name')}'\n")
+
+            return True
+
+        '''
+        WIP: the following code is not working yet, it raises an error:
+             GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod
+        import uuid
+        from gi.repository import Gio, Xdp
+
+        portal = Xdp.Portal()
+        if icon == "com.usebottles.bottles-program":
+            _icon = Gio.BytesIcon.new(icon.encode("utf-8"))
+        else:
+            _icon = Gio.FileIcon.new(Gio.File.new_for_path(icon))
+        icon_v = _icon.serialize()
+        token = portal.dynamic_launcher_request_install_token(program.get("name"), icon_v)
+        portal.dynamic_launcher_install(
+            token,
+            f"com.usebottles.bottles.{config.get('Name')}.{program.get('name')}.{str(uuid.uuid4())}.desktop",
+            """
+            [Desktop Entry]
+            Exec={}
+            Type=Application
+            Terminal=false
+            Categories=Application;
+            Comment=Launch {} using Bottles.
+            Actions=Configure;
+            [Desktop Action Configure]
+            Name=Configure in Bottles
+            Exec={}
+            """.format(
+                f"{cmd_cli} run -p {shlex.quote(program.get('name'))} -b '{config.get('Path')}'",
+                program.get("name"),
+                f"{cmd_legacy} -b '{config.get('Name')}'"
+            ).encode("utf-8")
+        )
+        '''
 
     @staticmethod
     def browse_wineprefix(wineprefix: dict):
