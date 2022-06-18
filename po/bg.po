@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-03 11:14+0000\n"
+"PO-Revision-Date: 2022-06-19 19:48+0000\n"
 "Last-Translator: Georgi Georgiev <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/bg/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -720,9 +720,8 @@ msgid "Upgrade"
 msgstr "Надграждане"
 
 #: src/widgets/component.py:145
-#, fuzzy
 msgid "Installing..."
-msgstr "Инсталиране"
+msgstr "Инсталиране..."
 
 #: src/widgets/dependency.py:105 src/widgets/installer.py:78
 #, python-brace-format
@@ -764,9 +763,9 @@ msgid "'{0}' launched."
 msgstr ""
 
 #: src/widgets/program.py:208
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "'{0}' launched with Steam."
-msgstr "Стартиране с терминала"
+msgstr "„{0}“ е стартирана със „Steam“."
 
 #: src/widgets/program.py:229
 #, python-brace-format
@@ -886,9 +885,8 @@ msgid "Troubleshooting"
 msgstr ""
 
 #: src/ui/details-bottle.ui:26
-#, fuzzy
 msgid "Browse Files…"
-msgstr "Търсене на файлове"
+msgstr "Търсене на файлове…"
 
 #: src/ui/details-bottle.ui:31
 #, fuzzy
@@ -910,14 +908,12 @@ msgid ""
 msgstr ""
 
 #: src/ui/details-bottle.ui:43
-#, fuzzy
 msgid "Export Configuration…"
-msgstr "Експортиране на конфигурацията"
+msgstr "Експортиране на конфигурацията…"
 
 #: src/ui/details-bottle.ui:51
-#, fuzzy
 msgid "Delete Bottle…"
-msgstr "Изтриване на бутилката"
+msgstr "Изтриване на бутилката…"
 
 #: src/ui/details-bottle.ui:86
 #, fuzzy
@@ -945,9 +941,8 @@ msgid "Run with Arguments…"
 msgstr ""
 
 #: src/ui/details-bottle.ui:122
-#, fuzzy
 msgid "Launch in Terminal…"
-msgstr "Стартиране с терминала"
+msgstr "Стартиране с терминала…"
 
 #: src/ui/details-bottle.ui:148
 msgid "My bottle"
@@ -979,9 +974,8 @@ msgid "0"
 msgstr "0"
 
 #: src/ui/details-bottle.ui:210
-#, fuzzy
 msgid "Run Executable…"
-msgstr "Стартиране на изпълнимия файл"
+msgstr "Стартиране на изпълнимия файл…"
 
 #: src/ui/details-bottle.ui:226
 msgid "Layers"
@@ -1068,9 +1062,8 @@ msgid "Use the Installers section or the \"Run executable\" button."
 msgstr ""
 
 #: src/ui/details-dependencies.ui:13
-#, fuzzy
 msgid "Search for dependencies…"
-msgstr "Избиране на зависимостите"
+msgstr "Търсене на зависимостите…"
 
 #: src/ui/details-dependencies.ui:22
 msgid ""
@@ -1596,9 +1589,8 @@ msgid "Type a short comment:"
 msgstr "Напишете много кратък коментар:"
 
 #: src/ui/details-versioning.ui:49
-#, fuzzy
 msgid "A short comment"
-msgstr "Напишете много кратък коментар:"
+msgstr "Кратък коментар"
 
 #: src/ui/details-versioning.ui:54
 msgid "Save the bottle state."
@@ -1946,9 +1938,8 @@ msgid "Full Archive"
 msgstr ""
 
 #: src/ui/installer-entry.ui:18
-#, fuzzy
 msgid "Show Manifest…"
-msgstr "Показване на манифеста"
+msgstr "Показване на манифеста…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
@@ -2227,10 +2218,8 @@ msgid "Close Bottles after starting a program"
 msgstr "Затваряне на „Bottles“ след стартиране на програма"
 
 #: src/ui/preferences.ui:61
-#, fuzzy
 msgid "Close Bottles after starting a program from the file manager"
-msgstr ""
-"Затваряне на „Bottles“ след стартиране на програма от файловия мениджър."
+msgstr "Затваряне на „Bottles“ след стартиране на програма от файловия мениджър"
 
 #: src/ui/preferences.ui:74
 msgid "Advanced"
@@ -2308,9 +2297,8 @@ msgid "Add to Steam"
 msgstr ""
 
 #: src/ui/program-entry.ui:60
-#, fuzzy
 msgid "Rename…"
-msgstr "Преименуване"
+msgstr "Преименуване…"
 
 #: src/ui/program-entry.ui:69
 #, fuzzy
