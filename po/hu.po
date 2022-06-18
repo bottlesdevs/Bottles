@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-11 20:24+0000\n"
+"PO-Revision-Date: 2022-06-19 19:48+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/bottles/"
 "bottles/hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -222,8 +222,7 @@ msgstr "Indítási nézet"
 
 #: data/com.usebottles.bottles.gschema.xml:47
 msgid "Choose which view the application should be started in."
-msgstr ""
-"Válassza ki, hogy melyik nézetet kell betölteni az alkalmazás indításakor."
+msgstr "Válassza ki az alkalmazás indításakor betöltendő nézetet."
 
 #: data/com.usebottles.bottles.gschema.xml:51 src/ui/preferences.ui:176
 msgid "Experiments"
@@ -696,7 +695,7 @@ msgstr "A Palackjai"
 
 #: src/views/new.py:119
 msgid "Choose a recipe file"
-msgstr "Receptfájl kivélasztása"
+msgstr "Válassza ki a receptfájlt"
 
 #: src/views/new.py:135
 msgid "Choose where to store the bottle"
@@ -2033,7 +2032,7 @@ msgstr "Steam Proton"
 
 #: src/ui/list.ui:55
 msgid "Start off by creating a Bottle."
-msgstr "Kezdje el egy palack létrehozásával."
+msgstr "Kezdjen egy palack létrehozásával."
 
 #: src/ui/list.ui:62
 msgid "Create a new Bottle"
@@ -2105,7 +2104,7 @@ msgstr "Egyéni"
 
 #: src/ui/new.ui:112
 msgid "A clear environment for your experiments"
-msgstr "Egy tiszta környezet a kísérleteihez"
+msgstr "Egy tiszta környezet a kísérleteihez."
 
 #: src/ui/new.ui:117
 msgid "Enable versioning to save and restore the bottle to a state."
@@ -2143,7 +2142,8 @@ msgstr "Egyéni recept"
 
 #: src/ui/new.ui:169
 msgid "Choose a custom recipe for the environment if you have one."
-msgstr "Válasszon egy egyéni receptet a környezet számára, ha van."
+msgstr ""
+"Válasszon egy egyéni receptet a környezet számára, ha rendelkezik eggyel."
 
 #: src/ui/new.ui:185
 msgid "Custom Path"
@@ -2151,7 +2151,7 @@ msgstr "Egyéni útvonal"
 
 #: src/ui/new.ui:186
 msgid "Store this bottle in another place."
-msgstr "Palack tárolása egy másik helyen."
+msgstr "Tárolja a palackot egy másik helyen."
 
 #: src/ui/new.ui:273
 msgid "Bottle created"
@@ -2203,7 +2203,7 @@ msgstr "Minden kész!"
 
 #: src/ui/onboard.ui:119
 msgid "Start using Bottles"
-msgstr "Kezdje el használni a Palackokat"
+msgstr "Palackokat használatának elkezdése"
 
 #: src/ui/onboard.ui:138
 msgid "Next"
