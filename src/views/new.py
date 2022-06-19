@@ -41,7 +41,6 @@ class NewView(Adw.Window):
     btn_close_pill = Gtk.Template.Child()
     btn_choose_env = Gtk.Template.Child()
     btn_choose_path = Gtk.Template.Child()
-    # btn_pref_runners = Gtk.Template.Child()
     list_envs = Gtk.Template.Child()
     page_create = Gtk.Template.Child()
     page_creating = Gtk.Template.Child()
@@ -69,11 +68,10 @@ class NewView(Adw.Window):
         self.env_recipe_path = None
         self.new_bottle_config = {}
         self.custom_path = ""
-
-        self.ev_controller.connect("key-released", self.__check_entry_name)
-        self.entry_name.add_controller(self.ev_controller)
+        self.runner = None
 
         # connect signals
+        self.entry_name.add_controller(self.ev_controller)
         self.btn_cancel.connect("clicked", self.__close_window)
         self.btn_close.connect("clicked", self.__close_window)
         self.btn_close_pill.connect("clicked", self.__close_window)
@@ -81,11 +79,29 @@ class NewView(Adw.Window):
         self.btn_choose_env.connect("clicked", self.choose_env_recipe)
         self.btn_choose_path.connect("clicked", self.choose_path)
         self.list_envs.connect('row-selected', self.set_active_env)
+        self.ev_controller.connect("key-released", self.__check_entry_name)
 
         # populate combo_runner with runner versions from the manager
         for runner in self.manager.runners_available:
             self.combo_runner.append(runner, runner)
 
+        rc = [i for i in self.manager.runners_available if i.startswith('caffe')]
+        rv = [i for i in self.manager.runners_available if i.startswith('vaniglia')]
+        rl = [i for i in self.manager.runners_available if i.startswith('lutris')]
+        rs = [i for i in self.manager.runners_available if i.startswith('sys-')]
+
+        if len(rc) > 0:  # use the latest from caffe
+            self.runner = rc[0]
+        elif len(rv) > 0:  # use the latest from vaniglia
+            self.runner = rv[0]
+        elif len(rl) > 0:  # use the latest from lutris
+            self.runner = rl[0]
+        elif len(rs) > 0:  # use the latest from system
+            self.runner = rs[0]
+        else:  # use any other runner available
+            self.runner = self.manager.runners_available[0]
+
+        self.combo_runner.set_active_id(self.runner)
         self.combo_arch.set_selected(0)
 
         # if running under Flatpak, hide row_sandbox
@@ -151,39 +167,10 @@ class NewView(Adw.Window):
         # avoid giant/empty window
         self.set_default_size(450, 430)
 
-        '''
-        Check if versioning and sandbox are enabled and get the selected runner. 
-        If the selected env. is not "Custom", the runner is taken from the
-        runners available list, else it is taken from the user selection.
-        '''
         versioning_state = self.switch_versioning.get_state()
         sandbox_state = self.switch_sandbox.get_state()
         if self.selected_env == "Custom":
-            runner = self.combo_runner.get_active_id()
-        else:
-            rc = [
-                i for i in self.manager.runners_available if i.startswith('caffe')
-            ]
-            rv = [
-                i for i in self.manager.runners_available if i.startswith('vaniglia')
-            ]
-            rl = [
-                i for i in self.manager.runners_available if i.startswith('lutris')
-            ]
-            rs = [
-                i for i in self.manager.runners_available if i.startswith('sys-')
-            ]
-
-            if len(rc) > 0:  # use the latest from caffe
-                runner = rc[0]
-            elif len(rv) > 0:  # use the latest from vaniglia
-                runner = rv[0]
-            elif len(rl) > 0:  # use the latest from lutris
-                runner = rl[0]
-            elif len(rs) > 0:  # use the latest from system
-                runner = rs[0]
-            else:  # use any other runner available
-                runner = self.manager.runners_available[0]
+            self.runner = self.combo_runner.get_active_id()
 
         if self.combo_arch.get_selected() == 0:
             arch = "win64"
@@ -196,7 +183,7 @@ class NewView(Adw.Window):
             name=self.entry_name.get_text(),
             path=self.custom_path,
             environment=self.selected_env,
-            runner=runner,
+            runner=self.runner,
             arch=arch,
             dxvk=self.manager.dxvk_available[0],
             versioning=versioning_state,
