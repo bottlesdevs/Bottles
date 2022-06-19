@@ -1118,7 +1118,7 @@ class Manager:
             # blacklisting processes
             logging.info("Optimizing environment…")
             log_update(_("Optimizing environment…"))
-            _blacklist_dll = ["winemenubuilder.exe"]
+            _blacklist_dll = ["winemenubuilder.exe", "mshtml", "mscoree"]  # avoid gecko, mono popups
             for _dll in _blacklist_dll:
                 reg.add(
                     key="HKEY_CURRENT_USER\\Software\\Wine\\DllOverrides",
