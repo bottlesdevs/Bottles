@@ -23,6 +23,7 @@ from bottles.utils.threading import RunAsync  # pyright: reportMissingImports=fa
 
 from bottles.dialogs.launchoptions import LaunchOptionsDialog
 from bottles.dialogs.rename import RenameDialog
+from bottles.dialogs.generic import MessageDialog
 
 from bottles.backend.globals import user_apps_dir
 from bottles.backend.managers.steam import SteamManager
@@ -288,18 +289,7 @@ class ProgramEntry(Adw.ActionRow):
     def add_entry(self, widget):
         def update(result, error=False):
             if not result:
-                dialog = Gtk.MessageDialog(
-                    transient_for=self.window,
-                    flags=0,
-                    message_type=Gtk.MessageType.WARNING,
-                    buttons=Gtk.ButtonsType.OK,
-                    use_markup=True,
-                    text=_("Can't create Desktop Entry due to missing privileges.\n"
-                           "Check out <a href=\"https://www.youtube.com/watch?v=tPFNg9AU5k4\">our video</a> about how to "
-                           "fix that in Flatpak.")
-                )
-                dialog.run()
-                dialog.destroy()
+                webbrowser.open("https://docs.usebottles.com/bottles/programs#flatpak")
                 return
 
             self.window.show_toast(_("Desktop Entry created for '{0}'").format(self.program["name"]))
