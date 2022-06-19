@@ -202,6 +202,8 @@ class BottleView(Adw.PreferencesPage):
         if response == -3:
             _execs = self.config.get("Latest_Executables", [])
             _file = file_dialog.get_file()
+            if not _file:
+                return  # workaround #1653
             executor = WineExecutor(
                 self.config,
                 exec_path=_file.get_path(),
