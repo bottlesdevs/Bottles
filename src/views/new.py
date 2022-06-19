@@ -169,7 +169,7 @@ class NewView(Adw.Window):
 
         versioning_state = self.switch_versioning.get_state()
         sandbox_state = self.switch_sandbox.get_state()
-        if self.selected_env == "Custom":
+        if self.selected_env == "custom":
             self.runner = self.combo_runner.get_active_id()
 
         if self.combo_arch.get_selected() == 0:
