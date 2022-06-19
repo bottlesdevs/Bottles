@@ -22,7 +22,7 @@ class CMD(WineProgram):
 
         self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             terminal=terminal,
             environment=environment,
             cwd=cwd,

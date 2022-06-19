@@ -5,6 +5,7 @@ from typing import NewType
 
 from bottles.backend.utils.generic import detect_encoding  # pyright: reportMissingImports=false
 from bottles.backend.managers.runtime import RuntimeManager
+from bottles.backend.managers.sandbox import SandboxManager
 from bottles.backend.utils.terminal import TerminalUtils
 from bottles.backend.utils.manager import ManagerUtils
 from bottles.backend.utils.display import DisplayUtils
@@ -18,7 +19,7 @@ logging = Logger()
 
 class WineEnv:
     """
-    Thic class is used to store and return a command environment.
+    This class is used to store and return a command environment.
     """
     __env: dict = {}
     __result: dict = {
@@ -83,7 +84,7 @@ class WineCommand:
             terminal: bool = False,
             arguments: str = False,
             environment: dict = False,
-            comunicate: bool = False,
+            communicate: bool = False,
             cwd: str = None,
             colors: str = "default",
             minimal: bool = False,  # avoid gamemode/gamescope usage
@@ -97,7 +98,7 @@ class WineCommand:
         self.command = self.get_cmd(command, post_script)
         self.terminal = terminal
         self.env = self.get_env(environment)
-        self.comunicate = comunicate
+        self.communicate = communicate
         self.colors = colors
 
     def __get_cwd(self, cwd) -> str:
@@ -484,6 +485,21 @@ class WineCommand:
         if None in [self.runner, self.env]:
             return
 
+        '''
+        sandbox = SandboxManager(
+            envs=self.env,
+            chdir=self.cwd,
+            clear_env=True,
+            share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
+            share_net=True
+        )
+        if self.terminal:
+            return TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors)
+
+        proc = sandbox.run(self.command)
+        print(proc.communicate()[1].decode("utf-8"))
+        '''
+
         if self.terminal:
             return TerminalUtils().execute(self.command, self.env, self.colors)
 
@@ -501,7 +517,7 @@ class WineCommand:
         if enc is not None:
             res = res.decode(enc)
 
-        if self.comunicate:
+        if self.communicate:
             return res
 
         try:
@@ -516,7 +532,7 @@ class WineCommand:
             Try running the command without some args which can cause the exception.
             '''
             res = subprocess.Popen(self.command, shell=True, env=self.env)
-            if self.comunicate:
+            if self.communicate:
                 return res.communicate()
             return res
 

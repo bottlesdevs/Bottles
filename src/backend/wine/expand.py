@@ -12,7 +12,7 @@ class Expand(WineProgram):
 
     def extract(self, cabinet: str, filename: str):
         args = f"{cabinet} {filename}"
-        return self.launch(args=args, comunicate=True, action_name="extract")
+        return self.launch(args=args, communicate=True, action_name="extract")
 
     def extract_all(self, cabinet: str, filenames: list):
         for filename in filenames:

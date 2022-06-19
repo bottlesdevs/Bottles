@@ -14,8 +14,8 @@ class Eject(WineProgram):
         args = drive
         if unmount_only:
             args += " -u"
-        return self.launch(args=args, comunicate=True, action_name="cdrom")
+        return self.launch(args=args, communicate=True, action_name="cdrom")
 
     def all(self):
         args = "-a"
-        return self.launch(args=args, comunicate=True, action_name="all")
+        return self.launch(args=args, communicate=True, action_name="all")

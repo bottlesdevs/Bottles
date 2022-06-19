@@ -32,7 +32,7 @@ class WineBoot(WineProgram):
             self.launch(
                 args=args,
                 environment=envs,
-                comunicate=True,
+                communicate=True,
                 action_name=f"send_status({states[status]})"
             )
         else:

@@ -208,7 +208,7 @@ class WineExecutor:
             terminal=self.terminal,
             cwd=self.cwd,
             environment=self.environment,
-            comunicate=True,
+            communicate=True,
             post_script=self.post_script
         )
         res = winecmd.run()

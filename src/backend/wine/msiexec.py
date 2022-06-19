@@ -22,7 +22,7 @@ class MsiExec(WineProgram):
 
         self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             minimal=True,
             environment=environment,
             terminal=terminal,
@@ -76,7 +76,7 @@ class MsiExec(WineProgram):
 
         self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             minimal=True,
             cwd=cwd,
             action_name="repair"
@@ -84,27 +84,27 @@ class MsiExec(WineProgram):
 
     def uninstall(self, pkg_path: str,  cwd: str = None):
         args = f"/x {pkg_path}"
-        self.launch(args=args, comunicate=True, minimal=True, cwd=cwd, action_name="uninstall")
+        self.launch(args=args, communicate=True, minimal=True, cwd=cwd, action_name="uninstall")
 
     def apply_patch(self, patch: str, update: bool = False, cwd: str = None):
         args = f"/p {patch}"
         if update:
             args = f" /update {patch}"
 
-        self.launch(args=args, comunicate=True, minimal=True, cwd=cwd, action_name="apply_path")
+        self.launch(args=args, communicate=True, minimal=True, cwd=cwd, action_name="apply_path")
 
     def uninstall_patch(self, patch: str, product: str = None, cwd: str = None):
         args = f"/uninstall {patch}"
         if product:
             args += f" /package {product}"
 
-        self.launch(args=args, comunicate=True, minimal=True, cwd=cwd, action_name="uninstall_patch")
+        self.launch(args=args, communicate=True, minimal=True, cwd=cwd, action_name="uninstall_patch")
 
     def register_module(self, module: str, cwd: str = None):
         args = f"/y {module}"
-        self.launch(args=args, comunicate=True, minimal=True, cwd=cwd, action_name="register_module")
+        self.launch(args=args, communicate=True, minimal=True, cwd=cwd, action_name="register_module")
 
     def unregister_module(self, module: str, cwd: str = None):
         args = f"/z {module}"
-        self.launch(args=args, comunicate=True, minimal=True, cwd=cwd, action_name="unregister_module")
+        self.launch(args=args, communicate=True, minimal=True, cwd=cwd, action_name="unregister_module")
 

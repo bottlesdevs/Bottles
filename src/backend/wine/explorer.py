@@ -18,4 +18,4 @@ class Explorer(WineProgram):
         if program:
             args += f" {program}"
 
-        return self.launch(args=args, comunicate=True, action_name="launch_desktop")
+        return self.launch(args=args, communicate=True, action_name="launch_desktop")

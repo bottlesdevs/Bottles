@@ -32,7 +32,7 @@ class WineBridge(WineProgram):
 
         res = self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             action_name="get_procs"
         )
         if res in [None, ""]:
@@ -61,7 +61,7 @@ class WineBridge(WineProgram):
         args = f"killProc {pid}"
         return self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             action_name="kill_proc"
         )
 
@@ -69,7 +69,7 @@ class WineBridge(WineProgram):
         args = f"killProcByName {name}"
         return self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             action_name="kill_proc_by_name"
         )
 
@@ -77,6 +77,6 @@ class WineBridge(WineProgram):
         args = f"runExe {exec_path}"
         return self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             action_name="run_exe"
         )

@@ -29,7 +29,7 @@ class Reg(WineProgram):
         # avoid conflicts when executing async
         winedbg.wait_for_process("reg.exe")
 
-        res = self.launch(args, comunicate=True, minimal=True, action_name="add")
+        res = self.launch(args, communicate=True, minimal=True, action_name="add")
         logging.info(res, )
 
     def remove(self, key: str, value: str):
@@ -43,7 +43,7 @@ class Reg(WineProgram):
         # avoid conflicts when executing async
         winedbg.wait_for_process("reg.exe")
 
-        res = self.launch(args, comunicate=True, minimal=True, action_name="remove")
+        res = self.launch(args, communicate=True, minimal=True, action_name="remove")
         logging.info(res, )
 
     def import_bundle(self, bundle: dict):
@@ -75,7 +75,7 @@ class Reg(WineProgram):
         # avoid conflicts when executing async
         winedbg.wait_for_process("reg.exe")
 
-        res = self.launch(args, comunicate=True, minimal=True, action_name="import_bundle")
+        res = self.launch(args, communicate=True, minimal=True, action_name="import_bundle")
         logging.info(res, )
 
         # remove reg file

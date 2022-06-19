@@ -18,6 +18,7 @@ bottles_sources = [
   'journal.py',
   'repository.py',
   'template.py',
+  'sandbox.py',
   'steam.py',
   'epicgamesstore.py',
 ]

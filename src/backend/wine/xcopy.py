@@ -65,4 +65,4 @@ class Xcopy(WineProgram):
             if isinstance(after_date, datetime):
                 args += f"/d:{after_date.strftime('%m-%d-%Y')}"
 
-        return self.launch(args=args, comunicate=True, action_name="start")
+        return self.launch(args=args, communicate=True, action_name="start")

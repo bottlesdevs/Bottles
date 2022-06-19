@@ -16,7 +16,7 @@ class Uninstaller(WineProgram):
         if name is not None:
             args = f"--list | grep -i '{name}' | cut -f1 -d\\|"
 
-        return self.launch(args=args, comunicate=True, action_name="get_uuid")
+        return self.launch(args=args, communicate=True, action_name="get_uuid")
 
     def from_uuid(self, uuid: str = None):
         args = ""

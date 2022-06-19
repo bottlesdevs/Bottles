@@ -79,6 +79,6 @@ class WineServer(WineProgram):
 
         self.launch(
             args=args,
-            comunicate=True,
+            communicate=True,
             action_name="sending signal to the wine server"
         )

@@ -34,7 +34,7 @@ class Start(WineProgram):
 
         self.launch(
             args=(_args, args),
-            comunicate=True,
+            communicate=True,
             terminal=terminal,
             environment=environment,
             cwd=cwd,
