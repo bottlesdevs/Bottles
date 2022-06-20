@@ -17,6 +17,7 @@
 
 
 import os
+import shlex
 import subprocess
 
 
@@ -46,23 +47,23 @@ class SandboxManager:
         _cmd = ["bwrap"]
 
         if self.envs:
-            _cmd += [f"--setenv {k} {v}" for k, v in self.envs.items()]
+            _cmd += [f"--setenv {k} {shlex.quote(v)}" for k, v in self.envs.items()]
 
         if self.share_host_ro:
             _cmd.append("--ro-bind / /")
 
         if self.chdir:
-            _cmd.append(f"--chdir {self.chdir}")
-            _cmd.append(f"--bind {self.chdir} {self.chdir}")
+            _cmd.append(f"--chdir {shlex.quote(self.chdir)}")
+            _cmd.append(f"--bind {shlex.quote(self.chdir)} {shlex.quote(self.chdir)}")
 
         if self.clear_env:
             _cmd.append("--clearenv")
 
         if self.share_paths_ro:
-            _cmd += [f"--ro-bind {p} {p}" for p in self.share_paths_ro]
+            _cmd += [f"--ro-bind {shlex.quote(p)} {shlex.quote(p)}" for p in self.share_paths_ro]
 
         if self.share_paths_rw:
-            _cmd += [f"--bind {p} {p}" for p in self.share_paths_ro]
+            _cmd += [f"--bind {shlex.quote(p)} {shlex.quote(p)}" for p in self.share_paths_ro]
 
         _cmd.append("--share-net" if self.share_net else "--unshare-net")
         _cmd.append("--share-user" if self.share_user else "--unshare-user")
@@ -74,27 +75,31 @@ class SandboxManager:
         _cmd = ["flatpak-spawn"]
 
         if self.envs:
-            _cmd += [f"--env={k}={v}" for k, v in self.envs.items()]
+            _cmd += [f"--env={k}={shlex.quote(v)}" for k, v in self.envs.items()]
 
         if self.share_host_ro:
             _cmd.append("--sandbox")
             _cmd.append("--sandbox-expose-path-ro=/")
 
         if self.chdir:
-            _cmd.append(f"--directory={self.chdir}")
-            _cmd.append(f"--sandbox-expose-path={self.chdir}")
+            _cmd.append(f"--directory={shlex.quote(self.chdir)}")
+            _cmd.append(f"--sandbox-expose-path={shlex.quote(self.chdir)}")
 
         if self.clear_env:
             _cmd.append("--clear-env")
 
         if self.share_paths_ro:
-            _cmd += [f"--sandbox-expose-path-ro={p}" for p in self.share_paths_ro]
+            _cmd += [f"--sandbox-expose-path-ro={shlex.quote(p)}" for p in self.share_paths_ro]
 
         if self.share_paths_rw:
-            _cmd += [f"--sandbox-expose-path={p}" for p in self.share_paths_rw]
+            _cmd += [f"--sandbox-expose-path={shlex.quote(p)}" for p in self.share_paths_rw]
 
         if not self.share_net:
             _cmd.append("--no-network")
+
+        _cmd.append("--sandbox-flag=share-display")
+        _cmd.append("--sandbox-flag=share-sound")
+        _cmd.append("--sandbox-flag=share-gpu")
 
         _cmd.append(cmd)
 
@@ -102,8 +107,12 @@ class SandboxManager:
 
     def get_cmd(self, cmd: str):
         if "FLATPAK_ID" in os.environ:
-            return self.__get_flatpak_spawn(cmd)
-        return self.__get_bwrap(cmd)
+            _cmd = self.__get_flatpak_spawn(cmd)
+        else:
+            _cmd = self.__get_bwrap(cmd)
+
+        return " ".join(_cmd)
 
     def run(self, cmd: str):
-        return subprocess.Popen(self.get_cmd(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print(self.get_cmd(cmd))
+        return subprocess.Popen(self.get_cmd(cmd), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

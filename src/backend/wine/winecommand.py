@@ -491,12 +491,17 @@ class WineCommand:
             chdir=self.cwd,
             clear_env=True,
             share_paths_rw=[ManagerUtils.get_bottle_path(self.config)],
+            share_paths_ro=[
+                Paths.runners,
+                Paths.temp
+            ],
             share_net=True
         )
         if self.terminal:
             return TerminalUtils().execute(sandbox.get_cmd(self.command), self.env, self.colors)
 
         proc = sandbox.run(self.command)
+        print(proc.communicate()[0].decode("utf-8"))
         print(proc.communicate()[1].decode("utf-8"))
         '''
 
