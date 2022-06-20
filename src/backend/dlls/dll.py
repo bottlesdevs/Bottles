@@ -86,7 +86,6 @@ class DLLComponent:
             })
 
         reg.import_bundle(bundle)
-        WineBoot(config).update()
 
     def uninstall(self, config: dict, exclude=None):
         reg = Reg(config)
@@ -110,7 +109,6 @@ class DLLComponent:
             })
 
         reg.import_bundle(bundle)
-        WineBoot(config).update()
 
     @staticmethod
     def __get_sys_path(config, path: str):

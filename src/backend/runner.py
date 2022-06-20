@@ -84,15 +84,15 @@ class Runner:
         # wait for wineserver to go away
         wineserver.wait()
 
-        # perform a prefix update
-        wineboot.update()
-
         # update bottle config
         up_config = manager.update_config(
             config=config,
             key="Runner",
             value=runner
         ).data["config"]
+
+        # perform a prefix update
+        wineboot.update()
 
         # re-initialize DLLComponents
         if config["Parameters"]["dxvk"]:
