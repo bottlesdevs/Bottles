@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-19 19:49+0000\n"
+"PO-Revision-Date: 2022-06-21 15:57+0000\n"
 "Last-Translator: Roger VC <rogervilarasau@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/bottles/bottles/"
 "ca/>\n"
@@ -1490,7 +1490,7 @@ msgstr "Trieu un directori"
 #: src/ui/details-preferences.ui:572 src/ui/dialog-dll-overrides.ui:9
 #: src/ui/dialog-dll-overrides.ui:15
 msgid "DLL Overrides"
-msgstr "Anul·lació de DLL"
+msgstr "Substitució de DLL"
 
 #: src/ui/details-preferences.ui:583 src/ui/dialog-env-vars.ui:16
 msgid "Environment Variables"
@@ -1618,7 +1618,7 @@ msgstr ""
 
 #: src/ui/details.ui:76
 msgid "Operations"
-msgstr ""
+msgstr "Operacions"
 
 #: src/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
@@ -1626,7 +1626,7 @@ msgstr ""
 
 #: src/ui/dialog-crash-report.ui:23
 msgid "Send report"
-msgstr ""
+msgstr "Enviar informe"
 
 #: src/ui/dialog-crash-report.ui:43
 msgid ""
@@ -1641,32 +1641,39 @@ msgid ""
 "new one. Each report requires effort on the part of the developers to "
 "diagnose, please respect their work and make sure you don't post duplicates."
 msgstr ""
+"Hem trobat un o més informes semblants (o idèntics). Assegureu-vos de "
+"comprovar acuradament que encara no s'ha informat abans d'enviar-ne un de "
+"nou. Cada informe requereix un esforç per part dels desenvolupadors per "
+"diagnosticar, si us plau, respecteu el seu treball i assegureu-vos que no "
+"publiqueu duplicats."
 
 #: src/ui/dialog-crash-report.ui:96
 msgid "I still want to report."
-msgstr ""
+msgstr "Tot i així vull informar."
 
 #: src/ui/dialog-crash-report.ui:102
 msgid "Advanced options"
-msgstr ""
+msgstr "Opcions avançades"
 
 #: src/ui/dialog-dll-overrides.ui:14
 msgid ""
 "Dynamic Link Libraries can be specified to be builtin (provided by Wine) or "
 "native (provided by the program)."
 msgstr ""
+"Les biblioteques d'enllaços dinàmics es poden especificar perquè siguin "
+"integrades (proporcionades pel Wine) o natives (proporcionades pel programa)."
 
 #: src/ui/dialog-dll-overrides.ui:18
 msgid "New Override"
-msgstr ""
+msgstr "Nova substitució"
 
 #: src/ui/dialog-dll-overrides.ui:26
 msgid "Overrides"
-msgstr ""
+msgstr "Substitucions"
 
 #: src/ui/dialog-drives.ui:9
 msgid "Drives"
-msgstr ""
+msgstr "Unitats"
 
 #: src/ui/dialog-drives.ui:21
 msgid ""
@@ -1677,169 +1684,177 @@ msgstr ""
 
 #: src/ui/dialog-drives.ui:25
 msgid "Letter"
-msgstr ""
+msgstr "Lletra"
 
 #: src/ui/dialog-drives.ui:49
 msgid "Existing drives"
-msgstr ""
+msgstr "Unitats existents"
 
 #: src/ui/dialog-duplicate.ui:17
 msgid "Duplicate Bottle"
-msgstr ""
+msgstr "Duplicar ampolla"
 
 #: src/ui/dialog-duplicate.ui:38
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicat"
 
 #: src/ui/dialog-duplicate.ui:52
 msgid "Enter a name for the duplicate of the Bottle."
-msgstr ""
+msgstr "Introduïu un nom per al duplicat de l'ampolla."
 
 #: src/ui/dialog-duplicate.ui:75
 msgid "Duplicating…"
-msgstr ""
+msgstr "S'està duplicant…"
 
 #: src/ui/dialog-duplicate.ui:84
 msgid "Take a break, it may take a while"
-msgstr ""
+msgstr "Feu una pausa, pot trigar una estona"
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
-msgstr ""
+msgstr "Ampolla duplicada"
 
 #: src/ui/dialog-env-vars.ui:25
 msgid ""
 "Environment variables are dynamic-named value that can affect the way "
 "running processes will behave on your bottle."
 msgstr ""
+"Les variables d'entorn són valors amb nom dinàmic que poden afectar la "
+"manera com es comportaran els processos en execució a l'ampolla."
 
 #: src/ui/dialog-env-vars.ui:28
 msgid "Variable name"
-msgstr ""
+msgstr "Nom de la variable"
 
 #: src/ui/dialog-env-vars.ui:36
 msgid "Existing variables"
-msgstr ""
+msgstr "Variables existents"
 
 #: src/ui/dialog-gamescope.ui:9
 msgid "Gamescope Settings"
-msgstr ""
+msgstr "Configuració de Gamescope"
 
 #: src/ui/dialog-gamescope.ui:34
 msgid ""
 "Configure how Gamescope should manage the window for the games you will run."
 msgstr ""
+"Configureu com Gamescope hauria de gestionar la finestra per als jocs que "
+"executareu."
 
 #: src/ui/dialog-gamescope.ui:39
 msgid "Game resolution"
-msgstr ""
+msgstr "Resolució del joc"
 
 #: src/ui/dialog-gamescope.ui:42 src/ui/dialog-gamescope.ui:57
 msgid "Width (e.g. 1280)"
-msgstr ""
+msgstr "Amplada (p. ex. 1280)"
 
 #: src/ui/dialog-gamescope.ui:47 src/ui/dialog-gamescope.ui:62
 msgid "Height (e.g. 720)"
-msgstr ""
+msgstr "Alçada (p. ex. 720)"
 
 #: src/ui/dialog-gamescope.ui:54
 msgid "Gamescope resolution"
-msgstr ""
+msgstr "Resolució del gamescope"
 
 #: src/ui/dialog-gamescope.ui:69
 msgid "Extra settings"
-msgstr ""
+msgstr "Configuracions addicionals"
 
 #: src/ui/dialog-gamescope.ui:72
 msgid "Frame rate limit (e.g. 60)"
-msgstr ""
+msgstr "Límit de velocitat de fotogrames (p. ex. 60)"
 
 #: src/ui/dialog-gamescope.ui:77
 msgid "Frame rate limit (when unfocused)"
-msgstr ""
+msgstr "Límit de velocitat de fotogrames (quan es desenfoca)"
 
 #: src/ui/dialog-gamescope.ui:82
 msgid "Use integer scaling"
-msgstr ""
+msgstr "Utilitza l'escalat d'enters"
 
 #: src/ui/dialog-gamescope.ui:92
 msgid "Window type"
-msgstr ""
+msgstr "Tipus de finestra"
 
 #: src/ui/dialog-gamescope.ui:97
 msgid "Borderless"
-msgstr ""
+msgstr "Sense vores"
 
 #: src/ui/dialog-gamescope.ui:104
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pantalla completa"
 
 #: src/ui/dialog-journal.ui:12
 msgid "All messages"
-msgstr ""
+msgstr "Tots els missatges"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr ""
+msgstr "Crític"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
-msgstr ""
+msgstr "Errors"
 
 #: src/ui/dialog-journal.ui:27
 msgid "Warnings"
-msgstr ""
+msgstr "Advertències"
 
 #: src/ui/dialog-journal.ui:32
 msgid "Info"
-msgstr ""
+msgstr "Informació"
 
 #: src/ui/dialog-journal.ui:56
 msgid "Journal Browser"
-msgstr ""
+msgstr "Navegador del diari"
 
 #: src/ui/dialog-journal.ui:62
 msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
+"Canviar el nivell de registre.\n"
+"                                        "
 
 #: src/ui/dialog-journal.ui:67
 msgid "All"
-msgstr ""
+msgstr "Tots"
 
 #: src/ui/dialog-launch-options.ui:9
 msgid "Launch Options"
-msgstr ""
+msgstr "Opcions de llançament"
 
 #: src/ui/dialog-launch-options.ui:46
 msgid "Those arguments will be passed at launch."
-msgstr ""
+msgstr "Aquests arguments es passaran al llançament."
 
 #: src/ui/dialog-launch-options.ui:47
 msgid "Custom Arguments"
-msgstr ""
+msgstr "Arguments personalitzats"
 
 #: src/ui/dialog-launch-options.ui:50
 msgid "Command Arguments"
-msgstr ""
+msgstr "Arguments d'ordres"
 
 #: src/ui/dialog-launch-options.ui:51
 #, python-format
 msgid "e.g.: VAR=value %command% -example1 -example2 -example3=hello"
-msgstr ""
+msgstr "p. ex.: VAR=valor %comand% -exemple1 -exemple2 -exemple3=hola"
 
 #: src/ui/dialog-launch-options.ui:57
 msgid "Post-run Script"
-msgstr ""
+msgstr "Script post-execució"
 
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
 msgstr ""
+"Aquesta configuració substituirà la configuració per defecte d'aquest "
+"executable."
 
 #: src/ui/dialog-launch-options.ui:88
 msgid "Preferences Overrides"
-msgstr ""
+msgstr "Substitució de les preferències"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
