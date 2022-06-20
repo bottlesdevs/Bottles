@@ -102,6 +102,7 @@ class InstallersView(Adw.Bin):
                 installer=_installer
             )
             self.list_installers.append(entry)
+            self.__registry.append(entry)
 
         def callback(result, error=False):
             self.status_page.set_visible(not result.status)
