@@ -31,7 +31,7 @@ class PageRow(Gtk.ListBoxRow):
             "programs": "preferences-desktop-apps-symbolic",
             "versioning": "preferences-system-time-symbolic",
             "installers": "system-software-install-symbolic",
-            "taskmanager": "computer-symbolic-symbolic"
+            "taskmanager": "computer-symbolic"
         }
 
         grid = Gtk.Grid()
