@@ -1104,7 +1104,7 @@ class Manager:
             log_update(_("Setting Windows version…"))
             if "caffe" not in runner_name.lower():  # Caffe came with win10 and doesn't need this
                 rk.set_windows(config["Windows"])
-            wineboot.update()
+                wineboot.update()
 
             FileUtils.wait_for_files(reg_files)
 
