@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bottles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-11 18:08+0200\n"
-"PO-Revision-Date: 2022-06-13 07:03+0000\n"
-"Last-Translator: Dansito <fabianramos31@gmail.com>\n"
+"PO-Revision-Date: 2022-06-21 15:57+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/bottles/bottles/"
 "es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 #: data/com.usebottles.bottles.desktop.in:3
 #: data/com.usebottles.bottles.appdata.xml.in:6 src/window.py:210
@@ -1074,8 +1074,7 @@ msgstr "Accede al panel de control interno de Wine."
 
 #: src/ui/details-bottle.ui:348
 msgid "Use the Installers section or the \"Run executable\" button."
-msgstr ""
-"Utilice la sección de instaladores o el botón de \"Ejecutar programa\"."
+msgstr "Utilice la sección Instaladores o el botón «Ejecutar programa»."
 
 #: src/ui/details-dependencies.ui:13
 msgid "Search for dependencies…"
@@ -1096,9 +1095,8 @@ msgid ""
 "Files on this page are provided by third parties under a proprietary "
 "license. By installing them, you agree with their respective licensing terms."
 msgstr ""
-"Los archivos de esta página son proporcionados por terceros bajo una "
-"licencia propietaria. Al instalarlos, usted acepta sus respectivos términos "
-"de licencia."
+"Los archivos de esta página los brindan terceros en virtud de una licencia "
+"privativa. Al instalarlos, usted acepta sus respectivos términos de licencia."
 
 #: src/ui/details-dependencies.ui:62
 msgid "Report a problem or a missing dependency."
@@ -1527,7 +1525,7 @@ msgstr ""
 
 #: src/ui/details-preferences.ui:623 src/ui/details-preferences.ui:617
 msgid "Development and Debugging"
-msgstr "Desarrollo y Depuración"
+msgstr "Desarrollo y depuración"
 
 #: src/ui/details-preferences.ui:627 src/ui/details-preferences.ui:621
 msgid "DXVK HUD"
@@ -1561,7 +1559,7 @@ msgstr "Desactivar/Activar captura de juego de OBS para todos los programas."
 
 #: src/ui/details-preferences.ui:663 src/ui/details-preferences.ui:657
 msgid "Wine 'fixme' Logs"
-msgstr "Registros \"fixme\" de Wine"
+msgstr "Registros «fixme» de Wine"
 
 #: src/ui/details-preferences.ui:664 src/ui/details-preferences.ui:658
 msgid "Log code paths that are unimplemented in Wine."
@@ -1582,7 +1580,7 @@ msgstr ""
 
 #: src/ui/details-programs.ui:31
 msgid "Toggle Hidden"
-msgstr "Mostrar/Esconder archivos ocultos"
+msgstr "Alternar ocultos"
 
 #: src/ui/details-programs.ui:39
 msgid "Read documentation about programs"
@@ -1634,7 +1632,7 @@ msgstr "Operaciones"
 
 #: src/ui/dialog-crash-report.ui:10
 msgid "Bottles crash report"
-msgstr "Informe de fallo de Bottles"
+msgstr "Informe de cierre inesperado de Bottles"
 
 #: src/ui/dialog-crash-report.ui:23
 msgid "Send report"
@@ -1645,9 +1643,9 @@ msgid ""
 "Bottles crashed last time. Please fill out a report attaching the following "
 "traceback to help us identify the problem preventing it from happening again."
 msgstr ""
-"Bottles se cayó la última vez. Por favor, rellene un informe adjuntando el "
-"siguiente rastro para ayudarnos a identificar el problema y evitar que "
-"vuelva a ocurrir."
+"Bottles se cerró de manera inesperada la última vez. Rellene un informe "
+"adjuntando el siguiente rastro para ayudarnos a identificar el problema y "
+"evitar que vuelva a ocurrir."
 
 #: src/ui/dialog-crash-report.ui:75
 msgid ""
@@ -1681,11 +1679,11 @@ msgstr ""
 
 #: src/ui/dialog-dll-overrides.ui:18
 msgid "New Override"
-msgstr "Override Nuevo"
+msgstr "Anulación nueva"
 
 #: src/ui/dialog-dll-overrides.ui:26
 msgid "Overrides"
-msgstr "Overrides de DLL"
+msgstr "Anulaciones"
 
 #: src/ui/dialog-drives.ui:9
 msgid "Drives"
@@ -1697,13 +1695,13 @@ msgid ""
 "devices by the runner (e.g. C: D:..).\n"
 "                                "
 msgstr ""
-"Se trata de rutas de su sistema anfitrión que son mapeadas y reconocidas "
-"como dispositivos por el ejecutor (por ejemplo, C: D:..).\n"
+"Son rutas asignadas del sistema anfitrión que el ejecutor reconoce como "
+"dispositivos (p. ej., C: o D:).\n"
 "                                "
 
 #: src/ui/dialog-drives.ui:25
 msgid "Letter"
-msgstr "Carácter"
+msgstr "Letra"
 
 #: src/ui/dialog-drives.ui:49
 msgid "Existing drives"
@@ -1727,7 +1725,7 @@ msgstr "Duplicando…"
 
 #: src/ui/dialog-duplicate.ui:84
 msgid "Take a break, it may take a while"
-msgstr "Tómese un descanso, puede llevar un tiempo"
+msgstr "La acción podría demorar un poco"
 
 #: src/ui/dialog-duplicate.ui:105
 msgid "Bottle Duplicated"
@@ -1751,7 +1749,7 @@ msgstr "Variables existentes"
 
 #: src/ui/dialog-gamescope.ui:9
 msgid "Gamescope Settings"
-msgstr "Ajustes de Gamescope"
+msgstr "Configuración de Gamescope"
 
 #: src/ui/dialog-gamescope.ui:34
 msgid ""
@@ -1766,11 +1764,11 @@ msgstr "Resolución del juego"
 
 #: src/ui/dialog-gamescope.ui:42 src/ui/dialog-gamescope.ui:57
 msgid "Width (e.g. 1280)"
-msgstr "Ancho (ej. 1280)"
+msgstr "Anchura (p. ej., 1280)"
 
 #: src/ui/dialog-gamescope.ui:47 src/ui/dialog-gamescope.ui:62
 msgid "Height (e.g. 720)"
-msgstr "Alto (ej. 720)"
+msgstr "Altura (p. ej., 720)"
 
 #: src/ui/dialog-gamescope.ui:54
 msgid "Gamescope resolution"
@@ -1778,15 +1776,15 @@ msgstr "Resolución de Gamescope"
 
 #: src/ui/dialog-gamescope.ui:69
 msgid "Extra settings"
-msgstr "Ajustes adicionales"
+msgstr "Configuración adicional"
 
 #: src/ui/dialog-gamescope.ui:72
 msgid "Frame rate limit (e.g. 60)"
-msgstr "Limitar velocidad de fotogramas (ej. 60)"
+msgstr "Límite de tasa de fotogramas (p. ej., 60)"
 
 #: src/ui/dialog-gamescope.ui:77
 msgid "Frame rate limit (when unfocused)"
-msgstr "Límite de fotogramas por segundo (cuando la ventana esta desenfocada)"
+msgstr "Límite de tasa de fotogramas (cuando no se tiene el foco)"
 
 #: src/ui/dialog-gamescope.ui:82
 msgid "Use integer scaling"
@@ -1810,7 +1808,7 @@ msgstr "Todos los mensajes"
 
 #: src/ui/dialog-journal.ui:17
 msgid "Critical"
-msgstr "Críticos"
+msgstr "Cruciales"
 
 #: src/ui/dialog-journal.ui:22
 msgid "Errors"
@@ -1826,14 +1824,14 @@ msgstr "Información"
 
 #: src/ui/dialog-journal.ui:56
 msgid "Journal Browser"
-msgstr "Navegador de Logs"
+msgstr "Navegador de Diario"
 
 #: src/ui/dialog-journal.ui:62
 msgid ""
 "Change logging level.\n"
 "                                        "
 msgstr ""
-"Cambiar el nivel de logging.\n"
+"Cambiar el nivel de registro.\n"
 "                                        "
 
 #: src/ui/dialog-journal.ui:67
@@ -1842,7 +1840,7 @@ msgstr "Todos"
 
 #: src/ui/dialog-launch-options.ui:9
 msgid "Launch Options"
-msgstr "Opciones de lanzamiento"
+msgstr "Opciones de inicio"
 
 #: src/ui/dialog-launch-options.ui:46
 msgid "Those arguments will be passed at launch."
@@ -1854,7 +1852,7 @@ msgstr "Argumentos personalizados"
 
 #: src/ui/dialog-launch-options.ui:50
 msgid "Command Arguments"
-msgstr "Argumentos del comando"
+msgstr "Argumentos de la orden"
 
 #: src/ui/dialog-launch-options.ui:51
 #, python-format
@@ -1863,7 +1861,7 @@ msgstr "ej.: VAR=valor %comando% -ejemplo1 -ejemplo2 -ejemplo3=hola"
 
 #: src/ui/dialog-launch-options.ui:57
 msgid "Post-run Script"
-msgstr "Script de post-ejecución"
+msgstr "Secuencia postejecución"
 
 #: src/ui/dialog-launch-options.ui:87
 msgid "These settings will override the default settings for this executable."
@@ -1872,7 +1870,7 @@ msgstr ""
 
 #: src/ui/dialog-launch-options.ui:88
 msgid "Preferences Overrides"
-msgstr "Overrides de Preferencias"
+msgstr "Anulaciones de preferencias"
 
 #: src/ui/dialog-local-resources.ui:11
 msgid "Local Resources"
@@ -1883,12 +1881,12 @@ msgid ""
 "This installer requires some local resources which cannot be provided "
 "otherwise."
 msgstr ""
-"Este instalador requiere algunos recursos locales que no pueden ser "
-"proveídos de otra manera."
+"Este instalador requiere algunos recursos locales que no pueden proveerse de "
+"otra manera."
 
 #: src/ui/dialog-rename.ui:9
 msgid "Rename"
-msgstr "Renombrar"
+msgstr "Cambiar nombre"
 
 #: src/ui/dialog-rename.ui:34
 msgid "Choose a new name for the selected program."
@@ -1896,11 +1894,11 @@ msgstr "Elija un nuevo nombre para el programa seleccionado."
 
 #: src/ui/dialog-rename.ui:37
 msgid "New Name"
-msgstr "Nuevo Nombre"
+msgstr "Nombre nuevo"
 
 #: src/ui/dialog-run-args.ui:14
 msgid "Run With Arguments"
-msgstr "Ejecutar Con Argumentos"
+msgstr "Ejecutar con argumentos"
 
 #: src/ui/dialog-run-args.ui:47
 msgid "Write below the arguments to be passed to the executable."
@@ -1920,11 +1918,11 @@ msgstr "Nativo (Windows)"
 
 #: src/ui/dll-override-entry.ui:12
 msgid "Builtin, then Native"
-msgstr "Incorporado, después Nativo"
+msgstr "Incorporado, después nativo"
 
 #: src/ui/dll-override-entry.ui:13
 msgid "Native, then Builtin"
-msgstr "Nativo, después Incorporado"
+msgstr "Nativo, después incorporado"
 
 #: src/ui/dll-override-entry.ui:21 src/ui/drive-entry.ui:14
 msgid "Remove"
@@ -1974,11 +1972,11 @@ msgstr "Configuración"
 
 #: src/ui/importer.ui:87
 msgid "Full Archive"
-msgstr "Archivado Completo"
+msgstr "Archivo completo"
 
 #: src/ui/installer-entry.ui:18
 msgid "Show Manifest…"
-msgstr "Mostrar Manifiest…"
+msgstr "Mostrar manifiesto…"
 
 #: src/ui/installer-entry.ui:23
 msgid "Read Review…"
