@@ -79,7 +79,7 @@ class Runner:
 
         # force kill if still running
         if wineserver.is_alive():
-            wineserver.kill(9)
+            wineserver.force_kill()
 
         # wait for wineserver to go away
         wineserver.wait()
