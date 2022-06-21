@@ -1102,7 +1102,8 @@ class Manager:
         if not template and not custom_environment:
             logging.info("Setting Windows version…")
             log_update(_("Setting Windows version…"))
-            rk.set_windows(config["Windows"])
+            if "caffe" not in runner_name.lower():  # Caffe came with win10 and doesn't need this
+                rk.set_windows(config["Windows"])
             wineboot.update()
 
             FileUtils.wait_for_files(reg_files)
