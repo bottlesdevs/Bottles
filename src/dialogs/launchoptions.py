@@ -18,6 +18,8 @@
 import os
 from gi.repository import Gtk, GLib, Adw
 
+from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
+
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/dialog-launch-options.ui')
 class LaunchOptionsDialog(Adw.Window):

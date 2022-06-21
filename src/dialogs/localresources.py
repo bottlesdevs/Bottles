@@ -1,4 +1,4 @@
-# drive.py
+# localresources.py
 #
 # Copyright 2020 brombinmirko <send@mirko.pm>
 #
@@ -17,8 +17,7 @@
 
 from gi.repository import Gtk, GLib, Adw
 
-from bottles.backend.wine.drives import Drives  # pyright: reportMissingImports=false
-from bottles.dialogs.filechooser import FileChooser
+from bottles.dialogs.filechooser import FileChooser  # pyright: reportMissingImports=false
 
 
 @Gtk.Template(resource_path='/com/usebottles/bottles/local-resource-entry.ui')
