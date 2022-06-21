@@ -26,7 +26,7 @@ from gi.repository import GLib
 
 from bottles.backend.logger import Logger  # pyright: reportMissingImports=false
 from bottles.backend.globals import Paths, user_apps_dir
-from bottles.backend.utils.imagemagick import ImageMagick
+from bottles.backend.utils.imagemagick import ImageMagickUtils
 from bottles.backend.utils.generic import get_mime
 
 logging = Logger()
@@ -194,7 +194,7 @@ class ManagerUtils:
                 if not ico_dest_temp.endswith(".ico"):
                     shutil.move(ico_dest_temp, f"{ico_dest_temp}.ico")
                     ico_dest_temp = f"{ico_dest_temp}.ico"
-                im = ImageMagick(ico_dest_temp)
+                im = ImageMagickUtils(ico_dest_temp)
                 im.convert(ico_dest)
                 icon = ico_dest
             else:
