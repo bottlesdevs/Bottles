@@ -36,18 +36,22 @@ class TerminalUtils:
     }
 
     terminals = [
+        # Part of Flatpak package
         ['easyterm.py', '-d -p "%s" -c %s'],
+        # Third party
         ['foot', '%s'],
         ['kitty', '%s'],
-        ['xfce4-terminal', '-e %s'],
-        ['xterm', '-e %s'],
-        ['konsole', '--noclose -e %s'],
-        ['kgx', '-e %s'],
-        ['gnome-terminal', '-- %s'],
-        ['mate-terminal', '--command %s'],
         ['tilix', '-- %s'],
+        # Desktop environments
+        ['xfce4-terminal', '-e %s'],
+        ['konsole', '--noclose -e %s'],
+        ['gnome-terminal', '-- %s'],
+        ['kgx', '-e %s'],
+        ['mate-terminal', '--command %s'],
         ['qterminal', '--execute %s'],
         ['lxterminal', '-e %s'],
+        # Fallback
+        ['xterm', '-e %s'],
     ]
 
     def __init__(self):
