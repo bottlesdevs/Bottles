@@ -22,6 +22,7 @@ import gi
 import os
 import sys
 import yaml
+import uuid
 import json
 import signal
 import argparse
@@ -49,6 +50,7 @@ from bottles.backend.wine.control import Control
 from bottles.backend.wine.executor import WineExecutor
 from bottles.backend.wine.winecommand import WineCommand
 from bottles.backend.wine.reg import Reg
+from bottles.backend.wine.winepath import WinePath
 from bottles.backend.wine.regedit import Regedit
 from bottles.backend.wine.taskmgr import Taskmgr
 from bottles.backend.wine.uninstaller import Uninstaller
@@ -56,6 +58,7 @@ from bottles.backend.wine.winecfg import WineCfg
 from bottles.backend.wine.explorer import Explorer
 from bottles.backend.wine.regkeys import RegKeys
 from bottles.backend.runner import Runner
+from bottles.backend.utils.manager import ManagerUtils
 from bottles.utils.connection import ConnectionUtils
 
 
@@ -83,6 +86,15 @@ class CLI:
 
         programs_parser = subparsers.add_parser("programs", help="List programs")
         programs_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+
+        add_parser = subparsers.add_parser("add", help="Add program")
+        add_parser.add_argument("-b", "--bottle", help="Bottle name", required=True)
+        add_parser.add_argument("-n", "--name", help="Program name", required=True)
+        add_parser.add_argument("-p", "--path", help="Program path", required=True)
+        add_parser.add_argument("-l", "--launch-options", help="Program launch options")
+        add_parser.add_argument("--no-dxvk", action="store_true", help="Disable DXVK for the program")
+        add_parser.add_argument("--no-vkd3d", action="store_true", help="Disable VKD3D for the program")
+        add_parser.add_argument("--no-dxvk-nvapi", action="store_true", help="Disable DXVK Nvapi for the program")
 
         tools_parser = subparsers.add_parser("tools", help="Launch Wine tools")
         tools_parser.add_argument('tool', choices=['cmd', 'winecfg', 'uninstaller', 'regedit', 'taskmgr', 'control',
@@ -112,7 +124,7 @@ class CLI:
 
         new_parser = subparsers.add_parser("new", help="Create a new bottle")
         new_parser.add_argument("--bottle-name", help="Bottle name", required=True)
-        new_parser.add_argument("--environment", help="Envorinment to apply (gaming|application|custom)", required=True)
+        new_parser.add_argument("--environment", help="Environment to apply (gaming|application|custom)", required=True)
         new_parser.add_argument("--custom-environment", help="Path to a custom environment.yml file")
         new_parser.add_argument("--arch", help="Architecture (win32|win64)")
         new_parser.add_argument("--runner", help="Name of the runner to be used")
@@ -161,6 +173,10 @@ class CLI:
         # TOOLS parser
         elif self.args.command == "tools":
             self.launch_tool()
+
+        # ADD parser
+        elif self.args.command == "add":
+            self.add_program()
 
         # REG parser
         elif self.args.command == "reg":
@@ -302,6 +318,56 @@ class CLI:
             Control(bottle).launch()
         elif _tool == "explorer":
             Explorer(bottle).launch()
+
+    # endregion
+
+    # region ADD
+    def add_program(self):
+        _bottle = self.args.bottle
+        _name = self.args.name
+        _path = self.args.path
+        _launch_options = self.args.launch_options
+        _no_dxvk = self.args.no_dxvk
+        _no_vkd3d = self.args.no_vkd3d
+        _no_dxvk_nvapi = self.args.no_dxvk_nvapi
+        _executable = ""
+        _folder = ""
+        _uuid = str(uuid.uuid4())
+        mng = Manager(self, is_cli=True)
+        mng.check_bottles()
+
+        if _bottle not in mng.local_bottles:
+            sys.stderr.write(f"Bottle {_bottle} not found\n")
+            exit(1)
+
+        bottle = mng.local_bottles[_bottle]
+        winepath = WinePath(bottle)
+
+        if winepath.is_unix(_path):
+            if not os.path.exists(_path):
+                sys.stderr.write(f"Path doesn't exists or is unreachable: {_path}")
+                exit(1)
+            _executable = os.path.basename(_path)
+            _folder = os.path.dirname(_path)
+        elif winepath.is_windows(_path):
+            _executable = _path.split("\\")[-1]
+            _folder = ManagerUtils.get_exe_parent_dir(bottle, _path)
+        else:
+            sys.stderr.write(f"Unsupported path type: {_path}")
+            exit(1)
+
+        _program = {
+            "arguments": _launch_options if _launch_options else "",
+            "executable": _executable,
+            "folder": _folder,
+            "icon": "",
+            "id": _uuid,
+            "path": _path,
+            "dxvk": not _no_dxvk if _no_dxvk else bottle["Parameters"]["dxvk"],
+            "vkd3d": not _no_vkd3d if _no_vkd3d else bottle["Parameters"]["vkd3d"],
+            "dxvk_nvapi": not _no_dxvk_nvapi if _no_dxvk_nvapi else bottle["Parameters"]["dxvk_nvapi"],
+        }
+        mng.update_config(bottle, _uuid, _program, scope="External_Programs")
 
     # endregion
 
