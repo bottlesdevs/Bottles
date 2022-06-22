@@ -28,9 +28,9 @@ class StateEntry(Adw.ActionRow):
     __gtype_name__ = 'StateEntry'
 
     # region Widgets
-    #label_creation_date = Gtk.Template.Child()
     btn_restore = Gtk.Template.Child()
     btn_manifest = Gtk.Template.Child()
+    spinner = Gtk.Template.Child()
 
     # endregion
 
@@ -44,7 +44,6 @@ class StateEntry(Adw.ActionRow):
         self.state_name = "State: {0}".format(state[0])
         self.config = config
         self.versioning_manager = self.manager.versioning_manager
-        self.spinner = Gtk.Spinner()
 
         # format creation date
         creation_date = datetime.strptime(
@@ -68,8 +67,6 @@ class StateEntry(Adw.ActionRow):
         Set the bottle state to this one.
         """
         widget.set_sensitive(False)
-        widget.add(self.spinner)
-
         self.spinner.show()
         GLib.idle_add(self.spinner.start)
         RunAsync(
