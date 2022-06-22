@@ -368,6 +368,7 @@ class CLI:
             "dxvk_nvapi": not _no_dxvk_nvapi if _no_dxvk_nvapi else bottle["Parameters"]["dxvk_nvapi"],
         }
         mng.update_config(bottle, _uuid, _program, scope="External_Programs")
+        sys.stdout.write(f"'{_name}' added to '{bottle['Name']}'!")
 
     # endregion
 
